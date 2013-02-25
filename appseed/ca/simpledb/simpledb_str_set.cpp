@@ -136,11 +136,11 @@ repeat:;
           {
 
 
-             ca::property_set post(get_app());
-             ca::property_set headers(get_app());
-             ca::property_set set(get_app());
+             ::ca::property_set post(get_app());
+             ::ca::property_set headers(get_app());
+             ::ca::property_set set(get_app());
 
-             ca::http::e_status estatus;
+             ::ca::http::e_status estatus;
 
              string strUrl;
 
@@ -169,7 +169,7 @@ repeat:;
 
              m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-             if(m_phttpsession == NULL || estatus != ca::http::status_ok)
+             if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
              {
                 Sleep(1984);
                 strApiServer = "";
@@ -236,11 +236,11 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       }
 
 
-      ca::property_set post(get_app());
-      ca::property_set headers(get_app());
-      ca::property_set set(get_app());
+      ::ca::property_set post(get_app());
+      ::ca::property_set headers(get_app());
+      ::ca::property_set set(get_app());
 
-      ca::http::e_status estatus;
+      ::ca::http::e_status estatus;
 
       set["interactive_user"] = true;
 
@@ -251,7 +251,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ca::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
       {
          return false;
       }

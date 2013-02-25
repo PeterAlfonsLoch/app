@@ -137,7 +137,7 @@ CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 // Enumerate allocated objects or runtime classes
 /*void __do_for_all_objects(void (c_cdecl *pfn)(::ca::object* pObject, void * pContext),
    void * pContext);
-void ca::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
+void ::ca::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
    void * pContext), void * pContext);*/
 
 #define new DEBUG_NEW
@@ -232,7 +232,7 @@ CLASS_DECL_ca void assert_valid_object(const ::ca::object* pOb,
 CLASS_DECL_ca void __dump(const ::ca::object* pOb); // dump an object from CodeView
 
 
-// extern ca::CTrace TRACE;
+// extern ::ca::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
 #define TRACE ::ca::trace_add_file_and_line(m_papp, __FILE__, __LINE__)

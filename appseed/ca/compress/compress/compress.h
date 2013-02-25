@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "ca/compress/crypto/crypto.h"
-
-
 
 // compress interface
 #include "compress_progress_info_interface.h"

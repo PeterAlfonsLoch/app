@@ -92,7 +92,7 @@ namespace sockets
    {
       if (!IsResponse())
       {
-         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca::log::level::fatal);
+         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
       m_content = m_response.attr("http_version") + " " +
@@ -107,7 +107,7 @@ namespace sockets
       m_response.m_propertysetHeader[key] = value;
       if (key == __str(content_length))
       {
-         m_content_length = ca::str::to_int_ptr(value);
+         m_content_length = ::ca::str::to_int_ptr(value);
       }
       else if (key == __str(content_type))
       {
@@ -134,7 +134,7 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
       
-      string str = ca::str::from(m_content_length);
+      string str = ::ca::str::from(m_content_length);
 
       if(m_content_length == 0)
       {
@@ -165,9 +165,9 @@ namespace sockets
       }
       m_memoryfile.write(buf, len);
       
-      string strLen = ca::str::from((uint64_t)len);
-      string strContentPtr = ca::str::from((uint64_t)m_content_ptr);
-      string strContentLength = ca::str::from(m_content_length);
+      string strLen = ::ca::str::from((uint64_t)len);
+      string strContentPtr = ::ca::str::from((uint64_t)m_content_ptr);
+      string strContentLength = ::ca::str::from(m_content_length);
 
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))

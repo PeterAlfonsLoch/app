@@ -60,7 +60,7 @@ namespace user
          {
             if(m_pthread != NULL)
             {
-               m_pthread->m_pthread->remove(this);
+               m_pthread->m_pthread->::ca::thread::remove(this);
             }
          }
          catch(...)
@@ -116,7 +116,7 @@ namespace user
          }*/
          if(m_pimpl != NULL && m_pimpl != this)
          {
-            ca::del(m_pimpl);
+            ::ca::del(m_pimpl);
          }
       }
       catch(...)
@@ -384,7 +384,7 @@ namespace user
          return m_pimpl->GetDlgCtrlId();
    }
 
-   void interaction::install_message_handling(ca::message::dispatch * pinterface)
+   void interaction::install_message_handling(::ca::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &interaction::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_CLOSE       , pinterface, this, &interaction::_001OnClose);
@@ -396,12 +396,12 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE  , pinterface, this, &interaction::_001OnNcCalcSize);
    }
 
-   void interaction::_001OnNcCalcSize(ca::signal_object * pobj)
+   void interaction::_001OnNcCalcSize(::ca::signal_object * pobj)
    {
       pobj->m_bRet = true; // avoid any Microsoft-Window-concept-of-non-client-area
    }
 
-   void interaction::_001OnDestroy(ca::signal_object * pobj)
+   void interaction::_001OnDestroy(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -450,12 +450,12 @@ namespace user
       }
    }
 
-   void interaction::_001OnSize(ca::signal_object * pobj)
+   void interaction::_001OnSize(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_001OnMove(ca::signal_object * pobj)
+   void interaction::_001OnMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -698,7 +698,7 @@ namespace user
       {
          if(m_pimpl == NULL)
             return;
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }
@@ -747,7 +747,7 @@ namespace user
          }
          try
          {
-            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pkey));
+            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pkey));
             if(pkey->get_lresult() != 0)
                return;
          }
@@ -757,7 +757,7 @@ namespace user
       }
    }
 
-   void interaction::_001OnMouseEnter(ca::signal_object * pobj)
+   void interaction::_001OnMouseEnter(::ca::signal_object * pobj)
    {
       /*
       for(int32_t i = 0; i < m_uiptra.get_size(); i++)
@@ -775,7 +775,7 @@ namespace user
    }
 
 
-   void interaction::_001OnMouseLeave(ca::signal_object * pobj)
+   void interaction::_001OnMouseLeave(::ca::signal_object * pobj)
    {
 
       interaction * pui = get_top_child();
@@ -824,7 +824,7 @@ namespace user
       return rect.contains(pt);
    }
 
-   void interaction::_001OnKeyDown(ca::signal_object * pobj)
+   void interaction::_001OnKeyDown(::ca::signal_object * pobj)
    {
       if(Application.user().get_keyboard_focus() != this
       && Application.user().get_keyboard_focus() != NULL)
@@ -833,7 +833,7 @@ namespace user
       }
    }
 
-   void interaction::_001OnKeyUp(ca::signal_object * pobj)
+   void interaction::_001OnKeyUp(::ca::signal_object * pobj)
    {
       if(Application.user().get_keyboard_focus() != this
       && Application.user().get_keyboard_focus() != NULL)
@@ -842,7 +842,7 @@ namespace user
       }
    }
 
-   void interaction::_001OnChar(ca::signal_object * pobj)
+   void interaction::_001OnChar(::ca::signal_object * pobj)
    {
       if(Application.user().get_keyboard_focus() != this
       && Application.user().get_keyboard_focus() != NULL)
@@ -851,11 +851,11 @@ namespace user
       }
    }
 
-   void interaction::_001OnTimer(ca::signal_object * pobj)
+   void interaction::_001OnTimer(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(ca::message::timer, ptimer, pobj)
+//      SCAST_PTR(::ca::message::timer, ptimer, pobj)
 
    }
 
@@ -952,42 +952,42 @@ namespace user
 
 
 
-   void interaction::_002OnLButtonDown(ca::signal_object * pobj)
+   void interaction::_002OnLButtonDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnLButtonUp(ca::signal_object * pobj)
+   void interaction::_002OnLButtonUp(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnMouseMove(ca::signal_object * pobj)
+   void interaction::_002OnMouseMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnMouseEnter(ca::signal_object * pobj)
+   void interaction::_002OnMouseEnter(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnMouseLeave(ca::signal_object * pobj)
+   void interaction::_002OnMouseLeave(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnKeyDown(ca::signal_object * pobj)
+   void interaction::_002OnKeyDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnKeyUp(ca::signal_object * pobj)
+   void interaction::_002OnKeyUp(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnTimer(ca::signal_object * pobj)
+   void interaction::_002OnTimer(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -995,7 +995,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   LRESULT interaction::send_message(ca::message::base * pbase)
+   LRESULT interaction::send_message(::ca::message::base * pbase)
    {
       message_handler(pbase);
       return pbase->get_lresult();
@@ -1004,7 +1004,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   bool interaction::PostMessage(ca::message::base * pbase)
+   bool interaction::PostMessage(::ca::message::base * pbase)
    {
       return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
    }
@@ -1108,7 +1108,7 @@ namespace user
    }
 
 
-   void interaction::pre_translate_message(ca::signal_object * pobj)
+   void interaction::pre_translate_message(::ca::signal_object * pobj)
    {
       if(m_pimpl == NULL)
          return;
@@ -1418,7 +1418,7 @@ namespace user
             {
                on_set_parent(pParentWnd);
             }
-            ca::del(pimplOld);
+            ::ca::del(pimplOld);
          }
          return true;
       }
@@ -2040,7 +2040,7 @@ namespace user
          return m_pimpl->DefWindowProc(uiMessage, wparam, lparam);
    }
 
-   void interaction::message_handler(ca::signal_object * pobj)
+   void interaction::message_handler(::ca::signal_object * pobj)
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return;
@@ -2238,7 +2238,7 @@ namespace user
       m_iModal = m_iModalCount;
       int32_t iLevel = m_iModal;
       ::user::interaction * puieParent = get_parent();
-      oprop(string("RunModalLoop.thread(") + ca::str::from(iLevel) + ")") = System.GetThread();
+      oprop(string("RunModalLoop.thread(") + ::ca::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
@@ -2436,7 +2436,7 @@ ExitModal:
          System.GetThread()->post_thread_message(WM_NULL, 0, 0);
          for(int32_t i = iLevel; i >= 0; i--)
          {
-            ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + ca::str::from(i) + ")").ca < ::ca::thread > ();
+            ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca::str::from(i) + ")").ca < ::ca::thread > ();
             try
             {
                pthread->post_thread_message(WM_NULL, 0, 0);
@@ -2549,7 +2549,7 @@ ExitModal:
    }
 
 
-   void interaction::GuieProc(ca::signal_object * pobj)
+   void interaction::GuieProc(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -2631,12 +2631,12 @@ ExitModal:
 
    }
 
-   void interaction::WalkPreTranslateTree(ca::signal_object * pobj)
+   void interaction::WalkPreTranslateTree(::ca::signal_object * pobj)
    {
       WalkPreTranslateTree(this, pobj);
    }
 
-   void interaction::WalkPreTranslateTree(::user::interaction * puiStop, ca::signal_object * pobj)
+   void interaction::WalkPreTranslateTree(::user::interaction * puiStop, ::ca::signal_object * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
@@ -3121,9 +3121,9 @@ restart:
       }
    }
 
-   void interaction::_001OnUser184(ca::signal_object * pobj)
+   void interaction::_001OnUser184(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_wparam == 0 &&
          pbase->m_lparam == 0)
       {
@@ -3255,7 +3255,7 @@ restart:
    }
 
 
-   void interaction::_001OnClose(ca::signal_object * pobj)
+   void interaction::_001OnClose(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(!IsWindow())

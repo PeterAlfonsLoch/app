@@ -57,7 +57,7 @@ namespace dynamic_source
 
 
          mutex                   m_mutex;
-         ca::property_set       m_set;
+         ::ca::property_set       m_set;
 
 
       };
@@ -202,7 +202,7 @@ namespace dynamic_source
 
 
 
-      virtual void message_window_message_handler(ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca::signal_object * pobj);
 
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure

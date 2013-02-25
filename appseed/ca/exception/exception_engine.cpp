@@ -1035,7 +1035,7 @@ retry_get_base:
                // if demangling is successful, output the demangled function name
                if (status == 0)
                {
-                   str += "[bt]: (" + ca::str::from(i) + ") " + messages[i] + " : "
+                   str += "[bt]: (" + ::ca::str::from(i) + ") " + messages[i] + " : "
                              + real_name +  "+" +  offset_begin + offset_end
                              + "\n";
 
@@ -1046,7 +1046,7 @@ retry_get_base:
 #endif
 
                {
-                   str += "[bt]: (" + ca::str::from(i) + ") " + messages[i] + " : "
+                   str += "[bt]: (" + ::ca::str::from(i) + ") " + messages[i] + " : "
                              + mangled_name + "+" + offset_begin + offset_end
                              + "\n";
                }
@@ -1061,7 +1061,7 @@ retry_get_base:
            // otherwise, print the whole line
            else
            {
-               str += "[bt]: (" + ca::str::from(i) + ") " +  messages[i]+  "\n";
+               str += "[bt]: (" + ::ca::str::from(i) + ") " +  messages[i]+  "\n";
            }
        }
        str += "\n";

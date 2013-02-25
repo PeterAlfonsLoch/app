@@ -82,7 +82,7 @@ namespace calculator
       return ::userbase::view::pre_create_window(cs);
    }
 
-   void view::_001OnInitialUpdate(ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
 
@@ -105,7 +105,7 @@ namespace calculator
    {
       return this;
    }
-   void view::_001OnDestroy(ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca::signal_object * pobj)
    {
       ::userbase::view::_001OnDestroy(pobj);
 
@@ -113,13 +113,13 @@ namespace calculator
 
 
 
-   void view::_001OnSize(ca::signal_object * pobj)
+   void view::_001OnSize(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnPaint(ca::signal_object * pobj)
+   void view::_001OnPaint(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //CPaintDC spgraphics(this); // device context for calculatoring
@@ -152,14 +152,14 @@ namespace calculator
       //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
    }
 
-   void view::_001OnCreate(ca::signal_object * pobj)
+   void view::_001OnCreate(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
 
 
    }
-   void view::_001OnContextMenu(ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
@@ -175,18 +175,18 @@ namespace calculator
       }
    }
 
-   void view::_001OnWavePlayerEvent(ca::signal_object * pobj)
+   void view::_001OnWavePlayerEvent(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::base, pbase, pobj)
    }
 
-   void view::_001OnUpdateViewEncoding(ca::signal_object * pobj)
+   void view::_001OnUpdateViewEncoding(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
    }
-   void view::_001OnViewEncoding(ca::signal_object * pobj)
+   void view::_001OnViewEncoding(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::command, pcommand, pobj)
@@ -203,7 +203,7 @@ namespace calculator
    }*/
 
 
-   void view::_001OnSetCursor(ca::signal_object * pobj)
+   void view::_001OnSetCursor(::ca::signal_object * pobj)
    {
 
 #ifdef WINDOWSEX

@@ -200,20 +200,20 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnDestroy(ca::signal_object * pobj)
+   void window::_001OnDestroy(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnCaptureChanged(ca::signal_object * pobj)
+   void window::_001OnCaptureChanged(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
-   void window::_001OnNcDestroy(ca::signal_object * pobj)
+   void window::_001OnNcDestroy(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -268,7 +268,7 @@ namespace ca
 #endif
 
 
-   void window::pre_translate_message(ca::signal_object * pobj)
+   void window::pre_translate_message(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -386,7 +386,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::_002OnDraw(ca::signal_object * pobj)
+   void window::_002OnDraw(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -395,7 +395,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // main message_handler implementation
 
-   void window::message_handler(ca::signal_object * pobj)
+   void window::message_handler(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -567,7 +567,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(::user::interaction * puiStop, ca::signal_object * pobj)
+   void window::WalkPreTranslateTree(::user::interaction * puiStop, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(puiStop);
       UNREFERENCED_PARAMETER(pobj);
@@ -680,13 +680,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnPaint(ca::signal_object * pobj)
+   void window::_001OnPaint(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnPrint(ca::signal_object * pobj)
+   void window::_001OnPrint(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -2195,7 +2195,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(ca::signal_object * pobj)
+   void window::WalkPreTranslateTree(::ca::signal_object * pobj)
    {
       return WalkPreTranslateTree(m_pguie, pobj);
    }
@@ -2303,7 +2303,7 @@ ca(papp)
    m_pguieForward = NULL;
 }
 
-void guie_message_wnd::message_handler(ca::signal_object * pobj)
+void guie_message_wnd::message_handler(::ca::signal_object * pobj)
 {
    if(m_pguieForward != NULL)
    {

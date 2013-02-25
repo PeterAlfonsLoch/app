@@ -56,7 +56,7 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &list::_001OnCancelMode);
    }
 
-   void list::_001OnCreate(ca::signal_object * pobj)
+   void list::_001OnCreate(::ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -66,7 +66,7 @@ namespace fs
    }
 
 
-   void list::_001OnTimer(ca::signal_object * pobj)
+   void list::_001OnTimer(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -159,7 +159,7 @@ namespace fs
       }*/
    }
 
-   void list::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void list::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
@@ -173,7 +173,7 @@ namespace fs
       }*/
    }
 
-   void list::_001OnCancelMode(ca::signal_object * pobj)
+   void list::_001OnCancelMode(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    // trans   ::userbase::view::OnCancelMode();

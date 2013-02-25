@@ -31,10 +31,10 @@ _AFX_INLINE invalid_argument_exception::~invalid_argument_exception(get_app())
 
 _AFX_INLINE CArchiveException::~CArchiveException()
    { }*/
-/*_AFX_INLINE ca::file_exception_sp::ca::file_exception_sp(int32_t cause, LONG lOsError,
+/*_AFX_INLINE ::ca::file_exception_sp::ca::file_exception_sp(int32_t cause, LONG lOsError,
    LPCTSTR pstrFileName /* = NULL *///)
    /*{ m_cause = cause; m_lOsError = lOsError; m_strFileName = pstrFileName; }
-_AFX_INLINE ca::file_exception_sp::~ca::file_exception_sp()
+_AFX_INLINE ::ca::file_exception_sp::~::ca::file_exception_sp()
    { }
 
 // ::ca::filesp

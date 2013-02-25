@@ -15,22 +15,17 @@
 
 
 
-namespace gen
+namespace ca
 {
 
    class thread;
-
-}
-
-namespace ca
-{
 
    class CLASS_DECL_c thread_base
    {
    public:
 
 
-      ::gen::thread      * m_pthread;
+      ::ca::thread      * m_pthread;
 
 
       virtual HTHREAD get_os_handle() const = 0;

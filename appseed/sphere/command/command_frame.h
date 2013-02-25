@@ -7,7 +7,7 @@ namespace command
 
    class CLASS_DECL_sphere frame : 
       public simple_frame_window,
-      public ca::message_window_simple_callback
+      public ::ca::message_window_simple_callback
    {
    public:
 
@@ -58,7 +58,7 @@ namespace command
       DECL_GEN_SIGNAL(_001OnApp2000)
 
 
-      virtual void message_window_message_handler(ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca::signal_object * pobj);
    };
 
 

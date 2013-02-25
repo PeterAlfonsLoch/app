@@ -24,7 +24,7 @@ namespace userbase
    }
 
 
-   void form_list::install_message_handling(ca::message::dispatch * pdispatch)
+   void form_list::install_message_handling(::ca::message::dispatch * pdispatch)
    {
       
       ::user::form_list::install_message_handling(pdispatch);

@@ -1,22 +1,38 @@
 #include "framework.h"
 
 
-
 namespace ca
 {
 
+
+   class ::id system::idEmpty;
+   class ::id_space system::s_idspace;
+
+
    system::system()
    {
+
    }
+
 
    system::~system()
    {
+
    }
+
 
    bool system::initialize()
    {
+
+      if(!::ca::application::initialize())
+         return false;
+
+      idEmpty = "";
+
       return true;
+
    }
+
 
    bool system::assert_failed_line(const char * lpszFileName, int32_t iLine)
    {
@@ -44,42 +60,8 @@ namespace ca
       return NULL;
    }
 
-   
-} // namespace ca
 
 
-
-#include "framework.h"
-
-
-namespace ca
-{
-
-
-   class ::id system::idEmpty;
-   class ::id_space system::s_idspace;
-
-
-   system::system()
-   {
-
-   }
-
-
-   system::~system()
-   {
-
-   }
-
-
-   bool system::initialize()
-   {
-
-      idEmpty = "";
-
-      return true;
-
-   }
 
 
    ::ca::ca * system::on_alloc(::ca::application * papp, ::ca::type_info & info)
@@ -113,20 +95,6 @@ namespace ca
    }
 
 
-   bool system::assert_failed_line(const char * lpszFileName, int32_t iLine)
-   {
-      UNREFERENCED_PARAMETER(lpszFileName);
-      UNREFERENCED_PARAMETER(iLine);
-      return false;
-   }
-
-
-   bool system::on_assert_failed_line(const char * lpszFileName, int32_t iLine)
-   {
-      UNREFERENCED_PARAMETER(lpszFileName);
-      UNREFERENCED_PARAMETER(iLine);
-      return true;
-   }
 
    void system::on_delete(::ca::ca * pca)
    {

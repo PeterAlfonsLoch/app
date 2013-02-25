@@ -73,7 +73,7 @@ namespace platform
    }
 
 
-   void frame::_001OnTimer(ca::signal_object * pobj)
+   void frame::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -191,12 +191,12 @@ namespace platform
       ShowWindow(SW_RESTORE);
    }
 
-   void frame::_001OnSize(ca::signal_object * pobj)
+   void frame::_001OnSize(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void frame::_001OnMouseMove(ca::signal_object * pobj)
+   void frame::_001OnMouseMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(!m_bHover)
@@ -211,7 +211,7 @@ namespace platform
       }
    }
 
-   void frame::_001OnMouseLeave(ca::signal_object * pobj)
+   void frame::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_bMouseLeaveTimer = true;
@@ -219,7 +219,7 @@ namespace platform
       SetTimer(4321875, 884, NULL);
    }
 
-   void frame::_001OnCreate(ca::signal_object * pobj)
+   void frame::_001OnCreate(::ca::signal_object * pobj)
    {
       //      SCAST_PTR(::ca::message::create, pcreate, pobj);
       pobj->previous();
@@ -304,7 +304,7 @@ namespace platform
       form_frame::_000OnDraw(pgraphics);
    }
 
-   void frame::_001OnClose(ca::signal_object * pobj)
+   void frame::_001OnClose(::ca::signal_object * pobj)
    {
       pobj->m_bRet = true;
       ShowWindow(SW_HIDE);

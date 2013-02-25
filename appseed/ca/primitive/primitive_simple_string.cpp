@@ -165,7 +165,7 @@ wstringtou::~wstringtou()
 {
    if(m_pstringUtf8 != NULL)
    {
-      ca::international::unicode_to_utf8(*m_pstringUtf8, m_pwsz);
+      ::ca::international::unicode_to_utf8(*m_pstringUtf8, m_pwsz);
    }
    if(m_pwsz != NULL)
    {

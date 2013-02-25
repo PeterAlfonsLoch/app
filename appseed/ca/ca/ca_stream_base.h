@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca stream_base :
-      virtual public ca::object
+      virtual public ::ca::object
    {
    public:
 

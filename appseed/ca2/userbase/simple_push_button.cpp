@@ -182,14 +182,14 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 }
 
 
-void SimplePushButton::_001OnCreate(ca::signal_object * pobj)
+void SimplePushButton::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
 
    SetTimer(16384, 100, NULL);
 }
 
-void SimplePushButton::_001OnDestroy(ca::signal_object * pobj)
+void SimplePushButton::_001OnDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   ::userbase::button::OnDestroy();
@@ -198,7 +198,7 @@ void SimplePushButton::_001OnDestroy(ca::signal_object * pobj)
 
 }
 
-void SimplePushButton::_001OnTimer(ca::signal_object * pobj)
+void SimplePushButton::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 16384)

@@ -18,7 +18,7 @@ namespace userbase
 
       void install_message_handling(::ca::message::dispatch * pinterface);
 
-      virtual void GuieProc(ca::signal_object * pobj);
+      virtual void GuieProc(::ca::signal_object * pobj);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 

@@ -139,7 +139,7 @@ base_string_to_string_map::assoc*
 base_string_to_string_map::GetAssocAt(const string & key, UINT& nHashBucket, UINT& nHashValue) const
 // find association (or return NULL)
 {
-   nHashValue = ca::hash < BASE_ARG_KEY >::HashKey(key);
+   nHashValue = ::ca::hash < BASE_ARG_KEY >::HashKey(key);
    nHashBucket = nHashValue % m_nHashTableSize;
 
    if (m_pHashTable == NULL)
@@ -235,7 +235,7 @@ bool base_string_to_string_map::RemoveKey(const string & key)
 
    assoc** ppAssocPrev;
    UINT nHashValue;
-   nHashValue = ca::hash < BASE_ARG_KEY >::HashKey(key);
+   nHashValue = ::ca::hash < BASE_ARG_KEY >::HashKey(key);
    ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
    assoc* pAssoc;

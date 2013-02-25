@@ -193,7 +193,7 @@ namespace html
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pguie, this, &data::_001OnKeyDown);
       m_bImplemented = true;
    }
-   void data::_001OnKeyDown(ca::signal_object * pobj)
+   void data::_001OnKeyDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
 
@@ -272,8 +272,8 @@ namespace html
       else if(strUrl[0] == '\\')
       {
       }
-      else if(ca::str::begins(m_strPathName, "http://") ||
-         ca::str::begins(m_strPathName, "https://"))
+      else if(::ca::str::begins(m_strPathName, "http://") ||
+         ::ca::str::begins(m_strPathName, "https://"))
       {
          strUrl = System.url().path(m_strPathName, strUrl);
       }
@@ -414,9 +414,9 @@ restart:
          ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
          ASSERT(puser != NULL);
          string data;
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set = m_propset["http_propset"].propset();
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set = m_propset["http_propset"].propset();
 
          post["entered_login"] = m_strUser;
          post["entered_password"] = m_strPassword;

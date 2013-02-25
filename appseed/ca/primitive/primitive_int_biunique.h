@@ -3,7 +3,7 @@
 template < class T, class T_to_T = ::collection::attrib_map < ::collection::map < T, T, T, T > > >
 class  biunique :
    public ::ca::object,
-   public ca::byte_serializable
+   public ::ca::byte_serializable
 {
 public:
    biunique(::ca::application * papp = NULL);
@@ -53,8 +53,8 @@ public:
 
    void copy_data(const biunique & ia);
 
-   virtual void write(ca::byte_output_stream & ostream);
-   virtual void read(ca::byte_input_stream & ostream);
+   virtual void write(::ca::byte_output_stream & ostream);
+   virtual void read(::ca::byte_input_stream & ostream);
 
    biunique & operator = (const biunique & ia);
 
@@ -342,7 +342,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_write(ca::byte_output_stream & ostream, ::collection::map < t1, t2, t3, t4 > & m)
+void serialize_write(::ca::byte_output_stream & ostream, ::collection::map < t1, t2, t3, t4 > & m)
 {
    count count = m.get_count();
    typename ::collection::map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
@@ -356,7 +356,7 @@ void serialize_write(ca::byte_output_stream & ostream, ::collection::map < t1, t
 }
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_read(ca::byte_input_stream & istream, ::collection::map < t1, t2, t3, t4 > & m)
+void serialize_read(::ca::byte_input_stream & istream, ::collection::map < t1, t2, t3, t4 > & m)
 {
    try
    {
@@ -382,7 +382,7 @@ void serialize_read(ca::byte_input_stream & istream, ::collection::map < t1, t2,
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::write(ca::byte_output_stream & ostream)
+void biunique < T, T_to_T > ::write(::ca::byte_output_stream & ostream)
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;
@@ -401,7 +401,7 @@ void biunique < T, T_to_T > ::write(ca::byte_output_stream & ostream)
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::read(ca::byte_input_stream & istream)
+void biunique < T, T_to_T > ::read(::ca::byte_input_stream & istream)
 {
    try
    {

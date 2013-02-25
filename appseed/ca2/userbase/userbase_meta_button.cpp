@@ -142,21 +142,21 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
 }
 
-void MetaButton::_001OnShowWindow(ca::signal_object * pobj)
+void MetaButton::_001OnShowWindow(::ca::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonDown(ca::signal_object * pobj)
+void MetaButton::_001OnLButtonDown(::ca::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonUp(ca::signal_object * pobj)
+void MetaButton::_001OnLButtonUp(::ca::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
@@ -195,7 +195,7 @@ void MetaButton::layout()
 }
 
 
-void MetaButton::_001OnTimer(ca::signal_object * pobj)
+void MetaButton::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default

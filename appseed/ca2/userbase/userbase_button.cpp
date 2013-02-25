@@ -97,7 +97,7 @@ namespace userbase
       rectClient.left   += 3;
       rectClient.top    += 3;
       rect rectText = m_rectText;
-//      string str = ca::international::utf8_to_unicode(str);
+//      string str = ::ca::international::utf8_to_unicode(str);
       if(m_dib.is_set())
       {
          if(m_dib->cx > 0 &&
@@ -138,7 +138,7 @@ namespace userbase
 
    }
 
-   void button::_001OnCreate(ca::signal_object * pobj)
+   void button::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_pschema   = &::userbase::GetUfeSchema(get_app())->m_button;

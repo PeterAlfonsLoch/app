@@ -94,10 +94,10 @@ namespace bergedge
 
       if(Session.is_remote_session())
       {
-         /*Session.savings().save(ca::resource_display_bandwidth);
-         Session.savings().save(ca::resource_blur_background);
-         Session.savings().save(ca::resource_blurred_text_embossing);
-         Session.savings().save(ca::resource_translucent_background);*/
+         /*Session.savings().save(::ca::resource_display_bandwidth);
+         Session.savings().save(::ca::resource_blur_background);
+         Session.savings().save(::ca::resource_blurred_text_embossing);
+         Session.savings().save(::ca::resource_translucent_background);*/
       }
 
       /*      if(System.directrix().m_varTopicQuery.has_property("install")
@@ -144,7 +144,7 @@ namespace bergedge
    bool bergedge::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    ::ca::application * bergedge::get_app() const
@@ -518,7 +518,7 @@ namespace bergedge
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "ca::fontopus::message_wnd::bergedge::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::bergedge::");
 
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
@@ -556,11 +556,11 @@ namespace bergedge
 alt1:
          if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
-            if(ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
+            if(::ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
             {
                string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-               if(ca::str::begins_eat(strCommand, "ca2prompt\r")
-                  || ca::str::begins_eat(strCommand, "ca2prompt\n"))
+               if(::ca::str::begins_eat(strCommand, "ca2prompt\r")
+                  || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
                   command().add_fork_uri(strCommand);

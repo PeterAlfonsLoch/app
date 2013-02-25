@@ -9,7 +9,7 @@ namespace libcompress
       virtual public ::ca::object
    {
    public:
-      virtual ca::HRes SetDecoderProperties2(const byte *data, uint32_t size) = 0;
+      virtual ::ca::HRes SetDecoderProperties2(const byte *data, uint32_t size) = 0;
    };
 
 

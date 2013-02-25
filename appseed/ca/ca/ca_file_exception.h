@@ -1,5 +1,8 @@
 #pragma once
-#include "ca/ca/OpenedFiles.h"
+
+
+#include "ca/ca/ca_opened_files.h"
+
 
 
 namespace ca
@@ -7,7 +10,7 @@ namespace ca
 
 
    class CLASS_DECL_ca file_exception :
-      virtual public exception
+      virtual public ::base_exception
    {
    public:
 
@@ -44,6 +47,7 @@ namespace ca
       // Constructor
       file_exception(const file_exception & e) :
          exception(e),
+         ::base_exception(e.get_app()),
          ::call_stack(e.get_app())
       {
       }

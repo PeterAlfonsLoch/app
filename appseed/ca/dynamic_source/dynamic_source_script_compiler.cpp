@@ -382,7 +382,7 @@ namespace dynamic_source
 
       string strV(System.dir().votagus());
       strV.replace("\\", "/");
-      if(!ca::str::ends(strV, "/") && !ca::str::ends(strV, "\\"))
+      if(!::ca::str::ends(strV, "/") && !::ca::str::ends(strV, "\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
@@ -406,7 +406,7 @@ namespace dynamic_source
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetPath = pscript->m_strScriptPath;
-      ca::str::ends_eat_ci(strTargetPath, ".dll");
+      ::ca::str::ends_eat_ci(strTargetPath, ".dll");
       str.replace("%TARGET_PATH%", strTargetPath);
       strBuildCmd = pscript->m_strBuildBat;
       Application.file().put_contents(strBuildCmd, str);
@@ -417,7 +417,7 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      ca::process process;
+      ::ca::process process;
 
       process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
 
@@ -571,7 +571,7 @@ namespace dynamic_source
 
    void script_compiler::cppize1(ds_script * pscript)
    {
-      /*ca::filesp spfile(get_app());
+      /*::ca::filesp spfile(get_app());
       if(!spfile->open(pscript->m_strSourcePath, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone))
       return;
 
@@ -590,7 +590,7 @@ namespace dynamic_source
       {
          string str;
          str = m_straLibIncludeRelPath[i];
-         ca::str::ends_eat_ci(str, ".ds");
+         ::ca::str::ends_eat_ci(str, ".ds");
          strDest += "#include \""+str+".h\"\r\n";
       }
       strsize iStart = 0;
@@ -657,7 +657,7 @@ namespace dynamic_source
       string strId;
       for(int32_t i = 0; i < straId.get_size(); i++)
       {
-         strId += "static class id lscript_id" + ca::str::from(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static class id lscript_id" + ::ca::str::from(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -671,7 +671,7 @@ namespace dynamic_source
    {
       string strVotagusFolder;
       strVotagusFolder = System.dir().votagus();
-      if(!ca::str::ends(strVotagusFolder, "/") && !ca::str::ends(strVotagusFolder, "\\"))
+      if(!::ca::str::ends(strVotagusFolder, "/") && !::ca::str::ends(strVotagusFolder, "\\"))
          strVotagusFolder += "/";
       string strTemplate;
       string strSource = "nodeapp\\stage\\dynamic_source\\";
@@ -715,7 +715,7 @@ namespace dynamic_source
       string strTransfer = str;
 
       // does not transfer
-      if(ca::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
+      if(::ca::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
       if(m_straSync.get_count() > 1)
@@ -730,12 +730,12 @@ namespace dynamic_source
       {
          i++;
       }
-      if(ca::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false)))
+      if(::ca::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false)))
       {
          compile_library();
          m_pmanager->m_pcache->set_all_out_of_date();
       }
-      else if(ca::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false)))
+      else if(::ca::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false)))
       {
          compile_library();
       }
@@ -784,7 +784,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++ )
       {
          string str = m_straLibSourceRelPath[i];
-         ca::str::ends_eat_ci(str, ".ds");
+         ::ca::str::ends_eat_ci(str, ".ds");
          str.replace(":", "");
          m_straLibCppPath.add(System.dir().path(System.dir().path(m_strTime, "dynamic_source\\library\\source", false), str + ".cpp"));
       }
@@ -794,7 +794,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); )
       {
          if(System.file().extension(m_straLibIncludePath[i]) != "ds"
-            || ca::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
+            || ::ca::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
             || Application.dir().is(m_straLibIncludePath[i]))
          {
             m_straLibIncludePath.remove_at(i);
@@ -809,7 +809,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++ )
       {
          string str = m_straLibIncludeRelPath[i];
-         ca::str::ends_eat_ci(str, ".ds");
+         ::ca::str::ends_eat_ci(str, ".ds");
          str.replace(":", "");
          m_straLibHppPath.add(System.dir().path(System.dir().path(m_strTime, "dynamic_source\\library\\include", false), str + ".h"));
       }
@@ -838,7 +838,7 @@ namespace dynamic_source
       {
          cppize(m_straLibSourcePath[i], m_straLibCppPath[i], cpptype_source);
          string strRel = m_straLibSourceRelPath[i];
-         ca::str::ends_eat_ci(strRel, ".ds");
+         ::ca::str::ends_eat_ci(strRel, ".ds");
          strRel.replace("\\", "/");
          string str1;
          str1 = "library/source/" + strRel;
@@ -886,7 +886,7 @@ namespace dynamic_source
          Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
-         ca::process process;
+         ::ca::process process;
 
          process.create_child_process(strCmd, false, System.dir().ca("stage\\front"));
 
@@ -917,7 +917,7 @@ namespace dynamic_source
       {
          strObjs += " ";
          string strRel = m_straLibSourceRelPath[i];
-         ca::str::ends_eat_ci(strRel, ".ds");
+         ::ca::str::ends_eat_ci(strRel, ".ds");
          strObjs += System.dir().path(
             System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library\\source", false),
             strRel + ".obj", false);
@@ -939,7 +939,7 @@ namespace dynamic_source
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetName = m_strLibraryPath;
-      ca::str::ends_eat_ci(strTargetName, ".dll");
+      ::ca::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
       Application.dir().mk(System.dir().ca("stage\\" + m_strPlatform + "\\library"));
       strCmd = System.dir().ca("stage\\front\\libl1.bat");
@@ -947,7 +947,7 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      ca::process process;
+      ::ca::process process;
 
 
       process.create_child_process(strCmd, false, System.dir().name(strCmd));
@@ -998,7 +998,7 @@ namespace dynamic_source
          {
             string str;
             str = m_straLibIncludeRelPath[i];
-            ca::str::ends_eat_ci(str, ".ds");
+            ::ca::str::ends_eat_ci(str, ".ds");
             strDest += "#include \""+str+".h\"\r\n";
          }
       }
@@ -1073,7 +1073,7 @@ namespace dynamic_source
          bInserted = false;
          ch = str[i];
          chNext = str[i + 1];
-         if(ca::str::begins(str.Mid(i), "bk_filter_active1"))
+         if(::ca::str::begins(str.Mid(i), "bk_filter_active1"))
          {
             //__debug_break();
          }
@@ -1194,7 +1194,7 @@ namespace dynamic_source
                      straId.add(strResult.Mid(iArroba));
                      iFind = straId.get_upper_bound();
                   }
-                  strResult = strResult.Left(iArroba) + " lscript_id" + ca::str::from(iFind);
+                  strResult = strResult.Left(iArroba) + " lscript_id" + ::ca::str::from(iFind);
                   iArroba = -1;
                }
                else
@@ -1600,7 +1600,7 @@ namespace dynamic_source
             return true;
          }
       }
-      if(ca::str::begins(psz, pszId)
+      if(::ca::str::begins(psz, pszId)
          && !isdigit(psz[iIdLen]) && !isalpha(psz[iIdLen]) && psz[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
@@ -1638,8 +1638,8 @@ namespace dynamic_source
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(ca::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
-            && ca::str::ends_ci(str, ".ds"))
+         if(::ca::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
+            && ::ca::str::ends_ci(str, ".ds"))
          {
             strBody += Application.file().as_string(str);
          }
@@ -1648,8 +1648,8 @@ namespace dynamic_source
       Application.file().put_contents(strCat, strBody);
       string strInclude = strCat;
       //   defer_run_persistent(str);
-      ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-      ca::str::ends_eat_ci(strInclude, ".ds");
+      ::ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+      ::ca::str::ends_eat_ci(strInclude, ".ds");
       script_instance * pinstance = m_pmanager->get(strInclude);
       if(pinstance != NULL)
       {
@@ -1684,13 +1684,13 @@ namespace dynamic_source
    {
       string str(psz);
 
-      if(ca::str::find_ci("pstr_set", psz) && ca::str::ends_ci(psz, ".txt"))
+      if(::ca::str::find_ci("pstr_set", psz) && ::ca::str::ends_ci(psz, ".txt"))
       {
          string strCat;
          strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\netnode_persistent_ui_str.ds", false);
          string strInclude = strCat;
-         ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-         ca::str::ends_eat_ci(strInclude, ".ds");
+         ::ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+         ::ca::str::ends_eat_ci(strInclude, ".ds");
          script_instance * pinstance = m_pmanager->get(strInclude);
          if(pinstance != NULL)
          {
@@ -1713,8 +1713,8 @@ namespace dynamic_source
             pinstance->destroy();
          }
       }
-      else if(ca::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
-         && ca::str::ends_eat_ci(str, ".ds")
+      else if(::ca::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
+         && ::ca::str::ends_eat_ci(str, ".ds")
          && str.CompareNoCase("netnode_persistent_ui_str") != 0)
       {
          run_persistent();

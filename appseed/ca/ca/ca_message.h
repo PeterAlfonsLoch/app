@@ -129,7 +129,7 @@ namespace ca
          PrototypeOnDraw,
       };
 
-      ca::signal * CreateSignal();
+      ::ca::signal * CreateSignal();
 
       class CLASS_DECL_ca Handler
       {
@@ -148,7 +148,7 @@ namespace ca
          {
          public:
             virtual ~HandlerItemBase();
-            virtual ca::signalizable * get_signalizable() = 0;
+            virtual ::ca::signalizable * get_signalizable() = 0;
          };
 
          template < class T >
@@ -160,7 +160,7 @@ namespace ca
             // prototype.
             // This is a cached value and not the
             // storage holder of the object.
-            virtual ca::signalizable * get_signalizable() { return m_psignalizable; }
+            virtual ::ca::signalizable * get_signalizable() { return m_psignalizable; }
          };
 
          class CLASS_DECL_ca HandlerItemArray :
@@ -168,7 +168,7 @@ namespace ca
          {
          public:
             virtual ~HandlerItemArray();
-            bool HasSignalizable(ca::signalizable * psignalizable);
+            bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
          class CLASS_DECL_ca Signal
@@ -179,7 +179,7 @@ namespace ca
             UINT                 m_uiCode;
             UINT                 m_uiIdStart;
             UINT                 m_uiIdEnd;
-            ca::signal *        m_psignal;
+            ::ca::signal *        m_psignal;
 
             HandlerItemArray     m_handlera;
 
@@ -220,7 +220,7 @@ namespace ca
 
 #endif
 
-         void RemoveMessageHandler(ca::signalizable * psignalizable);
+         void RemoveMessageHandler(::ca::signalizable * psignalizable);
          ::ca::window * _GetWnd();
          // Prototype_bool_WPARAM_LPARAM;
 
@@ -231,7 +231,7 @@ namespace ca
             UINT uiIdStart,
             UINT uiIdEnd,
             T * psignalizable,
-            void (T::*pfn)(ca::signal_object *),
+            void (T::*pfn)(::ca::signal_object *),
             bool bAddUnique = true)
          {
             Signal * psignal = m_signala.GetSignalByMessage(message, uiCode, uiIdStart, uiIdEnd);
@@ -244,7 +244,7 @@ namespace ca
                psignal->m_uiIdStart       = uiIdStart;
                psignal->m_uiIdEnd         = uiIdEnd;
                psignal->m_eprototype      = GetMessagePrototype(message, 0);
-               psignal->m_psignal         = new ca::signal();
+               psignal->m_psignal         = new ::ca::signal();
                psignal->m_psignal->connect(psignalizable, pfn);
                HandlerItem <T> * pitem    = new HandlerItem<T>;
                pitem->m_psignalizable     = psignalizable;
@@ -275,15 +275,15 @@ namespace ca
 
          int32_t                  m_iHandling;
          SignalArray          m_signala;
-         ca::signal          m_signalInstallMessageHandling;
+         ::ca::signal          m_signalInstallMessageHandling;
          manual_reset_event   m_evOk;
          mutex                m_mutex;
 
-         virtual void _start_user_message_handler(ca::signal_object * pobj);
+         virtual void _start_user_message_handler(::ca::signal_object * pobj);
 
-         void (dispatch::*m_pfnDispatchWindowProc)(ca::signal_object * pobj);
+         void (dispatch::*m_pfnDispatchWindowProc)(::ca::signal_object * pobj);
 
-         virtual void _user_message_handler(ca::signal_object * pobj);
+         virtual void _user_message_handler(::ca::signal_object * pobj);
          //bool _iguimessageDispatchCommandMessage(BaseCommand * pcommand, bool & b);
          // return TRUE to stop routing
 #ifdef WINDOWS
@@ -295,7 +295,7 @@ namespace ca
 #undef new
 
       class CLASS_DECL_ca base :
-            public ca::signal_object
+            public ::ca::signal_object
          {
          public:
 
@@ -306,7 +306,7 @@ namespace ca
             LPARAM                  m_lparam;
             bool                    m_bConditional;
 
-            base(::ca::application * papp, ca::signal * psignal = NULL);
+            base(::ca::application * papp, ::ca::signal * psignal = NULL);
             base(::ca::application * papp, ::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
@@ -405,7 +405,7 @@ namespace ca
             virtual ~mouse();
 
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            static mouse * cast(ca::signal_object * pobj) { return (mouse *) pobj; }
+            static mouse * cast(::ca::signal_object * pobj) { return (mouse *) pobj; }
          };
 
          class CLASS_DECL_ca mouse_wheel : public mouse
@@ -720,7 +720,7 @@ namespace ca
          UINT                              message,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(ca::signal_object *))
+         void (T2::*                      pfn)(::ca::signal_object *))
       {
          pdispatch->AddMessageHandler(
             message,
@@ -736,7 +736,7 @@ namespace ca
          UINT                              message,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(ca::signal_object *))
+         void (T2::*                      pfn)(::ca::signal_object *))
       {
 
          UINT uiOsMessage = translate_to_os_message(message);
@@ -753,7 +753,7 @@ namespace ca
          UINT                              uiIdEnd,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(ca::signal_object *))
+         void (T2::*                      pfn)(::ca::signal_object *))
       {
          pdispatch->AddMessageHandler(
             uiMessage,

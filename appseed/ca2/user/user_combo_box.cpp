@@ -523,10 +523,10 @@ namespace user
 
    }
 
-   void combo_box::_001OnLButtonDown(ca::signal_object * pobj)
+   void combo_box::_001OnLButtonDown(::ca::signal_object * pobj)
    {
 
-      SCAST_PTR(ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -542,17 +542,17 @@ namespace user
    }
 
 
-   void combo_box::_001OnLButtonUp(ca::signal_object * pobj)
+   void combo_box::_001OnLButtonUp(::ca::signal_object * pobj)
    {
 
-//      SCAST_PTR(ca::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
    }
 
-   void combo_box::_001OnSetFocus(ca::signal_object * pobj)
+   void combo_box::_001OnSetFocus(::ca::signal_object * pobj)
    {
 
-//      SCAST_PTR(ca::message::set_focus, pfocus, pobj);
+//      SCAST_PTR(::ca::message::set_focus, pfocus, pobj);
 
    }
 
@@ -708,7 +708,7 @@ namespace user
 
          if(!m_plist->CreateEx(0, m_plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
          {
-            ca::del(m_plist);
+            ::ca::del(m_plist);
             throw resource_exception(get_app());
          }
 
@@ -794,7 +794,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnInitialUpdate(ca::signal_object * pobj)
+   void combo_box::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
 
       if(m_bEdit)

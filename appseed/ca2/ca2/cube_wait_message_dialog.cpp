@@ -30,7 +30,7 @@ namespace cube // ca8 + cube
       }*/
    }
 
-   void wait_message_dialog::on_show(const char * pszMatter, ca::property_set & propertyset)
+   void wait_message_dialog::on_show(const char * pszMatter, ::ca::property_set & propertyset)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(propertyset);

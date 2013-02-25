@@ -105,7 +105,7 @@ namespace user
 
    }
 
-   void button::_001OnLButtonDown(ca::signal_object * pobj)
+   void button::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 
@@ -124,7 +124,7 @@ namespace user
       return g_pwndLastLButtonDown == this;
    }
 
-   void button::_001OnLButtonUp(ca::signal_object * pobj)
+   void button::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 
@@ -152,7 +152,7 @@ namespace user
 
    }
 
-   void button::_001OnMouseMove(ca::signal_object * pobj)
+   void button::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          if(get_form() == NULL)
@@ -188,7 +188,7 @@ namespace user
          }
    }
 
-   void button::_001OnMouseLeave(ca::signal_object * pobj)
+   void button::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
          if(get_form() == NULL)
@@ -280,14 +280,14 @@ namespace user
       return m_state;
    }
 
-   void button::_001OnSize(ca::signal_object * pobj)
+   void button::_001OnSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
          _001Layout();
       pbase->m_bRet = false;
    }
 
-   void button::on_create(ca::signal_object * pobj)
+   void button::on_create(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::create, pcreate, pobj)

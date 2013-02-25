@@ -81,7 +81,7 @@ namespace simpledb
    }
 
 
-   void socket_thread::OnApp(ca::signal_object * pobj)
+   void socket_thread::OnApp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)

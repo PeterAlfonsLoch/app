@@ -21,7 +21,7 @@ namespace libcompress
      _inSizeIsMain = inSizeIsMain;
    }
 
-   ca::HRes local_progress::SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize)
+   ::ca::HRes local_progress::SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize)
    {
      uint64_t inSizeNew = InSize, outSizeNew = OutSize;
      if (inSize)

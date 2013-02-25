@@ -257,7 +257,7 @@ namespace ca
 
       }
 
-      void validate::pageMessage(const stringa & straMatter, ca::property_set & set)
+      void validate::pageMessage(const stringa & straMatter, ::ca::property_set & set)
       {
          ensure_main_document();
          m_pdocAuth->get_html_data()->m_propertyset = set;
@@ -357,7 +357,7 @@ namespace ca
             return;
          }
          string strModule;
-         ca::file_system_sp fs(get_app());
+         ::ca::file_system_sp fs(get_app());
          string strModuleFolder(System.get_ca2_module_folder());
          fs->FullPath(strModuleFolder, strModuleFolder);
          for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
@@ -366,7 +366,7 @@ namespace ca
             GetModuleFileName(pmodulea[dw], strModule.GetBufferSetLength(4096), 4096);
             strModule.ReleaseBuffer();
             fs->FullPath(strModule, strModule);
-            if(ca::str::begins_ci(strModule, strModuleFolder))
+            if(::ca::str::begins_ci(strModule, strModuleFolder))
             {
                straSource.add(strModule);
                straHash.add(System.file36().md5(strModule));
@@ -432,9 +432,9 @@ namespace ca
       bool validate::check_ca2_hash()
       {
          string strUrl("https://api.ca.cc/account/check_hash");
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set;
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set;
          string strResponse;
          stringa straHash;
          stringa straSource;
@@ -565,7 +565,7 @@ namespace ca
 
          UNREFERENCED_PARAMETER(pszResponse);
 
-         ca::property_set propertyset;
+         ::ca::property_set propertyset;
 
          string strUsername = m_loginthread.m_strUsername;
 

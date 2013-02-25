@@ -14,7 +14,7 @@ namespace ca
          return;
       static class id idType = Sys(papp).type_info < T > ().m_id;
       if(m_p != NULL)
-         ca::release(m_p);
+         ::ca::release(m_p);
       m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, idType));
    }
 

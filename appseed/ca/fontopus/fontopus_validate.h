@@ -32,8 +32,8 @@ namespace fontopus
    {
    public:
       string                  m_strUrl;
-      ca::property_set       m_propertysetPost;
-      ca::property_set       m_propertysetHeaders;
+      ::ca::property_set       m_propertysetPost;
+      ::ca::property_set       m_propertysetHeaders;
       string                  m_strResponse;
    };
 
@@ -82,8 +82,8 @@ namespace fontopus
       virtual ~login_thread();
 
       virtual int32_t run();
-      virtual string Login(ca::http::e_status * pestatus);
-      virtual string NetLogin(ca::http::e_status * pestatus);
+      virtual string Login(::ca::http::e_status * pestatus);
+      virtual string NetLogin(::ca::http::e_status * pestatus);
       void execute();
    };
 
@@ -146,7 +146,7 @@ namespace fontopus
       virtual void ensure_main_document();
       virtual void display_main_frame();
       virtual void page1(const stringa & straMatter = stringa());
-      virtual void pageMessage(const stringa & straMatter, ca::property_set & set);
+      virtual void pageMessage(const stringa & straMatter, ::ca::property_set & set);
 
       virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
       virtual auth * get_auth();

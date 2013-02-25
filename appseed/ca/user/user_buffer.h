@@ -9,7 +9,7 @@ namespace user
 {
 
    class CLASS_DECL_ca buffer :
-      virtual public ca::signalizable
+      virtual public ::ca::signalizable
    {
    public:
       buffer(::ca::application * papp);
@@ -18,7 +18,7 @@ namespace user
       void BitBlt(::ca::graphics * pdc);
       void BitBlt(LPRECT lprect, ::ca::graphics * pdc);
 
-      void InstallMessageHandling(ca::message::dispatch * pinterface);
+      void InstallMessageHandling(::ca::message::dispatch * pinterface);
 
 
       bool UpdateBuffer(int32_t cx, int32_t cy);

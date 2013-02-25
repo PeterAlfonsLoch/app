@@ -513,7 +513,7 @@ namespace userbase
    }
 
 
-   void status_bar::_001OnNcHitTest(ca::signal_object * pobj)
+   void status_bar::_001OnNcHitTest(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::nchittest, pnchittest, pobj)
       UINT nResult = (UINT)Default();
@@ -527,7 +527,7 @@ namespace userbase
       }
    }
 
-   void status_bar::_001OnNcCalcSize(ca::signal_object * pobj)
+   void status_bar::_001OnNcCalcSize(::ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
       SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
@@ -607,7 +607,7 @@ namespace userbase
    }
 
 
-   void status_bar::_001OnSize(ca::signal_object * pobj)
+   void status_bar::_001OnSize(::ca::signal_object * pobj)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -618,7 +618,7 @@ namespace userbase
       UpdateAllPanes(TRUE, FALSE);
    }
 
-   void status_bar::_001OnWindowPosChanging(ca::signal_object * pobj)
+   void status_bar::_001OnWindowPosChanging(::ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
       SCAST_PTR(::ca::message::window_pos, pwindowpos, pobj)
@@ -633,7 +633,7 @@ namespace userbase
 #endif
    }
 
-   void status_bar::_001OnSetText(ca::signal_object * pobj)
+   void status_bar::_001OnSetText(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       ASSERT_VALID(this);
@@ -650,7 +650,7 @@ namespace userbase
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnGetText(ca::signal_object * pobj)
+   void status_bar::_001OnGetText(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       ASSERT_VALID(this);
@@ -681,7 +681,7 @@ namespace userbase
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnGetTextLength(ca::signal_object * pobj)
+   void status_bar::_001OnGetTextLength(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
 
@@ -699,7 +699,7 @@ namespace userbase
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnSetMinHeight(ca::signal_object * pobj)
+   void status_bar::_001OnSetMinHeight(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       LRESULT lResult = Default();

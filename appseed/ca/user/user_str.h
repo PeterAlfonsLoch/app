@@ -117,7 +117,7 @@ namespace user
       str *                                  m_pstr;
 
       
-      ca::international::locale_schema *    m_plocaleschema;
+      ::ca::international::locale_schema *    m_plocaleschema;
 
       str_locale *                           m_plocale;
       
@@ -147,7 +147,7 @@ namespace user
       
       void prepare();
 
-      inline ca::international::locale_schema & localeschema()
+      inline ::ca::international::locale_schema & localeschema()
       {
          return *m_plocaleschema;
       }

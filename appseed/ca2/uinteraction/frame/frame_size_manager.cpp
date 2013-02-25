@@ -488,13 +488,13 @@ namespace frame
       UNREFERENCED_PARAMETER(emode);
    }
 
-   void SizeManager::message_handler(::user::interaction * pwnd, ca::signal_object * pobj)
+   void SizeManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       
       if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         SCAST_PTR(ca::message::mouse, pmouse, pobj);
+         SCAST_PTR(::ca::message::mouse, pmouse, pobj);
          point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
          pwnd->ClientToScreen(&ptCursor);
 //         UINT uiFlags = pbase->m_wparam;
@@ -525,7 +525,7 @@ namespace frame
       else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
          pbase->m_uiMessage == WM_LBUTTONUP)
       {
-         SCAST_PTR(ca::message::mouse, pmouse, pobj);
+         SCAST_PTR(::ca::message::mouse, pmouse, pobj);
          if(pbase->m_uiMessage == WM_MOUSEMOVE &&
             (m_dwLastSizingTime + m_dwPaintDelay) > get_tick_count()
             && m_ehittestMode != HitTestNone)

@@ -552,7 +552,7 @@ namespace ca
          }
       }
 
-      void form::_000OnPosCreate(ca::signal_object * pobj)
+      void form::_000OnPosCreate(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
    //      SCAST_PTR(::ca::message::base, pbase, pobj)
@@ -640,7 +640,7 @@ namespace ca
    //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
      //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
          // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
-         IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
+         IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
 
       //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
       //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
@@ -660,7 +660,7 @@ namespace ca
       }
 
 
-      void form::_001OnNotify(ca::signal_object * pobj)
+      void form::_001OnNotify(::ca::signal_object * pobj)
       {
 #ifdef WINDOWSEX
          SCAST_PTR(::ca::message::notify, pnotify, pobj)
@@ -670,7 +670,7 @@ namespace ca
 #endif
       }
 
-      void form::_001OnMessageNotify(ca::signal_object * pobj)
+      void form::_001OnMessageNotify(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj)
          // revamp pbase->set_lresult(user::NotifyRetContinue);
@@ -697,7 +697,7 @@ namespace ca
          return true;
       }
 
-      void form::data_on_after_change(ca::signal_object * pobj)
+      void form::data_on_after_change(::ca::signal_object * pobj)
       {
          SCAST_PTR(::database::change_event, pchange, pobj);
          if(pchange->m_puh != NULL)
@@ -768,7 +768,7 @@ namespace ca
       }
 
 
-      void form::_001OnAppLanguage(ca::signal_object * pobj)
+      void form::_001OnAppLanguage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj)
          keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
@@ -778,7 +778,7 @@ namespace ca
          pbase->m_bRet = false;
       }
 
-      void form::_001OnCreate(ca::signal_object * pobj)
+      void form::_001OnCreate(::ca::signal_object * pobj)
       {
    //      SCAST_PTR(::ca::message::create, pcreate, pobj)
          if(pobj->previous())

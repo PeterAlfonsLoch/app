@@ -18,7 +18,7 @@ namespace userpresence
 
       virtual bool is_initialized();
 
-      virtual void message_window_message_handler(ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca::signal_object * pobj);
 
    };
 

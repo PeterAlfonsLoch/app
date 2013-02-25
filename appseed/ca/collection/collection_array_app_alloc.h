@@ -62,7 +62,7 @@ template <class TYPE, class ARG_TYPE>
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    TYPE * pt)
 {
-   ca::add_ref(pt);
+   ::ca::add_ref(pt);
    return array_del_ptr < TYPE, ARG_TYPE >::add(pt);
 }
 
@@ -86,7 +86,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::remove_at(index iIndex)
 {
    try
    {
-      ca::release(this->ptra().element_at(iIndex));
+      ::ca::release(this->ptra().element_at(iIndex));
    }
    catch(...)
    {
@@ -101,7 +101,7 @@ inline count array_app_alloc < TYPE, ARG_TYPE >::remove_all(bool bRelease /*=tru
    {
       for(int32_t iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
-         ca::release(this->ptra().element_at(iIndex));
+         ::ca::release(this->ptra().element_at(iIndex));
       }
    }
    return this->ptra().remove_all();
@@ -112,7 +112,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::remove_last(bool bRelease /*=tru
 {
    if(bRelease)
    {
-      ca::release(this->ptra().last_element());
+      ::ca::release(this->ptra().last_element());
    }
    this->ptra().remove_last();
 }

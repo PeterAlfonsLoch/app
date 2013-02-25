@@ -112,7 +112,7 @@ public:
    
    id & operator = (const string_interface & str);
    id & operator = (const var & var);
-   id & operator = (const ca::property & prop);
+   id & operator = (const ::ca::property & prop);
 
 
    inline operator int_ptr() const;
@@ -344,9 +344,9 @@ inline CLASS_DECL_ca bool id_is_number(const char * psz)
       return false;
    while(*psz != '\0')
    {
-      if(!ca::ch::is_digit(psz))
+      if(!::ca::ch::is_digit(psz))
          return false;
-      psz = ca::str::utf8_inc(psz);
+      psz = ::ca::str::utf8_inc(psz);
    }
    return true;
 }

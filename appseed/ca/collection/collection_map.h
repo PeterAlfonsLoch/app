@@ -8,7 +8,7 @@ namespace collection
 {
 
 
-   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = ca::hash < ARG_KEY > , class EQUALS = ca::equals_type_arg_type < KEY, ARG_KEY > >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = ::ca::hash < ARG_KEY > , class EQUALS = ::ca::equals_type_arg_type < KEY, ARG_KEY > >
    class map :
       virtual public ::ca::object
    {
@@ -983,7 +983,7 @@ namespace collection
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ca::hash < const string & > , class EQUALS = ca::equals_type_arg_type < string, const string & > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca::hash < const string & > , class EQUALS = ::ca::equals_type_arg_type < string, const string & > >
    class string_map :
       virtual public attrib_map < map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
@@ -1024,7 +1024,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ca::strid_hash, class EQUALS = ca::strid_equals  >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca::strid_hash, class EQUALS = ::ca::strid_equals  >
    class strid_map :
       virtual public attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
@@ -1066,7 +1066,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ca::hash < int32_t > , class EQUALS = ca::equals_type_arg_type < int32_t, int32_t > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca::hash < int32_t > , class EQUALS = ::ca::equals_type_arg_type < int32_t, int32_t > >
    class int_map :
       virtual public attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >
    {

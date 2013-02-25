@@ -69,7 +69,7 @@ namespace gcom
 
       uint32_t d_dwLastBackViewUpdate;
 
-      void Interface::OnBackViewMessage(ca::signal_object * pobj)
+      void Interface::OnBackViewMessage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj)
          switch(pbase->m_wparam)
@@ -94,21 +94,21 @@ namespace gcom
          pbase->set_lresult(0);
       }
 
-      void Interface::OnDequeueMessage(ca::signal_object * pobj)
+      void Interface::OnDequeueMessage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj)
          GetMain().OnDequeueMessage(pbase->m_wparam, pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
-      void Interface::OnWndSize(ca::signal_object * pobj)
+      void Interface::OnWndSize(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj)
          GetMain().m_bPendingLayout = true;
          pbase->m_bRet = false;
       }
 
-      void Interface::OnWndTimer(ca::signal_object * pobj)
+      void Interface::OnWndTimer(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::timer, ptimer, pobj)
          if(m_dwTimerStep > 0 && m_dwTimerStep == ptimer->m_nIDEvent)
@@ -126,7 +126,7 @@ namespace gcom
       }
 
 
-      void Interface::OnWndCreate(ca::signal_object * pobj)
+      void Interface::OnWndCreate(::ca::signal_object * pobj)
       {
 //         SCAST_PTR(::ca::message::create, pcreate, pobj)
          if(pobj->previous())

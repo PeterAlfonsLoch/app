@@ -76,7 +76,7 @@ namespace userex
 
    }
 
-   void second_list_view::_001OnCreate(ca::signal_object * pobj)
+   void second_list_view::_001OnCreate(::ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)

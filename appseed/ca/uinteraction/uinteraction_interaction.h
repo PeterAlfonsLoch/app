@@ -11,7 +11,7 @@ namespace uinteraction
    public:
 
 
-      ca::property_set       m_set;
+      ::ca::property_set       m_set;
 
 
       interaction(::ca::application * papp);

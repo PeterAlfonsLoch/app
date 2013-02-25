@@ -12,7 +12,7 @@ public:
 
 
    class get_fs_size :
-      public ca::byte_serializable
+      public ::ca::byte_serializable
    {
    public:
 
@@ -31,8 +31,8 @@ public:
       get_fs_size & operator = (const get_fs_size & getfssize);
 
 
-      virtual void write(ca::byte_output_stream & ostream);
-      virtual void read(ca::byte_input_stream & istream);
+      virtual void write(::ca::byte_output_stream & ostream);
+      virtual void read(::ca::byte_input_stream & istream);
 
 
    };
@@ -137,7 +137,7 @@ public:
 
 class CLASS_DECL_ca FileSystemSizeWnd :
    public ::ca::window_sp,
-   public ca::signalizable
+   public ::ca::signalizable
 {
 public:
 

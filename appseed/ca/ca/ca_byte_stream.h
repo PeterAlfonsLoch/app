@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "gen_reader.h"
-#include "gen_writer.h"
-#include "gen_stream.h"
+#include "ca_reader.h"
+#include "ca_writer.h"
+#include "ca_stream.h"
 
 
 namespace ca
@@ -12,7 +12,7 @@ namespace ca
 
    class file_exception;         // file exception
    class file;
-   typedef ca::smart_pointer < file > filesp;
+   typedef ::ca::smart_pointer < file > filesp;
 
 
 } // namespace ca

@@ -4,7 +4,7 @@ namespace ca
 {
 
    class CLASS_DECL_ca text_file : 
-      virtual public ca::file
+      virtual public ::ca::file
    {
    public:
       text_file();
@@ -21,6 +21,6 @@ namespace ca
       }
    };
 
-   typedef ca::smart_pointer < text_file > text_file_sp;
+   typedef ::ca::smart_pointer < text_file > text_file_sp;
 
 } // namespace ca

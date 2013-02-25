@@ -135,12 +135,12 @@ namespace xml
 
    string document::consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt)
    {
-      ca::str::consume(pszXml, "&");
+      ::ca::str::consume(pszXml, "&");
       strName.Empty();
       while(*pszXml != ';')
       {
          strName += *pszXml;
-         pszXml = ca::str::utf8_inc(pszXml);
+         pszXml = ::ca::str::utf8_inc(pszXml);
       }
       pszXml++;
       string ent = entitiesHash[strName];

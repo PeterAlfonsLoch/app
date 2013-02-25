@@ -11,7 +11,7 @@
 namespace libcompress
 {
 
-   typedef ca::out_buffer_exception lz_out_window_exception;
+   typedef ::ca::out_buffer_exception lz_out_window_exception;
 
    class lz_out_window :
       public ::ca::out_buffer

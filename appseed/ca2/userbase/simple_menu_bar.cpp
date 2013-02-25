@@ -18,7 +18,7 @@ simple_menu_bar::simple_menu_bar(::ca::application * papp) :
    m_iTopMenuCount = 0;
    m_iTracking = -1;
 
-   IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
+   IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
 
 }
 
@@ -131,7 +131,7 @@ bool simple_menu_bar::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 }
 
 
-void simple_menu_bar::_001OnMouseMove(ca::signal_object * pobj)
+void simple_menu_bar::_001OnMouseMove(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
@@ -166,16 +166,16 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     return VMSR_SUCCESS;
 }
 
-void simple_menu_bar::_001OnNcMouseMove(ca::signal_object * pobj)
+void simple_menu_bar::_001OnNcMouseMove(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
 // trans   simple_toolbar::OnNcMouseMove(pmouse->m_nFlags, pmouse->m_pt);
 }
 
-void simple_menu_bar::pre_translate_message(ca::signal_object * pobj)
+void simple_menu_bar::pre_translate_message(::ca::signal_object * pobj)
 {
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_USER && pbase->m_pwnd == this)
    {
       if(pbase->m_wparam == 33)
@@ -187,7 +187,7 @@ void simple_menu_bar::pre_translate_message(ca::signal_object * pobj)
    return simple_toolbar::pre_translate_message(pobj);
 }
 
-void simple_menu_bar::_001OnCreate(ca::signal_object * pobj)
+void simple_menu_bar::_001OnCreate(::ca::signal_object * pobj)
 {
 //   SCAST_PTR(::ca::message::create, pcreate, pobj)
    if(pobj->previous())
@@ -265,7 +265,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
 
 }
 
-void simple_menu_bar::_001OnKeyDown(ca::signal_object * pobj)
+void simple_menu_bar::_001OnKeyDown(::ca::signal_object * pobj)
 {
    // TODO: add your message handler code here and/or call default
 
@@ -304,7 +304,7 @@ VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
 
 
 
-void simple_menu_bar::_001OnDestroy(ca::signal_object * pobj)
+void simple_menu_bar::_001OnDestroy(::ca::signal_object * pobj)
 {
    pobj->previous();
 
@@ -343,7 +343,7 @@ void simple_menu_bar::RemoveAllButtons()
    m_itema.remove_all();
 }
 
-void simple_menu_bar::_001OnMenuChar(ca::signal_object * pobj)
+void simple_menu_bar::_001OnMenuChar(::ca::signal_object * pobj)
 {
    pobj->previous();
 }
@@ -577,7 +577,7 @@ bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlS
    return TRUE;
 }
 
-void simple_menu_bar::_001OnLButtonDown(ca::signal_object * pobj)
+void simple_menu_bar::_001OnLButtonDown(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    int32_t iItem = _001HitTest(pmouse->m_pt);
@@ -735,7 +735,7 @@ void simple_menu_bar::_001Hover()
    _001Hover(pt);
 }*/
 
-void simple_menu_bar::_001OnTimer(ca::signal_object * pobj)
+void simple_menu_bar::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj)
    if(ptimer->m_nIDEvent == TIMER_HOVER)
@@ -789,7 +789,7 @@ int32_t simple_menu_bar::_001GetHoverItem()
    }
 }
 
-void simple_menu_bar::_001OnAppLanguage(ca::signal_object * pobj)
+void simple_menu_bar::_001OnAppLanguage(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj)
    send_message(WM_CANCELMODE);

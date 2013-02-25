@@ -99,7 +99,7 @@ namespace fs
    }
 
 
-   void tree::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void tree::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int32_t iItem;
@@ -173,7 +173,7 @@ namespace fs
 
    }*/
 
-   void tree::_001OnContextMenu(ca::signal_object * pobj)
+   void tree::_001OnContextMenu(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
@@ -243,7 +243,7 @@ namespace fs
    }
 
 
-   void tree::_001OnTimer(ca::signal_object * pobj)
+   void tree::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
@@ -275,7 +275,7 @@ namespace fs
       return ::fs::tree_interface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void tree::_001OnShellCommand(ca::signal_object * pobj)
+   void tree::_001OnShellCommand(::ca::signal_object * pobj)
    {
       //SCAST_PTR(::ca::message::command, pcommand, pobj)
       UNREFERENCED_PARAMETER(pobj);
@@ -286,7 +286,7 @@ namespace fs
       get_document()->file_manager_browse(item.m_strPath);
    }
 
-   void tree::_001OnCreate(ca::signal_object * pobj)
+   void tree::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 

@@ -18,7 +18,7 @@ namespace ca
 
 
       index                m_iIndex;
-      ca::property_set *  m_pset;
+      ::ca::property_set *  m_pset;
       index                m_iParam;
       bool                 m_bRet;
       signal *             m_psignal;
@@ -37,7 +37,7 @@ namespace ca
       bool previous(); // returns bRet
 
 
-      ca::property_set & operator()();
+      ::ca::property_set & operator()();
 
    };
 
@@ -59,8 +59,8 @@ namespace ca
 
       void register_signal(signal * psignal);
       void unregister_signal(signal * psignal);
-      void unregister_target(ca::signalizable * psignalizable);
-      void filter_target(ca::signalizable * psignalizable);
+      void unregister_target(::ca::signalizable * psignalizable);
+      void filter_target(::ca::signalizable * psignalizable);
 
    };
 
@@ -221,7 +221,7 @@ namespace ca
          class CLASS_DECL_ca handler_item_base
          {
          public:
-            virtual ca::signalizable * get_signalizable() = 0;
+            virtual ::ca::signalizable * get_signalizable() = 0;
          };
 
          template < class T >
@@ -233,14 +233,14 @@ namespace ca
             // prototype.
             // This is a cached value and not the
             // storage holder of the object.
-            virtual ca::signalizable * get_signalizable() { return dynamic_cast < ca::signalizable * > (m_psignalizable); }
+            virtual ::ca::signalizable * get_signalizable() { return dynamic_cast < ::ca::signalizable * > (m_psignalizable); }
          };
 
          class CLASS_DECL_ca handler_item_array :
             public base_array < handler_item_base *, handler_item_base *>
          {
          public:
-            bool HasSignalizable(ca::signalizable * psignalizable);
+            bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
          class CLASS_DECL_ca signal :
@@ -248,7 +248,7 @@ namespace ca
          {
          public:
             signalid *        m_pid;
-            ca::signal *     m_psignal;
+            ::ca::signal *     m_psignal;
 
             handler_item_array  m_handlera;
 
@@ -273,14 +273,14 @@ namespace ca
          };
 
 
-         void RemoveMessageHandler(ca::signalizable * psignalizable);
+         void RemoveMessageHandler(::ca::signalizable * psignalizable);
          // Prototype_bool_WPARAM_LPARAM;
 
          template < class T >
          bool AddMessageHandler(
             signalid * pid,
             T * psignalizable,
-            void (T::*pfn)(ca::signal_object *),
+            void (T::*pfn)(::ca::signal_object *),
             bool bAddUnique = true)
          {
             signal * psignal = m_signala.GetSignalById(pid);
@@ -289,7 +289,7 @@ namespace ca
             {
                psignal                    = new signal;
                psignal->m_pid             = pid->copy();
-               psignal->m_psignal         = new ca::signal();
+               psignal->m_psignal         = new ::ca::signal();
                psignal->m_psignal->connect(psignalizable, pfn);
                handler_item <T> * pitem   = new handler_item<T>;
                pitem->m_psignalizable     = psignalizable;
@@ -352,9 +352,9 @@ namespace ca
 } // namespace ca
 
 
-#define DECL_GEN_SIGNAL(function) void function(ca::signal_object * pobj);
-#define DECL_GEN_VSIGNAL(function) virtual void function(ca::signal_object * pobj);
-#define BEG_GEN_SIGNAL(cl, function, signal_impl_class) void cl::function(ca::signal_object * pobj) \
+#define DECL_GEN_SIGNAL(function) void function(::ca::signal_object * pobj);
+#define DECL_GEN_VSIGNAL(function) virtual void function(::ca::signal_object * pobj);
+#define BEG_GEN_SIGNAL(cl, function, signal_impl_class) void cl::function(::ca::signal_object * pobj) \
 { SCAST_PTR(signal_impl_class, pobj, psignal);
 #define END_GEN_SIGNAL() }
 

@@ -134,21 +134,21 @@ var::var(const var_array & var)
    operator = (var);
 }
 
-var::var(const ca::property_set & set)
+var::var(const ::ca::property_set & set)
 {
    m_etype  = type_new;
    m_pca2   = NULL;
    operator = (set);
 }
 
-var::var(const ca::pair_set_interface & set)
+var::var(const ::ca::pair_set_interface & set)
 {
    m_etype  = type_new;
    m_pca2   = NULL;
    operator = (set);
 }
 
-var::var(const ca::str_str_interface & set)
+var::var(const ::ca::str_str_interface & set)
 {
    m_etype  = type_new;
    m_pca2   = NULL;
@@ -169,7 +169,7 @@ var::var(class var * pvar)
    operator = (pvar);
 }
 
-var::var(const ca::property & prop)
+var::var(const ::ca::property & prop)
 {
    m_etype = type_new;
    m_pca2 = NULL;
@@ -196,7 +196,7 @@ var::~var()
    {
       try
       {
-         ca::release(m_pca2);
+         ::ca::release(m_pca2);
       }
       catch(...)
       {
@@ -211,7 +211,7 @@ strsize var::get_length() const
 
 void var::get_string(char * psz) const
 {
-   ca::str::copy(psz, get_string());
+   ::ca::str::copy(psz, get_string());
 }
 
 var::e_type var::get_type() const
@@ -271,7 +271,7 @@ void var::set_type(e_type e_type, bool bConvert)
 {
    if(m_pca2 != NULL)
    {
-      ca::release(m_pca2);
+      ::ca::release(m_pca2);
       m_pca2 = NULL;
    }
    if(e_type == m_etype)
@@ -351,7 +351,7 @@ void var::set_id(const id & id)
    }
 }
 
-class var & var::operator = (ca::para_return & eret)
+class var & var::operator = (::ca::para_return & eret)
 {
    set_type(type_parareturn, false);
    m_parareturn = eret;
@@ -534,13 +534,13 @@ class var & var::operator = (const char * psz)
 
 class var & var::operator = (const wchar_t * lpcsz)
 {
-   set_string(ca::international::unicode_to_utf8(lpcsz));
+   set_string(::ca::international::unicode_to_utf8(lpcsz));
    return *this;
 }
 
-class var & var::operator = (const ca::property & prop)
+class var & var::operator = (const ::ca::property & prop)
 {
-   operator = (((ca::property &)prop).get_value());
+   operator = (((::ca::property &)prop).get_value());
    return *this;
 }
 
@@ -621,7 +621,7 @@ class var & var::operator = (const class var & var)
       case type_ca2:
          {
             m_pca2 = ((class var &)var).m_pca2;
-            ca::add_ref(m_pca2);
+            ::ca::add_ref(m_pca2);
          }
          break;
       case type_id:
@@ -659,19 +659,19 @@ class var & var::operator = (const var_array & varaParam)
    return *this;
 }
 
-class var & var::operator = (const ca::property_set & propsetParam)
+class var & var::operator = (const ::ca::property_set & propsetParam)
 {
    propset() = propsetParam;
    return *this;
 }
 
-class var & var::operator = (const ca::pair_set_interface & propsetParam)
+class var & var::operator = (const ::ca::pair_set_interface & propsetParam)
 {
    propset() = propsetParam;
    return *this;
 }
 
-class var & var::operator = (const ca::str_str_interface & propsetParam)
+class var & var::operator = (const ::ca::str_str_interface & propsetParam)
 {
    propset() = propsetParam;
    return *this;
@@ -828,7 +828,7 @@ bool var::is_new_or_null() const
    return is_new() || is_null();
 }
 
-void var::read(ca::byte_input_stream & is)
+void var::read(::ca::byte_input_stream & is)
 {
    int32_t i;
    is >> i;
@@ -922,7 +922,7 @@ void var::read(ca::byte_input_stream & is)
    }
 }
 
-void var::write(ca::byte_output_stream & ostream)
+void var::write(::ca::byte_output_stream & ostream)
 {
    int32_t i = get_type();
    ostream << i;
@@ -1897,7 +1897,7 @@ class var & var::operator = (::ca::ca * pca2)
       return *this;
    set_type(type_ca2, false);
    m_pca2 = pca2;
-   ca::add_ref(m_pca2);
+   ::ca::add_ref(m_pca2);
    return *this;
 }
 
@@ -1951,16 +1951,16 @@ var_array var::vara() const
    return *m_pvara;
 }
 
-ca::property_set & var::propset(::ca::application * papp)
+::ca::property_set & var::propset(::ca::application * papp)
 {
-   ca::property_set * pset;
+   ::ca::property_set * pset;
    if(m_etype == type_pvar)
    {
       pset = &m_pvar->propset();
    }
    else if(m_etype != type_propset)
    {
-      ca::property_set * ppropset = new ca::property_set();
+      ::ca::property_set * ppropset = new ::ca::property_set();
       for(int32_t i = 0; i < array_get_count(); i++)
       {
          ppropset->add(NULL, at(i));
@@ -1973,7 +1973,7 @@ ca::property_set & var::propset(::ca::application * papp)
    }
    else if(m_pca2 == NULL)
    {
-      pset = new ca::property_set();
+      pset = new ::ca::property_set();
       m_pca2 = pset;
       m_pset = pset;
    }
@@ -1988,13 +1988,13 @@ ca::property_set & var::propset(::ca::application * papp)
    return *pset;
 }
 
-ca::property_set var::propset() const
+::ca::property_set var::propset() const
 {
    var varTime = *this;
    return varTime.propset();
 }
 
-ca::property & var::prop()
+::ca::property & var::prop()
 {
    if(m_etype != type_prop)
    {
@@ -2002,20 +2002,20 @@ ca::property & var::prop()
    }
    if(m_pca2 == NULL)
    {
-      m_pprop = new ca::property();
+      m_pprop = new ::ca::property();
       m_pca2 = m_pprop;
    }
-   return *dynamic_cast < ca::property * > (m_pca2);
+   return *dynamic_cast < ::ca::property * > (m_pca2);
 }
 
-ca::property var::prop() const
+::ca::property var::prop() const
 {
    if(get_type() != type_prop)
    {
       var varTime = *this;
       return varTime.prop();
    }
-   return *dynamic_cast < const ca::property * > (m_pca2);
+   return *dynamic_cast < const ::ca::property * > (m_pca2);
 }
 
 string var::implode(const char * pszGlue) const
@@ -3457,7 +3457,7 @@ bool var::has_property(const char * pszName) const
 {
    if(get_type() == type_propset)
    {
-      return dynamic_cast < const ca::property_set * > (m_pca2)->has_property(pszName);
+      return dynamic_cast < const ::ca::property_set * > (m_pca2)->has_property(pszName);
    }
    else if(get_type() == type_pvar)
    {
@@ -3469,13 +3469,13 @@ bool var::has_property(const char * pszName) const
       {
          return ca < var >()->has_property(pszName);
       }
-      else if(ca < ca::property_set >() != NULL)
+      else if(ca < ::ca::property_set >() != NULL)
       {
-         return ca < ca::property_set >()->has_property(pszName);
+         return ca < ::ca::property_set >()->has_property(pszName);
       }
-      else if(ca < ca::property >() != NULL)
+      else if(ca < ::ca::property >() != NULL)
       {
-         return ca < ca::property >()->name().CompareNoCase(pszName) == 0;
+         return ca < ::ca::property >()->name().CompareNoCase(pszName) == 0;
       }
       else
       {
@@ -3509,7 +3509,7 @@ void var::consume_number(const char * & psz, const char * pszEnd)
    const char * pszParse = psz;
    bool bSigned = false;
    bool bFloat = false;
-   ca::str::consume_spaces(pszParse, 0, pszEnd);
+   ::ca::str::consume_spaces(pszParse, 0, pszEnd);
    const char * pszStart = pszParse;
    if(*pszParse == '-')
    {
@@ -3597,14 +3597,14 @@ void var::parse_json(const char * & pszJson)
 
 void var::parse_json(const char * & pszJson, const char * pszEnd)
 {
-   ca::str::consume_spaces(pszJson, 0, pszEnd);
+   ::ca::str::consume_spaces(pszJson, 0, pszEnd);
    if(*pszJson == '{')
    {
       propset().parse_json(pszJson, pszEnd);
    }
    else if(*pszJson == '\"')
    {
-      operator = (ca::str::consume_quoted_value(pszJson, pszEnd));
+      operator = (::ca::str::consume_quoted_value(pszJson, pszEnd));
    }
    else if(isdigit(*pszJson) || *pszJson == '-'  || *pszJson == '.')
    {

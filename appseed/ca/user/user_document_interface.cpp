@@ -222,15 +222,15 @@ namespace user
       //   ASSERT(FALSE);
       // ca API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //   ca::ThrowFileException(::ca::file_exception::badPath);
+      //   ::ca::ThrowFileException(::ca::file_exception::badPath);
       //}
 
-      //   if( ca::FullPath(szFullPath, lpszPathName) == FALSE )
+      //   if( ::ca::FullPath(szFullPath, lpszPathName) == FALSE )
       //   {
       //      ASSERT(FALSE);
       // ca API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //      ca::ThrowFileException(::ca::file_exception::badPath);
+      //      ::ca::ThrowFileException(::ca::file_exception::badPath);
       //   }
 
       // store the path fully qualified
@@ -247,7 +247,7 @@ namespace user
       set_title(strTitle);
 
       //string strPathName;
-      //ca::international::Utf8ToAcp(strPathName, m_wstrPathName);
+      //::ca::international::Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
       guserbase::get(get_app())->AddToRecentFileList(lpszPathName);*/
@@ -494,7 +494,7 @@ namespace user
             break;
             }
             }
-            else*/ if (base < ca::file_exception >::bases(e))
+            else*/ if (base < ::ca::file_exception >::bases(e))
             {
                ::ca::file_exception * pfe = dynamic_cast < ::ca::file_exception * > (e);
                // throw not_implemented(get_app());
@@ -507,7 +507,7 @@ namespace user
 
                if (!pfe->get_error_message(prompt))
                {
-                  /*               switch (((ca::file_exception_sp*)e)->m_cause)
+                  /*               switch (((::ca::file_exception_sp*)e)->m_cause)
                   {
                   case ::ca::file_exception::fileNotFound:
                   case ::ca::file_exception::badPath:
@@ -542,7 +542,7 @@ namespace user
             string strTitle = System.file().title_(lpszPathName);
             //throw not_implemented(get_app());
             /*
-            ca::FormatString1(prompt, nIDP, strTitle);*/
+            ::ca::FormatString1(prompt, nIDP, strTitle);*/
          }
 
          //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
@@ -585,7 +585,7 @@ namespace user
 
          spfile = Application.file().get_byte_stream(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
 
-         /*if(ca::str::begins_ci(varFile, "uifs://"))
+         /*if(::ca::str::begins_ci(varFile, "uifs://"))
          {
          spfile = ifs(get_app(), "").get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary, &fe);
          }
@@ -866,12 +866,12 @@ namespace user
       return m_bNew;
    }
 
-   void document_interface::write(ca::byte_output_stream & ostream)
+   void document_interface::write(::ca::byte_output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void document_interface::read(ca::byte_input_stream & istream)
+   void document_interface::read(::ca::byte_input_stream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }

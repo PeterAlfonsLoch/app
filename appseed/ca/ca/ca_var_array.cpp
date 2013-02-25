@@ -20,7 +20,7 @@ var_array::var_array(const int_array & ia)
    operator = (ia);
 }
 
-var_array::var_array(const ca::property_set & propset)
+var_array::var_array(const ::ca::property_set & propset)
 {
    set_size(0, ROUND16(propset.get_count() + 16));
    operator = (propset);
@@ -275,7 +275,7 @@ var_array & var_array::operator = (const int_array & inta)
    return *this;
 }
 
-var_array & var_array::operator = (const ca::property_set & propset)
+var_array & var_array::operator = (const ::ca::property_set & propset)
 {
    remove_all();
    for(int32_t i = 0; i < propset.m_propertya.get_count(); i++)
@@ -305,13 +305,13 @@ void var_array::parse_json(const char * & pszJson)
 
 void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 {
-   ca::str::consume_spaces(pszJson, 0, pszEnd);
-   ca::str::consume(pszJson, "[", 1, pszEnd);
+   ::ca::str::consume_spaces(pszJson, 0, pszEnd);
+   ::ca::str::consume(pszJson, "[", 1, pszEnd);
    while(true)
    {
       ::var & var = add_new();
       var.parse_json(pszJson, pszEnd);
-      ca::str::consume_spaces(pszJson, 0, pszEnd);
+      ::ca::str::consume_spaces(pszJson, 0, pszEnd);
       if(*pszJson == ',')
       {
          pszJson++;

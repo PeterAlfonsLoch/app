@@ -54,11 +54,11 @@ namespace cube
    ::ca::application * library::get_new_app(const char * pszAppId)
    {
 
-      if(ca::str::equals_ci(pszAppId, "bergedge"))
+      if(::ca::str::equals_ci(pszAppId, "bergedge"))
       {
          return new ::bergedge::bergedge();
       }
-      else if(ca::str::equals_ci(pszAppId, "cube"))
+      else if(::ca::str::equals_ci(pszAppId, "cube"))
       {
          return new ::cube::cube();
       }

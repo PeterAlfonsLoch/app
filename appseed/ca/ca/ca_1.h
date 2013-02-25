@@ -65,7 +65,7 @@ class CDockContext;                     // for dragging control bars
 // Internal _ Windows messages (see Technical note TN024 for more details)
 // (0x0360 - 0x037F are reserved for ca API)
 
-#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by ca::WndProc
+#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by ::ca::WndProc
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
                            // lParam = lpszOther (or NULL)
@@ -142,7 +142,7 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ca::Sig_vv, \
+   { message, 0, 0, 0, ::ca::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)(void))&memberFxn },
 
 #if defined(LINUX) || defined(MACOS)
@@ -167,7 +167,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void ca::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
+CLASS_DECL_ca void ::ca::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
    ::user::interaction * hWnd, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR
@@ -187,4 +187,4 @@ struct NMHDR
 
 
 
-#include "gen_2.h"
+#include "ca_2.h"

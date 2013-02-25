@@ -273,28 +273,28 @@ namespace ca
 
    plain_text_output_stream & plain_text_output_stream::operator << (wchar_t wch)
    {
-      return raw_print(ca::str::uni_to_utf8(wch));
+      return raw_print(::ca::str::uni_to_utf8(wch));
    }
 
 
    plain_text_output_stream & plain_text_output_stream::operator << (int32_t i)
    {
-      return raw_print(ca::str::from(i));
+      return raw_print(::ca::str::from(i));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (uint32_t ui)
    {
-      return raw_print(ca::str::from(ui));
+      return raw_print(::ca::str::from(ui));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (int64_t i)
    {
-      return raw_print(ca::str::from(i));
+      return raw_print(::ca::str::from(i));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (uint64_t ui)
    {
-      return raw_print(ca::str::from(ui));
+      return raw_print(::ca::str::from(ui));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (float f)

@@ -12,7 +12,7 @@ public:
    var_array();
    var_array(const stringa & stra);
    var_array(const int_array & inta);
-   var_array(const ca::property_set & propset);
+   var_array(const ::ca::property_set & propset);
    var_array(const var_array & vara);
 
 
@@ -50,7 +50,7 @@ public:
 
    var_array & operator = (const stringa & stra);
    var_array & operator = (const int_array & inta);
-   var_array & operator = (const ca::property_set & propset);
+   var_array & operator = (const ::ca::property_set & propset);
    var_array & operator = (const var_array & vara);
 
 

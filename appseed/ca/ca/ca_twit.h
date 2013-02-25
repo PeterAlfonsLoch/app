@@ -6,7 +6,7 @@ namespace ca
 
    /* twitCurl class */
    class CLASS_DECL_ca twit :
-      virtual public ca::object
+      virtual public ::ca::object
    {
    public:
 
@@ -18,7 +18,7 @@ namespace ca
 
        /* cURL flags */
        bool m_curlLoginParamsSet;
-       ca::property_set m_setHttp;
+       ::ca::property_set m_setHttp;
 
 
        /* Twitter data */
@@ -113,10 +113,10 @@ namespace ca
        void prepareCurlUserPass();
        void prepareStandardParams();
        bool performGet( const string & getUrl );
-       bool performGet( const string & getUrl, ca::property_set & headers );
+       bool performGet( const string & getUrl, ::ca::property_set & headers );
        bool performDelete( const string & deleteUrl );
-       bool performPost( const string & postUrl, ca::property_set & post );
-       bool performPost( const string & postUrl, ca::property_set & headers, ca::property_set & post );
+       bool performPost( const string & postUrl, ::ca::property_set & post );
+       bool performPost( const string & postUrl, ::ca::property_set & headers, ::ca::property_set & post );
 
        string build_url(const char * baseUrl, const char * userInfo, bool isUserId );
    };

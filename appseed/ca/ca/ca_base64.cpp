@@ -137,7 +137,7 @@ namespace ca
 
    }
 
-   void base64::encode(ca::plain_text_output_stream & ostream, ca::byte_input_stream & istream)
+   void base64::encode(::ca::plain_text_output_stream & ostream, ::ca::byte_input_stream & istream)
    {
       int32_t i,hiteof= FALSE;
       byte igroup[3],ogroup[4];
@@ -179,7 +179,7 @@ namespace ca
    }
 
 
-   void base64::decode(ca::byte_output_stream & ostream, ca::plain_text_input_stream & istream)
+   void base64::decode(::ca::byte_output_stream & ostream, ::ca::plain_text_input_stream & istream)
    {
       int32_t i;
       byte a[4],b[4],o[3];
@@ -250,7 +250,7 @@ namespace ca
       
       string strRet;
 
-      ca::byte_stream_memory_file file(&System, &storageBinary);
+      ::ca::byte_stream_memory_file file(&System, &storageBinary);
 
       _template_std_ostringstream ostream;
 
@@ -285,16 +285,16 @@ namespace ca
 
       _template_std_istringstream istream(pszBase64);
 
-      ca::byte_stream_memory_file memfile(&System, &storageBinary);
+      ::ca::byte_stream_memory_file memfile(&System, &storageBinary);
 
       decode(memfile, istream);
 
    }
 
-   string base64::serialize(ca::byte_serializable & serializable)
+   string base64::serialize(::ca::byte_serializable & serializable)
    {
       
-      ca::byte_stream_memory_file file(&System);
+      ::ca::byte_stream_memory_file file(&System);
 
       serializable.write(file);
 
@@ -308,10 +308,10 @@ namespace ca
 
    }
 
-   void base64::unserialize(ca::byte_serializable & serializable, const char * pszBase64)
+   void base64::unserialize(::ca::byte_serializable & serializable, const char * pszBase64)
    {
       
-      ca::byte_stream_memory_file file(&System);
+      ::ca::byte_stream_memory_file file(&System);
 
       _template_std_istringstream reader(pszBase64);
 

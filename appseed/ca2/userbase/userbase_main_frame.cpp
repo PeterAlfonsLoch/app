@@ -36,7 +36,7 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_CREATE,         pinterface, this, &main_frame::_001OnCreate);
    }
 
-   void main_frame::_001OnCreate(ca::signal_object * pobj)
+   void main_frame::_001OnCreate(::ca::signal_object * pobj)
    {
 
 //      SCAST_PTR(::ca::message::create, pcreate, pobj)

@@ -346,7 +346,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &list_header::_001OnMouseMove);
    }
 
-   void list_header::_001OnLButtonDown(ca::signal_object * pobj)
+   void list_header::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
@@ -359,7 +359,7 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnLButtonUp(ca::signal_object * pobj)
+   void list_header::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       list * plist = m_plistctrlinterface;
@@ -415,7 +415,7 @@ namespace user
 
 
 
-   void list_header::_001OnMouseMove(ca::signal_object * pobj)
+   void list_header::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
@@ -484,7 +484,7 @@ namespace user
    }
 
 
-   void list_header::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void list_header::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;

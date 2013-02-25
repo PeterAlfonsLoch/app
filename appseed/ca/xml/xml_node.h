@@ -10,7 +10,7 @@ namespace xml
 
    class CLASS_DECL_ca node :
       virtual public ::ca::object,
-      virtual public ca::byte_serializable
+      virtual public ::ca::byte_serializable
    {
    public:
 
@@ -206,8 +206,8 @@ namespace xml
       void close();
 
 
-      virtual void write(ca::byte_output_stream & ostream);
-      virtual void read(ca::byte_input_stream & istream);
+      virtual void write(::ca::byte_output_stream & ostream);
+      virtual void read(::ca::byte_input_stream & istream);
 
 
    };

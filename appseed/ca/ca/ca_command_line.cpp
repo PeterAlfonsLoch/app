@@ -106,7 +106,7 @@ namespace ca
       m_varQuery.propset()._008ParseCommandLine(pszCommandLine, m_varFile);
       if(!m_varFile.is_empty())
       {
-         m_ecommand = ca::command_line::command_file_open;
+         m_ecommand = ::ca::command_line::command_file_open;
       }
       if(m_varQuery.has_property("uri"))
       {
@@ -119,10 +119,10 @@ namespace ca
          {
             m_varFile = m_varQuery["uri"];
          }
-         if(m_ecommand == ca::command_line::command_file_new)
-            m_ecommand = ca::command_line::command_file_open;
+         if(m_ecommand == ::ca::command_line::command_file_new)
+            m_ecommand = ::ca::command_line::command_file_open;
       }
-      if(m_ecommand == ca::command_line::command_file_open)
+      if(m_ecommand == ::ca::command_line::command_file_open)
       {
          m_varQuery["show_platform"] = 1;
       }
@@ -162,10 +162,10 @@ namespace ca
          {
             m_varFile = m_varQuery["uri"];
          }
-         if(m_ecommand == ca::command_line::command_file_new)
-            m_ecommand = ca::command_line::command_file_open;
+         if(m_ecommand == ::ca::command_line::command_file_new)
+            m_ecommand = ::ca::command_line::command_file_open;
       }
-      if(m_ecommand == ca::command_line::command_file_open)
+      if(m_ecommand == ::ca::command_line::command_file_open)
       {
          m_varQuery["show_platform"] = 1;
       }
@@ -196,7 +196,7 @@ namespace ca
       m_varQuery.propset()._008ParseCommandFork(pszCommandFork, m_varFile, m_strApp);
       if(!m_varFile.is_empty())
       {
-         m_ecommand = ca::command_line::command_file_open;
+         m_ecommand = ::ca::command_line::command_file_open;
       }
       if(m_varQuery.has_property("uri"))
       {
@@ -209,10 +209,10 @@ namespace ca
          {
             m_varFile = m_varQuery["uri"];
          }
-         if(m_ecommand == ca::command_line::command_file_new)
-            m_ecommand = ca::command_line::command_file_open;
+         if(m_ecommand == ::ca::command_line::command_file_new)
+            m_ecommand = ::ca::command_line::command_file_open;
       }
-      if(m_ecommand == ca::command_line::command_file_open)
+      if(m_ecommand == ::ca::command_line::command_file_open)
       {
          m_varQuery["show_platform"] = 1;
       }
@@ -257,10 +257,10 @@ namespace ca
          {
             m_varFile = m_varQuery["uri"];
          }
-         if(m_ecommand == ca::command_line::command_file_new)
-            m_ecommand = ca::command_line::command_file_open;
+         if(m_ecommand == ::ca::command_line::command_file_new)
+            m_ecommand = ::ca::command_line::command_file_open;
       }
-      if(m_ecommand == ca::command_line::command_file_open)
+      if(m_ecommand == ::ca::command_line::command_file_open)
       {
          m_varQuery["show_platform"] = 1;
       }

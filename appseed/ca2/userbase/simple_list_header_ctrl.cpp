@@ -49,7 +49,7 @@ void simple_list_header_control::install_message_handling(::ca::message::dispatc
 
 }*/
 
-void simple_list_header_control::_001OnEndTrack(ca::signal_object * pobj)
+void simple_list_header_control::_001OnEndTrack(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
    SCAST_PTR(::ca::message::notify, pnotify, pobj)
@@ -76,7 +76,7 @@ void simple_list_header_control::_001OnEndTrack(ca::signal_object * pobj)
 #endif
 }
 
-void simple_list_header_control::_001OnTrack(ca::signal_object * pobj)
+void simple_list_header_control::_001OnTrack(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
    SCAST_PTR(::ca::message::notify, pnotify, pobj)
@@ -105,7 +105,7 @@ void simple_list_header_control::_001OnTrack(ca::signal_object * pobj)
 }
 
 
-void simple_list_header_control::_001OnCreate(ca::signal_object * pobj) 
+void simple_list_header_control::_001OnCreate(::ca::signal_object * pobj) 
 {
    SCAST_PTR(::ca::message::create, pcreate, pobj)
 //   LOGFONT lf;
@@ -116,7 +116,7 @@ void simple_list_header_control::_001OnCreate(ca::signal_object * pobj)
 }
 
 
-void simple_list_header_control::_001OnEndDrag(ca::signal_object * pobj)
+void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
    SCAST_PTR(::ca::message::notify, pnotify, pobj)
@@ -214,7 +214,7 @@ bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, ::user::in
 }
 
 
-void simple_list_header_control::_001OnMove(ca::signal_object * pobj) 
+void simple_list_header_control::_001OnMove(::ca::signal_object * pobj) 
 {
    SCAST_PTR(::ca::message::move, pmove, pobj)
    point point(pmove->m_pt.x, pmove->m_pt.y);

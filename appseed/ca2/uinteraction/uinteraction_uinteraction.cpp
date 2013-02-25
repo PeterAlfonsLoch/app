@@ -43,7 +43,7 @@ namespace uinteraction
 
 #endif
 
-      ca::library library(NULL);
+      ::ca::library library(NULL);
 
       string strLibrary(strId);
 

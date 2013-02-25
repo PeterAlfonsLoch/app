@@ -10,7 +10,7 @@ namespace user
    tree::tree(::ca::application * papp) :
       ca(papp),
       ::user::scroll_view(papp),
-      ca::tree(papp),
+      ::ca::tree(papp),
       m_dcextension(papp)
    {
       m_pitemFirstVisible        = NULL;
@@ -30,13 +30,13 @@ namespace user
    }
 
 
-   void tree::_001OnCreate(ca::signal_object * pobj)
+   void tree::_001OnCreate(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
-      if(!ca::tree::initialize())
+      if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
       m_pimagelist = new image_list(get_app());
@@ -52,7 +52,7 @@ namespace user
 
    }
 
-   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ca::tree_path & itempath, int32_t iValidateCount)
+   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ::ca::tree_path & itempath, int32_t iValidateCount)
    //{
    /*   if(m_pdatainterface001 != NULL)
       {
@@ -91,7 +91,7 @@ namespace user
       rect rectClient;
       GetClientRect(rectClient);
 
-//      ca::savings & savings = System.savings();
+//      ::ca::savings & savings = System.savings();
       rect rectClientOffset = rectClient;
 
       rect rectClipBox;
@@ -107,7 +107,7 @@ namespace user
 
       class imaging & imaging = Application.m_visual.imaging();
 
-      if(System.savings().is_trying_to_save(ca::resource_processing))
+      if(System.savings().is_trying_to_save(::ca::resource_processing))
       {
          pdc->FillSolidRect(
             rectClipBox,
@@ -139,7 +139,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-//      ca::savings & savings = System.savings();
+//      ::ca::savings & savings = System.savings();
 
 ///      ::ca::graphics * pDCBuffer = pdc;
 
@@ -191,7 +191,7 @@ namespace user
          }
          //else
          {
-            //if(System.savings().is_trying_to_save(ca::resource_processing))
+            //if(System.savings().is_trying_to_save(::ca::resource_processing))
             {
                pdc->FillSolidRect(
                   rectClient,
@@ -233,7 +233,7 @@ namespace user
       pdc->OffsetViewportOrg((int32_t) -m_scrollinfo.m_ptScroll.x, (int32_t) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
 
    //   BaseTreeItemData itemdata;
-/*      ca::tree_path itempath;*/
+/*      ::ca::tree_path itempath;*/
       ::user::tree_draw_item drawitemdata;
       drawitemdata.m_pdc = pdc;
       drawitemdata.m_iIndentation = _001GetIndentation();
@@ -315,7 +315,7 @@ namespace user
       rect rect;
 
       tree * ptree = this;
-      ca::tree_item * pitem = data.m_pitem;
+      ::ca::tree_item * pitem = data.m_pitem;
 
       image_list * pimagelistItem = data.m_pitem->get_image_list();
       image_list * pimagelistTree = ptree == NULL ? NULL : ptree->m_pimagelist;
@@ -341,10 +341,10 @@ namespace user
       }
 
 
-//      ca::savings & savings = System.savings();
+//      ::ca::savings & savings = System.savings();
       if(bSelected) // selected
       {
-         if(System.savings().is_trying_to_save(ca::resource_processing))
+         if(System.savings().is_trying_to_save(::ca::resource_processing))
          {
             data.m_pdc->FillSolidRect(
                data.m_rect,
@@ -430,7 +430,7 @@ namespace user
 
 
 
-   void tree::_001OnMouseMove(ca::signal_object * pobj)
+   void tree::_001OnMouseMove(::ca::signal_object * pobj)
    {
       track_mouse_leave();
 
@@ -438,14 +438,14 @@ namespace user
       pobj->m_bRet = true;
    }
 
-   void tree::_001OnMouseLeave(ca::signal_object * pobj)
+   void tree::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       m_pitemHover = NULL;
       _001RedrawWindow();
       pobj->m_bRet = true;
    }
 
-   void tree::_001OnLButtonDown(ca::signal_object * pobj)
+   void tree::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       /*if(System.get_focus_guie() != this)
@@ -457,7 +457,7 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void tree::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void tree::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       m_iClick = 2;
@@ -499,7 +499,7 @@ namespace user
    // trans   pobj->m_bRet = lresult != 0;
    }
 
-   void tree::_001OnLButtonUp(ca::signal_object * pobj)
+   void tree::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       m_iClick++;
@@ -510,7 +510,7 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void tree::_001OnTimer(ca::signal_object * pobj)
+   void tree::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
 
@@ -794,7 +794,7 @@ namespace user
       }
    }
 
-   void tree::_001OnVScroll(ca::signal_object * pobj)
+   void tree::_001OnVScroll(::ca::signal_object * pobj)
    {
 
       pobj->previous();
@@ -803,7 +803,7 @@ namespace user
    }
 
 
-   void tree::_001OnHScroll(ca::signal_object * pobj)
+   void tree::_001OnHScroll(::ca::signal_object * pobj)
    {
 
       pobj->previous();
@@ -1019,7 +1019,7 @@ namespace user
 
       tree * ptree = dynamic_cast < tree * > (pui);
 
-      if(!insert_item(ptree->get_base_item(), ca::RelativeLastChild, get_base_item()))
+      if(!insert_item(ptree->get_base_item(), ::ca::RelativeLastChild, get_base_item()))
          return false;
 
       m_treeptra.add(ptree);

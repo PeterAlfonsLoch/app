@@ -132,7 +132,7 @@ namespace ca
 
          strPrefix += "_";
 
-         ca::str::begins_eat_ci(strName, strPrefix);
+         ::ca::str::begins_eat_ci(strName, strPrefix);
 
          return strName;
 
@@ -209,11 +209,11 @@ namespace ca
 
 #ifdef LINUX
 
-      ca::str::begins_eat(strLibraryName, "lib");
+      ::ca::str::begins_eat(strLibraryName, "lib");
 
 #elif defined(METROWIN)
 
-//      ca::str::begins_eat_ci(strLibraryName, "m_");
+//      ::ca::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -248,11 +248,11 @@ namespace ca
 
 #ifdef LINUX
 
-      ca::str::begins_eat(strLibraryName, "lib");
+      ::ca::str::begins_eat(strLibraryName, "lib");
 
 #elif defined(METROWIN)
 
-//      ca::str::begins_eat_ci(strLibraryName, "m_");
+//      ::ca::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -262,7 +262,7 @@ namespace ca
 
       strPrefix += "/";
 
-      ca::str::begins_eat(strAppName, strPrefix);
+      ::ca::str::begins_eat(strAppName, strPrefix);
 
       if(!contains_app(strAppName))
       {
@@ -273,7 +273,7 @@ namespace ca
 
          strPrefix += "/";
 
-         ca::str::begins_eat(strAppName, strPrefix);
+         ::ca::str::begins_eat(strAppName, strPrefix);
 
          if(!contains_app(strAppName))
             return "";
@@ -345,7 +345,7 @@ namespace ca
 
 #ifdef LINUX
 
-         ca::str::begins_eat(strAppId, "lib");
+         ::ca::str::begins_eat(strAppId, "lib");
 
 #elif defined(METROWIN)
 
@@ -357,7 +357,7 @@ namespace ca
 
          strPrefix += "_";
 
-         if(ca::str::begins_eat_ci(strAppId, strPrefix))
+         if(::ca::str::begins_eat_ci(strAppId, strPrefix))
          {
 
             stra.add(strAppId);

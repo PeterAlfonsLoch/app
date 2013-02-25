@@ -54,9 +54,9 @@ bool __stdcall gen_TraceGetProcess(uint_ptr dwProcess, UINT *pnLevel, bool *pbEn
 bool __stdcall gen_TraceGetModule(uint_ptr dwProcess, uint_ptr dwModule, UINT *pnLevel, TRACESTATUS *pStatus);
 bool __stdcall gen_TraceGetCategory(uint_ptr dwProcess, uint_ptr dwCategory, UINT *pnLevel, TRACESTATUS *pStatus);
 
-_INSECURE_DEPRECATE("gen_TraceGetUpdateEventNameA is unsafe. Instead use AtlTraceGetUpdateEventNameA_s") 
+_INSECURE_DEPRECATE("ca_TraceGetUpdateEventNameA is unsafe. Instead use AtlTraceGetUpdateEventNameA_s") 
 void __stdcall gen_TraceGetUpdateEventNameA(CHAR *pszEventName);
-_INSECURE_DEPRECATE("gen_TraceGetUpdateEventNameU is unsafe. Instead use AtlTraceGetUpdateEventNameU_s") 
+_INSECURE_DEPRECATE("ca_TraceGetUpdateEventNameU is unsafe. Instead use AtlTraceGetUpdateEventNameU_s") 
 void __stdcall gen_TraceGetUpdateEventNameU(WCHAR *pszEventName);
 
 void __stdcall gen_TraceGetUpdateEventNameA_s(CHAR *pszEventName, size_t cchEventName);

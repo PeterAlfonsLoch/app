@@ -34,7 +34,7 @@ namespace plane
       {
 #ifdef WINDOWSEX
          wstring wstr = ::GetCommandLineW();
-         string str = ca::international::unicode_to_utf8(wstr);
+         string str = ::ca::international::unicode_to_utf8(wstr);
          strsize iFind = str.find(" : ");
          if(iFind >= 0)
          {
@@ -50,8 +50,8 @@ namespace plane
                {
                   m_strId = str.Mid(iFind + 4, iEnd - iFind - 4);
                }
-               ca::str::begins_eat(m_strId, "\"");
-               ca::str::ends_eat(m_strId, "\"");
+               ::ca::str::begins_eat(m_strId, "\"");
+               ::ca::str::ends_eat(m_strId, "\"");
             }
          }
 #endif

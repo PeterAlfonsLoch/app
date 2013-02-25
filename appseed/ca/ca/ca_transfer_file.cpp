@@ -23,7 +23,7 @@ namespace ca
       m_pmemoryfileOut(new ::primitive::memory_file(papp, m_pmemory));
 
       // (uint64_t) -1 - initially unknown size
-      m_ptimeoutfile = new ca::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1); 
+      m_ptimeoutfile = new ::ca::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1); 
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spreader = m_ptimeoutfile;
@@ -49,7 +49,7 @@ namespace ca
 
       m_pmemoryfileOut(new ::primitive::memory_file(papp, m_pmemory));
 
-      m_ptimeoutfile = new ca::timeout_file(papp, m_pmemoryfileOut);
+      m_ptimeoutfile = new ::ca::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;
       
       m_spreader = m_ptimeoutfile;

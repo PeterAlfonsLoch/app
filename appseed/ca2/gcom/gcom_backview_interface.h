@@ -26,7 +26,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 Interface :
-         virtual public ca::signalizable
+         virtual public ::ca::signalizable
       {
       public:
 
@@ -51,7 +51,7 @@ namespace gcom
          uint32_t                m_dwTimerStep;
 
 
-         ca::file_set_sp     m_spfilesetBackgroundImage;
+         ::ca::file_set_sp     m_spfilesetBackgroundImage;
 
 
 

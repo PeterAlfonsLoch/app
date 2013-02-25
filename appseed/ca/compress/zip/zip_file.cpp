@@ -37,7 +37,7 @@ namespace zip
 
       m_bOwnFile = true;
 
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
 
       try
       {
@@ -46,7 +46,7 @@ namespace zip
             return false;
          }
       }
-      catch(ca::exception * pe)
+      catch(::ca::exception * pe)
       {
          pe->Delete();
          return false;
@@ -58,7 +58,7 @@ namespace zip
       return unzip_open(spfile);
    }
 
-   bool File::unzip_open(ca::filesp pfile)
+   bool File::unzip_open(::ca::filesp pfile)
    {
       m_pbuffile1(new ::ca::buffered_file(get_app(), pfile, 1024 * 256));
       m_pbuffile2(new ::ca::buffered_file(get_app(), m_pbuffile1, 1024 * 256));
@@ -72,7 +72,7 @@ namespace zip
    bool File::zip_open(const char * lpcwsz)
    {
       m_bOwnFile = true;
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
       try
       {
          if(!spfile->open(lpcwsz, ::ca::file::mode_read_write | ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::defer_create_directory))
@@ -80,7 +80,7 @@ namespace zip
             return false;
          }
       }
-      catch(ca::exception * pe)
+      catch(::ca::exception * pe)
       {
          pe->Delete();
          return false;
@@ -92,7 +92,7 @@ namespace zip
       return zip_open(spfile);
    }
 
-   bool File::zip_open(ca::filesp pfile)
+   bool File::zip_open(::ca::filesp pfile)
    {
       m_pbuffile1(new ::ca::buffered_file(get_app(), pfile, 1024 * 256));
       m_pbuffile2(new ::ca::buffered_file(get_app(), m_pbuffile1, 1024 * 256));
@@ -103,10 +103,10 @@ namespace zip
       return true;
    }
 
-   void  File::write_to_file(ca::file * pfileOut, const wchar_t * lpcsz)
+   void  File::write_to_file(::ca::file * pfileOut, const wchar_t * lpcsz)
    {
       string str;
-      ca::international::unicode_to_utf8(str, lpcsz);
+      ::ca::international::unicode_to_utf8(str, lpcsz);
       str.replace("\\", "/");
       if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
          return;
@@ -129,21 +129,21 @@ namespace zip
       UNREFERENCED_PARAMETER(mode);
       UNREFERENCED_PARAMETER(filename);
       File * pzipfile = (File *) opaque;
-      ca::file * pfile = pzipfile->m_pfile;
+      ::ca::file * pfile = pzipfile->m_pfile;
       return (voidpf) pfile;
    }
    uint_ptr  File::read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      ca::file * pfile = pzipfile->m_pfile;
+      ::ca::file * pfile = pzipfile->m_pfile;
       return (uint_ptr) pfile->read(buf, size);
    }
    uint_ptr  File::write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      ca::file * pfile = pzipfile->m_pfile;
+      ::ca::file * pfile = pzipfile->m_pfile;
       pfile->write(buf, size);
       return size;
    }
@@ -151,7 +151,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      ca::file * pfile = pzipfile->m_pfile;
+      ::ca::file * pfile = pzipfile->m_pfile;
       return (long) pfile->get_position();      
    }
 
@@ -159,7 +159,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      ca::file * pfile = pzipfile->m_pfile;
+      ::ca::file * pfile = pzipfile->m_pfile;
       if(pfile->seek(offset, (::ca::e_seek) origin) == 0xffffffff)
          return -1;
       else
@@ -172,7 +172,7 @@ namespace zip
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);
 //      File * pzipfile = (File *) opaque;
-//      ca::file * pfile = pzipfile->m_pfile;
+//      ::ca::file * pfile = pzipfile->m_pfile;
       return 1;
    }
 
@@ -181,7 +181,7 @@ namespace zip
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);
 //      File * pzipfile = (File *) opaque;
-//      ca::file * pfile = pzipfile->m_pfile;
+//      ::ca::file * pfile = pzipfile->m_pfile;
       //return spfile->IsValid() ? 0 : 1;
       return 0;
    }

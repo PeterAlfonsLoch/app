@@ -56,7 +56,7 @@ namespace n7z
       const base_array < ::libcompress::codec_info_ex > *externalCodecs,
       const file_size *inSizeForReduce)
    {
-      ca::HRes hr;
+      ::ca::HRes hr;
       _mixerCoderSpec = new ::libcompress::coder_mixer::CCoderMixer2MT(get_app());
       _mixerCoder = _mixerCoderSpec;
       RINOK(_mixerCoderSpec->SetBindInfo(_bindInfo));
@@ -120,7 +120,7 @@ namespace n7z
          if (cryptoSetPassword)
          {
             ::ca::byte_buffer buffer;
-            wstring password = ca::international::utf8_to_unicode(_options.Password);
+            wstring password = ::ca::international::utf8_to_unicode(_options.Password);
             const uint32_t sizeInBytes = (const uint32_t) (password.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < password.get_length(); i++)
@@ -150,7 +150,7 @@ namespace n7z
       base_array<file_size> &packSizes,
       ::libcompress::progress_info_interface *compressProgress)
    {
-      ca::HRes hr;
+      ::ca::HRes hr;
       RINOK(EncoderConstr());
 
       if (_mixerCoderSpec == NULL)
@@ -174,7 +174,7 @@ namespace n7z
       }
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         ca::temp_io_writer *tempBufferSpec = new ca::temp_io_writer;
+         ::ca::temp_io_writer *tempBufferSpec = new ::ca::temp_io_writer;
          ::ca::smart_pointer < ::ca::writer > tempBuffer = tempBufferSpec;
          tempBufferSpec->Init(&inOutTempBuffers[i - 1]);
          tempBuffers.add(tempBuffer);
@@ -262,7 +262,7 @@ namespace n7z
 
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         ca::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
+         ::ca::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
          RINOK(inOutTempBuffer.write_to_stream(outStream));
          packSizes.add((file_size) inOutTempBuffer.GetDataSize());
       }

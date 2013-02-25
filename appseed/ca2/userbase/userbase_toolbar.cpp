@@ -143,7 +143,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // tool_bar
 
-   void tool_bar::_001OnNcCreate(ca::signal_object * pobj)
+   void tool_bar::_001OnNcCreate(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -241,7 +241,7 @@ namespace userbase
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInst = ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+      HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
       HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
       if (hRsrc == NULL)
          return FALSE;
@@ -286,14 +286,14 @@ namespace userbase
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInstImageWell = ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
+      HINSTANCE hInstImageWell = ::ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
       HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
       if (hRsrcImageWell == NULL)
          return FALSE;
 
       // load the bitmap
       HBITMAP hbmImageWell;
-   //   hbmImageWell = ca::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+   //   hbmImageWell = ::ca::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
       ::ca::client_graphics pdc(this);
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
@@ -661,7 +661,7 @@ namespace userbase
          {
             dx = m_sizeButton.cx;
             string str;
-            str = ca::international::utf8_to_unicode(str);
+            str = ::ca::international::utf8_to_unicode(str);
    //         str = (const wchar_t *) pData[i].iString;
             size size;
             ::GetTextExtentPoint32U(
@@ -1137,14 +1137,14 @@ throw todo(get_app());
    }
    */
 
-   void tool_bar::_001OnNcHitTest(ca::signal_object * pobj)
+   void tool_bar::_001OnNcHitTest(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       pbase->set_lresult(HTCLIENT);
       pbase->m_bRet = true;
    }
 
-   void tool_bar::_001OnNcCalcSize(ca::signal_object * pobj)
+   void tool_bar::_001OnNcCalcSize(::ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
       SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
@@ -1195,7 +1195,7 @@ throw todo(get_app());
    }
    */
 
-   void tool_bar::_001OnWindowPosChanging(ca::signal_object * pobj)
+   void tool_bar::_001OnWindowPosChanging(::ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
       SCAST_PTR(::ca::message::window_pos, pwindowpos, pobj)
@@ -1242,13 +1242,13 @@ throw todo(get_app());
    }
 
 
-   void tool_bar::_001OnSetButtonSize(ca::signal_object * pobj)
+   void tool_bar::_001OnSetButtonSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeButton, pbase->m_lparam));
    }
 
-   void tool_bar::_001OnSetBitmapSize(ca::signal_object * pobj)
+   void tool_bar::_001OnSetBitmapSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeImage, pbase->m_lparam));
@@ -1283,7 +1283,7 @@ throw todo(get_app());
       return lResult;
    }
 
-   void tool_bar::_001OnPreserveZeroBorderHelper(ca::signal_object * pobj)
+   void tool_bar::_001OnPreserveZeroBorderHelper(::ca::signal_object * pobj)
    {
       LRESULT lResult = 0;
       SCAST_PTR(::ca::message::base, pbase, pobj)
@@ -1305,14 +1305,14 @@ throw todo(get_app());
       pbase->set_lresult(lResult);
    }
 
-   void tool_bar::_001OnSysColorChange(ca::signal_object * pobj)
+   void tool_bar::_001OnSysColorChange(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // re-color bitmap for toolbar
 //      if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
       {
    // trans      HBITMAP hbmNew;
-   /*      hbmNew = ca::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
+   /*      hbmNew = ::ca::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
          if (hbmNew != NULL)
             AddReplaceBitmap(hbmNew);*/
       }

@@ -104,7 +104,7 @@ namespace n7z
       bool mtMode, uint32_t numThreads
       )
    {
-      ca::HRes hr;
+      ::ca::HRes hr;
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
@@ -143,7 +143,7 @@ namespace n7z
          _decoders.remove_all();
          // _decoders2.clear();
 
-         ca::release(_mixerCoder.m_p);
+         ::ca::release(_mixerCoder.m_p);
 
          if (_multiThread)
          {
@@ -265,7 +265,7 @@ namespace n7z
                }
                ::ca::byte_buffer buffer;
                passwordIsDefined = true;
-               wstring password(ca::international::utf8_to_unicode(passwordBSTR));
+               wstring password(::ca::international::utf8_to_unicode(passwordBSTR));
                const uint32_t sizeInBytes = (const uint32_t ) (password.get_length() * 2);
                buffer.SetCapacity(sizeInBytes);
                for (int32_t i = 0; i < password.get_length(); i++)

@@ -106,7 +106,7 @@ namespace fs
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          str += stra[i];
-         if(i != 0 || !ca::str::ends(str, "//"))
+         if(i != 0 || !::ca::str::ends(str, "//"))
          {
             str += "/";
          }
@@ -125,7 +125,7 @@ namespace fs
          if(straParam[i].is_empty())
          {
             straParam.remove_at(i);
-            if(i == 1 && ca::str::ends(straParam[0], ":"))
+            if(i == 1 && ::ca::str::ends(straParam[0], ":"))
             {
                straParam[0] = straParam[0] + "//";
             }
@@ -137,7 +137,7 @@ namespace fs
       }
    }
 
-   ca::filesp data::get_file(var varFile, UINT nOpenFlags)
+   ::ca::filesp data::get_file(var varFile, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);

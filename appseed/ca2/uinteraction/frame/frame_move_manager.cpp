@@ -448,9 +448,9 @@ namespace uinteraction
          m_eborderMask = emask;
       }
 
-      void MoveManager::message_handler(::user::interaction * pwnd, ca::signal_object * pobj)
+      void MoveManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
       {
-         SCAST_PTR(ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca::message::base, pbase, pobj);
          if(m_bPendingMove
             && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
          {

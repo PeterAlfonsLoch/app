@@ -343,7 +343,7 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
 }
 
 
-void simple_toolbar::_001OnCreate(ca::signal_object * pobj)
+void simple_toolbar::_001OnCreate(::ca::signal_object * pobj)
 {
    if(pobj->previous())
       return;
@@ -809,7 +809,7 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInst = ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
 HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
 if (hRsrc == NULL)
 return FALSE;
@@ -866,7 +866,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    childs = doc.get_root()->children();
 
-   //   ca::application * papp = dynamic_cast < ca::application * > (get_app());
+   //   ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
 
 #ifdef WINDOWSEX
 
@@ -1153,14 +1153,14 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInstImageWell = ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
+HINSTANCE hInstImageWell = ::ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
 if (hRsrcImageWell == NULL)
 return FALSE;
 
 // load the bitmap
 HBITMAP hbmImageWell;
-//   hbmImageWell = ca::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+//   hbmImageWell = ::ca::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
 ::ca::client_graphics pdc(this);;
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
@@ -1362,7 +1362,7 @@ void simple_toolbar::layout()
 
 }
 
-void simple_toolbar::_001OnMouseMove(ca::signal_object * pobj)
+void simple_toolbar::_001OnMouseMove(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -1383,7 +1383,7 @@ void simple_toolbar::_001OnMouseMove(ca::signal_object * pobj)
    }
 }
 
-void simple_toolbar::_001OnLButtonDown(ca::signal_object * pobj)
+void simple_toolbar::_001OnLButtonDown(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -1401,7 +1401,7 @@ void simple_toolbar::_001OnLButtonDown(ca::signal_object * pobj)
    pobj->previous();
 }
 
-void simple_toolbar::_001OnLButtonUp(ca::signal_object * pobj)
+void simple_toolbar::_001OnLButtonUp(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -1482,7 +1482,7 @@ void simple_toolbar::_001Hover(bool bRedraw)
    _001Hover(pt, bRedraw);
 }
 
-void simple_toolbar::_001OnTimer(ca::signal_object * pobj)
+void simple_toolbar::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == TIMER_HOVER)
@@ -1663,7 +1663,7 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
 }
 
 
-void simple_toolbar::_001OnNcCalcSize(ca::signal_object * pobj)
+void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
    SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
@@ -1684,7 +1684,7 @@ void simple_toolbar::_001OnNcCalcSize(ca::signal_object * pobj)
 }
 
 
-void simple_toolbar::_001OnNcHitTest(ca::signal_object * pobj)
+void simple_toolbar::_001OnNcHitTest(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::nchittest, pnchittest, pobj)
       pnchittest->set_lresult(HTCLIENT);
@@ -2131,12 +2131,12 @@ size simple_toolbar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
    return CalcLayout(dwMode, nLength);
 }
 
-void simple_toolbar::_001OnMove(ca::signal_object * pobj)
+void simple_toolbar::_001OnMove(::ca::signal_object * pobj)
 {
    pobj->previous();
 }
 
-void simple_toolbar::_001OnMouseLeave(ca::signal_object * pobj)
+void simple_toolbar::_001OnMouseLeave(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj)
       m_iHover = 0x80000000;

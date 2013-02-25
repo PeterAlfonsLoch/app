@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   ca::file * InFile::Duplicate() const
+   ::ca::file * InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -35,7 +35,7 @@ namespace zip
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
       return NULL;
-      //return new ca::filesp(this);
+      //return new ::ca::filesp(this);
    }
 
 
@@ -52,12 +52,12 @@ namespace zip
 
       index iFind = -1;
       index iStart = 0;
-      while((iFind = ca::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
+      while((iFind = ::ca::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
          iStart = iFind + strlen(".zip:");
       }
-      if(ca::str::ends_ci(lpszFileName, ".zip"))
+      if(::ca::str::ends_ci(lpszFileName, ".zip"))
       {
          m_straPath.add(string(&lpszFileName[iStart]));
       }
@@ -90,16 +90,16 @@ namespace zip
          }
          m_straPrefix.add(m_straPath[i]);
       }
-      if(ca::str::ends(strFile, ":"))
+      if(::ca::str::ends(strFile, ":"))
          return TRUE;
       iFind = strFile.reverse_find(L':');
       strFile = strFile.Mid(iFind + 1);
-      ca::str::begins_eat(strFile, "/");
-      ca::str::begins_eat(strFile, "\\");
+      ::ca::str::begins_eat(strFile, "/");
+      ::ca::str::begins_eat(strFile, "\\");
       return TRUE;
    }
 
-   bool InFile::unzip_open(ca::file * pfile)
+   bool InFile::unzip_open(::ca::file * pfile)
    {
 
       m_filea.remove_all();
@@ -128,12 +128,12 @@ namespace zip
 
       index iFind = -1;
       index iStart = 0;
-      while((iFind = ca::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
+      while((iFind = ::ca::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
          iStart = iFind + strlen(".zip:");
       }
-      if(ca::str::ends_ci(lpszFileName, ".zip"))
+      if(::ca::str::ends_ci(lpszFileName, ".zip"))
       {
          m_straPath.add(string(&lpszFileName[iStart]));
       }
@@ -166,12 +166,12 @@ namespace zip
          }
          m_straPrefix.add(m_straPath[i]);
       }
-      if(ca::str::ends(strFile, ":"))
+      if(::ca::str::ends(strFile, ":"))
          return TRUE;
       iFind = strFile.reverse_find(L':');
       strFile = strFile.Mid(iFind + 1);
-      ca::str::begins_eat(strFile, "/");
-      ca::str::begins_eat(strFile, "\\");
+      ::ca::str::begins_eat(strFile, "/");
+      ::ca::str::begins_eat(strFile, "\\");
       if(!locate(strFile))
       {
          if(!locate(strFile + "/"))
@@ -230,7 +230,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::dump(ca::file * pfile)
+   bool InFile::dump(::ca::file * pfile)
    {
       if(m_strFileName.is_empty())
          return false;
@@ -408,8 +408,8 @@ namespace zip
    /*/////////////////////////////////////////////////////////////////////////////
    // InFile implementation helpers
 
-   #ifdef ca::GetFileName
-   #undef ca::GetFileName
+   #ifdef ::ca::GetFileName
+   #undef ::ca::GetFileName
    #endif
 
    #ifndef ___NO_OLE_SUPPORT
@@ -620,7 +620,7 @@ namespace zip
       if(file.is_null())
          throw "failed to open file for compressing";
 
-      ca::file_status status;
+      ::ca::file_status status;
 
       file->GetStatus(status);
 

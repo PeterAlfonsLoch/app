@@ -3,7 +3,7 @@
 
 class CLASS_DECL_ca bergedge_interface :
    virtual public plane::application,
-   virtual public ca::session
+   virtual public ::ca::session
 {
 public:
 
@@ -15,7 +15,7 @@ public:
    virtual void on_app_request_bergedge_callback(::ca::application * papp);
 
 
-//   virtual ::fontopus::user * login(ca::property_set & set) = 0;
+//   virtual ::fontopus::user * login(::ca::property_set & set) = 0;
 
 };
 

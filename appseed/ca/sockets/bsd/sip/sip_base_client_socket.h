@@ -92,17 +92,17 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      ca::property & inattr(const char * pszName);
-      ca::property_set & inattrs();
+      ::ca::property & inattr(const char * pszName);
+      ::ca::property_set & inattrs();
 
-      ca::property & inheader(const char * pszName);
-      ca::property_set & inheaders();
+      ::ca::property & inheader(const char * pszName);
+      ::ca::property_set & inheaders();
 
-      ca::property & outattr(const char * pszName);
-      ca::property_set & outattrs();
+      ::ca::property & outattr(const char * pszName);
+      ::ca::property_set & outattrs();
 
-      ca::property & outheader(const char * pszName);
-      ca::property_set & outheaders();
+      ::ca::property & outheader(const char * pszName);
+      ::ca::property_set & outheaders();
 
       using ::ca::object::request;
       sip::request & request();

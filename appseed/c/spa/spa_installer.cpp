@@ -180,8 +180,8 @@ namespace spa
       // Make the security attributes point
       // to the security descriptor
       MutexAttributes.lpSecurityDescriptor = &SD;*/
-      //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\::ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\::ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
       trace("another instance of spa is already running");
@@ -658,7 +658,7 @@ RetryHost:
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            oswindow oswindowSpaBoot = ::FindWindow(NULL, "ca::fontopus::ccvotagus::spaboot:callback_window");
+            oswindow oswindowSpaBoot = ::FindWindow(NULL, "::ca::fontopus::ccvotagus::spaboot:callback_window");
 
             if(oswindowSpaBoot != NULL)
             {
@@ -3507,7 +3507,7 @@ RetryHost:
       ::SetDllDirectory(dir::path(dir::ca(), "stage\\" + strPlatform));
 #endif
 
-      ::ca::library libraryOs;
+      ::c::library libraryOs;
 
       libraryOs.open(dir::path(dir::ca(), "stage\\" + strPlatform + "\\os"));
 

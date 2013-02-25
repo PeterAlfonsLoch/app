@@ -34,8 +34,8 @@ namespace ca
 
    CLASS_DECL_ca int64_t hex::from_char(const char * pszUtf8Char)
    {
-      string low = ca::ch::to_lower_case(pszUtf8Char);
-      int64_t ch = ca::ch::uni_index(low);
+      string low = ::ca::ch::to_lower_case(pszUtf8Char);
+      int64_t ch = ::ca::ch::uni_index(low);
       ch -= '0';
       if(ch >= 'a'-'0' && ch <= 'f'-'0')
       {

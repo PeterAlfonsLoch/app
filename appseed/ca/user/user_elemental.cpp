@@ -22,7 +22,7 @@ namespace user
    {
    }
 
-   void elemental::pre_translate_message(ca::signal_object * pobj)
+   void elemental::pre_translate_message(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }

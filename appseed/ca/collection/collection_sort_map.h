@@ -8,7 +8,7 @@ namespace collection
 {
 
 
-   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ca::compare < KEY > >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::ca::compare < KEY > >
    class sort_map :
       virtual public ::ca::object
    {
@@ -825,7 +825,7 @@ namespace collection
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::compare < string > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::compare < string > >
    class sort_string_map :
       virtual public sort_attrib_map < sort_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -868,7 +868,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::strid_compare  >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::strid_compare  >
    class sort_strid_map :
       virtual public sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -910,7 +910,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::compare < int32_t > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::compare < int32_t > >
    class sort_int_map :
       virtual public sort_attrib_map < sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >
    {

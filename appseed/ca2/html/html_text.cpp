@@ -650,7 +650,7 @@ namespace html
 
       }
 
-      void text::OnLButtonDown(ca::signal_object * pobj)
+      void text::OnLButtonDown(::ca::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(m_pelemental->m_pdata->m_bEdit)
@@ -666,7 +666,7 @@ namespace html
          }
       }
 
-      void text::OnLButtonUp(ca::signal_object * pobj)
+      void text::OnLButtonUp(::ca::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(m_pelemental->m_pdata->m_bEdit)
@@ -682,7 +682,7 @@ namespace html
          }
       }
 
-      void text::OnMouseMove(ca::signal_object * pobj)
+      void text::OnMouseMove(::ca::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(!m_bHoverEvaluated)
@@ -779,7 +779,7 @@ namespace html
                   size = pdc->GetTextExtent(string(lpszStart, lpszEnd - lpszStart));
                   if(*lpszEnd == '\0')
                      break;
-                  lpszEnd = ca::str::utf8_inc(lpszEnd);
+                  lpszEnd = ::ca::str::utf8_inc(lpszEnd);
                   iChar++;
                }
                iFind = iChar;

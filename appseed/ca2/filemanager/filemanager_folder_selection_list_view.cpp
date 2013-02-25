@@ -127,13 +127,13 @@ void folder_selection_list_view::FolderRemove()
 }
 
 
-void folder_selection_list_view::_001OnAdd(ca::signal_object * pobj)
+void folder_selection_list_view::_001OnAdd(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    FolderAdd();
 }
 
-void folder_selection_list_view::_001OnRemove(ca::signal_object * pobj)
+void folder_selection_list_view::_001OnRemove(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    FolderRemove();

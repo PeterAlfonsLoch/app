@@ -170,7 +170,7 @@ namespace ca
       if( true && newStatus.has_char() )
       {
          /* Prepare new status message */
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
          post["status"] = newStatus;
 
          /* Perform POST */
@@ -472,7 +472,7 @@ namespace ca
       if( true && userInfo.get_length() && dMsg.get_length() )
       {
          /* Prepare new direct message */
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
          post["text"] = dMsg;
 
          /* Prepare URL */
@@ -557,7 +557,7 @@ namespace ca
          strUrl = build_url(Application.TWIT_FRIENDSHIPSCREATE_URL, userInfo, isUserId );
 
          /* Send some dummy data in POST */
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -754,7 +754,7 @@ namespace ca
          strUrl.append( Application.TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -814,7 +814,7 @@ namespace ca
          strUrl.append( Application.TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -923,7 +923,7 @@ namespace ca
          strUrl = Application.TWIT_SAVEDSEARCHCREATE_URL;
 
          /* Send some dummy data in POST */
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
          post["query"] = query;
 
          /* Perform POST */
@@ -1157,9 +1157,9 @@ namespace ca
    *--*/
    bool twit::performGet( const string & getUrl )
    {
-      ca::property_set headers;
-      ca::property_set post;
-      ca::property_set set(get_app());
+      ::ca::property_set headers;
+      ::ca::property_set post;
+      ::ca::property_set set(get_app());
 
       /* Set OAuth header */
       m_oauth.getOAuthHeader(eOAuthHttpGet, getUrl, set, headers);
@@ -1182,22 +1182,22 @@ namespace ca
    * @remarks: internal method
    *
    *--*/
-   bool twit::performGet( const string & getUrl, ca::property_set & headers)
+   bool twit::performGet( const string & getUrl, ::ca::property_set & headers)
    {
       string dataStrDummy( "" );
-      ca::property_set post;
+      ::ca::property_set post;
 
       /* Send http request */
       return Application.http().get(getUrl, m_strResponse, post, headers, m_setHttp);
 
    }
 
-   bool twit::performPost( const string & getUrl, ca::property_set & headers, ca::property_set & post)
+   bool twit::performPost( const string & getUrl, ::ca::property_set & headers, ::ca::property_set & post)
    {
 
       string dataStrDummy( "" );
 
-      ca::property_set set;
+      ::ca::property_set set;
       set = m_setHttp;
 
       set["http_request"] = "POST";
@@ -1222,9 +1222,9 @@ namespace ca
    *--*/
    bool twit::performDelete( const string & deleteUrl )
    {
-      ca::property_set headers;
-      ca::property_set post;
-      ca::property_set set(get_app());
+      ::ca::property_set headers;
+      ::ca::property_set post;
+      ::ca::property_set set(get_app());
 
       /* Set OAuth header */
       m_oauth.getOAuthHeader( eOAuthHttpDelete, deleteUrl, set, headers);
@@ -1247,9 +1247,9 @@ namespace ca
    * @remarks: internal method
    *
    *--*/
-   bool twit::performPost( const string & postUrl, ca::property_set & post )
+   bool twit::performPost( const string & postUrl, ::ca::property_set & post )
    {
-      ca::property_set headers(get_app());
+      ::ca::property_set headers(get_app());
 
       /* Set OAuth header */
       m_oauth.getOAuthHeader( eOAuthHttpPost, postUrl, post, headers );
@@ -1352,9 +1352,9 @@ namespace ca
       if( true )
       {
          /* Get OAuth header for request token */
-         ca::property_set headers;
-         ca::property_set post;
-         ca::property_set set(get_app());
+         ::ca::property_set headers;
+         ::ca::property_set post;
+         ::ca::property_set set(get_app());
          int64_t iTime = ::time(NULL);
          if( m_oauth.getOAuthHeader( eOAuthHttpPost,"https://twitter.com/oauth/request_token", set, headers ) )
          {
@@ -1399,8 +1399,8 @@ namespace ca
       if( true )
       {
          /* Get OAuth header for access token */
-         ca::property_set headers;
-         ca::property_set set(get_app());
+         ::ca::property_set headers;
+         ::ca::property_set set(get_app());
          if( m_oauth.getOAuthHeader( eOAuthHttpGet, Application.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set, headers, true ) )
          {
             if( performGet( Application.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, headers ) )

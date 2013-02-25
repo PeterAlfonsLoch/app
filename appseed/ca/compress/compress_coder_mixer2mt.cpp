@@ -46,11 +46,11 @@ namespace libcompress
          {
             for(int32_t i = 0; i < InStreams.get_count(); i++)
             {
-               ca::release(InStreams[i].m_p);
+               ::ca::release(InStreams[i].m_p);
             }
             for(int32_t i = 0; i < OutStreams.get_count(); i++)
             {
-               ca::release(OutStreams[i].m_p);
+               ::ca::release(OutStreams[i].m_p);
             }
          }
       }
@@ -85,7 +85,7 @@ namespace libcompress
       //////////////////////////////////////
       // CCoderMixer2MT
 
-      ca::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
+      ::ca::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
       {
          _bindInfo = bindInfo;
          _streamBinders.remove_all();
@@ -129,7 +129,7 @@ namespace libcompress
       {
       }
 
-      HRESULT CCoderMixer2MT::Init(::ca::reader **inStreams, ca::writer **outStreams)
+      HRESULT CCoderMixer2MT::Init(::ca::reader **inStreams, ::ca::writer **outStreams)
       {
          /*
          if (_coders.get_count() != _bindInfo.Coders.get_count())
@@ -197,7 +197,7 @@ namespace libcompress
          return S_OK;
       }
 
-      ca::HRes CCoderMixer2MT::Code(::ca::reader **inStreams,
+      ::ca::HRes CCoderMixer2MT::Code(::ca::reader **inStreams,
          const file_size ** /* inSizes */,
          uint32_t numInStreams,
          ::ca::writer **outStreams,

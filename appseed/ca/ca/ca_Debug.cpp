@@ -20,7 +20,7 @@
 
 #include "framework.h"
 
-#include "gen_debug.h"
+#include "ca_debug.h"
 
 #ifdef DEBUG
 void TRACELASTERROR()

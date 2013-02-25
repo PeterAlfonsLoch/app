@@ -9,7 +9,7 @@ namespace filehandler
 
    tree_data::tree_data(::ca::application * papp) :
       ca(papp),
-      ca::tree_data(papp)
+      ::ca::tree_data(papp)
    {
    }
 

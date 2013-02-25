@@ -34,7 +34,7 @@ namespace frame
 
       EDock CalcDock(int32_t x, int32_t y);
       bool update(WorkSet * pwf);
-      virtual bool relay_event(ca::signal_object * pobj);
+      virtual bool relay_event(::ca::signal_object * pobj);
       DockManager();
       virtual ~DockManager();
 

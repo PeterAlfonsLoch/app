@@ -84,7 +84,7 @@ namespace plugin
 
       string strMutex = m_phost->m_vssChannel;
 
-      ca::str::begins_eat_ci(strMutex, "\\ca\\");
+      ::ca::str::begins_eat_ci(strMutex, "\\ca\\");
 
       m_pmutexBitmap = new simple_mutex("Global\\" + strMutex, false);
 
@@ -117,7 +117,7 @@ namespace plugin
 
          pinitmaindata->m_hInstance             = hInstance;
          pinitmaindata->m_hPrevInstance         = hPrevInstance;
-         pinitmaindata->m_vssCommandLine        = ca::international::unicode_to_utf8(::GetCommandLineW());
+         pinitmaindata->m_vssCommandLine        = ::ca::international::unicode_to_utf8(::GetCommandLineW());
          pinitmaindata->m_nCmdShow              = nCmdShow;
 
 
@@ -354,7 +354,7 @@ namespace plugin
    void plugin::ca2_login()
    {
 
-      ca::property_set set(m_psystem);
+      ::ca::property_set set(m_psystem);
 
       set.parse_url_query(m_strCa2LoginRuri);
 
@@ -363,7 +363,7 @@ namespace plugin
       if(strLocation.is_empty())
          strLocation = m_strCa2LoginRuri;
 
-      ca::property_set setUri(m_psystem);
+      ::ca::property_set setUri(m_psystem);
 
       setUri.parse_url_query(strLocation);
 
@@ -374,7 +374,7 @@ namespace plugin
 
       string strSessId = set["sessid"];
 
-      ca::property_set setLogin(get_app());
+      ::ca::property_set setLogin(get_app());
 
       ::fontopus::user * puser = NULL;
 
@@ -409,7 +409,7 @@ namespace plugin
 
       m_psystem->m_pfontopus->logout();
 
-      ca::property_set set(m_psystem);
+      ::ca::property_set set(m_psystem);
 
       set.parse_url_query(m_strCa2LogoutRuri);
 
@@ -490,9 +490,9 @@ namespace plugin
 
                //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               ca::property_set post(get_app());
-               ca::property_set headers(get_app());
-               ca::property_set set(get_app());
+               ::ca::property_set post(get_app());
+               ::ca::property_set headers(get_app());
+               ::ca::property_set set(get_app());
 
                Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
 
@@ -546,7 +546,7 @@ namespace plugin
          string strPluginScript = m_psystem->url().get_script(m_phost->m_strPluginUrl);
 
 
-         ca::property_set headers(m_psystem);
+         ::ca::property_set headers(m_psystem);
 
          headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
@@ -556,10 +556,10 @@ namespace plugin
 
          // TODO |) : Should parse Content-type:
          // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
-         if(ca::str::ends_ci(strPluginScript, ".mp3")
-         || ca::str::ends_ci(strPluginScript, ".mid")
-         || ca::str::ends_ci(strPluginScript, ".karaoke")
-         || ca::str::ends_ci(strPluginScript, ".st3"))
+         if(::ca::str::ends_ci(strPluginScript, ".mp3")
+         || ::ca::str::ends_ci(strPluginScript, ".mid")
+         || ::ca::str::ends_ci(strPluginScript, ".karaoke")
+         || ::ca::str::ends_ci(strPluginScript, ".st3"))
          {
             //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
             ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
@@ -588,19 +588,19 @@ namespace plugin
             lpszStart = lpszEnd;
             for(; (lpszEnd - lpszAlloc) <= iCount; i++)
             {
-               if(*lpszEnd == '\0' || !ca::ch::is_whitespace(lpszEnd))
+               if(*lpszEnd == '\0' || !::ca::ch::is_whitespace(lpszEnd))
                   break;
-               lpszEnd = (char *) ca::str::utf8_inc(lpszEnd);
+               lpszEnd = (char *) ::ca::str::utf8_inc(lpszEnd);
             }
             lpszStart = lpszEnd;
             for(; (lpszEnd - lpszAlloc) <= iCount; i++)
             {
-               if(*lpszEnd == '\0' || ca::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
+               if(*lpszEnd == '\0' || ::ca::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
                {
                   str2 = string(lpszStart, lpszEnd - lpszStart);
                   break;
                }
-               lpszEnd = (char *) ca::str::utf8_inc(lpszEnd);
+               lpszEnd = (char *) ::ca::str::utf8_inc(lpszEnd);
             }
 
             string strId = str2;
@@ -609,7 +609,7 @@ namespace plugin
             {
                strId = strId.Left(iFind);
             }
-            ca::property_set set(get_app());
+            ::ca::property_set set(get_app());
             set.parse_url_query(str2);
 
             string strBuildNumber =  set["build_number"];
@@ -916,7 +916,7 @@ namespace plugin
       {
          try
          {
-            if(!::FreeLibrary(ca::g_hmoduleOs))
+            if(!::FreeLibrary(::ca::g_hmoduleOs))
             {
                break;
             }

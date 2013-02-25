@@ -26,7 +26,7 @@ namespace plane
          ::ca::application *     m_papp;
          bool                    m_bMakeVisible;
          ::user::interaction *   m_puiParent;
-         ca::property_set       m_setParameters;
+         ::ca::property_set       m_setParameters;
       };
 
 

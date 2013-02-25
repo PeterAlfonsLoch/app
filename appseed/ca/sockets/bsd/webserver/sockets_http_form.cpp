@@ -151,7 +151,7 @@ namespace http
                      int32_t out = 0;
                      char c;
                      string strTempFile = System.file().time_square(get_app());
-                     ca::filesp spfile(Application.file().get_file(strTempFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_write));
+                     ::ca::filesp spfile(Application.file().get_file(strTempFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_write));
                      if(spfile.is_set())
                      {
                         while (infil -> read(&c,1))
@@ -242,7 +242,7 @@ namespace http
    /*               if (got_name)
                   {
    //                  cgi = new CGI(name,slask);
-                     if(ca::str::ends_eat(name, "[]"))
+                     if(::ca::str::ends_eat(name, "[]"))
                      {
                         m_setPost[name].vara().add(slask);
                      }
@@ -282,7 +282,7 @@ namespace http
          if (got_name)
          {
    //                  cgi = new CGI(name,slask);
-            if(ca::str::ends_eat(name, "[]"))
+            if(::ca::str::ends_eat(name, "[]"))
             {
                m_setPost[name].vara().add(slask);
             }

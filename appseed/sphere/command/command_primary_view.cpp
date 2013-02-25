@@ -120,7 +120,7 @@ namespace command
                         _001SetText(strNewText);
                         str = strNewText;
                         m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ca::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ::ca::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
                         bOk = true;
                      }
                   }
@@ -139,7 +139,7 @@ namespace command
                   if(::ShellExecuteW(
                      NULL,
                      NULL,
-                     ca::international::utf8_to_unicode(strLine),
+                     ::ca::international::utf8_to_unicode(strLine),
                      NULL,
                      NULL,
                      SW_SHOW))
@@ -164,33 +164,33 @@ namespace command
       }
    }
 
-   void primary_view::_001OnUpdateEditCopy(ca::signal_object * pobj)
+   void primary_view::_001OnUpdateEditCopy(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
-   void primary_view::_001OnEditCopy(ca::signal_object * pobj)
+   void primary_view::_001OnEditCopy(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       clipboard_copy();
    }
 
-   void primary_view::_001OnUpdateEditPaste(ca::signal_object * pobj)
+   void primary_view::_001OnUpdateEditPaste(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
 
-   void primary_view::_001OnEditPaste(ca::signal_object * pobj)
+   void primary_view::_001OnEditPaste(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       clipboard_paste();
    }
 
 
-   void primary_view::_001OnContextMenu(ca::signal_object * pobj)
+   void primary_view::_001OnContextMenu(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();

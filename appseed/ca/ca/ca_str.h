@@ -81,9 +81,9 @@ namespace ca
       bool CLASS_DECL_ca begins_eat(var & var, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix); // case insensitive
       bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
-      bool CLASS_DECL_ca begins_eat(ca::property & property, const char * lpcszPrefix);
-      bool CLASS_DECL_ca begins_eat_ci(ca::property & property, const char * lpcszPrefix); // case insensitive
-      bool CLASS_DECL_ca begins_eat_ci(ca::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
+      bool CLASS_DECL_ca begins_eat(::ca::property & property, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_eat_ci(::ca::property & property, const char * lpcszPrefix); // case insensitive
+      bool CLASS_DECL_ca begins_eat_ci(::ca::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
       bool CLASS_DECL_ca while_begins_with_chars_eat(string & str, const char * lpcszChars);
       bool CLASS_DECL_ca while_begins_with_chars_eat_ci(string & str, const char * lpcszChars); // case insensitive
       bool CLASS_DECL_ca ends(const char * lpcsz, const char * lpcszSuffix);
@@ -296,14 +296,12 @@ namespace ca
 template < typename T >
 inline c_number < T > & c_number < T >::from(const string & str)
 {
-   ca::str::to(str, m_number);
+   ::ca::str::to(str, m_number);
    return *this;
 }
 
 
 
-#include "gen_strn.h"
-#include "gen_hex.h"
 
 
 

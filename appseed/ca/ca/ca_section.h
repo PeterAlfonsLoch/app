@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca section :
-      virtual public ca::signalizable
+      virtual public ::ca::signalizable
    {
    public:
 
@@ -32,7 +32,7 @@ namespace ca
       virtual int32_t exit_instance();
 
 
-      void on_signal(ca::signal_object * pobj);
+      void on_signal(::ca::signal_object * pobj);
 
    };
 

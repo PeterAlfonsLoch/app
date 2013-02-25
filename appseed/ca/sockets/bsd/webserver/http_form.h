@@ -34,9 +34,9 @@ namespace http
 
       /* get value */
       using ::ca::object::request;
-      ca::relation_set & get();
-      ca::relation_set & post();
-      ca::relation_set & request();
+      ::ca::relation_set & get();
+      ::ca::relation_set & post();
+      ::ca::relation_set & request();
 
       string & boundary();
 
@@ -45,25 +45,25 @@ namespace http
       form(const form& ) {}
       form& operator=(const form& ) { return *this; }
    protected:
-      ca::relation_set m_setGet;
-      ca::relation_set m_setPost;
-      ca::relation_set m_setRequest;
+      ::ca::relation_set m_setGet;
+      ::ca::relation_set m_setPost;
+      ::ca::relation_set m_setRequest;
       string m_strBoundary;
       bool m_bRaw;
    };
 
 
-   inline ca::relation_set & form::get()
+   inline ::ca::relation_set & form::get()
    {
       return m_setGet;
    }
 
-   inline ca::relation_set & form::post()
+   inline ::ca::relation_set & form::post()
    {
       return m_setPost;
    }
 
-   inline ca::relation_set & form::request()
+   inline ::ca::relation_set & form::request()
    {
       return m_setRequest;
    }

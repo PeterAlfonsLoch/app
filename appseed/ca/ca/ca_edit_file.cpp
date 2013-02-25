@@ -325,17 +325,17 @@ namespace ca
 
    edit_file::edit_file(::ca::application * papp) :
       ca(papp),
-      ca::tree_data(papp),
-      ca::filesp(papp),
-      ca::tree(papp)
+      ::ca::tree_data(papp),
+      ::ca::filesp(papp),
+      ::ca::tree(papp)
    {
       m_iBranch = 0;
       m_pgroupitem = NULL;
 
-      if(!ca::tree_data::initialize_data())
+      if(!::ca::tree_data::initialize_data())
          throw simple_exception(get_app());
 
-      if(!ca::tree::initialize())
+      if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
       m_ptreeitem = get_base_item();
@@ -347,7 +347,7 @@ namespace ca
 
    }
 
-   void edit_file::SetFile(ca::file * pfile)
+   void edit_file::SetFile(::ca::file * pfile)
    {
       m_pfile = pfile;
       m_dwFileLength = pfile->get_length();
@@ -423,7 +423,7 @@ l1:
          m_pgroupitem->add(pitem);
          return;
       }
-      ca::tree_item * pitemNew = NULL;
+      ::ca::tree_item * pitemNew = NULL;
       if(m_ptreeitem != NULL && m_ptreeitem->m_pnext != NULL)
       {
          pitemNew = insert_item(pitem, RelativeFirstChild, m_ptreeitem);
@@ -545,7 +545,7 @@ l1:
 
       strTimeFile = System.file().time_square(get_app());
 
-      ca::filesp spfile = Application.file().get_file(strTimeFile, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::mode_create | ::ca::file::defer_create_directory);
+      ::ca::filesp spfile = Application.file().get_file(strTimeFile, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::mode_create | ::ca::file::defer_create_directory);
 
       if(spfile.is_null())
       {
@@ -568,7 +568,7 @@ l1:
       m_ptreeitemFlush = m_ptreeitem;
    }
 
-   bool edit_file::SaveTo(ca::byte_output_stream & ostream)
+   bool edit_file::SaveTo(::ca::byte_output_stream & ostream)
    {
       char buf[4096];
       primitive::memory_size uiRead;
@@ -582,7 +582,7 @@ l1:
       return true;
    }
 
-   bool edit_file::Save(ca::file & file)
+   bool edit_file::Save(::ca::file & file)
    {
       char buf[4096];
       primitive::memory_size uiRead;
@@ -597,7 +597,7 @@ l1:
       return true;
    }
 
-   bool edit_file::Save_N_to_CRLF(ca::file & file)
+   bool edit_file::Save_N_to_CRLF(::ca::file & file)
    {
       char buf[4096];
       string str;

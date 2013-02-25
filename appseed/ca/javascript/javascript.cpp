@@ -1173,7 +1173,7 @@ void CScriptVar::trace(string indentStr, const string &name) {
         name.c_str(),
         getString().c_str(),
         getFlagsAsString().c_str());
-   ::OutputDebugStringW(ca::international::utf8_to_unicode(str));
+   ::OutputDebugStringW(::ca::international::utf8_to_unicode(str));
     string indent = indentStr+" ";
     CScriptVarLink *link = firstChild;
     while (link) {
@@ -1328,7 +1328,7 @@ void tinyjs::execute(const string &code) {
         msg += "Error " + e->text;
 #ifdef TINYJS_CALL_STACK
         for (int32_t i=(int32_t)call_stack.size()-1;i>=0;i--)
-          msg += string("\n") + ca::str::from(i) + ": " + call_stack[i];
+          msg += string("\n") + ::ca::str::from(i) + ": " + call_stack[i];
 #endif
         msg += " at " + l->getPosition();
         delete l;
@@ -1364,7 +1364,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code) {
       msg += "Error " + e->text;
 #ifdef TINYJS_CALL_STACK
       for (int32_t i=(int32_t)call_stack.size()-1;i>=0;i--)
-        msg += "\n" + ca::str::from(i) + ": " + call_stack[i];
+        msg += "\n" + ::ca::str::from(i) + ": " + call_stack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;

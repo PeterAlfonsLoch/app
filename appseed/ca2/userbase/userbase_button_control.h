@@ -21,7 +21,7 @@ public:
    virtual ~BaseButtonControl();
 
 
-   virtual void _003CustomWindowProc(ca::signal_object * pobj);
+   virtual void _003CustomWindowProc(::ca::signal_object * pobj);
 
 
    virtual bool pre_create_window(CREATESTRUCT& cs);

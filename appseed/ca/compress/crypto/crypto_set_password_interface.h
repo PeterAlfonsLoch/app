@@ -9,7 +9,7 @@ namespace crypto
       virtual public ::ca::object
    {
    public:
-     virtual ca::HRes CryptoSetPassword(const byte *data, uint32_t size) = 0;
+     virtual ::ca::HRes CryptoSetPassword(const byte *data, uint32_t size) = 0;
    };
 
 } // namespace crypto

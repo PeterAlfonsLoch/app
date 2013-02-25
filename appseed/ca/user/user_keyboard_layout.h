@@ -56,7 +56,7 @@ namespace user
       ::collection::int_to_string         m_mapCode;
 
       string                              m_strEscape;
-      ca::property_set                   m_setEscape;
+      ::ca::property_set                   m_setEscape;
 
 
       keyboard_layout(::ca::application * papp);
@@ -69,7 +69,7 @@ namespace user
 
       string process_escape(const char * pszChar);
 
-      void process_escape(::xml::node * pnode, ca::property_set & set);
+      void process_escape(::xml::node * pnode, ::ca::property_set & set);
 
       string get_current_system_layout();
 

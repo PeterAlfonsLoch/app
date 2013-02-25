@@ -43,7 +43,7 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 namespace ca
 {
 
-   bool compress::ungz(ca::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(::ca::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
       int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
       if (fileUn == -1)
@@ -128,7 +128,7 @@ namespace ca
    }
 
 
-   bool compress::gz(ca::writer & ostreamCompressed, const char * lpcszUncompressed)
+   bool compress::gz(::ca::writer & ostreamCompressed, const char * lpcszUncompressed)
    {
       string str(lpcszUncompressed);
       FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
@@ -152,7 +152,7 @@ namespace ca
       return true;
    }
 
-   bool compress::null(ca::writer & ostream, ca::reader & istream)
+   bool compress::null(::ca::writer & ostream, ::ca::reader & istream)
    {
       class primitive::memory memory;
       memory.allocate(1024 * 256);
@@ -193,9 +193,9 @@ namespace ca
       return true;
    }
 
-   bool compress::bz(ca::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(::ca::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::ca::filesp file = Application.file().get_file(lpcszUncompressed, ca::file::mode_read | ca::file::type_binary);
+      ::ca::filesp file = Application.file().get_file(lpcszUncompressed, ::ca::file::mode_read | ::ca::file::type_binary);
       if(file.is_null())
       {
          return false;
@@ -203,7 +203,7 @@ namespace ca
       return bz_stream(ostreamBzFileCompressed, file);
    }
 
-   bool compress::bz_stream(ca::writer & ostreamBzFileCompressed, ca::reader & istreamFileUncompressed)
+   bool compress::bz_stream(::ca::writer & ostreamBzFileCompressed, ::ca::reader & istreamFileUncompressed)
    {
       bzip bz(ostreamBzFileCompressed);
       class primitive::memory memory;
@@ -248,7 +248,7 @@ namespace ca
    void compress::extract_all(const char * pszFile, ::ca::application * papp)
    {
       string strDir = pszFile;
-      ca::str::ends_eat_ci(strDir, ".zip");
+      ::ca::str::ends_eat_ci(strDir, ".zip");
       App(papp).file().copy(strDir, pszFile, false);
    }
 

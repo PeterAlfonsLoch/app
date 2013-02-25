@@ -71,6 +71,22 @@ namespace cube
 }
 
 
+namespace fontopus
+{
+
+
+   class user;
+
+
+} // namespace fontopus
+
+
+
+
+
+
+
+
 namespace ca
 {
 
@@ -94,118 +110,6 @@ namespace ca
    };
 
 
-   // Carlos Gustavo Cecyn Lundgren
-   class CLASS_DECL_ca application :
-      virtual public ::ca::live_object
-   {
-   public:
-
-
-      ca::signal                 * m_psignal;
-
-      bool                          m_bInitializeProDevianMode;
-      main_init_data *              m_pinitmaindata;
-      bool                          m_bService;
-      ::plane::application *        m_pappThis;
-      ::cube::application *         m_pappCube;
-      bool                          m_bZipIsDir;
-      ::plane::system *             m_psystem;
-      ::plane::session *            m_psession;
-
-
-      application();
-      virtual ~application();
-
-
-      virtual bool init_main_data(main_init_data * pdata);
-      virtual bool set_main_init_data(main_init_data * pdata);
-
-      virtual void construct(const char * pszId);
-
-      virtual bool process_initialize();
-
-      virtual bool initialize1(); // cgcl // first initialization
-      virtual bool initialize2(); // cst  // second initialization
-      virtual bool initialize3(); // third initialization and so on...
-
-      virtual bool initialize(); // last initialization
-
-      virtual bool bergedge_start();
-      virtual bool os_native_bergedge_start();
-
-      virtual int32_t exit();
-
-      virtual bool finalize();
-
-      virtual int32_t exit_instance();
-
-      virtual int32_t main();
-
-      virtual application * get_app() const;
-
-      virtual bool is_system();
-      virtual bool is_session();
-
-      virtual bool is_cube();
-      virtual bool is_bergedge();
-
-      virtual bool is_installing();
-      virtual bool is_uninstalling();
-
-      virtual bool is_serviceable();
-
-      virtual bool app_map_lookup(const char * psz, void * &) = 0;
-      virtual void app_map_set(const char * psz, void *) = 0;
-
-
-      virtual void pre_translate_message(::ca::signal_object * pobj) = 0;
-
-
-      virtual ::fontopus::user * get_safe_user();
-
-
-      template < class APP >
-      APP & cast_app()
-      {
-         if(this == NULL)
-            return (*(APP *) NULL);
-         void * papp;
-         #ifdef WINDOWS
-         if(!app_map_lookup(typeid(APP).name(), papp))
-         #else
-         if(!app_map_lookup(typeid(APP).name(), papp))
-         #endif
-         {
-            papp = dynamic_cast < APP * > (this);
-            #ifdef WINDOWS
-            app_map_set(typeid(APP).name(), papp);
-            #else
-            app_map_set(typeid(APP).name(), papp);
-            #endif
-         }
-         return (*(APP *) papp);
-      }
-
-   };
-
-
-   inline application & get(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
-
-
-
-} // namespace ca
-
-
-#pragma once
-
-
-namespace ca
-{
-
-
    enum EExclusiveInstance
    {
       ExclusiveInstanceNone,
@@ -218,7 +122,7 @@ namespace ca
 
 
    class CLASS_DECL_ca application_signal_object :
-         public ca::signal_object
+      public ::ca::signal_object
    {
    public:
 
@@ -233,16 +137,213 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca application :
-      virtual public ::ca::application,
-      virtual public command_target_interface,
-      virtual public request_interface,
-      virtual public ::ca::message_window_simple_callback,
-      virtual public ::ca::thread,
-      virtual public ::ca::smart_pointer < ::ca::application >
+
+
+   class CLASS_DECL_ca application_ptra :
+      virtual public comparable_array < ::ca::application *, ::ca::application * >
    {
    public:
 
+      
+
+   };
+
+
+   class CLASS_DECL_ca application_base :
+      virtual public ::ca::live_object,
+      virtual public ::ca::thread
+   {
+   public:
+
+      virtual void construct() = 0;
+
+
+      virtual bool process_initialize() = 0;
+
+      virtual bool initialize1() = 0;
+      virtual bool initialize2() = 0;
+      virtual bool initialize3() = 0;
+
+      virtual bool initialize() = 0;
+
+      virtual void LockTempMaps() = 0;
+      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE) = 0;
+      virtual void TermThread(HINSTANCE hInstTerm) = 0;
+      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0) = 0;
+
+
+#ifdef METROWIN
+      virtual ::user::interaction * window_from_os_data(void * pdata) = 0;
+      virtual ::user::interaction * window_from_os_data_permanent(void * pdata) = 0;
+#else
+      virtual ::ca::window * window_from_os_data(void * pdata) = 0;
+      virtual ::ca::window * window_from_os_data_permanent(void * pdata) = 0;
+#endif
+
+      virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
+      virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
+
+      virtual string get_version() = 0;
+
+      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass) = 0;
+
+
+      virtual ::ca::thread * GetThread() = 0;
+      virtual void set_thread(::ca::thread * pthread) = 0;
+      virtual ::user::interaction * GetMainWnd() = 0;
+
+      virtual void SetCurrentHandles() = 0;
+
+#ifndef METROWIN
+      virtual void get_time(timeval *p) = 0;
+#endif
+      virtual void set_env_var(const string & var,const string & value) = 0;
+      virtual uint32_t get_thread_id() = 0;
+
+
+      virtual bool set_main_init_data(main_init_data * pdata) = 0;
+
+      virtual bool is_system() = 0;
+
+   };
+
+
+   // Carlos Gustavo Cecyn Lundgren
+   class CLASS_DECL_ca application :
+      virtual public ::ca::application_base,
+      virtual public command_target_interface,
+      virtual public request_interface,
+      virtual public ::ca::message_window_simple_callback,
+      virtual public ::ca::smart_pointer < ::ca::application_base >
+   {
+   public:
+
+
+      
+      const string OAUTHLIB_CONSUMERKEY_KEY;
+      const string OAUTHLIB_CALLBACK_KEY;
+      const string OAUTHLIB_VERSION_KEY;
+      const string OAUTHLIB_SIGNATUREMETHOD_KEY;
+      const string OAUTHLIB_SIGNATURE_KEY;
+      const string OAUTHLIB_TIMESTAMP_KEY;
+      const string OAUTHLIB_NONCE_KEY;
+      const string OAUTHLIB_TOKEN_KEY;
+      const string OAUTHLIB_TOKENSECRET_KEY;
+      const string OAUTHLIB_VERIFIER_KEY;
+      const string OAUTHLIB_SCREENNAME_KEY;
+
+
+      const string OAUTHLIB_TWITTER_REQUEST_TOKEN_URL;
+      const string OAUTHLIB_TWITTER_AUTHORIZE_URL;
+      const string OAUTHLIB_TWITTER_ACCESS_TOKEN_URL;
+
+      /* Constants */
+      const string TWIT_COLON;
+      const char TWIT_EOS;
+
+      /* Miscellaneous data used to build twitter URLs*/
+      const string TWIT_SEARCHQUERYSTRING;      
+      const string TWIT_SCREENNAME;
+      const string TWIT_USERID;
+      const string TWIT_EXTENSIONFORMAT;
+      const string TWIT_TARGETSCREENNAME;
+      const string TWIT_TARGETUSERID;
+
+      /* Search URLs */
+      const string TWIT_SEARCH_URL;
+
+      /* Status URLs */
+      const string TWIT_STATUSUPDATE_URL;
+      const string TWIT_STATUSSHOW_URL;
+      const string TWIT_STATUDESTROY_URL;
+
+      /* Timeline URLs */
+      const string TWIT_PUBLIC_TIMELINE_URL;
+      const string TWIT_FEATURED_USERS_URL;
+      const string TWIT_FRIENDS_TIMELINE_URL;
+      const string TWIT_MENTIONS_URL;
+      const string TWIT_USERTIMELINE_URL;
+
+      /* Users URLs */
+      const string TWIT_SHOWUSERS_URL;
+      const string TWIT_SHOWFRIENDS_URL;
+      const string TWIT_SHOWFOLLOWERS_URL;
+
+      /* Direct messages URLs */
+      const string TWIT_DIRECTMESSAGES_URL;
+      const string TWIT_DIRECTMESSAGENEW_URL;
+      const string TWIT_DIRECTMESSAGESSENT_URL;
+      const string TWIT_DIRECTMESSAGEDESTROY_URL;
+
+      /* Friendships URLs */
+      const string TWIT_FRIENDSHIPSCREATE_URL;
+      const string TWIT_FRIENDSHIPSDESTROY_URL;
+      const string TWIT_FRIENDSHIPSSHOW_URL;
+
+      /* Social graphs URLs */
+      const string TWIT_FRIENDSIDS_URL;
+      const string TWIT_FOLLOWERSIDS_URL;
+
+      /* Account URLs */
+      const string TWIT_ACCOUNTRATELIMIT_URL;
+
+      /* Favorites URLs */
+      const string TWIT_FAVORITESGET_URL;
+      const string TWIT_FAVORITECREATE_URL;
+      const string TWIT_FAVORITEDESTROY_URL;
+
+      /* Block URLs */
+      const string TWIT_BLOCKSCREATE_URL;
+      const string TWIT_BLOCKSDESTROY_URL;
+    
+      /* Saved Search URLs */
+      const string TWIT_SAVEDSEARCHGET_URL;
+      const string TWIT_SAVEDSEARCHSHOW_URL;
+      const string TWIT_SAVEDSEARCHCREATE_URL;
+      const string TWIT_SAVEDSEARCHDESTROY_URL;
+
+      /* Trends URLs */
+      const string TWIT_TRENDS_URL;
+      const string TWIT_TRENDSDAILY_URL;
+      const string TWIT_TRENDSCURRENT_URL;
+      const string TWIT_TRENDSWEEKLY_URL;
+      const string TWIT_TRENDSAVAILABLE_URL;
+
+
+      ::calculator::calculator                                                                * m_pcalculator;
+      ::sockets::sockets                                                                      * m_psockets;
+      ::colorertake5::colorertake5                                                            * m_pcolorertake5;
+
+
+      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
+      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
+      manual_reset_event *                                                                      m_peventReady;
+
+
+      //string                                                                                  m_strLicense;
+      bool                                                                                      m_bLicense;
+      string                                                                                    m_strBaseSupportId;
+      collection::map < int32_t, int32_t, bool, bool > *                                        m_pmapKeyPressed;
+
+
+      string                                                                                    m_strRoot;
+      string                                                                                    m_strDomain;
+      string                                                                                    m_strLocale;
+      string                                                                                    m_strSchema;
+
+
+
+
+      ::ca::signal                * m_psignal;
+
+      bool                          m_bInitializeProDevianMode;
+      main_init_data *              m_pinitmaindata;
+      bool                          m_bService;
+      ::plane::application *        m_pappThis;
+      ::cube::application *         m_pappCube;
+      bool                          m_bZipIsDir;
+      ::plane::system *             m_psystem;
+      ::plane::session *            m_psession;
 
       class ::ca::base64                 m_base64;
       signal                              m_signalAppLanguageChange;
@@ -353,7 +454,7 @@ namespace ca
       //mutex                            m_mutexObjectEvent;
       //::collection::map < ::ca::object *, ::ca::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
 
-      //typedef ::collection::map < ::ca::object *, ::ca::object *, ca::property_set, ca::property_set > oset;
+      //typedef ::collection::map < ::ca::object *, ::ca::object *, ::ca::property_set, ::ca::property_set > oset;
       //oset                             m_mapObjectSet;
 
       class ::user::str_context *      m_puserstrcontext;
@@ -373,9 +474,168 @@ namespace ca
       //BaseIdSpaceStringKeyMap    m_strmapResource;
    //   id_space                   m_idspace;
 
-
       application();
       virtual ~application();
+
+
+      virtual bool init_main_data(main_init_data * pdata);
+      virtual bool set_main_init_data(main_init_data * pdata);
+
+      virtual void construct(const char * pszId);
+      virtual void construct();
+
+      virtual bool process_initialize();
+
+      virtual bool initialize1(); // cgcl // first initialization
+      virtual bool initialize2(); // cst  // second initialization
+      virtual bool initialize3(); // third initialization and so on...
+
+      virtual bool initialize(); // last initialization
+
+      virtual bool bergedge_start();
+      virtual bool os_native_bergedge_start();
+
+      virtual int32_t exit();
+
+      virtual int32_t exit_instance();
+
+      virtual bool finalize();
+
+      virtual int32_t main();
+
+      virtual application * get_app() const;
+
+      virtual bool is_system();
+      virtual bool is_session();
+
+      virtual bool is_cube();
+      virtual bool is_bergedge();
+
+      virtual bool is_installing();
+      virtual bool is_uninstalling();
+
+      virtual bool is_serviceable();
+
+      virtual bool app_map_lookup(const char * psz, void * &);
+      virtual void app_map_set(const char * psz, void *);
+
+
+      virtual void pre_translate_message(::ca::signal_object * pobj);
+
+
+      virtual ::fontopus::user * get_safe_user();
+
+
+      template < class APP >
+      APP & cast_app()
+      {
+         if(this == NULL)
+            return (*(APP *) NULL);
+         void * papp;
+         #ifdef WINDOWS
+         if(!app_map_lookup(typeid(APP).name(), papp))
+         #else
+         if(!app_map_lookup(typeid(APP).name(), papp))
+         #endif
+         {
+            papp = dynamic_cast < APP * > (this);
+            #ifdef WINDOWS
+            app_map_set(typeid(APP).name(), papp);
+            #else
+            app_map_set(typeid(APP).name(), papp);
+            #endif
+         }
+         return (*(APP *) papp);
+      }
+
+
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+
+      virtual int32_t run();
+
+      virtual string get_locale();
+      virtual string get_schema();
+      virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
+      virtual string get_locale_schema_dir(const string & strLocale);
+      virtual string get_locale_schema_dir();
+
+      virtual void EnableShellOpen();
+
+      virtual bool open_link(const string & strLink, const string & pszTarget = "");
+
+
+
+
+      virtual void set_locale(const string & lpcsz, bool bUser);
+      virtual void set_schema(const string & lpcsz, bool bUser);
+      virtual void on_set_locale(const string & lpcsz, bool bUser);
+      virtual void on_set_schema(const string & lpcsz, bool bUser);
+
+
+      virtual ::fontopus::user * create_current_user();
+
+
+
+      virtual void _001CloseApplication();
+
+
+
+      virtual bool start_application(bool bSynch, ::ca::application_bias * pbias);
+
+
+      inline ::calculator::calculator           & calculator      () { return *m_pcalculator    ; }
+      inline ::sockets::sockets                 & sockets         () { return *m_psockets       ; }
+      inline ::colorertake5::colorertake5       & colorertake5    () { return *m_pcolorertake5  ; }
+
+
+      //virtual string get_current_user_login();
+
+      virtual string load_string(id id);
+      virtual bool load_string(string & str, id id);
+      bool load_cached_string(string & str, id id, bool bLoadStringTable);
+      bool load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable);
+      void load_string_table(const string & pszApp, const string & pszId);
+
+      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+
+      virtual bool base_support();
+
+      virtual string message_box(const string & pszMatter, ::ca::property_set & propertyset);
+
+
+      virtual void load_string_table();
+
+      virtual ::user::interaction * uie_from_point(point pt);
+
+      void process(machine_event_data * pdata);
+
+      ::mutex * get_local_mutex();
+      ::mutex * get_global_mutex();
+
+      virtual string get_license_id();
+
+#ifndef METROWIN
+      virtual void get_time(timeval *p);
+#endif
+      virtual void set_env_var(const string & var,const string & value);
+      virtual uint32_t get_thread_id();
+
+      virtual void message_window_message_handler(::ca::signal_object * pobj);
+
+      virtual bool on_install();
+      virtual bool on_uninstall();
+      virtual bool on_run_install();
+      virtual bool on_run_uninstall();
+
+      DECL_GEN_SIGNAL(_001OnApplicationRequest)
+
+      virtual bool is_key_pressed(int32_t iKey);
+      virtual void set_key_pressed(int32_t iKey, bool bPressed);
+
+
+      virtual bool is_running();
+
+      DECL_GEN_SIGNAL(on_application_signal);
 
 
       virtual void Ex1OnFactoryExchange();
@@ -394,9 +654,8 @@ namespace ca
 
 
       // overrides for implementation
-      virtual int32_t run();
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual void ProcessWndProcException(base_exception* e, ca::signal_object * pobj);
+      virtual void ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj);
 
 
       void EnableModelessEx(bool bEnable);
@@ -478,13 +737,10 @@ namespace ca
       virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
 
-      virtual void EnableShellOpen();
 
-      virtual string load_string(id id);
 
       virtual bool on_run_exception(::ca::exception & e);
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
 
       // Set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
@@ -660,17 +916,15 @@ namespace ca
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
       virtual void on_exclusive_instance_local_conflict();
 
-      virtual void message_window_message_handler(ca::signal_object * pobj);
 
       virtual void delete_temp();
 
       //using ::ca::thread::propset;
-      //ca::property_set & propset(::ca::object * pobject);
-      //ca::property_set * existing_propset(::ca::object * pobject);
+      //::ca::property_set & propset(::ca::object * pobject);
+      //::ca::property_set * existing_propset(::ca::object * pobject);
 
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
-      virtual ::user::interaction * uie_from_point(point pt);
 
       virtual void get_cursor_pos(LPPOINT lppoint);
       virtual void get_screen_rect(LPRECT lprect);
@@ -715,7 +969,6 @@ namespace ca
       virtual string file_name(const char * psz);
 
 
-      virtual bool bergedge_start();
 
       virtual bool does_launch_window_on_startup();
       virtual bool activate_app();
@@ -723,22 +976,11 @@ namespace ca
       // Hooks for your initialization code
       virtual bool InitApplication();
 
-      virtual int32_t    exit();
 
-      virtual bool process_initialize();
 
       virtual bool initialize_instance();
 
 
-      virtual bool initialize1(); // cgcl // first initialization
-      virtual bool initialize2(); // cst  // second initialization
-      virtual bool initialize3(); // third initialization and so on...
-
-      virtual bool initialize(); // last initialization
-
-      virtual bool finalize();
-
-      virtual int32_t exit_instance();
 
       ::user::str_context * str_context();
 
@@ -779,8 +1021,6 @@ namespace ca
 
       virtual bool final_handle_exception(::ca::exception & e);
 
-      virtual bool is_system();
-      virtual bool is_bergedge();
       bool ca_process_initialize();
       bool ca_initialize1();
 
@@ -789,19 +1029,13 @@ namespace ca
       virtual ::ca::ca * alloc(::ca::type_info & info);
       virtual ::ca::ca * alloc(const id & idType);
 
-      virtual bool app_map_lookup(const char * psz, void * &);
-      virtual void app_map_set(const char * psz, void *);
 
 
       virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
       virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
-//      ca::file_system_sp m_spfilesystem;
+//      ::ca::file_system_sp m_spfilesystem;
 
 
-      virtual void construct();
-      virtual void construct(const char * pszId);
-
-      virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
 
 //      virtual ::ca::file_system & file_system();
@@ -827,291 +1061,18 @@ namespace ca
       virtual ::ca::window * get_desktop_window();
 
 
-#ifndef METROWIN
-      virtual void get_time(timeval *p);
-#endif
-      virtual void set_env_var(const string & var,const string & value);
-      virtual uint32_t get_thread_id();
 
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-
    };
 
 
-} // namespace ca
-
-
-
-
-
-
-
-
-
-
-
-#pragma once
-
-
-#include "ca2_process.h"
-
-
-namespace ca
-{
-
-
-   class CLASS_DECL_ca application_ptra :
-      virtual public comparable_array < ::ca::application *, ::ca::application * >
+   inline application & get(::ca::application * papp)
    {
-
-
-   };
-
-
-} // namespace ca
-
-
-namespace fontopus
-{
-
-
-   class user;
-
-
-} // namespace fontopus
-
-
-namespace ca
-{
-
-
-   class CLASS_DECL_ca application :
-      virtual public ::ca::application
-   {
-   public:
-
-
-      ::calculator::calculator                                                                * m_pcalculator;
-      ::sockets::sockets                                                                      * m_psockets;
-      ::colorertake5::colorertake5                                                            * m_pcolorertake5;
-
-
-      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
-      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
-      manual_reset_event *                                                                      m_peventReady;
-
-
-      //string                                                                                  m_strLicense;
-      bool                                                                                      m_bLicense;
-      string                                                                                    m_strBaseSupportId;
-      collection::map < int32_t, int32_t, bool, bool > *                                        m_pmapKeyPressed;
-
-
-      string                                                                                    m_strRoot;
-      string                                                                                    m_strDomain;
-      string                                                                                    m_strLocale;
-      string                                                                                    m_strSchema;
-
-
-
-
-      const string OAUTHLIB_CONSUMERKEY_KEY;
-      const string OAUTHLIB_CALLBACK_KEY;
-      const string OAUTHLIB_VERSION_KEY;
-      const string OAUTHLIB_SIGNATUREMETHOD_KEY;
-      const string OAUTHLIB_SIGNATURE_KEY;
-      const string OAUTHLIB_TIMESTAMP_KEY;
-      const string OAUTHLIB_NONCE_KEY;
-      const string OAUTHLIB_TOKEN_KEY;
-      const string OAUTHLIB_TOKENSECRET_KEY;
-      const string OAUTHLIB_VERIFIER_KEY;
-      const string OAUTHLIB_SCREENNAME_KEY;
-
-
-      const string OAUTHLIB_TWITTER_REQUEST_TOKEN_URL;
-      const string OAUTHLIB_TWITTER_AUTHORIZE_URL;
-      const string OAUTHLIB_TWITTER_ACCESS_TOKEN_URL;
-
-      /* Constants */
-      const string TWIT_COLON;
-      const char TWIT_EOS;
-
-      /* Miscellaneous data used to build twitter URLs*/
-      const string TWIT_SEARCHQUERYSTRING;      
-      const string TWIT_SCREENNAME;
-      const string TWIT_USERID;
-      const string TWIT_EXTENSIONFORMAT;
-      const string TWIT_TARGETSCREENNAME;
-      const string TWIT_TARGETUSERID;
-
-      /* Search URLs */
-      const string TWIT_SEARCH_URL;
-
-      /* Status URLs */
-      const string TWIT_STATUSUPDATE_URL;
-      const string TWIT_STATUSSHOW_URL;
-      const string TWIT_STATUDESTROY_URL;
-
-      /* Timeline URLs */
-      const string TWIT_PUBLIC_TIMELINE_URL;
-      const string TWIT_FEATURED_USERS_URL;
-      const string TWIT_FRIENDS_TIMELINE_URL;
-      const string TWIT_MENTIONS_URL;
-      const string TWIT_USERTIMELINE_URL;
-
-      /* Users URLs */
-      const string TWIT_SHOWUSERS_URL;
-      const string TWIT_SHOWFRIENDS_URL;
-      const string TWIT_SHOWFOLLOWERS_URL;
-
-      /* Direct messages URLs */
-      const string TWIT_DIRECTMESSAGES_URL;
-      const string TWIT_DIRECTMESSAGENEW_URL;
-      const string TWIT_DIRECTMESSAGESSENT_URL;
-      const string TWIT_DIRECTMESSAGEDESTROY_URL;
-
-      /* Friendships URLs */
-      const string TWIT_FRIENDSHIPSCREATE_URL;
-      const string TWIT_FRIENDSHIPSDESTROY_URL;
-      const string TWIT_FRIENDSHIPSSHOW_URL;
-
-      /* Social graphs URLs */
-      const string TWIT_FRIENDSIDS_URL;
-      const string TWIT_FOLLOWERSIDS_URL;
-
-      /* Account URLs */
-      const string TWIT_ACCOUNTRATELIMIT_URL;
-
-      /* Favorites URLs */
-      const string TWIT_FAVORITESGET_URL;
-      const string TWIT_FAVORITECREATE_URL;
-      const string TWIT_FAVORITEDESTROY_URL;
-
-      /* Block URLs */
-      const string TWIT_BLOCKSCREATE_URL;
-      const string TWIT_BLOCKSDESTROY_URL;
-    
-      /* Saved Search URLs */
-      const string TWIT_SAVEDSEARCHGET_URL;
-      const string TWIT_SAVEDSEARCHSHOW_URL;
-      const string TWIT_SAVEDSEARCHCREATE_URL;
-      const string TWIT_SAVEDSEARCHDESTROY_URL;
-
-      /* Trends URLs */
-      const string TWIT_TRENDS_URL;
-      const string TWIT_TRENDSDAILY_URL;
-      const string TWIT_TRENDSCURRENT_URL;
-      const string TWIT_TRENDSWEEKLY_URL;
-      const string TWIT_TRENDSAVAILABLE_URL;
-
-      application();
-      virtual ~application();
-
-
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
-
-      virtual int32_t run();
-
-      virtual string get_locale();
-      virtual string get_schema();
-      virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
-      virtual string get_locale_schema_dir(const string & strLocale);
-      virtual string get_locale_schema_dir();
-
-      virtual void EnableShellOpen();
-
-      virtual bool open_link(const string & strLink, const string & pszTarget = "");
-
-
-
-
-      virtual void set_locale(const string & lpcsz, bool bUser);
-      virtual void set_schema(const string & lpcsz, bool bUser);
-      virtual void on_set_locale(const string & lpcsz, bool bUser);
-      virtual void on_set_schema(const string & lpcsz, bool bUser);
-
-
-      virtual ::fontopus::user * create_current_user();
-
-
-      virtual bool initialize1();
-      virtual bool initialize();
-      virtual bool finalize();
-
-      virtual void _001CloseApplication();
-
-
-
-      virtual bool start_application(bool bSynch, ::ca::application_bias * pbias);
-
-
-      inline ::calculator::calculator           & calculator      () { return *m_pcalculator    ; }
-      inline ::sockets::sockets                 & sockets         () { return *m_psockets       ; }
-      inline ::colorertake5::colorertake5       & colorertake5    () { return *m_pcolorertake5  ; }
-
-
-      //virtual string get_current_user_login();
-
-      virtual string load_string(id id);
-      virtual bool load_string(string & str, id id);
-      bool load_cached_string(string & str, id id, bool bLoadStringTable);
-      bool load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable);
-      void load_string_table(const string & pszApp, const string & pszId);
-
-      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
-
-      virtual bool base_support();
-
-      virtual string message_box(const string & pszMatter, ca::property_set & propertyset);
-
-
-      virtual void load_string_table();
-
-      virtual ::user::interaction * uie_from_point(point pt);
-
-      virtual bool bergedge_start();
-
-      void process(machine_event_data * pdata);
-
-      virtual void pre_translate_message(ca::signal_object * pobj);
-
-      ::mutex * get_local_mutex();
-      ::mutex * get_global_mutex();
-
-      virtual ::ca::application * get_app() const;
-
-      virtual string get_license_id();
-
-#ifndef METROWIN
-      virtual void get_time(timeval *p);
-#endif
-      virtual void set_env_var(const string & var,const string & value);
-      virtual uint32_t get_thread_id();
-
-      virtual void message_window_message_handler(ca::signal_object * pobj);
-
-      virtual bool on_install();
-      virtual bool on_uninstall();
-      virtual bool on_run_install();
-      virtual bool on_run_uninstall();
-
-      DECL_GEN_SIGNAL(_001OnApplicationRequest)
-
-      virtual bool is_key_pressed(int32_t iKey);
-      virtual void set_key_pressed(int32_t iKey, bool bPressed);
-
-
-      virtual bool is_running();
-
-      virtual int32_t exit_instance();
-
-      DECL_GEN_SIGNAL(on_application_signal);
-
-
-   };
+      return *dynamic_cast < application * > (papp);
+   }
 
 
 } // namespace ca
@@ -1119,6 +1080,8 @@ namespace ca
 
 
 #include "ca/ca/ca_font.h"
+
+
 
 
 

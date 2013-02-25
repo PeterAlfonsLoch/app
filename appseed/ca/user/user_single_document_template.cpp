@@ -195,7 +195,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    uh.m_etype = view_update_hint::TypeOpenDocument;
    pdocument->update_all_views(NULL, 0, &uh);
    
-   ca::add_ref(pdocument);
+   ::ca::add_ref(pdocument);
 
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 }

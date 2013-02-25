@@ -16,23 +16,23 @@ namespace ca
       NESSIEinit(&ns);
       NESSIEadd((const byte *) psz, (uint_ptr) (8 * strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
-      return ca::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+      return ::ca::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
    }
 
 
-   string file::nessie(const char * psz)
+   string file_system::nessie(const char * psz)
    {
 
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
       try
       {
          if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read))
             return "";
       }
-      catch(ca::file_exception * pe)
+      catch(::ca::file_exception * pe)
       {
-         ca::del(pe);
+         ::ca::del(pe);
          return "";
       }
       return nessie(spfile);
@@ -40,7 +40,7 @@ namespace ca
    }
 
 
-   string file::nessie(ca:: file * pfile)
+   string file_system::nessie(::ca:: file * pfile)
    {
       
 	   int32_t iBufSize = 1024 * 256;
@@ -54,7 +54,7 @@ namespace ca
       }
       uint8_t digest[NESSIE_DIGESTBYTES];
       NESSIEfinalize(&ns, digest);
-	  return ca::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+	  return ::ca::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
    }
 

@@ -100,7 +100,7 @@ namespace ca
    {
    }
 
-   void datetime::international::parse_str(const char * psz, ca::property_set & set)
+   void datetime::international::parse_str(const char * psz, ::ca::property_set & set)
    {
         string src(psz);
       src.trim();
@@ -226,17 +226,17 @@ namespace ca
 
    string datetime::get_week_day_str(user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
    {
-      return System.str().get(pcontext, "datetimestr_weekday_long[" + ca::str::from(iWeekDay - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_weekday_long[" + ::ca::str::from(iWeekDay - 1) + "]");
    }
 
    string datetime::get_tiny_week_day_str(user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
    {
-      return System.str().get(pcontext, "datetimestr_weekday_tiny[" + ca::str::from(iWeekDay - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_weekday_tiny[" + ::ca::str::from(iWeekDay - 1) + "]");
    }
 
    string datetime::get_month_str(user::str_context * pcontext, int32_t iMonth)
    {
-      return System.str().get(pcontext, "datetimestr_month[" + ca::str::from(iMonth - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_month[" + ::ca::str::from(iMonth - 1) + "]");
    }
 
    ::datetime::time datetime::from_gmt_date_time(int32_t iYear, int32_t iMonth, int32_t iDay, int32_t iHour, int32_t iMinute, int32_t iSecond)

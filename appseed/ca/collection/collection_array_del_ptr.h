@@ -4,7 +4,7 @@
 #undef new
 
 
-#include "ca/ca/gen_composite.h"
+#include "ca/ca/ca_composite.h"
 
 
 template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
@@ -40,7 +40,7 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_at(
    index iIndex)
 {
-   ca::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
+   ::ca::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
    this->ptra().remove_at(iIndex);
 }
 
@@ -51,7 +51,7 @@ inline count array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_all(bool bDelet
    {
       for(int32_t iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
-         ca::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
+         ::ca::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
       }
    }
    return this->ptra().remove_all();
@@ -63,7 +63,7 @@ inline void array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_last(bool bDelet
 {
    if(bDelete)
    {
-      ca::_sdel<TYPE>((TYPE *) this->ptra().last_element());
+      ::ca::_sdel<TYPE>((TYPE *) this->ptra().last_element());
    }
    this->ptra().remove_last();
 }

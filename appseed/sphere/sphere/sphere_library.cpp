@@ -54,19 +54,19 @@ namespace sphere
 /*   ::ca::application * library::get_new_app(const char * pszAppId)
    {
 
-      if(ca::str::equals_ci(pszAppId, "calculator"))
+      if(::ca::str::equals_ci(pszAppId, "calculator"))
       {
          return new ::calculator::application();
       }
-      else if(ca::str::equals_ci(pszAppId, "command"))
+      else if(::ca::str::equals_ci(pszAppId, "command"))
       {
          return new ::command::application();
       }
-      else if(ca::str::equals_ci(pszAppId, "userstack"))
+      else if(::ca::str::equals_ci(pszAppId, "userstack"))
       {
          return new ::userstack::application();
       }
-      else if(ca::str::equals_ci(pszAppId, "default_file_handler"))
+      else if(::ca::str::equals_ci(pszAppId, "default_file_handler"))
       {
          return new ::filehandler::application();
       }

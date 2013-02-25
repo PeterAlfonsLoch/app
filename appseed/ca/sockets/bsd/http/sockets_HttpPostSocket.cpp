@@ -70,7 +70,7 @@ namespace sockets
             c = System.sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + ca::str::from(System.sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + ::ca::str::from(System.sockets().m_countHttpPostBoundary++);
    }
 
 
@@ -102,7 +102,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca::log::level::fatal);
+         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
    }

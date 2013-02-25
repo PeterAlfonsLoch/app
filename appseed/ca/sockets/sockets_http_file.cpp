@@ -34,7 +34,7 @@ namespace sockets
 //         if(!Application.file().exists(lpszFileName))
   //          return false;
 
-         ca::http::signal * psignal = new ca::http::signal;
+         ::ca::http::signal * psignal = new ::ca::http::signal;
 
          psignal->m_set["file"]       = (::ca::ca *) m_pmemoryfileIn;
          psignal->m_set["file_out"]   = (::ca::ca *) m_ptimeoutfile;
@@ -52,11 +52,11 @@ namespace sockets
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
          }
 
-         ca::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &ca::http::application::get, psignal);
+         ::ca::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::ca::http::application::get, psignal);
          return TRUE;
       }
 
-      void file::on_http_request_response(ca::signal_object * pobj)
+      void file::on_http_request_response(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }

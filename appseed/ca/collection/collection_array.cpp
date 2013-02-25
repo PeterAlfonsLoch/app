@@ -31,7 +31,7 @@ namespace ca
 void ___arrayStdSortTest()
 {
    base_array<int32_t, int32_t> ia;
-   /*ca::_sort::QuickSort(
+   /*::ca::_sort::QuickSort(
       ia,
       sort::CompareAscending < int32_t >);*/
 

@@ -13,7 +13,7 @@ namespace visual
    bool cursor::load_from_file(const char * psz)
    {
       string str(psz);
-      if(!ca::str::ends_eat_ci(str, ".png"))
+      if(!::ca::str::ends_eat_ci(str, ".png"))
          return false;
       if(!m_dib.load_from_file(psz))
          return false;

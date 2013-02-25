@@ -40,7 +40,7 @@ namespace uinteraction
 
 
       class CLASS_DECL_ca frame : 
-         virtual public ca::signalizable,
+         virtual public ::ca::signalizable,
          virtual public ::ca::object
       {
       public:

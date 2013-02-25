@@ -35,7 +35,7 @@ namespace http
       return str.has_char();
    }
 
-   file & file::operator << (ca::file & file)
+   file & file::operator << (::ca::file & file)
       {
          uint_ptr nRead;
          primitive::memory mem;

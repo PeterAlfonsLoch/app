@@ -847,7 +847,7 @@ namespace libcompress
          return S_OK;
       }
 
-      ca::HRes decoder::Code(::ca::reader *inStream, ::ca::writer *outStream,
+      ::ca::HRes decoder::Code(::ca::reader *inStream, ::ca::writer *outStream,
          const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try
@@ -883,13 +883,13 @@ namespace libcompress
             _unpackSize = *outSize;
             return CodeReal(progress);
          }
-         catch(const ca::in_buffer_exception &e)  { return e.ErrorCode; }
+         catch(const ::ca::in_buffer_exception &e)  { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
          // CNewException is possible here. But probably CNewException is caused
          // by error in data stream.
       }
 
-      ca::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
+      ::ca::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

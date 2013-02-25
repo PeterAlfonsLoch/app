@@ -44,7 +44,7 @@ namespace user
       virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
 
 
-      string message_box(const char * pszMatter, gen::property_set & propertyset);
+      string message_box(const char * pszMatter, ::ca::property_set & propertyset);
       virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);
@@ -52,7 +52,7 @@ namespace user
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
       virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
-      virtual void data_on_after_change(gen::signal_object * pobj);
+      virtual void data_on_after_change(::ca::signal_object * pobj);
 
       class keyboard & keyboard();
 

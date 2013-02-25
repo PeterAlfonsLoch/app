@@ -47,12 +47,12 @@ namespace ca
       return true;
    }
 
-   ca::tree_item_data * tree_data::on_allocate_item()
+   ::ca::tree_item_data * tree_data::on_allocate_item()
    {
       return new tree_item_data;
    }
 
-   void tree_data::on_delete_item(ca::tree_item_data * pitem)
+   void tree_data::on_delete_item(::ca::tree_item_data * pitem)
    {
       delete pitem;
    }

@@ -65,7 +65,7 @@ public:
         );
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-   virtual void pre_translate_message(ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca::signal_object * pobj);
    protected:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 

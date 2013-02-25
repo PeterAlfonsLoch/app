@@ -100,7 +100,7 @@ namespace ca
 
    }
 
-   void section::on_signal(ca::signal_object * pobj)
+   void section::on_signal(::ca::signal_object * pobj)
    {
 
       SCAST_PTR(::ca::application_signal_object, papplicationsignal, pobj);

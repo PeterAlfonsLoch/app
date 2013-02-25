@@ -25,14 +25,14 @@ namespace ca
       void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam);
       string set(string & strUrl, const char * pszKey, var var);
       var & set(var & varUrl, const char * pszKey, var var);
-      ca::property & set(ca::property & propUrl, const char * pszKey, var var);
+      ::ca::property & set(::ca::property & propUrl, const char * pszKey, var var);
       string set_script(const char * pszUrl, const char * pszScript);
       string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
       string override_if_set_at_source(const char * pszDest, const char * pszSrc);
       string remove_key(const char * pszUrl, const char * pszKey);
       string remove(string & strUrl, const char * pszKey);
       var & remove(var & varUrl, const char * pszKey);
-      ca::property & remove(ca::property & propUrl, const char * pszKey);
+      ::ca::property & remove(::ca::property & propUrl, const char * pszKey);
       // Example: page?id=1
       string object_get_script(const char *); // page
       string object_get_query(const char *); // id=1

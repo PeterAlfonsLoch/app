@@ -129,7 +129,7 @@ void XfplayerViewLines::InstallMessageHandling(::ca::message::dispatch *pinterfa
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP,    pinterface, this, &XfplayerViewLines::OnLButtonUp);
 }
 
-void XfplayerViewLines::OnMouseMove(ca::signal_object * pobj)
+void XfplayerViewLines::OnMouseMove(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -141,7 +141,7 @@ void XfplayerViewLines::OnMouseMove(ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnLButtonDown(ca::signal_object * pobj)
+void XfplayerViewLines::OnLButtonDown(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -153,7 +153,7 @@ void XfplayerViewLines::OnLButtonDown(ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnLButtonUp(ca::signal_object * pobj)
+void XfplayerViewLines::OnLButtonUp(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -163,7 +163,7 @@ void XfplayerViewLines::OnLButtonUp(ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnTimer(ca::signal_object * pobj)
+void XfplayerViewLines::OnTimer(::ca::signal_object * pobj)
 {
 
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -174,7 +174,7 @@ void XfplayerViewLines::OnTimer(ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnSetCursor(ca::signal_object * pobj)
+void XfplayerViewLines::OnSetCursor(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {

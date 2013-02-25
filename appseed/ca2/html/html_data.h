@@ -9,8 +9,8 @@ namespace html
 
 
    class CLASS_DECL_ca2 data :
-      virtual public ca::signalizable,
-      public ca::data
+      virtual public ::ca::signalizable,
+      public ::ca::data
    {
    public:
 
@@ -97,8 +97,8 @@ namespace html
       string                     m_strPassword;
       string                     m_strLicense;
 
-      ca::property_set          m_propertyset;
-      ca::property_set          m_propset;
+      ::ca::property_set          m_propertyset;
+      ::ca::property_set          m_propset;
       string                     m_strSource;
 
       ::html_form *              m_pform;

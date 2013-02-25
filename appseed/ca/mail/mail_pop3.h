@@ -34,7 +34,7 @@ namespace mail
       string                        m_id;
       string                        m_strHeaders;
       string                        m_strBody;
-      ca::property_set             m_setHeaders;
+      ::ca::property_set             m_setHeaders;
 
       int32_t                           m_iHeaderLine;
 

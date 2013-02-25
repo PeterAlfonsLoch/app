@@ -50,15 +50,15 @@ namespace bergedge
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual void pre_translate_message(ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnApp2000)
 
-      virtual void message_handler(ca::signal_object * pobj);
+      virtual void message_handler(::ca::signal_object * pobj);
 
-      virtual void message_window_message_handler(ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca::signal_object * pobj);
 
 
    };

@@ -16,7 +16,7 @@ namespace xml
 
 
    class CLASS_DECL_ca edit_item :
-      public ca::byte_serializable
+      public ::ca::byte_serializable
    {
    public:
 

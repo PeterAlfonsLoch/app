@@ -20,10 +20,10 @@ namespace frame
 
    }
 
-   void SysMenuManager::relay_event(ca::signal_object * pobj)
+   void SysMenuManager::relay_event(::ca::signal_object * pobj)
    {
        
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
 
       if(m_pworkset->GetEventWindow() == NULL || pbase->m_pwnd != m_pworkset->GetEventWindow())
          return;
@@ -53,10 +53,10 @@ namespace frame
        }
    }
 
-   void SysMenuManager::message_handler(::user::interaction * pwnd, ca::signal_object * pobj)
+   void SysMenuManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_LBUTTONDBLCLK:

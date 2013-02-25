@@ -54,7 +54,7 @@ namespace libcompress
             {
                for (int32_t i = 0; i < numProps; i++)
                {
-                  const ca::property &prop = method.Props[i];
+                  const ::ca::property &prop = method.Props[i];
                   propIDs.add(atoi(prop.name()));
                   var &value = values[i];
                   value = prop.get_value();

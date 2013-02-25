@@ -99,10 +99,10 @@ namespace html
          return sqrt(dx * dx + dy * dy);
       }
 
-      void elemental::OnLButtonDown(ca::signal_object * pobj)
+      void elemental::OnLButtonDown(::ca::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
-         SCAST_PTR(ca::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(::ca::message::mouse, pmouse, phtml->m_psignal);
          if(has_link())
          {
             pmouse->m_bRet = true;
@@ -110,17 +110,17 @@ namespace html
          }
       }
 
-      void elemental::OnMouseMove(ca::signal_object * pobj)
+      void elemental::OnMouseMove(::ca::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
-         SCAST_PTR(ca::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(::ca::message::mouse, pmouse, phtml->m_psignal);
          if(has_link())
          {
             pmouse->m_ecursor = ::visual::cursor_hand;
          }
       }
 
-      void elemental::OnLButtonUp(ca::signal_object * pobj)
+      void elemental::OnLButtonUp(::ca::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(has_link())
@@ -1673,17 +1673,17 @@ namespace html
       return pelemental;
    }
 
-   void elemental::OnLButtonDown(ca::signal_object * pobj)
+   void elemental::OnLButtonDown(::ca::signal_object * pobj)
    {
       m_pimpl->OnLButtonDown(pobj);
    }
 
-   void elemental::OnMouseMove(ca::signal_object * pobj)
+   void elemental::OnMouseMove(::ca::signal_object * pobj)
    {
       m_pimpl->OnMouseMove(pobj);
    }
 
-   void elemental::OnLButtonUp(ca::signal_object * pobj)
+   void elemental::OnLButtonUp(::ca::signal_object * pobj)
    {
       m_pimpl->OnLButtonUp(pobj);
    }

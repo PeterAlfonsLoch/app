@@ -570,7 +570,7 @@ namespace fs
       }
    }
 
-   void list_interface::_001OnVScroll(ca::signal_object * pobj)
+   void list_interface::_001OnVScroll(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::scroll, pscroll, pobj)
       //m_iCreateImageListStep = pscroll->m_nPos;
@@ -578,7 +578,7 @@ namespace fs
       pobj->m_bRet = false;
    }
 
-   void list_interface::_001OnHScroll(ca::signal_object * pobj)
+   void list_interface::_001OnHScroll(::ca::signal_object * pobj)
    {
       pobj->m_bRet = false;
    }
@@ -611,7 +611,7 @@ namespace fs
       return NULL;
    }
 
-   void list_interface::_001OnFileRename(ca::signal_object * pobj)
+   void list_interface::_001OnFileRename(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       user::control * pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
@@ -623,7 +623,7 @@ namespace fs
       }
    }
 
-   void list_interface::_001OnUpdateFileRename(ca::signal_object * pobj)
+   void list_interface::_001OnUpdateFileRename(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       Range range;
@@ -634,7 +634,7 @@ namespace fs
       pobj->m_bRet = true;
    }
 
-   void list_interface::_001OnShowWindow(ca::signal_object * pobj)
+   void list_interface::_001OnShowWindow(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::show_window, pshow, pobj)
@@ -844,7 +844,7 @@ namespace fs
          item.m_iImage = System.user().shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
-            ca::international::utf8_to_unicode(item.m_strExtra),
+            ::ca::international::utf8_to_unicode(item.m_strExtra),
             _shell::IconNormal);
 
          m_iCreateImageListStep++;

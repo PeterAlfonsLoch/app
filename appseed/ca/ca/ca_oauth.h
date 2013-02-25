@@ -17,7 +17,7 @@ namespace ca
    } eOAuthHttpRequestType;
 
    typedef stringa oAuthKeyValueList;
-   typedef ca::property_set oAuthKeyValuePairs;
+   typedef ::ca::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_ca oauth :
       virtual public ::ca::object
@@ -47,8 +47,8 @@ namespace ca
 
        bool getOAuthHeader(const eOAuthHttpRequestType eType, /* in */
                            const string& rawUrl, /* in */
-                           ca::property_set & rawData, /* in */
-                           ca::property_set & headers, /* out */
+                           ::ca::property_set & rawData, /* in */
+                           ::ca::property_set & headers, /* out */
                            const bool includeOAuthVerifierPin = false /* in */ );
 
        bool extractOAuthTokenKeySecret( const string& requestTokenResponse /* in */ );

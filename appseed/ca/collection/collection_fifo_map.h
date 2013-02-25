@@ -8,7 +8,7 @@ namespace collection
 {
 
 
-   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ca::compare < KEY > >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::ca::compare < KEY > >
    class fifo_map :
       virtual public ::ca::object
    {
@@ -883,7 +883,7 @@ namespace collection
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::compare < string > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::compare < string > >
    class fifo_string_map :
       virtual public fifo_attrib_map < fifo_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -926,7 +926,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ca::strid_compare  >
+   template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ::ca::strid_compare  >
    class fifo_strid_map :
       virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -968,7 +968,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::compare < int32_t > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::compare < int32_t > >
    class fifo_int_map :
       virtual public fifo_attrib_map < fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >
    {

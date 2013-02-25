@@ -87,9 +87,9 @@ namespace filemanager
 
          }
 
-         void view::on_request_response(ca::signal_object * pobj)
+         void view::on_request_response(::ca::signal_object * pobj)
          {
-            SCAST_PTR(ca::http::signal, psignal, pobj);
+            SCAST_PTR(::ca::http::signal, psignal, pobj);
 
             string strResponse;
 
@@ -103,14 +103,14 @@ namespace filemanager
          void view::open_folder(int64_t iFolder)
          {
          
-            ca::http::signal * psignal = new ca::http::signal;
+            ::ca::http::signal * psignal = new ::ca::http::signal;
 
             (*psignal)()["request"] = "";
             psignal->m_strUrl.Format("http://file.veriwell.net/ifs/ls?id=%I64d", iFolder); 
 
             psignal->m_puser = &ApplicationUser;
 
-            ca::emit(get_app(), this, &view::on_request_response, &Application.http(), &ca::http::application::get, psignal);
+            ::ca::emit(get_app(), this, &view::on_request_response, &Application.http(), &::ca::http::application::get, psignal);
 
          }
 

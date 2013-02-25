@@ -165,7 +165,7 @@ namespace user
       return m_pcontrolEdit;
    }
 
-   void form_list::_001OnVScroll(ca::signal_object * pobj)
+   void form_list::_001OnVScroll(::ca::signal_object * pobj)
    {
       //SCAST_PTR(::ca::message::scroll, pscroll, pobj);
       pobj->previous();
@@ -179,7 +179,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnHScroll(ca::signal_object * pobj)
+   void form_list::_001OnHScroll(::ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -203,17 +203,17 @@ namespace user
       return false;
    }
 
-   void form_list::_001OnNotify(ca::signal_object * pobj)
+   void form_list::_001OnNotify(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void form_list::_001OnTimer(ca::signal_object * pobj)
+   void form_list::_001OnTimer(::ca::signal_object * pobj)
    {
       list::_001OnTimer(pobj);
    }
 
-   void form_list::_001OnMessageNotify(ca::signal_object * pobj)
+   void form_list::_001OnMessageNotify(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // linux na verdade revamp
@@ -311,7 +311,7 @@ namespace user
    }
 
 
-   void form_list::_001OnKeyDown(ca::signal_object * pobj)
+   void form_list::_001OnKeyDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
 
@@ -502,7 +502,7 @@ namespace user
       }
       try
       {
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }

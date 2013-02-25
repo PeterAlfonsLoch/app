@@ -33,11 +33,11 @@ namespace ca
    }
 
 
-   ca::property_set & signal_object::operator()()
+   ::ca::property_set & signal_object::operator()()
    {
       if(m_pset == NULL)
       {
-         m_pset = new ca::property_set(get_app());
+         m_pset = new ::ca::property_set(get_app());
       }
       return *m_pset;
    }
@@ -93,7 +93,7 @@ namespace ca
       }
    }
 
-   void signalizable::unregister_target(ca::signalizable * psignalizable)
+   void signalizable::unregister_target(::ca::signalizable * psignalizable)
    {
       for(int32_t i = 0; i < m_signalptra.get_size();)
       {
@@ -109,7 +109,7 @@ namespace ca
       }
    }
 
-   void signalizable::filter_target(ca::signalizable * psignalizable)
+   void signalizable::filter_target(::ca::signalizable * psignalizable)
    {
       for(int32_t i = 0; i < m_signalptra.get_size();)
       {

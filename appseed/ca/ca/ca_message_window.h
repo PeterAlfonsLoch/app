@@ -11,7 +11,7 @@ namespace ca
       virtual public ::ca::object
    {
    public:
-      virtual void message_window_message_handler(ca::signal_object * pobj) = 0;
+      virtual void message_window_message_handler(::ca::signal_object * pobj) = 0;
    };
 
    class CLASS_DECL_ca message_window_simple_callback :

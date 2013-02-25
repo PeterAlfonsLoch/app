@@ -18,7 +18,7 @@ namespace crypto
       virtual public ::ca::object
    {
    public:
-      virtual ca::HRes CryptoGetTextPassword2(int32_t *passwordIsDefined, string & password) = 0;
+      virtual ::ca::HRes CryptoGetTextPassword2(int32_t *passwordIsDefined, string & password) = 0;
    };
 
 } // namespace crypto

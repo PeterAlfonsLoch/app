@@ -182,7 +182,7 @@ namespace ca
 
 #endif
 
-#define DECLARE_NOUIASSERT() ca::CNoUIAssertHook _g_NoUIAssertHook;
+#define DECLARE_NOUIASSERT() ::ca::CNoUIAssertHook _g_NoUIAssertHook;
 
 #endif  // _NO_DEBUG_CRT
 
@@ -191,7 +191,7 @@ namespace ca
       CLASS_DECL_ca void __cdecl __trace(const wchar_t * pszFormat, ...);
       CLASS_DECL_ca void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
       CLASS_DECL_ca void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
-#define TRACENOTIMPL(funcname)  do { TRACE(ca::atlTraceNotImpl, 0, "ca: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
+#define TRACENOTIMPL(funcname)  do { TRACE(::ca::atlTraceNotImpl, 0, "ca: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
     
 

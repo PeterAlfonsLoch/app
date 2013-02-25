@@ -51,7 +51,7 @@ namespace ca
          void LoadStdProfileSettings(UINT nMaxMRU = ___MRU_COUNT);
 
 
-         string message_box(const char * pszMatter, ca::property_set & propertyset);
+         string message_box(const char * pszMatter, ::ca::property_set & propertyset);
 
 
       // Running Operations - to be done on a running user

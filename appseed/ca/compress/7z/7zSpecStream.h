@@ -27,7 +27,7 @@ namespace libcompress
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
 
-      ca::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
+      ::ca::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
    };
 
 } // namespace libcompress

@@ -22,7 +22,7 @@ void simple_edit_plain_text::install_message_handling(::ca::message::dispatch * 
    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::edit_plain_text::_001OnKeyUp);
 }
 
-void simple_edit_plain_text::_001OnShowWindow(ca::signal_object * pobj)
+void simple_edit_plain_text::_001OnShowWindow(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   SCAST_PTR(::ca::message::show_window, pshowwindow, pobj);

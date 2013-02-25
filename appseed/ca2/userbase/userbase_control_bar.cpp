@@ -218,7 +218,7 @@ namespace userbase
       VERIFY(SetTimer(nEvent, nTime, NULL));
    }
 
-   void control_bar::_001OnTimer(ca::signal_object * pobj)
+   void control_bar::_001OnTimer(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
@@ -266,7 +266,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // Default control bar processing
 
-   void control_bar::pre_translate_message(ca::signal_object * pobj)
+   void control_bar::pre_translate_message(::ca::signal_object * pobj)
    {
       ASSERT_VALID(this);
    //trans   ASSERT(get_handle() != NULL);
@@ -280,7 +280,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
 
@@ -325,14 +325,14 @@ namespace userbase
       // pbase->m_bRet = false;
    }
 
-   void control_bar::message_handler(ca::signal_object * pobj)
+   void control_bar::message_handler(::ca::signal_object * pobj)
    {
 
       (this->*m_pfnDispatchWindowProc)(pobj);
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -383,7 +383,7 @@ namespace userbase
       ::user::interaction::message_handler(pobj);
    }
 
-   void control_bar::_001OnHelpHitTest(ca::signal_object * pobj)
+   void control_bar::_001OnHelpHitTest(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::base, pbase, pobj)
@@ -391,7 +391,7 @@ namespace userbase
 
    }
 
-   void control_bar::_001OnWindowPosChanging(ca::signal_object * pobj)
+   void control_bar::_001OnWindowPosChanging(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
@@ -430,7 +430,7 @@ namespace userbase
       }*/
    }
 
-   void control_bar::_001OnCreate(ca::signal_object * pobj)
+   void control_bar::_001OnCreate(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -444,7 +444,7 @@ namespace userbase
       UpdateWindow();
    }
 
-   void control_bar::_001OnDestroy(ca::signal_object * pobj)
+   void control_bar::_001OnDestroy(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
@@ -466,7 +466,7 @@ namespace userbase
          return ::user::interaction::DestroyWindow();
    }
 
-   void control_bar::_001OnMouseActivate(ca::signal_object * pobj)
+   void control_bar::_001OnMouseActivate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse_activate, pmouseactivate, pobj)
       // call default when toolbar is not floating
@@ -555,7 +555,7 @@ namespace userbase
       DrawGripper(pdc, rectWindow);
    }
 
-   void control_bar::_001OnCtlColor(ca::signal_object * pobj)
+   void control_bar::_001OnCtlColor(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::ctl_color, pctlcolor, pobj)
       LRESULT lResult;
@@ -578,7 +578,7 @@ namespace userbase
       pctlcolor->m_bRet = true;
    }
 
-   void control_bar::_001OnLButtonDown(ca::signal_object * pobj)
+   void control_bar::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
@@ -596,7 +596,7 @@ namespace userbase
       }
    }
 
-   void control_bar::_001OnLButtonUp(ca::signal_object * pobj)
+   void control_bar::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
@@ -606,7 +606,7 @@ namespace userbase
       pmouse->previous();
    }
 
-   void control_bar::_001OnMouseMove(ca::signal_object * pobj)
+   void control_bar::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
@@ -616,13 +616,13 @@ namespace userbase
       pmouse->previous();
    }
 
-   void control_bar::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void control_bar::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       pmouse->previous();
    }
 
-   void control_bar::_001OnIdleUpdateCmdUI(ca::signal_object * pobj)
+   void control_bar::_001OnIdleUpdateCmdUI(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       // handle delay hide/show
@@ -651,7 +651,7 @@ namespace userbase
       pbase->set_lresult(0L);
    }
 
-   void control_bar::_001OnInitialUpdate(ca::signal_object * pobj)
+   void control_bar::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
@@ -703,7 +703,7 @@ namespace userbase
       return dwStyle; // return new style
    }
 
-   void control_bar::_001OnSizeParent(ca::signal_object * pobj)
+   void control_bar::_001OnSizeParent(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*)pbase->m_lparam;

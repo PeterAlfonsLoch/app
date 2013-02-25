@@ -245,7 +245,7 @@ namespace ca
 
          string strUrl(pszScriptUrl);
 
-         if(ca::str::begins(pszUrl, strUrl))
+         if(::ca::str::begins(pszUrl, strUrl))
          {
             pproxy->m_bDirect = true;
             return true;
@@ -284,7 +284,7 @@ namespace ca
          {
             pproxy->m_bDirect = true;
          }
-         else if(ca::str::begins_eat_ci(var, "PROXY"))
+         else if(::ca::str::begins_eat_ci(var, "PROXY"))
          {
             var.trim();
             stringa stra;
@@ -449,7 +449,7 @@ namespace ca
                      ::sockets::socket_handler & handler,
                      const char * pszHost,
                      const char * pszProtocol,
-                     ca::property_set & set,
+                     ::ca::property_set & set,
                      ::fontopus::user * puser,
                      const char * pszVersion)
       {
@@ -485,7 +485,7 @@ namespace ca
             strUrl = System.url().set_script(strUrl, strScript);
          }
 
-         ca::property_set setQuery(get_app());
+         ::ca::property_set setQuery(get_app());
 
          setQuery.parse_url_query(System.url().get_query(strUrl));
 
@@ -567,7 +567,7 @@ namespace ca
             }*/
             delete psession;
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -624,9 +624,9 @@ namespace ca
                      ::sockets::socket_handler & handler,
                      ::sockets::http_session * psession,
                      const char * pszRequest,
-                     ca::property_set & post,
-                     ca::property_set & headers,
-                     ca::property_set & set,
+                     ::ca::property_set & post,
+                     ::ca::property_set & headers,
+                     ::ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -707,7 +707,7 @@ retry:
 
 
 
-         ca::property_set setQuery(get_app());
+         ::ca::property_set setQuery(get_app());
 
          setQuery.parse_url_query(System.url().get_query(strUrl));
 
@@ -912,10 +912,10 @@ retry:
                else if(iStatusCode >= 300 && iStatusCode <= 399)
                {
                   string strCa2Realm = psession->outheader("ca2realm-x");
-                  if(ca::str::begins_ci(strCa2Realm, "not licensed: "))
+                  if(::ca::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
                      uint32_t dwTimeTelmo2 = get_tick_count();
-                     TRACE0("Not Licensed Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                     TRACE0("Not Licensed Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -929,7 +929,7 @@ retry:
             }
 
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          }
          catch(...)
@@ -951,11 +951,11 @@ retry:
       ::sockets::http_session * system::get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser)
       {
 
-         ca::property_set post(get_app());
+         ::ca::property_set post(get_app());
 
-         ca::property_set headers(get_app());
+         ::ca::property_set headers(get_app());
 
-         ca::property_set set(get_app());
+         ::ca::property_set set(get_app());
 
          psession = request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
 
@@ -1075,9 +1075,9 @@ retry:
       ::sockets::http_client_socket * system::get(
                      ::sockets::socket_handler & handler,
                      const char * pszUrl,
-                     ca::property_set & post,
-                     ca::property_set & headers,
-                     ca::property_set & set,
+                     ::ca::property_set & post,
+                     ::ca::property_set & headers,
+                     ::ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1119,7 +1119,7 @@ retry:
             strUrl = System.url().set_script(strUrl, strScript);
          }
 
-         ca::property_set setQuery(get_app());
+         ::ca::property_set setQuery(get_app());
 
          setQuery.parse_url_query(System.url().get_query(strUrl));
 
@@ -1262,7 +1262,7 @@ retry:
             }
             delete psocket;
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -1342,10 +1342,10 @@ retry:
             else if(iStatusCode >= 300 && iStatusCode <= 399)
             {
                string strCa2Realm = psocket->outheader("ca2realm-x");
-               if(ca::str::begins_ci(strCa2Realm, "not licensed: "))
+               if(::ca::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   uint32_t dwTimeTelmo2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                  TRACE0("Not Licensed Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -1359,7 +1359,7 @@ retry:
          }
 
          uint32_t dwTimeTelmo2 = get_tick_count();
-         TRACE0("Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          return psocket;
 
@@ -1385,7 +1385,7 @@ retry:
 
 
 
-      void system::get(ca::signal_object * pobj)
+      void system::get(::ca::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
          if(psignal == NULL)
@@ -1408,7 +1408,7 @@ retry:
             psignal->m_memoryRet.allocate(0);
          }
          psignal->m_setHeaders = psocket->outheaders();
-         ca::del(psocket);
+         ::ca::del(psocket);
          psignal->m_bRet = true;
          return;
       }
@@ -1417,9 +1417,9 @@ retry:
       bool system::download(
                      const char * pszUrl,
                      const char * pszFile,
-                     ca::property_set & post,
-                     ca::property_set & headers,
-                     ca::property_set & set,
+                     ::ca::property_set & post,
+                     ::ca::property_set & headers,
+                     ::ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion)
@@ -1429,16 +1429,16 @@ retry:
          if(psocket == NULL)
             return false;
 
-         ca::filesp spfile(get_app());
+         ::ca::filesp spfile(get_app());
          if(!spfile->open(pszFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_read_write
             | ::ca::file::defer_create_directory))
          {
-            ca::del(psocket);
+            ::ca::del(psocket);
             return false;
          }
          spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
-         ca::del(psocket);
+         ::ca::del(psocket);
          return true;
       }
 
@@ -1446,14 +1446,14 @@ retry:
                      const char * pszUrl,
                      const char * pszFile,
                      const char * pszPost,
-                     ca::property_set & headers,
+                     ::ca::property_set & headers,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion)
       {
-         ca::property_set post;
+         ::ca::property_set post;
          post.parse_url_query(pszPost);
-         ca::property_set set;
+         ::ca::property_set set;
          if(!download(pszUrl, pszFile, post, headers, set, pcookies, puser, pszVersion))
             return false;
          return true;
@@ -1461,9 +1461,9 @@ retry:
 
       bool system::download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser)
       {
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set;
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set;
 
          if(puser == NULL)
          {
@@ -1481,9 +1481,9 @@ retry:
       bool system::get(
                      const char * pszUrl,
                      primitive::memory_base & memory,
-                     ca::property_set & post,
-                     ca::property_set & headers,
-                     ca::property_set & set,
+                     ::ca::property_set & post,
+                     ::ca::property_set & headers,
+                     ::ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1496,16 +1496,16 @@ retry:
          memory.allocate(psocket->GetContentLength());
          memcpy(memory.get_data(), psocket->GetDataPtr(), memory.get_size());
          headers = psocket->outheaders();
-         ca::del(psocket);
+         ::ca::del(psocket);
          return true;
       }
 
       bool system::get(
                      const char * pszUrl,
                      string & str,
-                     ca::property_set & post,
-                     ca::property_set & headers,
-                     ca::property_set & set,
+                     ::ca::property_set & post,
+                     ::ca::property_set & headers,
+                     ::ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1517,7 +1517,7 @@ retry:
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetDataLength());
          headers = psocket->outheaders();
-         ca::del(psocket);
+         ::ca::del(psocket);
          return true;
       }
 
@@ -1534,9 +1534,9 @@ retry:
 
       bool system::get(const char * pszUrl, string & str, ::fontopus::user * puser)
       {
-         ca::property_set setPost;
-         ca::property_set setHeaders;
-         ca::property_set set;
+         ::ca::property_set setPost;
+         ::ca::property_set setHeaders;
+         ::ca::property_set set;
          return get(pszUrl, str, setPost, setHeaders, set, NULL, puser);
       }
 
@@ -1551,9 +1551,9 @@ retry:
       bool system::exists(const char * pszUrl, ::fontopus::user * puser)
       {
          ::sockets::socket_handler handler(get_app());
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set;
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set;
          set["only_headers"] = true;
          ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
          if(psocket == NULL)
@@ -1561,7 +1561,7 @@ retry:
          int32_t iStatusCode = psocket->outattr("http_status_code");
          try
          {
-            ca::del(psocket);
+            ::ca::del(psocket);
          }
          catch(...)
          {
@@ -1574,9 +1574,9 @@ retry:
                      const char * pszRequest,
                      const char * pszUrl,
                      string & str,
-                     ca::property_set & post,
-                     ca::property_set & headers,
-                     ca::property_set & set,
+                     ::ca::property_set & post,
+                     ::ca::property_set & headers,
+                     ::ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1589,7 +1589,7 @@ retry:
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
-         ca::del(psocket);
+         ::ca::del(psocket);
          return true;
       }
 
@@ -1607,9 +1607,9 @@ retry:
 
       bool system::request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser)
       {
-         ca::property_set setPost;
-         ca::property_set setHeaders;
-         ca::property_set set;
+         ::ca::property_set setPost;
+         ::ca::property_set setHeaders;
+         ::ca::property_set set;
          return request(pszRequest, pszUrl, str, setPost, setHeaders, set, NULL, puser);
       }
 
@@ -1705,16 +1705,16 @@ retry:
          return put(pszUrl, &file, puser);
       }
 
-      bool system::put(const char * pszUrl, ca::file * pfile, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
             puser = &ApplicationUser;
          }
          string str;
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set;
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set;
          set["put"] = pfile;
          return System.http().get(pszUrl, str, post, headers, set, NULL, puser);
       }
@@ -1730,7 +1730,7 @@ retry:
       }
 
 
-      bool system::put(string & strResponse, const char * pszUrl, ca::file * pfile, ::fontopus::user * puser)
+      bool system::put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
       {
 
          if(puser == NULL)
@@ -1738,9 +1738,9 @@ retry:
             puser = &ApplicationUser;
          }
 
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set;
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set;
          set["put"] = pfile;
 
          return get(pszUrl, strResponse, post, headers, set, NULL, puser);

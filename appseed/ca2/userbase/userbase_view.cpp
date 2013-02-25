@@ -7,7 +7,7 @@
 
 // like ON_MESSAGE but no return value
 /*#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ca::Sig_vv, \
+   { message, 0, 0, 0, ::ca::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
 // IMPLEMENT_DYNAMIC(::view, ::user::interaction)
 
@@ -148,7 +148,7 @@ namespace userbase
    // ::view drawing support
 
 
-   /*void view::_001OnInitialUpdate(ca::signal_object * pobj)
+   /*void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       on_update(NULL, 0, NULL);        // initial update
    }*/
@@ -187,7 +187,7 @@ namespace userbase
    {
    }
 
-   void view::_001OnMouseActivate(ca::signal_object * pobj)
+   void view::_001OnMouseActivate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
@@ -307,22 +307,22 @@ namespace userbase
 
 
 
-   void view::_001OnUpdateSplitCmd(ca::signal_object * pobj)
+   void view::_001OnUpdateSplitCmd(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnSplitCmd(ca::signal_object * pobj)
+   void view::_001OnSplitCmd(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnUpdateNextPaneMenu(ca::signal_object * pobj)
+   void view::_001OnUpdateNextPaneMenu(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnNextPaneCmd(ca::signal_object * pobj)
+   void view::_001OnNextPaneCmd(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -359,13 +359,13 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view's OnPrintPreview.  Here to force linkage
 
-   void view::_001OnFilePrintPreview(ca::signal_object * pobj)
+   void view::_001OnFilePrintPreview(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnFilePrint(ca::signal_object * pobj)
+   void view::_001OnFilePrint(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -446,7 +446,7 @@ namespace userbase
    //}
 
 
-   void view::_001OnRButtonDown(ca::signal_object * pobj)
+   void view::_001OnRButtonDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
@@ -454,7 +454,7 @@ namespace userbase
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }
 
-   void view::_001OnLButtonDown(ca::signal_object * pobj)
+   void view::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
@@ -462,7 +462,7 @@ namespace userbase
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }
 
-   void view::_001OnMButtonDown(ca::signal_object * pobj)
+   void view::_001OnMButtonDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);

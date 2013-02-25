@@ -89,7 +89,7 @@ namespace ca
          if(m_pset == NULL)
          {
             
-            m_pset = new ca::property_set(get_app());
+            m_pset = new ::ca::property_set(get_app());
 
          }
 
@@ -159,7 +159,7 @@ namespace ca
    }
 
 
-   ca::property & object::oprop(const char * psz)
+   ::ca::property & object::oprop(const char * psz)
    {
 
       return propset()[psz];
@@ -167,7 +167,7 @@ namespace ca
    }
 
 
-   ca::property & object::oprop(const char * psz) const 
+   ::ca::property & object::oprop(const char * psz) const 
    {
 
       return const_cast < object * > (this)->propset()[psz];
@@ -175,13 +175,13 @@ namespace ca
    }
 
 
-   ca::property_set & object::propset()
+   ::ca::property_set & object::propset()
    {
 
       if(m_pset == NULL)
       {
 
-         m_pset = new ca::property_set(get_app());
+         m_pset = new ::ca::property_set(get_app());
 
       }
 

@@ -84,14 +84,14 @@ namespace userbase
    }
    */
 
-      void form_view::_001OnCreate(ca::signal_object * pobj)
+      void form_view::_001OnCreate(::ca::signal_object * pobj)
       {
          pobj->previous();
      }
 
 
    /*
-     void form_view::_001OnLButtonDown(ca::signal_object * pobj)
+     void form_view::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       point pt;
@@ -107,7 +107,7 @@ namespace userbase
       }
    }
 
-   void form_view::_001OnMouseMove(ca::signal_object * pobj)
+   void form_view::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       point pt;
@@ -123,7 +123,7 @@ namespace userbase
       }
    }
 
-   void form_view::_001OnLButtonUp(ca::signal_object * pobj)
+   void form_view::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       point pt;

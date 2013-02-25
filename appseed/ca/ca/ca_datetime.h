@@ -27,7 +27,7 @@ namespace ca
       {
       public:
          international(::ca::application * papp);
-         void parse_str(const char * psz, ca::property_set & set);
+         void parse_str(const char * psz, ::ca::property_set & set);
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
          string get_local_date_time(const ::datetime::time & time);
@@ -44,8 +44,8 @@ namespace ca
       };
 
 
-      class ca::datetime::international m_international;
-      class ca::datetime::str m_str;
+      class ::ca::datetime::international m_international;
+      class ::ca::datetime::str m_str;
 
 
       datetime(::ca::application * papp);

@@ -11,7 +11,7 @@ namespace libcompress
 
 
       method_id Id;
-      ca::property_set Props;
+      ::ca::property_set Props;
 
 
    };

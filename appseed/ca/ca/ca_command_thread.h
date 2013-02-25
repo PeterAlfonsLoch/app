@@ -48,7 +48,7 @@ namespace ca
       virtual bool is_thread();
 
       virtual void consolidate(const ::ca::create_context * pcreatecontext);
-      virtual void consolidate(ca::command_thread * pthread);
+      virtual void consolidate(::ca::command_thread * pthread);
 
       virtual var & property(const char * pszKey);
       virtual bool has_property(const char * pszKey);

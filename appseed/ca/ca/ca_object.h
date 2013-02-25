@@ -42,7 +42,7 @@ namespace ca
    public:
 
 
-      ca::property_set *     m_pset;
+      ::ca::property_set *     m_pset;
 
 
       object();
@@ -55,9 +55,9 @@ namespace ca
       bool IsSerializable() const;
 
 
-      virtual ca::property & oprop(const char * psz);
-      virtual ca::property & oprop(const char * psz) const;
-      virtual ca::property_set & propset();
+      virtual ::ca::property & oprop(const char * psz);
+      virtual ::ca::property & oprop(const char * psz) const;
+      virtual ::ca::property_set & propset();
 
 
       virtual ::visual::icon * set_icon(::visual::icon * picon, bool bBigIcon);

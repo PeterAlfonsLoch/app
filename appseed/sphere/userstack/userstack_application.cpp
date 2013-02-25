@@ -103,7 +103,7 @@ namespace userstack
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    ::ca::application * application::get_app() const
@@ -187,7 +187,7 @@ namespace userstack
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "ca::fontopus::message_wnd::application::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::application::");
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
 #else
@@ -220,11 +220,11 @@ namespace userstack
          alt1:
          if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
-            if(ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
+            if(::ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
             {
                string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-               if(ca::str::begins_eat(strCommand, "ca2prompt\r")
-               || ca::str::begins_eat(strCommand, "ca2prompt\n"))
+               if(::ca::str::begins_eat(strCommand, "ca2prompt\r")
+               || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
                   command().add_fork_uri(strCommand);

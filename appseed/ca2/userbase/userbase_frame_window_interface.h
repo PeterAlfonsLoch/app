@@ -75,7 +75,7 @@ namespace userbase
 
       virtual void on_delete(::ca::ca * pca);
 
-      void data_on_after_change(ca::signal_object * pobj);
+      void data_on_after_change(::ca::signal_object * pobj);
 
 
    };

@@ -72,7 +72,7 @@ namespace user
 {
    
    class CLASS_DECL_ca draw_context :
-      virtual public ca::simple_chain < draw_context >
+      virtual public ::ca::simple_chain < draw_context >
    {
    public:
 

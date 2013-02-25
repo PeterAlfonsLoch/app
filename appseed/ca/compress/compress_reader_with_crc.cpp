@@ -31,7 +31,7 @@ namespace libcompress
   return realProcessedSize;
 }
 
-file_position input_stream_with_crc::seek(file_offset offset, ca::e_seek seekOrigin)
+file_position input_stream_with_crc::seek(file_offset offset, ::ca::e_seek seekOrigin)
 {
   if (seekOrigin != ::ca::seek_begin || offset != 0)
     throw E_FAIL;

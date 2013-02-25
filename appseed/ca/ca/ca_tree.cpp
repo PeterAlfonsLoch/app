@@ -245,7 +245,7 @@ namespace ca
          return false;
       m_pitem->m_dwState |= ::ca::tree_item_state_expandable;
       m_pitem->m_dwState |= ::ca::tree_item_state_expanded;
-      ca::simple_tree_item_data * pitemdata = new ca::simple_tree_item_data();
+      ::ca::simple_tree_item_data * pitemdata = new ::ca::simple_tree_item_data();
       m_pitem->m_pitemdata = pitemdata;
       pitemdata->m_str = "tree";
       return true;
@@ -437,14 +437,14 @@ namespace ca
       return true;
    }
 
-   ca::tree_item * tree::allocate_item()
+   ::ca::tree_item * tree::allocate_item()
    {
-      ca::tree_item * pitemNew = new tree_item;
+      ::ca::tree_item * pitemNew = new tree_item;
       pitemNew->m_ptree = this;
       return pitemNew;
    }
 
-   void tree::delete_item(ca::tree_item * pitem)
+   void tree::delete_item(::ca::tree_item * pitem)
    {
       delete pitem;
    }

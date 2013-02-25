@@ -81,7 +81,7 @@ bool simple_frame_window::IsFullScreen()
 
 
 
-void simple_frame_window::_001OnDestroy(ca::signal_object * pobj)
+void simple_frame_window::_001OnDestroy(::ca::signal_object * pobj)
 {
    try
    {
@@ -133,7 +133,7 @@ void simple_frame_window::_001OnDestroy(ca::signal_object * pobj)
 }
 
 
-void simple_frame_window::_001OnCreate(ca::signal_object * pobj)
+void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 {
 
    SCAST_PTR(::ca::message::create, pcreate, pobj)
@@ -242,7 +242,7 @@ void simple_frame_window::_001OnCreate(ca::signal_object * pobj)
 
 }
 
-void simple_frame_window::_001OnSize(ca::signal_object * pobj)
+void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if((m_workset.GetMovingManager() == NULL ||
@@ -259,7 +259,7 @@ void simple_frame_window::_001OnSize(ca::signal_object * pobj)
 
 }
 
-void simple_frame_window::_001OnMove(ca::signal_object * pobj)
+void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if((m_workset.GetMovingManager() == NULL ||
@@ -330,10 +330,10 @@ void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT use
 //      pview->OnActivateFrame(WA_INACTIVE, (::userbase::frame_window *) pframe);
 }
 
-void simple_frame_window::_001OnGetMinMaxInfo(ca::signal_object * pobj)
+void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam;
    if (IsFullScreen())
    {
@@ -439,19 +439,19 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 }
 
 
-void simple_frame_window::_001OnViewFullScreen(ca::signal_object * pobj)
+void simple_frame_window::_001OnViewFullScreen(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    ToggleFullScreen();
 }
 
-void simple_frame_window::_001OnMouseMove(ca::signal_object * pobj)
+void simple_frame_window::_001OnMouseMove(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 }
 
-void simple_frame_window::_001OnUpdateViewFullScreen(ca::signal_object * pobj)
+void simple_frame_window::_001OnUpdateViewFullScreen(::ca::signal_object * pobj)
 {
    SCAST_PTR(base_cmd_ui, pcmdui, pobj)
    pcmdui->m_pcmdui->Enable();
@@ -469,9 +469,9 @@ bool simple_frame_window::_001CanEnterScreenSaver()
    return true;
 }
 
-void simple_frame_window::_001OnSysCommand(ca::signal_object * pobj)
+void simple_frame_window::_001OnSysCommand(::ca::signal_object * pobj)
 {
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
 
    if(pbase->m_wparam == SC_SCREENSAVE)
    {
@@ -508,13 +508,13 @@ void simple_frame_window::_001OnSysCommand(ca::signal_object * pobj)
 }
 
 
-void simple_frame_window::_001OnToggleCustomFrame(ca::signal_object * pobj)
+void simple_frame_window::_001OnToggleCustomFrame(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    SetCustomFrame(!GetCustomFrame());
 }
 
-void simple_frame_window::_001OnUpdateToggleCustomFrame(ca::signal_object * pobj)
+void simple_frame_window::_001OnUpdateToggleCustomFrame(::ca::signal_object * pobj)
 {
    SCAST_PTR(base_cmd_ui, pcmdui, pobj)
    pcmdui->m_pcmdui->Enable();
@@ -553,7 +553,7 @@ bool simple_frame_window::GetCustomFrame()
    return m_bWindowFrame;
 }
 
-void simple_frame_window::_001OnClose(ca::signal_object * pobj)
+void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
 {
    if(m_iModalCount > 0)
    {
@@ -652,7 +652,7 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
 
 #endif
 
-void simple_frame_window::_001OnNcActivate(ca::signal_object * pobj)
+void simple_frame_window::_001OnNcActivate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::nc_activate, pncactivate, pobj)
    // stay active if WF_STAYACTIVE bit is on
@@ -741,7 +741,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
    if (lpszMenuName != NULL)
    {
       // load in a menu that will get destroyed when ::ca::window gets destroyed
-      HINSTANCE hInst = ca::FindResourceHandle(lpszMenuName, RT_MENU);
+      HINSTANCE hInst = ::ca::FindResourceHandle(lpszMenuName, RT_MENU);
       if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
       {
          TRACE0("Warning: failed to load menu for ::userbase::frame_window.\n");
@@ -766,21 +766,21 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 }*/
 
 
-static const char gen_OldWndProc[] = "ca::OldWndProc423";
+static const char gen_OldWndProc[] = "::ca::OldWndProc423";
 
 
 
-void simple_frame_window::_001OnDdeInitiate(ca::signal_object * pobj)
+void simple_frame_window::_001OnDdeInitiate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj)
    pbase->set_lresult(DefWindowProc((uint32_t) pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
 
-void simple_frame_window::pre_translate_message(ca::signal_object * pobj)
+void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_KEYUP)
    {
       if(pbase->m_wparam == VK_RETURN)
@@ -847,8 +847,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
 {
-   if(System.savings().is_trying_to_save(ca::resource_processing)
-   || System.savings().is_trying_to_save(ca::resource_translucent_background))
+   if(System.savings().is_trying_to_save(::ca::resource_processing)
+   || System.savings().is_trying_to_save(::ca::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -873,9 +873,9 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
    }
    else
 #endif
-   if(!Session.savings().is_trying_to_save(ca::resource_processing)
-   && !Session.savings().is_trying_to_save(ca::resource_display_bandwidth)
-   && !Session.savings().is_trying_to_save(ca::resource_memory))
+   if(!Session.savings().is_trying_to_save(::ca::resource_processing)
+   && !Session.savings().is_trying_to_save(::ca::resource_display_bandwidth)
+   && !Session.savings().is_trying_to_save(::ca::resource_memory))
    //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
       ::userbase::frame_window::_000OnDraw(pdc);
@@ -897,12 +897,12 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if(System.savings().is_trying_to_save(ca::resource_translucent_background))
+      if(System.savings().is_trying_to_save(::ca::resource_translucent_background))
       {
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
-      else if(System.savings().is_trying_to_save(ca::resource_processing)
-      || System.savings().is_trying_to_save(ca::resource_blur_background))
+      else if(System.savings().is_trying_to_save(::ca::resource_processing)
+      || System.savings().is_trying_to_save(::ca::resource_blur_background))
       {
          imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
       }
@@ -1017,9 +1017,9 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
 }
 
 
-void simple_frame_window::_001OnUser184(ca::signal_object * pobj)
+void simple_frame_window::_001OnUser184(::ca::signal_object * pobj)
 {
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_wparam == 0 &&
       pbase->m_lparam == 0)
    {

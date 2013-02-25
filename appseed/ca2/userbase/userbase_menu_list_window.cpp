@@ -51,13 +51,13 @@ namespace userbase
    // // BEGIN_MESSAGE_MAP(menu_list_window, ::user::interaction)
    // // END_MESSAGE_MAP()
 
-   void menu_list_window::_001OnCreate(ca::signal_object * pobj)
+   void menu_list_window::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_pschema            = &::userbase::GetUfeSchema(get_app())->m_menu;
    }
 
-   void menu_list_window::_001OnDestroy(ca::signal_object * pobj)
+   void menu_list_window::_001OnDestroy(::ca::signal_object * pobj)
    {
       pobj->m_bRet = false;
    }
@@ -196,7 +196,7 @@ namespace userbase
 
    }
 
-   void menu_list_window::_001OnTimer(ca::signal_object * pobj)
+   void menu_list_window::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)

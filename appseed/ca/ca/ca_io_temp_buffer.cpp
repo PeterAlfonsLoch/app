@@ -88,7 +88,7 @@ namespace ca
       if (_tempFileCreated)
       {
          ::ca::filesp inFile(get_app());
-         if (!inFile->open(_tempFileName, ca::file::mode_read | ca::file::type_binary))
+         if (!inFile->open(_tempFileName, ::ca::file::mode_read | ::ca::file::type_binary))
             return E_FAIL;
          while (size < _size)
          {

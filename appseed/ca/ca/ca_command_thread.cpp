@@ -139,7 +139,7 @@ namespace ca
       m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
    }
 
-   void command_thread::consolidate(ca::command_thread * pthread)
+   void command_thread::consolidate(::ca::command_thread * pthread)
    {
 
       if(pthread == NULL || pthread == this)

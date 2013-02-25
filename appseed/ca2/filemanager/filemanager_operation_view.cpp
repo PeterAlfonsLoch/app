@@ -14,7 +14,7 @@ file_manager_operation_view::~file_manager_operation_view()
 }
 
 
-void file_manager_operation_view::_001OnCreate(ca::signal_object * pobj)
+void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
 
@@ -58,7 +58,7 @@ file_manager_operation_document * file_manager_operation_view::get_document()
    return dynamic_cast < file_manager_operation_document * > (::view::get_document());
 }
 
-void file_manager_operation_view::_001OnMainPostMessage(ca::signal_object * pobj)
+void file_manager_operation_view::_001OnMainPostMessage(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj)
    if(pbase->m_wparam == MessageMainPostFileOperation)
@@ -73,7 +73,7 @@ void file_manager_operation_view::_001OnMainPostMessage(ca::signal_object * pobj
    }
 }
 
-void file_manager_operation_view::_001OnDestroy(ca::signal_object *pobj)
+void file_manager_operation_view::_001OnDestroy(::ca::signal_object *pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }

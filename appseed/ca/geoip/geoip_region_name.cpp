@@ -1587,7 +1587,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Atakora";
       break;
       case 2:
-      name = "gen_antique";
+      name = "ca_antique";
       break;
       case 3:
       name = "Borgou";
@@ -1608,7 +1608,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Atakora";
       break;
       case 9:
-      name = "gen_anyique";
+      name = "ca_anyique";
       break;
       case 10:
       name = "Borgou";
@@ -5255,7 +5255,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
   if (strcmp(country_code,"HN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "gen_antida";
+      name = "ca_antida";
       break;
       case 2:
       name = "Choluteca";

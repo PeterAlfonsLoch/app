@@ -301,7 +301,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnLButtonDblClk(ca::signal_object * pobj)
+         void list_view::_001OnLButtonDblClk(::ca::signal_object * pobj)
          {
             SCAST_PTR(::ca::message::mouse, pmouse, pobj)
                index iItem;
@@ -457,7 +457,7 @@ namespace filemanager
             return 0;
          }
 
-         void list_view::_001OnTimer(ca::signal_object * pobj)
+         void list_view::_001OnTimer(::ca::signal_object * pobj)
          {
             SCAST_PTR(::ca::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)
@@ -601,7 +601,7 @@ namespace filemanager
             m_iDisplayItemCount  = -1;
          }
 
-         void list_view::_001OnSize(ca::signal_object * pobj)
+         void list_view::_001OnSize(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
@@ -628,7 +628,7 @@ namespace filemanager
          {
          }*/
 
-         void list_view::_001OnFillTaskResponse(ca::signal_object * pobj)
+         void list_view::_001OnFillTaskResponse(::ca::signal_object * pobj)
          {
             SCAST_PTR(::ca::message::base, pbase, pobj)
                m_bKickActive = true;
@@ -705,7 +705,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnContextMenu(ca::signal_object * pobj)
+         void list_view::_001OnContextMenu(::ca::signal_object * pobj)
          {
 
             SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
@@ -741,7 +741,7 @@ namespace filemanager
             }*/
          }
 
-         /*void list_view::_001OnAlbumExecutePlay(ca::signal_object * pobj)
+         /*void list_view::_001OnAlbumExecutePlay(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             Range range;
@@ -768,7 +768,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnUpdateAlbumExecutePlay(ca::signal_object * pobj)
+         void list_view::_001OnUpdateAlbumExecutePlay(::ca::signal_object * pobj)
          {
             SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
                Range range;
@@ -777,22 +777,22 @@ namespace filemanager
             pupdatecmdui->m_bRet = true;
          }*/
 
-         void list_view::_001OnExecutePrevious(ca::signal_object * pobj)
+         void list_view::_001OnExecutePrevious(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnUpdateExecutePrevious(ca::signal_object * pobj)
+         void list_view::_001OnUpdateExecutePrevious(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnExecuteNext(ca::signal_object * pobj)
+         void list_view::_001OnExecuteNext(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnUpdateExecuteNext(ca::signal_object * pobj)
+         void list_view::_001OnUpdateExecuteNext(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
@@ -917,7 +917,7 @@ namespace filemanager
                m_etype == ItemTypeArtist;
          }
 
-         void list_view::_001OnEraseBkgnd(ca::signal_object * pobj)
+         void list_view::_001OnEraseBkgnd(::ca::signal_object * pobj)
          {
             SCAST_PTR(::ca::message::erase_bkgnd, perasebkgnd, pobj)
                perasebkgnd->m_bRet = true;

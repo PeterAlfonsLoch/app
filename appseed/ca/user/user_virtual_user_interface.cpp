@@ -26,7 +26,7 @@ virtual_user_interface::virtual_user_interface(::ca::application * papp) :
 
 virtual_user_interface::~virtual_user_interface()
 {
-   System.remove(this);
+   System.::ca::thread::remove(this);
 }
 
 ::ca::graphics * virtual_user_interface::GetDC()
@@ -168,7 +168,7 @@ bool virtual_user_interface::create_message_window()
    {
       /*guie_message_wnd * pwnd = new guie_message_wnd(get_app());
       pwnd->m_pguieForward = this;
-      string strName = "ca::fontopus::guie_message_wnd::";
+      string strName = "::ca::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).name();
       if(!pwnd->::ca::window::create(NULL, strName, 0,
       rect(0, 0, 0, 0), ::ca::window::from_handle(HWND_MESSAGE), NULL))
@@ -1149,9 +1149,9 @@ bool virtual_user_interface::DestroyWindow()
 }
 
 
-void virtual_user_interface::message_handler(ca::signal_object * pobj)
+void virtual_user_interface::message_handler(::ca::signal_object * pobj)
 {
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    //LRESULT lresult = 0;
    if(m_pguie != NULL)
    {
@@ -1366,13 +1366,13 @@ void virtual_user_interface::_001WindowRestore()
    ::user::interaction::_001WindowRestore();
 }
 
-void virtual_user_interface::_001OnDestroy(ca::signal_object * pobj)
+void virtual_user_interface::_001OnDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void virtual_user_interface::_001OnNcDestroy(ca::signal_object * pobj)
+void virtual_user_interface::_001OnNcDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 
@@ -1440,12 +1440,12 @@ void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wPa
 
 }
 
-void virtual_user_interface::_001OnMove(ca::signal_object * pobj)
+void virtual_user_interface::_001OnMove(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }
 
-void virtual_user_interface::_001OnSize(ca::signal_object * pobj)
+void virtual_user_interface::_001OnSize(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if(m_pguie != NULL)

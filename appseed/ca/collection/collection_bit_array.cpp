@@ -33,7 +33,7 @@ void bit_array::set_size(int32_t iBitCount, bool bSet)
 //   int32_t iOldDataCount    = m_iDataCount;
    int32_t iOldBitCount     = m_iBitCount;
    m_iBitCount          = iBitCount;
-   m_iDataCount         = ca::math::ceil_div(m_iBitCount, (int32_t) 8 * sizeof(int32_t));
+   m_iDataCount         = ::ca::math::ceil_div(m_iBitCount, (int32_t) 8 * sizeof(int32_t));
    if(m_iDataCount > 0)
    {
       m_pdata              = new int32_t[m_iDataCount];
@@ -41,16 +41,16 @@ void bit_array::set_size(int32_t iBitCount, bool bSet)
       {
          if(int_ptr(pdataOld) == 1)
          {
-            ca::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(int32_t) - 1);
+            ::ca::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(int32_t) - 1);
          }
          else if(pdataOld != NULL)
          {
-            ca::bit::int_aligned_copy(m_pdata, 0, pdataOld, 0, iOldBitCount - 1);
+            ::ca::bit::int_aligned_copy(m_pdata, 0, pdataOld, 0, iOldBitCount - 1);
             delete [] pdataOld;
          }
          if(iOldBitCount < m_iBitCount)
          {
-            ca::bit::set(m_pdata, bSet, iOldBitCount, m_iBitCount - 1);
+            ::ca::bit::set(m_pdata, bSet, iOldBitCount, m_iBitCount - 1);
          }
       }
    }

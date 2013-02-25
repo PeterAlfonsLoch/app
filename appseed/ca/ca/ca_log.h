@@ -1,65 +1,62 @@
 #pragma once
 
+
 class critical_section;
 class mutex;
 class stringa;
 class string;
 class id;
 
+
 namespace ca
 {
-   namespace log
-   {
-      namespace level
-      {
-         enum e_level
-         {
-            warning = 0,
-            error,
-            fatal,
-            info
-         };
-      }
-   }
+
+
+   class file;
+
+
    namespace trace
    {
+
       class trace;
+
    }
-}
 
-namespace ca
-{
-   class file;
-}
-
-
-namespace ca
-{
 
 
    CLASS_DECL_ca int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list);
 
-/*   CLASS_DECL_ca int32_t __cdecl ca2_votagus_logging_Report(
-                                             int32_t iReportType,
-                                             const char * pszFileName,
-                                             int32_t iLineNumber,
-                                             const char * pszModuleName,
-                                             const char * pszFormat,
-                                             va_list list);
+   /*   CLASS_DECL_ca int32_t __cdecl ca2_votagus_logging_Report(
+   int32_t iReportType,
+   const char * pszFileName,
+   int32_t iLineNumber,
+   const char * pszModuleName,
+   const char * pszFormat,
+   va_list list);
 
 
    extern CLASS_DECL_ca int32_t  ( __cdecl *  ________ca2_votagus_logging_Report)(
-                                             int32_t iReportType,
-                                             const char * pszFileName,
-                                             int32_t iLineNumber,
-                                             const char * pszModuleName,
-                                             const char * pszFormat,
-                                             va_list list);*/
+   int32_t iReportType,
+   const char * pszFileName,
+   int32_t iLineNumber,
+   const char * pszModuleName,
+   const char * pszFormat,
+   va_list list);*/
 
    class CLASS_DECL_ca log :
       virtual public ::ca::ca
    {
    public:
+
+      enum e_level
+      {
+
+         level_warning = 0,
+         level_error,
+         level_fatal,
+         level_info
+
+      };
 
       bool              m_bLog;
       bool              m_bExtendedLog;
@@ -67,7 +64,7 @@ namespace ca
 
 
       bool                    m_bTrace;
-      ca::trace::trace *     m_ptrace;
+      ::ca::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
@@ -94,23 +91,23 @@ namespace ca
       void set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel);
 
 
-         /** error level enum. */
-//      log();
-  //    virtual ~log();
+      /** error level enum. */
+      //      log();
+      //    virtual ~log();
 
       virtual void success(const char * psz);
 
-//      virtual void print(const char * psz, ...);
+      //      virtual void print(const char * psz, ...);
 
-//      virtual bool initialize(const char * pszId);
-//      virtual bool finalize();
+      //      virtual bool initialize(const char * pszId);
+      //      virtual bool finalize();
 
       virtual void set_extended_log(bool bSet = true);
       virtual bool get_extended_log();
 
 
       //virtual void trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args) const;
-//      virtual void trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const wchar_t * pszFmt, va_list args) const;
+      //      virtual void trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const wchar_t * pszFmt, va_list args) const;
 
       void __cdecl trace(const char * pszFormat, ...);
       void __cdecl trace2(uint32_t dwCategory, UINT nLevel, const char * pszFormat, ...);
@@ -119,11 +116,14 @@ namespace ca
       //virtual void set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel);
 
 
-   
+
    };
 
    
 
-
 } // namespace ca
 
+
+
+
+inline ::ca::log::e_level ca_get_level_warning() { return ::ca::log::level_warning; }

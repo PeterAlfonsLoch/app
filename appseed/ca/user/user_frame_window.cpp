@@ -129,7 +129,7 @@ bool frame_window::LoadAccelTable(const char * lpszResourceName)
    ASSERT(m_hAccelTable == NULL);  // only do once
    ASSERT(lpszResourceName != NULL);
 
-/*   HINSTANCE hInst = ca::FindResourceHandle(lpszResourceName, RT_ACCELERATOR);
+/*   HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_ACCELERATOR);
    m_hAccelTable = ::LoadAccelerators(hInst, lpszResourceName);*/
    return (m_hAccelTable != NULL);
 }
@@ -146,7 +146,7 @@ HACCEL frame_window::GetDefaultAccelerator()
    return hAccelTable;
 }
 
-void frame_window::pre_translate_message(ca::signal_object * pobj)
+void frame_window::pre_translate_message(::ca::signal_object * pobj)
 {
    ENSURE_ARG(pobj != NULL);
    // check for special cancel modes for combo boxes
@@ -522,7 +522,7 @@ bool frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext
    return TRUE;
 }
 
-void frame_window::_001OnCreate(ca::signal_object * pobj)
+void frame_window::_001OnCreate(::ca::signal_object * pobj)
 {
    ::ca::thread * pappthread = System.GetThread()->get_app_thread();
    if(pappthread != NULL)
@@ -567,7 +567,7 @@ int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* 
 const char * frame_window::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
 {
 //   ASSERT_VALID_IDR(nIDResource);
-//   HINSTANCE hInst = ca::FindResourceHandle(
+//   HINSTANCE hInst = ::ca::FindResourceHandle(
 //      MAKEINTRESOURCE(nIDResource), RT_GROUP_ICON);
    //HICON hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(nIDResource));
 
@@ -844,7 +844,7 @@ void frame_window::OnClose()
    DestroyWindow();*/
 }
 
-void frame_window::_001OnDestroy(ca::signal_object * pobj)
+void frame_window::_001OnDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    // reset menu to default before final shutdown
@@ -965,7 +965,7 @@ LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-void frame_window::_001OnActivate(ca::signal_object * pobj)
+void frame_window::_001OnActivate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::activate, pactivate, pobj);
 
@@ -1014,7 +1014,7 @@ void frame_window::_001OnActivate(ca::signal_object * pobj)
    }
 }
 
-void frame_window::_001OnNcActivate(ca::signal_object * pobj)
+void frame_window::_001OnNcActivate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::nc_activate, pncactivate, pobj)
    // stay active if WF_STAYACTIVE bit is on
@@ -1319,7 +1319,7 @@ void frame_window::GetMessageString(UINT nID, string & rMessage) const
    // load appropriate string
    throw not_implemented(get_app());
 /*   LPTSTR lpsz = rMessage.GetBuffer(255);
-   if (ca::LoadString(nID, lpsz) != 0)
+   if (::ca::LoadString(nID, lpsz) != 0)
    {
       // first newline terminates actual string
       lpsz = _tcschr(lpsz, '\n');
@@ -1845,12 +1845,12 @@ bool frame_window::ShowWindow(int32_t nCmdShow)
 
 
 
-void frame_window::_001OnSysCommand(ca::signal_object * pobj)
+void frame_window::_001OnSysCommand(::ca::signal_object * pobj)
 {
 
 #ifdef WINDOWS
 
-   SCAST_PTR(ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    if(get_parent() == NULL)
    {
       if(pbase->m_wparam == SC_RESTORE)

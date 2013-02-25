@@ -92,7 +92,7 @@ namespace bergedge
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::userbase::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
 
@@ -108,7 +108,7 @@ namespace bergedge
 
    }
 
-   void view::_001OnDestroy(ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca::signal_object * pobj)
    {
       ::userbase::view::_001OnDestroy(pobj);
 
@@ -116,7 +116,7 @@ namespace bergedge
 
 
 
-   void view::_001OnPaint(ca::signal_object * pobj)
+   void view::_001OnPaint(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -161,7 +161,7 @@ namespace bergedge
 
    }
 
-   void view::_001OnCreate(ca::signal_object * pobj)
+   void view::_001OnCreate(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -217,7 +217,7 @@ namespace bergedge
 
    }
 
-   void view::_001OnContextMenu(ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
@@ -232,7 +232,7 @@ namespace bergedge
       }
    }
 
-   void view::_001OnSetCursor(ca::signal_object * pobj)
+   void view::_001OnSetCursor(::ca::signal_object * pobj)
    {
 
 #ifdef WINDOWSEX
@@ -249,7 +249,7 @@ namespace bergedge
 
    }
 
-   void view::pre_translate_message(ca::signal_object * pobj)
+   void view::pre_translate_message(::ca::signal_object * pobj)
    {
       ::userbase::view::pre_translate_message(pobj);
    }
@@ -259,7 +259,7 @@ namespace bergedge
       return dynamic_cast < document * > (::userbase::scroll_view::get_document());
    }
 
-   void view::_001OnTimer(ca::signal_object * pobj)
+   void view::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
       switch(ptimer->m_nIDEvent)
@@ -395,7 +395,7 @@ namespace bergedge
    }
 
 
-   void view::_001OnLButtonUp(ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       pmouse->set_lresult(1);
@@ -418,11 +418,11 @@ namespace bergedge
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -552,7 +552,7 @@ namespace bergedge
       {
          if(m_pimpl == NULL)
             return;
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }

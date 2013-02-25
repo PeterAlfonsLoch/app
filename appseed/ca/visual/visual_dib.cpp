@@ -40,7 +40,7 @@ namespace visual
          {
             try
             {
-               ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
+               ::ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -71,7 +71,7 @@ namespace visual
       {
          try
          {
-            ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::defer_create_directory);
+            ::ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)

@@ -22,8 +22,8 @@ namespace ca
       virtual void write(plain_text_output_stream & ostream) = 0;
       virtual void read(plain_text_input_stream & istream) = 0;
 
-      virtual void write(ca::writer & writer);
-      virtual void read(ca::reader & reader);
+      virtual void write(::ca::writer & writer);
+      virtual void read(::ca::reader & reader);
 
    };
 

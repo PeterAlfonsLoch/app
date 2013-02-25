@@ -73,7 +73,7 @@ namespace nature
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    bool application::InitializeLocalDataCentral()

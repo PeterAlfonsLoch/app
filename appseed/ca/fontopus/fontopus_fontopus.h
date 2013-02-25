@@ -23,7 +23,7 @@ namespace fontopus
       virtual user * create_system_user(const string & strSystemUserName);
       virtual user * allocate_user();
       virtual user * create_current_user();
-      virtual user * login(gen::property_set & set);
+      virtual user * login(::ca::property_set & set);
 
       virtual void logout();
 

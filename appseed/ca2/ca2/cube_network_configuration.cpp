@@ -58,7 +58,7 @@ namespace cube // ca8 + cube
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext = dynamic_cast < text_interface * > (pguie);
-         ptext->_001SetText(ca::str::from(iProxyPort));
+         ptext->_001SetText(::ca::str::from(iProxyPort));
       }
 
    }

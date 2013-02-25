@@ -11,7 +11,7 @@ namespace ca
    public:
 
 
-      sp(ca::file)     m_pfile;
+      sp(::ca::file)     m_pfile;
       uint64_t          m_uiExpectedSize;
       uint32_t             m_dwTimeOut;
       uint32_t             m_dwLastCall;
@@ -19,7 +19,7 @@ namespace ca
       sp(mutex)         m_spmutex;
 
 
-      timeout_file(::ca::application * papp, ca::file * pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
+      timeout_file(::ca::application * papp, ::ca::file * pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
       virtual ~timeout_file();
 
       virtual bool IsValid() const;

@@ -222,7 +222,7 @@ namespace ca
          else
          {
 
-            ca::microtimer timer;
+            ::ca::microtimer timer;
 
             double d1 = timer.getTimeInMicroSec();
 
@@ -240,8 +240,8 @@ namespace ca
     //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
       //      int64_t v1 = tick.QuadPart;
         //    int64_t v2 = time(NULL);
-          //  int64_t v3 = ca::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
-            //int64_t v4 = ca::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+          //  int64_t v3 = ::ca::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
+            //int64_t v4 = ::ca::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
             int32_t v1 = (int32_t) timer.getTimeInMicroSec();
 

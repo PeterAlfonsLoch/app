@@ -7,7 +7,7 @@ class CLASS_DECL_ca2 simple_document :
 public:
 
 
-   ca::property_set       m_set;
+   ::ca::property_set       m_set;
 
 
    simple_document(::ca::application * papp);

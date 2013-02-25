@@ -11,7 +11,7 @@ namespace xml
    public:
 
 
-      ca::property_set * m_ppropertyset;
+      ::ca::property_set * m_ppropertyset;
 
 
       property_set_exchange(::ca::application * papp);

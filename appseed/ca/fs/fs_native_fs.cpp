@@ -118,7 +118,7 @@ namespace fs
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
 
-         throw new ca::file_exception(get_app(), ::ca::file_exception::none, 01, varFile.get_string());
+         throw new ::ca::file_exception(get_app(), ::ca::file_exception::none, 01, varFile.get_string());
 
       }
 

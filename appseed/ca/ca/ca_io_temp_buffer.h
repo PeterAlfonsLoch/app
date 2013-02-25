@@ -20,8 +20,8 @@ namespace ca
    public:
       //NWindows::NFile::NDirectory::CTempFile _tempFile;
       //NWindows::NFile::NIO::COutFile _outFile;
-      ca::filesp                      _tempFile;
-      ca::filesp                      _outFile;
+      ::ca::filesp                      _tempFile;
+      ::ca::filesp                      _outFile;
       string                           _tempFileName;
       bool                             _tempFileCreated;
       uint32_t                           _crc;

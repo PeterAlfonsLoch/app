@@ -107,7 +107,7 @@ namespace n7z
       bool _writeToStream;
       size_t _countSize;
       uint32_t _crc;
-      ca::out_buffer _outByte;
+      ::ca::out_buffer _outByte;
       CWriteBufferLoc _outByte2;
 
       bool _endMarker;

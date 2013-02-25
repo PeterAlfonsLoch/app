@@ -46,7 +46,7 @@ namespace userstack
    }
 #endif //DEBUG
 
-   void pane_view::_001OnCreate(ca::signal_object * pobj)
+   void pane_view::_001OnCreate(::ca::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -121,7 +121,7 @@ namespace userstack
       if(get_view_id().is_text())
       {
          string strId = get_view_id();
-         if(ca::str::begins_eat(strId, "app:"))
+         if(::ca::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
             if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
@@ -146,7 +146,7 @@ namespace userstack
       {
    /*      ::user::interaction * pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(System.savings().save().is_signalized(ca::save_display_bandwidth))
+         if(System.savings().save().is_signalized(::ca::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -197,7 +197,7 @@ namespace userstack
       {
          string strId = pcreatordata->m_id;
 
-         if(ca::str::begins_eat(strId, "app:"))
+         if(::ca::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
@@ -227,7 +227,7 @@ namespace userstack
 
                }
 
-               str = ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
+               str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
 
                createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
@@ -267,7 +267,7 @@ namespace userstack
 
 
 
-   void pane_view::_001OnMenuMessage(ca::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
@@ -295,9 +295,9 @@ namespace userstack
          int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
-            L"\"" + ca::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
+            L"\"" + ::ca::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             NULL,
-            L"\"" + ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
+            L"\"" + ::ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
          str.Format("%d", i);
@@ -352,7 +352,7 @@ namespace userstack
       while(pos != NULL)
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-         if(ca::str::begins_eat(strApp, "application:"))
+         if(::ca::str::begins_eat(strApp, "application:"))
          {
             Application.file().put_contents(System.dir().path(strDir, strApp + ".ca"), "ca2prompt\r\n"+ strApp);
          }
@@ -474,7 +474,7 @@ namespace userstack
       m_iDisplay = iDisplay;
    }
 
-   void pane_view::_001OnRButtonUp(ca::signal_object * pobj)
+   void pane_view::_001OnRButtonUp(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
@@ -519,7 +519,7 @@ namespace userstack
 
 
 
-   void pane_view::_001OnProperties(ca::signal_object * pobj)
+   void pane_view::_001OnProperties(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
@@ -550,7 +550,7 @@ namespace userstack
             "",
             "ca2_fontopus_votagus",
             "savings",
-            ca::resource_display_bandwidth);
+            ::ca::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -561,7 +561,7 @@ namespace userstack
             "",
             "ca2_fontopus_votagus",
             "savings",
-            ca::resource_processing);
+            ::ca::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -572,7 +572,7 @@ namespace userstack
             "",
             "ca2_fontopus_votagus",
             "savings",
-            ca::resource_memory);
+            ::ca::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 

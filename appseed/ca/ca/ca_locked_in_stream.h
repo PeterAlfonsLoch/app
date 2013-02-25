@@ -25,7 +25,7 @@ namespace ca
    };
 
    class locked_reader :
-      virtual public ca::reader
+      virtual public ::ca::reader
    {
    public:
 

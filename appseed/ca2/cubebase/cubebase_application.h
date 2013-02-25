@@ -16,7 +16,7 @@ namespace cubebase
 
    class CLASS_DECL_ca2 application : 
       virtual public ::plane::application,
-      virtual public ca::smart_pointer < ::cubebase::application >
+      virtual public ::ca::smart_pointer < ::cubebase::application >
    {
    public:
 
@@ -42,7 +42,7 @@ namespace cubebase
 
 
 
-      // ca::smart_pointer < ::cubebase::application >::oattrib
+      // ::ca::smart_pointer < ::cubebase::application >::oattrib
       // or any function needing it
       application & operator = (const application & app)
       {

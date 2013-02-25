@@ -19,7 +19,7 @@ namespace frame
 
    }
 
-   bool DockManager::relay_event(ca::signal_object * pobj)
+   bool DockManager::relay_event(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       /*if(lpmsg->message == WM_SIZE

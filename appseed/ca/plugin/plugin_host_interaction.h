@@ -52,7 +52,7 @@ namespace plugin
       ::user::interaction * get_os_focus_uie();
 
       void _on_start_user_message_handler();
-      void _user_message_handler(ca::signal_object * pobj);
+      void _user_message_handler(::ca::signal_object * pobj);
 
       virtual void _000OnMouse(::ca::message::mouse * pmouse);
 

@@ -76,7 +76,7 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &split_bar::_001OnMouseMove);
    }
 
-   void split_bar::_001OnLButtonDown(ca::signal_object * pobj)
+   void split_bar::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
@@ -91,7 +91,7 @@ namespace userbase
       }
    }
 
-   void split_bar::_001OnLButtonUp(ca::signal_object * pobj)
+   void split_bar::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
@@ -104,7 +104,7 @@ namespace userbase
       }
    }
 
-   void split_bar::_001OnMouseMove(ca::signal_object * pobj)
+   void split_bar::_001OnMouseMove(::ca::signal_object * pobj)
    {
       
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);

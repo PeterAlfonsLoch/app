@@ -109,7 +109,7 @@ namespace ca
    template < class T >
    smart_pointer < T > ::~smart_pointer()
    {
-      ca::release(m_p);
+      ::ca::release(m_p);
    }
 
    template < class T >
@@ -180,12 +180,12 @@ namespace ca
          T * pOld = m_p;
          if(p != NULL)
          {
-            ca::add_ref(p);
+            ::ca::add_ref(p);
          }
          m_p = p;
          if(pOld != NULL)
          {
-            ca::release(pOld);
+            ::ca::release(pOld);
          }
       }
       return *this;
@@ -227,7 +227,7 @@ namespace ca
    {
       if(p != m_p)
       {
-         ca::release(m_p);
+         ::ca::release(m_p);
          m_p = p;
       }
       return *this;

@@ -77,12 +77,12 @@ namespace frame
        }
    }
 
-   void WorkSet::message_handler(ca::signal_object * pobj)
+   void WorkSet::message_handler(::ca::signal_object * pobj)
    {
       relay_event(pobj);
    }
 
-   void WorkSet::relay_event(ca::signal_object * pobj)
+   void WorkSet::relay_event(::ca::signal_object * pobj)
    {
       hover_relay_event(pobj);
       if(pobj->m_bRet)
@@ -449,7 +449,7 @@ namespace frame
       return FALSE;
    }
 
-   void WorkSet::_001OnCommand(ca::signal_object * pobj)
+   void WorkSet::_001OnCommand(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       if(m_pframeschema == NULL)
@@ -555,9 +555,9 @@ namespace frame
 
    }
 
-   void WorkSet::hover_relay_event(ca::signal_object * pobj)
+   void WorkSet::hover_relay_event(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(m_bHoverModeOn)
       {
    /*      if(m_bHoverActive &&
@@ -879,10 +879,10 @@ namespace frame
       m_wfla.remove(plistener);
    }
 
-   void WorkSet::WindowProcHover(::user::interaction * pwnd, ca::signal_object * pobj)
+   void WorkSet::WindowProcHover(::user::interaction * pwnd, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(m_bHoverModeOn)
       {
          if(pbase->m_uiMessage == WM_TIMER
@@ -910,7 +910,7 @@ namespace frame
    }
 
 
-   void WorkSet::WindowProcBefore(::user::interaction * pwnd, ca::signal_object * pobj)
+   void WorkSet::WindowProcBefore(::user::interaction * pwnd, ::ca::signal_object * pobj)
    {
 
       WindowProcHover(pwnd, pobj);
@@ -955,12 +955,12 @@ namespace frame
          IsAppearanceEnabled() &&
            m_pappearance->_000WndProc(message, wparam, lparam, lresult))
            return true;*/
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       pbase->set_lresult(0);
 
       if(pbase->m_uiMessage == WM_COMMAND)
       {
-         SCAST_PTR(ca::message::command, pcommand, pobj);
+         SCAST_PTR(::ca::message::command, pcommand, pobj);
          _001OnCommand(pcommand);
          if(pcommand->m_bRet)
          {
@@ -985,7 +985,7 @@ namespace frame
    }
 
 
-   void WorkSet::_001OnActivate(ca::signal_object * pobj)
+   void WorkSet::_001OnActivate(::ca::signal_object * pobj)
    {
 
       SCAST_PTR(::ca::message::activate, pactivate, pobj);
@@ -1030,7 +1030,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnNcActivate(ca::signal_object * pobj)
+   void WorkSet::_001OnNcActivate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::nc_activate, pncactivate, pobj);
       //SetActiveFlag(pncactivate->m_bActive);
@@ -1120,7 +1120,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnLButtonDown(ca::signal_object * pobj)
+   void WorkSet::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1136,7 +1136,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnMouseMove(ca::signal_object * pobj)
+   void WorkSet::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1153,7 +1153,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnLButtonUp(ca::signal_object * pobj)
+   void WorkSet::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1169,7 +1169,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnNcLButtonDown(ca::signal_object * pobj)
+   void WorkSet::_001OnNcLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1185,7 +1185,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnNcMouseMove(ca::signal_object * pobj)
+   void WorkSet::_001OnNcMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1204,7 +1204,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnNcLButtonUp(ca::signal_object * pobj)
+   void WorkSet::_001OnNcLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1221,7 +1221,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnNcHitTest(ca::signal_object * pobj)
+   void WorkSet::_001OnNcHitTest(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::nchittest, pnchittest, pobj)
       if(!m_bEnable)
@@ -1233,7 +1233,7 @@ namespace frame
       pnchittest->m_bRet = m_pframeschema->_000OnNcHitTest(pnchittest->m_pt, pnchittest->get_lresult());
    }
 
-   void WorkSet::_001OnTimer(ca::signal_object * pobj)
+   void WorkSet::_001OnTimer(::ca::signal_object * pobj)
    {
       //return; //xxxtimer
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
@@ -1246,7 +1246,7 @@ namespace frame
       ptimer->m_bRet = m_pframeschema->_000OnTimer(ptimer->m_nIDEvent);
    }
 
-   void WorkSet::_001OnSize(ca::signal_object * pobj)
+   void WorkSet::_001OnSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::size, psize, pobj)
       if(!m_bEnable)
@@ -1260,7 +1260,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnMove(ca::signal_object * pobj)
+   void WorkSet::_001OnMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::move, pmove, pobj)
       if(!m_bEnable)

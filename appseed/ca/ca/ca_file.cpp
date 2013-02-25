@@ -32,12 +32,12 @@ namespace ca
    void file::write(byte_output_stream & ostream)
    {
       seek_to_begin();
-      ca::reader::write(ostream);
+      ::ca::reader::write(ostream);
    }
 
    void file::read(byte_input_stream & istream)
    {
-      ca::writer::read(istream);
+      ::ca::writer::read(istream);
       seek_to_begin();
    }
 

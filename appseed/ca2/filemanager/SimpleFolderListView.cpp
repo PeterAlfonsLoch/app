@@ -96,7 +96,7 @@ void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::ca::objec
    }
 }
 
-void SimpleFolderListView::_001OnLButtonDblClk(ca::signal_object * pobj) 
+void SimpleFolderListView::_001OnLButtonDblClk(::ca::signal_object * pobj) 
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    index iItem;
@@ -108,7 +108,7 @@ void SimpleFolderListView::_001OnLButtonDblClk(ca::signal_object * pobj)
    }
 }
 
-void SimpleFolderListView::_001OnCancelMode(ca::signal_object * pobj) 
+void SimpleFolderListView::_001OnCancelMode(::ca::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
 // trans   ::userbase::view::OnCancelMode();

@@ -25,36 +25,12 @@ namespace ca
       virtual bool initialize();
 
 
-   };
-
-
-} // namespace ca
-
-
-
-#pragma once
-
-
-namespace ca
-{
-
-   class CLASS_DECL_ca system :
-      virtual public ::ca::system,
-      virtual public ::ca::object
-   {
-   public:
-
-
       static id_space                            s_idspace;
 
       static class id                            idEmpty;
 
 
-      system();
-      virtual ~system();
 
-      virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
-      virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
 
       virtual void on_allocation_error(::ca::application * papp, ::ca::type_info & info);
       ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
@@ -69,14 +45,11 @@ namespace ca
       static inline class id id(int64_t i);
       static inline class id_space & id();
       inline class id id(const var & var);
-      inline class id id(const ca::property & prop);
+      inline class id id(const ::ca::property & prop);
 
       friend class application;
 
-   protected:
-
-
-      virtual bool initialize();
+   
 
 
    };
@@ -86,9 +59,9 @@ namespace ca
       return ::id((const char *) (class var &) var);
    }
 
-   inline id system::id(const ca::property & prop)
+   inline id system::id(const ::ca::property & prop)
    {
-      return ::id((const string &) (ca::property &) prop);
+      return ::id((const string &) (::ca::property &) prop);
    }
 
 
@@ -123,5 +96,4 @@ namespace ca
 
 
 } // namespace ca
-
 

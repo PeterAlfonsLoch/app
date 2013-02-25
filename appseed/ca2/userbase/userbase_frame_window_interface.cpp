@@ -29,7 +29,7 @@ namespace userbase
       return 0;
    }*/
 
-   void frame_window_interface::_guserbaseOnInitialUpdate(ca::signal_object * pobj)
+   void frame_window_interface::_guserbaseOnInitialUpdate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
@@ -146,7 +146,7 @@ namespace userbase
       if((m_bWindowFrame 
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent) &&
-      !Session.savings().is_trying_to_save(ca::resource_display_bandwidth))
+      !Session.savings().is_trying_to_save(::ca::resource_display_bandwidth))
       {
          ::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
       }
@@ -356,8 +356,8 @@ namespace userbase
    {
       if(m_bLayered)
       {
-         return !Session.savings().is_trying_to_save(ca::resource_processing) 
-            && !Session.savings().is_trying_to_save(ca::resource_display_bandwidth);
+         return !Session.savings().is_trying_to_save(::ca::resource_processing) 
+            && !Session.savings().is_trying_to_save(::ca::resource_display_bandwidth);
       }
       else 
       {
@@ -366,7 +366,7 @@ namespace userbase
    }
 
 
-   void frame_window_interface::data_on_after_change(ca::signal_object * pobj)
+   void frame_window_interface::data_on_after_change(::ca::signal_object * pobj)
    {
       database::user::interaction::data_on_after_change(pobj);
       SCAST_PTR(database::change_event, phint, pobj);

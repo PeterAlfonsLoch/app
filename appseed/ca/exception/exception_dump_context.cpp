@@ -51,7 +51,7 @@ void dump_context::output_string(const char * lpsz)
    // use C-runtime/OutputDebugString when m_pfile is NULL
    if (m_pfile == NULL)
    {
-      ::OutputDebugStringW(ca::international::utf8_to_unicode(lpsz));
+      ::OutputDebugStringW(::ca::international::utf8_to_unicode(lpsz));
       //     TRACE(::ca::trace::category_dumpContext, 0, "%s", lpsz);
       return;
    }
@@ -67,7 +67,7 @@ void dump_context::output_string(const char * lpsz)
 #endif
 }
 
-dump_context::dump_context(ca::file * pFile)
+dump_context::dump_context(::ca::file * pFile)
 {
    if (pFile)
       ASSERT_VALID(pFile);
@@ -452,6 +452,6 @@ dump_context & dump_context::operator<<(const wchar_t * lpsz)
       return *this;
    }
 
-   return *this << ca::international::unicode_to_utf8(lpsz);
+   return *this << ::ca::international::unicode_to_utf8(lpsz);
 
 }

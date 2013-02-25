@@ -27,7 +27,7 @@ namespace user
       colorertake5::base_editor(papp),
       m_fastblur(papp),
       m_dibBk(papp),
-      ca::tree(papp),
+      ::ca::tree(papp),
       ::ca::data_listener(papp)
    {
 
@@ -112,7 +112,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   void edit_plain_text::_001OnInitialUpdate(ca::signal_object * pobj)
+   void edit_plain_text::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
@@ -127,7 +127,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnDestroy(ca::signal_object * pobj)
+   void edit_plain_text::_001OnDestroy(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -168,7 +168,7 @@ namespace user
       LayoutKaraokeBouncingBall();*/
    }
 
-   void edit_plain_text::_001OnPaint(ca::signal_object * pobj)
+   void edit_plain_text::_001OnPaint(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //CPaintDC spgraphics(this); // device context for painting
@@ -234,8 +234,8 @@ namespace user
       {
          pdc->FillSolidRect(rectClient, get_background_color());
       }
-      /*else if(!System.savings().is_trying_to_save(ca::resource_processing)
-      && !System.savings().is_trying_to_save(ca::resource_blur_background))
+      /*else if(!System.savings().is_trying_to_save(::ca::resource_processing)
+      && !System.savings().is_trying_to_save(::ca::resource_blur_background))
       {
 
          pdc->blur(true, 4, rectClient);
@@ -490,11 +490,11 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnCreate(ca::signal_object * pobj)
+   void edit_plain_text::_001OnCreate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::create, pcreate, pobj);
 
-      if(!ca::tree::initialize())
+      if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
 
@@ -543,14 +543,14 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnContextMenu(ca::signal_object * pobj)
+   void edit_plain_text::_001OnContextMenu(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
    }
 
-   void edit_plain_text::_001OnRButtonUp(ca::signal_object * pobj)
+   void edit_plain_text::_001OnRButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       //int32_t iItem;
@@ -562,12 +562,12 @@ namespace user
    /*   ::userbase::menu menu;
       Ex1TextFile file;
 
-      ca::application * papp = ca::get_app();
+      ::ca::application * papp = ::ca::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
 
-      if(!spfile->open(ca::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::ca::file::type_text | ::ca::file::mode_read))
+      if(!spfile->open(::ca::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::ca::file::type_text | ::ca::file::mode_read))
          return;
 
       string str;
@@ -595,14 +595,14 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSetCursor(ca::signal_object * pobj)
+   void edit_plain_text::_001OnSetCursor(::ca::signal_object * pobj)
    {
       //::SetCursor(::LoadCursor(NULL, IDC_ARROW));
 
       pobj->previous();
    }
 
-   void edit_plain_text::_002OnTimer(ca::signal_object * pobj)
+   void edit_plain_text::_002OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent >= 100
@@ -625,7 +625,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_002OnKeyDown(ca::signal_object * pobj)
+   void edit_plain_text::_002OnKeyDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
@@ -697,7 +697,7 @@ namespace user
       pkey->m_bRet      = true;
    }
 
-   void edit_plain_text::_002OnKeyUp(ca::signal_object * pobj)
+   void edit_plain_text::_002OnKeyUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
@@ -716,7 +716,7 @@ namespace user
       m_bKeyPressed = false;
    }
 
-   void edit_plain_text::_002OnChar(ca::signal_object * pobj)
+   void edit_plain_text::_002OnChar(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::key, pkey, pobj)
@@ -730,7 +730,7 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnHScroll(ca::signal_object * pobj)
+   void edit_plain_text::_001OnHScroll(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(should_load_full_file())
@@ -743,7 +743,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::pre_translate_message(ca::signal_object * pobj)
+   void edit_plain_text::pre_translate_message(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_KEYDOWN)
@@ -893,7 +893,7 @@ namespace user
       _001RedrawWindow();
    }
 
-   void edit_plain_text::_002OnLButtonDown(ca::signal_object * pobj)
+   void edit_plain_text::_002OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -912,7 +912,7 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void edit_plain_text::_002OnLButtonUp(ca::signal_object * pobj)
+   void edit_plain_text::_002OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -928,7 +928,7 @@ namespace user
       //System.simple_message_box(m_strText);
    }
 
-   void edit_plain_text::_002OnRButtonDown(ca::signal_object * pobj)
+   void edit_plain_text::_002OnRButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -945,7 +945,7 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void edit_plain_text::_002OnRButtonUp(ca::signal_object * pobj)
+   void edit_plain_text::_002OnRButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -1266,7 +1266,7 @@ namespace user
       for(;; )
       {
          pszPrevious = pszEnd;
-         pszEnd = ca::str::utf8_inc(pszEnd);
+         pszEnd = ::ca::str::utf8_inc(pszEnd);
          lim1 = lim2;
          strExtent = string(psz, pszEnd - psz);
          strExtent.replace("\t", "   ");
@@ -1292,7 +1292,7 @@ namespace user
       return (strsize) min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
    }
 
-   void edit_plain_text::_002OnMouseMove(ca::signal_object * pobj)
+   void edit_plain_text::_002OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       //::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
@@ -1414,7 +1414,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::_001OnChar(ca::signal_object * pobj)
+   void edit_plain_text::_001OnChar(::ca::signal_object * pobj)
    {
       ::ca::data::writing writing(m_pdata);
 #ifdef WINDOWS
@@ -1490,7 +1490,7 @@ namespace user
                strsize iCur = m_iSelEnd - iBegin;
                m_pdata->m_editfile.seek(iBegin, ::ca::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
-               const char * psz = ca::str::utf8_dec(buf, &buf[iCur]);
+               const char * psz = ::ca::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_iSelEnd -= iMultiByteUtf8DeleteCount;
                m_pdata->m_editfile.seek(m_iSelEnd, ::ca::seek_begin);
@@ -1555,7 +1555,7 @@ namespace user
             }
             else
             {
-               m_iSelEnd += ca::str::utf8_inc(buf) - buf;
+               m_iSelEnd += ::ca::str::utf8_inc(buf) - buf;
             }
             if(!bShift)
             {
@@ -1591,7 +1591,7 @@ namespace user
                }
                else
                {
-                  m_iSelEnd -= psz - ca::str::utf8_dec(buf, psz);
+                  m_iSelEnd -= psz - ::ca::str::utf8_dec(buf, psz);
                }
             }
             else
@@ -1703,7 +1703,7 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSysChar(ca::signal_object * pobj)
+   void edit_plain_text::_001OnSysChar(::ca::signal_object * pobj)
    {
       ::ca::data::writing writing(m_pdata);
       SCAST_PTR(::ca::message::key, pkey, pobj)
@@ -1729,7 +1729,7 @@ namespace user
                strsize iCur = m_iSelEnd - iBegin;
                m_pdata->m_editfile.seek(iBegin, ::ca::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
-               const char * psz = ca::str::utf8_dec(buf, &buf[iCur]);
+               const char * psz = ::ca::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_pdata->m_editfile.seek(m_iSelEnd, ::ca::seek_begin);
                m_pdata->m_editfile.Delete((file_size) (iMultiByteUtf8DeleteCount));
@@ -1929,7 +1929,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != NULL)
       {
-         ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
+         ::ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1937,7 +1937,7 @@ namespace user
       }
       else
       {
-         ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
+         ::ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -2029,17 +2029,17 @@ namespace user
    }
 
 
-   void edit_plain_text::keyboard_focus_OnKeyDown(ca::signal_object * pobj)
+   void edit_plain_text::keyboard_focus_OnKeyDown(::ca::signal_object * pobj)
    {
       _002OnKeyDown(pobj);
    }
 
-   void edit_plain_text::keyboard_focus_OnKeyUp(ca::signal_object * pobj)
+   void edit_plain_text::keyboard_focus_OnKeyUp(::ca::signal_object * pobj)
    {
       _002OnKeyUp(pobj);
    }
 
-   void edit_plain_text::keyboard_focus_OnChar(ca::signal_object * pobj)
+   void edit_plain_text::keyboard_focus_OnChar(::ca::signal_object * pobj)
    {
       _002OnChar(pobj);
    }
@@ -2197,7 +2197,7 @@ namespace user
   return type;
 }
 
-   void edit_plain_text::_009OnChar(ca::signal_object * pobj)
+   void edit_plain_text::_009OnChar(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -2232,12 +2232,12 @@ namespace user
 
 
 
-   ca::tree_item_data * edit_plain_text::on_allocate_item()
+   ::ca::tree_item_data * edit_plain_text::on_allocate_item()
    {
       return new plain_text_data::Command;
    }
 
-   void edit_plain_text::on_delete_item(ca::tree_item_data * pitem)
+   void edit_plain_text::on_delete_item(::ca::tree_item_data * pitem)
    {
       delete pitem;
    }
@@ -2258,7 +2258,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::_001OnUpdateEditFocusCopy(ca::signal_object * pobj)
+   void edit_plain_text::_001OnUpdateEditFocusCopy(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
       string str;
@@ -2266,7 +2266,7 @@ namespace user
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
    }
 
-   void edit_plain_text::_001OnEditFocusCopy(ca::signal_object * pobj)
+   void edit_plain_text::_001OnEditFocusCopy(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2277,13 +2277,13 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnUpdateEditFocusPaste(ca::signal_object * pobj)
+   void edit_plain_text::_001OnUpdateEditFocusPaste(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
       pupdatecmdui->m_pcmdui->Enable(System.copydesk().get_plain_text().has_char());
    }
 
-   void edit_plain_text::_001OnEditFocusPaste(ca::signal_object * pobj)
+   void edit_plain_text::_001OnEditFocusPaste(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

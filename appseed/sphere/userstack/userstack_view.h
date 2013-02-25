@@ -65,7 +65,7 @@ namespace userstack
       virtual void _001OnDraw(::ca::graphics * pdc);
 
 
-      virtual void pre_translate_message(ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);

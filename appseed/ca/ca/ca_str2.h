@@ -64,7 +64,7 @@ namespace ca
       // *** empty log message ***
       //
       // Revision 1.6  2005/07/05 12:13:11  GB
-      // added function ca::str::strprintf
+      // added function ::ca::str::strprintf
       //
       // Revision 1.5  2005/06/30 09:15:25  GB
       // + copy

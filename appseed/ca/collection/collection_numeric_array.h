@@ -17,7 +17,7 @@ namespace ca
          return to_int64(string(psz));
       }
 
-   } // namespace ca::str
+   } // namespace ::ca::str
 
 
 } // namespace ca
@@ -25,7 +25,7 @@ namespace ca
 
 template < typename TYPE >
 class numeric_array :
-   virtual public ca::byte_serializable_array < comparable_primitive_array < TYPE > >
+   virtual public ::ca::byte_serializable_array < comparable_primitive_array < TYPE > >
 {
 public:
    numeric_array();
@@ -268,11 +268,11 @@ void numeric_array < TYPE >::implode(string & str, const char * lpcszSeparator, 
    {
       string strSeparator(lpcszSeparator);
       index i = start;
-      str = ca::str::from(this->element_at(i));
+      str = ::ca::str::from(this->element_at(i));
       i++;
       for(; i <= last; i++)
       {
-         str += strSeparator + ca::str::from(this->element_at(i));
+         str += strSeparator + ::ca::str::from(this->element_at(i));
       }
    }
    else
@@ -307,11 +307,11 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
    if(iStart <= iEnd)
    {
       index i = iStart;
-      str = strPrefix + ca::str::from(this->element_at(i)) + strSuffix;
+      str = strPrefix + ::ca::str::from(this->element_at(i)) + strSuffix;
       i++;
       for(; i <= iEnd; i++)
       {
-         str += strSeparator + strPrefix + ca::str::from(this->element_at(i)) + strSuffix;
+         str += strSeparator + strPrefix + ::ca::str::from(this->element_at(i)) + strSuffix;
       }
    }
    return str;

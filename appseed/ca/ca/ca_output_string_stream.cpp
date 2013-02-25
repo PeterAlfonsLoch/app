@@ -39,7 +39,7 @@ string & _template_std_ostringstream::str()
 
 /*void _template_std_ostringstream::write(const void * p, primitive::memory_size size)
 {
-   ca::writer::write(p, size);
+   ::ca::writer::write(p, size);
 }*/
 
 

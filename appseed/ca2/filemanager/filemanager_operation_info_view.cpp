@@ -108,7 +108,7 @@ file_manager_operation_document * file_manager_operation_info_view::get_document
    return dynamic_cast < file_manager_operation_document * > (::userbase::view::get_document());
 }
 
-void file_manager_operation_info_view::_001OnTimer(ca::signal_object * pobj)
+void file_manager_operation_info_view::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
@@ -116,7 +116,7 @@ void file_manager_operation_info_view::_001OnTimer(ca::signal_object * pobj)
    }
 }
 
-void file_manager_operation_info_view::_001OnCreate(ca::signal_object * pobj)
+void file_manager_operation_info_view::_001OnCreate(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    //SetTimer(123, 184, NULL);

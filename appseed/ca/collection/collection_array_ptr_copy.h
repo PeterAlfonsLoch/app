@@ -50,7 +50,7 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline index array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(
    const TYPE & t)
 {
-   return this->ptra().add(ca::alloc<TYPE>(t));
+   return this->ptra().add(::ca::alloc<TYPE>(t));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
@@ -64,7 +64,7 @@ inline void array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::insert_at(
    index iIndex,
    ARG_TYPE t)
 {
-   this->ptra().insert_at(iIndex, ca::alloc<TYPE>(t));
+   this->ptra().insert_at(iIndex, ::ca::alloc<TYPE>(t));
 }
 
 
@@ -80,7 +80,7 @@ inline array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_copy < TYPE, ARG
    }
    for(; i < a.ptra().get_size(); i++)
    {
-      this->ptra().add(ca::alloc<TYPE>(*a.ptra()[i]));
+      this->ptra().add(::ca::alloc<TYPE>(*a.ptra()[i]));
    }
    this->ptra().set_size(a.ptra().get_size());
    return *this;

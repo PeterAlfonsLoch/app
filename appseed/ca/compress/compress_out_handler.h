@@ -8,7 +8,7 @@ namespace libcompress
 
    struct COneMethodInfo
    {
-      ca::property_set Props;
+      ::ca::property_set Props;
       string MethodName;
 
       bool IsLzma() const;
@@ -21,10 +21,10 @@ namespace libcompress
 
       out_handler(::ca::application * papp);
 
-      ca::HRes SetProperty(const char *name, var value);
+      ::ca::HRes SetProperty(const char *name, var value);
 
-      ca::HRes SetSolidSettings(const string &s);
-      ca::HRes SetSolidSettings(var value);
+      ::ca::HRes SetSolidSettings(const string &s);
+      ::ca::HRes SetSolidSettings(var value);
 
       uint32_t _numThreads;
 
@@ -51,8 +51,8 @@ namespace libcompress
 
       bool _volumeMode;
 
-      ca::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
-      ca::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
+      ::ca::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
+      ::ca::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
 
       void SetCompressionMethod2(COneMethodInfo &oneMethodInfo, uint32_t numThreads);
 

@@ -103,7 +103,7 @@ void view::_001OnCreate(::ca::signal_object * pobj)
    pcreate->set_lresult(0);
 }
 
-void view::_001OnDestroy(ca::signal_object * pobj)
+void view::_001OnDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    frame_window* pFrame = GetParentFrame();
@@ -202,7 +202,7 @@ void view::OnPaint()
    return pview->get_document();
 }
 
-void view::_001OnInitialUpdate(ca::signal_object * pobj)
+void view::_001OnInitialUpdate(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    on_update(NULL, 0, NULL);        // initial update
@@ -449,7 +449,7 @@ void view::assert_valid() const
 
 
 
-void view::_001OnView(ca::signal_object * pobj)
+void view::_001OnView(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj)
    if(pbase->m_wparam == 0)
@@ -598,7 +598,7 @@ void view::_001OnView(ca::signal_object * pobj)
 }
 
 
-void view::_001OnLButtonDown(ca::signal_object * pobj)
+void view::_001OnLButtonDown(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
@@ -612,13 +612,13 @@ void view::_001OnLButtonDown(ca::signal_object * pobj)
 
 }
 
-void view::_001OnLButtonUp(ca::signal_object * pobj)
+void view::_001OnLButtonUp(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 }
 
-void view::_001OnMouseMove(ca::signal_object * pobj)
+void view::_001OnMouseMove(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   SCAST_PTR(::ca::message::mouse, pmouse, pobj);

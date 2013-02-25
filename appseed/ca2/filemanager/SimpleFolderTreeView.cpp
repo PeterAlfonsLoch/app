@@ -95,7 +95,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int32_t iItem;
@@ -169,7 +169,7 @@ namespace filemanager
 
    }*/
 
-   void SimpleFolderTreeView::_001OnContextMenu(ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnContextMenu(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
@@ -239,7 +239,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnTimer(ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
@@ -273,7 +273,7 @@ namespace filemanager
       return SimpleFolderTreeInterface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void SimpleFolderTreeView::_001OnShellCommand(ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnShellCommand(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
@@ -285,11 +285,11 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeView::_001OnCreate(ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(!ca::tree::initialize())
+      if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
       m_pimagelist = System.user().shellimageset().GetImageList16();

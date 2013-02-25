@@ -189,7 +189,7 @@ namespace gcom
       /////////////////////////////////////////////////////////////////////////////
       // thread message handlers
 
-      void thread::OnBackViewMessage(ca::signal_object * pobj)
+      void thread::OnBackViewMessage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj);
          switch(pbase->m_wparam)
@@ -209,7 +209,7 @@ namespace gcom
             break;
          }
       }
-      void thread::OnUserMessage(ca::signal_object * pobj)
+      void thread::OnUserMessage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj);
           ASSERT(GetMainWnd() == NULL);
@@ -311,7 +311,7 @@ namespace gcom
 
       }
 
-      void thread::OnCommandMessage(ca::signal_object * pobj)
+      void thread::OnCommandMessage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj);
          switch(pbase->m_wparam)
@@ -386,7 +386,7 @@ namespace gcom
       void thread::LoadImageAsync(const load_image & loadimage)
       {
          load_image * lploadimage = new load_image(loadimage);
-         ca::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
+         ::ca::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
 
          post_thread_message(
             MessageCommand,
@@ -491,7 +491,7 @@ namespace gcom
 
       void load_image::OnImageLoaded()
       {
-         ca::signal_object obj(&m_signalImageLoaded);
+         ::ca::signal_object obj(&m_signalImageLoaded);
          obj()["dib"] = m_pdib;
          m_signalImageLoaded.emit(&obj);
       }

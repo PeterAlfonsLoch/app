@@ -289,8 +289,6 @@ namespace sockets
 #endif
 #endif
 
-#include "ca/ca/ca_log.h"
-
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
 #include "basic/address.h"

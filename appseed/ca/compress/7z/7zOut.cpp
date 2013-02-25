@@ -136,15 +136,15 @@ namespace n7z
          if (!Stream)
             return E_FAIL;
          RINOK(WriteSignature());
-         _prefixHeaderPos = Stream->seek(0, ca::seek_current);
+         _prefixHeaderPos = Stream->seek(0, ::ca::seek_current);
       }
       return S_OK;
    }
 
    void COutArchive::Close()
    {
-      ca::release(SeqStream.m_p);
-      ca::release(Stream.m_p);
+      ::ca::release(SeqStream.m_p);
+      ::ca::release(Stream.m_p);
    }
 
    HRESULT COutArchive::SkipPrefixArchiveHeader()
@@ -153,7 +153,7 @@ namespace n7z
       if (_endMarker)
          return S_OK;
 #endif
-      Stream->seek(24, ca::seek_current);
+      Stream->seek(24, ::ca::seek_current);
       return S_OK;
    }
 
@@ -856,7 +856,7 @@ namespace n7z
          h.NextHeaderSize = headerSize;
          h.NextHeaderCRC = headerCRC;
          h.NextHeaderOffset = headerOffset;
-         Stream->seek(_prefixHeaderPos, ca::seek_begin);
+         Stream->seek(_prefixHeaderPos, ::ca::seek_begin);
          return WriteStartHeader(h);
       }
    }

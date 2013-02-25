@@ -43,7 +43,21 @@ namespace plane
 #endif
 
 
-#include "ca_base.h"
+// start ca_base.h Carlos Camilo (ca & ca) base for future ca2 user interface
+// {[(
+#include "ca_enum.h"
+#include "ca_ca.h"
+#include "ca_live_object.h"
+#include "ca_log.h"
+
+
+#include "ca_main_init_data.h"
+
+
+// )]}
+// end ca_base.h Carlos Camilo (ca & ca) base for future ca2 user interface
+
+
 
 
 #pragma warning(disable: 4250)
@@ -190,7 +204,7 @@ class dump_context;
 #pragma warning( push )
 #endif
 
-// warnings generated with common ca API/Windows code
+// warnings caerated with common ca API/Windows code
 #pragma warning(disable: 4134)  // message ::collection::map member fxn casts
 #pragma warning(disable: 4201)  // nameless unions are part of C++
 #pragma warning(disable: 4320)  // structs with uuid handled as interfaces
@@ -235,31 +249,34 @@ class dump_context;
 
 
 #include "ca/primitive/primitive_numeric_info.h"
-#include "gen_c_number.h"
+#include "ca_c_number.h"
 
 #include "ca/multithreading/multithreading_wait_result.h"
 #include "ca/primitive/datetime/datetime_duration.h"
-#include "gen_request_interface.h"
+#include "ca_request_interface.h"
 #include "ca/multithreading/multithreading_waitable.h"
 #include "ca/primitive/primitive.h"
 
 
-#include "gen_object.h"
+#include "ca_object.h"
 
 
-#include "gen_definition.h"
-#include "gen_common.h"
-#include "gen_core.h"
+#include "ca_definition.h"
+#include "ca_common.h"
+#include "ca_core.h"
 
 
-#include "gen_heap.h"
-#include "gen_plex_heap.h"
-#include "gen_fixed_alloc.h"
+#include "ca_heap.h"
+#include "ca_plex_heap.h"
+#include "ca_fixed_alloc.h"
 
 #include "ca/primitive/primitive_simple_string.h"
 
-#include "gen_ch.h"
-#include "gen_str.h"
+#include "ca_ch.h"
+#include "ca_str.h"
+#include "ca_strn.h"
+#include "ca_hex.h"
+
 
 #include "ca/primitive/primitive_id.h"
 #include "ca/primitive/primitive_string_format.h"
@@ -270,29 +287,29 @@ class dump_context;
 
 #include "ca/primitive/primitive.h"
 
-#include "gen_object.h"
+#include "ca_object.h"
 
-#include "gen_hash.h"
-#include "gen_equals.h"
-#include "gen_compare.h"
-#include "gen_less.h"
+#include "ca_hash.h"
+#include "ca_equals.h"
+#include "ca_compare.h"
+#include "ca_less.h"
 #include "ca.h"
 
 
-#include "gen_template.h"
+#include "ca_template.h"
 
 
 #include "ca/collection/collection_base_array.h"
 
-#include "ca/ca/ca_smart_pointer.h"
+#include "ca_smart_pointer.h"
 
 
 
 #define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))
 #define DYNAMIC_DOWNCAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define STATIC_DOWNCAST(class_name, object) (dynamic_cast<class_name*>(object))
-#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(ca::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
-#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(ca::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
+#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::ca::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
+#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(::ca::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
 
 // optional bit for schema number that enables object versioning
 #define VERSIONABLE_SCHEMA  (0x80000000)
@@ -318,33 +335,33 @@ class dump_context;
 
 
 
-#include "gen_allocate.h"
-#include "gen_plex.h"
+#include "ca_allocate.h"
+#include "ca_plex.h"
 
 #include "ca/collection/collection.h"
 
 
-#include "gen_plex_heap.h"
+#include "ca_plex_heap.h"
 
 
 
-#include "gen_holder.h"
-#include "gen_base.h"
+#include "ca_holder.h"
+#include "ca_base.h"
 
 
-#include "ca/ca/ca_interlocked_long.h"
-#include "ca/ca/ca_interlocked_long_pulse.h"
+#include "ca_interlocked_long.h"
+#include "ca_interlocked_long_pulse.h"
 
 #include "ca/multithreading/multithreading.h"
 
-#include "ca/ca/ca_data.h"
-#include "ca/ca/ca_data_container.h"
-#include "ca/ca/ca_data_listener.h"
+#include "ca_data.h"
+#include "ca_data_container.h"
+#include "ca_data_listener.h"
 
-#include "ca/ca/ca_edit.h"
+#include "ca_edit.h"
 
-#include "ca/ca/ca_type_info.h"
-#include "gen_factory.h"
+#include "ca_type_info.h"
+#include "ca_factory.h"
 
 
 #include "ca/user/user_str.h"
@@ -457,8 +474,8 @@ typedef struct tag_TimerCallbackCreateTimer
 #define WM_VIEW (WM_USER + 1023)
 
 
-#include "gen_base.h"
-#include "gen_constraint.h"
+#include "ca_base.h"
+#include "ca_constraint.h"
 
 #ifdef WINDOWS
 #ifndef _INC_SHELLAPI
@@ -626,21 +643,21 @@ CLASS_DECL_ca void __get_dithered_bitmap(::ca::application * papp, const ::ca::b
 CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
-#include "ca/ca/ca_graphic_classes.h"
+#include "ca_graphic_classes.h"
 
 
 
-#include "gen_fixed_alloc.h"
-#include "gen_request_signal.h"
+#include "ca_fixed_alloc.h"
+#include "ca_request_signal.h"
 
 #include "ca/visual/visual_const.h"
 
-#include "gen_var_array.h"
+#include "ca_var_array.h"
 
 
 
-#include "gen_command.h"
-#include "gen_command_target.h"
+#include "ca_command.h"
+#include "ca_command_target.h"
 
 
 typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
@@ -749,7 +766,7 @@ struct __system_policies
    __system_policy_data *pData;
 };
 
-#include "gen_file_manager_interface.h"
+#include "ca_file_manager_interface.h"
 
 
 
@@ -762,7 +779,7 @@ namespace user
 } // namespace user
 
 
-#include "ca/ca/ca_graphics.h"
+#include "ca_graphics.h"
 
 
 //#include "user_element_2d.h"
@@ -791,8 +808,8 @@ namespace user
 #include "ca/database/database_update_hint.h"
 
 
-#include "ca/ca/ca_window.h"
-#include "ca/ca/ca_message_window.h"
+#include "ca_window.h"
+#include "ca_message_window.h"
 
 
 
@@ -802,37 +819,37 @@ namespace user
 
 
 
-#include "ca/ca/ca_profiler.h"
+#include "ca_profiler.h"
 
 
-#include "ca/ca/ca_window_draw.h"
+#include "ca_window_draw.h"
 
-#include "gen_timer.h"
-#include "gen_timer_callback.h"
-#include "gen_timer_window.h"
-#include "gen_timer_listener.h"
-
-
-
-#include "ca/ca/ca_live_signal.h"
-
-#include "ca/ca/ca_thread.h"
-
-
-#include "gen_thread.h"
-
-
-#include "ca/ca/ca_history.h"
-#include "ca/ca/ca_application_bias.h"
-#include "ca/ca/ca_create_context.h"
-#include "ca/ca/ca_job.h"
-#include "ca/ca/ca_print_job.h"
+#include "ca_timer.h"
+#include "ca_timer_callback.h"
+#include "ca_timer_window.h"
+#include "ca_timer_listener.h"
 
 
 
+#include "ca_live_signal.h"
 
-#include "ca/ca/ca_application_interface.h"
-#include "ca/ca/ca_section.h"
+#include "ca_thread.h"
+
+
+#include "ca_thread.h"
+
+
+#include "ca_history.h"
+#include "ca_application_bias.h"
+#include "ca_create_context.h"
+#include "ca_job.h"
+#include "ca_print_job.h"
+
+
+
+
+#include "ca_application_interface.h"
+#include "ca_section.h"
 
 
 #pragma once
@@ -842,7 +859,7 @@ namespace user
 #include "ca.h"
 
 
-#include "gen_os_history.h"
+#include "ca_os_history.h"
 
 
 namespace windows
@@ -863,13 +880,10 @@ namespace windows
 #include "ca/primitive/primitive_id_space.h"
 
 
-#include "gen_international_locale_schema.h"
+#include "ca_international_locale_schema.h"
 
 
-#include "gen_system.h"
-
-
-#include "gen_wait_cursor.h"
+#include "ca_wait_cursor.h"
 
 
 
@@ -892,8 +906,8 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_ca void ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_ca void ca::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_ca void ::ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_ca void ::ca::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
 /*CLASS_DECL_ca int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
@@ -925,45 +939,41 @@ namespace ca
 #endif
 
 
-#include "gen_fixed_alloc.h"
-#include "gen_process_data.h"
+#include "ca_fixed_alloc.h"
+#include "ca_process_data.h"
 
 
-#include "ca/ca/ca_system.h"
+#include "ca_exception.h"
 
+#include "ca_request_interface.h"
 
+#include "ca_tree_item_data.h"
+#include "ca_tree_item.h"
+#include "ca_tree_data.h"
+#include "ca_tree.h"
 
-#include "gen_exception.h"
+#include "ca_fs_interface.h"
 
-#include "gen_request_interface.h"
+#include "ca_stream_base.h"
 
-#include "gen_tree_item_data.h"
-#include "gen_tree_item.h"
-#include "gen_tree_data.h"
-#include "gen_tree.h"
+#include "ca_seekable.h"
 
-#include "gen_fs_interface.h"
+#include "ca_reader.h"
+#include "ca_writer.h"
+#include "ca_stream.h"
 
-#include "gen_stream_base.h"
+#include "ca_byte_serializable.h"
+#include "ca_byte_stream.h"
+#include "ca_plain_text_serializable.h"
 
-#include "gen_seekable.h"
-
-#include "gen_reader.h"
-#include "gen_writer.h"
-#include "gen_stream.h"
-
-#include "gen_byte_serializable.h"
-#include "gen_byte_stream.h"
-#include "gen_plain_text_serializable.h"
-
-#include "gen_base_enum.h"
+#include "ca_base_enum.h"
 
 
 
 
-#include "gen_plain_text_stream.h"
-#include "gen_output_stream_flush_interface.h"
-#include "gen_stream2.h"
+#include "ca_plain_text_stream.h"
+#include "ca_output_stream_flush_interface.h"
+#include "ca_stream2.h"
 
 
 namespace primitive
@@ -987,16 +997,16 @@ namespace ca
 } // namespace ca
 
 
-#include "gen_file.h"
-#include "gen_file_composite.h"
-#include "gen_file_exception.h"
-#include "gen_file_status.h"
+#include "ca_file.h"
+#include "ca_file_composite.h"
+#include "ca_file_exception.h"
+#include "ca_file_status.h"
 
 
 
-#include "gen_plain_text_string_stream.h"
+#include "ca_plain_text_string_stream.h"
 
-#include "gen_file_stream.h"
+#include "ca_file_stream.h"
 
 
 // memory primitives
@@ -1022,7 +1032,7 @@ namespace ca
 
 
 // Implementation structures
-struct __SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
+struct __SIZEPARENTPARAMS;    // control bar implementationproperca_property.h
 
 // Classes declared in this file
 
@@ -1154,7 +1164,7 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ca::Sig_vv, \
+   { message, 0, 0, 0, ::ca::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN)
@@ -1222,9 +1232,9 @@ class COleControlLock;
 
 // Functions declared in this file
 
-// ca::BSTR2ABTSR
-// ca::TaskStringA2W
-// ca::TaskStringW2A
+// ::ca::BSTR2ABTSR
+// ::ca::TaskStringA2W
+// ::ca::TaskStringW2A
 
 #endif
 
@@ -1330,31 +1340,31 @@ public:
 
    STDMETHOD_(ULONG, AddRef)();
    STDMETHOD_(ULONG, Release)();
-   ca::HRes QueryInterface)(REFIID, LPVOID*);
+   ::ca::HRes QueryInterface)(REFIID, LPVOID*);
 
-   ca::HRes read)(void *, ULONG, ULONG*);
-   ca::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
-   ca::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
-   ca::HRes set_size)(ULARGE_INTEGER);
-   ca::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
+   ::ca::HRes read)(void *, ULONG, ULONG*);
+   ::ca::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
+   ::ca::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
+   ::ca::HRes set_size)(ULARGE_INTEGER);
+   ::ca::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
       ULARGE_INTEGER*);
-   ca::HRes Commit)(uint32_t);
-   ca::HRes Revert)();
-   ca::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
-   ca::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
-   ca::HRes Stat)(STATSTG*, uint32_t);
-   ca::HRes Clone)(LPSTREAM*);
+   ::ca::HRes Commit)(uint32_t);
+   ::ca::HRes Revert)();
+   ::ca::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
+   ::ca::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
+   ::ca::HRes Stat)(STATSTG*, uint32_t);
+   ::ca::HRes Clone)(LPSTREAM*);
 };
 */
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_ca void ca::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_ca void ::ca::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_ca BSTR ca::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_ca wchar_t * ca::TaskStringA2W(const char * lpa);
-CLASS_DECL_ca char * ca::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_ca BSTR ::ca::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_ca wchar_t * ::ca::TaskStringA2W(const char * lpa);
+CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -1367,92 +1377,92 @@ CLASS_DECL_ca char * ca::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "gen_definition.h"
-#include "gen_types.h"
+#include "ca_definition.h"
+#include "ca_types.h"
 
-#include "gen_match.h"
+#include "ca_match.h"
 
 // interfaces
-#include "gen_progress_interface.h"
+#include "ca_progress_interface.h"
 
 
 // from 7-zip
-#include "gen_system_exception.h"
-#include "gen_buffer.h"
-#include "gen_dynamic_buffer.h"
-#include "gen_in_buffer.h"
-#include "gen_out_buffer.h"
-#include "gen_circular_buffer.h"
-#include "gen_bitl_decoder.h"
-#include "gen_bitl_encoder.h"
-#include "gen_bitm_decoder.h"
-#include "gen_bitm_encoder.h"
-#include "gen_limited_reader.h"
-#include "gen_limited_input_stream.h"
-#include "gen_clustered_input_stream.h"
-#include "gen_limited_writer.h"
+#include "ca_system_exception.h"
+#include "ca_buffer.h"
+#include "ca_dynamic_buffer.h"
+#include "ca_in_buffer.h"
+#include "ca_out_buffer.h"
+#include "ca_circular_buffer.h"
+#include "ca_bitl_decoder.h"
+#include "ca_bitl_encoder.h"
+#include "ca_bitm_decoder.h"
+#include "ca_bitm_encoder.h"
+#include "ca_limited_reader.h"
+#include "ca_limited_input_stream.h"
+#include "ca_clustered_input_stream.h"
+#include "ca_limited_writer.h"
 
-#include "gen_stream_binder.h"
-#include "gen_locked_in_stream.h"
-#include "gen_io_temp_buffer.h"
-#include "gen_size_count_writer.h"
-#include "gen_dynamic_buffered_writer.h"
+#include "ca_stream_binder.h"
+#include "ca_locked_in_stream.h"
+#include "ca_io_temp_buffer.h"
+#include "ca_size_count_writer.h"
+#include "ca_dynamic_buffered_writer.h"
 
 
-#include "gen_buffered_file.h"
-#include "gen_timeout_file.h"
-#include "gen_edit_file.h"
-#include "gen_text_file.h"
-//#include "gen_file_system.h"
-#include "gen_resource.h"
+#include "ca_buffered_file.h"
+#include "ca_timeout_file.h"
+#include "ca_edit_file.h"
+#include "ca_text_file.h"
+//#include "ca_file_system.h"
+#include "ca_resource.h"
 
-#include "gen_simple_tree_item_data.h"
-#include "gen_simple_tree_data.h"
+#include "ca_simple_tree_item_data.h"
+#include "ca_simple_tree_data.h"
 
 
 
 // former ca start - former before concatenation of ca + ca + ca + ca
 
-#include "gen_debug.h"
+#include "ca_debug.h"
 
 #include "ca/math/math_math.h"
 
-#include "gen_math_rng.h"
-#include "gen_math.h"
-#include "gen_geometry.h"
+#include "ca_math_rng.h"
+#include "ca_math.h"
+#include "ca_geometry.h"
 
-#include "gen_equals.h"
+#include "ca_equals.h"
 
-#include "gen_iterator.h"
-#include "gen_insert_iterator.h"
-#include "gen_back_insert_iterator.h"
-#include "gen_std_pair.h"
-
-
-#include "gen_c_number.h"
+#include "ca_iterator.h"
+#include "ca_insert_iterator.h"
+#include "ca_back_insert_iterator.h"
+#include "ca_std_pair.h"
 
 
+#include "ca_c_number.h"
 
 
-#include "gen_muldiv32.h"
+
+
+#include "ca_muldiv32.h"
 
 #define EX1ASSERT_VALID(pobj) ASSERT(pobj->Ex1IsObjValid())
 
 
-#include "gen_simple_thread.h"
-#include "gen_go_thread.h"
+#include "ca_simple_thread.h"
+#include "ca_go_thread.h"
 
 
 
-#include "gen_scoped_ptr.h"
-#include "gen_logic.h"
+#include "ca_scoped_ptr.h"
+#include "ca_logic.h"
 
 
 
-#include "gen_parse.h"
+#include "ca_parse.h"
 
 
-#include "gen_template.h"
+#include "ca_template.h"
 
 
 #include "ca/collection/collection_base_2array.h"
@@ -1461,50 +1471,47 @@ CLASS_DECL_ca char * ca::TaskStringW2A(const wchar_t * lpw);
 #include "ca/collection/collection_stringl.h"
 #include "ca/collection/collection_string_sort_array.h"
 
-#include "gen_string_tokenizer.h"
+#include "ca_string_tokenizer.h"
 
 
-#include "gen_base_enum.h"
-#include "gen_base_enum.h"
-#include "gen_holder.h"
-#include "gen_raw_pointer.h"
-//#include "gen_full_pointer.h"
-//#include "gen_time.h"
-#include "gen_byte_serializable.h"
+#include "ca_base_enum.h"
+#include "ca_base_enum.h"
+#include "ca_holder.h"
+#include "ca_raw_pointer.h"
+//#include "ca_full_pointer.h"
+//#include "ca_time.h"
+#include "ca_byte_serializable.h"
 #include "ca/collection/collection_stringa.h"
-#include "gen_var.h"
-#include "gen_var_array.h"
+#include "ca_var.h"
+#include "ca_var_array.h"
 
-#include "gen_pointer_manager.h"
+#include "ca_pointer_manager.h"
 
-#include "gen_pipe.h"
-#include "gen_process.h"
-
-
-#include "gen_savings.h"
-
-#include "gen_command.h"
-#include "gen_command_line.h"
-#include "gen_command_thread.h"
-
-#include "gen_base64.h"
-#include "gen_system.h"
+#include "ca_pipe.h"
+#include "ca_process.h"
 
 
-#include "gen_util1.h"
+#include "ca_savings.h"
+
+#include "ca_command.h"
+#include "ca_command_line.h"
+#include "ca_command_thread.h"
+
+#include "ca_base64.h"
+
+#include "ca_util1.h"
 
 
-#include "gen_str.h"
 
 
 #include "ca/primitive/primitive_int_biunique.h"
 
 
-//#include "gen_memory_file.h"
-#include "gen_byte_stream_memory_file.h"
+//#include "ca_memory_file.h"
+#include "ca_byte_stream_memory_file.h"
 
 
-#include "gen_microtimer.h"
+#include "ca_microtimer.h"
 
 template <class TYPE>
 inline bool IsRefNull(const TYPE & ref)
@@ -1515,43 +1522,35 @@ inline bool IsRefNull(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca ca::byte_input_stream &  operator >>(ca::byte_input_stream & istream, string & string);
-CLASS_DECL_ca ca::byte_output_stream &  operator <<(ca::byte_output_stream & ostream, const string & string);
+CLASS_DECL_ca ::ca::byte_input_stream &  operator >>(::ca::byte_input_stream & istream, string & string);
+CLASS_DECL_ca ::ca::byte_output_stream &  operator <<(::ca::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
-#include "gen_file_association.h"
+#include "ca_file_association.h"
 #endif
 
 
-#include "gen_signal_thread.h"
+#include "ca_signal_thread.h"
 
-#include "gen_international_locale_schema.h"
+#include "ca_international_locale_schema.h"
 
-#include "gen_timer.h"
+#include "ca_timer.h"
 
-#include "gen_istring.h"
-
-
-#include "gen_cregexp.h"
-#include "gen_cregexp_util.h"
+#include "ca_istring.h"
 
 
-
-// former ca 
+#include "ca_cregexp.h"
+#include "ca_cregexp_util.h"
 
 
 
-#pragma once
 
 
-//#include "ca.h"
+#include "ca_file_set.h"
 
+#include "ca_folder_watch.h"
 
-#include "gen_file_set.h"
-
-#include "gen_folder_watch.h"
-
-#include "gen_transfer_file.h"
+#include "ca_transfer_file.h"
 
 
 class document_interface;
@@ -1630,7 +1629,7 @@ typedef ::visual::icon * HICON;
 
 
 class file_system;
-typedef ca::smart_pointer < file_system > file_system_sp;
+typedef ::ca::smart_pointer < file_system > file_system_sp;
 class Ex1FactoryImpl;
 
 
@@ -1655,10 +1654,7 @@ namespace ca
 
 } // namespace ca
 
-#include "gen_application.h"
-
-
-#pragma once
+#include "ca_trace.h"
 
 
 
@@ -1670,12 +1666,9 @@ namespace ca
 #include "app/appseed/ca/html/html.h"
 
 
-#include "ca/ca/gen_definition.h"
-#include "ca/ca/gen_debug.h"
+#include "ca_definition.h"
+#include "ca_debug.h"
 
-#include "ca/ca/ca_log.h"
-
-#include "ca/ca/gen_trace.h"
 
 
 namespace ca
@@ -1688,36 +1681,38 @@ namespace ca
 } // namespace ca
 
 
-#include "ca/ca/ca_file_application.h"
-#include "ca/ca/ca_file_system.h"
-#include "ca/ca/ca_dir_application.h"
-#include "ca/ca/ca_dir_system.h"
-#include "ca/ca/gen_edit_file.h"
-#include "ca2_stra.h"
-#include "ca2_url_domain.h"
-#include "ca2_url.h"
+#include "ca/crypto/crypto.h"
 
 
-#include "ca/ca/gen_service.h"
-#include "ca/ca/gen_machine_event_central.h"
+#include "ca_file_application.h"
+#include "ca_file_system.h"
+#include "ca_dir_application.h"
+#include "ca_dir_system.h"
+#include "ca_edit_file.h"
+#include "ca_stra.h"
+#include "ca_url_domain.h"
+#include "ca_url.h"
+
+
+#include "ca_service.h"
+#include "ca_machine_event_central.h"
 
 
 #include "ca/install/install.h"
 
 
-#include "ca/ca/ca_os.h"
-
-#include "ca/ca/gen_process.h"
+#include "ca_os.h"
 
 
 
 
-#include "ca2_datetime.h"
+
+#include "ca_datetime.h"
 
 
 
 
-#include "ca2_library.h"
+#include "ca_library.h"
 
 
 #include "ca/xml/xml_data.h"
@@ -1731,7 +1726,7 @@ namespace ca
 
 
 
-#include "ca/crypto/crypto.h"
+
 #include "ca/compress/compress.h"
 #include "ca/javascript/javascript.h"
 
@@ -1752,26 +1747,29 @@ namespace cube // ca8 + cube
 } // namespace cube // ca8 + cube
 
 
-#include "ca2_compress.h"
-#include "ca2_patch.h"
-#include "ca2_copydesk.h"
-#include "ca2_crypt.h"
-#include "ca2_email.h"
-#include "ca2_file.h"
-#include "ca2_http.h"
-#include "ca2_http_application.h"
-#include "ca2_http_system.h"
-#include "ca2_http_get_socket.h"
-#include "ca2_ip_enum.h"
-#include "ca2_port_forward.h"
+#include "ca_compress.h"
+#include "ca_patch.h"
+#include "ca_copydesk.h"
+#include "ca_crypt.h"
+#include "ca_email.h"
+#include "ca_http.h"
+#include "ca_http_application.h"
+#include "ca_http_system.h"
+#include "ca_http_get_socket.h"
+#include "ca_ip_enum.h"
+#include "ca_port_forward.h"
           
           
-#include "ca2_oauth.h"
-#include "ca2_twit.h"
+#include "ca_oauth.h"
+#include "ca_twit.h"
+
+#include "ca_process_section.h"
+
           
-          
-#include "ca2_application.h"
+#include "ca_application.h"
 
 
 
 
+#include "ca_session.h"
+#include "ca_system.h"

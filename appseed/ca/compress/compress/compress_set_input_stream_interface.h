@@ -8,8 +8,8 @@ namespace libcompress
       virtual public ::ca::object
    {
    public:
-      virtual ca::HRes SetInStream(::ca::reader * inStream) = 0;
-      virtual ca::HRes ReleaseInStream() = 0;
+      virtual ::ca::HRes SetInStream(::ca::reader * inStream) = 0;
+      virtual ::ca::HRes ReleaseInStream() = 0;
    };
 
 } // namespace libcompress

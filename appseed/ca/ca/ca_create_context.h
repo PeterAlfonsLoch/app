@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/gen_command.h"
+#include "ca/ca/ca_command.h"
 #include "ca/user/user_create_context.h"
 
 
@@ -104,13 +104,13 @@ namespace ca
       application_bias_sp                 m_spApplicationBias;
       ::ca::command_line_sp              m_spCommandLine;
       stack < ::user::create_context >    m_user;
-      ca::command_thread *               m_pthreadParent;
+      ::ca::command_thread *               m_pthreadParent;
 
 
 
       create_context(::ca::application * papp);
-      create_context(ca::command_thread * pthreadParent);
-      create_context(ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      create_context(::ca::command_thread * pthreadParent);
+      create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
       create_context(const create_context & createcontext);
       virtual ~create_context();
 
@@ -128,8 +128,8 @@ namespace ca
 
       create_context_sp();
       create_context_sp(::ca::application * papp);
-      create_context_sp(ca::command_thread * pthreadParent);
-      create_context_sp(ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      create_context_sp(::ca::command_thread * pthreadParent);
+      create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
       virtual ~create_context_sp();
 
 

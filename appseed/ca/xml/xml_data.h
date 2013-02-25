@@ -16,8 +16,8 @@ namespace ca
       virtual ~xml_data();
 
 
-      virtual void write(ca::byte_output_stream & ostream);
-      virtual void read(ca::byte_input_stream & istream);
+      virtual void write(::ca::byte_output_stream & ostream);
+      virtual void read(::ca::byte_input_stream & istream);
 
 
    };

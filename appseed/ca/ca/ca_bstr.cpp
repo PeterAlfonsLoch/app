@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "gen_bstr.h"
+#include "ca_bstr.h"
 
 #ifdef WINDOWS
 
@@ -27,14 +27,14 @@ void bstr::copy(BSTR &bstrDest, const BSTR bstrSrc)
 
 void bstr::copy(string &strDest, const BSTR bstrSrc)
 {
-   strDest = ca::international::unicode_to_utf8((wchar_t *) bstrSrc);
+   strDest = ::ca::international::unicode_to_utf8((wchar_t *) bstrSrc);
 }
 
 void bstr::copy( BSTR &bstrDest, const string &strSrc )
 {
    if(bstrDest != NULL)
       SysFreeString(bstrDest);
-   bstrDest = SysAllocString((wchar_t *) ca::international::utf8_to_unicode(strSrc));
+   bstrDest = SysAllocString((wchar_t *) ::ca::international::utf8_to_unicode(strSrc));
 }
 
 bool bstr::IsEqual(const BSTR bstrA, const BSTR bstrB)

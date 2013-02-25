@@ -991,7 +991,7 @@ exit_application:
       }
 
 
-      if(!ca::application::initialize())
+      if(!::ca::application::initialize())
          return false;
 
 
@@ -1189,7 +1189,7 @@ exit_application:
          
       }
 
-      if(!ca::application::initialize1())
+      if(!::ca::application::initialize1())
          return false;
 
       m_visual.construct(this);
@@ -1207,7 +1207,7 @@ exit_application:
    bool application::initialize2()
    {
 
-      if(!ca::application::initialize2())
+      if(!::ca::application::initialize2())
          return false;
 
       m_simpledb.construct(this);
@@ -1223,7 +1223,7 @@ exit_application:
    bool application::initialize_instance()
    {
 
-      if(!ca::application::initialize_instance())
+      if(!::ca::application::initialize_instance())
          return false;
 
       if(!m_pfontopus->initialize_instance())
@@ -1390,16 +1390,16 @@ exit_application:
          {
             create_new_service();
             m_pservice->Start(0);
-            return ca::application::run();
+            return ::ca::application::run();
          }
          else
          {
-            return ca::application::run();
+            return ::ca::application::run();
          }
       }
       else
       {
-         return ca::application::run();
+         return ::ca::application::run();
       }
 
       return 0;
@@ -1585,7 +1585,7 @@ exit_application:
                g_iCountProgress++;
             }
 
-            ca::international::locale_schema localeschema(this);
+            ::ca::international::locale_schema localeschema(this);
 
             fill_locale_schema(localeschema);
 
@@ -1643,7 +1643,7 @@ exit_application:
 
    }
 
-   void application::fill_locale_schema(ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
+   void application::fill_locale_schema(::ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
    {
 
 
@@ -1670,7 +1670,7 @@ exit_application:
 
    }
 
-   void application::fill_locale_schema(ca::international::locale_schema & localeschema)
+   void application::fill_locale_schema(::ca::international::locale_schema & localeschema)
    {
 
 
@@ -1716,7 +1716,7 @@ exit_application:
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
 
-      ca::international::locale_schema localeschema(this);
+      ::ca::international::locale_schema localeschema(this);
 
       fill_locale_schema(localeschema);
 
@@ -1765,7 +1765,7 @@ exit_application:
          while(true)
          {
 
-            ca::property_set setEmpty(get_app());
+            ::ca::property_set setEmpty(get_app());
 
             psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, NULL, NULL);
 
@@ -1789,7 +1789,7 @@ exit_application:
 
          string strDir = strFile;
 
-         ca::str::ends_eat_ci(strDir, ".zip");
+         ::ca::str::ends_eat_ci(strDir, ".zip");
 
          try
          {

@@ -58,7 +58,7 @@ namespace frame
       void SizeWindow(::user::interaction * pwnd, point pt, bool bTracking);
       void MoveWindow(::user::interaction * pwnd, LPCRECT lpcrect);
 
-      void message_handler(::user::interaction * pwnd, ca::signal_object * pobj);
+      void message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj);
    };
 
 } // namespace frame

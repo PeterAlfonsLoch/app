@@ -7,9 +7,12 @@ namespace ca
 
    CLASS_DECL_ca PFN_get_thread g_pfn_get_thread = NULL;
    CLASS_DECL_ca PFN_get_thread_state g_pfn_get_thread_state = NULL;
+   bool thread::s_bAllocReady = false;
 
 
-   thread::thread()
+
+   thread::thread() :
+      m_mutex(NULL)
    {
 
       m_dwAlive                     = ::get_tick_count();
@@ -17,8 +20,37 @@ namespace ca
       m_bRun                        = true;
       m_pappDelete                  = NULL;
       m_pbReady                     = NULL;
-      m_pthread                     = NULL;
+      m_pthread = this;
 
+   }
+
+   thread::thread(::ca::application * papp) :
+      ca(papp),
+      m_mutex(papp)
+   {
+      m_pthread = this;
+      if(papp == NULL)
+         return;
+      set_app(papp);
+      if(!s_bAllocReady)
+         return;
+      ::ca::thread_sp::create(papp);
+      m_p->set_p(this);
+      m_p->construct();
+   }
+
+   thread::thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+      ca(papp),
+      m_mutex(papp)
+   {
+      m_pthread = this;
+      ::ca::thread_sp::create(papp);
+      m_p->set_p(this);
+      m_p->construct(pfnThreadProc, pParam);
+   }
+
+   thread::~thread()
+   {
    }
 
 
@@ -103,23 +135,17 @@ namespace ca
 
    }
 
-   thread::~thread()
-   {
-   }
-
 
    void * thread::get_os_data() const
    {
-
-      throw interface_only_exception(get_app());
-
+      return m_p->get_os_data();
    }
 
 
    int_ptr thread::get_os_int() const
    {
 
-      throw interface_only_exception(get_app());
+      return m_p->get_os_int();
 
    }
 
@@ -128,6 +154,14 @@ namespace ca
    {
 
       return (HTHREAD) get_os_data();
+
+   }
+
+
+   void thread::on_delete(::ca::ca * pca)
+   {
+      
+      UNREFERENCED_PARAMETER(pca);
 
    }
 
@@ -141,35 +175,26 @@ namespace ca
    bool thread::begin(::ca::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
-      UNREFERENCED_PARAMETER(epriority);
-      UNREFERENCED_PARAMETER(nStackSize);
-      UNREFERENCED_PARAMETER(dwCreateFlags);
-      UNREFERENCED_PARAMETER(lpSecurityAttrs);
-
-      throw interface_only_exception(get_app());
+      return m_p->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
 
    }
 
 
    bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
-      UNREFERENCED_PARAMETER(epriority);
-      UNREFERENCED_PARAMETER(dwCreateFlags);
-      UNREFERENCED_PARAMETER(nStackSize);
-      UNREFERENCED_PARAMETER(lpSecurityAttrs);
-      throw interface_only_exception(get_app());
+
+      return m_p->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
+
    }
 
-   void thread::Delete()
-   {
-      thread * pthread = this;
-      ca::del(pthread);
-   }
+//   void thread::Delete()
+  // {
+   //}
 
    /////////////////////////////////////////////////////////////////////////////
    // thread default implementation
 
-   bool thread::PreInitInstance()
+/*   bool thread::PreInitInstance()
    {
       return true;
    }
@@ -180,7 +205,7 @@ namespace ca
 
       return true;   // by default enter run loop
    }
-
+   */
    bool thread::finalize()
    {
       return true;
@@ -205,12 +230,12 @@ namespace ca
    }
 
    // main running routine until thread exits
-   int32_t thread::run()
+/*   int32_t thread::run()
    {
       throw interface_only_exception(get_app());
    }
 
-   bool thread::is_idle_message(ca::signal_object * pobj)
+   bool thread::is_idle_message(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -234,51 +259,51 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void thread::DispatchThreadMessageEx(ca::signal_object * pobj)
+   void thread::DispatchThreadMessageEx(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
-   }
+   }*/
 
-   void thread::pre_translate_message(ca::signal_object * pobj)
+/*   void thread::pre_translate_message(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   }
+   }*
 
-   void thread::ProcessWndProcException(base_exception* e, ca::signal_object * pobj)
+/*   void thread::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(e);
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
-   }
+   }*/
 
-   void thread::ProcessMessageFilter(int32_t code, ca::signal_object * pobj)
+/*   void thread::ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(code);
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
-   }
+   }*/
 
    /////////////////////////////////////////////////////////////////////////////
    // Access to GetMainWnd() & m_pActiveWnd
 
-   ::user::interaction* thread::GetMainWnd()
+/*   ::user::interaction* thread::GetMainWnd()
    {
       throw interface_only_exception(get_app());
-   }
+   }*/
 
    /////////////////////////////////////////////////////////////////////////////
    // thread implementation helpers
 
-   bool thread::pump_message()
+/*   bool thread::pump_message()
    {
       throw interface_only_exception(get_app());
-   }
+   }*/
 
    /////////////////////////////////////////////////////////////////////////////
    // thread diagnostics
 
-   void thread::assert_valid() const
+/*   void thread::assert_valid() const
    {
       throw interface_only_exception(get_app());
    }
@@ -305,56 +330,52 @@ namespace ca
 
       return false;
 
-   }
+   }*/
+
 
    ::ca::e_thread_priority thread::get_thread_priority()
    {
-      throw interface_only_exception(get_app());
+
+      return m_p->get_thread_priority();
+
    }
+
 
    bool thread::set_thread_priority(::ca::e_thread_priority epriority)
    {
-      UNREFERENCED_PARAMETER(epriority);
-      throw interface_only_exception(get_app());
+
+      return m_p->set_thread_priority(epriority);
+
    }
+
 
    uint32_t thread::ResumeThread()
    {
-      throw interface_only_exception(get_app());
+
+      return m_p->ResumeThread();
+
    }
+
 
    /*uint32_t thread::SuspendThread()
    {
+
       throw interface_only_exception(get_app());
+
    }*/
+
 
    bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
    {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      if(m_p == NULL)
+         return false;
+
+      return m_p->post_thread_message(message, wParam, lParam);
+
    }
 
-   ::user::interaction * thread::SetMainWnd(::user::interaction * pui)
-   {
-      UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception(get_app());
-   }
 
-   void thread::add(::user::interaction * pui)
-   {
-      UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception(get_app());
-   }
-
-   void thread::remove(::user::interaction * pui)
-   {
-      UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception(get_app());
-   }
-
-   ::count thread::get_ui_count()
+/*   ::count thread::get_ui_count()
    {
       throw interface_only_exception(get_app());
    }
@@ -363,9 +384,9 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(iIndex);
       throw interface_only_exception(get_app());
-   }
+   }*/
 
-   void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
+/*   void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
@@ -427,24 +448,24 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(pui);
    }
-
+   */
    void thread::set_os_data(void * pvoidOsData)
    {
       UNREFERENCED_PARAMETER(pvoidOsData);
       throw interface_only_exception(get_app());
    }
-
+   
    void thread::set_os_int(int_ptr iData)
    {
       UNREFERENCED_PARAMETER(iData);
       throw interface_only_exception(get_app());
    }
-
-
+   /*
    int32_t thread::main()
    {
       return 0;
    }
+   */
 
    void thread::on_keep_alive()
    {
@@ -476,13 +497,6 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-	void thread::wait()
-	{
-      throw not_implemented(get_app());
-      // on Windows ==>       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
-
-   }
-
 	///  \brief		waits for signaling the thread for a specified time
 	///  \param		duration time period to wait for thread
 	///  \return	result of waiting action as defined in wait_result
@@ -510,117 +524,13 @@ namespace ca
    }
 
 
-} // namespace ca
-
-
-namespace user
-{
-
-
-   LRESULT message::send()
-   {
-      return m_pguie->send_message(m_uiMessage, m_wparam, m_lparam);
-   }
-
-   UINT message::ThreadProcSendMessage(LPVOID lp)
-   {
-      message * pmessage = (message *) lp;
-      pmessage->send();
-      delete pmessage;
-      return 0;
-   }
-
-   void message::post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority)
-   {
-      message * pmessage = new message;
-      pmessage->m_pguie = puie;
-      pmessage->m_uiMessage = uiMessage;
-      pmessage->m_wparam = wparam;
-      pmessage->m_lparam = lparam;
-      __begin_thread(puie->get_app(), &ThreadProcSendMessage, pmessage, epriority);
-   }
-
-
-} // namespace win
-
-
-
-#include "framework.h"
-
-namespace ca
-{
-
-   bool thread::s_bAllocReady = false;
 
    CLASS_DECL_ca void thread_alloc_ready(bool bReady)
    {
       ::ca::thread::s_bAllocReady = bReady;
    }
 
-   thread::thread() :
-      m_mutex(NULL)
-   {
-      m_pthread = this;
-   }
 
-   thread::thread(::ca::application * papp) :
-      ca(papp),
-      m_mutex(papp)
-   {
-      m_pthread = this;
-      if(papp == NULL)
-         return;
-      set_app(papp);
-      if(!s_bAllocReady)
-         return;
-      ::ca::thread_sp::create(papp);
-      m_p->set_p(this);
-      m_p->construct();
-   }
-
-   thread::thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
-      ca(papp),
-      m_mutex(papp)
-   {
-      m_pthread = this;
-      ::ca::thread_sp::create(papp);
-      m_p->set_p(this);
-      m_p->construct(pfnThreadProc, pParam);
-   }
-
-   thread::~thread()
-   {
-   }
-
-   void * thread::get_os_data() const
-   {
-      return m_p->get_os_data();
-   }
-
-   int_ptr thread::get_os_int() const
-   {
-      return m_p->get_os_int();
-   }
-
-   bool thread::begin(::ca::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-   {
-      return m_p->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
-   }
-
-   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-   {
-      return m_p->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
-   }
-
-   ::ca::e_thread_priority thread::get_thread_priority()
-   {
-      return m_p->get_thread_priority();
-   }
-
-   bool thread::set_thread_priority(::ca::e_thread_priority epriority)
-   {
-      return m_p->set_thread_priority(epriority);
-   }
 
 /*   uint32_t thread::SuspendThread()
    {
@@ -628,23 +538,9 @@ namespace ca
    }
    */
 
-   uint32_t thread::ResumeThread()
-   {
-      return m_p->ResumeThread();
-   }
-   
 
-   bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
-   {
-      
-      if(m_p == NULL)
-         return false;
 
-      return m_p->post_thread_message(message, wParam, lParam);
-
-   }
-
-   void thread::ProcessMessageFilter(int32_t code, ca::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj)
    {
       return  m_p->ProcessMessageFilter(code, pobj);
    }
@@ -691,7 +587,7 @@ namespace ca
       return m_p->run();
    }
 
-   void thread::pre_translate_message(ca::signal_object * pobj)
+   void thread::pre_translate_message(::ca::signal_object * pobj)
    {
       if(m_p == NULL)
          return;
@@ -708,7 +604,7 @@ namespace ca
       return m_p->on_idle(lCount);
    }
 
-   bool thread::is_idle_message(ca::signal_object * pobj)  // checks for special messages
+   bool thread::is_idle_message(::ca::signal_object * pobj)  // checks for special messages
    {
       return m_p->is_idle_message(pobj);
    }
@@ -722,7 +618,7 @@ namespace ca
    }
 
    // Advanced: exception handling
-   void thread::ProcessWndProcException(base_exception* e, ca::signal_object * pobj)
+   void thread::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
    {
       return m_p->ProcessWndProcException(e, pobj);
    }
@@ -765,7 +661,7 @@ namespace ca
       {
          if(m_p != NULL)
          {
-            m_p->remove(pui, false);
+            m_p->::ca::holder_array < ::user::interaction > ::remove(pui, false);
          }
       }
       catch(...)
@@ -907,10 +803,17 @@ namespace ca
    // 'delete this' only if m_bAutoDelete == TRUE
    void thread::Delete()
    {
+
       m_p->Delete();
+
+      thread * pthread = this;
+
+      ::ca::del(pthread);
+
    }
 
-   void thread::DispatchThreadMessageEx(ca::signal_object * pobj)  // helper
+
+   void thread::DispatchThreadMessageEx(::ca::signal_object * pobj)  // helper
    {
       return m_p->DispatchThreadMessageEx(pobj);
    }

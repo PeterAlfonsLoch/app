@@ -11,7 +11,7 @@ namespace sip
       transaction(const transaction & src);
       virtual ~transaction();
 
-      ca::property & header(const char * pszKey);
+      ::ca::property & header(const char * pszKey);
 
       void SetAccept(const string & value);
       string Accept();
@@ -46,17 +46,17 @@ namespace sip
       void SetUserAgent(const string & value);
       string UserAgent();
 
-      ca::property_set & headers();
+      ::ca::property_set & headers();
 
-      ca::property_set & attrs();
+      ::ca::property_set & attrs();
 
-      ca::property & attr(const char * psz);
+      ::ca::property & attr(const char * psz);
       http::cookies & cookies();
 
       virtual void clear();
 
-      ca::property_set m_propertysetHeader;
-      ca::property_set m_propertysetAttribute;
+      ::ca::property_set m_propertysetHeader;
+      ::ca::property_set m_propertysetAttribute;
       http::cookies m_cookies;
       string m_null;
 

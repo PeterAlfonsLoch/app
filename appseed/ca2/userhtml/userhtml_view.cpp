@@ -92,7 +92,7 @@ bool html_view::pre_create_window(CREATESTRUCT& cs)
    cs.style &= ~WS_EX_CLIENTEDGE;
    return ::userbase::view::pre_create_window(cs);
 }
-void html_view::_001OnInitialUpdate(ca::signal_object * pobj) 
+void html_view::_001OnInitialUpdate(::ca::signal_object * pobj) 
 {
 
    ::userbase::view::_001OnInitialUpdate(pobj);
@@ -125,7 +125,7 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    
 }
 
-void html_view::_001OnDestroy(ca::signal_object * pobj) 
+void html_view::_001OnDestroy(::ca::signal_object * pobj) 
 {
    ::userbase::view::_001OnDestroy(pobj);
 
@@ -135,7 +135,7 @@ void html_view::_001OnDestroy(ca::signal_object * pobj)
 
 
 
-void html_view::_001OnCreate(ca::signal_object * pobj) 
+void html_view::_001OnCreate(::ca::signal_object * pobj) 
 {
    if(pobj->previous())
       return;
@@ -146,7 +146,7 @@ void html_view::_001OnCreate(ca::signal_object * pobj)
 
 
 }
-void html_view::_001OnContextMenu(ca::signal_object * pobj) 
+void html_view::_001OnContextMenu(::ca::signal_object * pobj) 
 {
 //   SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //   point point = pcontextmenu->GetPoint();
@@ -155,7 +155,7 @@ void html_view::_001OnContextMenu(ca::signal_object * pobj)
 
 
 
-void html_view::_001OnSetCursor(ca::signal_object * pobj) 
+void html_view::_001OnSetCursor(::ca::signal_object * pobj) 
 {
 
 #ifdef WINDOWSEX

@@ -51,7 +51,7 @@ dialog::~dialog()
 }
 
 
-bool dialog::show(const char * pszMatter, ca::property_set  * ppropertyset)
+bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 {
 
    if(pszMatter != NULL && *pszMatter != '\0')
@@ -59,7 +59,7 @@ bool dialog::show(const char * pszMatter, ca::property_set  * ppropertyset)
       m_strMatter = pszMatter;
    }
 
-   ca::property_set set(get_app());
+   ::ca::property_set set(get_app());
 
    set["hold"] = false;
 
@@ -96,7 +96,7 @@ bool dialog::show(const char * pszMatter, ca::property_set  * ppropertyset)
 
 }
 
-void dialog::on_show(const char * pszMatter, ca::property_set  * ppropertyset)
+void dialog::on_show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 {
    
    UNREFERENCED_PARAMETER(pszMatter);

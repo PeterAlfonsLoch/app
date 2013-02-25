@@ -103,13 +103,13 @@ void form_view::install_message_handling(::ca::message::dispatch * pinterface)
 }
 
 
-void form_view::_001OnCreate(ca::signal_object * pobj)
+void form_view::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
 }
 
 
-void form_view::_001OnTimer(ca::signal_object * pobj)
+void form_view::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj);
    if(m_pcallback != NULL)
@@ -126,7 +126,7 @@ void form_view::_001OnTimer(ca::signal_object * pobj)
    }
 }
 
-void form_view::_001OnUser123(ca::signal_object * pobj)
+void form_view::_001OnUser123(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)

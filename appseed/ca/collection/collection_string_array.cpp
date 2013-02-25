@@ -167,7 +167,7 @@ void string_array::copy(const int64_array & src)
 
    for(int32_t i = 0; i < m_nSize; i++)
    {
-      m_pData[i] = ca::str::from(src[i]);
+      m_pData[i] = ::ca::str::from(src[i]);
    }
 
 }
@@ -609,7 +609,7 @@ index string_array::add(const char * psz)
 index string_array::add(const wchar_t * pwsz)
 {
    index nIndex = m_nSize;
-   set_at_grow(nIndex, ca::international::unicode_to_utf8(pwsz));
+   set_at_grow(nIndex, ::ca::international::unicode_to_utf8(pwsz));
    return nIndex;
 }
 
@@ -677,7 +677,7 @@ void string_array::add(const var & var)
    {
       for(int32_t i = 0; i < var.inta().get_count(); i++)
       {
-         add(ca::str::from(var.inta()[i]));
+         add(::ca::str::from(var.inta()[i]));
       }
    }
    else if(var.get_type() == var::type_propset)
@@ -693,7 +693,7 @@ void string_array::add(const var & var)
    }
 }
 
-void string_array::add(const ca::property & prop)
+void string_array::add(const ::ca::property & prop)
 {
    add(prop.get_value());
 }
@@ -706,7 +706,7 @@ void string_array::add(const id & id)
    }
    else if(id.is_number())
    {
-      add(ca::str::from(id));
+      add(::ca::str::from(id));
    }
    else if(id.is_empty())
    {

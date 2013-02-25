@@ -16,7 +16,7 @@ namespace ca
 
    void request_interface::add_line(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
-      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
@@ -27,7 +27,7 @@ namespace ca
 
    void request_interface::add_line_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
-      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
@@ -38,7 +38,7 @@ namespace ca
 
    void request_interface::add_fork(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
-      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
@@ -49,7 +49,7 @@ namespace ca
 
    void request_interface::add_fork_uri(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
-      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
@@ -90,7 +90,7 @@ namespace ca
 
    }
 
-   void request_interface::request(ca::command_line * pcommandline)
+   void request_interface::request(::ca::command_line * pcommandline)
    {
 
       ::ca::create_context_sp createcontext(get_app());

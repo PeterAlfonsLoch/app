@@ -11,7 +11,7 @@
 ///  \param		filter filter conditions that satisfy a change notification wait
 ///				can take values described by enum filter
 file_change_event::file_change_event(::ca::application * papp, const char * path, bool watchsubtree, uint32_t filter) :
-	event_base( ::FindFirstChangeNotificationW(ca::international::utf8_to_unicode(path), watchsubtree, filter) )
+	event_base( ::FindFirstChangeNotificationW(::ca::international::utf8_to_unicode(path), watchsubtree, filter) )
 {
 	if (item() == 0)
 		throw runtime_error(papp, "file_change_event: failed to create event");
@@ -42,7 +42,7 @@ bool file_change_event::unlock()
 void file_change_event::wait ()
 {
 	if ( ::WaitForSingleObject(item(), INFINITE) != WAIT_OBJECT_0 )
-		throw runtime_error(get_app(), "ca::pal::file_change_event::wait: failure");
+		throw runtime_error(get_app(), "::ca::pal::file_change_event::wait: failure");
 }
 
 ///  \brief		waits for an file notification for a specified time

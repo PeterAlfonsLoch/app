@@ -22,7 +22,7 @@ namespace ca
          virtual void construct(::ca::application * papp);
 
 
-         virtual ::fontopus::user * login(ca::property_set & set);
+         virtual ::fontopus::user * login(::ca::property_set & set);
          virtual bool get_auth(const char * psz, string & strUsername, string & strPassword);
 
 

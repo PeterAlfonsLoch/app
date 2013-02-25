@@ -12,8 +12,8 @@ namespace ca
       user::user()
       {
 
-         //ca::user * papp = dynamic_cast <ca::user *>(System.GetThread()->m_pAppThread);
-         //ca::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+         //::ca::user * papp = dynamic_cast <::ca::user *>(System.GetThread()->m_pAppThread);
+         //::ca::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
          m_pkeyboard = NULL;
          m_pwindowmap = NULL;
@@ -125,12 +125,12 @@ namespace ca
          return iCount;
       }
 
-      void user::VmsGuiiOnAppLanguage(ca::signal_object * pobject)
+      void user::VmsGuiiOnAppLanguage(::ca::signal_object * pobject)
       {
          SendMessageToWindows(::ca::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
-      string user::message_box(const char * pszMatter, ca::property_set & propertyset)
+      string user::message_box(const char * pszMatter, ::ca::property_set & propertyset)
       {
 
          class ::cube::message_box box(get_app());

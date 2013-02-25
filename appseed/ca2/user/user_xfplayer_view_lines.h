@@ -3,7 +3,7 @@
 
 class CLASS_DECL_ca2 XfplayerViewLines :
    virtual public array_app_alloc<XfplayerViewLine, XfplayerViewLine &>,
-   virtual public ca::signalizable
+   virtual public ::ca::signalizable
 {
 public:
 

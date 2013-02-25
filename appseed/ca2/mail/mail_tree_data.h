@@ -5,7 +5,7 @@ namespace mail
 
 
    class CLASS_DECL_ca2 tree_data :
-      virtual public ca::tree_data
+      virtual public ::ca::tree_data
    {
    public:
 

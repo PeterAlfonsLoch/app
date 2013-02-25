@@ -139,7 +139,7 @@ namespace sockets
    string ipv6_address::Convert(bool include_port)
    {
       if (include_port)
-         return Convert(get_app(), m_addr.sin6_addr) + ":" + ca::str::from(GetPort());
+         return Convert(get_app(), m_addr.sin6_addr) + ":" + ::ca::str::from(GetPort());
       return Convert(get_app(), m_addr.sin6_addr);
    }*/
 

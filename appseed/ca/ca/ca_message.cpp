@@ -24,9 +24,9 @@ namespace ca
    namespace message
    {
 
-      ca::signal * CreateSignal()
+      ::ca::signal * CreateSignal()
       {
-         return new ca::signal();
+         return new ::ca::signal();
       }
 
 
@@ -268,13 +268,13 @@ namespace ca
          m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
       }
 
-      void dispatch::_user_message_handler(ca::signal_object * pobj)
+      void dispatch::_user_message_handler(::ca::signal_object * pobj)
       {
 
          m_evOk.wait();
 
          SignalPtrArray signalptra;
-         SCAST_PTR(ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca::message::base, pbase, pobj);
          if(pbase->m_uiMessage == (WM_APP + 2014))
          {
             base * pbase2 = (base *) pbase->m_lparam;
@@ -289,7 +289,7 @@ namespace ca
          for(int32_t i = 0; i < signalptra.get_size(); i++)
          {
             Signal & signal = *signalptra[i];
-            ca::signal * psignal = signal.m_psignal;
+            ::ca::signal * psignal = signal.m_psignal;
             pobj->m_psignal = psignal;
             psignal->emit(pobj);
             if(pobj->m_bRet)
@@ -377,7 +377,7 @@ namespace ca
       //}
 
 
-      void dispatch::RemoveMessageHandler(ca::signalizable * psignalizable)
+      void dispatch::RemoveMessageHandler(::ca::signalizable * psignalizable)
       {
          UNREFERENCED_PARAMETER(psignalizable);
    /* xxx     HandlerItemArray & itema = m_handlerset.m_itema;
@@ -521,7 +521,7 @@ namespace ca
          }
       }
 
-      base::base(::ca::application * papp, ca::signal * psignal) :
+      base::base(::ca::application * papp, ::ca::signal * psignal) :
          ca(papp),
          signal_object(psignal)
       {
@@ -850,7 +850,7 @@ namespace ca
          }
       }
 
-      bool dispatch::HandlerItemArray::HasSignalizable(ca::signalizable * psignalizable)
+      bool dispatch::HandlerItemArray::HasSignalizable(::ca::signalizable * psignalizable)
       {
          for(int32_t i = 0; i < this->get_size(); i++)
          {
@@ -860,7 +860,7 @@ namespace ca
          return false;
       }
 
-      void dispatch::_start_user_message_handler(ca::signal_object * pobj)
+      void dispatch::_start_user_message_handler(::ca::signal_object * pobj)
       {
          single_lock sl(&m_mutex, true);
          _on_start_user_message_handler();

@@ -13,7 +13,7 @@ namespace command
    {
       m_pimagelist = NULL;
       m_iFrameData = 10;
-      m_dataid = "ca::command::frame";
+      m_dataid = "::ca::command::frame";
       m_iAnimateStep = 0;
       m_bTimerHide = false;
 
@@ -174,7 +174,7 @@ namespace command
    #endif //DEBUG
 
 
-   void frame::_001OnTimer(ca::signal_object * pobj)
+   void frame::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -344,7 +344,7 @@ namespace command
    }
 
 
-   void frame::_001OnClose(ca::signal_object * pobj)
+   void frame::_001OnClose(::ca::signal_object * pobj)
    {
       pobj->m_bRet = true;
       ShowWindow(SW_HIDE);
@@ -362,13 +362,13 @@ namespace command
       IGUI_WIN_MSG_LINK(WM_APP + 2000  , pinterface, this, &frame::_001OnApp2000);
    }
 
-   void frame::_001OnCreate(ca::signal_object * pobj)
+   void frame::_001OnCreate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::create, pcreate, pobj);
       pobj->previous();
       if(pobj->m_bRet)
          return;
-      if(!initialize_message_window("ca::fontopus::message_wnd::command"))
+      if(!initialize_message_window("::ca::fontopus::message_wnd::command"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -376,7 +376,7 @@ namespace command
       }
    }
 
-   void frame::_001OnMove(ca::signal_object * pobj)
+   void frame::_001OnMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       /*if(m_workset.GetMovingManager()->IsMoving())
@@ -430,7 +430,7 @@ namespace command
       }*/
    }
 
-   void frame::_001OnShowWindow(ca::signal_object * pobj)
+   void frame::_001OnShowWindow(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
 
@@ -467,9 +467,9 @@ namespace command
          SWP_SHOWWINDOW);
    }
 
-   void frame::message_window_message_handler(ca::signal_object * pobj)
+   void frame::message_window_message_handler(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -477,7 +477,7 @@ namespace command
       }
    }
 
-   void frame::_001OnApp2000(ca::signal_object * pobj)
+   void frame::_001OnApp2000(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
 

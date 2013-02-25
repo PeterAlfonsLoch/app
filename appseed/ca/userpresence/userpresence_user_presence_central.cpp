@@ -63,7 +63,7 @@ namespace userpresence
 
    }
 
-   void presence_central::message_window_message_handler(ca::signal_object * pobj)
+   void presence_central::message_window_message_handler(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_TIMER)

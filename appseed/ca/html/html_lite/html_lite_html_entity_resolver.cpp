@@ -176,7 +176,7 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
             lpszBegin++;
 
          uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, NULL, ca);
-         strChar = ca::str::uni_to_utf8(ulNum);
+         strChar = ::ca::str::uni_to_utf8(ulNum);
          return (int32_t) (lpszEnd - lpszEntity + 1);
       }
    }

@@ -546,7 +546,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(System.savings().is_trying_to_save(ca::resource_processing))
+         if(System.savings().is_trying_to_save(::ca::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
@@ -708,7 +708,7 @@ namespace user
    layout();
    }*/
 
-   void list::_001OnSize(ca::signal_object * pobj)
+   void list::_001OnSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::size, psize, pobj);
       layout();
@@ -2233,7 +2233,7 @@ namespace user
       }
    }
 
-   void list::_001OnKeyDown(ca::signal_object * pobj)
+   void list::_001OnKeyDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
@@ -2314,7 +2314,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void list::_001OnLButtonDown(ca::signal_object * pobj)
+   void list::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
@@ -2376,7 +2376,7 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void list::_001OnLButtonUp(ca::signal_object * pobj)
+   void list::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
@@ -2419,7 +2419,7 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void list::_001OnRButtonDown(ca::signal_object * pobj)
+   void list::_001OnRButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 
@@ -2665,7 +2665,7 @@ namespace user
       return -1;
    }
 
-   void list::_001OnLButtonDblClk(ca::signal_object * pobj)
+   void list::_001OnLButtonDblClk(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          m_iClick = 2;
@@ -3438,7 +3438,7 @@ namespace user
       }
    }
 
-   void list::_001OnCreate(ca::signal_object * pobj)
+   void list::_001OnCreate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::create, pcreate, pobj)
 
@@ -3514,7 +3514,7 @@ namespace user
    }
 
 
-   void list::_001OnTimer(ca::signal_object * pobj)
+   void list::_001OnTimer(::ca::signal_object * pobj)
    {
 //      return; //xxxtimer
       SCAST_PTR(::ca::message::timer, ptimer, pobj);
@@ -4709,7 +4709,7 @@ namespace user
       return m_fontHover;
    }
 
-   void list::_001OnMouseLeave(ca::signal_object * pobj)
+   void list::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       m_iItemHover = -1;
       m_iSubItemHover = -1;
@@ -4718,7 +4718,7 @@ namespace user
    }
 
 
-   void list::_001OnMouseMove(ca::signal_object * pobj)
+   void list::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
@@ -4887,7 +4887,7 @@ namespace user
    }
 
 
-   void list::_001OnVScroll(ca::signal_object * pobj)
+   void list::_001OnVScroll(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
 
@@ -4895,7 +4895,7 @@ namespace user
 
    }
 
-   void list::_001OnHScroll(ca::signal_object * pobj)
+   void list::_001OnHScroll(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
 
@@ -5084,13 +5084,13 @@ namespace user
       return m_flags.is_signalized(flag_auto_arrange);
    }
 
-   void list::_001OnListViewAutoArrange(ca::signal_object * pobj)
+   void list::_001OnListViewAutoArrange(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       auto_arrange(!get_auto_arrange());
    }
 
-   void list::_001OnUpdateListViewAutoArrange(ca::signal_object * pobj)
+   void list::_001OnUpdateListViewAutoArrange(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->_001SetCheck(get_auto_arrange());

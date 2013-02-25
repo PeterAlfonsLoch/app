@@ -55,7 +55,7 @@ namespace ca
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects, or Url, of cached, downloaded, dowloading or queuing files to be opened
       // varQuery  : more ellaborated requests for the requested object - syntax and semantic defined by requested object - request_interface implementator
       // changed to create_context on sector 8J on 2011-09-12
-      // virtual void on_request(ca::command_line * pcommandline);
+      // virtual void on_request(::ca::command_line * pcommandline);
       virtual void on_request(::ca::create_context * pcreatecontext);
 
 

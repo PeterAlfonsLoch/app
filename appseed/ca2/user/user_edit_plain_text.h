@@ -12,8 +12,8 @@ namespace user
    class CLASS_DECL_ca2 edit_plain_text :
       virtual public scroll_view,
       public colorertake5::base_editor,
-      public ca::data_listener,
-      public ca::tree
+      public ::ca::data_listener,
+      public ::ca::tree
    {
    public:
 
@@ -119,7 +119,7 @@ namespace user
 
 
 
-      virtual void pre_translate_message(ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
 
       void key_to_char(WPARAM wparam, LPARAM lparam);
 
@@ -200,8 +200,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual ca::tree_item_data * on_allocate_item();
-      virtual void on_delete_item(ca::tree_item_data * pitem);
+      virtual ::ca::tree_item_data * on_allocate_item();
+      virtual void on_delete_item(::ca::tree_item_data * pitem);
 
 
    };

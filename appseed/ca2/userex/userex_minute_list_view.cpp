@@ -80,7 +80,7 @@ namespace userex
 
    }
 
-   void minute_list_view::_001OnCreate(ca::signal_object * pobj)
+   void minute_list_view::_001OnCreate(::ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)

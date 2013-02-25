@@ -7,7 +7,7 @@ namespace libcompress
       virtual public ::ca::object
    {
    public:
-      virtual ca::HRes SetCompressCodecsInfo(codecs_info_interface *compressCodecsInfo) = 0;
+      virtual ::ca::HRes SetCompressCodecsInfo(codecs_info_interface *compressCodecsInfo) = 0;
    };
 
 } // namespace libcompress

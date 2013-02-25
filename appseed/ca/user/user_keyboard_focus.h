@@ -18,16 +18,16 @@ namespace user
    class control_event;
 
    class CLASS_DECL_ca keyboard_focus :
-      virtual public ca::signalizable
+      virtual public ::ca::signalizable
    {
    public:
       virtual ~keyboard_focus();
 
       virtual void keyboard_focus_OnTimer(int32_t iTimer);
-      virtual void keyboard_focus_OnChar(ca::signal_object * pobj);
-      virtual void keyboard_focus_OnSysChar(ca::signal_object * pobj);
-      virtual void keyboard_focus_OnKeyDown(ca::signal_object * pobj);
-      virtual void keyboard_focus_OnKeyUp(ca::signal_object * pobj);
+      virtual void keyboard_focus_OnChar(::ca::signal_object * pobj);
+      virtual void keyboard_focus_OnSysChar(::ca::signal_object * pobj);
+      virtual void keyboard_focus_OnKeyDown(::ca::signal_object * pobj);
+      virtual void keyboard_focus_OnKeyUp(::ca::signal_object * pobj);
       virtual interaction * get_parent() const = 0;
 #ifdef METROWIN
       virtual interaction * get_wnd() const = 0;

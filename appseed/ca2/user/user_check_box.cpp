@@ -84,19 +84,19 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(ca::signal_object * pobj)
+   void check_box::_001OnTimer(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::timer, ptimer, pobj)
    }
 
-   void check_box::_001OnKeyDown(ca::signal_object * pobj)
+   void check_box::_001OnKeyDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::key, pkey, pobj)
    }
 
-   void check_box::_001OnKeyUp(ca::signal_object * pobj)
+   void check_box::_001OnKeyUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_SPACE)
@@ -106,14 +106,14 @@ namespace user
    }
 
 
-   void check_box::_001OnLButtonDown(ca::signal_object * pobj)
+   void check_box::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       m_bMouseDown = true;
 
    }
-   void check_box::_001OnLButtonUp(ca::signal_object * pobj)
+   void check_box::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
@@ -128,7 +128,7 @@ namespace user
    }
 
 
-   void check_box::_001OnMouseMove(ca::signal_object * pobj)
+   void check_box::_001OnMouseMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj)

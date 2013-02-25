@@ -110,7 +110,7 @@ public:
    virtual void ActivateFrame(int32_t nCmdShow = -1);
    virtual bool OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual bool pre_create_window(CREATESTRUCT& cs);
-   virtual void pre_translate_message(ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca::signal_object * pobj);
 
    virtual void _000OnDraw(::ca::graphics * pdc);
    virtual void _001OnDraw(::ca::graphics * pdc);

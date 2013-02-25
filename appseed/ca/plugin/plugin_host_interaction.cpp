@@ -54,20 +54,20 @@ namespace plugin
 
    }
 
-   void host_interaction::_001OnMouseMove(ca::signal_object * pobj)
+   void host_interaction::_001OnMouseMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
    
-   void host_interaction::_001OnCreate(ca::signal_object * pobj)
+   void host_interaction::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Application.m_bSessionSynchronizedCursor = false;
    }
 
-   void host_interaction::_001OnCheck(ca::signal_object * pobj)
+   void host_interaction::_001OnCheck(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam != 0)
@@ -79,7 +79,7 @@ namespace plugin
       {
          vsstring * pstrLink = (vsstring *) pbase->m_lparam;
          string strLink(*pstrLink);
-         ca::property_set setQuery(get_app());
+         ::ca::property_set setQuery(get_app());
          //setQuery.parse_url_query(strLink);
          if(setQuery.has_property("karfile_url"))
          {
@@ -95,9 +95,9 @@ namespace plugin
       }
    }
 
-   void host_interaction::_001OnTimer(ca::signal_object * pobj)
+   void host_interaction::_001OnTimer(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 19841115)
       {
          KillTimer(19841115);
@@ -206,7 +206,7 @@ namespace plugin
       return Application.window_from_os_data(m_pplugin->get_host_window());
    }
 
-   void host_interaction::_user_message_handler(ca::signal_object * pobj)
+   void host_interaction::_user_message_handler(::ca::signal_object * pobj)
    {
       ::user::interaction::_user_message_handler(pobj);
       pobj->m_bRet = true;
@@ -215,11 +215,11 @@ namespace plugin
    void host_interaction::_on_start_user_message_handler()
    {
       ::user::interaction::_on_start_user_message_handler();
-      m_pfnDispatchWindowProc = reinterpret_cast < void (::ca::message::dispatch::*)(ca::signal_object * pobj) > (&host_interaction::_user_message_handler);
+      m_pfnDispatchWindowProc = reinterpret_cast < void (::ca::message::dispatch::*)(::ca::signal_object * pobj) > (&host_interaction::_user_message_handler);
    }
 
 
-   void host_interaction::on_ignore_message(ca::signal_object * pobj)
+   void host_interaction::on_ignore_message(::ca::signal_object * pobj)
    {
       // avoid host interaction call DefWindowProc for certain Windows messages
 //      SCAST_PTR(::ca::message::base, pbase, pobj);

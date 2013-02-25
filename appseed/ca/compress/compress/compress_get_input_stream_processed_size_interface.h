@@ -7,7 +7,7 @@ namespace libcompress
       virtual public ::ca::object
    {
    public:
-      virtual ca::HRes GetInStreamProcessedSize(uint64_t *value) = 0;
+      virtual ::ca::HRes GetInStreamProcessedSize(uint64_t *value) = 0;
    };
 
 } // namespace libcompress

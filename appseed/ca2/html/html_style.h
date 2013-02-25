@@ -22,7 +22,7 @@ namespace html
       string               m_strName;
       string               m_strSubClass;
 
-      ca::property_set    m_propertyset;
+      ::ca::property_set    m_propertyset;
 
       //edisplay             m_edisplay;
 

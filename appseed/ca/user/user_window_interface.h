@@ -118,7 +118,7 @@ namespace user
 
 
 
-      virtual void install_message_handling(ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual void _on_start_user_message_handler();
       static window_interface * g_pwndLastLButtonDown;
@@ -226,11 +226,11 @@ namespace user
 
 #include "ca/user/user_buffer.h"
 #include "ca/user/user_window_map.h"
-#include "ca/ca/gen_keeper.h"
-#include "ca/ca/gen_seekable.h"
-#include "ca/ca/gen_reader.h"
-#include "ca/ca/gen_writer.h"
-#include "ca/ca/gen_stream.h"
-#include "ca/ca/gen_byte_stream.h"
-#include "ca/ca/gen_stream2.h"
-#include "ca/ca/gen_str_stream.h"
+#include "ca/ca/ca_keeper.h"
+#include "ca/ca/ca_seekable.h"
+#include "ca/ca/ca_reader.h"
+#include "ca/ca/ca_writer.h"
+#include "ca/ca/ca_stream.h"
+#include "ca/ca/ca_byte_stream.h"
+#include "ca/ca/ca_stream2.h"
+#include "ca/ca/ca_str_stream.h"

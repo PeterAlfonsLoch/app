@@ -1,7 +1,8 @@
 #include "framework.h"
 #include <windows.h>
 
-namespace ca
+
+namespace c
 {
 
 

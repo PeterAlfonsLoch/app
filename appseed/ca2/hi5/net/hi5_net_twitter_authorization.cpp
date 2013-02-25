@@ -140,7 +140,7 @@ namespace hi5
             m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
          }
 
-         void authorization::pageMessage(const char * pszMatter, ca::property_set & set)
+         void authorization::pageMessage(const char * pszMatter, ::ca::property_set & set)
          {
             ensure_main_document();
             m_pdocAuth->get_html_data()->m_propertyset = set;

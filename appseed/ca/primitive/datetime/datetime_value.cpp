@@ -19,16 +19,16 @@ namespace datetime
       string str(pszSpanExpression);
       str.trim();
       str += " ";
-      ca::property_set set;
+      ::ca::property_set set;
       bool bAdd = false;
       bool bMinus = false;
       const char * psz = str;
       string strNumber;
       string strText1;
-      for(int32_t i = 0;*psz; psz = ca::str::utf8_inc(psz))
+      for(int32_t i = 0;*psz; psz = ::ca::str::utf8_inc(psz))
       {
-         string strChar = ca::str::utf8_char(psz);
-         if(ca::ch::is_whitespace(psz))
+         string strChar = ::ca::str::utf8_char(psz);
+         if(::ca::ch::is_whitespace(psz))
          {
             i++;
             //if(strNumber.has_char() && strText.has_char())
@@ -108,11 +108,11 @@ namespace datetime
             bMinus = true;
             strNumber.Empty();
          }
-         else if(ca::ch::is_digit(psz))
+         else if(::ca::ch::is_digit(psz))
          {
             strNumber += strChar;
          }
-         else if(ca::ch::is_letter(psz))
+         else if(::ca::ch::is_letter(psz))
          {
             strText1 += strChar;
          }
@@ -127,7 +127,7 @@ namespace datetime
       string str(psz);
       str.trim();
       str += " ";
-      ca::property_set set;
+      ::ca::property_set set;
       bool bBaseTime = false;
       int32_t iStart = 0;
 
@@ -144,7 +144,7 @@ namespace datetime
             Sys(pcaapp->m_psystem).datetime().international().parse_str(str, set);
             string strWord = str.Mid(19);
             strWord.trim_left();
-            strWord = ca::str::get_word(strWord, " ");
+            strWord = ::ca::str::get_word(strWord, " ");
             if(strWord.CompareNoCase("UTC") == 0
             || strWord.CompareNoCase("GMT") == 0)
             {
@@ -197,7 +197,7 @@ namespace datetime
          }
       }
       if(!bBaseTime && (
-         ca::str::begins_eat(str, "today") ||
+         ::ca::str::begins_eat(str, "today") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = ::datetime::time::get_current_time();
@@ -205,7 +205,7 @@ namespace datetime
          bBaseTime = true;
       }
       if(!bBaseTime &&(
-         ca::str::begins_eat(str, "tomorrow") ||
+         ::ca::str::begins_eat(str, "tomorrow") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = ::datetime::time::get_current_time();
@@ -214,7 +214,7 @@ namespace datetime
          bBaseTime = true;
       }
       if(!bBaseTime &&(
-         ca::str::begins_eat(str, "now") ||
+         ::ca::str::begins_eat(str, "now") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:now"))))
       {
          time = ::datetime::time::get_current_time();

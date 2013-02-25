@@ -41,7 +41,7 @@ namespace nature
    }
 #endif //DEBUG
 
-   void appearance_view::_001OnCreate(ca::signal_object * pobj)
+   void appearance_view::_001OnCreate(::ca::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -72,7 +72,7 @@ namespace nature
    }
 
 
-   void appearance_view::_001OnSize(ca::signal_object * pobj)
+   void appearance_view::_001OnSize(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -125,14 +125,14 @@ namespace nature
       pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
    }
 
-   void appearance_view::_001OnEditAdd(ca::signal_object * pobj)
+   void appearance_view::_001OnEditAdd(::ca::signal_object * pobj)
    {
       folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie());
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
-   void appearance_view::_001OnEditRemove(ca::signal_object * pobj)
+   void appearance_view::_001OnEditRemove(::ca::signal_object * pobj)
    {
       folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie());
       pview->FolderRemove();

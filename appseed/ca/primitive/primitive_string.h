@@ -257,7 +257,7 @@ public:
 
    inline string(const id & id);
    inline string(const var & var);
-   inline string(const ca::property & prop);
+   inline string(const ::ca::property & prop);
 
 
    template < typename T >
@@ -308,7 +308,7 @@ public:
    string & operator = (wchar_t ch);
    string & operator = (const id & id);
    string & operator = (const var & var);
-   string & operator = (const ca::property & prop);
+   string & operator = (const ::ca::property & prop);
 
    // Assignment operators
    template < typename T >
@@ -970,13 +970,13 @@ namespace ca
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 #include "ca/x/x_charcategory.h"
-#include "ca/ca/gen_bit.h"
+#include "ca/ca/ca_bit.h"
 #include "ca/collection/collection_bit_array.h"
 
-#include "ca/ca/gen_ch.h"
-#include "ca/ca/gen_ch_class.h"
-#include "ca/ca/gen_international.h"
-#include "ca/ca/gen_str.h"
+#include "ca/ca/ca_ch.h"
+#include "ca/ca/ca_ch_class.h"
+#include "ca/ca/ca_international.h"
+#include "ca/ca/ca_str.h"
 
 inline bool id::operator == (const string & str) const
 {
@@ -1094,7 +1094,7 @@ inline string id::to_string() const
    }
    else if(m_chType == IDTYPE_TYPE_NUMBER)
    {
-      return ca::str::from(m_i);
+      return ::ca::str::from(m_i);
    }
    else if(m_chType == IDTYPE_TYPE_TEXT)
    {
@@ -1179,7 +1179,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str)
       }
       else
       {
-         return pid->m_i - ca::str::to_int_ptr(str);
+         return pid->m_i - ::ca::str::to_int_ptr(str);
       }
    }
 }
@@ -1224,7 +1224,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
       }
       else
       {
-         return pid->m_i - ca::str::to_int_ptr(psz);
+         return pid->m_i - ::ca::str::to_int_ptr(psz);
       }
    }
 }
@@ -1249,7 +1249,7 @@ inline void id::raw_set(const string * pstr)
    else if(id_is_number(pstr->c_str()))
    {
       m_chType = IDTYPE_TYPE_NUMBER;
-      m_i = ca::str::to_int_ptr(*pstr);
+      m_i = ::ca::str::to_int_ptr(*pstr);
    }
    else
    {
@@ -1265,7 +1265,7 @@ inline string id::str() const
       return *m_pstr;
    else if(m_chType == IDTYPE_TYPE_NUMBER)
    {
-      return ca::str::from(m_i);
+      return ::ca::str::from(m_i);
    }
    else
       return "";
@@ -1277,7 +1277,7 @@ simple_string( string_trait::GetDefaultManager() )
 }
 
 
-#include "ca/ca/gen_str2.h"
+#include "ca/ca/ca_str2.h"
 
 
 
@@ -1384,7 +1384,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int32_t i2)
 
    string strResult( str1.GetManager() );
 
-   strResult = str1 + ca::str::from(i2);
+   strResult = str1 + ::ca::str::from(i2);
 
    return strResult;
 }
@@ -1394,7 +1394,7 @@ inline   string CLASS_DECL_ca operator+ (int32_t i1, const string & str2)
 
    string strResult( str2.GetManager() );
 
-   strResult = ca::str::from(i1) + str2;
+   strResult = ::ca::str::from(i1) + str2;
 
    return strResult;
 }
@@ -1404,7 +1404,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int64_t i2)
 
    string strResult( str1.GetManager() );
 
-   strResult = str1 + ca::str::from(i2);
+   strResult = str1 + ::ca::str::from(i2);
 
    return strResult;
 }
@@ -1414,7 +1414,7 @@ inline   string CLASS_DECL_ca operator+ (int64_t i1, const string & str2)
 
    string strResult( str2.GetManager() );
 
-   strResult = ca::str::from(i1) + str2;
+   strResult = ::ca::str::from(i1) + str2;
 
    return strResult;
 }

@@ -24,7 +24,7 @@ FileManagerFrame::~FileManagerFrame()
 /////////////////////////////////////////////////////////////////////////////
 // FileManagerFrame message handlers
 
-void FileManagerFrame::_001OnCreate(ca::signal_object * pobj) 
+void FileManagerFrame::_001OnCreate(::ca::signal_object * pobj) 
 {
    
    pobj->previous();
@@ -120,7 +120,7 @@ void FileManagerFrame::install_message_handling(::ca::message::dispatch * pinter
 }
 
 
-void FileManagerFrame::_001OnSetText(ca::signal_object * pobj)
+void FileManagerFrame::_001OnSetText(::ca::signal_object * pobj)
 {
 //   SCAST_PTR(::ca::message::base, pbase, pobj)
 

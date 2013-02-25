@@ -20,7 +20,7 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &main_view::_001OnCreate);
    }
 
-   void main_view::_001OnCreate(ca::signal_object * pobj)
+   void main_view::_001OnCreate(::ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -51,7 +51,7 @@ namespace fs
 
    }
 
-   void main_view::_001OnTimer(ca::signal_object * pobj)
+   void main_view::_001OnTimer(::ca::signal_object * pobj)
    {
 
       SCAST_PTR(::ca::message::timer, ptimer, pobj);

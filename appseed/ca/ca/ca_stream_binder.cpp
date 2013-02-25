@@ -7,7 +7,7 @@ namespace ca
 {
 
    class reader_for_binder:
-      public ca::reader
+      public ::ca::reader
    {
    public:
 
@@ -29,7 +29,7 @@ namespace ca
    }
 
    class writer_for_binder:
-      public ca::writer
+      public ::ca::writer
    {
    public:
 
@@ -81,16 +81,16 @@ namespace ca
    }
 
 
-   void stream_binder::CreateStreams(ca::reader **inStream, ca::writer **outStream)
+   void stream_binder::CreateStreams(::ca::reader **inStream, ::ca::writer **outStream)
    {
       reader_for_binder * inStreamSpec = new reader_for_binder;
-      sp(ca::reader) inStreamLoc(inStreamSpec);
+      sp(::ca::reader) inStreamLoc(inStreamSpec);
       inStreamSpec->set_binder(this);
       *inStream = inStreamLoc.detach();
 
       writer_for_binder *outStreamSpec = new
          writer_for_binder;
-      sp(ca::writer) outStreamLoc(outStreamSpec);
+      sp(::ca::writer) outStreamLoc(outStreamSpec);
       outStreamSpec->set_binder(this);
       *outStream = outStreamLoc.detach();
 

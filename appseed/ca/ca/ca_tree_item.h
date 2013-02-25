@@ -63,7 +63,7 @@ namespace ca
 
       tree_item * get_child_by_user_data(uint_ptr iUserData);
       tree_item * find_next_by_user_data(uint_ptr iUserData);
-      void get_children(ca::tree_item_ptr_array &ptra);
+      void get_children(::ca::tree_item_ptr_array &ptra);
       count get_children_count();
       count get_expandable_children_count();
       count get_proper_descendant_count();
@@ -72,7 +72,7 @@ namespace ca
       tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
 
 
-      void sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *), ca::tree_data * ptreedata);
+      void sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *), ::ca::tree_data * ptreedata);
 
       static void swap_sibling(tree_item * pitem1, tree_item * pitem2);
 

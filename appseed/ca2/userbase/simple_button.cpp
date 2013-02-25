@@ -50,7 +50,7 @@ void simple_button::pre_subclass_window()
    // trans ::userbase::button::pre_subclass_window();
 }
 
-void simple_button::_001OnCtlColor(ca::signal_object * pobj)
+void simple_button::_001OnCtlColor(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::ctl_color, pctlcolor, pobj)
    if(m_bTransparent)
@@ -85,7 +85,7 @@ void simple_button::ResizeToFit()
 
 }
 
-void simple_button::_001OnSetFocus(ca::signal_object * pobj)
+void simple_button::_001OnSetFocus(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::set_focus, psetfocus, pobj)
  //  if(!m_bFocus)

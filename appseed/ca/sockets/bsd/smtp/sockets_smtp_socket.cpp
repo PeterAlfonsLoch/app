@@ -60,12 +60,12 @@ namespace sockets
             string strWord = pa.getword();
             string strRequest = System.base64().decode(strWord);
             string strResponse;
-            if(ca::str::find_ci("username", strRequest) >= 0)
+            if(::ca::str::find_ci("username", strRequest) >= 0)
             {
                strResponse = System.base64().encode("2.25anos@carloscecyn.com");
                Send(strResponse + "\r\n");
             }
-            else if(ca::str::find_ci("password", strRequest) >= 0)
+            else if(::ca::str::find_ci("password", strRequest) >= 0)
             {
                strResponse = System.base64().encode("anos514Lund");
                Send(strResponse + "\r\n");

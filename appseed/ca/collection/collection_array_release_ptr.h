@@ -30,7 +30,7 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_release_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_at(
    index iIndex)
 {
-   ca::release(this->ptra().element_at(iIndex));
+   ::ca::release(this->ptra().element_at(iIndex));
    this->ptra().remove_at(iIndex);
 }
 
@@ -41,7 +41,7 @@ inline count array_release_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_all(bool bR
    {
       for(int32_t iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
-         ca::release(this->ptra().element_at(iIndex));
+         ::ca::release(this->ptra().element_at(iIndex));
       }
    }
    return this->ptra().remove_all();
@@ -53,7 +53,7 @@ inline void array_release_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_last(bool bR
 {
    if(bRelease)
    {
-      ca::release(this->ptra().last_element());
+      ::ca::release(this->ptra().last_element());
    }
    this->ptra().remove_last();
 }

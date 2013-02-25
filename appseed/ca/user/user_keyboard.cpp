@@ -15,7 +15,7 @@ namespace user
       return *m_playout;
    }
 
-   void keyboard::process_escape(::xml::node * pnode, ca::property_set & set)
+   void keyboard::process_escape(::xml::node * pnode, ::ca::property_set & set)
    {
       m_playout->process_escape(pnode, set);
    }
@@ -37,7 +37,7 @@ namespace user
          TRACE("setting keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
          if(playout->load(playout->m_strPath))
          {
-            ca::del(m_playout);
+            ::ca::del(m_playout);
             m_playout = playout;
             System.simpledb().on_set_keyboard_layout(playout->m_strPath, bUser);
             TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
@@ -45,7 +45,7 @@ namespace user
          }
          else
          {
-            ca::del(playout);
+            ::ca::del(playout);
             TRACE("failed to load keyboard layout : %s (path=%s)", playout->m_strName, playout->m_strPath);
          }
       }
@@ -177,9 +177,9 @@ namespace user
          string strHkl = straHkl[i];
          HKL hkl;
          strHkl.trim();
-         if(ca::str::begins_eat_ci(strHkl, "0x"))
+         if(::ca::str::begins_eat_ci(strHkl, "0x"))
          {
-            hkl = (HKL) ca::hex::to_uint(strHkl);
+            hkl = (HKL) ::ca::hex::to_uint(strHkl);
          }
          else
          {

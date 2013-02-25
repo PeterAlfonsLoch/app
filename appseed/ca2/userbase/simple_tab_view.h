@@ -24,7 +24,7 @@ public:
    DECL_GEN_SIGNAL(_001OnSize)
    void layout();
 
-   void _001OnCreate(ca::signal_object * pobj);
+   void _001OnCreate(::ca::signal_object * pobj);
 
    virtual void GetClientRect(LPRECT lprect);
 

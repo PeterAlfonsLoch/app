@@ -37,7 +37,7 @@ public:
   int32_t num;
   int32_t matchCase;
   strsize minKeywordLength;
-  ca::ch_class *firstChar;
+  ::ca::ch_class *firstChar;
   KeywordInfo *kwList;
   KeywordList();
   ~KeywordList();
@@ -46,7 +46,7 @@ public:
 
 //  //#undef CNAME 
 ////#define CNAME "KeywordList"
-////#include "ca/ca/gen_memory_operator.h"
+////#include "ca/ca/ca_memory_operator.h"
 
 };
 
@@ -68,7 +68,7 @@ public:
 
 //  //#undef CNAME 
 ////#define CNAME "VirtualEntry"
-////#include "ca/ca/gen_memory_operator.h"
+////#include "ca/ca/ca_memory_operator.h"
 
 };
 
@@ -90,7 +90,7 @@ public:
 
   VirtualEntryVector virtualEntryVector;
   KeywordList *kwList;
-  ca::ch_class *worddiv;
+  ::ca::ch_class *worddiv;
 
   class region* region;
   class region* regions[REGIONS_NUM];
@@ -102,7 +102,7 @@ public:
 
 ////#undef CNAME 
 ////#define CNAME "SchemeNode"
-////#include "ca/ca/gen_memory_operator.h"
+////#include "ca/ca/ca_memory_operator.h"
 
   SchemeNode();
   ~SchemeNode();
@@ -122,7 +122,7 @@ public:
 
 //#undef CNAME 
 //#define CNAME "scheme_impl"
-//#include "ca/ca/gen_memory_operator.h"
+//#include "ca/ca/ca_memory_operator.h"
 
 protected:
   string schemeName;

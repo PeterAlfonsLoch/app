@@ -447,7 +447,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString
 
    }
 
-   wstring wstr = ca::international::utf8_to_unicode(lpString, c);
+   wstring wstr = ::ca::international::utf8_to_unicode(lpString, c);
 
    bool bRet = ::TextOutW(hdc, x, y, wstr, (int32_t) wstr.get_length()) != FALSE;
 
@@ -484,7 +484,7 @@ CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t
 
    }
 
-   wstring wstr = ca::international::utf8_to_unicode(lpString, c);
+   wstring wstr = ::ca::international::utf8_to_unicode(lpString, c);
 
    bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int32_t) wstr.get_length(), psizl) != FALSE;
 
@@ -511,7 +511,7 @@ CLASS_DECL_ca int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText
 
    }
 
-   wstring wstr = ca::international::utf8_to_unicode(lpchText, cchText);
+   wstring wstr = ::ca::international::utf8_to_unicode(lpchText, cchText);
 
    bool bRet = ::DrawTextW(hdc, wstr, (int32_t) wcslen(wstr), lprc, format) != FALSE;
 

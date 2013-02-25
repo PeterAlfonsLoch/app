@@ -30,7 +30,7 @@ namespace ca
 
          void connect_to(::ca::application * papp);
 
-         void on_call_signal(ca::signal_object * pobj);
+         void on_call_signal(::ca::signal_object * pobj);
 
          virtual void on_application_bias_callback_signal(::ca::application_signal_object * pobj);
 
@@ -39,7 +39,7 @@ namespace ca
       
       ::user::interaction *      m_puiParent;
       callback *                 m_pcallback;
-      ca::property_set          m_set;
+      ::ca::property_set          m_set;
 
       
       application_bias();

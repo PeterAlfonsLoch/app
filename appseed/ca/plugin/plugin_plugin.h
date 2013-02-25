@@ -33,7 +33,7 @@ namespace plugin
 
    class CLASS_DECL_ca plugin :
       virtual public hotplugin::plugin,
-      virtual public ca::object
+      virtual public ::ca::object
    {
    public:
 

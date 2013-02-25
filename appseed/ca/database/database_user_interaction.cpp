@@ -24,7 +24,7 @@ namespace database
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction::_001OnShowWindow);
       }
 
-      void interaction::_001OnCreate(ca::signal_object * pobj)
+      void interaction::_001OnCreate(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
 
@@ -48,17 +48,17 @@ namespace database
 
 
 
-      void interaction::_001OnMove(ca::signal_object * pobj)
+      void interaction::_001OnMove(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }
 
-      void interaction::_001OnSize(ca::signal_object * pobj)
+      void interaction::_001OnSize(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }
 
-      void interaction::_001OnShowWindow(ca::signal_object * pobj)
+      void interaction::_001OnShowWindow(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
 //         SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
@@ -127,7 +127,7 @@ namespace database
          ::user::interaction * pWnd,
          bool bForceRestore)
       {
-         ca::byte_stream_memory_file memstream(get_app());
+         ::ca::byte_stream_memory_file memstream(get_app());
          if(!data_get(key, idIndex, memstream))
             return false;
          memstream.seek_to_begin();
@@ -167,8 +167,8 @@ namespace database
       {
          //WINDOWPLACEMENT wp;
          //pWnd->GetWindowPlacement(&wp);
-         ca::byte_stream_memory_file memstream(get_app());
-         ca::byte_stream_memory_file memstreamGet(get_app());
+         ::ca::byte_stream_memory_file memstream(get_app());
+         ::ca::byte_stream_memory_file memstreamGet(get_app());
          bool bGet = data_get(
             key,
             idIndex,

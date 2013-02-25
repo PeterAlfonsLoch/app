@@ -440,8 +440,8 @@ this end
 
 #endif // RC_INVOKED
 
-#define AXWIN_CLASS   "gen_AxWin80"
-#define AXWINLIC_CLASS "gen_AxWinLic80"
+#define AXWIN_CLASS   "ca_AxWin80"
+#define AXWINLIC_CLASS "ca_AxWinLic80"
 
 // _INSECURE_DEPRECATE define
 #ifndef _INSECURE_DEPRECATE

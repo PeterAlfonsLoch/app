@@ -136,7 +136,7 @@ retry_license:
       return *m_pshellimageset;
    }
 
-   string user::message_box(const char * pszMatter, ca::property_set & propertyset)
+   string user::message_box(const char * pszMatter, ::ca::property_set & propertyset)
    {      throw not_implemented(get_app());
    /*      class message_box box(this);
    box.show(pszMatter, propertyset);
@@ -154,7 +154,7 @@ retry_license:
 
       class message_box box(get_app());
 
-      ca::property_set propertyset;
+      ::ca::property_set propertyset;
       propertyset["message"] = pszMessage;
 
       string strMatter;
@@ -214,7 +214,7 @@ retry_license:
 
       class message_box box(get_app());
 
-      ca::property_set propertyset;
+      ::ca::property_set propertyset;
       propertyset["message"] = pszMessage;
       propertyset["simple_message_box_timeout_ms"] = iTimeout;
 
@@ -310,7 +310,7 @@ retry_license:
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
-   void user::data_on_after_change(ca::signal_object * pobj)
+   void user::data_on_after_change(::ca::signal_object * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2_fontopus_votagus")

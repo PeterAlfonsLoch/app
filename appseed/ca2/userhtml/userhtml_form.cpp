@@ -95,7 +95,7 @@ void html_form::_001DrawChildren(::ca::graphics *pdc)
 }
 
 
-void html_form::_001OnImageLoaded(ca::signal_object * pobj)
+void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data() != NULL)
@@ -183,7 +183,7 @@ void html_form::layout()
 }
 
 
-void html_form::_001OnCreate(ca::signal_object * pobj)
+void html_form::_001OnCreate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::create, pcreate, pobj)
    if(pobj->previous())
@@ -207,7 +207,7 @@ void html_form::_001OnCreate(ca::signal_object * pobj)
 
 
 
-void html_form::_001OnLButtonDown(ca::signal_object * pobj)
+void html_form::_001OnLButtonDown(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt;
@@ -224,7 +224,7 @@ void html_form::_001OnLButtonDown(ca::signal_object * pobj)
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
 }
-   /*void html_form::_001OnMouseMove(ca::signal_object * pobj)
+   /*void html_form::_001OnMouseMove(::ca::signal_object * pobj)
 {
 SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt;
@@ -239,7 +239,7 @@ SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       pelemental->OnMouseMove(&signal);
    }*/
 
-void html_form::_001OnMouseMove(ca::signal_object * pobj)
+void html_form::_001OnMouseMove(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
@@ -277,7 +277,7 @@ void html_form::_001OnMouseMove(ca::signal_object * pobj)
 
 }
 
-void html_form::_001OnLButtonUp(ca::signal_object * pobj)
+void html_form::_001OnLButtonUp(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
@@ -365,7 +365,7 @@ const ::html::data * html_form::get_html_data() const
    return m_sphtmldata;
 }
 
-void html_form::_001OnKeyDown(ca::signal_object * pobj)
+void html_form::_001OnKeyDown(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::key, pkey, pobj);
    if(pkey->m_nChar == '\t')

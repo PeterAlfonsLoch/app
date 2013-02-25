@@ -39,12 +39,12 @@ namespace n7z
 
    wchar_t MyCharUpper(wchar_t c)
    {
-      return ca::ch::to_upper_case(c);
+      return ::ca::ch::to_upper_case(c);
    }
 
    wchar_t MyCharLower(wchar_t c)
    {
-      return ca::ch::to_lower_case(c);
+      return ::ca::ch::to_lower_case(c);
    }
 
 
@@ -532,7 +532,7 @@ namespace n7z
 
    void CFolderOutStream2::ReleaseOutStream()
    {
-      ca::release(_outStream.m_p);
+      ::ca::release(_outStream.m_p);
       _crcStreamSpec->ReleaseStream();
    }
 
@@ -703,10 +703,10 @@ namespace n7z
       string Password;
 
       //MY_UNKNOWN_IMP
-         ca::HRes CryptoGetTextPassword(string & password);
+         ::ca::HRes CryptoGetTextPassword(string & password);
    };
 
-   ca::HRes CCryptoGetTextPassword::CryptoGetTextPassword(string & password)
+   ::ca::HRes CCryptoGetTextPassword::CryptoGetTextPassword(string & password)
    {
       password = Password;
       return S_OK;
@@ -1010,7 +1010,7 @@ namespace n7z
                }
 
                RINOK(threadDecoder.FosSpec->Init(db, db->FolderStartFileIndex[folderIndex], &extractStatuses, sbOutStream));
-               ca::release(sbOutStream.m_p);
+               ::ca::release(sbOutStream.m_p);
 
                threadDecoder.InStream = inStream;
                threadDecoder.Folder = &db->Folders[folderIndex];

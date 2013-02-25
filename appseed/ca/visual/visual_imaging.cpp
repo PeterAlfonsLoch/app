@@ -190,7 +190,7 @@ return LoadImageFile(ar.GetFile());
 }
 */
 
-FIBITMAP * imaging::LoadImageFile(ca::file * pfile)
+FIBITMAP * imaging::LoadImageFile(::ca::file * pfile)
 {
 
    FreeImageIO io;
@@ -226,14 +226,14 @@ throw not_implemented(get_app());
 /*
 ::primitive::memory_file file(get_app());
 
-ca::Resource resource;
+::ca::Resource resource;
 
 if(!resource.ReadResource(*file.get_memory(), (UINT) MAKEINTRESOURCE(lpszId), lpszType))
 return false;
 
 file.seek_to_begin();
 
-ca::file * pfile = &file;
+::ca::file * pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;
@@ -2553,7 +2553,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 /*HBITMAP imaging::LoadImageSync(const char * lpcszImageFilePath)
 {
 string str;
-ca::international::UTF8ToUnicode(str, lpcszImageFilePath);
+::ca::international::UTF8ToUnicode(str, lpcszImageFilePath);
 return LoadImageSync(str);
 }*/
 

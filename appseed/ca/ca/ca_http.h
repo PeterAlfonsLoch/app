@@ -23,7 +23,7 @@ namespace ca
       };
 
       class CLASS_DECL_ca signal :
-         public ca::signal_object
+         public ::ca::signal_object
       {
       public:
 
@@ -33,9 +33,9 @@ namespace ca
 
 
          string                     m_strUrl;
-         ca::property_set          m_setPost;
-         ca::property_set          m_setHeaders;
-         ca::property_set          m_set;
+         ::ca::property_set          m_setPost;
+         ::ca::property_set          m_setHeaders;
+         ::ca::property_set          m_set;
          ::http::cookies *          m_pcookies;
          ::fontopus::user *         m_puser;
          string                     m_strVersion;

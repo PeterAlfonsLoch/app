@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
-   virtual public ca::byte_serializable_array < sort_array < int_ptr, int_ptr > >
+   virtual public ::ca::byte_serializable_array < sort_array < int_ptr, int_ptr > >
 {
 
 
@@ -263,7 +263,7 @@ bool flags_ex < ENUM > ::unsignalize_all()
 }
 
 class flag_change_signalization :
-   public ca::signal_object
+   public ::ca::signal_object
 {
 public:
 
@@ -271,7 +271,7 @@ public:
 
 
    flag_change_signalization(::ca::signal * psignal) : 
-      ca::signal_object(psignal)
+      ::ca::signal_object(psignal)
    {
    }
    

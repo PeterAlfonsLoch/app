@@ -192,7 +192,7 @@ namespace filemanager
       string wstrItemExtra;
 
       index iFind;
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
 
       //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 
@@ -227,7 +227,7 @@ namespace filemanager
       string wstrFolder;
       stringa wstraFolder;
       string wstrItem;
-      ca::tree_item_ptr_array ptraRemove;
+      ::ca::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
       for(int32_t i = 0; i < wstraItem.get_size(); i++)
@@ -282,11 +282,11 @@ namespace filemanager
             ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
-               pitem = insert_item(pitemNew, ca::RelativeLastChild, pitemParent);
+               pitem = insert_item(pitemNew, ::ca::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(pitemNew, ca::RelativeReplace, pitem);
+               pitem = insert_item(pitemNew, ::ca::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
@@ -443,7 +443,7 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            //pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
+            //pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             //pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
@@ -452,7 +452,7 @@ namespace filemanager
          }
          else
          {
-            pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemBase);
+            pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemBase);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
@@ -536,7 +536,7 @@ namespace filemanager
 
       straNew.trim_right("/\\");
 
-      ca::tree_item_ptr_array ptraRemove;
+      ::ca::tree_item_ptr_array ptraRemove;
 
       while(pitem != NULL)
       {
@@ -560,7 +560,7 @@ namespace filemanager
       }
 
 
-//      ca::tree_item_ptr_array ptraRemove;
+//      ::ca::tree_item_ptr_array ptraRemove;
 
 
 
@@ -596,11 +596,11 @@ namespace filemanager
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != NULL)
                {
-                  pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
+                  pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemParent);
+                  pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
@@ -658,14 +658,14 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
+            pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
          }
          else
          {
-            pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemParent);
+            pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
@@ -711,7 +711,7 @@ namespace filemanager
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
-      ca::international::utf8_to_unicode(item.m_strExtra),
+      ::ca::international::utf8_to_unicode(item.m_strExtra),
       _shell::IconNormal);
 
       item.m_iImageSelected =
@@ -720,7 +720,7 @@ namespace filemanager
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
-      ca::international::utf8_to_unicode(item.m_strExtra),
+      ::ca::international::utf8_to_unicode(item.m_strExtra),
       _shell::IconOpen);*/
 
 
@@ -767,7 +767,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeInterface::_001OnMainPostMessage(ca::signal_object * pobj)
+   void SimpleFolderTreeInterface::_001OnMainPostMessage(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
          switch(pbase->m_wparam)
@@ -949,12 +949,12 @@ namespace filemanager
 
       _001UpdateImageList(m_pdataitemCreateImageListStep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(ca::TreeNavigationProperForward);
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::ca::TreeNavigationProperForward);
 
 
    }
 
-   void SimpleFolderTreeInterface::_001OnTimer(ca::signal_object * pobj)
+   void SimpleFolderTreeInterface::_001OnTimer(::ca::signal_object * pobj)
    {
 
       SCAST_PTR(::ca::message::timer, ptimer, pobj);

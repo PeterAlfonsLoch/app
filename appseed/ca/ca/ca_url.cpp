@@ -139,7 +139,7 @@ namespace ca
 
       string strQuery = object_get_query(pszObject);
 
-      return object_get_script(pszObject) + ca::str::has_char(query_set(strQuery, pszKey, var), "?");
+      return object_get_script(pszObject) + ::ca::str::has_char(query_set(strQuery, pszKey, var), "?");
 
    }
 
@@ -446,7 +446,7 @@ namespace ca
 
    }
 
-   ca::property & url::set(ca::property & propUrl, const char * pszKey, var var)
+   ::ca::property & url::set(::ca::property & propUrl, const char * pszKey, var var)
    {
 
       propUrl.set_value(set_key(propUrl.get_value(), pszKey, var));
@@ -611,7 +611,7 @@ namespace ca
 
    }
 
-   ca::property & url::remove(ca::property & propUrl, const char * pszKey)
+   ::ca::property & url::remove(::ca::property & propUrl, const char * pszKey)
    {
 
       propUrl.set_string(remove_key(propUrl.get_value(), pszKey));
@@ -637,7 +637,7 @@ namespace ca
       if(iPos < 0)
          return strUrl;
 
-      return strUrl.Left(iPos) + ca::str::has_char(query_remove(strUrl.Mid(iPos + 1), pszKey), "?");
+      return strUrl.Left(iPos) + ::ca::str::has_char(query_remove(strUrl.Mid(iPos + 1), pszKey), "?");
 
    }
 
@@ -688,7 +688,7 @@ namespace ca
 
       string strValue = url_encode(var.get_string());
 
-      if(ca::str::begins(strQuery, strKeyEqual))
+      if(::ca::str::begins(strQuery, strKeyEqual))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -700,7 +700,7 @@ namespace ca
             strQuery = strKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
-      else if(ca::str::begins(strQuery, strKeyEqual2))
+      else if(::ca::str::begins(strQuery, strKeyEqual2))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -763,7 +763,7 @@ namespace ca
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      if(ca::str::begins(strQuery, strKeyEqual))
+      if(::ca::str::begins(strQuery, strKeyEqual))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -803,7 +803,7 @@ namespace ca
    string url::query_remove(const char * pszQuery, const char * pszKey)
    {
 
-      ca::property_set set(get_app());
+      ::ca::property_set set(get_app());
 
       set.parse_url_query(pszQuery);
 
@@ -841,7 +841,7 @@ namespace ca
    string url::query_remove(const char * pszQuery, stringa & straKey)
    {
 
-      ca::property_set set(get_app());
+      ::ca::property_set set(get_app());
 
       set.parse_url_query(pszQuery);
 
@@ -867,7 +867,7 @@ namespace ca
 
       strsize iPos = 0;
 
-      if(ca::str::begins(strQuery, strKeyEqual))
+      if(::ca::str::begins(strQuery, strKeyEqual))
       {
          iPos = strQuery.find('&');
          if(iPos < 0)
@@ -933,7 +933,7 @@ namespace ca
 
       strsize iPos = 0;
 
-      if(ca::str::begins(strQuery, strKeyEqual))
+      if(::ca::str::begins(strQuery, strKeyEqual))
       {
          iPos = strQuery.find('&');
          if(iPos < 0)
@@ -969,16 +969,16 @@ namespace ca
 
       string strLocale(pszLocale);
 
-      ca::str::ends_eat_ci(strLocale, ".com");
-      ca::str::ends_eat_ci(strLocale, ".net");
-      ca::str::ends_eat_ci(strLocale, ".org");
+      ::ca::str::ends_eat_ci(strLocale, ".com");
+      ::ca::str::ends_eat_ci(strLocale, ".net");
+      ::ca::str::ends_eat_ci(strLocale, ".org");
 
-      ca::str::begins_eat_ci(strLocale, "co.");
-      ca::str::begins_eat_ci(strLocale, "or.");
-      ca::str::begins_eat_ci(strLocale, "ne.");
-      ca::str::begins_eat_ci(strLocale, "com.");
-      ca::str::begins_eat_ci(strLocale, "org.");
-      ca::str::begins_eat_ci(strLocale, "net.");
+      ::ca::str::begins_eat_ci(strLocale, "co.");
+      ::ca::str::begins_eat_ci(strLocale, "or.");
+      ::ca::str::begins_eat_ci(strLocale, "ne.");
+      ::ca::str::begins_eat_ci(strLocale, "com.");
+      ::ca::str::begins_eat_ci(strLocale, "org.");
+      ::ca::str::begins_eat_ci(strLocale, "net.");
 
       if(
          strLocale == "eu"
@@ -1222,7 +1222,7 @@ namespace ca
    string url::set_script(const char * pszUrl, const char * pszScript)
    {
 
-      return get_protocol(pszUrl) + "://" + get_root(pszUrl) + string(pszScript) + ca::str::has_char(get_query(pszUrl), "?");
+      return get_protocol(pszUrl) + "://" + get_root(pszUrl) + string(pszScript) + ::ca::str::has_char(get_query(pszUrl), "?");
 
    }
 
@@ -1250,10 +1250,10 @@ namespace ca
       if(bOverrideQuery && strQuery.is_empty())
          strQuery = strQueryOver;
 
-      if(!ca::str::begins(strScript, "/"))
+      if(!::ca::str::begins(strScript, "/"))
          strScript = "/" + strScript;
 
-      return strProtocol + "://" + strRoot + strScript + ca::str::has_char(strQuery, "?");
+      return strProtocol + "://" + strRoot + strScript + ::ca::str::has_char(strQuery, "?");
    }
 
 
@@ -1281,10 +1281,10 @@ namespace ca
       if(strQueryOver.has_char())
          strQuery = strQueryOver;
 
-      if(!ca::str::begins(strScript, "/"))
+      if(!::ca::str::begins(strScript, "/"))
          strScript = "/" + strScript;
 
-      return strProtocol + "://" + strRoot + strScript + ca::str::has_char(strQuery, "?");
+      return strProtocol + "://" + strRoot + strScript + ::ca::str::has_char(strQuery, "?");
    }
 
    inline bool isalnum_dup(int32_t i)

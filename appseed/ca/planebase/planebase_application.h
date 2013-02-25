@@ -14,7 +14,7 @@ namespace planebase
 
       service_base *                      m_pservice;
       class ::ca::dir::application        m_dir;
-      class ::ca::file::application       m_file;
+      class ::ca::file_application       m_file;
       class ::ca::http::application      m_http;
 
       sp(class ::fontopus::license)       m_splicense;
@@ -68,7 +68,7 @@ namespace planebase
 
 
       inline class ::ca::dir::application       & dir()        { return m_dir          ; }
-      inline class ::ca::file::application      & file()       { return m_file         ; }
+      inline class ::ca::file_application      & file()       { return m_file         ; }
       inline class ::ca::http::application     & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
       inline class ::fs::data                   * fs()         { return m_spfsdata     ; }
@@ -104,7 +104,7 @@ namespace planebase
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
-      //virtual ::user::interaction * get_request_parent_ui(ca::command_line * pline);
+      //virtual ::user::interaction * get_request_parent_ui(::ca::command_line * pline);
 
       virtual bool initial_check_directrix();
 
@@ -137,8 +137,8 @@ namespace planebase
       virtual ::bergedge::document * get_document();
 
 
-      virtual void fill_locale_schema(ca::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
+      virtual void fill_locale_schema(::ca::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
 
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative);
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);

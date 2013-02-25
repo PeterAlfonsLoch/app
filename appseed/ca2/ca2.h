@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/ca/cube/cube.h"
+#include "app/appseed/ca2/cube/cube.h"
 
 
 

@@ -287,7 +287,7 @@ namespace userbase
 
 
 
-   void menu::_001OnDestroy(ca::signal_object * pobj)
+   void menu::_001OnDestroy(::ca::signal_object * pobj)
    {
       System.remove_frame(this);
       if(m_pmenuParent != NULL)
@@ -313,7 +313,7 @@ namespace userbase
          delete_this();
    }
 
-   void menu::_001OnLButtonDown(ca::signal_object * pobj)
+   void menu::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       pobj->previous();
    }
@@ -338,7 +338,7 @@ namespace userbase
    }
    */
 
-   void menu::OnMessageDestroyWindow(ca::signal_object * pobj)
+   void menu::OnMessageDestroyWindow(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       DestroyWindow();
@@ -363,7 +363,7 @@ namespace userbase
             menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
             if(pitem != NULL && !pitem->m_bPopup)
             {
-               if(ca::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
+               if(::ca::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
                {
                   m_oswindowParent->_001SendCommand(pevent->m_puie->m_id);
                }
@@ -436,7 +436,7 @@ namespace userbase
       return true;
    }
 
-   void menu::_001OnTimer(ca::signal_object * pobj)
+   void menu::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == BaseWndMenuTimer)
@@ -504,7 +504,7 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW       , pinterface, this, &menu::_001OnShowWindow);
    }
 
-   void menu::_001OnCreate(ca::signal_object * pobj)
+   void menu::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::create, pcreate, pobj);
@@ -514,7 +514,7 @@ namespace userbase
 
 
 
-   void menu::_001OnIdleUpdateCmdUI(ca::signal_object * pobj)
+   void menu::_001OnIdleUpdateCmdUI(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::base, pbase, pobj)
@@ -548,21 +548,21 @@ namespace userbase
    }
 
 
-   void menu::_001OnEnable(ca::signal_object * pobj)
+   void menu::_001OnEnable(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::enable, penable, pobj);
    }
 
 
-   void menu::_001OnNcActivate(ca::signal_object * pobj)
+   void menu::_001OnNcActivate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       pbase->m_bRet = true;
       pbase->set_lresult(DefWindowProc(WM_NCACTIVATE, pbase->m_wparam, -1));
    }
 
-   void menu::_001OnNcCalcSize(ca::signal_object * pobj)
+   void menu::_001OnNcCalcSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
 
@@ -609,7 +609,7 @@ namespace userbase
    }
 
 
-   void menu::_001OnShowWindow(ca::signal_object * pobj)
+   void menu::_001OnShowWindow(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::show_window, pshow, pobj)
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);

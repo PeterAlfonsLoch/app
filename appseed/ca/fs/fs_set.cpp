@@ -59,7 +59,7 @@ namespace fs
       while(pos != NULL)
       {
          m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
-         if(ca::str::begins_ci(psz, strRoot))
+         if(::ca::str::begins_ci(psz, strRoot))
          {
             return pdata;
          }

@@ -63,17 +63,17 @@ namespace calculator
       token = new class token;
       if(token == NULL)
          throw memory_exception(get_app());
-      while(ca::ch::is_space_char(input))
-         input = ca::str::utf8_inc(input);
+      while(::ca::ch::is_space_char(input))
+         input = ::ca::str::utf8_inc(input);
       if(*input == '\0')
       {
          token->value = token::end;
          return token;
       }
-      const char * nextinput = ca::str::utf8_inc(input);
+      const char * nextinput = ::ca::str::utf8_inc(input);
 
       if((*input == 'j' || *input == 'i') &&
-         ca::ch::is_digit(nextinput))
+         ::ca::ch::is_digit(nextinput))
       {
          token->value = token::imaginary;
          char * endptr;
@@ -82,7 +82,7 @@ namespace calculator
          input = endptr;
          return token;
       }
-      else if(ca::ch::is_digit(input))
+      else if(::ca::ch::is_digit(input))
       {
          token->value = token::number;
          char * endptr;
@@ -141,9 +141,9 @@ namespace calculator
       }
       else
       {
-         token->m_str = ca::str::consume_nc_name(input);
-         while(ca::ch::is_space_char(input))
-            input = ca::str::utf8_inc(input);
+         token->m_str = ::ca::str::consume_nc_name(input);
+         while(::ca::ch::is_space_char(input))
+            input = ::ca::str::utf8_inc(input);
          if(*input == '(')
          {
             token->value = token::function;

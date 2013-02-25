@@ -621,11 +621,11 @@ namespace ca
       virtual void EndModalState();
 
       // for translating Windows messages in main message pump
-      virtual void pre_translate_message(ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
 
 
       // for processing Windows messages
-      virtual void message_handler(ca::signal_object * pobj);
+      virtual void message_handler(::ca::signal_object * pobj);
       //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
@@ -651,7 +651,7 @@ namespace ca
       virtual bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
-      virtual void WalkPreTranslateTree(::user::interaction * puiStop, ca::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::ca::signal_object * pobj);
       virtual bool IsFrameWnd(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
 
@@ -659,7 +659,7 @@ namespace ca
       virtual bool _EnableToolTips(bool bEnable, UINT nFlag);
       virtual void PrepareForHelp();
 
-      virtual void WalkPreTranslateTree(ca::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::ca::signal_object * pobj);
 
 
       // for creating dialogs and dialog-like windows
@@ -703,7 +703,7 @@ class CLASS_DECL_ca guie_message_wnd :
 {
 public:
    guie_message_wnd(::ca::application * papp);
-   virtual void message_handler(ca::signal_object * pobj);
+   virtual void message_handler(::ca::signal_object * pobj);
    ::user::interaction * m_pguieForward;
 };
 

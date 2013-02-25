@@ -91,7 +91,7 @@ namespace command
       cs.style &= ~WS_EX_CLIENTEDGE;
 	   return ::userbase::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
    }
@@ -108,12 +108,12 @@ namespace command
 
    }
 
-   void view::_001OnDestroy(ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca::signal_object * pobj)
    {
 	   ::userbase::view::_001OnDestroy(pobj);
    }
 
-   void view::_001OnSize(ca::signal_object * pobj)
+   void view::_001OnSize(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   SCAST_PTR(::ca::message::size, psize, pobj)
@@ -139,7 +139,7 @@ namespace command
       }
    }
 
-   void view::_001OnPaint(ca::signal_object * pobj)
+   void view::_001OnPaint(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //	CPaintDC spgraphics(this); // device context for winactionareaing
@@ -152,7 +152,7 @@ namespace command
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   void view::_001OnCreate(ca::signal_object * pobj)
+   void view::_001OnCreate(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -160,7 +160,7 @@ namespace command
    }
 
 
-   void view::_001OnContextMenu(ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
@@ -177,7 +177,7 @@ namespace command
       }
    }
 
-   void view::_001OnSetCursor(ca::signal_object * pobj)
+   void view::_001OnSetCursor(::ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
@@ -195,14 +195,14 @@ namespace command
 
 
 
-   void view::_001OnLButtonDown(ca::signal_object * pobj)
+   void view::_001OnLButtonDown(::ca::signal_object * pobj)
    {
    //   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnLButtonUp(ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       //SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
@@ -211,21 +211,21 @@ namespace command
 
    }
 
-   void view::_001OnRButtonUp(ca::signal_object * pobj)
+   void view::_001OnRButtonUp(::ca::signal_object * pobj)
    {
       //SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnOp(ca::signal_object * pobj)
+   void view::_001OnOp(::ca::signal_object * pobj)
    {
       //SCAST_PTR(::ca::message::base, pbase, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnTimer(ca::signal_object * pobj)
+   void view::_001OnTimer(::ca::signal_object * pobj)
    {
       //SCAST_PTR(::ca::message::timer, ptimer, pobj)
       UNREFERENCED_PARAMETER(pobj);
@@ -273,7 +273,7 @@ namespace command
       strDateTime.Format("%s %s %s", strDate, strWeekDay, strTime);
    }
 
-   void view::_001OnShowWindow(ca::signal_object * pobj)
+   void view::_001OnShowWindow(::ca::signal_object * pobj)
    {
    //   SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       UNREFERENCED_PARAMETER(pobj);

@@ -32,7 +32,7 @@ namespace visual
 
       rect rectClip(*lpcrect);
 
-      wstring wstr = ca::international::utf8_to_unicode(lpcsz);
+      wstring wstr = ::ca::international::utf8_to_unicode(lpcsz);
 
       const wchar_t * lpwsz = wstr;
 
@@ -56,7 +56,7 @@ namespace visual
 
             throw todo(::ca::get_thread_app());
 
-            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), ca::international::unicode_to_utf8(lpwsz), (int32_t) ca::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
+            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), ::ca::international::unicode_to_utf8(lpwsz), (int32_t) ::ca::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
 
 #endif
 
@@ -76,17 +76,17 @@ namespace visual
 
          }
 
-         ca::international::unicode_to_utf8(str1, lpwsz, i);
+         ::ca::international::unicode_to_utf8(str1, lpwsz, i);
 
-         ca::international::unicode_to_utf8(str2, &lpwsz[i]);
+         ::ca::international::unicode_to_utf8(str2, &lpwsz[i]);
 
       }
       else
       {
 
-         ca::international::unicode_to_utf8(str1, lpwsz, iFind);
+         ::ca::international::unicode_to_utf8(str1, lpwsz, iFind);
 
-         ca::international::unicode_to_utf8(str2, &lpwsz[iFind + 1]);
+         ::ca::international::unicode_to_utf8(str2, &lpwsz[iFind + 1]);
 
       }
 
@@ -283,7 +283,7 @@ namespace visual
 
   //    if(pdc->GetBkMode() == TRANSPARENT
 
-      wstring wstr = ca::international::utf8_to_unicode(lpcsz);
+      wstring wstr = ::ca::international::utf8_to_unicode(lpcsz);
 
       string str(lpcsz);
       string str2;
@@ -423,27 +423,27 @@ namespace visual
       int32_t align = 0;
       if(uiFormat & DT_BOTTOM)
       {
-         align |= ca::AlignBottom;
+         align |= ::ca::AlignBottom;
       }
       else if(uiFormat & DT_VCENTER)
       {
-         align |= ca::AlignVerticalCenter;
+         align |= ::ca::AlignVerticalCenter;
       }
       else
       {
-         align |= ca::AlignTop;
+         align |= ::ca::AlignTop;
       }
       if(uiFormat & DT_RIGHT)
       {
-         align |= ca::AlignRight;
+         align |= ::ca::AlignRight;
       }
       else if(uiFormat & DT_CENTER)
       {
-         align |= ca::AlignHorizontalCenter;
+         align |= ::ca::AlignHorizontalCenter;
       }
       else
       {
-         align |= ca::AlignLeft;
+         align |= ::ca::AlignLeft;
       }
 
       rect.Align(align, lpcrect);

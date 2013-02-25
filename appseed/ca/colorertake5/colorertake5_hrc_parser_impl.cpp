@@ -59,7 +59,7 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    {
       loadSource(thisType->m_strSourceLocation, thisType->m_strSource);
    }
-   catch(ca::file_exception &e)
+   catch(::ca::file_exception &e)
    {
       if (errorHandler != NULL)
       {
@@ -482,7 +482,7 @@ void HRCParserImpl::addScheme(xml::node *elem)
 
 void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 {
-   ca::scoped_ptr < SchemeNode > next;
+   ::ca::scoped_ptr < SchemeNode > next;
    for(xml::node *tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
       if (tmpel->get_name().is_empty()) continue;
 
@@ -679,7 +679,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          if(worddiv.has_char())
          {
             string entWordDiv = useEntities(worddiv);
-            next->worddiv = ca::ch_class::createCharClass(entWordDiv, 0, NULL);
+            next->worddiv = ::ca::ch_class::createCharClass(entWordDiv, 0, NULL);
             if(next->worddiv == NULL)
             {
                if (errorHandler != NULL) errorHandler->warning(string("fault compiling worddiv regexp '")+entWordDiv+"' in scheme '"+scheme->schemeName+"'");
@@ -724,12 +724,12 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
             pIDs[pos].region = rgn;
             pIDs[pos].isSymbol = (type == 2);
             pIDs[pos].ssShorter = -1;
-            next->kwList->firstChar->add_char(ca::str::utf8_char(param));
+            next->kwList->firstChar->add_char(::ca::str::utf8_char(param));
             if (!isCase)
             {
-               next->kwList->firstChar->add_char(ca::ch::to_lower_case(param));
-               next->kwList->firstChar->add_char(ca::ch::to_upper_case(param));
-               next->kwList->firstChar->add_char(ca::ch::to_title_case(param));
+               next->kwList->firstChar->add_char(::ca::ch::to_lower_case(param));
+               next->kwList->firstChar->add_char(::ca::ch::to_upper_case(param));
+               next->kwList->firstChar->add_char(::ca::ch::to_title_case(param));
             };
             next->kwList->num++;
             if (next->kwList->minKeywordLength > pIDs[pos].keyword.get_length())

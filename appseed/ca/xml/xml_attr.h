@@ -10,7 +10,7 @@ namespace xml
 
 
    class CLASS_DECL_ca attr_array :
-      public ca::property_set
+      public ::ca::property_set
    {
    protected:
 

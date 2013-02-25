@@ -354,7 +354,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 list_layout :
-         virtual public ca::byte_serializable
+         virtual public ::ca::byte_serializable
       {
       public:
          list_layout();
@@ -368,7 +368,7 @@ namespace user
       };
 
       class CLASS_DECL_ca2 icon_layout :
-         virtual public ca::byte_serializable
+         virtual public ::ca::byte_serializable
       {
       public:
          icon_layout();

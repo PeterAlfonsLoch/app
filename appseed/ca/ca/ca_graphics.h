@@ -43,7 +43,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca graphics :
-      virtual public ca::simple_chain < ::user::draw_context >
+      virtual public ::ca::simple_chain < ::user::draw_context >
    {
    public:
 

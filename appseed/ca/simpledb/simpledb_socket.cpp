@@ -39,7 +39,7 @@ namespace simpledb
    void socket::send_response()
    {
 
-      if(ca::str::begins(inattr("request_uri"), "/passthrough/"))
+      if(::ca::str::begins(inattr("request_uri"), "/passthrough/"))
       {
       }
       else
@@ -229,7 +229,7 @@ namespace simpledb
       {
          outheader("Content-Type") = "application/x-jar";
       }
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
       if(!spfile->open(lpcsz, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone))
       {
          return false;
@@ -253,7 +253,7 @@ namespace simpledb
                if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ca::seek_begin);
+               spfile->seek(iStart, ::ca::seek_begin);
                primitive::memory_size uiRead;
                ::primitive::memory_file memfile(get_app());
                primitive::memory_position iPos = iStart;
@@ -269,7 +269,7 @@ namespace simpledb
                   continue;
                }
                response().file() << "--THIS_STRING_SEPARATES\r\n\r\n";
-               response().file() << "Content-range: bytes " + ca::str::from(iStart) + "-" + ca::str::from(iEnd) + "/" + ca::str::from(iLen) + "\r\n";
+               response().file() << "Content-range: bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/" + ::ca::str::from(iLen) + "\r\n";
                response().file() << "Content-Transfer-Encoding: base64";
                response().file() << "\r\n";
                while(true)
@@ -306,7 +306,7 @@ namespace simpledb
             if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ca::seek_begin);
+               spfile->seek(iStart, ::ca::seek_begin);
                primitive::memory_size uiRead;
                ::primitive::memory_file memfile(get_app());
                primitive::memory_position iPos = iStart;
@@ -341,11 +341,11 @@ namespace simpledb
             outattr("http_status") = "Partial Content";
             if(iEnd == -1)
             {
-               outheader("Content-Range") = "bytes " + ca::str::from(iStart) + "-" + ca::str::from(iEnd) + "/*";
+               outheader("Content-Range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/*";
             }
             else
             {
-               outheader("Content-Range") = "bytes " + ca::str::from(iStart) + "-" + ca::str::from(iEnd) + "/" + ca::str::from(iLen);
+               outheader("Content-Range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/" + ::ca::str::from(iLen);
             }
 
          }

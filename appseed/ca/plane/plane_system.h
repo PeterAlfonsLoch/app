@@ -255,28 +255,27 @@ namespace plane
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
       ::ca::application_ptra                       m_appptra;
-      ::ca::file::system_sp                        m_spfile;
+      ::ca::file_system_sp                        m_spfile;
       ::ca::dir::system_sp                         m_spdir;
-      class ::ca::stra                            m_stra;
-      class ::ca::url                             m_url;
+      class ::ca::stra                             m_stra;
+      class ::ca::url                              m_url;
       class ::xml::xml *                           m_pxml;
-      class ::ca::service                         m_service;
-      class ::ca::install                         m_install;
+      class ::ca::service                          m_service;
+      class ::ca::install                          m_install;
       ::ca::os_sp                                  m_spos;
 #ifndef METROWIN
-      class ::ca::process                         m_process;
+      class ::ca::process_section                  m_processsection;
 #endif
-      class ::ca::datetime *                      m_pdatetime;
-      class ::sockets::net                             m_net;
+      class ::ca::datetime *                       m_pdatetime;
+      class ::sockets::net                         m_net;
 
-      class ::ca::compress                        m_compress;
-      class ::ca::patch                           m_patch;
-      ::ca::crypt_sp                              m_spcrypt;
-      class ::ca::http::system                    m_http;
-      class ::ca::email                           m_email;
-      class ::ca::file                            m_file4;
-      ::ca::copydesk_sp                           m_spcopydesk;
-      ::ca::port_forward_sp                       m_spportforward;
+      class ::ca::compress                         m_compress;
+      class ::ca::patch                            m_patch;
+      ::ca::crypt_sp                               m_spcrypt;
+      class ::ca::http::system                     m_http;
+      class ::ca::email                            m_email;
+      ::ca::copydesk_sp                            m_spcopydesk;
+      ::ca::port_forward_sp                        m_spportforward;
       ::string_to_string_map                       m_mapAppLibrary;
       colorertake5::ParserFactory *                m_pparserfactory;
 
@@ -289,7 +288,7 @@ namespace plane
       plane::session::map *                        m_pbergedgemap;
 
 
-      class ::ca::log *                            m_plog;
+      class ::ca::log *                       m_plog;
       class factory *                              m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
@@ -419,7 +418,7 @@ namespace plane
       ::ca::application_ptra           & appptra();
       ::ca::datetime                  & datetime();
 
-      inline ::ca::file::system        & file()    { return m_spfile; }
+      inline ::ca::file_system        & file()    { return m_spfile; }
       inline ::ca::dir::system         & dir()     { return m_spdir; }
       ::ca::stra                      & stra();
       inline ::ca::url                & url()     { return m_url; }
@@ -430,7 +429,7 @@ namespace plane
       class ::ca::os                   & os();
       using ::plane::application::process;
 #ifndef METROWIN
-      ::ca::process                   & process();
+      ::ca::process_section                   & process();
 #endif
       class ::sockets::net             & net();
 
@@ -441,7 +440,6 @@ namespace plane
       class ::ca::crypt               & crypt();
       class ::ca::http::system        & http();
       class ::ca::email               & email();
-      class ::ca::file                & file36();
       class ::ca::copydesk            & copydesk();
 
       ::fontopus::user_set             & userset();
@@ -843,7 +841,7 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ca::filesp fileOut = App(papp).file().get_file(pszOutput, ca::file::mode_create | ca::file::type_binary | ca::file::mode_write);
+   ::ca::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca::file::mode_create | ::ca::file::type_binary | ::ca::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -859,12 +857,12 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ca::filesp fileOut = App(papp).file().get_file(pszOutput, ca::file::mode_create | ca::file::type_binary | ca::file::mode_write);
+   ::ca::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca::file::mode_create | ::ca::file::type_binary | ::ca::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ca::filesp fileIn = App(papp).file().get_file(lpszInput, ca::file::type_binary | ca::file::mode_read);
+   ::ca::filesp fileIn = App(papp).file().get_file(lpszInput, ::ca::file::type_binary | ::ca::file::mode_read);
 
    if(fileIn.is_null())
       return false;

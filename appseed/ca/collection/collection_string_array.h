@@ -67,7 +67,7 @@ public:
 
    void add(const var & var);
 
-   void add(const ca::property & prop);
+   void add(const ::ca::property & prop);
 
    void add(const id & id);
 

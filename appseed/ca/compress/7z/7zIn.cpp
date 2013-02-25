@@ -273,7 +273,7 @@ void CInByte2::ReadString(string &s)
   int32_t len = (int32_t)(rem / 2);
   if (len < 0 || (size_t)len * 2 != rem)
     ThrowUnsupported();
-  s = ca::international::unicode_to_utf8(wstring((wchar_t *) buf, len));
+  s = ::ca::international::unicode_to_utf8(wstring((wchar_t *) buf, len));
   _pos += rem + 2;
 }
 
@@ -343,7 +343,7 @@ HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const 
         memcpy(_header, buffer + pos, kHeaderSize);
         curTestPos += pos;
         _arhiveBeginStreamPosition = curTestPos;
-        stream->seek(curTestPos + kHeaderSize, ca::seek_begin);
+        stream->seek(curTestPos + kHeaderSize, ::ca::seek_begin);
         return S_OK;
       }
     }
@@ -367,7 +367,7 @@ HRESULT CInArchive::Open(::ca::byte_input_stream *stream, const file_position *s
 {
   HeadersSize = 0;
   Close();
-  _arhiveBeginStreamPosition = stream->seek(0, ca::seek_current);
+  _arhiveBeginStreamPosition = stream->seek(0, ::ca::seek_current);
   RINOK(FindAndReadSignature(stream, searchHeaderSizeLimit));
   _stream = stream;
   return S_OK;
@@ -375,7 +375,7 @@ HRESULT CInArchive::Open(::ca::byte_input_stream *stream, const file_position *s
 
 void CInArchive::Close()
 {
-  ca::release(_stream.m_p);
+  ::ca::release(_stream.m_p);
 }
 
 void CInArchive::ReadArchiveProperties(CInArchiveInfo & /* archiveInfo */)
@@ -1174,14 +1174,14 @@ HRESULT CInArchive::ReadDatabase2(
   if (crcFromArchive == 0 && nextHeaderOffset == 0 && nextHeaderSize == 0 && nextHeaderCRC == 0)
   {
     uint64_t cur, cur2;
-    cur = _stream->seek(0, ca::seek_current);
+    cur = _stream->seek(0, ::ca::seek_current);
     const int32_t kCheckSize = 500;
     byte buf[kCheckSize];
-    cur2 = _stream->seek(0, ca::seek_end);
+    cur2 = _stream->seek(0, ::ca::seek_end);
     int32_t checkSize = kCheckSize;
     if (cur2 - cur < kCheckSize)
       checkSize = (int32_t)(cur2 - cur);
-    cur2 = _stream->seek(-checkSize, ca::seek_end);
+    cur2 = _stream->seek(-checkSize, ::ca::seek_end);
 
     RINOK(ReadStream_FALSE(_stream, buf, (size_t)checkSize));
 
@@ -1194,7 +1194,7 @@ HRESULT CInArchive::ReadDatabase2(
     nextHeaderSize = checkSize - i;
     nextHeaderOffset = cur2 - cur + i;
     nextHeaderCRC = crc_calc(buf + i, (size_t)nextHeaderSize);
-    _stream->seek(cur,ca::seek_current);
+    _stream->seek(cur,::ca::seek_current);
   }
   else
   #endif
@@ -1214,7 +1214,7 @@ HRESULT CInArchive::ReadDatabase2(
   if ((int64_t)nextHeaderOffset < 0)
     return S_FALSE;
 
-  _stream->seek(nextHeaderOffset, ca::seek_current); // RINOK
+  _stream->seek(nextHeaderOffset, ::ca::seek_current); // RINOK
 
   ::ca::byte_buffer buffer2;
   buffer2.SetCapacity((size_t)nextHeaderSize);

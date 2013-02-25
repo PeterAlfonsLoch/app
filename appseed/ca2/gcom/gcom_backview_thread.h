@@ -139,7 +139,7 @@ namespace gcom
 
          string                  m_strImagePath;
          backview::Main *        m_pbackviewinterface;
-         ca::signal             m_signalImageLoaded;
+         ::ca::signal             m_signalImageLoaded;
          ::ca::dib *             m_pdib;
 
 

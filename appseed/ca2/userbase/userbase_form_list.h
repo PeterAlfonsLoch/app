@@ -16,7 +16,7 @@ namespace userbase
       virtual ~form_list();
 
 
-      virtual void install_message_handling(ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
 
    };

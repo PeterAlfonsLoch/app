@@ -23,7 +23,7 @@ namespace filemanager
             m_etranslucency = TranslucencyPresent;
 
 
-            ::ca::data_container::m_spdata = new ca::simple_tree_data(get_app());
+            ::ca::data_container::m_spdata = new ::ca::simple_tree_data(get_app());
             if(!::ca::data_container::m_spdata->initialize_data())
                throw simple_exception(papp);
          }
@@ -136,15 +136,15 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = create_item(pdataitemParent, ca::RelativeLastChild);
+                  pdataitemChild = create_item(pdataitemParent, ::ca::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == NULL)
                {
-                  pdataitemChild->m_pitemdata = new ca::simple_tree_item_data();
+                  pdataitemChild->m_pitemdata = new ::ca::simple_tree_item_data();
                }
 
-               ((ca::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
+               ((::ca::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else
@@ -216,7 +216,7 @@ namespace filemanager
          }
 
 
-         void tree_view::_001OnCreate(ca::signal_object * pobj)
+         void tree_view::_001OnCreate(::ca::signal_object * pobj)
          {
             pobj->previous();
             m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");

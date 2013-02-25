@@ -140,7 +140,7 @@ namespace userbase
 
 
 
-   void frame_window::_001OnCreate(ca::signal_object * pobj)
+   void frame_window::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -174,7 +174,7 @@ namespace userbase
 
 
    // query end session for main frame will attempt to close it all down
-   void frame_window::_001OnQueryEndSession(ca::signal_object * pobj)
+   void frame_window::_001OnQueryEndSession(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       if (&Cube != NULL && Cube.GetMainWnd() == this)
@@ -191,7 +191,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // Special ::view swapping/activation
 
-   void frame_window::_001OnSetFocus(ca::signal_object * pobj)
+   void frame_window::_001OnSetFocus(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if (m_pViewActive != NULL)
@@ -231,7 +231,7 @@ namespace userbase
       m_nIdleFlags |= idleMenu;
    }
 
-   void frame_window::_001OnIdleUpdateCmdUI(ca::signal_object * pobj)
+   void frame_window::_001OnIdleUpdateCmdUI(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // update menu if necessary
@@ -260,7 +260,7 @@ namespace userbase
 
 
 
-   void frame_window::_001OnSize(ca::signal_object * pobj)
+   void frame_window::_001OnSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::size, psize, pobj)
    //   ::user::interaction::OnSize(nType, cx, cy);    // important for MDI Children

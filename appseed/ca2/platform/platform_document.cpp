@@ -78,7 +78,7 @@ namespace platform
    }
    */
 
-   void document::data_on_after_change(ca::signal_object * pobj)
+   void document::data_on_after_change(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

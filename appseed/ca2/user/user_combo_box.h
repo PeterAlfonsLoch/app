@@ -83,7 +83,7 @@ namespace user
 
       virtual void _001OnAfterChangeText();
 
-      virtual void _001OnInitialUpdate(ca::signal_object * pobj);
+      virtual void _001OnInitialUpdate(::ca::signal_object * pobj);
 
    };
 

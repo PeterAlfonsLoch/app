@@ -484,22 +484,22 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    // open format is "[open("%s")]" - no whitespace allowed, one per line
    // print format is "[print("%s")]" - no whitespace allowed, one per line
    // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-   ca::command & cmdInfo = System.command();
-   command.m_nShellCommand = ca::command_line::FileDDE;
+   ::ca::command & cmdInfo = System.command();
+   command.m_nShellCommand = ::ca::command_line::FileDDE;
 
    if (strCommand.Left(7) == _T("[open(\""))
    {
-      cmdInfo.m_nShellCommand = ca::command_line::FileOpen;
+      cmdInfo.m_nShellCommand = ::ca::command_line::FileOpen;
       strCommand = strCommand.Right(strCommand.get_length() - 7);
    }
    else if (strCommand.Left(8) == _T("[print(\""))
    {
-      cmdInfo.m_nShellCommand = ca::command_line::FilePrint;
+      cmdInfo.m_nShellCommand = ::ca::command_line::FilePrint;
       strCommand = strCommand.Right(strCommand.get_length() - 8);
    }
    else if (strCommand.Left(10) == _T("[printto(\""))
    {
-      cmdInfo.m_nShellCommand = ca::command_line::FilePrintTo;\
+      cmdInfo.m_nShellCommand = ::ca::command_line::FilePrintTo;\
       strCommand = strCommand.Right(strCommand.get_length() - 10);
    }
    else
@@ -512,13 +512,13 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    cmdInfo.m_varFile = strCommand.Left(i);
    strCommand = strCommand.Right(strCommand.get_length() - i);
 
-   //ca::command_line* pOldInfo = NULL;
+   //::ca::command_line* pOldInfo = NULL;
    bool bRetVal = TRUE;
 
    // // If we were started up for DDE retrieve the Show state
 //   System.command_line() = cmdInfo;
 
-   if (cmdInfo.m_nShellCommand == ca::command_line::FileOpen)
+   if (cmdInfo.m_nShellCommand == ::ca::command_line::FileOpen)
    {
       // show the application ::ca::window
       ::user::interaction* pMainWnd = System.GetMainWnd();
@@ -543,7 +543,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
       goto RestoreAndReturn;
    }
 
-   if (cmdInfo.m_nShellCommand == ca::command_line::FilePrintTo)
+   if (cmdInfo.m_nShellCommand == ::ca::command_line::FilePrintTo)
    {
       if (strCommand.Left(3) != _T("\",\""))
       {
@@ -731,7 +731,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    if (lpszLast != NULL)
       *lpszLast = 0;*/
 
-   //if( ca::FullPath(szPath, szTemp) == FALSE )
+   //if( ::ca::FullPath(szPath, szTemp) == FALSE )
    //{
    //   ASSERT(FALSE);
    //   return NULL; // We won't open the file. ca API requires paths with
@@ -739,7 +739,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    //}
 
 /*   char szLinkName[_MAX_PATH];
-   if (ca::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
+   if (::ca::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
       ::ca::tcscpy_s(szPath, _countof(szPath), szLinkName);
 */
 

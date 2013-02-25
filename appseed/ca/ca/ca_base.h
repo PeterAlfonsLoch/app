@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "ca/ca/gen_definition.h"
-#include "ca/ca/gen_core.h"
+#include "ca/ca/ca_definition.h"
+#include "ca/ca/ca_core.h"
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2
@@ -273,7 +273,7 @@ typedef _MODULE70 _MODULE;*/
 
 /////////////////////////////////////////////////////////////////////////////
 //This define makes debugging asserts easier.
-/*#define _SIMPLEMAPENTRY ((ca::_CREATORARGFUNC*)1)
+/*#define _SIMPLEMAPENTRY ((::ca::_CREATORARGFUNC*)1)
 
 struct _INTMAP_ENTRY
 {

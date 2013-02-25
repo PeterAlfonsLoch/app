@@ -134,14 +134,14 @@ public:
   SRegInfo();
   ~SRegInfo();
 
-////#include "gen_memory_operator.h"
+////#include "ca_memory_operator.h"
 
   EOps op;
   union{
     EMetaSymbols metaSymbol;
     string *symbol;
     string *uint16_t;
-    ca::ch_class *charclass;
+    ::ca::ch_class *charclass;
     SRegInfo *param;
   }un;
   string namedata;

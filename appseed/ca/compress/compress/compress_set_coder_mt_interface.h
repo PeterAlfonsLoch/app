@@ -8,7 +8,7 @@ namespace libcompress
       virtual public ::ca::object
    {
    public:
-      virtual ca::HRes SetNumberOfThreads(uint32_t numThreads) = 0;
+      virtual ::ca::HRes SetNumberOfThreads(uint32_t numThreads) = 0;
    };
 
 } // namespace libcompress

@@ -10,7 +10,7 @@ namespace frame
    class WorkSet;
 
    class CLASS_DECL_ca2 MoveManager :
-      virtual public ca::signalizable
+      virtual public ::ca::signalizable
    {
       friend class WorkSet;
    public:
@@ -46,7 +46,7 @@ namespace frame
       ::user::interaction * GetEventWindow();
       ::user::interaction * GetMoveWindow();
 
-      bool Relay(ca::message::mouse * pmouse);
+      bool Relay(::ca::message::mouse * pmouse);
       bool _000OnLButtonDown(::ca::message::mouse * pmouse);
       bool _000OnMouseMove(::ca::message::mouse * pmouse);
       bool _000OnLButtonUp(::ca::message::mouse * pmouse);
@@ -64,7 +64,7 @@ namespace frame
 
       static const uint32_t s_dwMoveTime;
 
-      void message_handler(::user::interaction * pwnd, ca::signal_object * pobj);
+      void message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj);
    };
 
 } // namespace frame

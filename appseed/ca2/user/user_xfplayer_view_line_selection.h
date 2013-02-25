@@ -85,7 +85,7 @@ public:
    virtual ~XfplayerViewLineSelection();
 
 
-   virtual void relay_event(XfplayerViewLine & viewline, ca::signal_object * pobj);
+   virtual void relay_event(XfplayerViewLine & viewline, ::ca::signal_object * pobj);
    virtual void OnSelEvent(XfplayerViewLine & viewline, e_event eselevent);
    bool SetSelBefore(XfplayerViewLine & viewline);
    bool SetSelAfter(XfplayerViewLine & viewline);

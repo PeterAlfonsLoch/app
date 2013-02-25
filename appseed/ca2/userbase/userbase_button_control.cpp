@@ -162,7 +162,7 @@ void BaseButtonControl::UpdateDrawingObjects()
 
 
 
-void BaseButtonControl::_003CustomWindowProc(ca::signal_object * pobj)
+void BaseButtonControl::_003CustomWindowProc(::ca::signal_object * pobj)
 {
   return _user_message_handler(pobj);
 }

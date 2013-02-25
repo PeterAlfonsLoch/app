@@ -40,7 +40,7 @@ namespace command
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(ca::signal_object * pobj)
+   void pane_view::_001OnCreate(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::create, pcreate, pobj)
       if(pobj->previous())
@@ -119,7 +119,7 @@ namespace command
    }
 
 
-   void pane_view::_001OnSize(ca::signal_object * pobj)
+   void pane_view::_001OnSize(::ca::signal_object * pobj)
    {
 	   pobj->previous();
 
@@ -268,7 +268,7 @@ namespace command
       }
    }
 
-   void pane_view::_001OnMenuMessage(ca::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
@@ -320,9 +320,9 @@ namespace command
          i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
-            ca::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
+            ::ca::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
             NULL,
-            ca::international::utf8_to_unicode("\"" +  System.dir().name(itema[0].m_strPath) + "\""),
+            ::ca::international::utf8_to_unicode("\"" +  System.dir().name(itema[0].m_strPath) + "\""),
             SW_SHOWNORMAL);
 
 #else

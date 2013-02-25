@@ -20,7 +20,7 @@ public:
    virtual_user_interface(::ca::application * papp);
    virtual ~virtual_user_interface();
 
-   virtual void message_handler(ca::signal_object * pobj);
+   virtual void message_handler(::ca::signal_object * pobj);
    virtual ::ca::graphics * GetDC();
    ::user::interaction * set_parent(::user::interaction * pguieParent);
    bool ShowWindow(int32_t nCmdShow);

@@ -57,7 +57,7 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      System.url().set(strUrl, "short_status", ca::str::from(m_iShortStatusCynceTag));
+      System.url().set(strUrl, "short_status", ::ca::str::from(m_iShortStatusCynceTag));
       System.url().set(strUrl, "long_status", m_strLongStatus);
       Application.http().get(strUrl);
    }

@@ -34,11 +34,11 @@ namespace uinteraction
          virtual ~SysMenuManager();
 
          bool OnLButtonDblClk(UINT nFlags, point point);
-         void relay_event(ca::signal_object * pobj);
+         void relay_event(::ca::signal_object * pobj);
 
          bool update(WorkSet * pset);
 
-         void message_handler(::user::interaction * pwnd, ca::signal_object * pobj);
+         void message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj);
 
 
       };

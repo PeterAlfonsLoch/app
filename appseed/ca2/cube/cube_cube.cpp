@@ -282,7 +282,7 @@ namespace cube
          return true;
       }
 
-      ca::property_set set(this);
+      ::ca::property_set set(this);
 
       var varFile;
       string strApp;

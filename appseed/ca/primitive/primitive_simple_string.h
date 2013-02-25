@@ -362,9 +362,9 @@ static_string& operator=( const static_string& str ) NOTHROW;
 
 
 
-#define _ST( psz ) ca::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
-#define _SA( psz ) ca::static_string< char, sizeof( psz ) >( psz )
-#define _SW( psz ) ca::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
+#define _ST( psz ) ::ca::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
+#define _SA( psz ) ::ca::static_string< char, sizeof( psz ) >( psz )
+#define _SW( psz ) ::ca::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
 class CLASS_DECL_ca char_traits_base
@@ -750,7 +750,7 @@ public:
    }
    void get_string(char * psz) const NOTHROW
    {
-      ca::str::copy(psz, (const char *) *this);
+      ::ca::str::copy(psz, (const char *) *this);
    }
    void set_string(const char * psz) NOTHROW
    {

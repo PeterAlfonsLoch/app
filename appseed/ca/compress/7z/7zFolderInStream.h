@@ -32,7 +32,7 @@ namespace n7z
       base_array<uint64_t> Sizes;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
-      virtual ca::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
+      virtual ::ca::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
 
       CFolderInStream();
       void Init(::libcompress::archive_update_callback_interface *updateCallback, const uint32_t *fileIndices, uint32_t numFiles);

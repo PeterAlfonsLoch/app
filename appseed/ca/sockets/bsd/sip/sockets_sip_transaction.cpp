@@ -27,7 +27,7 @@ namespace sip
 
 
 
-   ca::property & transaction::header(const char * pszKey)
+   ::ca::property & transaction::header(const char * pszKey)
    {
       return m_propertysetHeader[pszKey];
    }
@@ -188,7 +188,7 @@ namespace sip
 
 
    // --------------------------------------------------------------------------------------
-   ca::property_set & transaction::headers()
+   ::ca::property_set & transaction::headers()
    {
       return m_propertysetHeader;
    }
@@ -202,12 +202,12 @@ namespace sip
       m_cookies.remove_all();
    }
 
-   ca::property & transaction::attr(const char * psz)
+   ::ca::property & transaction::attr(const char * psz)
    {
       return m_propertysetAttribute[psz];
    }
 
-   ca::property_set & transaction::attrs()
+   ::ca::property_set & transaction::attrs()
    {
       return m_propertysetAttribute;
    }

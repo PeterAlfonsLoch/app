@@ -96,9 +96,9 @@ namespace ca
 
    };
 
-   typedef ca::smart_pointer < file > filesp;
+   typedef ::ca::smart_pointer < file > filesp;
 
-   // ca::filesp
+   // ::ca::filesp
    inline file::operator HFILE() const
       { return NULL; }
    inline void file::SetFilePath(const char * lpszNewName)

@@ -80,7 +80,7 @@ namespace sockets
       m_pipv4 = NULL;
       m_pipv6 = NULL;
 
-      m_strServiceName = ca::str::from(iPort);
+      m_strServiceName = ::ca::str::from(iPort);
 
       if(!create_address(strAddress))
          throw "failed to create socket address";
@@ -108,11 +108,11 @@ namespace sockets
 
       if(m_pipv4 != NULL)
       {
-         ca::del(m_pipv4);
+         ::ca::del(m_pipv4);
       }
       if(m_pipv6 != NULL)
       {
-         ca::del(m_pipv6);
+         ::ca::del(m_pipv6);
       }
 
       if(System.net().isipv4(strAddress))
@@ -148,11 +148,11 @@ namespace sockets
 
       if(m_pipv4 != NULL)
       {
-         ca::del(m_pipv4);
+         ::ca::del(m_pipv4);
       }
       if(m_pipv6 != NULL)
       {
-         ca::del(m_pipv6);
+         ::ca::del(m_pipv6);
       }
 
 
@@ -243,8 +243,8 @@ namespace sockets
 
       string strService = m_strServiceName;
 
-      if(ca::str::is_simple_natural(strService))
-         return service_number_to_name(ca::str::to_int(strService));
+      if(::ca::str::is_simple_natural(strService))
+         return service_number_to_name(::ca::str::to_int(strService));
       else
          return strService;
 
@@ -256,10 +256,10 @@ namespace sockets
 
       string strService = m_strServiceName;
 
-      if(ca::str::is_simple_natural(strService))
+      if(::ca::str::is_simple_natural(strService))
          return service_name_to_number(strService);
       else
-         return ca::str::to_int(strService);
+         return ::ca::str::to_int(strService);
 
    }
 

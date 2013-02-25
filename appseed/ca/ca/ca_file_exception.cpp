@@ -8,7 +8,7 @@ namespace ca
    file_exception::file_exception(::ca::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       ca(papp),
       ::call_stack(papp),
-      ::ca::exception(papp)
+      ::base_exception(papp)
    {
       Construct(cause, lOsError, lpszArchiveName);
    }
@@ -60,7 +60,7 @@ namespace ca
    void file_exception::OnFileFound(OF_INFO_t OpenedFileInfo )
    {
 
-	   if(System.file().name_(ca::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
+	   if(System.file().name_(::ca::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
 
 	      PROCESS_INFO_t stInfo;
@@ -147,7 +147,7 @@ namespace ca
 
          wstring wstr;
 
-         wstr = ca::international::utf8_to_unicode(System.dir().name(m_strFileName));
+         wstr = ::ca::international::utf8_to_unicode(System.dir().name(m_strFileName));
 
 #ifdef WINDOWSEX
          GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (uint_ptr)this);

@@ -2,7 +2,7 @@
 
 
 raw_pointer::raw_pointer(::ca::application * papp) :
-   ca(papp)
+   ::ca::ca(papp)
 {
 
    m_pca = NULL;

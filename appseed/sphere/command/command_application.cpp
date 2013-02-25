@@ -60,7 +60,7 @@ namespace command
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
@@ -74,9 +74,9 @@ namespace command
          ::ShellExecuteW(
             NULL,
             L"open",
-            ca::international::utf8_to_unicode(itema[0].m_strPath),
+            ::ca::international::utf8_to_unicode(itema[0].m_strPath),
             NULL,
-            ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
+            ::ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
             SW_SHOW);
 
 #else

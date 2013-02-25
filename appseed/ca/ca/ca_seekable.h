@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "gen_stream_base.h"
+#include "ca_stream_base.h"
 
 
 namespace ca

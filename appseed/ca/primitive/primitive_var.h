@@ -118,11 +118,11 @@ public:
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);
-   var(const ca::property_set & set);
+   var(const ::ca::property_set & set);
    var(const var & var);
-   var(const ca::property & prop);
-   var(const ca::pair_set_interface & set);
-   var(const ca::str_str_interface & set);
+   var(const ::ca::property & prop);
+   var(const ::ca::pair_set_interface & set);
+   var(const ::ca::str_str_interface & set);
    var(const string_composite & composite);
    var(const ::ca::null & null);   var(const id & id);
    ~var();
@@ -130,7 +130,7 @@ public:
    e_type             m_etype;
    union
    {
-      ca::para_return     m_parareturn;
+      ::ca::para_return     m_parareturn;
       bool                 m_b;
       bool *               m_pb;
       int32_t              m_i32;
@@ -152,8 +152,8 @@ public:
       stringa *            m_pstra;
       int64_array *        m_pia64;
       var_array *          m_pvara;
-      ca::property_set *  m_pset;
-      ca::property *      m_pprop;
+      ::ca::property_set *  m_pset;
+      ::ca::property *      m_pprop;
       uchar        m_uch;
       char                 m_ch;
    };
@@ -181,15 +181,15 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ca::property_set &              propset(::ca::application * papp = NULL);
-   ca::property &                  prop();
+   ::ca::property_set &              propset(::ca::application * papp = NULL);
+   ::ca::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
    int_array                        inta() const;
    int64_array                      int64a() const;
    var_array                        vara()  const;
-   ca::property_set                propset() const;
-   ca::property                prop() const;
+   ::ca::property_set                propset() const;
+   ::ca::property                prop() const;
 
    bool is_scalar() const;
    inline bool is_array() const;
@@ -276,7 +276,7 @@ public:
    strsize get_length() const;
 
    var & operator = (::ca::ca * pca2);
-   var & operator = (ca::para_return & eret);
+   var & operator = (::ca::para_return & eret);
    var & operator = (bool b);
    var & operator = (bool * pb);
    var & operator = (int32_t i);
@@ -300,15 +300,15 @@ public:
    var & operator = (var * pvar);
    var & operator = (const char * psz);
    var & operator = (const wchar_t * lpcsz);
-   var & operator = (const ca::property & prop);
+   var & operator = (const ::ca::property & prop);
    var & operator = (const var & var);
    var & operator = (const int_array & ia);
    var & operator = (const stringa & stra);
    var & operator = (const class primitive::memory & memory);
    var & operator = (const var_array & vara);
-   var & operator = (const ca::property_set & propset);
-   var & operator = (const ca::pair_set_interface & propset);
-   var & operator = (const ca::str_str_interface & propset);
+   var & operator = (const ::ca::property_set & propset);
+   var & operator = (const ::ca::pair_set_interface & propset);
+   var & operator = (const ::ca::str_str_interface & propset);
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
@@ -399,8 +399,8 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
-   void write(ca::byte_output_stream & ostream);
-   void read(ca::byte_input_stream & ostream);
+   void write(::ca::byte_output_stream & ostream);
+   void read(::ca::byte_input_stream & ostream);
 
    string implode(const char * pszGlue) const;
    var explode(const char * pszGlue, bool bAddEmpty = true) const;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "gen_byte_stream.h"
+#include "ca_byte_stream.h"
 
 
 namespace ca

@@ -11,7 +11,7 @@ namespace ca
    {
    }
 
-   bool resource::ReadResource(ca::file & file, UINT nID, const char * lpcszType)
+   bool resource::ReadResource(::ca::file & file, UINT nID, const char * lpcszType)
    {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(nID);
@@ -19,7 +19,7 @@ namespace ca
       return false;
    }
 
-   bool resource::ReadResource(HINSTANCE hinst, ca::file & file, UINT nID, const char * lpcszType)
+   bool resource::ReadResource(HINSTANCE hinst, ::ca::file & file, UINT nID, const char * lpcszType)
    {
       UNREFERENCED_PARAMETER(hinst);
       UNREFERENCED_PARAMETER(file);

@@ -50,7 +50,7 @@ public:
 
 
    bool                    m_bQueueDocumentOpening;
-   ca::property_set       m_set;
+   ::ca::property_set       m_set;
    bool                    m_bAutoDelete;
    // back pointer to OLE or other server (NULL if none or disabled)
    ::ca::object *       m_pAttachedFactory;

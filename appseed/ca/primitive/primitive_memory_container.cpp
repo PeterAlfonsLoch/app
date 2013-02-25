@@ -138,7 +138,7 @@ namespace primitive
    }
 
 
-   void memory_container ::FullLoad(ca::file & file)
+   void memory_container ::FullLoad(::ca::file & file)
    {
       if(m_spmemory.is_null())
       {

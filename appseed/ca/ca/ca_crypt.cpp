@@ -733,7 +733,7 @@ namespace ca
       string str(pszPassword);
       if(str.get_length() < 6)
          return false;
-      return ca::str::has_all_v1(pszPassword);
+      return ::ca::str::has_all_v1(pszPassword);
    }
 
    string crypt::v5_get_password_hash(const char * pszPassword, int32_t iOrder)

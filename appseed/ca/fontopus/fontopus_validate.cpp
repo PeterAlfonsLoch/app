@@ -76,7 +76,7 @@ namespace fontopus
       || command_thread().property("app") == "app-core/tesseract/netnodecfg")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
       }
@@ -85,7 +85,7 @@ namespace fontopus
            || command_thread().has_property("uninstall"))
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
       }
@@ -98,7 +98,7 @@ namespace fontopus
            || command_thread().property("app") == "winservice_filesystemsize")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = camilosasuketsumanuma;
          return m_puser;
       }
@@ -300,9 +300,9 @@ namespace fontopus
 
       strAuthUrl = "https://" + strApiHost + "/account/auth";
 
-      ca::property_set post;
-      ca::property_set headers;
-      ca::property_set set;
+      ::ca::property_set post;
+      ::ca::property_set headers;
+      ::ca::property_set set;
 
       string strAuth;
       post["entered_license"] = m_strLicense;
@@ -484,7 +484,7 @@ namespace fontopus
       //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
    }
 
-   void validate::pageMessage(const stringa & straMatter, ca::property_set & set)
+   void validate::pageMessage(const stringa & straMatter, ::ca::property_set & set)
    {
       ensure_main_document();
 /*      m_pdocAuth->get_html_data()->m_propertyset = set;
@@ -597,7 +597,7 @@ namespace fontopus
          return;
       }
       string strModule;
-      ca::file_system_sp fs(get_app());
+      ::ca::file_system_sp fs(get_app());
       string strModuleFolder(System.get_ca2_module_folder());
       fs->FullPath(strModuleFolder, strModuleFolder);
       for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
@@ -606,7 +606,7 @@ namespace fontopus
          GetModuleFileName(pmodulea[dw], strModule.GetBufferSetLength(4096), 4096);
          strModule.ReleaseBuffer();
          fs->FullPath(strModule, strModule);
-         if(ca::str::begins_ci(strModule, strModuleFolder))
+         if(::ca::str::begins_ci(strModule, strModuleFolder))
          {
             straSource.add(strModule);
             straHash.add(System.file36().md5(strModule));
@@ -672,9 +672,9 @@ namespace fontopus
    bool validate::check_ca2_hash()
    {
       string strUrl("https://api.ca.cc/account/check_hash");
-      ca::property_set post;
-      ca::property_set headers;
-      ca::property_set set;
+      ::ca::property_set post;
+      ::ca::property_set headers;
+      ::ca::property_set set;
       string strResponse;
       stringa straHash;
       stringa straSource;
@@ -730,7 +730,7 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
-      ca::http::e_status estatus;
+      ::ca::http::e_status estatus;
       string strResponse = Login(&estatus);
       e_result iAuth = result_fail;
       xml::document doc(get_app());
@@ -811,7 +811,7 @@ namespace fontopus
 
          delete m_puser;
 
-         if(estatus == ca::http::status_connection_timed_out)
+         if(estatus == ::ca::http::status_connection_timed_out)
          {
 
             iAuth = result_time_out;
@@ -831,7 +831,7 @@ namespace fontopus
       return TRUE;
    }
 
-   string login_thread::Login(ca::http::e_status * pestatus)
+   string login_thread::Login(::ca::http::e_status * pestatus)
    {
       if(m_straRequestingServer.get_count() <= 0)
       {
@@ -930,7 +930,7 @@ namespace fontopus
    }
 
 
-   string login_thread::NetLogin(ca::http::e_status * pestatus)
+   string login_thread::NetLogin(::ca::http::e_status * pestatus)
    {
 
       if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
@@ -989,9 +989,9 @@ namespace fontopus
          {
 
 
-            ca::property_set post;
-            ca::property_set headers;
-            ca::property_set set;
+            ::ca::property_set post;
+            ::ca::property_set headers;
+            ::ca::property_set set;
 
             //Sleep(15 * 1000);
 
@@ -1320,9 +1320,9 @@ namespace fontopus
          string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
             +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
-         ca::property_set post;
-         ca::property_set headers;
-         ca::property_set set;
+         ::ca::property_set post;
+         ::ca::property_set headers;
+         ::ca::property_set set;
 
          if(m_strPasshash.is_empty())
          {
@@ -1346,7 +1346,7 @@ namespace fontopus
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
          uint32_t dwTimeTelmo2 = get_tick_count();
 
-         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
       }
 
@@ -1357,7 +1357,7 @@ namespace fontopus
    {
       string strFilename;
       string strResponse;
-      ca::property_set set;
+      ::ca::property_set set;
       for(int32_t i = 0; i < m_httpexecutea.get_size(); i++)
       {
          strFilename = System.file().time_square(get_app());
@@ -1452,7 +1452,7 @@ namespace fontopus
    void validate::authentication_failed(e_result iAuth, const char * pszResponse)
    {
       UNREFERENCED_PARAMETER(pszResponse);
-      ca::property_set propertyset;
+      ::ca::property_set propertyset;
       string strUsername = m_loginthread.m_strUsername;
       m_bLicense = false;
       m_puser = NULL;

@@ -48,7 +48,7 @@ class command_target;
 
 
 class CLASS_DECL_ca base_cmd_ui :
-   public ca::signal_object
+   public ::ca::signal_object
 {
 public:
 
@@ -56,14 +56,14 @@ public:
    cmd_ui * m_pcmdui;
 
 
-   base_cmd_ui(ca::signal * psignal);
+   base_cmd_ui(::ca::signal * psignal);
 
 
 };
 
 
 class CLASS_DECL_ca BaseCommand :
-   public ca::signal_object
+   public ::ca::signal_object
 {
 public:
 
@@ -71,7 +71,7 @@ public:
    id   m_id;
 
 
-   BaseCommand(ca::signal * psignal);
+   BaseCommand(::ca::signal * psignal);
 
 
 };

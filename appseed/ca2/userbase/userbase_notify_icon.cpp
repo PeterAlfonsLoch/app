@@ -115,7 +115,7 @@ namespace userbase
 
    }
 
-   void notify_icon::_001OnNotifyIconMessage(ca::signal_object * pobj)
+   void notify_icon::_001OnNotifyIconMessage(::ca::signal_object * pobj)
    {
       
       SCAST_PTR(::ca::message::base, pbase, pobj);

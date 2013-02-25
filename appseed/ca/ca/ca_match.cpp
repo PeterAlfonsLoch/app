@@ -40,7 +40,7 @@ namespace ca
 
       bool prefix::matches(const var & var) const
       {
-         return ca::str::begins(var.get_string(), m_str);
+         return ::ca::str::begins(var.get_string(), m_str);
       }
 
       ci_prefix::ci_prefix(const char * psz) :
@@ -50,7 +50,7 @@ namespace ca
 
       bool ci_prefix::matches(const var & var) const
       {
-         return ca::str::begins_ci(var.get_string(), m_str);
+         return ::ca::str::begins_ci(var.get_string(), m_str);
       }
 
       suffix::suffix(const char * psz) :
@@ -60,7 +60,7 @@ namespace ca
 
       bool suffix::matches(const var & var) const
       {
-         return ca::str::ends(var.get_string(), m_str);
+         return ::ca::str::ends(var.get_string(), m_str);
       }
 
       ci_suffix::ci_suffix(const char * psz) :
@@ -70,7 +70,7 @@ namespace ca
 
       bool ci_suffix::matches(const var & var) const
       {
-         return ca::str::ends_ci(var.get_string(), m_str);
+         return ::ca::str::ends_ci(var.get_string(), m_str);
       }
 
       bool any::matches(const var & var) const

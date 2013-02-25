@@ -7,7 +7,7 @@ namespace ca
 
    class CLASS_DECL_ca property_set :
       public ::ca::object,
-      public ca::byte_serializable
+      public ::ca::byte_serializable
    {
    public:
 
@@ -163,8 +163,8 @@ namespace ca
       void parse_http_headers(const char * pszHeaders);
       string get_http_post();
 
-      virtual void write(ca::byte_output_stream & ostream);
-      virtual void read(ca::byte_input_stream & ostream);
+      virtual void write(::ca::byte_output_stream & ostream);
+      virtual void read(::ca::byte_input_stream & ostream);
 
       virtual string implode(const char * pszGlue) const;
       count get_count() const;
@@ -254,12 +254,12 @@ namespace ca
          m_ppair = NULL;
       }
 
-      ca::property * operator ->()
+      ::ca::property * operator ->()
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
 
-      const ca::property * operator ->() const
+      const ::ca::property * operator ->() const
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
@@ -299,12 +299,12 @@ namespace ca
          m_ppair = NULL;
       }
 
-      const ca::property * operator ->()
+      const ::ca::property * operator ->()
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
 
-      const ca::property * operator ->() const
+      const ::ca::property * operator ->() const
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
@@ -356,7 +356,7 @@ namespace ca
 
    inline property * property_set::lowfind(const string & strName)
    {
-      ca::property_map::pair * ppair = m_map.PLookup(strName);
+      ::ca::property_map::pair * ppair = m_map.PLookup(strName);
       if(ppair == NULL)
          return NULL;
       return &m_propertya[ppair->m_value];

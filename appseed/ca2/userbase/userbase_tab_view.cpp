@@ -33,7 +33,7 @@ namespace userbase
    #endif //DEBUG
 
 
-   void tab_view::_001OnCreate(ca::signal_object * pobj)
+   void tab_view::_001OnCreate(::ca::signal_object * pobj)
    {
 //      SCAST_PTR(::ca::message::create, pcreate, pobj)
       if(pobj->previous())
@@ -55,7 +55,7 @@ namespace userbase
 
    }
 
-   void tab_view::_001OnSetFocus(ca::signal_object * pobj)
+   void tab_view::_001OnSetFocus(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -93,7 +93,7 @@ namespace userbase
 
    }
 
-   void tab_view::_001OnMenuMessage(ca::signal_object * pobj)
+   void tab_view::_001OnMenuMessage(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
@@ -565,9 +565,9 @@ namespace userbase
 
    }
 
-   void tab_drop_target_window::_001OnLButtonUp(ca::signal_object * pobj)
+   void tab_drop_target_window::_001OnLButtonUp(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
       e_position eposition = m_ptab->DragHitTest(pmouse->m_pt);
 

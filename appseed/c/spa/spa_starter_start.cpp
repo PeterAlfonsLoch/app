@@ -49,11 +49,11 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
    g_bCa2Installed = true;
    if(g_bCa2Installed)
    {
-      ::ca::library libraryOs;
+      ::c::library libraryOs;
       g_bCa2Installed = libraryOs.open(dir::path(strStage, "os"));
       if(g_bCa2Installed)
       {
-         ::ca::library libraryCa2;
+         ::c::library libraryCa2;
          g_bCa2Installed = libraryCa2.open(dir::path(strStage, "ca"));
          if(!bUnloadIfNotInstalled && g_bCa2Installed)
          {

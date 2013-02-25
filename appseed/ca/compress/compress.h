@@ -1,7 +1,9 @@
 #pragma once
 
 
+#include "crypto/crypto.h"
 #include "compress/compress.h"
+
 
 
 #include "compress_int_to_string.h"

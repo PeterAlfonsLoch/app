@@ -7,7 +7,7 @@ namespace simpledb
 
    file_set::file_set(::ca::application * papp) :
       ca(papp),
-      ca::file_set_sp(papp)
+      ::ca::file_set_sp(papp)
    {
 
    }
@@ -19,7 +19,7 @@ namespace simpledb
    }
 
 
-   void file_set::data_on_after_change(ca::signal_object * pobj)
+   void file_set::data_on_after_change(::ca::signal_object * pobj)
    {
       
       SCAST_PTR(::database::change_event, pchange, pobj);

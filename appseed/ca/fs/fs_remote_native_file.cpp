@@ -92,7 +92,7 @@ namespace fs
 
          Application.http().put(strResponse, strUrl, m_varFile["xmledit"].ca < ::primitive::memory_file >());
 
-         ca::property_set set(get_app());
+         ::ca::property_set set(get_app());
 
          set.parse_url_query(strResponse);
 

@@ -43,7 +43,7 @@ namespace fs
 
 
 
-   void tree_interface::_017UpdateList(const char * lpcsz, ca::tree_item * pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -76,8 +76,8 @@ namespace fs
 
 
       ::fs::tree_item * pitemChild;
-      ca::tree_item * pitem;
-      ca::tree_item_ptr_array ptraRemove;
+      ::ca::tree_item * pitem;
+      ::ca::tree_item_ptr_array ptraRemove;
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(FlagHasSubFolderUnknown))
       {
@@ -143,11 +143,11 @@ namespace fs
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != NULL)
                {
-                  pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
+                  pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemParent);
+                  pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
@@ -179,14 +179,14 @@ namespace fs
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
+            pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(FlagHasSubFolderUnknown);
          }
          else
          {
-               pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemParent);
+               pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(FlagHasSubFolder))
@@ -231,7 +231,7 @@ namespace fs
       for(index i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
-         ca::tree_item * pitem = find_item(strAscendant);
+         ::ca::tree_item * pitem = find_item(strAscendant);
          if(pitem == NULL)
          {
             string str;
@@ -257,7 +257,7 @@ namespace fs
 
       _StartDelayedListUpdate();
 
-      ca::tree_item * pitem = find_item(lpcsz);
+      ::ca::tree_item * pitem = find_item(lpcsz);
 
       if(pitem != NULL)
       {
@@ -280,7 +280,7 @@ namespace fs
       _001RedrawWindow();
    }
 
-   ca::tree_item * tree_interface::find_item(const char * lpcsz)
+   ::ca::tree_item * tree_interface::find_item(const char * lpcsz)
    {
       return find_absolute(lpcsz);
    }
@@ -289,7 +289,7 @@ namespace fs
    {
       if(!bForceUpdate)
       {
-         ca::tree_item * pitem = find_item(lpcsz);
+         ::ca::tree_item * pitem = find_item(lpcsz);
          if(pitem != NULL)
          {
             if(is_selected(pitem))
@@ -318,7 +318,7 @@ namespace fs
 
    }
 
-   void tree_interface::_017UpdateZipList(const char * lpcsz, ca::tree_item * pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateZipList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
    {
       index i;
 
@@ -330,7 +330,7 @@ namespace fs
       string wstrItemExtra;
 
       index iFind;
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
 
       //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 
@@ -365,7 +365,7 @@ namespace fs
       string wstrFolder;
       stringa wstraFolder;
       string wstrItem;
-      ca::tree_item_ptr_array ptraRemove;
+      ::ca::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
       for(int32_t i = 0; i < wstraItem.get_size(); i++)
@@ -419,14 +419,14 @@ namespace fs
             pitemNew->m_iImage         = m_iDefaultImage;
             pitemNew->m_iImageSelected = m_iDefaultImageSelected;
             //         item.m_flags.signalize(FlagInZip);
-            ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
+            ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
-               pitem = insert_item(pitemNew, ca::RelativeLastChild, pitemParent);
+               pitem = insert_item(pitemNew, ::ca::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(pitemNew, ca::RelativeReplace, pitem);
+               pitem = insert_item(pitemNew, ::ca::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
@@ -447,7 +447,7 @@ namespace fs
    }
 
 
-   void tree_interface::_001UpdateImageList(ca::tree_item * pitem)
+   void tree_interface::_001UpdateImageList(::ca::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
 //         Item & item = m_itema.get_item(pitem->m_dwUser);
@@ -462,7 +462,7 @@ namespace fs
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
-      ca::international::utf8_to_unicode(item.m_strExtra),
+      ::ca::international::utf8_to_unicode(item.m_strExtra),
       _shell::IconNormal);
 
       item.m_iImageSelected =
@@ -471,7 +471,7 @@ namespace fs
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
-      ca::international::utf8_to_unicode(item.m_strExtra),
+      ::ca::international::utf8_to_unicode(item.m_strExtra),
       _shell::IconOpen);*/
 
 
@@ -644,7 +644,7 @@ namespace fs
 
    void tree_interface::_StartCreateImageList()
    {
-      m_pdataitemCreateImageListStep = (ca::tree_item *) get_base_item()->m_pchild;
+      m_pdataitemCreateImageListStep = (::ca::tree_item *) get_base_item()->m_pchild;
 //         SetTimer(TimerCreateImageList, 80, NULL);
    }
 
@@ -663,12 +663,12 @@ namespace fs
 
       _001UpdateImageList(m_pdataitemCreateImageListStep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(ca::TreeNavigationProperForward);
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::ca::TreeNavigationProperForward);
 
 
    }
 
-   void tree_interface::_001OnTimer(ca::signal_object * pobj)
+   void tree_interface::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj)
 /*            switch(ptimer->m_nIDEvent)
@@ -711,7 +711,7 @@ namespace fs
       m_bDelayedListUpdate = true;
 
 
-      ca::tree_item * pitem = find_item(m_straMissingUpdate[0]);
+      ::ca::tree_item * pitem = find_item(m_straMissingUpdate[0]);
       if(pitem != NULL)
       {
 
@@ -739,9 +739,9 @@ namespace fs
       }
    }
 
-   ca::tree_item * tree_interface::find_absolute(const char * lpcszPath)
+   ::ca::tree_item * tree_interface::find_absolute(const char * lpcszPath)
    {
-      ca::tree_item * pitem = get_base_item();
+      ::ca::tree_item * pitem = get_base_item();
       if(lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
       string strPath(lpcszPath);

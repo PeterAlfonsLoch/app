@@ -40,7 +40,7 @@ namespace userbase
    #endif //DEBUG
 
 
-   void split_view::_001OnSize(ca::signal_object * pobj) 
+   void split_view::_001OnSize(::ca::signal_object * pobj) 
    {
       SCAST_PTR(::ca::message::size, psize, pobj)
       psize->previous();
@@ -103,7 +103,7 @@ namespace userbase
    }
 
 
-   void split_view::_001OnShowWindow(ca::signal_object * pobj) 
+   void split_view::_001OnShowWindow(::ca::signal_object * pobj) 
    {
       SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       pshowwindow->previous();

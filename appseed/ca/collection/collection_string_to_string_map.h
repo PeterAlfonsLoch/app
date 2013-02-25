@@ -222,7 +222,7 @@ inline bool base_string_to_string_map::has(const string & strKey) const
 
 
 class CLASS_DECL_ca string_to_string_map :
-   virtual public ca::byte_serializable_map < ::collection::attrib_map < base_string_to_string_map >  >
+   virtual public ::ca::byte_serializable_map < ::collection::attrib_map < base_string_to_string_map >  >
 {
 public:
 

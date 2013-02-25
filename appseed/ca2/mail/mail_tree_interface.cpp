@@ -9,14 +9,14 @@ namespace mail
       ca(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp),
-      ca::tree_data(papp),
+      ::ca::tree_data(papp),
       ::mail::tree_data(papp)
    {
       m_dataid = "mail::tree_interface";
 
       ::ca::data_container::m_spdata = this;
 
-      if(!ca::tree_data::initialize_data())
+      if(!::ca::tree_data::initialize_data())
          throw simple_exception(papp);
    
    }

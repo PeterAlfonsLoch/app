@@ -27,7 +27,7 @@ namespace zip
    class File;
 
    class CLASS_DECL_ca InFile :
-      public ca::file
+      public ::ca::file
    {
    public:
 
@@ -70,9 +70,9 @@ namespace zip
 
       virtual void add_file(const char * pszDir, const char * pszRelative);
 
-      bool dump(ca::file * pfile);
+      bool dump(::ca::file * pfile);
 
-      virtual ca::file * Duplicate() const;
+      virtual ::ca::file * Duplicate() const;
 
       File * get_zip_file();
       const File * get_zip_file() const;

@@ -1,21 +1,146 @@
 #include "framework.h"
 
 
+
+#ifdef LINUX
+#include <dlfcn.h>
+#include <link.h>
+#include <ctype.h>
+#elif defined(MACOS)
+#include <dlfcn.h>
+#include <mach-o/dyld.h>
+#endif
+
+
+
+typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
+
+
+
 namespace ca
 {
 
 
-   application::application()
+   int32_t nibble_to_low_hex(byte nibble);
+
+
+   UINT application::APPM_LANGUAGE = WM_APP + 117;
+   WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
+
+   HMODULE g_hmoduleOs = NULL;
+
+   const char application::gen_FileSection[] = "Recent File List";
+   const char application::gen_FileEntry[] = "File%d";
+   const char application::gen_PreviewSection[] = "Settings";
+   const char application::gen_PreviewEntry[] = "PreviewPages";
+
+
+
+
+   application::application() :
+      m_mutex(this),
+      ::ca::thread(NULL),
+      m_mutexMatterLocator(this),
+      OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
+      OAUTHLIB_CALLBACK_KEY         ("oauth_callback"),
+      OAUTHLIB_VERSION_KEY          ("oauth_version"),
+      OAUTHLIB_SIGNATUREMETHOD_KEY  ("oauth_signature_method"),
+      OAUTHLIB_SIGNATURE_KEY        ("oauth_signature"),
+      OAUTHLIB_TIMESTAMP_KEY        ("oauth_timestamp"),
+      OAUTHLIB_NONCE_KEY            ("oauth_nonce"),
+      OAUTHLIB_TOKEN_KEY            ("oauth_token"),
+      OAUTHLIB_TOKENSECRET_KEY      ("oauth_token_secret"),
+      OAUTHLIB_VERIFIER_KEY         ("oauth_verifier"),
+      OAUTHLIB_SCREENNAME_KEY       ("screen_name"),
+
+
+      OAUTHLIB_TWITTER_REQUEST_TOKEN_URL  ("http://twitter.com/oauth/request_token"),
+      OAUTHLIB_TWITTER_AUTHORIZE_URL      ("http://twitter.com/oauth/authorize?oauth_token="),
+      OAUTHLIB_TWITTER_ACCESS_TOKEN_URL   ("http://twitter.com/oauth/access_token"),
+
+
+      /* Constants */
+      TWIT_COLON ( ":"),
+      TWIT_EOS ( '\0'),
+
+      /* Miscellaneous data used to build twitter URLs*/
+      TWIT_SEARCHQUERYSTRING ( "?q("),
+      TWIT_SCREENNAME ( "?screen_name("),
+      TWIT_USERID ( "?user_id("),
+      TWIT_EXTENSIONFORMAT ( ".xml"),
+      TWIT_TARGETSCREENNAME ( "?target_screen_name("),
+      TWIT_TARGETUSERID ( "?target_id("),
+
+      /* Search URLs */
+      TWIT_SEARCH_URL ( "http://search.twitter.com/search.atom"),
+
+      /* Status URLs */
+      TWIT_STATUSUPDATE_URL ( "http://twitter.com/statuses/update.xml"),
+      TWIT_STATUSSHOW_URL ( "http://twitter.com/statuses/show/"),
+      TWIT_STATUDESTROY_URL ( "http://twitter.com/statuses/destroy/"),
+
+      /* Timeline URLs */
+      TWIT_PUBLIC_TIMELINE_URL ( "http://twitter.com/statuses/public_timeline.xml"),
+      TWIT_FEATURED_USERS_URL ( "http://twitter.com/statuses/featured.xml"),
+      TWIT_FRIENDS_TIMELINE_URL ( "http://twitter.com/statuses/friends_timeline.xml"),
+      TWIT_MENTIONS_URL ( "http://twitter.com/statuses/mentions.xml"),
+      TWIT_USERTIMELINE_URL ( "http://twitter.com/statuses/user_timeline.xml"),
+
+      /* Users URLs */
+      TWIT_SHOWUSERS_URL ( "http://twitter.com/users/show.xml"),
+      TWIT_SHOWFRIENDS_URL ( "http://twitter.com/statuses/friends.xml"),
+      TWIT_SHOWFOLLOWERS_URL ( "http://twitter.com/statuses/followers.xml"),
+
+      /* Direct messages URLs */
+      TWIT_DIRECTMESSAGES_URL ( "http://twitter.com/direct_messages.xml"),
+      TWIT_DIRECTMESSAGENEW_URL ( "http://twitter.com/direct_messages/new.xml"),
+      TWIT_DIRECTMESSAGESSENT_URL ( "http://twitter.com/direct_messages/sent.xml"),
+      TWIT_DIRECTMESSAGEDESTROY_URL ( "http://twitter.com/direct_messages/destroy/"),
+
+      /* Friendships URLs */
+      TWIT_FRIENDSHIPSCREATE_URL ( "http://twitter.com/friendships/create.xml"),
+      TWIT_FRIENDSHIPSDESTROY_URL ( "http://twitter.com/friendships/destroy.xml"),
+      TWIT_FRIENDSHIPSSHOW_URL ( "http://twitter.com/friendships/show.xml"),
+
+      /* Social graphs URLs */
+      TWIT_FRIENDSIDS_URL ( "http://twitter.com/friends/ids.xml"),
+      TWIT_FOLLOWERSIDS_URL ( "http://twitter.com/followers/ids.xml"),
+
+      /* Account URLs */
+      TWIT_ACCOUNTRATELIMIT_URL ( "http://twitter.com/account/rate_limit_status.xml"),
+
+      /* Favorites URLs */
+      TWIT_FAVORITESGET_URL ( "http://twitter.com/favorites.xml"),
+      TWIT_FAVORITECREATE_URL ( "http://twitter.com/favorites/create/"),
+      TWIT_FAVORITEDESTROY_URL ( "http://twitter.com/favorites/destroy/"),
+
+      /* Block URLs */
+      TWIT_BLOCKSCREATE_URL ( "http://twitter.com/blocks/create/"),
+      TWIT_BLOCKSDESTROY_URL ( "http://twitter.com/blocks/destroy/"),
+
+      /* Saved Search URLs */
+      TWIT_SAVEDSEARCHGET_URL ( "http://twitter.com/saved_searches.xml"),
+      TWIT_SAVEDSEARCHSHOW_URL ( "http://twitter.com/saved_searches/show/"),
+      TWIT_SAVEDSEARCHCREATE_URL ( "http://twitter.com/saved_searches/create.xml"),
+      TWIT_SAVEDSEARCHDESTROY_URL ( "http://twitter.com/saved_searches/destroy/"),
+
+      /* Trends URLs */
+      TWIT_TRENDS_URL ( "http://api.twitter.com/1/trends.json"),
+      TWIT_TRENDSDAILY_URL ( "http://api.twitter.com/1/trends/daily.json"),
+      TWIT_TRENDSCURRENT_URL ( "http://api.twitter.com/1/trends/current.json"),
+      TWIT_TRENDSWEEKLY_URL ( "http://api.twitter.com/1/trends/weekly.json"),
+      TWIT_TRENDSAVAILABLE_URL ( "http://api.twitter.com/1/trends/available.json")
+
    {
 
-      m_psignal = new ca::signal();
+      m_psignal = new ::ca::signal();
 
       set_app(this);
 
       m_bInitializeProDevianMode = true;
 
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-      ca::add_ref(this);
+      ::ca::add_ref(this);
 
       //_setmbcp(CP_UTF8);
 //      uint32_t dw = ::_getmbcp();
@@ -33,21 +158,69 @@ namespace ca
       m_pappCube           = NULL;
 
 
-   }
+      m_plemonarray              = new lemon::array(this);
+         m_base64.set_app(this);
+         m_pmath                    = new math::math(this);
+         m_pgeometry                = new geometry::geometry(this);
+         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
+         m_iResourceId              = 8001;
+         m_psavings                 = new class savings(this);
+         m_pcommandthread           = new ::ca::command_thread(this);
 
+      ::ca::profiler::initialize();
+
+      m_pszRegistryKey              = NULL;
+      m_pszHelpFilePath             = NULL;
+      m_pszProfileName              = NULL;
+      m_pframea                     = NULL;
+
+
+      m_pmutexGlobal                = NULL;
+      m_pmutexGlobalId              = NULL;
+
+      m_pmutexLocal                 = NULL;
+      m_pmutexLocalId               = NULL;
+
+      m_nSafetyPoolSize             = 512;        // default size
+
+      m_pwndMain                    = NULL;
+      m_puserstrcontext             = NULL;
+      m_bShouldInitializeGTwf       = true;
+      m_bSessionSynchronizedCursor  = true;
+      m_bSessionSynchronizedScreen  = true;
+
+      m_pdocmanager                 = NULL;
+
+      m_nCmdShow                    = -1;
+
+      m_strInstallType              = "application";
+
+      m_pinitmaindata = NULL;
+
+      m_psignal->connect(this, &::ca::application::on_application_signal);
+
+      m_eexclusiveinstance       = ::ca::ExclusiveInstanceNone;
+      m_pmutexLocal              = NULL;
+      m_pmutexGlobal             = NULL;
+      m_peventReady              = NULL;
+      m_pmapKeyPressed           = NULL;
+      m_bLicense                 = true;
+      m_strLocale                = "_std";
+      m_strSchema                = "_std";
+
+      m_pcalculator              = NULL;
+      m_pcolorertake5            = NULL;
+      m_psockets                 = NULL;
+
+
+
+   }
 
    application::~application()
    {
-
-      if(m_psignal != NULL)
-      {
-
-         delete m_psignal;
-         m_psignal = NULL;
-
-      }
-
    }
+
+
 
    void application::construct(const char * pszId)
    {
@@ -56,19 +229,34 @@ namespace ca
 
    application * application::get_app() const
    {
-      return ::ca::ca::get_app();
+      return (::ca::application *) this;
    }
 
 
    int32_t application::exit()
    {
-      return 0;
+      int32_t iExit = 0;
+
+      try
+      {
+         iExit = ::ca::application::exit();
+      }
+      catch(...)
+      {
+         iExit = -1;
+      }
+
+      try
+      {
+         ::ca::thread::exit();
+      }
+      catch(...)
+      {
+      }
+
+      return iExit;
    }
 
-   int32_t application::exit_instance()
-   {
-      return 0;
-   }
 
    bool application::is_system()
    {
@@ -111,309 +299,25 @@ namespace ca
       return true;
    }
 
-   bool application::set_main_init_data(main_init_data * pdata)
+/*   bool application::set_main_init_data(main_init_data * pdata)
    {
       return true;
-   }
+   }*/
 
    int32_t application::main()
    {
       return 0;
    }
 
-   bool application::bergedge_start()
+/*   bool application::bergedge_start()
    {
       return true;
-   }
+   }*/
 
    bool application::os_native_bergedge_start()
    {
       return true;
    }
-
-   bool application::process_initialize()
-   {
-
-      return true;
-
-   }
-
-
-   bool application::initialize1()
-   {
-
-      return true;
-
-   }
-
-
-   bool application::initialize2()
-   {
-
-      return true;
-
-   }
-
-
-   bool application::initialize3()
-   {
-
-      return true;
-
-   }
-
-
-   bool application::initialize()
-   {
-
-      return true;
-
-   }
-
-
-   bool application::finalize()
-   {
-
-      return true;
-
-   }
-
-
-   ::fontopus::user * application::get_safe_user()
-   {
-      
-      if(m_psession == NULL)
-         return NULL;
-
-      if(m_psession->m_pfontopus == NULL)
-         return NULL;
-
-      return m_psession->m_pfontopus->m_puser;
-
-   }
-
-
-} // namespace ca
-
-
-
-
-#include "framework.h"
-
-
-#ifdef LINUX
-#include <dlfcn.h>
-#include <link.h>
-#include <ctype.h>
-#elif defined(MACOS)
-#include <dlfcn.h>
-#include <mach-o/dyld.h>
-#endif
-
-
-
-typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
-
-
-
-namespace ca
-{
-
-
-   int32_t nibble_to_low_hex(byte nibble);
-
-
-   UINT application::APPM_LANGUAGE = WM_APP + 117;
-   WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
-
-   HMODULE g_hmoduleOs = NULL;
-
-   const char application::gen_FileSection[] = "Recent File List";
-   const char application::gen_FileEntry[] = "File%d";
-   const char application::gen_PreviewSection[] = "Settings";
-   const char application::gen_PreviewEntry[] = "PreviewPages";
-
-
-   application::application() :
-      m_mutex(this),
-      ::ca::thread(NULL),
-      m_mutexMatterLocator(this)
-   {
-
-      m_plemonarray              = new lemon::array(this);
-         m_base64.set_app(this);
-         m_pmath                    = new math::math(this);
-         m_pgeometry                = new geometry::geometry(this);
-         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
-         m_iResourceId              = 8001;
-         m_psavings                 = new class savings(this);
-         m_pcommandthread           = new ::ca::command_thread(this);
-
-      ::ca::profiler::initialize();
-
-      m_pszRegistryKey              = NULL;
-      m_pszHelpFilePath             = NULL;
-      m_pszProfileName              = NULL;
-      m_pframea                     = NULL;
-
-
-      m_pmutexGlobal                = NULL;
-      m_pmutexGlobalId              = NULL;
-
-      m_pmutexLocal                 = NULL;
-      m_pmutexLocalId               = NULL;
-
-      m_nSafetyPoolSize             = 512;        // default size
-
-      m_pwndMain                    = NULL;
-      m_puserstrcontext             = NULL;
-      m_bShouldInitializeGTwf       = true;
-      m_bSessionSynchronizedCursor  = true;
-      m_bSessionSynchronizedScreen  = true;
-
-      m_pdocmanager                 = NULL;
-
-      m_nCmdShow                    = -1;
-
-      m_strInstallType              = "application";
-
-      m_pinitmaindata = NULL;
-   }
-
-   application::~application()
-   {
-      // free doc manager
-//      if (m_pdocmanager != NULL)
-  //       delete m_pdocmanager;
-
-
-
-      // free printer info
-   /*   if (m_hDevMode != NULL)
-         __global_free(m_hDevMode);
-      if (m_hDevNames != NULL)
-         __global_free(m_hDevNames);*/
-
-      // free atoms if used
-
-#ifdef WINDOWSEX
-
-      if (m_atomApp != NULL)
-         ::GlobalDeleteAtom(m_atomApp);
-      if (m_atomSystemTopic != NULL)
-         ::GlobalDeleteAtom(m_atomSystemTopic);
-
-#endif
-
-      // free cached commandline
-   //   if (m_pCmdInfo != NULL)
-      //   delete m_pCmdInfo;
-
-      // free various strings allocated with _tcsdup
-      if(m_pszRegistryKey != NULL)
-         free((void *)m_pszRegistryKey);
-      if(m_pszHelpFilePath != NULL)
-         free((void *)m_pszHelpFilePath);
-      if(m_pszProfileName != NULL)
-         free((void *)m_pszProfileName);
-
-      ::ca::smart_pointer < application >::m_p = NULL;
-
-   }
-
-
-
-   void application::Ex1OnFactoryExchange()
-   {
-
-#ifdef WINDOWS
-
-      System.factory().creatable_large < ::ca::file_exception > ();
-
-      if(g_hmoduleOs == NULL)
-      {
-
-#ifdef WINDOWSEX
-
-         g_hmoduleOs = ::LoadLibraryA("os.dll");
-
-#else
-
-         g_hmoduleOs = ::LoadPackagedLibrary(L"os.dll", 0);
-
-#endif
-
-      }
-
-      if(g_hmoduleOs != NULL)
-      {
-         PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(g_hmoduleOs, "ca2_factory_exchange");
-         pfn_ca2_factory_exchange(this);
-      }
-
-#elif defined(LINUX)
-      System.factory().creatable_large < ::ca::file_exception > ();
-
-      void * pdl = ::dlopen("libca2os.so", RTLD_NOW | RTLD_GLOBAL);
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
-#else
-      System.factory().creatable_large < ::ca::file_exception > ();
-
-      void * pdl = ::dlopen("libos.dylib", RTLD_LOCAL);
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
-#endif
-   }
-
-
-   void application::on_request(::ca::create_context * pcreatecontext)
-   {
-
-      ::ca::request_interface::on_request(pcreatecontext);
-
-   }
-
-
-
-
-   math::math & application::math()
-   {
-      return *m_pmath;
-   }
-
-
-   geometry::geometry & application::geometry()
-   {
-
-      return *m_pgeometry;
-
-   }
-
-
-   ::ca::savings & application::savings()
-   {
-
-      return *m_psavings;
-
-   }
-   
-
-   ::ca::lemon::array & application::lemon_array()
-   {
-
-      return *m_plemonarray;
-
-   }
-
-
-   class ::ca::base64 & application::base64()
-   {
-
-      return m_base64;
-
-   }
-
 
    bool application::process_initialize()
    {
@@ -570,8 +474,6 @@ finishedCa2ModuleFolder:;
          m_strModuleFolder = System.m_strModuleFolder;
       }
 
-      if(!::ca::application::process_initialize())
-         return false;
 
       if(is_system())
       {
@@ -602,23 +504,23 @@ finishedCa2ModuleFolder:;
       if(::ca::thread_sp::m_p == NULL)
       {
          ::ca::thread_sp::create(this);
-         ::ca::smart_pointer < application >::create(this);
-         smart_pointer < application >::m_p->construct();
-         smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
-         ca::add_ref(this);
-         ::ca::thread_sp::m_p = smart_pointer < application >::m_p->::ca::thread_sp::m_p;
-         ca::add_ref(smart_pointer < application >::m_p->::ca::thread_sp::m_p);
+         ::ca::smart_pointer < application_base >::create(this);
+         smart_pointer < application_base >::m_p->construct();
+         smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
+         ::ca::add_ref(this);
+         ::ca::thread_sp::m_p = smart_pointer < application_base >::m_p->::ca::thread_sp::m_p;
+         ::ca::add_ref(smart_pointer < application_base >::m_p->::ca::thread_sp::m_p);
          ::ca::thread_sp::m_p->set_p(this);
-         ca::add_ref(this);
+         ::ca::add_ref(this);
       }
       else
       {
-         ::ca::smart_pointer < application >::create(this);
-         smart_pointer < application >::m_p->construct();
-         smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
-         ca::add_ref(this);
-         //smart_pointer < application >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
-         //ca::add_ref(::ca::thread_sp::m_p);
+         ::ca::smart_pointer < application_base >::create(this);
+         smart_pointer < application_base >::m_p->construct();
+         smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
+         ::ca::add_ref(this);
+         //smart_pointer < application_base >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
+         //::ca::add_ref(::ca::thread_sp::m_p);
       }
       if(::ca::get_thread() == NULL)
       {
@@ -627,10 +529,304 @@ finishedCa2ModuleFolder:;
       //m_pappDelete = this;
       //::ca::thread_sp::m_p->m_pappDelete = this;
 
-      if(!smart_pointer < application >::m_p->process_initialize())
+      if(!smart_pointer < application_base >::m_p->process_initialize())
             return false;
 
       return true;
+
+   }
+
+
+   bool application::initialize1()
+   {
+
+
+      m_psockets = new ::sockets::sockets();
+
+      m_psockets->construct(this);
+
+      if(!m_psockets->initialize1())
+         return false;
+
+
+      m_dwAlive = ::get_tick_count();
+
+
+
+      string strLocaleSystem;
+
+      string strSchemaSystem;
+
+      string strPath = System.dir().appdata("langstyle_settings.xml");
+
+      if(Application.file().exists(strPath))
+      {
+
+         string strSystem = Application.file().as_string(strPath);
+
+         ::xml::document docSystem(get_app());
+
+         if(docSystem.load(strSystem))
+         {
+
+            if(docSystem.get_child("lang") != NULL)
+            {
+
+               strLocaleSystem = docSystem.get_child("lang")->get_value();
+
+            }
+
+            if(docSystem.get_child("style") != NULL)
+            {
+
+               strSchemaSystem = docSystem.get_child("style")->get_value();
+
+            }
+
+         }
+
+      }
+
+
+
+      string strLocale;
+
+      string strSchema;
+
+#ifdef METROWIN
+
+      stringa stra;
+
+      stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+
+      strLocale = stra[0];
+
+      strSchema = stra[0];
+
+#elif defined(WINDOWS)
+      LANGID langid = ::GetUserDefaultLangID();
+#define SPR_DEUTSCH LANG_GERMAN
+      if(langid == LANG_SWEDISH)
+      {
+         strLocale = "se";
+         strSchema = "se";
+      }
+      else if(langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
+      {
+         strLocale = "pt-br";
+         strSchema = "pt-br";
+      }
+      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
+      {
+         strLocale = "de";
+         strSchema = "de";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
+      {
+         strLocale = "en";
+         strSchema = "en";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
+      {
+         strLocale = "jp";
+         strSchema = "jp";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_POLISH)
+      {
+         strLocale = "pl";
+         strSchema = "pl";
+      }
+#endif
+
+      if(strLocale.is_empty())
+         strLocale = "se";
+
+      if(strSchema.is_empty())
+         strSchema = "se";
+
+      if(strLocaleSystem.has_char())
+         strLocale = strLocaleSystem;
+
+      if(strSchemaSystem.has_char())
+         strSchema = strSchemaSystem;
+
+      if(Sys(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
+         strLocale = Sys(this).directrix().m_varTopicQuery["locale"];
+
+      if(Sys(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
+         strSchema = Sys(this).directrix().m_varTopicQuery["schema"];
+
+      if(App(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
+         strLocale = App(this).directrix().m_varTopicQuery["locale"];
+
+      if(App(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
+         strSchema = App(this).directrix().m_varTopicQuery["schema"];
+
+
+
+      set_locale(strLocale, false);
+      set_schema(strSchema, false);
+
+
+      str_context()->localeschema().m_idaLocale.add(strLocale);
+      str_context()->localeschema().m_idaSchema.add(strSchema);
+
+      //Sleep(15 * 1000);
+
+      m_strMatterLocator = System.dir().appmatter_locator(this);
+
+
+      m_puserstrcontext = new ::user::str_context(this);
+      if(m_puserstrcontext == NULL)
+         return false;
+
+
+      if(!ca_initialize1())
+            return false;
+
+
+      if(!smart_pointer < application_base >::m_p->initialize1())
+         return false;
+
+      return true;
+
+   }
+
+
+   bool application::initialize2()
+   {
+
+      if(!smart_pointer < application_base >::m_p->initialize2())
+         return false;
+
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize2);
+      m_psignal->emit(&signal);
+      return signal.m_bOk;
+
+   }
+
+
+   bool application::initialize3()
+   {
+
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize3);
+      m_psignal->emit(&signal);
+      if(!signal.m_bOk)
+         return false;
+
+      if(!smart_pointer < application_base >::m_p->initialize3())
+         return false;
+
+      return true;
+
+   }
+
+
+
+   ::fontopus::user * application::get_safe_user()
+   {
+      
+      if(m_psession == NULL)
+         return NULL;
+
+      if(m_psession->m_pfontopus == NULL)
+         return NULL;
+
+      return m_psession->m_pfontopus->m_puser;
+
+   }
+
+
+
+
+   void application::Ex1OnFactoryExchange()
+   {
+
+#ifdef WINDOWS
+
+      System.factory().creatable_large < ::ca::file_exception > ();
+
+      if(g_hmoduleOs == NULL)
+      {
+
+#ifdef WINDOWSEX
+
+         g_hmoduleOs = ::LoadLibraryA("os.dll");
+
+#else
+
+         g_hmoduleOs = ::LoadPackagedLibrary(L"os.dll", 0);
+
+#endif
+
+      }
+
+      if(g_hmoduleOs != NULL)
+      {
+         PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(g_hmoduleOs, "ca2_factory_exchange");
+         pfn_ca2_factory_exchange(this);
+      }
+
+#elif defined(LINUX)
+      System.factory().creatable_large < ::ca::file_exception > ();
+
+      void * pdl = ::dlopen("libca2os.so", RTLD_NOW | RTLD_GLOBAL);
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
+      pfn_ca2_factory_exchange(this);
+#else
+      System.factory().creatable_large < ::ca::file_exception > ();
+
+      void * pdl = ::dlopen("libos.dylib", RTLD_LOCAL);
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
+      pfn_ca2_factory_exchange(this);
+#endif
+   }
+
+
+   void application::on_request(::ca::create_context * pcreatecontext)
+   {
+
+      ::ca::request_interface::on_request(pcreatecontext);
+
+   }
+
+
+
+
+   math::math & application::math()
+   {
+      return *m_pmath;
+   }
+
+
+   geometry::geometry & application::geometry()
+   {
+
+      return *m_pgeometry;
+
+   }
+
+
+   ::ca::savings & application::savings()
+   {
+
+      return *m_psavings;
+
+   }
+   
+
+   ::ca::lemon::array & application::lemon_array()
+   {
+
+      return *m_plemonarray;
+
+   }
+
+
+   class ::ca::base64 & application::base64()
+   {
+
+      return m_base64;
 
    }
 
@@ -698,7 +894,7 @@ finishedCa2ModuleFolder:;
          return false;
       }
 
-      if(!smart_pointer < application >::m_p->initialize2())
+      if(!smart_pointer < application_base >::m_p->initialize2())
          return false;
 
       return ::ca::application::initialize2();
@@ -708,6 +904,22 @@ finishedCa2ModuleFolder:;
 
    int32_t application::exit_instance()
    {
+
+      try
+      {
+         if(is_system())
+         {
+            if(System.m_spcopydesk.is_set())
+            {
+               System.m_spcopydesk->finalize();
+               System.m_spcopydesk.destroy();
+            }
+            System.m_splicense.release();
+         }
+      }
+      catch(...)
+      {
+      }
 
       try
       {
@@ -807,7 +1019,7 @@ finishedCa2ModuleFolder:;
 
       /*try
       {
-         ca::release(smart_pointer <::ca::thread>::m_p);
+         ::ca::release(smart_pointer <::ca::thread>::m_p);
       }
       catch(...)
       {
@@ -821,7 +1033,7 @@ finishedCa2ModuleFolder:;
   //       {
     //        if(m_spfilesystem.m_p != NULL)
       //      {
-        //       ca::del(m_spfilesystem.m_p);
+        //       ::ca::del(m_spfilesystem.m_p);
           //  }
 //         }
   //       catch(...)
@@ -868,7 +1080,7 @@ finishedCa2ModuleFolder:;
       try
       {
 
-         ::ca::application   * papp         = ::ca::smart_pointer < ::ca::application >::detach();
+         ::ca::application_base   * papp         = ::ca::smart_pointer < ::ca::application_base >::detach();
 
          if(papp != NULL)
          {
@@ -950,7 +1162,7 @@ finishedCa2ModuleFolder:;
            try
            {
               // create the .mdb file
-              ca::filesp f(get_app());
+              ::ca::filesp f(get_app());
 
               if(f->open(lpcszFilePath, ::ca::file::mode_create | ::ca::file::mode_write ))
               {
@@ -965,7 +1177,7 @@ finishedCa2ModuleFolder:;
                #endif
               }
            }
-           catch(ca::file_exception_sp * pe)
+           catch(::ca::file_exception_sp * pe)
            {
          #ifdef DEBUG
    //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -1001,7 +1213,7 @@ finishedCa2ModuleFolder:;
 
 #endif
 
-   void application::OnAppLanguage(ca::signal_object * pobj)
+   void application::OnAppLanguage(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_signalAppLanguageChange.emit();
@@ -1276,7 +1488,7 @@ finishedCa2ModuleFolder:;
          {
             storage.set_data(lpnRes, dwResSize);
          }
-         catch(ca::file_exception_sp * pe)
+         catch(::ca::file_exception_sp * pe)
          {
             #ifdef DEBUG
    //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -1325,8 +1537,8 @@ finishedCa2ModuleFolder:;
 
    #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
-   /*   ca::frame_window_interface* pFrameWnd =
-         dynamic_cast < ca::frame_window_interface * > (pMainWnd);
+   /*   ::ca::frame_window_interface* pFrameWnd =
+         dynamic_cast < ::ca::frame_window_interface * > (pMainWnd);
       ASSERT(pFrameWnd != NULL);
       if (pFrameWnd->GetNotifyHook() != NULL)
          pFrameWnd->GetNotifyHook()->OnEnableModeless(bEnable);*/
@@ -1400,7 +1612,7 @@ finishedCa2ModuleFolder:;
    /////////////////////////////////////////////////////////////////////////////
    // Special exception handling
 
-   void application::ProcessWndProcException(base_exception* e, ca::signal_object * pobj)
+   void application::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
    {
       ENSURE_ARG(e != NULL);
       ENSURE_ARG(pobj != NULL);
@@ -2219,10 +2431,6 @@ namespace ca
    }
 
 
-   string application::load_string(id id)
-   {
-      return (const char * ) id;
-   }
 
    bool application::on_run_exception(::ca::exception & e)
    {
@@ -2273,12 +2481,6 @@ namespace ca
 
    }
 
-   void application::pre_translate_message(::ca::signal_object * pobj)
-   {
-
-      ::ca::thread::pre_translate_message(pobj);
-
-   }
 
 
    HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
@@ -2311,36 +2513,7 @@ namespace ca
       return signal.m_bOk;
    }
 
-   bool application::initialize2()
-   {
-      if(!smart_pointer < application >::m_p->initialize2())
-         return false;
 
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize2);
-      m_psignal->emit(&signal);
-      return signal.m_bOk;
-   }
-
-   bool application::initialize3()
-   {
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize3);
-      m_psignal->emit(&signal);
-      if(!signal.m_bOk)
-         return false;
-
-      if(!smart_pointer < application >::m_p->initialize3())
-         return false;
-
-      return true;
-
-   }
-
-   bool application::initialize()
-   {
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize);
-      m_psignal->emit(&signal);
-      return signal.m_bOk;
-   }
 
    bool application::ca_finalize()
    {
@@ -2552,19 +2725,19 @@ namespace ca
    {
       if(m_pmutexGlobal != NULL)
       {
-         ca::sdel(m_pmutexGlobal);
+         ::ca::sdel(m_pmutexGlobal);
       }
       if(m_pmutexGlobalId != NULL)
       {
-         ca::sdel(m_pmutexGlobalId);
+         ::ca::sdel(m_pmutexGlobalId);
       }
       if(m_pmutexLocal != NULL)
       {
-         ca::sdel(m_pmutexLocal);
+         ::ca::sdel(m_pmutexLocal);
       }
       if(m_pmutexLocalId != NULL)
       {
-         ca::sdel(m_pmutexLocalId);
+         ::ca::sdel(m_pmutexLocalId);
       }
       return true;
    }
@@ -2587,10 +2760,6 @@ namespace ca
    {
    }
 
-   void application::message_window_message_handler(ca::signal_object * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-   }
 
    ::user::interaction_ptr_array & application::frames()
    {
@@ -2674,12 +2843,12 @@ namespace ca
 
 
 
-   /*void ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
+   /*void ::ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
    {
       __format_strings(rString, nIDS, &lpsz1, 1);
    }
 
-   void ca::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
+   void ::ca::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
          const char * lpsz2)
    {
       const char * rglpsz[2];
@@ -2834,7 +3003,7 @@ namespace ca
 //      UNREFERENCED_PARAMETER(spgraphics);
       throw not_implemented(get_app());
       /*
-      HDC hDC = ca::CreateDC(m_hDevNames, m_hDevMode);
+      HDC hDC = ::ca::CreateDC(m_hDevNames, m_hDevMode);
       if (hDC != NULL)
       {
          spgraphics->DeleteDC();
@@ -2901,7 +3070,7 @@ namespace ca
       // 0 => restore, 1=> begin, -1=> end
       ENSURE_ARG(nCode == 0 || nCode == 1 || nCode == -1);
 //      ENSURE(afxData.hcurWait != NULL);
-//      ca::LockGlobals(CRIT_WAITCURSOR);
+//      ::ca::LockGlobals(CRIT_WAITCURSOR);
       m_nWaitCursorCount += nCode;
       if (m_nWaitCursorCount > 0)
       {
@@ -2926,7 +3095,7 @@ namespace ca
 #endif
 
       }
-  //    ca::UnlockGlobals(CRIT_WAITCURSOR);
+  //    ::ca::UnlockGlobals(CRIT_WAITCURSOR);
    }
 
 
@@ -3143,7 +3312,7 @@ namespace ca
    }
 
 
-   /* int32_t ca::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
+   /* int32_t ::ca::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {
       application* papp = &System;
       if (papp != NULL)
@@ -3450,8 +3619,8 @@ namespace ca
       return dwResult;
    }*/
 
-   void application::EnableShellOpen()
-   {
+   //void application::EnableShellOpen()
+   //{
    /*   ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
       if (m_atomApp != NULL || m_atomSystemTopic != NULL)
       {
@@ -3472,7 +3641,7 @@ namespace ca
 
       m_atomApp = ::GlobalAddAtom(strFileName);
       m_atomSystemTopic = ::GlobalAddAtom("system");*/
-   }
+   //}
 
    void application::RegisterShellFileTypes(bool bCompat)
    {
@@ -3529,7 +3698,7 @@ namespace ca
       ASSERT(m_pszRegistryKey == NULL);
     throw not_implemented(get_app());
       /*char szRegistryKey[256];
-      VERIFY(ca::LoadString(nIDRegistryKey, szRegistryKey));
+      VERIFY(::ca::LoadString(nIDRegistryKey, szRegistryKey));
       SetRegistryKey(szRegistryKey);*/
    }
 
@@ -3838,13 +4007,13 @@ namespace ca
 
 
 
-/*   ca::property_set & application::propset(::ca::object * pobject)
+/*   ::ca::property_set & application::propset(::ca::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       return m_mapObjectSet[pobject];
    }
 
-   ca::property_set * application::existing_propset(::ca::object * pobject)
+   ::ca::property_set * application::existing_propset(::ca::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       auto p = m_mapObjectSet.PLookup(pobject);
@@ -3853,10 +4022,6 @@ namespace ca
       return &p->m_value;
    }*/
 
-   bool application::bergedge_start()
-   {
-      return true;
-   }
 
 
    bool application::does_launch_window_on_startup()
@@ -3991,14 +4156,6 @@ namespace ca
       return ::ca::null();
    }
 
-   ::user::interaction * application::uie_from_point(point pt)
-   {
-      UNREFERENCED_PARAMETER(pt);
-      return NULL;
-   }
-
-
-
 
    ::user::interaction * application::release_capture_uie()
    {
@@ -4056,35 +4213,6 @@ namespace ca
    {
       return m_puserstrcontext;
    }
-
-   bool application::initialize1()
-   {
-
-      //Sleep(15 * 1000);
-
-      m_strMatterLocator = System.dir().appmatter_locator(this);
-
-
-      m_puserstrcontext = new ::user::str_context(this);
-      if(m_puserstrcontext == NULL)
-         return false;
-
-
-      if(!ca_initialize1())
-            return false;
-
-
-      if(!smart_pointer < application >::m_p->initialize1())
-         return false;
-
-      if(!::ca::application::initialize1())
-         return false;
-
-      return true;
-
-
-   }
-
 
    void application::on_delete(::ca::ca * pobject)
    {
@@ -4265,40 +4393,17 @@ namespace ca
       return 0;
    }
 
-   int32_t application::exit()
-   {
-      int32_t iExit = 0;
-
-      try
-      {
-         iExit = ::ca::application::exit();
-      }
-      catch(...)
-      {
-         iExit = -1;
-      }
-
-      try
-      {
-         ::ca::thread::exit();
-      }
-      catch(...)
-      {
-      }
-
-      return iExit;
-   }
 
 
    // Temporary ::collection::map management (locks temp ::collection::map on current thread)
    void application::LockTempMaps()
    {
-      ::ca::smart_pointer < ::ca::application >::m_p->LockTempMaps();
+      ::ca::smart_pointer < application_base >::m_p->LockTempMaps();
    }
 
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->UnlockTempMaps(bDeleteTemp);
+      return ::ca::smart_pointer < application_base >::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    void application::TermThread(HINSTANCE hInstTerm)
@@ -4315,39 +4420,39 @@ namespace ca
 #ifdef METROWIN
    ::user::interaction * application::window_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->window_from_os_data(pdata);
+      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data(pdata);
    }
 
    ::user::interaction * application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data_permanent(pdata);
    }
 #else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
       
-      if(::ca::smart_pointer < ::ca::application >::m_p == NULL)
+      if(::ca::smart_pointer < application_base >::m_p == NULL)
          return NULL;
 
-      return ::ca::smart_pointer < ::ca::application >::m_p->window_from_os_data(pdata);
+      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data(pdata);
 
    }
 
    ::ca::window * application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
 
    ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
+      return ::ca::smart_pointer < application_base >::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
    ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+      return ::ca::smart_pointer < application_base >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
    string application::get_local_mutex_name(const char * pszAppName)
@@ -4401,9 +4506,9 @@ namespace ca
    }
 
 
-   application_signal_object::application_signal_object(::ca::application * papp, ca::signal * psignal, ::ca::e_application_signal esignal) :
+   application_signal_object::application_signal_object(::ca::application * papp, ::ca::signal * psignal, ::ca::e_application_signal esignal) :
       ca(papp),
-      ca::signal_object(psignal)
+      ::ca::signal_object(psignal)
    {
 
       m_esignal         = esignal;
@@ -4411,15 +4516,6 @@ namespace ca
 
    }
 
-   bool application::is_system()
-   {
-      return false;
-   }
-
-   bool application::is_bergedge()
-   {
-      return false;
-   }
 
    ::ca::ca * application::alloc(::ca::type_info & info)
    {
@@ -4575,12 +4671,8 @@ namespace ca
    {
    }
 
-   void application::construct(const char * pszId)
-   {
-      UNREFERENCED_PARAMETER(pszId);
-   }
 
-   void application::_001OnFileNew(ca::signal_object * pobj)
+   void application::_001OnFileNew(::ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -4592,22 +4684,25 @@ namespace ca
 
       request(varFile, varQuery);
 
-      //::ca::smart_pointer < application >::m_p->_001OnFileNew();
+      //::ca::smart_pointer < application_base >::m_p->_001OnFileNew();
    }
 
    ::user::document_interface * application::_001OpenDocumentFile(var varFile)
    {
-      return ::ca::smart_pointer < application >::m_p->_001OpenDocumentFile(varFile);
+      throw not_implemented(get_app());
+//      return ::ca::smart_pointer < application_base >::m_p->_001OpenDocumentFile(varFile);
    }
 
    void application::_001EnableShellOpen()
    {
-       ::ca::smart_pointer < application >::m_p->_001EnableShellOpen();
+      throw not_implemented(get_app());
+       //::ca::smart_pointer < application_base >::m_p->_001EnableShellOpen();
    }
 
    bool application::_001OnDDECommand(const char * lpcsz)
    {
-      return ::ca::smart_pointer < application >::m_p->_001OnDDECommand(lpcsz);
+      throw not_implemented(get_app());
+      //return ::ca::smart_pointer < application_base >::m_p->_001OnDDECommand(lpcsz);
    }
 
 //   ::ca::file_system & application::file_system()
@@ -4621,7 +4716,7 @@ namespace ca
 
    string application::get_version()
    {
-      return ::ca::smart_pointer < application >::m_p->get_version();
+      return ::ca::smart_pointer < application_base >::m_p->get_version();
    }
 
 
@@ -4638,7 +4733,7 @@ namespace ca
 
    bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->DeferRegisterClass(fToRegister, ppszClass);
+      return ::ca::smart_pointer < application_base >::m_p->DeferRegisterClass(fToRegister, ppszClass);
    }
 
    const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
@@ -4646,19 +4741,19 @@ namespace ca
 #ifdef METROWIN
       return NULL;
 #endif
-      return ::ca::smart_pointer < ::ca::application >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
+      return ::ca::smart_pointer < application_base >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
    }
 
    ::ca::thread * application::GetThread()
    {
-      if(::ca::smart_pointer < ::ca::application >::m_p == NULL)
+      if(::ca::smart_pointer < application_base >::m_p == NULL)
          return NULL;
-      return ::ca::smart_pointer < ::ca::application >::m_p->GetThread();
+      return ::ca::smart_pointer < application_base >::m_p->GetThread();
    }
 
    void application::set_thread(::ca::thread * pthread)
    {
-      ::ca::smart_pointer < ::ca::application >::m_p->set_thread(pthread);
+      ::ca::smart_pointer < application_base >::m_p->set_thread(pthread);
    }
 
    ::user::interaction * application::GetMainWnd()
@@ -4670,7 +4765,7 @@ namespace ca
 
 /*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->graphics_from_os_data(pdata);
+      return ::ca::smart_pointer < application_base >::m_p->graphics_from_os_data(pdata);
    }*/
 
 
@@ -4686,7 +4781,7 @@ namespace ca
 
    void application::SetCurrentHandles()
    {
-      ::ca::smart_pointer < ::ca::application >::m_p->SetCurrentHandles();
+      ::ca::smart_pointer < application_base >::m_p->SetCurrentHandles();
    }
 
 
@@ -4694,24 +4789,24 @@ namespace ca
 
    void application::get_time(timeval *p)
    {
-      ::ca::smart_pointer < ::ca::application >::m_p->get_time(p);
+      ::ca::smart_pointer < application_base >::m_p->get_time(p);
    }
 
 #endif
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ca::smart_pointer < ::ca::application >::m_p->set_env_var(var, value);
+      ::ca::smart_pointer < application_base >::m_p->set_env_var(var, value);
    }
 
    uint32_t application::get_thread_id()
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->get_thread_id();
+      return ::ca::smart_pointer < application_base >::m_p->get_thread_id();
    }
 
    bool application::set_main_init_data(::ca::main_init_data * pdata)
    {
-      return ::ca::smart_pointer < ::ca::application >::m_p->set_main_init_data(pdata);
+      return ::ca::smart_pointer < application_base >::m_p->set_main_init_data(pdata);
    }
 
 
@@ -4808,124 +4903,10 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 {
 
 
-   application::application() :
-      OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
-      OAUTHLIB_CALLBACK_KEY         ("oauth_callback"),
-      OAUTHLIB_VERSION_KEY          ("oauth_version"),
-      OAUTHLIB_SIGNATUREMETHOD_KEY  ("oauth_signature_method"),
-      OAUTHLIB_SIGNATURE_KEY        ("oauth_signature"),
-      OAUTHLIB_TIMESTAMP_KEY        ("oauth_timestamp"),
-      OAUTHLIB_NONCE_KEY            ("oauth_nonce"),
-      OAUTHLIB_TOKEN_KEY            ("oauth_token"),
-      OAUTHLIB_TOKENSECRET_KEY      ("oauth_token_secret"),
-      OAUTHLIB_VERIFIER_KEY         ("oauth_verifier"),
-      OAUTHLIB_SCREENNAME_KEY       ("screen_name"),
-
-
-      OAUTHLIB_TWITTER_REQUEST_TOKEN_URL  ("http://twitter.com/oauth/request_token"),
-      OAUTHLIB_TWITTER_AUTHORIZE_URL      ("http://twitter.com/oauth/authorize?oauth_token="),
-      OAUTHLIB_TWITTER_ACCESS_TOKEN_URL   ("http://twitter.com/oauth/access_token"),
-
-
-      /* Constants */
-      TWIT_COLON ( ":"),
-      TWIT_EOS ( '\0'),
-
-      /* Miscellaneous data used to build twitter URLs*/
-      TWIT_SEARCHQUERYSTRING ( "?q("),
-      TWIT_SCREENNAME ( "?screen_name("),
-      TWIT_USERID ( "?user_id("),
-      TWIT_EXTENSIONFORMAT ( ".xml"),
-      TWIT_TARGETSCREENNAME ( "?target_screen_name("),
-      TWIT_TARGETUSERID ( "?target_id("),
-
-      /* Search URLs */
-      TWIT_SEARCH_URL ( "http://search.twitter.com/search.atom"),
-
-      /* Status URLs */
-      TWIT_STATUSUPDATE_URL ( "http://twitter.com/statuses/update.xml"),
-      TWIT_STATUSSHOW_URL ( "http://twitter.com/statuses/show/"),
-      TWIT_STATUDESTROY_URL ( "http://twitter.com/statuses/destroy/"),
-
-      /* Timeline URLs */
-      TWIT_PUBLIC_TIMELINE_URL ( "http://twitter.com/statuses/public_timeline.xml"),
-      TWIT_FEATURED_USERS_URL ( "http://twitter.com/statuses/featured.xml"),
-      TWIT_FRIENDS_TIMELINE_URL ( "http://twitter.com/statuses/friends_timeline.xml"),
-      TWIT_MENTIONS_URL ( "http://twitter.com/statuses/mentions.xml"),
-      TWIT_USERTIMELINE_URL ( "http://twitter.com/statuses/user_timeline.xml"),
-
-      /* Users URLs */
-      TWIT_SHOWUSERS_URL ( "http://twitter.com/users/show.xml"),
-      TWIT_SHOWFRIENDS_URL ( "http://twitter.com/statuses/friends.xml"),
-      TWIT_SHOWFOLLOWERS_URL ( "http://twitter.com/statuses/followers.xml"),
-
-      /* Direct messages URLs */
-      TWIT_DIRECTMESSAGES_URL ( "http://twitter.com/direct_messages.xml"),
-      TWIT_DIRECTMESSAGENEW_URL ( "http://twitter.com/direct_messages/new.xml"),
-      TWIT_DIRECTMESSAGESSENT_URL ( "http://twitter.com/direct_messages/sent.xml"),
-      TWIT_DIRECTMESSAGEDESTROY_URL ( "http://twitter.com/direct_messages/destroy/"),
-
-      /* Friendships URLs */
-      TWIT_FRIENDSHIPSCREATE_URL ( "http://twitter.com/friendships/create.xml"),
-      TWIT_FRIENDSHIPSDESTROY_URL ( "http://twitter.com/friendships/destroy.xml"),
-      TWIT_FRIENDSHIPSSHOW_URL ( "http://twitter.com/friendships/show.xml"),
-
-      /* Social graphs URLs */
-      TWIT_FRIENDSIDS_URL ( "http://twitter.com/friends/ids.xml"),
-      TWIT_FOLLOWERSIDS_URL ( "http://twitter.com/followers/ids.xml"),
-
-      /* Account URLs */
-      TWIT_ACCOUNTRATELIMIT_URL ( "http://twitter.com/account/rate_limit_status.xml"),
-
-      /* Favorites URLs */
-      TWIT_FAVORITESGET_URL ( "http://twitter.com/favorites.xml"),
-      TWIT_FAVORITECREATE_URL ( "http://twitter.com/favorites/create/"),
-      TWIT_FAVORITEDESTROY_URL ( "http://twitter.com/favorites/destroy/"),
-
-      /* Block URLs */
-      TWIT_BLOCKSCREATE_URL ( "http://twitter.com/blocks/create/"),
-      TWIT_BLOCKSDESTROY_URL ( "http://twitter.com/blocks/destroy/"),
-
-      /* Saved Search URLs */
-      TWIT_SAVEDSEARCHGET_URL ( "http://twitter.com/saved_searches.xml"),
-      TWIT_SAVEDSEARCHSHOW_URL ( "http://twitter.com/saved_searches/show/"),
-      TWIT_SAVEDSEARCHCREATE_URL ( "http://twitter.com/saved_searches/create.xml"),
-      TWIT_SAVEDSEARCHDESTROY_URL ( "http://twitter.com/saved_searches/destroy/"),
-
-      /* Trends URLs */
-      TWIT_TRENDS_URL ( "http://api.twitter.com/1/trends.json"),
-      TWIT_TRENDSDAILY_URL ( "http://api.twitter.com/1/trends/daily.json"),
-      TWIT_TRENDSCURRENT_URL ( "http://api.twitter.com/1/trends/current.json"),
-      TWIT_TRENDSWEEKLY_URL ( "http://api.twitter.com/1/trends/weekly.json"),
-      TWIT_TRENDSAVAILABLE_URL ( "http://api.twitter.com/1/trends/available.json")
-
-   {
-
-      m_psignal->connect(this, &::ca::application::on_application_signal);
-
-      m_eexclusiveinstance       = ::ca::ExclusiveInstanceNone;
-      m_pmutexLocal              = NULL;
-      m_pmutexGlobal             = NULL;
-      m_peventReady              = NULL;
-      m_pmapKeyPressed           = NULL;
-      m_bLicense                 = true;
-      m_strLocale                = "_std";
-      m_strSchema                = "_std";
-
-      m_pcalculator              = NULL;
-      m_pcolorertake5            = NULL;
-      m_psockets                 = NULL;
-
-
-   }
-
-   application::~application()
-   {
-   }
 
    void application::install_message_handling(::ca::message::dispatch * pdispatch)
    {
-      ::ca::application::install_message_handling(pdispatch);
+      ::ca::thread::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &::ca::application::_001OnApplicationRequest);
    }
 
@@ -5011,7 +4992,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       if(m_strBaseSupportId.is_empty())
       {
 
-         ca::property_set propertyset;
+         ::ca::property_set propertyset;
 
          message_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
 
@@ -5022,7 +5003,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       return true;
    }
 
-   string application::message_box(const string & pszMatter, ca::property_set & propertyset)
+   string application::message_box(const string & pszMatter, ::ca::property_set & propertyset)
    {
       UNREFERENCED_PARAMETER(propertyset);
       UNREFERENCED_PARAMETER(pszMatter);
@@ -5031,8 +5012,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    bool application::bergedge_start()
    {
-      if(!ca::application::bergedge_start())
-         return false;
       return true;
    }
 
@@ -5069,160 +5048,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
 
 
-
-   bool application::initialize1()
-   {
-
-      if(!::ca::application::initialize1())
-         return false;
-
-      m_psockets = new ::sockets::sockets();
-
-      m_psockets->construct(this);
-
-      if(!m_psockets->initialize1())
-         return false;
-
-
-      m_dwAlive = ::get_tick_count();
-
-
-
-      string strLocaleSystem;
-
-      string strSchemaSystem;
-
-      string strPath = System.dir().appdata("langstyle_settings.xml");
-
-      if(Application.file().exists(strPath))
-      {
-
-         string strSystem = Application.file().as_string(strPath);
-
-         ::xml::document docSystem(get_app());
-
-         if(docSystem.load(strSystem))
-         {
-
-            if(docSystem.get_child("lang") != NULL)
-            {
-
-               strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-            }
-
-            if(docSystem.get_child("style") != NULL)
-            {
-
-               strSchemaSystem = docSystem.get_child("style")->get_value();
-
-            }
-
-         }
-
-      }
-
-
-
-      string strLocale;
-
-      string strSchema;
-
-#ifdef METROWIN
-
-      stringa stra;
-
-      stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-
-      strLocale = stra[0];
-
-      strSchema = stra[0];
-
-#elif defined(WINDOWS)
-      LANGID langid = ::GetUserDefaultLangID();
-#define SPR_DEUTSCH LANG_GERMAN
-      if(langid == LANG_SWEDISH)
-      {
-         strLocale = "se";
-         strSchema = "se";
-      }
-      else if(langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
-      {
-         strLocale = "pt-br";
-         strSchema = "pt-br";
-      }
-      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-      {
-         strLocale = "de";
-         strSchema = "de";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-      {
-         strLocale = "en";
-         strSchema = "en";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-      {
-         strLocale = "jp";
-         strSchema = "jp";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_POLISH)
-      {
-         strLocale = "pl";
-         strSchema = "pl";
-      }
-#endif
-
-      if(strLocale.is_empty())
-         strLocale = "se";
-
-      if(strSchema.is_empty())
-         strSchema = "se";
-
-      if(strLocaleSystem.has_char())
-         strLocale = strLocaleSystem;
-
-      if(strSchemaSystem.has_char())
-         strSchema = strSchemaSystem;
-
-      if(Sys(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
-         strLocale = Sys(this).directrix().m_varTopicQuery["locale"];
-
-      if(Sys(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
-         strSchema = Sys(this).directrix().m_varTopicQuery["schema"];
-
-      if(App(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
-         strLocale = App(this).directrix().m_varTopicQuery["locale"];
-
-      if(App(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
-         strSchema = App(this).directrix().m_varTopicQuery["schema"];
-
-
-
-      set_locale(strLocale, false);
-      set_schema(strSchema, false);
-
-
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
-
-
-      return true;
-
-
-   }
-
-   bool application::finalize()
-   {
-      try
-      {
-         ca::application::finalize();
-      }
-      catch(...)
-      {
-      }
-      return true;
-   }
 
 #ifdef WINDOWSEX
    bool Is_Vista_or_Later ()
@@ -5286,15 +5111,15 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       {
          if(guideline().m_varTopicQuery.propset().has_property("save_processing"))
          {
-            System.savings().save(ca::resource_processing);
+            System.savings().save(::ca::resource_processing);
          }
          if(guideline().m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            System.savings().save(ca::resource_blur_background);
+            System.savings().save(::ca::resource_blur_background);
          }
          if(guideline().m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            System.savings().save(ca::resource_translucent_background);
+            System.savings().save(::ca::resource_translucent_background);
          }
       }
 
@@ -5360,12 +5185,18 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          System.http().defer_auto_initialize_proxy_configuration();
       }
 
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize);
+      m_psignal->emit(&signal);
+      if(!signal.m_bOk)
+         return false;
+
+
       return true;
    }
 
-   void application::pre_translate_message(ca::signal_object * pobj)
+   void application::pre_translate_message(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
       {
    /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
@@ -5373,16 +5204,16 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          pbase->m_bRet = true;
          return;
       }
-      return ca::application::pre_translate_message(pobj);
+      return ::ca::application::pre_translate_message(pobj);
    }
 
-   void application::_001OnApplicationRequest(ca::signal_object * pobj)
+   void application::_001OnApplicationRequest(::ca::signal_object * pobj)
    {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_wparam == 2)
       {
-         // when wparam == 2 lparam is a pointer to a ca::command_fork
-         // that should be treated as ca::command_line on request, i.e.,
+         // when wparam == 2 lparam is a pointer to a ::ca::command_fork
+         // that should be treated as ::ca::command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
          ::ca::create_context * pcreatecontext = (::ca::create_context *) pbase->m_lparam;
@@ -5430,13 +5261,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       post_thread_message(WM_QUIT, 0, 0);
    }
 
-
-   ::ca::application * application::get_app() const
-   {
-
-      return ca::application::get_app();
-
-   }
 
    string application::get_license_id()
    {
@@ -5640,19 +5464,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    }
 
 
-   int32_t application::run()
-   {
-      TRACE("::ca::application::run");
-      /*if(directrix().m_varTopicQuery.has_property("install"))
-      {
-         on_run_install();
-      }
-      else if(directrix().m_varTopicQuery.has_property("uninstall"))
-      {
-         on_run_uninstall();
-      }*/
-      return ca::application::run();
-   }
 
    bool application::open_link(const string & strLink, const string & pszTarget)
    {
@@ -5698,35 +5509,16 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       return NULL;
    }
 
-#ifdef BSD_STYLE_SOCKETS
-
-   void application::get_time(struct timeval *p)
+   void application::message_window_message_handler(::ca::signal_object * pobj)
    {
-      ::ca::application::get_time(p);
-   }
-
-#endif
-
-   void application::set_env_var(const string & var,const string & value)
-   {
-      ::ca::application::set_env_var(var, value);
-   }
-
-   uint32_t application::get_thread_id()
-   {
-      return ::ca::application::get_thread_id();
-   }
-
-   void application::message_window_message_handler(ca::signal_object * pobj)
-   {
-      SCAST_PTR(ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         SCAST_PTR(ca::message::timer, ptimer, pobj);
+         SCAST_PTR(::ca::message::timer, ptimer, pobj);
          if(ptimer->m_nIDEvent == 123)
          {
             m_spwindowMessage->KillTimer(ptimer->m_nIDEvent);
-            frames().send_message_to_descendants(ca::application::APPM_LANGUAGE);
+            frames().send_message_to_descendants(::ca::application::APPM_LANGUAGE);
             System.appa_load_string_table();
          }
       }
@@ -5926,7 +5718,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
 
 
-   void application::on_application_signal(ca::signal_object * pobj)
+   void application::on_application_signal(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(signal_object, psignal, pobj);
@@ -5940,33 +5732,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       }*/
    }
 
-
-   int32_t application::exit_instance()
-   {
-      try
-      {
-         if(is_system())
-         {
-            if(System.m_spcopydesk.is_set())
-            {
-               System.m_spcopydesk->finalize();
-               System.m_spcopydesk.destroy();
-            }
-            System.m_splicense.release();
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         ::ca::application::exit_instance();
-      }
-      catch(...)
-      {
-      }
-      return 0;
-   }
 
 } //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]
 

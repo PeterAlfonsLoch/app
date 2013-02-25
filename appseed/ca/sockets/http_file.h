@@ -44,10 +44,10 @@ namespace http
       }
 
 
-      file & operator << (ca::file & file);
+      file & operator << (::ca::file & file);
 
 
-      inline file & operator << (ca::filesp & filesp) { return operator << ((ca::file &) *filesp.m_p); }
+      inline file & operator << (::ca::filesp & filesp) { return operator << ((::ca::file &) *filesp.m_p); }
 
 
       inline void to_string(string & str)

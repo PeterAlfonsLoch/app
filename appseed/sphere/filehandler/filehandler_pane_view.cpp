@@ -73,7 +73,7 @@ namespace filehandler
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(ca::signal_object * pobj)
+   void pane_view::_001OnCreate(::ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -151,7 +151,7 @@ namespace filehandler
 
          string strFile = pcreatordata->m_id;
 
-         if(ca::str::begins_eat_ci(strFile, "default_file_handler://"))
+         if(::ca::str::begins_eat_ci(strFile, "default_file_handler://"))
          {
 
             ::filehandler::view * pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
@@ -215,7 +215,7 @@ namespace filehandler
    {
    }
 
-   void pane_view::_001OnMenuMessage(ca::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);

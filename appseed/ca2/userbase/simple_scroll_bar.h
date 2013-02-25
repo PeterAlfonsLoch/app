@@ -22,7 +22,7 @@ public:
 
 
 
-   virtual void pre_translate_message(ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca::signal_object * pobj);
    using ::user::scroll_bar::create;
    virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
    virtual void install_message_handling(::ca::message::dispatch * pinterface);

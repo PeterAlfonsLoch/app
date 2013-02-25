@@ -940,7 +940,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
 
       for (; pNode != NULL; pNode = pNode->pNext)
-         if (ca::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
+         if (::ca::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
             return (POSITION)pNode;
       return NULL;
    }

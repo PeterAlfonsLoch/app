@@ -195,7 +195,7 @@ void calendar::_001GetHtml(::html::file * pfile)
       }
 
             pfile->print("<td>");
-            pfile->print(ca::str::from(w));
+            pfile->print(::ca::str::from(w));
             pfile->print("</td>");
          }
          for(int32_t iWeekDay = 1; iWeekDay <=7; iWeekDay++)

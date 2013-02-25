@@ -180,7 +180,7 @@ public:
    virtual void on_update_frame_title(bool bAddToTitle);
    virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
    virtual HACCEL GetDefaultAccelerator();
-   virtual void pre_translate_message(ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca::signal_object * pobj);
 
    // idle update of frame ::fontopus::user interface
    enum IdleFlags

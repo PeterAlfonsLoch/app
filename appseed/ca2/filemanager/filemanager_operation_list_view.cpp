@@ -72,7 +72,7 @@ void file_manager_operation_list_view::_001InsertColumns()
    _001AddColumn(column);
 
 }
-void file_manager_operation_list_view::_001OnInitialUpdate(ca::signal_object * pobj)
+void file_manager_operation_list_view::_001OnInitialUpdate(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    m_dataid = "file_manager_operation_list_view";
@@ -96,12 +96,12 @@ void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint,
    }
 }
 
-void file_manager_operation_list_view::_001OnCreate(ca::signal_object * pobj)
+void file_manager_operation_list_view::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
    SetTimer(123, 500, NULL);
 }
-void file_manager_operation_list_view::_001OnTimer(ca::signal_object * pobj)
+void file_manager_operation_list_view::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)

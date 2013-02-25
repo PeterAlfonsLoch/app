@@ -43,8 +43,8 @@ namespace userbase
 #ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDIS);
 #endif
-      virtual void pre_translate_message(ca::signal_object * pobj);
-      virtual void message_handler(ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void message_handler(::ca::signal_object * pobj);
 
       void ResizeToFit();
       virtual ~bitmap_button();

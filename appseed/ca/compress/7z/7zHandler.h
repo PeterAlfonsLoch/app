@@ -54,8 +54,8 @@ namespace n7z
 
       handler();
 
-      virtual ca::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
-      virtual ca::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
+      virtual ::ca::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
+      virtual ::ca::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
 
    private:
       ::ca::smart_pointer < ::ca::byte_input_stream > _inStream;

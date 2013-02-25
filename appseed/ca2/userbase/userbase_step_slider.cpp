@@ -31,14 +31,14 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &step_slider::_001OnMouseMove);
    }
 
-   void step_slider::_001OnCreate(ca::signal_object * pobj)
+   void step_slider::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::create, pcreate, pobj);
 
    }
 
-   void step_slider::_001OnTimer(ca::signal_object * pobj)
+   void step_slider::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
@@ -52,13 +52,13 @@ namespace userbase
       }
    }
 
-   void step_slider::_001OnLButtonDown(ca::signal_object * pobj)
+   void step_slider::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       m_iLButtonDown = hit_test(pmouse->m_pt);
    }
 
-   void step_slider::_001OnLButtonUp(ca::signal_object * pobj)
+   void step_slider::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       int32_t iLButtonUp = hit_test(pmouse->m_pt);
@@ -73,7 +73,7 @@ namespace userbase
       }
    }
 
-   void step_slider::_001OnMouseMove(ca::signal_object * pobj)
+   void step_slider::_001OnMouseMove(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);

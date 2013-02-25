@@ -331,7 +331,7 @@ public:
    virtual bool LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp);
 
    virtual FIBITMAP * LoadImageFile(var varFile, ::ca::application * papp);
-   virtual FIBITMAP * LoadImageFile(ca::file * pfile);
+   virtual FIBITMAP * LoadImageFile(::ca::file * pfile);
    virtual ::ca::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::ca::bitmap_sp hbitmap);
    virtual ::ca::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::ca::application * papp);

@@ -168,7 +168,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
-   ca::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::ca::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try

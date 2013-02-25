@@ -42,7 +42,7 @@ namespace ca
 
 
    class CLASS_DECL_ca library :
-      virtual public ::ca::library,
+      virtual public ::c::library,
       virtual public ::ca::object
    {
    public:
@@ -94,7 +94,7 @@ namespace ca
 
    private:
 
-      using ::ca::library::open;
+      using ::c::library::open;
 
    };
 

@@ -1030,7 +1030,7 @@ namespace user
 
    }
 
-   void tab::_001OnLButtonDown(ca::signal_object * pobj)
+   void tab::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
@@ -1059,7 +1059,7 @@ namespace user
    }
 
 
-   void tab::_001OnLButtonUp(ca::signal_object * pobj)
+   void tab::_001OnLButtonUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
@@ -1089,7 +1089,7 @@ namespace user
       }
    }
 
-   void tab::_001OnMouseMove(ca::signal_object * pobj)
+   void tab::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
@@ -1117,7 +1117,7 @@ namespace user
    }
 
 
-   void tab::_001OnMouseLeave(ca::signal_object * pobj)
+   void tab::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       m_iHover = -1;
@@ -1331,7 +1331,7 @@ namespace user
    }
    */
 
-   void tab::_001OnCreate(ca::signal_object * pobj)
+   void tab::_001OnCreate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pobj->previous())
@@ -1342,7 +1342,7 @@ namespace user
       PostMessage(WM_USER + 1342);
    }
 
-   void tab::_011OnCreate(ca::signal_object * pobj)
+   void tab::_011OnCreate(::ca::signal_object * pobj)
    {
   UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::base, pbase, pobj);
@@ -1368,7 +1368,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1342 , pinterface, this, &tab::_011OnCreate);
-      IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
@@ -1477,7 +1477,7 @@ namespace user
       return count;
    }
 
-   void tab::_001OnAppLanguage(ca::signal_object * pobj)
+   void tab::_001OnAppLanguage(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       layout();
@@ -1850,7 +1850,7 @@ namespace user
       return get_cur_tab_id();
    }
 
-   void tab::_001OnTimer(ca::signal_object * pobj)
+   void tab::_001OnTimer(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)
@@ -1873,7 +1873,7 @@ namespace user
          // to debug, enable catch exceptions in debugger
          try
          {
-            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pmouse));
+            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
             if(pmouse->get_lresult() != 0)
                return;
          }
@@ -1996,9 +1996,9 @@ namespace user
          if(pane.m_id.is_text())
          {
             strPath = pane.m_id;
-            if(strPrefix.is_empty() || ca::str::begins_ci(strPath, strPrefix))
+            if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
             {
-               if(strSuffix.is_empty() || ca::str::ends_ci(strPath, strSuffix))
+               if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
                {
                   stra.add(strPath);
                }
@@ -2029,9 +2029,9 @@ namespace user
          if(pane.m_id.is_text())
          {
             strPath = pane.m_id;
-            if(strPrefix.is_empty() || ca::str::begins_ci(strPath, strPrefix))
+            if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
             {
-               if(strSuffix.is_empty() || ca::str::ends_ci(strPath, strSuffix))
+               if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
                {
                   stra.add(strPath);
                }

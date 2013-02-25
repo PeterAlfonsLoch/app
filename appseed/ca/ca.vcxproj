@@ -945,7 +945,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca2_keep_alive.h" />
     <ClInclude Include="ca\ca_0.h" />
     <ClInclude Include="ca\ca_1.h" />
-    <ClInclude Include="ca\ca_2.h" />
     <ClInclude Include="ca\ca_allocate.h" />
     <ClInclude Include="ca\ca_allocator.h" />
     <ClInclude Include="ca\ca_application_interface.h" />
@@ -1069,6 +1068,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_port_forward.h" />
     <ClInclude Include="ca\ca_process.h" />
     <ClInclude Include="ca\ca_process_data.h" />
+    <ClInclude Include="ca\ca_process_section.h" />
     <ClInclude Include="ca\ca_progress_interface.h" />
     <ClInclude Include="ca\ca_property.h" />
     <ClInclude Include="ca\ca_property_set.h" />
@@ -1167,7 +1167,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_window.h" />
     <ClInclude Include="ca\ca_window_draw.h" />
     <ClInclude Include="ca\ca_writer.h" />
-    <ClInclude Include="ca\OpenedFiles.h" />
     <ClInclude Include=".\collection\collection_array.h" />
     <ClInclude Include=".\collection\collection_array_app_alloc.h" />
     <ClInclude Include=".\collection\collection_array_del_ptr.h" />
@@ -1884,7 +1883,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ca\ca.cpp" />
-    <ClCompile Include="ca\ca_2.cpp" />
     <ClCompile Include="ca\ca_allocation_base_ca.cpp" />
     <ClCompile Include="ca\ca_allocation_ca_heap.cpp" />
     <ClCompile Include="ca\ca_allocation_mid_big.cpp" />
@@ -1895,7 +1893,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca\ca_application_bias.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ca\ca_application_interface.cpp" />
     <ClCompile Include="ca\ca_assert.cpp" />
     <ClCompile Include="ca\ca_base64.cpp" />
     <ClCompile Include="ca\ca_base_enum_static_debug.cpp" />
@@ -1997,6 +1994,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca\ca_pointer_manager.cpp" />
     <ClCompile Include="ca\ca_port_forward.cpp" />
     <ClCompile Include="ca\ca_process.cpp" />
+    <ClCompile Include="ca\ca_process_section.cpp" />
     <ClCompile Include="ca\ca_property.cpp" />
     <ClCompile Include="ca\ca_reader.cpp" />
     <ClCompile Include="ca\ca_request_interface.cpp" />
@@ -3091,6 +3089,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user_keyboard_focus.cpp" />
     <ClCompile Include="user\user_keyboard_layout.cpp" />
     <ClCompile Include="user\user_keyboard_layout_cfg.cpp" />
+    <ClCompile Include="user\user_message.cpp" />
     <ClCompile Include="user\user_message_box.cpp" />
     <ClCompile Include="user\user_mouse_focus.cpp" />
     <ClCompile Include="user\user_multiple_document_template.cpp" />

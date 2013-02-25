@@ -110,7 +110,7 @@ namespace rar
       return totalPackSize;
    }
 
-   ca::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+   ::ca::HRes handler::GetArchiveProperty(int32_t propID, var *value)
    {
       var var;
       switch(propID)
@@ -137,7 +137,7 @@ namespace rar
       return S_OK;
    }
 
-   ca::HRes handler::GetNumberOfItems(uint32_t * numItems)
+   ::ca::HRes handler::GetNumberOfItems(uint32_t * numItems)
    {
 
       *numItems = (uint32_t) _refItems.get_size();
@@ -176,7 +176,7 @@ namespace rar
       prop = utcFileTime;
    }
 
-   ca::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+   ::ca::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
    {
       var prop;
       const CRefItem &refItem = _refItems[index];
@@ -346,7 +346,7 @@ namespace rar
    };
 
    //HRESULT handler::Open2(IInStream *stream,
-   HRESULT handler::Open2(ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   HRESULT handler::Open2(::ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       {
          ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
@@ -470,7 +470,7 @@ namespace rar
       return S_OK;
    }
 
-   ca::HRes handler::Open(ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   ::ca::HRes handler::Open(::ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       Close();
       try
@@ -491,7 +491,7 @@ namespace rar
       }
    }
 
-   ca::HRes handler::Close()
+   ::ca::HRes handler::Close()
    {
       _errorMessage.Empty();
       _refItems.remove_all();
@@ -507,7 +507,7 @@ namespace rar
    };
 
 
-   ca::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
+   ::ca::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
@@ -661,7 +661,7 @@ namespace rar
          // packedPos += item.PackSize;
          // unpackedPos += 0;
 
-         ca::reader * inStream;
+         ::ca::reader * inStream;
          if (item.IsEncrypted())
          {
             ::crypto::set_password_interface * cryptoSetPassword;
@@ -708,7 +708,7 @@ namespace rar
                if (item.UnPackVersion >= 29)
                {
                   ::ca::byte_buffer buffer;
-                  wstring unicodePassword = ca::international::utf8_to_unicode(password);
+                  wstring unicodePassword = ::ca::international::utf8_to_unicode(password);
                   const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
                   buffer.SetCapacity(sizeInBytes);
                   for (int32_t i = 0; i < unicodePassword.get_length(); i++)
@@ -723,7 +723,7 @@ namespace rar
                else
                {
                   string oemPassword;
-                  ca::international::utf8_to_multibyte(CP_OEMCP, oemPassword, password);
+                  ::ca::international::utf8_to_multibyte(CP_OEMCP, oemPassword, password);
                   RINOK(cryptoSetPassword->CryptoSetPassword((const byte *)(const char *)oemPassword, (uint32_t) oemPassword.get_length()));
                }
             }
@@ -859,7 +859,7 @@ namespace rar
    }
 
    // IMPL_ISetCompressCodecsInfo2(CHandler)
-   ca::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   ::ca::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

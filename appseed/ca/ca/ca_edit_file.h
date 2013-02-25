@@ -6,9 +6,9 @@ namespace ca
 
 
    class CLASS_DECL_ca edit_file : 
-      public ca::filesp,
-      public ca::tree,
-      public ca::tree_data
+      public ::ca::filesp,
+      public ::ca::tree,
+      public ::ca::tree_data
    {
    public:
 
@@ -164,11 +164,11 @@ namespace ca
       ::ca::tree_item *   m_ptreeitem;
       ::ca::tree_item *   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
-      ca::file *          m_pfile;
+      ::ca::file *          m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(ca::file * pfile);
+      void SetFile(::ca::file * pfile);
 
       void FillFilePosition(Item * pitem);
 
@@ -195,9 +195,9 @@ namespace ca
 
 
       void flush();
-      bool SaveTo(ca::byte_output_stream & file);
-      bool Save(ca::file & file);
-      bool Save_N_to_CRLF(ca::file & file);
+      bool SaveTo(::ca::byte_output_stream & file);
+      bool Save(::ca::file & file);
+      bool Save_N_to_CRLF(::ca::file & file);
 
 
       void Insert(DeleteItem * pitem);

@@ -7,6 +7,11 @@ namespace ca
 
    class data_listener;
    class base_edit;
+   class data;
+
+   typedef CLASS_DECL_ca comparable_array < data_listener * > data_listener_ptra;
+   typedef CLASS_DECL_ca comparable_array < data * > data_ptra;
+   typedef CLASS_DECL_ca comparable_array < ::ca::ca * > ca_ptra;
 
 
    class CLASS_DECL_ca data :

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/gen_holder.h"
+#include "ca/ca/ca_holder.h"
 #include "ca/user/user_window_interface.h"
 
 
@@ -350,8 +350,8 @@ namespace user
       virtual interaction * GetActiveWindow();
       virtual interaction * SetActiveWindow();
 
-      virtual void WalkPreTranslateTree(ca::signal_object * pobj);
-      virtual void WalkPreTranslateTree(::user::interaction * puiStop, ca::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::ca::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::ca::signal_object * pobj);
 
       virtual interaction * GetDescendantWindow(id id);
 
@@ -417,7 +417,7 @@ namespace user
       virtual interaction* EnsureTopLevelParent();
       virtual ::frame_window * GetTopLevelFrame();
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      virtual void pre_translate_message(ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
 
 
       virtual int32_t get_descendant_level(::user::interaction * pui);
@@ -470,9 +470,9 @@ namespace user
       virtual void PostNcDestroy();
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-      virtual void message_handler(ca::signal_object * pobj);
+      virtual void message_handler(::ca::signal_object * pobj);
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
-      virtual void GuieProc(ca::signal_object * pobj);
+      virtual void GuieProc(::ca::signal_object * pobj);
 
       virtual void _001DeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 

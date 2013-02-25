@@ -4,7 +4,7 @@ namespace plugin
 {
 
    class CLASS_DECL_ca history :
-      virtual public ca::history
+      virtual public ::ca::history
    {
    public:
 

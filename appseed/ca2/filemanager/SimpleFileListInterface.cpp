@@ -276,7 +276,7 @@ namespace filemanager
       string wstrItemExtra;
 
       int32_t iFind;
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
 
       //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 
@@ -777,7 +777,7 @@ namespace filemanager
 
    }*/
 
-   void SimpleFileListInterface::_001OnMainPostMessage(ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnMainPostMessage(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       switch(pbase->m_wparam)
@@ -1073,7 +1073,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFileListInterface::_001OnVScroll(ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnVScroll(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::scroll, pscroll, pobj)
       m_iCreateImageListStep = pscroll->m_nPos;
@@ -1081,7 +1081,7 @@ namespace filemanager
       pobj->m_bRet = false;
    }
 
-   void SimpleFileListInterface::_001OnHScroll(ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnHScroll(::ca::signal_object * pobj)
    {
       pobj->m_bRet = false;
    }
@@ -1114,7 +1114,7 @@ namespace filemanager
       return NULL;
    }
 
-   void SimpleFileListInterface::_001OnFileRename(ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnFileRename(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       user::control * pcontrol = _001GetControlBySubItem(m_iNameSubItem);
@@ -1126,7 +1126,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFileListInterface::_001OnUpdateFileRename(ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnUpdateFileRename(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       Range range;
@@ -1137,7 +1137,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListInterface::_001OnShowWindow(ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnShowWindow(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::show_window, pshow, pobj)

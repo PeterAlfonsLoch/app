@@ -78,7 +78,7 @@ namespace userex
 
    }
 
-   void hour_list_view::_001OnCreate(ca::signal_object * pobj)
+   void hour_list_view::_001OnCreate(::ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)

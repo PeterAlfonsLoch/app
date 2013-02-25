@@ -26,7 +26,7 @@ namespace libcompress
       ::MidFree(_buffer);
    }
 
-   ca::HRes copy_coder::Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
+   ::ca::HRes copy_coder::Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
    {
       if (_buffer == 0)
       {
@@ -58,7 +58,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ca::HRes copy_coder::GetInStreamProcessedSize(uint64_t *value)
+   ::ca::HRes copy_coder::GetInStreamProcessedSize(uint64_t *value)
    {
       *value = TotalSize;
       return S_OK;

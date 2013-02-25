@@ -19,17 +19,17 @@ namespace user
       UNREFERENCED_PARAMETER(iTimer);
    }
 
-   void keyboard_focus::keyboard_focus_OnChar(ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnChar(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void keyboard_focus::keyboard_focus_OnSysChar(ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnSysChar(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void keyboard_focus::keyboard_focus_OnKeyDown(ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnKeyDown(::ca::signal_object * pobj)
    {
 
 #ifdef WINDOWS
@@ -50,7 +50,7 @@ namespace user
 
    }
 
-   void keyboard_focus::keyboard_focus_OnKeyUp(ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnKeyUp(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }

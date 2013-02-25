@@ -94,7 +94,7 @@ namespace sockets
       outheader("User-agent") = MyUseragent();
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         outheader("Host") = GetUrlHost() + ":" + ca::str::from(GetUrlPort());
+         outheader("Host") = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());
       else
          outheader("Host") = GetUrlHost();
       SendRequest();

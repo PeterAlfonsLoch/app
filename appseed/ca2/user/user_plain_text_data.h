@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 plain_text_data :
-      public ca::tree_data
+      public ::ca::tree_data
    {
    public:
 
@@ -22,7 +22,7 @@ namespace user
          CommandGroup,
       };
 
-      class Command : public ca::tree_item_data
+      class Command : public ::ca::tree_item_data
       {
       public:
          virtual ECommand get_command();
@@ -76,22 +76,22 @@ namespace user
       ::ca::tree_item *      m_ptreeitem;
       GroupCommand *          m_pgroupcommand;
       index                   m_iBranch;
-      ca::file *             m_pfile;
-      ca::edit_file          m_editfile;
+      ::ca::file *             m_pfile;
+      ::ca::edit_file          m_editfile;
 
 
       plain_text_data(::ca::application * papp);
       virtual ~plain_text_data();
 
 
-      void SetFile(ca::file * pfile);
+      void SetFile(::ca::file * pfile);
 
 
    private:
 
       plain_text_data(const plain_text_data & ) :
          m_editfile(NULL),
-         ca::tree_data(NULL)
+         ::ca::tree_data(NULL)
       {
       }
 

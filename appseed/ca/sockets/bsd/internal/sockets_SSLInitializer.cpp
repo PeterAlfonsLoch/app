@@ -159,7 +159,7 @@ namespace sockets
    //TRACE("SSLInitializer: no random file generated\n");
    //   }
 
-      ca::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
 
       spfile->open(m_rand_file, ::ca::file::type_binary | ::ca::file::mode_read);
 

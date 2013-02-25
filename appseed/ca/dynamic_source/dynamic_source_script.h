@@ -42,7 +42,7 @@ namespace dynamic_source
    public:
 
 
-      ::ca::library           m_library;
+      ::c::library           m_library;
 #ifdef WINDOWS
       FILETIME                m_ftCreation;
       FILETIME                m_ftModified;
