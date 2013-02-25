@@ -62,7 +62,7 @@ vsstring dir_path(const char * path1, const char * path2)
 vsstring dir_ca2(const char * path = NULL)
 {
    if(path == NULL)
-      return dir_path(dir_beforeca2(), "ca");
+      return dir_path(dir_beforeca2(), "ca2");
    else
       return dir_path(dir_ca2(), path);
 }
@@ -71,7 +71,7 @@ vsstring dir_appdata(const char * path = NULL)
 {
    char sz[MAX_PATH * 8];
    ::SHGetSpecialFolderPathA(NULL, sz, CSIDL_COMMON_APPDATA, TRUE);
-   vsstring str = dir_path(sz, "ca");
+   vsstring str = dir_path(sz, "ca2");
    return dir_path(str, path);
 }
 

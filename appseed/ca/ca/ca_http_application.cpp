@@ -39,7 +39,7 @@ namespace ca
       void application::get(::ca::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
-         if(psignal->m_strUrl.contains("/matter.ca.cc/") || psignal->m_strUrl.contains("-matter.ca.cc/"))
+         if(psignal->m_strUrl.contains("/matter.ca2.cc/") || psignal->m_strUrl.contains("-matter.ca2.cc/"))
          {
             if(!exists(psignal->m_strUrl))
             {
@@ -117,7 +117,7 @@ namespace ca
 
       string application::get(const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL && ::ca::str::find_ci("/matter.ca.cc/", pszUrl) < 0 && ::ca::str::find_ci("-matter.ca.cc/", pszUrl) < 0)
+         if(puser == NULL && ::ca::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::ca::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
          {
             if(::ca::get_thread() != NULL)
             {

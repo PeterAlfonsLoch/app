@@ -246,7 +246,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       string strUrl;
 
-      strUrl = "https://api.ca.cc/account/str_set_load?key=";
+      strUrl = "https://api.ca2.cc/account/str_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);

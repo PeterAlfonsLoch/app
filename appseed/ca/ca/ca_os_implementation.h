@@ -136,7 +136,7 @@ typedef struct tag__OLDTOOLINFO {
 // special _ ::ca::window class name mangling
 
 
-#define __WNDCLASS(s)    "ca" _T(s)
+#define __WNDCLASS(s)    "ca2" _T(s)
 #define __WND             __WNDCLASS("Wnd")
 #define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
 #define __WNDMDIFRAME     __WNDCLASS("MDIFrame")

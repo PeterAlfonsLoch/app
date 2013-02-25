@@ -51,7 +51,7 @@ namespace c
       }
       else if(stricmp_dup(pszPath, "app_ca2") == 0)
       {
-         pszPath = "ca";
+         pszPath = "ca2";
       }
 
       vsstring strPath(pszPath);

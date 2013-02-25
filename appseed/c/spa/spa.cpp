@@ -43,8 +43,8 @@ namespace spa
 /*
 vsstring Login()
 {
-   if(stricmp_dup(g_pedit->m_str, "ca") == 0
-      && stricmp_dup(g_pedit->m_pnext->m_str, "ca") == 0)
+   if(stricmp_dup(g_pedit->m_str, "ca2") == 0
+      && stricmp_dup(g_pedit->m_pnext->m_str, "ca2") == 0)
    {
       return "OK";
    }

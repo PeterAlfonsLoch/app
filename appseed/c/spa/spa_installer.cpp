@@ -218,11 +218,11 @@ namespace spa
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca.cc";
+      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
 #else
 
-      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca.cc";
+      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
 #endif
 
@@ -1296,7 +1296,7 @@ RetryHost:
 
             vsstring strUrl;
 
-            strUrl = "http://spa.api.server.ca.cc/bspatch?file=";
+            strUrl = "http://spa.api.server.ca2.cc/bspatch?file=";
 
             strUrl += url_encode_dup(file2);
 
@@ -2650,7 +2650,7 @@ RetryHost:
 
       m_strInstall               = "http://ccvotagus.net/stage/";
 
-      m_strInstallStatusTemplate = defer_ls_get("http://account.ca.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2664,7 +2664,7 @@ RetryHost:
    int32_t installer::application_name()
    {
       vsstring strUrl;
-      trace(("get application name from server http://spaignition.api.server.ca.cc/ using application id \"" + m_strApplicationId + "\" "));
+      trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=name";
@@ -3430,9 +3430,9 @@ RetryHost:
                break;
             vsstring strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-            strUrl = "http://warehouse.ca.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe&authnone";
 #else
-            strUrl = "http://store.ca.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://store.ca2.cc/spa?download=app-install.exe&authnone";
 #endif
             if(ms_download_dup(strUrl, m_strPath, false))
             {

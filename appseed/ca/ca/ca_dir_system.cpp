@@ -921,11 +921,11 @@ namespace ca
 
             if(bDir)
             {
-               strPath = System.http().get("http://api-matter.ca.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://api-matter.ca.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1135,11 +1135,11 @@ ret:
             
             if(bDir)
             {
-               strPath = System.http().get("http://api-matter.ca.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://api-matter.ca.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1538,7 +1538,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, papp);
 
-         return path("http://matter.ca.cc/", path(strRoot, "appmatter", strDomain));
+         return path("http://matter.ca2.cc/", path(strRoot, "appmatter", strDomain));
 #else
          string strRoot;
          string strDomain;

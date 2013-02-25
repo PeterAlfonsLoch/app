@@ -335,7 +335,7 @@ vsstring dir::ca(const char * path1, const char * path2, const char * path3, con
 
    vsstring str = path(getenv("HOME"), ".ca/appdata");
 
-   return path(path(str, "ca", strRelative), path1, path2, path3, path4);
+   return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
 
 #endif
 
@@ -835,9 +835,9 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
       strUserFolderShift = strRelative;
    }
 
-   return path(path(str, "ca", strUserFolderShift), lpcsz, lpcsz2);
+   return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
 
-   //      return path(path(str, "ca"), lpcsz);
+   //      return path(path(str, "ca2"), lpcsz);
    /*      if(&AppUser(papp) == NULL)
    {
    string str;

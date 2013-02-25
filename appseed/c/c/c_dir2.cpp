@@ -21,7 +21,7 @@ vsstring dir::appdata(const char * lpcsz)
 
    buf = "C:\\ProgramData";
    
-   str = path(buf, "ca");
+   str = path(buf, "ca2");
    
    //_ca_free(buf, 0);
 
@@ -37,7 +37,7 @@ vsstring dir::appdata(const char * lpcsz)
       CSIDL_COMMON_APPDATA,
       FALSE);
    
-   str = path(buf, "ca");
+   str = path(buf, "ca2");
    
    _ca_free(buf, 0);
 
@@ -84,7 +84,7 @@ vsstring dir::userappdata(const char * lpcsz)
 
    char * psz = utf16_to_8(buf);
 
-   str = path(psz, "ca");
+   str = path(psz, "ca2");
 
    ca2_free(psz);
    

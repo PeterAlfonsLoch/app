@@ -391,7 +391,7 @@ namespace ca
                {
                   App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
-               else if(strFilePath.contains("/matter.ca.cc/") || strFilePath.contains(".matter.ca.cc/"))
+               else if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
                {
                   try
                   {

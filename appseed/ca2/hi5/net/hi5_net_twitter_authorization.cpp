@@ -68,7 +68,7 @@ namespace hi5
          void authorization::page1()
          {
             string strUrl;
-            strUrl = "http://spaignition.api.server.ca.cc/query?node=install_application&id=";
+            strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
             string strAppName;
             if(System.m_strAppName == "winactionarea")
             {

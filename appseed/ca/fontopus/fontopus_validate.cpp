@@ -111,9 +111,9 @@ namespace fontopus
       string strHost(pszRequestingParty);
 
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca.cc");
-      straRequestingServer.add("eu-account.ca.cc");
-      straRequestingServer.add("asia-account.ca.cc");
+      straRequestingServer.add("account.ca2.cc");
+      straRequestingServer.add("eu-account.ca2.cc");
+      straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
          if(::ca::get_thread() != NULL && ::ca::get_thread()->m_strWorkUrl.has_char())
@@ -125,7 +125,7 @@ namespace fontopus
             strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
             if(!straRequestingServer.contains_ci(strHost))
             {
-               strHost = "https://account.ca.cc/";
+               strHost = "https://account.ca2.cc/";
             }
          }
       }
@@ -278,12 +278,12 @@ namespace fontopus
       m_loginthread.m_strLicense = m_strLicense;
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca.cc");
-      straRequestingServer.add("eu-account.ca.cc");
-      straRequestingServer.add("asia-account.ca.cc");
+      straRequestingServer.add("account.ca2.cc");
+      straRequestingServer.add("eu-account.ca2.cc");
+      straRequestingServer.add("asia-account.ca2.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "account.ca.cc";
+         strHost = "account.ca2.cc";
       }
 
       if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
@@ -373,7 +373,7 @@ namespace fontopus
    {
 //      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
       //string strUrl;
-      //strUrl = "http://spaignition.api.server.ca.cc/query?node=install_application&id=";
+      //strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
       //string strAppName;
       //if(System.m_strAppName == "winactionarea")
       //{
@@ -671,7 +671,7 @@ namespace fontopus
    // return hash and check if hash is valid
    bool validate::check_ca2_hash()
    {
-      string strUrl("https://api.ca.cc/account/check_hash");
+      string strUrl("https://api.ca2.cc/account/check_hash");
       ::ca::property_set post;
       ::ca::property_set headers;
       ::ca::property_set set;
@@ -836,9 +836,9 @@ namespace fontopus
       if(m_straRequestingServer.get_count() <= 0)
       {
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca.cc");
-         straRequestingServer.add("eu-account.ca.cc");
-         straRequestingServer.add("asia-account.ca.cc");
+         straRequestingServer.add("account.ca2.cc");
+         straRequestingServer.add("eu-account.ca2.cc");
+         straRequestingServer.add("asia-account.ca2.cc");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
          {
             m_bFontopusServer = true;
@@ -950,7 +950,7 @@ namespace fontopus
 
       domainFontopus.create(m_strFontopusServer);
 
-      if(domainFontopus.m_strRadix != "ca")
+      if(domainFontopus.m_strRadix != "ca2")
          return "";
 
       if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
@@ -1465,7 +1465,7 @@ namespace fontopus
          if(m_bInteractive)
          {
             string strUrl;
-            strUrl = "http://spaignition.api.server.ca.cc/query?node=install_application&id=";
+            strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
             strUrl += m_strLicense;
             strUrl += "&key=launch_name";
             string strName = Application.http().get(strUrl);
@@ -1503,7 +1503,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca.cc";
+            propertyset["server"] = "account.ca2.cc";
             pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
          }
       }
@@ -1511,7 +1511,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca.cc";
+            propertyset["server"] = "account.ca2.cc";
             propertyset["email"] = strUsername;
             pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
          }

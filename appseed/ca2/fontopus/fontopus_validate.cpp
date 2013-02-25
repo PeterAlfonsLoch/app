@@ -126,12 +126,12 @@ namespace ca
 
                m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
                string strUrl;
-               strUrl = "http://api.ca.cc/spaignition/query?node=install_application&id=";
+               strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
                strUrl += m_strLicense;
                strUrl += "&key=name";
                m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
 
-               strUrl = "ext://https://account.ca.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+               strUrl = "ext://https://account.ca2.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
                m_pdocAuth->get_html_data()->m_propertyset["contribute_link"] = strUrl;
 
             }
@@ -431,7 +431,7 @@ namespace ca
       // return hash and check if hash is valid
       bool validate::check_ca2_hash()
       {
-         string strUrl("https://api.ca.cc/account/check_hash");
+         string strUrl("https://api.ca2.cc/account/check_hash");
          ::ca::property_set post;
          ::ca::property_set headers;
          ::ca::property_set set;
@@ -584,7 +584,7 @@ namespace ca
             if(m_bInteractive)
             {
                string strUrl;
-               strUrl = "http://api.ca.cc/spaignition/query?node=install_application&id=";
+               strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
                strUrl += m_strLicense;
                strUrl += "&key=launch_name";
                string strName = Application.http().get(strUrl);
@@ -635,7 +635,7 @@ namespace ca
          {
             if(m_bInteractive)
             {
-               propertyset["server"] = "account.ca.cc";
+               propertyset["server"] = "account.ca2.cc";
                pageMessage("err\\user\\network\\connection_timed_out.html", propertyset);
             }
          }
@@ -643,7 +643,7 @@ namespace ca
          {
             if(m_bInteractive)
             {
-               propertyset["server"] = "account.ca.cc";
+               propertyset["server"] = "account.ca2.cc";
                propertyset["email"] = strUsername;
                pageMessage("err\\user\\authentication\\registration_deferred.html", propertyset);
             }

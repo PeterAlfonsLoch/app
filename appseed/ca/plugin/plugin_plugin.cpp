@@ -421,7 +421,7 @@ namespace plugin
 
       string strUrl;
 
-      strUrl = "https://account.ca.cc/sec?action=logout";
+      strUrl = "https://account.ca2.cc/sec?action=logout";
 
       m_psystem->url().set(strUrl, "ruri", strLocation);
 
@@ -472,7 +472,7 @@ namespace plugin
 
          string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
-         if(strExtension.is_empty() || strExtension.compare_no_case("ca") == 0)
+         if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
          {
             // remark alatel
             // STRESS : ms_get_dup

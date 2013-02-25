@@ -101,12 +101,12 @@ namespace ca
 
          string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca.cc");
-         straRequestingServer.add("eu-account.ca.cc");
-         straRequestingServer.add("asia-account.ca.cc");
+         straRequestingServer.add("account.ca2.cc");
+         straRequestingServer.add("eu-account.ca2.cc");
+         straRequestingServer.add("asia-account.ca2.cc");
          if(!straRequestingServer.contains_ci(strHost))
          {
-            strHost = "account.ca.cc";
+            strHost = "account.ca2.cc";
          }
 
          straRequestingServer.remove(strHost);
@@ -507,7 +507,7 @@ namespace ca
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca")
+                  if(domainFontopus.m_strRadix == "ca2")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -729,7 +729,7 @@ retry:
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca")
+                  if(domainFontopus.m_strRadix == "ca2")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
