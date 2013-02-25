@@ -1154,6 +1154,7 @@ namespace ca
          System.dir().ls(papp, pszContext, NULL, &straTitle);
          string strOld;
          string strNew;
+         string strFail;
          for(int32_t i = 0; i < straTitle.get_size(); i++)
          {
             strOld = straTitle[i];
@@ -1165,13 +1166,24 @@ namespace ca
 //               ::MoveFileW(
   //                ::ca::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
     //              ::ca::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+               try
+               {
                move(System.dir().path(pszContext, strNew), System.dir().path(pszContext, strOld));
+               }
+               catch(...)
+               {
+                  strFail += "failed to move " + System.dir().path(pszContext, strOld) + " to " + System.dir().path(pszContext, strNew);
+               }
 #else
                ::rename(
                   System.dir().path(pszContext, strOld),
                   System.dir().path(pszContext, strNew));
 #endif
             }
+         }
+         if(strFail.has_char())
+         {
+            Application.simple_message_box(NULL, strFail);
          }
       }
 
