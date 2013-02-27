@@ -1620,12 +1620,12 @@ namespace dynamic_source
 
    void script_compiler::run_persistent()
    {
-      string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false);
+      string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false);
       stringa stra;
       Application.dir().rls(strPath, &stra);
 
       string strCat;
-      strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\netnode_persistent_ui_str.ds", false);
+      strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\netnode_persistent_ui_str.ds", false);
       string strBody;
       strBody = "<?\r\n";
       strBody += "// ATTENTION!\r\n";
@@ -1638,7 +1638,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(::ca::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
+         if(::ca::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
             && ::ca::str::ends_ci(str, ".ds"))
          {
             strBody += Application.file().as_string(str);
@@ -1687,7 +1687,7 @@ namespace dynamic_source
       if(::ca::str::find_ci("pstr_set", psz) && ::ca::str::ends_ci(psz, ".txt"))
       {
          string strCat;
-         strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\netnode_persistent_ui_str.ds", false);
+         strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\netnode_persistent_ui_str.ds", false);
          string strInclude = strCat;
          ::ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
          ::ca::str::ends_eat_ci(strInclude, ".ds");
@@ -1713,7 +1713,7 @@ namespace dynamic_source
             pinstance->destroy();
          }
       }
-      else if(::ca::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
+      else if(::ca::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
          && ::ca::str::ends_eat_ci(str, ".ds")
          && str.CompareNoCase("netnode_persistent_ui_str") != 0)
       {

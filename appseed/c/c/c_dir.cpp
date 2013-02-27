@@ -846,7 +846,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
    str,
    CSIDL_PROFILE,
    FALSE);
-   return path(path(str, "ca\\_____default"), lpcsz);
+   return path(path(str, "ca2\\_____default"), lpcsz);
    }
    else
    {

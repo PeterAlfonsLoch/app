@@ -237,7 +237,7 @@ UINT spa_starter_start::start()
 
    /*vsstring strPlatform = spa_get_platform();
 
-   vsstring strSentinelPath = dir::path(dir::beforeca2(), ("ca\\stage\\" + strPlatform + "\\app-sentinel.exe"));
+   vsstring strSentinelPath = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app-sentinel.exe"));
 
    call_sync(strSentinelPath, "");*/
 

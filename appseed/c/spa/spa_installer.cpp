@@ -2936,13 +2936,13 @@ RetryHost:
 
       m_hinstance = hinstance; // Store instance handle in our global variable
 
-      m_strInstallGz = dir::module_folder("ca\\bz\\stage\\");
-      m_strInstall = dir::module_folder("ca\\stage\\");
+      m_strInstallGz = dir::module_folder("ca2\\bz\\stage\\");
+      m_strInstall = dir::module_folder("ca2\\stage\\");
 
       m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
       m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
 
-      bool bOfflineInstall1 = dir::is(dir::module_folder("ca\\bz"));
+      bool bOfflineInstall1 = dir::is(dir::module_folder("ca2\\bz"));
       //bool bOfflineInstall2 = file_exists_dup(g_strIndexGz);
       //m_bOfflineInstall = bOfflineInstall1 && bOfflineInstall2;
       m_bOfflineInstall = bOfflineInstall1;

@@ -1026,13 +1026,13 @@ namespace hotplugin
          zero(&ps, sizeof(ps));
          ps.dwSize = sizeof(ps);
          ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca\\ca2plugin-container-") + m_strBitmapChannel));
+         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
          m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
 #elif defined(WINDOWS)
-         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca\\ca2plugin-container-") + m_strBitmapChannel));
+         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
          m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
-         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
+         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
 #endif
 
 
