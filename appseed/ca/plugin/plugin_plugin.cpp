@@ -84,7 +84,7 @@ namespace plugin
 
       string strMutex = m_phost->m_vssChannel;
 
-      ::ca::str::begins_eat_ci(strMutex, "\\ca\\");
+      ::ca::str::begins_eat_ci(strMutex, "\\ca2\\");
 
       m_pmutexBitmap = new simple_mutex("Global\\" + strMutex, false);
 
@@ -631,9 +631,9 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
                {
-/*                  Sys(m_psystem).install().start(": app=session session_start=app/ca/fontopus app_type=application install");
+/*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -641,7 +641,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
 #ifdef WINDOWSEX
@@ -671,10 +671,10 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
                {
                   /*
-                  Sys(m_psystem).install().start(": app=session session_start=app/ca/fontopus app_type=application install");
+                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -682,7 +682,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);

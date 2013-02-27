@@ -212,7 +212,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
       size_t iRefresh = 884;
       size_t iEat = 8;
-      const char * psz = "development message so international english file \"C:\\ca\\install.log\" excerpt  ::::::::";
+      const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
       g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
 //      int32_t iLineMin = 5;
@@ -299,7 +299,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
       size_t iRefresh = 884;
       size_t iEat = 8;
-      const char * psz = "development message so international english last lines of file \"C:\\ca\\install.log\" ::::::::";
+      const char * psz = "development message so international english last lines of file \"C:\\ca2\\install.log\" ::::::::";
       g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       g.select(fontBold);
       g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);

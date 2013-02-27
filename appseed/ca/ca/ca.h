@@ -1651,7 +1651,7 @@ namespace ca
 #include "ca/sockets/sockets.h"
 #include "ca/colorertake5/colorertake5.h"
 
-#include "app/appseed/ca/html/html.h"
+#include "ca/html/html.h"
 
 
 #include "ca_definition.h"

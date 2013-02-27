@@ -85,7 +85,7 @@ namespace dynamic_source
       m_strNamespace             = "netnodelite"; // default namespace is linked to outer project app_core_netnodelite
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
-      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca\\";
+      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
 
 
       m_iTunnelPluginCount       = 0;

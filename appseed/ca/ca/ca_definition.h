@@ -460,7 +460,7 @@ that we consider it dangerous to even throw an exception
 #define _FATAL_SHUTDOWN do { ::TerminateProcess(::GetCurrentProcess(), 0); } while(0);
 #endif
 
-//ca/ca API code should use standard pointer to member standard syntax &MyClass::MyMethod, instead
+//ca2/ca API code should use standard pointer to member standard syntax &MyClass::MyMethod, instead
 //of the legacy non-standard syntax - MyMethod.
 #ifdef _ENABLE_PTM_WARNING
 #define PTM_WARNING_DISABLE

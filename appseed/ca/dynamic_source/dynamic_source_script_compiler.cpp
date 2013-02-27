@@ -84,7 +84,7 @@ namespace dynamic_source
       m_strLibPlatform = "";
    #endif
 
-      //System.file().lines(m_straSync, "C:\\ca\\database\\text\\dynamic_source\\syncer.txt", get_app());
+      //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
 
       prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
                m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
@@ -205,7 +205,7 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca\\%s", false), strName);
+         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca2\\%s", false), strName);
       }
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 
@@ -682,7 +682,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strTemplate = System.dir().path(strFolder, strSource, false );
    //#else
-     // strTemplate = System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
+     // strTemplate = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
    //#endif
       string str;
       str = Application.file().as_string(strTemplate);
@@ -700,7 +700,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strCmd = System.dir().path(strFolder, strDest, false);
    //#else
-     // strCmd = System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+     // strCmd = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
    //#endif
       Application.dir().mk(System.dir().name(strCmd));
       Application.file().put_contents(strCmd, str);
@@ -820,7 +820,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
    //#else
-     // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
+     // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
    //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
@@ -846,7 +846,7 @@ namespace dynamic_source
    //#ifdef DEBUG
          strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
    //#else
-     //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+     //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
    //#endif
          string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%", str1);
@@ -927,7 +927,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
    //#else
-     // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+     // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
    //#endif
       string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%", "library\\" + strName);
@@ -964,7 +964,7 @@ namespace dynamic_source
 
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName, false);
-      //str.Format("V:\\time\\ca\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
+      //str.Format("V:\\time\\ca2\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
       str = Application.file().as_string(str);
       str.replace("\r\n", "</pre><pre>");
       m_memfileLibError << str;

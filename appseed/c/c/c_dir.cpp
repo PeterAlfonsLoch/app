@@ -93,7 +93,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca\\");
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -156,7 +156,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca\\");
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -192,7 +192,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 #else
 
-   strcpy_dup(lpszModuleFolder, "/ca/");
+   strcpy_dup(lpszModuleFolder, "/ca2/");
 
 
 
@@ -434,7 +434,7 @@ vsstring dir::module_folder(const char * path1)
 
 #else
 
-   return dir::path("/ca/stage", path1);
+   return dir::path("/ca2/stage", path1);
 
 #endif
 

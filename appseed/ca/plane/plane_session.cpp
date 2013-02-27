@@ -406,7 +406,7 @@ namespace plane
          }
          else if (pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
-            start_application("application", "app/ca/bergedge", pcreatecontext);
+            start_application("application", "app/ca2/bergedge", pcreatecontext);
             return;
          }
 
@@ -638,7 +638,7 @@ namespace plane
          }
          else
          {
-            strId = "app/ca/default_file_handler";
+            strId = "app/ca2/default_file_handler";
          }
 
       }

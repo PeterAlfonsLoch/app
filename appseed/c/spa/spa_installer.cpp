@@ -263,8 +263,8 @@ RetryHost:
          trace(strSpaHost);
 
          dir::mk("C:\\ca");
-         dir::mk("C:\\ca\\time");
-         dir::mk("C:\\ca\\time\\ca");
+         dir::mk("C:\\ca2\\time");
+         dir::mk("C:\\ca2\\time\\ca");
 
          set_progress(0.3);
 
@@ -577,7 +577,7 @@ RetryHost:
                bAsk = true;
                bRestart = true;
                vsstring strPath = m_straTerminateProcesses.element_at(i);
-               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca\\") != NULL)
+               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
@@ -652,7 +652,7 @@ RetryHost:
                }
 
             }
-            //file_put_contents_dup("C:\\ca\\machine\\on_after_spaadmin.txt", strCommand);
+            //file_put_contents_dup("C:\\ca2\\machine\\on_after_spaadmin.txt", strCommand);
          }
 
          if(m_straRestartCommandLine.get_count() > 0)

@@ -7,7 +7,7 @@
 static geoipv6_t IPV6_NULL;
 
 
-#define GEOIPDATADIR "/ca/geoip"
+#define GEOIPDATADIR "/ca2/geoip"
 
 #if defined(LINUX) || defined(MACOS)
 

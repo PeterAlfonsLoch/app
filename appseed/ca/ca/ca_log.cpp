@@ -13,11 +13,11 @@ namespace ca
    {
 
 #if defined(WINDOWSEX)
-      m_bTrace          = ::file_exists_dup("C:\\ca\\trace.txt") || ::IsDebuggerPresent();
+      m_bTrace          = ::file_exists_dup("C:\\ca2\\trace.txt") || ::IsDebuggerPresent();
 #elif defined(METROWIN)
       m_bTrace          = ::file_exists_dup(::dir::appdata("trace.txt")) || ::IsDebuggerPresent();
 #elif defined(LINUX)
-      m_bTrace          = ::file_exists_dup("/etc/ca/trace.txt") || ::gdb_check();
+      m_bTrace          = ::file_exists_dup("/etc/ca2/trace.txt") || ::gdb_check();
 #endif
 
       m_pcsTrace        = new critical_section();
