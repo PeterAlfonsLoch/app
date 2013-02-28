@@ -22,23 +22,6 @@ namespace userstack
    {
 
 
-      string strId;
-      ::ca::application * pcaapp;
-
-      POSITION pos = m_mapApplication.get_start_position();
-
-      while(pos != NULL)
-      {
-
-         strId.Empty();
-         pcaapp = NULL;
-
-         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
-
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
-
-         papp->post_thread_message(WM_QUIT, 0, 0);
-      }
 
    }
 
@@ -82,7 +65,27 @@ namespace userstack
       catch(...)
       {
       }
+
+      string strId;
+      ::ca::application * pcaapp;
+
+      POSITION pos = m_mapApplication.get_start_position();
+
+      while(pos != NULL)
+      {
+
+         strId.Empty();
+         pcaapp = NULL;
+
+         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
+
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
+
+         papp->post_thread_message(WM_QUIT, 0, 0);
+      }
+
       return 0;
+
    }
 
    bool application::bergedge_start()

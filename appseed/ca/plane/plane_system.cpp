@@ -654,9 +654,19 @@ namespace plane
          }
       }
 
+      m_serviceptra.remove_all();
+
       try
       {
-         m_pfactory->enable_simple_factory_request(false);
+         if(m_pfactory != NULL)
+         {
+         
+            m_pfactory->enable_simple_factory_request(false);
+
+            m_pfactory = NULL;
+
+         }
+
       }
       catch(...)
       {
@@ -681,7 +691,7 @@ namespace plane
       }
 
 
-      try
+/*      try
       {
          if(m_ptwf != NULL)
          {
@@ -692,7 +702,8 @@ namespace plane
       }
       catch(...)
       {
-      }
+      }*/
+
       try
       {
          if(m_spos.is_set())
@@ -1600,7 +1611,12 @@ namespace plane
 
    void system::discard_to_factory(::ca::ca * pca)
    {
+      
+      if(m_pfactory == NULL)
+         return;
+
       m_pfactory->discard(pca);
+
    }
 
 

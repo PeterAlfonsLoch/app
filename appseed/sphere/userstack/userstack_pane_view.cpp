@@ -239,6 +239,8 @@ namespace userstack
 
             ::ca::application * pappCurrent = Session.m_pappCurrent;
 
+            Application.m_mapApplication[strId] = pappCurrent;
+
             string strTypeId = typeid(*pappCurrent).name();
 
      		   string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");

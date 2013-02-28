@@ -102,6 +102,8 @@ void factory::enable_simple_factory_request(bool bEnable)
    {
       for(int32_t i = 0; i < m_typeinfoptraSimpleFactoryRequest.get_count(); i++)
       {
+
+         ::ca::type_info * ptypeinfo = m_typeinfoptraSimpleFactoryRequest[i];
          
          factory_item_base * pitem = m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem;
 
@@ -120,15 +122,25 @@ void factory::enable_simple_factory_request(bool bEnable)
 
             }
 
+            if(is_safe_set(ptypeinfo))
+            {
+
+               try
+               {
+
+                  ptypeinfo->m_pfactoryitem = NULL;
+
+               }
+               catch(...)
+               {
+
+               }
+
+            }
+
          }
 
-         try
-         {
-            m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem = NULL;
-         }
-         catch(...)
-         {
-         }
+
       }
       m_typeinfoptraSimpleFactoryRequest.remove_all();
    }
