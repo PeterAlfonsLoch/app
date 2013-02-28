@@ -576,8 +576,12 @@ namespace plane
          {
             try
             {
-               if(appptra[i]->is_bergedge() || appptra[i]->is_session() || appptra[i]->is_system() || appptra[i]->is_cube() ||
-                  appptra[i]->is_serviceable())
+               if(appptra[i]->is_bergedge() || appptra[i]->is_session() || appptra[i]->is_system() || appptra[i]->is_cube())
+               {
+                  appptra.remove_at(i);
+                  continue;
+               }
+               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix().m_varTopicQuery["app"].get_string())
                {
                   appptra.remove_at(i);
                   continue;
