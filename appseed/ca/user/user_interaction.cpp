@@ -500,6 +500,7 @@ namespace user
          try
          {
             set_view_port_org(pgraphics);
+            pgraphics->m_dFontFactor = 1.0;
             m_pguie->_001OnDraw(pgraphics);
          }
          catch(...)

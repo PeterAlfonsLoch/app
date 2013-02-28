@@ -161,6 +161,8 @@ namespace ca
 
       m_fontxyz = *pfont;
 
+      m_fontxyz.m_dFontSize *= m_dFontFactor;
+
       return true;
    }
 
@@ -2511,7 +2513,6 @@ namespace ca
       throw interface_only_exception(get_app());
       return false;
    }
-
 
 
 

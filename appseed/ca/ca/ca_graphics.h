@@ -75,7 +75,7 @@ namespace ca
 
       e_alpha_mode               m_ealphamode;
       e_text_rendering           m_etextrendering;
-
+      double                     m_dFontFactor;
 
 
       graphics();
