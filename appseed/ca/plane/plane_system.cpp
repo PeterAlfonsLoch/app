@@ -605,10 +605,15 @@ namespace plane
 
    int32_t system::exit_instance()
    {
+
       try
       {
-         m_ptwf->m_bRun = false;
-         m_ptwf->m_p->m_bRun = false;
+         if(m_ptwf != NULL)
+         {
+
+            m_ptwf->m_bRun = false;
+            m_ptwf->m_p->m_bRun = false;
+         }
       }
       catch(...)
       {
@@ -628,8 +633,11 @@ namespace plane
 
       try
       {
-         m_ptwf->twf_stop();
-         m_ptwf = NULL;
+         if(m_ptwf != NULL)
+         {
+            m_ptwf->twf_stop();
+            m_ptwf = NULL;
+         }
       }
       catch(...)
       {
