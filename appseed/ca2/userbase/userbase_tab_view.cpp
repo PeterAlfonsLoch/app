@@ -380,13 +380,16 @@ namespace userbase
             pcreatordata->m_pwnd->ModifyStyle(0, WS_CHILD, NULL);
          }*/
          pane * ppane = get_pane_by_id(id);
-         if(pcreatordata->m_strTitle.has_char())
-         {
-            ppane->m_istrTitleEx = pcreatordata->m_strTitle;
-         }
          if(ppane != NULL)
          {
-            ppane->m_pholder = pcreatordata->m_pholder;
+            if(pcreatordata->m_strTitle.has_char())
+            {
+               ppane->m_istrTitleEx = pcreatordata->m_strTitle;
+            }
+            if(ppane != NULL)
+            {
+               ppane->m_pholder = pcreatordata->m_pholder;
+            }
          }
       }
       on_change_pane_count();
