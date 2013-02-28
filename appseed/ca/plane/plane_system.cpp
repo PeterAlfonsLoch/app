@@ -576,7 +576,8 @@ namespace plane
          {
             try
             {
-               if(appptra[i]->is_bergedge() || appptra[i]->is_session() || appptra[i]->is_system() || appptra[i]->is_cube())
+               if(appptra[i]->is_bergedge() || appptra[i]->is_session() || appptra[i]->is_system() || appptra[i]->is_cube() ||
+                  appptra[i]->is_serviceable())
                {
                   appptra.remove_at(i);
                   continue;
@@ -604,6 +605,46 @@ namespace plane
 
    int32_t system::exit_instance()
    {
+      try
+      {
+         m_ptwf->m_bRun = false;
+         m_ptwf->m_p->m_bRun = false;
+      }
+      catch(...)
+      {
+      }
+
+
+      for(int i = 0; i < m_serviceptra.get_size(); i++)
+      {
+         try
+         {
+            m_serviceptra[i]->m_stopping = true;
+         }
+         catch(...)
+         {
+         }
+      }
+
+      try
+      {
+         m_ptwf->twf_stop();
+         m_ptwf = NULL;
+      }
+      catch(...)
+      {
+      }
+
+      for(int i = 0; i < m_serviceptra.get_size(); i++)
+      {
+         try
+         {
+            m_serviceptra[i]->Stop((1984 + 1977) * 2);
+         }
+         catch(...)
+         {
+         }
+      }
 
       try
       {
@@ -636,7 +677,7 @@ namespace plane
       {
          if(m_ptwf != NULL)
          {
-            m_ptwf->stop();
+            m_ptwf->twf_stop();
             ::ca::del(m_ptwf);
             m_ptwf = NULL;
          }
@@ -1530,7 +1571,7 @@ namespace plane
       if(m_ptwf != NULL)
          return true;
       m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.type_info < ::ca::window_draw > ()));
-      m_ptwf->start();
+      m_ptwf->twf_start();
       return true;
    }
 

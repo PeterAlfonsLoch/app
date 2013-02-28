@@ -439,8 +439,27 @@ namespace user
       }
 
 
+
       raw_array < ::user::interaction  * > uiptra;
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
+      if(get_parent() != NULL)
+      {
+         try { get_parent()->m_uiptraChild.remove(this); } catch(...) {}
+         try { get_parent()->m_uiptraChild.remove(m_pguie); } catch(...) {}
+         try { get_parent()->m_uiptraChild.remove(m_pimpl); } catch(...) {}
+         if(get_parent()->m_pguie != NULL)
+         {
+            try { get_parent()->m_pguie->m_uiptraChild.remove(this); } catch(...) {}
+            try { get_parent()->m_pguie->m_uiptraChild.remove(m_pguie); } catch(...) {}
+            try { get_parent()->m_pguie->m_uiptraChild.remove(m_pimpl); } catch(...) {}
+         }
+         if(get_parent()->m_pimpl)
+         {
+            try { get_parent()->m_pimpl->m_uiptraChild.remove(this); } catch(...) {}
+            try { get_parent()->m_pimpl->m_uiptraChild.remove(m_pguie); } catch(...) {}
+            try { get_parent()->m_pimpl->m_uiptraChild.remove(m_pimpl); } catch(...) {}
+         }
+      }
       m_uiptraChild.get_array(uiptra);
       sl.unlock();
       for(int32_t i = 0; i < uiptra.get_count(); i++)

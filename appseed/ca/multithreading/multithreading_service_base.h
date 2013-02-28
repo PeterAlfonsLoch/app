@@ -22,6 +22,9 @@ public:
    service_status          m_status;
    string                  m_serviceName;
 
+   manual_reset_event m_stopped;
+   bool m_stopping;
+
 #ifdef WINDOWSEX
 
    SERVICE_STATUS_HANDLE   m_handle;

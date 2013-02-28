@@ -7,8 +7,6 @@ class CLASS_DECL_ca plain_service :
 public:
 
 
-   manual_reset_event m_stopped;
-   bool m_stopping;
 
 
    plain_service(::ca::application * papp);

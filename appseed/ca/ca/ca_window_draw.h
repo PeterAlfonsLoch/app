@@ -16,24 +16,25 @@ namespace ca
 {
 
    class CLASS_DECL_ca window_draw :
-      virtual public ::ca::object
+      virtual public ::ca::thread
    {
    public:
 
 
-      bool                 m_bRun;
       bool                 m_bProDevianMode;
       ::user::buffer *     m_pbuffer;
-      uint32_t                m_iFramesPerSecond;
+      uint32_t             m_iFramesPerSecond;
       event                m_eventFree;
 
 
       window_draw(::ca::application * papp);
 
-      virtual bool start();
       virtual bool UpdateBuffer();
       virtual bool ScreenOutput();
-      virtual bool stop();
+
+      // legacy name TWF ressurected here - TWF - Transparent Window Interface - The veriwell Musical Player lite translucent windows
+      virtual bool twf_start();
+      virtual bool twf_stop();
 
       virtual void asynch_redraw();
       virtual void synch_redraw();

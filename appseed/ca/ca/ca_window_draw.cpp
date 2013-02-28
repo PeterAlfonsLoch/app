@@ -7,6 +7,7 @@ namespace ca
 
    window_draw::window_draw(::ca::application * papp) :
       ca(papp),
+      ::ca::thread(papp),
       m_eventFree(papp, TRUE, TRUE)
    {
       m_bProDevianMode           = true;
@@ -14,9 +15,10 @@ namespace ca
       m_bRun                     = true;
    }
 
-   bool window_draw::start()
+   bool window_draw::twf_start()
    {
-      throw interface_only_exception(get_app());
+      begin();
+      return true;
    }
 
    bool window_draw::UpdateBuffer()
@@ -29,7 +31,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window_draw::stop()
+   bool window_draw::twf_stop()
    {
       const uint32_t dwTimeOut = 184 * (1984 + 1977);
       m_bRun = false;
@@ -46,6 +48,7 @@ namespace ca
       {
          TRACE("Failed to stop with the timeout %d milliseconds", dwTimeOut);
       }
+      Sleep(584);
       return bStopped;
    }
 

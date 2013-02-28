@@ -1039,7 +1039,7 @@ finishedCa2ModuleFolder:;
 
          ::ca::application_base   * papp         = ::ca::smart_pointer < ::ca::application_base >::detach();
 
-         if(papp != NULL)
+         if(papp != NULL && papp != this && !papp->is_system())
          {
 
             try

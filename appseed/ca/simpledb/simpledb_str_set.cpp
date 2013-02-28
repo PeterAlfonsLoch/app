@@ -104,6 +104,8 @@ int32_t db_str_set::sync_queue::run()
 
 repeat:;
 
+      if(!m_bRun)
+         break;
        {
 
           sl.lock();

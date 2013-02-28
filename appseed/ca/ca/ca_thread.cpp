@@ -177,7 +177,7 @@ namespace ca
 
    void thread::start()
    {
-      throw interface_only_exception(get_app());
+      m_p->start();
    }
 
 

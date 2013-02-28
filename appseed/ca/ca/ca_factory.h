@@ -113,6 +113,10 @@ public:
 
    virtual ::ca::ca * create(::ca::application * papp)
    {
+      
+      if(m_pallocator == NULL)
+         return NULL;
+
       void * pv = m_pallocator->alloc();
 #undef new
       CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);

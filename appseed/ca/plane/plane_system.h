@@ -250,6 +250,8 @@ namespace plane
 
       const str_pool                               m_cstrpool;
 
+      comparable_array < service_base * >          m_serviceptra;
+
       ::collection::strid_map < ::ca::type_info >  m_typemap;
 
       FT_Library                                   m_ftlibrary;
