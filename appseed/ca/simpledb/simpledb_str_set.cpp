@@ -96,6 +96,8 @@ int32_t db_str_set::sync_queue::run()
 
    single_lock sl(&m_mutex, false);
 
+   m_bRun = true;
+
    try
    {
 

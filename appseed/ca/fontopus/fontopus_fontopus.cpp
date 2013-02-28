@@ -7,9 +7,9 @@ namespace fontopus
 
    fontopus::fontopus()
    {
-      m_puser              = NULL;
-      m_bIsCreatingUser    = false;
-   }
+      m_puser                    = NULL;
+      m_pthreadCreatingUser      = NULL;
+   }  
 
 
    fontopus::~fontopus()
@@ -226,9 +226,19 @@ namespace fontopus
       {
          if(m_puser == NULL)
          {
-            if(m_bIsCreatingUser)
+            if(m_pthreadCreatingUser == ::ca::get_thread())
                return NULL;
-            keeper < bool > keepCreatingUser(&m_bIsCreatingUser, true, false, true);
+            if(m_pthreadCreatingUser != NULL)
+            {
+               while(m_pthreadCreatingUser != NULL)
+               {
+                  Sleep(84);
+               }
+               if(m_puser != NULL)
+                  return m_puser;
+               return NULL;
+            }
+            keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), NULL, true);
             m_puser = create_current_user();
             if(!m_puser->initialize())
             {

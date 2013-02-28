@@ -11,7 +11,7 @@ namespace fontopus
    public:
 
 
-      bool           m_bIsCreatingUser;
+      ::ca::thread * m_pthreadCreatingUser;
       user *         m_puser;
 
       

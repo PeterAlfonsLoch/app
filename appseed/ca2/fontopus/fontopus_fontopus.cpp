@@ -12,7 +12,7 @@ namespace ca
       fontopus::fontopus()
       {
          m_puser              = NULL;
-         m_bIsCreatingUser    = false;
+         m_pthreadCreatingUser    = false;
       }
 
 
