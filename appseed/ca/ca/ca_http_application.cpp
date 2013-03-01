@@ -77,9 +77,17 @@ namespace ca
          const char * pszVersion,
          e_status * pestatus)
       {
-         if(puser == NULL)
+         if(puser == NULL && !(bool)set["disable_ca2_sessid"])
          {
-            puser = &ApplicationUser;
+            if((bool)set["optional_ca2_sessid"])
+            {
+               if(Application.fontopus().m_puser != NULL)
+                  puser = &ApplicationUser;
+            }
+            else
+            {
+               puser = &ApplicationUser;
+            }
             set["app"] = get_app();
          }
          return System.http().get(pszUrl, str, post, headers, set, pcookies, puser, pszVersion, pestatus);

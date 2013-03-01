@@ -1201,7 +1201,7 @@ retry:
          {
             psocket->m_bOnlyHeaders = true;
          }
-         if(!(bool)set["noclose"])
+         if(set.has_property("noclose") && !(bool)set["noclose"])
          {
             psocket->m_bNoClose = false;
          }

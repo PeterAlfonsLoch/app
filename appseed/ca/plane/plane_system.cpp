@@ -616,7 +616,10 @@ namespace plane
          {
 
             m_ptwf->m_bRun = false;
-            m_ptwf->m_p->m_bRun = false;
+            if(m_ptwf->m_p != NULL)
+            {
+               m_ptwf->m_p->m_bRun = false;
+            }
          }
       }
       catch(...)
@@ -1678,6 +1681,13 @@ namespace plane
       ::ca::library library(NULL);
 
       string strLibrary = m_mapAppLibrary[pszAppId];
+
+      if(strLibrary.is_empty())
+      {
+         
+         throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
+
+      }
 
       ::ca::application * papp = NULL;
 

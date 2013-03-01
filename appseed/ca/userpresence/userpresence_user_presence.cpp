@@ -22,9 +22,11 @@ namespace userpresence
 
    void presence::defer_pulse_user_presence()
    {
-      if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 2))
+
+      int iStatus = m_iShortStatusWayTag;
+      if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 4))
       {
-         m_iShortStatusWayTag = status_online;
+         iStatus = status_online;
       }
       /*else if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 10))
       {
@@ -32,8 +34,13 @@ namespace userpresence
       }*/
       else
       {
-         m_iShortStatusWayTag = status_offline;
+         iStatus = status_offline;
       }
+
+      if(iStatus == m_iShortStatusWayTag && (::get_tick_count() - m_dwLastPulse) <((1984 + 1977) * 2))
+         return;
+
+      m_iShortStatusWayTag = iStatus;
 
       pulse_user_presence();
 
@@ -42,6 +49,8 @@ namespace userpresence
 
    void presence::pulse_user_presence()
    {
+
+      m_dwLastPulse = ::get_tick_count();
 
       if(System.m_strAppName == "netnode" || System.m_strAppName == "simpledbcfg")
          return;

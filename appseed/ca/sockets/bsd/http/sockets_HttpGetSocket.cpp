@@ -41,6 +41,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h)
    {
+      SetConnectTimeout(60 * 5);
    }
 
 
@@ -53,6 +54,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
+      SetConnectTimeout(60 * 5);
    }
 
 
@@ -65,6 +67,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
+      SetConnectTimeout(60 * 5);
       UNREFERENCED_PARAMETER(host);
       UNREFERENCED_PARAMETER(port);
    }

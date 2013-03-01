@@ -324,6 +324,7 @@ namespace plane
    void session::on_request(::ca::create_context * pcreatecontext)
    {
 
+      TRACE("::plane::session::on_request(::ca::create_context *)");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1

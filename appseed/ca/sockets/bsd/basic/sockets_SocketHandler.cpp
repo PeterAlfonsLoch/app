@@ -394,10 +394,10 @@ namespace sockets
                      psocket->OnTimeout();
                   psocket->SetTimeout(0);
                }
-               else
-               {
-                  psocket->OnException();
-               }
+//               else
+  //             {
+    //              psocket->OnException();
+      //         }
             }
             ppair = m_sockets.PGetNextAssoc(ppair);
             n--;

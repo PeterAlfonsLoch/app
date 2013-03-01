@@ -16,6 +16,7 @@ namespace userpresence
 
 
          uint32_t          m_dwLastActivity;
+         uint32_t          m_dwLastPulse;
          int64_t        m_iShortStatusWayTag;
          string         m_strLongStatus;
 
