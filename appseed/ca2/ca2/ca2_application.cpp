@@ -945,6 +945,11 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    {
       ::cubebase::application::request(pcreatecontext);
    }
+    
+   void application::defer_add_document_template(::document_template * ptemplate)
+   {
+      m_puserbase->defer_add_document_template(ptemplate);
+   }
 
 
 } // namespace ca2 + namespace cube + cube2 + cube + ca8

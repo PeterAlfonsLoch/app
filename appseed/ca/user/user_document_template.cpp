@@ -37,6 +37,7 @@ bool document_template::GetDocString(string & rString, enum DocStringIndex i) co
 void document_template::add_document(::user::document_interface * pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
+   Application.defer_add_document_template(this);
    pdocument->m_pdocumentemplate = this;
    pdocument->install_message_handling(pdocument);
 }

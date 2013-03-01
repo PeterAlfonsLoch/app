@@ -122,6 +122,18 @@ namespace userbase
       Application.m_pdocmanager->add_document_template(ptemplate);
    }
 
+
+   void userbase::defer_add_document_template(::document_template * ptemplate)
+   {
+      ::userbase::document_template * puserbasetemplate = dynamic_cast < ::userbase::document_template * > (ptemplate);
+
+      if(puserbasetemplate == NULL)
+         throw "should add user base document template";
+
+      add_document_template(puserbasetemplate);
+
+   }
+
    ::userbase::document* userbase::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);

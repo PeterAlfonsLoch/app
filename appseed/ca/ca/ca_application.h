@@ -655,6 +655,7 @@ namespace ca
 
       lemon::array & lemon_array();
 
+      virtual void defer_add_document_template(::document_template * ptemplate);
 
       // overrides for implementation
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing

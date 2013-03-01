@@ -62,6 +62,8 @@ namespace plane
       ifs *                                                 m_pifs;
       fs::remote_native *                                   m_prfs;
       ::userpresence::userpresence *                        m_puserpresence;
+
+
       
 
 

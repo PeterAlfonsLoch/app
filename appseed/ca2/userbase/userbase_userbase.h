@@ -43,6 +43,9 @@ namespace userbase
 
 
       virtual void _001OnFileNew();
+
+
+      void defer_add_document_template(::document_template * ptemplate);
       
 
    };

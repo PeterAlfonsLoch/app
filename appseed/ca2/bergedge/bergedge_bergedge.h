@@ -82,6 +82,8 @@ namespace bergedge
 
       virtual void on_app_request_bergedge_callback(::ca::application * papp);
 
+      
+
 
       // semantics defined by application
       using platform::application::request;

@@ -5658,6 +5658,13 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       }*/
    }
 
+   void application::defer_add_document_template(::document_template * ptemplate)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
 
 } //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]
 
