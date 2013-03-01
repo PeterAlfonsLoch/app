@@ -51,21 +51,62 @@ bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rec
 
 void simple_scroll_bar::_001OnMouseMove(::ca::signal_object * pobj) 
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
-      if(m_bTracking)
-      {
-         point pt = pmouse->m_pt;
-         ScreenToClient(&pt);
 
-         SetTrackingPos(pt);
-         send_scroll_message(SB_THUMBPOSITION);
-         pmouse->m_bRet = true;
-         pmouse->set_lresult(1);
-      }
-      else
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+
+   point pt = pmouse->m_pt;
+
+   ScreenToClient(&pt);
+
+   if(m_bTracking)
+   {
+
+      SetTrackingPos(pt);
+      send_scroll_message(SB_THUMBPOSITION);
+      pmouse->set_lresult(1);
+      pmouse->m_bRet = true;
+   }
+   else
+   {
+      rect rectTrack;
+      GetTrackRect(rectTrack);
+      rect rectPageA;
+      rect rectClient;
+      GetClientRect(rectClient);
+      GetPageARect(rectClient, rectTrack, rectPageA);
+      rect rectPageB;
+      GetPageBRect(rectClient, rectTrack, rectPageB);
+      pmouse->m_bRet = false;
+      if(rectTrack.contains(pt))
       {
-         pmouse->m_bRet = false;
+         pmouse->m_bRet = true;
       }
+      else if(m_rgnA->contains(pt))
+      {   
+         pmouse->m_bRet = true;
+      }
+      else if(m_rgnB->contains(pt))
+      {
+         pmouse->m_bRet = true;
+      }
+      else if(rectPageA.contains(pt))
+      {
+         pmouse->m_bRet = true;
+      }
+      else if(rectPageB.contains(pt))
+      {
+         pmouse->m_bRet = true;
+      }
+
+   }
+
+   if(pmouse->m_bRet)
+   {
+    
+      pmouse->m_ecursor = ::visual::cursor_arrow;
+
+   }
+
 }
 
 void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj) 
