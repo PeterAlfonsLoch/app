@@ -803,7 +803,7 @@ namespace ca
       string system::locale_schema_matter(::ca::application * papp, const string & strLocale, const string & strSchema)
       {
 
-         single_lock sl(&papp->m_pappThis->m_mutexMatterLocator, true);
+         //single_lock sl(&papp->m_pappThis->m_mutexMatterLocator, true);
 
          return path(papp->m_pappThis->m_strMatterLocator, papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema));
 

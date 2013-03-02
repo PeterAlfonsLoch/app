@@ -525,7 +525,7 @@ namespace user
       ::ca::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
-         Application.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
+         System.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
          pfont = _001GetFontHover();
       }
       else
@@ -553,7 +553,7 @@ namespace user
          else
          {
             COLORREF crTranslucid = RGB(0, 0, 0);
-            Application.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, crTranslucid, 127);
+            System.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, crTranslucid, 127);
          }
       }
 

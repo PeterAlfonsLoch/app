@@ -256,7 +256,7 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
    rectWindow.offset(-rectWindow.top_left());
    if(m_bTransparentBackground)
    {
-      class imaging & imaging = Application.m_visual.imaging();
+      class imaging & imaging = System.visual().imaging();
       if(m_iHover >= -1)
       {
          imaging.color_blend(
@@ -656,7 +656,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
             _001GetItemRect(iItem, rectImage, ElementImage);
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
-               Application.visual().imaging().color_blend(
+               System.visual().imaging().color_blend(
                   pdc,
                   rectItem.left,
                   rectItem.top,
@@ -710,7 +710,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
             {
                rect rect;
                _001GetItemRect(iItem, rect, ElementImageHover);
-               Application.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
+               System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
             }
             else if(uiImage != 0xffffffffu)
             {
@@ -747,7 +747,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
          {
             rect rect;
             _001GetItemRect(iItem, rect, ElementImagePress);
-            Application.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
+            System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
          }
          else if(uiImage != 0xffffffff)
          {
@@ -766,7 +766,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
          {
             rect rect;
             _001GetItemRect(iItem, rect, ElementImage);
-            Application.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
+            System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
          }
          else if(uiImage != 0xffffffff)
          {
@@ -1533,7 +1533,7 @@ void simple_toolbar::_001OnImageListAttrib()
    }
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateDC("DISPLAY", NULL, NULL, NULL);
-   Application.visual().imaging().CreateHueImageList(
+   System.visual().imaging().CreateHueImageList(
    &spgraphics,
    m_pimagelistHue,
    m_pimagelist,
@@ -1544,7 +1544,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistBlend = new image_list();
    }
-   Application.visual().imaging().Createcolor_blend_ImageList(
+   System.visual().imaging().Createcolor_blend_ImageList(
    m_pimagelistBlend,
    m_pimagelist,
    RGB(255, 255, 240),
@@ -1554,7 +1554,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistHueLight = new image_list();
    }
-   Application.visual().imaging().CreateHueImageList(
+   System.visual().imaging().CreateHueImageList(
    &spgraphics,
    m_pimagelistHueLight,
    m_pimagelist,

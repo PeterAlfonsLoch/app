@@ -193,7 +193,7 @@ namespace userbase
       rect rectClient;
       GetClientRect(rectClient);
 
-      class imaging & imaging = Application.m_visual.imaging();
+      class imaging & imaging = System.visual().imaging();
 
       imaging.color_blend(
          pdc,

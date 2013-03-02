@@ -29,6 +29,8 @@ namespace plane
       m_puserpresence            = new ::userpresence::userpresence();
 
 
+      m_ecursorDefault  = ::visual::cursor_arrow;
+      m_ecursor         = ::visual::cursor_default;
       
 
    }
@@ -1160,6 +1162,39 @@ namespace plane
       return 0;
 #endif
 
+   }
+
+   ::visual::cursor * session::get_cursor()
+   {
+      if(m_ecursor == ::visual::cursor_none)
+         return NULL;
+      else if(m_ecursor == ::visual::cursor_default)
+         return System.visual().get_cursor(m_ecursorDefault);
+      else
+         return System.visual().get_cursor(m_ecursor);
+   }
+
+
+   void session::set_cursor(::visual::e_cursor ecursor)
+   {
+      m_ecursor = ecursor;
+   }
+
+   ::visual::cursor * session::get_default_cursor()
+   {
+      return System.visual().get_cursor(m_ecursorDefault);
+   }
+
+   void session::set_default_cursor(::visual::e_cursor ecursor)
+   {
+      if(ecursor == ::visual::cursor_default)
+      {
+         m_ecursorDefault = ::visual::cursor_arrow;
+      }
+      else
+      {
+         m_ecursorDefault = ecursor;
+      }
    }
 
 

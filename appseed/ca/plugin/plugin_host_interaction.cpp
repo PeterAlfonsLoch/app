@@ -125,7 +125,7 @@ namespace plugin
       point ptCursor;
       Session.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
-      ::visual::cursor * pcursor = Session.m_visual.get_cursor();
+      ::visual::cursor * pcursor = Session.get_cursor();
       if(pcursor != NULL)
       {
          pcursor->to(pdc, ptCursor); 

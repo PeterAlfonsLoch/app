@@ -24,6 +24,7 @@ namespace user
       m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
 
       m_pui                   = this;
+      m_psession              = NULL;
 
    }
 
@@ -48,6 +49,7 @@ namespace user
       m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
 
       m_pui                         = this;
+      m_psession                    = NULL;
 
    }
 
@@ -593,7 +595,7 @@ namespace user
          point ptCursor;
          Session.get_cursor_pos(&ptCursor);
          ScreenToClient(&ptCursor);
-         ::visual::cursor * pcursor = Session.visual().get_cursor();
+         ::visual::cursor * pcursor = Session.get_cursor();
          if(pcursor != NULL)
          {
             pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
@@ -640,7 +642,7 @@ namespace user
       }
       else if(_001IsTranslucent())
       {
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
          imaging.color_blend(pdc, rectClient, get_background_color() & 0xffffff, (get_background_color() >> 24) & 0xff);
       }
       else

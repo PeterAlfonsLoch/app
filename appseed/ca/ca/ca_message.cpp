@@ -262,8 +262,8 @@ namespace ca
 #endif
 
       dispatch::dispatch() :
-         m_evOk(NULL),
-         m_mutex(NULL)
+         m_pevOk(NULL),
+         m_pmutex(NULL)
       {
          m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
       }
@@ -271,7 +271,7 @@ namespace ca
       void dispatch::_user_message_handler(::ca::signal_object * pobj)
       {
 
-         m_evOk.wait();
+         dispatch_event_ok()->wait();
 
          SignalPtrArray signalptra;
          SCAST_PTR(::ca::message::base, pbase, pobj);
@@ -662,7 +662,7 @@ namespace ca
          {
             if(m_ecursor != ::visual::cursor_unmodified && m_papp != NULL && m_papp->m_psession != NULL)
             {
-               Application.m_visual.set_cursor(m_ecursor);
+               Session.set_cursor(m_ecursor);
             }
          }
          catch(...)
@@ -862,14 +862,14 @@ namespace ca
 
       void dispatch::_start_user_message_handler(::ca::signal_object * pobj)
       {
-         single_lock sl(&m_mutex, true);
+         single_lock sl(dispatch_mutex(), true);
          _on_start_user_message_handler();
          install_message_handling(this);
          if(get_app() == NULL)
          {
             set_app(calc_app());
          }
-         m_evOk.SetEvent();
+         dispatch_event_ok()->SetEvent();
          sl.unlock();
          return _user_message_handler(pobj);
       }

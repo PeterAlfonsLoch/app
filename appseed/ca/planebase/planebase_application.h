@@ -27,7 +27,6 @@ namespace planebase
       ::fontopus::fontopus              * m_pfontopus;
       ::html::html                      * m_phtml;
       ::simpledb::simpledb                m_simpledb;
-      ::visual::visual                    m_visual;
 
 
       application();
@@ -76,7 +75,6 @@ namespace planebase
       inline class ::fontopus::fontopus         & fontopus()   { return *m_pfontopus   ; }
       inline class ::html::html                 & html()       { return *m_phtml       ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
-      inline class ::visual::visual             & visual()     { return m_visual       ; }
 
       
       virtual bool process_initialize();

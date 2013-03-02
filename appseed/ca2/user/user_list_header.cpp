@@ -527,7 +527,7 @@ namespace user
 
       rectUpdate.intersect(rectUpdate, rectClipBox);
 
-      class imaging & imaging = Application.m_visual.imaging();
+      class imaging & imaging = System.visual().imaging();
 
       imaging.color_blend(pdc, rectUpdate, RGB(127, 127, 117), 128);
 

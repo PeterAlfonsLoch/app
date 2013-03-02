@@ -481,7 +481,7 @@ namespace userbase
 
    void tab_drop_target_window::_001OnDraw(::ca::graphics * pdc)
    {
-      class imaging & imaging = Application.m_visual.imaging();
+      class imaging & imaging = System.visual().imaging();
 
       COLORREF crBorder = RGB(127, 127, 80);
       COLORREF crBorderSel = RGB(40, 40, 20);

@@ -248,6 +248,8 @@ namespace plane
    bool system::initialize()
    {
 
+      if(!m_visual.initialize())
+         return false;
 
       int32_t error = FT_Init_FreeType( &m_ftlibrary );
       if ( error )
@@ -272,7 +274,7 @@ namespace plane
       if(m_pparserfactory == NULL)
       {
 
-         m_pparserfactory = new colorertake5::ParserFactory(this);
+         
 
       }
 
@@ -289,6 +291,12 @@ namespace plane
 
    bool system::initialize1()
    {
+
+      m_visual.construct(this);
+
+      if(!m_visual.initialize1())
+         return false;
+
 
 
       m_spfilehandler(new ::filehandler::handler(this));
@@ -339,6 +347,7 @@ namespace plane
       }
 #endif
 
+
       return true;
 
    }
@@ -379,6 +388,13 @@ namespace plane
    colorertake5::ParserFactory & system::parser_factory()
    {
 
+      if(m_pparserfactory == NULL)
+      {
+
+         m_pparserfactory = new colorertake5::ParserFactory(this);
+
+      }
+         
       return *m_pparserfactory;
 
    }

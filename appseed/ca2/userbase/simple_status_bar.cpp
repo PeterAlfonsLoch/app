@@ -37,7 +37,7 @@ void simple_status_bar::_001OnDraw(::ca::graphics *pdc)
 
    GetClientRect(rectClient);
 
-   class imaging & imaging = Application.m_visual.imaging();
+   class imaging & imaging = System.visual().imaging();
 #ifdef WINDOWSEX
    imaging.color_blend(
       pdc,

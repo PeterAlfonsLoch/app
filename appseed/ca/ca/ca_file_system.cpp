@@ -1069,8 +1069,8 @@ namespace ca
 
          }
 
-         //if(!papp->m_psystem->dir().name_is(strPath, papp))
-           // return false;
+         if(!papp->m_psystem->dir().name_is(strPath, papp))
+            return false;
 
 #ifdef WINDOWS
 

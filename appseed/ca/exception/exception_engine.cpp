@@ -662,6 +662,12 @@ retry_get_base:
    bool engine::init()
    {
 
+      if(!::file_exists_dup("C:\\ca2\\exception_engine.txt"))
+      {
+         return false;
+      }
+
+
       single_lock sl(m_pmutex, true);
 
       if (!m_iRef)
@@ -746,6 +752,11 @@ retry_get_base:
 
    void engine::reset()
    {
+
+      if(!::file_exists_dup("C:\\ca2\\exception_engine.txt"))
+      {
+         return;
+      }
 
       single_lock sl(m_pmutex, true);
 

@@ -276,8 +276,8 @@ namespace ca
          int32_t                  m_iHandling;
          SignalArray          m_signala;
          ::ca::signal          m_signalInstallMessageHandling;
-         manual_reset_event   m_evOk;
-         mutex                m_mutex;
+         manual_reset_event *   m_pevOk;
+         mutex            *    m_pmutex;
 
          virtual void _start_user_message_handler(::ca::signal_object * pobj);
 
@@ -290,6 +290,10 @@ namespace ca
          virtual bool igui_RelayEvent(LPMESSAGE lpmsg);
 #endif
          virtual bool OnWndMsgPosCreate();
+
+
+         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != NULL) return m_pevOk; m_pevOk = new manual_reset_event(NULL); return m_pevOk; }
+         inline mutex * dispatch_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(NULL); return m_pmutex; }
       };
 
 #undef new

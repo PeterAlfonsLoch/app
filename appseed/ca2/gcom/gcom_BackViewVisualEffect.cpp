@@ -37,7 +37,7 @@ namespace gcom
 
          tool1.cx = tool1.rectClient.width();
          tool1.cy = tool1.rectClient.height();
-//         class imaging & imaging = Application.m_visual.imaging();
+//         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -154,7 +154,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
 //         int32_t cx = rectClient.width();
 //         int32_t cy = rectClient.height();
-//         class imaging & imaging = Application.m_visual.imaging();
+//         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -281,7 +281,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -413,7 +413,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -551,7 +551,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -756,7 +756,7 @@ namespace gcom
 
          int32_t cx = rectClient.width();
          int32_t cy = rectClient.height();
-//         class imaging & imaging = Application.m_visual.imaging();
+//         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -1095,7 +1095,7 @@ namespace gcom
 
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
@@ -1318,7 +1318,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-//         class imaging & imaging = Application.m_visual.imaging();
+//         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -1669,7 +1669,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -2083,7 +2083,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -2590,7 +2590,7 @@ namespace gcom
          if(transitioneffect.m_tool001.m_iStep >= iReturnPoint * 2)
          {
 
-            Application.visual().imaging().bitmap_blend(
+            System.visual().imaging().bitmap_blend(
                pdib4->get_graphics(),
                null_point(), pdib1->size(),
                pdib3->get_graphics(),
@@ -2664,7 +2664,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -2890,7 +2890,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -3858,7 +3858,7 @@ namespace gcom
 
          //pdib2->channel_multiply(::visual::rgba::channel_alpha, 50.0 / 255.0);
 
-         Application.visual().imaging().bitmap_blend(
+         System.visual().imaging().bitmap_blend(
             pdib1->get_graphics(),
             null_point(), size(cx1, cy1),
             pdib3->get_graphics(),
@@ -3910,7 +3910,7 @@ namespace gcom
 
          pdib4->get_graphics()->from(pdib1->size(), pdib3->get_graphics(), SRCCOPY);
 
-         Application.visual().imaging().bitmap_blend(
+         System.visual().imaging().bitmap_blend(
             pdib4->get_graphics(),
             null_point(), pdib1->size(),
             pdib1->get_graphics(),
@@ -4019,7 +4019,7 @@ namespace gcom
          GdiFlush();
 #endif
 
-         /*Application.visual().imaging().bitmap_blend(
+         /*System.visual().imaging().bitmap_blend(
             pdib4->get_graphics(),
             0, 0, cx1, cy1,
             pdib1->get_graphics(),
@@ -4093,7 +4093,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -4551,7 +4551,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -5027,7 +5027,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -5257,7 +5257,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
@@ -5829,7 +5829,7 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
 
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();

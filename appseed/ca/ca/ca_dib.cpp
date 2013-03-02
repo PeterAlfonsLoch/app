@@ -686,7 +686,7 @@ fill_last:
    {
       rect rect(lprect);
 
-      return Application.visual().imaging().bitmap_blend(
+      return System.visual().imaging().bitmap_blend(
          pgraphics,
          rect.top_left(),
          rect.size(),

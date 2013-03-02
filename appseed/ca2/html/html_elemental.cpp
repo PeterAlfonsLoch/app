@@ -229,7 +229,7 @@ namespace html
             {
                if(m_pelemental->get_background_color(cr))
                {
-                  App(pdata->get_app()).visual().imaging().color_blend(
+                  Sys(pdata->get_app()).visual().imaging().color_blend(
                      pdata->m_pdc,
                      &rect,
                      cr,

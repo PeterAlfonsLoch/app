@@ -690,7 +690,7 @@ void view::defer_draw_view(::ca::graphics * pdc)
    for(index i = 0; i < spadata.get_count(); i++)
    {
 
-      sync.add(&spadata[i]->m_mutex);
+      sync.add(spadata[i]->data_mutex());
 
    }
 

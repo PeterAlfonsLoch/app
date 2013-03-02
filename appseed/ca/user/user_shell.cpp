@@ -566,7 +566,7 @@ namespace filemanager
             iFlags);
          iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
          m_pil48Hover->add_icon_os_data(shfi16.hIcon);
-         Application.visual().imaging().Createcolor_blend_ImageList(
+         System.visual().imaging().Createcolor_blend_ImageList(
             m_pil48,
             m_pil48Hover,
             RGB(255, 255, 240),
@@ -822,7 +822,7 @@ namespace filemanager
             {
                m_pil48Hover->add_icon_os_data(shfi48.hIcon);
             }
-            Application.visual().imaging().Createcolor_blend_ImageList(
+            System.visual().imaging().Createcolor_blend_ImageList(
                m_pil48,
                m_pil48Hover,
                RGB(255, 255, 240),
@@ -871,7 +871,7 @@ namespace filemanager
                      {
                         m_pil48Hover->add_icon_os_data(hicon48);
                      }
-                     Application.visual().imaging().Createcolor_blend_ImageList(
+                     System.visual().imaging().Createcolor_blend_ImageList(
                         m_pil48,
                         m_pil48Hover,
                         RGB(255, 255, 240),
@@ -929,7 +929,7 @@ namespace filemanager
                      {
                         m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                      }
-                     Application.visual().imaging().Createcolor_blend_ImageList(
+                     System.visual().imaging().Createcolor_blend_ImageList(
                         m_pil48,
                         m_pil48Hover,
                         RGB(255, 255, 240),
@@ -989,7 +989,7 @@ namespace filemanager
                   {
                      m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                   }
-                  Application.visual().imaging().Createcolor_blend_ImageList(
+                  System.visual().imaging().Createcolor_blend_ImageList(
                      m_pil48,
                      m_pil48Hover,
                      RGB(255, 255, 240),
@@ -1120,7 +1120,7 @@ namespace filemanager
             }
             iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
             m_pil48Hover->add_icon_os_data(shfi48.hIcon);
-            Application.visual().imaging().Createcolor_blend_ImageList(
+            System.visual().imaging().Createcolor_blend_ImageList(
                m_pil48,
                m_pil48Hover,
                RGB(255, 255, 240),
@@ -1475,7 +1475,7 @@ namespace filemanager
             HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
-            Application.visual().imaging().Createcolor_blend_ImageList(
+            System.visual().imaging().Createcolor_blend_ImageList(
                m_pil48,
                m_pil48Hover,
                RGB(255, 255, 240),

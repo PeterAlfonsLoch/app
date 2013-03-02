@@ -219,7 +219,7 @@ namespace user
       }
       else if(_001IsTranslucent())
       {
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
          imaging.color_blend(
             pdc,
             rectClient,
@@ -235,7 +235,7 @@ namespace user
       {
 
          pdc->blur(true, 4, rectClient);
-         //class imaging & imaging = Application.m_visual.imaging();
+         //class imaging & imaging = System.visual().imaging();
          //rect rectClient;
 //         GetWindowRect(rectClient);
   //       rectClient.offset(rectClient.top_left());
@@ -267,7 +267,7 @@ namespace user
       /*}
       else
       {
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
          //_001DrawBackground(pdc, rectClipBox);
          imaging.color_blend(
             pdc,

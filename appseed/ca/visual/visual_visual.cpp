@@ -38,8 +38,6 @@ namespace visual
    {
       m_pimaging        = NULL;
       m_pfontcentral    = NULL;
-      m_ecursorDefault  = cursor_arrow;
-      m_ecursor         = cursor_default;
       m_pvisualapi      = NULL;
    }
 
@@ -126,9 +124,22 @@ namespace visual
       if(!::ca::section::initialize())
          return false;
 
-      set_cursor_set_from_matter("cursor/antialiased-classic");
+      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::ca::thread_priority_highest);
+
+      
 
       return true;
+
+   }
+
+   uint32_t c_cdecl visual::thread_proc_parallel_initialize(void * pparamThis)
+   {
+      
+      visual * pvisual = (visual *) pparamThis;
+
+      pvisual->set_cursor_set_from_matter("cursor/antialiased-classic");
+
+      return 0;
 
    }
 
@@ -215,47 +226,6 @@ namespace visual
    }
 
 
-   cursor * visual::get_cursor()
-   {
-      if(m_ecursor == cursor_none)
-         return NULL;
-      else if(m_ecursor == cursor_default)
-         return get_cursor(m_ecursorDefault);
-      else
-         return get_cursor(m_ecursor);
-   }
-
-   void visual::set_cursor(e_cursor ecursor)
-   {
-      m_ecursor = ecursor;
-      try
-      {
-         if(m_papp->m_psession != NULL)
-         {
-            m_papp->m_psession->visual().m_ecursor = ecursor;
-         }
-      }
-      catch(...)
-      {
-      }
-   }
-
-   cursor * visual::get_default_cursor()
-   {
-      return get_cursor(m_ecursorDefault);
-   }
-
-   void visual::set_default_cursor(e_cursor ecursor)
-   {
-      if(ecursor == cursor_default)
-      {
-         m_ecursorDefault = cursor_arrow;
-      }
-      else
-      {
-         m_ecursorDefault = ecursor;
-      }
-   }
 
    count visual::set_cursor_set_from_matter(const char * pszMatter)
    {

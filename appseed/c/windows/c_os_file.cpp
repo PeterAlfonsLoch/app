@@ -98,13 +98,25 @@ bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT n
 bool file_exists_dup(const char * path1)
 {
 
-   vsstring str(path1);
+   wstring wstr;
 
-   str.replace("/", "\\");
+   wstr.alloc(strlen_dup(path1) + 256);
 
-   wstring wstr(L"\\\\?\\");
+   wcscat(wstr, L"\\\\?\\");
+   
+   utf8_to_16((wchar_t *) wstr + wcslen(wstr), path1);
+   
+   wstr.set_length(wcslen(wstr));
 
-   wstr = wstr + wstring(str);
+   wchar_t * pwsz = (wchar_t *) wstr;
+   while(*pwsz != L'\0')
+   {
+      if(*pwsz == '/')
+      {
+         *pwsz = '\\';
+      }
+      pwsz++;
+   }
 
    uint32_t dwFileAttributes = ::GetFileAttributesW(wstr);
 

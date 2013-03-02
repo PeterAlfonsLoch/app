@@ -1002,9 +1002,6 @@ exit_application:
       if(!m_simpledb.initialize())
          return false;
 
-      if(!m_visual.initialize())
-         return false;
-
       if(!m_puser->initialize())
          return false;
 
@@ -1190,11 +1187,6 @@ exit_application:
       }
 
       if(!::ca::application::initialize1())
-         return false;
-
-      m_visual.construct(this);
-
-      if(!m_visual.initialize1())
          return false;
 
       if(!m_puser->initialize1())

@@ -39,7 +39,7 @@ namespace ca
 
    data::data(::ca::application * papp) :
       ca(papp),
-      m_mutex(papp)
+      m_pmutex(NULL)
    {
    }
 

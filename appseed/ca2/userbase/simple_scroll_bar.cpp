@@ -828,7 +828,7 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
    }
    else
    {
-      class imaging & imaging = Application.m_visual.imaging();
+      class imaging & imaging = System.visual().imaging();
       imaging.color_blend(
          pdc,
          rectClient.left, rectClient.top,

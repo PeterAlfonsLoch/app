@@ -335,6 +335,9 @@ namespace plane
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
 #endif
 
+            ::visual::visual                    m_visual;
+
+
       system(::ca::application * papp = NULL);
       virtual ~system();
 
@@ -453,6 +456,8 @@ namespace plane
       ::colorertake5::ParserFactory    & parser_factory();
 
       static ::exception::engine       & eengine();
+            inline class ::visual::visual             & visual()     { return m_visual       ; }
+
 
       virtual void on_delete(::ca::ca * pca);
 

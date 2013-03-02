@@ -65,6 +65,8 @@ namespace plane
 
 
       
+      ::visual::e_cursor m_ecursor;
+      ::visual::e_cursor m_ecursorDefault;
 
 
       session();
@@ -98,6 +100,12 @@ namespace plane
       void initialize_bergedge_application_interface();
 
       virtual bool create_bergedge(::ca::create_context * pcreatecontext);
+
+      virtual ::visual::cursor * get_cursor();
+      virtual void set_cursor(::visual::e_cursor ecursor);
+      virtual void set_default_cursor(::visual::e_cursor ecursor);
+      virtual ::visual::cursor * get_default_cursor();
+
 
 
       // semantics defined by application

@@ -99,7 +99,7 @@ namespace gcom
 
          string str;
 
-         if(!Application.visual().imaging().LoadImageSync(m_spdib, lpcwszImagePath, get_app()))
+         if(!System.visual().imaging().LoadImageSync(m_spdib, lpcwszImagePath, get_app()))
             return false;
 
          TRACE("ImageChange::OnLoadImageSynch lpcwszImagePath.lock\n");

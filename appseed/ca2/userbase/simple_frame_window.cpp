@@ -893,7 +893,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
    #ifndef LINUX
    if(m_bblur_Background)
    {
-      class imaging & imaging = Application.m_visual.imaging();
+      class imaging & imaging = System.visual().imaging();
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());

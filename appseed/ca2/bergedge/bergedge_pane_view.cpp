@@ -592,7 +592,7 @@ namespace bergedge
 
          ::ca::client_graphics pdc(this);
 
-         pfi = Application.visual().imaging().LoadImageFile(strWallpaper);
+         pfi = System.visual().imaging().LoadImageFile(strWallpaper);
 
          m_dibBk.From((HDC)pdc->get_os_data(), pfi, true);
 

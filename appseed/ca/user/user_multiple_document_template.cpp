@@ -11,7 +11,6 @@ multiple_document_template::multiple_document_template(
 
    m_nUntitledCount = 0;   // start at 1
 
-   load_template();
 }
 
 void multiple_document_template::load_template()

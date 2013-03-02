@@ -88,7 +88,7 @@ namespace visual
 
    bool dib_sp::read_from_file(::ca::file * pfile)
    {
-      FIBITMAP * pfi = Application.visual().imaging().LoadImageFile(pfile);
+      FIBITMAP * pfi = System.visual().imaging().LoadImageFile(pfile);
       if(pfi == NULL)
          return false;
       ::ca::graphics_sp spgraphics(get_app());
@@ -146,7 +146,7 @@ namespace visual
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
-      FIBITMAP * pfi7 = Application.visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
+      FIBITMAP * pfi7 = System.visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
       FIBITMAP * pfi8 = NULL;
       bool bConv;
       if(b8)

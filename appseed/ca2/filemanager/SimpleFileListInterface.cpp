@@ -836,7 +836,7 @@ namespace filemanager
          // Animation Drawing
          rect rectClipBox;
          pdc->GetClipBox(rectClipBox);
-         class imaging & imaging = Application.m_visual.imaging();
+         class imaging & imaging = System.visual().imaging();
    //      ::user::list::_001DrawBackground(pdc, rectClipBox);
          imaging.color_blend(
             pdc,

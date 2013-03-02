@@ -27,14 +27,14 @@ bool FileManagerFileListCallback::initialize()
 
    m_pimagelistSubItemHover->add_matter("filemanager/execute_16.png");
 
-   Application.visual().imaging().CreateHueImageList(
+   System.visual().imaging().CreateHueImageList(
       spgraphics,
       m_pimagelistNormal,
       m_pimagelistSubItemHover,
       RGB(220, 220, 215),
       0.50);
 
-   Application.visual().imaging().Createcolor_blend_ImageList(
+   System.visual().imaging().Createcolor_blend_ImageList(
       m_pimagelistItemHover,
       m_pimagelistSubItemHover,
       RGB(220, 220, 215),
