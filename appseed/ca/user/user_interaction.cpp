@@ -503,6 +503,16 @@ namespace user
          {
             set_view_port_org(pgraphics);
             pgraphics->m_dFontFactor = 1.0;
+            try
+            {
+               if(GetFont() != NULL)
+               {
+                  pgraphics->selectFont(GetFont());
+               }
+            }
+            catch(...)
+            {
+            }
             m_pguie->_001OnDraw(pgraphics);
          }
          catch(...)
@@ -663,6 +673,15 @@ namespace user
          System.add_frame(this);
 
       }
+
+      if(GetFont() != NULL)
+      {
+         GetFont()->m_dFontSize = 12.0;
+         GetFont()->m_eunitFontSize = ::ca::unit_point;
+         GetFont()->m_strFontFamilyName = "Times New Roman";
+      }
+
+
 
    }
 
