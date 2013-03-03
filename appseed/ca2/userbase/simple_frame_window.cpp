@@ -242,6 +242,18 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
 }
 
+uint32_t simple_frame_window_save_window_rect(void * pvoidParam)
+{
+   
+   simple_frame_window * pframe = (simple_frame_window *) pvoidParam;
+
+   pframe->WindowDataSaveWindowRect();
+
+   return 0;
+
+}
+
+
 void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
@@ -254,10 +266,11 @@ void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
 
    if(dynamic_cast < simple_child_frame * > (this) == NULL)
    {
-      WindowDataSaveWindowRect();
+      __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
    }
 
 }
+
 
 void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 {
@@ -271,7 +284,8 @@ void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 
    if(dynamic_cast < simple_child_frame * > (this) == NULL)
    {
-      WindowDataSaveWindowRect();
+      __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
+      
    }
 
 }

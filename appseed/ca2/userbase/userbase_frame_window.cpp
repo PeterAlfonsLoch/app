@@ -263,9 +263,6 @@ namespace userbase
    void frame_window::_001OnSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::size, psize, pobj)
-   //   ::user::interaction::OnSize(nType, cx, cy);    // important for MDI Children
-      if (psize->m_nType != SIZE_MINIMIZED)
-         layout();
    }
 
 
