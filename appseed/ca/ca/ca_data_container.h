@@ -69,9 +69,9 @@ namespace ca
             if(pderived != NULL)
             {
 
-               retry_single_lock rsl1(pderived->mutex_data(), millis(1), millis(1));
+               retry_single_lock rsl1(pderived->data_mutex(), millis(1), millis(1));
 
-               retry_single_lock rsl2(pdata->mutex_data(), millis(1), millis(1));
+               retry_single_lock rsl2(pdata->data_mutex(), millis(1), millis(1));
 
                m_spadata[i] = pdata;
 
