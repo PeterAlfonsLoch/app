@@ -23,7 +23,7 @@ namespace userpresence
    void presence::defer_pulse_user_presence()
    {
 
-      int iStatus = m_iShortStatusWayTag;
+      int iStatus = (int) m_iShortStatusWayTag;
       if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 4))
       {
          iStatus = status_online;
