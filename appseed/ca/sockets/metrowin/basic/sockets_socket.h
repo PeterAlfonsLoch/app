@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace sockets
 {
 
@@ -12,7 +13,7 @@ namespace sockets
    /** socket base class.
    \ingroup basic */
    class CLASS_DECL_ca socket :
-      virtual public ::radix::object
+      virtual public ::ca::object
    {
    public:
 
@@ -27,7 +28,7 @@ namespace sockets
       /** Detached socket run thread.
       \ingroup internal */
       class CLASS_DECL_ca socket_thread :
-         virtual public ::radix::thread
+         virtual public ::ca::thread
       {
       public:
          socket_thread(socket * psocket);
@@ -65,7 +66,7 @@ namespace sockets
 
       SOCKET                  m_socket; ///< File descriptor
       socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
-      gen::memory_file        m_memfileInput;
+      ::primitive::memory_file        m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       callback *              m_pcallback;
@@ -82,7 +83,7 @@ namespace sockets
       bool                    m_bClose; ///< close and delete flag
       socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
-      ex1::file *             m_pfileTrafficMonitor;
+      ::ca::file *             m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -181,7 +182,7 @@ namespace sockets
       * needs to be used for the socket class. Note: the socket class still needs
       * the "default" constructor with one socket_handler_base& as input parameter.
       */
-      using ::ex1::request_interface::create;
+      using ::ca::request_interface::create;
       virtual socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the socket.
@@ -256,7 +257,7 @@ namespace sockets
       time_t Uptime();
 
       /** Set address/port of last connect() call. */
-      void SetClientRemoteAddress(sockets::address&);
+      void SetClientRemoteAddress(::sockets::address&);
 
       /** get address/port of last connect() call. */
       address GetClientRemoteAddress();
@@ -282,7 +283,7 @@ namespace sockets
       bool Timeout(time_t tnow);
 
       /** Used by listen_socket. ipv4 and ipv6 */
-      void SetRemoteHostname(sockets::address&);
+      void SetRemoteHostname(::sockets::address&);
 
       /** \name Event callbacks */
       //@{
@@ -683,9 +684,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(ex1::file *p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(::ca::file *p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ex1::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      ::ca::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

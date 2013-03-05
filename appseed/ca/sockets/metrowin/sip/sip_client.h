@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_ca sip_client :
-      virtual public ::radix::object
+      virtual public ::ca::object
    {
    public:
 

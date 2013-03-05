@@ -4,9 +4,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{590d902e-c2d9-46ef-b4d3-c40dcc374be5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\calculator">
-      <UniqueIdentifier>{6a8287b8-6218-40c4-848e-07a11234b73b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filemanager">
       <UniqueIdentifier>{2c1a3585-c9aa-4928-9ec7-5d26b2ba3fb9}</UniqueIdentifier>
     </Filter>
@@ -76,23 +73,11 @@
     <Filter Include="Header Files\fontopus">
       <UniqueIdentifier>{6db797d7-62ae-4667-a675-7649794e30fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\cube8">
-      <UniqueIdentifier>{7d69465c-7a82-4d6c-9c0d-3ac6c83759b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\cube5">
-      <UniqueIdentifier>{5bfba4cf-269c-429a-8abb-865f47fc532f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\command">
-      <UniqueIdentifier>{b9196ade-0b24-4f5b-983e-2bf6b9cdfc40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\cube">
       <UniqueIdentifier>{8880555e-b23e-4f48-ac4b-48680edd7f85}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\userpresence">
       <UniqueIdentifier>{ec1b965b-b0a0-4cdc-88f9-2cc1d602c607}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filehandler">
-      <UniqueIdentifier>{cf51db3c-cf77-4477-86fe-77d9cc0c90be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\cubebase">
       <UniqueIdentifier>{3aacd7d9-11ae-4123-8ed4-ec7c4db63618}</UniqueIdentifier>
@@ -105,9 +90,6 @@
     </Filter>
     <Filter Include="Header Files\uinteraction\frame">
       <UniqueIdentifier>{f97cdd55-fde4-42a5-bfcd-39056e435b7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\userstack">
-      <UniqueIdentifier>{37f43a07-e2a6-48bf-b142-5d17ed80aabf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{1218db47-76cf-4bf1-ae67-0dbb5df9e2aa}</UniqueIdentifier>
@@ -130,9 +112,6 @@
     <Filter Include="Source Files\filemanager">
       <UniqueIdentifier>{1f326698-dbf9-45b9-a0f1-6f2ad3a864f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\calculator">
-      <UniqueIdentifier>{b42a7670-cee1-4ee8-8fe3-6f4913bf0dc7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\gcom">
       <UniqueIdentifier>{ea707dc5-31f1-421e-9a54-53abf9663fd4}</UniqueIdentifier>
     </Filter>
@@ -151,29 +130,14 @@
     <Filter Include="Source Files\fontopus">
       <UniqueIdentifier>{66cce3dc-c374-4674-a166-3f63f721e1a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ca8">
-      <UniqueIdentifier>{d889439d-1a67-4369-b8c3-5e3db6454388}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cube8">
-      <UniqueIdentifier>{ffc8e119-d470-417d-9d6b-3dffde6404d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cube5">
-      <UniqueIdentifier>{e01da940-2e68-457d-a25b-e834c88cbf74}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\cube">
       <UniqueIdentifier>{f7381cb4-aaac-458c-8cae-2ebc9e4b7c0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filehandler">
-      <UniqueIdentifier>{02a14005-6322-425f-bb33-11a357d36d18}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\cubebase">
       <UniqueIdentifier>{ff341d6a-72d8-4d85-af70-cf437d429ec8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\fs">
       <UniqueIdentifier>{b92a2cc1-5859-44a9-945a-1fc467007731}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\command">
-      <UniqueIdentifier>{4907806f-090e-417b-b438-0b60620bca2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\uinteraction">
       <UniqueIdentifier>{3581437e-b828-4da5-ad43-a0f30a695b29}</UniqueIdentifier>
@@ -183,9 +147,6 @@
     </Filter>
     <Filter Include="Source Files\stack">
       <UniqueIdentifier>{c4f61ed8-b388-4c76-807a-fce57969332e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\userstack">
-      <UniqueIdentifier>{8fc8f338-ac22-44c4-a0da-9abab5daa132}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\userhtml">
       <UniqueIdentifier>{6b9a1cbc-49ce-4bcd-bb77-dd7c91a5281d}</UniqueIdentifier>
@@ -199,6 +160,12 @@
     <Filter Include="Source Files\hi5\net">
       <UniqueIdentifier>{d868715f-da08-494a-93de-29a41edd75bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{d889439d-1a67-4369-b8c3-5e3db6454388}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2">
+      <UniqueIdentifier>{7ca9f0fe-a5ff-4fa3-822c-6595288fd20f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -211,9 +178,6 @@
       <Filter>Source Files\mail</Filter>
     </ClCompile>
     <ClCompile Include="mail\mail_account.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_application.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
     <ClCompile Include="mail\mail_db_pop3.cpp">
@@ -307,9 +271,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="userex\userbase_mini_dock_frame_window.cpp">
-      <Filter>Source Files\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="userex\userex_application.cpp">
       <Filter>Source Files\userex</Filter>
     </ClCompile>
     <ClCompile Include="userex\userex_dialog.cpp">
@@ -430,9 +391,6 @@
       <Filter>Source Files\userbase</Filter>
     </ClCompile>
     <ClCompile Include="userbase\simple_toolbar.cpp">
-      <Filter>Source Files\userbase</Filter>
-    </ClCompile>
-    <ClCompile Include="userbase\userbase_application.cpp">
       <Filter>Source Files\userbase</Filter>
     </ClCompile>
     <ClCompile Include="userbase\userbase_base_bitmap_buttonex.cpp">
@@ -711,18 +669,6 @@
     <ClCompile Include="filemanager\SimplePreviewInterface.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_application.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\calculator_document.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\calculator_frame.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\calculator_view.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="gcom\gcom_BackView.cpp">
       <Filter>Source Files\gcom</Filter>
     </ClCompile>
@@ -840,30 +786,6 @@
     <ClCompile Include="fontopus\fontopus_validate.cpp">
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="fontopus\fontopus_application.cpp">
-      <Filter>Source Files\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="ca8\ca8_application.cpp">
-      <Filter>Source Files\ca8</Filter>
-    </ClCompile>
-    <ClCompile Include="ca8\ca8_keyboard_layout.cpp">
-      <Filter>Source Files\ca8</Filter>
-    </ClCompile>
-    <ClCompile Include="ca8\ca8_message_box.cpp">
-      <Filter>Source Files\ca8</Filter>
-    </ClCompile>
-    <ClCompile Include="ca8\ca8_network_configuration.cpp">
-      <Filter>Source Files\ca8</Filter>
-    </ClCompile>
-    <ClCompile Include="ca8\ca8_wait_message_dialog.cpp">
-      <Filter>Source Files\ca8</Filter>
-    </ClCompile>
-    <ClCompile Include="cube8\cube8_application.cpp">
-      <Filter>Source Files\cube8</Filter>
-    </ClCompile>
-    <ClCompile Include="cube5\cube5_application.cpp">
-      <Filter>Source Files\cube5</Filter>
-    </ClCompile>
     <ClCompile Include="cube\cube_application.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
@@ -873,29 +795,8 @@
     <ClCompile Include="cube\cube_library.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_application.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\filehandler_document.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\filehandler_frame.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\filehandler_pane_view_update_hint.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\filehandler_view.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
     <ClCompile Include="cubebase\cubebase_application.cpp">
       <Filter>Source Files\cubebase</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_application.cpp">
-      <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="fs\fs_document.cpp">
       <Filter>Source Files\fs</Filter>
@@ -929,33 +830,6 @@
     </ClCompile>
     <ClCompile Include="fs\fs_tree_item.cpp">
       <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_application.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_document.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_form_callback.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_frame.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_pane_view.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_pane_view_update_hint.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_primary_view.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_view.cpp">
-      <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="uinteraction\uinteraction_application.cpp">
-      <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
     <ClCompile Include="uinteraction\frame\frame_appearance.cpp">
       <Filter>Source Files\uinteraction\frame</Filter>
@@ -996,27 +870,6 @@
     <ClCompile Include="uinteraction\frame\frame_work_set_listener_array.cpp">
       <Filter>Source Files\uinteraction\frame</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_document.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
-    <ClCompile Include="userstack\userstack_form_callback.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
-    <ClCompile Include="userstack\userstack_frame.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
-    <ClCompile Include="userstack\userstack_pane_view.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
-    <ClCompile Include="userstack\userstack_pane_view_update_hint.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
-    <ClCompile Include="userstack\userstack_application.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
-    <ClCompile Include="userstack\userstack_view.cpp">
-      <Filter>Source Files\userstack</Filter>
-    </ClCompile>
     <ClCompile Include="userhtml\userhtml_child_frame.cpp">
       <Filter>Source Files\userhtml</Filter>
     </ClCompile>
@@ -1037,9 +890,6 @@
     </ClCompile>
     <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
       <Filter>Source Files\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_application.cpp">
-      <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_attribute.cpp">
       <Filter>Source Files\html</Filter>
@@ -1131,17 +981,41 @@
     <ClCompile Include="user\user_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="cube5\cube5_keyboard_layout.cpp">
-      <Filter>Source Files\cube5</Filter>
+    <ClCompile Include="ca2\ca2_application.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="cube5\cube5_message_box.cpp">
-      <Filter>Source Files\cube5</Filter>
+    <ClCompile Include="ca2\ca2_keyboard_layout.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="cube5\cube5_network_configuration.cpp">
-      <Filter>Source Files\cube5</Filter>
+    <ClCompile Include="ca2\ca2_message_box.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="cube5\cube5_wait_message_dialog.cpp">
-      <Filter>Source Files\cube5</Filter>
+    <ClCompile Include="ca2\ca2_network_configuration.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_wait_message_dialog.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_mail.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_html.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_fs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_userbase.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userex\userex_userex.cpp">
+      <Filter>Source Files\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="uinteraction\uinteraction_uinteraction.cpp">
+      <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1153,9 +1027,6 @@
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\calculator.h">
-      <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\FileManagerSaveAsNameView.h">
       <Filter>Header Files\filemanager</Filter>
@@ -2096,45 +1967,6 @@
     <ClInclude Include="fontopus\fontopus.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="cube8\cube8.h">
-      <Filter>Header Files\cube8</Filter>
-    </ClInclude>
-    <ClInclude Include="cube8\cube8_application.h">
-      <Filter>Header Files\cube8</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5_application.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_application.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_document.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_form_callback.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_frame.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_pane_view.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_pane_view_update_hint.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_primary_view.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="command\command_view.h">
-      <Filter>Header Files\command</Filter>
-    </ClInclude>
     <ClInclude Include="cube\cube.h">
       <Filter>Header Files\cube</Filter>
     </ClInclude>
@@ -2161,27 +1993,6 @@
     </ClInclude>
     <ClInclude Include="userpresence\userpresence_user_presence_central_container.h">
       <Filter>Header Files\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler_application.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler_document.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler_frame.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler_pane_view.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler_pane_view_update_hint.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\filehandler_view.h">
-      <Filter>Header Files\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="cubebase\cubebase.h">
       <Filter>Header Files\cubebase</Filter>
@@ -2293,30 +2104,6 @@
     </ClInclude>
     <ClInclude Include="uinteraction\frame\frame_work_set_listener_array.h">
       <Filter>Header Files\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_document.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_form_callback.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_frame.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_pane_view.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_pane_view_update_hint.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_application.h">
-      <Filter>Header Files\userstack</Filter>
-    </ClInclude>
-    <ClInclude Include="userstack\userstack_view.h">
-      <Filter>Header Files\userstack</Filter>
     </ClInclude>
     <ClInclude Include="userhtml\userhtml.h">
       <Filter>Header Files\userhtml</Filter>
@@ -2441,18 +2228,6 @@
     <ClInclude Include="user\user_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="cube5\cube5_message_box.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5_network_configuration.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5_wait_message_dialog.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5_keyboard_layout.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
     <ClInclude Include="userex\userex_dialog.h">
       <Filter>Header Files\userex</Filter>
     </ClInclude>
@@ -2513,17 +2288,23 @@
     <ClInclude Include="uinteraction\uinteraction_uinteraction.h">
       <Filter>Header Files\uinteraction</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_application.h">
-      <Filter>Header Files\calculator</Filter>
+    <ClInclude Include="ca2\ca2.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_document.h">
-      <Filter>Header Files\calculator</Filter>
+    <ClInclude Include="ca2\ca2_application.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_frame.h">
-      <Filter>Header Files\calculator</Filter>
+    <ClInclude Include="ca2\ca2_keyboard_layout.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_view.h">
-      <Filter>Header Files\calculator</Filter>
+    <ClInclude Include="ca2\ca2_message_box.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_network_configuration.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_wait_message_dialog.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -163,7 +163,7 @@ namespace sockets
    }
    */
 
-   bool tcp_socket::open(const sockets::address & ad, bool skip_socks)
+   bool tcp_socket::open(const ::sockets::address & ad, bool skip_socks)
    {
 
       m_bConnecting = true;
@@ -174,7 +174,7 @@ namespace sockets
 
       m_event.ResetEvent();
 
-      Platform::String ^ strService = gen::str::from(ad.get_service_number());
+      Platform::String ^ strService = ::ca::str::from(ad.get_service_number());
 
       m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
@@ -208,17 +208,17 @@ namespace sockets
    }
 
 
-   bool tcp_socket::open(const sockets::address & ad, const sockets::address & bind_ad, bool skip_socks)
+   bool tcp_socket::open(const ::sockets::address & ad, const ::sockets::address & bind_ad, bool skip_socks)
    {
 /*      if (!ad.IsValid())
       {
-         Handler().LogError(this, "open", 0, "Invalid sockets::address", ::gen::log::level::fatal);
+         Handler().LogError(this, "open", 0, "Invalid ::sockets::address", ::ca::log::level_fatal);
          SetCloseAndDelete();
          return false;
       }*/
 /*      if (Handler().get_count() >= FD_SETSIZE)
       {
-         Handler().LogError(this, "open", 0, "no space left in fd_set", ::gen::log::level::fatal);
+         Handler().LogError(this, "open", 0, "no space left in fd_set", ::ca::log::level_fatal);
          SetCloseAndDelete();
          return false;
       }*/
@@ -264,7 +264,7 @@ namespace sockets
 
             SetIsClient();
             SetCallOnConnect(); // socket_handler_base must call OnConnect
-            Handler().LogError(this, "SetCallOnConnect", 0, "Found pooled connection", ::gen::log::level::info);
+            Handler().LogError(this, "SetCallOnConnect", 0, "Found pooled connection", ::ca::log::level_info);
             return true;
          }
       }*/
@@ -294,7 +294,7 @@ namespace sockets
          {
             string sockshost;
             System.net().l2ip(GetSocks4Host(), sockshost);
-            Handler().LogError(this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + gen::str::from(GetSocks4Port()), ::gen::log::level::info);
+            Handler().LogError(this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + ::ca::str::from(GetSocks4Port()), ::ca::log::level_info);
          }
          SetSocks4();
          n = connect(s, sa, sa);
@@ -329,14 +329,14 @@ namespace sockets
          if (Reconnect())
          {
             string strError = StrError(iError);
-            Handler().LogError(this, "connect: failed, reconnect pending", iError, StrError(iError), ::gen::log::level::info);
+            Handler().LogError(this, "connect: failed, reconnect pending", iError, StrError(iError), ::ca::log::level_info);
             attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
          {
             string strError = StrError(iError);
-            Handler().LogError(this, "connect: failed", iError, StrError(iError), ::gen::log::level::fatal);
+            Handler().LogError(this, "connect: failed", iError, StrError(iError), ::ca::log::level_fatal);
             SetCloseAndDelete();
             ::closesocket(s);
             return false;
@@ -417,13 +417,13 @@ namespace sockets
          }
          else
          {
-            Handler().LogError(this, "OnResolved", 0, "Resolver failed", ::gen::log::level::fatal);
+            Handler().LogError(this, "OnResolved", 0, "Resolver failed", ::ca::log::level_fatal);
             SetCloseAndDelete();
          }
       }
       else
       {
-         Handler().LogError(this, "OnResolved", id, "Resolver returned wrong job id", ::gen::log::level::fatal);
+         Handler().LogError(this, "OnResolved", id, "Resolver returned wrong job id", ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
    }
@@ -448,7 +448,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "OnResolved", id, "Resolver returned wrong job id", ::gen::log::level::fatal);
+         Handler().LogError(this, "OnResolved", id, "Resolver returned wrong job id", ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
    }*/
@@ -517,12 +517,12 @@ namespace sockets
             }
             if (!m_b_input_buffer_disabled && !ibuf.write(buf,n))
             {
-               Handler().LogError(this, "OnRead(ssl)", 0, "ibuf overflow", ::gen::log::level::warning);
+               Handler().LogError(this, "OnRead(ssl)", 0, "ibuf overflow", ::ca::log::level_warning);
             }
          }
          else
          {
-            Handler().LogError(this, "OnRead(ssl)", n, "abnormal value from SSL_read", ::gen::log::level::error);
+            Handler().LogError(this, "OnRead(ssl)", n, "abnormal value from SSL_read", ::ca::log::level_error);
          }
       }
       else
@@ -531,7 +531,7 @@ namespace sockets
          n = recv(GetSocket(), buf, TCP_BUFSIZE_READ, MSG_NOSIGNAL);
          if (n == -1)
          {
-            Handler().LogError(this, "read", Errno, StrError(Errno), ::gen::log::level::fatal);
+            Handler().LogError(this, "read", Errno, StrError(Errno), ::ca::log::level_fatal);
             OnDisconnect();
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
@@ -558,12 +558,12 @@ namespace sockets
             }
             if (!m_b_input_buffer_disabled && !ibuf.write(buf,n))
             {
-               Handler().LogError(this, "OnRead", 0, "ibuf overflow", ::gen::log::level::warning);
+               Handler().LogError(this, "OnRead", 0, "ibuf overflow", ::ca::log::level_warning);
             }
          }
          else
          {
-            Handler().LogError(this, "OnRead", n, "abnormal value from recv", ::gen::log::level::error);
+            Handler().LogError(this, "OnRead", n, "abnormal value from recv", ::ca::log::level_error);
          }
       }*/
       //
@@ -689,7 +689,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         Handler().LogError(this, "tcp: connect failed", err, StrError(err), ::gen::log::level::fatal);
+         Handler().LogError(this, "tcp: connect failed", err, StrError(err), ::ca::log::level_fatal);
          Set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -785,7 +785,7 @@ namespace sockets
                SetFlushBeforeClose(false);
                SetLost();
                const char *errbuf = ERR_error_string(errnr, NULL);
-               Handler().LogError(this, "OnWrite/SSL_write", errnr, errbuf, ::gen::log::level::fatal);
+               Handler().LogError(this, "OnWrite/SSL_write", errnr, errbuf, ::ca::log::level_fatal);
             }
             return 0;
          }
@@ -816,7 +816,7 @@ namespace sockets
             if (Errno != EWOULDBLOCK)
    #endif
             {
-               Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::fatal);
+               Handler().LogError(this, "send", Errno, StrError(Errno), ::ca::log::level_fatal);
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
@@ -906,11 +906,11 @@ namespace sockets
       {
          Handler().LogError(this, "SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
          if (GetSocket() == INVALID_SOCKET)
-            Handler().LogError(this, "SendBuf", 0, " * GetSocket() == INVALID_SOCKET", ::gen::log::level::info);
+            Handler().LogError(this, "SendBuf", 0, " * GetSocket() == INVALID_SOCKET", ::ca::log::level_info);
          if (Connecting())
-            Handler().LogError(this, "SendBuf", 0, " * Connecting()", ::gen::log::level::info);
+            Handler().LogError(this, "SendBuf", 0, " * Connecting()", ::ca::log::level_info);
          if (CloseAndDelete())
-            Handler().LogError(this, "SendBuf", 0, " * CloseAndDelete()", ::gen::log::level::info);
+            Handler().LogError(this, "SendBuf", 0, " * CloseAndDelete()", ::ca::log::level_info);
          return;
       }
       if (!IsConnected())
@@ -978,7 +978,7 @@ namespace sockets
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
       {
-         sockets::address ad = GetClientRemoteAddress();
+         ::sockets::address ad = GetClientRemoteAddress();
          if(ad.is_ipv4())
          {
             port_t port = ad.get_service_number();
@@ -1001,7 +1001,7 @@ namespace sockets
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
-      Handler().LogError(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::gen::log::level::warning);
+      Handler().LogError(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::ca::log::level_warning);
       if (!Handler().Socks4TryDirect())
       {
          SetConnecting(false);
@@ -1048,18 +1048,18 @@ namespace sockets
             {
             case 90:
                OnConnect();
-               Handler().LogError(this, "OnSocks4Read", 0, "Connection established", ::gen::log::level::info);
+               Handler().LogError(this, "OnSocks4Read", 0, "Connection established", ::ca::log::level_info);
                break;
             case 91:
             case 92:
             case 93:
-               Handler().LogError(this,"OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::gen::log::level::fatal);
+               Handler().LogError(this,"OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::ca::log::level_fatal);
                SetConnecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
             default:
-               Handler().LogError(this,"OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::gen::log::level::fatal);
+               Handler().LogError(this,"OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::ca::log::level_fatal);
                SetCloseAndDelete();
                break;
             }
@@ -1191,7 +1191,7 @@ namespace sockets
             && x509_err != X509_V_ERR_APPLICATION_VERIFICATION
             && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
-               Handler().LogError(this, "SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::gen::log::level::info);
+               Handler().LogError(this, "SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::ca::log::level_info);
                SetSSLNegotiate(false);
                SetCloseAndDelete();
                OnSSLConnectFailed();
@@ -1215,7 +1215,7 @@ namespace sockets
             {
                OnConnect();
             }
-            Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection established", ::gen::log::level::info);
+            Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection established", ::ca::log::level_info);
             if(m_spsslclientcontext->m_psession == NULL)
             {
                m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
@@ -1241,7 +1241,7 @@ namespace sockets
                }
             }
             r = SSL_get_error(m_ssl, r);
-            Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection failed", ::gen::log::level::info);
+            Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection failed", ::ca::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLConnectFailed();
@@ -1252,7 +1252,7 @@ namespace sockets
             r = SSL_get_error(m_ssl, r);
             if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
             {
-               Handler().LogError(this, "SSLNegotiate/SSL_connect", -1, "Connection failed", ::gen::log::level::info);
+               Handler().LogError(this, "SSLNegotiate/SSL_connect", -1, "Connection failed", ::ca::log::level_info);
    TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1278,13 +1278,13 @@ namespace sockets
                }
             }
             OnAccept();
-            Handler().LogError(this, "SSLNegotiate/SSL_accept", 0, "Connection established", ::gen::log::level::info);
+            Handler().LogError(this, "SSLNegotiate/SSL_accept", 0, "Connection established", ::ca::log::level_info);
             return true;
          }
          else
          if (!r)
          {
-            Handler().LogError(this, "SSLNegotiate/SSL_accept", 0, "Connection failed", ::gen::log::level::info);
+            Handler().LogError(this, "SSLNegotiate/SSL_accept", 0, "Connection failed", ::ca::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLAcceptFailed();
@@ -1294,7 +1294,7 @@ namespace sockets
             r = SSL_get_error(m_ssl, r);
             if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
             {
-               Handler().LogError(this, "SSLNegotiate/SSL_accept", -1, "Connection failed", ::gen::log::level::info);
+               Handler().LogError(this, "SSLNegotiate/SSL_accept", -1, "Connection failed", ::ca::log::level_info);
    TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1316,7 +1316,7 @@ namespace sockets
 
    void tcp_socket::InitSSLServer()
    {
-//      Handler().LogError(this, "InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::gen::log::level::fatal);
+//      Handler().LogError(this, "InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::ca::log::level_fatal);
   //    SetCloseAndDelete();
    }
 
@@ -1372,7 +1372,7 @@ namespace sockets
          /* Load our keys and certificates*/
       /*   if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
          {
-            Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::gen::log::level::fatal);
+            Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::ca::log::level_fatal);
          }
       }
 
@@ -1381,7 +1381,7 @@ namespace sockets
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
-         Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::gen::log::level::fatal);
+         Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::ca::log::level_fatal);
       }
    }
 
@@ -1409,7 +1409,7 @@ namespace sockets
       /* Load our keys and certificates*/
   /*    if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
       {
-         Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::gen::log::level::fatal);
+         Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::ca::log::level_fatal);
       }
 
       m_password = password;
@@ -1417,7 +1417,7 @@ namespace sockets
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
-         Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::gen::log::level::fatal);
+         Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::ca::log::level_fatal);
       }
    }
 
@@ -1441,7 +1441,7 @@ namespace sockets
    {
 /*      if (GetSocket() == INVALID_SOCKET) // this could happen
       {
-         Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::gen::log::level::warning);
+         Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::ca::log::level_warning);
          return 0;
       }
       int n;
@@ -1451,7 +1451,7 @@ namespace sockets
          if (shutdown(GetSocket(), SHUT_WR) == -1)
          {
             // failed...
-            Handler().LogError(this, "shutdown", Errno, StrError(Errno), ::gen::log::level::error);
+            Handler().LogError(this, "shutdown", Errno, StrError(Errno), ::ca::log::level_error);
          }
       }
       //
@@ -1460,7 +1460,7 @@ namespace sockets
       {
          if (n)
          {
-            Handler().LogError(this, "read() after shutdown", n, "bytes read", ::gen::log::level::warning);
+            Handler().LogError(this, "read() after shutdown", n, "bytes read", ::ca::log::level_warning);
          }
       }
    #ifdef HAVE_OPENSSL
@@ -1480,14 +1480,14 @@ namespace sockets
    SSL_CTX *tcp_socket::GetSslContext()
    {
       if (!m_ssl_ctx)
-         Handler().LogError(this, "GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::gen::log::level::warning);
+         Handler().LogError(this, "GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::ca::log::level_warning);
       return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()
    {
       if (!m_ssl)
-         Handler().LogError(this, "GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::gen::log::level::warning);
+         Handler().LogError(this, "GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::ca::log::level_warning);
       return m_ssl;
    }
    #endif
@@ -1589,12 +1589,12 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_TCP, TCP_NODELAY, (char *)&optval, sizeof(optval)) == -1)
       {
-         Handler().LogError(this, "setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::gen::log::level::fatal);
+         Handler().LogError(this, "setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::ca::log::level_fatal);
          return false;
       }
       return true;
    #else
-      Handler().LogError(this, "socket option not available", 0, "TCP_NODELAY", ::gen::log::level::info);
+      Handler().LogError(this, "socket option not available", 0, "TCP_NODELAY", ::ca::log::level_info);
       return false;
    #endif
    }
@@ -1603,7 +1603,7 @@ namespace sockets
 
    void tcp_socket::OnConnectTimeout()
    {
-      Handler().LogError(this, "connect", -1, "connect timeout", ::gen::log::level::fatal);
+      Handler().LogError(this, "connect", -1, "connect timeout", ::ca::log::level_fatal);
       m_estatus = status_connection_timed_out;
       if (Socks4())
       {
@@ -1673,7 +1673,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      Handler().LogError(this, "exception on select", err, StrError(err), ::gen::log::level::fatal);
+      Handler().LogError(this, "exception on select", err, StrError(err), ::ca::log::level_fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32

@@ -97,7 +97,7 @@ namespace sockets
       //outheader("Content-Length") = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader("Host") = GetUrlHost() + ":" + gen::str::from(GetUrlPort());
+         inheader("Host") = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());
       else
          inheader("Host") = GetUrlHost();
       m_bExpectResponse = true;

@@ -16,7 +16,7 @@ class oswindow_data
 {
 public:
 
-   ::user::interaction * m_pui;
+   ::user::interaction_base * m_pui;
 
 };
 
@@ -39,7 +39,7 @@ oswindow_dataptra * g_oswindow_dataptra()
 
 
 
-int oswindow::find(::user::interaction * pui)
+int oswindow::find(::user::interaction_base * pui)
 {
 
    for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
@@ -54,7 +54,7 @@ int oswindow::find(::user::interaction * pui)
 
 }
 
-oswindow_data * oswindow::get(::user::interaction * pui)
+oswindow_data * oswindow::get(::user::interaction_base * pui)
 {
 
    int_ptr iFind = find(pui);
@@ -86,7 +86,7 @@ oswindow::oswindow()
 
 }
 
-oswindow::oswindow(::user::interaction * pui)
+oswindow::oswindow(::user::interaction_base * pui)
 {
 
    m_pdata = get(pui);
@@ -138,7 +138,7 @@ oswindow & oswindow::operator = (const oswindow & oswindow)
 
 
 
-bool oswindow::remove(::user::interaction * pui)
+bool oswindow::remove(::user::interaction_base * pui)
 {
 
    int_ptr iFind = find(pui);
@@ -157,14 +157,18 @@ bool oswindow::remove(::user::interaction * pui)
 
 ::user::interaction * oswindow::window()
 {
-   return m_pdata == NULL ? nullptr : m_pdata->m_pui;
+   return m_pdata == NULL ? nullptr : (m_pdata->m_pui == NULL ? nullptr : m_pdata->m_pui->m_pui);
 }
 
 ::user::interaction * oswindow::window() const
 {
-   return m_pdata == NULL ? nullptr : m_pdata->m_pui;
+   return m_pdata == NULL ? nullptr : (m_pdata->m_pui == NULL ? nullptr : m_pdata->m_pui->m_pui);
 }
 
+Platform::Agile<Windows::UI::Core::CoreWindow> oswindow::get_os_window()
+{
+   return m_pdata->m_pui->get_os_window();
+}
 
 static oswindow g_oswindowFocus;
 

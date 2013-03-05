@@ -3117,7 +3117,7 @@ namespace ca
 
 #else
 
-      return MessageBox(::ca::null(), pszMessage, m_strAppName, fuStyle);
+      return MessageBox(m_psystem->m_pui, pszMessage, m_strAppName, fuStyle);
 
 #endif
 

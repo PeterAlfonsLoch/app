@@ -38,9 +38,9 @@ namespace sockets
       const string & strCall,
       int iError,
       const string & strSystemError,
-      ::gen::log::level::e_level elevel)
+      ::ca::log::e_level elevel)
    {
-      string strLevel = ::gen::log_level_name(elevel);
+      string strLevel = ::ca::log_level_name(elevel);
 
       if (sock)
       {

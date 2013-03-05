@@ -123,8 +123,8 @@ namespace sockets
       short             server_port = get_integer(buf, ptr);
       bool               is_ssl = get_boolean(buf, ptr);
 
-      string method_str = gen::str::from( method );
-      dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->Method.Lookup(method, method_str);
+      string method_str = ::ca::str::from( method );
+      App(get_app()).sockets().m_pajpbasesocketinit->Method.Lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;
       m_request.attr("request_uri") = req_uri;
@@ -144,7 +144,7 @@ namespace sockets
          case 0xa0:
             {
                unsigned short x = (unsigned short)get_integer(buf, ptr);
-               if (!dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->header.Lookup(x, key))
+               if (!App(get_app()).sockets().m_pajpbasesocketinit->header.Lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);
                   SetCloseAndDelete();
@@ -177,7 +177,7 @@ namespace sockets
             break;
          default:
             {
-               if(!dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->Attribute.Lookup(code, key))
+               if(!App(get_app()).sockets().m_pajpbasesocketinit->Attribute.Lookup(code, key))
                {
                   TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
                   SetCloseAndDelete();
@@ -269,7 +269,7 @@ namespace sockets
             string strNameLower(m_response.headers().m_propertya[i].name());
             strNameLower;
             int iValue;
-            if(dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
+            if(App(get_app()).sockets().m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
             {
                put_integer(msg, ptr, (short) iValue);
             }

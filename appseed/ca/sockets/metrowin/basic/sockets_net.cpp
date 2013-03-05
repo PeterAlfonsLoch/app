@@ -125,7 +125,7 @@ namespace sockets
       {
          return false;
       }
-      ::gen::parse pa(str,":.");
+      ::ca::parse pa(str,":.");
       string tmp = pa.getword();
       while (tmp.get_length())
       {
@@ -283,7 +283,7 @@ namespace sockets
          struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
          string tmp;
          net::l2ip(sa6 -> sin6_addr, tmp);
-         return tmp + ":" + gen::str::from(ntohs(sa6 -> sin6_port));
+         return tmp + ":" + ::ca::str::from(ntohs(sa6 -> sin6_port));
       }
       if (sa -> sa_family == AF_INET)
       {
@@ -292,7 +292,7 @@ namespace sockets
          memcpy(&a, &sa4 -> sin_addr, 4);
          string tmp;
          net::l2ip(a, tmp);
-         return tmp + ":" + gen::str::from(ntohs(sa4 -> sin_port));
+         return tmp + ":" + ::ca::str::from(ntohs(sa4 -> sin_port));
       }
       return "";
    }
@@ -672,8 +672,8 @@ namespace sockets
    int net::service_port(const string & psz, int flags)
    {
 
-      if(gen::str::is_simple_natural(psz))
-         return gen::str::to_int(psz);
+      if(::ca::str::is_simple_natural(psz))
+         return ::ca::str::to_int(psz);
 
       string str(psz);
 

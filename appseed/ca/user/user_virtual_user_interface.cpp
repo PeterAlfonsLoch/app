@@ -1490,10 +1490,10 @@ bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM l
       // graphics will be already set its view port to the window for linux - cairo with xlib
 
 
-      rect64 rectWindow;
+      rect rectWindow;
       GetWindowRect(rectWindow);
-      get_wnd()->ScreenToClient(rectWindow);
-      pgraphics->SetViewportOrg(point(rectWindow.top_left()));
+      get_wnd()->offset_view_port_org(rectWindow);
+      pgraphics->SetViewportOrg(rectWindow.top_left());
       pgraphics->SelectClipRgn(NULL);
 
    }

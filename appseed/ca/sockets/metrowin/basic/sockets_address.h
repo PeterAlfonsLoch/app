@@ -21,7 +21,7 @@ namespace sockets
    \ingroup basic
    */
    class address :
-      virtual public ::radix::object
+      virtual public ::ca::object
    {
    public:
 

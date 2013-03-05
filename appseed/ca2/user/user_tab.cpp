@@ -701,7 +701,7 @@ namespace user
 
 
 
-               //path->start_figure();
+               //path->begin_figure(true, ::ca::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                path->add_line(rectClient.right, rectBorder.top);
@@ -709,8 +709,6 @@ namespace user
                path->add_line(rectBorder.right - 1, rectClient.bottom);
 
                path->end_figure(false);
-
-               //path->close_figure();
 
                ::ca::brush_sp br(get_app());
 
@@ -731,7 +729,7 @@ namespace user
             else
             {
 
-               //path->start_figure();
+               //path->begin_figure(true, ::ca::fill_mode_winding);
 
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);

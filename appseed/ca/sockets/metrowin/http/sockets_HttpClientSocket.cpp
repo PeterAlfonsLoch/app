@@ -89,7 +89,7 @@ namespace sockets
    {
       if (!IsResponse())
       {
-         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::gen::log::level::fatal);
+         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
       m_content = m_response.attr("http_version") + " " +
@@ -131,7 +131,7 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
-      if(gen::str::ends(m_strUrl, "arialuni.ttf"))
+      if(::ca::str::ends(m_strUrl, "arialuni.ttf"))
       {
          TRACE("Debug Here : arialuni.ttf");
       }
@@ -147,13 +147,13 @@ namespace sockets
          m_bExpectResponse = false;
       }
 
-      if(gen::str::ends(m_strUrl, "en_us_international.xml"))
+      if(::ca::str::ends(m_strUrl, "en_us_international.xml"))
       {
          TRACE("Debug Here");
       }
 
 
-      if(gen::str::ends(m_strUrl, "text_select.xml"))
+      if(::ca::str::ends(m_strUrl, "text_select.xml"))
       {
          TRACE("Debug Here");
       }

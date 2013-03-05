@@ -3307,6 +3307,27 @@ restart:
 
    }
 
+   Platform::Agile<Windows::UI::Core::CoreWindow> interaction::get_os_window()
+   {
+      if(m_pimpl == NULL)
+      {
+         return System.m_window;
+      }
+      else
+         return m_pimpl->get_os_window();
+   }
+
+   void interaction::offset_view_port_org(LPRECT lprect)
+   {
+      if(m_pimpl == NULL)
+      {
+         ScreenToClient(lprect);
+      }
+      else
+         m_pimpl->offset_view_port_org(lprect);
+   }
+
+
 
 } // namespace user
 

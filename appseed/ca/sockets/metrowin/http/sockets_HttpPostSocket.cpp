@@ -60,17 +60,17 @@ namespace sockets
       m_fields(h.get_app()),
       m_bMultipart(false)
    {
-      single_lock lock(&System.m_mutexHttpPostBoundary, true);
+      single_lock lock(&System.sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
       for (int i = 0; i < 12; i++)
       {
-         char c = System.m_countHttpPostBoundary++ % 128;
-         while (!isalnum(c))
-            c = System.m_countHttpPostBoundary++ % 128;
+         char c = System.sockets().m_countHttpPostBoundary++ % 128;
+         while (!isalnum((unsigned char) c))
+            c = System.sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + gen::str::from(System.m_countHttpPostBoundary++);
+      m_boundary += "__" + ::ca::str::from(System.sockets().m_countHttpPostBoundary++);
    }
 
 
@@ -102,7 +102,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::gen::log::level::fatal);
+         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
    }
@@ -121,7 +121,7 @@ namespace sockets
 
          if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
          {
-            ::xml::node * pnode = m_fields["xml"].ca2 < ::xml::node >();
+            ::xml::node * pnode = m_fields["xml"].ca < ::xml::node >();
             body = pnode->get_xml();
             body.trim();
             if(inheader("Content-type").get_string().find_ci("application/xml") < 0)
@@ -284,8 +284,8 @@ namespace sockets
                "\r\n";
             Send( tmp );
             {
-               ::ex1::filesp file(get_app());
-               if(file->open(filename, ::ex1::file::type_binary | ::ex1::file::mode_read))
+               ::ca::filesp file(get_app());
+               if(file->open(filename, ::ca::file::type_binary | ::ca::file::mode_read))
                {
                   primitive::memory mem;
                   mem.FullLoad(file);

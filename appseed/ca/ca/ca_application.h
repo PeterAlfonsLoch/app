@@ -209,6 +209,7 @@ namespace ca
       virtual bool _001OnDDECommand(const char * lpcsz) = 0;
       virtual void _001EnableShellOpen() = 0;
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile) = 0;
+      virtual void _001OnFileNew(::ca::signal_object * pobj) = 0;
 
    };
 

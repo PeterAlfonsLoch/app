@@ -84,7 +84,7 @@ namespace sockets
 
       });
 
-      m_datagramsocket->BindServiceNameAsync(gen::str::from(port))->Completed = 
+      m_datagramsocket->BindServiceNameAsync(::ca::str::from(port))->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
          ([this] (::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -111,7 +111,7 @@ namespace sockets
    }
   
 
-   int udp_socket::Bind(const sockets::address & ad, int range)
+   int udp_socket::Bind(const ::sockets::address & ad, int range)
    {
 
 //         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
@@ -122,7 +122,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->BindEndpointAsync(ad.m_hostname, gen::str::from(ad.get_service_number()))->Completed = 
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, ::ca::str::from(ad.get_service_number()))->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -164,7 +164,7 @@ namespace sockets
    }
    */
 
-   bool udp_socket::open(sockets::address & ad)
+   bool udp_socket::open(::sockets::address & ad)
    {
 
       m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
@@ -173,7 +173,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->ConnectAsync(ad.m_hostname, gen::str::from(ad.get_service_number()))->Completed = 
+      m_datagramsocket->ConnectAsync(ad.m_hostname, ::ca::str::from(ad.get_service_number()))->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -248,7 +248,7 @@ namespace sockets
    */
 
    /*
-   void udp_socket::SendToBuf(sockets::address& ad, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(::sockets::address& ad, const char *data, int len, int flags)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -259,7 +259,7 @@ namespace sockets
          SetNonblocking(true);
          if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad, ad)) == -1)
          {
-            Handler().LogError(this, "sendto", Errno, StrError(Errno), ::gen::log::level::error);
+            Handler().LogError(this, "sendto", Errno, StrError(Errno), ::ca::log::level_error);
          }
       }
    }
@@ -283,7 +283,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(sockets::address& ad, const string & str, int flags)
+   void udp_socket::SendTo(::sockets::address& ad, const string & str, int flags)
    {
       SendToBuf(ad, str, (int)str.get_length(), flags);
    }
@@ -294,7 +294,7 @@ namespace sockets
    {
       if (!IsConnected())
       {
-         Handler().LogError(this, "SendBuf", 0, "not connected", ::gen::log::level::error);
+         Handler().LogError(this, "SendBuf", 0, "not connected", ::ca::log::level_error);
          return;
       }
 
@@ -311,7 +311,7 @@ namespace sockets
       
 /*      if ((m_last_size_written = send(GetSocket(), data, (int)len, flags)) == -1)
       {
-         Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::error);
+         Handler().LogError(this, "send", Errno, StrError(Errno), ::ca::log::level_error);
       }*/
 
    }
@@ -420,7 +420,7 @@ namespace sockets
    #else
                if (Errno != EWOULDBLOCK)
    #endif
-                  Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::gen::log::level::error);
+                  Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::ca::log::level_error);
             }
             return;
          }
@@ -430,7 +430,7 @@ namespace sockets
          {
             if (sa_len != sizeof(sa))
             {
-               Handler().LogError(this, "recvfrom", 0, "unexpected address struct size", ::gen::log::level::warning);
+               Handler().LogError(this, "recvfrom", 0, "unexpected address struct size", ::ca::log::level_warning);
             }
             this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
             if (!q--)
@@ -445,7 +445,7 @@ namespace sockets
    #else
             if (Errno != EWOULDBLOCK)
    #endif
-               Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::gen::log::level::error);
+               Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::ca::log::level_error);
          }
          return;
       }
@@ -472,7 +472,7 @@ namespace sockets
    #else
             if (Errno != EWOULDBLOCK)
    #endif
-               Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::gen::log::level::error);
+               Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::ca::log::level_error);
          }
          return;
       }
@@ -482,7 +482,7 @@ namespace sockets
       {
          if (sa_len != sizeof(sa))
          {
-            Handler().LogError(this, "recvfrom", 0, "unexpected address struct size", ::gen::log::level::warning);
+            Handler().LogError(this, "recvfrom", 0, "unexpected address struct size", ::ca::log::level_warning);
          }
          this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
          if (!q--)
@@ -497,7 +497,7 @@ namespace sockets
    #else
          if (Errno != EWOULDBLOCK)
    #endif
-            Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::gen::log::level::error);
+            Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::ca::log::level_error);
       }
       */
       /*::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_datagramsocket->OutputStream);
@@ -527,14 +527,14 @@ namespace sockets
       {
          if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &one, sizeof(one)) == -1)
          {
-            Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::gen::log::level::warning);
+            Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::ca::log::level_warning);
          }
       }
       else
       {
          if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &zero, sizeof(zero)) == -1)
          {
-            Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::gen::log::level::warning);
+            Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::ca::log::level_warning);
          }
       }*/
    }
@@ -552,7 +552,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&is_broadcast, &size) == -1)
       {
-         Handler().LogError(this, "IsBroadcast", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "IsBroadcast", Errno, StrError(Errno), ::ca::log::level_warning);
       }
       return is_broadcast != 0;*/
    }
@@ -567,7 +567,7 @@ namespace sockets
       }
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int)) == -1)
       {
-         Handler().LogError(this, "SetMulticastTTL", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "SetMulticastTTL", Errno, StrError(Errno), ::ca::log::level_warning);
       }*/
    }
 
@@ -584,7 +584,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
-         Handler().LogError(this, "GetMulticastTTL", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "GetMulticastTTL", Errno, StrError(Errno), ::ca::log::level_warning);
       }
       return ttl;*/
    }
@@ -602,14 +602,14 @@ namespace sockets
          int val = x ? 1 : 0;
          if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
          {
-            Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
+            Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::ca::log::level_warning);
          }
          return;
       }
       int val = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
       {
-         Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::ca::log::level_warning);
       }*/
    }
 
@@ -627,7 +627,7 @@ namespace sockets
          socklen_t size = sizeof(int);
          if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
          {
-            Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
+            Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::ca::log::level_warning);
          }
          return is_loop ? true : false;
       }
@@ -635,7 +635,7 @@ namespace sockets
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
-         Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::ca::log::level_warning);
       }
       return is_loop ? true : false;*/
    }
@@ -659,7 +659,7 @@ namespace sockets
             x.ipv6mr_interface = if_index;
             if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
             {
-               Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::gen::log::level::warning);
+               Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::ca::log::level_warning);
             }
          }
          return;
@@ -674,7 +674,7 @@ namespace sockets
    //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
          {
-            Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::gen::log::level::warning);
+            Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::ca::log::level_warning);
          }
       }*/
    }
@@ -698,7 +698,7 @@ namespace sockets
             x.ipv6mr_interface = if_index;
             if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
             {
-               Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::gen::log::level::warning);
+               Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::ca::log::level_warning);
             }
          }
          return;
@@ -713,7 +713,7 @@ namespace sockets
    //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
          {
-            Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::gen::log::level::warning);
+            Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::ca::log::level_warning);
          }
       }*/
    }
@@ -728,12 +728,12 @@ namespace sockets
       }
       if (!IsIpv6())
       {
-         Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::gen::log::level::error);
+         Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::ca::log::level_error);
          return;
       }
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int)) == -1)
       {
-         Handler().LogError(this, "SetMulticastHops", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "SetMulticastHops", Errno, StrError(Errno), ::ca::log::level_warning);
       }*/
    }
 
@@ -748,14 +748,14 @@ namespace sockets
       }
       if (!IsIpv6())
       {
-         Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::gen::log::level::error);
+         Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::ca::log::level_error);
          return -1;
       }
       int hops = 0;
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
-         Handler().LogError(this, "GetMulticastHops", Errno, StrError(Errno), ::gen::log::level::warning);
+         Handler().LogError(this, "GetMulticastHops", Errno, StrError(Errno), ::ca::log::level_warning);
       }
       return hops;*/
    }

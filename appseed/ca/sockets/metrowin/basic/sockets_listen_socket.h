@@ -91,7 +91,7 @@
 
          }
 
-         int Bind(sockets::address & ad,int depth)
+         int Bind(::sockets::address & ad,int depth)
          {
 
 #ifdef USE_SCTP
@@ -118,7 +118,7 @@
 
             m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
 
-            m_listener->BindServiceName(rtstr(gen::str::from(port)));
+            m_listener->BindServiceName(rtstr(::ca::str::from(port)));
 
             m_depth = depth;
 
@@ -141,7 +141,7 @@
          \param ad Interface address
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(sockets::address & ad, const string & protocol, int depth = 20)
+         int Bind(::sockets::address & ad, const string & protocol, int depth = 20)
          {
 
 
@@ -149,21 +149,21 @@
 
             //SOCKET s;
             //m_iBindPort = ad.GetPort();
-            m_listener->BindEndpointAsync(ad.m_hostname, gen::str::from(ad.get_service_number()));
+            m_listener->BindEndpointAsync(ad.m_hostname, ::ca::str::from(ad.get_service_number()));
 /*            {
                return -1;
             }
             if (bind(s, ad, ad) == -1)
             {
-               Handler().LogError(this, "bind() failed for port " + gen::str::from(ad.GetPort()), Errno, StrError(Errno), ::gen::log::level::fatal);
+               Handler().LogError(this, "bind() failed for port " + ::ca::str::from(ad.GetPort()), Errno, StrError(Errno), ::ca::log::level_fatal);
                ::closesocket(s);
                return -1;
             }
             if (listen(s, depth) == -1)
             {
-               Handler().LogError(this, "listen", Errno, StrError(Errno), ::gen::log::level::fatal);
+               Handler().LogError(this, "listen", Errno, StrError(Errno), ::ca::log::level_fatal);
                ::closesocket(s);
-               throw simple_exception(get_app(), "listen() failed for port " + gen::str::from(ad.GetPort()) + ": " + StrError(Errno));
+               throw simple_exception(get_app(), "listen() failed for port " + ::ca::str::from(ad.GetPort()) + ": " + StrError(Errno));
                return -1;
             }*/
             m_depth = depth;
@@ -193,18 +193,18 @@
 
             if (a_s == INVALID_SOCKET)
             {
-               Handler().LogError(this, "accept", Errno, StrError(Errno), ::gen::log::level::error);
+               Handler().LogError(this, "accept", Errno, StrError(Errno), ::ca::log::level_error);
                return;
             }
             if (!Handler().OkToAccept(this))
             {
-               Handler().LogError(this, "accept", -1, "Not OK to accept", ::gen::log::level::warning);
+               Handler().LogError(this, "accept", -1, "Not OK to accept", ::ca::log::level_warning);
                ::closesocket(a_s);
                return;
             }
             if (Handler().get_count() >= FD_SETSIZE)
             {
-               Handler().LogError(this, "accept", (int)Handler().get_count(), "socket_handler_base fd_set limit reached", ::gen::log::level::fatal);
+               Handler().LogError(this, "accept", (int)Handler().get_count(), "socket_handler_base fd_set limit reached", ::ca::log::level_fatal);
                ::closesocket(a_s);
                return;
             }

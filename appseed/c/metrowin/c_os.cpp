@@ -12,14 +12,38 @@ CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 }
 */
 
-CLASS_DECL_c int MessageBox(void * p, const char * pszMessage, const char * pszTitle, int iFlags)
+
+
+CLASS_DECL_c int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, int iFlags)
 {
   
-   Windows::UI::Popups::MessageDialog ^ merde = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
-  
-   Windows::UI::Popups::IUICommand ^ command = wait(merde->ShowAsync());
 
-   return 1;
+  
+   ::wait(window.get_os_window()->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
+      {
+    Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+
+//UICommand^ continueCommand = ref new UICommand(
+  //      "Try again", 
+    //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
+   Windows::UI::Popups::UICommand ^ upgradeCommand = ref new Windows::UI::Popups::UICommand(
+        "OK");
+
+    // Add the commands to the dialog
+    //msg->Commands->Append(continueCommand);
+    msg->Commands->Append(upgradeCommand);
+
+    // Set the command that will be invoked by default
+    msg->DefaultCommandIndex = 0;
+
+    // Set the command to be invoked when escape is pressed
+    msg->CancelCommandIndex = 0;
+  
+   Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
+
+      })));
+   
+   return 0;
 
 }
 

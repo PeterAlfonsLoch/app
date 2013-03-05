@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       /** socket container class, event generator.
       \ingroup basic */
       class socket_handler_base : 
-         virtual public ::radix::object
+         virtual public ::ca::object
       {
          friend class socket;
 
@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
 
             void OnRead() {
-               Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::gen::log::level::fatal);
+               Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::ca::log::level_fatal);
                SetCloseAndDelete();
             }
             void OnOptions(int,int,int,SOCKET) {}
@@ -90,7 +90,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual void RegStdLog(StdLog *log) = 0;
 
          /** Log error to log class for print out / storage. */
-         virtual void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning) = 0;
+         virtual void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::ca::log::e_level elevel = ::ca_get_level_warning()) = 0;
 
          // -------------------------------------------------------------------------
          // socket stuff
@@ -128,7 +128,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          // Connection pool
          // -------------------------------------------------------------------------
          /** find available open connection (used by connection pool). */
-         virtual socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&) = 0;
+         virtual socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,::sockets::address&) = 0;
          /** Enable connection pool (by default disabled). */
          virtual void EnablePool(bool = true) = 0;
          /** Check pool status.

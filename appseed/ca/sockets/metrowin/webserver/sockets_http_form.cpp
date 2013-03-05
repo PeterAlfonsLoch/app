@@ -30,7 +30,7 @@ namespace http
 
       if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
       {
-         ::gen::parse pa(content_type,";=");
+         ::ca::parse pa(content_type,";=");
          char *tempcmp = NULL;
          size_t tc = 0;
          strsize iBoundaryLength = 0;
@@ -70,7 +70,7 @@ namespace http
                      slask.trim();
                      if(slask.is_empty())
                         break;
-                     ::gen::parse pa(slask,";");
+                     ::ca::parse pa(slask,";");
                      string h = pa.getword();
                      if(!stricmp(h,"Content-type:"))
                      {
@@ -86,7 +86,7 @@ namespace http
                            h = pa.getword();
                            while(h.has_char())
                            {
-                              ::gen::parse pa2(h,"=");
+                              ::ca::parse pa2(h,"=");
                               string name = pa2.getword();
                               h = pa2.getrest();
                               if (!strcmp(name,"name"))
@@ -151,7 +151,7 @@ namespace http
                      int out = 0;
                      char c;
                      string strTempFile = System.file().time_square(get_app());
-                     ex1::filesp spfile(Application.file().get_file(strTempFile, ::ex1::file::type_binary | ::ex1::file::mode_create | ::ex1::file::mode_write));
+                     ::ca::filesp spfile(Application.file().get_file(strTempFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_write));
                      if(spfile.is_set())
                      {
                         while (infil -> read(&c,1))
@@ -242,7 +242,7 @@ namespace http
    /*               if (got_name)
                   {
    //                  cgi = new CGI(name,slask);
-                     if(gen::str::ends_eat(name, "[]"))
+                     if(::ca::str::ends_eat(name, "[]"))
                      {
                         m_setPost[name].vara().add(slask);
                      }
@@ -282,7 +282,7 @@ namespace http
          if (got_name)
          {
    //                  cgi = new CGI(name,slask);
-            if(gen::str::ends_eat(name, "[]"))
+            if(::ca::str::ends_eat(name, "[]"))
             {
                m_setPost[name].vara().add(slask);
             }

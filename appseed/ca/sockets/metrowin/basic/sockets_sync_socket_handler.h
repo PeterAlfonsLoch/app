@@ -7,14 +7,14 @@
    {
 
       class CLASS_DECL_ca sync_socket_handler : 
-         virtual public ::radix::object,
+         virtual public ::ca::object,
          public socket::callback
       {
       public:
 
 
          socket *             m_psocket;
-         gen::memory_file     m_file;
+         ::primitive::memory_file     m_file;
          socket_handler       m_handler;
          int                  m_iDefaultTimeout;
 

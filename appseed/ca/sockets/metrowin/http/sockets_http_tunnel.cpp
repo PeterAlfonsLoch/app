@@ -79,7 +79,7 @@ namespace sockets
                {
                   strStatus = str.Mid(iPos + 1);
                }
-               if(gen::str::begins(strStatus, "200 "))
+               if(::ca::str::begins(strStatus, "200 "))
                {
                   m_estate = state_proxy_ok;
                }
@@ -154,7 +154,7 @@ namespace sockets
             dynamic_cast < ::sockets::application_interface  * >
                (get_app());
          psocketsapp->http_config_proxy(get_url(), this);*/
-         System.http_config_proxy(get_url(), this);
+         System.sockets().http_config_proxy(get_url(), this);
       }
       else
       {
@@ -166,7 +166,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::gen::log::level::fatal);
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::ca::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;
@@ -180,7 +180,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::gen::log::level::fatal);
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::ca::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;

@@ -513,6 +513,13 @@ namespace user
 
       virtual void _001OnTriggerMouseInside();
 
+#ifdef METROWIN
+      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
+#endif
+
+
+      void offset_view_port_org(LPRECT lprect);
+
    };
 
    inline oswindow interaction::get_safe_handle() const

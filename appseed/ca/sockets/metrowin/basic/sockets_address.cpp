@@ -95,8 +95,8 @@ namespace sockets
 
       string strService = m_strService;
 
-      if(gen::str::is_simple_natural(strService))
-         return service_number_to_name(gen::str::to_int(strService));
+      if(::ca::str::is_simple_natural(strService))
+         return service_number_to_name(::ca::str::to_int(strService));
       else
          return strService;
 
@@ -108,8 +108,8 @@ namespace sockets
 
       string strService = m_strService;
 
-      if(gen::str::is_simple_natural(strService))
-         return gen::str::to_int(strService);
+      if(::ca::str::is_simple_natural(strService))
+         return ::ca::str::to_int(strService);
       else
          return service_name_to_number(strService);
          

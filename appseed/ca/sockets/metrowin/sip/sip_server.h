@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_ca sip_server :
-      public ::radix::thread,
+      public ::ca::thread,
       public sip_base
    {
    public:

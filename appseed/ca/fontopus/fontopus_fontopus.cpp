@@ -239,13 +239,14 @@ namespace fontopus
                return NULL;
             }
             keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), NULL, true);
-            m_puser = create_current_user();
-            if(!m_puser->initialize())
+            user * puser = create_current_user();
+            if(!puser->initialize())
             {
-               delete m_puser;
+               delete puser;
                m_puser = NULL;
                return NULL;
             }
+            m_puser = puser;
          }
          if(m_puser != NULL)
          {

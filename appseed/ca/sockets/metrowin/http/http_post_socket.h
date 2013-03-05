@@ -74,7 +74,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** http put client implemented in OnConnect */
          void step();
 
-         gen::property_set m_fields;
+         ::ca::property_set m_fields;
          void DoMultipartPost();
          //
 

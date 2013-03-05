@@ -145,8 +145,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
          //bool open(in6_addr ip,port_t port,bool skip_socks = false);
-         bool open(const sockets::address & addr, bool skip_socks = false);
-         bool open(const sockets::address & addr, const sockets::address & bind_address, bool skip_socks = false);
+         bool open(const ::sockets::address & addr, bool skip_socks = false);
+         bool open(const ::sockets::address & addr, const ::sockets::address & bind_address, bool skip_socks = false);
          /** open connection.
          \param host Hostname
          \param port Port number */
@@ -282,7 +282,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          void OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
 
-         ex1::circular_buffer ibuf; ///< Circular input buffer
+         ::ca::circular_buffer ibuf; ///< Circular input buffer
       public:
 
          virtual string get_url();

@@ -104,7 +104,7 @@ namespace sockets
       \param ad socket address
       \param range Port range
       \return 0 if bind succeeded */
-      int Bind(const sockets::address & ad, int range = 1);
+      int Bind(const ::sockets::address & ad, int range = 1);
 
       /** Define remote host.
       \param l Address of remote host
@@ -124,7 +124,7 @@ namespace sockets
       /** Define remote host.
       \param ad socket address
       \return true if successful */
-      bool open(sockets::address & ad);
+      bool open(::sockets::address & ad);
 
       /** Send to specified host */
       //void SendToBuf(const string & ,port_t,const char *data,int len,int flags = 0);
@@ -133,7 +133,7 @@ namespace sockets
       /** Send to specified ipv6 address */
   //    void SendToBuf(in6_addr,port_t,const char *data,int len,int flags = 0);
       /** Send to specified socket address */
-      //void SendToBuf(sockets::address& ad,const char *data,int len,int flags = 0);
+      //void SendToBuf(::sockets::address& ad,const char *data,int len,int flags = 0);
 
       /** Send string to specified host */
       //void SendTo(const string &,port_t,const string &,int flags = 0);
@@ -142,7 +142,7 @@ namespace sockets
       /** Send string to specified ipv6 address */
   //    void SendTo(in6_addr,port_t,const string &,int flags = 0);
       /** Send string to specified socket address */
-      //void SendTo(sockets::address& ad,const string &,int flags = 0);
+      //void SendTo(::sockets::address& ad,const string &,int flags = 0);
 
       /** Send to connected address */
       void SendBuf(const char *data,size_t,int flags = 0);

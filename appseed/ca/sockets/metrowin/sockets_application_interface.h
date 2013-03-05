@@ -5,8 +5,8 @@
    {
 
 
-      class CLASS_DECL_ca application_interface :
-         virtual public ::ca::application_interface
+      class CLASS_DECL_ca sockets :
+         virtual public ::ca::section
       {
       public:
 
@@ -24,10 +24,10 @@
          
 
 
-         application_interface();
+         sockets();
 
 
-         void on_application_signal(::radix::application_signal_object * papplicationsignal);
+         void on_application_signal(::ca::application_signal_object * papplicationsignal);
          virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 
 

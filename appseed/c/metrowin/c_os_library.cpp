@@ -1,7 +1,8 @@
 #include "framework.h"
 #include <windows.h>
 
-namespace ca
+
+namespace c
 {
 
 
@@ -126,17 +127,17 @@ namespace ca
 
    bool ca2_library::open(const char * pszPath)
    {
-      m_plibrary = ::ca2::open_ca2_library(pszPath);
+      m_plibrary = ::ca::open_ca2_library(pszPath);
       return m_plibrary != NULL;
    }
 
 
 
 
-} // namespace ca
+} // namespace c
 
 
-namespace ca2
+namespace ca
 {
 
    void * open_ca2_library(const char * psz)

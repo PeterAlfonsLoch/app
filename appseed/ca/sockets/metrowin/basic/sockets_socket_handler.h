@@ -65,7 +65,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void RegStdLog(StdLog *log);
 
          /** Log error to log class for print out / storage. */
-         void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning);
+         void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::ca::log::e_level elevel = ::ca_get_level_warning());
 
          /** add socket instance to socket ::collection::map. Removal is always automatic. */
          void add(socket *);
@@ -100,7 +100,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Connection pool
          /** find available open connection (used by connection pool). */
-         socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&);
+         socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,::sockets::address&);
          /** Enable connection pool (by default disabled). */
          void EnablePool(bool x = true);
          /** Check pool status.

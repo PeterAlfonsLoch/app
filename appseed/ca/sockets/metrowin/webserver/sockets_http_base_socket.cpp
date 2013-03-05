@@ -108,7 +108,7 @@ namespace sockets
       //TRACE("http version: %s\n", m_request.attr("http_version").get_string());
       //TRACE("connection: %s\n", m_request.header("connection").get_string());
       //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-   /*   if(gen::str::ends(m_request.attr("http_version").get_string(), "/1.1")
+   /*   if(::ca::str::ends(m_request.attr("http_version").get_string(), "/1.1")
          && m_request.header("connection").get_string().CompareNoCase("close") != 0)
       {
          m_b_keepalive = true;
@@ -245,7 +245,7 @@ namespace sockets
             m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
 
 
-            gen::memory_file file(get_app());
+            ::primitive::memory_file file(get_app());
 
             gzip gz(&file);
 
