@@ -200,9 +200,8 @@ namespace simpledb
 
    bool simpledb::set_keyboard_layout(const char * pszPath, bool bUser)
    {
-      UNREFERENCED_PARAMETER(pszPath);
-      UNREFERENCED_PARAMETER(bUser);
-      return false;
+      return Application.user().set_keyboard_layout(pszPath, bUser);
+      
    }
 
    void simpledb::on_set_keyboard_layout(const char * pszPath, bool bUser)

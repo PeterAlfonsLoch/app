@@ -119,7 +119,7 @@ repeat:;
              goto repeat;
           }
 
-          if(&ApplicationUser == NULL)
+          if(Session.fontopus().m_puser == NULL)
           {
              sl.unlock();
              Sleep(1984 + 1977);

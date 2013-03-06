@@ -71,7 +71,7 @@ namespace userstack
 #ifdef WINDOWSEX
       ::DestroyMenu(cs.hMenu);
 #else
-      throw todo(get_app());
+      //throw todo(get_app());
 #endif
       cs.hMenu = NULL;
       return TRUE;

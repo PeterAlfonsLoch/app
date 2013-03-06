@@ -53,6 +53,10 @@ namespace c
       {
          pszPath = "ca2";
       }
+      else if(stricmp_dup(pszPath, "app_sphere") == 0)
+      {
+         pszPath = "sphere";
+      }
 
       vsstring strPath(pszPath);
 

@@ -415,7 +415,7 @@ namespace gcom
          {
             spgraphicsScreen.DeleteDC();
          }
-         spgraphicsScreen.CreateDC("DISPLAY", NULL, NULL, NULL);
+         spgraphicsScreen.CreateCompatibleDC(NULL);
 
          GetDib(_graphics::DibBack)->create(cx, cy); // Back
          GetDib(_graphics::DibBack)->Fill(0, 0, 0, 0);

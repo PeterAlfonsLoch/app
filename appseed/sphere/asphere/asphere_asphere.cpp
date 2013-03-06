@@ -7,7 +7,7 @@ extern "C" int32_t WINAPI DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID
    if (dwReason == DLL_PROCESS_ATTACH)
    {
       
-      ::OutputDebugString("ca.dll Initializing");
+      ::OutputDebugStringW(L"ca.dll Initializing");
 
    }
    else if (dwReason == DLL_THREAD_DETACH)
@@ -17,7 +17,7 @@ extern "C" int32_t WINAPI DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID
    else if (dwReason == DLL_PROCESS_DETACH)
    {
 
-      ::OutputDebugString("ca.dll Terminating");
+      ::OutputDebugStringW(L"ca.dll Terminating");
 
    }
 

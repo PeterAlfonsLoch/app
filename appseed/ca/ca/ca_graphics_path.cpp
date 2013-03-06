@@ -58,8 +58,8 @@ namespace ca
       m_elementa.add(e);
 
       m_bHasPoint = true;
-      m_pt.x = e.m_arc.m_xCenter + e.m_arc.m_dRadiusX * cos(e.m_arc.m_dAngle2);
-      m_pt.y = e.m_arc.m_yCenter + e.m_arc.m_dRadiusY * sin(e.m_arc.m_dAngle2);
+      m_pt.x = (LONG) (e.m_arc.m_xCenter + e.m_arc.m_dRadiusX * cos(e.m_arc.m_dAngle2));
+      m_pt.y = (LONG) (e.m_arc.m_yCenter + e.m_arc.m_dRadiusY * sin(e.m_arc.m_dAngle2));
 
       m_bUpdated = false;
 

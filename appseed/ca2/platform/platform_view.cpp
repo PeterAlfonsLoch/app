@@ -139,7 +139,7 @@ namespace platform
 		   CS_OWNDC,
 		   0, 0, 0);
 #else
-      throw todo(get_app());
+//      throw todo(get_app());
 #endif
       cs.style &= ~WS_EX_CLIENTEDGE;
       return form_view::pre_create_window(cs);

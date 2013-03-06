@@ -555,7 +555,7 @@ public:
       return( *this );
    }
 
-   const char &  operator [](strsize iChar ) const
+   const char & operator [](strsize iChar ) const
    {
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
@@ -563,16 +563,6 @@ public:
          throw invalid_argument_exception(::ca::get_thread_app());
 
       return ( m_pszData[iChar] );
-   }
-
-   char & operator [](strsize iChar )
-   {
-      //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
-
-      if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca::get_thread_app());
-
-      return m_pszData[iChar];
    }
 
    // non error at
