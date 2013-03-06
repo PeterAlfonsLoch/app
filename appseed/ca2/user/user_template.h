@@ -11,24 +11,24 @@ namespace check
 
 
 #ifdef _WIN64
-template <> 
+template <>
 inline UINT HashKey(INT_PTR key)
 {
 	// default identity hash - works for most primitive values
 	return (DWORD)(((DWORD_PTR)key)>>32);
 }
 #else
-template <> 
+template <>
 inline UINT HashKey(INT_PTR key)
 {
 	// default identity hash - works for most primitive values
 	return (DWORD)(((DWORD_PTR)key)>>16);
 }
-#endif 
+#endif
 
 namespace user
 {
-   
+
    typedef ::collection::map < INT_PTR, INT_PTR, ::user::window_interface *, ::user::window_interface * > int_to_window_interface;
    typedef pointer_array < interaction > interaction_array;
 
@@ -36,7 +36,7 @@ namespace user
 
 typedef comparable_array < ::command_target * > command_target_ptra;
 
-namespace user 
+namespace user
 {
 
    namespace win
@@ -49,7 +49,7 @@ namespace user
             public base_array < DispatchHandlerItemBase *, DispatchHandlerItemBase *>
          {
          public:
-            bool HasSignalizable(gen::signalizable * psignalizable);
+            bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
          class DispatchSignalPtrArray :
@@ -70,6 +70,6 @@ namespace user
 
    } // namespace win
 
-} // namespace user 
+} // namespace user
 
 

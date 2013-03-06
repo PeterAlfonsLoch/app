@@ -144,7 +144,7 @@ namespace ca
    {
    public:
 
-      
+
 
    };
 
@@ -223,7 +223,7 @@ namespace ca
    public:
 
 
-      
+
       const string OAUTHLIB_CONSUMERKEY_KEY;
       const string OAUTHLIB_CALLBACK_KEY;
       const string OAUTHLIB_VERSION_KEY;
@@ -246,7 +246,7 @@ namespace ca
       const char TWIT_EOS;
 
       /* Miscellaneous data used to build twitter URLs*/
-      const string TWIT_SEARCHQUERYSTRING;      
+      const string TWIT_SEARCHQUERYSTRING;
       const string TWIT_SCREENNAME;
       const string TWIT_USERID;
       const string TWIT_EXTENSIONFORMAT;
@@ -299,7 +299,7 @@ namespace ca
       /* Block URLs */
       const string TWIT_BLOCKSCREATE_URL;
       const string TWIT_BLOCKSDESTROY_URL;
-    
+
       /* Saved Search URLs */
       const string TWIT_SAVEDSEARCHGET_URL;
       const string TWIT_SAVEDSEARCHSHOW_URL;
@@ -1082,6 +1082,55 @@ namespace ca
 
 } // namespace ca
 
+
+template < class KEY, class ARG_KEY, class T >
+void ::ca::holder_map < KEY, ARG_KEY, T > ::set_at(ARG_KEY key, T * p)
+{
+   ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
+   if(pca == NULL)
+      return;
+   if(pca->m_papp == NULL)
+      return;
+   if(pca->m_papp->m_psystem == NULL)
+      return;
+   m_papp = pca->m_papp;
+   m_keymap.set_at(key, p);
+   m_camap.set_at(pca, key);
+}
+
+
+// impl
+template < class APP >
+ ::ca::application * ::ca::single_application_library < APP > :: get_new_app(const char * pszAppId)
+{
+
+   if(!contains_app(pszAppId))
+      return NULL;
+
+   ::ca::application * papp = new APP();
+
+   if(papp == NULL)
+      return NULL;
+
+   try
+   {
+      papp->construct(pszAppId);
+   }
+   catch(...)
+   {
+      try
+      {
+         delete papp;
+      }
+      catch(...)
+      {
+      }
+      return NULL;
+   }
+
+   return papp;
+
+}
 
 
 #include "ca/ca/ca_font.h"

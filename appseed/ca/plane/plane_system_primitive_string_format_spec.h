@@ -6,7 +6,7 @@
 inline void string_format::format(int32_t i)
 {
 
-   append(gen::str::from(i));
+   append(::ca::str::from(i));
 
 }
 

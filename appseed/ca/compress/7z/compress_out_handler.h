@@ -8,7 +8,7 @@ namespace libcompress
 
    struct COneMethodInfo
    {
-      gen::property_set Props;
+      ::ca::property_set Props;
       string MethodName;
 
       bool IsLzma() const;

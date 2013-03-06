@@ -45,11 +45,6 @@ namespace ca
       inline class id id(const var & var);
       inline class id id(const ::ca::property & prop);
 
-      friend class application;
-
-   
-
-
    };
 
    inline id system::id(const class var & var)

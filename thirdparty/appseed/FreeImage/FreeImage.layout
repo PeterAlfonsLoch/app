@@ -49,4 +49,7 @@
 	<File name="OpenEXR/IlmImf/ImfIO.h" open="0" top="0" tabpos="0">
 		<Cursor position="2109" topLine="21" />
 	</File>
+	<File name="Utilities.h" open="0" top="0" tabpos="1">
+		<Cursor position="8824" topLine="233" />
+	</File>
 </CodeBlocks_layout_file>

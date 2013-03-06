@@ -7,7 +7,7 @@ namespace libcompress
    struct method
    {
      method_id Id;
-     gen::property_set Props;
+     ::ca::property_set Props;
    };
 
    struct method_mode

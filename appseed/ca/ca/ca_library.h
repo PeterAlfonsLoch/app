@@ -3,7 +3,7 @@
 
 namespace user
 {
-   
+
 
    class view_creator_data;
 
@@ -37,7 +37,7 @@ namespace uinteraction
 namespace ca
 {
 
-   
+
    typedef class library * (* PFN_GET_NEW_LIBRARY)();
 
 
@@ -98,7 +98,7 @@ namespace ca
 
    };
 
-   
+
    template < class APP >
    class single_application_library :
       virtual public library
@@ -108,36 +108,7 @@ namespace ca
       single_application_library(const char * pszRoot) : ::ca::library(pszRoot) {}
 
       // impl
-      virtual ::ca::application * get_new_app(const char * pszAppId)
-      {
-
-         if(!contains_app(pszAppId))
-            return NULL;
-
-         ::ca::application * papp = new APP();
-
-         if(papp == NULL)
-            return NULL;
-
-         try
-         {
-            papp->construct(pszAppId);
-         }
-         catch(...)
-         {
-            try
-            {
-               delete papp;
-            }
-            catch(...)
-            {
-            }
-            return NULL;
-         }
-
-         return papp;
-
-      }
+      virtual ::ca::application * get_new_app(const char * pszAppId);
 
 
    };

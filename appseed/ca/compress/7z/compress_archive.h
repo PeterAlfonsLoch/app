@@ -222,7 +222,7 @@ namespace libcompress
        { if(index >= sizeof(k) / sizeof(k[0])) return E_INVALIDARG; \
        const STATPROPSTG &srcItem = k[index]; \
        *propID = srcItem.propid; *varType = srcItem.vt; \
-       if (srcItem.lpwstrName == 0) name.Empty(); else name = gen::international::unicode_to_utf8(srcItem.lpwstrName); return S_OK; } \
+       if (srcItem.lpwstrName == 0) name.Empty(); else name = ::ca::international::unicode_to_utf8(srcItem.lpwstrName); return S_OK; } \
 
    #define IMP_IInArchive_Props \
      ex1::HRes handler::GetNumberOfProperties(uint32 *numProperties) \

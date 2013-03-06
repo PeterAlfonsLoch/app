@@ -843,7 +843,7 @@ namespace ca
 
 
 template < class T >
-bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
+bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -859,7 +859,7 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
 
 template < class T >
-bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
+bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -1111,11 +1111,11 @@ namespace xml
 
    inline disp_option::disp_option(::ca::application * papp)
    {
-      newline = true; 
-      reference_value = true; 
-      m_pentities = &papp->m_psystem->m_pxml->m_entities; 
-      tab_base = 0; 
-      value_quotation_mark = '"'; 
+      newline = true;
+      reference_value = true;
+      m_pentities = &papp->m_psystem->m_pxml->m_entities;
+      tab_base = 0;
+      value_quotation_mark = '"';
    }
 
 

@@ -19,54 +19,6 @@
 	<File name="ca2.h" open="0" top="0" tabpos="53">
 		<Cursor position="48" topLine="0" />
 	</File>
-	<File name="ca8/ca8.h" open="0" top="0" tabpos="68">
-		<Cursor position="36" topLine="0" />
-	</File>
-	<File name="ca8/ca8_application.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="874" topLine="21" />
-	</File>
-	<File name="ca8/ca8_keyboard_layout.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4564" topLine="133" />
-	</File>
-	<File name="ca8/ca8_network_configuration.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2468" topLine="59" />
-	</File>
-	<File name="calculator/application.h" open="0" top="0" tabpos="26">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="calculator/calculator.h" open="0" top="0" tabpos="67">
-		<Cursor position="43" topLine="0" />
-	</File>
-	<File name="calculator/calculator_frame.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4650" topLine="139" />
-	</File>
-	<File name="calculator/calculator_view.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2330" topLine="49" />
-	</File>
-	<File name="calculator/view.h" open="0" top="0" tabpos="12">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="command/command.h" open="0" top="0" tabpos="64">
-		<Cursor position="39" topLine="0" />
-	</File>
-	<File name="command/command_application.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="2198" topLine="45" />
-	</File>
-	<File name="command/command_application.h" open="0" top="0" tabpos="23">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="command/command_frame.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="5076" topLine="169" />
-	</File>
-	<File name="command/command_pane_view.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="10957" topLine="295" />
-	</File>
-	<File name="command/command_primary_view.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="6190" topLine="115" />
-	</File>
-	<File name="command/command_view.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2674" topLine="64" />
-	</File>
 	<File name="cube/cube.h" open="0" top="0" tabpos="51">
 		<Cursor position="53" topLine="0" />
 	</File>
@@ -82,30 +34,6 @@
 	<File name="cube/cube_library.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="299" topLine="0" />
 	</File>
-	<File name="cube1/cube1.h" open="0" top="0" tabpos="61">
-		<Cursor position="37" topLine="0" />
-	</File>
-	<File name="cube1/cube1_application.cpp" open="0" top="0" tabpos="19">
-		<Cursor position="3716" topLine="132" />
-	</File>
-	<File name="cube1/cube1_application.h" open="0" top="0" tabpos="15">
-		<Cursor position="395" topLine="1" />
-	</File>
-	<File name="cube2/cube2.h" open="0" top="0" tabpos="60">
-		<Cursor position="38" topLine="0" />
-	</File>
-	<File name="cube2/cube2_application.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="3548" topLine="106" />
-	</File>
-	<File name="cube5/cube5.h" open="0" top="0" tabpos="62">
-		<Cursor position="49" topLine="0" />
-	</File>
-	<File name="cube8/cube8.h" open="0" top="0" tabpos="54">
-		<Cursor position="351" topLine="0" />
-	</File>
-	<File name="cube8/cube8_application.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1320" topLine="80" />
-	</File>
 	<File name="cubebase/cubebase.h" open="0" top="0" tabpos="47">
 		<Cursor position="42" topLine="0" />
 	</File>
@@ -120,24 +48,6 @@
 	</File>
 	<File name="databaseuser/databaseuser.h" open="0" top="0" tabpos="75">
 		<Cursor position="40" topLine="0" />
-	</File>
-	<File name="filehandler/filehandler.h" open="0" top="0" tabpos="66">
-		<Cursor position="47" topLine="0" />
-	</File>
-	<File name="filehandler/filehandler_application.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1120" topLine="8" />
-	</File>
-	<File name="filehandler/filehandler_application.h" open="0" top="0" tabpos="25">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="filehandler/filehandler_frame.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="filehandler/filehandler_pane_view.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="5644" topLine="155" />
-	</File>
-	<File name="filehandler/filehandler_view.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="filemanager/FileManagerChildFrame.h" open="0" top="0" tabpos="15">
 		<Cursor position="47" topLine="0" />
@@ -621,23 +531,5 @@
 	</File>
 	<File name="userhtml/userhtml_view.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="userstack/userstack.h" open="0" top="0" tabpos="63">
-		<Cursor position="44" topLine="0" />
-	</File>
-	<File name="userstack/userstack_application.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="2032" topLine="108" />
-	</File>
-	<File name="userstack/userstack_application.h" open="0" top="0" tabpos="22">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="userstack/userstack_frame.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="10790" topLine="393" />
-	</File>
-	<File name="userstack/userstack_pane_view.cpp" open="0" top="0" tabpos="46">
-		<Cursor position="16396" topLine="508" />
-	</File>
-	<File name="userstack/userstack_view.cpp" open="0" top="0" tabpos="17">
-		<Cursor position="2976" topLine="92" />
 	</File>
 </CodeBlocks_layout_file>

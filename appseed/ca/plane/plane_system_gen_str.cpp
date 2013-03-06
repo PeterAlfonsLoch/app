@@ -15,21 +15,21 @@ namespace gen
          if(pformat->m_chLength == 'X')
          {
 
-            string str = gen::hex::hi_from((void *) &ch, 1);
-            
+            string str = ::ca::hex::hi_from((void *) &ch, 1);
+
             while(pformat->m_iWidth > str.get_length())
             {
                str = "0" + str;
             }
-            
+
             pformat->append(str);
-            
+
          }
          else
          {
-         
+
             pformat->append(string((char) ch));
-            
+
          }
 
       }
@@ -46,7 +46,7 @@ namespace gen
       void format(string_format * pformat, int16_t const & sh)
       {
 
-         pformat->append(gen::str::from((int32_t) sh));
+         pformat->append(::ca::str::from((int32_t) sh));
 
       }
 
@@ -54,7 +54,7 @@ namespace gen
       void format(string_format * pformat, uint16_t const & ush)
       {
 
-         pformat->append(gen::str::from((uint32_t) ush));
+         pformat->append(::ca::str::from((uint32_t) ush));
 
       }
 
@@ -62,42 +62,42 @@ namespace gen
       void format(string_format * pformat, int32_t const & i)
       {
          // TODO: use specs
-         pformat->append(gen::str::from(i));
+         pformat->append(::ca::str::from(i));
 
       }
 
       void format(string_format * pformat, uint32_t const & ui)
       {
          // TODO: use specs
-         pformat->append(gen::str::from(ui));
+         pformat->append(::ca::str::from(ui));
 
       }
 
       void format(string_format * pformat, int64_t const & i)
       {
          // TODO: use specs
-         pformat->append(gen::str::from(i));
+         pformat->append(::ca::str::from(i));
 
       }
 
       void format(string_format * pformat, uint64_t const & i)
       {
          // TODO: use specs
-         pformat->append(gen::str::from(i));
+         pformat->append(::ca::str::from(i));
 
       }
 
       void format(string_format * pformat, float const & f)
       {
          // TODO: use specs
-         pformat->append(gen::str::from(f));
+         pformat->append(::ca::str::from(f));
 
       }
 
       void format(string_format * pformat, double const & d)
       {
          // TODO: use specs
-         pformat->append(gen::str::from(d));
+         pformat->append(::ca::str::from(d));
 
       }
 
@@ -106,14 +106,14 @@ namespace gen
       void format(string_format * pformat, const void * const & p)
       {
          // TODO: use specs
-         pformat->append(gen::str::from((uint_ptr)p));
+         pformat->append(::ca::str::from((uint_ptr)p));
 
       }
 
       void format(string_format * pformat, void * const & p)
       {
          // TODO: use specs
-         pformat->append(gen::str::from((uint_ptr)p));
+         pformat->append(::ca::str::from((uint_ptr)p));
 
       }
 
@@ -140,14 +140,14 @@ namespace gen
 
       }
 
-      
+
       void format(string_format * pformat, calculator::value const & cval)
       {
-         
+
          pformat->append(cval.to_string());
-         
+
       }
-      
+
 
    } // namespace str
 

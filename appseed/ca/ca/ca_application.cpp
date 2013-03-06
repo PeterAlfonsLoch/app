@@ -350,43 +350,43 @@ namespace ca
 #else
 
 #if defined(MACOS)
-         
+
          string str;
-         
+
          char * lpsz = str.GetBufferSetLength(1024);
-         
+
          uint32_t size = 1024;
-         
+
          if(_NSGetExecutablePath(lpsz, &size) == 0)
          {
-         
+
             str.ReleaseBuffer();
-         
+
          }
          else
          {
-         
+
             lpsz = str.GetBufferSetLength(size);
-            
+
             if(_NSGetExecutablePath(lpsz, &size) == 0)
             {
-               
+
                str.ReleaseBuffer();
-               
+
             }
             else
             {
-               
+
                return false;
-               
+
             }
 
          }
-         
+
          m_strModuleFolder = ::dir::name(str);
-         
+
 #else
-         
+
          {
 
             if(!br_init_lib(NULL))
@@ -402,9 +402,9 @@ namespace ca
             free(lpszModuleFolder);
 
          }
-         
+
 #endif
-         
+
 
 #ifdef LINUX
 
@@ -716,7 +716,7 @@ finishedCa2ModuleFolder:;
 
    ::fontopus::user * application::get_safe_user()
    {
-      
+
       if(m_psession == NULL)
          return NULL;
 
@@ -777,7 +777,7 @@ finishedCa2ModuleFolder:;
       return *m_psavings;
 
    }
-   
+
 
    ::ca::lemon::array & application::lemon_array()
    {
@@ -998,7 +998,7 @@ finishedCa2ModuleFolder:;
       //   }
       }
 
-      
+
 
       try
       {
@@ -3111,9 +3111,9 @@ namespace ca
    int32_t application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
 
-      return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+      return MessageBox((puiOwner == NULL ? ::ca::null() : (puiOwner->get_wnd() == NULL ? ::ca::null() : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
 #else
 
@@ -4376,7 +4376,7 @@ namespace ca
 #else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
-      
+
       if(::ca::smart_pointer < application_base >::m_p == NULL)
          return NULL;
 
@@ -4616,7 +4616,7 @@ namespace ca
 
    void application::_001EnableShellOpen()
    {
-      
+
       ::ca::smart_pointer < application_base >::m_p->_001EnableShellOpen();
 
    }
@@ -4908,7 +4908,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    bool application::base_support()
    {
-    
+
       //if(!::ca::application::base_support())
         // return false;
 
@@ -5143,7 +5143,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          }
          catch(not_installed & e)
          {
-            
+
             throw e;
 
          }

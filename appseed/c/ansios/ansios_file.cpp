@@ -5,6 +5,8 @@
 #include <sys/mman.h>
 #define PACKAGE "mmap"
 
+void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str);
+
 void ensure_file_size(int32_t fd, size_t iSize)
 {
 

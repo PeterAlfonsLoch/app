@@ -153,10 +153,10 @@ public:
 
    inline void append(const char * psz)
    {
-      
+
       if(psz == NULL)
          return;
-      
+
       try
       {
 
@@ -176,9 +176,9 @@ public:
       }
       catch(...)
       {
-      
+
       }
-      
+
    }
 
    bool parse(const char * & s);
@@ -202,7 +202,7 @@ public:
          if(!parse(s))
          {
 
-            gen::str::format(this, value);
+            ::ca::str::format(this, value);
 
             printf(s, args...);
 
@@ -239,7 +239,7 @@ public:
          if(!parse(s))
          {
 
-            ::gen::str::format(this, value);
+            ::ca::str::format(this, value);
 
             printf(s, args...);
 

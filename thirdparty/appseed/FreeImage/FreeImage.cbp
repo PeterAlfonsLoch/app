@@ -56,6 +56,7 @@
 			<Add directory="../../../appseed/c" />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
+			<Add directory="FreeImage" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
@@ -63,8 +64,6 @@
 			<Add directory="../../../../stage/x86" />
 		</Linker>
 		<Unit filename="CacheFile.h" />
-		<Unit filename="DeprecationManager/Deprecated.cpp" />
-		<Unit filename="DeprecationManager/DeprecationMgr.cpp" />
 		<Unit filename="DeprecationManager/DeprecationMgr.h" />
 		<Unit filename="FreeImage.h" />
 		<Unit filename="FreeImage/BitmapAccess.cpp" />
@@ -82,8 +81,9 @@
 		<Unit filename="FreeImage/ConversionType.cpp" />
 		<Unit filename="FreeImage/ConversionUINT16.cpp" />
 		<Unit filename="FreeImage/FreeImage.cpp" />
-		<Unit filename="FreeImage/FreeImageC.c">
-			<Option compilerVar="CC" />
+		<Unit filename="FreeImage/FreeImageFramework.h">
+			<Option compile="1" />
+			<Option weight="0" />
 		</Unit>
 		<Unit filename="FreeImage/FreeImageIO.cpp" />
 		<Unit filename="FreeImage/GetType.cpp" />
@@ -751,6 +751,10 @@
 		<Unit filename="OpenEXR/IlmImf/ImfFrameBuffer.h" />
 		<Unit filename="OpenEXR/IlmImf/ImfFramesPerSecond.cpp" />
 		<Unit filename="OpenEXR/IlmImf/ImfFramesPerSecond.h" />
+		<Unit filename="OpenEXR/IlmImf/ImfFramework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="OpenEXR/IlmImf/ImfHeader.cpp" />
 		<Unit filename="OpenEXR/IlmImf/ImfHeader.h" />
 		<Unit filename="OpenEXR/IlmImf/ImfHuf.cpp" />

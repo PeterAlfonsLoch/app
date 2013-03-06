@@ -342,19 +342,7 @@ namespace ca
          remove(pca);
       }
 
-      void set_at(ARG_KEY key, T * p)
-      {
-         ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
-         if(pca == NULL)
-            return;
-         if(pca->m_papp == NULL)
-            return;
-         if(pca->m_papp->m_psystem == NULL)
-            return;
-         m_papp = pca->m_papp;
-         m_keymap.set_at(key, p);
-         m_camap.set_at(pca, key);
-      }
+      void set_at(ARG_KEY key, T * p);
 
       T * operator[](ARG_KEY key)
       {
