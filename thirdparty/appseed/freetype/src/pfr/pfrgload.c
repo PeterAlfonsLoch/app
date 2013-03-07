@@ -693,7 +693,7 @@
       if ( format & PFR_SUBGLYPH_3BYTE_OFFSET )
       {
         PFR_CHECK( 3 );
-        subglyph->gps_offset = PFR_NEXT_LONG( p );
+        subglyph->gps_offset = (FT_UInt32) PFR_NEXT_LONG( p );
       }
       else
       {

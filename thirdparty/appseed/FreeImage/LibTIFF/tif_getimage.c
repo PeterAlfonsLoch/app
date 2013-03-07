@@ -313,7 +313,7 @@ TIFFRGBAImageBegin(TIFFRGBAImage* img, TIFF* tif, int stop, char emsg[1024])
 			}
 
 			/* copy the colormaps so we can modify them */
-			n_color = (1L << img->bitspersample);
+			n_color = (int) (1L << img->bitspersample);
 			img->redcmap = (uint16 *) _TIFFmalloc(sizeof(uint16)*n_color);
 			img->greencmap = (uint16 *) _TIFFmalloc(sizeof(uint16)*n_color);
 			img->bluecmap = (uint16 *) _TIFFmalloc(sizeof(uint16)*n_color);

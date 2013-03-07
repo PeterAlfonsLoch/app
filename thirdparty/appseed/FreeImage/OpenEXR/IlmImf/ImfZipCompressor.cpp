@@ -157,7 +157,7 @@ ZipCompressor::compress (const char *inPtr,
     }
 
     outPtr = _outBuffer;
-    return outSize;
+    return (int) outSize;
 }
 
 
@@ -230,7 +230,7 @@ ZipCompressor::uncompress (const char *inPtr,
     }
 
     outPtr = _outBuffer;
-    return outSize;
+    return (int) outSize;
 }
 
 

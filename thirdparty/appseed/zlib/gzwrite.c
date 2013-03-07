@@ -84,7 +84,7 @@ local int gz_comp(state, flush)
 #ifdef _WIN32
         got = _write(state->fd, strm->next_in, strm->avail_in);
 #else
-        got = write(state->fd, strm->next_in, strm->avail_in);
+        got = (int) write(state->fd, strm->next_in, strm->avail_in);
 #endif
         if (got < 0 || (unsigned)got != strm->avail_in) {
             gz_error(state, Z_ERRNO, zstrerror());
@@ -106,7 +106,7 @@ local int gz_comp(state, flush)
             if (have && ((got = _write(state->fd, state->x.next, have)) < 0 ||
                          (unsigned)got != have)) {
 #else
-            if (have && ((got = write(state->fd, state->x.next, have)) < 0 ||
+            if (have && ((got = (int) write(state->fd, state->x.next, have)) < 0 ||
                          (unsigned)got != have)) {
 #endif
                 gz_error(state, Z_ERRNO, zstrerror());

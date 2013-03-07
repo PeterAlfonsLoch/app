@@ -423,6 +423,9 @@ FreeImage_GetComplexChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 					}
 				}
 				break;
+         default:
+            break;
+ 
 		}
 	}
 
@@ -481,6 +484,9 @@ FreeImage_SetComplexChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANN
 				}
 			}
 			break;
+      default:
+         break;
+ 
 	}
 
 	return TRUE;

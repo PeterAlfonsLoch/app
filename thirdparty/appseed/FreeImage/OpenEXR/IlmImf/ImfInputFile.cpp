@@ -142,7 +142,9 @@ InputFile::Data::deleteCachedBuffer()
 
 		delete [] (((float *)s.base) + offset);
 		break;
-	    }                
+          default:
+             break;
+	    }
 	}
 
 	//

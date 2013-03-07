@@ -478,6 +478,8 @@ FreeImage_GetColorType(FIBITMAP *dib) {
 			case FIT_RGBA16:
 			case FIT_RGBAF:
 				return FIC_RGBALPHA;
+         default:
+            break;
 		}
 
 		return FIC_MINISBLACK;
@@ -791,7 +793,7 @@ FreeImage_CreateICCProfile(FIBITMAP *dib, void *data, long size) {
 	if(size && profile) {
 		profile->data = malloc(size);
 		if(profile->data) {
-			memcpy(profile->data, data, profile->size = size);
+			memcpy(profile->data, data, profile->size = (DWORD) size);
 		}
 	}
 	return profile;
@@ -945,7 +947,7 @@ FreeImage_FindNextMetadata(FIMETADATA *mdhandle, FITAG **tag) {
 	METADATAHEADER *mdh = (METADATAHEADER *)mdhandle->data;
 	TAGMAP *tagmap = mdh->tagmap;
 
-	int current_pos = mdh->pos;
+	int current_pos = (int) mdh->pos;
 	int mapsize     = (int)tagmap->size();
 
 	if(current_pos < mapsize) {

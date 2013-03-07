@@ -247,9 +247,9 @@
 
     bitmap->pixel_mode = FT_PIXEL_MODE_GRAY;
     bitmap->num_grays  = 256;
-    bitmap->width      = width;
-    bitmap->rows       = height;
-    bitmap->pitch      = pitch;
+    bitmap->width      = (int) width;
+    bitmap->rows       = (int) height;
+    bitmap->pitch      = (int) pitch;
 
     /* translate outline to render it into the bitmap */
     FT_Outline_Translate( outline, -x_shift, -y_shift );
@@ -324,13 +324,13 @@
       FT_UInt   hh;
 
 
-      for ( hh = height_org; hh > 0; hh--, line += pitch )
+      for ( hh = (FT_UInt) height_org; hh > 0; hh--, line += pitch )
       {
         FT_UInt   xx;
         FT_Byte*  end = line + width;
 
 
-        for ( xx = width_org; xx > 0; xx-- )
+        for ( xx = (FT_UInt) width_org; xx > 0; xx-- )
         {
           FT_UInt  pixel = line[xx-1];
 
@@ -351,7 +351,7 @@
       FT_UInt   hh;
 
 
-      for ( hh = height_org; hh > 0; hh-- )
+      for ( hh = (FT_UInt) height_org; hh > 0; hh-- )
       {
         ft_memcpy( write, read, pitch );
         write += pitch;

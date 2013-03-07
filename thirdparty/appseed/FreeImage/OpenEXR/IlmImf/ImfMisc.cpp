@@ -284,6 +284,9 @@ copyIntoFrameBuffer (const char *& readPtr,
                     writePtr += xStride;
                 }
                 break;
+               default:
+                  break;
+                  
             }
             break;
 
@@ -321,6 +324,9 @@ copyIntoFrameBuffer (const char *& readPtr,
                     writePtr += xStride;
                 }
                 break;
+               default:
+                  break;
+
             }
             break;
 
@@ -358,6 +364,9 @@ copyIntoFrameBuffer (const char *& readPtr,
                     writePtr += xStride;
                 }
                 break;
+               default:
+                  break;
+                  
             }
             break;
 
@@ -416,6 +425,9 @@ copyIntoFrameBuffer (const char *& readPtr,
                     writePtr += xStride;
                 }
                 break;
+               default:
+                  break;
+                  
             }
             break;
 
@@ -462,6 +474,9 @@ copyIntoFrameBuffer (const char *& readPtr,
                     writePtr += xStride;
                 }
                 break;
+               default:
+                  break;
+                  
             }
             break;
 
@@ -506,6 +521,9 @@ copyIntoFrameBuffer (const char *& readPtr,
                     writePtr += xStride;
                 }
                 break;
+               default:
+                  break;
+                  
             }
             break;
 

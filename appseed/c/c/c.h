@@ -35,6 +35,10 @@
 #define system_user_1 "system_user_1"
 #define system_user_2 "system_user_2"
 
+#ifdef _LP64
+#define OS64BIT
+#endif
+
 
 namespace ca
 {

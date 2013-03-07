@@ -1481,7 +1481,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		
 		assert(sizeof(ex) == 495);
 		ex.extension_size = sizeof(ex);
-		ex.postage_stamp_offset = extension_offset + ex.extension_size + 0 /*< no Scan Line Table*/;
+		ex.postage_stamp_offset = (DWORD) (extension_offset + ex.extension_size + 0 )/*< no Scan Line Table*/;
 		ex.attributes_type = FreeImage_GetBPP(dib) == 32 ? 3 /*< useful Alpha channel data*/ : 0 /*< no Alpha data*/;
 		
 #ifdef FREEIMAGE_BIGENDIAN

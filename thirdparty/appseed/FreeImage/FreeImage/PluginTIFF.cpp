@@ -153,7 +153,7 @@ static toff_t
 _tiffSeekProc(thandle_t handle, toff_t off, int whence) {
 	fi_TIFFIO *fio = (fi_TIFFIO*)handle;
 	fio->io->seek_proc(fio->handle, off, whence);
-	return fio->io->tell_proc(fio->handle);
+	return (toff_t) fio->io->tell_proc(fio->handle);
 }
 
 static int
@@ -170,7 +170,7 @@ _tiffSizeProc(thandle_t handle) {
     fio->io->seek_proc(fio->handle, 0, SEEK_END);
     long fileSize = fio->io->tell_proc(fio->handle);
     fio->io->seek_proc(fio->handle, currPos, SEEK_SET);
-    return fileSize;
+    return (toff_t) fileSize;
 }
 
 static int
@@ -206,7 +206,11 @@ TIFFFdOpen(thandle_t handle, const char *name, const char *mode) {
     // 64bit machines (sizeof(int) != sizeof(long)).
     // Needs to be fixed within libTIFF.
 	if (tif) {
-		tif->tif_fd = (long)handle;
+#ifdef WINDOWS
+		tif->tif_fd = (int) (INT_PTR) handle;
+#else
+      tif->tif_fd = (int) (long) handle;
+#endif
 	}
 
 	return tif;
@@ -652,6 +656,8 @@ WriteImageType(TIFF *tiff, FREE_IMAGE_TYPE fit) {
 		case FIT_COMPLEX:	// array of COMPLEX : 2 x 64-bit
 			TIFFSetField(tiff, TIFFTAG_SAMPLEFORMAT, SAMPLEFORMAT_COMPLEXIEEEFP);
 			break;
+      default:
+         break;
 	}
 }
 

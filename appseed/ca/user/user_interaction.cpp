@@ -3306,6 +3306,8 @@ restart:
       DestroyWindow();
 
    }
+   
+#ifdef METROWIN
 
    Platform::Agile<Windows::UI::Core::CoreWindow> interaction::get_os_window()
    {
@@ -3316,6 +3318,8 @@ restart:
       else
          return m_pimpl->get_os_window();
    }
+   
+#endif
 
    void interaction::offset_view_port_org(LPRECT lprect)
    {

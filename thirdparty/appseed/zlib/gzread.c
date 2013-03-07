@@ -30,7 +30,7 @@ local int gz_load(state, buf, len, have)
 #ifdef _WIN32
         ret = _read(state->fd, buf + *have, len - *have);
 #else
-        ret = read(state->fd, buf + *have, len - *have);
+        ret = (int) read(state->fd, buf + *have, len - *have);
 #endif
         if (ret <= 0)
             break;

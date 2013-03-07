@@ -240,3 +240,91 @@ int32_t oswindow::get_window_long(int32_t iIndex)
 
 
 
+
+static oswindow g_oswindowCapture;
+
+
+oswindow GetCapture()
+{
+   return g_oswindowCapture;
+}
+
+oswindow SetCapture(oswindow window)
+{
+   
+   oswindow windowOld(g_oswindowCapture);
+   
+   if(window.window() == NULL)
+      return ::ca::null();
+   
+/*   if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, 8CurrentTime) == GrabSuccess)
+   {
+      
+      g_oswindowCapture = window;
+      
+      return windowOld;
+      
+   }*/
+   
+   return ::ca::null();
+   
+}
+
+
+WINBOOL ReleaseCapture()
+{
+   
+   //ifGetCapture().display() == NULL)
+     // return FALSE;
+   
+ //  WINBOOL bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
+   
+   WINBOOL bRet = FALSE;
+   
+   if(bRet)
+      g_oswindowCapture = ::ca::null();
+   
+   return bRet;
+   
+}
+
+
+oswindow SetFocus(oswindow window)
+{
+   
+   if(!IsWindow(window))
+      return ::ca::null();
+   
+   oswindow windowOld = ::GetFocus();
+   
+//   if(!XSetInputFocus(window.display(), window.window(), RevertToNone, CurrentTime))
+  //    return ::ca::null();
+   
+   return windowOld;
+   
+}
+
+oswindow GetFocus()
+{
+   
+   //isplay * pdisplay = XOpenDisplay(NULL);
+   
+//   Window window = None;
+   
+//   int revert_to = 0;
+   
+   //bool bOk = XGetInputFocus(pdisplay, &window, &revert_to) != 0;
+   
+   //XCloseDisplay(pdisplay);
+   
+//   if(!bOk)
+  //    return ::ca::null();
+   
+  // if(window == None || window == PointerRoot)
+    //  return ::ca::null();
+   
+   //return oswindow::defer_get(window);
+   return ::ca::null();
+   
+}
+

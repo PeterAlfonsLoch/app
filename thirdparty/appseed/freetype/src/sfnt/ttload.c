@@ -217,7 +217,7 @@
 
       if ( table.Tag == TTAG_head || table.Tag == TTAG_bhed )
       {
-        FT_UInt32  magic;
+        FT_ULong  magic;
 
 
 #ifndef TT_CONFIG_OPTION_EMBEDDED_BITMAPS

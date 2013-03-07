@@ -777,7 +777,7 @@ _TIFFFindFieldInfoByName(TIFF* tif, const char *field_name, TIFFDataType dt)
         TIFFFieldInfo key = {0, 0, 0, TIFF_NOTYPE, 0, 0, 0, 0};
 	TIFFFieldInfo* pkey = &key;
 	const TIFFFieldInfo **ret;
-   unsigned int uiFieldCount;
+//   unsigned int uiFieldCount;
 
 	if (tif->tif_foundfield
 	    && streq(tif->tif_foundfield->field_name, field_name)

@@ -218,6 +218,7 @@ FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, BOOL convert) {
 				bitmap = FreeImage_ToneMapping(rgbf, FITMO_DRAGO03);
 				FreeImage_Unload(rgbf);
 				break;
+         
 		}
 		if(bitmap != NULL) {
 			FreeImage_Unload(thumbnail);

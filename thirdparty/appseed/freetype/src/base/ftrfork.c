@@ -689,13 +689,13 @@
                                FT_Int32    magic,
                                FT_Long    *result_offset )
   {
-    FT_Int32   magic_from_stream;
+    FT_Long   magic_from_stream;
     FT_Error   error;
-    FT_Int32   version_number = 0;
+    FT_Long   version_number = 0;
     FT_UShort  n_of_entries;
 
     int        i;
-    FT_UInt32  entry_id, entry_offset, entry_length = 0;
+    FT_Long  entry_id, entry_offset, entry_length = 0;
 
     const FT_UInt32  resource_fork_entry_id = 0x2;
 

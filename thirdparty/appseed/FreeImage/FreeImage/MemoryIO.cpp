@@ -120,7 +120,7 @@ FreeImage_AcquireMemory(FIMEMORY *stream, BYTE **data, DWORD *size_in_bytes) {
 		FIMEMORYHEADER *mem_header = (FIMEMORYHEADER*)(stream->data);
 
 		*data = (BYTE*)mem_header->data;
-		*size_in_bytes = mem_header->filelen;
+		*size_in_bytes = (DWORD)mem_header->filelen;
 		return TRUE;
 	}
 

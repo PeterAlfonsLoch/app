@@ -86,7 +86,7 @@ G3GetFileSize(FreeImageIO *io, fi_handle handle) {
     io->seek_proc(handle, 0, SEEK_END);
     long fileSize = io->tell_proc(handle);
     io->seek_proc(handle, currentPos, SEEK_SET);
-    return fileSize;
+    return (toff_t) fileSize;
 }
 
 static BOOL 

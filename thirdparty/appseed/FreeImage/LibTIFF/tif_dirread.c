@@ -516,7 +516,7 @@ TIFFReadDirectory(TIFF* tif)
 				 * data values; Colormap can have only 3x
 				 * items.
 				 */
-				v = 1L<<td->td_bitspersample;
+				v = (unsigned int) (1L<<td->td_bitspersample);
 				if (dp->tdir_tag == TIFFTAG_COLORMAP ||
 				    dp->tdir_count != v) {
 					if (!CheckDirCount(tif, dp, 3 * v))
@@ -534,7 +534,7 @@ TIFFReadDirectory(TIFF* tif)
 						 * only one array to apply to
 						 * all samples.
 						 */
-						uint32 c = 1L << td->td_bitspersample;
+						uint32 c = (unsigned int) (1L << td->td_bitspersample);
 						if (dp->tdir_count == c)
 							v = 0L;
 						TIFFSetField(tif, dp->tdir_tag,
@@ -1918,7 +1918,7 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, long nstrips, uint32** lpp)
 	      nstrips, sizeof (uint32), "for strip array")) == NULL)
 		return (0);
 	lp = *lpp;
-        _TIFFmemset( lp, 0, sizeof(uint32) * nstrips );
+        _TIFFmemset( lp, 0, (int) (sizeof(uint32) * nstrips));
 
 	if (dir->tdir_type == (int)TIFF_SHORT) {
 		/*

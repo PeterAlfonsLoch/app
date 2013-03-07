@@ -225,6 +225,8 @@ FreeImage_ConvertToRGBF(FIBITMAP *dib) {
 			}
 		}
 		break;
+      default:
+         break;
 	}
 
 	if(src != dib) {

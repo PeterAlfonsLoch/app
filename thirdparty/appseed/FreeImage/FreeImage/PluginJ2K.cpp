@@ -166,7 +166,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			if(!src) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
-			if(io->read_proc(src, 1, file_length, handle) < 1) {
+			if(io->read_proc(src, 1, (unsigned int) file_length, handle) < 1) {
 				throw "Error while reading input stream";
 			}
 
@@ -182,7 +182,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			opj_setup_decoder(dinfo, &parameters);
 
 			// open a byte stream 
-			cio = opj_cio_open((opj_common_ptr)dinfo, src, file_length);
+			cio = opj_cio_open((opj_common_ptr)dinfo, src, (unsigned int) file_length);
 
 			// decode the stream and fill the image structure 
 			image = opj_decode(dinfo, cio);

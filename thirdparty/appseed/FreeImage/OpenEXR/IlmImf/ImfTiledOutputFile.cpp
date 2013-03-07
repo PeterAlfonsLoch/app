@@ -344,6 +344,9 @@ TiledOutputFile::Data::nextTileCoord (const TileCoord &a)
 			#endif
                     }
                     break;
+                   default:
+                      break;
+        
                 }
             }
         }
@@ -386,6 +389,9 @@ TiledOutputFile::Data::nextTileCoord (const TileCoord &a)
 			#endif
                     }
                     break;
+                   default:
+                      break;
+
                 }
 
 		if (b.ly < numYLevels)

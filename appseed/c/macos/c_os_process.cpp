@@ -24,6 +24,7 @@ int create_process(const char * _cmd_line, int * pprocessId)
       char		*pArg, *pPtr;
       char		*argv[1024 + 1];
       int		 argc;
+      exec_path_name = cmd_line;
       if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
          pArg++;
       else

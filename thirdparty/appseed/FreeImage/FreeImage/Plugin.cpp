@@ -38,7 +38,7 @@ s_search_list[] = {
 	"plugins\\",
 };
 
-static int s_search_list_size = sizeof(s_search_list) / sizeof(char *);
+//static int s_search_list_size = sizeof(s_search_list) / sizeof(char *);
 static PluginList *s_plugins = NULL;
 static int s_plugin_reference_count = 0;
 

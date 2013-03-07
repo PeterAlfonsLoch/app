@@ -179,6 +179,8 @@ HorizontalSkew(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double dWeigh
 		case FIT_RGBAF:
 			HorizontalSkewT<float>(src, dst, row, iOffset, dWeight, bkcolor);
 			break;
+      default:
+         break;
 	}
 }
 
@@ -319,8 +321,11 @@ VerticalSkew(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double dWeight,
 			case FIT_RGBAF:
 				VerticalSkewT<float>(src, dst, col, iOffset, dWeight, bkcolor);
 				break;
+      default:
+         break;
+
 	}
-} 
+}
 
 /**
 Rotates an image by 90 degrees (counter clockwise). 
@@ -445,6 +450,9 @@ Rotate90(FIBITMAP *src) {
 			}
 		}
 		break;
+      default:
+         break;
+         
 	}
 
 	return dst;
@@ -531,6 +539,9 @@ Rotate180(FIBITMAP *src) {
 			}
 		}
 		break;
+      default:
+         break;
+         
 	}
 
 	return dst;
@@ -660,6 +671,9 @@ Rotate270(FIBITMAP *src) {
 			}
 		}
 		break;
+      default:
+         break;
+         
 	}
 
 	return dst;
@@ -945,6 +959,9 @@ FreeImage_Rotate(FIBITMAP *dib, double angle, const void *bkcolor) {
 				return dst;
 			}
 			break;
+         default:
+            break;
+
 		}
 
 	} catch(int) {

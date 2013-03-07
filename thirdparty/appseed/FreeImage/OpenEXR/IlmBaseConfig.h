@@ -3,7 +3,11 @@
 // and you want OpenEXR to use it for multithreaded file I/O.
 //
 
+#if defined(__APPLE__)
+#define HAVE_PTHREAD 1
+#else
 #undef HAVE_PTHREAD		// currently disabled in FreeImage
+#endif
 
 //
 // Define and set to 1 if the target system supports POSIX semaphores
@@ -11,14 +15,21 @@
 // own semaphore implementation.
 //
 
+#if defined(__APPLE__)
+#define HAVE_POSIX_SEMAPHORES 1
+#else
 #undef HAVE_POSIX_SEMAPHORES
-
+#endif
 //
 // Define and set to 1 if the target system is a Darwin-based system
 // (e.g., OS X).
 //
 
+#if defined(__APPLE__)
+#define HAVE_DARWIN 1
+#else
 #undef HAVE_DARWIN
+#endif
 
 //
 // Define and set to 1 if the target system supports a proc filesystem

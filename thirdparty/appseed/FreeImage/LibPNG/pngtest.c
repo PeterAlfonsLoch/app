@@ -1149,7 +1149,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
           * haven't written anything yet.
           */
          for (i = 0; i < (png_size_t)num_unknowns; i++)
-           png_set_unknown_chunk_location(write_ptr, write_info_ptr, i,
+           png_set_unknown_chunk_location(write_ptr, write_info_ptr, (int) i,
              unknowns[i].location);
       }
    }
@@ -1315,7 +1315,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
           * haven't written the end_info yet.
           */
          for (i = 0; i < (png_size_t)num_unknowns; i++)
-           png_set_unknown_chunk_location(write_ptr, write_end_info_ptr, i,
+           png_set_unknown_chunk_location(write_ptr, write_end_info_ptr, (int) i,
              unknowns[i].location);
       }
    }

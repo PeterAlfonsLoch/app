@@ -410,6 +410,8 @@ void CResizeEngine::horizontalFilter(FIBITMAP *src, unsigned src_width, unsigned
 				}
 			}
 			break;
+         default:
+            break;
 
 		}
 	}
@@ -640,6 +642,9 @@ void CResizeEngine::verticalFilter(FIBITMAP *src, unsigned src_width, unsigned s
 				}
 			}
 			break;
+         default:
+            break;
+            
 
 		}
 	}

@@ -646,7 +646,7 @@ inline var::operator uint64_t() const
 inline int_ptr var::intptr(int_ptr iDefault) const
 {
 
-#ifdef OS64BIT
+#if defined(OS64BIT)
 
    return int64(iDefault);
 

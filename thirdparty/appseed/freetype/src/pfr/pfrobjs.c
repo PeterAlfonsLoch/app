@@ -527,7 +527,7 @@
           p = base + extra * size;
 
           if ( twobytes )
-            cpair = FT_NEXT_ULONG( p );
+            cpair = (FT_UInt32) FT_NEXT_ULONG( p );
           else
             cpair = PFR_NEXT_KPAIR( p );
 
@@ -550,7 +550,7 @@
           p       = base + probe;
 
           if ( twobytes )
-            cpair = FT_NEXT_ULONG( p );
+            cpair = (FT_UInt32) FT_NEXT_ULONG( p );
           else
             cpair = PFR_NEXT_KPAIR( p );
 

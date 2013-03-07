@@ -395,7 +395,7 @@ Pxr24Compressor::compress (const char *inPtr,
     }
 
     outPtr = _outBuffer;
-    return outSize;
+    return (int) outSize;
 }
 
  

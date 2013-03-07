@@ -1654,7 +1654,7 @@ JPEGVSetField(TIFF* tif, ttag_t tag, va_list ap)
 			return (0);
 		}
 		_TIFFsetByteArray(&sp->jpegtables, va_arg(ap, void*),
-		    (long) v32);
+		    (uint32) v32);
 		sp->jpegtables_length = v32;
 		TIFFSetFieldBit(tif, FIELD_JPEGTABLES);
 		break;

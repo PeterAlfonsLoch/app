@@ -8,7 +8,7 @@
 #if defined(_WIN32) && !defined(__BORLANDC__)
 #  define LSEEK _lseeki64
 #else
-#if defined(_LARGEFILE64_SOURCE) && _LFS64_LARGEFILE-0
+#if (defined(_LARGEFILE64_SOURCE) && _LFS64_LARGEFILE-0) || defined(MACOS)
 #  define LSEEK lseek64
 #else
 #  define LSEEK lseek

@@ -823,7 +823,8 @@ DecodeOp9a( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, MacpixMap* pixMap 
 
 static void
 DecodeBitmap( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, BOOL isRegion, MacRect* bounds, WORD rowBytes ) {
-	WORD mode = Read16( io, handle );
+
+	Read16( io, handle ); //	WORD mode = Read16( io, handle );
 
 	if ( isRegion ) {
 		SkipPolyOrRegion( io, handle );
@@ -868,7 +869,7 @@ DecodePixmap( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, BOOL isRegion, M
 	MacRect tempRect;
 	ReadRect( io, handle, &tempRect );
 	ReadRect( io, handle, &tempRect );
-	WORD mode = Read16( io, handle );
+   Read16( io, handle ); //	WORD mode = Read16( io, handle );
 
 	if ( isRegion) {
 		SkipPolyOrRegion( io, handle );
@@ -1114,7 +1115,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						MacRect dummy;
 						ReadRect( io, handle, &dummy );
 						ReadRect( io, handle, &dummy );
-						WORD mode = Read16( io, handle );
+						Read16( io, handle ); // WORD mode = Read16( io, handle );
 
 						pictType=op9a;
 						done = TRUE;
@@ -1146,7 +1147,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 			else if (opcode == 0xc00) {
 				// version 2 header (26 bytes)
-				WORD minorVersion = Read16( io, handle );	// always FFFE (-2) for extended version 2
+				Read16( io, handle );	 // WORD minorVersion = Read16( io, handle );	// always FFFE (-2) for extended version 2
 				Read16( io, handle );						// reserved
 				hRes = Read32( io, handle );				// original horizontal resolution in pixels/inch
 				vRes = Read32( io, handle );				// original horizontal resolution in pixels/inch
@@ -1277,6 +1278,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				dib = FreeImage_Allocate(width, height, 8);
 				break;
 			}
+         default:
+            break;
 		}
 
 		if ( dib ) {

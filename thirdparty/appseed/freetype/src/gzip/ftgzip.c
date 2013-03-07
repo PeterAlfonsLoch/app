@@ -82,23 +82,25 @@ void z_error(char * psz)
   /* Urgh.  `inflate_mask' must not be declared twice -- C++ doesn't like
      this.  We temporarily disable it and load all necessary header files. */
 #define NO_INFLATE_MASK
-#include "zutil.h"
-#include "inftrees.h"
-#include "infblock.h"
-#include "infcodes.h"
-#include "infutil.h"
+//#include "zutil.h"
+//#include "inftrees.h"
+//#include "infblock.h"
+//#include "infcodes.h"
+//#include "infutil.h"
 #undef  NO_INFLATE_MASK
 
   /* infutil.c must be included before infcodes.c */
-#include "zutil.c"
-#include "inftrees.c"
-#include "infutil.c"
-#include "infcodes.c"
-#include "infblock.c"
-#include "inflate.c"
-#include "adler32.c"
+//#include "zutil.c"
+//#include "inftrees.c"
+//#include "infutil.c"
+//#include "infcodes.c"
+//#include "infblock.c"
+//#include "inflate.c"
+//#include "adler32.c"
 
 #endif /* !FT_CONFIG_OPTION_SYSTEM_ZLIB */
+
+#define local
 
 
 /***************************************************************************/
@@ -392,7 +394,7 @@ void z_error(char * psz)
     stream->pos += size;
 
     zstream->next_in  = zip->input;
-    zstream->avail_in = size;
+    zstream->avail_in = (uInt) size;
 
     return Gzip_Err_Ok;
   }

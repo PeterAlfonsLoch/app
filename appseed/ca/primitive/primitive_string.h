@@ -227,12 +227,7 @@ public:
 
 
    template < typename T >
-   friend inline string to_string(T o)
-   {
-
-      return o.to_string();
-
-   }
+   friend inline string to_string(T o);
 
 
    operator class string_composite ();
@@ -312,10 +307,7 @@ public:
 
    // Assignment operators
    template < typename T >
-   inline string & operator = (T o)
-   {
-      return operator =(to_string(o));
-   }
+   inline string & operator = (T o);
 
    string& operator+=(const simple_string& str );
    string& operator+=(const char * pszSrc );
@@ -792,9 +784,24 @@ public:
 };
 
 
+template < typename T >
+inline string to_string(T o)
+{
+   
+   return o.to_string();
+   
+}
 
 
 
+
+template < typename T >
+inline string & string::operator = (T o)
+{
+   
+   return operator =(to_string(o));
+   
+}
 
 
 template< strsize t_nSize >

@@ -54,7 +54,7 @@ int get_process_pid(const char * csProcessName)
                 iRetCode = sysctl(aiNames, (u_int) iNamesLength, sProcesses, &iSize, NULL, 0);
         } while (iRetCode == -1 && errno == ENOMEM);
 
-        iNumProcs = iSize / sizeof(struct kinfo_proc);
+        iNumProcs = (int) (iSize / sizeof(struct kinfo_proc));
       /*
          * Search for the given process name and return its pid.
          */

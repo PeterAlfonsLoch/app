@@ -690,7 +690,7 @@
 
 
       data.pointer = *pointer;
-      data.length  = length;
+      data.length  = (int) length;
 
       face->root.internal->incremental_interface->funcs->free_glyph_data(
         face->root.internal->incremental_interface->object, &data );

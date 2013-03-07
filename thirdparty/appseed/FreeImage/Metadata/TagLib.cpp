@@ -1364,6 +1364,8 @@ TagLib::getFreeImageModel(MDMODEL model) {
 
 		case ANIMATION:
 			return FIMD_ANIMATION;
+      default:
+         break;
 	}
 
 	return FIMD_NODATA;

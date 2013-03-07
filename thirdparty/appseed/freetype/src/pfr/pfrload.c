@@ -226,7 +226,7 @@
   {
     FT_UInt    num_log_fonts;
     FT_UInt    flags;
-    FT_UInt32  offset;
+    FT_ULong  offset;
     FT_UInt32  size;
     FT_Error   error;
 
@@ -245,7 +245,7 @@
 
     /* save logical font size and offset */
     log_font->size   = size;
-    log_font->offset = offset;
+    log_font->offset = (int) offset;
 
     /* now, check the rest of the table before loading it */
     {
@@ -262,10 +262,10 @@
 
       PFR_CHECK(13);
 
-      log_font->matrix[0] = PFR_NEXT_LONG( p );
-      log_font->matrix[1] = PFR_NEXT_LONG( p );
-      log_font->matrix[2] = PFR_NEXT_LONG( p );
-      log_font->matrix[3] = PFR_NEXT_LONG( p );
+      log_font->matrix[0] = (FT_Int32) PFR_NEXT_LONG( p );
+      log_font->matrix[1] = (FT_Int32) PFR_NEXT_LONG( p );
+      log_font->matrix[2] = (FT_Int32) PFR_NEXT_LONG( p );
+      log_font->matrix[3] = (FT_Int32) PFR_NEXT_LONG( p );
 
       flags = PFR_NEXT_BYTE( p );
 
@@ -295,7 +295,7 @@
                                      : PFR_NEXT_BYTE( p );
 
         if ( ( flags & PFR_LINE_JOIN_MASK ) == PFR_LINE_JOIN_MITER )
-          log_font->miter_limit = PFR_NEXT_LONG( p );
+          log_font->miter_limit = (int)PFR_NEXT_LONG( p );
       }
 
       if ( flags & PFR_LOG_BOLD )
@@ -313,7 +313,7 @@
 
       PFR_CHECK(5);
       log_font->phys_size   = PFR_NEXT_USHORT( p );
-      log_font->phys_offset = PFR_NEXT_ULONG( p );
+      log_font->phys_offset = (FT_UInt32) PFR_NEXT_ULONG( p );
       if ( size_increment )
       {
         PFR_CHECK( 1 );
@@ -409,11 +409,11 @@
       strike->flags       = PFR_NEXT_BYTE( p );
 
       strike->bct_size    = ( flags0 & PFR_STRIKE_3BYTE_SIZE )
-                            ? PFR_NEXT_ULONG( p )
+                            ? (FT_UInt32) PFR_NEXT_ULONG( p )
                             : PFR_NEXT_USHORT( p );
 
       strike->bct_offset  = ( flags0 & PFR_STRIKE_3BYTE_OFFSET )
-                            ? PFR_NEXT_ULONG( p )
+                            ? (FT_UInt32) PFR_NEXT_ULONG( p )
                             : PFR_NEXT_USHORT( p );
 
       strike->num_bitmaps = ( flags0 & PFR_STRIKE_2BYTE_COUNT )
@@ -914,7 +914,7 @@
                          : PFR_NEXT_BYTE( p );
 
         cur->gps_offset = ( flags & PFR_PHY_3BYTE_GPS_OFFSET )
-                          ? PFR_NEXT_ULONG( p )
+                          ? (FT_UInt32) PFR_NEXT_ULONG( p )
                           : PFR_NEXT_USHORT( p );
       }
     }

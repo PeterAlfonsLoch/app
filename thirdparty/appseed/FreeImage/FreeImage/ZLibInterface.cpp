@@ -46,7 +46,7 @@ FreeImage_ZLibCompress(BYTE *target, DWORD target_size, BYTE *source, DWORD sour
 			FreeImage_OutputMessageProc(FIF_UNKNOWN, "Zlib error : %s", zError(zerr));
 			return 0;
 		case Z_OK:
-			return dest_len;
+			return (DWORD)dest_len;
 	}
 
 	return 0;
@@ -79,7 +79,7 @@ FreeImage_ZLibUncompress(BYTE *target, DWORD target_size, BYTE *source, DWORD so
 			FreeImage_OutputMessageProc(FIF_UNKNOWN, "Zlib error : %s", zError(zerr));
 			return 0;
 		case Z_OK:
-			return dest_len;
+			return (DWORD) dest_len;
 	}
 
 	return 0;
@@ -101,7 +101,7 @@ which must be at least 0.1% larger than source_size plus 24 bytes.
 DWORD DLL_CALLCONV
 FreeImage_ZLibGZip(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size) {
 	uLongf dest_len = (uLongf)target_size - 12;
-	DWORD crc = crc32(0L, NULL, 0);
+	DWORD crc = (DWORD)crc32(0L, NULL, 0);
 
     // set up header (stolen from zlib/gzio.c)
     sprintf((char *)target, "%c%c%c%c%c%c%c%c", 0x1f, 0x8b,

@@ -385,7 +385,7 @@ namespace hotplugin
       ::create_thread(NULL, 0, &::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
 
 #else
-      pthread_t * threadId;
+      pthread_t threadId;
       pthread_attr_t  attr;
       int32_t rc = 0;
 
@@ -395,7 +395,7 @@ namespace hotplugin
       if((rc = pthread_attr_setstacksize(&attr, 1024 * 1024)))
          return -1;
 
-      if((rc = pthread_create(threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
+      if((rc = pthread_create(&threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
          return -1;
 #endif
       return 0;

@@ -64,22 +64,6 @@
 		9A1B37D816A2D80900875A94 /* gxvfeat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B363416A2D80800875A94 /* gxvfeat.h */; };
 		9A1B37DE16A2D80900875A94 /* gxvmod.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B363A16A2D80800875A94 /* gxvmod.h */; };
 		9A1B37E016A2D80900875A94 /* gxvmort.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B363C16A2D80800875A94 /* gxvmort.h */; };
-		9A1B37F116A2D80900875A94 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365116A2D80800875A94 /* adler32.c */; };
-		9A1B37F216A2D80900875A94 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365216A2D80800875A94 /* ftgzip.c */; };
-		9A1B37F316A2D80900875A94 /* infblock.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365316A2D80800875A94 /* infblock.c */; };
-		9A1B37F416A2D80900875A94 /* infblock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B365416A2D80800875A94 /* infblock.h */; };
-		9A1B37F516A2D80900875A94 /* infcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365516A2D80800875A94 /* infcodes.c */; };
-		9A1B37F616A2D80900875A94 /* infcodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B365616A2D80800875A94 /* infcodes.h */; };
-		9A1B37F716A2D80900875A94 /* inffixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B365716A2D80800875A94 /* inffixed.h */; };
-		9A1B37F816A2D80900875A94 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365816A2D80800875A94 /* inflate.c */; };
-		9A1B37F916A2D80900875A94 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365916A2D80800875A94 /* inftrees.c */; };
-		9A1B37FA16A2D80900875A94 /* inftrees.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B365A16A2D80800875A94 /* inftrees.h */; };
-		9A1B37FB16A2D80900875A94 /* infutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B365B16A2D80800875A94 /* infutil.c */; };
-		9A1B37FC16A2D80900875A94 /* infutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B365C16A2D80800875A94 /* infutil.h */; };
-		9A1B37FE16A2D80900875A94 /* zconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B365F16A2D80800875A94 /* zconf.h */; };
-		9A1B37FF16A2D80900875A94 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B366016A2D80800875A94 /* zlib.h */; };
-		9A1B380016A2D80900875A94 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B366116A2D80800875A94 /* zutil.c */; };
-		9A1B380116A2D80900875A94 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B366216A2D80800875A94 /* zutil.h */; };
 		9A1B380316A2D80900875A94 /* ftlzw.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B366516A2D80800875A94 /* ftlzw.c */; };
 		9A1B380516A2D80900875A94 /* ftzopen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B366716A2D80800875A94 /* ftzopen.h */; };
 		9A1B380816A2D80900875A94 /* otvalid.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B366D16A2D80800875A94 /* otvalid.c */; };
@@ -182,6 +166,8 @@
 		9A1B397D16A2F8AF00875A94 /* ftbitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B397C16A2F8AF00875A94 /* ftbitmap.c */; };
 		9A1B398116A2F94200875A94 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398016A2F94200875A94 /* ftsystem.c */; };
 		9A1B398316A2F96000875A94 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
+		9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CA4B16E8076D008420D3 /* ftgzip.c */; };
+		9A86CBCA16E80E36008420D3 /* libca2zlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A86CBC916E80E36008420D3 /* libca2zlib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,22 +229,6 @@
 		9A1B363416A2D80800875A94 /* gxvfeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gxvfeat.h; sourceTree = "<group>"; };
 		9A1B363A16A2D80800875A94 /* gxvmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gxvmod.h; sourceTree = "<group>"; };
 		9A1B363C16A2D80800875A94 /* gxvmort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gxvmort.h; sourceTree = "<group>"; };
-		9A1B365116A2D80800875A94 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
-		9A1B365216A2D80800875A94 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftgzip.c; sourceTree = "<group>"; };
-		9A1B365316A2D80800875A94 /* infblock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infblock.c; sourceTree = "<group>"; };
-		9A1B365416A2D80800875A94 /* infblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infblock.h; sourceTree = "<group>"; };
-		9A1B365516A2D80800875A94 /* infcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infcodes.c; sourceTree = "<group>"; };
-		9A1B365616A2D80800875A94 /* infcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infcodes.h; sourceTree = "<group>"; };
-		9A1B365716A2D80800875A94 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
-		9A1B365816A2D80800875A94 /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inflate.c; sourceTree = "<group>"; };
-		9A1B365916A2D80800875A94 /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inftrees.c; sourceTree = "<group>"; };
-		9A1B365A16A2D80800875A94 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
-		9A1B365B16A2D80800875A94 /* infutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infutil.c; sourceTree = "<group>"; };
-		9A1B365C16A2D80800875A94 /* infutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infutil.h; sourceTree = "<group>"; };
-		9A1B365F16A2D80800875A94 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
-		9A1B366016A2D80800875A94 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
-		9A1B366116A2D80800875A94 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
-		9A1B366216A2D80800875A94 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		9A1B366516A2D80800875A94 /* ftlzw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftlzw.c; sourceTree = "<group>"; };
 		9A1B366716A2D80800875A94 /* ftzopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftzopen.h; sourceTree = "<group>"; };
 		9A1B366D16A2D80800875A94 /* otvalid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = otvalid.c; sourceTree = "<group>"; };
@@ -361,6 +331,8 @@
 		9A1B397C16A2F8AF00875A94 /* ftbitmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftbitmap.c; sourceTree = "<group>"; };
 		9A1B398016A2F94200875A94 /* ftsystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftsystem.c; sourceTree = "<group>"; };
 		9A1B398216A2F96000875A94 /* ftbbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftbbox.c; sourceTree = "<group>"; };
+		9A86CA4B16E8076D008420D3 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftgzip.c; path = src/gzip/ftgzip.c; sourceTree = "<group>"; };
+		9A86CBC916E80E36008420D3 /* libca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = libca2zlib.dylib; path = ../zlib/build/Release/libca2zlib.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +340,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A86CBCA16E80E36008420D3 /* libca2zlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +350,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A86CBC916E80E36008420D3 /* libca2zlib.dylib */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,
@@ -385,7 +359,7 @@
 				9A1B360516A2D80800875A94 /* cff */,
 				9A1B361B16A2D80800875A94 /* cid */,
 				9A1B362C16A2D80800875A94 /* gxvalid */,
-				9A1B365016A2D80800875A94 /* gzip */,
+				9A86C74816E80732008420D3 /* gzip */,
 				9A1B366416A2D80800875A94 /* lzw */,
 				9A1B366A16A2D80800875A94 /* otvalid */,
 				9A1B367C16A2D80800875A94 /* pcf */,
@@ -537,30 +511,6 @@
 			);
 			name = gxvalid;
 			path = src/gxvalid;
-			sourceTree = "<group>";
-		};
-		9A1B365016A2D80800875A94 /* gzip */ = {
-			isa = PBXGroup;
-			children = (
-				9A1B365116A2D80800875A94 /* adler32.c */,
-				9A1B365216A2D80800875A94 /* ftgzip.c */,
-				9A1B365316A2D80800875A94 /* infblock.c */,
-				9A1B365416A2D80800875A94 /* infblock.h */,
-				9A1B365516A2D80800875A94 /* infcodes.c */,
-				9A1B365616A2D80800875A94 /* infcodes.h */,
-				9A1B365716A2D80800875A94 /* inffixed.h */,
-				9A1B365816A2D80800875A94 /* inflate.c */,
-				9A1B365916A2D80800875A94 /* inftrees.c */,
-				9A1B365A16A2D80800875A94 /* inftrees.h */,
-				9A1B365B16A2D80800875A94 /* infutil.c */,
-				9A1B365C16A2D80800875A94 /* infutil.h */,
-				9A1B365F16A2D80800875A94 /* zconf.h */,
-				9A1B366016A2D80800875A94 /* zlib.h */,
-				9A1B366116A2D80800875A94 /* zutil.c */,
-				9A1B366216A2D80800875A94 /* zutil.h */,
-			);
-			name = gzip;
-			path = src/gzip;
 			sourceTree = "<group>";
 		};
 		9A1B366416A2D80800875A94 /* lzw */ = {
@@ -771,6 +721,14 @@
 			path = src/winfonts;
 			sourceTree = "<group>";
 		};
+		9A86C74816E80732008420D3 /* gzip */ = {
+			isa = PBXGroup;
+			children = (
+				9A86CA4B16E8076D008420D3 /* ftgzip.c */,
+			);
+			name = gzip;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -828,14 +786,6 @@
 				9A1B37D816A2D80900875A94 /* gxvfeat.h in Headers */,
 				9A1B37DE16A2D80900875A94 /* gxvmod.h in Headers */,
 				9A1B37E016A2D80900875A94 /* gxvmort.h in Headers */,
-				9A1B37F416A2D80900875A94 /* infblock.h in Headers */,
-				9A1B37F616A2D80900875A94 /* infcodes.h in Headers */,
-				9A1B37F716A2D80900875A94 /* inffixed.h in Headers */,
-				9A1B37FA16A2D80900875A94 /* inftrees.h in Headers */,
-				9A1B37FC16A2D80900875A94 /* infutil.h in Headers */,
-				9A1B37FE16A2D80900875A94 /* zconf.h in Headers */,
-				9A1B37FF16A2D80900875A94 /* zlib.h in Headers */,
-				9A1B380116A2D80900875A94 /* zutil.h in Headers */,
 				9A1B380516A2D80900875A94 /* ftzopen.h in Headers */,
 				9A1B380916A2D80900875A94 /* otvalid.h in Headers */,
 				9A1B380C16A2D80900875A94 /* otvcommn.h in Headers */,
@@ -978,14 +928,6 @@
 				9A1B37B016A2D80900875A94 /* cff.c in Sources */,
 				9A1B37D016A2D80900875A94 /* type1cid.c in Sources */,
 				9A1B37D116A2D80900875A94 /* gxvalid.c in Sources */,
-				9A1B37F116A2D80900875A94 /* adler32.c in Sources */,
-				9A1B37F216A2D80900875A94 /* ftgzip.c in Sources */,
-				9A1B37F316A2D80900875A94 /* infblock.c in Sources */,
-				9A1B37F516A2D80900875A94 /* infcodes.c in Sources */,
-				9A1B37F816A2D80900875A94 /* inflate.c in Sources */,
-				9A1B37F916A2D80900875A94 /* inftrees.c in Sources */,
-				9A1B37FB16A2D80900875A94 /* infutil.c in Sources */,
-				9A1B380016A2D80900875A94 /* zutil.c in Sources */,
 				9A1B380316A2D80900875A94 /* ftlzw.c in Sources */,
 				9A1B380816A2D80900875A94 /* otvalid.c in Sources */,
 				9A1B381716A2D80900875A94 /* pcf.c in Sources */,
@@ -1007,6 +949,7 @@
 				9A1B397D16A2F8AF00875A94 /* ftbitmap.c in Sources */,
 				9A1B398116A2F94200875A94 /* ftsystem.c in Sources */,
 				9A1B398316A2F96000875A94 /* ftbbox.c in Sources */,
+				9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,7 +959,7 @@
 		9A1B358E16A2D7A500875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1047,7 +990,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1055,7 +998,7 @@
 		9A1B358F16A2D7A500875A94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1079,7 +1022,7 @@
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

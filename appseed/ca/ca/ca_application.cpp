@@ -3111,7 +3111,7 @@ namespace ca
    int32_t application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
 
       return MessageBox((puiOwner == NULL ? ::ca::null() : (puiOwner->get_wnd() == NULL ? ::ca::null() : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 

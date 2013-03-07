@@ -53,3 +53,8 @@ __win_CloseThread(
                   );
 */
 
+oswindow GetCapture();
+oswindow SetCapture(oswindow window);
+WINBOOL ReleaseCapture();
+oswindow SetFocus(oswindow window);
+oswindow GetFocus();

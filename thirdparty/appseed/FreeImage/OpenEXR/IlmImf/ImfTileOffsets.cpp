@@ -88,6 +88,9 @@ TileOffsets::TileOffsets (LevelMode mode,
             }
         }
         break;
+       default:
+          break;
+
     }
 }
 

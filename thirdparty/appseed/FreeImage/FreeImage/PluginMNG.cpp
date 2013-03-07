@@ -261,7 +261,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			int retval = MNG_NOERROR;
 			while(mng_status_reading(hmng)) {
 				retval = mng_display_resume(hmng);
-				if((mng_get_imagetype(hmng) != mng_it_jng) && (retval == MNG_NEEDTIMERWAIT) || (retval == MNG_FUNCTIONINVALID))
+				if(((mng_get_imagetype(hmng) != mng_it_jng) && (retval == MNG_NEEDTIMERWAIT)) || (retval == MNG_FUNCTIONINVALID))
 					break;
 			}
 

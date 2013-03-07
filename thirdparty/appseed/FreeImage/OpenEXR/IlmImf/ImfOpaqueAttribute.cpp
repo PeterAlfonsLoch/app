@@ -87,7 +87,7 @@ OpaqueAttribute::copy () const
 void	
 OpaqueAttribute::writeValueTo (OStream &os, int version) const
 {
-    Xdr::write <StreamIO> (os, _data, _dataSize);
+    Xdr::write <StreamIO> (os, _data, (int) _dataSize);
 }
 
 

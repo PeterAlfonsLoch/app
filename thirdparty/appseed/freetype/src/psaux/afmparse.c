@@ -415,7 +415,7 @@
         break;
 
       case AFM_VALUE_TYPE_INTEGER:
-        val->u.i = PS_Conv_ToInt( (FT_Byte**)(void*)&str,
+        val->u.i = (FT_Int) PS_Conv_ToInt( (FT_Byte**)(void*)&str,
                                   (FT_Byte*)str + len );
         break;
 
