@@ -1552,6 +1552,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="FreeImage\Utilities.cpp" />
     <ClCompile Include="FreeImage\WuQuantizer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>

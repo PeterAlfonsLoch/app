@@ -3309,6 +3309,8 @@ restart:
    
 #ifdef METROWIN
 
+#ifdef METROWIN
+
    Platform::Agile<Windows::UI::Core::CoreWindow> interaction::get_os_window()
    {
       if(m_pimpl == NULL)
@@ -3319,6 +3321,8 @@ restart:
          return m_pimpl->get_os_window();
    }
    
+#endif
+
 #endif
 
    void interaction::offset_view_port_org(LPRECT lprect)

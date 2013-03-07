@@ -1673,5 +1673,8 @@
     <ClCompile Include="OpenEXR\IlmImf\ImfFramework.cpp">
       <Filter>Source Files\OpenEXR\IImImf</Filter>
     </ClCompile>
+    <ClCompile Include="FreeImage\Utilities.cpp">
+      <Filter>Source Files\FreeImage</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
