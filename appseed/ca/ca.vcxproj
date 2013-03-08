@@ -1775,6 +1775,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user_frame_window_interface.h" />
     <ClInclude Include="user\user_interaction.h" />
     <ClInclude Include="user\user_job.h" />
+    <ClInclude Include="user\user_key.h" />
     <ClInclude Include="user\user_keyboard.h" />
     <ClInclude Include="user\user_keyboard_focus.h" />
     <ClInclude Include="user\user_keyboard_layout.h" />

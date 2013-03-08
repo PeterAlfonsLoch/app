@@ -11,7 +11,8 @@ namespace user
    {
    public:
 
-      keyboard_layout * m_playout;
+      ::collection::int_map < ::user::e_key >         m_mapKey;
+      keyboard_layout *                               m_playout;
 
       keyboard(::ca::application * papp);
 
@@ -30,6 +31,10 @@ namespace user
       string get_current_system_layout();
 
       bool initialize(::user::keyboard_layout_id * playoutid, const char * pszPath);
+
+      void translate_os_key_message(::ca::message::key * pkey);
+
+      virtual void load_os_layout(const char * pszPath);
 
    };
 

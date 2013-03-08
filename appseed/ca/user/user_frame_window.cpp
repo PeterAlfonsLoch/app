@@ -1694,8 +1694,8 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
 #ifdef WINDOWSEX
 
    WORD keyState = 0;
-   keyState |= (::GetKeyState(VK_CONTROL) < 0) ? MK_CONTROL : 0;
-   keyState |= (::GetKeyState(VK_SHIFT) < 0) ? MK_SHIFT : 0;
+   keyState |= Application.is_key_pressed(::user::key_control) ? MK_CONTROL : 0;
+   keyState |= Application.is_key_pressed(::user::key_shift) ? MK_SHIFT : 0;
 
    oswindow hwFocus = ::GetFocus();
    const oswindow hwDesktop = ::GetDesktopWindow();

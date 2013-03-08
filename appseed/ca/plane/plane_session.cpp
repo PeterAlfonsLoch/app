@@ -1106,49 +1106,23 @@ namespace plane
    bool session::is_mouse_button_pressed(::user::e_mouse emouse)
    {
 
-#ifdef METROWIN
-
       if(emouse == ::user::mouse_left_button)
       {
-         return System.is_key_pressed(VK_LBUTTON);
+         return System.is_key_pressed(::user::key_lbutton);
       }
       else if(emouse == ::user::mouse_right_button)
       {
-         return System.is_key_pressed(VK_RBUTTON);
+         return System.is_key_pressed(::user::key_rbutton);
       }
       else if(emouse == ::user::mouse_middle_button)
       {
-         return System.is_key_pressed(VK_MBUTTON);
+         return System.is_key_pressed(::user::key_mbutton);
       }
       else
       {
          throw "not expected e_mouse value";
       }
 
-#elif defined(WINDOWS)
-
-      if(emouse == ::user::mouse_left_button)
-      {
-         return (::GetAsyncKeyState(VK_LBUTTON) & (int16_t) 0x8000) != 0;
-      }
-      else if(emouse == ::user::mouse_right_button)
-      {
-         return (::GetAsyncKeyState(VK_RBUTTON) & (int16_t) 0x8000) != 0;
-      }
-      else if(emouse == ::user::mouse_middle_button)
-      {
-         return (::GetAsyncKeyState(VK_MBUTTON) & (int16_t) 0x8000) != 0;
-      }
-      else
-      {
-         throw "not expected e_mouse value";
-      }
-
-#else
-
-      throw todo(get_app());
-
-#endif
 
    }
 

@@ -531,7 +531,11 @@ namespace plane
          return get_enum_name(System.type_info < E > (), (int32_t) (E) b);
       }
 
-
+      template < class ENUM >
+      ENUM enum_from_name(::ca::type_info info, const char * psz, int32_t iDefault = 0)
+      {
+         return (ENUM) m_mapNameToEnum[info.name()].get(psz, iDefault);
+      }
       int32_t enum_from_name(::ca::type_info info, const char * psz, int32_t iDefault = 0)
       {
          return m_mapNameToEnum[info.name()].get(psz, iDefault);

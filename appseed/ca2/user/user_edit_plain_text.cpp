@@ -626,7 +626,7 @@ namespace user
       SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
-         if(Application.is_key_pressed(VK_CONTROL) && Application.is_key_pressed(VK_MENU))
+         if(Application.is_key_pressed(::user::key_control) && Application.is_key_pressed(::user::key_alt))
          {
             pkey->m_bRet      = false;
             return;
@@ -644,8 +644,8 @@ namespace user
       }
       else if(pkey->m_nChar == VK_TAB)
       {
-         if(Application.is_key_pressed(VK_CONTROL)
-            && Application.is_key_pressed(VK_MENU))
+         if(Application.is_key_pressed(::user::key_control)
+            && Application.is_key_pressed(::user::key_alt))
          {
             pkey->m_bRet      = false;
             return;
@@ -662,14 +662,14 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == VK_MENU)
+      else if(pkey->m_nChar == ::user::key_alt)
       {
          pkey->m_bRet = false;
          return;
       }
       else if(pkey->m_nChar == 'C')
       {
-         if(Application.is_key_pressed(VK_CONTROL))
+         if(Application.is_key_pressed(::user::key_control))
          {
             pkey->m_bRet      = true;
             clipboard_copy();
@@ -678,7 +678,7 @@ namespace user
       }
       else if(pkey->m_nChar == 'V')
       {
-         if(Application.is_key_pressed(VK_CONTROL))
+         if(Application.is_key_pressed(::user::key_control))
          {
             pkey->m_bRet      = true;
             clipboard_paste();
@@ -698,14 +698,14 @@ namespace user
       SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
-         if(Application.is_key_pressed(VK_CONTROL)
-         &&   Application.is_key_pressed(VK_MENU))
+         if(Application.is_key_pressed(::user::key_control)
+         &&   Application.is_key_pressed(::user::key_alt))
          {
             pkey->m_bRet = false;
             return;
          }
       }
-      else if(pkey->m_nChar == VK_MENU)
+      else if(pkey->m_nChar == ::user::key_alt)
       {
          pkey->m_bRet = false;
       }
@@ -766,8 +766,8 @@ namespace user
       if(wparam == VK_LSHIFT || wparam == VK_RSHIFT
          || wparam == VK_LCONTROL || wparam == VK_RCONTROL
          || wparam == VK_LMENU || wparam == VK_RMENU
-         || wparam == VK_SHIFT || wparam == VK_CONTROL
-         || wparam == VK_MENU)
+         || key.m_ekey == ::user::key_shift || key.m_ekey == ::user::key_control
+         || key.m_ekey == ::user::key_alt)
       {
          return;
       }
@@ -780,7 +780,7 @@ namespace user
       }
 
       //LRESULT lresult;
-      bool bShift = Application.is_key_pressed(VK_SHIFT);
+      bool bShift = Application.is_key_pressed(::user::key_shift);
       if(key.m_nChar < 256 && isalpha((int32_t) key.m_nChar))
       {
          if(bShift)
@@ -1425,14 +1425,14 @@ namespace user
 
       if(pkey->m_nChar == 's')
       {
-         if(Application.is_key_pressed(VK_CONTROL))
+         if(Application.is_key_pressed(::user::key_control))
          {
             return;
          }
       }
       else if(pkey->m_nChar == 'z')
       {
-         if(Application.is_key_pressed(VK_CONTROL))
+         if(Application.is_key_pressed(::user::key_control))
          {
             Undo();
             return;
@@ -1440,14 +1440,14 @@ namespace user
       }
       else if(pkey->m_nChar == 'y')
       {
-         if(Application.is_key_pressed(VK_CONTROL))
+         if(Application.is_key_pressed(::user::key_control))
          {
             Redo();
             return;
          }
       }
 
-      bool bShift = Application.is_key_pressed(VK_SHIFT);
+      bool bShift = Application.is_key_pressed(::user::key_shift);
 
       if(pkey->m_nChar == VK_BACK)
       {

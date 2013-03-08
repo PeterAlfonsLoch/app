@@ -2321,7 +2321,7 @@ namespace user
       ScreenToClient(&pt);
       if(!m_bHoverSelect)
       {
-         if(m_bMultiSelect && Application.is_key_pressed(VK_SHIFT))
+         if(m_bMultiSelect && Application.is_key_pressed(::user::key_shift))
          {
             if(_001DisplayHitTest(pt, iItem))
             {
@@ -2333,7 +2333,7 @@ namespace user
                m_iShiftFirstSelection = iItem;
             }
          }
-         else if(m_bMultiSelect && Application.is_key_pressed(VK_CONTROL))
+         else if(m_bMultiSelect && Application.is_key_pressed(::user::key_control))
          {
             if(_001DisplayHitTest(pt, iItem))
             {
@@ -2429,10 +2429,10 @@ namespace user
       {
          SetFocus();
       }
-      if(Application.is_key_pressed(VK_SHIFT))
+      if(Application.is_key_pressed(::user::key_shift))
       {
       }
-      else if(Application.is_key_pressed(VK_CONTROL))
+      else if(Application.is_key_pressed(::user::key_control))
       {
       }
       else

@@ -797,10 +797,11 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
    SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_KEYUP)
    {
+      SCAST_PTR(::ca::message::key, pkey, pobj);
       if(pbase->m_wparam == VK_RETURN)
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000
-         && ::GetKeyState(VK_MENU) & 0x80000000)
+         if(Application.is_key_pressed(::user::key_control)
+         && Application.is_key_pressed(::user::key_alt))
          {
             if(DeferFullScreen(true, false))
             {
@@ -810,7 +811,7 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
             }
          }
       }
-      else if(pbase->m_wparam == VK_MENU)
+      else if(pkey->m_ekey == ::user::key_alt)
       {
          if(g_bFullScreenAlt)
          {
@@ -825,9 +826,10 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
    }
    else if(pbase->m_uiMessage == WM_KEYDOWN)
    {
-      if(pbase->m_wparam == VK_MENU)
+      SCAST_PTR(::ca::message::key, pkey, pobj);
+      if(pkey->m_ekey == ::user::key_alt)
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000)
+         if(Application.is_key_pressed(::user::key_control))
          {
             g_bFullScreenAlt = true;
          }

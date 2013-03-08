@@ -6,7 +6,118 @@ namespace user
    keyboard::keyboard(::ca::application * papp) :
       ca(papp)
    {
+
+
+     System.set_enum_name(key_0, "key_0");
+     System.set_enum_name(key_1, "key_1");
+     System.set_enum_name(key_2, "key_2");
+     System.set_enum_name(key_3, "key_3");
+     System.set_enum_name(key_4, "key_4");
+     System.set_enum_name(key_5, "key_5");
+     System.set_enum_name(key_6, "key_6");
+     System.set_enum_name(key_7, "key_7");
+     System.set_enum_name(key_8, "key_8");
+     System.set_enum_name(key_9, "key_9");
+     System.set_enum_name(key_a, "key_a");
+     System.set_enum_name(key_b, "key_b");
+     System.set_enum_name(key_c, "key_c");
+     System.set_enum_name(key_d, "key_d");
+     System.set_enum_name(key_e, "key_e");
+     System.set_enum_name(key_f, "key_f");
+     System.set_enum_name(key_g, "key_g");
+     System.set_enum_name(key_h, "key_h");
+     System.set_enum_name(key_i, "key_i");
+     System.set_enum_name(key_j, "key_j");
+     System.set_enum_name(key_k, "key_k");
+     System.set_enum_name(key_l, "key_l");
+     System.set_enum_name(key_m, "key_m");
+     System.set_enum_name(key_n, "key_n");
+     System.set_enum_name(key_o, "key_o");
+     System.set_enum_name(key_p, "key_p");
+     System.set_enum_name(key_q, "key_q");
+     System.set_enum_name(key_r, "key_r");
+     System.set_enum_name(key_s, "key_s");
+     System.set_enum_name(key_t, "key_t");
+     System.set_enum_name(key_u, "key_u");
+     System.set_enum_name(key_v, "key_v");
+     System.set_enum_name(key_w, "key_w");
+     System.set_enum_name(key_x, "key_x");
+     System.set_enum_name(key_y, "key_y");
+     System.set_enum_name(key_z, "key_z");
+     System.set_enum_name(key_semicolon, "key_semicolon");
+     System.set_enum_name(key_comma, "key_comma");
+     System.set_enum_name(key_dot, "key_dot");
+     System.set_enum_name(key_shift, "key_shift");
+     System.set_enum_name(key_control, "key_control");
+     System.set_enum_name(key_alt, "key_alt");
+     System.set_enum_name(key_lbutton, "key_lbutton");
+     System.set_enum_name(key_mbutton, "key_mbutton");
+     System.set_enum_name(key_rbutton, "key_rbutton");
+
+
       m_playout = NULL;
+
+      string strPath;
+
+#ifdef LINUX
+      strPath = Application.dir().matter("keyboard/linux/default.xml");
+#elif defined(MACOS)
+      strPath = Application.dir().matter("keyboard/macos/default.xml");
+#else
+      strPath = Application.dir().matter("keyboard/windows/default.xml");
+#endif
+
+      if(Application.file().exists(strPath))
+      {
+
+         load_os_layout(strPath);
+
+      }
+
+   }
+
+
+   void keyboard::load_os_layout(const char * pszPath)
+   {
+      
+      int32_t iCode;
+
+      ::user::e_key ekey;
+
+      ::ca::type_info typeinfoKey = System.type_info < ::user::e_key > ();
+
+      string str = Application.file().as_string(pszPath);
+
+      if(str.is_empty())
+         throw "unable to load os keyboard layout";
+
+      ::xml::document doc(get_app());
+
+      if(!doc.load(str))
+         throw "unable to load os keyboard layout";
+
+      for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
+      {
+
+         ::xml::node * pnode = doc.get_root()->child_at(i);
+
+         if(pnode->get_name().CompareNoCase("item") == 0)
+         {
+
+            string strCode    = pnode->attr("code");
+
+            string strValue   = pnode->attr("value");
+
+            iCode    = atoi(strCode);
+
+            ekey     = System.enum_from_name < ::user::e_key > (typeinfoKey, strValue);
+
+            m_mapKey.set_at(iCode, ekey);
+
+         }
+
+      }
+
    }
 
 
@@ -209,4 +320,14 @@ namespace user
 
    }
 
+   void keyboard::translate_os_key_message(::ca::message::key * pkey)
+   {
+      
+      pkey->m_ekey = m_mapKey[pkey->m_nFlags];
+
+   }
+
+
 } // namespace user
+
+

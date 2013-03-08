@@ -23,26 +23,55 @@
 	<item code="115" key="193" shift="1" value="?" />
 	<item code="41" key="192" value="\'" />
 	<item code="41" key="192" shift="1" value="\"" />
-	<item code="24" value="q" />
-	<item code="3" value="2" />
-	<item code="4" value="3" />
-	<item code="5" value="4" />
-	<item code="6" value="5" />
-	<item code="7" value="6" />
-	<item code="8" value="7" />
-	<item code="9" value="8" />
-	<item code="10" value="9" />
-	<item code="11" value="0" />
-	<item code="2" char="1" shift="1" value="!" />
-	<item code="3" char="2" shift="1" value="@" />
-	<item code="4" char="3" shift="1" value="#" />
-	<item code="5" char="4" shift="1" value="$" />
-	<item code="6" char="5" shift="1" value="%" />
-	<item code="7" char="6" shift="1" escape="¨" />
-	<item code="8" char="7" shift="1" value="&" />
-	<item code="9" char="8" shift="1" value="*" />
-	<item code="10" char="9" shift="1" value="(" />
-	<item code="11" char="0" shift="1" value=")" />
+	<item code="24" value="key_q" />
+	<item code="25" value="key_w" />
+	<item code="26" value="key_e" />
+	<item code="27" value="key_r" />
+	<item code="28" value="key_t" />
+	<item code="29" value="key_y" />
+	<item code="30" value="key_u" />
+	<item code="31" value="key_i" />
+	<item code="32" value="key_o" />
+	<item code="33" value="key_p" />
+	<item code="38" value="key_a" />
+	<item code="39" value="key_s" />
+	<item code="40" value="key_d" />
+	<item code="41" value="key_f" />
+	<item code="42" value="key_g" />
+	<item code="43" value="key_h" />
+	<item code="44" value="key_j" />
+	<item code="45" value="key_k" />
+	<item code="46" value="key_l" />
+	<item code="47" value="key_semicolor" />
+	<item code="52" value="key_z" />
+	<item code="53" value="key_x" />
+	<item code="54" value="key_c" />
+	<item code="55" value="key_v" />
+	<item code="56" value="key_b" />
+	<item code="57" value="key_n" />
+	<item code="58" value="key_m" />
+	<item code="59" value="key_comma" />
+	<item code="60" value="key_dot" />
+	<item code="10" value="key_1" />
+	<item code="11" value="key_2" />
+	<item code="12" value="key_3" />
+	<item code="13" value="key_4" />
+	<item code="14" value="key_5" />
+	<item code="15" value="key_6" />
+	<item code="16" value="key_7" />
+	<item code="17" value="key_8" />
+	<item code="18" value="key_9" />
+	<item code="19" value="key_0" />
+	<item code="10" char="1" shift="1" value="!" />
+	<item code="11" char="2" shift="1" value="@" />
+	<item code="12" char="3" shift="1" value="#" />
+	<item code="13" char="4" shift="1" value="$" />
+	<item code="14" char="5" shift="1" value="%" />
+	<item code="15" char="6" shift="1" escape="¨" />
+	<item code="16" char="7" shift="1" value="&" />
+	<item code="17" char="8" shift="1" value="*" />
+	<item code="18" char="9" shift="1" value="(" />
+	<item code="19" char="0" shift="1" value=")" />
 	<escape value="¨">
 		<item char="a" value="ä" />
 		<item char="e" value="ë" />

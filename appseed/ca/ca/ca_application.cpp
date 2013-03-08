@@ -5508,26 +5508,26 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    }
 
 
-   bool application::is_key_pressed(int32_t iKey)
+   bool application::is_key_pressed(::user::e_key ekey)
    {
 
       if(is_session())
       {
          if(m_pmapKeyPressed  == NULL)
          {
-            m_pmapKeyPressed = new ::collection::map < int32_t, int32_t, bool, bool >;
+            m_pmapKeyPressed = new ::collection::map < ::user::e_key, ::user::e_key, bool, bool >;
          }
          bool bPressed = false;
-         m_pmapKeyPressed->Lookup(iKey, bPressed);
+         m_pmapKeyPressed->Lookup(ekey, bPressed);
          return bPressed;
       }
       else if(m_psession != NULL)
       {
-         return Sess(this).is_key_pressed(iKey);
+         return Sess(this).is_key_pressed(ekey);
       }
       else if(m_psystem != NULL)
       {
-         return Sys(this).is_key_pressed(iKey);
+         return Sys(this).is_key_pressed(ekey);
       }
       else
       {
@@ -5536,23 +5536,23 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    }
 
-   void application::set_key_pressed(int32_t iKey, bool bPressed)
+   void application::set_key_pressed(::user::e_key ekey, bool bPressed)
    {
       if(is_session())
       {
          if(m_pmapKeyPressed  == NULL)
          {
-            m_pmapKeyPressed = new ::collection::map < int32_t, int32_t, bool, bool >;
+            m_pmapKeyPressed = new ::collection::map < ::user::e_key, ::user::e_key, bool, bool >;
          }
-         (*m_pmapKeyPressed)[iKey] = bPressed;
+         (*m_pmapKeyPressed)[ekey] = bPressed;
       }
       else if(m_psession != NULL)
       {
-         return Sess(this).set_key_pressed(iKey, bPressed);
+         return Sess(this).set_key_pressed(ekey, bPressed);
       }
       else if(m_psystem != NULL)
       {
-         return Sys(this).set_key_pressed(iKey, bPressed);
+         return Sys(this).set_key_pressed(ekey, bPressed);
       }
       else
       {

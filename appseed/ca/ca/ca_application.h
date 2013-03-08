@@ -327,7 +327,7 @@ namespace ca
       //string                                                                                  m_strLicense;
       bool                                                                                      m_bLicense;
       string                                                                                    m_strBaseSupportId;
-      collection::map < int32_t, int32_t, bool, bool > *                                        m_pmapKeyPressed;
+      collection::map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
 
 
       string                                                                                    m_strRoot;
@@ -633,8 +633,8 @@ namespace ca
 
       DECL_GEN_SIGNAL(_001OnApplicationRequest)
 
-      virtual bool is_key_pressed(int32_t iKey);
-      virtual void set_key_pressed(int32_t iKey, bool bPressed);
+      virtual bool is_key_pressed(::user::e_key ekey);
+      virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
 
 
       virtual bool is_running();

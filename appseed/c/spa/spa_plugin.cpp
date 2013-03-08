@@ -610,9 +610,9 @@ install:
 
                baState[wparam & 0xff] = 0x80;
 
-/*               if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
+/*               if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
                {
-                  baState[VK_SHIFT] |= 0x80;
+                  baState[::user::key_shift] |= 0x80;
                }
 */
                if(m_bPluginShiftKey)

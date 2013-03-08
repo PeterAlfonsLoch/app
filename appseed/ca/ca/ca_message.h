@@ -57,6 +57,15 @@ namespace ca
 } // namespace ca
 
 
+namespace user
+{
+
+   enum e_key;
+
+
+} // namespace user
+
+
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048
 #define MPARAM uint32_t
@@ -513,6 +522,8 @@ namespace ca
             uint_ptr m_nChar;
             UINT m_nRepCnt;
             UINT m_nFlags;
+
+            ::user::e_key     m_ekey;
 
 /*#ifdef METROWIN
 
