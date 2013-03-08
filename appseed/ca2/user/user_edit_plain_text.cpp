@@ -1659,7 +1659,7 @@ namespace user
                iCode |= 0x80000000;
             }
             string strMap;
-            str = Application.user().keyboard().process_key(iCode, iChar, 0);
+            str = Application.user().keyboard().process_key(pkey->m_ekey);
             m_iSelEnd += str.get_length();
             m_iSelStart = m_iSelEnd;
            m_pdata-> m_editfile.Insert(str, str.get_length());

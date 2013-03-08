@@ -92,9 +92,10 @@ namespace user
 
    bool keyboard_layout::load(const char * pszPath)
    {
+
+      ::ca::type_info typeinfoKey = System.type_info < ::user::e_key > ();
+
       int32_t iMap;
-      int32_t iChar;
-      int32_t iKey;
       int32_t iCode;
       string str = Application.file().as_string(pszPath);
       if(str.is_empty())
@@ -117,7 +118,7 @@ namespace user
             {
                iMap |= 0x80000000;
             }
-            if(strChar.has_char())
+/*            if(strChar.has_char())
             {
                iChar = iMap | (int32_t)(uchar)(char)(strChar[0]);
                if(strValue.has_char())
@@ -140,10 +141,10 @@ namespace user
                {
                   m_mapKey[iKey] = "escape=" + strEscape;
                }
-            }
+            }*/
             if(strCode.has_char())
             {
-               iCode = iMap | (int32_t)(atoi(strCode));
+               iCode = iMap | (int32_t)(System.enum_from_name < ::user::e_key > (typeinfoKey, strValue));
                if(strValue.has_char())
                {
                   m_mapCode[iCode] = strValue;
@@ -163,19 +164,12 @@ namespace user
       return true;
    }
 
-   string keyboard_layout::process_key(int32_t iCode, int32_t iKey, int32_t iFlags)
+   string keyboard_layout::process_key(int32_t iCode)
    {
-      UNREFERENCED_PARAMETER(iFlags);
       string str;
       if(!m_mapCode.Lookup(iCode, str))
       {
-         if(!m_mapKey.Lookup(iKey, str))
-         {
-            if(!m_mapChar.Lookup(iKey, str))
-            {
-               str = (char) (iKey & 0xff);
-            }
-         }
+         str = (char) (iCode & 0xff);
       }
       if(::ca::str::begins_eat(str, "escape="))
       {

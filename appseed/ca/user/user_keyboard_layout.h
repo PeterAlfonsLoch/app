@@ -51,8 +51,8 @@ namespace user
    public:
 
 
-      ::collection::int_to_string         m_mapChar;
-      ::collection::int_to_string         m_mapKey;
+//      ::collection::int_to_string         m_mapChar;
+  //    ::collection::int_to_string         m_mapKey;
       ::collection::int_to_string         m_mapCode;
 
       string                              m_strEscape;
@@ -63,7 +63,7 @@ namespace user
 
       bool load(const char * pszPath);
 
-      string process_key(int32_t iCode, int32_t iKey, int32_t iFlags);
+      string process_key(int32_t iCode);
 
       string process_char(const char * pszChar);
 

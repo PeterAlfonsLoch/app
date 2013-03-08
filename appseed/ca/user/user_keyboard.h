@@ -20,7 +20,7 @@ namespace user
 
       bool load_layout(const char * pszPath, bool bUser);
 
-      string process_key(int32_t iCode, int32_t iKey, int32_t iFlags);
+      string process_key(::user::e_key ekey);
 
       string process_char(const char * pszChar);
 

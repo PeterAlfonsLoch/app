@@ -167,16 +167,25 @@ namespace user
       return false;
    }
 
-   string keyboard::process_key(int32_t iCode, int32_t iKey, int32_t iFlags)
+   string keyboard::process_key(::user::e_key ekey)
    {
+      
       if(m_playout == NULL)
       {
-         if(iCode == 0 && iKey != 0)
-            return (char) iKey;
-         else
-            return (char) iCode;
+
+         return (char) ekey;
+
       }
-      return m_playout->process_key(iCode, iKey, iFlags);
+
+      int iCode = (int) (ekey);
+
+      if(Application.is_key_pressed(::user::key_shift))
+      {
+         iCode |= 0x80000000;
+      }
+
+      return m_playout->process_key(iCode);
+
    }
 
    string keyboard::process_char(const char * pszKey)
