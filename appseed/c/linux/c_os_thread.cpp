@@ -3,13 +3,7 @@
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
 {
 
-   static simple_mutex s_m;
-
-   mutex_lock l(s_m, true);
-
-   mutex_lock lDisplay(*::osdisplay::s_pmutex, false);
-
-   mutex_lock lWindow(*::oswindow::s_pmutex, false);
+   mutex_lock sl(user_mutex(), true);
 
    bool bRet = false;
 
@@ -19,8 +13,6 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
    {
 
       bContinue = false;
-
-      lWindow.lock();
 
       for(int i = 0; i < ::oswindow::s_pdataptra->get_count() && !bRet; i++)
       {
@@ -46,7 +38,6 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             bContinue = false;
 
             XNextEvent(display, &e);
-
 
             if(e.type == Expose)
             {
@@ -156,12 +147,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
          }
 
-         lWindow.unlock();
-         lWindow.lock();
-
       }
-
-      lWindow.unlock();
 
    }
 

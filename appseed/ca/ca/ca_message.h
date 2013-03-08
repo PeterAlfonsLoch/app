@@ -57,14 +57,7 @@ namespace ca
 } // namespace ca
 
 
-namespace user
-{
-
-   enum e_key;
-
-
-} // namespace user
-
+#include "ca/user/user_key_enum.h"
 
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048

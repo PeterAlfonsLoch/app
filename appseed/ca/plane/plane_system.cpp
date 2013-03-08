@@ -48,7 +48,7 @@ namespace plane
       ::plane::application::m_file.set_app(this);
       ::plane::application::m_dir.set_app(this);
 
-      m_bDoNotExitIfNoApplications              = false;
+      m_bDoNotExitIfNoApplications              = true;
       m_plog                     = NULL;
 
       m_phistory = NULL;
@@ -274,7 +274,7 @@ namespace plane
       if(m_pparserfactory == NULL)
       {
 
-         
+
 
       }
 
@@ -394,7 +394,7 @@ namespace plane
          m_pparserfactory = new colorertake5::ParserFactory(this);
 
       }
-         
+
       return *m_pparserfactory;
 
    }
@@ -683,7 +683,7 @@ namespace plane
       {
          if(m_pfactory != NULL)
          {
-         
+
             m_pfactory->enable_simple_factory_request(false);
 
             m_pfactory = NULL;
@@ -956,10 +956,23 @@ namespace plane
 
    void system::register_bergedge_application(::ca::application * papp)
    {
-      
+
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
       appptra().add_unique(papp);
+
+      if(!papp->is_bergedge()
+      && !papp->is_session()
+      && !papp->is_system()
+      && !papp->is_serviceable())
+      {
+
+         if(System.is_installing() || System.is_uninstalling())
+            m_bDoNotExitIfNoApplications = false;
+         else
+            m_bDoNotExitIfNoApplications = false;
+
+      }
 
    }
 
@@ -967,7 +980,7 @@ namespace plane
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-      
+
       appptra().remove(papp);
 
    }
@@ -976,7 +989,7 @@ namespace plane
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-      
+
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()[i]);
@@ -989,7 +1002,7 @@ namespace plane
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-      
+
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()[i]);
@@ -1000,9 +1013,9 @@ namespace plane
 
    void system::appa_set_schema(const char * pszStyle, bool bUser)
    {
-      
+
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-      
+
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()[i]);
@@ -1634,7 +1647,7 @@ namespace plane
 
    void system::discard_to_factory(::ca::ca * pca)
    {
-      
+
       if(m_pfactory == NULL)
          return;
 
@@ -1700,7 +1713,7 @@ namespace plane
 
       if(strLibrary.is_empty())
       {
-         
+
          throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
 
       }

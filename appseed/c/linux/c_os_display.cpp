@@ -13,7 +13,7 @@ simple_mutex * osdisplay::s_pmutex = new simple_mutex;
 int32_t osdisplay::find(Display * pdisplay)
 {
 
-   mutex_lock sl(*::osdisplay::s_pmutex, true);
+   mutex_lock sl(user_mutex(), true);
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
@@ -30,7 +30,7 @@ int32_t osdisplay::find(Display * pdisplay)
 osdisplay::data * osdisplay::get(Display * pdisplay)
 {
 
-   mutex_lock sl(*::osdisplay::s_pmutex, true);
+   mutex_lock sl(user_mutex(), true);
 
    int_ptr iFind = find(pdisplay);
 
@@ -91,7 +91,7 @@ osdisplay & osdisplay::operator = (const osdisplay & osdisplay)
 bool osdisplay::remove(Display * pdisplay)
 {
 
-   mutex_lock sl(*::osdisplay::s_pmutex, true);
+   mutex_lock sl(user_mutex(), true);
 
    int_ptr iFind = find(pdisplay);
 

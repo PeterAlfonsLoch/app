@@ -37,8 +37,18 @@ namespace c
 
       vsstring strPath(pszPath);
 
+      if(strPath == "os")
+      {
+
+         strPath = "ca2os";
+
+      }
+
       if(strstr_dup(strPath, ".") == NULL)
          strPath += ".so";
+
+      if(!str_begins_dup(strPath, "lib"))
+         strPath = "lib" + strPath;
 
       m_plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NOW | RTLD_NODELETE);
 

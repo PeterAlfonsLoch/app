@@ -212,6 +212,11 @@ namespace html
 
    void data::layout(::ca::graphics * pdc)
    {
+
+
+      mutex_lock sl(user_mutex(), true);
+
+
       int32_t iCount = 24;
       while(m_bLayout && iCount >= 0)
       {
@@ -373,15 +378,15 @@ namespace html
 
    bool data::open_document(var varFile)
    {
-      
+
       int32_t iRetry = 0;
 
 restart:
 
       ::ca::data::writing writing(this);
-   
+
       string strPathName;
-      
+
       if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
       {
          strPathName = varFile.propset()["url"];
@@ -543,14 +548,14 @@ restart:
       m_pform  = pform;
 
       implement(pdc);
-         
+
       pform->GetClientBox(m_box);
 
       if(m_box.area() <= 0.f)
          return;
 
       layout(pdc);
-         
+
    }
 
 

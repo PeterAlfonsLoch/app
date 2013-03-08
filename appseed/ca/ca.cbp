@@ -1635,6 +1635,7 @@
 		<Unit filename="user/user_interaction.h" />
 		<Unit filename="user/user_job.cpp" />
 		<Unit filename="user/user_job.h" />
+		<Unit filename="user/user_key_enum.h" />
 		<Unit filename="user/user_keyboard.cpp" />
 		<Unit filename="user/user_keyboard.h" />
 		<Unit filename="user/user_keyboard_focus.cpp" />

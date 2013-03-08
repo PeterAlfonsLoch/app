@@ -64,5 +64,5 @@ namespace user
 } // namespace user
 
 
-
+CLASS_DECL_c simple_mutex & user_mutex();
 

@@ -48,12 +48,26 @@ namespace user
      System.set_enum_name(key_comma, "key_comma");
      System.set_enum_name(key_dot, "key_dot");
      System.set_enum_name(key_shift, "key_shift");
+     System.set_enum_name(key_lshift, "key_lshift");
+     System.set_enum_name(key_rshift, "key_rshift");
      System.set_enum_name(key_control, "key_control");
+     System.set_enum_name(key_lcontrol, "key_lcontrol");
+     System.set_enum_name(key_rcontrol, "key_rcontrol");
      System.set_enum_name(key_alt, "key_alt");
+     System.set_enum_name(key_lalt, "key_lalt");
+     System.set_enum_name(key_ralt, "key_ralt");
      System.set_enum_name(key_lbutton, "key_lbutton");
      System.set_enum_name(key_mbutton, "key_mbutton");
      System.set_enum_name(key_rbutton, "key_rbutton");
-
+     System.set_enum_name(key_back, "key_back");
+     System.set_enum_name(key_delete, "key_delete");
+     System.set_enum_name(key_space, "key_space");
+     System.set_enum_name(key_right, "key_right");
+     System.set_enum_name(key_down, "key_down");
+     System.set_enum_name(key_left, "key_left");
+     System.set_enum_name(key_up, "key_up");
+     System.set_enum_name(key_prior, "key_prior");
+     System.set_enum_name(key_next, "key_next");
 
       m_playout = NULL;
 
@@ -87,7 +101,7 @@ namespace user
 
    bool keyboard::load_os_layout(const char * pszPath)
    {
-      
+
       int32_t iCode;
 
       ::user::e_key ekey;
@@ -185,7 +199,7 @@ namespace user
 
    string keyboard::process_key(::user::e_key ekey)
    {
-      
+
       if(m_playout == NULL)
       {
 
@@ -227,11 +241,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-#ifdef LINUX
-      Application.dir().matter_ls_file("keyboard layout/linux", straPath);
-#else
       Application.dir().matter_ls_file("keyboard layout", straPath);
-#endif
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -272,11 +282,7 @@ namespace user
 
 #endif
 
-#ifdef LINUX
-      string strPath = Application.dir().matter("keyboard layout/linux/br_abnt2.xml");
-#else
       string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
-#endif
 
       if(Application.file().exists(strPath))
       {
@@ -347,7 +353,7 @@ namespace user
 
    void keyboard::translate_os_key_message(::ca::message::key * pkey)
    {
-      
+
       pkey->m_ekey = m_mapKey[pkey->m_nChar];
 
    }

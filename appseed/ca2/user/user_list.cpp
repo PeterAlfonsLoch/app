@@ -2236,8 +2236,8 @@ namespace user
       SCAST_PTR(::ca::message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
             return;
-      if(pkey->m_nChar == VK_DOWN || pkey->m_nChar == VK_UP ||
-         pkey->m_nChar == VK_NEXT || pkey->m_nChar == VK_PRIOR)
+      if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
+         pkey->m_ekey == ::user::key_next || pkey->m_ekey == ::user::key_prior)
       {
          if(m_nItemCount > 0)
          {
@@ -2248,30 +2248,30 @@ namespace user
 
             if(iItem < 0)
             {
-               if(pkey->m_nChar == VK_DOWN || pkey->m_nChar == VK_NEXT)
+               if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_next)
                {
                   iItem = 0;
                }
-               else if(pkey->m_nChar == VK_UP || pkey->m_nChar == VK_PRIOR)
+               else if(pkey->m_ekey == ::user::key_up || pkey->m_ekey == ::user::key_prior)
                {
                   iItem = m_nItemCount - 1;
                }
             }
             else
             {
-               if(pkey->m_nChar == VK_DOWN)
+               if(pkey->m_ekey == ::user::key_down)
                {
                   iItem++;
                }
-               else if(pkey->m_nChar == VK_NEXT)
+               else if(pkey->m_ekey == ::user::key_next)
                {
                   iItem += m_nDisplayCount;
                }
-               else if(pkey->m_nChar == VK_UP)
+               else if(pkey->m_ekey == ::user::key_up)
                {
                   iItem--;
                }
-               else if(pkey->m_nChar == VK_PRIOR)
+               else if(pkey->m_ekey == ::user::key_prior)
                {
                   iItem -= m_nDisplayCount;
                }

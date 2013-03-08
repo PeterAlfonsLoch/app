@@ -765,36 +765,46 @@ namespace user
       key.set(this, WM_CHAR, wparam, lparam, lresult);
       key.m_nChar = wparam;
       key.m_nFlags = HIWORD(lparam);
-      if(wparam == VK_LSHIFT || wparam == VK_RSHIFT
-         || wparam == VK_LCONTROL || wparam == VK_RCONTROL
-         || wparam == VK_LMENU || wparam == VK_RMENU
-         || key.m_ekey == ::user::key_shift || key.m_ekey == ::user::key_control
-         || key.m_ekey == ::user::key_alt)
+      if(
+         key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
+      || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
+      || key.m_ekey == ::user::key_alt     || key.m_ekey == ::user::key_lalt     || key.m_ekey == ::user::key_ralt
+         )
       {
          return;
       }
 
-      if(wparam == VK_RIGHT || wparam == VK_UP
-         || wparam == VK_LEFT || wparam == VK_DOWN)
+      if(key.m_ekey == ::user::key_right   || key.m_ekey == ::user::key_up
+      || key.m_ekey == ::user::key_left    || key.m_ekey == ::user::key_down)
       {
          _001OnChar(&key);
          return;
       }
 
+
       //LRESULT lresult;
       bool bShift = Application.is_key_pressed(::user::key_shift);
+
       if(key.m_nChar < 256 && isalpha((int32_t) key.m_nChar))
       {
+
          if(bShift)
          {
+
             key.m_nChar = toupper((int32_t) key.m_nChar);
+
          }
          else
          {
+
             key.m_nChar = tolower((int32_t) key.m_nChar);
+
          }
+
       }
+
       _001OnChar(&key);
+
    }
 
 
@@ -1451,7 +1461,7 @@ namespace user
 
       bool bShift = Application.is_key_pressed(::user::key_shift);
 
-      if(pkey->m_nChar == VK_BACK)
+      if(pkey->m_ekey == ::user::key_back)
       {
          if(!m_bReadOnly)
          {
@@ -1506,7 +1516,7 @@ namespace user
             }
          }
       }
-      else if(pkey->m_nChar == VK_UP)
+      else if(pkey->m_ekey == ::user::key_up)
       {
          int32_t x;
          index iLine = SelToLineX(m_iSelEnd, x);
@@ -1518,7 +1528,7 @@ namespace user
          }
          _001RedrawWindow();
       }
-      else if(pkey->m_nChar == VK_DOWN)
+      else if(pkey->m_ekey == ::user::key_down)
       {
          int32_t x;
          index iLine = SelToLineX(m_iSelEnd, x);
@@ -1530,7 +1540,7 @@ namespace user
          }
          _001RedrawWindow();
       }
-      else if(pkey->m_nChar == VK_RIGHT)
+      else if(pkey->m_ekey == ::user::key_right)
       {
          if(!bShift && m_iSelStart > m_iSelEnd)
          {
@@ -1562,7 +1572,7 @@ namespace user
          }
          _001RedrawWindow();
       }
-      else if(pkey->m_nChar == VK_LEFT)
+      else if(pkey->m_ekey == ::user::key_left)
       {
          if(!bShift && m_iSelStart < m_iSelEnd)
          {
@@ -1677,8 +1687,8 @@ namespace user
             _001OnAfterChangeText();
          }
       }
-      if(pkey->m_nChar != VK_UP
-      && pkey->m_nChar != VK_DOWN)
+      if(pkey->m_ekey != ::user::key_up
+      && pkey->m_ekey != ::user::key_down)
       {
          m_iColumn = SelToColumn(m_iSelEnd);
       }
@@ -1705,7 +1715,7 @@ namespace user
    {
       ::ca::data::writing writing(m_pdata);
       SCAST_PTR(::ca::message::key, pkey, pobj)
-      if(pkey->m_nChar == VK_DELETE)
+      if(pkey->m_ekey == ::user::key_delete)
       {
          if(!m_bReadOnly)
          {

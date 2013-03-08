@@ -34,7 +34,7 @@ simple_mutex * oswindow::s_pmutex = new simple_mutex;
 int32_t oswindow::find(Display * pdisplay, Window window)
 {
 
-   mutex_lock sl(*::oswindow::s_pmutex, true);
+   mutex_lock sl(user_mutex(), true);
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
@@ -52,8 +52,7 @@ int32_t oswindow::find(Display * pdisplay, Window window)
 int32_t oswindow::find(Window window)
 {
 
-   mutex_lock sl(*::oswindow::s_pmutex, true);
-
+   mutex_lock sl(user_mutex(), true);
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
@@ -70,8 +69,7 @@ int32_t oswindow::find(Window window)
 oswindow::data * oswindow::get(Display * pdisplay, Window window)
 {
 
-   mutex_lock sl(*::oswindow::s_pmutex, true);
-
+   mutex_lock sl(user_mutex(), true);
 
    int_ptr iFind = find(pdisplay, window);
 
@@ -92,8 +90,7 @@ oswindow::data * oswindow::get(Display * pdisplay, Window window)
 oswindow::data * oswindow::get(Window window)
 {
 
-   mutex_lock sl(*::oswindow::s_pmutex, true);
-
+   mutex_lock sl(user_mutex(), true);
 
    int_ptr iFind = find(window);
 
@@ -122,13 +119,15 @@ oswindow::oswindow()
 oswindow::oswindow(Display * pdisplay, Window window, Visual * pvisual)
 {
 
-   mutex_lock sl(*::oswindow::s_pmutex, true);
-
+   mutex_lock sl(user_mutex(), true);
 
    m_pdata = get(pdisplay, window);
+
    if(pvisual != NULL)
    {
+
       m_pdata->m_pvisual = pvisual;
+
    }
 
 
@@ -190,8 +189,7 @@ oswindow & oswindow::operator = (const oswindow & oswindow)
 bool oswindow::remove(Display * pdisplay, Window window)
 {
 
-   mutex_lock sl(*::oswindow::s_pmutex, true);
-
+   mutex_lock sl(user_mutex(), true);
 
    int_ptr iFind = find(pdisplay, window);
 
@@ -207,6 +205,9 @@ bool oswindow::remove(Display * pdisplay, Window window)
 int32_t oswindow::store_name(const char * psz)
 {
 
+   mutex_lock sl(user_mutex(), true);
+
+
    return XStoreName(display(), window(), psz);
 
 }
@@ -214,6 +215,10 @@ int32_t oswindow::store_name(const char * psz)
 
 int32_t oswindow::select_input(int32_t iInput)
 {
+
+
+   mutex_lock sl(user_mutex(), true);
+
 
    return XSelectInput(display(), window(), iInput);
 
@@ -230,6 +235,10 @@ int32_t oswindow::select_all_input()
 
 int32_t oswindow::map_window()
 {
+
+
+   mutex_lock sl(user_mutex(), true);
+
 
    return XMapWindow(display(), window());
 
@@ -306,6 +315,9 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
 bool oswindow::is_child(::oswindow oswindow)
 {
 
+   mutex_lock sl(user_mutex(), true);
+
+
    oswindow = oswindow.get_parent();
    while(!oswindow.is_null())
    {
@@ -319,6 +331,9 @@ bool oswindow::is_child(::oswindow oswindow)
 
 oswindow oswindow::get_parent()
 {
+
+   mutex_lock sl(user_mutex(), true);
+
 
    if(m_pdata == NULL)
       return ::ca::null();
@@ -342,6 +357,9 @@ oswindow oswindow::get_parent()
 oswindow oswindow::set_parent(oswindow oswindow)
 {
 
+   mutex_lock sl(user_mutex(), true);
+
+
    if(m_pdata == NULL)
       return ::ca::null();
 
@@ -355,6 +373,8 @@ oswindow oswindow::set_parent(oswindow oswindow)
 
 bool oswindow::show_window(int32_t nCmdShow)
 {
+
+   mutex_lock sl(user_mutex(), true);
 
    if(nCmdShow == SW_HIDE)
    {
@@ -691,6 +711,8 @@ oswindow GetCapture()
 oswindow SetCapture(oswindow window)
 {
 
+   mutex_lock sl(user_mutex(), true);
+
    oswindow windowOld(g_oswindowCapture);
 
    if(window.display() == NULL)
@@ -716,6 +738,8 @@ oswindow SetCapture(oswindow window)
 WINBOOL ReleaseCapture()
 {
 
+   mutex_lock sl(user_mutex(), true);
+
    if(GetCapture().display() == NULL)
       return FALSE;
 
@@ -732,6 +756,8 @@ WINBOOL ReleaseCapture()
 oswindow SetFocus(oswindow window)
 {
 
+   mutex_lock sl(user_mutex(), true);
+
    if(!IsWindow(window))
       return ::ca::null();
 
@@ -746,6 +772,8 @@ oswindow SetFocus(oswindow window)
 
 oswindow GetFocus()
 {
+
+   mutex_lock sl(user_mutex(), true);
 
    Display * pdisplay = XOpenDisplay(NULL);
 
@@ -771,6 +799,8 @@ oswindow GetFocus()
 
 oswindow GetWindow(oswindow windowParam, int iParentHood)
 {
+
+   mutex_lock sl(user_mutex(), true);
 
    oswindow window = windowParam;
 

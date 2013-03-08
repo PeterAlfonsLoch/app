@@ -46,14 +46,26 @@ namespace user
       key_comma,
       key_dot,
       key_shift,
+      key_lshift,
+      key_rshift,
       key_control,
+      key_lcontrol,
+      key_rcontrol,
       key_alt,
+      key_lalt,
+      key_ralt,
       key_lbutton,
       key_rbutton,
       key_mbutton,
       key_back,
       key_delete,
       key_space,
+      key_right,
+      key_down,
+      key_left,
+      key_up,
+      key_prior,
+      key_next
    };
 
 

@@ -5518,7 +5518,47 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
             m_pmapKeyPressed = new ::collection::map < ::user::e_key, ::user::e_key, bool, bool >;
          }
          bool bPressed = false;
-         m_pmapKeyPressed->Lookup(ekey, bPressed);
+         if(ekey == ::user::key_shift)
+         {
+            m_pmapKeyPressed->Lookup(::user::key_shift, bPressed);
+            if(bPressed)
+               goto ret;
+            m_pmapKeyPressed->Lookup(::user::key_lshift, bPressed);
+            if(bPressed)
+               goto ret;
+            m_pmapKeyPressed->Lookup(::user::key_rshift, bPressed);
+            if(bPressed)
+               goto ret;
+         }
+         else if(ekey == ::user::key_control)
+         {
+            m_pmapKeyPressed->Lookup(::user::key_control, bPressed);
+            if(bPressed)
+               goto ret;
+            m_pmapKeyPressed->Lookup(::user::key_lcontrol, bPressed);
+            if(bPressed)
+               goto ret;
+            m_pmapKeyPressed->Lookup(::user::key_rcontrol, bPressed);
+            if(bPressed)
+               goto ret;
+         }
+         else if(ekey == ::user::key_alt)
+         {
+            m_pmapKeyPressed->Lookup(::user::key_alt, bPressed);
+            if(bPressed)
+               goto ret;
+            m_pmapKeyPressed->Lookup(::user::key_lalt, bPressed);
+            if(bPressed)
+               goto ret;
+            m_pmapKeyPressed->Lookup(::user::key_ralt, bPressed);
+            if(bPressed)
+               goto ret;
+         }
+         else
+         {
+            m_pmapKeyPressed->Lookup(ekey, bPressed);
+         }
+ret:
          return bPressed;
       }
       else if(m_psession != NULL)

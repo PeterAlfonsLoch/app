@@ -30,8 +30,6 @@ namespace user
 } // namespace user
 
 
-#include "user_key.h"
-
 
 #include "user_document_interface.h"
 #include "user_document.h"

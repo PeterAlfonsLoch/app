@@ -20,6 +20,7 @@ device_context::device_context()
 HDC GetDC(oswindow hwnd)
 {
 
+
    HDC hdc = new device_context;
 
    hdc->m_display    = XOpenDisplay(NULL);
@@ -34,12 +35,17 @@ HDC GetDC(oswindow hwnd)
 
 HDC GetWindowDC(oswindow hwnd)
 {
+
    return GetDC(hwnd);
 }
 
 
 WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 {
+
+
+   mutex_lock sl(user_mutex(), true);
+
 
    if(hdc == NULL)
       return FALSE;
@@ -55,6 +61,8 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 
 WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 {
+
+   mutex_lock sl(user_mutex(), true);
 
    XWindowAttributes attrs;
 
@@ -79,6 +87,11 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 
 WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
+
+
+
+   mutex_lock sl(user_mutex(), true);
+
 
    XWindowAttributes attrs;
 
@@ -111,6 +124,10 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
 int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 {
+
+   mutex_lock sl(user_mutex(), true);
+
+
    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
    return 1;
 }
@@ -139,6 +156,9 @@ WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 WINBOOL GetCursorPos(LPPOINT lpptCursor)
 {
 
+   mutex_lock sl(user_mutex(), true);
+
+
    Window root_return;
    Window child_return;
    int32_t win_x_return;
@@ -159,6 +179,9 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
 
 WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT uFlags)
 {
+
+   mutex_lock sl(user_mutex(), true);
+
 
    Display * display = XOpenDisplay(NULL);
 

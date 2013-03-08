@@ -20,12 +20,14 @@
 	<item code="key_s" value="s" />
 	<item code="key_t" value="t" />
 	<item code="key_u" value="u" />
-	<item code="key_a" value="v" />
+	<item code="key_v" value="v" />
 	<item code="key_w" value="w" />
 	<item code="key_x" value="x" />
 	<item code="key_y" value="y" />
+	<item code="key_z" value="z" />
 	<item code="key_semicolon" value=";" />
-	<item code="key_y" shift="1" value="Y" />
+	<item code="key_comma" value="," />
+	<item code="key_dot" value="." />
 	<item code="key_a" shift="1" value="A" />
 	<item code="key_b" shift="1" value="B" />
 	<item code="key_c" shift="1" value="C" />
@@ -47,37 +49,14 @@
 	<item code="key_s" shift="1" value="S" />
 	<item code="key_t" shift="1" value="T" />
 	<item code="key_u" shift="1" value="U" />
-	<item code="key_a" shift="1" value="V" />
+	<item code="key_v" shift="1" value="V" />
 	<item code="key_w" shift="1" value="W" />
 	<item code="key_x" shift="1" value="X" />
 	<item code="key_y" shift="1" value="Y" />
 	<item code="key_z" shift="1" value="Z" />
-	<item code="key_z" shift="1" value="Z" />
 	<item code="key_semicolon" shift="1" value=":" />
-	<item code="53" key="191" value=";" />
-	<item code="53" key="191" shift="1" value=":" />
-	<item code="86" key="226" value="\\" />
-	<item code="86" key="226" "shift="1" value="|" />
-	<item code="12" key="189" value="-" />
-	<item code="12" key="189" shift="1" value="_" />
-	<item code="13" key="187" value="=" />
-	<item code="13" key="187" shift="1" value="+" />
-	<item code="26" key="219" escape="´" />
-	<item code="26" key="219" shift="1" escape="`" />
-	<item code="40" key="222" escape="~" />
-	<item code="40" key="222" shift="1" escape="^" />
-	<item code="27" key="221" value="[" />
-	<item code="27" key="221" shift="1" value="{" />
-	<item code="43" key="220" value="]" />
-	<item code="43" key="220" shift="1" value="}" />
-	<item code="51" key="188" value="," />
-	<item code="51" key="188" shift="1" value="<" />
-	<item code="52" key="190" value="." />
-	<item code="52" key="190" shift="1" value=">" />
-	<item code="115" key="193" value="/" />
-	<item code="115" key="193" shift="1" value="?" />
-	<item code="41" key="192" value="\'" />
-	<item code="41" key="192" shift="1" value="\"" />
+	<item code="key_comma" shift="1" value="&lt;" />
+	<item code="key_dot" shift="1" value="&gt;" />
 	<item code="key_1" value="1" />
 	<item code="key_2" value="2" />
 	<item code="key_3" value="3" />
@@ -98,5 +77,6 @@
 	<item code="key_8" shift="1" value="*" />
 	<item code="key_9" shift="1" value="(" />
 	<item code="key_0" shift="1" value=")" />
+	
 </layout>
 
