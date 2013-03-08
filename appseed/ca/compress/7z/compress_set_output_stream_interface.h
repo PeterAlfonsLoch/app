@@ -5,11 +5,11 @@ namespace libcompress
 {
 
    class CLASS_DECL_ca set_output_stream_interface :
-      virtual public ::radix::object
+      virtual public ::ca::object
    {
    public:
-      virtual ex1::HRes SetOutStream(::ex1::writer * outStream) = 0;
-      virtual ex1::HRes ReleaseOutStream() = 0;
+      virtual ::ca::HRes SetOutStream(::ca::writer * outStream) = 0;
+      virtual ::ca::HRes ReleaseOutStream() = 0;
    };
 
 } // namespace libcompress

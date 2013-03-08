@@ -542,7 +542,7 @@ namespace ca
 
          ::user::list * plist = dynamic_cast < ::user::list * >(get_child_by_id(pcontrol->m_id));
 
-         if(typeid(plist->GetDataInterface()) == System.type_info < ::user::simple_list_data > ())
+         if(System.type_info < ::user::simple_list_data > () == typeid(plist->GetDataInterface()))
          {
             ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
             stringa stra;

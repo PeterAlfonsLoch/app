@@ -28,10 +28,13 @@ oswindow::data::~data()
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_fontopu_window_long_style_ex"
 
 oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
+simple_mutex * oswindow::s_pmutex = new simple_mutex;
 
 
 int32_t oswindow::find(Display * pdisplay, Window window)
 {
+
+   mutex_lock sl(*::oswindow::s_pmutex, true);
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
@@ -49,6 +52,9 @@ int32_t oswindow::find(Display * pdisplay, Window window)
 int32_t oswindow::find(Window window)
 {
 
+   mutex_lock sl(*::oswindow::s_pmutex, true);
+
+
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
       if(s_pdataptra->element_at(i)->m_window == window)
@@ -63,6 +69,9 @@ int32_t oswindow::find(Window window)
 
 oswindow::data * oswindow::get(Display * pdisplay, Window window)
 {
+
+   mutex_lock sl(*::oswindow::s_pmutex, true);
+
 
    int_ptr iFind = find(pdisplay, window);
 
@@ -82,6 +91,9 @@ oswindow::data * oswindow::get(Display * pdisplay, Window window)
 
 oswindow::data * oswindow::get(Window window)
 {
+
+   mutex_lock sl(*::oswindow::s_pmutex, true);
+
 
    int_ptr iFind = find(window);
 
@@ -109,6 +121,9 @@ oswindow::oswindow()
 
 oswindow::oswindow(Display * pdisplay, Window window, Visual * pvisual)
 {
+
+   mutex_lock sl(*::oswindow::s_pmutex, true);
+
 
    m_pdata = get(pdisplay, window);
    if(pvisual != NULL)
@@ -174,6 +189,9 @@ oswindow & oswindow::operator = (const oswindow & oswindow)
 
 bool oswindow::remove(Display * pdisplay, Window window)
 {
+
+   mutex_lock sl(*::oswindow::s_pmutex, true);
+
 
    int_ptr iFind = find(pdisplay, window);
 
@@ -746,5 +764,112 @@ oswindow GetFocus()
       return ::ca::null();
 
    return oswindow::defer_get(window);
+
+}
+
+
+
+oswindow GetWindow(oswindow windowParam, int iParentHood)
+{
+
+   oswindow window = windowParam;
+
+   if(window == NULL)
+      return ::ca::null();
+
+   if(iParentHood == GW_HWNDFIRST
+   || iParentHood == GW_HWNDLAST
+   || iParentHood == GW_HWNDNEXT
+   || iParentHood == GW_HWNDPREV)
+   {
+
+      window = ::GetParent(window);
+
+      if(window == NULL)
+         return ::ca::null();
+
+   }
+
+
+   Window root = 0;
+   Window parent = 0;
+   Window * pchildren = NULL;
+   uint32_t ncount = 0;
+
+   XQueryTree(window.display(), window.window(), &root, &parent, &pchildren, &ncount);
+
+   switch(iParentHood)
+   {
+      case GW_CHILD:
+      case GW_HWNDFIRST:
+      {
+
+         if(pchildren == NULL)
+            return ::ca::null();
+
+         window = ::oswindow(window.display(), pchildren[0]);
+
+      }
+      break;
+      case GW_HWNDLAST:
+      {
+
+         if(pchildren == NULL)
+            return ::ca::null();
+
+         window = ::oswindow(window.display(), pchildren[ncount - 1]);
+
+      }
+      break;
+      case GW_HWNDNEXT:
+      case GW_HWNDPREV:
+      {
+
+         if(pchildren == NULL) // ????
+            return ::ca::null();
+
+         int iFound = -1;
+
+         for(int i = 0; i < ncount; i++)
+         {
+               if(pchildren[i] == windowParam.window())
+               {
+                  iFound = i;
+                  break;
+               }
+         }
+
+         if(iFound < 0)
+            return ::ca::null();
+
+         if(iParentHood == GW_HWNDNEXT)
+         {
+
+            if(iFound + 1 >= ncount)
+               return ::ca::null();
+
+            window = ::oswindow(window.display(), pchildren[iFound - 1]);
+
+         }
+         else
+         {
+
+            if(iFound - 1 < 0)
+               return ::ca::null();
+
+            window = ::oswindow(window.display(), pchildren[iFound - 1]);
+
+         }
+
+      }
+
+   }
+
+
+   if(pchildren != NULL)
+      XFree(pchildren);
+
+
+   return window;
 
 }

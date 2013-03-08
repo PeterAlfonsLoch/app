@@ -1072,13 +1072,18 @@ namespace userbase
 
    ::userbase::frame_window* control_bar::GetDockingFrame()
    {
-      ::userbase::frame_window* pFrameWnd = dynamic_cast<::userbase::frame_window *>(GetParentFrame());
+
+      ::userbase::frame_window* pFrameWnd = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
+
       if (pFrameWnd == NULL)
          pFrameWnd = m_pDockSite;
 
       ASSERT(pFrameWnd != NULL);
+
       ASSERT_KINDOF(::userbase::frame_window, pFrameWnd);
+
       return (::userbase::frame_window*) pFrameWnd;
+
    }
 
    bool control_bar::IsFloating()

@@ -221,7 +221,7 @@ namespace user
       else
       {
          bool bWin4 = FALSE;
-      //_gen::FillPSOnStack();
+      //_::ca::FillPSOnStack();
          ::DefWindowProc(
             oswindowParam,
             (bWin4 ? WM_PRINT : WM_PAINT),

@@ -157,7 +157,7 @@ namespace libcompress
       class CCoderMixer2
       {
       public:
-         virtual ex1::HRes SetBindInfo(const CBindInfo &bindInfo) = 0;
+         virtual ::ca::HRes SetBindInfo(const CBindInfo &bindInfo) = 0;
          virtual void ReInit() = 0;
          virtual void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes) = 0;
       };

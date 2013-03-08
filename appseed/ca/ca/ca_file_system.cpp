@@ -409,6 +409,8 @@ namespace ca
             }
             else
             {
+               if(!exists(strFilePath, &varQuery, papp))
+                  return "";
                as_memory(strFilePath, storage, papp);
             }
          }
@@ -1493,7 +1495,7 @@ namespace ca
    {
 
       string str;
-      
+
       str.Format("%I64dn", iNumber);
 
       pfile->write((const char *) str, str.get_length());
@@ -1509,7 +1511,7 @@ namespace ca
 
    void file_system::read_n_number(::ca::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
-      
+
       uint64_t uiRead;
 
       string str;

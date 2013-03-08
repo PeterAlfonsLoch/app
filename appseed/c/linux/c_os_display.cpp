@@ -7,10 +7,13 @@
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_window_long_style_ex"
 
 osdisplay_dataptra * osdisplay::s_pdataptra = new osdisplay_dataptra;
+simple_mutex * osdisplay::s_pmutex = new simple_mutex;
 
 
 int32_t osdisplay::find(Display * pdisplay)
 {
+
+   mutex_lock sl(*::osdisplay::s_pmutex, true);
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
@@ -26,6 +29,8 @@ int32_t osdisplay::find(Display * pdisplay)
 
 osdisplay::data * osdisplay::get(Display * pdisplay)
 {
+
+   mutex_lock sl(*::osdisplay::s_pmutex, true);
 
    int_ptr iFind = find(pdisplay);
 
@@ -85,6 +90,8 @@ osdisplay & osdisplay::operator = (const osdisplay & osdisplay)
 
 bool osdisplay::remove(Display * pdisplay)
 {
+
+   mutex_lock sl(*::osdisplay::s_pmutex, true);
 
    int_ptr iFind = find(pdisplay);
 

@@ -28,7 +28,7 @@ bool command_target::handle(BaseCmdMsg * pcmdmsg)
 // command_target windows message dispatching
 
 /*
-__STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nCode,
+__STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nCode,
    __PMSG pfn, void * pExtra, uint_ptr nSig,
       // return TRUE to stop routing
 {
@@ -314,7 +314,7 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
             TRACE(traceCmdRouting, 1, "SENDING control notification %d from control id 0x%04X to %hs ::ca::window.\n",
                nCode, nID, typeid(*this).name());
 #endif //DEBUG
-         return _gen::DispatchCmdMsg(this, nID, nCode,
+         return _::ca::DispatchCmdMsg(this, nID, nCode,
             lpEntry->pfn, pExtra, lpEntry->nSig, pHandlerInfo);
       }
    }

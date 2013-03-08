@@ -530,7 +530,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
    {
       m_buttona[iItem].m_rect.bottom = iy + ITEMCHECKEDCX + ITEMCHECKEDPADTOP + ITEMCHECKEDPADBOTTOM;
    }
-   
+
 
 }*/
 
@@ -560,7 +560,7 @@ bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlS
    dwStyle |= dwCtrlStyle;
 
 //   ASSERT(gen_ComCtlVersion != -1);
-//   _gen::GetDropDownWidth();
+//   _::ca::GetDropDownWidth();
 //   ASSERT(gen_DropDownWidth != -1);
 
    // create the oswindow

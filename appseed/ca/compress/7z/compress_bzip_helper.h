@@ -50,7 +50,7 @@
 class bzip
 {
 public:
-   ex1::byte_output_stream m_ostream;
+   ::ca::byte_output_stream m_ostream;
    primitive::memory m_memory;
    int32_t m_CurrentBufferSize;
    bz_stream m_zstream;
@@ -59,9 +59,9 @@ public:
    uint_ptr    m_crc;     /* crc32 of uncompressed data */
 
 
-   bzip(ex1::file * pfileDest);
-   bzip(ex1::writer & writer);
-   bzip(ex1::byte_output_stream & ostreamDest);
+   bzip(::ca::file * pfileDest);
+   bzip(::ca::writer & writer);
+   bzip(::ca::byte_output_stream & ostreamDest);
    virtual ~bzip();
 
    bool write(void * buf, ::primitive::memory_size iSize);

@@ -41,7 +41,7 @@ namespace ex1
 } // namespace ex1
 
 
-typedef ::ex1::file * HFILE;
+typedef ::ca::file * HFILE;
 
 
 

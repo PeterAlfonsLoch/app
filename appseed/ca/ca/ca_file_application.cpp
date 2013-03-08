@@ -396,6 +396,12 @@ namespace ca
             return spfile;
          }
 
+         if((nOpenFlags & ::ca::file::mode_create) == 0 && !exists(strPath))
+         {
+            TRACE("planebase::file_application::file does not exist!!");
+            return spfile;
+         }
+
          spfile.create(m_papp);
 
          if(!spfile->open(strPath, nOpenFlags))

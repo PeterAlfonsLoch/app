@@ -37,6 +37,9 @@
 	<File name="LibPNG/pngread.c" open="0" top="0" tabpos="0">
 		<Cursor position="5036" topLine="129" />
 	</File>
+	<File name="LibPNG/pngwutil.c" open="0" top="0" tabpos="0">
+		<Cursor position="50160" topLine="1543" />
+	</File>
 	<File name="LibTIFF/tif_pixarlog.c" open="0" top="0" tabpos="0">
 		<Cursor position="4289" topLine="66" />
 	</File>

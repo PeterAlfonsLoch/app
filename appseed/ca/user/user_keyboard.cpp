@@ -91,7 +91,11 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
+#ifdef LINUX
+      Application.dir().matter_ls_file("keyboard layout/linux", straPath);
+#else
       Application.dir().matter_ls_file("keyboard layout", straPath);
+#endif
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -132,7 +136,11 @@ namespace user
 
 #endif
 
+#ifdef LINUX
+      string strPath = Application.dir().matter("keyboard layout/linux/br_abnt2.xml");
+#else
       string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
+#endif
 
       if(Application.file().exists(strPath))
       {

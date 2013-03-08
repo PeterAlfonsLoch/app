@@ -2686,7 +2686,7 @@ ExitModal:
       // walk from the target window up to the oswindow_Stop window checking
       //  if any window wants to translate this message
 
-      for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->get_parent())
+      for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui = pui->get_parent())
       {
 
          pui->pre_translate_message(pobj);
@@ -3306,7 +3306,7 @@ restart:
       DestroyWindow();
 
    }
-   
+
 #ifdef METROWIN
 
 #ifdef METROWIN
@@ -3320,7 +3320,7 @@ restart:
       else
          return m_pimpl->get_os_window();
    }
-   
+
 #endif
 
 #endif

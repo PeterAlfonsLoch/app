@@ -5,10 +5,10 @@ namespace libcompress
 
 
    class CLASS_DECL_ca set_coder_mt_interface :
-      virtual public ::radix::object
+      virtual public ::ca::object
    {
    public:
-      virtual ex1::HRes SetNumberOfThreads(uint32 numThreads) = 0;
+      virtual ::ca::HRes SetNumberOfThreads(uint32 numThreads) = 0;
    };
 
 } // namespace libcompress

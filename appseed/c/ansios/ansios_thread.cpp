@@ -800,7 +800,9 @@ CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT
    if(wMsgFilterMax == 0)
       wMsgFilterMax = (UINT) -1;
 
-//   HTHREAD hthread = ::GetCurrentThread();
+#ifdef LINUX
+   HTHREAD hthread = ::GetCurrentThread();
+#endif
 
 restart:
 
@@ -831,7 +833,7 @@ restart:
    if(defer_process_x_message(hthread, lpMsg, oswindow, false))
       return TRUE;
 #endif
-   
+
    pmq->m_eventNewMessage.wait(25);
 
    pmq->m_eventNewMessage.reset_event();
@@ -849,7 +851,9 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
    if(pmq == NULL)
       return FALSE;
 
-//   HTHREAD hthread = ::GetCurrentThread();
+#ifdef LINUX
+   HTHREAD hthread = ::GetCurrentThread();
+#endif
 
    mutex_lock ml(pmq->m_mutex);
 
@@ -879,7 +883,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
 #endif
 
    return FALSE;
-   
+
 }
 
 

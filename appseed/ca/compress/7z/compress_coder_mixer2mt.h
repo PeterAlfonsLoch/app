@@ -7,13 +7,13 @@ namespace libcompress
 {
    namespace coder_mixer
    {
-      struct CCoder2: public CCoderInfo2, public ::radix::thread
+      struct CCoder2: public CCoderInfo2, public ::ca::thread
       {
          HRESULT Result;
-         base_array < sp(::ex1::reader) > InStreams;
-         base_array < sp(::ex1::writer) > OutStreams;
-         base_array < ::ex1::reader * > InStreamPointers;
-         base_array < ::ex1::writer * > OutStreamPointers;
+         base_array < sp(::ca::reader) > InStreams;
+         base_array < sp(::ca::writer) > OutStreams;
+         base_array < ::ca::reader * > InStreamPointers;
+         base_array < ::ca::writer * > OutStreamPointers;
 
          CCoder2(::ca::application * papp, uint32 numInStreams, uint32 numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
@@ -42,24 +42,24 @@ namespace libcompress
          public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         base_array < ::ex1::stream_binder > _streamBinders;
+         base_array < ::ca::stream_binder > _streamBinders;
          int32_t _progressCoderIndex;
 
          void AddCoderCommon();
-         HRESULT Init(::ex1::reader **inStreams, ::ex1::writer **outStreams);
+         HRESULT Init(::ca::reader **inStreams, ::ca::writer **outStreams);
          HRESULT ReturnIfError(HRESULT code);
       public:
          array_app_alloc<CCoder2> _coders;
 
-         ex1::HRes Code(::ex1::reader **inStreams,
+         ::ca::HRes Code(::ca::reader **inStreams,
             const file_size **inSizes,
             uint32 numInStreams,
-            ::ex1::writer **outStreams,
+            ::ca::writer **outStreams,
             const file_size **outSizes,
             uint32 numOutStreams,
             progress_info_interface *progress);
 
-         ex1::HRes SetBindInfo(const CBindInfo &bindInfo);
+         ::ca::HRes SetBindInfo(const CBindInfo &bindInfo);
          void AddCoder(::libcompress::coder_interface *coder);
          void AddCoder2(::libcompress::coder2_interface *coder);
          void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }

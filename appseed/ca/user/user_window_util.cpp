@@ -694,7 +694,9 @@ namespace user
 
    int32_t window_util::GetZOrder(oswindow oswindow)
    {
-#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
+
+
+#if !defined(METROWIN) && !defined(MACOS)
 //      int32_t iOrder = 0;
       ::oswindow oswindowOrder = ::ca::null();
       try
@@ -705,8 +707,6 @@ namespace user
       {
          return 0x7fffffff;
       }
-
-#ifdef WINDOWS
 
       int32_t iOrder = 0;
 
@@ -727,7 +727,6 @@ namespace user
       throw todo(::ca::get_thread_app());
 
 #endif
-#endif
 
       return 0x7fffffff;
 
@@ -738,7 +737,7 @@ namespace user
    void window_util::GetZOrder(oswindow oswindow, int_array & ia)
    {
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
 
       int32_t iOrder;
       ia.remove_all();

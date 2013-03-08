@@ -244,6 +244,7 @@
 		<Unit filename="linux/c_os_simple_pen.h" />
 		<Unit filename="linux/c_os_simple_shell_launcher.cpp" />
 		<Unit filename="linux/c_os_small_ipc_channel.cpp" />
+		<Unit filename="linux/c_os_thread.cpp" />
 		<Unit filename="linux/c_os_win_base.cpp" />
 		<Unit filename="linux/c_os_window.cpp" />
 		<Unit filename="linux/linux_internal.h" />

@@ -4,7 +4,7 @@
 namespace userbase
 {
 
-   class tool_cmd_ui : 
+   class tool_cmd_ui :
       public cmd_ui        // class private to this file !
    {
    public: // re-implementations only
@@ -61,6 +61,6 @@ class CToolTipCtrl;
 class ::userbase::control_bar;
 
 
-CLASS_DECL_ca2 UINT _gen::GetMouseScrollLines();
+CLASS_DECL_ca2 UINT _::ca::GetMouseScrollLines();
 
 */

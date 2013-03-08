@@ -766,8 +766,8 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       // there are cases where destroying the documents may destroy the
       //  main ::ca::window of the application.
-      //bool bgen::ContextIsDll = afxContextIsDLL;
-      //if (!bgen::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
+      //bool b::ca::ContextIsDll = afxContextIsDLL;
+      //if (!b::ca::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
       if(user().GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
@@ -945,7 +945,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    {
       ::cubebase::application::request(pcreatecontext);
    }
-    
+
    void application::defer_add_document_template(::document_template * ptemplate)
    {
       m_puserbase->defer_add_document_template(ptemplate);

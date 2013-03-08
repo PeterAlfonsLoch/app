@@ -73,6 +73,8 @@ oswindow SetCapture(oswindow window);
 WINBOOL ReleaseCapture();
 oswindow SetFocus(oswindow window);
 oswindow GetFocus();
+oswindow GetWindow(oswindow window, int iParentHood);
+
 
 
 

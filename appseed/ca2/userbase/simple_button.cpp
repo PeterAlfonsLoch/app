@@ -22,7 +22,7 @@ void simple_button::_001OnDraw(::ca::graphics *pdc)
 {
    ::userbase::button::_001OnDraw(pdc);
 //   bool bWin4 = afxData.bWin4;
-   //_gen::FillPSOnStack();
+   //_::ca::FillPSOnStack();
 /*   ::CallWindowProc(
       *GetSuperWndProcAddr(),
       get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),

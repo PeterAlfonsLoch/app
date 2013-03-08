@@ -737,7 +737,7 @@ finishedCa2ModuleFolder:;
 
       ::c::library library;
 
-      if(!library.open("os"))
+      if(!library.open("libca2os"))
          throw "failed to do factory exchange";
 
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange > ("ca2_factory_exchange");
@@ -2484,6 +2484,17 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(e);
 //linux      exit(-1);
+
+      if(!is_system())
+      {
+
+               // get_app() may be it self, it is ok...
+         if(Sys(get_app()).final_handle_exception((::ca::exception & ) e))
+            return true;
+
+
+      }
+
       return false;
    }
 

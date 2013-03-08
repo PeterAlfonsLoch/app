@@ -1413,7 +1413,7 @@ namespace user
    void edit_plain_text::_001OnChar(::ca::signal_object * pobj)
    {
       ::ca::data::writing writing(m_pdata);
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;

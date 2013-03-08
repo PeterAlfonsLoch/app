@@ -127,6 +127,7 @@
 		<Unit filename="FreeImage/PluginXPM.cpp" />
 		<Unit filename="FreeImage/TIFFLogLuv.cpp" />
 		<Unit filename="FreeImage/ToneMapping.cpp" />
+		<Unit filename="FreeImage/Utilities.cpp" />
 		<Unit filename="FreeImage/WuQuantizer.cpp" />
 		<Unit filename="FreeImage/ZLibInterface.cpp" />
 		<Unit filename="FreeImage/tmoColorConvert.cpp" />

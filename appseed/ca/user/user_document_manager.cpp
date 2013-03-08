@@ -353,7 +353,7 @@ void document_manager::RegisterShellFileTypes(bool bCompat)
 }
 
 /*
-__STATIC void _gen::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
+__STATIC void _::ca::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
    document_template * ptemplate, string* pstrDefaultExt)
 {
    ENSURE_VALID(ptemplate);

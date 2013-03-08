@@ -11,8 +11,10 @@ namespace ca
 
       fontopus::fontopus()
       {
-         m_puser              = NULL;
-         m_pthreadCreatingUser    = false;
+
+         m_puser                    = NULL;
+         m_pthreadCreatingUser      = NULL;
+
       }
 
 
@@ -26,6 +28,7 @@ namespace ca
 
       fontopus::~fontopus()
       {
+
       }
 
 
@@ -36,16 +39,22 @@ namespace ca
             return false;
 
          return TRUE;
+
       }
+
 
       int32_t fontopus::exit_instance()
       {
+
          try
          {
+
             ::fontopus::fontopus::exit_instance();
+
          }
          catch(...)
          {
+
          }
          return 0;
       }

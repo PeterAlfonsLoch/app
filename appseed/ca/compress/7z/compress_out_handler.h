@@ -17,10 +17,10 @@ namespace libcompress
    class out_handler
    {
    public:
-      ex1::HRes SetProperty(const char *name, var value);
+      ::ca::HRes SetProperty(const char *name, var value);
 
-      ex1::HRes SetSolidSettings(const string &s);
-      ex1::HRes SetSolidSettings(var value);
+      ::ca::HRes SetSolidSettings(const string &s);
+      ::ca::HRes SetSolidSettings(var value);
 
       uint32 _numThreads;
 
@@ -47,8 +47,8 @@ namespace libcompress
 
       bool _volumeMode;
 
-      ex1::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
-      ex1::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
+      ::ca::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
+      ::ca::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
 
       void SetCompressionMethod2(COneMethodInfo &oneMethodInfo, uint32 numThreads);
 

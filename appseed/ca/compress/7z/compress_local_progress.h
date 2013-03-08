@@ -16,7 +16,7 @@ namespace libcompress
    public:
 
 
-      ::ex1::progress_interface * _progress;
+      ::ca::progress_interface * _progress;
       progress_info_interface * _ratioProgress;
 
       bool _inSizeIsMain;
@@ -27,12 +27,12 @@ namespace libcompress
       bool SendProgress;
 
       local_progress();
-      void Init(::ex1::progress_interface *progress, bool inSizeIsMain);
+      void Init(::ca::progress_interface *progress, bool inSizeIsMain);
       HRESULT SetCur();
 
       //MY_UNKNOWN_IMP
 
-      ex1::HRes SetRatioInfo(const uint64 *inSize, const uint64 *outSize);
+      ::ca::HRes SetRatioInfo(const uint64 *inSize, const uint64 *outSize);
    };
 
 } // namespace libcompress

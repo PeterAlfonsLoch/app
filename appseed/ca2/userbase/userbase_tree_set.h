@@ -30,12 +30,12 @@ namespace userbase
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
       // ::user::tree
-      virtual void _001OnOpenItem(::ex1::tree_item * pitem);
-      virtual void _001OnItemExpand(::ex1::tree_item * pitem);
-      virtual void _001OnItemCollapse(::ex1::tree_item * pitem);
+      virtual void _001OnOpenItem(::ca::tree_item * pitem);
+      virtual void _001OnItemExpand(::ca::tree_item * pitem);
+      virtual void _001OnItemCollapse(::ca::tree_item * pitem);
 
-      virtual bool _001GetItemText(::ex1::tree_item * pitem, string & strItem);
-      virtual index _001GetItemImage(::ex1::tree_item * pitem, bool bSelected);
+      virtual bool _001GetItemText(::ca::tree_item * pitem, string & strItem);
+      virtual index _001GetItemImage(::ca::tree_item * pitem, bool bSelected);
 
 
 
@@ -50,8 +50,8 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnShellCommand)
 
-      ::ex1::tree_item * allocate_item();
-      void delete_item(::ex1::tree_item * pitem);
+      ::ca::tree_item * allocate_item();
+      void delete_item(::ca::tree_item * pitem);
 
    private:
       tree_view(const tree_view & tree);

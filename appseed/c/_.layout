@@ -16,14 +16,14 @@
 	<File name="ansios/ansios_file.h" open="0" top="0" tabpos="2">
 		<Cursor position="118" topLine="0" />
 	</File>
-	<File name="ansios/ansios_thread.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="18572" topLine="874" />
+	<File name="ansios/ansios_thread.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="17850" topLine="842" />
 	</File>
 	<File name="ansios/ansios_thread.h" open="0" top="0" tabpos="8">
 		<Cursor position="280" topLine="3" />
 	</File>
 	<File name="ansios/crypto/ansios_crypt.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1457" topLine="6" />
+		<Cursor position="916" topLine="3" />
 	</File>
 	<File name="bsdiff/bsdiff.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2478" topLine="91" />
@@ -112,8 +112,8 @@
 	<File name="c/c_simple_array.h" open="0" top="0" tabpos="7">
 		<Cursor position="4170" topLine="129" />
 	</File>
-	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1699" topLine="96" />
+	<File name="c/c_simple_event.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="1840" topLine="136" />
 	</File>
 	<File name="c/c_simple_event.h" open="0" top="0" tabpos="5">
 		<Cursor position="18" topLine="0" />
@@ -124,8 +124,8 @@
 	<File name="c/c_simple_memory.h" open="0" top="0" tabpos="0">
 		<Cursor position="657" topLine="0" />
 	</File>
-	<File name="c/c_simple_mutex.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="2964" topLine="109" />
+	<File name="c/c_simple_mutex.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2644" topLine="109" />
 	</File>
 	<File name="c/c_simple_mutex.h" open="0" top="0" tabpos="0">
 		<Cursor position="34" topLine="0" />
@@ -199,8 +199,8 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="125" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="581" topLine="2" />
+	<File name="linux/c_os.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="581" topLine="7" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="4">
 		<Cursor position="1699" topLine="50" />
@@ -250,8 +250,8 @@
 	<File name="linux/c_os_http_lib.h" open="0" top="0" tabpos="23">
 		<Cursor position="2746" topLine="40" />
 	</File>
-	<File name="linux/c_os_library.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="425" topLine="1" />
+	<File name="linux/c_os_library.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="549" topLine="16" />
 	</File>
 	<File name="linux/c_os_lock.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="58" topLine="0" />
@@ -309,6 +309,9 @@
 	</File>
 	<File name="linux/c_os_small_ipc_channel.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_thread.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="722" topLine="39" />
 	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="23" topLine="0" />
