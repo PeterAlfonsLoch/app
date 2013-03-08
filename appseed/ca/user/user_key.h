@@ -51,6 +51,9 @@ namespace user
       key_lbutton,
       key_rbutton,
       key_mbutton,
+      key_back,
+      key_delete,
+      key_space,
    };
 
 

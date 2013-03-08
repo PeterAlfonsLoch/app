@@ -129,15 +129,6 @@ namespace simpledb
 //      ::ca::application_request * prequest = System.get_application_request();
 
 
-      m_papp->m_pappThis->fill_locale_schema(*m_papp->m_pappThis->str_context()->m_plocaleschema);
-
-
-      if(!m_papp->m_pappThis->is_installing() && !m_papp->m_pappThis->is_uninstalling())
-      {
-
-         set_keyboard_layout(NULL, false);
-
-      }
 
 
       return true;

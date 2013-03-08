@@ -57,7 +57,13 @@ namespace user
 
       m_playout = NULL;
 
-      string strPath;
+   }
+
+
+   bool keyboard::initialize()
+   {
+
+         string strPath;
 
 #ifdef LINUX
       strPath = Application.dir().matter("keyboard/linux/default.xml");
@@ -67,17 +73,19 @@ namespace user
       strPath = Application.dir().matter("keyboard/windows/default.xml");
 #endif
 
-      if(Application.file().exists(strPath))
-      {
+      if(!Application.file().exists(strPath))
+         return false;
 
-         load_os_layout(strPath);
+      if(!load_os_layout(strPath))
+         return false;
 
-      }
+      return true;
 
    }
 
 
-   void keyboard::load_os_layout(const char * pszPath)
+
+   bool keyboard::load_os_layout(const char * pszPath)
    {
       
       int32_t iCode;
@@ -89,12 +97,18 @@ namespace user
       string str = Application.file().as_string(pszPath);
 
       if(str.is_empty())
-         throw "unable to load os keyboard layout";
+      {
+         TRACE0("unable to load os keyboard layout");
+         return false;
+      }
 
       ::xml::document doc(get_app());
 
       if(!doc.load(str))
-         throw "unable to load os keyboard layout";
+      {
+         TRACE0("unable to load os keyboard layout");
+         return false;
+      }
 
       for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
@@ -117,6 +131,8 @@ namespace user
          }
 
       }
+
+      return true;
 
    }
 
@@ -332,7 +348,7 @@ namespace user
    void keyboard::translate_os_key_message(::ca::message::key * pkey)
    {
       
-      pkey->m_ekey = m_mapKey[pkey->m_nFlags];
+      pkey->m_ekey = m_mapKey[pkey->m_nChar];
 
    }
 

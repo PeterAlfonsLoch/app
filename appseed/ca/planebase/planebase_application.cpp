@@ -1207,6 +1207,21 @@ exit_application:
       if(!m_simpledb.initialize2())
          return false;
 
+
+      fill_locale_schema(*str_context()->m_plocaleschema);
+
+
+      if(!is_installing() && !is_uninstalling())
+      {
+
+         if(!user().keyboard().initialize())
+            return false;
+
+         simpledb().set_keyboard_layout(NULL, false);
+
+      }
+
+
       return true;
 
    }

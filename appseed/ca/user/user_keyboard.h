@@ -18,6 +18,8 @@ namespace user
 
       virtual class keyboard_layout & layout();
 
+      virtual bool initialize();
+
       bool load_layout(const char * pszPath, bool bUser);
 
       string process_key(::user::e_key ekey);
@@ -34,7 +36,7 @@ namespace user
 
       void translate_os_key_message(::ca::message::key * pkey);
 
-      virtual void load_os_layout(const char * pszPath);
+      virtual bool load_os_layout(const char * pszPath);
 
    };
 

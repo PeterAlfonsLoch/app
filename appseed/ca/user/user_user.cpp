@@ -31,6 +31,14 @@ namespace user
 
       m_pkeyboard = new ::user::keyboard(m_papp);
 
+      if(m_pkeyboard == NULL)
+         return false;
+
+
+
+
+
+
 
       if(m_papp->is_system())
       {

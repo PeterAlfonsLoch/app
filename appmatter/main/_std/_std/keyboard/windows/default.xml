@@ -1,0 +1,50 @@
+﻿<layout name="Brasil - ABNT2" hkla="0xf0100416;0x0416" >
+	<item code="81" value="key_q" />
+	<item code="87" value="key_w" />
+	<item code="69" value="key_e" />
+	<item code="82" value="key_r" />
+	<item code="84" value="key_t" />
+	<item code="89" value="key_y" />
+	<item code="85" value="key_u" />
+	<item code="73" value="key_i" />
+	<item code="79" value="key_o" />
+	<item code="80" value="key_p" />
+	<item code="65" value="key_a" />
+	<item code="83" value="key_s" />
+	<item code="68" value="key_d" />
+	<item code="70" value="key_f" />
+	<item code="71" value="key_g" />
+	<item code="72" value="key_h" />
+	<item code="74" value="key_j" />
+	<item code="75" value="key_k" />
+	<item code="76" value="key_l" />
+	<item code="47" value="key_semicolon" />
+	<item code="90" value="key_z" />
+	<item code="88" value="key_x" />
+	<item code="67" value="key_c" />
+	<item code="86" value="key_v" />
+	<item code="66" value="key_b" />
+	<item code="78" value="key_n" />
+	<item code="77" value="key_m" />
+	<item code="59" value="key_comma" />
+	<item code="60" value="key_dot" />
+	<item code="49" value="key_1" />
+	<item code="50" value="key_2" />
+	<item code="51" value="key_3" />
+	<item code="52" value="key_4" />
+	<item code="53" value="key_5" />
+	<item code="54" value="key_6" />
+	<item code="55" value="key_7" />
+	<item code="56" value="key_8" />
+	<item code="57" value="key_9" />
+	<item code="48" value="key_0" />
+<item code="8" value="key_back" />
+<item code="46" value="key_delete" />
+<item code="16" value="key_shift" />
+<item code="17" value="key_control" />
+<item code="18" value="key_alt" />
+<item code="32" value="key_space" />
+<item code="188" value="key_comma" />
+<item code="190" value="key_dot" />
+</layout>
+

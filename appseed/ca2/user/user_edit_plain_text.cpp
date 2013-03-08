@@ -761,6 +761,8 @@ namespace user
    void edit_plain_text::key_to_char(WPARAM wparam, LPARAM lparam)
    {
       ::ca::message::key key(get_app());
+      LRESULT lresult = 0;
+      key.set(this, WM_CHAR, wparam, lparam, lresult);
       key.m_nChar = wparam;
       key.m_nFlags = HIWORD(lparam);
       if(wparam == VK_LSHIFT || wparam == VK_RSHIFT

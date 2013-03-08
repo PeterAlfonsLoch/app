@@ -108,9 +108,7 @@ namespace user
          ::xml::node * pnode = doc.get_root()->child_at(i);
          if(pnode->get_name().CompareNoCase("item") == 0)
          {
-            string strKey = pnode->attr("key");
             string strCode = pnode->attr("code");
-            string strChar = pnode->attr("char");
             string strValue = pnode->attr("value");
             string strEscape = pnode->attr("escape");
             iMap = 0;
@@ -144,7 +142,7 @@ namespace user
             }*/
             if(strCode.has_char())
             {
-               iCode = iMap | (int32_t)(System.enum_from_name < ::user::e_key > (typeinfoKey, strValue));
+               iCode = iMap | (int32_t)(System.enum_from_name < ::user::e_key > (typeinfoKey, strCode));
                if(strValue.has_char())
                {
                   m_mapCode[iCode] = strValue;

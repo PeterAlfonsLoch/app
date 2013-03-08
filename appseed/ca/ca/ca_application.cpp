@@ -737,7 +737,7 @@ finishedCa2ModuleFolder:;
 
       ::c::library library;
 
-      if(!library.open("libca2os"))
+      if(!library.open("os"))
          throw "failed to do factory exchange";
 
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange > ("ca2_factory_exchange");
