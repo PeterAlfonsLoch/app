@@ -1208,6 +1208,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
     <ClCompile Include="c\c_strx.cpp" />
     <ClCompile Include="c\c_template.cpp" />
     <ClCompile Include="c\c_url.cpp" />
+    <ClCompile Include="c\c_user.cpp" />
     <ClCompile Include="c\c_verisimple_string.cpp" />
     <ClCompile Include="c\c_verisimple_wstring.cpp" />
     <ClCompile Include="c\c_version.cpp" />
