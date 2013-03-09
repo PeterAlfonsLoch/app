@@ -40,8 +40,10 @@ namespace exception
    #if defined(LINUX) || defined(MACOS)
       struct sigaction m_saSeg;
       struct sigaction m_saFpe;
+      struct sigaction m_saPipe;
       struct sigaction m_saSegOld;
       struct sigaction m_saFpeOld;
+      struct sigaction m_saPipeOld;
    #endif
 
       translator();
@@ -54,6 +56,7 @@ namespace exception
    #else
       static void filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc);
       static void filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc);
+      static void filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc);
    #endif
 
       static vsstring name(uint32_t uiCode);

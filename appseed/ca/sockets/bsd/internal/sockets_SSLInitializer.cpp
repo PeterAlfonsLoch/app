@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace sockets
 {
-   
+
 
    void rand_seed(const void * buf, int32_t num);
    int32_t rand_bytes(uchar * buf, int32_t num);
@@ -42,8 +42,15 @@ namespace sockets
    void rand_add(const void * buf, int32_t num, double entropy);
    int32_t rand_pseudorand(uchar * buf, int32_t num);
    int32_t rand_status();
-   
-   
+
+   #ifdef LINUX
+// ssl_sigpipe_handle ---------------------------------------------------------
+void ssl_sigpipe_handle( int x ) {
+    /* Ignore broken pipes */
+}
+   #endif
+
+
    RAND_METHOD rand_meth;
 
    ::plane::system * g_psystem = NULL;
@@ -88,7 +95,7 @@ namespace sockets
    {
 
 
-      
+
       TRACE("SSLInitializer()\n");
 
       bio_err = NULL;
@@ -107,6 +114,8 @@ namespace sockets
       CRYPTO_set_id_callback(SSL_id_function);
 
 
+ /* Ignore broken pipes which would cause our program to terminate
+    prematurely */
 
       rand_meth.add = &rand_add;
       rand_meth.bytes = &rand_bytes;
@@ -177,7 +186,7 @@ namespace sockets
             memstorage.get_size());*/
 
       //RAND_seed(memstorage.get_data(), memstorage.get_size());
-      
+
    }
 
 

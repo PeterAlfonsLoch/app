@@ -12,6 +12,8 @@ oswindow::data::data()
 
    m_window     = None;
 
+   m_pui        = NULL;
+
 }
 
 oswindow::data::~data()
@@ -476,6 +478,8 @@ long oswindow::get_state()
 {
 
 
+   mutex_lock sl(user_mutex(), true);
+
   static const long WM_STATE_ELEMENTS = 2L;
 
   unsigned long nitems = 0;
@@ -516,6 +520,9 @@ bool oswindow::is_iconic()
 
 bool oswindow::is_window_visible()
 {
+
+   mutex_lock sl(user_mutex(), true);
+
    XWindowAttributes attr;
    if(!XGetWindowAttributes(display(), window(), &attr))
       return false;
@@ -795,6 +802,21 @@ oswindow GetFocus()
 
 }
 
+
+oswindow GetActiveWindow()
+{
+
+   return GetFocus();
+
+}
+
+
+oswindow SetActiveWindow(oswindow window)
+{
+
+   return SetFocus(window);
+
+}
 
 
 oswindow GetWindow(oswindow windowParam, int iParentHood)

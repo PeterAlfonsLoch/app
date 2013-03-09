@@ -624,7 +624,7 @@ namespace user
    void edit_plain_text::_002OnKeyDown(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
-      if(pkey->m_nChar == VK_RETURN)
+      if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control) && Application.is_key_pressed(::user::key_alt))
          {
@@ -642,7 +642,7 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == VK_TAB)
+      else if(pkey->m_ekey == ::user::key_tab)
       {
          if(Application.is_key_pressed(::user::key_control)
             && Application.is_key_pressed(::user::key_alt))
@@ -656,7 +656,7 @@ namespace user
             ev.m_puie         = this;
             ev.m_eevent       = ::user::event_tab_key;
             ev.m_bUser        = true;
-            get_parent()->BaseOnControlEvent(&ev);
+            //get_parent()->BaseOnControlEvent(&ev);
             BaseOnControlEvent(&ev);
             pkey->m_bRet      = true;
             return;
@@ -696,7 +696,7 @@ namespace user
    void edit_plain_text::_002OnKeyUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
-      if(pkey->m_nChar == VK_RETURN)
+      if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control)
          &&   Application.is_key_pressed(::user::key_alt))
@@ -1613,7 +1613,7 @@ namespace user
          }
          _001RedrawWindow();
       }
-      else if(pkey->m_nChar == VK_HOME)
+      else if(pkey->m_ekey == ::user::key_home)
       {
          index iLine = SelToLine(m_iSelEnd);
          m_iSelEnd = LineColumnToSel(iLine, 0);
@@ -1623,7 +1623,7 @@ namespace user
          }
          _001RedrawWindow();
       }
-      else if(pkey->m_nChar == VK_END)
+      else if(pkey->m_ekey == ::user::key_end)
       {
          index iLine = SelToLine(m_iSelEnd);
          m_iSelEnd = LineColumnToSel(iLine, -1);
@@ -1637,7 +1637,7 @@ namespace user
       {
          if(!m_bReadOnly)
          {
-            if(pkey->m_nChar == VK_RETURN)
+            if(pkey->m_ekey == ::user::key_return)
             {
                // Kill Focus => Kill Key Repeat Timer
                //System.simple_message_box("VK_RETURN reached edit_plain_text");

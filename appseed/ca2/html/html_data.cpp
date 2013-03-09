@@ -193,22 +193,32 @@ namespace html
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pguie, this, &data::_001OnKeyDown);
       m_bImplemented = true;
    }
+
+
    void data::_001OnKeyDown(::ca::signal_object * pobj)
    {
+
       SCAST_PTR(::ca::message::key, pkey, pobj)
 
-      if(pkey->m_nChar == VK_TAB)
+      if(pkey->m_ekey == ::user::key_tab)
       {
+
          user::keyboard_focus * pfocus = Application.user().get_keyboard_focus();
+
          if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();
+
          if(pfocus != NULL)
             Application.user().set_keyboard_focus(pfocus);
+
          pkey->m_bRet = true;
+
          return;
+
       }
 
    }
+
 
    void data::layout(::ca::graphics * pdc)
    {

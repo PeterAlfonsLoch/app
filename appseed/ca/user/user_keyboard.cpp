@@ -68,6 +68,12 @@ namespace user
      System.set_enum_name(key_up, "key_up");
      System.set_enum_name(key_prior, "key_prior");
      System.set_enum_name(key_next, "key_next");
+     System.set_enum_name(key_return, "key_return");
+     System.set_enum_name(key_home, "key_home");
+     System.set_enum_name(key_end, "key_end");
+     System.set_enum_name(key_tab, "key_tab");
+     System.set_enum_name(key_capslock, "key_capslock");
+
 
       m_playout = NULL;
 

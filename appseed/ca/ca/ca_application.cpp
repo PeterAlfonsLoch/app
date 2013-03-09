@@ -3305,7 +3305,7 @@ namespace ca
    ::user::interaction * application::get_active_guie()
    {
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
 
       return window_from_os_data(::GetActiveWindow());
 

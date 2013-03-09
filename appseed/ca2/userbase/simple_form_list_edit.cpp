@@ -13,13 +13,13 @@ simple_form_list_edit::~simple_form_list_edit()
 {
 }
 
-bool simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics) 
+bool simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
-   return TRUE;   
+   return TRUE;
 }
 
-int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
    UNREFERENCED_PARAMETER(lpCreateStruct);
 // trans   if (::user::interaction::OnCreate(lpCreateStruct) == -1)
@@ -35,7 +35,7 @@ int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct)
    }
 //   ::user::list * plist = GetBaseListInterface();
 
-   
+
    return 0;
 }
 
@@ -44,7 +44,7 @@ int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct)
    return m_plistinterface;
 }
 
-void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
    UNREFERENCED_PARAMETER(nRepCnt);
    user::control_event key;
@@ -71,23 +71,23 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
    return ::user::interaction::get_parent();
 }
 
-void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
    UNREFERENCED_PARAMETER(nFlags);
    UNREFERENCED_PARAMETER(nRepCnt);
-   if(nChar == VK_RETURN)
+//   if(nChar == VK_RETURN)
    {
       return;
    }
 // trans   ::user::interaction::OnChar(nChar, nRepCnt, nFlags);
 }
 
-int32_t simple_form_list_edit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message) 
+int32_t simple_form_list_edit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message)
 {
    UNREFERENCED_PARAMETER(pDesktopWnd);
    UNREFERENCED_PARAMETER(nHitTest);
    UNREFERENCED_PARAMETER(message);
-   return MA_NOACTIVATE;   
+   return MA_NOACTIVATE;
    //return ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
 }
 

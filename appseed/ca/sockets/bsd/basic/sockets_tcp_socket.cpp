@@ -43,7 +43,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace sockets
 {
-
+   #ifdef LINUX
+// ssl_sigpipe_handle ---------------------------------------------------------
+void ssl_sigpipe_handle( int x );
+#endif
 
    #ifdef DEBUG
    #define DEB(x) x
@@ -1315,7 +1318,14 @@ namespace sockets
       }
    #ifdef HAVE_OPENSSL
       if (IsSSL() && m_ssl)
-         SSL_shutdown(m_ssl);
+      {
+#ifdef LINUX
+    signal(SIGPIPE, &::sockets::ssl_sigpipe_handle);
+#endif
+         if(SSL_get_shutdown(m_ssl) == 0)
+            SSL_shutdown(m_ssl);
+      }
+
       if (m_ssl)
       {
          SSL_free(m_ssl);

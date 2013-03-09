@@ -237,7 +237,7 @@ namespace user
                user::NotifyKey * pkey = (user::NotifyKey *) pnotify;
                switch(pkey->m_uiVKey)
                {
-               case VK_RETURN:
+//             //  case VK_RETURN:
                   _001SaveEdit(pcontrol);
                   pcontrol->ShowWindow(SW_HIDE);
                   lresult &= ~user::NotifyRetContinue;
@@ -315,7 +315,7 @@ namespace user
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
 
-      if(pkey->m_nChar == VK_RETURN)
+      if(pkey->m_ekey == ::user::key_return)
       {
          _001SaveEdit(_001GetEditControl());
          _001HideEditingControls();

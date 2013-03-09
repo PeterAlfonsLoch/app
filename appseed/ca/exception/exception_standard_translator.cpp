@@ -138,6 +138,12 @@ namespace exception
          m_saFpe.sa_sigaction = &translator::filter_sigfpe;
          sigaction(SIGFPE, &m_saFpe, &m_saFpeOld);
 
+         memset(&m_saPipe, 0, sizeof(m_saPipe));
+         sigemptyset(&m_saPipe.sa_mask);
+         sigaddset(&m_saPipe.sa_mask, SIGFPE);
+         m_saPipe.sa_flags = SA_NODEFER;
+         m_saPipe.sa_sigaction = &translator::filter_sigpipe;
+         sigaction(SIGFPE, &m_saPipe, &m_saPipeOld);
 
 
 #endif
@@ -363,6 +369,20 @@ namespace exception
       throw standard_sigfpe(NULL, signal, psiginfo, pc);
 
    }
+
+
+   void translator::filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc)
+   {
+
+      sigset_t set;
+      sigemptyset(&set);
+      sigaddset(&set, SIGSEGV);
+      sigprocmask(SIG_UNBLOCK, &set, NULL);
+
+      //throw standard_sigfpe(NULL, signal, psiginfo, pc);
+
+   }
+
 
 #endif
    /*

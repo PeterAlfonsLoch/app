@@ -65,7 +65,12 @@ namespace user
       key_left,
       key_up,
       key_prior,
-      key_next
+      key_next,
+      key_return,
+      key_home,
+      key_end,
+      key_tab,
+      key_capslock,
    };
 
 

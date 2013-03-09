@@ -32,11 +32,9 @@ namespace user
    void keyboard_focus::keyboard_focus_OnKeyDown(::ca::signal_object * pobj)
    {
 
-#ifdef WINDOWS
-
       SCAST_PTR(::ca::message::key, pkey, pobj)
 
-      if(pkey->m_nChar == VK_TAB)
+      if(pkey->m_ekey == ::user::key_tab)
       {
          control_event ev;
          ev.m_puie         = dynamic_cast < interaction * > (this);
@@ -45,8 +43,6 @@ namespace user
          get_parent()->BaseOnControlEvent(&ev);
          BaseOnControlEvent(&ev);
       }
-
-#endif
 
    }
 
