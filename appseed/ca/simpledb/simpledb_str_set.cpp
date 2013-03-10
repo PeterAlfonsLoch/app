@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "db_str_set.h"
 
-db_str_set::db_str_set(db_server * pserver) : 
+db_str_set::db_str_set(db_server * pserver) :
    ca(pserver->get_app()),
    db_set(pserver, "stringtable"),
    m_handler(pserver->get_app()),

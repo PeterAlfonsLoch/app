@@ -212,7 +212,7 @@ bool event::ResetEvent()
    }
 
    return true;
-   
+
 #endif
 
 }
@@ -294,20 +294,22 @@ wait_result event::wait (const duration & durationTimeout)
       {
 
          if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) == 0)
+            break;
+
+         if(errno == ETIMEDOUT)
          {
 
-            if(errno == ETIMEDOUT)
-            {
+            pthread_mutex_unlock(&m_mutex);
 
-               return wait_result(wait_result::Timeout);
+            return wait_result(wait_result::Timeout);
 
-            }
-            else
-            {
+         }
+         else
+         {
 
-               return wait_result(wait_result::Failure);
+            pthread_mutex_unlock(&m_mutex);
 
-            }
+            return wait_result(wait_result::Failure);
 
          }
 
@@ -315,7 +317,10 @@ wait_result event::wait (const duration & durationTimeout)
 
       pthread_mutex_unlock(&m_mutex);
 
-      return wait_result(wait_result::Event0);
+      if(m_bSignaled)
+         return wait_result(wait_result::Event0);
+      else
+         return wait_result(wait_result::Failure);
 
    }
    else
@@ -478,11 +483,15 @@ bool event::lock(const duration & durationTimeout)
             if(errno == ETIMEDOUT)
             {
 
+               pthread_mutex_unlock(&m_mutex);
+
                return false;
 
             }
             else
             {
+
+               pthread_mutex_unlock(&m_mutex);
 
                return false;
 

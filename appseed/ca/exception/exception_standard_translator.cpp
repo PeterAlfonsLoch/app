@@ -127,23 +127,23 @@ namespace exception
          memset(&m_saSeg, 0, sizeof(m_saSeg));
          sigemptyset(&m_saSeg.sa_mask);
          sigaddset(&m_saSeg.sa_mask, SIGSEGV);
-         m_saSeg.sa_flags = SA_NODEFER;
+         m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
          m_saSeg.sa_sigaction = &translator::filter_sigsegv;
          sigaction(SIGSEGV, &m_saSeg, &m_saSegOld);
 
          memset(&m_saFpe, 0, sizeof(m_saFpe));
          sigemptyset(&m_saFpe.sa_mask);
          sigaddset(&m_saFpe.sa_mask, SIGFPE);
-         m_saFpe.sa_flags = SA_NODEFER;
+         m_saFpe.sa_flags = SA_NODEFER | SA_SIGINFO;
          m_saFpe.sa_sigaction = &translator::filter_sigfpe;
          sigaction(SIGFPE, &m_saFpe, &m_saFpeOld);
 
          memset(&m_saPipe, 0, sizeof(m_saPipe));
          sigemptyset(&m_saPipe.sa_mask);
-         sigaddset(&m_saPipe.sa_mask, SIGFPE);
-         m_saPipe.sa_flags = SA_NODEFER;
+         sigaddset(&m_saPipe.sa_mask, SIGPIPE);
+         m_saPipe.sa_flags = SA_NODEFER | SA_SIGINFO;
          m_saPipe.sa_sigaction = &translator::filter_sigpipe;
-         sigaction(SIGFPE, &m_saPipe, &m_saPipeOld);
+         sigaction(SIGPIPE, &m_saPipe, &m_saPipeOld);
 
 
 #endif

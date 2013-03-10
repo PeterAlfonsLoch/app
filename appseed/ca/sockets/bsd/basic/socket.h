@@ -698,6 +698,9 @@ namespace sockets
       virtual void OnCancelled(int32_t id);
       //@}
 
+      static void close_socket(int32_t fd);
+
+      virtual void close_socket();
 
    };
 

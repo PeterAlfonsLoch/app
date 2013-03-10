@@ -1,6 +1,11 @@
 #include "framework.h"
 
 
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
+
 go_thread::go_thread(::ca::application * papp, bool bRelease) :
    ca(papp),
    thread(papp),

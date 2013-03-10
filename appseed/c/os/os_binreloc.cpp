@@ -18,6 +18,7 @@
 
 #ifdef ENABLE_BINRELOC
 	#include <sys/stat.h>
+   #include <unistd.h>
 #endif /* ENABLE_BINRELOC */
 
 #ifdef __cplusplus

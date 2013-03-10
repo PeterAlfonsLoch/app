@@ -5,6 +5,7 @@
 
 #if defined(LINUX)
 #include <fcntl.h>
+#include <unistd.h>
 #endif
 
 
@@ -92,21 +93,21 @@ namespace ca
          // errno
          return false;
       }
-      
+
       if(fcntl(m_fd[0], F_SETFL, iFlags))
       {
          close(m_fd[0]);
          close(m_fd[1]);
          return false;
       }
-      
+
       if(fcntl(m_fd[1], F_SETFL, iFlags))
       {
          close(m_fd[0]);
          close(m_fd[1]);
          return false;
       }
-      
+
 
 #endif
 

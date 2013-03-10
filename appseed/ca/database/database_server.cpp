@@ -64,6 +64,11 @@ namespace database
          strstream.m_dwPos = 0;
          obj.read(strstream);
       }
+      catch(const char * psz)
+      {
+         TRACE("database::server::data_server_load : %s", psz);
+         return false;
+      }
       catch(...)
       {
          return false;

@@ -3,6 +3,7 @@
 //Copy file using mmap()
 #include <fcntl.h>
 #include <sys/mman.h>
+#include <unistd.h>
 #define PACKAGE "mmap"
 
 void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str);
@@ -115,13 +116,11 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 
    FILE * f = fopen(path, "rb");
    if(f == NULL)
-      return NULL;
-   ::count iSize = fsize_dup(f);
-   char * psz = (char *) _ca_alloc(iSize + 1);
-   ::count iRead = fread(psz, iSize, 1, f);
-   psz[iRead] = '\0';
+      return false;
+   memory.allocate(fsize_dup(f));
+   fread(memory.get_data(), memory.get_size(), 1, f);
    fclose(f);
-   return psz;
+   return true;
 
 }
 

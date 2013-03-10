@@ -1450,7 +1450,7 @@ string var::get_string(const char * pszOnNull) const
       }
       else if(m_etype == var::type_int64)
       {
-         str.Format("%I64d", m_i64);
+         str = i64toa_dup(m_i64);
       }
       else if(m_etype == var::type_uint64)
       {

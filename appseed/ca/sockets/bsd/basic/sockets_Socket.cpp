@@ -35,6 +35,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //#include <ctype.h>
 
 
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
+
 namespace sockets
 {
 
@@ -1690,6 +1695,20 @@ namespace sockets
    void socket::OnCancelled(int32_t)
    {
    }
+
+   void socket::close_socket(int32_t fd)
+   {
+      ::closesocket(fd);
+   }
+
+
+
+   void socket::close_socket()
+   {
+
+      close_socket(GetSocket());
+   }
+
 
 
    void socket::SetTimeout(time_t secs)

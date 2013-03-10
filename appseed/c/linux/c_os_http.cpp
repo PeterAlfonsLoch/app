@@ -1,5 +1,9 @@
 #include "framework.h"
 
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
 tiny_http g_tinyhttp;
 DWORD g_MsDownloadSize = 1024 * 128;
 char * g_MsDownloadBuffer = NULL;

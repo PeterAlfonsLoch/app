@@ -39,37 +39,11 @@ namespace ca
 
 	///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	inline bool set_thread_priority(int32_t priority)
-	{
-
-#ifdef WINDOWS
-
-      return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
-
-#else
-
-		return setpriority(PRIO_PROCESS, getpid(), priority) == 0;
-
-#endif
-
-	}
+	CLASS_DECL_c bool set_thread_priority(int32_t priority);
 
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
-	inline int32_t thread_priority()
-	{
-
-#ifdef WINDOWS
-
-      return ::GetThreadPriority(::GetCurrentThread());
-
-#else
-
-	   return getpriority(PRIO_PROCESS, getpid());
-
-#endif
-
-   }
+	CLASS_DECL_c int32_t thread_priority();
 
 
 } // namespace ca

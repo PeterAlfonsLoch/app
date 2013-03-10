@@ -1356,7 +1356,7 @@ namespace ca
    string & str::from(string & str, int64_t i)
    {
 
-      str.Format("%I64d", i);
+      str = i64toa_dup(i);
 
       return str;
 
@@ -1431,7 +1431,7 @@ namespace ca
       throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
    }
 
-   
+
    const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
    {
       char len =  1 + ::ca::str::trailingBytesForUTF8[(uchar) *psz];
@@ -1451,7 +1451,7 @@ namespace ca
       throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
    }
 
-   
+
    const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
    {
 

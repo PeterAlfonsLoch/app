@@ -27,6 +27,7 @@
 #include "framework.h"
 #ifdef LINUX
 #include <sys/mman.h>
+#include <unistd.h>
 #endif
 
 uint_ptr lite_html_reader::parseDocument()

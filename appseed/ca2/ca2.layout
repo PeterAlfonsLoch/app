@@ -19,8 +19,8 @@
 	<File name="ca2.h" open="0" top="0" tabpos="53">
 		<Cursor position="48" topLine="0" />
 	</File>
-	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="11588" topLine="517" />
+	<File name="ca2/ca2_application.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="13994" topLine="618" />
 	</File>
 	<File name="cube/cube.h" open="0" top="0" tabpos="51">
 		<Cursor position="53" topLine="0" />
@@ -121,11 +121,11 @@
 	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="59">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="fontopus/fontopus_fontopus.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="351" topLine="0" />
+	<File name="fontopus/fontopus_fontopus.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1699" topLine="53" />
 	</File>
-	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="22">
-		<Cursor position="7498" topLine="201" />
+	<File name="fontopus/fontopus_validate.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="12492" topLine="354" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="50">
 		<Cursor position="54" topLine="0" />
@@ -370,8 +370,8 @@
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="18782" topLine="703" />
+	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="22078" topLine="818" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="555" topLine="19" />

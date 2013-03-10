@@ -3,6 +3,8 @@
 
 #include <sys/ptrace.h>
 #include <sys/wait.h>
+#include <unistd.h>
+
 
 
 int32_t is_gdb_present()

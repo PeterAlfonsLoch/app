@@ -56,7 +56,8 @@ namespace sockets
 
          if (GetSocket() != INVALID_SOCKET)
          {
-            ::closesocket(GetSocket());
+            close_socket();
+
          }
          return 0;
       }
@@ -198,13 +199,13 @@ namespace sockets
          if (bind(s, ad.sa(), ad.sa_len()) == -1)
          {
             Handler().LogError(this, "bind() failed for port " + ::ca::str::from(ad.get_service_number()), Errno, StrError(Errno), ::ca::log::level_fatal);
-            ::closesocket(s);
+            close_socket(s);
             return -1;
          }
          if (listen(s, depth) == -1)
          {
             Handler().LogError(this, "listen", Errno, StrError(Errno), ::ca::log::level_fatal);
-            ::closesocket(s);
+            close_socket(s);
             throw simple_exception(get_app(), "listen() failed for port " + ::ca::str::from(ad.get_service_number()) + ": " + StrError(Errno));
             return -1;
          }
@@ -241,13 +242,13 @@ namespace sockets
          if (!Handler().OkToAccept(this))
          {
             Handler().LogError(this, "accept", -1, "Not OK to accept", ::ca::log::level_warning);
-            ::closesocket(a_s);
+            close_socket(a_s);
             return;
          }
          if (Handler().get_count() >= FD_SETSIZE)
          {
             Handler().LogError(this, "accept", (int32_t)Handler().get_count(), "socket_handler_base fd_set limit reached", ::ca::log::level_fatal);
-            ::closesocket(a_s);
+            close_socket(a_s);
             return;
          }
          socket *tmp = m_bHasCreate ? m_creator -> create() : new X(Handler());

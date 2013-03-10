@@ -1,5 +1,10 @@
 #include "framework.h"
 
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
+
 namespace sqlite
 {
 

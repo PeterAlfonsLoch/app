@@ -14,7 +14,7 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
 
    simple_memory key(get_md5(pszSalt));
 
-   return crypt_encrypt(storageEncrypt, storageDecrypt, key);
+   return crypt_encrypt(storageEncrypt, storageDecrypt, key) > 0;
 
 }
 
@@ -24,7 +24,7 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
 
    simple_memory key(get_md5(pszSalt));
 
-   return crypt_decrypt(storageDecrypt, storageEncrypt, key);
+   return crypt_decrypt(storageDecrypt, storageEncrypt, key) > 0;
 
 }
 
@@ -89,149 +89,149 @@ bool crypt_file_set(const char * pszFile, const char * pszData, const char * psz
 #ifndef METROWIN
 CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 {
-    
+
 #ifdef MACOS
-    
+
     CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-    
+
     CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
-    
+
 // not needed, defaults to true    CFDictionaryAddValue(parameters, kSecAttrCanEncrypt, kCFBooleanTrue);
-    
+
     simple_memory memKeyData;
-    
+
     memKeyData.from_hex(pszRsa);
-    
+
     CFDataRef keyData = memKeyData.get_os_cf_data();
-    
+
     CFErrorRef error = NULL;
-    
+
     SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
-    
+
     if(error != NULL)
     {
-        
+
         CFRelease(parameters);
-        
+
         CFRelease(keyData);
-        
+
         CFRelease(error);
-        
+
         return "";
-        
+
     }
-    
+
     SecTransformRef transform = SecEncryptTransformCreate(key, &error);
-    
-    
+
+
     if(error != NULL)
     {
-        
+
         CFRelease(parameters);
-        
+
         CFRelease(keyData);
 
         CFRelease(key);
-        
+
         CFRelease(error);
-        
+
         return "";
-        
+
     }
-    
-    
+
+
     SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
-    
+
     if(error != NULL)
     {
-        
+
         CFRelease(transform);
-        
+
         CFRelease(keyData);
 
         CFRelease(parameters);
-        
+
         CFRelease(key);
-        
+
         CFRelease(error);
-        
+
         return "";
-        
+
     }
-    
+
     simple_memory memDataIn;
-    
+
     memDataIn.from_hex(pszRsa);
-    
+
     CFDataRef dataIn = memDataIn.get_os_cf_data();
-    
+
     SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
-    
+
     if(error != NULL)
     {
-        
+
         CFRelease(dataIn);
-        
+
         CFRelease(transform);
-        
+
         CFRelease(parameters);
-        
+
         CFRelease(keyData);
-        
+
         CFRelease(key);
-        
+
         CFRelease(error);
-        
+
         return "";
-        
+
     }
-    
+
     /* Encrypt the data. */
-    
+
     CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
-    
+
     if(error != NULL)
     {
-        
+
         CFRelease(dataIn);
-        
+
         CFRelease(transform);
-        
+
         CFRelease(parameters);
-        
+
         CFRelease(keyData);
-        
+
         CFRelease(key);
-        
+
         CFRelease(error);
-        
+
         return "";
-        
+
     }
-    
-    
+
+
     vsstring str;
-    
+
     simple_memory memory;
-    
+
     memory.set_os_cf_data(data);
-    
+
     memory.to_hex(str);
-    
+
     CFRelease(data);
-    
+
     CFRelease(dataIn);
-    
+
     CFRelease(transform);
-    
+
     CFRelease(keyData);
-    
+
     CFRelease(parameters);
-    
+
     CFRelease(key);
-   
+
     return str;
-    
+
 #else
 
    RSA * rsa = RSA_new();
@@ -264,7 +264,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
    RSA_free(rsa);
 
    return strHex;
-    
+
 #endif
 
 }

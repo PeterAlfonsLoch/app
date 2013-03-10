@@ -1,5 +1,11 @@
 #include "framework.h"
-#include <math.h>
+
+
+#ifdef LINUX
+
+#include <unistd.h>
+
+#endif
 
 
 

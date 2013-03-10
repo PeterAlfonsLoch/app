@@ -1,6 +1,10 @@
 #include "framework.h"
 
+
+
+
 #if defined(LINUX) || defined(MACOS)
+#include <unistd.h>
 #if defined(MACOS)
 #define	NI_MAXHOST	1025
 #define	NI_MAXSERV	32

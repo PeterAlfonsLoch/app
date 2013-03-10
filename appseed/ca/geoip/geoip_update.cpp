@@ -5,6 +5,11 @@
 #endif
 
 
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
+
 int16_t parse_http_proxy(char **proxy_host, int32_t *port);
 #ifdef BSD_STYLE_SOCKETS
 struct hostent *GeoIP_get_host_or_proxy ();

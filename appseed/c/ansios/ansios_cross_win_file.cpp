@@ -14,7 +14,27 @@ create_file(
             )
 {
 
-    FILE * pfile = fopen(lpFileName, "rw");
+   FILE * pfile;
+
+   if(dwDesiredAccess & GENERIC_WRITE)
+   {
+      if(dwDesiredAccess & GENERIC_READ)
+      {
+         pfile = fopen(lpFileName, "w+");
+      }
+      else
+      {
+         pfile = fopen(lpFileName, "w");
+      }
+
+   }
+   else
+   {
+
+      pfile = fopen(lpFileName, "r");
+   }
+
+
 
     if(pfile == NULL)
         return INVALID_HANDLE_VALUE;

@@ -35,7 +35,7 @@ namespace frame
    VMSGEN_WINDOW_ON_MOUSEMOVE_CONDITIONAL(pdispatch, this, _001OnMouseMove);
    }*/
 
-   bool SizeManager::_000OnLButtonDown(::ca::message::mouse * pmouse) 
+   bool SizeManager::_000OnLButtonDown(::ca::message::mouse * pmouse)
    {
       ASSERT(pmouse->m_uiMessage == WM_LBUTTONDOWN
          || pmouse->m_uiMessage == WM_NCLBUTTONDOWN);
@@ -117,24 +117,38 @@ namespace frame
       else
       {
          m_iPaintCount = 0;
-         return true; 
+         return true;
       }
    }
 
-   bool SizeManager::_000OnMouseMove(::ca::message::mouse * pmouse) 
+   bool SizeManager::_000OnMouseMove(::ca::message::mouse * pmouse)
    {
+
       if(!m_pworkset->IsSizingEnabled())
          return false;
+
       ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
+
       if(m_ehittestMode != HitTestNone)
       {
-         SizeWindow(GetSizingWindow(), pmouse->m_pt, true);
+
+         if(get_tick_count() - m_dwLastSizingTime > 40)
+         {
+
+            m_dwLastSizingTime = get_tick_count();
+
+            SizeWindow(GetSizingWindow(), pmouse->m_pt, true);
+
+         }
+
          pmouse->m_ecursor = translate(m_ehittestMode);
          pmouse->set_lresult(1);
          pmouse->m_bRet = true;
          return true;
       }
+
       m_ehittestCursor = hit_test(pmouse->m_pt);
+
       if(m_ehittestCursor != HitTestNone)
       {
          pmouse->m_ecursor = translate(m_ehittestCursor);
@@ -142,10 +156,12 @@ namespace frame
          pmouse->m_bRet = true;
          return true;
       }
+
       return false;
+
    }
 
-   bool SizeManager::_000OnLButtonUp(::ca::message::mouse * pmouse) 
+   bool SizeManager::_000OnLButtonUp(::ca::message::mouse * pmouse)
    {
       if(!m_pworkset->IsSizingEnabled())
          return false;
@@ -391,11 +407,11 @@ namespace frame
             rectTotal.unite(rectBefore, rectAfter);
             m_pworkset->m_rectPending.unite(rectBefore, rectAfter);
             pwnd->SetWindowPos(
-               ZORDER_TOP, 
+               ZORDER_TOP,
                rectParentClient.left,
-               rectParentClient.top, 
-               rectParentClient.width(), 
-               rectParentClient.height(),  
+               rectParentClient.top,
+               rectParentClient.width(),
+               rectParentClient.height(),
                m_uiSWPFlags);
          }
          else
@@ -436,11 +452,11 @@ namespace frame
       else
       {
          pwnd->SetWindowPos(
-            ZORDER_TOP, 
+            ZORDER_TOP,
             rectWindow.
-            left,rectWindow.top, 
-            rectWindow.width(), 
-            rectWindow.height(),  
+            left,rectWindow.top,
+            rectWindow.width(),
+            rectWindow.height(),
             m_uiSWPFlags);
       }
 
@@ -491,7 +507,7 @@ namespace frame
    void SizeManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
-      
+
       if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
          SCAST_PTR(::ca::message::mouse, pmouse, pobj);
@@ -519,7 +535,7 @@ namespace frame
          else
          {
             pbase->m_bRet = true;
-            return; 
+            return;
          }
       }
       else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
@@ -813,7 +829,7 @@ namespace frame
       return true;
    }
 
-} // namespace frame 
+} // namespace frame
 
 
 

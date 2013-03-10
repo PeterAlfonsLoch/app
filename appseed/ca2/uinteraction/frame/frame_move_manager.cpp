@@ -63,6 +63,11 @@ namespace uinteraction
             || m_pworkset->m_bSizingCapture)
             return false;
 
+         if(get_tick_count() - m_dwLastMoveTime < 8)
+            return true;
+
+         m_dwLastMoveTime = get_tick_count();
+
          return Relay(pmouse);
       }
 
@@ -75,7 +80,6 @@ namespace uinteraction
          return Relay(pmouse);
       }
 
-      uint32_t g_dwLastMove;
       // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
       bool MoveManager::Relay(::ca::message::mouse * pmouse)
       {
@@ -199,7 +203,6 @@ namespace uinteraction
 
          if(bMove && rectWindow.top_left() != pt)
          {
-            g_dwLastMove = ::get_tick_count();
             class point ptMove = pt;
             if(GetMoveWindow()->get_parent() != NULL)
             {

@@ -963,8 +963,7 @@ namespace plane
 
       if(!papp->is_bergedge()
       && !papp->is_session()
-      && !papp->is_system()
-      && !papp->is_serviceable())
+      && !papp->is_system())
       {
 
          if(System.is_installing() || System.is_uninstalling())
@@ -1840,7 +1839,41 @@ namespace plane
          return m_pcubeInterface->get_monitor_rect(i, lprect);
       }
 
+#ifdef WINDOWSEX
+      if(i < 0 || i >= get_monitor_count())
+         return false;
+      *lprect = m_monitorinfoa[i].rcMonitor;
+#elif defined(METROWIN)
 
+      return System.get_window_rect(lprect);
+
+#elif defined(LINUX)
+
+      Display * d=XOpenDisplay(NULL);
+
+
+      //throw todo(get_app());
+      lprect->left = 0;
+      lprect->top = 0;
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d));
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d));
+
+
+      XCloseDisplay(d);
+
+#elif defined(MACOS)
+
+
+      throw todo(get_app());
+
+
+
+
+#else
+      throw todo(get_app());
+      ::GetWindowRect(::GetDesktopWindow(), lprect);
+#endif
+      return true;
       return false;
 
    }

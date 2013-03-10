@@ -174,7 +174,8 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       strUrl = "https://api.ca2.cc/account/long_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+      //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, NULL, NULL, &estatus);
 
       if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
       {

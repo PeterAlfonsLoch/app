@@ -41,6 +41,7 @@ namespace ca
          m_pdocAuth        = NULL;
          m_pdoc            = NULL;
          m_ptabview        = NULL;
+         m_pvOldWindow     = NULL;
       }
 
       validate::~validate()
@@ -187,7 +188,7 @@ namespace ca
             m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
          }
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
          m_pvOldWindow = (void *) ::GetFocus();
 #endif
 

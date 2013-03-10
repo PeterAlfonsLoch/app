@@ -3,8 +3,9 @@
 
 DWORD GetTickCount()
 {
-    tms tm;
-    return times(&tm);
+   timeval tv;
+   gettimeofday(&tv, NULL);
+   return (DWORD) ((((int64_t) tv.tv_sec * 1000) + ((tv.tv_usec / 1000) % 1000)) % ((int64_t) 1 << (sizeof(DWORD) * 8)));
 }
 
 

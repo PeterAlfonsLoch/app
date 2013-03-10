@@ -21,6 +21,12 @@
 */
 #include "framework.h" // manual
 
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
+
+
 #undef bool
 
 namespace sqlite

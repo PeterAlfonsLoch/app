@@ -1,6 +1,9 @@
 #include "framework.h"
+
+
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <unistd.h>
 
 
 small_ipc_channel_base::small_ipc_channel_base()

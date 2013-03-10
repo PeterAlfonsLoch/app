@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include <unistd.h>
 
 
 HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
@@ -15,15 +16,15 @@ HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
    HGLOBAL hglobal = new class hglobal();
 
    strcpy(hglobal->m_szFile, "/ca2/time/global_alloc/XXXXXX.mmap");
-   
+
 #ifdef MACOS
 
    hglobal->m_fd = mkstemps(hglobal->m_szFile, 5);
-   
+
 #else
 
    hglobal->m_fd = mkostemps(hglobal->m_szFile, 5, O_RDWR | O_CREAT | O_TRUNC);
-   
+
 #endif
 
    /* Open a file for writing.

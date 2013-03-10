@@ -6,6 +6,7 @@
 #else
 #include <dirent.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #endif
 
 
@@ -274,27 +275,27 @@ vsstring ca2_module_folder_dup()
 #elif defined(METROWIN)
 
    return "";
-   
+
 #elif defined(MACOS)
 
    {
-      
+
       char * pszCurDir = getcwd(NULL, 0);
-      
+
       vsstring strCurDir = pszCurDir;
-      
+
       free(pszCurDir);
-      
+
       if(file_exists_dup(::dir::path(strCurDir, "libca2.dylib")))
       {
          return strCurDir;
       }
-      
-      
+
+
       return ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libca2.dylib", "rfs")); // readable - normal file - non zero sized
-      
+
    }
-   
+
 #endif
 
 
