@@ -80,6 +80,8 @@ void MetaButton::SetTextColors(
 void MetaButton::_001OnDraw(::ca::graphics * pdc)
 {
 
+   return;
+
    rect rectClient;
 
    ::user::interaction::GetClientRect(rectClient);

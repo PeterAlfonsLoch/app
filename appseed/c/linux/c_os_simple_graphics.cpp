@@ -736,15 +736,13 @@ bool os_simple_graphics::set(simple_path::element & e)
 bool os_simple_graphics::set(simple_path::arc & a)
 {
 
+   cairo_keep keep(m_pdc);
+
    cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);
 
    cairo_scale(m_pdc, 1.0, a.m_dRadiusY / a.m_dRadiusX);
 
    cairo_arc(m_pdc, 0.0, 0.0, a.m_dRadiusX, a.m_dAngle1, a.m_dAngle2);
-
-   cairo_scale(m_pdc, 1.0, a.m_dRadiusX / a.m_dRadiusY);
-
-   cairo_translate(m_pdc, -a.m_xCenter, -a.m_yCenter);
 
    return true;
 
