@@ -101,70 +101,101 @@ namespace database
                "WindowRect",
                this);
          }
+
          return true;
+
       }
+
 
       bool interaction::WindowDataLoadWindowRect(bool bForceRestore)
       {
+
          bool bLoad = false;
+
          keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
-         bLoad = LoadWindowRect_(
-                     m_dataidWindow,
-                     "WindowRect",
-                     this,
-                     bForceRestore);
+
+         bLoad = LoadWindowRect_(m_dataidWindow, "WindowRect", this, bForceRestore);
+
          return bLoad;
+
       }
 
 
       bool interaction::IsFullScreen()
       {
+
          return false;
+
       }
 
-      bool interaction::LoadWindowRect_(
-         ::database::id key, ::database::id idIndex,
-         ::user::interaction * pWnd,
-         bool bForceRestore)
+
+      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, ::user::interaction * pWnd, bool bForceRestore)
       {
+
          ::ca::byte_stream_memory_file memstream(get_app());
+
          if(!data_get(key, idIndex, memstream))
             return false;
+
          memstream.seek_to_begin();
+
          bool bZoomed = false;
+
          memstream >> bZoomed;
+
          if(!bForceRestore && bZoomed)
          {
+
             pWnd->ShowWindow(SW_MAXIMIZE);
+
          }
+
          bool bFullScreen = false;
+
          memstream >> bFullScreen;
+
          if(!bForceRestore && bFullScreen)
          {
+
             pWnd->ShowWindowFullScreen();
+
          }
+
          bool bIconic = false;
+
          memstream >> bIconic;
+
          if(!bForceRestore && bIconic)
          {
+
             pWnd->ShowWindow(SW_MINIMIZE);
+
          }
+
          if(bForceRestore)
          {
+
             pWnd->ShowWindow(SW_RESTORE);
+
          }
+
          if(bForceRestore || (!bZoomed && !bFullScreen && !bIconic))
          {
+
             rect rect;
+
             memstream >> rect;
 
-            pWnd->SetWindowPos(0, rect.left,
-               rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
+            pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
+
          }
+
          return true;
+
       }
-      bool interaction::SaveWindowRect_(
-         ::database::id key, ::database::id idIndex,  ::user::interaction * pWnd)
+
+
+      bool interaction::SaveWindowRect_(::database::id key, ::database::id idIndex,  ::user::interaction * pWnd)
       {
          //WINDOWPLACEMENT wp;
          //pWnd->GetWindowPlacement(&wp);
@@ -198,7 +229,8 @@ namespace database
          }
          else
          {
-            rect rect(pWnd->m_rectParentClient);
+            rect rect;
+            pWnd->GetWindowRect(rect);
             memstream << &rect;
          }
          return data_set(key, idIndex, memstream);

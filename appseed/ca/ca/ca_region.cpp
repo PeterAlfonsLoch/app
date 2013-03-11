@@ -538,7 +538,7 @@ namespace ca
    bool region::contains(POINT point) const
    {
 
-      throw interface_only_exception(get_app());
+      return ((region *) this)->internal_contains(&point);
 
    }
 
@@ -600,5 +600,125 @@ namespace ca
       return translate(p.x, p.y);
 
    }
+
+
+   bool region::internal_contains(LPPOINT lppt)
+   {
+
+      switch(m_etype)
+      {
+      case type_none:
+         return false;
+      case type_rect:
+         return internal_rect_contains(lppt);
+      case type_oval:
+         return internal_oval_contains(lppt);
+      case type_polygon:
+         return internal_polygon_contains(lppt);
+      case type_poly_polygon:
+         return internal_poly_polygon_contains(lppt);
+      case type_combine:
+         return internal_combine_contains(lppt);
+      default:
+         throw not_implemented(get_app());
+      }
+
+      return false;
+
+   }
+
+   bool region::internal_rect_contains(LPPOINT lppt)
+   {
+
+      return lppt->x >= m_x1 && lppt->y >= m_y1 && lppt->x <= m_x2 && lppt->y <= m_y2;
+
+   }
+
+   bool region::internal_oval_contains(LPPOINT lppt)
+   {
+
+      double centerx    = (m_x2 + m_x1) / 2.0;
+      double centery    = (m_y2 + m_y1) / 2.0;
+
+      double radiusx    = abs(m_x2 - m_x1) / 2.0;
+      double radiusy    = abs(m_y2 - m_y1) / 2.0;
+
+      if(radiusx == 0.0 || radiusy == 0.0)
+         return false;
+
+      double x = lppt->x;
+      double y = lppt->y;
+
+      return ((x - centerx) * (x - centerx) / (radiusx * radiusx) + (y - centery) * (y - centery) / (radiusy * radiusy)) <= 1.0;
+
+   }
+
+
+   bool region::internal_polygon_contains(LPPOINT lppt)
+   {
+
+      if(m_nCount <= 0)
+         return false;
+
+      if(::polygon_contains(lppt, m_lppoints, m_nCount))
+         return true;
+
+      return false;
+
+   }
+
+   bool region::internal_poly_polygon_contains(LPPOINT lppt)
+   {
+
+      int32_t n = 0;
+
+      for(int32_t i = 0; i < m_nCount;i++)
+      {
+         int32_t iCount = m_lppolycounts[i];
+         if(::polygon_contains(lppt, &m_lppoints[n], iCount))
+            return true;
+         n += iCount;
+      }
+
+      return false;
+
+   }
+
+   bool region::internal_combine_contains(LPPOINT lppt)
+   {
+
+      if(m_ecombine == ::ca::region::combine_add)
+      {
+         if(m_pregion1->internal_contains(lppt))
+            return true;
+         if(m_pregion2->internal_contains(lppt))
+            return true;
+         return false;
+      }
+      else if(m_ecombine == ::ca::region::combine_exclude)
+      {
+         if(m_pregion2->internal_contains(lppt))
+            return false;
+         if(m_pregion1->internal_contains(lppt))
+            return true;
+         return false;
+      }
+      else if(m_ecombine == ::ca::region::combine_intersect)
+      {
+         if(m_pregion1->internal_contains(lppt))
+         {
+            if(m_pregion2->internal_contains(lppt))
+               return true;
+         }
+         return false;
+      }
+      else
+      {
+         return false;
+      }
+
+   }
+
+
 
 } // namespace ca

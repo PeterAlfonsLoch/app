@@ -15,8 +15,11 @@ namespace ca
    pen::pen()
    {
 
-      m_eendcap = end_cap_flat;
-      m_elinejoin  = line_join_miter;
+      m_eendcap               = end_cap_flat;
+      m_elinejoin             = line_join_miter;
+      m_cr                    = ARGB(127, 0, 0, 0);
+      m_etype                 = type_solid;
+      m_dWidth                = 1.0;
 
    }
 

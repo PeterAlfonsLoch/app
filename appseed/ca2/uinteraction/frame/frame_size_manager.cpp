@@ -132,7 +132,7 @@ namespace frame
       if(m_ehittestMode != HitTestNone)
       {
 
-         if(get_tick_count() - m_dwLastSizingTime > 40)
+         if(get_tick_count() - m_dwLastSizingTime > 184)
          {
 
             m_dwLastSizingTime = get_tick_count();

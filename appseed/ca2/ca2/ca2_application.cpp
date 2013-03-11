@@ -628,6 +628,8 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
 #elif defined(LINUX)
 
+      mutex_lock sl(user_mutex(), true);
+
       Display * d=XOpenDisplay(NULL);
 
 

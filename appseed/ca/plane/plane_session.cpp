@@ -31,7 +31,7 @@ namespace plane
 
       m_ecursorDefault  = ::visual::cursor_arrow;
       m_ecursor         = ::visual::cursor_default;
-      
+
 
    }
 
@@ -135,7 +135,7 @@ namespace plane
 
       try
       {
-      
+
          bOk = m_puserpresence->finalize();
 
       }
@@ -147,7 +147,7 @@ namespace plane
 
       try
       {
-      
+
          bOk = ::planebase::application::finalize();
 
       }
@@ -519,7 +519,7 @@ namespace plane
 
          while(m_bRun)
          {
-            
+
             if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
                break;
 
@@ -1130,11 +1130,25 @@ namespace plane
    COLORREF session::get_default_color(uint64_t ui)
    {
 
-#ifdef WINDOWSEX
-      return GetSysColor((int) ui);
-#else
-      return 0;
-#endif
+      switch(ui)
+      {
+      case COLOR_3DFACE:
+         return ARGB(127, 192, 192, 184);
+      case COLOR_WINDOW:
+         return ARGB(127, 255, 255, 255);
+      case COLOR_3DLIGHT:
+         return ARGB(127, 218, 218, 210);
+      case COLOR_3DHIGHLIGHT:
+         return ARGB(127, 238, 238, 230);
+      case COLOR_3DSHADOW:
+         return ARGB(127, 108, 108, 100);
+      case COLOR_3DDKSHADOW:
+         return ARGB(127, 84, 84, 77);
+      default:
+         break;
+      }
+
+      return ARGB(127, 0, 0, 0);
 
    }
 

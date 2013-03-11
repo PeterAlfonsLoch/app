@@ -63,7 +63,7 @@ namespace uinteraction
             || m_pworkset->m_bSizingCapture)
             return false;
 
-         if(get_tick_count() - m_dwLastMoveTime < 8)
+         if(get_tick_count() - m_dwLastMoveTime < 84)
             return true;
 
          m_dwLastMoveTime = get_tick_count();

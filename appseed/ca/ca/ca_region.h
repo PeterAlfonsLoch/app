@@ -83,6 +83,13 @@ namespace ca
       //virtual int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;
 //#endif
 
+      bool internal_contains(LPPOINT lppt);
+      bool internal_rect_contains(LPPOINT lppt);
+      bool internal_oval_contains(LPPOINT lppt);
+      bool internal_polygon_contains(LPPOINT lppt);
+      bool internal_poly_polygon_contains(LPPOINT lppt);
+      bool internal_combine_contains(LPPOINT lppt);
+
 
       virtual bool destroy();
 

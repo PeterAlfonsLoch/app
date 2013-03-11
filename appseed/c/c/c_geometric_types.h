@@ -165,3 +165,5 @@ inline CLASS_DECL_c POINT & offset(POINT & pt, LONG x, LONG y)
    pt.y += y;
    return pt;
 }
+
+CLASS_DECL_c bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount);

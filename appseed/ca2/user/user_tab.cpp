@@ -256,6 +256,7 @@ namespace user
    void tab::_001OnDrawStandard(::ca::graphics * pdc)
    {
 
+
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
 
@@ -471,6 +472,8 @@ namespace user
 
    void tab::_001OnDrawSchema01(::ca::graphics * pdc)
    {
+
+      return;
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
