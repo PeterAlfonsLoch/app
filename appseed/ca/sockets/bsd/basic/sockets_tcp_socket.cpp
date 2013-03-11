@@ -1326,7 +1326,7 @@ void ssl_sigpipe_handle( int x );
 //#ifdef LINUX
   //  signal(SIGPIPE, &::sockets::ssl_sigpipe_handle);
 //#endif
-         struct sigaction m_saPipe;
+  /*       struct sigaction m_saPipe;
          struct sigaction m_saPipeOld;
          memset(&m_saPipe, 0, sizeof(m_saPipe));
          sigemptyset(&m_saPipe.sa_mask);
@@ -1341,10 +1341,12 @@ void ssl_sigpipe_handle( int x );
 
            /* Block SIGQUIT and SIGUSR1; other threads created by main()
               will inherit a copy of the signal mask. */
-
+#ifdef LINUX
+           sigset_t set;
            sigemptyset(&set);
            sigaddset(&set, SIGPIPE);
            pthread_sigmask(SIG_BLOCK, &set, NULL);
+#endif
          if(SSL_get_shutdown(m_ssl) == 0)
             SSL_shutdown(m_ssl);
       }

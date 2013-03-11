@@ -208,8 +208,7 @@ uint32_t thread_layer::proc(void * lp)
 
 	///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_ca bool set_thread_priority(int32_t priority);
-
+	CLASS_DECL_c bool set_thread_priority(int32_t priority)
 	{
 
       return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
@@ -219,7 +218,7 @@ uint32_t thread_layer::proc(void * lp)
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
 
-	CLASS_DECL_ca int32_t thread_priority()
+	CLASS_DECL_c int32_t thread_priority()
 	{
       return ::GetThreadPriority(::GetCurrentThread());
    }

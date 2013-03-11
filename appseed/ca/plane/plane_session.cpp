@@ -1141,7 +1141,7 @@ namespace plane
       case COLOR_3DHIGHLIGHT:
          return ARGB(127, 238, 238, 230);
       case COLOR_3DSHADOW:
-         return ARGB(127, 108, 108, 100);
+         return ARGB(127, 138, 138, 130);
       case COLOR_3DDKSHADOW:
          return ARGB(127, 84, 84, 77);
       default:

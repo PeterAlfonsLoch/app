@@ -1842,7 +1842,7 @@ namespace plane
 #ifdef WINDOWSEX
       if(i < 0 || i >= get_monitor_count())
          return false;
-      *lprect = m_monitorinfoa[i].rcMonitor;
+//      *lprect = m_monitorinfoa[i].rcMonitor;
 #elif defined(METROWIN)
 
       return System.get_window_rect(lprect);
@@ -1873,7 +1873,7 @@ namespace plane
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
 #endif
-      return true;
+      //return true;
       return false;
 
    }
