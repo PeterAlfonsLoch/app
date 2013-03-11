@@ -205,6 +205,8 @@ uint32_t thread_layer::proc(void * lp)
 }
 
 
+namespace ca
+{
 
 	///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
@@ -222,4 +224,10 @@ uint32_t thread_layer::proc(void * lp)
 	{
       return ::GetThreadPriority(::GetCurrentThread());
    }
+
+
+} // namespace ca
+
+
+
 
