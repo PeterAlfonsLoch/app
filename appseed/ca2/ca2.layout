@@ -307,7 +307,7 @@
 	<File name="user/user.h" open="0" top="0" tabpos="49">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="user/user_button.cpp" open="1" top="0" tabpos="5">
+	<File name="user/user_button.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="5025" topLine="148" />
 	</File>
 	<File name="user/user_check_box.cpp" open="0" top="0" tabpos="0">
@@ -403,10 +403,10 @@
 	<File name="userbase/userbase_base_bitmap_buttonex.cpp" open="0" top="0" tabpos="35">
 		<Cursor position="2262" topLine="55" />
 	</File>
-	<File name="userbase/userbase_button.cpp" open="1" top="0" tabpos="3">
+	<File name="userbase/userbase_button.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="3192" topLine="138" />
 	</File>
-	<File name="userbase/userbase_button.h" open="1" top="0" tabpos="4">
+	<File name="userbase/userbase_button.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="userbase/userbase_button_control.cpp" open="0" top="0" tabpos="25">
@@ -442,10 +442,10 @@
 	<File name="userbase/userbase_menu_list_window.cpp" open="0" top="0" tabpos="33">
 		<Cursor position="8326" topLine="277" />
 	</File>
-	<File name="userbase/userbase_meta_button.cpp" open="1" top="0" tabpos="1">
+	<File name="userbase/userbase_meta_button.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2539" topLine="150" />
 	</File>
-	<File name="userbase/userbase_meta_button.h" open="1" top="0" tabpos="2">
+	<File name="userbase/userbase_meta_button.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="userbase/userbase_notification_area.cpp" open="0" top="0" tabpos="34">

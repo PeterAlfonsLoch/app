@@ -473,8 +473,6 @@ namespace user
    void tab::_001OnDrawSchema01(::ca::graphics * pdc)
    {
 
-      return;
-
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
 
@@ -543,6 +541,9 @@ namespace user
       //pdc->set_alpha_mode(::ca::alpha_mode_set);
 
       int32_t iVisiblePane = 0;
+
+      //return;
+
 
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {

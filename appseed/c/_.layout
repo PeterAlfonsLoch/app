@@ -64,10 +64,10 @@
 	<File name="c/c_file_watcher_thread.h" open="0" top="0" tabpos="1">
 		<Cursor position="49" topLine="0" />
 	</File>
-	<File name="c/c_geometric_types.cpp" open="1" top="0" tabpos="2">
+	<File name="c/c_geometric_types.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="273" topLine="0" />
 	</File>
-	<File name="c/c_geometric_types.h" open="1" top="0" tabpos="3">
+	<File name="c/c_geometric_types.h" open="0" top="0" tabpos="3">
 		<Cursor position="4014" topLine="125" />
 	</File>
 	<File name="c/c_heap.cpp" open="0" top="0" tabpos="4">
@@ -169,7 +169,7 @@
 	<File name="c/c_verisimple_string.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="369" topLine="24" />
 	</File>
-	<File name="c/c_verisimple_string.h" open="1" top="0" tabpos="4">
+	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="4">
 		<Cursor position="18" topLine="0" />
 	</File>
 	<File name="c/c_verisimple_wstring.cpp" open="0" top="0" tabpos="0">
@@ -214,7 +214,7 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="140" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="1" top="0" tabpos="1">
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="581" topLine="5" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="4">
