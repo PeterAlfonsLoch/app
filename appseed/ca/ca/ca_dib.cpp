@@ -2,43 +2,78 @@
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
-
 #include "framework.h"
 #include <math.h>
 
+
 namespace ca
 {
+
+
+   dib::dib()
+   {
+
+      cx      = 0;
+
+      cy      = 0;
+
+      scan    = 0;
+
+   }
+
+
+   dib::~dib()
+   {
+
+   }
+
+
    ::ca::graphics * dib::get_graphics()
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    ::ca::bitmap_sp dib::get_bitmap()
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    ::ca::bitmap_sp dib::detach_bitmap()
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    void dib::construct (int32_t cx,  int32_t cy)
    {
+
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
+
       throw interface_only_exception(get_app());
+
    }
+
 
    COLORREF * dib::get_data()
    {
+
       return NULL;
+
    }
 
 
    bool dib::realize(::ca::graphics * pdc)
    {
-      
+
       UNREFERENCED_PARAMETER(pdc);
       return true;
 
@@ -47,7 +82,7 @@ namespace ca
 
    bool dib::unrealize()
    {
-      
+
       return true;
 
    }
@@ -394,17 +429,17 @@ namespace ca
          COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
          COLORREF colorrefaN[2];
          colorrefaN[0] = _colorrefN;
-         
+
          colorrefaN[1] = _colorrefN;
 #ifdef AMD64
 
          //x64
 #else
-         
+
          int32_t isize=cx*cy;
          LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
          LPDWORD lpbitsDest= (LPDWORD) get_data();
-         
+
     #ifdef WINDOWS
          _asm
          {
@@ -434,9 +469,9 @@ fill_last:
             emms
          }
 #else
-         
+
          memcpy(lpbitsDest, lpbitsSrc, isize * 4);
-         
+
          #endif
 #endif
       }
@@ -667,7 +702,7 @@ fill_last:
 
    void dib::Paste(dib * dib)
    {
-      
+
       if(dib->size() != size())
          dib->create(size());
 
@@ -1473,7 +1508,7 @@ fill_last:
 
    // too slow for animation on AMD XP gen_hon.
    // TOP SUGGESTION:
-   // The gradient can´t have more then 256 levels of the most bright color
+   // The gradient canÂ´t have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting
    // stretching algorithms is much faster than calculating radial fill.
    void dib::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, int32_t xCenter, int32_t yCenter, int32_t iRadius)
@@ -2173,7 +2208,7 @@ fill_last:
 
    void dib::FillByte(uchar uch)
    {
-      
+
       if(area() <= 0 || get_data() == NULL)
          return;
 
@@ -2568,7 +2603,7 @@ fill_last:
 
    void dib::channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc)
    {
-      
+
       map();
 
       echannelDst = (visual::rgba::echannel) (((int32_t) echannelDst) % 4);

@@ -10,11 +10,17 @@
 	<File name="FreeImage/Conversion32.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7770" topLine="157" />
 	</File>
+	<File name="FreeImage/GetType.cpp" open="0" top="0" tabpos="65">
+		<Cursor position="1629" topLine="9" />
+	</File>
 	<File name="FreeImage/MultiPage.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="26121" topLine="907" />
 	</File>
-	<File name="FreeImage/Plugin.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="6121" topLine="216" />
+	<File name="FreeImage/Plugin.cpp" open="0" top="0" tabpos="66">
+		<Cursor position="22158" topLine="757" />
+	</File>
+	<File name="FreeImage/PluginBMP.cpp" open="0" top="0" tabpos="76">
+		<Cursor position="27953" topLine="983" />
 	</File>
 	<File name="FreeImage/PluginDDS.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="13242" topLine="399" />

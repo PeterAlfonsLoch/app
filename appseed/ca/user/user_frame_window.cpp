@@ -751,7 +751,7 @@ void frame_window::InitialFramePosition(bool bForceRestore)
       }
       else
       {
-         System.get_desktop_window()->GetWindowRect(rectDesktop);
+         System.get_screen_rect(rectDesktop);
       }
       if(!rectDesktop.contains(rectWindow)
       ||  rectWindow.width() < 100

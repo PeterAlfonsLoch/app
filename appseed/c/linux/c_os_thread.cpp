@@ -123,6 +123,13 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
                bRet                 = true;
 
             }
+            else if(e.type == DestroyNotify)
+            {
+
+               lpMsg->hwnd          = oswindow(display, e.xdestroy.window);
+               lpMsg->message       = WM_DESTROY;
+
+            }
 
             if(bPeek && bRet)
                XPutBackEvent(display, &e);

@@ -4707,8 +4707,20 @@ namespace ca
 
    ::ca::window * application::get_desktop_window()
    {
-#if defined(METROWIN) || defined(LINUX) || defined(MACOS)
+#if defined(METROWIN) || defined(MACOS)
       throw todo(this);
+#elif defined(LINUX)
+
+      mutex_lock sl(user_mutex(), true);
+
+      Display * pdisplay = XOpenDisplay(NULL);
+
+      oswindow window(pdisplay, DefaultRootWindow(pdisplay));
+
+      XCloseDisplay(pdisplay);
+
+      return window_from_os_data(window);
+
 #else
       return window_from_os_data(::GetDesktopWindow());
 #endif

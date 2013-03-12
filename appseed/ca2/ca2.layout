@@ -346,8 +346,8 @@
 	<File name="user/user_scroll_view.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="8353" topLine="280" />
 	</File>
-	<File name="user/user_tab.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="12453" topLine="424" />
+	<File name="user/user_tab.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="47980" topLine="1723" />
 	</File>
 	<File name="user/user_tab.h" open="0" top="0" tabpos="4">
 		<Cursor position="64" topLine="0" />
@@ -370,8 +370,8 @@
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="22078" topLine="818" />
+	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="19327" topLine="704" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="555" topLine="19" />
@@ -427,8 +427,8 @@
 	<File name="userbase/userbase_form_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4599" topLine="107" />
 	</File>
-	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="7852" topLine="241" />
+	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="4527" topLine="147" />
 	</File>
 	<File name="userbase/userbase_frame_window_interface.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="4056" topLine="102" />
@@ -443,7 +443,7 @@
 		<Cursor position="8326" topLine="277" />
 	</File>
 	<File name="userbase/userbase_meta_button.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2539" topLine="150" />
+		<Cursor position="1823" topLine="58" />
 	</File>
 	<File name="userbase/userbase_meta_button.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
@@ -475,8 +475,8 @@
 	<File name="userbase/userbase_status_bar.h" open="0" top="0" tabpos="6">
 		<Cursor position="167" topLine="0" />
 	</File>
-	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="12838" topLine="403" />
+	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="10845" topLine="320" />
 	</File>
 	<File name="userbase/userbase_tool_bar.h" open="0" top="0" tabpos="41">
 		<Cursor position="3821" topLine="90" />
@@ -499,7 +499,7 @@
 	<File name="userex/userex.h" open="0" top="0" tabpos="70">
 		<Cursor position="41" topLine="0" />
 	</File>
-	<File name="userex/userex_pane_tab_view.cpp" open="0" top="0" tabpos="8">
+	<File name="userex/userex_pane_tab_view.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="2688" topLine="80" />
 	</File>
 	<File name="userex/userex_pane_view.cpp" open="0" top="0" tabpos="0">

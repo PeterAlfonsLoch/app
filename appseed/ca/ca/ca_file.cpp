@@ -66,7 +66,7 @@ namespace ca
 
    file_position file::get_position() const
    {
-      return 0;
+      return ((file *) this)->seek(0, ::ca::seek_current);
    }
 
    void file::flush()

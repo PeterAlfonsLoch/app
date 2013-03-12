@@ -27,6 +27,10 @@ namespace ca
       int32_t         scan;
 
 
+      dib();
+      virtual ~dib();
+
+
       virtual ::ca::graphics * get_graphics();
       virtual ::ca::bitmap_sp get_bitmap();
       virtual ::ca::bitmap_sp detach_bitmap();

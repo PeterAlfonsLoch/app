@@ -925,3 +925,19 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
    return window;
 
 }
+
+
+
+WINBOOL DestroyWindow(oswindow window)
+{
+
+   mutex_lock sl(user_mutex(), true);
+
+   if(!IsWindow(window))
+      return FALSE;
+
+   XDestroyWindow(window.display(), window.window());
+
+   return true;
+
+}
