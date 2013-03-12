@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="calculator/calculator_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="17" topLine="0" />
+	</File>
 	<File name="framework.h" open="0" top="0" tabpos="50">
 		<Cursor position="54" topLine="0" />
+	</File>
+	<File name="sphere/sphere_library.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="94" topLine="0" />
+	</File>
+	<File name="userstack/userstack_application.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="14360" topLine="558" />
+	</File>
+	<File name="userstack/userstack_view.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

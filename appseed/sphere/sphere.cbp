@@ -12,6 +12,8 @@
 				<Option object_output="../../../time/intermediate/app/ca2sphere" />
 				<Option type="3" />
 				<Option compiler="gcc" />
+				<Option parameters=": app=app/sphere/userstack build_number=basis locale=_std schema=_std install" />
+				<Option host_application="/ca2/stage/x86/app" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -27,8 +29,6 @@
 					<Add directory="../../thirdparty/appseed" />
 					<Add directory="../../../app/thirdparty/include" />
 					<Add directory="../../../app/thirdparty/appseed" />
-					<Add directory="../ca" />
-					<Add directory="../ca2" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -42,7 +42,6 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add directory="../ca2" />
 			<Add directory="." />
 			<Add directory="../../.." />
 		</Compiler>
@@ -53,6 +52,7 @@
 			<Add option="-lca2c" />
 			<Add option="-lca2optca" />
 			<Add option="-lca2ca" />
+			<Add option="-lca2" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="asphere/asphere.h" />

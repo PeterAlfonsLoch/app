@@ -209,7 +209,18 @@ namespace ca
 
 #ifdef LINUX
 
-      ::ca::str::begins_eat(strLibraryName, "lib");
+      if(strLibraryName == "libca2")
+      {
+
+         strLibraryName = "ca2";
+
+      }
+      else if(!::ca::str::begins_eat(strLibraryName, "libca2"))
+      {
+
+         ::ca::str::begins_eat(strLibraryName, "lib");
+
+      }
 
 #elif defined(METROWIN)
 
@@ -248,7 +259,18 @@ namespace ca
 
 #ifdef LINUX
 
-      ::ca::str::begins_eat(strLibraryName, "lib");
+      if(strLibraryName == "libca2")
+      {
+
+         strLibraryName = "ca2";
+
+      }
+      else if(!::ca::str::begins_eat(strLibraryName, "libca2"))
+      {
+
+         ::ca::str::begins_eat(strLibraryName, "lib");
+
+      }
 
 #elif defined(METROWIN)
 

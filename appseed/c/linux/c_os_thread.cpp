@@ -126,7 +126,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == DestroyNotify)
             {
 
-               lpMsg->hwnd          = oswindow(display, e.xdestroy.window);
+               lpMsg->hwnd          = oswindow(display, e.xdestroywindow.window);
                lpMsg->message       = WM_DESTROY;
 
             }

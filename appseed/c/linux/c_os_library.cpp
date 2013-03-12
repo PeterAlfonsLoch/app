@@ -43,6 +43,12 @@ namespace c
          strPath = "ca2os";
 
       }
+      else if(strPath == "app_sphere")
+      {
+
+         strPath = "ca2sphere";
+
+      }
 
       if(strstr_dup(strPath, ".") == NULL)
          strPath += ".so";

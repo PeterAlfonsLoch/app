@@ -118,7 +118,7 @@
 	<File name="c/c_simple_array.h" open="0" top="0" tabpos="7">
 		<Cursor position="4170" topLine="129" />
 	</File>
-	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="4">
+	<File name="c/c_simple_event.cpp" open="1" top="0" tabpos="15">
 		<Cursor position="2401" topLine="146" />
 	</File>
 	<File name="c/c_simple_event.h" open="0" top="0" tabpos="5">
@@ -133,8 +133,8 @@
 	<File name="c/c_simple_memory.h" open="0" top="0" tabpos="6">
 		<Cursor position="657" topLine="3" />
 	</File>
-	<File name="c/c_simple_mutex.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2644" topLine="131" />
+	<File name="c/c_simple_mutex.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="4754" topLine="222" />
 	</File>
 	<File name="c/c_simple_mutex.h" open="0" top="0" tabpos="0">
 		<Cursor position="34" topLine="0" />
@@ -217,7 +217,7 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="140" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="0" top="0" tabpos="2">
+	<File name="linux/c_os.cpp" open="1" top="0" tabpos="17">
 		<Cursor position="581" topLine="7" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="3">
@@ -271,8 +271,8 @@
 	<File name="linux/c_os_launcher.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="26" topLine="0" />
 	</File>
-	<File name="linux/c_os_library.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="333" topLine="18" />
+	<File name="linux/c_os_library.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="120" topLine="8" />
 	</File>
 	<File name="linux/c_os_lock.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="80" topLine="0" />
@@ -332,7 +332,7 @@
 		<Cursor position="25" topLine="0" />
 	</File>
 	<File name="linux/c_os_thread.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="3386" topLine="94" />
+		<Cursor position="3334" topLine="92" />
 	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="23" topLine="0" />

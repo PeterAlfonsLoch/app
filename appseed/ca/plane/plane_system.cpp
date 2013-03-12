@@ -494,7 +494,18 @@ namespace plane
 
 #ifdef LINUX
 
-      ::ca::str::begins_eat(strLibrary, "lib");
+      if(strLibrary == "libca2")
+      {
+
+         strLibrary = "ca2";
+
+      }
+      else if(!::ca::str::begins_eat(strLibrary, "libca2"))
+      {
+
+         ::ca::str::begins_eat(strLibrary, "lib");
+
+      }
 
 #endif
 
