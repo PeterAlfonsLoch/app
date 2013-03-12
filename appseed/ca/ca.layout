@@ -64,7 +64,7 @@
 	<File name="ca/ca_byte_serializable.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="22" topLine="0" />
 	</File>
-	<File name="ca/ca_byte_stream.cpp" open="1" top="0" tabpos="9">
+	<File name="ca/ca_byte_stream.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="2587" topLine="119" />
 	</File>
 	<File name="ca/ca_ca.cpp" open="0" top="0" tabpos="19">
@@ -160,10 +160,10 @@
 	<File name="ca/ca_history.cpp" open="0" top="0" tabpos="25">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ca/ca_http_application.cpp" open="1" top="0" tabpos="1">
+	<File name="ca/ca_http_application.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1452" topLine="38" />
 	</File>
-	<File name="ca/ca_http_system.cpp" open="1" top="0" tabpos="2">
+	<File name="ca/ca_http_system.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="40158" topLine="1369" />
 	</File>
 	<File name="ca/ca_interlocked_long.cpp" open="0" top="0" tabpos="38">
@@ -223,7 +223,7 @@
 	<File name="ca/ca_pipe.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="101" topLine="0" />
 	</File>
-	<File name="ca/ca_plex_heap.h" open="1" top="0" tabpos="11">
+	<File name="ca/ca_plex_heap.h" open="0" top="0" tabpos="11">
 		<Cursor position="4369" topLine="166" />
 	</File>
 	<File name="ca/ca_process.cpp" open="0" top="0" tabpos="0">
@@ -235,7 +235,7 @@
 	<File name="ca/ca_profiler.h" open="0" top="0" tabpos="0">
 		<Cursor position="538" topLine="8" />
 	</File>
-	<File name="ca/ca_property.cpp" open="1" top="0" tabpos="6">
+	<File name="ca/ca_property.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="5363" topLine="241" />
 	</File>
 	<File name="ca/ca_reader.cpp" open="0" top="0" tabpos="57">
@@ -259,7 +259,7 @@
 	<File name="ca/ca_signal.h" open="0" top="0" tabpos="34">
 		<Cursor position="5548" topLine="151" />
 	</File>
-	<File name="ca/ca_smart_pointer.h" open="1" top="0" tabpos="10">
+	<File name="ca/ca_smart_pointer.h" open="0" top="0" tabpos="10">
 		<Cursor position="2483" topLine="110" />
 	</File>
 	<File name="ca/ca_str.cpp" open="0" top="0" tabpos="0">
@@ -982,10 +982,10 @@
 	<File name="fontopus/fontopus_fontopus.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="1797" topLine="47" />
 	</File>
-	<File name="fontopus/fontopus_user.cpp" open="1" top="0" tabpos="7">
+	<File name="fontopus/fontopus_user.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="3910" topLine="118" />
 	</File>
-	<File name="fontopus/fontopus_validate.cpp" open="1" top="0" tabpos="8">
+	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="41400" topLine="1307" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="12">
@@ -1225,7 +1225,7 @@
 	<File name="plane/plane_library.cpp" open="0" top="0" tabpos="35">
 		<Cursor position="34" topLine="0" />
 	</File>
-	<File name="plane/plane_session.cpp" open="1" top="0" tabpos="5">
+	<File name="plane/plane_session.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="13891" topLine="481" />
 	</File>
 	<File name="plane/plane_session.h" open="0" top="0" tabpos="7">
@@ -1360,7 +1360,7 @@
 	<File name="primitive/primitive_rectangle.h" open="0" top="0" tabpos="7">
 		<Cursor position="12750" topLine="286" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="1" top="0" tabpos="4">
+	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="4">
 		<Cursor position="12074" topLine="580" />
 	</File>
 	<File name="primitive/primitive_size.cpp" open="0" top="0" tabpos="12">
@@ -1372,7 +1372,7 @@
 	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="23611" topLine="843" />
 	</File>
-	<File name="primitive/primitive_string.h" open="1" top="0" tabpos="3">
+	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="3">
 		<Cursor position="45402" topLine="1565" />
 	</File>
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
@@ -1525,7 +1525,7 @@
 	<File name="sockets/bsd/basic/sockets_Socket.cpp" open="0" top="0" tabpos="49">
 		<Cursor position="41798" topLine="1687" />
 	</File>
-	<File name="sockets/bsd/basic/sockets_SocketHandler.cpp" open="1" top="0" tabpos="12">
+	<File name="sockets/bsd/basic/sockets_SocketHandler.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="9405" topLine="328" />
 	</File>
 	<File name="sockets/bsd/basic/sockets_address.cpp" open="0" top="0" tabpos="9">
