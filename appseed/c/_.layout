@@ -127,7 +127,7 @@
 	<File name="c/c_simple_list.h" open="0" top="0" tabpos="1">
 		<Cursor position="1352" topLine="0" />
 	</File>
-	<File name="c/c_simple_memory.cpp" open="1" top="0" tabpos="15">
+	<File name="c/c_simple_memory.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="1723" topLine="89" />
 	</File>
 	<File name="c/c_simple_memory.h" open="0" top="0" tabpos="6">
@@ -220,7 +220,7 @@
 	<File name="linux/c_os.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="581" topLine="7" />
 	</File>
-	<File name="linux/c_os.h" open="1" top="0" tabpos="19">
+	<File name="linux/c_os.h" open="1" top="0" tabpos="3">
 		<Cursor position="1645" topLine="53" />
 	</File>
 	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="25">
@@ -331,19 +331,19 @@
 	<File name="linux/c_os_small_ipc_channel.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="25" topLine="0" />
 	</File>
-	<File name="linux/c_os_thread.cpp" open="1" top="0" tabpos="21">
+	<File name="linux/c_os_thread.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="3386" topLine="94" />
 	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="23" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="1" top="1" tabpos="20">
+	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="15291" topLine="899" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="6">
 		<Cursor position="66" topLine="0" />
 	</File>
-	<File name="os/os.h" open="1" top="0" tabpos="18">
+	<File name="os/os.h" open="1" top="0" tabpos="2">
 		<Cursor position="69" topLine="0" />
 	</File>
 	<File name="os/os_binreloc.cpp" open="0" top="0" tabpos="41">
