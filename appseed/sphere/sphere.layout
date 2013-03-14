@@ -13,6 +13,9 @@
 	<File name="userstack/userstack_application.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="14360" topLine="558" />
 	</File>
+	<File name="userstack/userstack_pane_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="6107" topLine="183" />
+	</File>
 	<File name="userstack/userstack_view.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>

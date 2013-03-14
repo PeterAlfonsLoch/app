@@ -163,7 +163,7 @@ WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 WINBOOL GetCursorPos(LPPOINT lpptCursor)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   //mutex_lock sl(user_mutex(), true);
 
 
    Window root_return;

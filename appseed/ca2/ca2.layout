@@ -5,7 +5,7 @@
 		<Cursor position="18" topLine="0" />
 	</File>
 	<File name="bergedge/bergedge_bergedge.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="3231" topLine="151" />
+		<Cursor position="19355" topLine="597" />
 	</File>
 	<File name="bergedge/bergedge_frame.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10684" topLine="414" />
@@ -19,8 +19,8 @@
 	<File name="ca2.h" open="0" top="0" tabpos="53">
 		<Cursor position="48" topLine="0" />
 	</File>
-	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="13994" topLine="618" />
+	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="14224" topLine="618" />
 	</File>
 	<File name="cube/cube.h" open="0" top="0" tabpos="51">
 		<Cursor position="53" topLine="0" />
@@ -346,8 +346,8 @@
 	<File name="user/user_scroll_view.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="8353" topLine="280" />
 	</File>
-	<File name="user/user_tab.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="28889" topLine="1026" />
+	<File name="user/user_tab.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="47619" topLine="1702" />
 	</File>
 	<File name="user/user_tab.h" open="0" top="0" tabpos="4">
 		<Cursor position="64" topLine="0" />
@@ -370,8 +370,8 @@
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="22473" topLine="828" />
+	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="7649" topLine="262" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="555" topLine="19" />
@@ -475,8 +475,8 @@
 	<File name="userbase/userbase_status_bar.h" open="0" top="0" tabpos="6">
 		<Cursor position="167" topLine="0" />
 	</File>
-	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="10845" topLine="320" />
+	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="6949" topLine="236" />
 	</File>
 	<File name="userbase/userbase_tool_bar.h" open="0" top="0" tabpos="41">
 		<Cursor position="3821" topLine="90" />
@@ -499,8 +499,8 @@
 	<File name="userex/userex.h" open="0" top="0" tabpos="70">
 		<Cursor position="41" topLine="0" />
 	</File>
-	<File name="userex/userex_pane_tab_view.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="2688" topLine="80" />
+	<File name="userex/userex_pane_tab_view.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="2153" topLine="70" />
 	</File>
 	<File name="userex/userex_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1189" topLine="25" />
