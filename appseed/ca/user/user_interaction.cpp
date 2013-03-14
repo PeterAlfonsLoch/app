@@ -371,6 +371,7 @@ namespace user
    bool interaction::SetWindowPos(int32_t z, int32_t x, int32_t y,
                int32_t cx, int32_t cy, UINT nFlags)
    {
+
       if(m_pimpl == NULL)
          return FALSE;
       else

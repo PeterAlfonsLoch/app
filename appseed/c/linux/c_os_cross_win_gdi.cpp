@@ -92,6 +92,13 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    mutex_lock sl(user_mutex(), true);
 
+   if(!IsWindow(hwnd))
+      return FALSE;
+
+
+   bool bDestroying = hwnd.m_pdata->m_bDestroying;
+   Display * pdisplay = hwnd.display();
+   Window window = hwnd.window();
 
    XWindowAttributes attrs;
 

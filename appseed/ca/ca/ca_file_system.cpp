@@ -409,8 +409,6 @@ namespace ca
             }
             else
             {
-               if(!exists(strFilePath, &varQuery, papp))
-                  return "";
                as_memory(strFilePath, storage, papp);
             }
          }
@@ -474,6 +472,9 @@ namespace ca
          {
 
             spfile = App(papp).file().get_file(varFile, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone);
+
+            if(spfile.is_null())
+               return;
 
             mem.FullLoad(spfile);
 

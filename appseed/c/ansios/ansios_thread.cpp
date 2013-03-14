@@ -737,24 +737,13 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
 
 }
 
+mq * get_mq(simple_event *  h);
+
 
 mq * get_mq()
 {
 
-   mq * pmq = (mq *) TlsGetValue(TLS_MESSAGE_QUEUE);
-
-   if(pmq != NULL)
-      return pmq;
-
-   pmq               = new mq();
-
-   pmq->m_hthread    = ::GetCurrentThread();
-
-   pmq->m_uiId       = ::GetCurrentThreadId();
-
-   TlsSetValue(TLS_MESSAGE_QUEUE, pmq);
-
-   return pmq;
+   return get_mq(GetCurrentThread());
 
 }
 
@@ -802,6 +791,7 @@ CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT
 
 #ifdef LINUX
    HTHREAD hthread = ::GetCurrentThread();
+   DWORD idThre = ::GetCurrentThreadId();
 #endif
 
 restart:
@@ -853,6 +843,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
 
 #ifdef LINUX
    HTHREAD hthread = ::GetCurrentThread();
+   DWORD idThre = ::GetCurrentThreadId();
 #endif
 
    mutex_lock ml(pmq->m_mutex);
@@ -944,6 +935,8 @@ CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM 
    msg.lParam  = lParam;
 
    pmq->ma.add(msg);
+
+   void * p = pmq->ma[pmq->ma.get_count() -1].hwnd;
 
    pmq->m_eventNewMessage.set_event();
 

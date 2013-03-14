@@ -624,15 +624,15 @@ namespace ca
 
       void key::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
-         
+
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         
+
          m_nChar = static_cast<UINT>(wparam);
-         
+
          m_nRepCnt = LOWORD(lparam);
-         
+
          m_nFlags = HIWORD(lparam);
-         
+
          System.user().keyboard().translate_os_key_message(this);
 
       }
@@ -919,7 +919,7 @@ namespace ca
          switch(uiMessage)
          {
             case message_create:
-               return CreateNotify;
+               return WM_CREATE;
             default:
                return uiMessage;
          };

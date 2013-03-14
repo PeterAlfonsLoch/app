@@ -5430,6 +5430,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          options->TreatAsUntrusted = false;
          bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
 #pragma pop_macro("System")
+#elif defined(LINUX)
+      ::system("xdg-open " + strLink);
+      return true;
 #else
          throw not_implemented(get_app());
 #endif

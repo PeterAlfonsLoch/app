@@ -6,13 +6,15 @@
 oswindow::data::data()
 {
 
-   m_plongmap   = new simple_map < int, LONG >();
+   m_plongmap      = new simple_map < int, LONG >();
 
-   m_hthread    = NULL;
+   m_hthread       = NULL;
 
-   m_window     = None;
+   m_window        = None;
 
-   m_pui        = NULL;
+   m_pui           = NULL;
+
+   m_bDestroying   = false;
 
 }
 
@@ -936,8 +938,36 @@ WINBOOL DestroyWindow(oswindow window)
    if(!IsWindow(window))
       return FALSE;
 
-   XDestroyWindow(window.display(), window.window());
+
+   Display * pdisplay = window.display();
+   Window win = window.window();
+
+   oswindow::data * pdata = (oswindow::data *) (void *) window;
+
+   pdata->m_bDestroying = true;
+
+   bool bIs = IsWindow(window);
+
+   XDestroyWindow(pdisplay, win);
 
    return true;
 
+}
+
+bool oswindow::is_destroying()
+{
+   if(m_pdata == NULL)
+      return true;
+
+   if(m_pdata->m_bDestroying)
+      return true;
+
+   return false;
+
+}
+
+
+bool IsWindow(oswindow oswindow)
+{
+   return oswindow.get_user_interaction() != NULL && !oswindow.is_destroying();
 }

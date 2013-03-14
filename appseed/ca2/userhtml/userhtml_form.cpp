@@ -157,6 +157,8 @@ void html_form::GetClientBox(::html::box & box)
 void html_form::layout()
 {
 
+   mutex_lock sl(user_mutex(), true);
+
    if(get_html_data() == NULL)
       return;
 

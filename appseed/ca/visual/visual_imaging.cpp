@@ -193,6 +193,9 @@ return LoadImageFile(ar.GetFile());
 FIBITMAP * imaging::LoadImageFile(::ca::file * pfile)
 {
 
+   if(pfile == NULL)
+      return NULL;
+
    FreeImageIO io;
    io.read_proc = __ReadProc2;
    io.seek_proc = __SeekProc2;
