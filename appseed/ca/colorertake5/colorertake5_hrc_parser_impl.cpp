@@ -724,7 +724,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
             pIDs[pos].region = rgn;
             pIDs[pos].isSymbol = (type == 2);
             pIDs[pos].ssShorter = -1;
-            next->kwList->firstChar->add_char(::ca::str::utf8_char(param));
+            next->kwList->firstChar->add_char(::ca::str::get_utf8_char(param));
             if (!isCase)
             {
                next->kwList->firstChar->add_char(::ca::ch::to_lower_case(param));
@@ -824,7 +824,7 @@ void HRCParserImpl::updateLinks()
                }
                else
                {
-                  if (errorHandler != NULL) 
+                  if (errorHandler != NULL)
                   {
                      errorHandler->error(string("cannot resolve scheme name '")+snode->schemeName+"' in scheme '"+scheme->m_value->schemeName+"'");
                   }
@@ -849,7 +849,7 @@ void HRCParserImpl::updateLinks()
                         {
                            vt->virtScheme = ppair->m_value;
                         }
-                     }                        
+                     }
 
                      if (vsn.is_empty())
                      {

@@ -27,7 +27,7 @@ namespace datetime
       string strText1;
       for(int32_t i = 0;*psz; psz = ::ca::str::utf8_inc(psz))
       {
-         string strChar = ::ca::str::utf8_char(psz);
+         string strChar = ::ca::str::get_utf8_char(psz);
          if(::ca::ch::is_whitespace(psz))
          {
             i++;

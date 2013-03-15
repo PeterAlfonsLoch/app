@@ -8,12 +8,31 @@ namespace ca
 {
 
 
+   int32_t utf8_char::parse(const char * psz)
+   {
+      char chLen =  1 + ::ca::str::trailingBytesForUTF8[(uchar) *psz];
+      char ch = 0;
+      for(; ch < chLen; ch++)
+      {
+         if(*psz == 0)
+         {
+            m_chLen = -1;
+            return -1;
+         }
+         m_sz[ch] = *psz++;
+      }
+      m_sz[ch]   = '\0';
+      m_chLen    = chLen;
+      return chLen;
+   }
+
+
    namespace ch
    {
 
-      
+
       int32_t ref_tables();
-      
+
       int32_t ref_tables()
       {
          return sizeof(char_bidi_names);

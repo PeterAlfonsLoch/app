@@ -486,7 +486,7 @@ SRegInfo *next, *temp;
     };
     if (expr[i] == ')' || expr[i] == ']' || expr[i] == '}') return EBRACKETS;
     next->op = ReSymb;
-    next->un.symbol = new string(::ca::str::utf8_char(&((const char *)expr)[i]));
+    next->un.symbol = new string(::ca::str::get_utf8_char(&((const char *)expr)[i]));
     i += next->un.symbol->get_length() - 1;
   };
 
@@ -758,7 +758,7 @@ const string pattern = global_pattern;
           if (::ca::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::ca::ch::to_lower_case(*re->un.symbol) &&
              ::ca::ch::to_upper_case(&((const char *)pattern)[toParse]) != ::ca::ch::to_upper_case(*re->un.symbol))
             return false;
-        }else if (::ca::str::utf8_char(&((const char *)pattern)[toParse]) != *re->un.symbol) return false;
+        }else if (::ca::str::get_utf8_char(&((const char *)pattern)[toParse]) != *re->un.symbol) return false;
         toParse++;
         break;
       case ReMetaSymb:

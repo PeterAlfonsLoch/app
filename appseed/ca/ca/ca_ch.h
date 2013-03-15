@@ -34,8 +34,15 @@ namespace ca
    class CLASS_DECL_ca utf8_char
    {
    public:
+
+
       char     m_sz[11];
       char     m_chLen;
+
+
+      int32_t parse(const char * psz);
+
+
    };
 
 

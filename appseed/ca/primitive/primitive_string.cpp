@@ -271,7 +271,7 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
 #endif
    /*while(*pszMatch != '\0')
    {
-      string strUtf8Char = ::ca::str::utf8_char(pszMatch);
+      string strUtf8Char = ::ca::str::get_utf8_char(pszMatch);
       const char * psz = strstr(pszBlock, strUtf8Char);
       if(psz != NULL)
          return psz;
@@ -296,7 +296,7 @@ strsize __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const
    if(pszLast == NULL)
       return 0;
    else
-      return pszBlock - pszLast + ::ca::str::utf8_char(pszLast).get_length();
+      return pszBlock - pszLast + ::ca::str::get_utf8_char(pszLast).get_length();
    //return (strsize)_mbsspn( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszSet ) );
 }
 
@@ -386,7 +386,7 @@ char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
    char * p = psz + strlen(psz);
    while((p = (char*) ::ca::str::utf8_dec(psz, p))!= NULL)
    {
-      strRev += ::ca::str::utf8_char(p);
+      strRev += ::ca::str::get_utf8_char(p);
    }
    strcpy(psz, strRev);
    return psz;
@@ -583,7 +583,7 @@ strsize __cdecl crt_char_traits::GetCharLen(const wchar_t* pch ) throw()
 strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
 {
    // returns char length
-   return  ::ca::str::utf8_char(pch).get_length();
+   return  ::ca::str::get_utf8_char(pch).get_length();
 }
 
 uint32_t __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,uint32_t dwSize )
@@ -1681,7 +1681,7 @@ strsize string::find_w(const char * pszSub,strsize iStart, strsize nCount) const
       const char * pszSub2 = pszSub;
       while(*psz2 != '\0' && *pszSub2 != '\0')
       {
-         if(::ca::str::utf8_char(psz2) != ::ca::str::utf8_char(pszSub2))
+         if(::ca::str::get_utf8_char(psz2) != ::ca::str::get_utf8_char(pszSub2))
          {
             bFound = false;
             break;
@@ -2731,7 +2731,7 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
       return "";
 
    ::count iUtf8Len = utf8_get_length();
-   
+
    if(iFirst < 0 )
       iFirst = iUtf8Len + iFirst;
 
@@ -2796,7 +2796,7 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
    }
 
    return c;
-   
+
 }
 
 

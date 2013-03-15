@@ -129,16 +129,15 @@ namespace ca
 
 
       CLASS_DECL_ca  const char *   utf8_dec(const char * pszBeg, const char * psz);
-      CLASS_DECL_ca  string         utf8_char(const char *psz);
-      CLASS_DECL_ca  string         utf8_char(const char *psz, const char * pszEnd);
-      CLASS_DECL_ca  bool           utf8_char(string & strChar, const char * & psz, const char * pszEnd);
-      CLASS_DECL_ca  string         utf8_char(const char * pszBeg, const char *psz, strsize i);
+      CLASS_DECL_ca  string         get_utf8_char(const char *psz);
+      CLASS_DECL_ca  string         get_utf8_char(const char *psz, const char * pszEnd);
+      CLASS_DECL_ca  bool           get_utf8_char(string & strChar, const char * & psz, const char * pszEnd);
+      CLASS_DECL_ca  string         get_utf8_char(const char * pszBeg, const char *psz, strsize i);
       CLASS_DECL_ca  string         utf8_next_char(const char * pszBeg, const char *psz, strsize i = 0);
       CLASS_DECL_ca  string         utf8_previous_char(const char * pszBeg, const char *psz, strsize i = 0);
       CLASS_DECL_ca  string         uni_to_utf8(int64_t ch);
 
       CLASS_DECL_ca  const char *   utf8_dec(::ca::utf8_char * pchar, const char * pszBeg, const char * psz);
-      CLASS_DECL_ca  int32_t            utf8_char(::ca::utf8_char * pchar, const char *psz);
 
 
       CLASS_DECL_ca  bool           to(const char * psz, int32_t & i);

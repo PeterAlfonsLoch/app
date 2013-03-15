@@ -554,7 +554,7 @@ namespace user
 
       // Sort
       virtual index _001Compare(index iItem1, index iItem2);
-      virtual index _001Compare(index iItem1, index iItem2, index iSubItem);
+      virtual index _002Compare(index iItem1, index iItem2, index iSubItem);
       virtual index _001DisplayCompare(index iDisplayItem1, index iDisplayItem2);
 
 

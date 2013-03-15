@@ -2,9 +2,9 @@
 
 namespace simpledb
 {
-   
+
    int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
-   
+
    set::set() :
       ::database::set()
    {
@@ -426,7 +426,7 @@ namespace simpledb
    string set::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string qc = ::ca::str::utf8_char(psz);
+      string qc = ::ca::str::get_utf8_char(psz);
       if(qc != "\'")
       {
          throw "Quote character is required here";
@@ -435,7 +435,7 @@ namespace simpledb
       while(true)
       {
          psz = ::ca::str::utf8_inc(psz);
-         string qc2 = ::ca::str::utf8_char(psz);
+         string qc2 = ::ca::str::get_utf8_char(psz);
          //string str = ::ca::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {

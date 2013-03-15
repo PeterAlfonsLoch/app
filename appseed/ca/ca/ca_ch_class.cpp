@@ -221,7 +221,7 @@ namespace ca
 
          }
 
-         cc->add_char(::ca::str::utf8_char(&ccs[pos]));
+         cc->add_char(::ca::str::get_utf8_char(&ccs[pos]));
 
          prev_char = ccs[pos];
 

@@ -4517,7 +4517,7 @@ namespace user
          return;
       if(m_eview != ViewIcon)
       {
-         ::sort::QuickSort(m_listlayout.m_iaDisplayToStrict, this, (compare_interface::_FUNCTION_Compare) &list::_001Compare);
+         ::sort::QuickSort(m_listlayout.m_iaDisplayToStrict, this, (::sort::compare_interface::_FUNCTION_Compare) &::user::list::_001Compare);
       }
       else
       {
@@ -4559,7 +4559,7 @@ namespace user
 
 
 
-   index list::_001Compare(index iItem1, index iItem2, index iSubItem)
+   index list::_002Compare(index iItem1, index iItem2, index iSubItem)
    {
       draw_list_item item1(this);
       draw_list_item item2(this);
@@ -4595,7 +4595,7 @@ namespace user
       for(index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
          pitem = &m_sortinfo.m_itema[i];
-         iCompare = _001Compare(iItem1, iItem2, pitem->m_iSubItem);
+         iCompare = _002Compare(iItem1, iItem2, pitem->m_iSubItem);
          if(iCompare != 0)
             break;
       }

@@ -821,7 +821,7 @@ namespace ca
       while(*pszIter != '\0')
       {
 
-         string strChar = utf8_char(pszIter);
+         string strChar = get_utf8_char(pszIter);
 
          if(!::ca::ch::is_letter_or_digit(strChar))
          {
@@ -830,7 +830,7 @@ namespace ca
             {
                i += strChar.get_length();
                pszIter = utf8_inc(pszIter);
-               strChar = utf8_char(pszIter);
+               strChar = get_utf8_char(pszIter);
             }
             while(!::ca::ch::is_letter_or_digit(strChar) && *pszIter != '\0');
 
@@ -888,7 +888,7 @@ namespace ca
       while(*pszIter != '\0')
       {
 
-         string strChar = utf8_char(pszIter);
+         string strChar = get_utf8_char(pszIter);
 
          if(!::ca::ch::is_letter(strChar))
          {
@@ -900,7 +900,7 @@ namespace ca
 
                pszIter = utf8_inc(pszIter);
 
-               strChar = utf8_char(pszIter);
+               strChar = get_utf8_char(pszIter);
 
             }
             while(!::ca::ch::is_letter(strChar) && *pszIter != '\0');
@@ -1007,7 +1007,7 @@ namespace ca
 
       while(true)
       {
-         string qc = utf8_char(psz);
+         string qc = get_utf8_char(psz);
          if(qc.is_empty())
          {
             break;
@@ -1640,34 +1640,16 @@ namespace ca
    }
 
 
-   int32_t str::utf8_char(::ca::utf8_char * pchar, const char * psz)
-   {
-      char chLen =  1 + ::ca::str::trailingBytesForUTF8[(uchar) *psz];
-      char ch = 0;
-      for(; ch < chLen; ch++)
-      {
-         if(*psz == 0)
-         {
-            pchar->m_chLen = -1;
-            return -1;
-         }
-         pchar->m_sz[ch] = *psz++;
-      }
-      pchar->m_sz[ch]   = '\0';
-      pchar->m_chLen    = chLen;
-      return chLen;
-   }
-
-   string str::utf8_char(const char * psz)
+   string str::get_utf8_char(const char * psz)
    {
       ::ca::utf8_char ch;
-      int32_t len = utf8_char(&ch, psz);
+      int32_t len = ch.parse(psz);
       if(len < 0)
          return "";
       return string(ch.m_sz);
    }
 
-   string str::utf8_char(const char * psz, const char * pszEnd)
+   string str::get_utf8_char(const char * psz, const char * pszEnd)
    {
       const char * pszNext = __utf8_inc(psz);
       if(pszNext > pszEnd)
@@ -1675,7 +1657,7 @@ namespace ca
       return string(psz, pszNext - psz);
    }
 
-   bool str::utf8_char(string & str, const char * & psz, const char * pszEnd)
+   bool str::get_utf8_char(string & str, const char * & psz, const char * pszEnd)
    {
       const char * pszNext = __utf8_inc(psz);
       if(pszNext > pszEnd)
@@ -1687,7 +1669,7 @@ namespace ca
       return true;
    }
 
-   string str::utf8_char(const char * pszBeg, const char * psz, index i)
+   string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
    {
 
       if(i > 0)
@@ -1701,7 +1683,7 @@ namespace ca
             }
             i--;
          }
-         return utf8_char(psz);
+         return get_utf8_char(psz);
       }
       else
       {
@@ -1718,13 +1700,13 @@ namespace ca
             }
             i++;
          }
-         return utf8_char(psz);
+         return get_utf8_char(psz);
       }
    }
 
    string str::utf8_next_char(const char * pszBeg, const char * psz, index i)
    {
-      return utf8_char(pszBeg, psz, i + 1);
+      return get_utf8_char(pszBeg, psz, i + 1);
    }
 
    string str::utf8_previous_char(const char * pszBeg, const char * psz, index i)
@@ -1979,7 +1961,7 @@ namespace ca
    string str::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string qc = utf8_char(psz); // quote character
+      string qc = get_utf8_char(psz); // quote character
       if(qc != "\"" && qc != "\\")
       {
          throw "Quote character is required here";
@@ -1989,7 +1971,7 @@ namespace ca
       while(true)
       {
          psz = utf8_inc(psz);
-         qc2 = utf8_char(psz);
+         qc2 = get_utf8_char(psz);
          //string str = ::ca::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
@@ -2008,7 +1990,7 @@ namespace ca
    {
       const char * psz = pszXml;
       string qc; // quote character
-      if(!utf8_char(qc, psz, pszEnd))
+      if(!get_utf8_char(qc, psz, pszEnd))
       {
          throw "Quote character is required here, premature end";
       }
@@ -2048,7 +2030,7 @@ namespace ca
    string str::consume_c_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string strQuoteChar = utf8_char(psz);
+      string strQuoteChar = get_utf8_char(psz);
       if(strQuoteChar != "\"" && strQuoteChar != "\\")
       {
          throw "Quote character is required here";
@@ -2060,7 +2042,7 @@ namespace ca
       {
          psz = utf8_inc(psz);
          strPreviousChar = strCurrentChar;
-         strCurrentChar = utf8_char(psz);
+         strCurrentChar = get_utf8_char(psz);
          //string str = ::ca::international::utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {

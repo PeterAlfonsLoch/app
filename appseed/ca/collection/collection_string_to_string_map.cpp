@@ -6,7 +6,7 @@
 
 base_string_to_string_map::base_string_to_string_map(int_ptr nBlockSize)
 {
-   
+
    ASSERT(nBlockSize > 0);
    if (nBlockSize <= 0)
       nBlockSize = 10;   // default size
@@ -492,14 +492,14 @@ void base_string_to_string_map::_001ReplaceVars(string & str)
 string_to_string_map::string_to_string_map(int_ptr nBlockSize) :
    base_string_to_string_map(nBlockSize)
 {
-   
+
 }
 
 
 string_to_string_map::string_to_string_map(const string_to_string_map & map) :
    base_string_to_string_map(dynamic_cast < const base_string_to_string_map & > (map))
 {
-   
+
 }
 
 
@@ -516,7 +516,7 @@ string_to_string_map & string_to_string_map::operator = (const string_to_string_
    {
 
       base_string_to_string_map::m_nBlockSize = map.base_string_to_string_map::m_nBlockSize;
-      attrib_map < base_string_to_string_map >::operator = (map);
+      ::collection::attrib_map < base_string_to_string_map >::operator = (map);
 
    }
 
