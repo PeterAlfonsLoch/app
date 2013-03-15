@@ -34,7 +34,7 @@
 	<File name="ca/ca.h" open="0" top="0" tabpos="10">
 		<Cursor position="645" topLine="20" />
 	</File>
-	<File name="ca/ca_allocation_base_ca.cpp" open="1" top="1" tabpos="9">
+	<File name="ca/ca_allocation_base_ca.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="2864" topLine="84" />
 	</File>
 	<File name="ca/ca_allocation_system_heap.cpp" open="0" top="0" tabpos="21">
@@ -214,7 +214,7 @@
 	<File name="ca/ca_log.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="9100" topLine="239" />
 	</File>
-	<File name="ca/ca_machine_event_central.cpp" open="0" top="0" tabpos="4">
+	<File name="ca/ca_machine_event_central.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="478" topLine="8" />
 	</File>
 	<File name="ca/ca_message.cpp" open="0" top="0" tabpos="18">
@@ -244,8 +244,8 @@
 	<File name="ca/ca_pipe.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="101" topLine="0" />
 	</File>
-	<File name="ca/ca_plex_heap.h" open="1" top="0" tabpos="6">
-		<Cursor position="4277" topLine="166" />
+	<File name="ca/ca_plex_heap.h" open="1" top="1" tabpos="6">
+		<Cursor position="3948" topLine="166" />
 	</File>
 	<File name="ca/ca_process.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="26" topLine="0" />
@@ -1183,7 +1183,7 @@
 	<File name="multithreading/multithreading_service_status.h" open="0" top="0" tabpos="0">
 		<Cursor position="393" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_single_lock.cpp" open="1" top="0" tabpos="1">
+	<File name="multithreading/multithreading_single_lock.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="766" topLine="0" />
 	</File>
 	<File name="multithreading/multithreading_single_lock.h" open="0" top="0" tabpos="24">
@@ -1267,14 +1267,14 @@
 	<File name="plane/plane_library.cpp" open="0" top="0" tabpos="35">
 		<Cursor position="34" topLine="0" />
 	</File>
-	<File name="plane/plane_session.cpp" open="0" top="0" tabpos="27">
+	<File name="plane/plane_session.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="13891" topLine="484" />
 	</File>
 	<File name="plane/plane_session.h" open="0" top="0" tabpos="7">
 		<Cursor position="4489" topLine="114" />
 	</File>
-	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="38306" topLine="1708" />
+	<File name="plane/plane_system.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="38072" topLine="1708" />
 	</File>
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="46">
 		<Cursor position="13682" topLine="428" />
@@ -1699,8 +1699,8 @@
 	<File name="user/user_front_end.h" open="0" top="0" tabpos="41">
 		<Cursor position="530" topLine="0" />
 	</File>
-	<File name="user/user_interaction.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="73736" topLine="3026" />
+	<File name="user/user_interaction.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="76544" topLine="3144" />
 	</File>
 	<File name="user/user_interaction.h" open="0" top="0" tabpos="19">
 		<Cursor position="664" topLine="88" />
@@ -1771,7 +1771,7 @@
 	<File name="user/user_window_interface.h" open="0" top="0" tabpos="123">
 		<Cursor position="7363" topLine="196" />
 	</File>
-	<File name="user/user_window_util.cpp" open="1" top="0" tabpos="8">
+	<File name="user/user_window_util.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="20703" topLine="865" />
 	</File>
 	<File name="user/user_window_util.h" open="0" top="0" tabpos="13">

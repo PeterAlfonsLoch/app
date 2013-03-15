@@ -301,7 +301,7 @@
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="74">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="uinteraction/uinteraction_uinteraction.cpp" open="1" top="0" tabpos="1">
+	<File name="uinteraction/uinteraction_uinteraction.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="802" topLine="30" />
 	</File>
 	<File name="user/user.h" open="0" top="0" tabpos="49">
@@ -370,7 +370,7 @@
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="3">
+	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="5017" topLine="175" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
