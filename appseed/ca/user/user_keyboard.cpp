@@ -360,7 +360,7 @@ namespace user
    void keyboard::translate_os_key_message(::ca::message::key * pkey)
    {
 
-      pkey->m_ekey = m_mapKey[pkey->m_nChar];
+      pkey->m_ekey = m_mapKey[(int32_t) pkey->m_nChar];
 
    }
 

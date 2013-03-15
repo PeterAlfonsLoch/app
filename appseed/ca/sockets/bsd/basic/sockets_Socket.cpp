@@ -1696,7 +1696,7 @@ namespace sockets
    {
    }
 
-   void socket::close_socket(int32_t fd)
+   void socket::close_socket(SOCKET fd)
    {
       ::closesocket(fd);
    }
