@@ -14,11 +14,12 @@
 #endif
 
 
-
 namespace ca
 {
 
+
    class thread;
+
 
    class CLASS_DECL_c thread_base
    {
@@ -28,11 +29,17 @@ namespace ca
       ::ca::thread      * m_pthread;
 
 
+      thread_base();
+      virtual ~thread_base();
+
+
       virtual HTHREAD get_os_handle() const = 0;
+
 
    };
 
-};
+
+} // namespace ca
 
 
 namespace user

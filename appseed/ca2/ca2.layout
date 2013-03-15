@@ -301,8 +301,8 @@
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="74">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="uinteraction/uinteraction_uinteraction.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="802" topLine="39" />
+	<File name="uinteraction/uinteraction_uinteraction.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="802" topLine="30" />
 	</File>
 	<File name="user/user.h" open="0" top="0" tabpos="49">
 		<Cursor position="45" topLine="0" />
@@ -328,11 +328,11 @@
 	<File name="user/user_front_end_schema.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="958" topLine="14" />
 	</File>
-	<File name="user/user_list.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="69571" topLine="2250" />
+	<File name="user/user_list.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="128088" topLine="4580" />
 	</File>
-	<File name="user/user_list.h" open="0" top="0" tabpos="1">
-		<Cursor position="6518" topLine="252" />
+	<File name="user/user_list.h" open="0" top="0" tabpos="3">
+		<Cursor position="15059" topLine="538" />
 	</File>
 	<File name="user/user_list_header.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="12447" topLine="441" />
@@ -370,8 +370,8 @@
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="7649" topLine="262" />
+	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="5017" topLine="175" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="555" topLine="19" />

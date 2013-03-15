@@ -172,7 +172,23 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
 // trans      HICON hicon = GetIcon(false);
 
-      ::uinteraction::frame::frame * pinteractionframe = create_frame_schema();
+        ::uinteraction::frame::frame * pinteractionframe = NULL;
+
+        try
+        {
+
+
+            pinteractionframe = create_frame_schema();
+
+        }
+        catch(not_installed & e)
+        {
+
+            System.remove_frame(this);
+
+            throw e;
+
+        }
 
 
       //frame::FrameSchema * pschema = dynamic_cast < ::frame::FrameSchema * > (pinteractionframe);
