@@ -3,7 +3,7 @@
 
 
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & memorySalt)
+int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & memorySalt)
 {
 
    DATA_BLOB DataIn;
@@ -42,18 +42,18 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
       memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
       LocalFree(lpwsz);
       LocalFree(DataOut.pbData);
-      return true;
+      return 1;
    }
    else
    {
       uint32_t dwLastError = GetLastError();
   //    TRACELASTERROR();
     //  TRACE("crypt::decrypt Decryption error! (1)");
-      return false;
+      return 0;
    }
 }
 
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memorySalt)
+int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memorySalt)
 {
    DATA_BLOB DataIn;
    DATA_BLOB DataOut;
@@ -91,13 +91,13 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
       storageEncrypt.allocate(DataOut.cbData);
       memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
       LocalFree(DataOut.pbData);
-      return true;
+      return 1;
    }
    else
    {
       uint32_t dwLastError = GetLastError();
       //TRACE("crypt::encrypt Encryption error! (1)");
-         return false;
+         return 0;
    }
 
 }

@@ -5,9 +5,9 @@
 #include <openssl/err.h>
 #endif
 
-CLASS_DECL_c bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
+CLASS_DECL_c int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
 
-CLASS_DECL_c bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key);
+CLASS_DECL_c int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key);
 
 bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
 {
