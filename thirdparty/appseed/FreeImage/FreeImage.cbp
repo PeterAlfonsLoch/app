@@ -2,15 +2,15 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="FreeImage" />
+		<Option title="_ca2freeimage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../../stage/x86/libFreeImage.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../stage/x86/lib_ca2freeimage.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../../stage/x86/" />
-				<Option object_output="../../../../time/intermediate/app/FreeImage" />
+				<Option object_output="../../../../time/intermediate/app/_ca2freeimage" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />

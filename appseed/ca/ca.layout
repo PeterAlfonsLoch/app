@@ -160,7 +160,7 @@
 	<File name="ca/ca_graphics.cpp" open="0" top="0" tabpos="44">
 		<Cursor position="4709" topLine="154" />
 	</File>
-	<File name="ca/ca_graphics.h" open="1" top="0" tabpos="7">
+	<File name="ca/ca_graphics.h" open="0" top="0" tabpos="7">
 		<Cursor position="5488" topLine="150" />
 	</File>
 	<File name="ca/ca_graphics_object.cpp" open="0" top="0" tabpos="2">
@@ -214,7 +214,7 @@
 	<File name="ca/ca_log.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="9100" topLine="239" />
 	</File>
-	<File name="ca/ca_machine_event_central.cpp" open="1" top="0" tabpos="1">
+	<File name="ca/ca_machine_event_central.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="478" topLine="8" />
 	</File>
 	<File name="ca/ca_message.cpp" open="0" top="0" tabpos="18">
@@ -283,7 +283,7 @@
 	<File name="ca/ca_signal.h" open="0" top="0" tabpos="15">
 		<Cursor position="5548" topLine="170" />
 	</File>
-	<File name="ca/ca_smart_pointer.h" open="1" top="0" tabpos="3">
+	<File name="ca/ca_smart_pointer.h" open="0" top="0" tabpos="3">
 		<Cursor position="2483" topLine="110" />
 	</File>
 	<File name="ca/ca_str.cpp" open="0" top="0" tabpos="3">
@@ -1267,7 +1267,7 @@
 	<File name="plane/plane_library.cpp" open="0" top="0" tabpos="35">
 		<Cursor position="34" topLine="0" />
 	</File>
-	<File name="plane/plane_session.cpp" open="1" top="1" tabpos="2">
+	<File name="plane/plane_session.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="13891" topLine="481" />
 	</File>
 	<File name="plane/plane_session.h" open="0" top="0" tabpos="7">
@@ -1399,7 +1399,7 @@
 	<File name="primitive/primitive_point.h" open="0" top="0" tabpos="14">
 		<Cursor position="1843" topLine="55" />
 	</File>
-	<File name="primitive/primitive_rectangle.cpp" open="1" top="0" tabpos="5">
+	<File name="primitive/primitive_rectangle.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="12574" topLine="487" />
 	</File>
 	<File name="primitive/primitive_rectangle.h" open="0" top="0" tabpos="7">

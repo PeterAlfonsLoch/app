@@ -45,7 +45,7 @@
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-Wl,-E" />
 			<Add option="-lca2c" />
-			<Add option="-lFreeImage" />
+			<Add option="-l_ca2freeimage" />
 			<Add option="-lca2optca" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

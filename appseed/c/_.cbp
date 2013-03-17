@@ -26,7 +26,6 @@
 					<Add directory="../../.." />
 				</Compiler>
 				<Linker>
-					<Add option="-lcairo" />
 					<Add directory="../../../stage/x86" />
 				</Linker>
 			</Target>
