@@ -483,10 +483,27 @@ FT_BEGIN_HEADER
 
 #ifndef FT_EXPORT
 
+#ifdef _WIN32
+
 #ifdef __cplusplus
-#define FT_EXPORT( x )  extern "C"  x
+#ifdef CA2_FREETYPE_DLL
+#define FT_EXPORT( x )  extern "C"  _declspec(dllexport) x
 #else
-#define FT_EXPORT( x )  extern  x
+#define FT_EXPORT( x ) extern "C" _declspec(dllimport)  x
+#endif
+#else
+#ifdef CA2_FREETYPE_DLL
+#define FT_EXPORT( x )   extern  _declspec(dllexport) x
+#else
+#define FT_EXPORT( x )  extern  _declspec(dllimport)  x
+#endif
+#endif
+#else
+#ifdef __cplusplus
+#define FT_EXPORT( x ) extern "C"  x
+#else
+#define FT_EXPORT( x ) extern  x
+#endif
 #endif
 
 #endif /* !FT_EXPORT */
@@ -494,10 +511,27 @@ FT_BEGIN_HEADER
 
 #ifndef FT_EXPORT_DEF
 
+#ifdef _WIN32
+
 #ifdef __cplusplus
-#define FT_EXPORT_DEF( x )  extern "C"  x
+#ifdef CA2_FREETYPE_DLL
+#define FT_EXPORT_DEF( x )extern "C"   _declspec(dllexport)  x
 #else
-#define FT_EXPORT_DEF( x )  extern  x
+#define FT_EXPORT_DEF( x )  extern "C"  _declspec(dllimport) x
+#endif
+#else
+#ifdef CA2_FREETYPE_DLL
+#define FT_EXPORT_DEF( x ) extern   _declspec(dllexport) x
+#else
+#define FT_EXPORT_DEF( x ) extern  _declspec(dllimport)  x
+#endif
+#endif
+#else
+#ifdef __cplusplus
+#define FT_EXPORT_DEF( x ) extern "C"  x
+#else
+#define FT_EXPORT_DEF( x ) extern  x
+#endif
 #endif
 
 #endif /* !FT_EXPORT_DEF */

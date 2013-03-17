@@ -355,6 +355,9 @@
     <Filter Include="Source Files\crypto\pkcs8">
       <UniqueIdentifier>{e348c45f-6d64-42c7-80b0-dcfb908433d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NewFilter1">
+      <UniqueIdentifier>{eae52735-6ccb-4e2e-aac7-798fceba760e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ssl\d1_clnt.c">
@@ -2672,5 +2675,10 @@
     <ClInclude Include="crypto\cms\cms_lcl.h">
       <Filter>Header Files\crypto\cms</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_ca2openssl.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

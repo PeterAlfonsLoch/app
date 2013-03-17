@@ -1607,7 +1607,7 @@ void ssl_sigpipe_handle( int x );
       if (cert != NULL && strlen(common_name) > 0)
       {
          char data[256];
-         if ((subject = X509_get_subject_name(cert)) != NULL && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
+         if ((subject = X509_get_subject_name(cert)) != NULL && OPENSSL_X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
          {
             data[255] = 0;
             if (strnicmp_dup(data, common_name, 255) == 0)
