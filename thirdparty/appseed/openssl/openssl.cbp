@@ -48,45 +48,15 @@
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
 			<Add directory="../../include" />
+			<Add directory="crypto" />
+			<Add directory="ssl" />
+			<Add directory="crypto/asn1" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-lca2zlib" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
-		<Unit filename="bugs/alpha.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="bugs/dggccbug.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="bugs/sgiccbug.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="bugs/stream.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="bugs/ultrixcc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/LPdir_nyi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/LPdir_unix.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/LPdir_vms.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/LPdir_win.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/LPdir_win32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/LPdir_wince.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/aes/aes.h" />
 		<Unit filename="crypto/aes/aes_cbc.c">
 			<Option compilerVar="CC" />
@@ -119,12 +89,7 @@
 		<Unit filename="crypto/aes/aes_x86core.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/aes/asm/aes-ia64.S" />
 		<Unit filename="crypto/arm_arch.h" />
-		<Unit filename="crypto/armcap.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/armv4cpuid.S" />
 		<Unit filename="crypto/asn1/a_bitstr.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -384,13 +349,6 @@
 		<Unit filename="crypto/bf/bf_skey.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/bf/bfs.cpp" />
-		<Unit filename="crypto/bf/bfspeed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/bf/bftest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/bf/blowfish.h" />
 		<Unit filename="crypto/bio/b_dump.c">
 			<Option compilerVar="CC" />
@@ -451,20 +409,7 @@
 		<Unit filename="crypto/bio/bss_null.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/bio/bss_rtcp.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/bio/bss_sock.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/bn/asm/ia64.S" />
-		<Unit filename="crypto/bn/asm/mips3.s" />
-		<Unit filename="crypto/bn/asm/pa-risc2.s" />
-		<Unit filename="crypto/bn/asm/pa-risc2W.s" />
-		<Unit filename="crypto/bn/asm/s390x.S" />
-		<Unit filename="crypto/bn/asm/sparcv8.S" />
-		<Unit filename="crypto/bn/asm/sparcv8plus.S" />
-		<Unit filename="crypto/bn/asm/x86_64-gcc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/bn/bn.h" />
@@ -563,15 +508,6 @@
 		<Unit filename="crypto/bn/divtest.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/bn/exp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/bn/expspeed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/bn/exptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/bn/vms-helper.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -633,10 +569,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/cast/castopts.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/cast/casts.cpp" />
-		<Unit filename="crypto/cast/casttest.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/cmac/cm_ameth.c">
@@ -1393,7 +1325,6 @@
 		<Unit filename="crypto/hmac/hmactest.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/ia64cpuid.S" />
 		<Unit filename="crypto/idea/i_cbc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1470,7 +1401,6 @@
 		<Unit filename="crypto/md4/md4test.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/md5/asm/md5-ia64.S" />
 		<Unit filename="crypto/md5/md5.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1736,9 +1666,6 @@
 		<Unit filename="crypto/pkcs7/verify.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/ppccap.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/pqueue/pq_test.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1933,10 +1860,6 @@
 		<Unit filename="crypto/rsa/rsa_x931.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/s390xcap.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/s390xcpuid.S" />
 		<Unit filename="crypto/seed/seed.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1990,10 +1913,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/sha/shatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/sparccpuid.S" />
-		<Unit filename="crypto/sparcv9cap.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/srp/srp.h" />
@@ -2299,173 +2218,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/x509v3/x509v3.h" />
-		<Unit filename="demos/asn1/ocsp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/b64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/bio/saccept.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/bio/sconnect.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_comp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_ddec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_dec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_denc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_sign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_sign2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_uncomp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/cms/cms_ver.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/easy_tls/easy-tls.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/easy_tls/easy-tls.h" />
-		<Unit filename="demos/easy_tls/test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/easy_tls/test.h" />
-		<Unit filename="demos/eay/base64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/eay/conn.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/eay/loadrsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/cluster_labs/cluster_labs.h" />
-		<Unit filename="demos/engines/cluster_labs/hw_cluster_labs.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/cluster_labs/hw_cluster_labs_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/cluster_labs/hw_cluster_labs_err.h" />
-		<Unit filename="demos/engines/ibmca/hw_ibmca.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/ibmca/hw_ibmca_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/ibmca/hw_ibmca_err.h" />
-		<Unit filename="demos/engines/ibmca/ica_openssl_api.h" />
-		<Unit filename="demos/engines/rsaref/rsaref.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/rsaref/rsaref_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/rsaref/rsaref_err.h" />
-		<Unit filename="demos/engines/zencod/hw_zencod.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/zencod/hw_zencod.h" />
-		<Unit filename="demos/engines/zencod/hw_zencod_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/engines/zencod/hw_zencod_err.h" />
-		<Unit filename="demos/maurice/example1.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/maurice/example2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/maurice/example3.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/maurice/example4.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/maurice/loadkeys.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/maurice/loadkeys.h" />
-		<Unit filename="demos/pkcs12/pkread.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/pkcs12/pkwrite.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/prime/prime.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/selfsign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/sign/sign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/smime/smdec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/smime/smenc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/smime/smsign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/smime/smsign2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/smime/smver.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/spkigen.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/ssl/cli.cpp" />
-		<Unit filename="demos/ssl/inetdsrv.cpp" />
-		<Unit filename="demos/ssl/serv.cpp" />
-		<Unit filename="demos/state_machine/state_machine.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/breakage.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/buffer.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/cb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/ip.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/sm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/tunala.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/tunala/tunala.h" />
-		<Unit filename="demos/x509/mkcert.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="demos/x509/mkreq.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="e_os.h" />
 		<Unit filename="e_os2.h" />
 		<Unit filename="engines/ccgost/e_gost_err.c">
@@ -2606,21 +2358,6 @@
 		<Unit filename="engines/vendor_defns/hw_ubsec.h" />
 		<Unit filename="engines/vendor_defns/hwcryptohook.h" />
 		<Unit filename="engines/vendor_defns/sureware.h" />
-		<Unit filename="ms/applink.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="ms/certCA.ss" />
-		<Unit filename="ms/certU.ss" />
-		<Unit filename="ms/keyCA.ss" />
-		<Unit filename="ms/keyU.ss" />
-		<Unit filename="ms/req2CA.ss" />
-		<Unit filename="ms/reqCA.ss" />
-		<Unit filename="ms/reqU.ss" />
-		<Unit filename="ms/tlhelp32.h" />
-		<Unit filename="ms/uplink.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="ms/uplink.h" />
 		<Unit filename="ssl/bio_ssl.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2773,117 +2510,6 @@
 		</Unit>
 		<Unit filename="ssl/tls1.h" />
 		<Unit filename="ssl/tls_srp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/asn1test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/bftest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/bntest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/casttest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/destest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/dhtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/dsatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/dummytest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/ecdhtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/ecdsatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/ectest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/enginetest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/evp_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/exptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/hmactest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/ideatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/igetest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/jpaketest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/md2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/md4test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/md5test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/mdc2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/methtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/r160test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/randtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/rc2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/rc4test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/rc5test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/rmdtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/rsa_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/sha1test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/sha256t.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/sha512t.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/shatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/srptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/ssltest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="test/wp_test.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="times/x86/bfs.cpp" />

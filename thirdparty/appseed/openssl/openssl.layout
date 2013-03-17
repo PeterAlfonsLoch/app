@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="" />
-	<File name="bugs/stream.c" open="1" top="1" tabpos="0">
-		<Cursor position="4302" topLine="80" />
+	<File name="crypto/aes/aes_ige.c" open="1" top="0" tabpos="1">
+		<Cursor position="2807" topLine="34" />
+	</File>
+	<File name="crypto/arm_arch.h" open="1" top="0" tabpos="2">
+		<Cursor position="1166" topLine="16" />
+	</File>
+	<File name="crypto/cmac/cm_ameth.c" open="1" top="1" tabpos="4">
+		<Cursor position="2632" topLine="39" />
 	</File>
 </CodeBlocks_layout_file>
