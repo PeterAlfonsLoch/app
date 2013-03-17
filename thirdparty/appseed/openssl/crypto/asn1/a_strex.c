@@ -65,7 +65,7 @@
 
 #include "charmap.h"
 
-/* ASN1_STRING_print_ex() and X509_NAME_print_ex().
+/* ASN1_STRING_print_ex() and OPENSSL_X509_NAME_print_ex().
  * Enhanced string and name printing routines handling
  * multibyte characters, RFC2253 and a host of other
  * options.
@@ -389,14 +389,14 @@ static int do_indent(char_io *io_ch, void *arg, int indent)
 #define FN_WIDTH_LN	25
 #define FN_WIDTH_SN	10
 
-static int do_name_ex(char_io *io_ch, void *arg, X509_NAME *n,
+static int do_name_ex(char_io *io_ch, void *arg, OPENSSL_X509_NAME *n,
 				int indent, unsigned long flags)
 {
 	int i, prev = -1, orflags, cnt;
 	int fn_opt, fn_nid;
 	ASN1_OBJECT *fn;
 	ASN1_STRING *val;
-	X509_NAME_ENTRY *ent;
+	OPENSSL_X509_NAME_ENTRY *ent;
 	char objtmp[80];
 	const char *objbuf;
 	int outlen, len;
@@ -452,11 +452,11 @@ static int do_name_ex(char_io *io_ch, void *arg, X509_NAME *n,
 
 	fn_opt = flags & XN_FLAG_FN_MASK;
 
-	cnt = X509_NAME_entry_count(n);	
+	cnt = OPENSSL_X509_NAME_entry_count(n);	
 	for(i = 0; i < cnt; i++) {
 		if(flags & XN_FLAG_DN_REV)
-				ent = X509_NAME_get_entry(n, cnt - i - 1);
-		else ent = X509_NAME_get_entry(n, i);
+				ent = OPENSSL_X509_NAME_get_entry(n, cnt - i - 1);
+		else ent = OPENSSL_X509_NAME_get_entry(n, i);
 		if(prev != -1) {
 			if(prev == ent->set) {
 				if(!io_ch(arg, sep_mv, sep_mv_len)) return -1;
@@ -469,8 +469,8 @@ static int do_name_ex(char_io *io_ch, void *arg, X509_NAME *n,
 			}
 		}
 		prev = ent->set;
-		fn = X509_NAME_ENTRY_get_object(ent);
-		val = X509_NAME_ENTRY_get_data(ent);
+		fn = OPENSSL_X509_NAME_ENTRY_get_object(ent);
+		val = OPENSSL_X509_NAME_ENTRY_get_data(ent);
 		fn_nid = OBJ_obj2nid(fn);
 		if(fn_opt != XN_FLAG_FN_NONE) {
 			int objlen, fld_len;
@@ -516,15 +516,15 @@ static int do_name_ex(char_io *io_ch, void *arg, X509_NAME *n,
 
 /* Wrappers round the main functions */
 
-int X509_NAME_print_ex(BIO *out, X509_NAME *nm, int indent, unsigned long flags)
+int OPENSSL_X509_NAME_print_ex(BIO *out, OPENSSL_X509_NAME *nm, int indent, unsigned long flags)
 {
 	if(flags == XN_FLAG_COMPAT)
-		return X509_NAME_print(out, nm, indent);
+		return OPENSSL_X509_NAME_print(out, nm, indent);
 	return do_name_ex(send_bio_chars, out, nm, indent, flags);
 }
 
 #ifndef OPENSSL_NO_FP_API
-int X509_NAME_print_ex_fp(FILE *fp, X509_NAME *nm, int indent, unsigned long flags)
+int OPENSSL_X509_NAME_print_ex_fp(FILE *fp, OPENSSL_X509_NAME *nm, int indent, unsigned long flags)
 {
 	if(flags == XN_FLAG_COMPAT)
 		{
@@ -532,7 +532,7 @@ int X509_NAME_print_ex_fp(FILE *fp, X509_NAME *nm, int indent, unsigned long fla
 		int ret;
 		btmp = BIO_new_fp(fp, BIO_NOCLOSE);
 		if(!btmp) return -1;
-		ret = X509_NAME_print(btmp, nm, indent);
+		ret = OPENSSL_X509_NAME_print(btmp, nm, indent);
 		BIO_free(btmp);
 		return ret;
 		}

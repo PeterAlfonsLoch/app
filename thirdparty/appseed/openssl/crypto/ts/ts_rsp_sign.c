@@ -657,7 +657,7 @@ static TS_TST_INFO *TS_RESP_create_tst_info(TS_RESP_CTX *ctx,
 		if (!(tsa_name = GENERAL_NAME_new())) goto end;
 		tsa_name->type = GEN_DIRNAME;
 		tsa_name->d.dirn = 
-			X509_NAME_dup(ctx->signer_cert->cert_info->subject);
+			OPENSSL_X509_NAME_dup(ctx->signer_cert->cert_info->subject);
 		if (!tsa_name->d.dirn) goto end;
 		if (!TS_TST_INFO_set_tsa(tst_info, tsa_name)) goto end;
 		}
@@ -872,7 +872,7 @@ static ESS_CERT_ID *ESS_CERT_ID_new_init(X509 *cert, int issuer_needed)
 		/* Creating general name from the certificate issuer. */
 		if (!(name = GENERAL_NAME_new())) goto err;
 		name->type = GEN_DIRNAME;
-		if (!(name->d.dirn = X509_NAME_dup(cert->cert_info->issuer))) 
+		if (!(name->d.dirn = OPENSSL_X509_NAME_dup(cert->cert_info->issuer))) 
 			goto err;
 		if (!sk_GENERAL_NAME_push(cid->issuer_serial->issuer, name)) 
 			goto err;

@@ -127,7 +127,7 @@
     if ( error )
       goto Exit;
 
-    /* initialize internal lzw variable */
+    /* initialize m_internal lzw variable */
     ft_lzwstate_init( lzw, source );
 
   Exit:

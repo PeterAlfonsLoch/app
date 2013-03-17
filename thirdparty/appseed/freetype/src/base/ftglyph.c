@@ -73,10 +73,10 @@
     glyph->top  = slot->bitmap_top;
 
     /* do lazy copying whenever possible */
-    if ( slot->internal->flags & FT_GLYPH_OWN_BITMAP )
+    if ( slot->m_internal->flags & FT_GLYPH_OWN_BITMAP )
     {
       glyph->bitmap = slot->bitmap;
-      slot->internal->flags &= ~FT_GLYPH_OWN_BITMAP;
+      slot->m_internal->flags &= ~FT_GLYPH_OWN_BITMAP;
     }
     else
     {
@@ -542,7 +542,7 @@
 
     FT_MEM_ZERO( &dummy, sizeof ( dummy ) );
     FT_MEM_ZERO( &dummy_internal, sizeof ( dummy_internal ) );
-    dummy.internal = &dummy_internal;
+    dummy.m_internal = &dummy_internal;
     dummy.library  = library;
     dummy.format   = clazz->glyph_format;
 

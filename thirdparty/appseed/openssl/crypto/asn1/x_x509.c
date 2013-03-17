@@ -67,9 +67,9 @@ ASN1_SEQUENCE_enc(X509_CINF, enc, 0) = {
 	ASN1_EXP_OPT(X509_CINF, version, ASN1_INTEGER, 0),
 	ASN1_SIMPLE(X509_CINF, serialNumber, ASN1_INTEGER),
 	ASN1_SIMPLE(X509_CINF, signature, X509_ALGOR),
-	ASN1_SIMPLE(X509_CINF, issuer, X509_NAME),
+	ASN1_SIMPLE(X509_CINF, issuer, OPENSSL_X509_NAME),
 	ASN1_SIMPLE(X509_CINF, validity, X509_VAL),
-	ASN1_SIMPLE(X509_CINF, subject, X509_NAME),
+	ASN1_SIMPLE(X509_CINF, subject, OPENSSL_X509_NAME),
 	ASN1_SIMPLE(X509_CINF, key, X509_PUBKEY),
 	ASN1_IMP_OPT(X509_CINF, issuerUID, ASN1_BIT_STRING, 1),
 	ASN1_IMP_OPT(X509_CINF, subjectUID, ASN1_BIT_STRING, 2),
@@ -106,7 +106,7 @@ static int x509_cb(int operation, ASN1_VALUE **pval, const ASN1_ITEM *it,
 
 		case ASN1_OP_D2I_POST:
 		if (ret->name != NULL) OPENSSL_free(ret->name);
-		ret->name=X509_NAME_oneline(ret->cert_info->subject,NULL,0);
+		ret->name=OPENSSL_X509_NAME_oneline(ret->cert_info->subject,NULL,0);
 		break;
 
 		case ASN1_OP_FREE_POST:

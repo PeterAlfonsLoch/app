@@ -92,16 +92,16 @@ int X509_set_serialNumber(X509 *x, ASN1_INTEGER *serial)
 	return(in != NULL);
 	}
 
-int X509_set_issuer_name(X509 *x, X509_NAME *name)
+int X509_set_issuer_name(X509 *x, OPENSSL_X509_NAME *name)
 	{
 	if ((x == NULL) || (x->cert_info == NULL)) return(0);
-	return(X509_NAME_set(&x->cert_info->issuer,name));
+	return(OPENSSL_X509_NAME_set(&x->cert_info->issuer,name));
 	}
 
-int X509_set_subject_name(X509 *x, X509_NAME *name)
+int X509_set_subject_name(X509 *x, OPENSSL_X509_NAME *name)
 	{
 	if ((x == NULL) || (x->cert_info == NULL)) return(0);
-	return(X509_NAME_set(&x->cert_info->subject,name));
+	return(OPENSSL_X509_NAME_set(&x->cert_info->subject,name));
 	}
 
 int X509_set_notBefore(X509 *x, const ASN1_TIME *tm)

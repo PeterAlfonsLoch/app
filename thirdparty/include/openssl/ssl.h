@@ -864,7 +864,7 @@ struct ssl_ctx_st
 	void (*info_callback)(const SSL *ssl,int type,int val); /* used if SSL's info_callback is NULL */
 
 	/* what we put in client cert requests */
-	STACK_OF(X509_NAME) *client_CA;
+	STACK_OF(OPENSSL_X509_NAME) *client_CA;
 
 
 	/* Default values to use in SSL structures follow (these are copied by SSL_new) */
@@ -1252,7 +1252,7 @@ struct ssl_st
 	CRYPTO_EX_DATA ex_data;
 
 	/* for server side, keep the list of CA_dn we can use */
-	STACK_OF(X509_NAME) *client_CA;
+	STACK_OF(OPENSSL_X509_NAME) *client_CA;
 
 	int references;
 	unsigned long options; /* protocol behaviour */
@@ -1281,7 +1281,7 @@ struct ssl_st
 	int tlsext_status_expected;
 	/* OCSP status request only */
 	STACK_OF(OCSP_RESPID) *tlsext_ocsp_ids;
-	X509_EXTENSIONS *tlsext_ocsp_exts;
+	OPENSSL_X509_EXTENSIONS *tlsext_ocsp_exts;
 	/* OCSP response received or to be sent */
 	unsigned char *tlsext_ocsp_resp;
 	int tlsext_ocsp_resplen;
@@ -1715,12 +1715,12 @@ int	SSL_CTX_use_RSAPrivateKey_file(SSL_CTX *ctx, const char *file, int type);
 int	SSL_CTX_use_PrivateKey_file(SSL_CTX *ctx, const char *file, int type);
 int	SSL_CTX_use_certificate_file(SSL_CTX *ctx, const char *file, int type);
 int	SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file); /* PEM type */
-STACK_OF(X509_NAME) *SSL_load_client_CA_file(const char *file);
-int	SSL_add_file_cert_subjects_to_stack(STACK_OF(X509_NAME) *stackCAs,
+STACK_OF(OPENSSL_X509_NAME) *SSL_load_client_CA_file(const char *file);
+int	SSL_add_file_cert_subjects_to_stack(STACK_OF(OPENSSL_X509_NAME) *stackCAs,
 					    const char *file);
 #ifndef OPENSSL_SYS_VMS
 #ifndef OPENSSL_SYS_MACINTOSH_CLASSIC /* XXXXX: Better scheme needed! [was: #ifndef MAC_OS_pre_X] */
-int	SSL_add_dir_cert_subjects_to_stack(STACK_OF(X509_NAME) *stackCAs,
+int	SSL_add_dir_cert_subjects_to_stack(STACK_OF(OPENSSL_X509_NAME) *stackCAs,
 					   const char *dir);
 #endif
 #endif
@@ -1894,10 +1894,10 @@ const char *SSL_alert_type_string(int value);
 const char *SSL_alert_desc_string_long(int value);
 const char *SSL_alert_desc_string(int value);
 
-void SSL_set_client_CA_list(SSL *s, STACK_OF(X509_NAME) *name_list);
-void SSL_CTX_set_client_CA_list(SSL_CTX *ctx, STACK_OF(X509_NAME) *name_list);
-STACK_OF(X509_NAME) *SSL_get_client_CA_list(const SSL *s);
-STACK_OF(X509_NAME) *SSL_CTX_get_client_CA_list(const SSL_CTX *s);
+void SSL_set_client_CA_list(SSL *s, STACK_OF(OPENSSL_X509_NAME) *name_list);
+void SSL_CTX_set_client_CA_list(SSL_CTX *ctx, STACK_OF(OPENSSL_X509_NAME) *name_list);
+STACK_OF(OPENSSL_X509_NAME) *SSL_get_client_CA_list(const SSL *s);
+STACK_OF(OPENSSL_X509_NAME) *SSL_CTX_get_client_CA_list(const SSL_CTX *s);
 int SSL_add_client_CA(SSL *ssl,X509 *x);
 int SSL_CTX_add_client_CA(SSL_CTX *ctx,X509 *x);
 
@@ -1909,7 +1909,7 @@ long SSL_get_default_timeout(const SSL *s);
 int SSL_library_init(void );
 
 char *SSL_CIPHER_description(const SSL_CIPHER *,char *buf,int size);
-STACK_OF(X509_NAME) *SSL_dup_CA_list(STACK_OF(X509_NAME) *sk);
+STACK_OF(OPENSSL_X509_NAME) *SSL_dup_CA_list(STACK_OF(OPENSSL_X509_NAME) *sk);
 
 SSL *SSL_dup(SSL *ssl);
 

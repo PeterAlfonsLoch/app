@@ -100,12 +100,12 @@ typedef struct ASN1_ITEM_st ASN1_ITEM;
 typedef struct asn1_pctx_st ASN1_PCTX;
 
 #ifdef OPENSSL_SYS_WIN32
-#undef X509_NAME
-#undef X509_EXTENSIONS
-#undef X509_CERT_PAIR
+#undef OPENSSL_X509_NAME
+#undef OPENSSL_X509_EXTENSIONS
+#undef OPENSSL_X509_CERT_PAIR
 #undef PKCS7_ISSUER_AND_SERIAL
-#undef OCSP_REQUEST
-#undef OCSP_RESPONSE
+#undef OPENSSL_OCSP_REQUEST
+#undef OPENSSL_OCSP_RESPONSE
 #endif
 
 #ifdef BIGNUM
@@ -150,7 +150,7 @@ typedef struct X509_algor_st X509_ALGOR;
 typedef struct X509_crl_st X509_CRL;
 typedef struct x509_crl_method_st X509_CRL_METHOD;
 typedef struct x509_revoked_st X509_REVOKED;
-typedef struct X509_name_st X509_NAME;
+typedef struct X509_name_st OPENSSL_X509_NAME;
 typedef struct X509_pubkey_st X509_PUBKEY;
 typedef struct x509_store_st X509_STORE;
 typedef struct x509_store_ctx_st X509_STORE_CTX;
@@ -196,7 +196,7 @@ typedef int CRYPTO_EX_dup(CRYPTO_EX_DATA *to, CRYPTO_EX_DATA *from, void *from_d
 					int idx, long argl, void *argp);
 
 typedef struct ocsp_req_ctx_st OCSP_REQ_CTX;
-typedef struct ocsp_response_st OCSP_RESPONSE;
+typedef struct ocsp_response_st OPENSSL_OCSP_RESPONSE;
 typedef struct ocsp_responder_id_st OCSP_RESPID;
 
 #endif /* def HEADER_OPENSSL_TYPES_H */

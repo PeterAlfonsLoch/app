@@ -416,7 +416,7 @@
     info   = &type1->font_info;
     memory = face->root.memory;
 
-    /* delete internal ttf face prior to freeing face->ttf_data */
+    /* delete m_internal ttf face prior to freeing face->ttf_data */
     if ( face->ttf_face )
       FT_Done_Face( face->ttf_face );
 

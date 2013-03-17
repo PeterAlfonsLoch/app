@@ -49,7 +49,7 @@
   FT_LOCAL_DEF( void )
   cid_slot_done( FT_GlyphSlot  slot )
   {
-    slot->internal->glyph_hints = 0;
+    slot->m_internal->glyph_hints = 0;
   }
 
 
@@ -76,7 +76,7 @@
 
 
         funcs = pshinter->get_t1_funcs( module );
-        slot->internal->glyph_hints = (void*)funcs;
+        slot->m_internal->glyph_hints = (void*)funcs;
       }
     }
 
@@ -113,16 +113,16 @@
     CID_Size  size = (CID_Size)cidsize;
 
 
-    if ( cidsize->internal )
+    if ( cidsize->m_internal )
     {
       PSH_Globals_Funcs  funcs;
 
 
       funcs = cid_size_get_globals_funcs( size );
       if ( funcs )
-        funcs->destroy( (PSH_Globals)cidsize->internal );
+        funcs->destroy( (PSH_Globals)cidsize->m_internal );
 
-      cidsize->internal = 0;
+      cidsize->m_internal = 0;
     }
   }
 
@@ -145,7 +145,7 @@
 
       error = funcs->create( cidsize->face->memory, priv, &globals );
       if ( !error )
-        cidsize->internal = (FT_Size_Internal)(void*)globals;
+        cidsize->m_internal = (FT_Size_Internal)(void*)globals;
     }
 
     return error;
@@ -164,7 +164,7 @@
     funcs = cid_size_get_globals_funcs( (CID_Size)size );
 
     if ( funcs )
-      funcs->set_scale( (PSH_Globals)size->internal,
+      funcs->set_scale( (PSH_Globals)size->m_internal,
                         size->metrics.x_scale,
                         size->metrics.y_scale,
                         0, 0 );

@@ -229,8 +229,8 @@
 #define ENGINE_get_ssl_client_cert_function	ENGINE_get_ssl_client_cert_fn
 
 /* Hack some long OCSP names */
-#undef OCSP_REQUEST_get_ext_by_critical
-#define OCSP_REQUEST_get_ext_by_critical	OCSP_REQUEST_get_ext_by_crit
+#undef OPENSSL_OCSP_REQUEST_get_ext_by_critical
+#define OPENSSL_OCSP_REQUEST_get_ext_by_critical	OPENSSL_OCSP_REQUEST_get_ext_by_crit
 #undef OCSP_BASICRESP_get_ext_by_critical
 #define OCSP_BASICRESP_get_ext_by_critical      OCSP_BASICRESP_get_ext_by_crit
 #undef OCSP_SINGLERESP_get_ext_by_critical

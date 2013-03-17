@@ -239,18 +239,18 @@
     FT_Driver_Class   clazz    = driver->clazz;
     FT_Memory         memory   = driver->root.memory;
     FT_Error          error    = FT_Err_Ok;
-    FT_Slot_Internal  internal = NULL;
+    FT_Slot_Internal  m_internal = NULL;
 
 
     slot->library = driver->root.library;
 
-    if ( FT_NEW( internal ) )
+    if ( FT_NEW( m_internal ) )
       goto Exit;
 
-    slot->internal = internal;
+    slot->m_internal = m_internal;
 
     if ( FT_DRIVER_USES_OUTLINES( driver ) )
-      error = FT_GlyphLoader_New( memory, &internal->loader );
+      error = FT_GlyphLoader_New( memory, &m_internal->loader );
 
     if ( !error && clazz->init_slot )
       error = clazz->init_slot( slot );
@@ -263,13 +263,13 @@
   FT_BASE_DEF( void )
   ft_glyphslot_free_bitmap( FT_GlyphSlot  slot )
   {
-    if ( slot->internal && ( slot->internal->flags & FT_GLYPH_OWN_BITMAP ) )
+    if ( slot->m_internal && ( slot->m_internal->flags & FT_GLYPH_OWN_BITMAP ) )
     {
       FT_Memory  memory = FT_FACE_MEMORY( slot->face );
 
 
       FT_FREE( slot->bitmap.buffer );
-      slot->internal->flags &= ~FT_GLYPH_OWN_BITMAP;
+      slot->m_internal->flags &= ~FT_GLYPH_OWN_BITMAP;
     }
     else
     {
@@ -288,7 +288,7 @@
 
     slot->bitmap.buffer = buffer;
 
-    FT_ASSERT( (slot->internal->flags & FT_GLYPH_OWN_BITMAP) == 0 );
+    FT_ASSERT( (slot->m_internal->flags & FT_GLYPH_OWN_BITMAP) == 0 );
   }
 
 
@@ -300,10 +300,10 @@
     FT_Error   error;
 
 
-    if ( slot->internal->flags & FT_GLYPH_OWN_BITMAP )
+    if ( slot->m_internal->flags & FT_GLYPH_OWN_BITMAP )
       FT_FREE( slot->bitmap.buffer );
     else
-      slot->internal->flags |= FT_GLYPH_OWN_BITMAP;
+      slot->m_internal->flags |= FT_GLYPH_OWN_BITMAP;
 
     (void)FT_ALLOC( slot->bitmap.buffer, size );
     return error;
@@ -356,17 +356,17 @@
     /* free bitmap buffer if needed */
     ft_glyphslot_free_bitmap( slot );
 
-    /* slot->internal might be NULL in out-of-memory situations */
-    if ( slot->internal )
+    /* slot->m_internal might be NULL in out-of-memory situations */
+    if ( slot->m_internal )
     {
       /* free glyph loader */
       if ( FT_DRIVER_USES_OUTLINES( driver ) )
       {
-        FT_GlyphLoader_Done( slot->internal->loader );
-        slot->internal->loader = 0;
+        FT_GlyphLoader_Done( slot->m_internal->loader );
+        slot->m_internal->loader = 0;
       }
 
-      FT_FREE( slot->internal );
+      FT_FREE( slot->m_internal );
     }
   }
 
@@ -468,45 +468,45 @@
                     FT_Matrix*  matrix,
                     FT_Vector*  delta )
   {
-    FT_Face_Internal  internal;
+    FT_Face_Internal  m_internal;
 
 
     if ( !face )
       return;
 
-    internal = face->internal;
+    m_internal = face->m_internal;
 
-    internal->transform_flags = 0;
+    m_internal->transform_flags = 0;
 
     if ( !matrix )
     {
-      internal->transform_matrix.xx = 0x10000L;
-      internal->transform_matrix.xy = 0;
-      internal->transform_matrix.yx = 0;
-      internal->transform_matrix.yy = 0x10000L;
-      matrix = &internal->transform_matrix;
+      m_internal->transform_matrix.xx = 0x10000L;
+      m_internal->transform_matrix.xy = 0;
+      m_internal->transform_matrix.yx = 0;
+      m_internal->transform_matrix.yy = 0x10000L;
+      matrix = &m_internal->transform_matrix;
     }
     else
-      internal->transform_matrix = *matrix;
+      m_internal->transform_matrix = *matrix;
 
     /* set transform_flags bit flag 0 if `matrix' isn't the identity */
     if ( ( matrix->xy | matrix->yx ) ||
          matrix->xx != 0x10000L      ||
          matrix->yy != 0x10000L      )
-      internal->transform_flags |= 1;
+      m_internal->transform_flags |= 1;
 
     if ( !delta )
     {
-      internal->transform_delta.x = 0;
-      internal->transform_delta.y = 0;
-      delta = &internal->transform_delta;
+      m_internal->transform_delta.x = 0;
+      m_internal->transform_delta.y = 0;
+      delta = &m_internal->transform_delta;
     }
     else
-      internal->transform_delta = *delta;
+      m_internal->transform_delta = *delta;
 
     /* set transform_flags bit flag 1 if `delta' isn't the null vector */
     if ( delta->x | delta->y )
-      internal->transform_flags |= 2;
+      m_internal->transform_flags |= 2;
   }
 
 
@@ -626,10 +626,10 @@
          FT_DRIVER_USES_OUTLINES( driver )                &&
          !FT_IS_TRICKY( face )                            &&
          ( ( load_flags & FT_LOAD_IGNORE_TRANSFORM )    ||
-           ( face->internal->transform_matrix.yx == 0 &&
-             face->internal->transform_matrix.xx != 0 ) ||
-           ( face->internal->transform_matrix.xx == 0 &&
-             face->internal->transform_matrix.yx != 0 ) ) )
+           ( face->m_internal->transform_matrix.yx == 0 &&
+             face->m_internal->transform_matrix.xx != 0 ) ||
+           ( face->m_internal->transform_matrix.xx == 0 &&
+             face->m_internal->transform_matrix.yx != 0 ) ) )
     {
       if ( ( load_flags & FT_LOAD_FORCE_AUTOHINT ) ||
            !FT_DRIVER_HAS_HINTER( driver )         )
@@ -642,7 +642,7 @@
         /* the check for `num_locations' assures that we actually    */
         /* test for instructions in a TTF and not in a CFF-based OTF */
         if ( mode == FT_RENDER_MODE_LIGHT                       ||
-             face->internal->ignore_unpatented_hinter           ||
+             face->m_internal->ignore_unpatented_hinter           ||
              ( FT_IS_SFNT( face )                             &&
                ttface->num_locations                          &&
                ttface->max_profile.maxSizeOfInstructions == 0 ) )
@@ -672,13 +672,13 @@
       }
 
       {
-        FT_Face_Internal  internal        = face->internal;
-        FT_Int            transform_flags = internal->transform_flags;
+        FT_Face_Internal  m_internal        = face->m_internal;
+        FT_Int            transform_flags = m_internal->transform_flags;
 
 
         /* since the auto-hinter calls FT_Load_Glyph by itself, */
         /* make sure that glyphs aren't transformed             */
-        internal->transform_flags = 0;
+        m_internal->transform_flags = 0;
 
         /* load auto-hinted outline */
         hinting = (FT_AutoHinter_Interface)hinter->clazz->module_interface;
@@ -687,7 +687,7 @@
                                        slot, face->size,
                                        glyph_index, load_flags );
 
-        internal->transform_flags = transform_flags;
+        m_internal->transform_flags = transform_flags;
       }
     }
     else
@@ -744,11 +744,11 @@
 
     if ( ( load_flags & FT_LOAD_IGNORE_TRANSFORM ) == 0 )
     {
-      FT_Face_Internal  internal = face->internal;
+      FT_Face_Internal  m_internal = face->m_internal;
 
 
       /* now, transform the glyph image if needed */
-      if ( internal->transform_flags )
+      if ( m_internal->transform_flags )
       {
         /* get renderer */
         FT_Renderer  renderer = ft_lookup_glyph_renderer( slot );
@@ -757,23 +757,23 @@
         if ( renderer )
           error = renderer->clazz->transform_glyph(
                                      renderer, slot,
-                                     &internal->transform_matrix,
-                                     &internal->transform_delta );
+                                     &m_internal->transform_matrix,
+                                     &m_internal->transform_delta );
         else if ( slot->format == FT_GLYPH_FORMAT_OUTLINE )
         {
           /* apply `standard' transformation if no renderer is available */
-          if ( internal->transform_flags & 1 )
+          if ( m_internal->transform_flags & 1 )
             FT_Outline_Transform( &slot->outline,
-                                  &internal->transform_matrix );
+                                  &m_internal->transform_matrix );
 
-          if ( internal->transform_flags & 2 )
+          if ( m_internal->transform_flags & 2 )
             FT_Outline_Translate( &slot->outline,
-                                  internal->transform_delta.x,
-                                  internal->transform_delta.y );
+                                  m_internal->transform_delta.x,
+                                  m_internal->transform_delta.y );
         }
 
         /* transform advance */
-        FT_Vector_Transform( &slot->advance, &internal->transform_matrix );
+        FT_Vector_Transform( &slot->advance, &m_internal->transform_matrix );
       }
     }
 
@@ -839,7 +839,7 @@
     if ( driver->clazz->done_size )
       driver->clazz->done_size( size );
 
-    FT_FREE( size->internal );
+    FT_FREE( size->m_internal );
     FT_FREE( size );
   }
 
@@ -917,9 +917,9 @@
     face->stream = 0;
 
     /* get rid of it */
-    if ( face->internal )
+    if ( face->m_internal )
     {
-      FT_FREE( face->internal );
+      FT_FREE( face->m_internal );
     }
     FT_FREE( face );
   }
@@ -1117,7 +1117,7 @@
     FT_Driver_Class   clazz;
     FT_Face           face = 0;
     FT_Error          error, error2;
-    FT_Face_Internal  internal = NULL;
+    FT_Face_Internal  m_internal = NULL;
 
 
     clazz  = driver->clazz;
@@ -1127,10 +1127,10 @@
     if ( FT_ALLOC( face, clazz->face_object_size ) )
       goto Fail;
 
-    if ( FT_NEW( internal ) )
+    if ( FT_NEW( m_internal ) )
       goto Fail;
 
-    face->internal = internal;
+    face->m_internal = m_internal;
 
     face->driver   = driver;
     face->memory   = memory;
@@ -1141,11 +1141,11 @@
       int  i;
 
 
-      face->internal->incremental_interface = 0;
-      for ( i = 0; i < num_params && !face->internal->incremental_interface;
+      face->m_internal->incremental_interface = 0;
+      for ( i = 0; i < num_params && !face->m_internal->incremental_interface;
             i++ )
         if ( params[i].tag == FT_PARAM_TAG_INCREMENTAL )
-          face->internal->incremental_interface =
+          face->m_internal->incremental_interface =
             (FT_Incremental_Interface)params[i].data;
     }
 #endif
@@ -1180,7 +1180,7 @@
       destroy_charmaps( face, memory );
       if ( clazz->done_face )
         clazz->done_face( face );
-      FT_FREE( internal );
+      FT_FREE( m_internal );
       FT_FREE( face );
       *aface = 0;
     }
@@ -2215,20 +2215,20 @@
       }
     }
 
-    /* initialize internal face data */
+    /* initialize m_internal face data */
     {
-      FT_Face_Internal  internal = face->internal;
+      FT_Face_Internal  m_internal = face->m_internal;
 
 
-      internal->transform_matrix.xx = 0x10000L;
-      internal->transform_matrix.xy = 0;
-      internal->transform_matrix.yx = 0;
-      internal->transform_matrix.yy = 0x10000L;
+      m_internal->transform_matrix.xx = 0x10000L;
+      m_internal->transform_matrix.xy = 0;
+      m_internal->transform_matrix.yx = 0;
+      m_internal->transform_matrix.yy = 0x10000L;
 
-      internal->transform_delta.x = 0;
-      internal->transform_delta.y = 0;
+      m_internal->transform_delta.x = 0;
+      m_internal->transform_delta.y = 0;
 
-      internal->refcount = 1;
+      m_internal->refcount = 1;
     }
 
     if ( aface )
@@ -2319,7 +2319,7 @@
   FT_EXPORT_DEF( FT_Error )
   FT_Reference_Face( FT_Face  face )
   {
-    face->internal->refcount++;
+    face->m_internal->refcount++;
 
     return FT_Err_Ok;
   }
@@ -2339,8 +2339,8 @@
     error = FT_Err_Invalid_Face_Handle;
     if ( face && face->driver )
     {
-      face->internal->refcount--;
-      if ( face->internal->refcount > 0 )
+      face->m_internal->refcount--;
+      if ( face->m_internal->refcount > 0 )
         error = FT_Err_Ok;
       else
       {
@@ -2402,8 +2402,8 @@
 
     size->face = face;
 
-    /* for now, do not use any internal fields in size objects */
-    size->internal = 0;
+    /* for now, do not use any m_internal fields in size objects */
+    size->m_internal = 0;
 
     if ( clazz->init_size )
       error = clazz->init_size( size );

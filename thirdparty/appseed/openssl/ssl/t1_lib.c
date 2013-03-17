@@ -108,13 +108,14 @@
  * Hudson (tjh@cryptsoft.com).
  *
  */
-
+#define _WINSOCKAPI_   /* Prevent inclusion of winsock.h in windows.h */
 #include <stdio.h>
 #include <openssl/objects.h>
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 #include <openssl/ocsp.h>
 #include <openssl/rand.h>
+ #include "ossl_typ.h"
 #include "ssl_locl.h"
 
 const char tls1_version_str[]="TLSv1" OPENSSL_VERSION_PTEXT;
@@ -593,7 +594,7 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *p, unsigned cha
 
 		if (s->tlsext_ocsp_exts)
 			{
-			extlen = i2d_X509_EXTENSIONS(s->tlsext_ocsp_exts, NULL);
+			extlen = i2d_OPENSSL_X509_EXTENSIONS(s->tlsext_ocsp_exts, NULL);
 			if (extlen < 0)
 				return NULL;
 			}
@@ -620,7 +621,7 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *p, unsigned cha
 			}
 		s2n(extlen, ret);
 		if (extlen > 0)
-			i2d_X509_EXTENSIONS(s->tlsext_ocsp_exts, &ret);
+			i2d_OPENSSL_X509_EXTENSIONS(s->tlsext_ocsp_exts, &ret);
 		}
 
 #ifndef OPENSSL_NO_HEARTBEATS
@@ -1271,7 +1272,7 @@ int ssl_parse_clienthello_tlsext(SSL *s, unsigned char **p, unsigned char *d, in
 						}
 
 					s->tlsext_ocsp_exts =
-						d2i_X509_EXTENSIONS(NULL,
+						d2i_OPENSSL_X509_EXTENSIONS(NULL,
 							&sdata, dsize);
 					if (!s->tlsext_ocsp_exts
 						|| (data + dsize != sdata))

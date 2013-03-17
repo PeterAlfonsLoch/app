@@ -118,14 +118,14 @@ void OCSP_REQ_CTX_free(OCSP_REQ_CTX *rctx)
 	OPENSSL_free(rctx);
 	}
 
-int OCSP_REQ_CTX_set1_req(OCSP_REQ_CTX *rctx, OCSP_REQUEST *req)
+int OCSP_REQ_CTX_set1_req(OCSP_REQ_CTX *rctx, OPENSSL_OCSP_REQUEST *req)
 	{
 	static const char req_hdr[] =
 	"Content-Type: application/ocsp-request\r\n"
 	"Content-Length: %d\r\n\r\n";
-        if (BIO_printf(rctx->mem, req_hdr, i2d_OCSP_REQUEST(req, NULL)) <= 0)
+        if (BIO_printf(rctx->mem, req_hdr, i2d_OPENSSL_OCSP_REQUEST(req, NULL)) <= 0)
 		return 0;
-        if (i2d_OCSP_REQUEST_bio(rctx->mem, req) <= 0)
+        if (i2d_OPENSSL_OCSP_REQUEST_bio(rctx->mem, req) <= 0)
 		return 0;
 	rctx->state = OHS_ASN1_WRITE;
 	rctx->asn1_len = BIO_get_mem_data(rctx->mem, NULL);
@@ -151,7 +151,7 @@ int OCSP_REQ_CTX_add1_header(OCSP_REQ_CTX *rctx,
 	return 1;
 	}
 
-OCSP_REQ_CTX *OCSP_sendreq_new(BIO *io, char *path, OCSP_REQUEST *req,
+OCSP_REQ_CTX *OCSP_sendreq_new(BIO *io, char *path, OPENSSL_OCSP_REQUEST *req,
 								int maxline)
 	{
 	static const char post_hdr[] = "POST %s HTTP/1.0\r\n";
@@ -260,7 +260,7 @@ static int parse_http_line1(char *line)
 
 	}
 
-int OCSP_sendreq_nbio(OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx)
+int OCSP_sendreq_nbio(OPENSSL_OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx)
 	{
 	int i, n;
 	const unsigned char *p;
@@ -456,7 +456,7 @@ int OCSP_sendreq_nbio(OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx)
 			goto next_io;
 
 
-		*presp = d2i_OCSP_RESPONSE(NULL, &p, rctx->asn1_len);
+		*presp = d2i_OPENSSL_OCSP_RESPONSE(NULL, &p, rctx->asn1_len);
 		if (*presp)
 			{
 			rctx->state = OHS_DONE;
@@ -482,9 +482,9 @@ int OCSP_sendreq_nbio(OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx)
 
 /* Blocking OCSP request handler: now a special case of non-blocking I/O */
 
-OCSP_RESPONSE *OCSP_sendreq_bio(BIO *b, char *path, OCSP_REQUEST *req)
+OPENSSL_OCSP_RESPONSE *OCSP_sendreq_bio(BIO *b, char *path, OPENSSL_OCSP_REQUEST *req)
 	{
-	OCSP_RESPONSE *resp = NULL;
+	OPENSSL_OCSP_RESPONSE *resp = NULL;
 	OCSP_REQ_CTX *ctx;
 	int rv;
 

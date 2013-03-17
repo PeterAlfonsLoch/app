@@ -93,7 +93,7 @@
   }
 
 
-  /* internal function to record a new hint */
+  /* m_internal function to record a new hint */
   static void
   psh_hint_table_record( PSH_Hint_Table  table,
                          FT_UInt         idx )

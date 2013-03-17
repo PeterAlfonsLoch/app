@@ -570,7 +570,7 @@
 
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
 
-      if ( !ttface->internal->incremental_interface )
+      if ( !ttface->m_internal->incremental_interface )
         error = tt_face_load_loca( face, stream );
       if ( !error )
         error = tt_face_load_cvt( face, stream );
@@ -580,7 +580,7 @@
         error = tt_face_load_prep( face, stream );
 
       /* Check the scalable flag based on `loca'. */
-      if ( !ttface->internal->incremental_interface &&
+      if ( !ttface->m_internal->incremental_interface &&
            ttface->num_fixed_sizes                  &&
            face->glyph_locations                    &&
            tt_check_single_notdef( ttface )         )
@@ -638,7 +638,7 @@
           unpatented_hinting = TRUE;
 
       if ( !unpatented_hinting )
-        ttface->internal->ignore_unpatented_hinter = TRUE;
+        ttface->m_internal->ignore_unpatented_hinter = TRUE;
     }
 
 #endif /* TT_CONFIG_OPTION_UNPATENTED_HINTING &&
@@ -1297,7 +1297,7 @@
   FT_LOCAL_DEF( FT_Error )
   tt_slot_init( FT_GlyphSlot  slot )
   {
-    return FT_GlyphLoader_CreateExtra( slot->internal->loader );
+    return FT_GlyphLoader_CreateExtra( slot->m_internal->loader );
   }
 
 

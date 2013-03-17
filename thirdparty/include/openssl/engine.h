@@ -289,7 +289,7 @@ typedef int (*ENGINE_CTRL_FUNC_PTR)(ENGINE *, int, long, void *, void (*f)(void)
 typedef EVP_PKEY * (*ENGINE_LOAD_KEY_PTR)(ENGINE *, const char *,
 	UI_METHOD *ui_method, void *callback_data);
 typedef int (*ENGINE_SSL_CLIENT_CERT_PTR)(ENGINE *, SSL *ssl,
-	STACK_OF(X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
+	STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
 	STACK_OF(X509) **pother, UI_METHOD *ui_method, void *callback_data);
 /* These callback types are for an ENGINE's handler for cipher and digest logic.
  * These handlers have these prototypes;
@@ -571,7 +571,7 @@ EVP_PKEY *ENGINE_load_private_key(ENGINE *e, const char *key_id,
 EVP_PKEY *ENGINE_load_public_key(ENGINE *e, const char *key_id,
 	UI_METHOD *ui_method, void *callback_data);
 int ENGINE_load_ssl_client_cert(ENGINE *e, SSL *s,
-	STACK_OF(X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **ppkey,
+	STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **ppkey,
 	STACK_OF(X509) **pother,
 	UI_METHOD *ui_method, void *callback_data);
 

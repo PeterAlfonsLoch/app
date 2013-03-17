@@ -104,7 +104,11 @@ void do_fp(FILE *f)
 	int i;
 	static unsigned char buf[BUFSIZE];
 
+#ifdef _WIN32
+	fd = _fileno(f);
+#else
 	fd=fileno(f);
+#endif
 	MD5_Init(&c);
 	for (;;)
 		{

@@ -403,7 +403,7 @@ FT_BEGIN_HEADER
   /*     _af_debug_disable_blue_hints                                      */
   /*                                                                       */
   /*   Additionally, the following functions provide dumps of various      */
-  /*   internal autofit structures to stdout (using `printf'):             */
+  /*   m_internal autofit structures to stdout (using `printf'):             */
   /*                                                                       */
   /*     af_glyph_hints_dump_points                                        */
   /*     af_glyph_hints_dump_segments                                      */
@@ -508,7 +508,7 @@ FT_BEGIN_HEADER
   /*************************************************************************/
   /*                                                                       */
   /* Define TT_CONFIG_OPTION_SFNT_NAMES if your applications need to       */
-  /* access the internal name table in a SFNT-based format like TrueType   */
+  /* access the m_internal name table in a SFNT-based format like TrueType   */
   /* or OpenType.  The name table contains various strings used to         */
   /* describe the font, like family name, copyright, version, etc.  It     */
   /* does not contain any glyph name though.                               */
@@ -774,7 +774,7 @@ FT_BEGIN_HEADER
 
 
   /*
-   * Define this variable if you want to keep the layout of internal
+   * Define this variable if you want to keep the layout of m_internal
    * structures that was used prior to FreeType 2.2.  This also compiles in
    * a few obsolete functions to avoid linking problems on typical Unix
    * distributions.

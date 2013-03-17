@@ -1302,7 +1302,7 @@
 
 
     /* First, check whether the property already exists in the font. */
-    if ( ( hn = hash_lookup( name, (hashtable *)font->internal ) ) != 0 )
+    if ( ( hn = hash_lookup( name, (hashtable *)font->m_internal ) ) != 0 )
     {
       /* The property already exists in the font, so simply replace */
       /* the value of the property with the current value.          */
@@ -1401,13 +1401,13 @@
     }
 
     /* If the property happens to be a comment, then it doesn't need */
-    /* to be added to the internal hash table.                       */
+    /* to be added to the m_internal hash table.                       */
     if ( ft_memcmp( name, "COMMENT", 7 ) != 0 )
     {
       /* Add the property to the font property table. */
       error = hash_insert( fp->name,
                            font->props_used,
-                           (hashtable *)font->internal,
+                           (hashtable *)font->m_internal,
                            memory );
       if ( error )
         goto Exit;
@@ -2144,9 +2144,9 @@
         }
       }
 
-      if ( FT_ALLOC( p->font->internal, sizeof ( hashtable ) ) )
+      if ( FT_ALLOC( p->font->m_internal, sizeof ( hashtable ) ) )
         goto Exit;
-      error = hash_init( (hashtable *)p->font->internal,memory );
+      error = hash_init( (hashtable *)p->font->m_internal,memory );
       if ( error )
         goto Exit;
       p->font->spacing      = p->opts->font_spacing;
@@ -2534,11 +2534,11 @@
 
     FT_FREE( font->name );
 
-    /* Free up the internal hash table of property names. */
-    if ( font->internal )
+    /* Free up the m_internal hash table of property names. */
+    if ( font->m_internal )
     {
-      hash_free( (hashtable *)font->internal, memory );
-      FT_FREE( font->internal );
+      hash_free( (hashtable *)font->m_internal, memory );
+      FT_FREE( font->m_internal );
     }
 
     /* Free up the comment info. */
@@ -2609,7 +2609,7 @@
     if ( font == 0 || font->props_size == 0 || name == 0 || *name == 0 )
       return 0;
 
-    hn = hash_lookup( name, (hashtable *)font->internal );
+    hn = hash_lookup( name, (hashtable *)font->m_internal );
 
     return hn ? ( font->props + hn->data ) : 0;
   }

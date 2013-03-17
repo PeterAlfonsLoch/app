@@ -111,7 +111,7 @@
     AF_ScriptMetrics  metrics  = loader->metrics;
     AF_GlyphHints     hints    = &loader->hints;
     FT_GlyphSlot      slot     = face->glyph;
-    FT_Slot_Internal  internal = slot->internal;
+    FT_Slot_Internal  m_internal = slot->m_internal;
     FT_Int32          flags;
 
 
@@ -120,14 +120,14 @@
     if ( error )
       goto Exit;
 
-    loader->transformed = internal->glyph_transformed;
+    loader->transformed = m_internal->glyph_transformed;
     if ( loader->transformed )
     {
       FT_Matrix  inverse;
 
 
-      loader->trans_matrix = internal->glyph_matrix;
-      loader->trans_delta  = internal->glyph_delta;
+      loader->trans_matrix = m_internal->glyph_matrix;
+      loader->trans_delta  = m_internal->glyph_delta;
 
       inverse = loader->trans_matrix;
       FT_Matrix_Invert( &inverse );
@@ -137,7 +137,7 @@
     switch ( slot->format )
     {
     case FT_GLYPH_FORMAT_OUTLINE:
-      /* translate the loaded glyph when an internal transform is needed */
+      /* translate the loaded glyph when an m_internal transform is needed */
       if ( loader->transformed )
         FT_Outline_Translate( &slot->outline,
                               loader->trans_delta.x,
@@ -467,17 +467,17 @@
       slot->metrics.vertAdvance = FT_PIX_ROUND( slot->metrics.vertAdvance );
 
       /* now copy outline into glyph slot */
-      FT_GlyphLoader_Rewind( internal->loader );
-      error = FT_GlyphLoader_CopyPoints( internal->loader, gloader );
+      FT_GlyphLoader_Rewind( m_internal->loader );
+      error = FT_GlyphLoader_CopyPoints( m_internal->loader, gloader );
       if ( error )
         goto Exit;
 
       /* reassign all outline fields except flags to protect them */
-      slot->outline.n_contours = internal->loader->base.outline.n_contours;
-      slot->outline.n_points   = internal->loader->base.outline.n_points;
-      slot->outline.points     = internal->loader->base.outline.points;
-      slot->outline.tags       = internal->loader->base.outline.tags;
-      slot->outline.contours   = internal->loader->base.outline.contours;
+      slot->outline.n_contours = m_internal->loader->base.outline.n_contours;
+      slot->outline.n_points   = m_internal->loader->base.outline.n_points;
+      slot->outline.points     = m_internal->loader->base.outline.points;
+      slot->outline.tags       = m_internal->loader->base.outline.tags;
+      slot->outline.contours   = m_internal->loader->base.outline.contours;
 
       slot->format  = FT_GLYPH_FORMAT_OUTLINE;
     }

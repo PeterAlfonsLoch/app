@@ -290,7 +290,7 @@
   pfr_slot_init( FT_GlyphSlot  pfrslot )        /* PFR_Slot */
   {
     PFR_Slot        slot   = (PFR_Slot)pfrslot;
-    FT_GlyphLoader  loader = pfrslot->internal->loader;
+    FT_GlyphLoader  loader = pfrslot->m_internal->loader;
 
 
     pfr_glyph_init( &slot->glyph, loader );

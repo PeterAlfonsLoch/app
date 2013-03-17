@@ -919,7 +919,7 @@ static int check_delta_base(X509_CRL *delta, X509_CRL *base)
 	if (!base->crl_number)
 			return 0;
 	/* Issuer names must match */
-	if (X509_NAME_cmp(X509_CRL_get_issuer(base),
+	if (OPENSSL_X509_NAME_cmp(X509_CRL_get_issuer(base),
 				X509_CRL_get_issuer(delta)))
 		return 0;
 	/* AKID and IDP must match */
@@ -1000,7 +1000,7 @@ static int get_crl_score(X509_STORE_CTX *ctx, X509 **pissuer,
 	else if (crl->base_crl_number)
 		return 0;
 	/* If issuer name doesn't match certificate need indirect CRL */
-	if (X509_NAME_cmp(X509_get_issuer_name(x), X509_CRL_get_issuer(crl)))
+	if (OPENSSL_X509_NAME_cmp(X509_get_issuer_name(x), X509_CRL_get_issuer(crl)))
 		{
 		if (!(crl->idp_flags & IDP_INDIRECT))
 			return 0;
@@ -1044,7 +1044,7 @@ static void crl_akid_check(X509_STORE_CTX *ctx, X509_CRL *crl,
 				X509 **pissuer, int *pcrl_score)
 	{
 	X509 *crl_issuer = NULL;
-	X509_NAME *cnm = X509_CRL_get_issuer(crl);
+	OPENSSL_X509_NAME *cnm = X509_CRL_get_issuer(crl);
 	int cidx = ctx->error_depth;
 	int i;
 
@@ -1066,7 +1066,7 @@ static void crl_akid_check(X509_STORE_CTX *ctx, X509_CRL *crl,
 	for (cidx++; cidx < sk_X509_num(ctx->chain); cidx++)
 		{
 		crl_issuer = sk_X509_value(ctx->chain, cidx);
-		if (X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
+		if (OPENSSL_X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
 			continue;
 		if (X509_check_akid(crl_issuer, crl->akid) == X509_V_OK)
 			{
@@ -1087,7 +1087,7 @@ static void crl_akid_check(X509_STORE_CTX *ctx, X509_CRL *crl,
 	for (i = 0; i < sk_X509_num(ctx->untrusted); i++)
 		{
 		crl_issuer = sk_X509_value(ctx->untrusted, i);
-		if (X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
+		if (OPENSSL_X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
 			continue;
 		if (X509_check_akid(crl_issuer, crl->akid) == X509_V_OK)
 			{
@@ -1157,8 +1157,8 @@ static int check_crl_chain(X509_STORE_CTX *ctx,
 	}
 
 /* Check for match between two dist point names: three separate cases.
- * 1. Both are relative names and compare X509_NAME types.
- * 2. One full, one relative. Compare X509_NAME to GENERAL_NAMES.
+ * 1. Both are relative names and compare OPENSSL_X509_NAME types.
+ * 2. One full, one relative. Compare OPENSSL_X509_NAME to GENERAL_NAMES.
  * 3. Both are full names and compare two GENERAL_NAMES.
  * 4. One is NULL: automatic match.
  */
@@ -1166,7 +1166,7 @@ static int check_crl_chain(X509_STORE_CTX *ctx,
 
 static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 	{
-	X509_NAME *nm = NULL;
+	OPENSSL_X509_NAME *nm = NULL;
 	GENERAL_NAMES *gens = NULL;
 	GENERAL_NAME *gena, *genb;
 	int i, j;
@@ -1176,12 +1176,12 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 		{
 		if (!a->dpname)
 			return 0;
-		/* Case 1: two X509_NAME */
+		/* Case 1: two OPENSSL_X509_NAME */
 		if (b->type == 1)
 			{
 			if (!b->dpname)
 				return 0;
-			if (!X509_NAME_cmp(a->dpname, b->dpname))
+			if (!OPENSSL_X509_NAME_cmp(a->dpname, b->dpname))
 				return 1;
 			else
 				return 0;
@@ -1199,7 +1199,7 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 		nm = b->dpname;
 		}
 
-	/* Handle case 2 with one GENERAL_NAMES and one X509_NAME */
+	/* Handle case 2 with one GENERAL_NAMES and one OPENSSL_X509_NAME */
 	if (nm)
 		{
 		for (i = 0; i < sk_GENERAL_NAME_num(gens); i++)
@@ -1207,7 +1207,7 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 			gena = sk_GENERAL_NAME_value(gens, i);	
 			if (gena->type != GEN_DIRNAME)
 				continue;
-			if (!X509_NAME_cmp(nm, gena->d.directoryName))
+			if (!OPENSSL_X509_NAME_cmp(nm, gena->d.directoryName))
 				return 1;
 			}
 		return 0;
@@ -1233,7 +1233,7 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 static int crldp_check_crlissuer(DIST_POINT *dp, X509_CRL *crl, int crl_score)
 	{
 	int i;
-	X509_NAME *nm = X509_CRL_get_issuer(crl);
+	OPENSSL_X509_NAME *nm = X509_CRL_get_issuer(crl);
 	/* If no CRLissuer return is successful iff don't need a match */
 	if (!dp->CRLissuer)
 		return !!(crl_score & CRL_SCORE_ISSUER_NAME);
@@ -1242,7 +1242,7 @@ static int crldp_check_crlissuer(DIST_POINT *dp, X509_CRL *crl, int crl_score)
 		GENERAL_NAME *gen = sk_GENERAL_NAME_value(dp->CRLissuer, i);
 		if (gen->type != GEN_DIRNAME)
 			continue;
-		if (!X509_NAME_cmp(gen->d.directoryName, nm))
+		if (!OPENSSL_X509_NAME_cmp(gen->d.directoryName, nm))
 			return 1;
 		}
 	return 0;
@@ -1298,7 +1298,7 @@ static int get_crl_delta(X509_STORE_CTX *ctx,
 	unsigned int reasons;
 	X509_CRL *crl = NULL, *dcrl = NULL;
 	STACK_OF(X509_CRL) *skcrl;
-	X509_NAME *nm = X509_get_issuer_name(x);
+	OPENSSL_X509_NAME *nm = X509_get_issuer_name(x);
 	reasons = ctx->current_reasons;
 	ok = get_crl_sk(ctx, &crl, &dcrl, 
 				&issuer, &crl_score, &reasons, ctx->crls);
@@ -2208,7 +2208,7 @@ void X509_STORE_CTX_set0_param(X509_STORE_CTX *ctx, X509_VERIFY_PARAM *param)
 IMPLEMENT_STACK_OF(X509)
 IMPLEMENT_ASN1_SET_OF(X509)
 
-IMPLEMENT_STACK_OF(X509_NAME)
+IMPLEMENT_STACK_OF(OPENSSL_X509_NAME)
 
 IMPLEMENT_STACK_OF(X509_ATTRIBUTE)
 IMPLEMENT_ASN1_SET_OF(X509_ATTRIBUTE)

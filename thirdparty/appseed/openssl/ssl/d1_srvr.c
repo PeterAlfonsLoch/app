@@ -1469,8 +1469,8 @@ int dtls1_send_certificate_request(SSL *s)
 	{
 	unsigned char *p,*d;
 	int i,j,nl,off,n;
-	STACK_OF(X509_NAME) *sk=NULL;
-	X509_NAME *name;
+	STACK_OF(OPENSSL_X509_NAME) *sk=NULL;
+	OPENSSL_X509_NAME *name;
 	BUF_MEM *buf;
 	unsigned int msg_len;
 
@@ -1495,10 +1495,10 @@ int dtls1_send_certificate_request(SSL *s)
 		nl=0;
 		if (sk != NULL)
 			{
-			for (i=0; i<sk_X509_NAME_num(sk); i++)
+			for (i=0; i<sk_OPENSSL_X509_NAME_num(sk); i++)
 				{
-				name=sk_X509_NAME_value(sk,i);
-				j=i2d_X509_NAME(name,NULL);
+				name=sk_OPENSSL_X509_NAME_value(sk,i);
+				j=i2d_OPENSSL_X509_NAME(name,NULL);
 				if (!BUF_MEM_grow_clean(buf,DTLS1_HM_HEADER_LENGTH+n+j+2))
 					{
 					SSLerr(SSL_F_DTLS1_SEND_CERTIFICATE_REQUEST,ERR_R_BUF_LIB);
@@ -1508,14 +1508,14 @@ int dtls1_send_certificate_request(SSL *s)
 				if (!(s->options & SSL_OP_NETSCAPE_CA_DN_BUG))
 					{
 					s2n(j,p);
-					i2d_X509_NAME(name,&p);
+					i2d_OPENSSL_X509_NAME(name,&p);
 					n+=2+j;
 					nl+=2+j;
 					}
 				else
 					{
 					d=p;
-					i2d_X509_NAME(name,&p);
+					i2d_OPENSSL_X509_NAME(name,&p);
 					j-=2; s2n(j,d); j+=2;
 					n+=j;
 					nl+=j;

@@ -599,7 +599,7 @@
 
     /* do we have outlines in there? */
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
-    has_outline = FT_BOOL( face->root.internal->incremental_interface != 0 ||
+    has_outline = FT_BOOL( face->root.m_internal->incremental_interface != 0 ||
                            tt_face_lookup_table( face, TTAG_glyf )    != 0 ||
                            tt_face_lookup_table( face, TTAG_CFF )     != 0 );
 #else
@@ -663,8 +663,8 @@
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
           /* If this is an incrementally loaded font and there are */
           /* overriding metrics, tolerate a missing `hmtx' table.  */
-          if ( face->root.internal->incremental_interface          &&
-               face->root.internal->incremental_interface->funcs->
+          if ( face->root.m_internal->incremental_interface          &&
+               face->root.m_internal->incremental_interface->funcs->
                  get_glyph_metrics                                 )
           {
             face->horizontal.number_Of_HMetrics = 0;
@@ -690,8 +690,8 @@
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
           /* If this is an incrementally loaded font and there are */
           /* overriding metrics, tolerate a missing `hhea' table.  */
-          if ( face->root.internal->incremental_interface          &&
-               face->root.internal->incremental_interface->funcs->
+          if ( face->root.m_internal->incremental_interface          &&
+               face->root.m_internal->incremental_interface->funcs->
                  get_glyph_metrics                                 )
           {
             face->horizontal.number_Of_HMetrics = 0;

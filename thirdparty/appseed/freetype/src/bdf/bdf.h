@@ -224,7 +224,7 @@ FT_BEGIN_HEADER
 
     bdf_glyphlist_t  overflow;       /* Storage used for glyph insertion.   */
 
-    void*            internal;       /* Internal data for the font.         */
+    void*            m_internal;       /* Internal data for the font.         */
 
     /* The size of the next two arrays must be in sync with the */
     /* size of the `have' array in the `bdf_parse_t' structure. */

@@ -184,10 +184,10 @@
 #endif
 
     /* release old bitmap buffer */
-    if ( slot->internal->flags & FT_GLYPH_OWN_BITMAP )
+    if ( slot->m_internal->flags & FT_GLYPH_OWN_BITMAP )
     {
       FT_FREE( bitmap->buffer );
-      slot->internal->flags &= ~FT_GLYPH_OWN_BITMAP;
+      slot->m_internal->flags &= ~FT_GLYPH_OWN_BITMAP;
     }
 
     /* allocate new one */
@@ -260,7 +260,7 @@
     else
       have_buffer = TRUE;
 
-    slot->internal->flags |= FT_GLYPH_OWN_BITMAP;
+    slot->m_internal->flags |= FT_GLYPH_OWN_BITMAP;
 
     /* set up parameters */
     params.target = bitmap;
@@ -394,7 +394,7 @@
     if ( have_buffer )
     {
       FT_FREE( bitmap->buffer );
-      slot->internal->flags &= ~FT_GLYPH_OWN_BITMAP;
+      slot->m_internal->flags &= ~FT_GLYPH_OWN_BITMAP;
     }
 
     return error;

@@ -193,7 +193,7 @@
 				  */
 
 #ifdef OPENSSL_SYS_WINDOWS
-#include <winsock.h>
+#include <winsock2.h>
 #else
 #include OPENSSL_UNISTD
 #endif
@@ -1856,7 +1856,7 @@ static int MS_CALLBACK verify_callback(int ok, X509_STORE_CTX *ctx)
 	{
 	char *s,buf[256];
 
-	s=X509_NAME_oneline(X509_get_subject_name(ctx->current_cert),buf,
+	s=OPENSSL_X509_NAME_oneline(X509_get_subject_name(ctx->current_cert),buf,
 			    sizeof buf);
 	if (s != NULL)
 		{
@@ -2241,7 +2241,7 @@ static int MS_CALLBACK app_verify_callback(X509_STORE_CTX *ctx, void *arg)
 		fprintf(stderr, "Finished printing do we have a context? 0x%p a cert? 0x%p\n",
 			(void *)ctx, (void *)ctx->cert);
 		if (ctx->cert)
-			s=X509_NAME_oneline(X509_get_subject_name(ctx->cert),buf,256);
+			s=OPENSSL_X509_NAME_oneline(X509_get_subject_name(ctx->cert),buf,256);
 		if (s != NULL)
 			{
 			fprintf(stderr,"cert depth=%d %s\n",ctx->error_depth,buf);

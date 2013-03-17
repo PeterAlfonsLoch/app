@@ -128,7 +128,7 @@ int X509_REQ_print_ex(BIO *bp, X509_REQ *x, unsigned long nmflags, unsigned long
         if(!(cflag & X509_FLAG_NO_SUBJECT))
                 {
                 if (BIO_printf(bp,"        Subject:%c",mlch) <= 0) goto err;
-                if (X509_NAME_print_ex(bp,ri->subject,nmindent, nmflags) < 0) goto err;
+                if (OPENSSL_X509_NAME_print_ex(bp,ri->subject,nmindent, nmflags) < 0) goto err;
                 if (BIO_write(bp,"\n",1) <= 0) goto err;
                 }
 	if(!(cflag & X509_FLAG_NO_PUBKEY))

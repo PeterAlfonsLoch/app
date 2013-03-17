@@ -134,7 +134,7 @@
  * OTHER ENTITY BASED ON INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS OR
  * OTHERWISE.
  */
-
+#define _WINSOCKAPI_   /* Prevent inclusion of winsock.h in windows.h */
 #include <stdio.h>
 #include <openssl/lhash.h>
 #include <openssl/rand.h>

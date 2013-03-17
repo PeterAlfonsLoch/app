@@ -350,7 +350,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freetype2.3.5-1.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;Winmm.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;Winmm.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -3155,6 +3155,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\FreeImage.vcxproj">
       <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\freetype\freetype.vcxproj">
+      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
+      <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
       <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>

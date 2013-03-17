@@ -784,8 +784,8 @@ static int cert_status_cb(SSL *s, void *arg)
 	X509 *x = NULL;
 	X509_STORE_CTX inctx;
 	X509_OBJECT obj;
-	OCSP_REQUEST *req = NULL;
-	OCSP_RESPONSE *resp = NULL;
+	OPENSSL_OCSP_REQUEST *req = NULL;
+	OPENSSL_OCSP_RESPONSE *resp = NULL;
 	OCSP_CERTID *id = NULL;
 	STACK_OF(X509_EXTENSION) *exts;
 	int ret = SSL_TLSEXT_ERR_NOACK;
@@ -836,7 +836,7 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 		X509_STORE_CTX_cleanup(&inctx);
 		goto done;
 		}
-	req = OCSP_REQUEST_new();
+	req = OPENSSL_OCSP_REQUEST_new();
 	if (!req)
 		goto err;
 	id = OCSP_cert_to_id(NULL, x, obj.data.x509);
@@ -852,7 +852,7 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 	for (i = 0; i < sk_X509_EXTENSION_num(exts); i++)
 		{
 		X509_EXTENSION *ext = sk_X509_EXTENSION_value(exts, i);
-		if (!OCSP_REQUEST_add_ext(req, ext, -1))
+		if (!OPENSSL_OCSP_REQUEST_add_ext(req, ext, -1))
 			goto err;
 		}
 	resp = process_responder(err, req, host, path, port, use_ssl, NULL,
@@ -862,14 +862,14 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 		BIO_puts(err, "cert_status: error querying responder\n");
 		goto done;
 		}
-	rspderlen = i2d_OCSP_RESPONSE(resp, &rspder);
+	rspderlen = i2d_OPENSSL_OCSP_RESPONSE(resp, &rspder);
 	if (rspderlen <= 0)
 		goto err;
 	SSL_set_tlsext_status_ocsp_resp(s, rspder, rspderlen);
 	if (srctx->verbose)
 		{
 		BIO_puts(err, "cert_status: ocsp response sent:\n");
-		OCSP_RESPONSE_print(err, resp, 2);
+		OPENSSL_OCSP_RESPONSE_print(err, resp, 2);
 		}
 	ret = SSL_TLSEXT_ERR_OK;
 	done:
@@ -885,9 +885,9 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 	if (id)
 		OCSP_CERTID_free(id);
 	if (req)
-		OCSP_REQUEST_free(req);
+		OPENSSL_OCSP_REQUEST_free(req);
 	if (resp)
-		OCSP_RESPONSE_free(resp);
+		OPENSSL_OCSP_RESPONSE_free(resp);
 	return ret;
 	err:
 	ret = SSL_TLSEXT_ERR_ALERT_FATAL;
@@ -2422,9 +2422,9 @@ static int init_ssl_connection(SSL *con)
 		{
 		BIO_printf(bio_s_out,"Client certificate\n");
 		PEM_write_bio_X509(bio_s_out,peer);
-		X509_NAME_oneline(X509_get_subject_name(peer),buf,sizeof buf);
+		OPENSSL_X509_NAME_oneline(X509_get_subject_name(peer),buf,sizeof buf);
 		BIO_printf(bio_s_out,"subject=%s\n",buf);
-		X509_NAME_oneline(X509_get_issuer_name(peer),buf,sizeof buf);
+		OPENSSL_X509_NAME_oneline(X509_get_issuer_name(peer),buf,sizeof buf);
 		BIO_printf(bio_s_out,"issuer=%s\n",buf);
 		X509_free(peer);
 		}

@@ -1048,7 +1048,7 @@
       }
     }
 
-    slot->internal->flags = FT_GLYPH_OWN_BITMAP;
+    slot->m_internal->flags = FT_GLYPH_OWN_BITMAP;
     slot->bitmap_left     = 0;
     slot->bitmap_top      = font->header.ascent;
     slot->format          = FT_GLYPH_FORMAT_BITMAP;

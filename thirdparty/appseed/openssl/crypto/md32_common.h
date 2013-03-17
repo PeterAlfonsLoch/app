@@ -364,11 +364,11 @@ int HASH_FINAL (unsigned char *md, HASH_CTX *c)
 
 	p += HASH_CBLOCK-8;
 #if   defined(DATA_ORDER_IS_BIG_ENDIAN)
-	(void)HOST_l2c_ret(c->Nh,p);
-	(void)HOST_l2c_ret(c->Nl,p);
+	(void)HOST_l2c_noret(c->Nh,p);
+	(void)HOST_l2c_noret(c->Nl,p);
 #elif defined(DATA_ORDER_IS_LITTLE_ENDIAN)
-	(void)HOST_l2c_ret(c->Nl,p);
-	(void)HOST_l2c_ret(c->Nh,p);
+	(void)HOST_l2c_noret(c->Nl,p);
+	(void)HOST_l2c_noret(c->Nh,p);
 #endif
 	p -= HASH_CBLOCK;
 	HASH_BLOCK_DATA_ORDER (c,p,1);

@@ -33,6 +33,7 @@
 # define OPENSSL_NO_STORE
 #endif
 
+
 #endif /* OPENSSL_DOING_MAKEDEPEND */
 
 #ifndef OPENSSL_NO_DYNAMIC_ENGINE
@@ -88,7 +89,13 @@
 #undef OPENSSL_UNISTD
 #define OPENSSL_UNISTD <unistd.h>
 
+#ifdef _WIN32
+#ifndef OPENSSL_EXPORT_VAR_AS_FUNCTION
+#define OPENSSL_EXPORT_VAR_AS_FUNCTION
+#endif
+#else
 #undef OPENSSL_EXPORT_VAR_AS_FUNCTION
+#endif
 
 #if defined(HEADER_IDEA_H) && !defined(IDEA_INT)
 #define IDEA_INT unsigned int

@@ -116,7 +116,7 @@ static int set_dist_point_name(DIST_POINT_NAME **pdp, X509V3_CTX *ctx,
 							CONF_VALUE *cnf)
 	{
 	STACK_OF(GENERAL_NAME) *fnm = NULL;
-	STACK_OF(X509_NAME_ENTRY) *rnm = NULL;
+	STACK_OF(OPENSSL_X509_NAME_ENTRY) *rnm = NULL;
 	if (!strncmp(cnf->name, "fullname", 9))
 		{
 		fnm = gnames_from_sectname(ctx, cnf->value);
@@ -127,8 +127,8 @@ static int set_dist_point_name(DIST_POINT_NAME **pdp, X509V3_CTX *ctx,
 		{
 		int ret;
 		STACK_OF(CONF_VALUE) *dnsect;
-		X509_NAME *nm;
-		nm = X509_NAME_new();
+		OPENSSL_X509_NAME *nm;
+		nm = OPENSSL_X509_NAME_new();
 		if (!nm)
 			return -1;
 		dnsect = X509V3_get_section(ctx, cnf->value);
@@ -142,14 +142,14 @@ static int set_dist_point_name(DIST_POINT_NAME **pdp, X509V3_CTX *ctx,
 		X509V3_section_free(ctx, dnsect);
 		rnm = nm->entries;
 		nm->entries = NULL;
-		X509_NAME_free(nm);
-		if (!ret || sk_X509_NAME_ENTRY_num(rnm) <= 0)
+		OPENSSL_X509_NAME_free(nm);
+		if (!ret || sk_OPENSSL_X509_NAME_ENTRY_num(rnm) <= 0)
 			goto err;
 		/* Since its a name fragment can't have more than one
 		 * RDNSequence
 		 */
-		if (sk_X509_NAME_ENTRY_value(rnm,
-				sk_X509_NAME_ENTRY_num(rnm) - 1)->set)
+		if (sk_OPENSSL_X509_NAME_ENTRY_value(rnm,
+				sk_OPENSSL_X509_NAME_ENTRY_num(rnm) - 1)->set)
 			{
 			X509V3err(X509V3_F_SET_DIST_POINT_NAME,
 						X509V3_R_INVALID_MULTIPLE_RDNS);
@@ -186,7 +186,7 @@ static int set_dist_point_name(DIST_POINT_NAME **pdp, X509V3_CTX *ctx,
 	if (fnm)
 		sk_GENERAL_NAME_pop_free(fnm, GENERAL_NAME_free);
 	if (rnm)
-		sk_X509_NAME_ENTRY_pop_free(rnm, X509_NAME_ENTRY_free);
+		sk_OPENSSL_X509_NAME_ENTRY_pop_free(rnm, OPENSSL_X509_NAME_ENTRY_free);
 	return -1;
 	}
 
@@ -386,7 +386,7 @@ static int dpn_cb(int operation, ASN1_VALUE **pval, const ASN1_ITEM *it,
 
 		case ASN1_OP_FREE_POST:
 		if (dpn->dpname)
-			X509_NAME_free(dpn->dpname);
+			OPENSSL_X509_NAME_free(dpn->dpname);
 		break;
 		}
 	return 1;
@@ -395,7 +395,7 @@ static int dpn_cb(int operation, ASN1_VALUE **pval, const ASN1_ITEM *it,
 
 ASN1_CHOICE_cb(DIST_POINT_NAME, dpn_cb) = {
 	ASN1_IMP_SEQUENCE_OF(DIST_POINT_NAME, name.fullname, GENERAL_NAME, 0),
-	ASN1_IMP_SET_OF(DIST_POINT_NAME, name.relativename, X509_NAME_ENTRY, 1)
+	ASN1_IMP_SET_OF(DIST_POINT_NAME, name.relativename, OPENSSL_X509_NAME_ENTRY, 1)
 } ASN1_CHOICE_END_cb(DIST_POINT_NAME, DIST_POINT_NAME, type)
 
 
@@ -525,11 +525,11 @@ static int print_distpoint(BIO *out, DIST_POINT_NAME *dpn, int indent)
 		}
 	else
 		{
-		X509_NAME ntmp;
+		OPENSSL_X509_NAME ntmp;
 		ntmp.entries = dpn->name.relativename;
 		BIO_printf(out, "%*sRelative Name:\n%*s",
 						indent, "", indent + 2, "");
-		X509_NAME_print_ex(out, &ntmp, 0, XN_FLAG_ONELINE);
+		OPENSSL_X509_NAME_print_ex(out, &ntmp, 0, XN_FLAG_ONELINE);
 		BIO_puts(out, "\n");
 		}
 	return 1;
@@ -584,31 +584,31 @@ static int i2r_crldp(const X509V3_EXT_METHOD *method, void *pcrldp, BIO *out,
 	return 1;
 	}
 
-int DIST_POINT_set_dpname(DIST_POINT_NAME *dpn, X509_NAME *iname)
+int DIST_POINT_set_dpname(DIST_POINT_NAME *dpn, OPENSSL_X509_NAME *iname)
 	{
 	int i;
-	STACK_OF(X509_NAME_ENTRY) *frag;
-	X509_NAME_ENTRY *ne;
+	STACK_OF(OPENSSL_X509_NAME_ENTRY) *frag;
+	OPENSSL_X509_NAME_ENTRY *ne;
 	if (!dpn || (dpn->type != 1))
 		return 1;
 	frag = dpn->name.relativename;
-	dpn->dpname = X509_NAME_dup(iname);
+	dpn->dpname = OPENSSL_X509_NAME_dup(iname);
 	if (!dpn->dpname)
 		return 0;
-	for (i = 0; i < sk_X509_NAME_ENTRY_num(frag); i++)
+	for (i = 0; i < sk_OPENSSL_X509_NAME_ENTRY_num(frag); i++)
 		{
-		ne = sk_X509_NAME_ENTRY_value(frag, i);
-		if (!X509_NAME_add_entry(dpn->dpname, ne, -1, i ? 0 : 1))
+		ne = sk_OPENSSL_X509_NAME_ENTRY_value(frag, i);
+		if (!OPENSSL_X509_NAME_add_entry(dpn->dpname, ne, -1, i ? 0 : 1))
 			{
-			X509_NAME_free(dpn->dpname);
+			OPENSSL_X509_NAME_free(dpn->dpname);
 			dpn->dpname = NULL;
 			return 0;
 			}
 		}
 	/* generate cached encoding of name */
-	if (i2d_X509_NAME(dpn->dpname, NULL) < 0)
+	if (i2d_OPENSSL_X509_NAME(dpn->dpname, NULL) < 0)
 		{
-		X509_NAME_free(dpn->dpname);
+		OPENSSL_X509_NAME_free(dpn->dpname);
 		dpn->dpname = NULL;
 		return 0;
 		}

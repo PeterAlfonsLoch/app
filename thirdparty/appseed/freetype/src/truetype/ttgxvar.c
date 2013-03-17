@@ -1497,7 +1497,7 @@
   /*    tt_done_blend                                                      */
   /*                                                                       */
   /* <Description>                                                         */
-  /*    Frees the blend internal data structure.                           */
+  /*    Frees the blend m_internal data structure.                           */
   /*                                                                       */
   FT_LOCAL_DEF( void )
   tt_done_blend( FT_Memory  memory,

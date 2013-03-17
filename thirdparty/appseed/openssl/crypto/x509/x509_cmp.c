@@ -73,7 +73,7 @@ int X509_issuer_and_serial_cmp(const X509 *a, const X509 *b)
 	bi=b->cert_info;
 	i=M_ASN1_INTEGER_cmp(ai->serialNumber,bi->serialNumber);
 	if (i) return(i);
-	return(X509_NAME_cmp(ai->issuer,bi->issuer));
+	return(OPENSSL_X509_NAME_cmp(ai->issuer,bi->issuer));
 	}
 
 #ifndef OPENSSL_NO_MD5
@@ -85,7 +85,7 @@ unsigned long X509_issuer_and_serial_hash(X509 *a)
 	char *f;
 
 	EVP_MD_CTX_init(&ctx);
-	f=X509_NAME_oneline(a->cert_info->issuer,NULL,0);
+	f=OPENSSL_X509_NAME_oneline(a->cert_info->issuer,NULL,0);
 	ret=strlen(f);
 	if (!EVP_DigestInit_ex(&ctx, EVP_md5(), NULL))
 		goto err;
@@ -108,17 +108,17 @@ unsigned long X509_issuer_and_serial_hash(X509 *a)
 	
 int X509_issuer_name_cmp(const X509 *a, const X509 *b)
 	{
-	return(X509_NAME_cmp(a->cert_info->issuer,b->cert_info->issuer));
+	return(OPENSSL_X509_NAME_cmp(a->cert_info->issuer,b->cert_info->issuer));
 	}
 
 int X509_subject_name_cmp(const X509 *a, const X509 *b)
 	{
-	return(X509_NAME_cmp(a->cert_info->subject,b->cert_info->subject));
+	return(OPENSSL_X509_NAME_cmp(a->cert_info->subject,b->cert_info->subject));
 	}
 
 int X509_CRL_cmp(const X509_CRL *a, const X509_CRL *b)
 	{
-	return(X509_NAME_cmp(a->crl->issuer,b->crl->issuer));
+	return(OPENSSL_X509_NAME_cmp(a->crl->issuer,b->crl->issuer));
 	}
 
 #ifndef OPENSSL_NO_SHA
@@ -128,24 +128,24 @@ int X509_CRL_match(const X509_CRL *a, const X509_CRL *b)
 	}
 #endif
 
-X509_NAME *X509_get_issuer_name(X509 *a)
+OPENSSL_X509_NAME *X509_get_issuer_name(X509 *a)
 	{
 	return(a->cert_info->issuer);
 	}
 
 unsigned long X509_issuer_name_hash(X509 *x)
 	{
-	return(X509_NAME_hash(x->cert_info->issuer));
+	return(OPENSSL_X509_NAME_hash(x->cert_info->issuer));
 	}
 
 #ifndef OPENSSL_NO_MD5
 unsigned long X509_issuer_name_hash_old(X509 *x)
 	{
-	return(X509_NAME_hash_old(x->cert_info->issuer));
+	return(OPENSSL_X509_NAME_hash_old(x->cert_info->issuer));
 	}
 #endif
 
-X509_NAME *X509_get_subject_name(X509 *a)
+OPENSSL_X509_NAME *X509_get_subject_name(X509 *a)
 	{
 	return(a->cert_info->subject);
 	}
@@ -157,13 +157,13 @@ ASN1_INTEGER *X509_get_serialNumber(X509 *a)
 
 unsigned long X509_subject_name_hash(X509 *x)
 	{
-	return(X509_NAME_hash(x->cert_info->subject));
+	return(OPENSSL_X509_NAME_hash(x->cert_info->subject));
 	}
 
 #ifndef OPENSSL_NO_MD5
 unsigned long X509_subject_name_hash_old(X509 *x)
 	{
-	return(X509_NAME_hash_old(x->cert_info->subject));
+	return(OPENSSL_X509_NAME_hash_old(x->cert_info->subject));
 	}
 #endif
 
@@ -188,7 +188,7 @@ int X509_cmp(const X509 *a, const X509 *b)
 #endif
 
 
-int X509_NAME_cmp(const X509_NAME *a, const X509_NAME *b)
+int OPENSSL_X509_NAME_cmp(const OPENSSL_X509_NAME *a, const OPENSSL_X509_NAME *b)
 	{
 	int ret;
 
@@ -196,14 +196,14 @@ int X509_NAME_cmp(const X509_NAME *a, const X509_NAME *b)
 
 	if (!a->canon_enc || a->modified)
 		{
-		ret = i2d_X509_NAME((X509_NAME *)a, NULL);
+		ret = i2d_OPENSSL_X509_NAME((OPENSSL_X509_NAME *)a, NULL);
 		if (ret < 0)
 			return -2;
 		}
 
 	if (!b->canon_enc || b->modified)
 		{
-		ret = i2d_X509_NAME((X509_NAME *)b, NULL);
+		ret = i2d_OPENSSL_X509_NAME((OPENSSL_X509_NAME *)b, NULL);
 		if (ret < 0)
 			return -2;
 		}
@@ -217,13 +217,13 @@ int X509_NAME_cmp(const X509_NAME *a, const X509_NAME *b)
 
 	}
 
-unsigned long X509_NAME_hash(X509_NAME *x)
+unsigned long OPENSSL_X509_NAME_hash(OPENSSL_X509_NAME *x)
 	{
 	unsigned long ret=0;
 	unsigned char md[SHA_DIGEST_LENGTH];
 
-	/* Make sure X509_NAME structure contains valid cached encoding */
-	i2d_X509_NAME(x,NULL);
+	/* Make sure OPENSSL_X509_NAME structure contains valid cached encoding */
+	i2d_OPENSSL_X509_NAME(x,NULL);
 	if (!EVP_Digest(x->canon_enc, x->canon_enclen, md, NULL, EVP_sha1(),
 		NULL))
 		return 0;
@@ -239,14 +239,14 @@ unsigned long X509_NAME_hash(X509_NAME *x)
 /* I now DER encode the name and hash it.  Since I cache the DER encoding,
  * this is reasonably efficient. */
 
-unsigned long X509_NAME_hash_old(X509_NAME *x)
+unsigned long OPENSSL_X509_NAME_hash_old(OPENSSL_X509_NAME *x)
 	{
 	EVP_MD_CTX md_ctx;
 	unsigned long ret=0;
 	unsigned char md[16];
 
-	/* Make sure X509_NAME structure contains valid cached encoding */
-	i2d_X509_NAME(x,NULL);
+	/* Make sure OPENSSL_X509_NAME structure contains valid cached encoding */
+	i2d_OPENSSL_X509_NAME(x,NULL);
 	EVP_MD_CTX_init(&md_ctx);
 	EVP_MD_CTX_set_flags(&md_ctx, EVP_MD_CTX_FLAG_NON_FIPS_ALLOW);
 	EVP_DigestInit_ex(&md_ctx, EVP_md5(), NULL);
@@ -262,7 +262,7 @@ unsigned long X509_NAME_hash_old(X509_NAME *x)
 #endif
 
 /* Search a stack of X509 for a match */
-X509 *X509_find_by_issuer_and_serial(STACK_OF(X509) *sk, X509_NAME *name,
+X509 *X509_find_by_issuer_and_serial(STACK_OF(X509) *sk, OPENSSL_X509_NAME *name,
 		ASN1_INTEGER *serial)
 	{
 	int i;
@@ -284,7 +284,7 @@ X509 *X509_find_by_issuer_and_serial(STACK_OF(X509) *sk, X509_NAME *name,
 	return(NULL);
 	}
 
-X509 *X509_find_by_subject(STACK_OF(X509) *sk, X509_NAME *name)
+X509 *X509_find_by_subject(STACK_OF(X509) *sk, OPENSSL_X509_NAME *name)
 	{
 	X509 *x509;
 	int i;
@@ -292,7 +292,7 @@ X509 *X509_find_by_subject(STACK_OF(X509) *sk, X509_NAME *name)
 	for (i=0; i<sk_X509_num(sk); i++)
 		{
 		x509=sk_X509_value(sk,i);
-		if (X509_NAME_cmp(X509_get_subject_name(x509),name) == 0)
+		if (OPENSSL_X509_NAME_cmp(X509_get_subject_name(x509),name) == 0)
 			return(x509);
 		}
 	return(NULL);

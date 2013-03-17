@@ -370,7 +370,7 @@ struct CMS_OtherCertificateFormat_st
 
 struct CMS_IssuerAndSerialNumber_st
 	{
-	X509_NAME *issuer;
+	OPENSSL_X509_NAME *issuer;
 	ASN1_INTEGER *serialNumber;
 	};
 
@@ -439,7 +439,7 @@ int cms_SignedData_final(CMS_ContentInfo *cms, BIO *chain);
 int cms_set1_SignerIdentifier(CMS_SignerIdentifier *sid, X509 *cert, int type);
 int cms_SignerIdentifier_get0_signer_id(CMS_SignerIdentifier *sid,
 					ASN1_OCTET_STRING **keyid,
-					X509_NAME **issuer, ASN1_INTEGER **sno);
+					OPENSSL_X509_NAME **issuer, ASN1_INTEGER **sno);
 int cms_SignerIdentifier_cert_cmp(CMS_SignerIdentifier *sid, X509 *cert);
 
 CMS_ContentInfo *cms_CompressedData_create(int comp_nid);

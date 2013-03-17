@@ -1917,9 +1917,9 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 	static const char *space="                ";
 	char buf[BUFSIZ];
 	STACK_OF(X509) *sk;
-	STACK_OF(X509_NAME) *sk2;
+	STACK_OF(OPENSSL_X509_NAME) *sk2;
 	const SSL_CIPHER *c;
-	X509_NAME *xn;
+	OPENSSL_X509_NAME *xn;
 	int j,i;
 #ifndef OPENSSL_NO_COMP
 	const COMP_METHOD *comp, *expansion;
@@ -1938,10 +1938,10 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 			BIO_printf(bio,"---\nCertificate chain\n");
 			for (i=0; i<sk_X509_num(sk); i++)
 				{
-				X509_NAME_oneline(X509_get_subject_name(
+				OPENSSL_X509_NAME_oneline(X509_get_subject_name(
 					sk_X509_value(sk,i)),buf,sizeof buf);
 				BIO_printf(bio,"%2d s:%s\n",i,buf);
-				X509_NAME_oneline(X509_get_issuer_name(
+				OPENSSL_X509_NAME_oneline(X509_get_issuer_name(
 					sk_X509_value(sk,i)),buf,sizeof buf);
 				BIO_printf(bio,"   i:%s\n",buf);
 				if (c_showcerts)
@@ -1956,10 +1956,10 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 			BIO_printf(bio,"Server certificate\n");
 			if (!(c_showcerts && got_a_chain)) /* Redundant if we showed the whole chain */
 				PEM_write_bio_X509(bio,peer);
-			X509_NAME_oneline(X509_get_subject_name(peer),
+			OPENSSL_X509_NAME_oneline(X509_get_subject_name(peer),
 				buf,sizeof buf);
 			BIO_printf(bio,"subject=%s\n",buf);
-			X509_NAME_oneline(X509_get_issuer_name(peer),
+			OPENSSL_X509_NAME_oneline(X509_get_issuer_name(peer),
 				buf,sizeof buf);
 			BIO_printf(bio,"issuer=%s\n",buf);
 			}
@@ -1967,13 +1967,13 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 			BIO_printf(bio,"no peer certificate available\n");
 
 		sk2=SSL_get_client_CA_list(s);
-		if ((sk2 != NULL) && (sk_X509_NAME_num(sk2) > 0))
+		if ((sk2 != NULL) && (sk_OPENSSL_X509_NAME_num(sk2) > 0))
 			{
 			BIO_printf(bio,"---\nAcceptable client certificate CA names\n");
-			for (i=0; i<sk_X509_NAME_num(sk2); i++)
+			for (i=0; i<sk_OPENSSL_X509_NAME_num(sk2); i++)
 				{
-				xn=sk_X509_NAME_value(sk2,i);
-				X509_NAME_oneline(xn,buf,sizeof(buf));
+				xn=sk_OPENSSL_X509_NAME_value(sk2,i);
+				OPENSSL_X509_NAME_oneline(xn,buf,sizeof(buf));
 				BIO_write(bio,buf,strlen(buf));
 				BIO_write(bio,"\n",1);
 				}
@@ -2110,7 +2110,7 @@ static int ocsp_resp_cb(SSL *s, void *arg)
 	{
 	const unsigned char *p;
 	int len;
-	OCSP_RESPONSE *rsp;
+	OPENSSL_OCSP_RESPONSE *rsp;
 	len = SSL_get_tlsext_status_ocsp_resp(s, &p);
 	BIO_puts(arg, "OCSP response: ");
 	if (!p)
@@ -2118,7 +2118,7 @@ static int ocsp_resp_cb(SSL *s, void *arg)
 		BIO_puts(arg, "no response sent\n");
 		return 1;
 		}
-	rsp = d2i_OCSP_RESPONSE(NULL, &p, len);
+	rsp = d2i_OPENSSL_OCSP_RESPONSE(NULL, &p, len);
 	if (!rsp)
 		{
 		BIO_puts(arg, "response parse error\n");
@@ -2126,9 +2126,9 @@ static int ocsp_resp_cb(SSL *s, void *arg)
 		return 0;
 		}
 	BIO_puts(arg, "\n======================================\n");
-	OCSP_RESPONSE_print(arg, rsp, 0);
+	OPENSSL_OCSP_RESPONSE_print(arg, rsp, 0);
 	BIO_puts(arg, "======================================\n");
-	OCSP_RESPONSE_free(rsp);
+	OPENSSL_OCSP_RESPONSE_free(rsp);
 	return 1;
 	}
 

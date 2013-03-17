@@ -76,12 +76,12 @@ void main ()
   server_cert = SSL_get_peer_certificate (ssl);       CHK_NULL(server_cert);
   printf ("Server certificate:\n");
   
-  str = X509_NAME_oneline (X509_get_subject_name (server_cert),0,0);
+  str = OPENSSL_X509_NAME_oneline (X509_get_subject_name (server_cert),0,0);
   CHK_NULL(str);
   printf ("\t subject: %s\n", str);
   OPENSSL_free (str);
 
-  str = X509_NAME_oneline (X509_get_issuer_name  (server_cert),0,0);
+  str = OPENSSL_X509_NAME_oneline (X509_get_issuer_name  (server_cert),0,0);
   CHK_NULL(str);
   printf ("\t issuer: %s\n", str);
   OPENSSL_free (str);

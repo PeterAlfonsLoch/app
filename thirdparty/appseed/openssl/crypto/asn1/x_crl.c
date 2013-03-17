@@ -75,7 +75,7 @@ ASN1_SEQUENCE(X509_REVOKED) = {
 
 static int def_crl_verify(X509_CRL *crl, EVP_PKEY *r);
 static int def_crl_lookup(X509_CRL *crl,
-		X509_REVOKED **ret, ASN1_INTEGER *serial, X509_NAME *issuer);
+		X509_REVOKED **ret, ASN1_INTEGER *serial, OPENSSL_X509_NAME *issuer);
 
 static X509_CRL_METHOD int_crl_meth =
 	{
@@ -112,7 +112,7 @@ static int crl_inf_cb(int operation, ASN1_VALUE **pval, const ASN1_ITEM *it,
 ASN1_SEQUENCE_enc(X509_CRL_INFO, enc, crl_inf_cb) = {
 	ASN1_OPT(X509_CRL_INFO, version, ASN1_INTEGER),
 	ASN1_SIMPLE(X509_CRL_INFO, sig_alg, X509_ALGOR),
-	ASN1_SIMPLE(X509_CRL_INFO, issuer, X509_NAME),
+	ASN1_SIMPLE(X509_CRL_INFO, issuer, OPENSSL_X509_NAME),
 	ASN1_SIMPLE(X509_CRL_INFO, lastUpdate, ASN1_TIME),
 	ASN1_OPT(X509_CRL_INFO, nextUpdate, ASN1_TIME),
 	ASN1_SEQUENCE_OF_OPT(X509_CRL_INFO, revoked, X509_REVOKED),
@@ -412,7 +412,7 @@ static int def_crl_verify(X509_CRL *crl, EVP_PKEY *r)
 		crl->sig_alg, crl->signature,crl->crl,r));
 	}
 
-static int crl_revoked_issuer_match(X509_CRL *crl, X509_NAME *nm,
+static int crl_revoked_issuer_match(X509_CRL *crl, OPENSSL_X509_NAME *nm,
 						X509_REVOKED *rev)
 	{
 	int i;
@@ -421,7 +421,7 @@ static int crl_revoked_issuer_match(X509_CRL *crl, X509_NAME *nm,
 		{
 		if (!nm)
 			return 1;
-		if (!X509_NAME_cmp(nm, X509_CRL_get_issuer(crl)))
+		if (!OPENSSL_X509_NAME_cmp(nm, X509_CRL_get_issuer(crl)))
 			return 1;
 		return 0;
 		}
@@ -434,7 +434,7 @@ static int crl_revoked_issuer_match(X509_CRL *crl, X509_NAME *nm,
 		GENERAL_NAME *gen = sk_GENERAL_NAME_value(rev->issuer, i);
 		if (gen->type != GEN_DIRNAME)
 			continue;
-		if (!X509_NAME_cmp(nm, gen->d.directoryName))
+		if (!OPENSSL_X509_NAME_cmp(nm, gen->d.directoryName))
 			return 1;
 		}
 	return 0;
@@ -442,7 +442,7 @@ static int crl_revoked_issuer_match(X509_CRL *crl, X509_NAME *nm,
 	}
 
 static int def_crl_lookup(X509_CRL *crl,
-		X509_REVOKED **ret, ASN1_INTEGER *serial, X509_NAME *issuer)
+		X509_REVOKED **ret, ASN1_INTEGER *serial, OPENSSL_X509_NAME *issuer)
 	{
 	X509_REVOKED rtmp, *rev;
 	int idx;
@@ -489,7 +489,7 @@ X509_CRL_METHOD *X509_CRL_METHOD_new(
 	int (*crl_init)(X509_CRL *crl),
 	int (*crl_free)(X509_CRL *crl),
 	int (*crl_lookup)(X509_CRL *crl, X509_REVOKED **ret,
-				ASN1_INTEGER *ser, X509_NAME *issuer),
+				ASN1_INTEGER *ser, OPENSSL_X509_NAME *issuer),
 	int (*crl_verify)(X509_CRL *crl, EVP_PKEY *pk))
 	{
 	X509_CRL_METHOD *m;

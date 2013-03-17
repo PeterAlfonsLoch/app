@@ -2,7 +2,7 @@
 /*                                                                         */
 /*  ftccache.h                                                             */
 /*                                                                         */
-/*    FreeType internal cache interface (specification).                   */
+/*    FreeType m_internal cache interface (specification).                   */
 /*                                                                         */
 /*  Copyright 2000-2001, 2002, 2003, 2004, 2005, 2006, 2007, 2009, 2010,   */
 /*            2011 by                                                      */
@@ -200,7 +200,7 @@ FT_BEGIN_HEADER
   /* Remove all nodes that relate to a given face_id.  This is useful
    * when un-installing fonts.  Note that if a cache node relates to
    * the face_id but is locked (i.e., has `ref_count > 0'), the node
-   * will _not_ be destroyed, but its internal face_id reference will
+   * will _not_ be destroyed, but its m_internal face_id reference will
    * be modified.
    *
    * The final result will be that the node will never come back

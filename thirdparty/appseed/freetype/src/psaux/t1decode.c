@@ -221,7 +221,7 @@
     /* include an encoding.  How can we deal with these?    */
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     if ( decoder->glyph_names == 0                   &&
-         !face->root.internal->incremental_interface )
+         !face->root.m_internal->incremental_interface )
 #else
     if ( decoder->glyph_names == 0 )
 #endif /* FT_CONFIG_OPTION_INCREMENTAL */
@@ -232,7 +232,7 @@
     }
 
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
-    if ( face->root.internal->incremental_interface )
+    if ( face->root.m_internal->incremental_interface )
     {
       /* the caller must handle the font encoding also */
       bchar_index = bchar;
@@ -257,7 +257,7 @@
     if ( decoder->builder.no_recurse )
     {
       FT_GlyphSlot    glyph  = (FT_GlyphSlot)decoder->builder.glyph;
-      FT_GlyphLoader  loader = glyph->internal->loader;
+      FT_GlyphLoader  loader = glyph->m_internal->loader;
       FT_SubGlyph     subg;
 
 

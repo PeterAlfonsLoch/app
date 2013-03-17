@@ -168,7 +168,7 @@
 #endif
 
 static const SSL_METHOD *ssl3_get_client_method(int ver);
-static int ca_dn_cmp(const X509_NAME * const *a,const X509_NAME * const *b);
+static int ca_dn_cmp(const OPENSSL_X509_NAME * const *a,const OPENSSL_X509_NAME * const *b);
 
 static const SSL_METHOD *ssl3_get_client_method(int ver)
 	{
@@ -1862,10 +1862,10 @@ int ssl3_get_certificate_request(SSL *s)
 	int ok,ret=0;
 	unsigned long n,nc,l;
 	unsigned int llen, ctype_num,i;
-	X509_NAME *xn=NULL;
+	OPENSSL_X509_NAME *xn=NULL;
 	const unsigned char *p,*q;
 	unsigned char *d;
-	STACK_OF(X509_NAME) *ca_sk=NULL;
+	STACK_OF(OPENSSL_X509_NAME) *ca_sk=NULL;
 
 	n=s->method->ssl_get_message(s,
 		SSL3_ST_CR_CERT_REQ_A,
@@ -1912,7 +1912,7 @@ int ssl3_get_certificate_request(SSL *s)
 
 	p=d=(unsigned char *)s->init_msg;
 
-	if ((ca_sk=sk_X509_NAME_new(ca_dn_cmp)) == NULL)
+	if ((ca_sk=sk_OPENSSL_X509_NAME_new(ca_dn_cmp)) == NULL)
 		{
 		SSLerr(SSL_F_SSL3_GET_CERTIFICATE_REQUEST,ERR_R_MALLOC_FAILURE);
 		goto err;
@@ -1978,7 +1978,7 @@ fclose(out);
 
 		q=p;
 
-		if ((xn=d2i_X509_NAME(NULL,&q,l)) == NULL)
+		if ((xn=d2i_OPENSSL_X509_NAME(NULL,&q,l)) == NULL)
 			{
 			/* If netscape tolerance is on, ignore errors */
 			if (s->options & SSL_OP_NETSCAPE_CA_DN_BUG)
@@ -1997,7 +1997,7 @@ fclose(out);
 			SSLerr(SSL_F_SSL3_GET_CERTIFICATE_REQUEST,SSL_R_CA_DN_LENGTH_MISMATCH);
 			goto err;
 			}
-		if (!sk_X509_NAME_push(ca_sk,xn))
+		if (!sk_OPENSSL_X509_NAME_push(ca_sk,xn))
 			{
 			SSLerr(SSL_F_SSL3_GET_CERTIFICATE_REQUEST,ERR_R_MALLOC_FAILURE);
 			goto err;
@@ -2017,19 +2017,19 @@ cont:
 	s->s3->tmp.cert_req=1;
 	s->s3->tmp.ctype_num=ctype_num;
 	if (s->s3->tmp.ca_names != NULL)
-		sk_X509_NAME_pop_free(s->s3->tmp.ca_names,X509_NAME_free);
+		sk_OPENSSL_X509_NAME_pop_free(s->s3->tmp.ca_names,OPENSSL_X509_NAME_free);
 	s->s3->tmp.ca_names=ca_sk;
 	ca_sk=NULL;
 
 	ret=1;
 err:
-	if (ca_sk != NULL) sk_X509_NAME_pop_free(ca_sk,X509_NAME_free);
+	if (ca_sk != NULL) sk_OPENSSL_X509_NAME_pop_free(ca_sk,OPENSSL_X509_NAME_free);
 	return(ret);
 	}
 
-static int ca_dn_cmp(const X509_NAME * const *a, const X509_NAME * const *b)
+static int ca_dn_cmp(const OPENSSL_X509_NAME * const *a, const OPENSSL_X509_NAME * const *b)
 	{
-	return(X509_NAME_cmp(*a,*b));
+	return(OPENSSL_X509_NAME_cmp(*a,*b));
 	}
 #ifndef OPENSSL_NO_TLSEXT
 int ssl3_get_new_session_ticket(SSL *s)

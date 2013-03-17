@@ -74,10 +74,10 @@ int X509_CRL_set_version(X509_CRL *x, long version)
 	return(ASN1_INTEGER_set(x->crl->version,version));
 	}
 
-int X509_CRL_set_issuer_name(X509_CRL *x, X509_NAME *name)
+int X509_CRL_set_issuer_name(X509_CRL *x, OPENSSL_X509_NAME *name)
 	{
 	if ((x == NULL) || (x->crl == NULL)) return(0);
-	return(X509_NAME_set(&x->crl->issuer,name));
+	return(OPENSSL_X509_NAME_set(&x->crl->issuer,name));
 	}
 
 

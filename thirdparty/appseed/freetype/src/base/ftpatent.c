@@ -272,8 +272,8 @@
     !defined( TT_CONFIG_OPTION_BYTECODE_INTERPRETER )
     if ( face && FT_IS_SFNT( face ) )
     {
-      result = !face->internal->ignore_unpatented_hinter;
-      face->internal->ignore_unpatented_hinter = !value;
+      result = !face->m_internal->ignore_unpatented_hinter;
+      face->m_internal->ignore_unpatented_hinter = !value;
     }
 #else
     FT_UNUSED( face );

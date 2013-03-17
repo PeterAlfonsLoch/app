@@ -700,7 +700,7 @@
   /*    Executes one or more instructions in the execution context.        */
   /*                                                                       */
   /* <Input>                                                               */
-  /*    debug :: A Boolean flag.  If set, the function sets some internal  */
+  /*    debug :: A Boolean flag.  If set, the function sets some m_internal  */
   /*             variables and returns immediately, otherwise TT_RunIns()  */
   /*             is called.                                                */
   /*                                                                       */

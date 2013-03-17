@@ -581,7 +581,7 @@ void SSL_free(SSL *s)
 #endif
 
 	if (s->client_CA != NULL)
-		sk_X509_NAME_pop_free(s->client_CA,X509_NAME_free);
+		sk_OPENSSL_X509_NAME_pop_free(s->client_CA,OPENSSL_X509_NAME_free);
 
 	if (s->method != NULL) s->method->ssl_free(s);
 
@@ -1789,7 +1789,7 @@ SSL_CTX *SSL_CTX_new(const SSL_METHOD *meth)
 		goto err2;
 		}
 
-	if ((ret->client_CA=sk_X509_NAME_new_null()) == NULL)
+	if ((ret->client_CA=sk_OPENSSL_X509_NAME_new_null()) == NULL)
 		goto err;
 
 	CRYPTO_new_ex_data(CRYPTO_EX_INDEX_SSL_CTX, ret, &ret->ex_data);
@@ -1942,7 +1942,7 @@ void SSL_CTX_free(SSL_CTX *a)
 	if (a->cert != NULL)
 		ssl_cert_free(a->cert);
 	if (a->client_CA != NULL)
-		sk_X509_NAME_pop_free(a->client_CA,X509_NAME_free);
+		sk_OPENSSL_X509_NAME_pop_free(a->client_CA,OPENSSL_X509_NAME_free);
 	if (a->extra_certs != NULL)
 		sk_X509_pop_free(a->extra_certs,X509_free);
 #if 0 /* This should never be done, since it removes a global database */
@@ -2620,8 +2620,8 @@ const char *SSL_get_version(const SSL *s)
 
 SSL *SSL_dup(SSL *s)
 	{
-	STACK_OF(X509_NAME) *sk;
-	X509_NAME *xn;
+	STACK_OF(OPENSSL_X509_NAME) *sk;
+	OPENSSL_X509_NAME *xn;
 	SSL *ret;
 	int i;
 	
@@ -2727,14 +2727,14 @@ SSL *SSL_dup(SSL *s)
 	/* Dup the client_CA list */
 	if (s->client_CA != NULL)
 		{
-		if ((sk=sk_X509_NAME_dup(s->client_CA)) == NULL) goto err;
+		if ((sk=sk_OPENSSL_X509_NAME_dup(s->client_CA)) == NULL) goto err;
 		ret->client_CA=sk;
-		for (i=0; i<sk_X509_NAME_num(sk); i++)
+		for (i=0; i<sk_OPENSSL_X509_NAME_num(sk); i++)
 			{
-			xn=sk_X509_NAME_value(sk,i);
-			if (sk_X509_NAME_set(sk,i,X509_NAME_dup(xn)) == NULL)
+			xn=sk_OPENSSL_X509_NAME_value(sk,i);
+			if (sk_OPENSSL_X509_NAME_set(sk,i,OPENSSL_X509_NAME_dup(xn)) == NULL)
 				{
-				X509_NAME_free(xn);
+				OPENSSL_X509_NAME_free(xn);
 				goto err;
 				}
 			}

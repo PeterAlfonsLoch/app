@@ -343,7 +343,7 @@ static int TS_issuer_serial_cmp(ESS_ISSUER_SERIAL *is, X509_CINF *cinfo)
 	/* Check the issuer first. It must be a directory name. */
 	issuer = sk_GENERAL_NAME_value(is->issuer, 0);
 	if (issuer->type != GEN_DIRNAME 
-	    || X509_NAME_cmp(issuer->d.dirn, cinfo->issuer))
+	    || OPENSSL_X509_NAME_cmp(issuer->d.dirn, cinfo->issuer))
 		return -1;
 
 	/* Check the serial number, too. */

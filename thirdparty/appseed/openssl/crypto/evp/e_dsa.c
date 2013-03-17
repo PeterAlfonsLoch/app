@@ -61,6 +61,7 @@
 #include <openssl/evp.h>
 #include <openssl/objects.h>
 #include <openssl/x509.h>
+#include "evp_locl.h"
 
 static EVP_PKEY_METHOD dss_method=
 	{

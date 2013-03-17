@@ -93,8 +93,8 @@
 
 #ifdef __COMPILE_CAPIENG
 
-#undef X509_EXTENSIONS
-#undef X509_CERT_PAIR
+#undef OPENSSL_X509_EXTENSIONS
+#undef OPENSSL_X509_CERT_PAIR
 
 /* Definitions which may be missing from earlier version of headers */
 #ifndef CERT_STORE_OPEN_EXISTING_FLAG
@@ -152,7 +152,7 @@ static DSA_SIG *capi_dsa_do_sign(const unsigned char *digest, int dlen,
 static int capi_dsa_free(DSA *dsa);
 
 static int capi_load_ssl_client_cert(ENGINE *e, SSL *ssl,
-	STACK_OF(X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
+	STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
 	STACK_OF(X509) **pother, UI_METHOD *ui_method, void *callback_data);
 
 static int cert_select_simple(ENGINE *e, SSL *ssl, STACK_OF(X509) *certs);
@@ -1309,9 +1309,9 @@ void capi_dump_cert(CAPI_CTX *ctx, BIO *out, PCCERT_CONTEXT cert)
 	if (flags & CAPI_DMP_SUMMARY)
 		{
 		BIO_printf(out, "  Subject: ");
-		X509_NAME_print_ex(out, X509_get_subject_name(x), 0, XN_FLAG_ONELINE);
+		OPENSSL_X509_NAME_print_ex(out, X509_get_subject_name(x), 0, XN_FLAG_ONELINE);
 		BIO_printf(out, "\n  Issuer: ");
-		X509_NAME_print_ex(out, X509_get_issuer_name(x), 0, XN_FLAG_ONELINE);
+		OPENSSL_X509_NAME_print_ex(out, X509_get_issuer_name(x), 0, XN_FLAG_ONELINE);
 		BIO_printf(out, "\n");
 		}
 	if (flags & CAPI_DMP_FULL)
@@ -1601,17 +1601,17 @@ static int capi_ctx_set_provname_idx(CAPI_CTX *ctx, int idx)
 	return res;
 	}
 
-static int cert_issuer_match(STACK_OF(X509_NAME) *ca_dn, X509 *x)
+static int cert_issuer_match(STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 *x)
 	{
 	int i;
-	X509_NAME *nm;
+	OPENSSL_X509_NAME *nm;
 	/* Special case: empty list: match anything */
-	if (sk_X509_NAME_num(ca_dn) <= 0)
+	if (sk_OPENSSL_X509_NAME_num(ca_dn) <= 0)
 		return 1;
-	for (i = 0; i < sk_X509_NAME_num(ca_dn); i++)
+	for (i = 0; i < sk_OPENSSL_X509_NAME_num(ca_dn); i++)
 		{
-		nm = sk_X509_NAME_value(ca_dn, i);
-		if (!X509_NAME_cmp(nm, X509_get_issuer_name(x)))
+		nm = sk_OPENSSL_X509_NAME_value(ca_dn, i);
+		if (!OPENSSL_X509_NAME_cmp(nm, X509_get_issuer_name(x)))
 				return 1;
 		}
 	return 0;
@@ -1620,7 +1620,7 @@ static int cert_issuer_match(STACK_OF(X509_NAME) *ca_dn, X509 *x)
 
 
 static int capi_load_ssl_client_cert(ENGINE *e, SSL *ssl,
-	STACK_OF(X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
+	STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
 	STACK_OF(X509) **pother, UI_METHOD *ui_method, void *callback_data)
 	{
 	STACK_OF(X509) *certs = NULL;

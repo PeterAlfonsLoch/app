@@ -101,7 +101,11 @@ void do_fp(FILE *f)
 	int i;
 	unsigned char buf[BUFSIZE];
 
+#ifdef _WIN32
+   fd = _fileno(f);
+#else
 	fd=fileno(f);
+#endif
 	SHA_Init(&c);
 	for (;;)
 		{

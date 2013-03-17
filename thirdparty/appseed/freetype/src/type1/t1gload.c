@@ -65,7 +65,7 @@
 
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     FT_Incremental_InterfaceRec *inc =
-                      face->root.internal->incremental_interface;
+                      face->root.m_internal->incremental_interface;
 #endif
 
 
@@ -137,9 +137,9 @@
       T1_Face  face = (T1_Face)decoder->builder.face;
 
 
-      if ( face->root.internal->incremental_interface )
-        face->root.internal->incremental_interface->funcs->free_glyph_data(
-          face->root.internal->incremental_interface->object,
+      if ( face->root.m_internal->incremental_interface )
+        face->root.m_internal->incremental_interface->funcs->free_glyph_data(
+          face->root.m_internal->incremental_interface->object,
           &glyph_data );
     }
 
@@ -291,7 +291,7 @@
 
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     if ( glyph_index >= (FT_UInt)face->root.num_glyphs &&
-         !face->root.internal->incremental_interface   )
+         !face->root.m_internal->incremental_interface   )
 #else
     if ( glyph_index >= (FT_UInt)face->root.num_glyphs )
 #endif /* FT_CONFIG_OPTION_INCREMENTAL */
@@ -377,7 +377,7 @@
       /* advance width                                           */
       if ( load_flags & FT_LOAD_NO_RECURSE )
       {
-        FT_Slot_Internal  internal = t1glyph->internal;
+        FT_Slot_Internal  m_internal = t1glyph->m_internal;
 
 
         t1glyph->metrics.horiBearingX =
@@ -385,9 +385,9 @@
         t1glyph->metrics.horiAdvance  =
           FIXED_TO_INT( decoder.builder.advance.x );
 
-        internal->glyph_matrix      = font_matrix;
-        internal->glyph_delta       = font_offset;
-        internal->glyph_transformed = 1;
+        m_internal->glyph_matrix      = font_matrix;
+        m_internal->glyph_delta       = font_offset;
+        m_internal->glyph_transformed = 1;
       }
       else
       {
@@ -401,7 +401,7 @@
           FIXED_TO_INT( decoder.builder.advance.x );
         t1glyph->linearHoriAdvance =
           FIXED_TO_INT( decoder.builder.advance.x );
-        t1glyph->internal->glyph_transformed = 0;
+        t1glyph->m_internal->glyph_transformed = 0;
 
         if ( load_flags & FT_LOAD_VERTICAL_LAYOUT )
         {
@@ -494,10 +494,10 @@
   Exit:
 
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
-    if ( glyph_data_loaded && face->root.internal->incremental_interface )
+    if ( glyph_data_loaded && face->root.m_internal->incremental_interface )
     {
-      face->root.internal->incremental_interface->funcs->free_glyph_data(
-        face->root.internal->incremental_interface->object,
+      face->root.m_internal->incremental_interface->funcs->free_glyph_data(
+        face->root.m_internal->incremental_interface->object,
         &glyph_data );
 
       /* Set the control data to null - it is no longer available if   */

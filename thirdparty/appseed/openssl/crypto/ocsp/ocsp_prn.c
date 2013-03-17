@@ -100,12 +100,12 @@ static const char *table2string(long s, const OCSP_TBLSTR *ts, int len)
 const char *OCSP_response_status_str(long s)
         {
 	static const OCSP_TBLSTR rstat_tbl[] = {
-	        { OCSP_RESPONSE_STATUS_SUCCESSFUL, "successful" },
-	        { OCSP_RESPONSE_STATUS_MALFORMEDREQUEST, "malformedrequest" },
-	        { OCSP_RESPONSE_STATUS_INTERNALERROR, "internalerror" },
-	        { OCSP_RESPONSE_STATUS_TRYLATER, "trylater" },
-	        { OCSP_RESPONSE_STATUS_SIGREQUIRED, "sigrequired" },
-	        { OCSP_RESPONSE_STATUS_UNAUTHORIZED, "unauthorized" } };
+	        { OPENSSL_OCSP_RESPONSE_STATUS_SUCCESSFUL, "successful" },
+	        { OPENSSL_OCSP_RESPONSE_STATUS_MALFORMEDREQUEST, "malformedrequest" },
+	        { OPENSSL_OCSP_RESPONSE_STATUS_INTERNALERROR, "internalerror" },
+	        { OPENSSL_OCSP_RESPONSE_STATUS_TRYLATER, "trylater" },
+	        { OPENSSL_OCSP_RESPONSE_STATUS_SIGREQUIRED, "sigrequired" },
+	        { OPENSSL_OCSP_RESPONSE_STATUS_UNAUTHORIZED, "unauthorized" } };
 	return table2string(s, rstat_tbl, 6);
 	} 
 
@@ -132,7 +132,7 @@ const char *OCSP_crl_reason_str(long s)
 	return table2string(s, reason_tbl, 8);
 	} 
 
-int OCSP_REQUEST_print(BIO *bp, OCSP_REQUEST* o, unsigned long flags)
+int OPENSSL_OCSP_REQUEST_print(BIO *bp, OPENSSL_OCSP_REQUEST* o, unsigned long flags)
         {
 	int i;
 	long l;
@@ -178,7 +178,7 @@ err:
 	return 0;
 	}
 
-int OCSP_RESPONSE_print(BIO *bp, OCSP_RESPONSE* o, unsigned long flags)
+int OPENSSL_OCSP_RESPONSE_print(BIO *bp, OPENSSL_OCSP_RESPONSE* o, unsigned long flags)
         {
 	int i, ret = 0;
 	long l;
@@ -218,7 +218,7 @@ int OCSP_RESPONSE_print(BIO *bp, OCSP_RESPONSE* o, unsigned long flags)
 	switch (rid->type)
 		{
 		case V_OCSP_RESPID_NAME:
-		        X509_NAME_print_ex(bp, rid->value.byName, 0, XN_FLAG_ONELINE);
+		        OPENSSL_X509_NAME_print_ex(bp, rid->value.byName, 0, XN_FLAG_ONELINE);
 		        break;
 		case V_OCSP_RESPID_KEY:
 		        i2a_ASN1_STRING(bp, rid->value.byKey, V_ASN1_OCTET_STRING);

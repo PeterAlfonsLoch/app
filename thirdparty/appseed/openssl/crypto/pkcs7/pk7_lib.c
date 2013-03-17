@@ -371,7 +371,7 @@ int PKCS7_SIGNER_INFO_set(PKCS7_SIGNER_INFO *p7i, X509 *x509, EVP_PKEY *pkey,
 	/* We now need to add another PKCS7_SIGNER_INFO entry */
 	if (!ASN1_INTEGER_set(p7i->version,1))
 		goto err;
-	if (!X509_NAME_set(&p7i->issuer_and_serial->issuer,
+	if (!OPENSSL_X509_NAME_set(&p7i->issuer_and_serial->issuer,
 			X509_get_issuer_name(x509)))
 		goto err;
 
@@ -532,7 +532,7 @@ int PKCS7_RECIP_INFO_set(PKCS7_RECIP_INFO *p7i, X509 *x509)
 	EVP_PKEY *pkey = NULL;
 	if (!ASN1_INTEGER_set(p7i->version,0))
 		return 0;
-	if (!X509_NAME_set(&p7i->issuer_and_serial->issuer,
+	if (!OPENSSL_X509_NAME_set(&p7i->issuer_and_serial->issuer,
 		X509_get_issuer_name(x509)))
 		return 0;
 

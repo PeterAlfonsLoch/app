@@ -63,9 +63,9 @@
 #include <openssl/x509.h>
 #include <openssl/buffer.h>
 
-char *X509_NAME_oneline(X509_NAME *a, char *buf, int len)
+char *OPENSSL_X509_NAME_oneline(OPENSSL_X509_NAME *a, char *buf, int len)
 	{
-	X509_NAME_ENTRY *ne;
+	OPENSSL_X509_NAME_ENTRY *ne;
 int i;
 	int n,lold,l,l1,l2,num,j,type;
 	const char *s;
@@ -93,16 +93,16 @@ int i;
 		buf=b->data;
 		OPENSSL_free(b);
 		}
-	    strncpy(buf,"NO X509_NAME",len);
+	    strncpy(buf,"NO OPENSSL_X509_NAME",len);
 	    buf[len-1]='\0';
 	    return buf;
 	    }
 
 	len--; /* space for '\0' */
 	l=0;
-	for (i=0; i<sk_X509_NAME_ENTRY_num(a->entries); i++)
+	for (i=0; i<sk_OPENSSL_X509_NAME_ENTRY_num(a->entries); i++)
 		{
-		ne=sk_X509_NAME_ENTRY_value(a->entries,i);
+		ne=sk_OPENSSL_X509_NAME_ENTRY_value(a->entries,i);
 		n=OBJ_obj2nid(ne->object);
 		if ((n == NID_undef) || ((s=OBJ_nid2sn(n)) == NULL))
 			{
@@ -219,7 +219,7 @@ int i;
 		*p = '\0';
 	return(p);
 err:
-	X509err(X509_F_X509_NAME_ONELINE,ERR_R_MALLOC_FAILURE);
+	X509err(X509_F_OPENSSL_X509_NAME_ONELINE,ERR_R_MALLOC_FAILURE);
 	if (b != NULL) BUF_MEM_free(b);
 	return(NULL);
 	}

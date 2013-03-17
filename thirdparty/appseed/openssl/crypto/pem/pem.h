@@ -155,7 +155,7 @@ typedef struct PEM_Encode_Seal_st
 typedef struct pem_recip_st
 	{
 	char *name;
-	X509_NAME *dn;
+	OPENSSL_X509_NAME *dn;
 
 	int cipher;
 	int key_enc;
@@ -460,7 +460,7 @@ DECLARE_PEM_rw(X509, X509)
 
 DECLARE_PEM_rw(X509_AUX, X509)
 
-DECLARE_PEM_rw(X509_CERT_PAIR, X509_CERT_PAIR)
+DECLARE_PEM_rw(OPENSSL_X509_CERT_PAIR, OPENSSL_X509_CERT_PAIR)
 
 DECLARE_PEM_rw(X509_REQ, X509_REQ)
 DECLARE_PEM_write(X509_REQ_NEW, X509_REQ)

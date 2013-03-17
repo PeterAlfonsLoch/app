@@ -522,7 +522,7 @@ struct tls_x509_name_string {
 static void
 tls_get_x509_subject_name_oneline(X509 *cert, struct tls_x509_name_string *namestring)
 {
-    X509_NAME *name;
+    OPENSSL_X509_NAME *name;
 
     if (cert == NULL) {
 	namestring->str[0] = '\0';
@@ -539,14 +539,14 @@ tls_get_x509_subject_name_oneline(X509 *cert, struct tls_x509_name_string *names
     } else {
 	size_t len;
 
-	X509_NAME_oneline(name, namestring->str, sizeof namestring->str);
+	OPENSSL_X509_NAME_oneline(name, namestring->str, sizeof namestring->str);
 	len = strlen(namestring->str);
 	assert(namestring->str[len] == 0);
 	assert(len < sizeof namestring->str);
 
 	if (len+1 == sizeof namestring->str) {
 	    /* (Probably something was cut off.)
-	     * Does not really work -- X509_NAME_oneline truncates after
+	     * Does not really work -- OPENSSL_X509_NAME_oneline truncates after
 	     * name components, we cannot tell from the result whether
 	     * anything is missing. */
 

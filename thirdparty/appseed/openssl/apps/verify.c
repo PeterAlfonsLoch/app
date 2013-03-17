@@ -306,7 +306,7 @@ static int MS_CALLBACK cb(int ok, X509_STORE_CTX *ctx)
 		{
 		if (current_cert)
 			{
-			X509_NAME_print_ex_fp(stdout,
+			OPENSSL_X509_NAME_print_ex_fp(stdout,
 				X509_get_subject_name(current_cert),
 				0, XN_FLAG_ONELINE);
 			printf("\n");

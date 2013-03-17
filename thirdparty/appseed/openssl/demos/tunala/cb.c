@@ -74,9 +74,9 @@ int cb_ssl_verify(int ok, X509_STORE_CTX *ctx)
 
 	buf1[0] = buf2[0] = '\0';
 	/* Fill buf1 */
-	X509_NAME_oneline(X509_get_subject_name(err_cert), buf1, 256);
+	OPENSSL_X509_NAME_oneline(X509_get_subject_name(err_cert), buf1, 256);
 	/* Fill buf2 */
-	X509_NAME_oneline(X509_get_issuer_name(ctx->current_cert), buf2, 256);
+	OPENSSL_X509_NAME_oneline(X509_get_issuer_name(ctx->current_cert), buf2, 256);
 	switch (ctx->error) {
 	case X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT:
 		reason = int_reason_no_issuer;

@@ -74,7 +74,7 @@ void z_error(char * psz)
 #define MY_ZCALLOC /* prevent all zcalloc() & zfree() in zutils.c */
 #endif
 
-#include "zlib.h"
+#include "zlib/zlib.h"
 
 #undef  SLOW
 #define SLOW  1  /* we can't use asm-optimized sources here! */

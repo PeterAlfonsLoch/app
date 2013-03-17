@@ -45,7 +45,7 @@
   /*                                                                       */
   /*                            SIZE FUNCTIONS                             */
   /*                                                                       */
-  /*  Note that we store the global hints in the size's `internal' root    */
+  /*  Note that we store the global hints in the size's `m_internal' root    */
   /*  field.                                                               */
   /*                                                                       */
   /*************************************************************************/
@@ -74,10 +74,10 @@
     CFF_Size      size     = (CFF_Size)cffsize;
     CFF_Face      face     = (CFF_Face)size->root.face;
     CFF_Font      font     = (CFF_Font)face->extra.data;
-    CFF_Internal  internal = (CFF_Internal)cffsize->internal;
+    CFF_Internal  m_internal = (CFF_Internal)cffsize->m_internal;
 
 
-    if ( internal )
+    if ( m_internal )
     {
       PSH_Globals_Funcs  funcs;
 
@@ -88,13 +88,13 @@
         FT_UInt  i;
 
 
-        funcs->destroy( internal->topfont );
+        funcs->destroy( m_internal->topfont );
 
         for ( i = font->num_subfonts; i > 0; i-- )
-          funcs->destroy( internal->subfonts[i - 1] );
+          funcs->destroy( m_internal->subfonts[i - 1] );
       }
 
-      /* `internal' is freed by destroy_size (in ftobjs.c) */
+      /* `m_internal' is freed by destroy_size (in ftobjs.c) */
     }
   }
 
@@ -161,7 +161,7 @@
     {
       CFF_Face      face     = (CFF_Face)cffsize->face;
       CFF_Font      font     = (CFF_Font)face->extra.data;
-      CFF_Internal  internal = NULL;
+      CFF_Internal  m_internal = NULL;
 
       PS_PrivateRec  priv;
       FT_Memory      memory = cffsize->face->memory;
@@ -169,12 +169,12 @@
       FT_UInt  i;
 
 
-      if ( FT_NEW( internal ) )
+      if ( FT_NEW( m_internal ) )
         goto Exit;
 
       cff_make_private_dict( &font->top_font, &priv );
       error = funcs->create( cffsize->face->memory, &priv,
-                             &internal->topfont );
+                             &m_internal->topfont );
       if ( error )
         goto Exit;
 
@@ -185,12 +185,12 @@
 
         cff_make_private_dict( sub, &priv );
         error = funcs->create( cffsize->face->memory, &priv,
-                               &internal->subfonts[i - 1] );
+                               &m_internal->subfonts[i - 1] );
         if ( error )
           goto Exit;
       }
 
-      cffsize->internal = (FT_Size_Internal)(void*)internal;
+      cffsize->m_internal = (FT_Size_Internal)(void*)m_internal;
     }
 
     size->strike_index = 0xFFFFFFFFUL;
@@ -220,13 +220,13 @@
     {
       CFF_Face      face     = (CFF_Face)size->face;
       CFF_Font      font     = (CFF_Font)face->extra.data;
-      CFF_Internal  internal = (CFF_Internal)size->internal;
+      CFF_Internal  m_internal = (CFF_Internal)size->m_internal;
 
       FT_ULong  top_upm  = font->top_font.font_dict.units_per_em;
       FT_UInt   i;
 
 
-      funcs->set_scale( internal->topfont,
+      funcs->set_scale( m_internal->topfont,
                         size->metrics.x_scale, size->metrics.y_scale,
                         0, 0 );
 
@@ -248,7 +248,7 @@
           y_scale = size->metrics.y_scale;
         }
 
-        funcs->set_scale( internal->subfonts[i - 1],
+        funcs->set_scale( m_internal->subfonts[i - 1],
                           x_scale, y_scale, 0, 0 );
       }
     }
@@ -292,13 +292,13 @@
     {
       CFF_Face      cffface  = (CFF_Face)size->face;
       CFF_Font      font     = (CFF_Font)cffface->extra.data;
-      CFF_Internal  internal = (CFF_Internal)size->internal;
+      CFF_Internal  m_internal = (CFF_Internal)size->m_internal;
 
       FT_ULong  top_upm  = font->top_font.font_dict.units_per_em;
       FT_UInt   i;
 
 
-      funcs->set_scale( internal->topfont,
+      funcs->set_scale( m_internal->topfont,
                         size->metrics.x_scale, size->metrics.y_scale,
                         0, 0 );
 
@@ -320,7 +320,7 @@
           y_scale = size->metrics.y_scale;
         }
 
-        funcs->set_scale( internal->subfonts[i - 1],
+        funcs->set_scale( m_internal->subfonts[i - 1],
                           x_scale, y_scale, 0, 0 );
       }
     }
@@ -338,7 +338,7 @@
   FT_LOCAL_DEF( void )
   cff_slot_done( FT_GlyphSlot  slot )
   {
-    slot->internal->glyph_hints = 0;
+    slot->m_internal->glyph_hints = 0;
   }
 
 
@@ -363,7 +363,7 @@
 
 
         funcs = pshinter->get_t2_funcs( module );
-        slot->internal->glyph_hints = (void*)funcs;
+        slot->m_internal->glyph_hints = (void*)funcs;
       }
     }
 

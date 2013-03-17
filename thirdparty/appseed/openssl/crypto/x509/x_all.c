@@ -407,10 +407,10 @@ int X509_REQ_digest(const X509_REQ *data, const EVP_MD *type, unsigned char *md,
 	return(ASN1_item_digest(ASN1_ITEM_rptr(X509_REQ),type,(char *)data,md,len));
 	}
 
-int X509_NAME_digest(const X509_NAME *data, const EVP_MD *type, unsigned char *md,
+int OPENSSL_X509_NAME_digest(const OPENSSL_X509_NAME *data, const EVP_MD *type, unsigned char *md,
 	     unsigned int *len)
 	{
-	return(ASN1_item_digest(ASN1_ITEM_rptr(X509_NAME),type,(char *)data,md,len));
+	return(ASN1_item_digest(ASN1_ITEM_rptr(OPENSSL_X509_NAME),type,(char *)data,md,len));
 	}
 
 int PKCS7_ISSUER_AND_SERIAL_digest(PKCS7_ISSUER_AND_SERIAL *data, const EVP_MD *type,

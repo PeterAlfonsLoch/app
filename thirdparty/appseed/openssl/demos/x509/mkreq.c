@@ -61,7 +61,7 @@ int mkreq(X509_REQ **req, EVP_PKEY **pkeyp, int bits, int serial, int days)
 	X509_REQ *x;
 	EVP_PKEY *pk;
 	RSA *rsa;
-	X509_NAME *name=NULL;
+	OPENSSL_X509_NAME *name=NULL;
 	STACK_OF(X509_EXTENSION) *exts = NULL;
 	
 	if ((pk=EVP_PKEY_new()) == NULL)
@@ -84,9 +84,9 @@ int mkreq(X509_REQ **req, EVP_PKEY **pkeyp, int bits, int serial, int days)
 	 * correct string type and performing checks on its length.
 	 * Normally we'd check the return value for errors...
 	 */
-	X509_NAME_add_entry_by_txt(name,"C",
+	OPENSSL_X509_NAME_add_entry_by_txt(name,"C",
 				MBSTRING_ASC, "UK", -1, -1, 0);
-	X509_NAME_add_entry_by_txt(name,"CN",
+	OPENSSL_X509_NAME_add_entry_by_txt(name,"CN",
 				MBSTRING_ASC, "OpenSSL Group", -1, -1, 0);
 
 #ifdef REQUEST_EXTENSIONS

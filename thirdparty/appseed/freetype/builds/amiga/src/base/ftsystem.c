@@ -347,7 +347,7 @@ Free_VecPooled( APTR  poolHeader,
         {
           /* we actually need more than our buffer can hold, so we decide
           ** to do a single big read, and then copy the last IOBUF_SIZE
-          ** bytes of that to our internal buffer for later use */
+          ** bytes of that to our m_internal buffer for later use */
           read_bytes = Read( sysfile->file, buffer, count );
           if ( read_bytes == -1UL )
           {

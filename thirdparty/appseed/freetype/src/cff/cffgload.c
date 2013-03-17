@@ -259,7 +259,7 @@
 
     if ( glyph )
     {
-      FT_GlyphLoader  loader = glyph->root.internal->loader;
+      FT_GlyphLoader  loader = glyph->root.m_internal->loader;
 
 
       builder->loader  = loader;
@@ -272,11 +272,11 @@
 
       if ( hinting && size )
       {
-        CFF_Internal  internal = (CFF_Internal)size->root.internal;
+        CFF_Internal  m_internal = (CFF_Internal)size->root.m_internal;
 
 
-        builder->hints_globals = (void *)internal->topfont;
-        builder->hints_funcs   = glyph->root.internal->glyph_hints;
+        builder->hints_globals = (void *)m_internal->topfont;
+        builder->hints_funcs   = glyph->root.m_internal->glyph_hints;
       }
     }
 
@@ -434,11 +434,11 @@
 
       if ( builder->hints_funcs && size )
       {
-        CFF_Internal  internal = (CFF_Internal)size->root.internal;
+        CFF_Internal  m_internal = (CFF_Internal)size->root.m_internal;
 
 
         /* for CFFs without subfonts, this value has already been set */
-        builder->hints_globals = (void *)internal->subfonts[fd_index];
+        builder->hints_globals = (void *)m_internal->subfonts[fd_index];
       }
     }
 #ifdef FT_DEBUG_LEVEL_TRACE
@@ -645,12 +645,12 @@
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     /* For incremental fonts get the character data using the */
     /* callback function.                                     */
-    if ( face->root.internal->incremental_interface )
+    if ( face->root.m_internal->incremental_interface )
     {
       FT_Data   data;
       FT_Error  error =
-                  face->root.internal->incremental_interface->funcs->get_glyph_data(
-                    face->root.internal->incremental_interface->object,
+                  face->root.m_internal->incremental_interface->funcs->get_glyph_data(
+                    face->root.m_internal->incremental_interface->object,
                     glyph_index, &data );
 
 
@@ -684,7 +684,7 @@
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     /* For incremental fonts get the character data using the */
     /* callback function.                                     */
-    if ( face->root.internal->incremental_interface )
+    if ( face->root.m_internal->incremental_interface )
     {
       FT_Data data;
 
@@ -692,8 +692,8 @@
       data.pointer = *pointer;
       data.length  = (int) length;
 
-      face->root.internal->incremental_interface->funcs->free_glyph_data(
-        face->root.internal->incremental_interface->object, &data );
+      face->root.m_internal->incremental_interface->funcs->free_glyph_data(
+        face->root.m_internal->incremental_interface->object, &data );
     }
     else
 #endif /* FT_CONFIG_OPTION_INCREMENTAL */
@@ -737,7 +737,7 @@
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     /* Incremental fonts don't necessarily have valid charsets.        */
     /* They use the character code, not the glyph index, in this case. */
-    if ( face->root.internal->incremental_interface )
+    if ( face->root.m_internal->incremental_interface )
     {
       bchar_index = bchar;
       achar_index = achar;
@@ -764,7 +764,7 @@
     if ( builder->no_recurse )
     {
       FT_GlyphSlot    glyph  = (FT_GlyphSlot)builder->glyph;
-      FT_GlyphLoader  loader = glyph->internal->loader;
+      FT_GlyphLoader  loader = glyph->m_internal->loader;
       FT_SubGlyph     subg;
 
 
@@ -2768,7 +2768,7 @@
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
       /* Control data and length may not be available for incremental */
       /* fonts.                                                       */
-      if ( face->root.internal->incremental_interface )
+      if ( face->root.m_internal->incremental_interface )
       {
         glyph->root.control_data = 0;
         glyph->root.control_len = 0;
@@ -2802,8 +2802,8 @@
 
     /* Incremental fonts can optionally override the metrics. */
     if ( !error                                                               &&
-         face->root.internal->incremental_interface                           &&
-         face->root.internal->incremental_interface->funcs->get_glyph_metrics )
+         face->root.m_internal->incremental_interface                           &&
+         face->root.m_internal->incremental_interface->funcs->get_glyph_metrics )
     {
       FT_Incremental_MetricsRec  metrics;
 
@@ -2813,8 +2813,8 @@
       metrics.advance   = decoder.builder.advance.x;
       metrics.advance_v = decoder.builder.advance.y;
 
-      error = face->root.internal->incremental_interface->funcs->get_glyph_metrics(
-                face->root.internal->incremental_interface->object,
+      error = face->root.m_internal->incremental_interface->funcs->get_glyph_metrics(
+                face->root.m_internal->incremental_interface->object,
                 glyph_index, FALSE, &metrics );
 
       decoder.builder.left_bearing.x = metrics.bearing_x;
@@ -2834,14 +2834,14 @@
       /* advance width.                                          */
       if ( load_flags & FT_LOAD_NO_RECURSE )
       {
-        FT_Slot_Internal  internal = glyph->root.internal;
+        FT_Slot_Internal  m_internal = glyph->root.m_internal;
 
 
         glyph->root.metrics.horiBearingX = decoder.builder.left_bearing.x;
         glyph->root.metrics.horiAdvance  = decoder.glyph_width;
-        internal->glyph_matrix           = font_matrix;
-        internal->glyph_delta            = font_offset;
-        internal->glyph_transformed      = 1;
+        m_internal->glyph_matrix           = font_matrix;
+        m_internal->glyph_delta            = font_offset;
+        m_internal->glyph_transformed      = 1;
       }
       else
       {
@@ -2854,7 +2854,7 @@
         /* copy the _unscaled_ advance width */
         metrics->horiAdvance                    = decoder.glyph_width;
         glyph->root.linearHoriAdvance           = decoder.glyph_width;
-        glyph->root.internal->glyph_transformed = 0;
+        glyph->root.m_internal->glyph_transformed = 0;
 
 #ifdef FT_CONFIG_OPTION_OLD_INTERNALS
         has_vertical_info = FT_BOOL( face->vertical_info                   &&

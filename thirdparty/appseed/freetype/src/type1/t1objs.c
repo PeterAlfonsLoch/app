@@ -49,7 +49,7 @@
   /*                                                                       */
   /*                            SIZE FUNCTIONS                             */
   /*                                                                       */
-  /*  note that we store the global hints in the size's "internal" root    */
+  /*  note that we store the global hints in the size's "m_internal" root    */
   /*  field                                                                */
   /*                                                                       */
   /*************************************************************************/
@@ -77,16 +77,16 @@
     T1_Size  size = (T1_Size)t1size;
 
 
-    if ( size->root.internal )
+    if ( size->root.m_internal )
     {
       PSH_Globals_Funcs  funcs;
 
 
       funcs = T1_Size_Get_Globals_Funcs( size );
       if ( funcs )
-        funcs->destroy( (PSH_Globals)size->root.internal );
+        funcs->destroy( (PSH_Globals)size->root.m_internal );
 
-      size->root.internal = 0;
+      size->root.m_internal = 0;
     }
   }
 
@@ -108,7 +108,7 @@
       error = funcs->create( size->root.face->memory,
                              &face->type1.private_dict, &globals );
       if ( !error )
-        size->root.internal = (FT_Size_Internal)(void*)globals;
+        size->root.m_internal = (FT_Size_Internal)(void*)globals;
     }
 
     return error;
@@ -126,7 +126,7 @@
     FT_Request_Metrics( size->root.face, req );
 
     if ( funcs )
-      funcs->set_scale( (PSH_Globals)size->root.internal,
+      funcs->set_scale( (PSH_Globals)size->root.m_internal,
                         size->root.metrics.x_scale,
                         size->root.metrics.y_scale,
                         0, 0 );
@@ -144,7 +144,7 @@
   FT_LOCAL_DEF( void )
   T1_GlyphSlot_Done( FT_GlyphSlot  slot )
   {
-    slot->internal->glyph_hints = 0;
+    slot->m_internal->glyph_hints = 0;
   }
 
 
@@ -171,7 +171,7 @@
 
 
         funcs = pshinter->get_t1_funcs( module );
-        slot->internal->glyph_hints = (void*)funcs;
+        slot->m_internal->glyph_hints = (void*)funcs;
       }
     }
 

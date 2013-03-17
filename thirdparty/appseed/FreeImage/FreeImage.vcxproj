@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>_freeimage</ProjectName>
+    <ProjectName>_ca2freeimage</ProjectName>
     <ProjectGuid>{B39ED2B3-D53A-4077-B957-930979A3577D}</ProjectGuid>
     <RootNamespace>_freeimage</RootNamespace>
   </PropertyGroup>

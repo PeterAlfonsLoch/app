@@ -1479,7 +1479,7 @@
 
     if ( glyph )
     {
-      FT_GlyphLoader  loader = glyph->internal->loader;
+      FT_GlyphLoader  loader = glyph->m_internal->loader;
 
 
       builder->loader  = loader;
@@ -1487,11 +1487,11 @@
       builder->current = &loader->current.outline;
       FT_GlyphLoader_Rewind( loader );
 
-      builder->hints_globals = size->internal;
+      builder->hints_globals = size->m_internal;
       builder->hints_funcs   = 0;
 
       if ( hinting )
-        builder->hints_funcs = glyph->internal->glyph_hints;
+        builder->hints_funcs = glyph->m_internal->glyph_hints;
     }
 
     builder->pos_x = 0;

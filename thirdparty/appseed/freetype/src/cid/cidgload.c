@@ -54,7 +54,7 @@
 
 #ifdef FT_CONFIG_OPTION_INCREMENTAL
     FT_Incremental_InterfaceRec *inc =
-                                  face->root.internal->incremental_interface;
+                                  face->root.m_internal->incremental_interface;
 #endif
 
 
@@ -341,7 +341,7 @@
     /* advance width                                           */
     if ( load_flags & FT_LOAD_NO_RECURSE )
     {
-      FT_Slot_Internal  internal = cidglyph->internal;
+      FT_Slot_Internal  m_internal = cidglyph->m_internal;
 
 
       cidglyph->metrics.horiBearingX =
@@ -349,9 +349,9 @@
       cidglyph->metrics.horiAdvance =
         FIXED_TO_INT( decoder.builder.advance.x );
 
-      internal->glyph_matrix      = font_matrix;
-      internal->glyph_delta       = font_offset;
-      internal->glyph_transformed = 1;
+      m_internal->glyph_matrix      = font_matrix;
+      m_internal->glyph_delta       = font_offset;
+      m_internal->glyph_transformed = 1;
     }
     else
     {
@@ -365,7 +365,7 @@
         FIXED_TO_INT( decoder.builder.advance.x );
       cidglyph->linearHoriAdvance =
         FIXED_TO_INT( decoder.builder.advance.x );
-      cidglyph->internal->glyph_transformed = 0;
+      cidglyph->m_internal->glyph_transformed = 0;
 
       /* make up vertical ones */
       metrics->vertAdvance        = ( face->cid.font_bbox.yMax -
