@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="" />
+	<ActiveTarget name="Debug" />
 	<File name="crypto/aes/aes_ige.c" open="1" top="0" tabpos="1">
 		<Cursor position="2807" topLine="34" />
 	</File>
 	<File name="crypto/arm_arch.h" open="1" top="0" tabpos="2">
 		<Cursor position="1166" topLine="16" />
 	</File>
-	<File name="crypto/cmac/cm_ameth.c" open="1" top="1" tabpos="4">
+	<File name="crypto/bf/bf_enc.c" open="1" top="0" tabpos="13">
+		<Cursor position="6381" topLine="184" />
+	</File>
+	<File name="crypto/cmac/cm_ameth.c" open="1" top="0" tabpos="3">
 		<Cursor position="2632" topLine="39" />
+	</File>
+	<File name="crypto/cmac/cm_pmeth.c" open="1" top="0" tabpos="4">
+		<Cursor position="2813" topLine="41" />
+	</File>
+	<File name="crypto/cryptlib.h" open="1" top="0" tabpos="6">
+		<Cursor position="3453" topLine="47" />
+	</File>
+	<File name="crypto/des/des_ver.h" open="1" top="0" tabpos="5">
+		<Cursor position="3500" topLine="36" />
+	</File>
+	<File name="crypto/des/ecb_enc.c" open="1" top="0" tabpos="16">
+		<Cursor position="3299" topLine="47" />
+	</File>
+	<File name="crypto/des/spr.h" open="1" top="0" tabpos="7">
+		<Cursor position="3193" topLine="41" />
+	</File>
+	<File name="crypto/evp/e_aes.c" open="1" top="0" tabpos="8">
+		<Cursor position="2674" topLine="42" />
+	</File>
+	<File name="crypto/pkcs7/pk7_enc.c" open="1" top="0" tabpos="9">
+		<Cursor position="3611" topLine="41" />
+	</File>
+	<File name="crypto/threads/th-lock.c" open="1" top="0" tabpos="10">
+		<Cursor position="3288" topLine="46" />
+	</File>
+	<File name="ssl/s2_lib.c" open="1" top="0" tabpos="15">
+		<Cursor position="6154" topLine="106" />
+	</File>
+	<File name="ssl/s3_lib.c" open="1" top="0" tabpos="12">
+		<Cursor position="8051" topLine="152" />
+	</File>
+	<File name="ssl/ssl_locl.h" open="1" top="0" tabpos="11">
+		<Cursor position="22708" topLine="587" />
 	</File>
 </CodeBlocks_layout_file>

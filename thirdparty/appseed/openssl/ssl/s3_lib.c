@@ -5,21 +5,21 @@
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
- * 
+ *
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
- * 
+ *
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -34,10 +34,10 @@
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
- * 4. If you include any Windows specific code (or a derivative thereof) from 
+ * 4. If you include any Windows specific code (or a derivative thereof) from
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -49,7 +49,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- * 
+ *
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence
@@ -63,7 +63,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -111,7 +111,7 @@
 /* ====================================================================
  * Copyright 2002 Sun Microsystems, Inc. ALL RIGHTS RESERVED.
  *
- * Portions of the attached software ("Contribution") are developed by 
+ * Portions of the attached software ("Contribution") are developed by
  * SUN MICROSYSTEMS, INC., and are contributed to the OpenSSL project.
  *
  * The Contribution is licensed pursuant to the OpenSSL open source
@@ -167,7 +167,7 @@ const char ssl3_version_str[]="SSLv3" OPENSSL_VERSION_PTEXT;
 #define SSL3_NUM_CIPHERS	(sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
 
 /* list of available SSLv3 ciphers (sorted by id) */
-CLASS_DECL_OPENSSL SSL_CIPHER ssl3_ciphers[]={
+CLASS_IMPL_OPENSSL SSL_CIPHER ssl3_ciphers[]={
 
 /* The RSA ciphers */
 /* Cipher 01 */
@@ -2933,7 +2933,7 @@ int ssl3_pending(const SSL *s)
 	{
 	if (s->rstate == SSL_ST_READ_BODY)
 		return 0;
-	
+
 	return (s->s3->rrec.type == SSL3_RT_APPLICATION_DATA) ? s->s3->rrec.length : 0;
 	}
 
@@ -3049,7 +3049,7 @@ void ssl3_clear(SSL *s)
 	}
 	if (s->s3->handshake_dgst) {
 		ssl3_free_digest_list(s);
-	}	
+	}
 	memset(s->s3,0,sizeof *s->s3);
 	s->s3->rbuf.buf = rp;
 	s->s3->wbuf.buf = wp;
@@ -3200,7 +3200,7 @@ long ssl3_ctrl(SSL *s, int cmd, long larg, void *parg)
 	case SSL_CTRL_SET_TMP_ECDH:
 		{
 		EC_KEY *ecdh = NULL;
- 			
+
 		if (parg == NULL)
 			{
 			SSLerr(SSL_F_SSL3_CTRL, ERR_R_PASSED_NULL_PARAMETER);
@@ -3238,12 +3238,12 @@ long ssl3_ctrl(SSL *s, int cmd, long larg, void *parg)
 	case SSL_CTRL_SET_TLSEXT_HOSTNAME:
  		if (larg == TLSEXT_NAMETYPE_host_name)
 			{
-			if (s->tlsext_hostname != NULL) 
+			if (s->tlsext_hostname != NULL)
 				OPENSSL_free(s->tlsext_hostname);
 			s->tlsext_hostname = NULL;
 
 			ret = 1;
-			if (parg == NULL) 
+			if (parg == NULL)
 				break;
 			if (strlen((char *)parg) > TLSEXT_MAXLEN_host_name)
 				{
@@ -3319,7 +3319,7 @@ long ssl3_ctrl(SSL *s, int cmd, long larg, void *parg)
 	case SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP:
 		*(unsigned char **)parg = s->tlsext_ocsp_resp;
 		return s->tlsext_ocsp_resplen;
-		
+
 	case SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP:
 		if (s->tlsext_ocsp_resp)
 			OPENSSL_free(s->tlsext_ocsp_resp);
@@ -3503,7 +3503,7 @@ long ssl3_ctx_ctrl(SSL_CTX *ctx, int cmd, long larg, void *parg)
 	case SSL_CTRL_SET_TMP_ECDH:
 		{
 		EC_KEY *ecdh = NULL;
- 			
+
 		if (parg == NULL)
 			{
 			SSLerr(SSL_F_SSL3_CTX_CTRL,ERR_R_ECDH_LIB);
@@ -3593,7 +3593,7 @@ long ssl3_ctx_ctrl(SSL_CTX *ctx, int cmd, long larg, void *parg)
 			{
 			SSLerr(SSL_F_SSL3_CTX_CTRL, SSL_R_INVALID_SRP_USERNAME);
 			return 0;
-			} 
+			}
 		if ((ctx->srp_ctx.login = BUF_strdup((char *)parg)) == NULL)
 			{
 			SSLerr(SSL_F_SSL3_CTX_CTRL, ERR_R_INTERNAL_ERROR);
@@ -3807,7 +3807,7 @@ SSL_CIPHER *ssl3_choose_cipher(SSL *s, STACK_OF(SSL_CIPHER) *clnt,
 		c=sk_SSL_CIPHER_value(prio,i);
 
 		/* Skip TLS v1.2 only ciphersuites if lower than v1.2 */
-		if ((c->algorithm_ssl & SSL_TLSV1_2) && 
+		if ((c->algorithm_ssl & SSL_TLSV1_2) &&
 			(TLS1_get_version(s) < TLS1_2_VERSION))
 			continue;
 
@@ -3820,7 +3820,7 @@ SSL_CIPHER *ssl3_choose_cipher(SSL *s, STACK_OF(SSL_CIPHER) *clnt,
 		mask_k=cert->mask_k | s->srp_ctx.srp_Mask;
 		emask_k=cert->export_mask_k | s->srp_ctx.srp_Mask;
 #endif
-			
+
 #ifdef KSSL_DEBUG
 /*		printf("ssl3_choose_cipher %d alg= %lx\n", i,c->algorithms);*/
 #endif    /* KSSL_DEBUG */
@@ -4078,14 +4078,14 @@ int ssl3_get_req_cert_type(SSL *s, unsigned char *p)
 #endif
 
 #ifndef OPENSSL_NO_ECDSA
-	/* ECDSA certs can be used with RSA cipher suites as well 
+	/* ECDSA certs can be used with RSA cipher suites as well
 	 * so we don't need to check for SSL_kECDH or SSL_kEECDH
 	 */
 	if (s->version >= TLS1_VERSION)
 		{
 		p[ret++]=TLS_CT_ECDSA_SIGN;
 		}
-#endif	
+#endif
 	return(ret);
 	}
 
@@ -4200,7 +4200,7 @@ int ssl3_write(SSL *s, const void *buf, int len)
 static int ssl3_read_internal(SSL *s, void *buf, int len, int peek)
 	{
 	int ret;
-	
+
 	clear_sys_error();
 	if (s->s3->renegotiate) ssl3_renegotiate_check(s);
 	s->s3->in_read_app_data=1;
@@ -4279,4 +4279,4 @@ long ssl_get_algorithm2(SSL *s)
 		return SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256;
 	return alg2;
 	}
-		
+
