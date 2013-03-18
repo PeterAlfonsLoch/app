@@ -28,7 +28,6 @@
 					<Add directory="../../../.." />
 				</Compiler>
 				<Linker>
-					<Add option="-lcairo" />
 					<Add directory="../../../stage/x86" />
 				</Linker>
 			</Target>
@@ -52,7 +51,7 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
-			<Add option="-lca2zlib" />
+			<Add option="-l_ca2zlib" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
 		<Unit filename="builds/amiga/include/freetype/config/ftconfig.h" />

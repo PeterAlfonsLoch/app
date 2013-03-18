@@ -41,6 +41,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add directory="../../thirdparty/appseed" />
+			<Add directory="../../thirdparty/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
