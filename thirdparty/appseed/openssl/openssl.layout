@@ -19,8 +19,8 @@
 	<File name="crypto/cryptlib.h" open="0" top="0" tabpos="6">
 		<Cursor position="3453" topLine="47" />
 	</File>
-	<File name="crypto/des/des_ver.h" open="0" top="0" tabpos="5">
-		<Cursor position="3500" topLine="36" />
+	<File name="crypto/des/des_ver.h" open="1" top="0" tabpos="1">
+		<Cursor position="2936" topLine="20" />
 	</File>
 	<File name="crypto/des/ecb_enc.c" open="0" top="0" tabpos="16">
 		<Cursor position="3299" topLine="47" />

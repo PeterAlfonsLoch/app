@@ -83,6 +83,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/base/ftbase.h" />
+		<Unit filename="src/base/ftinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/base/ftsystem.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -200,11 +203,11 @@
 		<Unit filename="src/psnames/pspic.h" />
 		<Unit filename="src/psnames/pstables.h" />
 		<Unit filename="src/raster/ftmisc.h" />
-		<Unit filename="src/raster/ftraster.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/raster/ftraster.h" />
 		<Unit filename="src/raster/ftrend1.h" />
+		<Unit filename="src/raster/raster.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/raster/rasterrs.h" />
 		<Unit filename="src/raster/rastpic.h" />
 		<Unit filename="src/sfnt/sfdriver.h" />
