@@ -67,7 +67,7 @@ namespace userpresence
       if(Application.command().m_varTopicQuery["app"] == "mydns")
          return;
 
-      if(Application.command().m_varTopicQuery["app"] == "app-core/tesseract/netnodecfg")
+      if(Application.command().m_varTopicQuery["app"] == "app-core/netnodecfg")
          return;
 
       // it may not be initialized, due
