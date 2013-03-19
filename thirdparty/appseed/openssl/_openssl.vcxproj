@@ -283,10 +283,6 @@
     <ClCompile Include="crypto\ec\eck_prn.c" />
     <ClCompile Include="crypto\ec\ecp_mont.c" />
     <ClCompile Include="crypto\ec\ecp_nist.c" />
-    <ClCompile Include="crypto\ec\ecp_nistp224.c" />
-    <ClCompile Include="crypto\ec\ecp_nistp256.c" />
-    <ClCompile Include="crypto\ec\ecp_nistp521.c" />
-    <ClCompile Include="crypto\ec\ecp_nistputil.c" />
     <ClCompile Include="crypto\ec\ecp_oct.c" />
     <ClCompile Include="crypto\ec\ecp_smpl.c" />
     <ClCompile Include="crypto\ec\ec_ameth.c" />
@@ -376,7 +372,6 @@
     <ClCompile Include="crypto\evp\m_sigver.c" />
     <ClCompile Include="crypto\evp\m_wp.c" />
     <ClCompile Include="crypto\evp\names.c" />
-    <ClCompile Include="crypto\evp\openbsd_hw.c" />
     <ClCompile Include="crypto\evp\p5_crpt.c" />
     <ClCompile Include="crypto\evp\p5_crpt2.c" />
     <ClCompile Include="crypto\evp\pmeth_fn.c" />
@@ -390,7 +385,6 @@
     <ClCompile Include="crypto\evp\p_sign.c" />
     <ClCompile Include="crypto\evp\p_verify.c" />
     <ClCompile Include="crypto\ex_data.c" />
-    <ClCompile Include="crypto\fips_ers.c" />
     <ClCompile Include="crypto\hmac\hmac.c" />
     <ClCompile Include="crypto\hmac\hm_ameth.c" />
     <ClCompile Include="crypto\hmac\hm_pmeth.c" />
@@ -897,7 +891,7 @@
       <PreprocessorDefinitions>OPENSSL_NO_STATIC_ENGINE;OPENSSL_SYSNAME_WIN32;OPENSSL_EXPORT_VAR_AS_FUNCTION;WINDOWSEX;WIN32;_DEBUG;_WINDOWS;_USRDLL;OPENSSL_OPT_WINDLL;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>

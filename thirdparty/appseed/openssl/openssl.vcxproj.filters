@@ -355,9 +355,6 @@
     <Filter Include="Source Files\crypto\pkcs8">
       <UniqueIdentifier>{e348c45f-6d64-42c7-80b0-dcfb908433d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\NewFilter1">
-      <UniqueIdentifier>{eae52735-6ccb-4e2e-aac7-798fceba760e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ssl\d1_clnt.c">
@@ -1407,9 +1404,6 @@
     <ClCompile Include="crypto\ex_data.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\fips_ers.c">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\mem.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
@@ -1588,18 +1582,6 @@
       <Filter>Source Files\crypto\ec</Filter>
     </ClCompile>
     <ClCompile Include="crypto\ec\ecp_oct.c">
-      <Filter>Source Files\crypto\ec</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\ec\ecp_nistputil.c">
-      <Filter>Source Files\crypto\ec</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\ec\ecp_nistp521.c">
-      <Filter>Source Files\crypto\ec</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\ec\ecp_nistp256.c">
-      <Filter>Source Files\crypto\ec</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\ec\ecp_nistp224.c">
       <Filter>Source Files\crypto\ec</Filter>
     </ClCompile>
     <ClCompile Include="crypto\ec\ecp_nist.c">
@@ -1856,9 +1838,6 @@
     </ClCompile>
     <ClCompile Include="crypto\des\ofb64ede.c">
       <Filter>Source Files\crypto\des</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\evp\openbsd_hw.c">
-      <Filter>Source Files\crypto\evp</Filter>
     </ClCompile>
     <ClCompile Include="crypto\pkcs12\p12_utl.c">
       <Filter>Source Files\crypto\pkcs12</Filter>
