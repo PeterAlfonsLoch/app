@@ -160,10 +160,10 @@ int ASN1_TYPE_get_int_octetstring(ASN1_TYPE *a, long *num, unsigned char *data,
 	M_ASN1_D2I_start_sequence();
 	c.q=c.p;
 	if ((ai=d2i_ASN1_INTEGER(NULL,&c.p,c.slen)) == NULL) goto err;
-        c.slen-=(c.p-c.q);
+        c.slen -= (long) (c.p - c.q);
 	c.q=c.p;
 	if ((os=d2i_ASN1_OCTET_STRING(NULL,&c.p,c.slen)) == NULL) goto err;
-        c.slen-=(c.p-c.q);
+        c.slen -= (long) (c.p - c.q);
 	if (!M_ASN1_D2I_end_sequence()) goto err;
 
 	if (num != NULL)

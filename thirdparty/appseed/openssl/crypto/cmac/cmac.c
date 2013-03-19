@@ -234,7 +234,7 @@ int CMAC_Update(CMAC_CTX *ctx, const void *in, size_t dlen)
 			nleft = dlen;
 		memcpy(ctx->last_block + ctx->nlast_block, data, nleft);
 		dlen -= nleft;
-		ctx->nlast_block += nleft;
+		ctx->nlast_block += (int) nleft;
 		/* If no more to process return */
 		if (dlen == 0)
 			return 1;

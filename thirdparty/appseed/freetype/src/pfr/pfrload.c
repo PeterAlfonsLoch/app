@@ -457,7 +457,7 @@
     if ( phy_font->font_id != NULL )
       goto Exit;
 
-    if ( FT_ALLOC( phy_font->font_id, len + 1 ) )
+    if ( FT_ALLOC( phy_font->font_id, (FT_Long) len + 1 ) )
       goto Exit;
 
     /* copy font ID name, and terminate it for safety */

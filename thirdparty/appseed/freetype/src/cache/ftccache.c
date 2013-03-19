@@ -300,7 +300,7 @@
     }
 #endif
 
-    manager->cur_weight -= cache->clazz.node_weight( node, cache );
+    manager->cur_weight -= (FT_ULong) cache->clazz.node_weight( node, cache );
 
     /* remove node from mru list */
     ftc_node_mru_unlink( node, manager );
@@ -378,7 +378,7 @@
           ftc_node_mru_unlink( node, manager );
 
           /* now finalize it */
-          manager->cur_weight -= cache->clazz.node_weight( node, cache );
+          manager->cur_weight -= (FT_ULong) cache->clazz.node_weight( node, cache );
 
           cache->clazz.node_free( node, cache );
           node = next;
@@ -433,7 +433,7 @@
       FTC_Manager  manager = cache->manager;
 
 
-      manager->cur_weight += cache->clazz.node_weight( node, cache );
+      manager->cur_weight += (FT_ULong) cache->clazz.node_weight( node, cache );
 
       if ( manager->cur_weight >= manager->max_weight )
       {
@@ -611,7 +611,7 @@
       node  = frees;
       frees = node->link;
 
-      manager->cur_weight -= cache->clazz.node_weight( node, cache );
+      manager->cur_weight -= (FT_ULong) cache->clazz.node_weight( node, cache );
       ftc_node_mru_unlink( node, manager );
 
       cache->clazz.node_free( node, cache );

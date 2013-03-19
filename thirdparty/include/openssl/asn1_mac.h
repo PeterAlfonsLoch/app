@@ -137,7 +137,7 @@ err:\
 	c.q=c.p; \
 	if (((D2I_OF(type))func)(&(b),&c.p,c.slen) == NULL) \
 		{c.line=__LINE__; goto err; } \
-	c.slen-=(c.p-c.q);
+	c.slen-= (long) (c.p-c.q);
 
 /* use this instead () */
 #define M_ASN1_D2I_get_int(b,func) \
@@ -165,7 +165,7 @@ err:\
 	c.q=c.p; \
 	if (func(&(b),&c.p,c.slen) == NULL) \
 		{c.line=__LINE__; M_ASN1_next_prev = _tmp; goto err; } \
-	c.slen-=(c.p-c.q);\
+	c.slen-= (long) (c.p-c.q);\
 	M_ASN1_next_prev=_tmp;
 
 #define M_ASN1_D2I_get_IMP_opt(b,func,tag,type) \
@@ -287,16 +287,16 @@ err:\
 			{ c.error=ERR_R_BAD_ASN1_OBJECT_HEADER; \
 			c.line=__LINE__; goto err; } \
 		if (Tinf == (V_ASN1_CONSTRUCTED+1)) \
-					Tlen = c.slen - (c.p - c.q) - 2; \
+					Tlen = (long) (c.slen - (c.p - c.q) - 2); \
 		if (func(&(r),&c.p,Tlen) == NULL) \
 			{ c.line=__LINE__; goto err; } \
 		if (Tinf == (V_ASN1_CONSTRUCTED+1)) { \
-			Tlen = c.slen - (c.p - c.q); \
+			Tlen = (long) (c.slen - (c.p - c.q)); \
 			if(!ASN1_const_check_infinite_end(&c.p, Tlen)) \
 				{ c.error=ERR_R_MISSING_ASN1_EOS; \
 				c.line=__LINE__; goto err; } \
 		}\
-		c.slen-=(c.p-c.q); \
+		c.slen-= (long) (c.p - c.q); \
 		}
 
 #define M_ASN1_D2I_get_EXP_set_opt(r,func,free_func,tag,b) \

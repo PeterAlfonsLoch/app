@@ -427,7 +427,7 @@ unsigned char *string_to_hex(const char *str, long *len)
 		*q++ = (ch << 4) | cl;
 	}
 
-	if(len) *len = q - hexbuf;
+	if(len) *len = (long) (q - hexbuf);
 
 	return hexbuf;
 

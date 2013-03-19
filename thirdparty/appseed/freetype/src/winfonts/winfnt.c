@@ -855,7 +855,7 @@
       /* NULL byte -- the frame is erroneously one byte too small.  */
       /* We thus allocate one more byte, setting it explicitly to   */
       /* zero.                                                      */
-      if ( FT_ALLOC( font->family_name, family_size + 1 ) )
+      if ( FT_ALLOC( font->family_name, (FT_Long) family_size + 1 ) )
         goto Fail;
 
       FT_MEM_COPY( font->family_name,
@@ -865,8 +865,8 @@
       font->family_name[family_size] = '\0';
 
       if ( FT_REALLOC( font->family_name,
-                       family_size,
-                       ft_strlen( font->family_name ) + 1 ) )
+                       (FT_Long) family_size,
+                       (FT_Long) ft_strlen( font->family_name ) + 1 ) )
         goto Fail;
 
       root->family_name = font->family_name;

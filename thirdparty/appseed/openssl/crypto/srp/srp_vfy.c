@@ -90,7 +90,7 @@ static int t_fromb64(unsigned char *a, const char *src)
 		{
 		loc = strchr(b64table, src[i]);
 		if(loc == (char *) 0) break;
-		else a[i] = loc - b64table;
+		else a[i] = (unsigned char ) (loc - b64table);
 		++i;
 		}
 	size = i;

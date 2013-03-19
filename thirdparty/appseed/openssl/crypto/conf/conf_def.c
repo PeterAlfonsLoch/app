@@ -625,7 +625,7 @@ static int str_copy(CONF *conf, char *section, char **pto, char *from)
 			/* Since we change the pointer 'from', we also have
 			   to change the perceived length of the string it
 			   points at.  /RL */
-			len -= e-from;
+			len -= (int) (e-from);
 			from=e;
 
 			/* In case there were no braces or parenthesis around

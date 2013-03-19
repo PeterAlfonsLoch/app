@@ -505,8 +505,8 @@
       goto Exit;
 
     FoundPair: /* we found an item, now parse it and find the value if any */
-      if ( FT_STREAM_SEEK( item->offset )                       ||
-           FT_FRAME_ENTER( item->pair_count * item->pair_size ) )
+      if ( FT_STREAM_SEEK( (FT_Long) item->offset )                       ||
+           FT_FRAME_ENTER( (FT_ULong) (item->pair_count * item->pair_size) ) )
         goto Exit;
 
       {

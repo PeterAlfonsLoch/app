@@ -2,9 +2,6 @@
 
 
 #include "openssl/ssl.h"
-#ifndef __C__LIB
-#include "openssl/applink.c"
-#endif
 
 #include "c/os/os.h"
 #include "c_os_gdi.h"

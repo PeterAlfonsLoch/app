@@ -507,8 +507,8 @@ static int dtls1_preprocess_fragment(SSL *s,struct hm_header_st *msg_hdr,int max
 			return SSL_AD_INTERNAL_ERROR;
 			}
 
-		s->s3->tmp.message_size  = msg_len;
-		s->d1->r_msg_hdr.msg_len = msg_len;
+		s->s3->tmp.message_size  = (unsigned long) msg_len;
+		s->d1->r_msg_hdr.msg_len = (unsigned long) msg_len;
 		s->s3->tmp.message_type  = msg_hdr->type;
 		s->d1->r_msg_hdr.type    = msg_hdr->type;
 		s->d1->r_msg_hdr.seq     = msg_hdr->seq;

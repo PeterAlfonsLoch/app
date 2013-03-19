@@ -220,7 +220,7 @@
     FT_UNUSED( error );
 
 
-    if ( FT_NEW_ARRAY( deltas, delta_cnt ) )
+    if ( FT_NEW_ARRAY( deltas, (FT_Long) delta_cnt ) )
       return NULL;
 
     i = 0;
@@ -696,7 +696,7 @@
         fvar_head.instanceCount * fvar_head.axisCount * sizeof ( FT_Fixed ) +
         5 * fvar_head.axisCount;
 
-      if ( FT_ALLOC( mmvar, face->blend->mmvar_len ) )
+      if ( FT_ALLOC( mmvar, (FT_Long) face->blend->mmvar_len ) )
         goto Exit;
       face->blend->mmvar = mmvar;
 
@@ -775,7 +775,7 @@
       FT_UInt  n;
 
 
-      if ( FT_ALLOC( mmvar, face->blend->mmvar_len ) )
+      if ( FT_ALLOC( mmvar, (FT_Long) face->blend->mmvar_len ) )
         goto Exit;
       FT_MEM_COPY( mmvar, face->blend->mmvar, face->blend->mmvar_len );
 
@@ -1147,7 +1147,7 @@
       goto Exit;
     }
 
-    table_start = FT_Stream_FTell( stream );
+    table_start = (FT_ULong) FT_Stream_FTell( stream );
     if ( FT_GET_LONG() != 0x00010000L )
     {
       FT_TRACE2(( "bad table version\n" ));
@@ -1222,7 +1222,7 @@
         continue;
       }
 
-      here = FT_Stream_FTell( stream );
+      here = (FT_ULong) FT_Stream_FTell( stream );
 
       FT_Stream_SeekSet( stream, offsetToData );
 
@@ -1340,7 +1340,7 @@
                            blend->glyphoffsets[glyph_index] ) )
       goto Fail1;
 
-    glyph_start = FT_Stream_FTell( stream );
+    glyph_start = (FT_ULong) FT_Stream_FTell( stream );
 
     /* each set of glyph variation data is formatted similarly to `cvar' */
     /* (except we get shared points and global tuples)                   */
@@ -1355,12 +1355,12 @@
 
     if ( tupleCount & GX_TC_TUPLES_SHARE_POINT_NUMBERS )
     {
-      here = FT_Stream_FTell( stream );
+      here = (FT_ULong) FT_Stream_FTell( stream );
 
       FT_Stream_SeekSet( stream, offsetToData );
 
       sharedpoints = ft_var_readpackedpoints( stream, &spoint_count );
-      offsetToData = FT_Stream_FTell( stream );
+      offsetToData = (FT_ULong) FT_Stream_FTell( stream );
 
       FT_Stream_SeekSet( stream, here );
     }
@@ -1414,7 +1414,7 @@
         continue;
       }
 
-      here = FT_Stream_FTell( stream );
+      here = (FT_ULong) FT_Stream_FTell( stream );
 
       if ( tupleIndex & GX_TI_PRIVATE_POINT_NUMBERS )
       {

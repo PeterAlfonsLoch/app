@@ -977,7 +977,7 @@ int dtls1_send_server_hello(SSL *s)
 #endif
 
 		/* do the header */
-		l=(p-d);
+		l = (unsigned long) (p - d);
 		d=buf;
 
 		d = dtls1_set_message_header(s, d, SSL3_MT_SERVER_HELLO, l, 0, l);

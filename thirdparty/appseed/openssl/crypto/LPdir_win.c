@@ -87,7 +87,7 @@ const char *LP_find_file(LP_DIR_CTX **ctx, const char *directory)
 	    }
 
 #ifdef LP_MULTIBYTE_AVAILABLE
-	  if (!MultiByteToWideChar(CP_ACP, 0, directory, len_0, (WCHAR *)wdir, len_0))
+	  if (!MultiByteToWideChar(CP_ACP, 0, directory, (int) len_0, (WCHAR *)wdir, (int) len_0))
 #endif
 	    for (index = 0; index < len_0; index++)
 	      wdir[index] = (TCHAR)directory[index];
@@ -124,7 +124,7 @@ const char *LP_find_file(LP_DIR_CTX **ctx, const char *directory)
       len_0++;
 
 #ifdef LP_MULTIBYTE_AVAILABLE
-      if (!WideCharToMultiByte(CP_ACP, 0, (WCHAR *)wdir, len_0, (*ctx)->entry_name,
+      if (!WideCharToMultiByte(CP_ACP, 0, (WCHAR *)wdir, (int) len_0, (*ctx)->entry_name,
 			       sizeof((*ctx)->entry_name), NULL, 0))
 #endif
 	for (index = 0; index < len_0; index++)

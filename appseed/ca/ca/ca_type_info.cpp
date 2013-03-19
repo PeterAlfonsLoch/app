@@ -90,6 +90,7 @@ namespace ca
    {
 
       m_id              = info.m_id;
+      m_idFriendly      = info.m_idFriendly;
       m_pfactoryitem    = info.m_pfactoryitem;
       m_spmutex         = info.m_spmutex;
 

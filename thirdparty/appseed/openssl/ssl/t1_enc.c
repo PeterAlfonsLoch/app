@@ -219,8 +219,8 @@ static int tls1_P_hash(const EVP_MD *md, const unsigned char *sec,
 			{
 			if (!EVP_DigestSignFinal(&ctx,out,&j))
 				goto err;
-			out+=j;
-			olen-=j;
+			out += j;
+			olen -= (int) j;
 			/* calc the next A1 value */
 			if (!EVP_DigestSignFinal(&ctx_tmp,A1,&A1_len))
 				goto err;

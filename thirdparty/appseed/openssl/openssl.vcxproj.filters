@@ -588,9 +588,6 @@
     <ClCompile Include="crypto\aes\aes_wrap.c">
       <Filter>Source Files\crypto\aes</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\aes\aes_x86core.c">
-      <Filter>Source Files\crypto\aes</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\asn1\asn1_err.c">
       <Filter>Source Files\crypto\asn1</Filter>
     </ClCompile>
@@ -1666,9 +1663,6 @@
       <Filter>Source Files\crypto\engine</Filter>
     </ClCompile>
     <ClCompile Include="crypto\engine\eng_rdrand.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\engine\eng_rsax.c">
       <Filter>Source Files\crypto\engine</Filter>
     </ClCompile>
     <ClCompile Include="crypto\engine\eng_table.c">

@@ -532,12 +532,12 @@ THE SOFTWARE.
     /* XXX: to do: are there cases that need repadding the bitmap? */
     bytes = bitmap->pitch * bitmap->rows;
 
-    error = ft_glyphslot_alloc_bitmap( slot, bytes );
+    error = ft_glyphslot_alloc_bitmap( slot, (FT_ULong) bytes );
     if ( error )
       goto Exit;
 
     if ( FT_STREAM_SEEK( metric->bits )          ||
-         FT_STREAM_READ( bitmap->buffer, bytes ) )
+         FT_STREAM_READ( bitmap->buffer, (FT_ULong) bytes ) )
       goto Exit;
 
     if ( PCF_BIT_ORDER( face->bitmapsFormat ) != MSBFirst )

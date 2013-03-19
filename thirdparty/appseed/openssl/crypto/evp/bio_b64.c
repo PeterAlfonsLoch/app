@@ -251,8 +251,8 @@ static int b64_read(BIO *b, char *out, int outl)
 					if (p != (unsigned char *)
 						&(ctx->tmp[0]))
 						{
-						i-=(p- (unsigned char *)
-							&(ctx->tmp[0]));
+						i-= (int) ((p- (unsigned char *)
+							&(ctx->tmp[0])));
 						for (x=0; x < i; x++)
 							ctx->tmp[x]=p[x];
 						}

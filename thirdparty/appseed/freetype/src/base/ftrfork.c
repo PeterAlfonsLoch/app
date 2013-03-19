@@ -507,7 +507,7 @@
     FT_Error   error;
     char*      newpath = NULL;
     FT_Memory  memory;
-    FT_Long    base_file_len = ft_strlen( base_file_name );
+    FT_Long    base_file_len = (FT_Long) ft_strlen( base_file_name );
 
     FT_UNUSED( stream );
 
@@ -543,7 +543,7 @@
     FT_Error   error;
     char*      newpath = NULL;
     FT_Memory  memory;
-    FT_Long    base_file_len = ft_strlen( base_file_name );
+    FT_Long    base_file_len = (FT_Long) ft_strlen( base_file_name );
 
     FT_UNUSED( stream );
 
@@ -788,8 +788,8 @@
     FT_UNUSED( error );
 
 
-    new_length = ft_strlen( original_name ) + ft_strlen( insertion );
-    if ( FT_ALLOC( new_name, new_length + 1 ) )
+    new_length = (FT_Long) (ft_strlen( original_name ) + ft_strlen( insertion ));
+    if ( FT_ALLOC( new_name, (FT_Long) (new_length + 1) ) )
       return NULL;
 
     tmp = ft_strrchr( original_name, '/' );

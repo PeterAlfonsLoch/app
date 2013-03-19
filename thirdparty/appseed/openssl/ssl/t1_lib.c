@@ -389,7 +389,7 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *p, unsigned cha
 		   + hostname length 
 		*/
 		   
-		if ((lenmax = limit - ret - 9) < 0 
+		if ((lenmax = (long) (limit - ret - 9)) < 0 
 		    || (size_str = strlen(s->tlsext_hostname)) > (unsigned long)lenmax) 
 			return NULL;
 			
@@ -467,7 +467,7 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *p, unsigned cha
 		/* Add TLS extension ECPointFormats to the ClientHello message */
 		long lenmax; 
 
-		if ((lenmax = limit - ret - 5) < 0) return NULL; 
+		if ((lenmax = (long) (limit - ret - 5)) < 0) return NULL; 
 		if (s->tlsext_ecpointformatlist_length > (unsigned long)lenmax) return NULL;
 		if (s->tlsext_ecpointformatlist_length > 255)
 			{
@@ -487,7 +487,7 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *p, unsigned cha
 		/* Add TLS extension EllipticCurves to the ClientHello message */
 		long lenmax; 
 
-		if ((lenmax = limit - ret - 6) < 0) return NULL; 
+		if ((lenmax = (long) (limit - ret - 6)) < 0) return NULL; 
 		if (s->tlsext_ellipticcurvelist_length > (unsigned long)lenmax) return NULL;
 		if (s->tlsext_ellipticcurvelist_length > 65532)
 			{
@@ -730,7 +730,7 @@ unsigned char *ssl_add_serverhello_tlsext(SSL *s, unsigned char *p, unsigned cha
 		/* Add TLS extension ECPointFormats to the ServerHello message */
 		long lenmax; 
 
-		if ((lenmax = limit - ret - 5) < 0) return NULL; 
+		if ((lenmax = (long) (limit - ret - 5)) < 0) return NULL; 
 		if (s->tlsext_ecpointformatlist_length > (unsigned long)lenmax) return NULL;
 		if (s->tlsext_ecpointformatlist_length > 255)
 			{

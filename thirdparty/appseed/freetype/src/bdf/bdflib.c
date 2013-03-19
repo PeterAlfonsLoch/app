@@ -1049,7 +1049,7 @@
     if ( n > FT_ULONG_MAX )
       return BDF_Err_Invalid_Argument;
 
-    if ( FT_NEW_ARRAY( p->name, n ) )
+    if ( FT_NEW_ARRAY( p->name, (FT_Long) n ) )
       goto Exit;
 
     FT_MEM_COPY( (char *)p->name, name, n );
@@ -1191,7 +1191,7 @@
 
     FT_MEM_COPY( name, font->name, len );
 
-    error = _bdf_list_split( &list, (char *)"-", name, len );
+    error = _bdf_list_split( &list, (char *)"-", name, (unsigned long) len );
     if ( error )
       goto Fail;
 

@@ -530,7 +530,7 @@ static int ssl23_client_hello(SSL *s)
 				}
 #endif
 			
-			l = p-d;
+			l = (unsigned long)  (p - d);
 
 			/* fill in 4-byte handshake header */
 			d=&(buf[5]);

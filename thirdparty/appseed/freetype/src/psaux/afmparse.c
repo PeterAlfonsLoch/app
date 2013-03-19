@@ -401,7 +401,7 @@
           FT_Error   error;
 
 
-          if ( !FT_QALLOC( val->u.s, len + 1 ) )
+          if ( !FT_QALLOC( val->u.s, (FT_Long) len + 1 ) )
           {
             ft_memcpy( val->u.s, str, len );
             val->u.s[len] = '\0';

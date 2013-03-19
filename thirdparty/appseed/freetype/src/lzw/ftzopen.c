@@ -133,7 +133,7 @@
           return -1;
       }
 
-      if ( FT_RENEW_ARRAY( state->stack, old_size, new_size ) )
+      if ( FT_RENEW_ARRAY( state->stack, (FT_Long) old_size, (FT_Long) new_size ) )
         return -1;
 
       state->stack_size = new_size;

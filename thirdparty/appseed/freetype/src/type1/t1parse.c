@@ -117,7 +117,7 @@
     if ( tag != 0x8001U && FT_STREAM_SEEK( 0 ) )
       goto Exit;
 
-    if ( !FT_FRAME_ENTER( header_length ) )
+    if ( !FT_FRAME_ENTER((FT_ULong)  header_length ) )
     {
       error = T1_Err_Ok;
 
@@ -418,7 +418,7 @@
         goto Exit;
       }
 
-      size = parser->base_len - ( cur - parser->base_dict );
+      size = (FT_ULong) (parser->base_len - ( cur - parser->base_dict ));
 
       if ( parser->in_memory )
       {

@@ -191,7 +191,7 @@ ASN1_TYPE *ASN1_generate_v3(char *str, X509V3_CTX *cnf)
 		if (r & 0x80)
 			goto err;
 		/* Update copy length */
-		cpy_len -= cpy_start - orig_der;
+		cpy_len -= (int) (cpy_start - orig_der);
 		/* For IMPLICIT tagging the length should match the
 		 * original length and constructed flag should be
 		 * consistent.
@@ -402,7 +402,7 @@ static int parse_tagging(const char *vstart, int vlen, int *ptag, int *pclass)
 	*ptag = (int) tag_num;
 	/* If we have non numeric characters, parse them */
 	if (eptr)
-		vlen -= eptr - vstart;
+		vlen -= (int) (eptr - vstart);
 	else 
 		vlen = 0;
 	if (vlen)

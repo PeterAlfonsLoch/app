@@ -513,7 +513,7 @@ int RAND_poll(void)
 				int ex_cnt_limit = 42; 
 				do
 					{
-					RAND_add(&hlist, hlist.dwSize, 3);
+					RAND_add(&hlist, (int) hlist.dwSize, 3);
 					__try
 						{
 						ZeroMemory(&hentry, sizeof(HEAPENTRY32));
@@ -525,7 +525,7 @@ int RAND_poll(void)
 						int entrycnt = 80;
 						do
 							RAND_add(&hentry,
-								hentry.dwSize, 5);
+								(int) hentry.dwSize, 5);
 						while (heap_next(&hentry)
 						&& (!good || (GetTickCount()-starttime)<MAXDELAY)
 							&& --entrycnt > 0);

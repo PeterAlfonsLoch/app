@@ -190,7 +190,7 @@ static int asn1_d2i_read_bio(BIO *in, BUF_MEM **pb)
 		p=(unsigned char *)&(b->data[off]);
 		c.p=p;
 		c.inf=ASN1_get_object(&(c.p),&(c.slen),&(c.tag),&(c.xclass),
-			len-off);
+			(long) (len-off));
 		if (c.inf & 0x80)
 			{
 			unsigned long e;

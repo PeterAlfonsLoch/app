@@ -184,9 +184,9 @@ static int linebuffer_write(BIO *b, const char *in, int inl)
 					{
 					memcpy(&(ctx->obuf[ctx->obuf_len]),
 						in,p - in);
-					ctx->obuf_len += p - in;
-					inl -= p - in;
-					num += p - in;
+					ctx->obuf_len += (int) (p - in);
+					inl -= (int) (p - in);
+					num += (int) (p - in);
 					in = p;
 					}
 				else

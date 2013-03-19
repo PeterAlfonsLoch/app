@@ -91,12 +91,51 @@ namespace ca
 
 //   extern ::ca::application * g_papp;
 
-   CLASS_DECL_ca int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_ca int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {
       #ifdef WIN32
-      char buf[2048];
-      vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
-      OutputDebugStringW(wstring(buf));
+
+      if(iReportType == _CRT_ASSERT)
+      {
+
+         if(is_debugger_attached())
+         {
+
+            string str;
+
+            str += "\r\nAssertion Failed \r\n";
+            str += "File : ";
+            str += pszFileName;
+            str += "\r\nLine : ";
+            str += ::ca::str::from(iLine);
+            str += "\r\n";
+
+            string strCaption;
+
+            strCaption = "Assertion Failed";
+
+            OutputDebugStringW(wstring(str));
+            /*if(MessageBox(NULL, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
+            {
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+::ca::str::from(iLine)+"\"";
+               ::system(strCmdLine);
+               exit(0);
+            }
+            */
+         }
+
+
+
+      }
+      else
+      {
+
+         char buf[2048];
+         vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
+         OutputDebugStringW(wstring(buf));
+
+      }
+
       #else
       vprintf(pszFormat, list);
       #endif

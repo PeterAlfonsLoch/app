@@ -289,7 +289,7 @@ long TXT_DB_write(BIO *out, TXT_DB *db)
 			*(p++)='\t';
 			}
 		p[-1]='\n';
-		j=p-buf->data;
+		j = (int) (p - buf->data);
 		if (BIO_write(out,buf->data,(int)j) != j)
 			goto err;
 		tot+=j;

@@ -186,7 +186,7 @@ STACK_OF(OPENSSL_BLOCK) *d2i_ASN1_SET(STACK_OF(OPENSSL_BLOCK) **a,
 	c.p= *pp;
 	c.max=(length == 0)?0:(c.p+length);
 
-	c.inf=ASN1_get_object(&c.p,&c.slen,&c.tag,&c.xclass,c.max-c.p);
+	c.inf=ASN1_get_object(&c.p,&c.slen,&c.tag,&c.xclass, (long) (c.max - c.p));
 	if (c.inf & 0x80) goto err;
 	if (ex_class != c.xclass)
 		{
@@ -206,7 +206,7 @@ STACK_OF(OPENSSL_BLOCK) *d2i_ASN1_SET(STACK_OF(OPENSSL_BLOCK) **a,
 	/* check for infinite constructed - it can be as long
 	 * as the amount of data passed to us */
 	if (c.inf == (V_ASN1_CONSTRUCTED+1))
-		c.slen=length+ *pp-c.p;
+		c.slen = (long) (length + *pp - c.p);
 	c.max=c.p+c.slen;
 
 	while (c.p < c.max)

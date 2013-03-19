@@ -385,7 +385,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 			return -1;
 		if (aux && (aux->flags & ASN1_AFLG_BROKEN))
 			{
-			len = tmplen - (p - *in);
+			len = (long) (tmplen - (p - *in));
 			seq_nolen = 1;
 			}
 		/* If indefinite we don't do a length check */
@@ -428,7 +428,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 							ASN1_R_UNEXPECTED_EOC);
 					goto err;
 					}
-				len -= p - q;
+				len -= (long) (p - q);
 				seq_eoc = 0;
 				q = p;
 				break;
@@ -461,7 +461,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 				continue;
 				}
 			/* Update length */
-			len -= p - q;
+			len -= (long) (p - q);
 			}
 
 		/* Check for EOC if expecting one */
@@ -580,7 +580,7 @@ static int asn1_template_ex_d2i(ASN1_VALUE **val,
 			return 0;
 			}
 		/* We read the field in OK so update length */
-		len -= p - q;
+		len -= (long) (p - q);
 		if (exp_eoc)
 			{
 			/* If NDEF we must have an EOC here */
@@ -698,7 +698,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 							ASN1_R_UNEXPECTED_EOC);
 					goto err;
 					}
-				len -= p - q;
+				len -= (long) (p - q);
 				sk_eoc = 0;
 				break;
 				}
@@ -711,7 +711,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 					ERR_R_NESTED_ASN1_ERROR);
 				goto err;
 				}
-			len -= p - q;
+			len -= (long) (p - q);
 			if (!sk_ASN1_VALUE_push((STACK_OF(ASN1_VALUE) *)*val,
 						skfield))
 				{
@@ -859,11 +859,11 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 			{
 			if (!asn1_find_end(&p, plen, inf))
 				 goto err;
-			len = p - cont;
+			len = (long) (p - cont);
 			}
 		else
 			{
-			len = p - cont + plen;
+			len = (long) (p - cont + plen);
 			p += plen;
 			buf.data = NULL;
 			}
@@ -884,7 +884,7 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 			free_cont = 1;
 			goto err;
 			}
-		len = buf.length;
+		len = (long) buf.length;
 		/* Append a final null to string */
 		if (!BUF_MEM_grow_clean(&buf, len + 1))
 			{
@@ -1125,7 +1125,7 @@ static int asn1_find_end(const unsigned char **in, long len, char inf)
 			expected_eoc++;
 		else
 			p += plen;
-		len -= p - q;
+		len -= (long) (p - q);
 		}
 	if (expected_eoc)
 		{
@@ -1206,7 +1206,7 @@ static int asn1_collect(BUF_MEM *buf, const unsigned char **in, long len,
 			}
 		else if (plen && !collect_data(buf, &p, plen))
 			return 0;
-		len -= p - q;
+		len -= (long) (p - q);
 		}
 	if (inf)
 		{
@@ -1325,7 +1325,7 @@ static int asn1_check_tlen(long *olen, int *otag, unsigned char *oclass,
 		}
 
 	if (i & 1)
-		plen = len - (p - q);
+		plen = (long) (len - (p - q));
 
 	if (inf)
 		*inf = i & 1;

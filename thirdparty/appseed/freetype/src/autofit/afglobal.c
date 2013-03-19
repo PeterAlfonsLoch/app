@@ -261,7 +261,7 @@
       FT_Memory  memory = globals->face->memory;
 
 
-      if ( FT_ALLOC( metrics, clazz->script_metrics_size ) )
+      if ( FT_ALLOC( metrics, (FT_Long) clazz->script_metrics_size ) )
         goto Exit;
 
       metrics->clazz   = clazz;

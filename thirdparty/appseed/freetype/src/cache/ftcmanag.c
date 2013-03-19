@@ -592,7 +592,7 @@
         goto Exit;
       }
 
-      if ( !FT_ALLOC( cache, clazz->cache_size ) )
+      if ( !FT_ALLOC( cache, (FT_Long) clazz->cache_size ) )
       {
         cache->manager   = manager;
         cache->memory    = memory;

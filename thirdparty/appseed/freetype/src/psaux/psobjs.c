@@ -202,7 +202,7 @@
         new_size  = FT_PAD_CEIL( new_size, 1024 );
       }
 
-      error = reallocate_t1_table( table, new_size );
+      error = reallocate_t1_table( table, (FT_Long) new_size );
       if ( error )
         return error;
 
@@ -248,7 +248,7 @@
     if ( !old_base )
       return;
 
-    if ( FT_ALLOC( table->block, table->cursor ) )
+    if ( FT_ALLOC( table->block, (FT_Long) table->cursor ) )
       return;
     FT_MEM_COPY( table->block, old_base, table->cursor );
     shift_elements( table, old_base );
