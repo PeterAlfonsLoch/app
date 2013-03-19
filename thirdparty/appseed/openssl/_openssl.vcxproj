@@ -799,13 +799,13 @@
     <None Include="_ca2openssl.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>_ca2openssl</ProjectName>
-    <ProjectGuid>{AC98B756-E84C-4A70-9CDB-E9812FEF9B98}</ProjectGuid>
-    <RootNamespace>_ca2openssl</RootNamespace>
+    <ProjectName>__ca2openssl</ProjectName>
+    <ProjectGuid>{927486E9-5AE9-46C5-B423-06E8B016B33C}</ProjectGuid>
+    <RootNamespace>__ca2openssl</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
