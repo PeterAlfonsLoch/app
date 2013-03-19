@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A1B399216A332AF00875A94"
-               BuildableName = "libopenssl.dylib"
-               BlueprintName = "openssl"
-               ReferencedContainer = "container:openssl.xcodeproj">
+               BlueprintIdentifier = "9A1B358B16A2D7A500875A94"
+               BuildableName = "lib_ca2freetype.dylib"
+               BlueprintName = "_ca2freetype"
+               ReferencedContainer = "container:_ca2freetype.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

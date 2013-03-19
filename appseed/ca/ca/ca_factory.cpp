@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+bool is_safe_set(void * p);
+
 void itemswap(void * pswaparg, index i1, index i2);
 
 

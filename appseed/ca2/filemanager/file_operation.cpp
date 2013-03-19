@@ -362,7 +362,7 @@ void file_operation::make_duplicate_name(string & str, const char * psz)
    string strFormat;
    for(int32_t i = 1; i < 1000; i++)
    {
-      strFormat.Format("-Cópia-%03d", i);
+      strFormat.Format("-Copy-%03d", i);
       str = System.dir().path(strDir, strName + strFormat + strExtension);
       if(!Application.file().exists(str))
          return;

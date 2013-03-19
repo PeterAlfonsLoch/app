@@ -78,6 +78,7 @@ Depending on the format string, the function may expect a sequence of additional
 
 */
 
+
 class CLASS_DECL_ca string_format
 {
 public:
@@ -85,17 +86,19 @@ public:
 
    enum e_state
    {
+      
       state_initial,
       state_waiting_width,
       state_parse_precision,
       state_waiting_precision,
       state_parse_length,
+      
    };
 
 
    char *                           m_pszBuffer;
-   int32_t                              m_iSize;
-   int32_t                              m_iLength;
+   strsize                          m_iSize;
+   strsize                          m_iLength;
 
 
    string_format_printer *          m_pprinter;
@@ -104,17 +107,18 @@ public:
 
 
    e_state                          m_estate;
+   
 
-   bool        m_bLeftJustify;
-   bool        m_bForceShowSign;
-   bool        m_bSharp;
-   bool        m_bZeroPadding;
+   bool                             m_bLeftJustify;
+   bool                             m_bForceShowSign;
+   bool                             m_bSharp;
+   bool                             m_bZeroPadding;
 
-   int32_t         m_iWidth;
-   int32_t         m_iPrecision;
+   int32_t                          m_iWidth;
+   int32_t                          m_iPrecision;
 
-   char        m_chLength;
-   char        m_chSpec;
+   char                             m_chLength;
+   char                             m_chSpec;
 
 
 
@@ -132,22 +136,17 @@ public:
 
    void construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter);
 
-   void allocate_add_up(int32_t iLenAddUp);
+   void allocate_add_up(strsize iLenAddUp);
 
    inline void append(char ch)
    {
 
-      if((m_iLength + 1 + 1) > m_iSize)
-      {
-         allocate_add_up(1);
-      }
-
-      m_iLength++;
-
+      allocate_add_up(1);
+ 
       m_pszBuffer[m_iLength] = ch;
 
-
-
+      m_iLength++;
+      
    }
 
 
@@ -162,12 +161,7 @@ public:
 
          strsize iLen = strlen(psz);
 
-         if((m_iLength + iLen + 1) > m_iSize)
-         {
-
-            allocate_add_up(1);
-
-         }
+         allocate_add_up(iLen);
 
          strncpy(&m_pszBuffer[m_iLength], psz, iLen);
 

@@ -100,7 +100,7 @@ EVP_PKEY *d2i_PrivateKey(int type, EVP_PKEY **a, const unsigned char **pp,
 		}
 
 	if (!ret->ameth->old_priv_decode ||
-			!ret->ameth->old_priv_decode(ret, pp, length))
+			!ret->ameth->old_priv_decode(ret, pp, (int) length))
 		{
 		if (ret->ameth->priv_decode) 
 			{

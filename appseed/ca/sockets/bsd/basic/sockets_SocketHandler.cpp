@@ -44,7 +44,7 @@ namespace sockets
    socket_handler::socket_handler(::ca::application * papp, StdLog *p) :
    ca(papp),
    m_stdlog(p),
-   m_mutex(m_mutex),
+   m_pmutex(NULL),
    m_b_use_mutex(false)
    ,m_maxsock(0)
    ,m_preverror(-1)
@@ -68,7 +68,7 @@ namespace sockets
    socket_handler::socket_handler(::ca::application * papp, mutex& mutex, StdLog *p) :
    ca(papp),
    m_stdlog(p)
-   ,m_mutex(mutex)
+   ,m_pmutex(&mutex)
    ,m_b_use_mutex(true)
    ,m_maxsock(0)
    ,m_preverror(-1)
@@ -83,7 +83,7 @@ namespace sockets
    ,m_slave(false)
    {
       ZERO(m_socks4_host);
-      m_mutex.lock();
+      m_pmutex->lock();
       FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
       FD_ZERO(&m_efds);
@@ -132,14 +132,14 @@ namespace sockets
       }
       if (m_b_use_mutex)
       {
-         m_mutex.unlock();
+         m_pmutex->unlock();
       }
    }
 
 
    mutex& socket_handler::GetMutex() const
    {
-      return m_mutex;
+      return *m_pmutex;
    }
 
 
@@ -354,10 +354,10 @@ namespace sockets
       dw1 = ::get_tick_count();
       if (m_b_use_mutex)
       {
-         m_mutex.unlock();
+         m_pmutex->unlock();
          n = select( (int32_t)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
-         m_mutex.lock();
+         m_pmutex->lock();
       }
       else
       {

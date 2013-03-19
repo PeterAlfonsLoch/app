@@ -94,7 +94,7 @@ int32_t base_exception::ReportError(UINT nType /* = MB_OK */,
    {
       if (pszMessageId == 0)
          //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
-         pszMessageId = "Mensagem de erro não disponível";
+         pszMessageId = "Error message not available";
       nDisposition = System.simple_message_box(NULL, pszMessageId, nType);
    }
    return nDisposition;

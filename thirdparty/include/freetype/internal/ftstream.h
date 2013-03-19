@@ -243,7 +243,7 @@ FT_BEGIN_HEADER
           ( (long)( buffer += 4, FT_PEEK_LONG( buffer - 4 ) ) )
 
 #define FT_NEXT_ULONG( buffer )                                           \
-          ( (unsigned long)( buffer += 4, FT_PEEK_ULONG( buffer - 4 ) ) )
+          ( (FT_UInt32)( buffer += 4, FT_PEEK_ULONG( buffer - 4 ) ) )
 
 
 #define FT_NEXT_SHORT_LE( buffer )                                   \

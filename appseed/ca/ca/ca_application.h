@@ -740,8 +740,30 @@ namespace ca
 
       virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+      
+      
+#ifdef WINDOWS
+      
       virtual int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
 
+#else
+      
+      template<typename T, typename... Args>
+      int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
+      {
+         
+         string str;
+         
+         string_format format(&str, &::string::FormatPrinter, NULL);
+         
+         format.printf(pszFormat, value, args...);
+         
+         return simple_message_box(puiOwner, str, fuStyle);
+         
+      }
+      
+      
+#endif
 
 
       virtual bool on_run_exception(::ca::exception & e);

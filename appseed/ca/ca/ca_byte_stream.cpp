@@ -1,10 +1,13 @@
 #include "framework.h"
 
 
+
+
 namespace ca
 {
 
 
+   int get_arbitrary_length(uint64_t ui);
 
 
 
@@ -195,13 +198,24 @@ namespace ca
 
    byte_input_stream & byte_input_stream::operator >> (::ca::type_info & info)
    {
-      int32_t iLen;
-      read(&iLen, sizeof(iLen));
-      char * psz = (char *) malloc(iLen + 1);
-      read(psz, iLen);
-      psz[iLen] = '\0';
-      info.name(psz);
-      free((void *) psz);
+      {
+         int32_t iLen;
+         read(&iLen, sizeof(iLen));
+         char * psz = (char *) malloc(iLen + 1);
+         read(psz, iLen);
+         psz[iLen] = '\0';
+         info.m_id = psz;
+         free((void *) psz);
+      }
+      {
+         int32_t iLen;
+         read(&iLen, sizeof(iLen));
+         char * psz = (char *) malloc(iLen + 1);
+         read(psz, iLen);
+         psz[iLen] = '\0';
+         info.m_idFriendly = psz;
+         free((void *) psz);
+      }
       return *this;
    }
 
@@ -496,6 +510,9 @@ namespace ca
       strsize iLen = strlen(info.name());
       write(&iLen, sizeof(iLen));
       write(info.name(), iLen);
+      iLen = strlen(info.friendly_name());
+      write(&iLen, sizeof(iLen));
+      write(info.friendly_name(), iLen);
       return *this;
    }
 

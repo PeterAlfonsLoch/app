@@ -42,10 +42,10 @@ string_format::~string_format()
 }
 
 
-void string_format::allocate_add_up(int32_t iLenAddUp)
+void string_format::allocate_add_up(strsize iLenAddUp)
 {
 
-   int32_t iNewSize;
+   strsize iNewSize;
 
    if(m_iSize <= 0)
    {
@@ -66,16 +66,33 @@ void string_format::allocate_add_up(int32_t iLenAddUp)
       }
 
    }
+   
+   if(iNewSize != m_iSize)
+   {
+      
+      if(m_pszBuffer == NULL)
+      {
 
-   m_pszBuffer = (char *) ca2_realloc(m_pszBuffer, iNewSize);
+         m_pszBuffer = (char *) ca2_alloc(iNewSize);
+         
+      }
+      else
+      {
+         
+         m_pszBuffer = (char *) ca2_realloc(m_pszBuffer, iNewSize);
+         
+      }
+      
+      m_iSize = iNewSize;
+      
+   }
 
    if(m_pszBuffer == NULL)
       throw memory_exception(::ca::get_thread_app());
 
-   m_iSize = iNewSize;
-
+   
    memset(&m_pszBuffer[m_iLength], 0, m_iSize - m_iLength);
-
+   
 }
 
 

@@ -108,6 +108,7 @@ int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t 
         return 0;
 
     p = LockResource( hmem );*/
+   p = NULL;
     for (i = 0; i < (lctype & 0x0f); i++) p += *p + 1;
 
     if (lcflags & LOCALE_RETURN_NUMBER) ret = sizeof(uint32_t)/sizeof(WCHAR);

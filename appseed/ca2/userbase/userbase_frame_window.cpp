@@ -262,7 +262,8 @@ namespace userbase
 
    void frame_window::_001OnSize(::ca::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::size, psize, pobj)
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::ca::message::size, psize, pobj)
    }
 
 

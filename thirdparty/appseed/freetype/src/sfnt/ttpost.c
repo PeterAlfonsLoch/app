@@ -250,7 +250,7 @@
                      " exceeding string length (%d),"
                      " truncating at end of post table (%d byte left)\n",
                      len, post_limit - FT_STREAM_POS() ));
-          len = FT_MAX( 0, post_limit - FT_STREAM_POS() );
+          len = FT_MAX( 0, (FT_UInt) (post_limit - FT_STREAM_POS() ) );
         }
 
         if ( FT_NEW_ARRAY( name_strings[n], len + 1 ) ||

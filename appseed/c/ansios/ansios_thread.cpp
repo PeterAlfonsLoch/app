@@ -936,7 +936,7 @@ CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM 
 
    pmq->ma.add(msg);
 
-   void * p = pmq->ma[pmq->ma.get_count() -1].hwnd;
+//   void * p = pmq->ma[pmq->ma.get_count() -1].hwnd;
 
    pmq->m_eventNewMessage.set_event();
 

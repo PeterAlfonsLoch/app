@@ -115,10 +115,10 @@ FreeImage_ZLibGZip(BYTE *target, DWORD target_size, BYTE *source, DWORD source_s
         case Z_OK: {
             // patch header, setup crc and length (stolen from mod_trace_output)
             BYTE *p = target + 8; *p++ = 2; *p = OS_CODE; // xflags, os_code
- 	        crc = crc32(crc, source, source_size);
+ 	        crc = (DWORD) crc32(crc, source, source_size);
 	        memcpy(target + 4 + dest_len, &crc, 4);
 	        memcpy(target + 8 + dest_len, &source_size, 4);
-            return dest_len + 12;
+            return (DWORD) dest_len + 12;
         }
 	}
 	return 0;
@@ -218,5 +218,5 @@ If source is NULL, this function returns the required initial value for the crc.
 DWORD DLL_CALLCONV
 FreeImage_ZLibCRC32(DWORD crc, BYTE *source, DWORD source_size) {
 
-    return crc32(crc, source, source_size);
+    return (DWORD) crc32(crc, source, source_size);
 }

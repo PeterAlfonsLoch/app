@@ -16,21 +16,20 @@ namespace ca
 
       ::ca::smart_pointer < mutex >       m_spmutex;
       id                                  m_id;
+      id                                  m_idFriendly;
       ph(factory_item_base)               m_pfactoryitem;
 
 
       type_info();
       type_info(const type_info & info);
       type_info(const std_type_info & info);
-      type_info(const string & strName);
-      type_info(const id & id);
+      type_info(const string & strName, const string & strFriendlyName);
+      type_info(const id & id, const class id & idFriendly);
       virtual ~type_info();
 
 
       type_info & operator = (const ::ca::type_info & info);
       type_info & operator = (const std_type_info & info);
-      type_info & operator = (const string & strName);
-      type_info & operator = (const id & id);
 
 
       bool operator == (const ::ca::type_info & info) const;
@@ -44,8 +43,8 @@ namespace ca
       bool operator != (const string & strName) const;
       bool operator != (const id & id) const;
 
-      virtual void name(const string & strName);
       virtual const char * name() const;
+      virtual const char * friendly_name() const;
 
       virtual ptra * new_ptra();
 

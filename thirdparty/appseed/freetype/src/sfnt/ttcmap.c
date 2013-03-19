@@ -1900,7 +1900,7 @@
     FT_Byte*   p      = table + 12;
     FT_UInt32  start  = TT_NEXT_ULONG( p );
     FT_UInt32  count  = TT_NEXT_ULONG( p );
-    FT_UInt32  idx    = (FT_ULong)( char_code - start );
+    FT_UInt32  idx    = (FT_UInt32)( char_code - start );
 
 
     if ( idx < count )
@@ -2219,7 +2219,7 @@
         cmap12->cur_gindex = gindex;
 
       if ( gindex )
-        *pchar_code = cmap12->cur_charcode;
+        *pchar_code = (FT_UInt32) cmap12->cur_charcode;
     }
 
     return gindex;
@@ -2541,7 +2541,7 @@
         cmap13->cur_gindex = gindex;
 
       if ( gindex )
-        *pchar_code = cmap13->cur_charcode;
+        *pchar_code = (FT_UInt32) cmap13->cur_charcode;
     }
 
     return gindex;
@@ -2575,7 +2575,7 @@
       {
         gindex = cmap13->cur_gindex;
         if ( gindex )
-          *pchar_code = cmap13->cur_charcode;
+          *pchar_code = (FT_UInt32) cmap13->cur_charcode;
       }
       else
         gindex = 0;
@@ -3059,7 +3059,7 @@
                       FT_Memory  memory )
   {
     TT_CMap14   cmap14 = (TT_CMap14)cmap;
-    FT_UInt32   count  = cmap14->num_selectors;
+    FT_UInt32   count  = (FT_UInt32) cmap14->num_selectors;
     FT_Byte*    p      = cmap->data + 10;
     FT_UInt32*  result;
     FT_UInt32   i;
@@ -3086,7 +3086,7 @@
                            FT_UInt32  charCode )
   {
     TT_CMap14   cmap14 = (TT_CMap14)  cmap;
-    FT_UInt32   count  = cmap14->num_selectors;
+    FT_UInt32   count  = (FT_UInt32) cmap14->num_selectors;
     FT_Byte*    p      = cmap->data + 10;
     FT_UInt32*  q;
 
@@ -3096,7 +3096,7 @@
 
     for ( q = cmap14->results; count > 0; --count )
     {
-      FT_UInt32  varSel    = TT_NEXT_UINT24( p );
+      FT_UInt32  varSel    = (FT_UInt32) TT_NEXT_UINT24( p );
       FT_ULong   defOff    = TT_NEXT_ULONG( p );
       FT_ULong   nondefOff = TT_NEXT_ULONG( p );
 

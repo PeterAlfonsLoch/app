@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07740C9816AD5BB60065CE47 /* libc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9716AD5BB60065CE47 /* libc.dylib */; };
 		9A1B494716A4839900875A94 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B494316A4839900875A94 /* framework.cpp */; };
 		9A1B494816A4839900875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B494416A4839900875A94 /* framework.h */; };
 		9A1B494916A4839900875A94 /* optca.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B494516A4839900875A94 /* optca.cpp */; };
 		9A1B494A16A4839900875A94 /* optca.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B494616A4839900875A94 /* optca.h */; };
+		9AA5E6EE16F7C82C005C45CE /* libca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA5E6ED16F7C82C005C45CE /* libca2c.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07740C9716AD5BB60065CE47 /* libc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libc.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libc.dylib"; sourceTree = "<group>"; };
-		9A1B493616A4815400875A94 /* liboptca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = liboptca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1B493616A4815400875A94 /* libca2optca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2optca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1B494316A4839900875A94 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A1B494416A4839900875A94 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A1B494516A4839900875A94 /* optca.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = optca.cpp; sourceTree = "<group>"; };
 		9A1B494616A4839900875A94 /* optca.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optca.h; sourceTree = "<group>"; };
+		9AA5E6ED16F7C82C005C45CE /* libca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2c.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07740C9816AD5BB60065CE47 /* libc.dylib in Frameworks */,
+				9AA5E6EE16F7C82C005C45CE /* libca2c.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,7 +38,7 @@
 		9A1B492B16A4815400875A94 = {
 			isa = PBXGroup;
 			children = (
-				07740C9716AD5BB60065CE47 /* libc.dylib */,
+				9AA5E6ED16F7C82C005C45CE /* libca2c.dylib */,
 				9A1B494316A4839900875A94 /* framework.cpp */,
 				9A1B494416A4839900875A94 /* framework.h */,
 				9A1B494516A4839900875A94 /* optca.cpp */,
@@ -50,7 +50,7 @@
 		9A1B493716A4815400875A94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1B493616A4815400875A94 /* liboptca.dylib */,
+				9A1B493616A4815400875A94 /* libca2optca.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A1B493516A4815400875A94 /* optca */ = {
+		9A1B493516A4815400875A94 /* ca2optca */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1B493A16A4815400875A94 /* Build configuration list for PBXNativeTarget "optca" */;
+			buildConfigurationList = 9A1B493A16A4815400875A94 /* Build configuration list for PBXNativeTarget "ca2optca" */;
 			buildPhases = (
 				9A1B493216A4815400875A94 /* Sources */,
 				9A1B493316A4815400875A94 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = optca;
+			name = ca2optca;
 			productName = optca;
-			productReference = 9A1B493616A4815400875A94 /* liboptca.dylib */;
+			productReference = 9A1B493616A4815400875A94 /* libca2optca.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A1B493516A4815400875A94 /* optca */,
+				9A1B493516A4815400875A94 /* ca2optca */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +201,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -210,6 +214,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -227,7 +235,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1B493A16A4815400875A94 /* Build configuration list for PBXNativeTarget "optca" */ = {
+		9A1B493A16A4815400875A94 /* Build configuration list for PBXNativeTarget "ca2optca" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B493B16A4815400875A94 /* Debug */,

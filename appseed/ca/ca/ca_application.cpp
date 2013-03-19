@@ -3134,6 +3134,8 @@ namespace ca
 #endif
 
    }
+   
+#ifdef WINDOWS
 
    int32_t application::simple_message_box(::user::interaction * pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
    {
@@ -3144,6 +3146,8 @@ namespace ca
       va_end(va);
       return simple_message_box(pwndOwner, str, fuStyle);
    }
+   
+#endif
 
 
    // Helper for message boxes; can work when no application can be found
@@ -4134,7 +4138,7 @@ namespace ca
 
 #else
 
-//      throw not_implemented(get_app());
+      throw not_implemented(get_app());
 #endif
 
    }

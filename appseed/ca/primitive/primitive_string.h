@@ -1088,11 +1088,6 @@ inline id::operator const char *() const
    return m_pstr == NULL ? NULL : (const char *) *m_pstr;
 }
 
-inline id::operator string () const
-{
-   return m_pstr == NULL ? "" : *m_pstr;
-}
-
 inline string id::to_string() const
 {
    if(m_chType == IDTYPE_TYPE_NULL)

@@ -167,11 +167,11 @@
 		9A1B398116A2F94200875A94 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398016A2F94200875A94 /* ftsystem.c */; };
 		9A1B398316A2F96000875A94 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
 		9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CA4B16E8076D008420D3 /* ftgzip.c */; };
-		9A86CBCA16E80E36008420D3 /* libca2zlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A86CBC916E80E36008420D3 /* libca2zlib.dylib */; };
+		9AEB7AC016F7BF720085103B /* lib_ca2zlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEB7ABF16F7BF720085103B /* lib_ca2zlib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A1B358C16A2D7A500875A94 /* libfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1B358C16A2D7A500875A94 /* lib_ca2freetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1B359B16A2D80800875A94 /* afangles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afangles.h; sourceTree = "<group>"; };
 		9A1B359D16A2D80800875A94 /* afcjk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afcjk.h; sourceTree = "<group>"; };
 		9A1B359F16A2D80800875A94 /* afdummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afdummy.h; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 		9A1B398016A2F94200875A94 /* ftsystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftsystem.c; sourceTree = "<group>"; };
 		9A1B398216A2F96000875A94 /* ftbbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftbbox.c; sourceTree = "<group>"; };
 		9A86CA4B16E8076D008420D3 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftgzip.c; path = src/gzip/ftgzip.c; sourceTree = "<group>"; };
-		9A86CBC916E80E36008420D3 /* libca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = libca2zlib.dylib; path = ../zlib/build/Release/libca2zlib.dylib; sourceTree = "<group>"; };
+		9AEB7ABF16F7BF720085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,7 +340,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A86CBCA16E80E36008420D3 /* libca2zlib.dylib in Frameworks */,
+				9AEB7AC016F7BF720085103B /* lib_ca2zlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +350,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
-				9A86CBC916E80E36008420D3 /* libca2zlib.dylib */,
+				9AEB7ABF16F7BF720085103B /* lib_ca2zlib.dylib */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,
@@ -381,7 +381,7 @@
 		9A1B358D16A2D7A500875A94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1B358C16A2D7A500875A94 /* libfreetype.dylib */,
+				9A1B358C16A2D7A500875A94 /* lib_ca2freetype.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -873,9 +873,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A1B358B16A2D7A500875A94 /* freetype */ = {
+		9A1B358B16A2D7A500875A94 /* _ca2freetype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "freetype" */;
+			buildConfigurationList = 9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "_ca2freetype" */;
 			buildPhases = (
 				9A1B358816A2D7A500875A94 /* Sources */,
 				9A1B358916A2D7A500875A94 /* Frameworks */,
@@ -885,9 +885,9 @@
 			);
 			dependencies = (
 			);
-			name = freetype;
+			name = _ca2freetype;
 			productName = freetype;
-			productReference = 9A1B358C16A2D7A500875A94 /* libfreetype.dylib */;
+			productReference = 9A1B358C16A2D7A500875A94 /* lib_ca2freetype.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -899,7 +899,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "freetype" */;
+			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "_ca2freetype" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -911,7 +911,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A1B358B16A2D7A500875A94 /* freetype */,
+				9A1B358B16A2D7A500875A94 /* _ca2freetype */,
 			);
 		};
 /* End PBXProject section */
@@ -1036,6 +1036,10 @@
 					"$(inherited)",
 					FT2_BUILD_LIBRARY,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
@@ -1046,6 +1050,10 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = FT2_BUILD_LIBRARY;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
@@ -1054,7 +1062,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "freetype" */ = {
+		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "_ca2freetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B358E16A2D7A500875A94 /* Debug */,
@@ -1063,7 +1071,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "freetype" */ = {
+		9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "_ca2freetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B359116A2D7A500875A94 /* Debug */,

@@ -179,7 +179,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          socket_list    m_delete; ///< Sockets to be deleted (failed when add)
       protected:
          StdLog *m_stdlog; ///< Registered log class, or NULL
-         mutex & m_mutex; ///< Thread safety mutex
+         mutex * m_pmutex; ///< Thread safety mutex
          bool m_b_use_mutex; ///< mutex correctly initialized
 
       private:

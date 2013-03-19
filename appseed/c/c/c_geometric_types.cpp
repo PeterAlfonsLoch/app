@@ -11,7 +11,7 @@ bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount)
 
    for (i=0; i < iCount; i++)
    {
-      if((lpptPolygon[i].y < y && lpptPolygon[j].y >= y ||  lpptPolygon[j].y < y && lpptPolygon[i].y >= y) && (lpptPolygon[i].x <= x || lpptPolygon[j].x <= x))
+      if(((lpptPolygon[i].y < y && lpptPolygon[j].y >= y) ||  (lpptPolygon[j].y < y && lpptPolygon[i].y >= y)) && (lpptPolygon[i].x <= x || lpptPolygon[j].x <= x))
       {
          oddNodes ^= (lpptPolygon[i].x + (y - lpptPolygon[i].y) / (lpptPolygon[j].y - lpptPolygon[i].y) * (lpptPolygon[j].x - lpptPolygon[i].x) < x);
       }

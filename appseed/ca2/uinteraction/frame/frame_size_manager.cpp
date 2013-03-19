@@ -496,6 +496,8 @@ namespace frame
          egrip = GripCenterRight;
       else if(emode == HitTestSizingTopRight)
          egrip = GripTopRight;
+      else
+         egrip = GripNone;
       return egrip;
    }
 

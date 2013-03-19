@@ -1433,7 +1433,7 @@ namespace plane
    void system::on_allocation_error(::ca::application * papp, ::ca::type_info & info)
    {
       UNREFERENCED_PARAMETER(papp);
-      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.name());
+      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.friendly_name());
    }
 
 

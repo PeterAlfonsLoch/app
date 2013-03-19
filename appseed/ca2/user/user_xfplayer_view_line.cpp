@@ -1524,7 +1524,7 @@ void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pd
    pdcCache->set_alpha_mode(::ca::alpha_mode_blend);
    pdcCache->SetTextColor(ARGB(84, 84, 84, 84));
 
-   m_dcextension.TextOut(pdcCache, (int32_t) (long) (max(2.0, m_floatRateX * 8.0)) / 2, (int32_t) 1 * long (max(2.0, m_floatRateX * 8.0)) / 2, lpcsz, iLen);
+   m_dcextension.TextOut(pdcCache, (int32_t) (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), (int32_t) 1 * (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen);
 
    System.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
 

@@ -299,7 +299,7 @@ namespace zip
       }
       else
       {
-         ASSERT(FALSE);
+         throw invalid_argument_exception(get_app(), "zip::InFile::seek invalid seek option");
       }
 
       if(iNewPos < m_iPosition)

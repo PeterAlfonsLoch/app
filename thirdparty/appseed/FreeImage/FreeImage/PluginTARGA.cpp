@@ -1524,7 +1524,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 	// write the footer
 	
 	TGAFOOTER footer;
-	footer.extension_offset = extension_offset;
+	footer.extension_offset = (DWORD) extension_offset;
 	footer.developer_offset = 0;
 	strcpy(footer.signature, "TRUEVISION-XFILE.");
 	

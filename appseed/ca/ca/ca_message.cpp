@@ -172,7 +172,7 @@ namespace ca
                pbase = new set_focus(get_app());
             }
             break;
-#if !defined(METROWIN) && !defined(LINUX)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
          case PrototypeWindowPos:
             {
                pbase = new window_pos(get_app());

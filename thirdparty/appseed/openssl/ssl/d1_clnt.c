@@ -901,7 +901,7 @@ static int dtls1_get_hello_verify(SSL *s)
 	unsigned char *data;
 	unsigned int cookie_len;
 
-	n=s->method->ssl_get_message(s,
+	n = (int) s->method->ssl_get_message(s,
 		DTLS1_ST_CR_HELLO_VERIFY_REQUEST_A,
 		DTLS1_ST_CR_HELLO_VERIFY_REQUEST_B,
 		-1,
@@ -1369,7 +1369,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 				 * allocate memory accordingly.
 				 */
 				encoded_pt_len = 
-				    EC_POINT_point2oct(srvr_group, 
+				    (int) EC_POINT_point2oct(srvr_group,
 					EC_KEY_get0_public_key(clnt_ecdh), 
 					POINT_CONVERSION_UNCOMPRESSED, 
 					NULL, 0, NULL);
@@ -1386,7 +1386,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 					}
 
 				/* Encode the public key */
-				n = EC_POINT_point2oct(srvr_group, 
+				n = (int) EC_POINT_point2oct(srvr_group,
 				    EC_KEY_get0_public_key(clnt_ecdh), 
 				    POINT_CONVERSION_UNCOMPRESSED, 
 				    encodedPoint, encoded_pt_len, bn_ctx);
@@ -1476,7 +1476,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 				s->method->ssl3_enc->generate_master_secret(s,
 					s->session->master_key,
 					psk_or_pre_ms, pre_ms_len); 
-			n = strlen(identity);
+			n = (int) strlen(identity);
 			s2n(n, p);
 			memcpy(p, identity, n);
 			n+=2;

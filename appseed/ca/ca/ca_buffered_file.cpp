@@ -80,7 +80,7 @@ namespace ca
       }
       else
       {
-         ASSERT(FALSE);
+         throw invalid_argument_exception(get_app(), "::ca::buffered_file::seek invalid seek option");
       }
 
       if(uiNewPos >= uiBegBufPosition

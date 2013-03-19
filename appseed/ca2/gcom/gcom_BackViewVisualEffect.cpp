@@ -3606,7 +3606,7 @@ namespace gcom
 
 
                dr = sqrt(m * m + n * n);
-               double d;
+               double d = m_z;
                if(dr < 10.0)
                {
                   double da = rand() * 3.1415 * 2 / RAND_MAX;
@@ -3623,19 +3623,18 @@ namespace gcom
                   dsin = n / dr;
                }
 
-               d = m_z;
 
 
                //d = sqrt(d);
 
                //int32_t rnd =
                // i = x + y * width
-               //m_pointa[k].x = dr * dcos * (rand() * 0.5 * d / RAND_MAX + 1.0);
-               //m_pointa[k].y = dr * dsin * (rand() * 0.5 * d / RAND_MAX + 1.0);
-               m_pointa[k].x = i * d;
-               m_pointa[k].y = j * d;
-               //m_pointa[k].x = dr * dcos * 1.2 * d;
-               //m_pointa[k].y = dr * dsin * 1.2 * d;
+               m_pointa[k].x = dr * dcos * (rand() * 0.5 * d / RAND_MAX + 1.0);
+               m_pointa[k].y = dr * dsin * (rand() * 0.5 * d / RAND_MAX + 1.0);
+//               m_pointa[k].x = i * d;
+  //             m_pointa[k].y = j * d;
+               m_pointa[k].x = dr * dcos * 1.2 * d;
+               m_pointa[k].y = dr * dsin * 1.2 * d;
                k++;
             }
          }

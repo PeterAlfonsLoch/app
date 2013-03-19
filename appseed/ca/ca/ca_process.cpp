@@ -134,7 +134,6 @@ namespace ca
       throw todo(::ca::get_thread_app());
 
 #else
-   char *   exec_path_name;
    char *	cmd_line;
 
    cmd_line = (char *) ca2_alloc(strlen(pszCmdLine ) + 1 );
@@ -144,6 +143,8 @@ namespace ca
 
    strcpy_dup(cmd_line, pszCmdLine);
 
+   char *   exec_path_name = cmd_line;
+     
    if((m_iPid = fork()) == 0)
    {
 

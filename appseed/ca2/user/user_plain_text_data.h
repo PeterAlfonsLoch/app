@@ -73,11 +73,15 @@ namespace user
       };
 
 
-      ::ca::tree_item *      m_ptreeitem;
+      ::ca::tree_item *       m_ptreeitem;
       GroupCommand *          m_pgroupcommand;
       index                   m_iBranch;
-      ::ca::file *             m_pfile;
-      ::ca::edit_file          m_editfile;
+      ::ca::file *            m_pfile;
+      ::ca::edit_file         m_editfile;
+      
+      
+      strsize                 m_iSelStart;
+      strsize                 m_iSelEnd;
 
 
       plain_text_data(::ca::application * papp);

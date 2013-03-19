@@ -43,7 +43,7 @@
 // interpolates green vertically and saves it to image3
 void CLASS dcb_ver(float (*image3)[3])
 {
-	int row, col, u=width, v=2*u, indx;
+	int row, col, u=width, indx;
 
 	for (row=2; row < height-2; row++)
 		for (col=2+(FC(row,2)&1),indx=row*width+col; col < u-2; col+=2,indx+=2) {
@@ -57,7 +57,7 @@ void CLASS dcb_ver(float (*image3)[3])
 // interpolates green horizontally and saves it to image2
 void CLASS dcb_hor(float (*image2)[3])
 {
-	int row, col, u=width, v=2*u, indx;
+	int row, col, u=width, indx;
 	
 	for (row=2; row < height-2; row++)
 		for (col=2+(FC(row,2)&1),indx=row*width+col; col < u-2; col+=2,indx+=2) {
@@ -250,7 +250,7 @@ void CLASS dcb_nyquist()
 // missing colors are interpolated using high quality algorithm by Luis Sanz Rodríguez
 void CLASS dcb_color_full()
 {
-	int row,col,c,d,u=width,v=2*u,w=3*u,indx, g1, g2;
+	int row,col,c,d,u=width,w=3*u,indx, g1, g2;
 	float f[4],g[4],(*chroma)[2];
 
 	chroma = (float (*)[2]) calloc(width*height,sizeof *chroma); merror (chroma, "dcb_color_full()");
@@ -322,7 +322,7 @@ void CLASS dcb_color_full()
 // 0 = horizontal
 void CLASS dcb_map()
 {	
-	int row, col, u=width, v=2*u, indx;
+	int row, col, u=width, indx;
 
 	for (row=1; row < height-1; row++) {
 	for (col=1, indx=row*width+col; col < width-1; col++, indx++) { 
@@ -381,7 +381,7 @@ void CLASS dcb_correction2()
 void CLASS dcb_refinement()
 {
 	int row, col, c, u=width, v=2*u, w=3*u, indx, current;
-	float f[5], g1, g2, tmp2=0, tmp3=0;
+	float f[5], g1, g2;
 	
 	for (row=4; row < height-4; row++)
 		for (col=4+(FC(row,2)&1),indx=row*width+col, c=FC(row,col); col < u-4; col+=2,indx+=2) {
@@ -513,7 +513,7 @@ void CLASS fbdd_correction()
 // corrects chroma noise
 void CLASS fbdd_correction2(double (*image2)[3])
 {
-	int indx, u=width, v=2*width; 
+	int indx, v=2*width; 
 double Co, Ho, ratio;
 	for (indx=2+v; indx < height*width-(2+v); indx++) {
 

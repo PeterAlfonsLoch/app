@@ -188,13 +188,24 @@ namespace ca
 
    plain_text_input_stream & plain_text_input_stream::operator >> (::ca::type_info & info)
    {
-      int32_t iLen;
-      read(&iLen, sizeof(iLen));
-      char * psz = (char *) malloc(iLen + 1);
-      read(psz, iLen);
-      psz[iLen] = '\0';
-      info.name(psz);
-      free((void *) psz);
+      {
+         int32_t iLen;
+         read(&iLen, sizeof(iLen));
+         char * psz = (char *) malloc(iLen + 1);
+         read(psz, iLen);
+         psz[iLen] = '\0';
+         info.m_id = psz;
+         free((void *) psz);
+      }
+      {
+         int32_t iLen;
+         read(&iLen, sizeof(iLen));
+         char * psz = (char *) malloc(iLen + 1);
+         read(psz, iLen);
+         psz[iLen] = '\0';
+         info.m_idFriendly = psz;
+         free((void *) psz);
+      }
       return *this;
    }
 
@@ -331,7 +342,11 @@ namespace ca
 
    plain_text_output_stream & plain_text_output_stream::operator << (::ca::type_info & info)
    {
-      return raw_print(info.name());
+
+      raw_print(info.name());
+      raw_print(info.friendly_name());
+
+      return *this;
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (plain_text_serializable & serializable)

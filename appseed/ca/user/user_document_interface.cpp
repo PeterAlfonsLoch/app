@@ -431,7 +431,7 @@ namespace user
       string prompt;
       prompt = System.load_string("MessageBoxChangedFileAskToSave");
       prompt.replace("%1", name);
-      switch (Application.simple_message_box(NULL, MB_YESNOCANCEL, prompt))
+      switch (Application.simple_message_box(NULL, prompt, MB_YESNOCANCEL))
       {
       case IDCANCEL:
          return FALSE;       // don't continue

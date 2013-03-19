@@ -258,7 +258,7 @@ PackBitsDecode(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
                                         n - occ + 1);
                             n = occ - 1;
                         }
-                        _TIFFmemcpy(op, bp, ++n);
+                        _TIFFmemcpy(op, bp, (tsize_t) (++n));
 			op += n; occ -= n;
 			bp += n; cc -= n;
 		}

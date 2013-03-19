@@ -104,38 +104,185 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
 
 
 
-int MessageBoxA(oswindow hwnd, const char* header, const char* message, unsigned int message_type )
+int MessageBoxA(oswindow hwnd, const char * message, const char * header, unsigned int message_type )
 {
+   
    //convert the strings from char* to CFStringRef
-   CFStringRef header_ref      = CFStringCreateWithCString( NULL, header, (int)    strlen(header)    );
-   CFStringRef message_ref  = CFStringCreateWithCString( NULL, message, (int) strlen(message) );
+   CFStringRef  header_ref  = CFStringCreateWithCString(NULL,  header, kCFStringEncodingUTF8);
+   CFStringRef message_ref  = CFStringCreateWithCString(NULL, message, kCFStringEncodingUTF8);
    
    CFOptionFlags result;  //result code from the message box
+   
+   CFStringRef button1;
+   CFStringRef button2;
+   CFStringRef button3;
+   CFStringRef buttonSwap;
+   
+   CFOptionFlags flags = 0;
+   
+   if((message_type & MB_ICONQUESTION) == MB_ICONQUESTION)
+   {
+      flags |= kCFUserNotificationStopAlertLevel;
+   }
+   else if((message_type & MB_ICONEXCLAMATION) == MB_ICONEXCLAMATION)
+   {
+      flags |= kCFUserNotificationCautionAlertLevel;
+   }
+   else if((message_type & MB_ICONASTERISK) == MB_ICONASTERISK)
+   {
+      flags |= kCFUserNotificationNoteAlertLevel;
+   }
+   else
+   {
+      flags |= kCFUserNotificationPlainAlertLevel;
+   }
+   
+   if((message_type & MB_YESNOCANCEL) == MB_YESNOCANCEL)
+   {
+      button1 = CFStringCreateWithCString(NULL,     "Yes", kCFStringEncodingUTF8);
+      button2 = CFStringCreateWithCString(NULL,      "No", kCFStringEncodingUTF8);
+      button3 = CFStringCreateWithCString(NULL,  "Cancel", kCFStringEncodingUTF8);
+   }
+   else if((message_type & MB_YESNO) == MB_YESNO)
+   {
+      button1 = CFStringCreateWithCString(NULL,     "Yes", kCFStringEncodingUTF8);
+      button2 = CFStringCreateWithCString(NULL,      "No", kCFStringEncodingUTF8);
+
+   }
+   else if((message_type & MB_YESNO) == MB_OKCANCEL)
+   {
+      button1 = CFStringCreateWithCString(NULL,      "OK", kCFStringEncodingUTF8);
+      button2 = CFStringCreateWithCString(NULL,      "Cancel", kCFStringEncodingUTF8);
+      
+   }
+   else
+   {
+      button1 = NULL;
+      button2 = NULL;
+      button3 = NULL;
+   }
+   
+   if((message_type & MB_DEFBUTTON1) == MB_DEFBUTTON1)
+   {
+   }
+   else if((message_type & MB_DEFBUTTON2) == MB_DEFBUTTON2)
+   {
+      buttonSwap     = button1;
+      button1        = button2;
+      button2        = buttonSwap;
+   }
+   else if((message_type & MB_DEFBUTTON3) == MB_DEFBUTTON3)
+   {
+      buttonSwap     = button1;
+      button1        = button3;
+      button3        = buttonSwap;
+   }
+   else
+   {
+      flags |= kCFUserNotificationNoDefaultButtonFlag;
+   }
    
    //launch the message box
    CFUserNotificationDisplayAlert(
                                   0, // no timeout
-                                  kCFUserNotificationNoteAlertLevel, //change it depending message_type flags ( MB_ICONASTERISK.... etc.)
+                                  flags, //change it depending message_type flags ( MB_ICONASTERISK.... etc.)
                                   NULL, //icon url, use default, you can change it depending message_type flags
                                   NULL, //not used
                                   NULL, //localization of strings
                                   header_ref, //header text 
                                   message_ref, //message text
-                                  NULL, //default "ok" text in button
-                                  CFSTR("Cancel"), //alternate button title
-                                  NULL, //other button title, null--> no other button
+                                  button1, //default "ok" text in button
+                                  button2, //alternate button title
+                                  button3, //other button title, null--> no other button
                                   &result //response flags
                                   );
    
    //Clean up the strings
-   CFRelease( header_ref );
-   CFRelease( message_ref );
+   CFRelease(header_ref    );
+   CFRelease(message_ref   );
+   if(button1 != NULL)
+      CFRelease(button1);
+   if(button2 != NULL)
+      CFRelease(button2);
+   if(button3 != NULL)
+      CFRelease(button3);
+                
+    int iButton = 0;
+
+    if((message_type & MB_DEFBUTTON2) == MB_DEFBUTTON2)
+    {
+       if(result == kCFUserNotificationDefaultResponse)
+       {
+          iButton = 2;
+       }
+       else if(result == kCFUserNotificationAlternateResponse)
+       {
+          iButton = 1;
+       }
+       else if(result == kCFUserNotificationOtherResponse)
+       {
+          iButton = 3;
+       }
+    }
+    else if((message_type & MB_DEFBUTTON3) == MB_DEFBUTTON3)
+    {
+       if(result == kCFUserNotificationDefaultResponse)
+       {
+          iButton = 3;
+       }
+       else if(result == kCFUserNotificationAlternateResponse)
+       {
+          iButton = 1;
+       }
+       else if(result == kCFUserNotificationOtherResponse)
+       {
+          iButton = 2;
+       }
+    }
+    else
+    {
+       if(result == kCFUserNotificationDefaultResponse)
+       {
+          iButton = 1;
+       }
+       else if(result == kCFUserNotificationAlternateResponse)
+       {
+          iButton = 2;
+       }
+       else if(result == kCFUserNotificationOtherResponse)
+       {
+          iButton = 3;
+       }
+   }
    
    //Convert the result
-   if( result == kCFUserNotificationDefaultResponse )
-      return IDOK;
+   if((message_type & MB_YESNOCANCEL) == MB_YESNOCANCEL)
+   {
+      if(iButton == 1)
+         return IDYES;
+      else if(iButton == 2)
+         return IDNO;
+      else
+         return IDCANCEL;
+   }
+   else if((message_type & MB_YESNO) == MB_YESNO)
+   {
+      if(iButton == 1)
+         return IDYES;
+      else
+         return IDNO;
+   }
+   else if((message_type & MB_OKCANCEL) == MB_OKCANCEL)
+   {
+      if(iButton == 1)
+         return IDOK;
+      else
+         return IDCANCEL;
+   }
    else
-      return IDCANCEL;
+   {
+      return MB_OK;
+   }
    
 }
 

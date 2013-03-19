@@ -352,7 +352,7 @@ static int asn1_bio_read(BIO *b, char *in , int inl)
 
 static int asn1_bio_puts(BIO *b, const char *str)
 	{
-	return asn1_bio_write(b, str, strlen(str));
+	return asn1_bio_write(b, str, (int) strlen(str));
 	}
 
 static int asn1_bio_gets(BIO *b, char *str, int size)
@@ -457,7 +457,7 @@ static int asn1_bio_set_ex(BIO *b, int cmd,
 	BIO_ASN1_EX_FUNCS extmp;
 	extmp.ex_func = ex_func;
 	extmp.ex_free_func = ex_free_func;
-	return BIO_ctrl(b, cmd, 0, &extmp);
+	return (int) BIO_ctrl(b, cmd, 0, &extmp);
 	}
 
 static int asn1_bio_get_ex(BIO *b, int cmd,
@@ -465,7 +465,7 @@ static int asn1_bio_get_ex(BIO *b, int cmd,
 	{
 	BIO_ASN1_EX_FUNCS extmp;
 	int ret;
-	ret = BIO_ctrl(b, cmd, 0, &extmp);
+	ret = (int) BIO_ctrl(b, cmd, 0, &extmp);
 	if (ret > 0)
 		{
 		*ex_func = extmp.ex_func;

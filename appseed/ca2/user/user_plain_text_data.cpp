@@ -54,14 +54,14 @@ namespace user
    void plain_text_data::SetSelCommand::Undo(plain_text_data * pdoc)
    {
       UNREFERENCED_PARAMETER(pdoc);
-      m_iSelStart = m_iPreviousSelStart;
-      m_iSelEnd = m_iPreviousSelEnd;
+      pdoc->m_iSelStart = m_iPreviousSelStart;
+      pdoc->m_iSelEnd = m_iPreviousSelEnd;
    }
    void plain_text_data::SetSelCommand::Redo(plain_text_data * pdoc)
    {
       UNREFERENCED_PARAMETER(pdoc);
-      m_iSelStart = m_iSelStart;
-      m_iSelEnd = m_iSelEnd;
+      pdoc->m_iSelStart = m_iSelStart;
+      pdoc->m_iSelEnd = m_iSelEnd;
    }
 
    void plain_text_data::FileCommand::Undo(plain_text_data * pdoc)
