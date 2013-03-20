@@ -27,42 +27,6 @@ namespace command
    {
    }
 
-   void frame::_001OnCreate(::ca::signal_object * pobj)
-   {
-      UNREFERENCED_PARAMETER(lpCreateStruct);
-      if(!data_get("DockPosition", (int32_t &) m_eposition))
-      {
-         m_eposition = position_left;
-      }
-
-
-      m_bTimerOn = false;
-
-      SetTimer(8913, 5000, 0);
-      SetTimer(4033, 100, 0);
-      ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
-
-
-
-      m_pimagelist = new image_list(get_app());
-      m_pimagelist->create(16, 16, 0, 10, 10);
-      m_pimagelist->add_matter_icon("system/language_change.ico");
-
-
-      string str = Application.file().as_string(
-         Application.dir().matter("command\\toolbar.xml"));
-
-	   if (!m_toolbar.CreateEx(this) ||
-		    !m_toolbar.LoadXmlToolBar(str))
-	   {
-		   TRACE0("Failed to create toolbar\n");
-		   return false;      // fail to create
-	   }
-
-	
-	   return 0;
-   }
-
 
    /////////////////////////////////////////////////////////////////////////////
    // frame diagnostics
@@ -272,8 +236,37 @@ namespace command
 
    void frame::_001OnCreate(::ca::signal_object * pobj)
    {
+
       SCAST_PTR(::ca::message::create, pcreate, pobj);
-      pobj->previous();
+
+      if(!data_get("DockPosition", (int32_t &) m_eposition))
+      {
+         m_eposition = position_left;
+      }
+
+
+      m_bTimerOn = false;
+
+      SetTimer(8913, 5000, 0);
+      SetTimer(4033, 100, 0);
+      ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
+
+
+
+      m_pimagelist = new image_list(get_app());
+      m_pimagelist->create(16, 16, 0, 10, 10);
+      m_pimagelist->add_matter_icon("system/language_change.ico");
+
+
+      string str = Application.file().as_string(
+         Application.dir().matter("command\\toolbar.xml"));
+
+	   if (!m_toolbar.CreateEx(this) ||
+		    !m_toolbar.LoadXmlToolBar(str))
+	   {
+		   pcreate->failed("Failed to create toolbar\n");
+		   return;
+	   }
       if(pobj->m_bRet)
          return;
       if(!initialize_message_window("::ca::fontopus::message_wnd::command"))

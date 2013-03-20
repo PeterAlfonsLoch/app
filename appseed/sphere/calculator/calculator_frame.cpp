@@ -25,7 +25,9 @@ namespace calculator
 
    void frame::_001OnCreate(::ca::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(lpCreateStruct);
+
+      UNREFERENCED_PARAMETER(pobj);
+
       m_bTimerOn = false;
 
       SetTimer(8913, 5000, 0);
@@ -36,7 +38,6 @@ namespace calculator
       m_pimagelist->create(16, 16, 0, 10, 10);
 
 
-      return 0;
    }
 
 
