@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A1B493516A4815400875A94"
-               BuildableName = "liboptca.dylib"
-               BlueprintName = "optca"
+               BuildableName = "libca2optca.dylib"
+               BlueprintName = "ca2optca"
                ReferencedContainer = "container:optca.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
