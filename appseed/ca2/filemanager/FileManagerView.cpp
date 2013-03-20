@@ -65,12 +65,6 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
-               if(pframe != NULL)
-               {
-   //xxx               pframe->WindowDataLoadWindowRect();
-        //xxx          pframe->WindowDataEnableSaveWindowRect(true);
-               }
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {

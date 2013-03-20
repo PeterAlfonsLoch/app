@@ -575,13 +575,8 @@ namespace userbase
 
       cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
-#ifdef WINDOWSEX
-      ::DestroyMenu(cs.hMenu);
-#else
-      throw todo(get_app());
-#endif
-      cs.hMenu = NULL;
       return TRUE;
+
    }
 
 

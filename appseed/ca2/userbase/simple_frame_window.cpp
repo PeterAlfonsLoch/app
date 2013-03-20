@@ -318,13 +318,6 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
    if(!::userbase::frame_window::pre_create_window(cs))
       return FALSE;
 
-#ifdef WINDOWSEX
-   if(cs.hMenu != NULL)
-   {
-      ::DestroyMenu(cs.hMenu);
-      cs.hMenu = NULL;
-   }
-#endif
 
    //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
    cs.style = WS_POPUP;
@@ -852,17 +845,27 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
 
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
+
    if(m_bFrameMoveEnable)
    {
+
       WindowDataLoadWindowRect(bForceRestore);
+
       WindowDataEnableSaveWindowRect(true);
+
    }
+
    ::userbase::frame_window::InitialFramePosition(bForceRestore);
+
    if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
+
       WfiRestore();
+
    }
+
 }
+
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
 {

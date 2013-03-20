@@ -35,17 +35,19 @@ namespace platform
    {
    }
 
+
    bool frame::pre_create_window(CREATESTRUCT& cs)
    {
+
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
+
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
-#ifdef WINDOWSEX
-      ::DestroyMenu(cs.hMenu);
-#endif
-      cs.hMenu = NULL;
+
       return TRUE;
+
    }
+
 
 #ifdef DEBUG
    void frame::assert_valid() const

@@ -26,127 +26,14 @@ namespace calculator
    int32_t frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    {
       UNREFERENCED_PARAMETER(lpCreateStruct);
-   //   if (simple_frame_window::OnCreate(lpCreateStruct) == -1)
-   //      return -1;
-
       m_bTimerOn = false;
 
       SetTimer(8913, 5000, 0);
       SetTimer(4033, 100, 0);
       ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
-      //MouseHook();
-
-      //m_menuhook.Initialize(
-        // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
-         //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
-         //NULL,
-         //System.visual().font_central().GetMenuFont());
-
-      //m_menuhook.Install(this);
-
-
-
-      //m_hMenuDefault = NULL;
-
-   /*    if (!m_menubar.CreateEx(this))
-      {
-         TRACE0("Failed to create toolbar\n");
-         return -1;      // fail to create
-      }
-
-      if(!m_menubar.Initialize(
-         BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
-         BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
-         NULL,
-         System.visual().font_central().GetMenuFont()) ||
-         VMS_FAILED(m_menubar.LoadMenuBar(IDR_MAINFRAME)))
-      {
-         TRACE0("Failed to create toolbar\n");
-         return -1;      // fail to create
-      }*/
       m_pimagelist = new image_list(get_app());
       m_pimagelist->create(16, 16, 0, 10, 10);
-/*      m_pimagelist->add(
-         (HICON)
-         ::LoadImage(
-            System.m_hInstance,
-            MAKEINTRESOURCE(IDI_LANGUAGE_CHANGE),
-            IMAGE_ICON,
-            16, 16, 0));*/
-
-      /*m_menubar._001SetImageList(&m_imagelist);
-      m_menubar.SetItemImage(m_menubar._001GetItemCount() - 1, 0);
-
-      if (!m_toolbar.CreateEx(this, TBSTYLE_FLAT,
-         WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
-         | CBRS_DRAGMOVE,
-         rect(0, 0, 0, 0),
-         __IDW_TOOLBAR) ||
-         !m_toolbar.LoadToolBar(IDR_MAINFRAME))
-      {
-         TRACE0("Failed to create toolbar\n");
-         return -1;      // fail to create
-      }
-
-      if (!m_toolbarView.CreateEx(this, TBSTYLE_FLAT,
-         WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
-         | CBRS_DRAGMOVE,
-         rect(0, 0, 0, 0),
-         __IDW_TOOLBAR + 1) ||
-         !m_toolbarView.LoadToolBar(IDR_VIEW))
-      {
-         TRACE0("Failed to create toolbar\n");
-         return -1;      // fail to create
-      }
-
-
-      if (!m_dialogbar.create(this, IDR_MAINFRAME,
-         WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
-         | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
-      {
-         TRACE0("Failed to create dialogbar\n");
-         return -1;      // fail to create
-      }*/
-
-   /*   if (!m_wndReBar.create(this) ||
-         !m_wndReBar.AddBar(&m_menubar) ||
-         !m_wndReBar.AddBar(&m_wndToolBar) ||
-         !m_wndReBar.AddBar(&m_toolbarView) ||
-         !m_wndReBar.AddBar(&m_wndDlgBar))
-      {
-         TRACE0("Failed to create rebar\n");
-         return -1;      // fail to create
-      }*/
-
-   /*   if (!m_statusbar.create(this) ||
-         !m_statusbar.SetIndicators(indicators,
-           sizeof(indicators)/sizeof(UINT)))
-      {
-         TRACE0("Failed to create status bar\n");
-         return -1;      // fail to create
-      }*/
-
-      // TODO: remove this if you don't want tool tips
-      /*m_toolbar.SetBarStyle(m_toolbar.GetBarStyle() |
-         CBRS_TOOLTIPS | CBRS_FLYBY);
-      m_dialogbar.SetBarStyle(m_dialogbar.GetBarStyle() |
-         CBRS_TOOLTIPS | CBRS_FLYBY);
-
-      EnableDocking(CBRS_ALIGN_ANY);
-
-      m_toolbar.EnableDocking(CBRS_ALIGN_ANY);
-      DockControlBar(&m_toolbar);
-
-      m_toolbarView.EnableDocking(CBRS_ALIGN_ANY);
-      DockControlBar(&m_toolbarView);
-
-      m_dialogbar.EnableDocking(CBRS_ALIGN_TOP);
-      m_dialogbar.EnableDocking(CBRS_ALIGN_BOTTOM);
-      DockControlBar(&m_toolbar);*/
-
-      WindowDataLoadWindowRect();
-      WindowDataEnableSaveWindowRect(true);
 
 
       return 0;
