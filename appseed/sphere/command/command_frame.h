@@ -51,7 +51,6 @@ namespace command
 	   DECL_GEN_SIGNAL(_001OnCreate)
 	   DECL_GEN_SIGNAL(_001OnTimer);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnClose)
       DECL_GEN_SIGNAL(_001OnMove)
       DECL_GEN_SIGNAL(_001OnShowWindow)
