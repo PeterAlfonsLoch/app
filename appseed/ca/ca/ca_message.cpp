@@ -576,6 +576,11 @@ namespace ca
             m_bRet = false;
       }
 
+      void create::failed(const char * lpcszErrorMessage)
+      {
+         error(lpcszErrorMessage);
+      }
+
       void create::error(const char * lpcszErrorMessage)
       {
          set_lresult(-1);

@@ -721,8 +721,7 @@ namespace filemanager
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
             frame_window * pframe = GetParentFrame()->GetParentFrame();
-            pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
-            point.x, point.y,
+            pPopup->TrackPopupMenu(point.x, point.y,
             (::ca::window *) pframe);
             }
             }
@@ -734,7 +733,7 @@ namespace filemanager
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
             frame_window * pframe = GetParentFrame()->GetParentFrame();
-            pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+            pPopup->TrackPopupMenu(
             point.x, point.y,
             (::ca::window *) pframe);
             }

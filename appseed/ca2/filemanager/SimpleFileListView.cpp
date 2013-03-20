@@ -347,7 +347,7 @@ namespace filemanager
                ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame()));
                pframe->SetActiveView(this);
                menuPopup.set_app(get_app());
-               menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+               menuPopup.TrackPopupMenu(
                   point.x, point.y,
                   pframe);
             }*/
@@ -387,16 +387,7 @@ namespace filemanager
                }
             }*/
 
-#ifdef WINDOWSEX
-
-            menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
-               point.x, point.y,
-               pframe);
-#else
-            menuPopup.TrackPopupMenu(0,
-               point.x, point.y,
-               pframe);
-#endif
+            menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
          }
       }
       else
@@ -435,15 +426,8 @@ namespace filemanager
 
             pframe->SetActiveView(this);
 
-#ifdef WINDOWSEX
-            menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
-               point.x, point.y,
-               pframe);
-#else
-            menuPopup.TrackPopupMenu(0,
-               point.x, point.y,
-               pframe);
-#endif
+            menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
+
          }
       }
    }
@@ -671,11 +655,7 @@ namespace filemanager
          if(menu.create_menu(straCommand, straCommandTitle))
          {
             frame_window * pframe = GetParentFrame();
-#ifdef WINDOWSEX
-            menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, ptCursor.x, ptCursor.y, pframe);
-#else
             menu.TrackPopupMenu(0, ptCursor.x, ptCursor.y, pframe);
-#endif
          }
       }
    }

@@ -578,10 +578,10 @@ namespace user
          //::userbase::menu* pPopup = (::userbase::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
          ::userbase::frame_window * pframe = (::userbase::frame_window *) (::ca::window *) GetParentFrame();
-         //pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+         //pPopup->TrackPopupMenu(
            // point.x, point.y,
             //(::ca::window *) pframe);
-         menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+         menu.TrackPopupMenu(
             point.x, point.y,
             (::ca::window *) pframe);
       }*/

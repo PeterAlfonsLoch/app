@@ -41,8 +41,6 @@ namespace frame
             if(pmenu != NULL)
             {
                pmenu->TrackPopupMenu(
-                  TPM_LEFTALIGN |
-                  TPM_RIGHTBUTTON,
                   lpMsg->pt.x, lpMsg->pt.y,
                   pwnd);
             }*/
@@ -92,8 +90,6 @@ namespace frame
                point pt(LOWORD(lparam), HIWORD(lparam));
                pwnd->ClientToScreen(&pt);
                pmenu->TrackPopupMenu(
-                  TPM_LEFTALIGN |
-                  TPM_RIGHTBUTTON,
                   pt.x, pt.y,
                   pwnd);
             }*/

@@ -336,6 +336,7 @@ namespace ca
             virtual void set_lresult(LRESULT lresult);
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             virtual void error(const char * lpcszErrorMessage);
+            virtual void failed(const char * lpcszErrorMessage);
          };
 
          class CLASS_DECL_ca timer : public base

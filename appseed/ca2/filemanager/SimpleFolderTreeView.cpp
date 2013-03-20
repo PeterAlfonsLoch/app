@@ -210,7 +210,7 @@ namespace filemanager
             }
 
 
-            pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+            pPopup->TrackPopupMenu(
                point.x, point.y,
                (::ca::window *) pframe);
          }
@@ -223,7 +223,7 @@ namespace filemanager
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
             frame_window * pframe = GetTopLevelFrame();
-            pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+            pPopup->TrackPopupMenu(
                point.x, point.y,
                (::ca::window *) pframe);
          }
