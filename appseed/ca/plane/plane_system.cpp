@@ -1801,7 +1801,11 @@ namespace plane
    ::ca::type_info & system::get_type_info(const ::std_type_info & info)
    {
 
+#ifdef WINDOWS
       ::ca::type_info & typeinfo = m_typemap[info.raw_name()];
+#else
+      ::ca::type_info & typeinfo = m_typemap[info.name()];
+#endif
 
       if(typeinfo.m_id.is_null())
          typeinfo = info;
