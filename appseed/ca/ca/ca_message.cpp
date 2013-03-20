@@ -584,7 +584,7 @@ namespace ca
       void create::error(const char * lpcszErrorMessage)
       {
          set_lresult(-1);
-         TRACE(lpcszErrorMessage);
+         TRACE0(lpcszErrorMessage);
          System.log().print(lpcszErrorMessage);
       }
 
