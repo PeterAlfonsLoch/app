@@ -1423,11 +1423,11 @@
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
 	</File>
-	<File name="primitive/primitive_string_format.cpp" open="0" top="0" tabpos="34">
-		<Cursor position="3979" topLine="168" />
+	<File name="primitive/primitive_string_format.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="3979" topLine="39" />
 	</File>
-	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="57">
-		<Cursor position="60" topLine="6" />
+	<File name="primitive/primitive_string_format.h" open="1" top="0" tabpos="2">
+		<Cursor position="6229" topLine="123" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="2241" topLine="157" />
