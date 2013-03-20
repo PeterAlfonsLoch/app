@@ -196,7 +196,6 @@ namespace user
             m_pimpl = pimplNew;
             string strName;
             GetWindowText(strName);
-            string strClass = System.RegisterWndClass(0, NULL, NULL, NULL);
             int32_t iStyle = GetWindowLong(GWL_STYLE);
             iStyle &= ~WS_CHILD;
             if(m_bVisible)
@@ -214,7 +213,7 @@ namespace user
             {
                pimplOld->m_pthread->m_pthread->m_p->m_ptimera->detach(timera, this);
             }
-            if(!pimplNew->CreateEx(0, strClass, strName, iStyle, rect(0, 0, 0, 0), NULL, GetDlgCtrlId()))
+            if(!pimplNew->CreateEx(0, NULL, strName, iStyle, rect(0, 0, 0, 0), NULL, GetDlgCtrlId()))
             {
                delete pimplNew;
                pimplNew = NULL;
@@ -3337,6 +3336,29 @@ restart:
    }
 
 
+   string interaction::get_window_default_matter()
+   {
+
+      return "";
+
+   }
+
+   string interaction::get_window_icon_matter()
+   {
+
+      return get_window_default_matter();
+
+   }
+
+   uint32_t interaction::get_window_default_style()
+   {
+      return 0;
+   }
+
+   ::user::interaction::e_type interaction::get_window_type()
+   {
+      return type_window;
+   }
 
 } // namespace user
 

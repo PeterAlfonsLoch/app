@@ -119,16 +119,7 @@ namespace userbase
 
    bool frame_window::pre_create_window(CREATESTRUCT& cs)
    {
-#ifdef WINDOWSEX
-      if (cs.lpszClass == NULL)
-      {
-         VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
-      }
-#else
-      //throw todo(get_app());
-#endif
 
-   //   if ((cs.style & FWS_ADDTOTITLE) && afxData.bWin4)
       if ((cs.style & FWS_ADDTOTITLE))
          cs.style |= FWS_PREFIXTITLE;
 

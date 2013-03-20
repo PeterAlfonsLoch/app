@@ -39,6 +39,15 @@ namespace user
    public:
 
 
+      enum e_type
+      {
+         type_window,
+         type_frame,
+         type_view,
+
+      };
+
+
       class CLASS_DECL_ca timer_item
       {
       public:
@@ -519,6 +528,12 @@ namespace user
 
 
       void offset_view_port_org(LPRECT lprect);
+
+      virtual string get_window_default_matter();
+      virtual string get_window_icon_matter();
+      virtual uint32_t get_window_default_style();
+      virtual e_type get_window_type();
+
 
    };
 

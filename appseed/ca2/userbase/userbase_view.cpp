@@ -84,12 +84,6 @@ namespace userbase
    {
       ASSERT(cs.style & WS_CHILD);
 
-#ifdef WINDOWSEX
-      if (cs.lpszClass == NULL)
-      {
-         VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, & cs.lpszClass));
-      }
-#endif
 
    //   if (afxData.bWin4 && (cs.style & WS_BORDER))
       if ((cs.style & WS_BORDER))

@@ -7,7 +7,11 @@ namespace user
 
    frame_window_interface::frame_window_interface()
    {
+
+      m_pdocumenttemplate = NULL;
+
    }
+
 
    frame_window_interface::~frame_window_interface()
    {
@@ -39,6 +43,24 @@ namespace user
    {
       UNREFERENCED_PARAMETER(dwFlags);
    }
+
+   string frame_window_interface::get_window_default_matter()
+   {
+
+      if(m_pdocumenttemplate == NULL)
+      {
+         return "frame";
+      }
+
+      return m_pdocumenttemplate->m_strMatter;
+
+   }
+
+   ::user::interaction::e_type frame_window_interface::get_window_type()
+   {
+      return type_frame;
+   }
+
 
 } // namespace user
 

@@ -4642,25 +4642,16 @@ namespace ca
    }
 
 
-   bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
-   {
-      return ::ca::smart_pointer < application_base >::m_p->DeferRegisterClass(fToRegister, ppszClass);
-   }
-
-   const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-   {
-#ifdef METROWIN
-      return NULL;
-#endif
-      return ::ca::smart_pointer < application_base >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
-   }
-
    ::ca::thread * application::GetThread()
    {
+
       if(::ca::smart_pointer < application_base >::m_p == NULL)
          return NULL;
+
       return ::ca::smart_pointer < application_base >::m_p->GetThread();
+
    }
+
 
    void application::set_thread(::ca::thread * pthread)
    {

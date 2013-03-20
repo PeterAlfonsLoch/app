@@ -57,15 +57,8 @@ void view::install_message_handling(::ca::message::dispatch * pinterface)
 
 bool view::pre_create_window(CREATESTRUCT & cs)
 {
-   ASSERT(cs.style & WS_CHILD);
 
-   if (cs.lpszClass == NULL)
-   {
-      // COLOR_WINDOW background
-#ifdef WINDOWSEX
-      VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
-#endif
-   }
+   ASSERT(cs.style & WS_CHILD);
 
    if (cs.style & WS_BORDER)
    {
@@ -76,7 +69,9 @@ bool view::pre_create_window(CREATESTRUCT & cs)
    }
 
    return TRUE;
+
 }
+
 
 void view::_001OnCreate(::ca::signal_object * pobj)
 {
@@ -651,6 +646,11 @@ int32_t view::get_total_page_count(::ca::job * pjob)
    return 1;
 }
 
+
+::user::interaction::e_type view::get_window_type()
+{
+   return type_view;
+}
 
 
 view_update_hint::view_update_hint(::ca::application * papp) :

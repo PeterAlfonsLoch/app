@@ -325,11 +325,7 @@ namespace user
          return false;
       }
       m_font->create_point_font("Arial", 10.0);
-      return CreateEx(
-         WS_EX_TOOLWINDOW,
-         System.RegisterWndClass(0, 0, 0, 0),
-         NULL,
-         WS_POPUP, 0, 0, 0, 0, ::ca::null(), id) != 0;
+      return CreateEx(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, 0, 0, 0, 0, ::ca::null(), id) != 0;
    }
 
    ///////////////////////////////////////////////////////////

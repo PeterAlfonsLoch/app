@@ -280,55 +280,10 @@ namespace user
    }
 
 
-   const char * combo_list::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
-   {
-
-   #ifdef WINDOWSEX
-
-      HICON hIcon = (HICON) ::LoadImage(
-         NULL,
-         Application.dir().matter(pszMatter, "icon.ico"), IMAGE_ICON,
-         16, 16,
-         LR_LOADFROMFILE);
-
-      //if(hIcon != NULL)
-      {
-         CREATESTRUCT cs;
-         memset(&cs, 0, sizeof(CREATESTRUCT));
-         cs.style = dwDefaultStyle;
-         pre_create_window(cs);
-            // will fill lpszClassName with default WNDCLASS name
-            // ignore instance handle from pre_create_window.
-
-         WNDCLASS wndcls;
-         if (cs.lpszClass != NULL &&
-            GetClassInfo(System.m_hInstance, cs.lpszClass, &wndcls) &&
-            wndcls.hIcon != hIcon)
-         {
-            // register a very similar WNDCLASS
-            return System.RegisterWndClass(wndcls.style,
-               wndcls.hCursor, wndcls.hbrBackground, hIcon);
-         }
-      }
-   #else
-
-      throw not_implemented(get_app());
-
-   #endif
-      return NULL;        // just use the default
-   }
 
 
    bool combo_list::pre_create_window(CREATESTRUCT & cs)
    {
-
-      if (cs.lpszClass == NULL)
-      {
-         // COLOR_WINDOW background
-   #ifdef WINDOWSEX
-         VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
-   #endif
-      }
 
       if (cs.style & WS_BORDER)
       {

@@ -11,12 +11,6 @@ namespace userbase
    bool tool_bar_control::create(uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd,
       UINT nID)
    {
-#ifdef WINDOWSEX
-      // initialize common controls
-      VERIFY(System.DeferRegisterClass(__WNDCOMMCTL_BAR_REG, NULL));
-#else
-      throw todo(get_app());
-#endif
 
 #ifdef WINDOWSEX
       ::user::interaction* pWnd = this;

@@ -202,7 +202,7 @@ namespace userbase
       rect rect;
       rect = pinterface->get_data()->m_rectTabClient;
       pinterface->ClientToScreen(&rect);
-      m_pdroptargetwindow->CreateEx(0, System.RegisterWndClass(0, 0, 0, 0), NULL, 0, rect, NULL, id());
+      m_pdroptargetwindow->CreateEx(0, NULL, NULL, 0, rect, NULL, id());
       System.add_frame(m_pdroptargetwindow);
       m_pdroptargetwindow->ShowWindow(SW_SHOW);
 

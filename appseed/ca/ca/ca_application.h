@@ -170,7 +170,6 @@ namespace ca
       virtual void LockTempMaps() = 0;
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE) = 0;
       virtual void TermThread(HINSTANCE hInstTerm) = 0;
-      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0) = 0;
 
 
 #ifdef METROWIN
@@ -185,9 +184,6 @@ namespace ca
       virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
 
       virtual string get_version() = 0;
-
-      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass) = 0;
-
 
       virtual ::ca::thread * GetThread() = 0;
       virtual void set_thread(::ca::thread * pthread) = 0;
@@ -1022,7 +1018,6 @@ namespace ca
       virtual void LockTempMaps();
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
-      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
@@ -1078,9 +1073,6 @@ namespace ca
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
-
-      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
-
 
       virtual ::ca::thread * GetThread();
       virtual void set_thread(::ca::thread * pthread);

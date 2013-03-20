@@ -64,11 +64,7 @@ namespace userbase
 #endif
       dwStyle |= dwCtrlStyle;
 
-      // initialize common controls
-#ifdef WINDOWSEX
-      VERIFY(System.DeferRegisterClass(__WNDCOMMCTL_BAR_REG, NULL));
-#endif
-
+      
       // create the oswindow
       class rect rect;
       rect.null();

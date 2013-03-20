@@ -146,6 +146,9 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnLButtonUp)
    DECL_GEN_SIGNAL(_001OnMouseMove)
+
+   virtual ::user::interaction::e_type get_window_type();
+
 };
 
 class view_update_hint :

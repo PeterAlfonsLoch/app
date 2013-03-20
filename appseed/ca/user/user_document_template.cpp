@@ -146,6 +146,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
       return NULL;
    }
    ASSERT_KINDOF(frame_window, pFrame);
+   pFrame->m_pdocumenttemplate = this;
 
    if(!context->m_typeinfoNewView)
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: creating frame with no default ::view.\n");

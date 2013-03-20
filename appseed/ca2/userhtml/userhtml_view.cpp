@@ -81,14 +81,6 @@ void html_view::dump(dump_context & dumpcontext) const
 
 bool html_view::pre_create_window(CREATESTRUCT& cs)
 {
-#ifdef WINDOWSEX
-   cs.lpszClass = System.RegisterWndClass(
-      CS_DBLCLKS |
-      CS_OWNDC,
-      0, 0, 0);
-#else
-   throw todo(get_app());
-#endif
    cs.style &= ~WS_EX_CLIENTEDGE;
    return ::userbase::view::pre_create_window(cs);
 }

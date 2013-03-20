@@ -196,7 +196,6 @@ public:
 
 
    void UpdateFrameTitleForDocument(const char * lpszDocName);
-   virtual const char * GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter);
    virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
    virtual void PostNcDestroy();   // default to delete this.

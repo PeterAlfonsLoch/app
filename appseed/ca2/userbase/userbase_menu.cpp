@@ -90,22 +90,8 @@ namespace userbase
 
       const char * lpcsz = NULL;
 
-#ifdef WINDOWSEX
-
-      lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
-
-#else
-
-      throw todo(get_app());
-
-#endif
-
       LPVOID lpvoid = NULL;
-      if(!CreateEx(WS_EX_LAYERED |
-         WS_EX_TOOLWINDOW,
-         lpcsz, NULL,
-         0,
-         rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
+      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, NULL, NULL, 0, rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
          return false;
 
       set_owner(oswindowParent);
@@ -587,16 +573,6 @@ namespace userbase
    bool menu::pre_create_window(CREATESTRUCT& cs)
    {
 
-#ifdef WINDOWSEX
-      if(cs.lpszClass == NULL)
-      {
-         cs.lpszClass = System.RegisterWndClass(
-            CS_HREDRAW | CS_VREDRAW,
-            0, 0, 0);
-      }
-#else
-      throw todo(get_app());
-#endif
       cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
 #ifdef WINDOWSEX

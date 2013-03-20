@@ -14,6 +14,9 @@ namespace user
    public:
 
 
+      document_template *           m_pdocumenttemplate;
+
+
       frame_window_interface();
       virtual ~frame_window_interface();
 
@@ -25,6 +28,9 @@ namespace user
 
       virtual OleFrameHook * GetNotifyHook();
       virtual void NotifyFloatingWindows(uint32_t dwFlags);
+
+      virtual string get_window_default_matter();
+      virtual ::user::interaction::e_type get_window_type();
 
    };
 

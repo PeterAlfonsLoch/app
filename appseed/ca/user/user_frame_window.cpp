@@ -426,19 +426,6 @@ void frame_window::OnEnable(bool bEnable)
 bool frame_window::pre_create_window(CREATESTRUCT& cs)
 {
 
-   if (cs.lpszClass == NULL)
-   {
-
-      // COLOR_WINDOW background
-
-#ifdef WINDOWSEX
-
-      VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
-
-#endif
-
-   }
-
    if (cs.style & FWS_ADDTOTITLE)
       cs.style |= FWS_PREFIXTITLE;
 
@@ -564,47 +551,6 @@ int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* 
    return 0;   // create ok
 }
 
-const char * frame_window::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
-{
-//   ASSERT_VALID_IDR(nIDResource);
-//   HINSTANCE hInst = ::ca::FindResourceHandle(
-//      MAKEINTRESOURCE(nIDResource), RT_GROUP_ICON);
-   //HICON hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(nIDResource));
-
-#ifdef WINDOWSEX
-
-   HICON hIcon = (HICON) ::LoadImage(
-      NULL,
-      Application.dir().matter(pszMatter, "icon.ico"), IMAGE_ICON,
-      16, 16,
-      LR_LOADFROMFILE);
-
-   if(hIcon != NULL)
-   {
-      CREATESTRUCT cs;
-      memset(&cs, 0, sizeof(CREATESTRUCT));
-      cs.style = dwDefaultStyle;
-      pre_create_window(cs);
-         // will fill lpszClassName with default WNDCLASS name
-         // ignore instance handle from pre_create_window.
-
-      WNDCLASS wndcls;
-      if (cs.lpszClass != NULL &&
-         GetClassInfo(System.m_hInstance, cs.lpszClass, &wndcls) &&
-         wndcls.hIcon != hIcon)
-      {
-         // register a very similar WNDCLASS
-         return System.RegisterWndClass(wndcls.style,
-            wndcls.hCursor, wndcls.hbrBackground, hIcon);
-      }
-   }
-#else
-
-   //throw not_implemented(get_app());
-
-#endif
-   return NULL;        // just use the default
-}
 
 bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
    ::user::interaction * pParentWnd, ::ca::create_context* pContext)

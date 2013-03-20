@@ -315,13 +315,6 @@ bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_conte
 bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 {
 
-#ifdef WINDOWSEX
-   if(cs.lpszClass == NULL)
-   {
-      cs.lpszClass = System.RegisterWndClass(CS_HREDRAW | CS_VREDRAW, 0, 0, 0);
-   }
-#endif
-
    if(!::userbase::frame_window::pre_create_window(cs))
       return FALSE;
 
@@ -729,18 +722,12 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 //   if (strFullString.load_string(nIDResource))
 //      __extract_sub_string(m_strTitle, strFullString, 0);    // first sub-string
 
-#ifdef WINDOWSEX
-   VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, NULL));
-#endif
-
-   // attempt to create the ::ca::window
-   const char * lpszClass = (const char *) GetIconWndClass(dwDefaultStyle, pszMatter);
    const char * lpszTitle = m_strTitle;
 
    if(pParentWnd == NULL)
       pParentWnd = Application.get_request_parent_ui(this, pContext);
 
-   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
+   if (!CreateEx(0L, NULL, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }

@@ -40,8 +40,8 @@ namespace ca
        m_pTimerCallback = pCallback;
    ///    m_pTimerCallbackFinal = m_pTimerCallback;
        rect rect(0, 0, 0, 0);
-       const char * lpcStr = System.RegisterWndClass(0);
-       return ::ca::window::CreateEx(0,lpcStr, "Timer Window", 0, rect, NULL, id());
+       
+       return ::ca::window::CreateEx(0,NULL, "Timer Window", 0, rect, NULL, id());
    }
 
    void TimerWnd::OnTimer(UINT nIDEvent)
