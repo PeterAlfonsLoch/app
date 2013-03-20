@@ -99,7 +99,7 @@ namespace user
    void check_box::_001OnKeyUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::key, pkey, pobj)
-      if(pkey->m_nChar == VK_SPACE)
+      if(pkey->m_ekey == ::user::key_space)
       {
          _001ToggleCheck(true);
       }

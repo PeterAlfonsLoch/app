@@ -223,7 +223,7 @@ namespace userbase
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
 #ifdef WINDOWSEX
-      if (GetKeyState(VK_LBUTTON) < 0)
+      if (Application.is_key_pressed(::user::key_lbutton))
          return;
 #else
       throw todo(get_app());

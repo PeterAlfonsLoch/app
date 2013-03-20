@@ -662,12 +662,12 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == ::user::key_alt)
+      else if(pkey->m_ekey == ::user::key_alt)
       {
          pkey->m_bRet = false;
          return;
       }
-      else if(pkey->m_nChar == 'C')
+      else if(pkey->m_ekey == ::user::key_c)
       {
          if(Application.is_key_pressed(::user::key_control))
          {
@@ -676,7 +676,7 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == 'V')
+      else if(pkey->m_ekey == ::user::key_v)
       {
          if(Application.is_key_pressed(::user::key_control))
          {
@@ -705,7 +705,7 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == ::user::key_alt)
+      else if(pkey->m_ekey == ::user::key_alt)
       {
          pkey->m_bRet = false;
       }
@@ -1435,7 +1435,7 @@ namespace user
 
 //      pkey->m_nChar = pkey->m_charrecv->KeyCode;
 
-      if(pkey->m_nChar == 's')
+      if(pkey->m_ekey == ::user::key_s)
       {
          if(Application.is_key_pressed(::user::key_control))
          {
