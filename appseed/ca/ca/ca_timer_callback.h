@@ -40,8 +40,6 @@ namespace ca
       void Enable(bool bEnable = true);
       virtual void TimerProc(uint_ptr nID) = 0;
       bool WishesQueueModel();
-      // bool _000BeforeWndProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      // bool InstallTimerCallbackHook();
       bool SetTimerWindow(TimerWnd * ptimerwnd);
       
 

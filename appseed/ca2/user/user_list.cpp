@@ -3370,20 +3370,6 @@ namespace user
 
 
 
-   /*bool list::_001WndInterfaceProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-   {
-   if(C001TransparentWndInterface::_000WndProc(message, wparam, lparam, lresult))
-   return true;
-
-   if(message == MESSAGE_ENDCOLUMNHEADERDRAG)
-   return _001OnHeaderCtrlEndDrag(wparam, lparam);
-   else if(message == MESSAGE_COLUMNHEADERTRACK)
-   return _001OnHeaderCtrlTrack(wparam, lparam);
-   else if(message == MESSAGE_ENDCOLUMNHEADERTRACK)
-   return _001OnHeaderCtrlEndTrack(wparam, lparam);
-
-   return FALSE;
-   }*/
 
 
 

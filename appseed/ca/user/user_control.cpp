@@ -489,53 +489,6 @@ namespace user
       return dynamic_cast < ::user::interaction * > (this);
    }
 
-   void control::BaseControlExWndProcBefore(::ca::signal_object * pobj)
-   {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
-#ifdef WINDOWSEX
-      if(pbase->m_uiMessage == g_uiMessage)
-      {
-         // Parameter for getting pointer to this control object
-         if(pbase->m_wparam == MessageParamGetBaseControlExPtr)
-         {
-            control ** ppcontrolex = (control **) pbase->m_lparam;
-            *ppcontrolex = this;
-            pobj->m_bRet = true;
-            return;
-         }
-      }
-#endif
-      switch(pbase->m_uiMessage)
-      {
-      case WM_MOUSEMOVE:
-         {
-            point point((uint32_t)pbase->m_lparam);
-            BaseControlExOnMouseMove((UINT)pbase->m_wparam, point);
-            break;
-         }
-      }
-   }
-
-   void control::BaseControlExWndProcAfter(::ca::signal_object * pobj)
-   {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
-      switch(pbase->m_uiMessage)
-      {
-      case WM_KILLFOCUS:
-         {
-            ::user::interaction * pwnd = ControlExGetWnd();
-            m_iHover = -1;
-            pwnd->RedrawWindow(0, 0, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_FRAME);
-            break;
-         }
-      case WM_SETFOCUS:
-         {
-            ::user::interaction * pwnd = ControlExGetWnd();
-            pwnd->RedrawWindow(0, 0, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_FRAME);
-            break;
-         }
-      }
-   }
 
    void control_cmd_ui::Enable(bool bOn)
    {

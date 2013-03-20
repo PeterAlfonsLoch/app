@@ -27,7 +27,7 @@ namespace command
    {
    }
 
-   int32_t frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+   void frame::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(lpCreateStruct);
       if(!data_get("DockPosition", (int32_t &) m_eposition))

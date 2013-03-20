@@ -304,26 +304,7 @@ namespace userbase
       pobj->previous();
    }
 
-   /*void menu::OnMouseProc(WPARAM wparam, LPARAM lparam)
-   {
-      if(wparam == WM_LBUTTONDOWN)
-      {
-         MOUSEHOOKSTRUCT * pstruct = lparam;
-         rect rectWindow;
-         GetWindowRect(rectWindow);
-         point ptCursor = pstruct->pt;
-         if(!rectWindow.contains(ptCursor))
-         {
-            System.release_capture_uie();
-            PostMessage(MessageDestroyWindow);
-            return true;
-         }
-
-      }
-
-   }
-   */
-
+   
    void menu::OnMessageDestroyWindow(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);

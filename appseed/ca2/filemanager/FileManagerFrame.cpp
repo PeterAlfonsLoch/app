@@ -17,7 +17,7 @@ FileManagerFrame::~FileManagerFrame()
 
  // BEGIN_MESSAGE_MAP(FileManagerFrame, simple_frame_window)
    //{{__MSG_MAP(FileManagerFrame)
-// xxx   ON_WM_CREATE()
+// xxx   
    //}}__MSG_MAP
  // END_MESSAGE_MAP()
 
@@ -28,8 +28,6 @@ void FileManagerFrame::_001OnCreate(::ca::signal_object * pobj)
 {
    
    pobj->previous();
-/* trans   if (simple_frame_window::OnCreate(lpCreateStruct) == -1)
-      return -1; */
 
    
 }

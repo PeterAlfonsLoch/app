@@ -472,10 +472,6 @@ namespace user
 
       virtual void pre_subclass_window();
 
-#ifdef WINDOWSEX
-      virtual WNDPROC* GetSuperWndProcAddr();
-#endif
-
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();
 

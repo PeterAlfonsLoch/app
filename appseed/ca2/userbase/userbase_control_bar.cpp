@@ -395,39 +395,6 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
-      // WINBUG: We call DefWindowProc here instead of ::user::interaction::OnWindowPosChanging
-      //  (which calls ::user::interaction::Default, which calls through the super wndproc)
-      //  because certain control bars that are system implemented (such as
-      //  simple_toolbar with TBSTYLE_FLAT) do not implement WM_WINDOWPOSCHANGING
-      //  correctly, causing repaint problems.  This code bypasses that whole
-      //  mess.
-      /*::DefWindowProc(get_handle(), WM_WINDOWPOSCHANGING, 0, (LPARAM)lpWndPos);
-
-      if (lpWndPos->flags & SWP_NOSIZE)
-         return;
-
-      // invalidate borders on the right
-      rect rect;
-      GetWindowRect(&rect);
-      size sizePrev = rect.size();
-      int32_t cx = lpWndPos->cx;
-      int32_t cy = lpWndPos->cy;
-      if (cx != sizePrev.cx && (m_dwStyle & CBRS_BORDER_RIGHT))
-      {
-         rect.set(cx-afxData.cxBorder2, 0, cx, cy);
-         InvalidateRect(&rect);
-         rect.set(sizePrev.cx-afxData.cxBorder2, 0, sizePrev.cx, cy);
-         InvalidateRect(&rect);
-      }
-
-      // invalidate borders on the bottom
-      if (cy != sizePrev.cy && (m_dwStyle & CBRS_BORDER_BOTTOM))
-      {
-         rect.set(0, cy-afxData.cyBorder2, cx, cy);
-         InvalidateRect(&rect);
-         rect.set(0, sizePrev.cy-afxData.cyBorder2, cx, sizePrev.cy);
-         InvalidateRect(&rect);
-      }*/
    }
 
    void control_bar::_001OnCreate(::ca::signal_object * pobj)

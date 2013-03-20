@@ -738,45 +738,6 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
    return TRUE;
 }
 
-/*bool simple_frame_window::create(const char * lpszClassName,
-   const char * lpszWindowName,
-   uint32_t dwStyle,
-   const RECT& rect,
-   ::user::interaction* pParentWnd,
-   const char * lpszMenuName,
-   uint32_t dwExStyle,
-   create_context* pContext)
-{
-   HMENU hMenu = NULL;
-   if (lpszMenuName != NULL)
-   {
-      // load in a menu that will get destroyed when ::ca::window gets destroyed
-      HINSTANCE hInst = ::ca::FindResourceHandle(lpszMenuName, RT_MENU);
-      if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
-      {
-         TRACE0("Warning: failed to load menu for ::userbase::frame_window.\n");
-         PostNcDestroy();            // perhaps delete the C++ object
-         return FALSE;
-      }
-   }
-
-   m_strTitle = lpszWindowName;    // save title for later
-
-   if (!CreateExW(dwExStyle, (const wchar_t *) lpszClassName, (const wchar_t *) lpszWindowName, dwStyle,
-      rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-      pParentWnd->GetSafeoswindow_(), hMenu, (LPVOID)pContext))
-   {
-      TRACE0("Warning: failed to create ::userbase::frame_window.\n");
-      if (hMenu != NULL)
-         DestroyMenu(hMenu);
-      return FALSE;
-   }
-
-   return TRUE;
-}*/
-
-
-static const char gen_OldWndProc[] = "::ca::OldWndProc423";
 
 
 

@@ -115,9 +115,6 @@ namespace gcom
          virtual bool LoadNextImage(bool bSynch);
          virtual bool IsFullScreen();
 
-         //virtual bool _000WndProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-         //virtual bool RelayWndProc(LPMESSAGE lpmsg);
-         virtual bool RelayWndProc(UINT message, WPARAM wparam, LPARAM lparam);
 
          // Windows message handler
          DECL_GEN_VSIGNAL(OnBackViewMessage)

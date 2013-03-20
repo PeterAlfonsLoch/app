@@ -33,12 +33,8 @@ public:
    ::ca::font * MenuV033GetFont();
    ::ca::font * GetMenuFont();
 
-   static HHOOK m_hCBTHook;
-   static LRESULT CALLBACK CBTHook(int32_t nCode, WPARAM wParam, LPARAM lParam);
-   static void UnhookCBTHook();
-   static void HookCBTHook();
-   // trans static void RemoveBorder(oswindow oswindow);
 };
+
 
 class CLASS_DECL_ca2 BaseMenuCentralContainer
 {

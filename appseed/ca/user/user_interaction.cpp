@@ -2258,15 +2258,6 @@ namespace user
          m_pimpl->pre_subclass_window();
    }
 
-#ifdef WINDOWSEX
-   WNDPROC* interaction::GetSuperWndProcAddr()
-   {
-      if(m_pimpl == NULL || m_pimpl == this)
-         return NULL;
-      else
-         return m_pimpl->GetSuperWndProcAddr();
-   }
-#endif
 
    id interaction::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
    {

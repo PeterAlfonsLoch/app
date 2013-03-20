@@ -117,7 +117,7 @@ namespace userbase
       int32_t GetButtonText(UINT uiID, string &str);
       virtual ~tool_bar_control();
 
-      int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
+      DECL_GEN_SIGNAL(_001OnCreate)
 
    };
 

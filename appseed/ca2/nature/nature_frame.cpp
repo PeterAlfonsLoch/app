@@ -12,7 +12,7 @@ namespace nature
 
     // BEGIN_MESSAGE_MAP(frame, simple_frame_window)
       //{{__MSG_MAP(frame)
-   /* xxx   ON_WM_CREATE()
+   /* xxx   
       ON_COMMAND(ID_HELP_FINDER, simple_frame_window::OnHelpFinder)
       ON_COMMAND(ID_HELP, simple_frame_window::OnHelp)
       ON_COMMAND(ID_CONTEXT_HELP, simple_frame_window::OnContextHelp)
@@ -52,10 +52,10 @@ namespace nature
    {
    }
 
-   int32_t frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+   void frame::_001OnCreate(::ca::signal_object * pobj)
    {
 
-      UNREFERENCED_PARAMETER(lpCreateStruct);
+      UNREFERENCED_PARAMETER(pobj);
 
       m_bTimerOn = false;
 
@@ -68,8 +68,6 @@ namespace nature
       m_pimagelist->create(16, 16, 0, 10, 10);
       m_pimagelist->add_matter_icon("system/language_icon.ico");
 
- 
-      return 0;
    }
 
 

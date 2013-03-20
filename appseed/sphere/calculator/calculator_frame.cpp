@@ -23,7 +23,7 @@ namespace calculator
    {
    }
 
-   int32_t frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+   void frame::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(lpCreateStruct);
       m_bTimerOn = false;
@@ -39,22 +39,19 @@ namespace calculator
       return 0;
    }
 
+
    bool frame::pre_create_window(CREATESTRUCT& cs)
    {
+
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
+
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
-#ifdef WINDOWSEX
-      ::DestroyMenu(cs.hMenu);
-#endif
-      cs.hMenu = NULL;
+
       return TRUE;
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // frame diagnostics
-
-   #ifdef DEBUG
+#ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();

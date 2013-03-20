@@ -65,7 +65,6 @@ class CDockContext;                     // for dragging control bars
 // Internal _ Windows messages (see Technical note TN024 for more details)
 // (0x0360 - 0x037F are reserved for ca API)
 
-#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by ::ca::WndProc
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
                            // lParam = lpszOther (or NULL)

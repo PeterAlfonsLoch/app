@@ -211,19 +211,13 @@ size simple_toolbar::CalcSimpleLayout()
 
 void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 {
-   //   _001Hover(false);
+   
 
    if(m_bDelayedButtonLayout)
       layout();
 
    //DoPaint(pdc);
 
-   //xxx   bool bWin4 = afxData.bWin4;
-   /*::CallWindowProc(
-   *GetSuperWndProcAddr(),
-   get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
-   (WPARAM)(pdc->get_handle1()),
-   (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
    pdc->SetBkMode(TRANSPARENT);
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)

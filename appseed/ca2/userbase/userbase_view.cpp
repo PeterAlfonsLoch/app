@@ -18,7 +18,7 @@
    //{{__MSG_MAP(::view)
 /*   ON_WM_PAINT()
    ON_WM_MOUSEACTIVATE()
-   ON_WM_CREATE()
+   
    ON_WM_DESTROY()
 
    // Standard commands for split pane
@@ -55,6 +55,7 @@ namespace userbase
 
       IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE  , pinterface, this, &view::_001OnMouseActivate);
       IGUI_WIN_MSG_LINK(WM_DESTROY        , pinterface, this, &view::_001OnDestroy);
+      IGUI_WIN_MSG_LINK(WM_CREATE        , pinterface, this, &view::_001OnCreate);
 
       // Standard commands for split pane
 //      connect_command(ID_WINDOW_SPLIT , &view::_001OnSplitCmd);

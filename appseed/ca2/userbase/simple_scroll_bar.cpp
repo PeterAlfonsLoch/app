@@ -689,11 +689,6 @@ pParentWnd->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), 
 void simple_scroll_bar::_001OnCreate(::ca::signal_object * pobj) 
 {
    SCAST_PTR(::ca::message::create, pcreate, pobj)
-      /* trans   if (::user::interaction::OnCreate(pcreate->m_lpcreatestruct) == -1)
-      {
-      pcreate->set_lresult(-1);
-      return;
-      } */
 
       UpdateDrawingObjects();
 

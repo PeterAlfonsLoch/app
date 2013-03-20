@@ -14,6 +14,6 @@ public:
 
    virtual ~FileManagerMainFrame();
 
-   int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
+   DECL_GEN_SIGNAL(_001OnCreate)
 };
 

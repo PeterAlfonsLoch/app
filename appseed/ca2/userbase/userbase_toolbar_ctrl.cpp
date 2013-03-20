@@ -59,18 +59,19 @@ namespace userbase
 #endif
 
 
-   int32_t tool_bar_control::OnCreate(LPCREATESTRUCT lpcs)
+   void tool_bar_control::_001OnCreate(::ca::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(lpcs);
-      // trans   if (::user::interaction::OnCreate(lpcs) == -1)
-      // return -1;
+
+      UNREFERENCED_PARAMETER(pobj);
+
 #ifdef WINDOWSEX
       SetButtonStructSize(sizeof(TBBUTTON));
 #else
       throw todo(get_app());
 #endif
-      return 0;
+
    }
+
 
    HRESULT tool_bar_control::GetDropTarget(IDropTarget** ppDropTarget)
    {

@@ -40,27 +40,6 @@ namespace gcom
          return false;
       }
 
-      bool Interface::RelayWndProc(UINT message, WPARAM wparam, LPARAM lparam)
-      {
-         UNREFERENCED_PARAMETER(message);
-         UNREFERENCED_PARAMETER(wparam);
-         UNREFERENCED_PARAMETER(lparam);
-         ASSERT(FALSE);
-/*         switch(message)
-         {
-         case MessageBackView:
-            OnBackViewMessage(wparam, lparam);
-            return true;
-         case MessageBackViewDequeue:
-            GetMain().OnDequeueMessage(wparam, lparam);
-            return true;
-         case WM_SIZE:
-            UpdateDrawingObjects();
-            return false;
-         default:*/
-            return false;
-         //}
-      }
 
 /*      bool Interface::relay_event(LPMESSAGE lpmsg)
       {

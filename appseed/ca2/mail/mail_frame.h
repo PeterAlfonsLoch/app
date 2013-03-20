@@ -38,7 +38,7 @@ protected:
 
 
 	//{{AFX_MSG(mail_frame)
-	afx_msg int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg DECL_GEN_SIGNAL(_001OnCreate)
 	afx_msg void OnTimer(UINT nIDEvent);
 };
 

@@ -21,18 +21,6 @@ simple_button::~simple_button()
 void simple_button::_001OnDraw(::ca::graphics *pdc)
 {
    ::userbase::button::_001OnDraw(pdc);
-//   bool bWin4 = afxData.bWin4;
-   //_::ca::FillPSOnStack();
-/*   ::CallWindowProc(
-      *GetSuperWndProcAddr(),
-      get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
-      (WPARAM)(pdc->get_handle1()),
-      (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
-   /* trans ::CallWindowProc(
-      *GetSuperWndProcAddr(),
-      get_handle(), WM_PRINT,
-      (WPARAM)(pdc->get_handle1()),
-      (LPARAM) PRF_CHILDREN | PRF_CLIENT);*/
 }
 
 void simple_button::install_message_handling(::ca::message::dispatch * pinterface)

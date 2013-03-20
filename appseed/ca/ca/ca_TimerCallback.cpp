@@ -35,31 +35,7 @@ namespace ca
       return true;
    }
 
-   /*bool TimerCallback::InstallTimerCallbackHook()
-   {
-      C000WndInterface * pwndinterface = dynamic_cast < C000WndInterface * > (this);
-      
-      if(pwndinterface != NULL)
-      {
-         pwndinterface->_000HookBeforeWndProc(this);
-         return true;
-      }
 
-      return false;
-
-   }*/
-
-   /*bool TimerCallback::_000BeforeWndProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-   {
-      switch(message)
-      {
-      case WM_DESTROY:
-         m_ptimerwnd->EnableTimer(false);
-         break;
-      }
-
-      return false;
-   }*/
    bool TimerCallback::WishesQueueModel()
    {
       return m_bQueueModel;

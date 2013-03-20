@@ -28,17 +28,6 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-static LRESULT CALLBACK MouseProc(          int32_t nCode,
-    WPARAM wParam,
-    LPARAM lParam
-);
-
-void MouseMessage(          int32_t nCode,
-    WPARAM wParam,
-    LPARAM lParam
-);
-   bool MouseHook();
-   bool MouseUnhook();
 
 
    bool m_bHoverMouse;
@@ -61,6 +50,6 @@ void MouseMessage(          int32_t nCode,
 protected:
 
 
-   int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
+   DECL_GEN_SIGNAL(_001OnCreate)
 };
 

@@ -258,14 +258,6 @@ namespace ca
    }
 
 
-#ifdef WINDOWSEX
-
-   WNDPROC* window::GetSuperWndProcAddr()
-   {
-      throw interface_only_exception(get_app());
-   }
-
-#endif
 
 
    void window::pre_translate_message(::ca::signal_object * pobj)
@@ -1578,7 +1570,7 @@ namespace ca
 #endif
 
 
-   int32_t window::OnCreate(LPCREATESTRUCT)
+   void window::_001OnCreate(::ca::signal_object * pobj)
    {
       throw interface_only_exception(get_app());
    }

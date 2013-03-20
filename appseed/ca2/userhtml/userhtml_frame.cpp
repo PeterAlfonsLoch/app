@@ -5,7 +5,7 @@
  // BEGIN_MESSAGE_MAP(html_frame, simple_frame_window)
    //{{__MSG_MAP(html_frame)
 /*
-   ON_WM_CREATE()
+   
    ON_WM_GETMINMAXINFO()
    ON_WM_MOVE()
    ON_WM_CLOSE()
@@ -51,11 +51,9 @@ html_frame::~html_frame()
 {
 }
 
-int32_t html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+void html_frame::_001OnCreate(::ca::signal_object * pobj)
 {
-   UNREFERENCED_PARAMETER(lpCreateStruct);
-/* trans    if (simple_frame_window::OnCreate(lpCreateStruct) == -1)
-      return -1; */
+   UNREFERENCED_PARAMETER(pobj);
 
    m_bTimerOn = false;
 
@@ -63,25 +61,9 @@ int32_t html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    SetTimer(4033, 100, 0);
    ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
-   MouseHook();
-
-   //m_menuhook.Initialize(
-     // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
-      //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
-      //NULL,
-      //System.visual().font_central().GetMenuFont());
-
-   //m_menuhook.Install(this);
-
-
-
-   //m_hMenuDefault = NULL;
 
    m_pimagelist = new image_list(get_app());
    m_pimagelist->create(16, 16, 0, 10, 10);
-
-   return 0;
-
 }
 
 
@@ -175,48 +157,6 @@ bool html_frame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
 
 
-
-
-bool html_frame::MouseHook()
-{
-
-   return true;
-}
-
-void html_frame::MouseMessage(          int32_t nCode,
-    WPARAM wparam,
-    LPARAM lparam
-)
-{
-   UNREFERENCED_PARAMETER(nCode);
-   UNREFERENCED_PARAMETER(lparam);
-   if(wparam == WM_MOUSEMOVE)
-   {
-/*      MSLLHOOKSTRUCT * pstruct = (MSLLHOOKSTRUCT *) lparam;
-      if(!m_bTimerOn && pstruct->pt.x == 0 && pstruct->pt.y == 0)
-      {
-      }
-      else if(m_bTimerOn && (pstruct->pt.x > 10 || pstruct->pt.y > 10))
-      {
-      }*/
-   }
-}
-
-LRESULT CALLBACK html_frame::MouseProc(int32_t nCode, WPARAM wparam, LPARAM lparam)
-{
-
-   return 0;
-
-}
-
-
-
-bool html_frame::MouseUnhook()
-{
-
-   return false;
-
-}
 
 
 

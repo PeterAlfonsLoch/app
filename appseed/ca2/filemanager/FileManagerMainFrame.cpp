@@ -16,14 +16,12 @@ FileManagerMainFrame::~FileManagerMainFrame()
 
 
 
-int32_t FileManagerMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+void FileManagerMainFrame::_001OnCreate(::ca::signal_object * pobj)
 {
-   UNREFERENCED_PARAMETER(lpCreateStruct);
-// trans   if (simple_frame_window::OnCreate(lpCreateStruct) == -1)
-      // return -1;
+
+   UNREFERENCED_PARAMETER(pobj);
 
    
-   return 0;
 }
 
 

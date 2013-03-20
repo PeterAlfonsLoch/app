@@ -194,7 +194,6 @@ namespace userbase
 
    void bitmap_button::message_handler(::ca::signal_object * pobj)
    {
-      BaseControlExWndProcBefore(pobj);
       if(pobj->m_bRet)
          return;
 

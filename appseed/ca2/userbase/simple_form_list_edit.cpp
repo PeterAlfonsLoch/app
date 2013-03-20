@@ -19,11 +19,10 @@ bool simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics)
    return TRUE;
 }
 
-int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct)
+void simple_form_list_edit::_001OnCreate(::ca::signal_object * pobj)
 {
-   UNREFERENCED_PARAMETER(lpCreateStruct);
-// trans   if (::user::interaction::OnCreate(lpCreateStruct) == -1)
-      //return -1;
+
+   UNREFERENCED_PARAMETER(pobj);
 
 
    ::user::interaction * pwndParent = ::user::interaction::get_parent();
@@ -33,10 +32,7 @@ int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct)
       simple_form_list_view * pview = dynamic_cast < simple_form_list_view * > (pwndParent);
       m_plistinterface = pview;
    }
-//   ::user::list * plist = GetBaseListInterface();
 
-
-   return 0;
 }
 
 ::user::list * simple_form_list_edit::GetBaseListInterface()

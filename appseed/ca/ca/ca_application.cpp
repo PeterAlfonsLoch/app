@@ -1592,7 +1592,6 @@ finishedCa2ModuleFolder:;
          // ::fontopus::user has not been alerted yet of this catastrophic problem
          e->ReportError(MB_ICONSTOP, nIDP);
       }
-      //return lResult; // sensible default return from most WndProc functions
    }
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)

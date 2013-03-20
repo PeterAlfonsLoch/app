@@ -21,7 +21,7 @@
    ON_WM_HSCROLL()
    ON_WM_VSCROLL()
    ON_WM_SETFOCUS()
-   ON_WM_CREATE()
+   
    ON_WM_DESTROY()
    ON_WM_CLOSE()
    ON_WM_SIZE()
@@ -532,8 +532,6 @@ void frame_window::_001OnCreate(::ca::signal_object * pobj)
 
 int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
 {
-// trans   if (user::frame_window_interface::OnCreate(lpcs) == -1)
-      //return -1;
 
    // create special children first
    if (!OnCreateClient(lpcs, pContext))

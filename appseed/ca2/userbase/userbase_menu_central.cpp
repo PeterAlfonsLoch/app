@@ -1,22 +1,6 @@
 #include "framework.h"
 
 
-HHOOK BaseMenuCentral::m_hCBTHook = NULL;
-
-static class CBaseMenuCentralInit
-{
-public:
-   CBaseMenuCentralInit()
-   {
-      BaseMenuCentral::HookCBTHook();
-   }
-
-   ~CBaseMenuCentralInit()
-   {
-      BaseMenuCentral::UnhookCBTHook();
-   }
-} __basemenucentralInit;
-
 
 BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
    ca(papp),
@@ -252,85 +236,6 @@ image_list * BaseMenuCentral::MenuV033GetImageListHueLight()
     return m_pilHueLight;
 }
 
-LRESULT CALLBACK BaseMenuCentral::CBTHook(int32_t nCode, WPARAM wParam, LPARAM lParam)
-{
-   static int32_t cbt_counter = 0;
-
-   LRESULT lRes;
-
-   ++cbt_counter;
-
-#ifdef WINDOWSEX
-
-   if (cbt_counter == 1)
-   {
-      if (nCode == HCBT_CREATEWND)
-      {
-//         oswindow oswindow = wParam;
-         lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
-         goto out;
-      }
-
-      if (nCode == HCBT_DESTROYWND)
-      {
-//         oswindow oswindow = wParam;
-         lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
-         goto out;
-      }
-   }
-
-   lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
-
-out:
-
-#else
-
-   throw todo(::ca::get_thread_app());
-
-#endif
-
-   --cbt_counter;
-   return lRes;
-}
-
-void BaseMenuCentral::HookCBTHook()
-{
-#ifdef WINDOWSEX
-   if (!m_hCBTHook)
-   {
-      m_hCBTHook = SetWindowsHookEx(WH_CBT, CBTHook,
-         NULL, GetCurrentThreadId());
-   }
-#else
-   //throw todo(::ca::get_thread_app());
-#endif
-}
-
-void BaseMenuCentral::UnhookCBTHook()
-{
-#ifdef WINDOWSEX
-   if (m_hCBTHook)
-   {
-      UnhookWindowsHookEx(m_hCBTHook);
-      m_hCBTHook = NULL;
-   }
-#else
-   //throw todo(::ca::get_thread_app());
-#endif
-}
-
-/* trans
-void BaseMenuCentral::RemoveBorder(oswindow oswindow)
-{
-   const int32_t SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
-      SWP_NOZORDER | SWP_NOACTIVATE;
-
-   uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
-   uint32_t dwStyleEx = ::GetWindowLong(oswindow, GWL_EXSTYLE);
-   ::user::interaction::ModifyStyle(oswindow, WS_POPUP | WS_DLGFRAME | WS_THICKFRAME | WS_BORDER, 0, SWP_STYLE);
-   ::user::interaction::ModifyStyleEx(oswindow, WS_EX_STATICEDGE|WS_EX_WINDOWEDGE|WS_EX_DLGMODALFRAME, 0, SWP_STYLE);
-}
-*/
 
 BaseMenuCentralContainer::BaseMenuCentralContainer()
 {

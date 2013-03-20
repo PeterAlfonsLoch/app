@@ -238,9 +238,6 @@ namespace user
       virtual void EnableControlCommand(bool bEnable);
 
 
-      virtual void BaseControlExWndProcBefore(::ca::signal_object * pobj);
-      virtual void BaseControlExWndProcAfter(::ca::signal_object * pobj);
-
       virtual void BaseControlExOnMouseMove(UINT nFlags, point point);
 
       virtual index hit_test(point point, e_element & eelement);

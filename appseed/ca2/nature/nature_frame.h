@@ -37,7 +37,7 @@ namespace nature
       void OnHoverAction();
 
 
-      int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
+      DECL_GEN_SIGNAL(_001OnCreate)
       void OnTimer(UINT nIDEvent);
 
    };

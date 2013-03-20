@@ -439,7 +439,7 @@ namespace ca
 #ifdef WINDOWSEX
       bool OnCopyData(::ca::window* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 #endif
-      int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
+      DECL_GEN_SIGNAL(_001OnCreate)
 
 
       HBRUSH OnCtlColor(::ca::graphics * pgraphics, ::ca::window* pWnd, UINT nCtlColor);
@@ -607,11 +607,6 @@ namespace ca
       void OnCaptureChanged(::ca::window* pWnd);
       bool OnDeviceChange(UINT nEventType, uint_ptr dwData);
 
-#ifdef WINDOWSEX
-      // Overridables and other helpers (for implementation of derived classes)
-      // for deriving from a standard control
-      virtual WNDPROC* GetSuperWndProcAddr();
-#endif
 
       // for dialog data exchange and validation
       // virtual void do_data_exchange(CDataExchange* pDX);

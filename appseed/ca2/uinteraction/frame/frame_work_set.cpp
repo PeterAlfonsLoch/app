@@ -951,10 +951,6 @@ namespace frame
        }
 
 
-   /*    if(m_pappearance != NULL &&
-         IsAppearanceEnabled() &&
-           m_pappearance->_000WndProc(message, wparam, lparam, lresult))
-           return true;*/
       SCAST_PTR(::ca::message::base, pbase, pobj);
       pbase->set_lresult(0);
 
