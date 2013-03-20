@@ -889,7 +889,7 @@ bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput,
 template < class TYPE, class ARG_TYPE >
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-   ::ca::type_info & ti = System.type_info < TYPE > ();
+   ::ca::type_info & ti = System.template type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    this->ptra().add(pt);
    return pt;
@@ -897,10 +897,9 @@ inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 
 
 template < class TYPE, class ARG_TYPE >
-inline index array_app_alloc < TYPE, ARG_TYPE >::add(
-   const TYPE & t)
+inline index array_app_alloc < TYPE, ARG_TYPE >::add(const TYPE & t)
 {
-   ::ca::type_info & ti = System.type_info < TYPE > ();
+   ::ca::type_info & ti = System.template type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    *pt = t;
    return this->ptra().add(pt);
@@ -980,7 +979,7 @@ template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(index iIndex, ARG_TYPE t)
 {
 
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info  < TYPE > ()));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info  < TYPE > ()));
 
    *pt = t;
 
@@ -998,7 +997,7 @@ inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::op
    for(index i = 0; i < a.ptra().get_size(); i++)
    {
 
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info  < TYPE > ()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info  < TYPE > ()));
 
       *pt = *a.ptra()[i];
 
@@ -1034,7 +1033,7 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
          this->set_app(t.get_app());
       for(i = iOldSize; i < iEmptySize; i++)
       {
-         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info   < TYPE > ()));
+         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info   < TYPE > ()));
       }
       this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
    }
@@ -1046,7 +1045,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::
 {
    while(this->get_size() < iSize)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info  < TYPE > ()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info  < TYPE > ()));
       add(pt);
    }
    while(this->get_size() > iSize)

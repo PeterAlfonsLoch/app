@@ -1276,8 +1276,8 @@
 	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="40483" topLine="1786" />
 	</File>
-	<File name="plane/plane_system.h" open="0" top="0" tabpos="46">
-		<Cursor position="13682" topLine="428" />
+	<File name="plane/plane_system.h" open="1" top="0" tabpos="6">
+		<Cursor position="29276" topLine="1045" />
 	</File>
 	<File name="plane/plane_system_allocate.h" open="0" top="0" tabpos="13">
 		<Cursor position="814" topLine="0" />
