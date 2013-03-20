@@ -787,9 +787,9 @@ public:
 template < typename T >
 inline string to_string(T o)
 {
-   
+
    return o.to_string();
-   
+
 }
 
 
@@ -798,9 +798,9 @@ inline string to_string(T o)
 template < typename T >
 inline string & string::operator = (T o)
 {
-   
+
    return operator =(to_string(o));
-   
+
 }
 
 
@@ -1746,3 +1746,11 @@ inline string to_string(const in6_addr * addr)
 }
 
 
+inline string  & operator += (string & str, const ::id & id)
+{
+
+   str += id.str();
+
+   return str;
+
+}

@@ -47,7 +47,7 @@ namespace ca
       property lowprop(const string & strName) const;
       property & operator[](index iIndex);
       property operator[](index iIndex) const;
-#ifdef AMD64
+#ifdef OS64BIT
       inline property & operator[](int32_t iIndex) { return operator []((index) iIndex); }
       inline property operator[](int32_t iIndex) const { return operator []((index) iIndex); }
 #endif
@@ -199,15 +199,15 @@ namespace ca
    class CLASS_DECL_ca PropertySignalObject : public signal_object
    {
    public:
-      
+
 
       enum e_type
       {
          TypeBeforeChange,
          TypeAfterChange,
       };
-      
-      
+
+
       e_type m_etype;
       var m_variableOldValue;
       property * m_pproperty;
@@ -239,10 +239,10 @@ namespace ca
    }
    */
 
-   class property_pair 
+   class property_pair
    {
    public:
-      
+
 
       property_map::pair * m_ppair;
       property_set & m_set;
@@ -283,10 +283,10 @@ namespace ca
    };
 
 
-   class const_property_pair 
+   class const_property_pair
    {
    public:
-      
+
 
       const property_map::pair * m_ppair;
       const property_set & m_set;
@@ -459,4 +459,15 @@ inline var & var::operator[] (const char * pszKey)
 inline ::ca::property_set ca_property_set()
 {
    return ::ca::property_set();
+}
+
+
+
+inline string & operator += (string & str, const ::ca::property & property)
+{
+
+   str += property.get_string();
+
+   return str;
+
 }

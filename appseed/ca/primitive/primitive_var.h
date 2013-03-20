@@ -411,25 +411,17 @@ public:
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
    const var & operator[] (index iKey) const;
-#if defined(AMD64) && defined(WINDOWS)
-   inline const var & operator[] (int32_t iKey) const { return operator[]((index) iKey); }
-#endif
    var & operator[] (var varKey);
    var & operator[] (const char * pszKey);
    var & operator[] (index iKey);
-#if defined(AMD64) && defined(WINDOWS)
-   inline var & operator[] (int32_t iKey) { return operator[]((index) iKey); }
-#endif
    var at(index i) const;
-#if defined(AMD64) && defined(WINDOWS)
-   inline var at(int32_t i) const { return at((index) i); }
-#endif
    var at(index i);
-#if defined(AMD64) && defined(WINDOWS)
-   inline var at(int32_t i) { return at((index) i); }
-#endif
    var key(index i) const;
-#if defined(AMD64) && defined(WINDOWS)
+#if OSBIT != 32
+   inline const var & operator[] (int32_t iKey) const { return operator[]((index) iKey); }
+   inline var & operator[] (int32_t iKey) { return operator[]((index) iKey); }
+   inline var at(int32_t i) const { return at((index) i); }
+   inline var at(int32_t i) { return at((index) i); }
    inline var key(int32_t i) const { return key((index) i); }
 #endif
    inline count array_get_count() const;
@@ -712,5 +704,15 @@ inline string & string::operator = (const var & var)
 {
 
    return operator = (var.to_string());
+
+}
+
+
+inline string  & operator += (string & str, const var & var)
+{
+
+   str += var.get_string();
+
+   return str;
 
 }

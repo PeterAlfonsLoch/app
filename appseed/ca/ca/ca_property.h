@@ -205,7 +205,8 @@ namespace ca
       {
          m_var = var;
       }
-      inline void unset();
+
+      void unset();
 
       inline void   get_value(var & value);
       inline void   get(var & value);

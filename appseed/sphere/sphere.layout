@@ -4,8 +4,8 @@
 	<File name="calculator/calculator_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="17" topLine="0" />
 	</File>
-	<File name="framework.h" open="0" top="0" tabpos="50">
-		<Cursor position="54" topLine="0" />
+	<File name="framework.h" open="1" top="0" tabpos="3">
+		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="sphere/sphere_library.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="94" topLine="0" />
