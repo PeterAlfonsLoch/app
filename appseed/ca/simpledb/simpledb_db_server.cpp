@@ -122,7 +122,8 @@ bool db_server::initialize()
    }
 
 #if !defined(METROWIN) && !defined(MACOS)
-   m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
+//   m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
+      m_pfilesystemsizeset =NULL;
 #else
    m_pfilesystemsizeset = NULL;
 #endif
