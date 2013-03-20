@@ -187,12 +187,9 @@ namespace calculator
    void view::_001OnSetCursor(::ca::signal_object * pobj)
    {
 
-#ifdef WINDOWSEX
-      ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-#else
-      throw todo(get_app());
-#endif
-      pobj->previous();
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+
+      pmouse->m_ecursor = ::visual::cursor_arrow;
 
    }
 

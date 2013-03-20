@@ -211,6 +211,8 @@ namespace ca
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile) = 0;
       virtual void _001OnFileNew(::ca::signal_object * pobj) = 0;
 
+      virtual void DoWaitCursor(int32_t nCode) = 0;
+
    };
 
 

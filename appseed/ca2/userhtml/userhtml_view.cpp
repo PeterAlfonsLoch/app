@@ -1,23 +1,23 @@
 ﻿#include "framework.h"
 
 //   // BEGIN_MESSAGE_MAP(html_view, ::userbase::view)
-   //{{__MSG_MAP(html_view)
+//{{__MSG_MAP(html_view)
 /*
-   ON_WM_DESTROY()
-   ON_WM_SIZE()
-   ON_WM_PAINT()
-   ON_WM_CREATE()
-   ON_WM_CONTEXTMENU()
-   ON_WM_SETCURSOR()
-   ON_WM_ERASEBKGND()
-   //}}__MSG_MAP
-   // Standard printing commands
-   ON_MESSAGE(WM_USER + 177, OnTabClick)
-   ON_MESSAGE(WM_APP + 119, OnWavePlayerEvent)
-   ON_COMMAND(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
-   ON_COMMAND(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
-   ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
-   */
+ON_WM_DESTROY()
+ON_WM_SIZE()
+ON_WM_PAINT()
+ON_WM_CREATE()
+ON_WM_CONTEXTMENU()
+ON_WM_SETCURSOR()
+ON_WM_ERASEBKGND()
+//}}__MSG_MAP
+// Standard printing commands
+ON_MESSAGE(WM_USER + 177, OnTabClick)
+ON_MESSAGE(WM_APP + 119, OnWavePlayerEvent)
+ON_COMMAND(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
+*/
 // // END_MESSAGE_MAP()
 
 
@@ -47,12 +47,12 @@ void html_view::install_message_handling(::ca::message::dispatch * pinterface)
    IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &html_view::_001OnContextMenu);
    IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &html_view::_001OnSetCursor);
 
-//   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &html_view::_001OnTabClick);
+   //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &html_view::_001OnTabClick);
    //connect_command(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
    //connect_command(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
    //connect_command(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
-//   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
-//   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
+   //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
+   //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
 
@@ -111,7 +111,7 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
       {
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {
-            
+
             layout();
 
             _001RedrawWindow();
@@ -121,8 +121,8 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
          }
       }
    }
-   
-   
+
+
 }
 
 void html_view::_001OnDestroy(::ca::signal_object * pobj) 
@@ -139,7 +139,7 @@ void html_view::_001OnCreate(::ca::signal_object * pobj)
 {
    if(pobj->previous())
       return;
-   
+
    get_html_data()->m_pguie = this;
    /*get_html_data()->m_papp = get_app();*/
    get_html_data()->m_strPathName = get_document()->get_path_name();
@@ -148,9 +148,9 @@ void html_view::_001OnCreate(::ca::signal_object * pobj)
 }
 void html_view::_001OnContextMenu(::ca::signal_object * pobj) 
 {
-//   SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
-//   point point = pcontextmenu->GetPoint();
-   
+   //   SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+   //   point point = pcontextmenu->GetPoint();
+
 }
 
 
@@ -158,18 +158,14 @@ void html_view::_001OnContextMenu(::ca::signal_object * pobj)
 void html_view::_001OnSetCursor(::ca::signal_object * pobj) 
 {
 
-#ifdef WINDOWSEX
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
-   ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
+   pmouse->m_ecursor = ::visual::cursor_arrow;
 
-#else
-
-   throw todo(get_app());
-
-#endif
-   
    pobj->previous();
+
 }
+
 
 html_document * html_view::get_document()
 {

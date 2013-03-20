@@ -593,7 +593,7 @@ namespace user
 
    void edit_plain_text::_001OnSetCursor(::ca::signal_object * pobj)
    {
-      //::SetCursor(::LoadCursor(NULL, IDC_ARROW));
+      //pmouse->m_ecursor = ::visual::cursor_arrow;
 
       pobj->previous();
    }
@@ -1303,7 +1303,7 @@ namespace user
    void edit_plain_text::_002OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
-      //::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
+      //pmouse->m_ecursor = ::visual::cursor_text_select;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 

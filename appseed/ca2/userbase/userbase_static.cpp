@@ -57,30 +57,29 @@ namespace userbase
    base_static::base_static(::ca::application * papp) :
       ca(papp)
    {
+      
+      m_etype = type_text;
 
    }
 
 
-   HICON base_static::SetIcon(HICON hIcon)
+   void base_static::set_icon(::visual::icon * picon)
    {
+      
+      if(picon == NULL)
+         return;
 
-      //ASSERT(IsWindow());
+      m_etype = type_icon;
 
-      //return (HICON)send_message( STM_SETICON, (WPARAM)hIcon, 0L);
-
-      return NULL;
+      m_picon = picon;
 
    }
 
 
-   HICON base_static::GetIcon()
+   ::visual::icon * base_static::get_icon()
    {
 
-      //ASSERT(IsWindow());
-
-      //return (HICON)send_message( STM_GETICON, 0, 0L);
-
-      return NULL;
+      return m_etype == type_icon ? m_picon : NULL;
 
    }
 
@@ -109,50 +108,53 @@ namespace userbase
    }
 
 
-   HBITMAP base_static::from(HBITMAP hBitmap)
+   void base_static::set_bitmap(::ca::bitmap * pbitmap)
    {
 
-      //ASSERT(IsWindow());
+      
+      if(pbitmap == NULL)
+         return;
 
-      //return (HBITMAP)send_message( STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+      m_etype = type_icon;
 
-      return NULL;
+      m_pbitmap = pbitmap;
+
 
    }
 
 
-   HBITMAP base_static::GetBitmap()
+   ::ca::bitmap * base_static::get_bitmap()
    {
 
-      //ASSERT(IsWindow());
-
-      //return (HBITMAP)send_message( STM_GETIMAGE, IMAGE_BITMAP, 0L);
-
-      return NULL;
+      return m_etype == type_bitmap ? m_pbitmap : NULL;
 
    }
 
 
-   HCURSOR base_static::SetCursor(HCURSOR hCursor)
+   void base_static::set_cursor(::visual::cursor * pcursor)
    {
 
-      //ASSERT(IsWindow());
+      if(pcursor == NULL)
+         return;
 
-      //return (HCURSOR)send_message( STM_SETIMAGE, IMAGE_CURSOR, (LPARAM)hCursor);
+      m_etype = type_cursor;
 
-      return NULL;
+      m_pcursor = pcursor;
 
    }
 
 
-   HCURSOR base_static::GetCursor()
+   ::visual::cursor *  base_static::get_cursor()
    {
 
-      //ASSERT(IsWindow());
+      return m_etype == type_cursor ? m_pcursor : NULL;
 
-      //return (HCURSOR)send_message( STM_GETIMAGE, IMAGE_CURSOR, 0L);
+   }
 
-      return NULL;
+   ::userbase::base_static::e_type base_static::get_type()
+   {
+      
+      return m_etype;
 
    }
 

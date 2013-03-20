@@ -3167,6 +3167,9 @@
     <ClInclude Include="user\user_key.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_string_format.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5277,6 +5280,9 @@
     </ClCompile>
     <ClCompile Include="user\user_message.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_string_format.cpp">
+      <Filter>Source Files\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

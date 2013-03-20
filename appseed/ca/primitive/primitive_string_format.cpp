@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+#ifndef NO_VARIADIC_TEMPLATE
+
 
 void string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)
 {
@@ -223,4 +225,9 @@ bool string_format::parse(const char * & s)
    {
       throw "invalid state";
    }
+
+
 }
+
+
+#endif

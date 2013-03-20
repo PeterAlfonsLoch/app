@@ -17,24 +17,12 @@ simple_static::~simple_static()
 
 void simple_static::_001OnDraw(::ca::graphics *pdc)
 {
-   if(GetStyle() & SS_ICON)
+   if(get_type() == type_icon)
    {
-      HICON hicon = GetIcon();
-      if(hicon != NULL)
+      ::visual::icon * picon = get_icon();
+      if(picon != NULL)
       {
-         if(m_pimagelist == NULL)
-         {
-            m_pimagelist = new image_list(get_app());
-            rect rect;
-            GetClientRect(rect);
-            m_pimagelist->create(
-               rect.width(),
-               rect.height(),
-               0,
-               0, 0);
-            m_pimagelist->add_icon_os_data(hicon);
-         }
-         m_pimagelist->draw(pdc, 0, point(0, 0), 0);
+         pdc->DrawIcon(null_point(), picon);
       }
    }
 }

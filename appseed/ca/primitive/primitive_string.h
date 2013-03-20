@@ -599,7 +599,7 @@ public:
    string SpanExcluding(const char * pszCharSet ) const;
 
    // Format data using format string 'pszFormat'
-#ifdef WINDOWS
+#ifdef NO_VARIADIC_TEMPLATE
 
    void __cdecl Format(const char * pszFormat, ... );
 

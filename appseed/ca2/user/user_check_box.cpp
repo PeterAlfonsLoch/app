@@ -130,14 +130,15 @@ namespace user
 
    void check_box::_001OnMouseMove(::ca::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
-#ifdef WINDOWSEX
-      ::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
-#else
-      throw todo(get_app());
-#endif
+
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      
+      pmouse->m_ecursor = ::visual::cursor_text_select;
+      
+
    }
+
+
 
    void check_box::install_message_handling(::ca::message::dispatch * pinterface)
    {

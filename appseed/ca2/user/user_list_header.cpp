@@ -462,22 +462,13 @@ namespace user
       }
 
 
-      if(m_bHover
-         && m_eelementHover == ElementDivider)
+      if(m_bHover && m_eelementHover == ElementDivider)
       {
-#ifdef WINDOWSEX
-      ::SetCursor(::LoadCursor(NULL, IDC_SIZEWE));
-#else
-      throw todo(get_app());
-#endif
+         pmouse->m_ecursor = ::visual::cursor_size_horizontal;
       }
       else
       {
-#ifdef WINDOWSEX
-      ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-#else
-      throw todo(get_app());
-#endif
+         pmouse->m_ecursor = ::visual::cursor_arrow;
       }
 
       pmouse->m_bRet = false;

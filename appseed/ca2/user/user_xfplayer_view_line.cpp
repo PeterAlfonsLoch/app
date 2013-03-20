@@ -1677,7 +1677,7 @@ void XfplayerViewLine::OnMouseMove(::ca::signal_object * pobj)
    {
       if(CharHasLink(iChar))
       {
-         //::SetCursor(get_interaction()->KaraokeGetHandCursor());
+         pmouse->m_ecursor = ::visual::cursor_hand;
       }
    }
    /*
@@ -1768,7 +1768,7 @@ void XfplayerViewLine::OnSetCursor(::ca::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
    //if(IsInHover())
    //{
-     // ::SetCursor(get_interaction()->KaraokeGetHandCursor());
+     // pmouse->m_ecursor = ::visual::cursor_hand;
       //return TRUE;
    //}
 
