@@ -644,20 +644,31 @@ namespace filemanager
 
    void SimpleFileListView::_017OpenContextMenuFolder(const ::fs::item & item)
    {
+      
       stringa straCommand;
+      
       stringa straCommandTitle;
+      
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle);
+      
       if(straCommand.get_size() > 0)
       {
+         
          ::userbase::menu menu(get_app());
+         
          point ptCursor;
+         
          Bergedge.get_cursor_pos(&ptCursor);
+      
          if(menu.create_menu(straCommand, straCommandTitle))
          {
-            frame_window * pframe = GetParentFrame();
-            menu.TrackPopupMenu(0, ptCursor.x, ptCursor.y, pframe);
+
+            menu.TrackPopupMenu(0, ptCursor.x, ptCursor.y, GetParentFrame());
+
          }
+
       }
+
    }
 
    void SimpleFileListView::_017OpenContextMenuFile(const ::fs::item_array & itema)
