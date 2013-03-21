@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="FreeImage.h" open="0" top="0" tabpos="0">
-		<Cursor position="16260" topLine="513" />
+	<File name="CacheFile.h" open="0" top="0" tabpos="1">
+		<Cursor position="173" topLine="0" />
 	</File>
-	<File name="FreeImage/BitmapAccess.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="12443" topLine="334" />
+	<File name="FreeImage.h" open="0" top="0" tabpos="2">
+		<Cursor position="26512" topLine="352" />
+	</File>
+	<File name="FreeImage/BitmapAccess.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="11615" topLine="334" />
 	</File>
 	<File name="FreeImage/Conversion32.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7770" topLine="157" />

@@ -1068,3 +1068,31 @@ CLASS_DECL_c UINT GetCurrentThreadId()
    return currentThreadId;
 
 }
+
+
+namespace ca
+{
+
+	///  \brief		global function to set thread priority for current thread
+	///  \param		new priority
+	CLASS_DECL_c bool set_thread_priority(int32_t priority)
+	{
+
+      return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
+	}
+
+
+	///  \brief		global function to get thread priority for current thread
+	///  \return	priority of current thread
+
+	CLASS_DECL_c int32_t thread_priority()
+	{
+      return ::GetThreadPriority(::GetCurrentThread());
+   }
+
+
+} // namespace ca
+
+
+
+

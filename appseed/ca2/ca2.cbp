@@ -49,10 +49,13 @@
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-Wl,-E" />
+			<Add option="-ldl" />
+			<Add option="-lX11" />
 			<Add option="-l_ca2freeimage" />
 			<Add option="-lca2c" />
 			<Add option="-lca2optca" />
 			<Add option="-lca2ca" />
+			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="bergedge/bergedge.h" />

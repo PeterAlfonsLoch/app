@@ -20,7 +20,7 @@
 		<Cursor position="48" topLine="0" />
 	</File>
 	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="14224" topLine="618" />
+		<Cursor position="14268" topLine="614" />
 	</File>
 	<File name="cube/cube.h" open="0" top="0" tabpos="51">
 		<Cursor position="53" topLine="0" />
@@ -522,5 +522,8 @@
 	</File>
 	<File name="userhtml/userhtml_view.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="userhtml/userhtml_view.h" open="0" top="0" tabpos="1">
+		<Cursor position="42" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

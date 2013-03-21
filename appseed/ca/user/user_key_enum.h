@@ -71,6 +71,7 @@ namespace user
       key_end,
       key_tab,
       key_capslock,
+      key_hyphen,
    };
 
 

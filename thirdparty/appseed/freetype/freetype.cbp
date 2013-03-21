@@ -52,6 +52,7 @@
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-l_ca2zlib" />
+			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
 		<Unit filename="builds/amiga/include/freetype/config/ftconfig.h" />
@@ -78,17 +79,88 @@
 		<Unit filename="src/autofit/autofit.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/base/Jamfile" />
+		<Unit filename="src/base/basepic.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/base/basepic.h" />
+		<Unit filename="src/base/ftapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/base/ftbase.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/base/ftbase.h" />
+		<Unit filename="src/base/ftbbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftbdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftbitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftcid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftdbgmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftfstype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftgasp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftglyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftgxval.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/base/ftinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftlcdfil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftmm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftotval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftpatent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftpfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftstroke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftsynth.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/base/ftsystem.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/base/fttype1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftwinfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftxf86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/rules.mk" />
 		<Unit filename="src/bdf/bdf.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -227,11 +299,11 @@
 		<Unit filename="src/sfnt/ttsbit.h" />
 		<Unit filename="src/smooth/ftgrays.h" />
 		<Unit filename="src/smooth/ftsmerrs.h" />
-		<Unit filename="src/smooth/ftsmooth.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/smooth/ftsmooth.h" />
 		<Unit filename="src/smooth/ftspic.h" />
+		<Unit filename="src/smooth/smooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/tools/ftrandom/ftrandom.c">
 			<Option compilerVar="CC" />
 		</Unit>

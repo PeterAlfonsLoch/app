@@ -58,5 +58,6 @@
 	<item code="112" value="key_prior" />
 	<item code="117" value="key_next" />
 	<item code="36" value="key_return" />
+	<item code="20" value="key_hyphen" />
 </layout>
 

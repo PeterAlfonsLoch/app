@@ -73,6 +73,7 @@ namespace user
      System.set_enum_name(key_end, "key_end");
      System.set_enum_name(key_tab, "key_tab");
      System.set_enum_name(key_capslock, "key_capslock");
+     System.set_enum_name(key_hyphen, "key_hyphen");
 
 
       m_playout = NULL;

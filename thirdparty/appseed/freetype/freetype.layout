@@ -4,6 +4,9 @@
 	<File name="devel/ftoption.h" open="0" top="0" tabpos="6">
 		<Cursor position="15295" topLine="215" />
 	</File>
+	<File name="src/autofit/autofit.c" open="0" top="0" tabpos="40">
+		<Cursor position="1327" topLine="0" />
+	</File>
 	<File name="src/base/ftbase.c" open="0" top="0" tabpos="5">
 		<Cursor position="1582" topLine="0" />
 	</File>

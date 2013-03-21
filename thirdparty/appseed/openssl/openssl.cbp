@@ -58,6 +58,7 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
+			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
 		<Unit filename="crypto/aes/aes.h" />
@@ -775,6 +776,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/dsa/dsa_err.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/dsa/dsa_gen.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/dsa/dsa_key.c">

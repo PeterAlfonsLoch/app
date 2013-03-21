@@ -41,7 +41,6 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add option="-DLINUX" />
 			<Add directory="OpenEXR/IlmImf" />
 			<Add directory="OpenEXR/Imath" />
 			<Add directory="OpenEXR/Iex" />
@@ -60,6 +59,7 @@
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-l_ca2zlib" />
+			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
 		<Unit filename="CacheFile.h" />

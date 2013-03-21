@@ -114,7 +114,7 @@ FI_STRUCT (FIMULTIBITMAP) { void *data; };
 #define _WINDOWS_	// prevent a bug in MinGW32
 #endif // __MINGW32__
 
-#ifndef _WINDOWS_
+#if !defined(_WINDOWS_)
 #define _WINDOWS_
 
 #ifndef FALSE
@@ -150,11 +150,14 @@ typedef unsigned long DWORD;
 typedef long LONG;
 #endif // _MSC_VER
 
+#if !defined(LINUX)
+
 #if (defined(_WIN32) || defined(__WIN32__))
 #pragma pack(push, 1)
 #else
 #pragma pack(1)
 #endif // WIN32
+
 
 typedef struct tagRGBQUAD {
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
@@ -181,11 +184,13 @@ typedef struct tagRGBTRIPLE {
 #endif // FREEIMAGE_COLORORDER
 } RGBTRIPLE;
 
+
 #if (defined(_WIN32) || defined(__WIN32__))
 #pragma pack(pop)
 #else
 #pragma pack()
 #endif // WIN32
+
 
 typedef struct tagBITMAPINFOHEADER{
   DWORD biSize;
@@ -201,12 +206,16 @@ typedef struct tagBITMAPINFOHEADER{
   DWORD biClrImportant;
 } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
 
+
 typedef struct tagBITMAPINFO {
   BITMAPINFOHEADER bmiHeader;
   RGBQUAD          bmiColors[1];
 } BITMAPINFO, *PBITMAPINFO;
 
+#endif
+
 #endif // _WINDOWS_
+
 
 // Types used in the library (specific to FreeImage) ------------------------
 
