@@ -3099,7 +3099,7 @@ namespace ca
       return MessageBoxW((puiOwner == NULL ? ::ca::null() : (puiOwner->get_wnd() == NULL ? ::ca::null() : puiOwner->get_handle())),
          wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
-#elif  || defined(LINUX) || defined(MACOS)
+#elif  defined(LINUX) || defined(MACOS)
 
       return MessageBox((puiOwner == NULL ? ::ca::null() : (puiOwner->get_wnd() == NULL ? ::ca::null() : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
@@ -3110,7 +3110,7 @@ namespace ca
 #endif
 
    }
-   
+
 #ifdef WINDOWS
 
    int32_t application::simple_message_box(::user::interaction * pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
@@ -3122,7 +3122,7 @@ namespace ca
       va_end(va);
       return simple_message_box(pwndOwner, str, fuStyle);
    }
-   
+
 #endif
 
 

@@ -40,8 +40,8 @@
 	<File name="ca/ca_allocation_system_heap.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="3102" topLine="94" />
 	</File>
-	<File name="ca/ca_application.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="150693" topLine="5608" />
+	<File name="ca/ca_application.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="81776" topLine="3085" />
 	</File>
 	<File name="ca/ca_application.h" open="0" top="0" tabpos="31">
 		<Cursor position="36892" topLine="1094" />
@@ -1276,7 +1276,7 @@
 	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="40483" topLine="1786" />
 	</File>
-	<File name="plane/plane_system.h" open="1" top="0" tabpos="6">
+	<File name="plane/plane_system.h" open="0" top="0" tabpos="6">
 		<Cursor position="29276" topLine="1045" />
 	</File>
 	<File name="plane/plane_system_allocate.h" open="0" top="0" tabpos="13">
@@ -1423,10 +1423,10 @@
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
 	</File>
-	<File name="primitive/primitive_string_format.cpp" open="1" top="0" tabpos="1">
+	<File name="primitive/primitive_string_format.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3979" topLine="39" />
 	</File>
-	<File name="primitive/primitive_string_format.h" open="1" top="0" tabpos="2">
+	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="2">
 		<Cursor position="6229" topLine="123" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="13">
