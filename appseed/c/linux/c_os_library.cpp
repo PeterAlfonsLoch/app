@@ -53,10 +53,15 @@ namespace c
       if(strstr_dup(strPath, ".") == NULL)
          strPath += ".so";
 
-      if(!str_begins_dup(strPath, "lib"))
+      if(strstr((const char *) strPath, "/") == NULL && !str_begins_dup(strPath, "lib"))
          strPath = "lib" + strPath;
 
-      m_plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NOW | RTLD_NODELETE);
+      m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+      int iError = errno;
+
+      const char * psz = strerror(iError);
+
+      const char * psz2 = dlerror();
 
       return m_plibrary != NULL;
 

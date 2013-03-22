@@ -13,6 +13,9 @@
 	<File name="crypto/bf/bf_enc.c" open="0" top="0" tabpos="13">
 		<Cursor position="6381" topLine="184" />
 	</File>
+	<File name="crypto/bio/bss_sock.c" open="0" top="0" tabpos="0">
+		<Cursor position="4852" topLine="113" />
+	</File>
 	<File name="crypto/cmac/cm_ameth.c" open="0" top="0" tabpos="3">
 		<Cursor position="2632" topLine="39" />
 	</File>

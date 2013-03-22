@@ -185,7 +185,7 @@ namespace ca
       const var_array & vara() const;
       const property_set & propset() const;
       inline void get_string(char * psz) const;
-      inline strsize get_length() const;
+      strsize get_length() const;
 
       string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
 

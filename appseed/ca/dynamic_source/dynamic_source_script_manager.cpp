@@ -83,9 +83,15 @@ namespace dynamic_source
       calc_rsa_key();
 
       m_strNamespace             = "netnodelite"; // default namespace is linked to outer project app_core_netnodelite
+      #ifdef LINUX
+      m_strNetnodePath           = "/netnodenet/";
+      m_strNetseedPath           = "/netnodenet/net/netseed/";
+      m_strNetseedDsCa2Path      = "/netnodenet/net/netseed/ds/ca2/";
+      #else
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
       m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
+      #endif
 
 
       m_iTunnelPluginCount       = 0;

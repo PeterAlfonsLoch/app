@@ -39,7 +39,7 @@ typedef unsigned char boolean;
 #define TARGA_SUPPORTED		/* Targa image file format */
 
 #define TWO_FILE_COMMANDLINE	/* optional */
-#if !defined(__APPLE__) && !defined(LINUX)
+#if !defined(__APPLE__) && !defined(LINUX) && !defined(RAW_LINUX)
 #define USE_SETMODE		/* Microsoft has setmode() */
 #endif
 #undef NEED_SIGNAL_CATCHER

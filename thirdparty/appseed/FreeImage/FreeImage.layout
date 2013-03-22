@@ -43,6 +43,12 @@
 	<File name="FreeImageToolkit/Rescale.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1848" topLine="4" />
 	</File>
+	<File name="LibJPEG/cdjpeg.c" open="0" top="0" tabpos="10">
+		<Cursor position="559" topLine="0" />
+	</File>
+	<File name="LibJPEG/jconfig.h" open="0" top="0" tabpos="11">
+		<Cursor position="955" topLine="5" />
+	</File>
 	<File name="LibPNG/pngread.c" open="0" top="0" tabpos="0">
 		<Cursor position="5036" topLine="129" />
 	</File>

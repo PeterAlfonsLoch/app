@@ -395,10 +395,9 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 
    filesize = lseek(input, 0, SEEK_END);
-   lseek(output, filesize - 1, SEEK_SET);
-   write(output, '\0', 1);
+   ftruncate(output, filesize);
 
-   if((source = mmap(0, filesize, PROT_READ, MAP_SHARED, input, 0)) == (void *) -1)
+   if((source = mmap(0, filesize, PROT_READ, MAP_PRIVATE, input, 0)) == (void *) -1)
    {
       fprintf(stderr, "Error mapping input file: %s\n", pszSrc);
       return false;
@@ -412,6 +411,8 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
    }
 
    memcpy_dup(target, source, filesize);
+
+   msync(target, filesize, MS_SYNC);
 
    munmap(source, filesize);
    munmap(target, filesize);

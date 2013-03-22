@@ -57,8 +57,12 @@ namespace dynamic_source
       strPath.replace(":\\", ".");
       strPath.replace("/", ".");
       strPath.replace("\\", ".");
-
+#ifdef WINDOWS
       return System.dir().path("C:\\netnode\\stage\\x64\\", strPath);
+#else
+::ca::str::begins_eat(strPath, ".");
+      return System.dir().path("/ca2/stage/x86/", "lib" + strPath);
+#endif
 
    }
 
@@ -253,7 +257,9 @@ namespace dynamic_source
    void ds_script::Load(bool bLock)
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
+      #ifdef WINDOWS
       m_strScriptPath.replace("/", "\\");
+      #endif
       //::OutputDebugString(m_strScriptPath);
       if(!Application.file().exists(m_strScriptPath))
       {
@@ -277,14 +283,17 @@ namespace dynamic_source
          //::SetDllDirectory("C:\\netnode\\stage\\x64");
          string strStagePath = get_stage_path();
          //::file_copy_dup(strStagePath, m_strScriptPath, false);
+         #ifdef WINDOWS
          string str1 = m_strScriptPath;
          string str2 = strStagePath;
          ::ca::str::ends_eat_ci(str1, ".dll");
          ::ca::str::ends_eat_ci(str2, ".dll");
          str1 += ".pdb";
          str2 += ".pdb";
-         ::file_copy_dup(strStagePath, m_strScriptPath, true);
          ::file_copy_dup(str2, str1, true);
+        #endif
+         ::file_copy_dup(strStagePath, m_strScriptPath, true);
+
          m_library.open(strStagePath);
          if(m_library.is_closed())
          {

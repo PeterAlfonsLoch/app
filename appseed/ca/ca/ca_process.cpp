@@ -144,7 +144,7 @@ namespace ca
    strcpy_dup(cmd_line, pszCmdLine);
 
    char *   exec_path_name = cmd_line;
-     
+
    if((m_iPid = fork()) == 0)
    {
 
@@ -229,11 +229,12 @@ namespace ca
    bool process::has_exited(uint32_t * puiExitCode)
    {
 
+      DWORD dwExitCode;
+      bool bExited;
+
 #ifdef WINDOWSEX
 
-      DWORD dwExitCode;
 
-      bool bExited;
 
       if(!GetExitCodeProcess(m_pi.hProcess, &dwExitCode))
       {
@@ -259,13 +260,6 @@ namespace ca
 
       }
 
-      if(puiExitCode != NULL)
-      {
-
-         *puiExitCode = dwExitCode;
-
-      }
-
       return bExited;
 
 #elif defined(METROWIN)
@@ -274,7 +268,7 @@ namespace ca
 
 #else
 
-      int32_t wpid = waitpid(m_iPid, (int32_t *) puiExitCode, WNOHANG
+      int32_t wpid = waitpid(m_iPid, (int32_t *) &dwExitCode, WNOHANG
               #ifdef WCONTINUED
               | WCONTINUED
               #endif
@@ -286,19 +280,12 @@ namespace ca
          return true;
       }
 
-      if(WIFEXITED(*puiExitCode))
+      bExited == WIFEXITED(dwExitCode) ||
+                      WIFSIGNALED(dwExitCode) ||
+                      WIFSTOPPED(dwExitCode);
+
+/*                      if
       {
-         *puiExitCode = WEXITSTATUS(*puiExitCode);
-         return true;
-      }
-      else if(WIFSIGNALED(*puiExitCode))
-      {
-         *puiExitCode = WTERMSIG(*puiExitCode);
-         return true;
-      }
-      else if(WIFSTOPPED(*puiExitCode))
-      {
-         *puiExitCode = WSTOPSIG(*puiExitCode);
          return true;
       }
 #ifdef WIFCONTINUED
@@ -308,9 +295,19 @@ namespace ca
       }
 #endif
 
-      return false;
+  */
+
+
+
 
 #endif
+
+if(puiExitCode != NULL)
+{
+
+*puiExitCode = dwExitCode;
+}
+      return bExited;
 
    }
 
