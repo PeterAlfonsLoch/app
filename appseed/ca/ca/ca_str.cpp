@@ -1373,8 +1373,9 @@ namespace ca
 
    string & str::from(string & str, float f)
    {
-
-      str.Format("%f", f);
+       char sz[256];
+        sprintf(sz, "%f", f);
+      str = sz;
 
       return str;
 
@@ -1383,7 +1384,9 @@ namespace ca
    string & str::from(string & str, double d)
    {
 
-      str.Format("%f", d);
+       char sz[256];
+        sprintf(sz, "%f", d);
+      str = sz;
 
       return str;
 

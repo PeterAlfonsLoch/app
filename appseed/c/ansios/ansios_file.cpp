@@ -417,6 +417,8 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
    munmap(source, filesize);
    munmap(target, filesize);
 
+    fsync(output);
+
    close(input);
    close(output);
 

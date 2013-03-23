@@ -41,7 +41,7 @@ namespace ca
       ca(papp),
       m_mutex(papp)
    {
-      
+
       construct();
 
       ::ca::thread_sp::create(papp);
@@ -169,7 +169,7 @@ namespace ca
 
    void thread::on_delete(::ca::ca * pca)
    {
-      
+
       UNREFERENCED_PARAMETER(pca);
 
    }
@@ -463,7 +463,7 @@ namespace ca
       UNREFERENCED_PARAMETER(pvoidOsData);
       throw interface_only_exception(get_app());
    }
-   
+
    void thread::set_os_int(int_ptr iData)
    {
       UNREFERENCED_PARAMETER(iData);
@@ -808,6 +808,7 @@ namespace ca
 
    int32_t thread::main()
    {
+
       return m_p->main();
    }
 
@@ -829,7 +830,7 @@ namespace ca
 
       //if(m_p != NULL)
       //{
-       
+
         // m_p->Delete();
 
          //m_p = NULL;

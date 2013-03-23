@@ -679,9 +679,10 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
                continue;
          }
       }
-      if(is(dp->d_name))
+      vsstring strPath = path(psz, dp->d_name);
+      if(is(strPath))
       {
-         stra.add(dp->d_name);
+         stra.add(strPath);
       }
 
    }

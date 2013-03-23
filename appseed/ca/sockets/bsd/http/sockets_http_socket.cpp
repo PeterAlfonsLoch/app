@@ -23,7 +23,7 @@ namespace sockets
       m_chunk_size(0),
       m_chunk_state(0)
    {
-      
+
       m_request.attr("http_version") = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
@@ -332,7 +332,10 @@ namespace sockets
       //TRACE("SendResponse\n");
       string msg;
       string strLine;
-      strLine = m_response.lowattr(__str(http_version)).get_string() + " " + m_response.lowattr(__str(http_status_code)) + " " + m_response.lowattr(__str(http_status));
+      string strVersion = m_response.lowattr(__str(http_version)).get_string();
+      string strStatusCode = m_response.lowattr(__str(http_status_code));
+      string strStatus = m_response.lowattr(__str(http_status));
+      strLine = strVersion + " " + strStatusCode + " " + strStatus;
       msg = strLine + "\r\n";
       string strHost = m_response.lowheader(__str(host));
       if(strHost.has_char())

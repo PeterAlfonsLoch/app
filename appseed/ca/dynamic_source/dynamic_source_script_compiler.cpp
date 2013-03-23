@@ -84,14 +84,21 @@ namespace dynamic_source
    #endif
 
       //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
-
+#if defined(LINUX)
+      prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash",
+               m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash");
+      prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bash",
+               m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bash");
+      prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bash",
+               m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bash");
+#else
       prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
                m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
       prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
                m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
       prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
                m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
-
+#endif
       System.dir().mk(System.dir().ca2("stage/front"), get_app());
 
       string vars1batSrc;
@@ -121,6 +128,7 @@ namespace dynamic_source
 
       throw todo(get_app());
 
+#elif defined(LINUX)
 #else
       var var = System.process().get_output("\"" + m_strEnv  + "\" "+ strPlat2);
       TRACE0(var.get_string());
@@ -155,6 +163,7 @@ namespace dynamic_source
 
       throw todo(get_app());
 
+#elif defined(LINUX)
 #else
       bResult = setenv("PATH", str, TRUE);
 #endif
@@ -837,7 +846,11 @@ namespace dynamic_source
 
 
    //#ifdef DEBUG
+   #ifdef LINUX
+      m_strLibraryPath = "/ca2/stage/x86/libnetnodelibrary.so";
+      #else
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
+      #endif
    //#else
      // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
    //#endif
@@ -863,7 +876,11 @@ namespace dynamic_source
          str1 = "library/source/" + strRel;
          string strCmd;
    //#ifdef DEBUG
+   #ifdef LINUX
+         strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         #else
          strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
+         #endif
    //#else
      //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
    //#endif
@@ -877,8 +894,10 @@ namespace dynamic_source
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
-         strCmd = System.dir().ca2("stage\\front\\libc1.bat");
-
+   #ifdef LINUX
+         strCmd = System.dir().ca2("stage\\front\\libc1.bash");
+         #else
+            strCmd = System.dir().ca2("stage\\front\\libc1.bat");
          string vars1batSrc;
          string vars2batSrc;
          string vars1batDst;
@@ -901,6 +920,7 @@ namespace dynamic_source
          catch(...)
          {
          }
+#endif
 
          Application.file().put_contents(strCmd, str);
 
@@ -924,7 +944,7 @@ namespace dynamic_source
 
 #endif
          m_memfileLibError<< "<html><head></head><body><pre>";
-         str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1, false);
+         str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1);
          str = Application.file().as_string(str);
          str.replace("\r\n", "</pre><pre>");
          m_memfileLibError << str;
@@ -939,17 +959,26 @@ namespace dynamic_source
          ::ca::str::ends_eat_ci(strRel, ".ds");
          strObjs += System.dir().path(
             System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library\\source", false),
+                                      #ifdef LINUX
+            strRel + ".o", false);
+            #else
             strRel + ".obj", false);
+            #endif
          strObjs += " ";
       }
       string strCmd;
    //#ifdef DEBUG
-      strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
+      strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
+                                       #ifdef LINUX
+                                       ".bash"));
+                                       #else
+                                       ".bat"));
+                                       #endif
    //#else
      // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
    //#endif
       string str = Application.file().as_string(strCmd);
-      str.replace("%ITEM_NAME%", "library\\" + strName);
+      str.replace("%ITEM_NAME%", "library" PATH_SEPARATOR + strName);
       str.replace("%ITEM_DIR%", "library");
       str.replace("%OBJS%", strObjs);
       str.replace("%PLATFORM%", m_strPlatform);
@@ -961,7 +990,11 @@ namespace dynamic_source
       ::ca::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
       Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
+      #ifdef LINUX
+      strCmd = System.dir().ca2("stage\\front\\libl1.bash");
+      #else
       strCmd = System.dir().ca2("stage\\front\\libl1.bat");
+      #endif
       Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
@@ -982,7 +1015,7 @@ namespace dynamic_source
 #endif
 
 
-      str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName, false);
+      str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName);
       //str.Format("V:\\time\\ca2\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
       str = Application.file().as_string(str);
       str.replace("\r\n", "</pre><pre>");

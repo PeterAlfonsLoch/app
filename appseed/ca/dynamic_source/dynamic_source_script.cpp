@@ -258,7 +258,16 @@ namespace dynamic_source
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
       #ifdef WINDOWS
+
       m_strScriptPath.replace("/", "\\");
+      #else
+      /*int iRetry = 5;
+      while(!Application.file().exists(m_strScriptPath) && iRetry > 0)
+      {
+
+          Sleep(584);
+          iRetry--;
+      }*/
       #endif
       //::OutputDebugString(m_strScriptPath);
       if(!Application.file().exists(m_strScriptPath))
@@ -276,6 +285,7 @@ namespace dynamic_source
       }
       if(m_library.is_closed())
       {
+
          //if(m_strScriptPath.find("transactions") >= 0)
          //{
            // __debug_break();
@@ -291,12 +301,18 @@ namespace dynamic_source
          str1 += ".pdb";
          str2 += ".pdb";
          ::file_copy_dup(str2, str1, true);
+         #else
+             //Sleep(584);
+
         #endif
          ::file_copy_dup(strStagePath, m_strScriptPath, true);
 
          m_library.open(strStagePath);
          if(m_library.is_closed())
          {
+             #ifdef LINUX
+             const char * psz = dlerror();
+             #endif
             uint32_t dwMessageId = GetLastError();
             if(dwMessageId == 0x139)
             {
@@ -310,10 +326,15 @@ namespace dynamic_source
          }
       }
       m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_script_instance");
-      if(m_lpfnCreateInstance != NULL)
+      if(m_lpfnCreateInstance == NULL)
       {
-         m_evCreationEnabled.SetEvent();
+          TRACE("create_dynamic_source_script_instance error");
       }
+      //
+      //else
+      //{
+        // m_evCreationEnabled.SetEvent();
+      //}
    }
    void ds_script::Unload(bool bLock)
    {
@@ -396,16 +417,17 @@ namespace dynamic_source
 
    script_instance * ds_script::create_instance()
    {
-      single_lock slCreationEnabled(&m_evCreationEnabled);
-      if(!slCreationEnabled.lock(minutes(0.7)))
+      //single_lock slCreationEnabled(&m_evCreationEnabled);
+      //if(!slCreationEnabled.lock(minutes(2)))
       {
-         m_bShouldBuild = true;
+        // m_bShouldBuild = true;
       }
       single_lock sl(&m_mutex);
-      if(!sl.lock(minutes(1)))
+      if(!sl.lock(minutes(2)))
          return NULL;
       if(ShouldBuild())
       {
+          //m_evCreationEnabled.ResetEvent();
          string str;
          int32_t iRetry = 0;
          do
@@ -430,7 +452,7 @@ namespace dynamic_source
          m_bCalcHasTempError = true;
          m_bHasTempError = false;
          // don't bother with sleeps if not compiling even if there are errors
-         m_evCreationEnabled.SetEvent();
+        //m_evCreationEnabled.SetEvent();
       }
 
       script_instance * pinstance;

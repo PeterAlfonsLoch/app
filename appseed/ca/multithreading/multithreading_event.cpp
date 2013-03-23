@@ -293,8 +293,9 @@ wait_result event::wait (const duration & durationTimeout)
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) == 0)
-            break;
+         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) != 0)
+        {
+
 
          if(errno == ETIMEDOUT)
          {
@@ -304,12 +305,6 @@ wait_result event::wait (const duration & durationTimeout)
             return wait_result(wait_result::Timeout);
 
          }
-         else
-         {
-
-            pthread_mutex_unlock(&m_mutex);
-
-            return wait_result(wait_result::Failure);
 
          }
 
@@ -466,44 +461,49 @@ bool event::lock(const duration & durationTimeout)
 
       ((duration & ) durationTimeout).normalize();
 
-      delay.tv_sec = durationTimeout.m_iSeconds;
+      DWORD dwStart = get_tick_count();
 
-      delay.tv_nsec = durationTimeout.m_iNanoseconds;
+      DWORD dwTimeout = durationTimeout.get_total_milliseconds();
+      DWORD dwSleep = min(84, max(1, dwTimeout / 20));
+
+//      delay.tv_sec = durationTimeout.m_iSeconds;
+
+  //    delay.tv_nsec = ;
 
       pthread_mutex_lock(&m_mutex);
 
       int iSignal = m_iSignalId;
 
-      while(!m_bSignaled && iSignal == m_iSignalId)
-      {
+int iError = 0;
+int iError2 = 0;
+    while(!m_bSignaled && iSignal == m_iSignalId && get_tick_count() - dwStart < dwTimeout)
+    {
+      pthread_mutex_unlock(&m_mutex);
 
-         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) == 0)
-         {
+//iError = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+  //  if(iError != 0)
+    //     {
 
-            if(errno == ETIMEDOUT)
+      //       iError = errno;
+
+            //if(errno == ETIMEDOUT)
             {
 
-               pthread_mutex_unlock(&m_mutex);
+              // pthread_mutex_unlock(&m_mutex);
 
-               return false;
-
-            }
-            else
-            {
-
-               pthread_mutex_unlock(&m_mutex);
-
-               return false;
+               //return false;
 
             }
+            Sleep(dwSleep);
+      pthread_mutex_lock(&m_mutex);
 
          }
 
-      }
+      //}
 
       pthread_mutex_unlock(&m_mutex);
 
-      return true;
+      return m_bSignaled;
 
    }
    else

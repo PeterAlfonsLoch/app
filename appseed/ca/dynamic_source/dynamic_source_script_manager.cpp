@@ -122,7 +122,7 @@ namespace dynamic_source
 
       initialize_message_window("::ca2::netnode::cgclcst");
       m_pcompiler->initialize();
-
+#ifdef WINDOWS
       {
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
          pwatch->m_pmanager = this;
@@ -145,7 +145,7 @@ namespace dynamic_source
             pwatch->begin();
          }
       }
-
+#endif
       return true;
    }
 

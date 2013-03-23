@@ -280,7 +280,7 @@ namespace ca
          return true;
       }
 
-      bExited == WIFEXITED(dwExitCode) ||
+      bExited = WIFEXITED(dwExitCode) ||
                       WIFSIGNALED(dwExitCode) ||
                       WIFSTOPPED(dwExitCode);
 

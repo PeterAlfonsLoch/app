@@ -1442,7 +1442,7 @@ string var::get_string(const char * pszOnNull) const
       }
       else if(m_etype == var::type_int32)
       {
-         str.Format("%I32d", m_i32);
+         str = ::ca::str::from(m_i32);
       }
       else if(m_etype == var::type_uint32)
       {
