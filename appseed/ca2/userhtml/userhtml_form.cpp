@@ -352,7 +352,7 @@ const ::html::data * html_form::get_html_data() const
 void html_form::_001OnKeyDown(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::key, pkey, pobj);
-   if(pkey->m_nChar == '\t')
+   if(pkey->m_ekey == ::user::key_tab)
    {
       pkey->m_bRet = true;
       return;

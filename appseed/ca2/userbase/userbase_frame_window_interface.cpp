@@ -5,9 +5,6 @@ namespace userbase
 {
 
 
-   bool frame_window_interface::g_bFullScreenAlt = false;
-
-
    frame_window_interface::frame_window_interface()
    {
       

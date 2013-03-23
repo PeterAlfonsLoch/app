@@ -752,43 +752,48 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
    SCAST_PTR(::ca::message::base, pbase, pobj);
-   if(pbase->m_uiMessage == WM_KEYUP)
+   if(pbase->m_uiMessage == WM_KEYDOWN)
    {
+
       SCAST_PTR(::ca::message::key, pkey, pobj);
-      if(pkey->m_ekey == ::user::key_return)
+
+      if(pkey->m_ekey == ::user::key_alt)
+      {
+         m_bFullScreenAlt = false;
+      }
+      else if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control)
          && Application.is_key_pressed(::user::key_alt))
          {
-            if(DeferFullScreen(true, false))
+            m_bFullScreenAlt = true;
+            if(!IsFullScreen())
             {
-               g_bFullScreenAlt = false;
-               pbase->m_bRet = true;
-               return;
+               if(DeferFullScreen(true, false))
+               {
+                  pbase->m_bRet = true;
+                  return;
+               }
             }
          }
       }
-      else if(pkey->m_ekey == ::user::key_alt)
+   }
+   else if(pbase->m_uiMessage == WM_KEYUP)
+   {
+
+      SCAST_PTR(::ca::message::key, pkey, pobj);
+      
+      if(pkey->m_ekey == ::user::key_alt)
       {
-         if(g_bFullScreenAlt)
+         if(IsFullScreen() 
+         && Application.is_key_pressed(::user::key_control)
+         && !m_bFullScreenAlt)
          {
-            g_bFullScreenAlt = false;
             if(DeferFullScreen(false, true))
             {
                pbase->m_bRet = true;
                return;
             }
-         }
-      }
-   }
-   else if(pbase->m_uiMessage == WM_KEYDOWN)
-   {
-      SCAST_PTR(::ca::message::key, pkey, pobj);
-      if(pkey->m_ekey == ::user::key_alt)
-      {
-         if(Application.is_key_pressed(::user::key_control))
-         {
-            g_bFullScreenAlt = true;
          }
       }
    }

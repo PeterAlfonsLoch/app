@@ -180,6 +180,10 @@ bool ifs::is_dir(const char * pszPath)
          stringa straPath;
          stringa straTitle;
          ls(System.dir().name(pszPath), &straPath, &straTitle);
+         if(m_mapdirTimeout.Lookup(pszPath, dwTimeout))
+         {
+            return true;
+         }
       }
       else
       {
@@ -187,42 +191,7 @@ bool ifs::is_dir(const char * pszPath)
       }
    }
 
-   if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
-   {
-      if(::get_tick_count() > dwTimeout)
-      {
-         return false;
-      }
-      else
-      {
-         return true;
-      }
-   }
-   else
-   {
-      return false;
-   }
-
-   
-
-   /*string strUrl;
-
-   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszPath);
-
-   string strSource;
-
-   strSource = Application.http().get(strUrl);
-
-   if(strSource.is_empty())
-      return false;
-
-   if(!node.load(strSource))
-      return false;
-
-   if(node.m_strName != "folder")
-      return false;
-
-   return true;*/
+   return false;
 
 }
 

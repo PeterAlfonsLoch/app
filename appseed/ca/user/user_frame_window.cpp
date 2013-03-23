@@ -1529,10 +1529,10 @@ frame_window* frame_window::GetActiveFrame()
 
 void frame_window::layout()
 {
-   //if (m_bInRecalcLayout)
-     // return;
+   if (m_bInRecalcLayout)
+      return;
 
-   m_bInRecalcLayout = TRUE;
+   keeper < bool > keepInRecalcLayout(&m_bInRecalcLayout, true, false, true);
    // clear idle flags for recalc layout if called elsewhere
 //   if (m_nIdleFlags & idleNotify)
    //   bNotify = TRUE;
@@ -1561,7 +1561,6 @@ void frame_window::layout()
 
    }
 
-   m_bInRecalcLayout = FALSE;
 
 }
 

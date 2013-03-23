@@ -54,5 +54,7 @@
 <item code="35" value="key_end" />
 <item code="33" value="key_prior" />
 <item code="34" value="key_next" />
+<item code="13" value="key_return" />
+<item code="9" value="key_tab" />
 </layout>
 

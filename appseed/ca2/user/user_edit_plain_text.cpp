@@ -1442,7 +1442,7 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == 'z')
+      else if(pkey->m_ekey == ::user::key_z)
       {
          if(Application.is_key_pressed(::user::key_control))
          {
@@ -1450,7 +1450,7 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_nChar == 'y')
+      else if(pkey->m_ekey == ::user::key_y)
       {
          if(Application.is_key_pressed(::user::key_control))
          {

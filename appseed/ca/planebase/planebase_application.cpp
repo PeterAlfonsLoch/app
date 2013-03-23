@@ -1271,14 +1271,14 @@ exit_application:
    count application::get_monitor_count()
    {
 
-      return 0;
+      return System.get_monitor_count();
 
    }
 
    bool application::get_monitor_rect(index i, LPRECT lprect)
    {
 
-      return false;
+      return System.get_monitor_rect(i, lprect);
 
    }
 

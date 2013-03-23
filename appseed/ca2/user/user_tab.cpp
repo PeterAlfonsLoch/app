@@ -511,9 +511,11 @@ namespace user
          ClientToScreen(rectTab);
          point ptCursor = Bergedge.m_ptCursor;
          m_bShowTabs = rectTab.contains(ptCursor);
-         PostMessage(WM_SIZE);
          if(!m_bShowTabs)
+         {
+            layout();
             return;
+         }
       }
 
       if(get_data()->is_in_use())
