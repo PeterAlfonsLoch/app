@@ -46,5 +46,13 @@
 <item code="32" value="key_space" />
 <item code="188" value="key_comma" />
 <item code="190" value="key_dot" />
+<item code="37" value="key_left" />
+<item code="39" value="key_right" />
+<item code="38" value="key_up" />
+<item code="40" value="key_down" />
+<item code="36" value="key_home" />
+<item code="35" value="key_end" />
+<item code="33" value="key_prior" />
+<item code="34" value="key_next" />
 </layout>
 
