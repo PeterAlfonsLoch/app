@@ -106,6 +106,10 @@ namespace frame
          if(bFullScreen)
          {
 
+
+            if(m_workset.IsFullScreen())
+               return true;
+
             if(!m_workset.IsFullScreenEnabled())
                return false;
 
@@ -149,6 +153,10 @@ namespace frame
          }
          else
          {
+
+            if(!m_workset.IsFullScreen())
+               return true;
+
             if(m_eappearancemodeFullScreen == AppearanceModeFullScreen)
             {
                m_eappearancemodeFullScreen = AppearanceModeNormal;
@@ -171,6 +179,11 @@ namespace frame
                default:
                   break;
                }
+            }
+
+            if(m_workset.GetAppearanceMode() != m_eappearancemodeFullScreen)
+            {
+               m_workset.SetAppearanceMode(m_eappearancemodeFullScreen);
             }
 
             m_eappearancemodeFullScreen = AppearanceModeFullScreen;

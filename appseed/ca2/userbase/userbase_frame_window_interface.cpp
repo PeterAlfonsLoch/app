@@ -379,9 +379,9 @@ namespace userbase
       return WfiIsFullScreen();
    }
 
-   bool frame_window_interface::ShowWindowFullScreen(bool bFullScreen)
+   bool frame_window_interface::ShowWindowFullScreen(bool bFullScreen, bool bRestore)
    {
-      return WfiFullScreen(bFullScreen, true);
+      return WfiFullScreen(bFullScreen, bRestore);
    }
 
    void frame_window_interface::on_set_parent(::user::interaction* pguieParent)

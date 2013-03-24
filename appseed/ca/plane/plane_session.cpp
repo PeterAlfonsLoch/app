@@ -1002,15 +1002,24 @@ namespace plane
    void session::get_screen_rect(LPRECT lprect)
    {
 
+      if(m_pbergedgeInterface != NULL)
+      {
+
+         m_pbergedgeInterface->get_screen_rect(lprect);
+
+         return;
+
+      }
+
 
 /*      if(get_document() != NULL && get_view() != NULL)
       {
          get_view()->GetWindowRect(lprect);
       }
       else
-      {
+      {*/
          System.get_screen_rect(lprect);
-      }*/
+      /*}*/
    }
 
    bool session::on_install()

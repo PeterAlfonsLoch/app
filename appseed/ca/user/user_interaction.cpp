@@ -2022,12 +2022,12 @@ namespace user
          return m_pimpl->IsZoomed();
    }
 
-   bool interaction::ShowWindowFullScreen(bool bShowWindowFullScreen)
+   bool interaction::ShowWindowFullScreen(bool bShowWindowFullScreen, bool bRestore)
    {
       if(m_pimpl == NULL)
          return false;
       else
-         return m_pimpl->ShowWindowFullScreen(bShowWindowFullScreen);
+         return m_pimpl->ShowWindowFullScreen(bShowWindowFullScreen, bRestore);
    }
 
    bool interaction::IsIconic()

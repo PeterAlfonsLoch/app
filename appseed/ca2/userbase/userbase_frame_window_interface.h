@@ -68,7 +68,7 @@ namespace userbase
       virtual bool calc_layered();
 
       virtual bool IsFullScreen();
-      virtual bool ShowWindowFullScreen(bool bFullScreen = true);
+      virtual bool ShowWindowFullScreen(bool bFullScreen = true, bool bRestore = true);
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dc) const;

@@ -221,7 +221,18 @@ namespace uinteraction
 
       bool appearance::IsInAutomaticModeSwitching()
       {
+
+         ::database::user::interaction * pui = dynamic_cast < ::database::user::interaction * > (GetWnd());
+
+         if(pui != NULL
+            && pui->m_strDisplay != pui->calc_display())
+            return false;
+
+         if(GetAppearanceMode() == AppearanceModeFullScreen)
+            return false;
+
          return m_bAutomaticModeSwitching;
+
       }
 
       void appearance::CTool001::Update(::ca::graphics * pdc, LPCRECT lpcrect,

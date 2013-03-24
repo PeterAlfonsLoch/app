@@ -14,6 +14,14 @@ namespace database
          virtual public client
       {
       public:
+
+
+         string         m_strDisplay;
+
+         bool           m_bEnableSaveWindowRect;
+         id             m_dataidWindow;
+
+
          interaction();
          virtual ~interaction();
 
@@ -26,10 +34,8 @@ namespace database
 
          virtual void _001WindowRestore();
 
+         string calc_display();
 
-
-         bool              m_bEnableSaveWindowRect;
-         id           m_dataidWindow;
 
          virtual bool IsFullScreen();
          void WindowDataEnableSaveWindowRect(bool bEnable);

@@ -202,7 +202,7 @@ namespace user
       virtual void _001WindowRestore();
       virtual bool IsZoomed();
       virtual bool IsFullScreen();
-      virtual bool ShowWindowFullScreen(bool bFullScreen = true);
+      virtual bool ShowWindowFullScreen(bool bFullScreen = true, bool bRestore = true);
       virtual bool IsIconic();
       virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
                bool bRepaint = TRUE);

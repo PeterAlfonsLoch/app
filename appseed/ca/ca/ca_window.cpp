@@ -638,7 +638,10 @@ namespace ca
 
    LRESULT window::OnDisplayChange(WPARAM, LPARAM)
    {
-      throw interface_only_exception(get_app());
+   //   throw interface_only_exception(get_app());
+
+      return 0;
+
    }
 
    LRESULT window::OnDragList(WPARAM, LPARAM lParam)

@@ -148,7 +148,8 @@ namespace uinteraction
             rectIntersect.intersect(rectParentClient, rectEvent);
             class size sizeIntersect;
             sizeIntersect = rectIntersect.size();
-            if(sizeIntersect.area() > sizeMax.area())
+            if(sizeIntersect.cx > sizeMax.cx
+             && sizeIntersect.cy > sizeMax.cy)
             {
                sizeMax = sizeIntersect;
                iMaxMonitor = iMonitor;

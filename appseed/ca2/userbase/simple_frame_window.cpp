@@ -62,6 +62,8 @@ void simple_frame_window::install_message_handling(::ca::message::dispatch * pin
    IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO  , pinterface, this, &simple_frame_window::_001OnGetMinMaxInfo);
    IGUI_WIN_MSG_LINK(WM_USER + 184     , pinterface, this, &simple_frame_window::_001OnUser184);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pinterface, this, &simple_frame_window::_001OnMouseMove);
+   IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE      , pinterface, this, &simple_frame_window::_001OnDisplayChange);
+   IGUI_WIN_MSG_LINK(message_load_window_rect      , pinterface, this, &simple_frame_window::_001OnLoadWindowRect);
 
    connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
    connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
@@ -269,6 +271,27 @@ uint32_t simple_frame_window_save_window_rect(void * pvoidParam)
 
 }
 
+void simple_frame_window::_001OnLoadWindowRect(::ca::signal_object * pobj)
+{
+
+   WindowDataLoadWindowRect(false);
+
+}
+
+void simple_frame_window::_001OnDisplayChange(::ca::signal_object * pobj)
+{
+
+   SCAST_PTR(::ca::message::base, pbase, pobj);
+
+   PostMessage(message_load_window_rect);
+
+   pobj->m_bRet = true;
+
+   pbase->set_lresult(0);
+
+   Default();
+
+}
 
 void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
 {
@@ -280,7 +303,8 @@ void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
       _001RedrawWindow();
    }
 
-   if(dynamic_cast < simple_child_frame * > (this) == NULL)
+   if(m_strDisplay == calc_display()
+   && dynamic_cast < simple_child_frame * > (this) == NULL)
    {
       __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
    }
@@ -298,7 +322,10 @@ void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
       _001RedrawWindow();
    }
 
-   if(dynamic_cast < simple_child_frame * > (this) == NULL)
+
+
+   if(m_strDisplay == calc_display()
+   && dynamic_cast < simple_child_frame * > (this) == NULL)
    {
       __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
 

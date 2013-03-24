@@ -96,9 +96,12 @@ namespace database
          bool bSave = false;
          if(m_bEnableSaveWindowRect)
          {
+
+            m_strDisplay = calc_display();
+
             bSave = SaveWindowRect_(
                m_dataidWindow,
-               "WindowRect",
+               "WindowRect." + m_strDisplay,
                this);
          }
 
@@ -114,7 +117,9 @@ namespace database
 
          keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
 
-         bLoad = LoadWindowRect_(m_dataidWindow, "WindowRect", this, bForceRestore);
+         m_strDisplay = calc_display();
+
+         bLoad = LoadWindowRect_(m_dataidWindow, "WindowRect." + m_strDisplay, this, bForceRestore);
 
          return bLoad;
 
@@ -154,10 +159,32 @@ namespace database
 
          memstream >> bFullScreen;
 
-         if(!bForceRestore && bFullScreen)
+         if(!bForceRestore)
          {
 
-            pWnd->ShowWindowFullScreen();
+             if(bFullScreen)
+             {
+               if(!pWnd->IsFullScreen())
+               {
+                  pWnd->ShowWindowFullScreen(true, false);
+               }
+             }
+             else
+             {
+               if(pWnd->IsFullScreen())
+               {
+                  pWnd->ShowWindowFullScreen(false, false);
+               }
+             }
+
+         }
+         else if(!bFullScreen)
+         {
+
+            if(pWnd->IsFullScreen())
+            {
+               pWnd->ShowWindowFullScreen(false, false);
+            }
 
          }
 
@@ -182,11 +209,47 @@ namespace database
          if(bForceRestore || (!bZoomed && !bFullScreen && !bIconic))
          {
 
-            rect rect;
+            rect rectWindow;
 
-            memstream >> rect;
+            memstream >> rectWindow;
 
-            pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
+      rect rectDesktop;
+      if(get_parent() != NULL)
+      {
+         get_parent()->GetClientRect(rectDesktop);
+         get_parent()->ScreenToClient(rectWindow);
+      }
+      else
+      {
+         System.get_screen_rect(rectDesktop);
+      }
+      rect rectIntersect;
+      rectIntersect.intersect(rectDesktop, rectWindow);
+      if(rectIntersect.width() < rectDesktop.width() / 64
+      || rectIntersect.height() < rectDesktop.height() / 64
+      ||  rectDesktop.width() * 2 / 5 < 100
+      ||  rectDesktop.height() * 2 / 5 < 100)
+      {
+         SetWindowPos(
+            -3, 
+            rectDesktop.left + rectDesktop.width() / 7, 
+            rectDesktop.top + rectDesktop.height() / 7,
+            rectDesktop.width() * 2 / 5, 
+            rectDesktop.height() * 2 / 5, 0);
+      }
+      else
+      {
+         SetWindowPos(
+            -3,
+            rectWindow.left,
+            rectWindow.top,
+            rectWindow.width(),
+            rectWindow.height(),
+            0);
+      }
+
+
+            //pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
 
          }
 
@@ -240,6 +303,24 @@ namespace database
       {
          WindowDataLoadWindowRect(true);
       }
+
+
+      string interaction::calc_display()
+      {
+       
+         string strDisplay;
+
+         rect rectScreen;
+
+         Session.get_screen_rect(rectScreen);
+
+         strDisplay.Format("Display(%d, %d)", rectScreen.width(), rectScreen.height());
+
+         return strDisplay;
+
+      }
+
+
 
    } // namespace user
 

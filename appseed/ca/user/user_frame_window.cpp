@@ -701,7 +701,12 @@ void frame_window::InitialFramePosition(bool bForceRestore)
       ||  rectWindow.width() < 100
       ||  rectWindow.height() < 100)
       {
-         SetWindowPos(-3, 100, 100, 650, 450, 0);
+         SetWindowPos(
+            -3, 
+            rectDesktop.left + rectDesktop.width() / 7, 
+            rectDesktop.top + rectDesktop.height() / 7,
+            rectDesktop.width() * 2 / 5, 
+            rectDesktop.height() * 2 / 5, 0);
       }
       else
       {

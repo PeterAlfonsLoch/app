@@ -239,6 +239,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
          return true;
       }
 
+      single_lock slDatabase(db()->GetImplCriticalSection(), true);
+
 
       ::ca::property_set post(get_app());
       ::ca::property_set headers(get_app());
