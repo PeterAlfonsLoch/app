@@ -32,10 +32,6 @@ class CLASS_DECL_ca2 simple_frame_window :
 public:
 
 
-   enum
-   {
-      message_load_window_rect = WM_APP + 1985,
-   };
 
 
    ::uinteraction::frame::frame *       m_pframeschema;
@@ -99,7 +95,6 @@ public:
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
-   DECL_GEN_SIGNAL(_001OnLoadWindowRect);
 
    void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 

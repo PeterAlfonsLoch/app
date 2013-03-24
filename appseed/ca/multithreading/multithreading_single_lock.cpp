@@ -25,6 +25,9 @@ bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
    //ASSERT(m_psyncobject != NULL);
    //ASSERT(!m_bAcquired);
 
+   if(m_bAcquired)
+      return true;
+
    if(m_psyncobject == NULL)
       return FALSE;
    try

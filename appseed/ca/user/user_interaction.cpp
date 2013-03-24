@@ -388,14 +388,15 @@ namespace user
 
    void interaction::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &interaction::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_CLOSE       , pinterface, this, &interaction::_001OnClose);
-      IGUI_WIN_MSG_LINK(WM_TIMER       , pinterface, this, &interaction::_001OnTimer);
-      IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &interaction::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_SIZE        , pinterface, this, &interaction::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_MOVE        , pinterface, this, &interaction::_001OnMove);
-      IGUI_WIN_MSG_LINK(WM_USER + 184  , pinterface, this, &interaction::_001OnUser184);
-      IGUI_WIN_MSG_LINK(WM_NCCALCSIZE  , pinterface, this, &interaction::_001OnNcCalcSize);
+      IGUI_WIN_MSG_LINK(WM_CREATE               , pinterface, this, &interaction::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_CLOSE                , pinterface, this, &interaction::_001OnClose);
+      IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_DESTROY              , pinterface, this, &interaction::_001OnDestroy);
+      IGUI_WIN_MSG_LINK(WM_SIZE                 , pinterface, this, &interaction::_001OnSize);
+      IGUI_WIN_MSG_LINK(WM_MOVE                 , pinterface, this, &interaction::_001OnMove);
+      IGUI_WIN_MSG_LINK(WM_USER + 184           , pinterface, this, &interaction::_001OnUser184);
+      IGUI_WIN_MSG_LINK(WM_NCCALCSIZE           , pinterface, this, &interaction::_001OnNcCalcSize);
+      IGUI_WIN_MSG_LINK(message_simple_command  , pinterface, this, &interaction::_001OnSimpleCommand);
    }
 
    void interaction::_001OnNcCalcSize(::ca::signal_object * pobj)
@@ -3350,6 +3351,52 @@ restart:
    {
       return type_window;
    }
+
+
+   bool interaction::post_simple_command(e_simple_command ecommand, LPARAM lparam)
+   {
+
+      PostMessage(message_simple_command, (WPARAM) ecommand, lparam);
+
+      return true;
+
+   }
+
+   void interaction::_001OnSimpleCommand(::ca::signal_object * pobj)
+   {
+      
+      SCAST_PTR(::ca::message::base, pbase, pobj);
+
+      LRESULT lresult = 0;
+
+      pbase->m_bRet = on_simple_command((e_simple_command) pbase->m_wparam, pbase->m_lparam, lresult);
+
+      pbase->set_lresult(lresult);
+
+   }
+
+   bool interaction::on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult)
+   {
+      
+      UNREFERENCED_PARAMETER(lparam);
+      UNREFERENCED_PARAMETER(lresult);
+
+
+      switch(ecommand)
+      {
+      case simple_command_layout:
+         {
+            layout();
+         }
+         break;
+      default:
+         break;
+      }
+
+      return false;
+
+   }
+
 
 } // namespace user
 

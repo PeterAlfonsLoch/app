@@ -254,6 +254,7 @@ public:
 
    friend class ::ca::application;
 
+   virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
 
 };
 

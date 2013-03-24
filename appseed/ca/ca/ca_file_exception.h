@@ -10,7 +10,7 @@ namespace ca
 
 
    class CLASS_DECL_ca file_exception :
-      virtual public ::base_exception
+      virtual public ::io_exception
    {
    public:
 
@@ -48,6 +48,8 @@ namespace ca
       file_exception(const file_exception & e) :
          exception(e),
          ::base_exception(e.get_app()),
+         ::simple_exception(e.get_app()),
+         ::io_exception(e.get_app()),
          ::call_stack(e.get_app())
       {
       }

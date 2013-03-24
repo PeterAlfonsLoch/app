@@ -3170,6 +3170,9 @@
     <ClInclude Include="primitive\primitive_string_format.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_io.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5283,6 +5286,9 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_string_format.cpp">
       <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_io.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

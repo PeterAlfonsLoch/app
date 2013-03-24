@@ -6,7 +6,8 @@ namespace user
 
 
    document_interface::document_interface() :
-      ::ca::data_container_base(NULL)
+      ::ca::data_container_base(NULL),
+      m_mutex(NULL)
    {
       m_pdocumentemplate      = NULL;
       m_bModified             = FALSE;
@@ -53,6 +54,7 @@ namespace user
 
    void document_interface::disconnect_views()
    {
+      single_lock sl(&m_mutex, true);
       for(index index = 0; index < m_viewptra.get_count(); index++)
       {
          ::view * pview = (::view *)m_viewptra[index];
@@ -86,23 +88,31 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Closing documents or views
 
-   void document_interface::on_changed_view_list()
+   void document_interface::on_changed_view_list(single_lock * psl)
    {
+      single_lock sl(&m_mutex, false);
+      if(psl == NULL || psl->m_psyncobject != &m_mutex)
+         psl = &sl;
+      psl->lock();
       // if no more views on the document_interface, delete ourself
       // not called if directly closing the document_interface or terminating the cast
       if (m_viewptra.is_empty() && m_bAutoDelete)
       {
-         on_close_document();
+         on_close_document(psl);
          return;
       }
 
       // update the frame counts as needed
-      update_frame_counts();
+      update_frame_counts(psl);
    }
 
-   void document_interface::update_frame_counts()
+   void document_interface::update_frame_counts(single_lock * psl)
       // assumes 1 doc per frame
    {
+      single_lock sl(&m_mutex, false);
+      if(psl == NULL || psl->m_psyncobject != &m_mutex)
+         psl = &sl;
+      psl->lock();
       // walk all frames of views (mark and sweep approach)
       count count = get_view_count();
       index index;
@@ -156,18 +166,18 @@ namespace user
                ASSERT_VALID(pFrame);
                if (nFrames == 1)
                   pFrame->m_nWindow = 0;      // the only one of its kind
-               pFrame->on_update_frame_title(TRUE);
+               pFrame->post_simple_command(::user::interaction::simple_command_update_frame_title, TRUE);
                iFrame++;
             }
          }
       }
-      ASSERT(iFrame == nFrames + 1);
    }
 
    bool document_interface::can_close_frame(frame_window* pFrameArg)
       // permission to close all views using this frame
       //  (at least one of our views must be in this frame)
    {
+      single_lock sl(&m_mutex, true);
       ASSERT_VALID(pFrameArg);
       UNUSED(pFrameArg);   // unused in release builds
 
@@ -186,7 +196,7 @@ namespace user
                return TRUE;        // more than one frame refering to us
          }
       }
-
+      sl.unlock();
       // otherwise only one frame that we know about
       return save_modified();
    }
@@ -235,7 +245,7 @@ namespace user
 
       // store the path fully qualified
       string strFullPath;
-//      System.file_system().FullPath(strFullPath, strPathName);
+      //      System.file_system().FullPath(strFullPath, strPathName);
       strFullPath = strPathName;
       m_strPathName = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
@@ -684,9 +694,13 @@ namespace user
       return true;        // success
    }
 
-   void document_interface::on_close_document()
+   void document_interface::on_close_document(single_lock * psl)
       // must close all views now (no prompting) - usually destroys this
    {
+      single_lock sl(&m_mutex, false);
+      if(psl == NULL || psl->m_psyncobject != &m_mutex)
+         psl = &sl;
+      psl->lock();
       // destroy all frames viewing this document_interface
       // the last destroy may destroy us
       bool bAutoDelete = m_bAutoDelete;
@@ -708,6 +722,7 @@ namespace user
       }
       m_viewptra.remove_all();
       m_bAutoDelete = bAutoDelete;
+      psl->unlock();
 
       // clean up contents of document_interface before destroying the document_interface itself
       delete_contents();
@@ -725,6 +740,7 @@ namespace user
 
    void document_interface::add_view(::view * pview)
    {
+      single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
       ASSERT(pview->::view::get_document() == NULL); // must not be already attached
       if(m_viewptra.add_unique(pview))
@@ -736,6 +752,7 @@ namespace user
 
    void document_interface::remove_view(::view * pview)
    {
+      single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
       ASSERT(pview->::view::get_document() == this); // must be attached to us
       if(m_viewptra.remove(pview) > 0)
@@ -752,6 +769,7 @@ namespace user
 
    ::view * document_interface::get_view(index index) const
    {
+      single_lock sl(&((document_interface *) this)->m_mutex, true);
       if(index < 0 || index >= m_viewptra.get_count())
          return NULL;
       ::view * pview = (::view *) m_viewptra[index];
@@ -786,6 +804,7 @@ namespace user
       for(index index = 0; index < count; index++)
       {
          ::view * pview = get_view(index);
+
          pupdate = new update;
          pupdate->m_pSender = pSender;
          pupdate->m_lHint = lHint;
@@ -879,6 +898,7 @@ namespace user
 
    ::view * document_interface::get_view(const ::ca::type_info & info, index indexFind)
    {
+      single_lock sl(&m_mutex, true);
       count countView = get_view_count();
       count countFind = 0;
       ::view * pview;

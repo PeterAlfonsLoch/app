@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_ca frame_window_interface :
-      virtual public ::user::interaction
+      virtual public database::user::interaction
    {
    public:
 
@@ -31,6 +31,10 @@ namespace user
 
       virtual string get_window_default_matter();
       virtual ::user::interaction::e_type get_window_type();
+
+      
+      virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
+
 
    };
 

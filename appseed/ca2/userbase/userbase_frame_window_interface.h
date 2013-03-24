@@ -23,8 +23,7 @@ namespace userbase
    class CLASS_DECL_ca2 frame_window_interface :
       virtual public ::user::frame_window_interface,
       virtual public ::uinteraction::frame::WorkSetClientInterface,
-      virtual public ::uinteraction::frame::WorkSetListener,
-      virtual public database::user::interaction
+      virtual public ::uinteraction::frame::WorkSetListener
    {
    public:
 

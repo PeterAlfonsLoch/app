@@ -213,6 +213,10 @@ void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
          OnViewUpdateHint(pSender, lHint, puh);
       }
    }
+   if(lHint >= hint_begin && lHint < hint_end)
+   {
+      on_simple_view_update_hint(pSender, (e_hint) lHint, pHint);
+   }
    ASSERT(pSender != this);
    UNUSED(pSender);     // unused in release builds
 
@@ -220,16 +224,27 @@ void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
    //Invalidate(TRUE);
 }
 
+void view::on_simple_view_update_hint(::view * pviewSender, e_hint ehint, ::ca::object * phint)
+{
+   
+   switch(ehint)
+   {
+   case hint_set_edit_file:
+      {
+         post_simple_command(simple_command_set_edit_file, (LPARAM) phint);
+      }
+      break;
+   default:
+      break;
+   };
+
+}
+
 void view::OnViewUpdateHint(::view * pSender, LPARAM lHint, view_update_hint * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
    UNREFERENCED_PARAMETER(pHint);
-}
-
-void view::OnDraw(::ca::graphics * pgraphics)
-{
-   UNREFERENCED_PARAMETER(pgraphics);
 }
 
 

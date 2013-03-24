@@ -268,7 +268,7 @@ namespace user
 
             m_bShowTabs = false;
 
-            layout();
+            post_simple_command(simple_command_layout);
 
          }
 
@@ -281,7 +281,7 @@ namespace user
          if(!GetParentFrame()->IsFullScreen())
          {
             m_bShowTabs = true;
-            layout();
+            post_simple_command(simple_command_layout);
          }
          else
          {
@@ -295,7 +295,7 @@ namespace user
          ClientToScreen(rectTab);
          point ptCursor = Bergedge.m_ptCursor;
          m_bShowTabs = rectTab.contains(ptCursor);
-         layout();
+         post_simple_command(simple_command_layout);
          if(!m_bShowTabs)
             return;
       }
@@ -484,7 +484,7 @@ namespace user
 
             m_bShowTabs = false;
 
-            layout();
+            post_simple_command(simple_command_layout);
 
          }
 
@@ -497,7 +497,7 @@ namespace user
          if(!GetParentFrame()->IsFullScreen())
          {
             m_bShowTabs = true;
-            layout();
+            post_simple_command(simple_command_layout);
          }
          else
          {
@@ -513,7 +513,7 @@ namespace user
          m_bShowTabs = rectTab.contains(ptCursor);
          if(!m_bShowTabs)
          {
-            layout();
+            post_simple_command(simple_command_layout);
             return;
          }
       }
@@ -1889,18 +1889,35 @@ namespace user
       {
          try
          {
-            rect rectWindow;
-
-            GetWindowRect(rectWindow);
-
-            if(pmouse->m_pt.y <= rectWindow.top)
+            if(!m_bNoTabs && GetParentFrame()->IsFullScreen())
             {
-               if(GetParentFrame()->IsFullScreen())
+               
+               rect rectWindow;
+
+               GetWindowRect(rectWindow);
+
+               bool bShowTabs;
+
+               if(get_data()->m_bVertical)
                {
-                  m_bShowTabs = true;
-                  layout();
+                  bShowTabs = pmouse->m_pt.x <= rectWindow.left;
                }
+               else
+               {
+                  bShowTabs = pmouse->m_pt.y <= rectWindow.top;
+               }
+
+               m_bShowTabs = bShowTabs;
+               
+               if(bShowTabs)
+               {
+
+                  layout();
+
+               }
+
             }
+
          }
          catch(...)
          {

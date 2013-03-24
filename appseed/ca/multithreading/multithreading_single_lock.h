@@ -3,15 +3,12 @@
 
 class CLASS_DECL_ca single_lock
 {
-protected:
+public:
 
 
-   waitable *   m_psyncobject;
+   waitable *           m_psyncobject;
    HANDLE               m_hobject;
    bool                 m_bAcquired;
-
-
-public:
 
 
    explicit single_lock(waitable * pObject, bool bInitialLock = false);

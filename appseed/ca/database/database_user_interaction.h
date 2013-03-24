@@ -44,6 +44,9 @@ namespace database
 
          virtual bool LoadWindowRect_(class id key, class id idIndex, ::user::interaction * pWnd, bool bForceRestore = false);
          virtual bool SaveWindowRect_(class id key, class id idIndex, ::user::interaction * pWnd);
+        
+         
+         virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
 
 
       };

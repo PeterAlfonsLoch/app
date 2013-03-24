@@ -39,6 +39,25 @@ namespace user
    public:
 
 
+      enum e_message
+      {
+
+         message_simple_command = WM_APP + 1985,
+
+      };
+
+
+      enum e_simple_command
+      {
+
+         simple_command_load_window_rect,
+         simple_command_update_frame_title,
+         simple_command_set_edit_file,
+         simple_command_layout,
+
+      };
+
+
       enum e_type
       {
          type_window,
@@ -319,6 +338,7 @@ namespace user
 #endif
 
       virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual bool post_simple_command(e_simple_command ecommand, LPARAM lParam = 0);
 
       virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
@@ -391,6 +411,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnUser184)
       DECL_GEN_SIGNAL(_001OnNcCalcSize)
       DECL_GEN_SIGNAL(_001OnClose)
+      DECL_GEN_SIGNAL(_001OnSimpleCommand);
+
 
 
       virtual DECL_GEN_SIGNAL(_002OnLButtonDown)
@@ -530,6 +552,8 @@ namespace user
       virtual uint32_t get_window_default_style();
       virtual e_type get_window_type();
 
+
+      virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
 
    };
 

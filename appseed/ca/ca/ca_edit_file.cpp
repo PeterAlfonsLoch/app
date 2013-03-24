@@ -347,13 +347,23 @@ namespace ca
 
    }
 
+
    void edit_file::SetFile(::ca::file * pfile)
    {
+   
+      if(pfile == NULL)
+         throw invalid_argument_exception(get_app());
+
       m_pfile = pfile;
+
       m_dwFileLength = pfile->get_length();
+
       m_pfile->seek(0, ::ca::seek_begin);
+
       m_dwPosition = 0;
+
    }
+
 
    ::primitive::memory_size edit_file::read(void *lpBuf, ::primitive::memory_size nCount)
    {

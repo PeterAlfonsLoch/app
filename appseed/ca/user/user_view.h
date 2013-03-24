@@ -14,10 +14,23 @@ namespace user
 class view_update_hint;
 
 
+
 class CLASS_DECL_ca view :
    virtual public database::user::interaction
 {
 public:
+
+
+   enum e_hint
+   {
+      
+      hint_begin = 1984,
+      hint_set_edit_file = hint_begin,
+      hint_end,
+
+   };
+
+
 
    sp(::user::document_interface)    m_spdocument;
 
@@ -66,7 +79,7 @@ public:
 
    // General drawing/updating
    virtual void on_update(view * pSender, LPARAM lHint, ::ca::object* pHint);
-   virtual void OnDraw(::ca::graphics * pgraphics);
+   virtual void _001OnDraw(::ca::graphics * pgraphics);
    virtual void OnViewUpdateHint(view * pSender, LPARAM lHint, view_update_hint * pHint);
 
 
@@ -102,9 +115,6 @@ public:
    virtual void on_draw_view_nc(::ca::graphics * pdc);
    virtual void on_draw_view(::ca::graphics * pdc, spa(::ca::data) spadata);
    virtual void defer_draw_view(::ca::graphics * pdc);
-
-   virtual void _001OnDraw(::ca::graphics * pdc);
-
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -148,6 +158,8 @@ public:
    DECL_GEN_SIGNAL(_001OnMouseMove)
 
    virtual ::user::interaction::e_type get_window_type();
+
+   virtual void on_simple_view_update_hint(::view * pviewSender, e_hint ehint, ::ca::object * phint);
 
 };
 

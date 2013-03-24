@@ -61,7 +61,7 @@ namespace database
       void interaction::_001OnShowWindow(::ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
-//         SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
+         //         SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
          if(get_parent() == NULL)
          {
 #if !core_level_1 && !core_level_2 && defined(WINDOWS)
@@ -162,20 +162,20 @@ namespace database
          if(!bForceRestore)
          {
 
-             if(bFullScreen)
-             {
+            if(bFullScreen)
+            {
                if(!pWnd->IsFullScreen())
                {
                   pWnd->ShowWindowFullScreen(true, false);
                }
-             }
-             else
-             {
+            }
+            else
+            {
                if(pWnd->IsFullScreen())
                {
                   pWnd->ShowWindowFullScreen(false, false);
                }
-             }
+            }
 
          }
          else if(!bFullScreen)
@@ -213,40 +213,40 @@ namespace database
 
             memstream >> rectWindow;
 
-      rect rectDesktop;
-      if(get_parent() != NULL)
-      {
-         get_parent()->GetClientRect(rectDesktop);
-         get_parent()->ScreenToClient(rectWindow);
-      }
-      else
-      {
-         System.get_screen_rect(rectDesktop);
-      }
-      rect rectIntersect;
-      rectIntersect.intersect(rectDesktop, rectWindow);
-      if(rectIntersect.width() < rectDesktop.width() / 64
-      || rectIntersect.height() < rectDesktop.height() / 64
-      ||  rectDesktop.width() * 2 / 5 < 100
-      ||  rectDesktop.height() * 2 / 5 < 100)
-      {
-         SetWindowPos(
-            -3, 
-            rectDesktop.left + rectDesktop.width() / 7, 
-            rectDesktop.top + rectDesktop.height() / 7,
-            rectDesktop.width() * 2 / 5, 
-            rectDesktop.height() * 2 / 5, 0);
-      }
-      else
-      {
-         SetWindowPos(
-            -3,
-            rectWindow.left,
-            rectWindow.top,
-            rectWindow.width(),
-            rectWindow.height(),
-            0);
-      }
+            rect rectDesktop;
+            if(get_parent() != NULL)
+            {
+               get_parent()->GetClientRect(rectDesktop);
+               get_parent()->ScreenToClient(rectWindow);
+            }
+            else
+            {
+               System.get_screen_rect(rectDesktop);
+            }
+            rect rectIntersect;
+            rectIntersect.intersect(rectDesktop, rectWindow);
+            if(rectIntersect.width() < rectDesktop.width() / 64
+               || rectIntersect.height() < rectDesktop.height() / 64
+               ||  rectDesktop.width() * 2 / 5 < 100
+               ||  rectDesktop.height() * 2 / 5 < 100)
+            {
+               SetWindowPos(
+                  -3, 
+                  rectDesktop.left + rectDesktop.width() / 7, 
+                  rectDesktop.top + rectDesktop.height() / 7,
+                  rectDesktop.width() * 2 / 5, 
+                  rectDesktop.height() * 2 / 5, 0);
+            }
+            else
+            {
+               SetWindowPos(
+                  -3,
+                  rectWindow.left,
+                  rectWindow.top,
+                  rectWindow.width(),
+                  rectWindow.height(),
+                  0);
+            }
 
 
             //pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
@@ -307,7 +307,7 @@ namespace database
 
       string interaction::calc_display()
       {
-       
+
          string strDisplay;
 
          rect rectScreen;
@@ -320,8 +320,45 @@ namespace database
 
       }
 
+      bool interaction::on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult)
+      {
+
+         if(::user::interaction::on_simple_command(ecommand, lparam, lresult))
+            return true;
+
+         switch(ecommand)
+         {
+         case simple_command_load_window_rect:
+            WindowDataLoadWindowRect(lparam != FALSE);
+            break;
+         default:
+            break;
+         }
+
+
+         return false;
+
+      }
 
 
    } // namespace user
 
+
 } //namespace database
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

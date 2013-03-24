@@ -1840,3 +1840,25 @@ void frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t d
 
 }
 
+bool frame_window::on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult)
+{
+
+   if(::user::frame_window_interface::on_simple_command(ecommand, lparam, lresult))
+      return true;
+
+   switch(ecommand)
+   {
+   case simple_command_update_frame_title:
+      on_update_frame_title(lparam);
+      break;
+   default:
+      break;
+   }
+   
+
+   return false;
+
+}
+
+
+

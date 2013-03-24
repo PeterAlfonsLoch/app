@@ -62,6 +62,19 @@ namespace user
    }
 
 
+   bool frame_window_interface::on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult)
+   {
+
+      if(::database::user::interaction::on_simple_command(ecommand, lparam, lresult))
+         return true;
+
+      return false;
+
+   }
+
+
+
+
 } // namespace user
 
 

@@ -8,7 +8,9 @@ namespace ca
    file_exception::file_exception(::ca::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       ca(papp),
       ::call_stack(papp),
-      ::base_exception(papp)
+      ::base_exception(papp),
+      ::simple_exception(papp),
+      ::io_exception(papp)
    {
       Construct(cause, lOsError, lpszArchiveName);
    }

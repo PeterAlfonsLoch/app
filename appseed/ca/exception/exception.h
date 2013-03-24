@@ -53,6 +53,7 @@ namespace ca
 
 
 
+#include "exception_io.h"
 #include "exception_resource.h"
 #include "exception_user.h"
 

@@ -138,7 +138,7 @@ namespace ca
       byte b;
 
       if(read(&b, sizeof(b)) < sizeof(b))
-         throw "unexpected end of stream";
+         throw io_exception(get_app(), "ca::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
 
       if(b == 0)
       {
@@ -151,10 +151,10 @@ namespace ca
       int len = b & 0x3f;
 
       if(len > sizeof(uiRead) || len > nMax)
-         throw "overflow";
+         throw io_exception(get_app(), "ca::byte_input_stream::read_arbitrary : overflow");
 
       if(read(&uiRead, len) != len)
-         throw "unexpected end of stream";
+         throw io_exception(get_app(), "ca::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
 
       if(b & 0x40)
       {

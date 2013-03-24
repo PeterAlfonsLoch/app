@@ -15,7 +15,7 @@ namespace user
    {
    public:
 
-
+      mutex                            m_mutex;
       comparable_array < document * >  m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
@@ -110,14 +110,14 @@ namespace user
 
    // Overridables
       // Special notifications
-      virtual void on_changed_view_list(); // after add or remove ::view
+      virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::view
       virtual void delete_contents(); // delete doc items etc
 
       // File helpers
       virtual bool on_new_document();
       virtual bool on_open_document(var varFile);
       virtual bool on_save_document(var varFile);
-      virtual void on_close_document();
+      virtual void on_close_document(single_lock * psl = NULL);
       virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
@@ -132,7 +132,7 @@ namespace user
       // implementation helpers
       virtual bool do_save(var varFile, bool bReplace = true);
       virtual bool do_file_save();
-      virtual void update_frame_counts();
+      virtual void update_frame_counts(single_lock * psl = NULL);
       virtual void disconnect_views();
       virtual void send_initial_update();
 
