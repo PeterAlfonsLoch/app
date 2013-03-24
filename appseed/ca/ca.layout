@@ -40,8 +40,8 @@
 	<File name="ca/ca_allocation_system_heap.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="3102" topLine="94" />
 	</File>
-	<File name="ca/ca_application.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="11582" topLine="394" />
+	<File name="ca/ca_application.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="116054" topLine="4311" />
 	</File>
 	<File name="ca/ca_application.h" open="0" top="0" tabpos="31">
 		<Cursor position="36892" topLine="1094" />
@@ -67,8 +67,8 @@
 	<File name="ca/ca_byte_serializable.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="22" topLine="0" />
 	</File>
-	<File name="ca/ca_byte_stream.cpp" open="0" top="0" tabpos="26">
-		<Cursor position="2587" topLine="119" />
+	<File name="ca/ca_byte_stream.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="2634" topLine="128" />
 	</File>
 	<File name="ca/ca_ca.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="53" topLine="9" />
@@ -190,6 +190,9 @@
 	<File name="ca/ca_interlocked_long.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="514" topLine="8" />
 	</File>
+	<File name="ca/ca_international.h" open="0" top="0" tabpos="8">
+		<Cursor position="8451" topLine="124" />
+	</File>
 	<File name="ca/ca_job.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="0" topLine="0" />
 	</File>
@@ -229,7 +232,7 @@
 	<File name="ca/ca_message.h" open="0" top="0" tabpos="1">
 		<Cursor position="1199" topLine="43" />
 	</File>
-	<File name="ca/ca_object.cpp" open="1" top="1" tabpos="5">
+	<File name="ca/ca_object.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="466" topLine="0" />
 	</File>
 	<File name="ca/ca_os.cpp" open="0" top="0" tabpos="0">
@@ -328,8 +331,8 @@
 	<File name="ca/ca_url.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="156" topLine="0" />
 	</File>
-	<File name="ca/ca_window.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="20103" topLine="659" />
+	<File name="ca/ca_window.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="5425" topLine="162" />
 	</File>
 	<File name="ca/ca_window.h" open="0" top="0" tabpos="23">
 		<Cursor position="10102" topLine="254" />
@@ -348,6 +351,9 @@
 	</File>
 	<File name="calculator/datetime_element.h" open="0" top="0" tabpos="16">
 		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="calculator/numeric_value.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="2019" topLine="75" />
 	</File>
 	<File name="calculator/numeric_value.h" open="0" top="0" tabpos="18">
 		<Cursor position="0" topLine="10" />
@@ -883,8 +889,8 @@
 	<File name="database/database_change_event.h" open="0" top="0" tabpos="0">
 		<Cursor position="413" topLine="0" />
 	</File>
-	<File name="database/database_client.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="8673" topLine="340" />
+	<File name="database/database_client.cpp" open="1" top="0" tabpos="30">
+		<Cursor position="0" topLine="177" />
 	</File>
 	<File name="database/database_client.h" open="0" top="0" tabpos="0">
 		<Cursor position="2783" topLine="18" />
@@ -892,8 +898,8 @@
 	<File name="database/database_event_change.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="244" topLine="0" />
 	</File>
-	<File name="database/database_id.h" open="0" top="0" tabpos="14">
-		<Cursor position="1236" topLine="20" />
+	<File name="database/database_id.h" open="1" top="0" tabpos="16">
+		<Cursor position="816" topLine="25" />
 	</File>
 	<File name="database/database_key.h" open="0" top="0" tabpos="0">
 		<Cursor position="87" topLine="0" />
@@ -904,10 +910,10 @@
 	<File name="database/database_set.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="0" topLine="60" />
 	</File>
-	<File name="database/database_user_interaction.cpp" open="0" top="0" tabpos="41">
-		<Cursor position="1333" topLine="31" />
+	<File name="database/database_user_interaction.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1078" topLine="18" />
 	</File>
-	<File name="database/database_user_interaction.h" open="0" top="0" tabpos="0">
+	<File name="database/database_user_interaction.h" open="1" top="1" tabpos="31">
 		<Cursor position="152" topLine="0" />
 	</File>
 	<File name="dynamic_source/dynamic_source.h" open="0" top="0" tabpos="12">
@@ -919,7 +925,7 @@
 	<File name="dynamic_source/dynamic_source_library_class.h" open="0" top="0" tabpos="0">
 		<Cursor position="364" topLine="4" />
 	</File>
-	<File name="dynamic_source/dynamic_source_script.cpp" open="1" top="0" tabpos="2">
+	<File name="dynamic_source/dynamic_source_script.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="8538" topLine="296" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script.h" open="0" top="0" tabpos="1">
@@ -928,7 +934,7 @@
 	<File name="dynamic_source/dynamic_source_script_cache.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2586" topLine="102" />
 	</File>
-	<File name="dynamic_source/dynamic_source_script_compiler.cpp" open="1" top="0" tabpos="1">
+	<File name="dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="16179" topLine="516" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_compiler.h" open="0" top="0" tabpos="0">
@@ -940,7 +946,7 @@
 	<File name="dynamic_source/dynamic_source_script_interface.h" open="0" top="0" tabpos="1">
 		<Cursor position="208" topLine="0" />
 	</File>
-	<File name="dynamic_source/dynamic_source_script_manager.cpp" open="1" top="0" tabpos="4">
+	<File name="dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="4943" topLine="141" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_manager.h" open="0" top="0" tabpos="0">
@@ -1135,8 +1141,8 @@
 	<File name="multithreading/multithreading_critical_section.h" open="0" top="0" tabpos="18">
 		<Cursor position="513" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_event.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="2813" topLine="179" />
+	<File name="multithreading/multithreading_event.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="4248" topLine="281" />
 	</File>
 	<File name="multithreading/multithreading_event.h" open="0" top="0" tabpos="2">
 		<Cursor position="206" topLine="21" />
@@ -1285,8 +1291,8 @@
 	<File name="plane/plane_session.h" open="0" top="0" tabpos="7">
 		<Cursor position="4489" topLine="114" />
 	</File>
-	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="9919" topLine="469" />
+	<File name="plane/plane_system.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="42172" topLine="1879" />
 	</File>
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="21">
 		<Cursor position="12404" topLine="426" />
@@ -1378,8 +1384,8 @@
 	<File name="primitive/primitive_geometric_types.cpp" open="0" top="0" tabpos="62">
 		<Cursor position="6273" topLine="220" />
 	</File>
-	<File name="primitive/primitive_geometric_types.h" open="0" top="0" tabpos="60">
-		<Cursor position="1808" topLine="54" />
+	<File name="primitive/primitive_geometric_types.h" open="1" top="0" tabpos="8">
+		<Cursor position="1553" topLine="62" />
 	</File>
 	<File name="primitive/primitive_id.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="59" topLine="0" />
@@ -1411,14 +1417,14 @@
 	<File name="primitive/primitive_point.h" open="0" top="0" tabpos="14">
 		<Cursor position="1843" topLine="55" />
 	</File>
-	<File name="primitive/primitive_rectangle.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="12574" topLine="487" />
+	<File name="primitive/primitive_rectangle.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="13278" topLine="507" />
 	</File>
 	<File name="primitive/primitive_rectangle.h" open="0" top="0" tabpos="7">
 		<Cursor position="12750" topLine="286" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="4">
-		<Cursor position="12102" topLine="580" />
+	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="16">
+		<Cursor position="15987" topLine="712" />
 	</File>
 	<File name="primitive/primitive_size.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="5103" topLine="224" />
@@ -1426,11 +1432,11 @@
 	<File name="primitive/primitive_size.h" open="0" top="0" tabpos="11">
 		<Cursor position="3515" topLine="108" />
 	</File>
-	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="6">
+	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="23657" topLine="839" />
 	</File>
-	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="1">
-		<Cursor position="45316" topLine="1553" />
+	<File name="primitive/primitive_string.h" open="1" top="0" tabpos="15">
+		<Cursor position="41090" topLine="1335" />
 	</File>
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
@@ -1678,8 +1684,8 @@
 	<File name="user/user_create_context.h" open="0" top="0" tabpos="120">
 		<Cursor position="31" topLine="0" />
 	</File>
-	<File name="user/user_document_interface.cpp" open="0" top="0" tabpos="20">
-		<Cursor position="18339" topLine="570" />
+	<File name="user/user_document_interface.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="24265" topLine="804" />
 	</File>
 	<File name="user/user_document_interface.h" open="0" top="0" tabpos="0">
 		<Cursor position="2617" topLine="69" />
@@ -1696,19 +1702,19 @@
 	<File name="user/user_document_request_interface.h" open="0" top="0" tabpos="1">
 		<Cursor position="324" topLine="0" />
 	</File>
-	<File name="user/user_document_template.cpp" open="0" top="0" tabpos="19">
-		<Cursor position="7129" topLine="190" />
+	<File name="user/user_document_template.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="7169" topLine="196" />
 	</File>
 	<File name="user/user_form.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="25396" topLine="916" />
 	</File>
-	<File name="user/user_frame_window.cpp" open="0" top="0" tabpos="22">
-		<Cursor position="15917" topLine="519" />
+	<File name="user/user_frame_window.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="20769" topLine="682" />
 	</File>
 	<File name="user/user_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="8322" topLine="187" />
 	</File>
-	<File name="user/user_frame_window_interface.cpp" open="0" top="0" tabpos="0">
+	<File name="user/user_frame_window_interface.cpp" open="1" top="0" tabpos="9">
 		<Cursor position="507" topLine="5" />
 	</File>
 	<File name="user/user_frame_window_interface.h" open="0" top="0" tabpos="0">
@@ -1717,8 +1723,8 @@
 	<File name="user/user_front_end.h" open="0" top="0" tabpos="41">
 		<Cursor position="530" topLine="0" />
 	</File>
-	<File name="user/user_interaction.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="76544" topLine="3144" />
+	<File name="user/user_interaction.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="10114" topLine="351" />
 	</File>
 	<File name="user/user_interaction.h" open="0" top="0" tabpos="19">
 		<Cursor position="664" topLine="88" />
@@ -1762,14 +1768,14 @@
 	<File name="user/user_shell.h" open="0" top="0" tabpos="0">
 		<Cursor position="3459" topLine="118" />
 	</File>
-	<File name="user/user_single_document_template.cpp" open="0" top="0" tabpos="20">
-		<Cursor position="6388" topLine="172" />
+	<File name="user/user_single_document_template.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="6388" topLine="177" />
 	</File>
 	<File name="user/user_user.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="11774" topLine="428" />
 	</File>
-	<File name="user/user_view.cpp" open="0" top="0" tabpos="21">
-		<Cursor position="14800" topLine="521" />
+	<File name="user/user_view.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="1625" topLine="48" />
 	</File>
 	<File name="user/user_view.h" open="0" top="0" tabpos="0">
 		<Cursor position="194" topLine="0" />

@@ -7,8 +7,8 @@
 	<File name="bergedge/bergedge_bergedge.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="19355" topLine="597" />
 	</File>
-	<File name="bergedge/bergedge_frame.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="10684" topLine="414" />
+	<File name="bergedge/bergedge_frame.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1672" topLine="54" />
 	</File>
 	<File name="bergedge/bergedge_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="23677" topLine="644" />
@@ -19,8 +19,8 @@
 	<File name="ca2.h" open="0" top="0" tabpos="53">
 		<Cursor position="48" topLine="0" />
 	</File>
-	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="14268" topLine="614" />
+	<File name="ca2/ca2_application.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="14737" topLine="643" />
 	</File>
 	<File name="cube/cube.h" open="0" top="0" tabpos="51">
 		<Cursor position="53" topLine="0" />
@@ -190,8 +190,8 @@
 	<File name="html/html_input_checkbox.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="2893" topLine="44" />
 	</File>
-	<File name="html/html_input_text.cpp" open="0" top="0" tabpos="39">
-		<Cursor position="2955" topLine="50" />
+	<File name="html/html_input_text.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="2955" topLine="5" />
 	</File>
 	<File name="html/html_reader.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="1327" topLine="38" />
@@ -241,6 +241,9 @@
 	<File name="nature/nature_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1157" topLine="1" />
 	</File>
+	<File name="nature/nature_frame.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="1760" topLine="61" />
+	</File>
 	<File name="nature/nature_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3853" topLine="75" />
 	</File>
@@ -253,8 +256,8 @@
 	<File name="platform/platform_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="752" topLine="0" />
 	</File>
-	<File name="platform/platform_frame.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="7633" topLine="249" />
+	<File name="platform/platform_frame.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="799" topLine="26" />
 	</File>
 	<File name="platform/platform_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3786" topLine="82" />
@@ -319,8 +322,8 @@
 	<File name="user/user_combo_list.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="9622" topLine="363" />
 	</File>
-	<File name="user/user_edit_plain_text.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="23240" topLine="752" />
+	<File name="user/user_edit_plain_text.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="13653" topLine="427" />
 	</File>
 	<File name="user/user_form.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="17149" topLine="525" />
@@ -367,11 +370,14 @@
 	<File name="userbase/simple_button.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="1991" topLine="55" />
 	</File>
+	<File name="userbase/simple_child_frame.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="285" topLine="13" />
+	</File>
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="5017" topLine="175" />
+	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="21405" topLine="810" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="555" topLine="19" />
@@ -427,14 +433,14 @@
 	<File name="userbase/userbase_form_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4599" topLine="107" />
 	</File>
-	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="4527" topLine="147" />
+	<File name="userbase/userbase_frame_window.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="4527" topLine="60" />
 	</File>
 	<File name="userbase/userbase_frame_window_interface.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="4056" topLine="102" />
 	</File>
-	<File name="userbase/userbase_menu.cpp" open="0" top="0" tabpos="32">
-		<Cursor position="4911" topLine="165" />
+	<File name="userbase/userbase_menu.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="17406" topLine="526" />
 	</File>
 	<File name="userbase/userbase_menu_central.cpp" open="0" top="0" tabpos="29">
 		<Cursor position="7619" topLine="308" />
@@ -517,8 +523,8 @@
 	<File name="userhtml/userhtml_form_view.cpp" open="0" top="0" tabpos="25">
 		<Cursor position="4037" topLine="91" />
 	</File>
-	<File name="userhtml/userhtml_frame.cpp" open="0" top="0" tabpos="45">
-		<Cursor position="5223" topLine="169" />
+	<File name="userhtml/userhtml_frame.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="1558" topLine="57" />
 	</File>
 	<File name="userhtml/userhtml_view.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="0" topLine="0" />

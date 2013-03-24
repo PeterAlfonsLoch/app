@@ -102,6 +102,9 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    XWindowAttributes attrs;
 
+
+   XSync(hwnd.display(), False);
+
    /* Fill attribute structure with information about root window */
 
    if(!XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs))

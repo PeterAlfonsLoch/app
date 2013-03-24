@@ -341,6 +341,7 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 
    //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
    cs.style = WS_POPUP;
+   cs.style &= ~WS_VISIBLE;
 
    return TRUE;
 }
@@ -740,6 +741,8 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
    if(pParentWnd == NULL)
       pParentWnd = Application.get_request_parent_ui(this, pContext);
 
+   dwDefaultStyle &= ~WS_VISIBLE;
+
    if (!CreateEx(0L, NULL, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
    {
       return FALSE;   // will self destruct on failure normally
@@ -802,10 +805,10 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
    {
 
       SCAST_PTR(::ca::message::key, pkey, pobj);
-      
+
       if(pkey->m_ekey == ::user::key_alt)
       {
-         if(IsFullScreen() 
+         if(IsFullScreen()
          && Application.is_key_pressed(::user::key_control)
          && !m_bFullScreenAlt)
          {

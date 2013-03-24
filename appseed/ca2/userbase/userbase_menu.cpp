@@ -304,7 +304,7 @@ namespace userbase
       pobj->previous();
    }
 
-   
+
    void menu::OnMessageDestroyWindow(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -555,6 +555,8 @@ namespace userbase
    {
 
       cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+
+      cs.style &= ~WS_VISIBLE;
 
       return TRUE;
 

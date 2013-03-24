@@ -999,6 +999,8 @@
 		<Unit filename="exception/exception_invalid_handle.h" />
 		<Unit filename="exception/exception_invalid_index.cpp" />
 		<Unit filename="exception/exception_invalid_index.h" />
+		<Unit filename="exception/exception_io.cpp" />
+		<Unit filename="exception/exception_io.h" />
 		<Unit filename="exception/exception_last_error.cpp" />
 		<Unit filename="exception/exception_last_error.h" />
 		<Unit filename="exception/exception_memory.cpp" />

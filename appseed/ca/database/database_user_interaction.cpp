@@ -34,11 +34,7 @@ namespace database
          set_data_server(Application.m_simpledb.get_data_server());
          if(m_dataidWindow.is_null())
          {
-            string strKey;
-            strKey = System.m_strAppName;
-            strKey += ".";
-            strKey += typeid(*this).name();
-            m_dataidWindow = strKey;
+            m_dataidWindow = "window";
          }
          if(m_dataid.is_null())
          {
@@ -231,10 +227,10 @@ namespace database
                ||  rectDesktop.height() * 2 / 5 < 100)
             {
                SetWindowPos(
-                  -3, 
-                  rectDesktop.left + rectDesktop.width() / 7, 
+                  -3,
+                  rectDesktop.left + rectDesktop.width() / 7,
                   rectDesktop.top + rectDesktop.height() / 7,
-                  rectDesktop.width() * 2 / 5, 
+                  rectDesktop.width() * 2 / 5,
                   rectDesktop.height() * 2 / 5, 0);
             }
             else

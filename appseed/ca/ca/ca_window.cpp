@@ -175,7 +175,6 @@ namespace ca
    bool window::pre_create_window(CREATESTRUCT & cs)
    {
       UNREFERENCED_PARAMETER(cs);
-      throw interface_only_exception(get_app());
    }
 
    bool window::create(const char * lpszClassName,

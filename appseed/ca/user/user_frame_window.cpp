@@ -21,7 +21,7 @@
    ON_WM_HSCROLL()
    ON_WM_VSCROLL()
    ON_WM_SETFOCUS()
-   
+
    ON_WM_DESTROY()
    ON_WM_CLOSE()
    ON_WM_SIZE()
@@ -435,6 +435,8 @@ bool frame_window::pre_create_window(CREATESTRUCT& cs)
 
 #endif
 
+   cs.style &= ~WS_VISIBLE;
+
    return true;
 
 }
@@ -629,6 +631,14 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
 
    if (bMakeVisible)
    {
+
+      if(dynamic_cast < ::user::place_holder * > (get_parent()) == NULL)
+      {
+
+         InitialFramePosition();
+
+      }
+
       // send initial update to all views (and other controls) in the frame
       SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
 
@@ -666,17 +676,6 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
       }
    }
 
-   if(bMakeVisible)
-   {
-      if(dynamic_cast < ::user::place_holder * > (get_parent()) == NULL)
-      {
-         InitialFramePosition();
-      }
-      if(!IsWindowVisible())
-      {
-         ShowWindow(SW_SHOW);
-      }
-   }
 
 }
 
@@ -702,11 +701,12 @@ void frame_window::InitialFramePosition(bool bForceRestore)
       ||  rectWindow.height() < 100)
       {
          SetWindowPos(
-            -3, 
-            rectDesktop.left + rectDesktop.width() / 7, 
+            -3,
+            rectDesktop.left + rectDesktop.width() / 7,
             rectDesktop.top + rectDesktop.height() / 7,
-            rectDesktop.width() * 2 / 5, 
-            rectDesktop.height() * 2 / 5, 0);
+            rectDesktop.width() * 2 / 5,
+            rectDesktop.height() * 2 / 5,
+                      0);
       }
       else
       {
@@ -1854,7 +1854,7 @@ bool frame_window::on_simple_command(e_simple_command ecommand, LPARAM lparam, L
    default:
       break;
    }
-   
+
 
    return false;
 
