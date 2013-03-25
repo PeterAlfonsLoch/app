@@ -12,9 +12,11 @@ oswindow::data::data()
 
    m_window        = None;
 
-   m_pui           = NULL;
+   m_pui                 = NULL;
 
-   m_bDestroying   = false;
+   m_bMessageOnlyWindow  = false;
+
+   m_bDestroying                          = false;
 
 }
 
@@ -970,4 +972,25 @@ bool oswindow::is_destroying()
 bool IsWindow(oswindow oswindow)
 {
    return oswindow.get_user_interaction() != NULL && !oswindow.is_destroying();
+}
+
+
+oswindow g_oswindowDesktop;
+
+
+bool c_xstart()
+{
+
+   if(!XInitThreads())
+      return false;
+
+
+   Display * dpy = XOpenDisplay(NULL);
+
+   g_oswindowDesktop = oswindow(dpy, DefaultRootWindow(dpy));
+
+   XSelectInput(g_oswindowDesktop.display(), g_oswindowDesktop.window(), StructureNotifyMask);
+
+   return true;
+
 }

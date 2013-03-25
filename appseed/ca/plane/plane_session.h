@@ -64,7 +64,8 @@ namespace plane
       ::userpresence::userpresence *                        m_puserpresence;
 
 
-      
+
+
       ::visual::e_cursor m_ecursor;
       ::visual::e_cursor m_ecursorDefault;
 

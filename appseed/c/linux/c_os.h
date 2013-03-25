@@ -119,3 +119,6 @@ public:
 };
 
 
+bool c_xstart();
+
+extern oswindow g_oswindowDesktop;

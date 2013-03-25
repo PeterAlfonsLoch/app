@@ -52,7 +52,16 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             }
             else if(e.type == ConfigureNotify)
             {
-               //               XClearWindow(w.display(), w.window());
+               if(pdata == g_oswindowDesktop.m_pdata)
+               {
+                  for(int j = 0; j < ::oswindow::s_pdataptra->get_count(); j++)
+                  {
+                     if(j == i)
+                        continue;
+                     PostMessage(::oswindow::s_pdataptra->element_at(j), WM_DISPLAYCHANGE, 0, 0);
+                  }
+               }
+                              //               XClearWindow(w.display(), w.window());
             }
             else if(e.type == ButtonPress || e.type == ButtonRelease)
             {
