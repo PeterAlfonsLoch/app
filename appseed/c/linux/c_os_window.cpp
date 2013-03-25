@@ -37,6 +37,27 @@ oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
 simple_mutex * oswindow::s_pmutex = new simple_mutex;
 
 
+int32_t oswindow::find_message_only_window(::user::interaction_base * pui)
+{
+
+   if(pui == NULL)
+      return -1;
+
+   mutex_lock sl(user_mutex(), true);
+
+   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
+   {
+      if(s_pdataptra->element_at(i)->m_bMessageOnlyWindow
+      && s_pdataptra->element_at(i)->m_pui == pui)
+      {
+         return i;
+      }
+   }
+
+   return -1;
+
+}
+
 int32_t oswindow::find(Display * pdisplay, Window window)
 {
 
@@ -44,8 +65,9 @@ int32_t oswindow::find(Display * pdisplay, Window window)
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_osdisplay == pdisplay
-      && s_pdataptra->element_at(i)->m_window == window)
+      if(!s_pdataptra->element_at(i)->m_bMessageOnlyWindow
+      &&  s_pdataptra->element_at(i)->m_osdisplay == pdisplay
+      &&  s_pdataptra->element_at(i)->m_window == window)
       {
          return i;
       }
@@ -62,7 +84,8 @@ int32_t oswindow::find(Window window)
 
    for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_window == window)
+      if(!s_pdataptra->element_at(i)->m_bMessageOnlyWindow
+      &&  s_pdataptra->element_at(i)->m_window == window)
       {
          return i;
       }
@@ -71,6 +94,33 @@ int32_t oswindow::find(Window window)
    return -1;
 
 }
+
+oswindow::data * oswindow::get_message_only_window(::user::interaction_base * pui)
+{
+
+   if(pui == NULL)
+      return NULL;
+
+   mutex_lock sl(user_mutex(), true);
+
+   int_ptr iFind = find_message_only_window(pui);
+
+   if(iFind >= 0)
+      return s_pdataptra->element_at(iFind);
+
+   ::oswindow::data * pdata = new data;
+
+   pdata->m_bMessageOnlyWindow      = true;
+   pdata->m_osdisplay               = NULL;
+   pdata->m_window                  = None;
+   pdata->m_pui                     = pui;
+
+   s_pdataptra->add(pdata);
+
+   return pdata;
+
+}
+
 
 oswindow::data * oswindow::get(Display * pdisplay, Window window)
 {
@@ -84,6 +134,7 @@ oswindow::data * oswindow::get(Display * pdisplay, Window window)
 
    ::oswindow::data * pdata = new data;
 
+   pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay   = pdisplay;
    pdata->m_window      = window;
 
@@ -119,6 +170,17 @@ oswindow::oswindow()
 {
 
    m_pdata = NULL;
+
+}
+
+oswindow::oswindow(::user::interaction_base * pui)
+{
+
+   mutex_lock sl(user_mutex(), true);
+
+   m_pdata = get_message_only_window(pui);
+
+
 
 }
 

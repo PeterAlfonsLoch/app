@@ -225,6 +225,11 @@ namespace ca
 #else
          if(pwnd == NULL && lpmsg->hwnd != NULL)
          {
+            if(lpmsg->message == 126)
+            {
+
+               TRACE0("WM_DISPLAYCHANGE");
+            }
             ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
 #endif
             if(pwindow != NULL)

@@ -3,6 +3,9 @@
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
 {
 
+   if(hthread == NULL || hthread->m_pthread == NULL || hthread->m_pthread->get_x_window_count() <= 0)
+      return false;
+
    mutex_lock sl(user_mutex(), true);
 
    bool bRet = false;
@@ -22,7 +25,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
          if(pdata == NULL)
             continue;
 
-         if(pdata->m_hthread != hthread)
+         if(pdata->m_hthread != hthread && g_oswindowDesktop.m_pdata != pdata)
             continue;
 
          Display * display = pdata->m_osdisplay.display();
@@ -52,7 +55,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             }
             else if(e.type == ConfigureNotify)
             {
-               if(pdata == g_oswindowDesktop.m_pdata)
+               if(e.xconfigure.window == g_oswindowDesktop.window())
                {
                   for(int j = 0; j < ::oswindow::s_pdataptra->get_count(); j++)
                   {
@@ -60,6 +63,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
                         continue;
                      PostMessage(::oswindow::s_pdataptra->element_at(j), WM_DISPLAYCHANGE, 0, 0);
                   }
+                  continue;
                }
                               //               XClearWindow(w.display(), w.window());
             }

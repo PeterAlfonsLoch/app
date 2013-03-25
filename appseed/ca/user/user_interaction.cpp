@@ -1415,8 +1415,8 @@ namespace user
       interaction * pimplOld = m_pimpl;
       interaction * pimplNew = NULL;
 
-#ifdef WINDOWSEX
-      if(pParentWnd == NULL || pParentWnd->get_safe_handle() == HWND_MESSAGE)
+#if defined(WINDOWSEX) || defined(LINUX)
+      if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow) HWND_MESSAGE)
 #else
       if(pParentWnd == NULL)
 #endif
@@ -3364,7 +3364,7 @@ restart:
 
    void interaction::_001OnSimpleCommand(::ca::signal_object * pobj)
    {
-      
+
       SCAST_PTR(::ca::message::base, pbase, pobj);
 
       LRESULT lresult = 0;
@@ -3377,7 +3377,7 @@ restart:
 
    bool interaction::on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult)
    {
-      
+
       UNREFERENCED_PARAMETER(lparam);
       UNREFERENCED_PARAMETER(lresult);
 

@@ -41,7 +41,7 @@
 
 #else
 
-   #define HTHREAD simple_event *
+   #define HTHREAD hthread *
 
 #endif
 

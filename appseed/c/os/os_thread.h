@@ -1,13 +1,16 @@
 #pragma once
 
 
+class hthread;
+
+
 #ifdef WINDOWS
 
 #define HTHREAD HANDLE
 
 #else
 
-#define HTHREAD simple_event *
+#define HTHREAD hthread *
 
 #endif
 

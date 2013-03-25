@@ -191,7 +191,7 @@ namespace ca
 #endif
       }
 
-      inline bool find(void * p, bool bRemove)  
+      inline bool find(void * p, bool bRemove)
       {
          UNREFERENCED_PARAMETER(bRemove);
 
@@ -227,7 +227,7 @@ namespace ca
 
    };
 
-   
+
    class thread;
 
 
@@ -387,7 +387,7 @@ namespace ca
 
       virtual bool has_message();
 
-
+      virtual int get_x_window_count() const;
 
 
 	/// This class represents a thread which can be put into a WaitableCollection also.
@@ -546,7 +546,7 @@ namespace ca
 
    CLASS_DECL_ca void thread_alloc_ready(bool bReady);
 
-   
+
 
    CLASS_DECL_ca thread * get_thread();
    CLASS_DECL_ca thread_state * get_thread_state();

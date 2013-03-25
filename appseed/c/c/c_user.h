@@ -1,6 +1,33 @@
 #pragma once
 
 
+namespace ca
+{
+
+
+   class thread_base;
+
+
+} // namespace ca
+
+
+class hthread
+{
+public:
+
+
+   simple_event             * m_pevent;
+   ::ca::thread_base        * m_pthread;
+
+
+   hthread();
+   ~hthread();
+
+
+};
+
+
+
 #ifdef WINDOWS
 
    #define HTHREAD HANDLE
@@ -9,7 +36,7 @@
 
    class simple_event;
 
-   #define HTHREAD simple_event *
+   #define HTHREAD hthread *
 
 #endif
 
@@ -34,12 +61,15 @@ namespace ca
 
 
       virtual HTHREAD get_os_handle() const = 0;
+      virtual int get_x_window_count() const = 0;
 
 
    };
 
 
 } // namespace ca
+
+
 
 
 namespace user

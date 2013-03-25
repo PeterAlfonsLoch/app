@@ -872,6 +872,14 @@ namespace ca
 #endif
 
 
+   int thread::get_x_window_count() const
+   {
+
+      return m_puiptra->get_count();
+
+   }
+
+
 
 } // namespace ca
 
