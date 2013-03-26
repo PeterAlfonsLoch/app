@@ -175,6 +175,7 @@ namespace ca
    bool window::pre_create_window(CREATESTRUCT & cs)
    {
       UNREFERENCED_PARAMETER(cs);
+      return true;
    }
 
    bool window::create(const char * lpszClassName,
