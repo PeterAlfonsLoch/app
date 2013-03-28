@@ -64,15 +64,18 @@ namespace ca
    font & font::operator = (const font & fontSrc)
    {
 
-      m_strFontFamilyName     = fontSrc.m_strFontFamilyName;
-      m_dFontSize             = fontSrc.m_dFontSize;
-      m_dFontWidth            = fontSrc.m_dFontWidth;
-      m_eunitFontSize         = fontSrc.m_eunitFontSize;
-      m_iFontWeight           = fontSrc.m_iFontWeight;
-      m_bItalic               = fontSrc.m_bItalic;
-      m_bUnderline            = fontSrc.m_bUnderline;
-      m_bStrikeout            = fontSrc.m_bStrikeout;
-      m_bUpdated              = false;
+      if(this != &fontSrc)
+      {
+         m_strFontFamilyName     = fontSrc.m_strFontFamilyName;
+         m_dFontSize             = fontSrc.m_dFontSize;
+         m_dFontWidth            = fontSrc.m_dFontWidth;
+         m_eunitFontSize         = fontSrc.m_eunitFontSize;
+         m_iFontWeight           = fontSrc.m_iFontWeight;
+         m_bItalic               = fontSrc.m_bItalic;
+         m_bUnderline            = fontSrc.m_bUnderline;
+         m_bStrikeout            = fontSrc.m_bStrikeout;
+         m_bUpdated              = false;
+      }
 
       return *this;
 
