@@ -734,76 +734,132 @@ namespace ca
 
    ::count thread::get_ui_count()
    {
+
+      if(m_p == NULL)
+         return 0;
+
       return m_p->get_ui_count();
+
    }
+
 
    ::user::interaction * thread::get_ui(index iIndex)
    {
+
+      if(m_p == NULL)
+         return NULL;
+
       return m_p->get_ui(iIndex);
+
    }
 
 
    void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
    {
+
+      if(m_p == NULL)
+         return;
+
       m_p->set_timer(pui, nIDEvent, nEllapse);
+
    }
+
 
    void thread::unset_timer(::user::interaction * pui, uint_ptr nIDEvent)
    {
+
+      if(m_p == NULL)
+         return;
+
       m_p->unset_timer(pui, nIDEvent);
+
    }
+
 
    void thread::set_auto_delete(bool bAutoDelete)
    {
+
+      if(m_p == NULL)
+         return;
+
       m_p->set_auto_delete(bAutoDelete);
+
    }
+
 
    void thread::set_run(bool bRun)
    {
+
+      if(m_p == NULL)
+         return;
+         
       m_p->set_run(bRun);
+
    }
+
 
    event & thread::get_finish_event()
    {
+
+      if(m_p == NULL)
+         return *((event *) NULL);
+
       return m_p->get_finish_event();
+
    }
+
 
    bool thread::get_run()
    {
+
+      if(m_p == NULL)
+         return false;
+
       return m_p->get_run();
+
    }
+
 
    ::ca::thread * thread::get_app_thread()
    {
+
+      if(m_p == NULL)
+         return NULL;
+
       return m_p->get_app_thread();
+
    }
+
 
    ::user::interaction * thread::get_active_ui()
    {
+      
+      if(m_p == NULL)
+         return NULL;
+
       return m_p->get_active_ui();
+
    }
+
 
    ::user::interaction * thread::set_active_ui(::user::interaction * pui)
    {
+
+      if(m_p == NULL)
+         return NULL;
+
       return m_p->set_active_ui(pui);
+
    }
 
    void thread::step_timer()
    {
-/*      try
-      {
-         ::ca::thread * pthreadApp = dynamic_cast < ::ca::thread * > (System.GetThread());
-         if(pthreadApp != NULL && m_p != pthreadApp)
-         {
-            pthreadApp->step_timer();
-         }
-      }
-      catch(...)
-      {
-      }*/
+
       if(m_p == NULL)
          return;
+
       return m_p->step_timer();
+
    }
 
    int32_t thread::main()

@@ -20,7 +20,7 @@ namespace ca
    public:
 
 
-      window_sp    m_spwindowMessage;
+      ::user::interaction        m_uiMessage;
 
 
       message_window_simple_callback();

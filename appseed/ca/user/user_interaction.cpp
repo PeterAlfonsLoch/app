@@ -2641,8 +2641,6 @@ ExitModal:
    bool interaction::create_message_window(const char * pszName, ::ca::window_callback * pcallback)
    {
 
-#ifdef WINDOWS
-
       UNREFERENCED_PARAMETER(pcallback);
 
       if(IsWindow())
@@ -2655,12 +2653,6 @@ ExitModal:
       m_signalptra.remove_all();
 
       return create(NULL, pszName, 0, rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), NULL) != FALSE;
-
-#else
-
-      throw todo(get_app());
-
-#endif
 
    }
 

@@ -5441,7 +5441,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          SCAST_PTR(::ca::message::timer, ptimer, pobj);
          if(ptimer->m_nIDEvent == 123)
          {
-            m_spwindowMessage->KillTimer(ptimer->m_nIDEvent);
+            m_uiMessage.KillTimer(ptimer->m_nIDEvent);
             frames().send_message_to_descendants(::ca::application::APPM_LANGUAGE);
             System.appa_load_string_table();
          }

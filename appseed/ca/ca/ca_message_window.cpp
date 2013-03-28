@@ -8,7 +8,7 @@ namespace ca
    }
 
    message_window_simple_callback::message_window_simple_callback(::ca::application * papp) :
-      m_spwindowMessage(papp)
+      m_uiMessage(papp)
    { 
    }
 
@@ -19,38 +19,39 @@ namespace ca
    bool message_window_simple_callback::initialize_message_window(::ca::application * papp, const char * pszName)
    {
       
-      // metrowin todo
-      return true;
+      set_app(papp);
 
-      if(m_spwindowMessage.m_p == NULL)
-         m_spwindowMessage.create(papp);
-      return m_spwindowMessage->create_message_window(pszName, this);
+      m_uiMessage.set_app(papp);
+
+      return m_uiMessage.create_message_window(pszName, this);
+
    }
+
 
    bool message_window_simple_callback::initialize_message_window(const char * pszName)
    {
-      return m_spwindowMessage->create_message_window(pszName, this);
+
+      return m_uiMessage.create_message_window(pszName, this);
+
    }
+
 
    bool message_window_simple_callback::finalize_message_window()
    {
+
       bool bOk = true;
-      if(m_spwindowMessage.is_set())
+
+      if(m_uiMessage.IsWindow())
       {
-         if(m_spwindowMessage->IsWindow())
-         {
-            bOk = m_spwindowMessage->DestroyWindow() != FALSE;
-         }
-         try
-         {
-            m_spwindowMessage.destroy();
-         }
-         catch(...)
-         {
-            bOk = false;
-         }
+         bOk = m_uiMessage.DestroyWindow();
       }
+
       return bOk;
+
    }
 
+
 } // namespace ca
+
+
+

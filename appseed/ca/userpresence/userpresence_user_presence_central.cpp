@@ -19,7 +19,7 @@ namespace userpresence
       if(!initialize_message_window("ca5::user::presence_central::message_window"))
          return false;
 
-      m_spwindowMessage->SetTimer(1984, 1000, NULL);
+      m_uiMessage.SetTimer(1984, 1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
@@ -36,10 +36,7 @@ namespace userpresence
    bool presence_central::finalize()
    {
 
-      if(m_spwindowMessage.is_null())
-         return true;
-
-      m_spwindowMessage->KillTimer(1984);
+      m_uiMessage.KillTimer(1984);
          
       finalize_message_window();
 
@@ -56,7 +53,7 @@ namespace userpresence
    bool presence_central::is_initialized()
    {
          
-      if(!m_spwindowMessage->IsWindow())
+      if(!m_uiMessage.IsWindow())
          return false;
 
       return true;
