@@ -207,7 +207,7 @@ namespace ca
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile) = 0;
       virtual void _001OnFileNew(::ca::signal_object * pobj) = 0;
 
-      virtual void DoWaitCursor(int32_t nCode) = 0;
+      virtual void ShowWaitCursor(bool bShow = true) = 0;
 
    };
 
@@ -376,14 +376,14 @@ namespace ca
 #endif
 
 
-      uint32_t                         m_dwPromptContext;        // help context override for message box
+      uint32_t                      m_dwPromptContext;        // help context override for message box
    // LKG
-   //   uint32_t m_dwPolicies;            // block for storing boolean system policies
+   //   uint32_t m_dwPolicies;      // block for storing boolean system policies
 
-      int32_t                           m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
+      int32_t                       m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
       HCURSOR                       m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
-      uint32_t                         m_dwPolicies;            // block for storing boolean system policies
+      uint32_t                      m_dwPolicies;            // block for storing boolean system policies
 
       EExclusiveInstance            m_eexclusiveinstance;
 
@@ -738,29 +738,29 @@ namespace ca
 
       virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
-      
-      
+
+
 #ifdef WINDOWS
-      
+
       virtual int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
 
 #else
-      
+
       template<typename T, typename... Args>
       int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
       {
-         
+
          string str;
-         
+
          string_format format(&str, &::string::FormatPrinter, NULL);
-         
+
          format.printf(pszFormat, value, args...);
-         
+
          return simple_message_box(puiOwner, str, fuStyle);
-         
+
       }
-      
-      
+
+
 #endif
 
 
@@ -870,6 +870,7 @@ namespace ca
       // Advanced: to override message boxes and other hooks
       virtual int32_t DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
+      virtual void ShowWaitCursor(bool bShow = true);
 
       // Advanced: process async DDE request
       virtual bool OnDDECommand(LPTSTR lpszCommand);

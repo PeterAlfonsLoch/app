@@ -213,6 +213,9 @@ namespace ca
       m_pcolorertake5            = NULL;
       m_psockets                 = NULL;
 
+      // initialize wait cursor state
+      m_iWaitCursorCount = 0;
+      m_hcurWaitCursorRestore = NULL;
 
 
    }
@@ -3022,10 +3025,64 @@ namespace ca
 
    }
 
+
    void application::DoWaitCursor(int32_t nCode)
    {
-      ::ca::smart_pointer < ::ca::application_base >::m_p->DoWaitCursor(nCode);
+
+      if(nCode < 0)
+      {
+
+         m_iWaitCursorCount = 0;
+         ShowWaitCursor(false);
+
+      }
+      else if(nCode == 0)
+      {
+
+         if(m_iWaitCursorCount > 0)
+         {
+            m_iWaitCursorCount--;
+         }
+
+         if(m_iWaitCursorCount > 0)
+         {
+
+            ShowWaitCursor(true);
+
+         }
+
+         m_iWaitCursorCount = 0;
+         ShowWaitCursor(false);
+
+      }
+      else
+      {
+
+         if(m_iWaitCursorCount < 0)
+         {
+            m_iWaitCursorCount = 0;
+         }
+
+         m_iWaitCursorCount++;
+
+         ShowWaitCursor(true);
+
+      }
+
+
+
    }
+
+   void application::ShowWaitCursor(bool bShow)
+   {
+
+      if(::ca::smart_pointer < ::ca::application_base >::m_p == NULL)
+         return;
+
+      ::ca::smart_pointer < ::ca::application_base >::m_p->ShowWaitCursor(bShow);
+
+   }
+
 
 
    bool application::save_all_modified()
@@ -4774,7 +4831,7 @@ namespace ca
 /*      if (m_pdocmanager != NULL)
          m_pdocmanager->dump(dumpcontext);*/
 
-      dumpcontext << "\nm_nWaitCursorCount = " << m_nWaitCursorCount;
+      dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
       dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
       dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
 

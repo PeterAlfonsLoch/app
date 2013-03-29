@@ -792,7 +792,7 @@ namespace ca
 
       if(m_p == NULL)
          return;
-         
+
       m_p->set_run(bRun);
 
    }
@@ -833,7 +833,7 @@ namespace ca
 
    ::user::interaction * thread::get_active_ui()
    {
-      
+
       if(m_p == NULL)
          return NULL;
 
@@ -931,7 +931,10 @@ namespace ca
    int thread::get_x_window_count() const
    {
 
-      return m_puiptra->get_count();
+      if(m_p == NULL)
+         return 0;
+
+      return m_p->get_x_window_count();
 
    }
 

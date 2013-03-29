@@ -22,7 +22,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
          ::oswindow::data * pdata = ::oswindow::s_pdataptra->element_at(i);
 
-         if(pdata == NULL)
+         if(pdata == NULL || pdata->m_bMessageOnlyWindow)
             continue;
 
          if(pdata->m_hthread != hthread && g_oswindowDesktop.m_pdata != pdata)

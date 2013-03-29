@@ -2652,7 +2652,12 @@ ExitModal:
 
       m_signalptra.remove_all();
 
-      return create(NULL, pszName, 0, rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), NULL) != FALSE;
+      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+
+      if(m_pimpl == NULL)
+         return NULL;
+
+      return m_pimpl->create_message_window(pszName, pcallback);
 
    }
 
