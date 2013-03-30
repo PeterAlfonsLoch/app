@@ -1446,7 +1446,7 @@ string var::get_string(const char * pszOnNull) const
       }
       else if(m_etype == var::type_uint32)
       {
-         str.Format("%I32u", m_ui32);
+         str = ::ca::str::from( m_ui32);
       }
       else if(m_etype == var::type_int64)
       {
@@ -1454,15 +1454,11 @@ string var::get_string(const char * pszOnNull) const
       }
       else if(m_etype == var::type_uint64)
       {
-         str.Format("%I64u", m_ui64);
-      }
-      else if(m_etype == var::type_uint32)
-      {
-         str.Format("%d", m_ui32);
+         str = ::ca::str::from(m_ui64);
       }
       else if(m_etype == var::type_double)
       {
-         str.Format("%f", m_d);
+         str = ::ca::str::from(m_d);
       }
       else if(m_etype == var::type_id)
       {

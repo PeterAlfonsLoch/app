@@ -420,6 +420,7 @@
 		<Unit filename="ca/ca_str.h" />
 		<Unit filename="ca/ca_str2.h" />
 		<Unit filename="ca/ca_str2.h.txt" />
+		<Unit filename="ca/ca_str_format.cpp" />
 		<Unit filename="ca/ca_str_stream.cpp" />
 		<Unit filename="ca/ca_str_stream.h" />
 		<Unit filename="ca/ca_stra.h" />
@@ -1281,7 +1282,6 @@
 		<Unit filename="plane/plane_system.h" />
 		<Unit filename="plane/plane_system_allocate.h" />
 		<Unit filename="plane/plane_system_ca_template.h" />
-		<Unit filename="plane/plane_system_gen_str.cpp" />
 		<Unit filename="plane/plane_system_gen_str.h" />
 		<Unit filename="plane/plane_system_primitive_string_format_spec.h" />
 		<Unit filename="plane/plane_system_primitive_var.h" />
