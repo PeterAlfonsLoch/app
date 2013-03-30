@@ -1849,7 +1849,7 @@ bool frame_window::on_simple_command(e_simple_command ecommand, LPARAM lparam, L
    switch(ecommand)
    {
    case simple_command_update_frame_title:
-      on_update_frame_title(lparam);
+      on_update_frame_title(lparam != FALSE);
       break;
    default:
       break;
