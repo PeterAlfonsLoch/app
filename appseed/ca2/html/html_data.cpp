@@ -501,7 +501,7 @@ restart:
          ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
          if(puser != NULL && puser->m_strSessid.has_char())
          {
-            System.url().set(strPath, "sessid", puser->m_strSessid);
+            System.url().string_set(strPath, "sessid", puser->m_strSessid);
          }*/
          /*if(!System.sync_load_url(str, strPath,
             puser, m_pcookies))

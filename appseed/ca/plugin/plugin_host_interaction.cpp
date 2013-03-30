@@ -88,7 +88,7 @@ namespace plugin
          // do the following if desired on calling System open linnk, will try to create plugin::system::get_host_location_url
          // else if(setQuery["ruri"].get_string().get_length() <= 0)
          //{
-            //System.url().set(strLink, "ruri", (const char *) m_pplugin->get_host_location_url());
+            //System.url().string_set(strLink, "ruri", (const char *) m_pplugin->get_host_location_url());
          //}
          m_pplugin->open_url(strLink);
          delete pstrLink;
