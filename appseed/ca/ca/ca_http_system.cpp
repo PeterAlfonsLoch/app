@@ -267,7 +267,7 @@ namespace ca
             return false;
          }*/
          ::sockets::address ad(get_app(), strHost, port);
-         
+
          strHost = ad.get_display_number();
 
          string var;
@@ -513,7 +513,7 @@ namespace ca
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
-                        System.url().set(strUrl, "sessid", strSessId);
+                        System.url().string_set(strUrl, "sessid", strSessId);
                      }
                   }
 
@@ -523,14 +523,14 @@ namespace ca
             if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
-               System.url().set(strUrl, "sessid", strSessId);
+               System.url().string_set(strUrl, "sessid", strSessId);
             }
             else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
             {
             }
             else
             {
-               System.url().set(strUrl, "authnone", 1);
+               System.url().string_set(strUrl, "authnone", 1);
             }
          }
 
@@ -735,7 +735,7 @@ retry:
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
-                        System.url().set(strUrl, "sessid", strSessId);
+                        System.url().string_set(strUrl, "sessid", strSessId);
                      }
                   }
 
@@ -745,14 +745,14 @@ retry:
             if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
-               System.url().set(strUrl, "sessid", strSessId);
+               System.url().string_set(strUrl, "sessid", strSessId);
             }
             else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
             {
             }
             else
             {
-               System.url().set(strUrl, "authnone", 1);
+               System.url().string_set(strUrl, "authnone", 1);
             }
          }
 
@@ -1147,7 +1147,7 @@ retry:
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
-                        System.url().set(strUrl, "sessid", strSessId);
+                        System.url().string_set(strUrl, "sessid", strSessId);
                      }
                   }
 
@@ -1157,14 +1157,14 @@ retry:
             if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
-               System.url().set(strUrl, "sessid", strSessId);
+               System.url().string_set(strUrl, "sessid", strSessId);
             }
             else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
             {
             }
             else
             {
-               System.url().set(strUrl, "authnone", 1);
+               System.url().string_set(strUrl, "authnone", 1);
             }
          }
 
@@ -1638,9 +1638,9 @@ retry:
           "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
          const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
           "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-         string strDateTime;
+         char strDateTime[1024];
 
-         strDateTime.Format("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
+         sprintf(strDateTime, "%s, %02d-%s-%04d %02d:%02d:%02d GMT",
           days[tp.tm_wday],
           tp.tm_mday,
           months[tp.tm_mon],

@@ -536,19 +536,7 @@ namespace datetime
 
 #else
 
-         struct tm * ptmTemp;
-
-         ptmTemp = localtime(&m_time);
-
-         if(ptmTemp == NULL)
-            return NULL;
-
-         if(errno != 0)
-            return NULL;
-
-         *ptm = *ptmTemp;
-
-         return ptm;
+         return localtime_r(&m_time, ptm);
 
 #endif
 

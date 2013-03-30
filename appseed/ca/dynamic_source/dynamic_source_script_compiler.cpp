@@ -991,6 +991,7 @@ namespace dynamic_source
       str.replace("%TARGET_NAME%", strTargetName);
       Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
       #ifdef LINUX
+      Sleep(1984);
       strCmd = System.dir().ca2("stage\\front\\libl1.bash");
       #else
       strCmd = System.dir().ca2("stage\\front\\libl1.bat");

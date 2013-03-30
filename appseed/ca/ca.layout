@@ -109,6 +109,9 @@
 	<File name="ca/ca_data.h" open="0" top="0" tabpos="27">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="ca/ca_datetime.cpp" open="0" top="0" tabpos="18">
+		<Cursor position="1800" topLine="36" />
+	</File>
 	<File name="ca/ca_dib.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="340" topLine="3" />
 	</File>
@@ -184,8 +187,8 @@
 	<File name="ca/ca_http_application.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1452" topLine="38" />
 	</File>
-	<File name="ca/ca_http_system.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="40158" topLine="1369" />
+	<File name="ca/ca_http_system.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="49269" topLine="1632" />
 	</File>
 	<File name="ca/ca_interlocked_long.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="514" topLine="8" />
@@ -217,13 +220,13 @@
 	<File name="ca/ca_live_signal.h" open="0" top="0" tabpos="0">
 		<Cursor position="405" topLine="0" />
 	</File>
-	<File name="ca/ca_log.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="9100" topLine="239" />
+	<File name="ca/ca_log.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="11314" topLine="276" />
 	</File>
 	<File name="ca/ca_log.h" open="0" top="0" tabpos="0">
 		<Cursor position="2799" topLine="74" />
 	</File>
-	<File name="ca/ca_machine_event_central.cpp" open="0" top="0" tabpos="9">
+	<File name="ca/ca_machine_event_central.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="478" topLine="8" />
 	</File>
 	<File name="ca/ca_message.cpp" open="0" top="0" tabpos="10">
@@ -256,8 +259,8 @@
 	<File name="ca/ca_pipe.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="101" topLine="0" />
 	</File>
-	<File name="ca/ca_plex_heap.h" open="0" top="0" tabpos="6">
-		<Cursor position="3948" topLine="166" />
+	<File name="ca/ca_plex_heap.h" open="0" top="0" tabpos="2">
+		<Cursor position="4235" topLine="166" />
 	</File>
 	<File name="ca/ca_process.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5952" topLine="260" />
@@ -268,11 +271,11 @@
 	<File name="ca/ca_profiler.h" open="0" top="0" tabpos="0">
 		<Cursor position="538" topLine="8" />
 	</File>
-	<File name="ca/ca_property.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="7263" topLine="308" />
+	<File name="ca/ca_property.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="7249" topLine="308" />
 	</File>
-	<File name="ca/ca_property.h" open="0" top="0" tabpos="0">
-		<Cursor position="6063" topLine="165" />
+	<File name="ca/ca_property.h" open="0" top="0" tabpos="8">
+		<Cursor position="6536" topLine="177" />
 	</File>
 	<File name="ca/ca_reader.cpp" open="0" top="0" tabpos="57">
 		<Cursor position="478" topLine="0" />
@@ -331,8 +334,14 @@
 	<File name="ca/ca_type_info.h" open="0" top="0" tabpos="0">
 		<Cursor position="1639" topLine="27" />
 	</File>
-	<File name="ca/ca_url.cpp" open="0" top="0" tabpos="30">
-		<Cursor position="156" topLine="0" />
+	<File name="ca/ca_url.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="12998" topLine="584" />
+	</File>
+	<File name="ca/ca_url.h" open="0" top="0" tabpos="4">
+		<Cursor position="858" topLine="0" />
+	</File>
+	<File name="ca/ca_var.h" open="0" top="0" tabpos="6">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="ca/ca_window.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="5425" topLine="162" />
@@ -937,8 +946,8 @@
 	<File name="dynamic_source/dynamic_source_script_cache.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2586" topLine="102" />
 	</File>
-	<File name="dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="16179" topLine="516" />
+	<File name="dynamic_source/dynamic_source_script_compiler.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="35348" topLine="989" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_compiler.h" open="0" top="0" tabpos="0">
 		<Cursor position="1017" topLine="21" />
@@ -1294,8 +1303,8 @@
 	<File name="plane/plane_session.h" open="0" top="0" tabpos="7">
 		<Cursor position="4489" topLine="114" />
 	</File>
-	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="42172" topLine="1879" />
+	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="17">
+		<Cursor position="35846" topLine="1560" />
 	</File>
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="21">
 		<Cursor position="12404" topLine="426" />
@@ -1336,11 +1345,14 @@
 	<File name="planebase/planebase_application.h" open="0" top="0" tabpos="10">
 		<Cursor position="1709" topLine="35" />
 	</File>
+	<File name="plugin/plugin_host_interaction.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="2724" topLine="63" />
+	</File>
 	<File name="plugin/plugin_instance.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="1289" topLine="50" />
 	</File>
-	<File name="plugin/plugin_plugin.cpp" open="0" top="0" tabpos="28">
-		<Cursor position="172" topLine="0" />
+	<File name="plugin/plugin_plugin.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="11213" topLine="463" />
 	</File>
 	<File name="plugin/plugin_plugin.h" open="0" top="0" tabpos="0">
 		<Cursor position="1504" topLine="53" />
@@ -1351,8 +1363,8 @@
 	<File name="primitive/datetime/datetime.h" open="0" top="0" tabpos="15">
 		<Cursor position="86" topLine="0" />
 	</File>
-	<File name="primitive/datetime/datetime_calendar.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="6720" topLine="177" />
+	<File name="primitive/datetime/datetime_calendar.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="224" topLine="0" />
 	</File>
 	<File name="primitive/datetime/datetime_calendar.h" open="0" top="0" tabpos="2">
 		<Cursor position="41" topLine="0" />
@@ -1369,11 +1381,11 @@
 	<File name="primitive/datetime/datetime_float_time.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="12092" topLine="369" />
 	</File>
-	<File name="primitive/datetime/datetime_time.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="21636" topLine="916" />
+	<File name="primitive/datetime/datetime_time.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="13548" topLine="547" />
 	</File>
-	<File name="primitive/datetime/datetime_time.h" open="0" top="0" tabpos="7">
-		<Cursor position="294" topLine="17" />
+	<File name="primitive/datetime/datetime_time.h" open="1" top="0" tabpos="6">
+		<Cursor position="3498" topLine="94" />
 	</File>
 	<File name="primitive/datetime/datetime_value.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="966" topLine="12" />
@@ -1426,8 +1438,8 @@
 	<File name="primitive/primitive_rectangle.h" open="0" top="0" tabpos="7">
 		<Cursor position="12750" topLine="286" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="16">
-		<Cursor position="15987" topLine="712" />
+	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="19">
+		<Cursor position="23676" topLine="964" />
 	</File>
 	<File name="primitive/primitive_size.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="5103" topLine="224" />
@@ -1453,8 +1465,8 @@
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="229" topLine="17" />
 	</File>
-	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="4">
-		<Cursor position="5682" topLine="165" />
+	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="7">
+		<Cursor position="13142" topLine="405" />
 	</File>
 	<File name="primitive/primitive_virtual_memory.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="3789" topLine="130" />
@@ -1600,8 +1612,8 @@
 	<File name="sockets/bsd/basic/sockets_Socket.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="6307" topLine="253" />
 	</File>
-	<File name="sockets/bsd/basic/sockets_SocketHandler.cpp" open="0" top="0" tabpos="27">
-		<Cursor position="3816" topLine="141" />
+	<File name="sockets/bsd/basic/sockets_SocketHandler.cpp" open="0" top="0" tabpos="20">
+		<Cursor position="9343" topLine="319" />
 	</File>
 	<File name="sockets/bsd/basic/sockets_address.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="8639" topLine="394" />
@@ -1807,8 +1819,8 @@
 	<File name="userpresence/userpresence.h" open="0" top="0" tabpos="18">
 		<Cursor position="16" topLine="0" />
 	</File>
-	<File name="userpresence/userpresence_user_presence.cpp" open="0" top="0" tabpos="20">
-		<Cursor position="1494" topLine="29" />
+	<File name="userpresence/userpresence_user_presence.cpp" open="0" top="0" tabpos="13">
+		<Cursor position="1787" topLine="34" />
 	</File>
 	<File name="userpresence/userpresence_user_presence.h" open="0" top="0" tabpos="0">
 		<Cursor position="363" topLine="0" />

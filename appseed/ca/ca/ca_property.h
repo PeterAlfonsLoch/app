@@ -208,6 +208,7 @@ namespace ca
 
       void unset();
 
+
       inline void   get_value(var & value);
       inline void   get(var & value);
       inline var &  get();

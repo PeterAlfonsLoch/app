@@ -328,6 +328,7 @@ namespace ca
       return get_value().propset();
    }
 
+
    strsize property::get_length() const
    {
       return get_value().get_length();

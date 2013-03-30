@@ -433,7 +433,6 @@ public:
    var equals_ci_get(const char * pszCompare, var varOnEqual) const;
 
 
-
    var operator - (int32_t i) const;
    var operator - (uint32_t ui) const;
    var operator - (int64_t i) const;

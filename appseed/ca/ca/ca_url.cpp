@@ -439,14 +439,14 @@ namespace ca
 
    }
 
-   var & url::set(var & varUrl, const char * pszKey, var var)
+   var & url::var_set(var & varUrl, const char * pszKey, var var)
    {
 
       return varUrl = set_key(varUrl, pszKey, var);
 
    }
 
-   ::ca::property & url::set(::ca::property & propUrl, const char * pszKey, var var)
+   ::ca::property & url::property_set(::ca::property & propUrl, const char * pszKey, var var)
    {
 
       propUrl.set_value(set_key(propUrl.get_value(), pszKey, var));
@@ -455,7 +455,7 @@ namespace ca
 
    }
 
-   string url::set(string & strUrl, const char * pszKey, var var)
+   string url::string_set(string & strUrl, const char * pszKey, var var)
    {
 
       return strUrl = set_key(strUrl, pszKey, var);
@@ -604,14 +604,14 @@ namespace ca
 
    }
 
-   var & url::remove(var & varUrl, const char * pszKey)
+   var & url::var_remove(var & varUrl, const char * pszKey)
    {
 
       return varUrl = remove_key(varUrl, pszKey);
 
    }
 
-   ::ca::property & url::remove(::ca::property & propUrl, const char * pszKey)
+   ::ca::property & url::property_remove(::ca::property & propUrl, const char * pszKey)
    {
 
       propUrl.set_string(remove_key(propUrl.get_value(), pszKey));
@@ -620,7 +620,7 @@ namespace ca
 
    }
 
-   string url::remove(string & strUrl, const char * pszKey)
+   string url::string_remove(string & strUrl, const char * pszKey)
    {
 
       return strUrl = remove_key(strUrl, pszKey);

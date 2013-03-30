@@ -253,7 +253,7 @@ namespace plugin
          m_dib->Fill(0, 0, 0, 0);
 
 //         ::ca::graphics_sp dc(get_app());
-         
+
          //dc->CreateCompatibleDC(NULL);
 
          //m_dib->defer_realize(dc);
@@ -388,17 +388,17 @@ namespace plugin
       if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
       {
 
-         m_psystem->url().remove(strLocation, "sessid");
+         m_psystem->url().string_remove(strLocation, "sessid");
 
       }
       else
       {
 
-         m_psystem->url().set(strLocation, "sessid", puser->m_strFontopusServerSessId);
+         m_psystem->url().string_set(strLocation, "sessid", puser->m_strFontopusServerSessId);
 
       }
 
-      m_psystem->url().remove(strLocation, "action");
+      m_psystem->url().string_remove(strLocation, "action");
 
       open_url(strLocation);
 
@@ -415,15 +415,15 @@ namespace plugin
 
       string strLocation = set["ruri"];
 
-      strLocation = m_psystem->url().remove(strLocation, "sessid");
+      strLocation = m_psystem->url().string_remove(strLocation, "sessid");
 
-      strLocation = m_psystem->url().remove(strLocation, "action");
+      strLocation = m_psystem->url().string_remove(strLocation, "action");
 
       string strUrl;
 
       strUrl = "https://account.ca2.cc/sec?action=logout";
 
-      m_psystem->url().set(strUrl, "ruri", strLocation);
+      m_psystem->url().string_set(strUrl, "ruri", strLocation);
 
       open_url(strUrl);
 
@@ -483,7 +483,7 @@ namespace plugin
 
             string strUrl = strPluginUrl;
 
-            strUrl = System.url().set(strUrl, "authnone", 1);
+            strUrl = System.url().string_set(strUrl, "authnone", 1);
 
             for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
             {

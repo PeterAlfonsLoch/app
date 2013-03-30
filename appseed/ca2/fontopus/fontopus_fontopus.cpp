@@ -145,7 +145,7 @@ namespace ca
             if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
             {
                string strUri = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
-               System.url().set(strUri, "sessid", puser->m_strFontopusServerSessId);
+               System.url().string_set(strUri, "sessid", puser->m_strFontopusServerSessId);
                System.open_link(strUri);
             }
          }

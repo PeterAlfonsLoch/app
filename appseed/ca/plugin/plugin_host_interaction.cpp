@@ -11,7 +11,7 @@
 
 namespace plugin
 {
-   
+
    host_interaction::host_interaction(::ca::application * papp) :
       ::ca::ca(papp)
    {
@@ -34,7 +34,7 @@ namespace plugin
 
    void host_interaction::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      
+
       ::user::interaction::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE         , pinterface, this, &host_interaction::_001OnMouseMove);
@@ -58,7 +58,7 @@ namespace plugin
    {
       UNREFERENCED_PARAMETER(pobj);
    }
-   
+
    void host_interaction::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -83,7 +83,7 @@ namespace plugin
          //setQuery.parse_url_query(strLink);
          if(setQuery.has_property("karfile_url"))
          {
-            System.url().set(strLink, "karfile_url", (const char *) m_pplugin->get_host_location_url());
+            System.url().string_set(strLink, "karfile_url", (const char *) m_pplugin->get_host_location_url());
          }
          // do the following if desired on calling System open linnk, will try to create plugin::system::get_host_location_url
          // else if(setQuery["ruri"].get_string().get_length() <= 0)
@@ -109,7 +109,7 @@ namespace plugin
 
    void host_interaction::_000OnDraw(::ca::graphics * pdc)
    {
-      
+
       //rect rectWindow;
       //m_pguie->GetWindowRect(rectWindow);
       //point ptPreviousViewportOrg = pdc->GetViewportOrg();
@@ -128,7 +128,7 @@ namespace plugin
       ::visual::cursor * pcursor = Session.get_cursor();
       if(pcursor != NULL)
       {
-         pcursor->to(pdc, ptCursor); 
+         pcursor->to(pdc, ptCursor);
       }
 
    }
@@ -188,15 +188,15 @@ namespace plugin
       m_pplugin->get_window_rect(&rect);
       ::copy(lprect, &rect);
    }
-   
+
 
    bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
-   { 
-      
+   {
+
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
       UNREFERENCED_PARAMETER(flags);
-      
+
       return TRUE;
 
    }
@@ -223,7 +223,7 @@ namespace plugin
    {
       // avoid host interaction call DefWindowProc for certain Windows messages
 //      SCAST_PTR(::ca::message::base, pbase, pobj);
-      
+
       pobj->m_bRet = true;
    }
 
@@ -260,7 +260,7 @@ namespace plugin
       }
       else
       {
-      
+
          return 0;
 
       }
