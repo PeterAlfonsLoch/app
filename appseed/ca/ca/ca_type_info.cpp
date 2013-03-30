@@ -213,14 +213,22 @@ namespace ca
 CLASS_DECL_ca bool operator == (const std_type_info & info1, const ::ca::type_info & info2)
 {
 
-   return !strcmp(info1.name(), info2.name());
+#ifdef WINDOWS
+   
+   return strcmp(info1.raw_name(), info2.name()) == 0;
+
+#else
+
+   return strcmp(info1.name(), info2.name()) == 0;
+
+#endif
 
 }
 
 CLASS_DECL_ca bool operator != (const std_type_info & info1, const ::ca::type_info & info2)
 {
 
-   return !strcmp(info1.name(), info2.name());
+   return !operator == (info1, info2);
 
 }
 
