@@ -128,6 +128,7 @@ namespace user
          appearance_notify,
       };
 
+      sp(mutex)                           m_spmutex;
       e_appearance                        m_eappearance;
       interaction *                       m_pimpl;
       static interaction *                g_pguieMouseMoveCapture;

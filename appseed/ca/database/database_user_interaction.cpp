@@ -89,15 +89,25 @@ namespace database
 
       bool interaction::WindowDataSaveWindowRect()
       {
+
+         single_lock sl(m_spmutex, true);
+
          bool bSave = false;
+
          if(m_bEnableSaveWindowRect)
          {
 
             m_strDisplay = calc_display();
 
+            ::database::id idWindow    = m_dataidWindow;
+
+            ::id idKey                 = "WindowRect." + m_strDisplay;
+
+            sl.unlock();
+
             bSave = SaveWindowRect_(
-               m_dataidWindow,
-               "WindowRect." + m_strDisplay,
+               idWindow,
+               idKey,
                this);
          }
 
@@ -109,13 +119,21 @@ namespace database
       bool interaction::WindowDataLoadWindowRect(bool bForceRestore)
       {
 
+         single_lock sl(m_spmutex, true);
+
          bool bLoad = false;
 
          keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
 
          m_strDisplay = calc_display();
 
-         bLoad = LoadWindowRect_(m_dataidWindow, "WindowRect." + m_strDisplay, this, bForceRestore);
+         ::database::id idWindow       = m_dataidWindow;
+
+         ::id idKey                    = "WindowRect." + m_strDisplay;
+
+         sl.unlock();
+
+         bLoad = LoadWindowRect_(idWindow, idKey, this, bForceRestore);
 
          return bLoad;
 
@@ -313,6 +331,15 @@ namespace database
          strDisplay.Format("Display(%d, %d)", rectScreen.width(), rectScreen.height());
 
          return strDisplay;
+
+      }
+
+      bool interaction::does_display_match()
+      {
+
+         single_lock sl(m_spmutex, true);
+
+         return m_strDisplay == calc_display();
 
       }
 

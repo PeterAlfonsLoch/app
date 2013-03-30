@@ -296,8 +296,7 @@ void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
       _001RedrawWindow();
    }
 
-   if(m_strDisplay == calc_display()
-   && dynamic_cast < simple_child_frame * > (this) == NULL)
+   if(does_display_match() && dynamic_cast < simple_child_frame * > (this) == NULL)
    {
       __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
    }
@@ -317,8 +316,7 @@ void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 
 
 
-   if(m_strDisplay == calc_display()
-   && dynamic_cast < simple_child_frame * > (this) == NULL)
+   if(does_display_match() && dynamic_cast < simple_child_frame * > (this) == NULL)
    {
       __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
 

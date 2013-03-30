@@ -8,6 +8,8 @@ namespace user
 
    interaction::interaction()
    {
+
+      m_pmutex                = NULL;
       m_eappearance           = appearance_normal;
       m_pimpl                 = NULL;
       m_bCursorInside         = false;
@@ -33,6 +35,7 @@ namespace user
       ::user::window_interface(papp)
    {
 
+      m_pmutex                      = NULL;
       m_eappearance                 = appearance_normal;
       m_pimpl                       = NULL;
       m_bCursorInside               = false;
@@ -124,6 +127,9 @@ namespace user
       catch(...)
       {
       }
+
+
+
    }
 
    ::ca::graphics * interaction::GetDC()
@@ -682,7 +688,11 @@ namespace user
          GetFont()->m_strFontFamilyName = "Times New Roman";
       }
 
-
+      m_spmutex(new mutex(get_app()));
+      if(m_pimpl != NULL && m_pimpl != this)
+      {
+         m_pimpl->m_spmutex = m_spmutex;
+      }
 
    }
 

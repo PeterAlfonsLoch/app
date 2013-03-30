@@ -224,8 +224,7 @@ namespace uinteraction
 
          ::database::user::interaction * pui = dynamic_cast < ::database::user::interaction * > (GetWnd());
 
-         if(pui != NULL
-            && pui->m_strDisplay != pui->calc_display())
+         if(pui != NULL && !pui->does_display_match())
             return false;
 
          if(GetAppearanceMode() == AppearanceModeFullScreen)

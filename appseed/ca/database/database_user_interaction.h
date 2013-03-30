@@ -34,8 +34,8 @@ namespace database
 
          virtual void _001WindowRestore();
 
-         string calc_display();
-
+         virtual string calc_display();
+         virtual bool does_display_match();
 
          virtual bool IsFullScreen();
          void WindowDataEnableSaveWindowRect(bool bEnable);
