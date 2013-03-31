@@ -42,6 +42,10 @@ namespace hi5
          {
             ensure_main_document();
             page1();
+
+            if(m_pviewAuth == NULL)
+               return "";
+
             m_pviewAuth->SetTimer(1984, 484, NULL);
             m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
             m_ptemplatePane->close_all_documents(FALSE);
@@ -56,7 +60,12 @@ namespace hi5
             createcontext->m_bMakeVisible = false;
             createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
             createcontext->m_bOuterPopupAlertLike = true;
+            
             m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
+            
+            if(m_pdoc == NULL)
+               return;
+
             userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
             pview->set_view_creator(this);
             m_ptabview = pview;
@@ -67,6 +76,10 @@ namespace hi5
 
          void authorization::page1()
          {
+
+            if(m_pdocAuth == NULL)
+               return;
+
             string strUrl;
             strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
             string strAppName;

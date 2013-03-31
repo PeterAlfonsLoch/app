@@ -575,7 +575,35 @@ namespace ca
    // return true to call run again
    bool thread::on_run_exception(::ca::exception & e)
    {
-      return m_p->on_run_exception(e);
+
+      try
+      {
+         
+         if(m_p == NULL)
+            return false;
+
+         return m_p->on_run_exception(e);
+
+      }
+      catch(::exception::standard_access_violation &)
+      {
+
+         return false;
+
+      }
+      catch(::ca::exception & e)
+      {
+
+         throw e;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
    }
 
    // Overridables
