@@ -2141,7 +2141,7 @@ namespace user
    }
 
    // remove the specified item
-   bool list::range::RemoveItem(index iItem)
+   bool list::range::remove_item(index iItem)
    {
       for(index i = 0; i < m_itemrangea.get_size();)
       {
@@ -2184,7 +2184,7 @@ namespace user
    // remove the specified item and offset remaining items.
    bool list::range::OnRemoveItem(index iItem)
    {
-      RemoveItem(iItem);
+      remove_item(iItem);
       // All ranges that has item "iItem + 1",
       // must have all items greater or equal "iItem + 1"
       // decremented by one

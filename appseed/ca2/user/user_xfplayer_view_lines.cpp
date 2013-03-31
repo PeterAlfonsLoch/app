@@ -30,7 +30,7 @@ void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisibl
       iIndex = iLineIndex;
       if(iIndex >= m_iFirstVisible)
       {
-         while(!this->element_at(iIndex).IsVisible())
+         while(!this->element_at(iIndex)->IsVisible())
          {
             iIndex++;
             if(iIndex >= this->get_size())
@@ -41,7 +41,7 @@ void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisibl
       iIndex = iLineIndex;
       if(iIndex <= m_iLastVisible)
       {
-         while(!this->element_at(iIndex).IsVisible())
+         while(!this->element_at(iIndex)->IsVisible())
          {
             iIndex--;
             if(iIndex < 0)
@@ -67,8 +67,8 @@ void XfplayerViewLines::Prepare()
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).m_pContainer = this;
-      this->element_at(i).m_iIndex = i;
+      this->element_at(i)->m_pContainer = this;
+      this->element_at(i)->m_iIndex = i;
    }
 }
 
@@ -86,7 +86,7 @@ void XfplayerViewLines::SetEffect(int32_t iEffect)
 {
     for(int32_t i = 0 ; i < this->get_size(); i++)
     {
-        this->element_at(i).SetTextEffect(iEffect);
+        this->element_at(i)->SetTextEffect(iEffect);
     }
 }
 

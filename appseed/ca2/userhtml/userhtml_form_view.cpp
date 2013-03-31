@@ -112,7 +112,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phi
 
             for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
             {
-               user::control * pcontrol = m_controldescriptorset[i].m_pcontrol;
+               user::control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
                if(pcontrol != NULL)
                {
                   _001Update(pcontrol);

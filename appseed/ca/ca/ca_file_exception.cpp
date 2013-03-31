@@ -108,7 +108,7 @@ namespace ca
 	      string csPid;
 	      csPid.Format( _T("%d ( 0x%x )"), OpenedFileInfo.dwPID , OpenedFileInfo.dwPID );
          m_strAdd += "PID: " + csPid + " Process Name : " + stInfo.csProcess;
-	      //m_list.SetItemText( m_nCount, 2, OpenedFileInfo.lpFile );
+	      //m_list.set_item_text( m_nCount, 2, OpenedFileInfo.lpFile );
 	      //m_list.SetItemData( m_nCount, (uint_ptr)OpenedFileInfo.hFile );
 
       }

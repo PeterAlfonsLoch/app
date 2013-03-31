@@ -182,7 +182,7 @@ namespace filemanager
          {
             for(int32_t i = 0; i < this->get_size(); i++)
             {
-               if(this->element_at(i).m_iFolder == iFolder)
+               if(this->element_at(i)->m_iFolder == iFolder)
                   return i;
             }
             return -1;
@@ -196,17 +196,17 @@ namespace filemanager
          {
             if(bSelected)
             {
-               return m_foldera.element_at(pitem->m_dwUser).m_iImageSelected;
+               return m_foldera.element_at(pitem->m_dwUser)->m_iImageSelected;
             }
             else
             {
-               return m_foldera.element_at(pitem->m_dwUser).m_iImage;
+               return m_foldera.element_at(pitem->m_dwUser)->m_iImage;
             }
          }
 
          void tree_view::_001OnItemExpand(::ca::tree_item *pitem)
          {
-            m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
+            m_pserver->open_folder(m_foldera[pitem->m_dwUser]->m_iFolder);
          }
 
          void tree_view::install_message_handling(::ca::message::dispatch * pdispatch)

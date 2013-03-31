@@ -11,7 +11,8 @@ namespace userex
    {
    public:
 
-      class menu
+      class menu :
+         virtual public ::ca::ca
       {
       public:
          string   m_strMatter;
@@ -19,7 +20,7 @@ namespace userex
       };
 
 
-      ::ca::smart_pointer_array < menu, menu & > m_menua;
+      ::ca::smart_pointer_array < menu > m_menua;
 
 
       pane_view(::ca::application * papp);

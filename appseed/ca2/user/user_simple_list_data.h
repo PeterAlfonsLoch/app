@@ -9,22 +9,22 @@ namespace user
    public:
       
       
-      bool m_bEnable;
+      bool                 m_bEnable;
 
-      ::ca::smart_pointer_array < stringa , stringa & > m_array;
+      spa(stringa)         m_array;
 
       
       simple_list_data(::ca::application * papp);
       virtual ~simple_list_data();
 
 
-      bool RemoveItem(index iItem);
+      bool remove_item(index iItem);
       void get_data(stringa & stra);
-      void GetColumnData(stringa & stra, index iColumn);
+      void get_column_data(stringa & stra, index iColumn);
       void set_data(list * plist, stringa & stra);
-      void SetColumnData(list * plist, stringa & stra, index iColumn);
+      void set_column_data(list * plist, stringa & stra, index iColumn);
       void Enable(bool bEnable);
-      void SetItemText(list * plist, index iItem, index iSubItem, const char * lpcsz);
+      void set_item_text(list * plist, index iItem, index iSubItem, const char * lpcsz);
       
 
       virtual void _001GetItemText(list_item * pitem);
@@ -35,7 +35,7 @@ namespace user
       virtual int_ptr _001GetItemCount();
 
    protected:
-      void SetItemText(int_ptr iItem, int_ptr iSubItem, const char * lpcsz);
+      void set_item_text(int_ptr iItem, int_ptr iSubItem, const char * lpcsz);
    };
 
 } // namespace user

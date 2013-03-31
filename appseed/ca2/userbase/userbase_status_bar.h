@@ -8,7 +8,8 @@ namespace userbase
    class status_bar_control;   // forward reference (see afxcmn.h for definition)
 
 
-   struct __STATUSPANE
+   struct __STATUSPANE :
+      virtual public ::ca::ca
    {
 
 

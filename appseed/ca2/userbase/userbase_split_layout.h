@@ -34,7 +34,8 @@ namespace userbase
       };
 
 
-      class CLASS_DECL_ca2 Pane
+      class CLASS_DECL_ca2 Pane :
+         virtual public ::ca::ca
       {
       public:
          Pane();
@@ -46,16 +47,16 @@ namespace userbase
       };
 
 
-      array_app_alloc < split_bar, split_bar & >   m_splitbara;
-      ::ca::smart_pointer_array < Pane, Pane &>              m_panea;
+      spa(split_bar)                               m_splitbara;
+      spa(Pane)                                    m_panea;
       e_orientation                                m_eorientationSplit;
-      int32_t                                          m_iIndex;
-      int32_t                                          m_iState;
+      int32_t                                      m_iIndex;
+      int32_t                                      m_iState;
       bool                                         m_bInitialized;
       ::critical_section                           m_mutex;
-      static const int32_t                             m_iMarging;
-      int32_t                                          m_cxBorder;
-      int32_t                                          m_cyBorder;
+      static const int32_t                         m_iMarging;
+      int32_t                                      m_cxBorder;
+      int32_t                                      m_cyBorder;
 
 
       split_layout(::ca::application * papp);

@@ -6,27 +6,27 @@ namespace fs
 
    void list_item_array::base_list_item_array::SoftSwap(index i1, index i2)
    {
-      index iArrange = this->element_at(i1).m_iArrange;
-      this->element_at(i1).m_iArrange = this->element_at(i2).m_iArrange;
-      this->element_at(i2).m_iArrange = iArrange;
+      index iArrange = this->element_at(i1)->m_iArrange;
+      this->element_at(i1)->m_iArrange = this->element_at(i2)->m_iArrange;
+      this->element_at(i2)->m_iArrange = iArrange;
    }
 
    list_item & list_item_array::base_list_item_array::get_item(index i)
    {
       if(i < 0 || i >= this->get_count())
          throw "cannot recover";
-      if(this->element_at(i).m_iArrange < 0 || this->element_at(i).m_iArrange >= this->get_count())
+      if(this->element_at(i)->m_iArrange < 0 || this->element_at(i)->m_iArrange >= this->get_count())
       {
-         if(this->element_at(i).m_iIndex < 0 || this->element_at(i).m_iIndex >= this->get_count())
+         if(this->element_at(i)->m_iIndex < 0 || this->element_at(i)->m_iIndex >= this->get_count())
          {
             return this->element_at(i);
          }
          else
          {
-            this->element_at(this->element_at(i).m_iIndex);
+            this->element_at(this->element_at(i)->m_iIndex);
          }
       }
-      return this->element_at(this->element_at(i).m_iArrange);
+      return this->element_at(this->element_at(i)->m_iArrange);
    }
 
    list_item_array::list_item_array(::ca::application * papp) :
@@ -73,14 +73,14 @@ namespace fs
    void list_item_array::add_item(list_item &item)
    {
       m_itema.add(item);
-      m_itema.element_at(this->get_size() - 1).m_iArrange = this->get_size() - 1;
+      m_itema.element_at(this->get_size() - 1)->m_iArrange = this->get_size() - 1;
    }
 
    index list_item_array::find_item_by_path(const char * pszPath)
    {
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         if(m_itema.element_at(i).m_strPath == pszPath)
+         if(m_itema.element_at(i)->m_strPath == pszPath)
             return i;
       }
       return -1;

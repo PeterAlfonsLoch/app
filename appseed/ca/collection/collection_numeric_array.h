@@ -762,3 +762,86 @@ inline void raw_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_arr
    }
    
 }
+
+
+
+
+
+// take in account that _001RemoveIndexes change
+// the index array by sorting it and returning
+// only the indexes that could be removed 
+// without indexes duplicates
+template<class TYPE, class ARG_TYPE>
+inline void base_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
+{
+
+   // sort
+   ia.QuickSort(true);
+
+   index i = ia.get_upper_bound();
+
+   // filter out of upper bound indexes
+   while(i >= 0 && ia[i] >= get_size())
+   {
+      
+      ia.remove_at(i);
+
+      i--;
+
+   }
+
+   // filter out of lower bound indexes
+   while(ia.get_size() > 0 && ia[0] < 0)
+   {
+      
+      ia.remove_at(0);
+
+   }
+
+   i = ia.get_upper_bound();
+
+   // filter out duplicates
+   while(i > 0 && ia[i] >= get_size())
+   {
+
+      if(ia[i] == ia[i - 1])
+         ia.remove_at(i);
+
+      i--;
+
+   }
+
+   remove_indexes(ia);
+   
+}
+
+
+
+template<class TYPE, class ARG_TYPE>
+inline void base_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
+{
+
+
+   // remove indexes
+   for(index i = ia.get_upper_bound(); i >= 0; i--)
+   {
+
+      remove_at(ia[i]);
+
+   }
+   
+}
+
+
+template<class TYPE, class ARG_TYPE>
+inline void base_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
+{
+
+   for(index i = 0; i < ia.get_count(); i++)
+   {
+
+      remove_at(ia[i]);
+
+   }
+   
+}

@@ -17,7 +17,8 @@ namespace filemanager
             FolderTypeNormal,
             FolderTypeArtist,
          };
-         class Folder
+         class Folder :
+            virtual public ::ca::ca
          {
          public:
             int64_t        m_iFolder;

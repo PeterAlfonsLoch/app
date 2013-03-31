@@ -19,7 +19,8 @@ namespace filemanager
             ItemTypeArtist,
             ItemTypeSong,
          };
-         class Item
+         class Item :
+            virtual public ::ca::ca
          {
          public:
             int64_t     m_iParent;

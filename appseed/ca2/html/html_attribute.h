@@ -5,7 +5,8 @@ namespace html
 {
 
 
-   class attribute
+   class attribute :
+      virtual public ::ca::ca
    {
    public:
 
@@ -24,7 +25,7 @@ namespace html
    };
 
 
-   class attribute_array : public ::ca::smart_pointer_array < attribute, attribute & >
+   class attribute_array : public spa(attribute)
    {
    public:
 

@@ -41,7 +41,7 @@ namespace userbase
    };
 
    class CLASS_DECL_ca2 menu_item_ptra :
-      public array_app_alloc < menu_item >
+      public spa(menu_item)
    {
    public:
       

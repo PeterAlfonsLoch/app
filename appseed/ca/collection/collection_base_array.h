@@ -4,6 +4,7 @@
 #undef new
 
 
+class index_array;
 
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
@@ -264,6 +265,12 @@ public:
    // Operations that move elements around
    void insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    void remove_at(index nIndex, ::count nCount = 1);
+
+   void _001RemoveIndexes(index_array & ia);
+   void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
+   void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
+
+
    iterator erase(iterator pos);
    iterator erase(iterator first, iterator last);
    void insert_at(index nStartIndex, base_array* pNewArray);

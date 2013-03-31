@@ -333,7 +333,7 @@ bool image_list::get_image_info(int32_t nImage, info * pinfo) const
       pinfo->m_rect.right     = pinfo->m_rect.left + m_size.cx;
       pinfo->m_rect.top       = 0;
       pinfo->m_rect.bottom    = m_size.cy;
-      pinfo->m_pdib           = m_spdib;
+      pinfo->m_pdib           =((image_list *) this)->m_spdib;
 //      pImageInfo->hbmMask           = NULL;
 
       return TRUE;

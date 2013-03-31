@@ -53,7 +53,7 @@ namespace user
             if(iCacheIndex >= m_cacheArray.get_size())
                break;
          }
-         pwstra = &m_cacheArray.element_at(iCacheIndex);
+         pwstra = m_cacheArray.element_at(iCacheIndex);
          m_cacheMap.remove_key(iIndex);
          iCacheIndex++;
          if(pwstra->get_size() < plist->m_columna.get_count())

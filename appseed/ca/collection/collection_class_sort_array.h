@@ -38,7 +38,7 @@ SortFind(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
 	while(true)
 	{
 		iIndex = (iUpperBound + iLowerBound) / 2;
-		iCompare = (this->element_at(iIndex).*lpfnIntSortProperty)() - iIntProperty;
+		iCompare = (this->element_at(iIndex)->*lpfnIntSortProperty)() - iIntProperty;
 		if(iCompare == 0)
 		{
 			return true;

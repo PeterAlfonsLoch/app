@@ -4,7 +4,8 @@
 namespace html
 {
 
-   class CLASS_DECL_ca2 font
+   class CLASS_DECL_ca2 font :
+      virtual public ::ca::ca
    {
    public:
       

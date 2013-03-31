@@ -46,7 +46,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 pane_array :
-         public ::ca::smart_pointer_array < pane, pane & >
+         public spa(pane)
       {
       public:
 
@@ -56,7 +56,7 @@ namespace user
 
 
          virtual pane * get_by_id(id id);
-         count get_visible_count();
+         ::count get_visible_count();
 
 
       };

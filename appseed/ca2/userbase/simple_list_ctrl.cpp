@@ -55,27 +55,27 @@ void simple_list_control::pre_subclass_window()
 }
 
 
-bool simple_list_control::RemoveItem(int32_t iItem)
+bool simple_list_control::remove_item(int32_t iItem)
 {
-   if(!m_listctrldata.RemoveItem(iItem))
+   if(!m_listctrldata.remove_item(iItem))
       return false;
    _001OnUpdateItemCount();
    return true;
 }
 
-bool simple_list_control::RemoveItem(item_range & range)
+bool simple_list_control::remove_item(item_range & range)
 {
    bool bOk = true;
    for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {
-      if(!m_listctrldata.RemoveItem(iItem))
+      if(!m_listctrldata.remove_item(iItem))
          bOk = false;
    }
    _001OnUpdateItemCount();
    return true;
 }
 
-bool simple_list_control::RemoveItem(range & range)
+bool simple_list_control::remove_item(range & range)
 {
    bool bOk = true;
    index_array iaRemove;
@@ -90,7 +90,7 @@ bool simple_list_control::RemoveItem(range & range)
    iaRemove.QuickSort(false);
    for(index i = 0; i < iaRemove.get_size(); i++)
    {
-      if(!m_listctrldata.RemoveItem(iaRemove[i]))
+      if(!m_listctrldata.remove_item(iaRemove[i]))
          bOk = false;
    }
    _001OnUpdateItemCount();

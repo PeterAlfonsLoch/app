@@ -45,7 +45,7 @@ namespace user
 
    }
 
-   void simple_list_data::SetItemText(int_ptr iItem, int_ptr iSubItem, const char * lpcsz)
+   void simple_list_data::set_item_text(int_ptr iItem, int_ptr iSubItem, const char * lpcsz)
    {
 
       while(iSubItem >= m_array.get_size())
@@ -53,13 +53,13 @@ namespace user
          m_array.add(stringa());
       }
 
-      m_array[iSubItem].set_at_grow(iItem, lpcsz);
+      m_array[iSubItem]->set_at_grow(iItem, lpcsz);
 
    }
 
-   void simple_list_data::SetItemText(list * plist, index iItem, index iSubItem, const char * lpcsz)
+   void simple_list_data::set_item_text(list * plist, index iItem, index iSubItem, const char * lpcsz)
    {
-      SetItemText(iItem, iSubItem, lpcsz);
+      set_item_text(iItem, iSubItem, lpcsz);
       plist->_001OnUpdateItemCount();
    }
 
@@ -68,7 +68,7 @@ namespace user
       m_bEnable = bEnable;
    }
 
-   void simple_list_data::GetColumnData(stringa & stra, int_ptr iColumn)
+   void simple_list_data::get_column_data(stringa & stra, int_ptr iColumn)
    {
       stra = m_array[iColumn];
 
@@ -76,17 +76,17 @@ namespace user
 
    void simple_list_data::get_data(stringa &stra)
    {
-      GetColumnData(stra, 0);
+      get_column_data(stra, 0);
    }
 
-   void simple_list_data::SetColumnData(list * plist, stringa & stra, int_ptr iColumn)
+   void simple_list_data::set_column_data(list * plist, stringa & stra, int_ptr iColumn)
    {
       m_array.set_at_grow(iColumn, stra);
       for(int32_t iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
       {
          if(iColumn != iSubItem)
          {
-            m_array[iSubItem].set_size(stra.get_count());
+            m_array[iSubItem]->set_size(stra.get_count());
          }
       }
       plist->_001OnUpdateItemCount();
@@ -95,10 +95,10 @@ namespace user
 
    void simple_list_data::set_data(list * plist, stringa &stra)
    {
-      SetColumnData(plist, stra, 0);
+      set_column_data(plist, stra, 0);
    }
 
-   bool simple_list_data::RemoveItem(int_ptr iItem)
+   bool simple_list_data::remove_item(int_ptr iItem)
    {
       if(iItem < 0)
          return false;
@@ -106,7 +106,7 @@ namespace user
          return false;
       for(int32_t iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
       {
-         m_array[iSubItem].remove_at(iItem);
+         m_array[iSubItem]->remove_at(iItem);
       }
       return true;
    }
@@ -117,7 +117,7 @@ namespace user
       if(m_array.get_size() <= 0)
          return 0;
       else
-         return m_array[0].get_size();
+         return m_array[0]->get_size();
 
    }
 

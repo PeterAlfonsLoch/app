@@ -141,8 +141,8 @@ namespace userbase
 
          m_infoa.add(info);
          //int32_t index = GetListCtrl().InsertItem(&lv);
-         //GetListCtrl().SetItemText(index,1,info.sTip);
-         //GetListCtrl().SetItemText(index,2,info.sProcessPath);
+         //GetListCtrl().set_item_text(index,1,info.sTip);
+         //GetListCtrl().set_item_text(index,2,info.sProcessPath);
       }
 
       //if( (count>0) && (defindex>=0) && (defindex<count) )

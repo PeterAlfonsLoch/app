@@ -13,7 +13,8 @@ namespace html
       display_inline,
    };*/
 
-   class CLASS_DECL_ca2 style
+   class CLASS_DECL_ca2 style :
+      virtual public ::ca::ca
    {
    public:
 

@@ -146,7 +146,7 @@ namespace filemanager
 
 
       ::ca::create_context_sp cc(get_app());
-      cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
+      cc->m_spCommandLine->m_varFile = itema[0]->m_strPath;
       request(cc);
 
    }

@@ -708,7 +708,7 @@ namespace user
 
          if(!m_plist->CreateEx(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
          {
-            ::ca::del(m_plist);
+            m_plist.release();
             throw resource_exception(get_app());
          }
 

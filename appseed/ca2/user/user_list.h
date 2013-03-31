@@ -45,7 +45,8 @@ namespace user
    class list_column_array;
 
 
-   class CLASS_DECL_ca2 list_column
+   class CLASS_DECL_ca2 list_column :
+      virtual public ::ca::ca
    {
    public:
 
@@ -351,7 +352,7 @@ namespace user
 
          bool has_item(index iItem) const;
          bool has_sub_item(index iItem, index iSubItem) const;
-         bool RemoveItem(index iItem);
+         bool remove_item(index iItem);
          bool OnRemoveItem(index iItem);
          void clear();
          void add_item(const item_range & itemrange);

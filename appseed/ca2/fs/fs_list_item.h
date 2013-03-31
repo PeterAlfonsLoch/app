@@ -5,7 +5,8 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca2 list_item
+   class CLASS_DECL_ca2 list_item :
+      virtual public ::ca::ca
    {
    public:
 

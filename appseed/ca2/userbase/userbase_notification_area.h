@@ -16,7 +16,8 @@ namespace userbase
    };
 
 
-   struct CLASS_DECL_ca2 TrayItemInfo
+   struct CLASS_DECL_ca2 TrayItemInfo :
+      virtual public ::ca::ca
    {
       oswindow    m_oswindow;
       UINT        uID;
@@ -38,11 +39,11 @@ namespace userbase
    public:
 
 
-      oswindow m_oswindowTray;
-      image_list * m_pil16;
-      ::ca::smart_pointer_array < TrayItemInfo, TrayItemInfo & > m_infoa;
-      HFONT m_hfontHidden;
-      HFONT m_hfontRegular;
+      oswindow             m_oswindowTray;
+      image_list *         m_pil16;
+      spa(TrayItemInfo)    m_infoa;
+      HFONT                m_hfontHidden;
+      HFONT                m_hfontRegular;
 
 
       notification_area();

@@ -59,7 +59,7 @@ namespace ca
                delete pdescriptor->m_pcontrol;
                pdescriptor->m_pcontrol = NULL;
             }
-            if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol) != NULL)
+            if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol.m_p) != NULL)
             {
                //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeoswindow_();
                //if(wndidTemp != NULL)
@@ -103,7 +103,7 @@ namespace ca
             {
                if(pdescriptor->m_etype == control::type_simple_list)
                {
-                  ::user::list * plist = dynamic_cast < ::user::list * >(pdescriptor->m_pcontrol);
+                  ::user::list * plist = dynamic_cast < ::user::list * >(pdescriptor->m_pcontrol.m_p);
                   plist->m_dataid = pdescriptor->m_idPrivateDataSection;
                   plist->_001SetSingleColumnMode(false);
                }
@@ -352,7 +352,7 @@ namespace ca
          UNREFERENCED_PARAMETER(phint);
          for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
-            control * pcontrol = m_controldescriptorset[i].m_pcontrol;
+            control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
             if(pcontrol == NULL)
                continue;
             _001Update(pcontrol);
@@ -616,7 +616,7 @@ namespace ca
          {
             for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
             {
-               control * pcontrol = m_controldescriptorset[i].m_pcontrol;
+               control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
                if(pcontrol == NULL)
                   continue;
                _001Update(pcontrol);
@@ -709,14 +709,14 @@ namespace ca
          }
          for(int32_t iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
          {
-            control * pcontrol = m_controldescriptorset[iControl].m_pcontrol;
+            control * pcontrol = m_controldescriptorset[iControl]->m_pcontrol;
             if(pcontrol == NULL)
                continue;
-            if(m_controldescriptorset[iControl].m_eddx == control::ddx_dbflags)
+            if(m_controldescriptorset[iControl]->m_eddx == control::ddx_dbflags)
             {
                _001UpdateDbFlags(pcontrol);
             }
-            else if(m_controldescriptorset[iControl].m_dataid == pchange->m_key.m_idKey)
+            else if(m_controldescriptorset[iControl]->m_dataid == pchange->m_key.m_idKey)
             {
                _001Update(pcontrol);
             }
@@ -836,7 +836,7 @@ namespace ca
                      //xxx pcontrol->m_pwnd->unsubclass_window();
                   }
       //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::ca::window > ()));
-                  if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol) != NULL)
+                  if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol.m_p) != NULL)
                   {
                      //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
                      //if(wndidTemp != NULL)
@@ -852,7 +852,7 @@ namespace ca
                   {
                      if(descriptor.m_etype == control::type_simple_list)
                      {
-                        ::user::list * plist = dynamic_cast < ::user::list * >(descriptor.m_pcontrol);
+                        ::user::list * plist = dynamic_cast < ::user::list * >(descriptor.m_pcontrol.m_p);
                         plist->m_dataid = descriptor.m_idPrivateDataSection;
                         plist->_001SetSingleColumnMode(false);
                      }
@@ -1000,7 +1000,7 @@ namespace ca
       //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
          for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
-            control * pcontrol = m_controldescriptorset[i].m_pcontrol;
+            control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
             if(pcontrol == NULL)
                continue;
             _001Update(pcontrol);

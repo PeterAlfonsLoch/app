@@ -27,7 +27,8 @@ namespace platform
          bool                    m_bMakeVisible;
       };
 
-      class link
+      class link :
+         virtual public ::ca::ca
       {
       public:
          link(::ca::application * papp);

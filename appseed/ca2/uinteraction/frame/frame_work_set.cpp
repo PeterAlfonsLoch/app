@@ -349,7 +349,7 @@ namespace frame
 
       pwndRegion->SetTimer(16319, 100, NULL);
 
-      _001InstallEventHandling(dynamic_cast < ::ca::message::dispatch * >(pwndEvent->m_pimpl));
+      _001InstallEventHandling(dynamic_cast < ::ca::message::dispatch * >(pwndEvent->m_pimpl.m_p));
 
       return true;
    }

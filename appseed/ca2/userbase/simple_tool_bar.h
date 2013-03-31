@@ -12,7 +12,8 @@
 class image_list;
 
 
-class simple_toolbar_item
+class simple_toolbar_item :
+      virtual public ::ca::ca
 {
 public:
 
@@ -54,14 +55,13 @@ public:
    };
 
 
-   bool             m_bTransparentBackground;
-   bool             m_bSimpleLayout;
-   ::ca::smart_pointer_array < simple_toolbar_item, simple_toolbar_item & >
-                    m_itema;
-   int32_t              m_iHover;
+   bool                       m_bTransparentBackground;
+   bool                       m_bSimpleLayout;
+   spa(simple_toolbar_item)   m_itema;
+   int32_t                    m_iHover;
 
-   size             m_sizeButton;
-   size             m_sizeImage;
+   size                       m_sizeButton;
+   size                       m_sizeImage;
 #ifdef WINDOWS
     HRSRC           m_hRsrcImageWell; // handle to loaded resource for image well
 #endif
