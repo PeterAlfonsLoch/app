@@ -48,14 +48,14 @@ namespace userbase
 
       for(i = 0; i < get_pane_count(); i++)
       {
-         m_panea[i].m_bFixedSize =  false;
-         m_panea[i].m_pholder = get_new_place_holder();
+         m_panea[i]->m_bFixedSize =  false;
+         m_panea[i]->m_pholder = get_new_place_holder();
       }
 
       for(i = 0; i < iSplitBarCount; i++)
       {
-         m_splitbara[i].m_dwPosition = 0;
-         m_splitbara[i].m_dwPosition = 0;
+         m_splitbara[i]->m_dwPosition = 0;
+         m_splitbara[i]->m_dwPosition = 0;
       }
 
       m_bInitialized = true;
@@ -121,7 +121,7 @@ namespace userbase
                }
                else
                {
-                  bMove = nPos > (int32_t) m_splitbara[m_iIndex - 1].m_dwPosition;
+                  bMove = nPos > (int32_t) m_splitbara[m_iIndex - 1]->m_dwPosition;
                }
                if(get_pane_count() >= m_iIndex )
                {
@@ -129,19 +129,19 @@ namespace userbase
                }
                else
                {
-                  bMove = bMove && nPos < (int32_t) m_splitbara[m_iIndex].m_dwPosition;
+                  bMove = bMove && nPos < (int32_t) m_splitbara[m_iIndex]->m_dwPosition;
                }
                if(bMove)
                {
-                  bMove = nPos != (int32_t) m_splitbara[m_iIndex].m_dwPosition;
+                  bMove = nPos != (int32_t) m_splitbara[m_iIndex]->m_dwPosition;
                }
-               TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex].m_dwPosition);
+               TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
                TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
                if(bMove)
                {
 
-                  m_splitbara[m_iIndex].m_dwPosition = nPos;
-                  m_splitbara[m_iIndex].m_dRate = 0.0;
+                  m_splitbara[m_iIndex]->m_dwPosition = nPos;
+                  m_splitbara[m_iIndex]->m_dRate = 0.0;
                   layout();
                }
                m_mutex.unlock();
@@ -198,27 +198,27 @@ namespace userbase
          for(int32_t i = 0 ; i < m_splitbara.get_count(); i++)
          {
 
-            if((m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate
-            || m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
-            && m_splitbara[i].m_dwPosition > 0)
+            if((m_splitbara[i]->m_dRate < m_splitbara[i]->m_dMinimumRate
+            || m_splitbara[i]->m_dRate > m_splitbara[i]->m_dMaximumRate)
+            && m_splitbara[i]->m_dwPosition > 0)
             {
-               dwPosition = m_splitbara[i].m_dwPosition;
+               dwPosition = m_splitbara[i]->m_dwPosition;
                dRate = (double) dwPosition / (double) iDimension;
-               m_splitbara[i].m_dRate = dRate;
+               m_splitbara[i]->m_dRate = dRate;
             }
 
 
-            if(m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate)
+            if(m_splitbara[i]->m_dRate < m_splitbara[i]->m_dMinimumRate)
             {
-               m_splitbara[i].m_dRate = m_splitbara[i].m_dMinimumRate;
+               m_splitbara[i]->m_dRate = m_splitbara[i]->m_dMinimumRate;
             }
-            else if(m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
+            else if(m_splitbara[i]->m_dRate > m_splitbara[i]->m_dMaximumRate)
             {
-               m_splitbara[i].m_dRate = m_splitbara[i].m_dMaximumRate;
+               m_splitbara[i]->m_dRate = m_splitbara[i]->m_dMaximumRate;
             }
 
 
-            m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t) (m_splitbara[i].m_dRate * iDimension));
+            m_splitbara[i]->m_dwPosition = min(m_splitbara[i]->m_dwMaxPosition, (uint32_t) (m_splitbara[i]->m_dRate * iDimension));
 
          }
       }
@@ -246,7 +246,7 @@ namespace userbase
          CalcSplitBarRect(i, &rectA);
          ClientToScreen(rectA);
 
-         pwnd = &m_splitbara.element_at(i);
+         pwnd = m_splitbara.element_at(i);
          ScreenToClient(rectA);
          pwnd->SetWindowPos(
             ZORDER_TOP,
@@ -265,11 +265,11 @@ namespace userbase
             bVisible = false;
          else
             bVisible = true;
-         pcomponent = &m_panea.element_at(i);
+         pcomponent = m_panea.element_at(i);
          pwnd = pcomponent->m_pholder;
          bool bHSVisible;
          bool bVSVisible;
-         if(m_panea[i].m_bFixedSize)
+         if(m_panea[i]->m_bFixedSize)
          {
 #ifdef WINDOWSEX
             int32_t iCYHSCROLL = GetSystemMetrics(SM_CYHSCROLL);
@@ -278,10 +278,10 @@ namespace userbase
             int32_t iCYHSCROLL = 16;
             int32_t iCXVSCROLL = 16;
 #endif
-            if(rectA.width() < m_panea[i].m_sizeFixed.cx)
+            if(rectA.width() < m_panea[i]->m_sizeFixed.cx)
             {
                bHSVisible = true;
-               if(rectA.height() < m_panea[i].m_sizeFixed.cy - iCYHSCROLL)
+               if(rectA.height() < m_panea[i]->m_sizeFixed.cy - iCYHSCROLL)
                {
                   bVSVisible = true;
                }
@@ -293,10 +293,10 @@ namespace userbase
             else
             {
                bHSVisible = false;
-               if(rectA.height() < m_panea[i].m_sizeFixed.cy)
+               if(rectA.height() < m_panea[i]->m_sizeFixed.cy)
                {
                   bVSVisible = true;
-                  if(rectA.width() < m_panea[i].m_sizeFixed.cx - iCXVSCROLL)
+                  if(rectA.width() < m_panea[i]->m_sizeFixed.cx - iCXVSCROLL)
                   {
                      bHSVisible = true;
                   }
@@ -331,8 +331,8 @@ namespace userbase
       if(iIndex < 0
       && iIndex >= get_split_count())
          return;
-       m_splitbara[iIndex].m_dwPosition    = nPos;
-      m_splitbara[iIndex].m_dRate         = -1.0; // disable rate evaluation at first
+       m_splitbara[iIndex]->m_dwPosition    = nPos;
+      m_splitbara[iIndex]->m_dRate         = -1.0; // disable rate evaluation at first
    }
 
    void split_layout::set_position_rate(int32_t iIndex, double dRate, double dMinimumRate, double dMaximumRate)
@@ -342,17 +342,17 @@ namespace userbase
       if(iIndex < 0
       && iIndex >= get_split_count())
          return;
-      m_splitbara[iIndex].m_dRate         = dRate;
-      m_splitbara[iIndex].m_dMinimumRate  = dMinimumRate;
-      m_splitbara[iIndex].m_dMaximumRate  = dMaximumRate;
-      m_splitbara[iIndex].m_dwPosition    = (uint32_t) -1; // disable position evaluation at first on layout
+      m_splitbara[iIndex]->m_dRate         = dRate;
+      m_splitbara[iIndex]->m_dMinimumRate  = dMinimumRate;
+      m_splitbara[iIndex]->m_dMaximumRate  = dMaximumRate;
+      m_splitbara[iIndex]->m_dwPosition    = (uint32_t) -1; // disable position evaluation at first on layout
    }
 
    int32_t split_layout::get_position(int32_t iIndex)
    {
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_split_count());
-      return m_splitbara[iIndex].m_dwPosition;
+      return m_splitbara[iIndex]->m_dwPosition;
    }
 
    int32_t split_layout::get_split_count()
@@ -425,7 +425,7 @@ namespace userbase
       if(iIndex >= m_splitbara.get_count())
          return;
 
-      int32_t nPos = m_splitbara[iIndex].m_dwPosition;
+      int32_t nPos = m_splitbara[iIndex]->m_dwPosition;
       GetClientRect(lpRect);
       if(m_eorientationSplit == orientation_horizontal)
       {

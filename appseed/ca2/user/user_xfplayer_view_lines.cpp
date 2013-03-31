@@ -109,7 +109,7 @@ index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 {
    for(index i = 0; i < this->get_size(); i++)
    {
-      ::user::e_line_hit etest = this->element_at(i).hit_test(ptCursor, iChar);
+      ::user::e_line_hit etest = this->element_at(i)->hit_test(ptCursor, iChar);
       if(etest != user::line_hit_none)
       {
          iLine = i;
@@ -133,9 +133,9 @@ void XfplayerViewLines::OnMouseMove(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).m_pContainer = this;
-      this->element_at(i).m_iIndex = i;
-      this->element_at(i).OnMouseMove(pobj);
+      this->element_at(i)->m_pContainer = this;
+      this->element_at(i)->m_iIndex = i;
+      this->element_at(i)->OnMouseMove(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -145,9 +145,9 @@ void XfplayerViewLines::OnLButtonDown(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).m_pContainer = this;
-      this->element_at(i).m_iIndex = i;
-      this->element_at(i).OnLButtonDown(pobj);
+      this->element_at(i)->m_pContainer = this;
+      this->element_at(i)->m_iIndex = i;
+      this->element_at(i)->OnLButtonDown(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -157,7 +157,7 @@ void XfplayerViewLines::OnLButtonUp(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).OnLButtonUp(pobj);
+      this->element_at(i)->OnLButtonUp(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -168,7 +168,7 @@ void XfplayerViewLines::OnTimer(::ca::signal_object * pobj)
 
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).OnTimer(pobj);
+      this->element_at(i)->OnTimer(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -178,7 +178,7 @@ void XfplayerViewLines::OnSetCursor(::ca::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).OnSetCursor(pobj);
+      this->element_at(i)->OnSetCursor(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -221,20 +221,20 @@ void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSe
       if(iLineEnd == iLineStart)
       {
 
-         strSelText = element_at(iLineStart).m_str.Mid(iCharStart, iCharEnd - iCharStart + 1);
+         strSelText = element_at(iLineStart)->m_str.Mid(iCharStart, iCharEnd - iCharStart + 1);
 
       }
       else
       {
 
-         strSelText = element_at(iLineStart).m_str.Mid(iCharStart);
+         strSelText = element_at(iLineStart)->m_str.Mid(iCharStart);
 
          for(index iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
          {
 
             strSelText += pszLineSeparator;
 
-            strSelText += element_at(iLine).m_str;
+            strSelText += element_at(iLine)->m_str;
 
          }
 
@@ -243,7 +243,7 @@ void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSe
 
             strSelText += pszLineSeparator;
 
-            strSelText += element_at(iLineEnd).m_str.Mid(0, iCharEnd + 1);
+            strSelText += element_at(iLineEnd)->m_str.Mid(0, iCharEnd + 1);
 
          }
       }
@@ -270,7 +270,7 @@ void XfplayerViewLines::get_text(string & strText, const char * pszLineSeparator
    if(get_count() > 0)
    {
 
-      strText = element_at(0).m_str;
+      strText = element_at(0)->m_str;
 
    }
          
@@ -279,7 +279,7 @@ void XfplayerViewLines::get_text(string & strText, const char * pszLineSeparator
 
       strText += pszLineSeparator;
 
-      strText += element_at(iLine).m_str;
+      strText += element_at(iLine)->m_str;
 
    }
 

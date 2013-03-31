@@ -445,7 +445,7 @@ void view::dump(dump_context & dumpcontext) const
 {
    ::user::interaction::dump(dumpcontext);
 
-   if (::view::get_document() != NULL)
+   if (((view *) this)->::view::get_document() != NULL)
       dumpcontext << "with ::user::document_interface: ";
    else
       dumpcontext << "with no ::user::document_interface\n";
@@ -635,10 +635,10 @@ void view::_001OnMouseMove(::ca::signal_object * pobj)
 }
 
 
-::user::document_interface * view::get_document()
+::user::document_interface * view::get_document() const
  {
     ASSERT(this != NULL);
-    return m_spdocument;
+    return ((::view *) this)->m_spdocument;
  }
 
 

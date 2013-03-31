@@ -82,7 +82,7 @@ namespace userbase
       process_data<TBBUTTON> data(dwTrayPid);
       TBBUTTON tb = {0};
       TRAYDATA tray = {0};
-      TrayItemInfo info = {0};
+      TrayItemInfo info;
 
       for(int32_t i=0; i<count; i++)
       {
@@ -192,9 +192,9 @@ namespace userbase
 
    void notification_area::PostMessageToTrayIcon(int32_t iItem, LPARAM lParam)
    {
-      ::PostMessage(m_infoa[iItem].m_oswindow,
-         m_infoa[iItem].uCallbackMessage,
-         m_infoa[iItem].uID,
+      ::PostMessage(m_infoa[iItem]->m_oswindow,
+         m_infoa[iItem]->uCallbackMessage,
+         m_infoa[iItem]->uID,
          lParam);
    }
 

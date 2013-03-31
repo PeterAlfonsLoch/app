@@ -174,7 +174,7 @@ size simple_toolbar::CalcSimpleLayout()
       /*      int32_t i;
       for (i = 0; i < nCount; i++)
       {
-      m_itema[i].fsState &= ~TBSTATE_WRAP;
+      m_itema[i]->fsState &= ~TBSTATE_WRAP;
       }
       for (i = 0; i < nCount; i++)
       {
@@ -184,7 +184,7 @@ size simple_toolbar::CalcSimpleLayout()
       _GetButton(i, &m_itema[i]);
       for (i = 0; i < nCount; i++)
       {
-      if(m_itema[i].fsState & TBSTATE_WRAP)
+      if(m_itema[i]->fsState & TBSTATE_WRAP)
       ASSERT(FALSE);
       }*/
       rect rectItem;
@@ -359,12 +359,12 @@ void simple_toolbar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisa
    {
 
       // ignore separators
-      if(m_itema[state.m_iIndex].m_id != "separator")
+      if(m_itema[state.m_iIndex]->m_id != "separator")
       {
 
-         state.m_id = m_itema[state.m_iIndex].m_id;
+         state.m_id = m_itema[state.m_iIndex]->m_id;
 
-         state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex].m_bEnableIfHasCommandHandler;
+         state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex]->m_bEnableIfHasCommandHandler;
 
          // allow reflections
          //if (::user::interaction::_001OnCommand(0,
@@ -437,23 +437,23 @@ size simple_toolbar::CalcSize(int32_t nCount)
       }
 
 
-      if (m_itema[i].m_fsState & TBSTATE_HIDDEN)
+      if (m_itema[i]->m_fsState & TBSTATE_HIDDEN)
          continue;
 
       //int32_t cx = m_sizeButton.cx;
       int32_t cx = buttonx;
-      if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
       {
          // a separator represents either a height or width
-         if (m_itema[i].m_fsState & TBSTATE_WRAP)
+         if (m_itema[i]->m_fsState & TBSTATE_WRAP)
             sizeResult.cy = max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
          else
-            sizeResult.cx = max(cur.x + m_itema[i].m_iImage, sizeResult.cx);
+            sizeResult.cx = max(cur.x + m_itema[i]->m_iImage, sizeResult.cx);
       }
       else
       {
          // check for dropdown style, but only if the buttons are being drawn
-         /*         if ((m_itema[i].m_fsStyle & TBSTYLE_DROPDOWN) &&
+         /*         if ((m_itema[i]->m_fsStyle & TBSTYLE_DROPDOWN) &&
          (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
          {
          // add size of drop down
@@ -465,17 +465,17 @@ size simple_toolbar::CalcSize(int32_t nCount)
          sizeResult.cy = max(cur.y + buttony, sizeResult.cy);
       }
 
-      if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
-         cur.x += m_itema[i].m_iImage;
+      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
+         cur.x += m_itema[i]->m_iImage;
       else
          cur.x += cx - CX_OVERLAP;
 
-      if (m_itema[i].m_fsState & TBSTATE_WRAP)
+      if (m_itema[i]->m_fsState & TBSTATE_WRAP)
       {
          cur.x = 0;
          //         cur.y += m_sizeButton.cy;
          cur.y += buttony;
-         if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+         if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
             cur.y += cySep;
       }
    }
@@ -1697,22 +1697,22 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
    string str;
    for (int32_t i = 0; i < nCount; i++)
    {
-      m_itema[i].m_fsState &= ~TBSTATE_WRAP;
+      m_itema[i]->m_fsState &= ~TBSTATE_WRAP;
 
-      if (m_itema[i].m_fsState & TBSTATE_HIDDEN)
+      if (m_itema[i]->m_fsState & TBSTATE_HIDDEN)
          continue;
       GetButtonText(i, str);
       int32_t dx, dxNext;
-      if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
       {
-         dx = m_itema[i].m_iImage;
+         dx = m_itema[i]->m_iImage;
          dxNext = dx;
       }
       else if (!str.is_empty())
       {
          dx = m_sizeButton.cx;
          //         string str;
-         //         str = (const wchar_t *) m_itema[i].iString;
+         //         str = (const wchar_t *) m_itema[i]->iString;
          size size;
          ::GetTextExtentPoint32U(
             (HDC)pdc->get_os_data(),
@@ -1911,7 +1911,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
          int32_t i;
          for (i = 0; i < nCount; i++)
-            if ((m_itema[i].m_fsStyle & TBSTYLE_SEP) && (m_itema[i].m_id != "separator"))
+            if ((m_itema[i]->m_fsStyle & TBSTYLE_SEP) && (m_itema[i]->m_id != "separator"))
                nControlCount++;
 
          if (nControlCount > 0)
@@ -1921,10 +1921,10 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
             for(int32_t i = 0; i < nCount; i++)
             {
-               if ((m_itema[i].m_fsStyle & TBSTYLE_SEP) && (m_itema[i].m_id != "separator"))
+               if ((m_itema[i]->m_fsStyle & TBSTYLE_SEP) && (m_itema[i]->m_id != "separator"))
                {
                   pControl[nControlCount].nIndex = i;
-                  pControl[nControlCount].strId = m_itema[i].m_id;
+                  pControl[nControlCount].strId = m_itema[i]->m_id;
 
                   rect rect;
                   _001GetItemRect(i, &rect);
@@ -2046,27 +2046,27 @@ for (int32_t i = 0; i < nCount; i++)
 //  to the other versions which calculate it at 2/3 of that value.
 //  This is actually a bug which should be fixed in IE 4.01, so we
 //  only do the 100% calculation specifically for IE4.
-int32_t cySep = m_itema[i].iBitmap;
+int32_t cySep = m_itema[i]->iBitmap;
 ASSERT(gen_ComCtlVersion != -1);
 if (!(GetStyle() & TBSTYLE_FLAT) && gen_ComCtlVersion != VERSION_IE4)
 cySep = cySep * 2 / 3;
 
-if (m_itema[i].fsState & TBSTATE_HIDDEN)
+if (m_itema[i]->fsState & TBSTATE_HIDDEN)
 continue;
 
 int32_t cx = m_sizeButton.cx;
-if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
 {
 // a separator represents either a height or width
-if (m_itema[i].fsState & TBSTATE_WRAP)
+if (m_itema[i]->fsState & TBSTATE_WRAP)
 sizeResult.cy = max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
 else
-sizeResult.cx = max(cur.x + m_itema[i].iBitmap, sizeResult.cx);
+sizeResult.cx = max(cur.x + m_itema[i]->iBitmap, sizeResult.cx);
 }
 else
 {
 // check for dropdown style, but only if the buttons are being drawn
-if ((m_itema[i].m_fsStyle & TBSTYLE_DROPDOWN) &&
+if ((m_itema[i]->m_fsStyle & TBSTYLE_DROPDOWN) &&
 (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
 {
 // add size of drop down
@@ -2077,16 +2077,16 @@ sizeResult.cx = max(cur.x + cx, sizeResult.cx);
 sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
 }
 
-if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
-cur.x += m_itema[i].iBitmap;
+if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
+cur.x += m_itema[i]->iBitmap;
 else
 cur.x += cx - CX_OVERLAP;
 
-if (m_itema[i].fsState & TBSTATE_WRAP)
+if (m_itema[i]->fsState & TBSTATE_WRAP)
 {
 cur.x = 0;
 cur.y += m_sizeButton.cy;
-if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
 cur.y += cySep;
 }
 }

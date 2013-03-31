@@ -38,7 +38,7 @@ public:
    view();
    virtual ~view() = 0;
 
-   user::document_interface * get_document();
+   user::document_interface * get_document() const;
 
    template < class DOCUMENT >
    ::ca::data * get_data();

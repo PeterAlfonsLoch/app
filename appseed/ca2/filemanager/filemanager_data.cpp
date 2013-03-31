@@ -84,7 +84,7 @@ namespace filemanager
          ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pmanager);
          FileManagerViewUpdateHint uh;
          uh.m_pmanager = m_pmanager;
-         uh.m_strPath = itema[0].m_strPath;
+         uh.m_strPath = itema[0]->m_strPath;
          uh.set_type(FileManagerViewUpdateHint::TypeSaveAsOK);
          pdoc->update_all_views(NULL, 0, &uh);
          m_pdocumentSave = NULL;
@@ -100,13 +100,13 @@ namespace filemanager
          if(itema.get_count() == 2 && m_id == "left_file")
          {
             {
-               varFile = itema[0].m_strPath;
+               varFile = itema[0]->m_strPath;
                varQuery["file_manager_id"] = "left_file";
                m_pcallback->request(varFile, varQuery);
             }
 
             {
-               varFile = itema[1].m_strPath;
+               varFile = itema[1]->m_strPath;
                varQuery["file_manager_id"] = "right_file";
                m_pcallback->request(varFile, varQuery);
             }
@@ -114,13 +114,13 @@ namespace filemanager
          else if(itema.get_count() == 2 && m_id == "right_file")
          {
             {
-               varFile = itema[0].m_strPath;
+               varFile = itema[0]->m_strPath;
                varQuery["file_manager_id"] = "right_file";
                m_pcallback->request(varFile, varQuery);
             }
 
             {
-               varFile = itema[1].m_strPath;
+               varFile = itema[1]->m_strPath;
                varQuery["file_manager_id"] = "left_file";
                m_pcallback->request(varFile, varQuery);
             }

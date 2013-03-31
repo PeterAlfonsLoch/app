@@ -104,13 +104,13 @@ namespace user
 
    bool tab::set_title(::index iPane, const char * lpcsz)
    {
-      get_data()->m_panea[iPane].m_istrTitleEx = lpcsz;
+      get_data()->m_panea[iPane]->m_istrTitleEx = lpcsz;
       return true;
    }
 
    bool tab::SetTitleById(id id, const char * lpcsz)
    {
-      get_data()->m_panea[get_tab_by_id(id)].m_istrTitleEx = lpcsz;
+      get_data()->m_panea[get_tab_by_id(id)]->m_istrTitleEx = lpcsz;
       return true;
    }
 
@@ -149,7 +149,7 @@ namespace user
       for(int32_t i = 0; i < get_data()->m_panea.get_count(); i++)
       {
 
-         if(get_data()->m_panea[i].m_id == id)
+         if(get_data()->m_panea[i]->m_id == id)
          {
 
             get_data()->m_panea.remove_at(i);
@@ -219,7 +219,7 @@ namespace user
       {
          for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
-            if(get_data()->m_panea[i].m_bVisible)
+            if(get_data()->m_panea[i]->m_bVisible)
             {
                if(iPane <= 0)
                {
@@ -1150,23 +1150,23 @@ namespace user
       }
       if(eelement == element_icon)
       {
-         if(get_data()->m_panea[iTabParam].m_dib.is_null())
+         if(get_data()->m_panea[iTabParam]->m_dib.is_null())
             return false;
          if(!get_element_rect(iTabParam, lprect, element_client))
             return false;
-         lprect->right = lprect->left + get_data()->m_panea[iTabParam].m_dib->cx;
-         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam].m_dib->cy;
+         lprect->right = lprect->left + get_data()->m_panea[iTabParam]->m_dib->cx;
+         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam]->m_dib->cy;
          return true;
       }
       else if(eelement == element_text)
       {
          if(!get_element_rect(iTabParam, lprect, element_client))
             return false;
-         if(get_data()->m_panea[iTabParam].m_dib.is_set())
+         if(get_data()->m_panea[iTabParam]->m_dib.is_set())
          {
-            lprect->left += get_data()->m_panea[iTabParam].m_dib->cx + 2;
+            lprect->left += get_data()->m_panea[iTabParam]->m_dib->cx + 2;
          }
-         if(!get_data()->m_panea[iTabParam].m_bPermanent)
+         if(!get_data()->m_panea[iTabParam]->m_bPermanent)
          {
             lprect->right -= 2 + 16 + 2;
          }
@@ -1175,7 +1175,7 @@ namespace user
       }
       else if(eelement == element_close_tab_button)
       {
-         if(get_data()->m_panea[iTabParam].m_bPermanent)
+         if(get_data()->m_panea[iTabParam]->m_bPermanent)
             return false;
          if(get_data()->get_visible_tab_count() <= 1 && !get_data()->m_bEnableCloseAll)
             return false;
@@ -1203,7 +1203,7 @@ namespace user
             index iPane = iTabParam;
             for(int32_t i = 0; iPane > 0 && i < get_data()->m_panea.get_count(); i++)
             {
-               if(get_data()->m_panea[i].m_bVisible)
+               if(get_data()->m_panea[i]->m_bVisible)
                {
                  iPane--;
                   iPreviousVisibleTabCount++;
@@ -1457,7 +1457,7 @@ namespace user
    {
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         if(this->element_at(i).m_id == id)
+         if(this->element_at(i)->m_id == id)
          {
             return element_at(i);
          }
@@ -1468,11 +1468,11 @@ namespace user
    count tab::pane_array::get_visible_count()
    {
 
-      count count = 0;
+      ::count count = 0;
 
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         if(this->element_at(i).m_bVisible)
+         if(this->element_at(i)->m_bVisible)
          {
             count++;
          }

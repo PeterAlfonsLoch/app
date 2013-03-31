@@ -130,7 +130,7 @@ void file_manager_operation_list_view::OnFileOperationStep(int32_t iOperation, b
       }
       if(get_document()->m_thread.m_iOperation < get_document()->m_thread.m_fileoperationa.get_size())
       {
-         iItem += get_document()->m_thread.m_fileoperationa[get_document()->m_thread.m_iOperation].m_iFile;
+         iItem += get_document()->m_thread.m_fileoperationa[get_document()->m_thread.m_iOperation]->m_iFile;
       }
       _001ItemScroll(iItem);
    }

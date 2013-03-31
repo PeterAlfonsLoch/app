@@ -63,7 +63,7 @@ namespace userex
          {
             wnda.add(pguie);
             pguieNext = pguie->get_parent();
-            if(pguieNext == NULL || dynamic_cast < ::ca::window * > (pguie->m_pimpl) != NULL)
+            if(pguieNext == NULL || dynamic_cast < ::ca::window * > (pguie->m_pimpl.m_p) != NULL)
                break;
             pguie = pguieNext;
          }
@@ -125,9 +125,9 @@ namespace userex
       ::user::tab::pane_array & panea = get_data()->m_panea;
       for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
-         if(panea[iTab].m_pholder == pholder)
+         if(panea[iTab]->m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure(panea[iTab].m_id);
+            ::user::view_creator_data * pcreatordata = ensure(panea[iTab]->m_id);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)

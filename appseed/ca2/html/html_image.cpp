@@ -48,9 +48,9 @@ namespace html
             if(lockImage.lock(duration::zero()))
             {
                pdata->m_layoutstate.m_cx = (float) pdata->m_imagea[m_iImage]->m_spdib->cx;
-               if(pdata->m_imagea[m_iImage].m_spdib->cy > pdata->m_layoutstate.m_cy)
+               if(pdata->m_imagea[m_iImage]->m_spdib->cy > pdata->m_layoutstate.m_cy)
                {
-                  pdata->m_layoutstate.m_cy = (float) pdata->m_imagea[m_iImage].m_spdib->cy;
+                  pdata->m_layoutstate.m_cy = (float) pdata->m_imagea[m_iImage]->m_spdib->cy;
                }
             }
             else
@@ -59,7 +59,7 @@ namespace html
                pdata->m_layoutstate.m_cy = 0;
             }
 
-            m_box.set_cxy(pdata->m_imagea[m_iImage].m_spdib->size());
+            m_box.set_cxy(pdata->m_imagea[m_iImage]->m_spdib->size());
 
          }
 
