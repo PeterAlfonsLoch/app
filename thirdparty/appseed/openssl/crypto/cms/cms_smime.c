@@ -524,7 +524,7 @@ CMS_ContentInfo *CMS_sign_receipt(CMS_SignerInfo *si,
 	if (!cms)
 		goto err;
 
-	/* Set inner content type to signed receipt */
+	/* set inner content type to signed receipt */
 	if (!CMS_set1_eContentType(cms, OBJ_nid2obj(NID_id_smime_ct_receipt)))
 		goto err;
 
@@ -540,7 +540,7 @@ CMS_ContentInfo *CMS_sign_receipt(CMS_SignerInfo *si,
 	if (!os)
 		goto err;
 
-	/* Set content to digest */
+	/* set content to digest */
 	rct_cont = BIO_new_mem_buf(os->data, os->length);
 	if (!rct_cont)
 		goto err;
@@ -554,7 +554,7 @@ CMS_ContentInfo *CMS_sign_receipt(CMS_SignerInfo *si,
 	if (!CMS_final(cms, rct_cont, NULL, flags))
 		goto err;
 
-	/* Set embedded content */
+	/* set embedded content */
 	pos = CMS_get0_content(cms);
 	*pos = os;
 

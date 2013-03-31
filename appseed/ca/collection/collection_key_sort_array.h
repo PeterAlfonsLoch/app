@@ -65,13 +65,13 @@ FindFirst(KEY k, int32_t & iIndex, int32_t iStart, int32_t iEnd)
    {
       return false;
    }
-   int32_t iLBound = iStart;
+   int32_t iLowerBound = iStart;
    int32_t iMaxBound = iEnd;
-   int32_t iUBound = iMaxBound;
+   int32_t iUpperBound = iMaxBound;
 
    while(true)
    {
-      iIndex = (iUBound + iLBound) / 2;
+      iIndex = (iUpperBound + iLowerBound) / 2;
       if((ElementAt(iIndex).*m_lpfnKeyProperty)() == k)
       {
          while(iIndex > 0)
@@ -89,29 +89,29 @@ FindFirst(KEY k, int32_t & iIndex, int32_t iStart, int32_t iEnd)
       }
       else if((ElementAt(iIndex).*m_lpfnKeyProperty)() > k)
       {
-         iUBound = iIndex - 1;
-         if(iUBound < 0)
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
          {
             iIndex = 0;
             break;
          }
-         if(iUBound < iLBound)
+         if(iUpperBound < iLowerBound)
          {
-            iIndex = iLBound;
+            iIndex = iLowerBound;
             break;
          }
       }
       else
       {
-         iLBound = iIndex + 1;
-         if(iLBound > iMaxBound)
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
          {
             iIndex = iMaxBound + 1;
             break;
          }
-         if(iUBound < iLBound)
+         if(iUpperBound < iLowerBound)
          {
-            iIndex = iLBound;
+            iIndex = iLowerBound;
             break;
          }
       }

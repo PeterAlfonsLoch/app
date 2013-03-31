@@ -174,7 +174,7 @@ namespace xml
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
          if(m_nodea[i].m_strName == lpcszName && m_nodea[i].attr(pszAttr) == value)
-            return m_nodea.ptr_at(i);
+            return m_nodea.element_at(i);
       }
       return NULL;
    }
@@ -1799,7 +1799,7 @@ namespace xml
 
       for( int32_t i = 0 ; i < pnode->m_nodea.get_size(); i++)
       {
-         class node * pnodeChild = pnode->m_nodea.ptr_at(i);
+         class node * pnodeChild = pnode->m_nodea.element_at(i);
          if(pnodeChild)
          {
             class node * pnodeNewChild = new class node(get_app());
@@ -1854,16 +1854,16 @@ namespace xml
 
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
             if(iIndex <= 0)
-               return m_nodea.ptr_at(i);
+               return m_nodea.element_at(i);
             iIndex--;
          }
          if(iDepth > 0)
-            m_nodea[i].get_child_at(pszName, iIndex, iDepth - 1);
+            m_nodea[i]->get_child_at(pszName, iIndex, iDepth - 1);
          else if(iDepth < 0)
-            m_nodea[i].get_child_at(pszName, iIndex, -1);
+            m_nodea[i]->get_child_at(pszName, iIndex, -1);
       }
       return NULL;
 
@@ -1884,18 +1884,18 @@ namespace xml
       count count = 0;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
-            if(m_nodea[i].get_attr(pszAttrName, strValue))
+            if(m_nodea[i]->get_attr(pszAttrName, strValue))
             {
                count++;
                stra.add(strValue);
             }
          }
          if(iDepth > 0)
-            count += m_nodea[i].get_child_attr_value(stra, pszName, pszAttrName, iDepth - 1);
+            count += m_nodea[i]->get_child_attr_value(stra, pszName, pszAttrName, iDepth - 1);
          else if(iDepth < 0)
-            count += m_nodea[i].get_child_attr_value(stra, pszName, pszAttrName, -1);
+            count += m_nodea[i]->get_child_attr_value(stra, pszName, pszAttrName, -1);
       }
       return count;
    }
@@ -1917,9 +1917,9 @@ namespace xml
       count count = 0;
       for(index i = 0; i < m_nodea.get_size(); )
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
-            if(m_nodea[i].get_attr(pszAttrName, strValue))
+            if(m_nodea[i]->get_attr(pszAttrName, strValue))
             {
                if(iIndex <= 0)
                {
@@ -1942,9 +1942,9 @@ namespace xml
             }
          }
          if(iDepth > 0)
-            nRemoveCount = m_nodea[i].remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, iDepth - 1);
+            nRemoveCount = m_nodea[i]->remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, iDepth - 1);
          else if(iDepth < 0)
-            nRemoveCount = m_nodea[i].remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, -1);
+            nRemoveCount = m_nodea[i]->remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, -1);
          if(nRemoveCount > 0)
          {
             count    += nRemoveCount;
@@ -1965,12 +1965,12 @@ namespace xml
       string strValue;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
-            if(m_nodea[i].get_attr(pszAttrName, strValue)
+            if(m_nodea[i]->get_attr(pszAttrName, strValue)
                && _stricmp(strValue, pszAttrValue) == 0)
             {
-               return &m_nodea[i];
+               return m_nodea[i];
             }
          }
       }
@@ -1982,13 +1982,13 @@ namespace xml
       string strValue;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
-               if(m_nodea[i].get_attr(straAttrName[j], strValue) && _stricmp(strValue, straAttrValue[j]) == 0)
+               if(m_nodea[i]->get_attr(straAttrName[j], strValue) && _stricmp(strValue, straAttrValue[j]) == 0)
                {
-                  return &m_nodea[i];
+                  return m_nodea[i];
                }
             }
          }
@@ -2002,12 +2002,12 @@ namespace xml
       bool bAll;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
             bAll = true;
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
-               if(!m_nodea[i].get_attr(straAttrName[j], strValue) || _stricmp(strValue, straAttrValue[j]) != 0)
+               if(!m_nodea[i]->get_attr(straAttrName[j], strValue) || _stricmp(strValue, straAttrValue[j]) != 0)
                {
                   bAll = false;
                   break;
@@ -2015,7 +2015,7 @@ namespace xml
             }
             if(bAll)
             {
-               return &m_nodea[i];
+               return m_nodea[i];
             }
          }
       }
@@ -2046,12 +2046,12 @@ namespace xml
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
             ::xml::node * pcol = add_child("c");
-            iRowCount = str2a[iCol].get_count();
+            iRowCount = str2a[iCol]->get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
             {
 //               xml::node * prow = add_child("r");
-               if(iRow < str2a[iCol].get_count())
+               if(iRow < str2a[iCol]->get_count())
                {
                   pcol->m_strValue = str2a[iCol][iRow];
                }
@@ -2075,22 +2075,22 @@ namespace xml
       }
       str2a.set_size(iColCount);
       ::count iRowCount = 0;
-      ::xml::node * pheader = m_nodea.ptr_at(0);
+      ::xml::node * pheader = m_nodea.element_at(0);
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
-         ::xml::node * pcol = pheader->m_nodea.ptr_at(iCol);
-         str2a[iCol].set_size(pcol->attr("row_count"));
+         ::xml::node * pcol = pheader->m_nodea.element_at(iCol);
+         str2a[iCol]->set_size(pcol->attr("row_count"));
       }
       for(::index iRow = 0; iRow < iRowCount; iRow++)
       {
-//         xml::node * prow = m_nodea.ptr_at(0);
-         for(int32_t iCol = 0; iCol < str2a[iCol].get_count(); iCol++)
+//         xml::node * prow = m_nodea.element_at(0);
+         for(int32_t iCol = 0; iCol < str2a[iCol]->get_count(); iCol++)
          {
 //            xml::node * pcol = prow->add_child("c");
-            if(iRow < str2a[iCol].get_count())
+            if(iRow < str2a[iCol]->get_count())
             {
                //pcol->m_strValue =
-               iRowCount = str2a[iCol].get_count();
+               iRowCount = str2a[iCol]->get_count();
             }
          }
       }
@@ -2187,7 +2187,7 @@ namespace xml
       for(index iIndex = 0; iIndex < m_pnodeParent->m_nodea.get_count(); iIndex++)
       {
 
-         if(m_pnodeParent->m_nodea.ptr_at(iIndex) == this)
+         if(m_pnodeParent->m_nodea.element_at(iIndex) == this)
             return iIndex;
 
       }

@@ -52,7 +52,7 @@ void tiff_ConvertLineRGBToXYZ(BYTE *target, BYTE *source, int width_in_pixels) {
 	
 	for (int cols = 0; cols < width_in_pixels; cols++) {
 		// assume CCIR-709 primaries, whitepoint x = 1/3 y = 1/3 (D_E)
-		// "The LogLuv Encoding for Full Gamut, High Dynamic Range Images" <G.Ward>
+		// "The LogLuv Encoding for Full Gamut, High Dynamic range Images" <G.Ward>
 		// sRGB ( CIE Illuminant E ) -> LOG Luv XYZ (D65)
 		xyz[0] =  (float)(0.497*rgbf->red +  0.339*rgbf->green +  0.164*rgbf->blue);
 		xyz[1] =  (float)(0.256*rgbf->red +  0.678*rgbf->green +  0.066*rgbf->blue);

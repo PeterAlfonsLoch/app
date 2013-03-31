@@ -256,13 +256,13 @@ bool id_space::find(const id & t, index & iIndex)
    {
       return false;
    }
-   index iLBound = 0;
+   index iLowerBound = 0;
    index iMaxBound = m_ida.m_nSize - 1;
-   index iUBound = iMaxBound;
+   index iUpperBound = iMaxBound;
    int64_t iCompare;
    // do binary search
-   iIndex = (iUBound + iLBound) / 2;
-   while(iUBound - iLBound >= 8)
+   iIndex = (iUpperBound + iLowerBound) / 2;
+   while(iUpperBound - iLowerBound >= 8)
    {
       iCompare = id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iIndex]], &t);
       if(iCompare == 0)
@@ -271,8 +271,8 @@ bool id_space::find(const id & t, index & iIndex)
       }
       else if(iCompare > 0)
       {
-         iUBound = iIndex - 1;
-         if(iUBound < 0)
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
          {
             iIndex = 0;
             break;
@@ -280,14 +280,14 @@ bool id_space::find(const id & t, index & iIndex)
       }
       else
       {
-         iLBound = iIndex + 1;
-         if(iLBound > iMaxBound)
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
          {
             iIndex = iMaxBound + 1;
             break;
          }
       }
-      iIndex = (iUBound + iLBound) / 2;
+      iIndex = (iUpperBound + iLowerBound) / 2;
    }
    // do sequential search
    while(iIndex < m_ida.m_nSize)
@@ -449,13 +449,13 @@ bool strid_array::find(const char * psz, index & iIndex) const
       return false;
    }
 
-   index iLBound = 0;
+   index iLowerBound = 0;
    index iMaxBound = m_idptra.m_nSize - 1;
-   index iUBound = iMaxBound;
+   index iUpperBound = iMaxBound;
    index iCompare;
    // do binary search
-   iIndex = (iUBound + iLBound) / 2;
-   while(iUBound - iLBound >= 8)
+   iIndex = (iUpperBound + iLowerBound) / 2;
+   while(iUpperBound - iLowerBound >= 8)
    {
       iCompare = m_idptra.m_pData[m_iaId.m_pData[iIndex]] - psz;
       if(iCompare == 0)
@@ -464,8 +464,8 @@ bool strid_array::find(const char * psz, index & iIndex) const
       }
       else if(iCompare > 0)
       {
-         iUBound = iIndex - 1;
-         if(iUBound < 0)
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
          {
             iIndex = 0;
             break;
@@ -473,14 +473,14 @@ bool strid_array::find(const char * psz, index & iIndex) const
       }
       else
       {
-         iLBound = iIndex + 1;
-         if(iLBound > iMaxBound)
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
          {
             iIndex = iMaxBound + 1;
             break;
          }
       }
-      iIndex = (iUBound + iLBound) / 2;
+      iIndex = (iUpperBound + iLowerBound) / 2;
    }
    // do sequential search
    while(iIndex < m_idptra.m_nSize)

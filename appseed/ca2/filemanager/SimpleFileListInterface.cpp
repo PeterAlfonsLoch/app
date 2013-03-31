@@ -80,47 +80,6 @@ namespace filemanager
       ::fs::list_item item;
       get_fs_list_data()->m_itema.clear(NULL);
       _001OnUpdateItemCount();*/
-      if(m_bStatic)
-      {
-
-         ::fs::list_item item;
-
-         stringa stra;
-
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
-
-         get_fs_list_data()->m_itema.SetItemCount(stra.get_size());
-
-         for(int32_t i = 0; i < stra.get_size(); i++)
-         {
-
-            item.m_flags.unsignalize_all();
-
-            if(Application.dir().is(stra[i]))
-            {
-               item.m_flags.signalize(::fs::FlagFolder);
-            }
-            else
-            {
-            }
-
-            string strPath = stra[i];
-            string strName = System.file().title_(strPath);
-
-
-            item.m_iImage = -1;
-            item.m_strPath = strPath;
-            item.m_strName = strName;
-
-            get_fs_list_data()->m_itema.SetItemAt(i, item);
-
-         }
-
-         _001OnUpdateItemCount();
-
-         return;
-
-      }
       /*
 
 
@@ -598,7 +557,12 @@ namespace filemanager
 
    void SimpleFileListInterface::_001GetItemText(::user::list_item * pitem)
    {
+      
+      if(m_bStatic)
+         return ::user::list::_001GetItemText(pitem);
+
       return ::fs::list::_001GetItemText(pitem);
+
       /*UNREFERENCED_PARAMETER(iListItem);
       if(iSubItem == m_iNameSubItemText)
       {
@@ -642,7 +606,7 @@ namespace filemanager
       return ::fs::list::_001GetItemImage(pitem);
 /*      if(iSubItem == m_iSelectionSubItem)
       {
-         if(m_rangeSelection.HasItem(iItem))
+         if(m_rangeSelection.has_item(iItem))
          {
             return 1;
          }
@@ -692,7 +656,7 @@ namespace filemanager
 
    void SimpleFileListInterface::GetSelectedFilePath(stringa & base_array)
    {
-      Range range;
+      range range;
 
       _001GetSelection(range);
 
@@ -700,8 +664,8 @@ namespace filemanager
 //      HRESULT hr;
       for(index i = 0; i < range.get_item_count(); i++)
       {
-         ItemRange & itemrange = range.ItemAt(i);
-         for(index iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
+         item_range & itemrange = range.ItemAt(i);
+         for(index iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
             index iStrict;
             if(m_eview == ViewIcon)
@@ -725,6 +689,48 @@ namespace filemanager
 
    void SimpleFileListInterface::_017UpdateList()
    {
+
+      if(m_bStatic)
+      {
+
+         ::fs::list_item item;
+
+         stringa stra;
+
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
+
+         get_fs_list_data()->m_itema.SetItemCount(stra.get_size());
+
+         for(int32_t i = 0; i < stra.get_size(); i++)
+         {
+
+            item.m_flags.unsignalize_all();
+
+            if(Application.dir().is(stra[i]))
+            {
+               item.m_flags.signalize(::fs::FlagFolder);
+            }
+            else
+            {
+            }
+
+            string strPath = stra[i];
+            string strName = System.file().title_(strPath);
+
+
+            item.m_iImage = -1;
+            item.m_strPath = strPath;
+            item.m_strName = strName;
+
+            get_fs_list_data()->m_itema.SetItemAt(i, item);
+
+         }
+
+         _001OnUpdateItemCount();
+
+         return;
+
+      }
 
       if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
       {
@@ -879,15 +885,15 @@ namespace filemanager
    {
       ::fs::item_array itema;
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       for(iItemRange = 0;
           iItemRange < range.get_item_count();
           iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound();
-             iItem <= itemrange.GetUBound();
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = itemrange.get_lower_bound();
+             iItem <= itemrange.get_upper_bound();
              iItem++)
          {
             if(iItem < 0)
@@ -926,15 +932,15 @@ namespace filemanager
    {
       ::fs::item_array itema;
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       for(iItemRange = 0;
           iItemRange < range.get_item_count();
           iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound();
-             iItem <= itemrange.GetUBound();
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = itemrange.get_lower_bound();
+             iItem <= itemrange.get_upper_bound();
              iItem++)
          {
             if(iItem < 0)
@@ -1040,16 +1046,16 @@ namespace filemanager
    void SimpleFileListInterface::GetSelected(::fs::item_array &itema)
    {
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       index_array iaItem;
       for(iItemRange = 0;
           iItemRange < range.get_item_count();
           iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = max(0, itemrange.GetLBound());
-             iItem <= itemrange.GetUBound();
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = max(0, itemrange.get_lower_bound());
+             iItem <= itemrange.get_upper_bound();
              iItem++)
          {
             ::fs::item item;
@@ -1091,17 +1097,29 @@ namespace filemanager
       return get_fs_list_data()->m_itema.get_count();
    }
 
-   void SimpleFileListInterface::add_item(const char * pszPath, const char * pszTitle)
+
+   bool SimpleFileListInterface::add_item(const char * pszPath, const char * pszTitle)
    {
+
       ::fs::list_item item;
+
       item.m_strPath = pszPath;
+
       item.m_strName = pszTitle;
+
       if(Application.dir().is(pszPath))
       {
+
          item.m_flags.signalize(::fs::FlagFolder);
+
       }
+
       get_fs_list_data()->m_itema.add_item(item);
+
       _001OnUpdateItemCount();
+
+      return true;
+
    }
 
 
@@ -1118,9 +1136,9 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
       user::control * pcontrol = _001GetControlBySubItem(m_iNameSubItem);
-      Range range;
+      range range;
       _001GetSelection(range);
-      if(range.get_item_count() == 1 && range.ItemAt(0).GetLBound() == range.ItemAt(0).GetUBound())
+      if(range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
          _001PlaceControl(pcontrol);
       }
@@ -1129,11 +1147,11 @@ namespace filemanager
    void SimpleFileListInterface::_001OnUpdateFileRename(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      Range range;
+      range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
          range.get_item_count() == 1
-         && range.ItemAt(0).GetLBound() == range.ItemAt(0).GetUBound());
+         && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
       pobj->m_bRet = true;
    }
 

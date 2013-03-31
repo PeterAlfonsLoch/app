@@ -559,13 +559,13 @@ void ssl_sigpipe_handle( int x );
          // don't reset connecting flag on error here, we want the OnConnectFailed timeout later on
          if (!err) // ok
          {
-            Set(!IsDisableRead(), false);
+            set(!IsDisableRead(), false);
             SetConnecting(false);
             SetCallOnConnect();
             return;
          }
          Handler().LogError(this, "tcp: connect failed", err, StrError(err), ::ca::log::level_fatal);
-         Set(false, false); // no more monitoring because connection failed
+         set(false, false); // no more monitoring because connection failed
 
          // failed
          if (Socks4())
@@ -636,9 +636,9 @@ void ssl_sigpipe_handle( int x );
          bool bx;
          Handler().get(GetSocket(), br, bw, bx);
          if (m_obuf.get_size())
-            Set(br, true);
+            set(br, true);
          else
-            Set(br, false);
+            set(br, false);
       }
    }
 
@@ -798,9 +798,9 @@ void ssl_sigpipe_handle( int x );
          bool bx;
          Handler().get(GetSocket(), br, bw, bx);
          if (m_obuf.get_size())
-            Set(br, true);
+            set(br, true);
          else
-            Set(br, false);
+            set(br, false);
       }
    }
 

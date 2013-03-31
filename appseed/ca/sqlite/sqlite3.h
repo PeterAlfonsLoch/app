@@ -38,7 +38,7 @@
 /*
 ** Make sure we can call this stuff from C++.
 */
-namespace sqlite
+namespace sqlite3
 {
 
    /*
@@ -245,7 +245,7 @@ namespace sqlite
    ** {U12016} The parameter to [sqlite3_close()] must not have been previously
    **          closed.
    */
-   int32_t sqlite3_close(sqlite3 *);
+   int32_t sqlite3_close(::sqlite3::sqlite3 *);
 
    /*
    ** The type for a callback function.
@@ -1174,7 +1174,7 @@ namespace sqlite
    int32_t sqlite3_busy_handler(sqlite3*, int32_t(*)(void*,int32_t), void*);
 
    /*
-   ** CAPI3REF: Set A Busy Timeout {F12340}
+   ** CAPI3REF: set A Busy Timeout {F12340}
    **
    ** This routine sets a [sqlite3_busy_handler | busy handler]
    ** that sleeps for a while when a
@@ -2570,7 +2570,7 @@ namespace sqlite
    int32_t sqlite3_clear_bindings(sqlite3_stmt*);
 
    /*
-   ** CAPI3REF: Number Of Columns In A Result Set {F13710}
+   ** CAPI3REF: Number Of Columns In A Result set {F13710}
    **
    ** Return the number of columns in the result set returned by the
    ** [prepared statement]. This routine returns 0
@@ -2587,7 +2587,7 @@ namespace sqlite
    int32_t sqlite3_column_count(sqlite3_stmt *pStmt);
 
    /*
-   ** CAPI3REF: Column Names In A Result Set {F13720}
+   ** CAPI3REF: Column Names In A Result set {F13720}
    **
    ** These routines return the name assigned to a particular column
    ** in the result set of a SELECT statement.  The sqlite3_column_name()

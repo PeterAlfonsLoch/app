@@ -108,7 +108,7 @@ PKCS12_SAFEBAG *PKCS12_MAKE_SHKEYBAG(int pbe_nid, const char *pass,
 	PKCS12_SAFEBAG *bag;
 	const EVP_CIPHER *pbe_ciph;
 
-	/* Set up the safe bag */
+	/* set up the safe bag */
 	if (!(bag = PKCS12_SAFEBAG_new())) {
 		PKCS12err(PKCS12_F_PKCS12_MAKE_SHKEYBAG, ERR_R_MALLOC_FAILURE);
 		return NULL;

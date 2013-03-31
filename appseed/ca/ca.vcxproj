@@ -1168,14 +1168,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_window_draw.h" />
     <ClInclude Include="ca\ca_writer.h" />
     <ClInclude Include=".\collection\collection_array.h" />
-    <ClInclude Include=".\collection\collection_array_app_alloc.h" />
-    <ClInclude Include=".\collection\collection_array_del_ptr.h" />
-    <ClInclude Include=".\collection\collection_array_parent_alloc.h" />
-    <ClInclude Include=".\collection\collection_array_ptr.h" />
-    <ClInclude Include=".\collection\collection_array_ptr_alloc.h" />
-    <ClInclude Include=".\collection\collection_array_ptr_copy.h" />
-    <ClInclude Include=".\collection\collection_array_release_ptr.h" />
-    <ClInclude Include=".\collection\collection_array_smart_ptr.h" />
     <ClInclude Include=".\collection\collection_base_2array.h" />
     <ClInclude Include=".\collection\collection_base_array.h" />
     <ClInclude Include=".\collection\collection_bitset.h" />
@@ -2147,18 +2139,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca\ca_writer.cpp" />
     <ClCompile Include="collection\collection_2d_array.cpp" />
     <ClCompile Include="collection\collection_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_app_copy.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_ptr.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_ptr_alloc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_ptr_copy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="collection\collection_bit_array.cpp">

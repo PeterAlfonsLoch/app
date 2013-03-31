@@ -886,7 +886,7 @@ start_pass (j_compress_ptr cinfo, boolean gather_statistics)
       MEMZERO(entropy->ac_stats[tbl], AC_STAT_BINS);
 #ifdef CALCULATE_SPECTRAL_CONDITIONING
       if (cinfo->progressive_mode)
-	/* Section G.1.3.2: Set appropriate arithmetic conditioning value Kx */
+	/* Section G.1.3.2: set appropriate arithmetic conditioning value Kx */
 	cinfo->arith_ac_K[tbl] = cinfo->Ss + ((8 + cinfo->Se - cinfo->Ss) >> 4);
 #endif
     }

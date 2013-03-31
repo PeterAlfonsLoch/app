@@ -216,7 +216,7 @@ int OCSP_parse_url(char *url, char **phost, char **pport, char **ppath, int *pss
 	else
 		{
 		*ppath = BUF_strdup(p);
-		/* Set start of path to 0 so hostname is valid */
+		/* set start of path to 0 so hostname is valid */
 		*p = '\0';
 		}
 

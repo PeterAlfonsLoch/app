@@ -9,7 +9,7 @@ This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 void Ppmd7z_RangeEnc_Init(CPpmd7z_RangeEnc *p)
 {
   p->Low = 0;
-  p->Range = 0xFFFFFFFF;
+  p->range = 0xFFFFFFFF;
   p->Cache = 0;
   p->CacheSize = 1;
 }
@@ -33,33 +33,33 @@ static void RangeEnc_ShiftLow(CPpmd7z_RangeEnc *p)
 
 static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, uint32_t start, uint32_t size, uint32_t total)
 {
-  p->Low += start * (p->Range /= total);
-  p->Range *= size;
-  while (p->Range < kTopValue)
+  p->Low += start * (p->range /= total);
+  p->range *= size;
+  while (p->range < kTopValue)
   {
-    p->Range <<= 8;
+    p->range <<= 8;
     RangeEnc_ShiftLow(p);
   }
 }
 
 static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, uint32_t size0)
 {
-  p->Range = (p->Range >> 14) * size0;
-  while (p->Range < kTopValue)
+  p->range = (p->range >> 14) * size0;
+  while (p->range < kTopValue)
   {
-    p->Range <<= 8;
+    p->range <<= 8;
     RangeEnc_ShiftLow(p);
   }
 }
 
 static void RangeEnc_EncodeBit_1(CPpmd7z_RangeEnc *p, uint32_t size0)
 {
-  uint32_t newBound = (p->Range >> 14) * size0;
+  uint32_t newBound = (p->range >> 14) * size0;
   p->Low += newBound;
-  p->Range -= newBound;
-  while (p->Range < kTopValue)
+  p->range -= newBound;
+  while (p->range < kTopValue)
   {
-    p->Range <<= 8;
+    p->range <<= 8;
     RangeEnc_ShiftLow(p);
   }
 }

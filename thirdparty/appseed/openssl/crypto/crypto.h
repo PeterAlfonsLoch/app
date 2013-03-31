@@ -342,7 +342,7 @@ DECLARE_STACK_OF(CRYPTO_EX_DATA_FUNCS)
 # endif
 #endif
 
-/* Set standard debugging functions (not done by default
+/* set standard debugging functions (not done by default
  * unless CRYPTO_MDEBUG is defined) */
 #define CRYPTO_malloc_debug_init()	do {\
 	CRYPTO_set_mem_debug_functions(\
@@ -523,8 +523,8 @@ void CRYPTO_dbg_free(void *addr,int before_p);
  * apply:
  *
  * 0:                           Clear all options.
- * V_CRYPTO_MDEBUG_TIME (1):    Set the "Show Time" option.
- * V_CRYPTO_MDEBUG_THREAD (2):  Set the "Show Thread Number" option.
+ * V_CRYPTO_MDEBUG_TIME (1):    set the "Show Time" option.
+ * V_CRYPTO_MDEBUG_THREAD (2):  set the "Show Thread Number" option.
  * V_CRYPTO_MDEBUG_ALL (3):     1 + 2
  */
 void CRYPTO_dbg_set_options(long bits);

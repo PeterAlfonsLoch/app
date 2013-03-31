@@ -10,7 +10,7 @@ namespace datetime
 
       
       scanner                       m_scanner;
-      array_ptr_alloc < element >   m_elementa;
+      ::ca::smart_pointer_array < element >   m_elementa;
 
 
       parser(::ca::application * papp, ::user::str_context * pcontext);

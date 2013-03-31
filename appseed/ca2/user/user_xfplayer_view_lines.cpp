@@ -99,7 +99,7 @@ index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 {
    for(int32_t iLine = 0; iLine < this->get_size(); iLine++)
    {
-      if(ptr_at(iLine) == pline)
+      if(element_at(iLine) == pline)
          return iLine;
    }
    return -1;
@@ -188,7 +188,7 @@ void XfplayerViewLines::SetBlend(double dBlend)
 {
    for(int32_t iLine = 0; iLine < this->get_size(); iLine++)
    {
-      ptr_at(iLine)->SetBlend(dBlend);
+      element_at(iLine)->SetBlend(dBlend);
    }
 }
 

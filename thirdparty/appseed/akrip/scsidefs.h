@@ -76,7 +76,7 @@
 #define SCSI_SEEK6      0x0B    // Seek 6-byte (O)
 #define SCSI_SEEK10     0x2B    // Seek 10-byte (O)
 #define SCSI_SEND_DIAG  0x1D    // Send Diagnostics (MANDATORY)
-#define SCSI_SET_LIMIT  0x33    // Set Limits (O)
+#define SCSI_SET_LIMIT  0x33    // set Limits (O)
 #define SCSI_START_STP  0x1B    // Start/Stop Unit (O)
 #define SCSI_SYNC_CACHE 0x35    // Synchronize Cache (O)
 #define SCSI_VERIFY     0x2F    // Verify (O)
@@ -126,8 +126,8 @@
 #define SCSI_SRCHDATH12 0xB0    // Search Data High 12-byte (O)
 #define SCSI_SRCHD10 0x32    // Search Data Low 10-byte (O)
 #define SCSI_SRCHD12 0xB2    // Search Data Low 12-byte (O)
-#define SCSI_SET_LIM_10 0x33    // Set Limits 10-byte (O)
-#define SCSI_SET_LIM_12 0xB3    // Set Limits 10-byte (O)
+#define SCSI_SET_LIM_10 0x33    // set Limits 10-byte (O)
+#define SCSI_SET_LIM_12 0xB3    // set Limits 10-byte (O)
 #define SCSI_VERIFY10   0x2F    // Verify 10-byte (O)
 #define SCSI_VERIFY12   0xAF    // Verify 12-byte (O)
 #define SCSI_WRITE12    0xAA    // Write 12-byte (O)
@@ -155,7 +155,7 @@
 #define SCSI_GETWINDOW  0x25    // Get Window (O)
 #define SCSI_OBJECTPOS  0x31    // Object Postion (O)
 #define SCSI_SCAN       0x1B    // Scan (O)
-#define SCSI_SETWINDOW  0x24    // Set Window (MANDATORY)
+#define SCSI_SETWINDOW  0x24    // set Window (MANDATORY)
 
 //***************************************************************************
 //           %%% Commands Unique to Optical Memory Devices %%%

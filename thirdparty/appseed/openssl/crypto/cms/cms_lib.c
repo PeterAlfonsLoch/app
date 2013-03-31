@@ -173,7 +173,7 @@ int CMS_dataFinal(CMS_ContentInfo *cms, BIO *cmsbio)
 			return 0;
 			}
 		contlen = BIO_get_mem_data(mbio, &cont);
-		/* Set bio as read only so its content can't be clobbered */
+		/* set bio as read only so its content can't be clobbered */
 		BIO_set_flags(mbio, BIO_FLAGS_MEM_RDONLY);
 		BIO_set_mem_eof_return(mbio, 0);
 		ASN1_STRING_set0(*pos, cont, (int) contlen);
@@ -341,7 +341,7 @@ int CMS_set_detached(CMS_ContentInfo *cms, int detached)
 	return 0;
 	}
 
-/* Set up an X509_ALGOR DigestAlgorithmIdentifier from an EVP_MD */
+/* set up an X509_ALGOR DigestAlgorithmIdentifier from an EVP_MD */
 
 void cms_DigestAlgorithm_set(X509_ALGOR *alg, const EVP_MD *md)
 	{

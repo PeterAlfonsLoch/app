@@ -207,7 +207,7 @@ string GeoIP_get_host_or_proxy ()
    char * proxy_host;
    int32_t proxy_port;
 
-   /* Set Proxy from App: Unix/Linux */
+   /* set Proxy from App: Unix/Linux */
    if (parse_http_proxy(&proxy_host,&proxy_port)) {
       hostname = proxy_host;
       GeoIPProxyHTTP = "http://";

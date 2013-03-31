@@ -72,8 +72,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** get status of read/write/exception file descriptor set for a socket. */
          void get(SOCKET s,bool& r,bool& w,bool& e);
 
-         /** Set read/write/exception file descriptor sets (fd_set). */
-         void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
+         /** set read/write/exception file descriptor sets (fd_set). */
+         void set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
 
          /** Wait for events, generate callbacks. */
          int32_t Select(int32_t sec, int32_t usec);
@@ -107,13 +107,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool PoolEnabled();
 
          // Socks4
-         /** Set socks4 server ip that all new tcp sockets should use. */
+         /** set socks4 server ip that all new tcp sockets should use. */
          void SetSocks4Host(in_addr addr);
-         /** Set socks4 server hostname that all new tcp sockets should use. */
+         /** set socks4 server hostname that all new tcp sockets should use. */
          void SetSocks4Host(const string & );
-         /** Set socks4 server port number that all new tcp sockets should use. */
+         /** set socks4 server port number that all new tcp sockets should use. */
          void SetSocks4Port(port_t);
-         /** Set optional socks4 userid. */
+         /** set optional socks4 userid. */
          void SetSocks4Userid(const string & );
          /** If connection to socks4 server fails, immediately try direct connection to final host. */
          void SetSocks4TryDirect(bool x = true);

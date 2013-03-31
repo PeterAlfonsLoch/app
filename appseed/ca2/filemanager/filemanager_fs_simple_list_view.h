@@ -35,7 +35,7 @@ namespace filemanager
          };
 
          class ItemArray :
-            public array_ptr_alloc < Item, Item & >
+            public spa(Item)
          {
          public:
             //int32_t FindAbsolute(const char * lpszId);

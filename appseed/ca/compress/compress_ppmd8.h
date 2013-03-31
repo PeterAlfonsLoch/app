@@ -57,8 +57,8 @@ typedef struct
   uint32_t AlignOffset;
   uint32_t RestoreMethod;
 
-  /* Range Coder */
-  uint32_t Range;
+  /* range Coder */
+  uint32_t range;
   uint32_t Code;
   uint32_t Low;
   union
@@ -120,7 +120,7 @@ int32_t Ppmd8_DecodeSymbol(CPpmd8 *p); /* returns: -1 as EndMarker, -2 as DataEr
 
 /* ---------- Encode ---------- */
 
-#define Ppmd8_RangeEnc_Init(p) { (p)->Low = 0; (p)->Range = 0xFFFFFFFF; }
+#define Ppmd8_RangeEnc_Init(p) { (p)->Low = 0; (p)->range = 0xFFFFFFFF; }
 void Ppmd8_RangeEnc_FlushData(CPpmd8 *p);
 void Ppmd8_EncodeSymbol(CPpmd8 *p, int32_t symbol); /* symbol = -1 means EndMarker */
 

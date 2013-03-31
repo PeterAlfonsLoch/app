@@ -364,13 +364,13 @@ namespace sockets
          /// \todo add to read fd_set here
          if (!err) // ok
          {
-            Set(!IsDisableRead(), false);
+            set(!IsDisableRead(), false);
             SetConnecting(false);
             SetCallOnConnect();
             return;
          }
          Handler().LogError(this, "sctp: connect failed", err, StrError(err), ::ca::log::level_fatal);
-         Set(false, false); // no more monitoring because connection failed
+         set(false, false); // no more monitoring because connection failed
 
          // failed
    #ifdef ENABLE_SOCKS4

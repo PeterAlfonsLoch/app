@@ -9,7 +9,8 @@ namespace ca
    {
 
 
-      class CLASS_DECL_ca item
+      class CLASS_DECL_ca item :
+         virtual public ::ca::ca
       {
       public:
          item() {}
@@ -126,7 +127,7 @@ namespace ca
 
 
       class CLASS_DECL_ca any :
-         virtual public array_del_ptr < item >,
+         virtual public ::ca::smart_pointer_array < item >,
          virtual public item
       {
       public:

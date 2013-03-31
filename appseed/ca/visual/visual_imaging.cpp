@@ -305,7 +305,7 @@ return hBitmapSource;
 * cb                        - Length of text
 * crText                    - color for text face
 * crShadow                  - color for text shadow
-* cx, cy                    - Offset for shadow
+* cx, cy                    - offset for shadow
 *
 * The text will be drawn with the currently selected font.
 *
@@ -3569,41 +3569,41 @@ void imaging::blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int32_t iRadiu
    int32_t iFilterYBegin;
    int32_t iFilterYEnd;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   yLBound[0] = 0;
-   yUBound[0] = iFilterWidth / 2;
-   xLBound[0] = 0;
-   xUBound[0] = max3x1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterWidth / 2;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = max3x1;
 
    // left
-   yLBound[1] = iFilterWidth / 2;
-   yUBound[1] = maxy1 - iFilterWidth / 2;
-   xLBound[1] = 0;
-   xUBound[1] = iFilterWidth / 2;
+   yLowerBound[1] = iFilterWidth / 2;
+   yUpperBound[1] = maxy1 - iFilterWidth / 2;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterWidth / 2;
 
    // right
-   yLBound[2] = iFilterWidth / 2;
-   yUBound[2] = maxy1- iFilterWidth / 2;
-   xLBound[2] = max3x1 - iFilterWidth / 2;
-   xUBound[2] = max3x1;
+   yLowerBound[2] = iFilterWidth / 2;
+   yUpperBound[2] = maxy1- iFilterWidth / 2;
+   xLowerBound[2] = max3x1 - iFilterWidth / 2;
+   xUpperBound[2] = max3x1;
 
    // bottom
-   yLBound[3] = maxy1 - iFilterWidth / 2;
-   yUBound[3] = maxy1;
-   xLBound[3] = 0;
-   xUBound[3] = max3x1;
+   yLowerBound[3] = maxy1 - iFilterWidth / 2;
+   yUpperBound[3] = maxy1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = max3x1;
 
    /*   for(int32_t i = 0; i < 4; i++)
    {
-   int32_t yL = yLBound[i];
-   int32_t yU = yUBound[i];
-   int32_t xL = xLBound[i];
-   int32_t xU = xUBound[i];
+   int32_t yL = yLowerBound[i];
+   int32_t yU = yUpperBound[i];
+   int32_t xL = xLowerBound[i];
+   int32_t xU = xUpperBound[i];
    for(int32_t y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
@@ -3974,85 +3974,85 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    int32_t x, y;
    int32_t x2;
    int32_t x3;
-   int32_t iFilterXLBound;
-   int32_t iFilterXUBound;
-   int32_t iFilterYLBound;
-   int32_t iFilterYUBound;
+   int32_t iFilterXLowerBound;
+   int32_t iFilterXUpperBound;
+   int32_t iFilterYLowerBound;
+   int32_t iFilterYUpperBound;
    int32_t xFilter;
    int32_t yFilter;
 
-   int32_t xLBound[4];
-   int32_t xUBound[4];
-   int32_t yLBound[4];
-   int32_t yUBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
 
    int32_t xmax = cx - 1;
    int32_t ymax = cy - 1;
 
    // top
-   xLBound[0] = 0;
-   xUBound[0] = cx - 1;
-   yLBound[0] = 0;
-   yUBound[0] = iFilterHalfH - 1;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = cx - 1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterHalfH - 1;
 
    // left
-   xLBound[1] = 0;
-   xUBound[1] = iFilterHalfW - 1;
-   yLBound[1] = iFilterHalfH;
-   yUBound[1] = cy - iFilterHalfH - 1;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterHalfW - 1;
+   yLowerBound[1] = iFilterHalfH;
+   yUpperBound[1] = cy - iFilterHalfH - 1;
 
    // right
-   xLBound[2] = cx - iFilterHalfW;
-   xUBound[2] = cx - 1;
-   yLBound[2] = iFilterHalfH;
-   yUBound[2] = cy - iFilterHalfH - 1;
+   xLowerBound[2] = cx - iFilterHalfW;
+   xUpperBound[2] = cx - 1;
+   yLowerBound[2] = iFilterHalfH;
+   yUpperBound[2] = cy - iFilterHalfH - 1;
 
    // bottom
-   xLBound[3] = 0;
-   xUBound[3] = cx - 1;
-   yLBound[3] = cy - iFilterHalfW;
-   yUBound[3] = cy - 1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = cx - 1;
+   yLowerBound[3] = cy - iFilterHalfW;
+   yUpperBound[3] = cy - 1;
 
 
    int32_t iFilterLine;
 
    for(int32_t i = 0; i < 4; i++)
    {
-      int32_t xL = xLBound[i];
-      int32_t xU = xUBound[i];
-      int32_t yL = yLBound[i];
-      int32_t yU = yUBound[i];
+      int32_t xL = xLowerBound[i];
+      int32_t xU = xUpperBound[i];
+      int32_t yL = yLowerBound[i];
+      int32_t yU = yUpperBound[i];
       for(y = yL; y <= yU; y++)
       {
-         iFilterYLBound = y - iFilterHalfH;
-         if(iFilterYLBound < 0)
-            iFilterYLBound = 0;
-         iFilterYUBound = y + iFilterHalfH;
-         if(iFilterYUBound > ymax)
-            iFilterYUBound = ymax;
+         iFilterYLowerBound = y - iFilterHalfH;
+         if(iFilterYLowerBound < 0)
+            iFilterYLowerBound = 0;
+         iFilterYUpperBound = y + iFilterHalfH;
+         if(iFilterYUpperBound > ymax)
+            iFilterYUpperBound = ymax;
 
-         lpbSource = lpbSrc + (wSrc * max(iFilterYLBound, 0));
+         lpbSource = lpbSrc + (wSrc * max(iFilterYLowerBound, 0));
          lpwDestination = lpbDst + (wDst  * y);
          x = xL;
          x2 = x - iFilterHalfW;
          x3 = x * 4;
          for(; x <= xU; x++, x3+=4)
          {
-            iFilterXLBound = x - iFilterHalfW;
-            if(iFilterXLBound < 0)
-               iFilterXLBound = 0;
-            iFilterXUBound = x + iFilterHalfW;
-            if(iFilterXUBound > xmax)
-               iFilterXUBound = xmax;
+            iFilterXLowerBound = x - iFilterHalfW;
+            if(iFilterXLowerBound < 0)
+               iFilterXLowerBound = 0;
+            iFilterXUpperBound = x + iFilterHalfW;
+            if(iFilterXUpperBound > xmax)
+               iFilterXUpperBound = xmax;
 
-            lpbSource_1 = lpbSource + max(iFilterXLBound, 0) * 4 + iChannel;
+            lpbSource_1 = lpbSource + max(iFilterXLowerBound, 0) * 4 + iChannel;
 
             dwI = 0;
             iFilterLine = 0;
-            for(yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+            for(yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
                lpbSource_2 = lpbSource_1 + (wSrc * iFilterLine);
-               for(xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+               for(xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                {
                   dwI += *lpbSource_2;
                   lpbSource_2 += 4;
@@ -4060,7 +4060,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
                iFilterLine++;
             }
             lpwDestination_1 = lpwDestination + x3;
-            iDivisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
+            iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
             if(iDivisor == 0)
             {
                lpwDestination_1[0] = (BYTE) max(0, min(dwI, 255));
@@ -4079,10 +4079,10 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 
    iDivisor = iFilterW * iFilterH;
 
-   iFilterYLBound     = 0;
-   iFilterYUBound     = iFilterW - 1;
-   iFilterXLBound     = 0;
-   iFilterXUBound     = iFilterH - 1;
+   iFilterYLowerBound     = 0;
+   iFilterYUpperBound     = iFilterW - 1;
+   iFilterXLowerBound     = 0;
+   iFilterXUpperBound     = iFilterH - 1;
 
    int32_t yL = iFilterHalfH;
    int32_t yU = cy - iFilterHalfH;
@@ -4092,7 +4092,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    int32_t y1 = yL;
    int32_t x1;
 
-   iDivisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
+   iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
    int32_t wDiff = wDst - (xU - xL) * 4;
    lpbSource = lpbSrc + iChannel;
@@ -4105,10 +4105,10 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
       {
          dwI = 0;
          lpbSource_2 = lpbSource_1;
-         for(int32_t yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+         for(int32_t yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
          {
             lpbSource_3 = lpbSource_2;
-            for(int32_t xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+            for(int32_t xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
             {
                dwI += *lpbSource_3;
                lpbSource_3 += 4;
@@ -4176,85 +4176,85 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
    int32_t x, y;
    int32_t x2;
    int32_t x3;
-   int32_t iFilterXLBound;
-   int32_t iFilterXUBound;
-   int32_t iFilterYLBound;
-   int32_t iFilterYUBound;
+   int32_t iFilterXLowerBound;
+   int32_t iFilterXUpperBound;
+   int32_t iFilterYLowerBound;
+   int32_t iFilterYUpperBound;
    int32_t xFilter;
    int32_t yFilter;
 
-   int32_t xLBound[4];
-   int32_t xUBound[4];
-   int32_t yLBound[4];
-   int32_t yUBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
 
    int32_t xmax = cx - 1;
    int32_t ymax = cy - 1;
 
    // top
-   xLBound[0] = 0;
-   xUBound[0] = cx - 1;
-   yLBound[0] = 0;
-   yUBound[0] = iFilterHalfH - 1;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = cx - 1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterHalfH - 1;
 
    // left
-   xLBound[1] = 0;
-   xUBound[1] = iFilterHalfW - 1;
-   yLBound[1] = iFilterHalfH;
-   yUBound[1] = cy - iFilterHalfH - 1;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterHalfW - 1;
+   yLowerBound[1] = iFilterHalfH;
+   yUpperBound[1] = cy - iFilterHalfH - 1;
 
    // right
-   xLBound[2] = cx - iFilterHalfW;
-   xUBound[2] = cx - 1;
-   yLBound[2] = iFilterHalfH;
-   yUBound[2] = cy - iFilterHalfH - 1;
+   xLowerBound[2] = cx - iFilterHalfW;
+   xUpperBound[2] = cx - 1;
+   yLowerBound[2] = iFilterHalfH;
+   yUpperBound[2] = cy - iFilterHalfH - 1;
 
    // bottom
-   xLBound[3] = 0;
-   xUBound[3] = cx - 1;
-   yLBound[3] = cy - iFilterHalfW;
-   yUBound[3] = cy - 1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = cx - 1;
+   yLowerBound[3] = cy - iFilterHalfW;
+   yUpperBound[3] = cy - 1;
 
 
    int32_t iFilterLine;
 
    for(int32_t i = 0; i < 4; i++)
    {
-      int32_t xL = xLBound[i];
-      int32_t xU = xUBound[i];
-      int32_t yL = yLBound[i];
-      int32_t yU = yUBound[i];
+      int32_t xL = xLowerBound[i];
+      int32_t xU = xUpperBound[i];
+      int32_t yL = yLowerBound[i];
+      int32_t yU = yUpperBound[i];
       for(y = yL; y <= yU; y++)
       {
-         iFilterYLBound = y - iFilterHalfH;
-         if(iFilterYLBound < 0)
-            iFilterYLBound = 0;
-         iFilterYUBound = y + iFilterHalfH;
-         if(iFilterYUBound > ymax)
-            iFilterYUBound = ymax;
+         iFilterYLowerBound = y - iFilterHalfH;
+         if(iFilterYLowerBound < 0)
+            iFilterYLowerBound = 0;
+         iFilterYUpperBound = y + iFilterHalfH;
+         if(iFilterYUpperBound > ymax)
+            iFilterYUpperBound = ymax;
 
-         lpbSource = lpbSrc + (wSrc * max(iFilterYLBound, 0));
+         lpbSource = lpbSrc + (wSrc * max(iFilterYLowerBound, 0));
          lpwDestination = lpbDst + (wDst  * y);
          x = xL;
          x2 = x - iFilterHalfW;
          x3 = x * 4;
          for(; x <= xU; x++, x3+=4)
          {
-            iFilterXLBound = x - iFilterHalfW;
-            if(iFilterXLBound < 0)
-               iFilterXLBound = 0;
-            iFilterXUBound = x + iFilterHalfW;
-            if(iFilterXUBound > xmax)
-               iFilterXUBound = xmax;
+            iFilterXLowerBound = x - iFilterHalfW;
+            if(iFilterXLowerBound < 0)
+               iFilterXLowerBound = 0;
+            iFilterXUpperBound = x + iFilterHalfW;
+            if(iFilterXUpperBound > xmax)
+               iFilterXUpperBound = xmax;
 
-            lpbSource_1 = lpbSource + max(iFilterXLBound, 0) * 4 + iChannel;
+            lpbSource_1 = lpbSource + max(iFilterXLowerBound, 0) * 4 + iChannel;
 
             dwI = 0;
             iFilterLine = 0;
-            for(yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+            for(yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
                lpbSource_2 = lpbSource_1 + (wSrc * iFilterLine);
-               for(xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+               for(xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                {
                   dwI += *lpbSource_2;
                   lpbSource_2 += 4;
@@ -4262,7 +4262,7 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
                iFilterLine++;
             }
             lpwDestination_1 = lpwDestination + x3;
-            iDivisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
+            iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
             if(iDivisor == 0)
             {
                lpwDestination_1[0] = (BYTE) max(0, min(dwI, 255));
@@ -4283,10 +4283,10 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
 
    iDivisor = iFilterW * iFilterH;
 
-   iFilterYLBound     = 0;
-   iFilterYUBound     = iFilterW - 1;
-   iFilterXLBound     = 0;
-   iFilterXUBound     = iFilterH - 1;
+   iFilterYLowerBound     = 0;
+   iFilterYUpperBound     = iFilterW - 1;
+   iFilterXLowerBound     = 0;
+   iFilterXUpperBound     = iFilterH - 1;
 
    int32_t yL = iFilterHalfH;
    int32_t yU = cy - iFilterHalfH;
@@ -4296,7 +4296,7 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
    int32_t y1 = yL;
    int32_t x1;
 
-   iDivisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
+   iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
    int32_t wDiff = wDst - (xU - xL) * 4;
    lpbSource = lpbSrc + iChannel;
@@ -4309,10 +4309,10 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
       {
          dwI = 0;
          lpbSource_2 = lpbSource_1;
-         for(int32_t yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+         for(int32_t yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
          {
             lpbSource_3 = lpbSource_2;
-            for(int32_t xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+            for(int32_t xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
             {
                dwI += *lpbSource_3;
                lpbSource_3 += 4;
@@ -4452,41 +4452,41 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    int32_t iFilterYBegin;
    int32_t iFilterYEnd;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   yLBound[0] = 0;
-   yUBound[0] = iFilterWidth / 2;
-   xLBound[0] = 0;
-   xUBound[0] = max3x1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterWidth / 2;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = max3x1;
 
    // left
-   yLBound[1] = iFilterWidth / 2;
-   yUBound[1] = maxy1 - iFilterWidth / 2;
-   xLBound[1] = 0;
-   xUBound[1] = iFilterWidth / 2;
+   yLowerBound[1] = iFilterWidth / 2;
+   yUpperBound[1] = maxy1 - iFilterWidth / 2;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterWidth / 2;
 
    // right
-   yLBound[2] = iFilterWidth / 2;
-   yUBound[2] = maxy1- iFilterWidth / 2;
-   xLBound[2] = max3x1 - iFilterWidth / 2;
-   xUBound[2] = max3x1;
+   yLowerBound[2] = iFilterWidth / 2;
+   yUpperBound[2] = maxy1- iFilterWidth / 2;
+   xLowerBound[2] = max3x1 - iFilterWidth / 2;
+   xUpperBound[2] = max3x1;
 
    // bottom
-   yLBound[3] = maxy1 - iFilterWidth / 2;
-   yUBound[3] = maxy1;
-   xLBound[3] = 0;
-   xUBound[3] = max3x1;
+   yLowerBound[3] = maxy1 - iFilterWidth / 2;
+   yUpperBound[3] = maxy1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = max3x1;
 
    /*   for(int32_t i = 0; i < 4; i++)
    {
-   int32_t yL = yLBound[i];
-   int32_t yU = yUBound[i];
-   int32_t xL = xLBound[i];
-   int32_t xU = xUBound[i];
+   int32_t yL = yLowerBound[i];
+   int32_t yU = yUpperBound[i];
+   int32_t xL = xLowerBound[i];
+   int32_t xU = xUpperBound[i];
    for(int32_t y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
@@ -5125,34 +5125,34 @@ void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int32_t xDest, int32_t yDest, 
    int32_t iFilterYBegin;
    int32_t iFilterYEnd;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   yLBound[0] = 0;
-   yUBound[0] = iFilterWidth / 2;
-   xLBound[0] = 0;
-   xUBound[0] = max3x1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterWidth / 2;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = max3x1;
 
    // left
-   yLBound[1] = iFilterWidth / 2;
-   yUBound[1] = maxy1 - iFilterWidth / 2;
-   xLBound[1] = 0;
-   xUBound[1] = iFilterWidth / 2;
+   yLowerBound[1] = iFilterWidth / 2;
+   yUpperBound[1] = maxy1 - iFilterWidth / 2;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterWidth / 2;
 
    // right
-   yLBound[2] = iFilterWidth / 2;
-   yUBound[2] = maxy1- iFilterWidth / 2;
-   xLBound[2] = max3x1 - iFilterWidth / 2;
-   xUBound[2] = max3x1;
+   yLowerBound[2] = iFilterWidth / 2;
+   yUpperBound[2] = maxy1- iFilterWidth / 2;
+   xLowerBound[2] = max3x1 - iFilterWidth / 2;
+   xUpperBound[2] = max3x1;
 
    // bottom
-   yLBound[3] = maxy1 - iFilterWidth / 2;
-   yUBound[3] = maxy1;
-   xLBound[3] = 0;
-   xUBound[3] = max3x1;
+   yLowerBound[3] = maxy1 - iFilterWidth / 2;
+   yUpperBound[3] = maxy1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = max3x1;
 
    iFilterYBegin  = 0;
    iFilterYEnd    = iFilterWidth;
@@ -5302,39 +5302,39 @@ void imaging::alpha_spread__24CC(
    uint32_t dwB;
 
 
-   int32_t iFilterXLBound;
-   int32_t iFilterXUBound;
-   int32_t iFilterYLBound;
-   int32_t iFilterYUBound;
+   int32_t iFilterXLowerBound;
+   int32_t iFilterXUpperBound;
+   int32_t iFilterYLowerBound;
+   int32_t iFilterYUpperBound;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   xLBound[0] = 0;
-   xUBound[0] = cx - 1;
-   yLBound[0] = 0;
-   yUBound[0] = iFilterHalfH - 1;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = cx - 1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterHalfH - 1;
 
    // left
-   xLBound[1] = 0;
-   xUBound[1] = iFilterHalfW - 1;
-   yLBound[1] = iFilterHalfH;
-   yUBound[1] = cy - iFilterHalfH - 1;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterHalfW - 1;
+   yLowerBound[1] = iFilterHalfH;
+   yUpperBound[1] = cy - iFilterHalfH - 1;
 
    // right
-   xLBound[2] = cx - iFilterHalfW;
-   xUBound[2] = cx - 1;
-   yLBound[2] = iFilterHalfH;
-   yUBound[2] = cy - iFilterHalfH - 1;
+   xLowerBound[2] = cx - iFilterHalfW;
+   xUpperBound[2] = cx - 1;
+   yLowerBound[2] = iFilterHalfH;
+   yUpperBound[2] = cy - iFilterHalfH - 1;
 
    // bottom
-   xLBound[3] = 0;
-   xUBound[3] = cx - 1;
-   yLBound[3] = cy - iFilterHalfW;
-   yUBound[3] = cy - 1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = cx - 1;
+   yLowerBound[3] = cy - iFilterHalfW;
+   yUpperBound[3] = cy - 1;
 
    int32_t xL;
    int32_t xU;
@@ -5347,10 +5347,10 @@ void imaging::alpha_spread__24CC(
 
    for(i = 0; i < 4; i++)
    {
-      xL = xLBound[i];
-      xU = xUBound[i];
-      yL = yLBound[i];
-      yU = yUBound[i];
+      xL = xLowerBound[i];
+      xU = xUpperBound[i];
+      yL = yLowerBound[i];
+      yU = yUpperBound[i];
 
       y1 = yL;
       y2 = y1 - iFilterHalfH;
@@ -5358,19 +5358,19 @@ void imaging::alpha_spread__24CC(
       {
          if(y1 < iFilterHalfH)
          {
-            iFilterYLBound = iFilterHalfH - y1;
+            iFilterYLowerBound = iFilterHalfH - y1;
          }
          else
          {
-            iFilterYLBound = 0;
+            iFilterYLowerBound = 0;
          }
          if(y1 > (cy - iFilterHalfH))
          {
-            iFilterYUBound = iFilterH - (y1 - (cy - iFilterHalfH)) - 1;
+            iFilterYUpperBound = iFilterH - (y1 - (cy - iFilterHalfH)) - 1;
          }
          else
          {
-            iFilterYUBound = iFilterH - 1;
+            iFilterYUpperBound = iFilterH - 1;
          }
 
          lpbSource = lpbSrc + (wSrc * max(y2, 0));
@@ -5382,19 +5382,19 @@ void imaging::alpha_spread__24CC(
          {
             if(x1 < iFilterHalfH)
             {
-               iFilterXLBound = iFilterHalfH - x1;
+               iFilterXLowerBound = iFilterHalfH - x1;
             }
             else
             {
-               iFilterXLBound = 0;
+               iFilterXLowerBound = 0;
             }
             if(x1 > (cx - iFilterHalfH + 1))
             {
-               iFilterXUBound = iFilterH - (x1 - (cx - iFilterHalfH + 1));
+               iFilterXUpperBound = iFilterH - (x1 - (cx - iFilterHalfH + 1));
             }
             else
             {
-               iFilterXUBound = iFilterH - 1;
+               iFilterXUpperBound = iFilterH - 1;
             }
 
             lpbSource_1 = lpbSource + max(x2, 0);
@@ -5404,11 +5404,11 @@ void imaging::alpha_spread__24CC(
             dwG = 0;
             dwB = 0;
             bSpread = false;
-            for(int32_t yFilter = iFilterYLBound; yFilter < iFilterYUBound; yFilter++)
+            for(int32_t yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
             {
                lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
-               lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
-               for(int32_t xFilter = iFilterXLBound; xFilter < iFilterXUBound; xFilter++)
+               lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
+               for(int32_t xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
                {
                   if(*lpFilter >= 1)
                   {
@@ -5436,10 +5436,10 @@ breakFilter:
       }
    }
 
-   iFilterYLBound = 0;
-   iFilterYUBound = iFilterW - 1;
-   iFilterXLBound = 0;
-   iFilterXUBound = iFilterH - 1;
+   iFilterYLowerBound = 0;
+   iFilterYUpperBound = iFilterW - 1;
+   iFilterXLowerBound = 0;
+   iFilterXUpperBound = iFilterH - 1;
 
    int32_t iFilterHalfWidth = iFilterW / 2;
    int32_t iFilterHalfWidthBytes = iFilterHalfWidth * 3;
@@ -5454,7 +5454,7 @@ breakFilter:
 
 
 
-   divisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
+   divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
 
    for(; y1 < yU;)
@@ -5473,11 +5473,11 @@ breakFilter:
          dwG = 0;
          dwB = 0;
          bSpread = false;
-         for(int32_t yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+         for(int32_t yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
          {
             lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
-            lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
-            for(int32_t xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+            lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
+            for(int32_t xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
             {
                if(*lpFilter >= 1)
                {
@@ -5660,39 +5660,39 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
    memcpy(lpbDst, lpbSrc, cx * cy * 4);
 
 
-   int32_t iFilterXLBound;
-   int32_t iFilterXUBound;
-   int32_t iFilterYLBound;
-   int32_t iFilterYUBound;
+   int32_t iFilterXLowerBound;
+   int32_t iFilterXUpperBound;
+   int32_t iFilterYLowerBound;
+   int32_t iFilterYUpperBound;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   xLBound[0] = 0;
-   xUBound[0] = cx - 1;
-   yLBound[0] = 0;
-   yUBound[0] = iFilterHalfH - 1;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = cx - 1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterHalfH - 1;
 
    // left
-   xLBound[1] = 0;
-   xUBound[1] = iFilterHalfW - 1;
-   yLBound[1] = iFilterHalfH;
-   yUBound[1] = cy - iFilterHalfH - 1;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterHalfW - 1;
+   yLowerBound[1] = iFilterHalfH;
+   yUpperBound[1] = cy - iFilterHalfH - 1;
 
    // right
-   xLBound[2] = cx - iFilterHalfW;
-   xUBound[2] = cx - 1;
-   yLBound[2] = iFilterHalfH;
-   yUBound[2] = cy - iFilterHalfH - 1;
+   xLowerBound[2] = cx - iFilterHalfW;
+   xUpperBound[2] = cx - 1;
+   yLowerBound[2] = iFilterHalfH;
+   yUpperBound[2] = cy - iFilterHalfH - 1;
 
    // bottom
-   xLBound[3] = 0;
-   xUBound[3] = cx - 1;
-   yLBound[3] = cy - iFilterHalfH;
-   yUBound[3] = cy - 1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = cx - 1;
+   yLowerBound[3] = cy - iFilterHalfH;
+   yUpperBound[3] = cy - 1;
 
    int32_t xL;
    int32_t xU;
@@ -5712,10 +5712,10 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
 
    for(i = 0; i < 4; i++)
    {
-      xL = xLBound[i];
-      xU = xUBound[i];
-      yL = yLBound[i];
-      yU = yUBound[i];
+      xL = xLowerBound[i];
+      xU = xUpperBound[i];
+      yL = yLowerBound[i];
+      yU = yUpperBound[i];
 
       y1 = yL;
       y2 = y1 - iFilterHalfH;
@@ -5723,19 +5723,19 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
       {
          if(y1 < iFilterHalfH)
          {
-            iFilterYLBound = iFilterHalfH - y1;
+            iFilterYLowerBound = iFilterHalfH - y1;
          }
          else
          {
-            iFilterYLBound = 0;
+            iFilterYLowerBound = 0;
          }
          if(y1 > yMaxFilterBound)
          {
-            iFilterYUBound = yFilterMax - (y1 - yMaxFilterBound);
+            iFilterYUpperBound = yFilterMax - (y1 - yMaxFilterBound);
          }
          else
          {
-            iFilterYUBound = yFilterMax;
+            iFilterYUpperBound = yFilterMax;
          }
 
          lpbSource = lpbSrc + wSrc * y2;
@@ -5749,29 +5749,29 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
             {
                if(x1 < iFilterHalfH)
                {
-                  iFilterXLBound = iFilterHalfH - x1;
+                  iFilterXLowerBound = iFilterHalfH - x1;
                }
                else
                {
-                  iFilterXLBound = 0;
+                  iFilterXLowerBound = 0;
                }
                if(x1 > xMaxFilterBound)
                {
-                  iFilterXUBound = xFilterMax - (x1 - xMaxFilterBound);
+                  iFilterXUpperBound = xFilterMax - (x1 - xMaxFilterBound);
                }
                else
                {
-                  iFilterXUBound = xFilterMax;
+                  iFilterXUpperBound = xFilterMax;
                }
 
                lpbSource_1 = lpbSource + max(x2, 0) + iChannel;
 
 
-               for(int32_t yFilter = iFilterYLBound; yFilter < iFilterYUBound; yFilter++)
+               for(int32_t yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
                {
                   lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
-                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
-                  for(int32_t xFilter = iFilterXLBound; xFilter < iFilterXUBound; xFilter++)
+                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
+                  for(int32_t xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
                   {
                      if(*lpFilter >= 1)
                      {
@@ -5795,10 +5795,10 @@ breakFilter:
       }
    }
 
-   iFilterYLBound = 0;
-   iFilterYUBound = iFilterW - 1;
-   iFilterXLBound = 0;
-   iFilterXUBound = iFilterH - 1;
+   iFilterYLowerBound = 0;
+   iFilterYUpperBound = iFilterW - 1;
+   iFilterXLowerBound = 0;
+   iFilterXUpperBound = iFilterH - 1;
 
    int32_t iFilterHalfWidth = iFilterW / 2;
    int32_t iFilterHalfWidthBytes = iFilterHalfWidth * 4;
@@ -5813,7 +5813,7 @@ breakFilter:
 
 
 
-   divisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
+   divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
 
    for(; y1 < yU;)
@@ -5830,11 +5830,11 @@ breakFilter:
 
          if(*((uint32_t *) lpwDestination) != 0xffffffff)
          {
-            for(int32_t yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+            for(int32_t yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
                lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
-               lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
-               for(int32_t xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+               lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
+               for(int32_t xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                {
                   if(*lpFilter >= 1)
                   {
@@ -6148,41 +6148,41 @@ void imaging::pixelate_24CC(
    int32_t iFilterYBegin;
    int32_t iFilterYEnd;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   yLBound[0] = 0;
-   yUBound[0] = iFilterWidth / 2;
-   xLBound[0] = 0;
-   xUBound[0] = max3x1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterWidth / 2;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = max3x1;
 
    // left
-   yLBound[1] = iFilterWidth / 2;
-   yUBound[1] = maxy1 - iFilterWidth / 2;
-   xLBound[1] = 0;
-   xUBound[1] = iFilterWidth / 2;
+   yLowerBound[1] = iFilterWidth / 2;
+   yUpperBound[1] = maxy1 - iFilterWidth / 2;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterWidth / 2;
 
    // right
-   yLBound[2] = iFilterWidth / 2;
-   yUBound[2] = maxy1- iFilterWidth / 2;
-   xLBound[2] = max3x1 - iFilterWidth / 2;
-   xUBound[2] = max3x1;
+   yLowerBound[2] = iFilterWidth / 2;
+   yUpperBound[2] = maxy1- iFilterWidth / 2;
+   xLowerBound[2] = max3x1 - iFilterWidth / 2;
+   xUpperBound[2] = max3x1;
 
    // bottom
-   yLBound[3] = maxy1 - iFilterWidth / 2;
-   yUBound[3] = maxy1;
-   xLBound[3] = 0;
-   xUBound[3] = max3x1;
+   yLowerBound[3] = maxy1 - iFilterWidth / 2;
+   yUpperBound[3] = maxy1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = max3x1;
 
    /*   for(int32_t i = 0; i < 4; i++)
    {
-   int32_t yL = yLBound[i];
-   int32_t yU = yUBound[i];
-   int32_t xL = xLBound[i];
-   int32_t xU = xUBound[i];
+   int32_t yL = yLowerBound[i];
+   int32_t yU = yUpperBound[i];
+   int32_t xL = xLowerBound[i];
+   int32_t xU = xUpperBound[i];
    for(int32_t y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
@@ -6645,41 +6645,41 @@ void imaging::alpha_pixelate_24CC(
    int32_t iFilterYBegin;
    int32_t iFilterYEnd;
 
-   int32_t yLBound[4];
-   int32_t yUBound[4];
-   int32_t xLBound[4];
-   int32_t xUBound[4];
+   int32_t yLowerBound[4];
+   int32_t yUpperBound[4];
+   int32_t xLowerBound[4];
+   int32_t xUpperBound[4];
 
    // top
-   yLBound[0] = 0;
-   yUBound[0] = iFilterWidth / 2;
-   xLBound[0] = 0;
-   xUBound[0] = max3x1;
+   yLowerBound[0] = 0;
+   yUpperBound[0] = iFilterWidth / 2;
+   xLowerBound[0] = 0;
+   xUpperBound[0] = max3x1;
 
    // left
-   yLBound[1] = iFilterWidth / 2;
-   yUBound[1] = maxy1 - iFilterWidth / 2;
-   xLBound[1] = 0;
-   xUBound[1] = iFilterWidth / 2;
+   yLowerBound[1] = iFilterWidth / 2;
+   yUpperBound[1] = maxy1 - iFilterWidth / 2;
+   xLowerBound[1] = 0;
+   xUpperBound[1] = iFilterWidth / 2;
 
    // right
-   yLBound[2] = iFilterWidth / 2;
-   yUBound[2] = maxy1- iFilterWidth / 2;
-   xLBound[2] = max3x1 - iFilterWidth / 2;
-   xUBound[2] = max3x1;
+   yLowerBound[2] = iFilterWidth / 2;
+   yUpperBound[2] = maxy1- iFilterWidth / 2;
+   xLowerBound[2] = max3x1 - iFilterWidth / 2;
+   xUpperBound[2] = max3x1;
 
    // bottom
-   yLBound[3] = maxy1 - iFilterWidth / 2;
-   yUBound[3] = maxy1;
-   xLBound[3] = 0;
-   xUBound[3] = max3x1;
+   yLowerBound[3] = maxy1 - iFilterWidth / 2;
+   yUpperBound[3] = maxy1;
+   xLowerBound[3] = 0;
+   xUpperBound[3] = max3x1;
 
    /*   for(int32_t i = 0; i < 4; i++)
    {
-   int32_t yL = yLBound[i];
-   int32_t yU = yUBound[i];
-   int32_t xL = xLBound[i];
-   int32_t xU = xUBound[i];
+   int32_t yL = yLowerBound[i];
+   int32_t yU = yUpperBound[i];
+   int32_t xL = xLowerBound[i];
+   int32_t xU = xUpperBound[i];
    for(int32_t y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)

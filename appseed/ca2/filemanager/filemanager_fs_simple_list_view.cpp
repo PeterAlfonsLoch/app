@@ -743,13 +743,13 @@ namespace filemanager
          /*void list_view::_001OnAlbumExecutePlay(::ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
-            Range range;
+            range range;
             _001GetSelection(range);
             string str;
             for(int32_t i = 0; i < range.get_item_count(); i++)
             {
-               ItemRange & item = range.ItemAt(i);
-               for(int32_t j = item.GetLBound(); j <= item.GetUBound(); j++)
+               item_range & item = range.ItemAt(i);
+               for(int32_t j = item.get_lower_bound(); j <= item.get_upper_bound(); j++)
                {
                   GetSongPath(str, j);
                   mediaplaylist::document * pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
@@ -770,7 +770,7 @@ namespace filemanager
          void list_view::_001OnUpdateAlbumExecutePlay(::ca::signal_object * pobj)
          {
             SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
-               Range range;
+               range range;
             _001GetSelection(range);
             pupdatecmdui->m_pcmdui->Enable(range.get_item_count() > 0);
             pupdatecmdui->m_bRet = true;

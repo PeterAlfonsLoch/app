@@ -104,8 +104,8 @@ namespace sockets
 
       /** get status of read/write/exception file descriptor set for a socket. */
       virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
-      /** Set read/write/exception file descriptor sets (fd_set). */
-      virtual void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
+      /** set read/write/exception file descriptor sets (fd_set). */
+      virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
       virtual int32_t Select(int32_t sec, int32_t usec) = 0;
       /** This method will not return until an event has been detected. */
@@ -138,13 +138,13 @@ namespace sockets
       // -------------------------------------------------------------------------
       // Socks4
       // -------------------------------------------------------------------------
-      /** Set socks4 server ip that all new tcp sockets should use. */
+      /** set socks4 server ip that all new tcp sockets should use. */
       virtual void SetSocks4Host(in_addr) = 0;
-      /** Set socks4 server hostname that all new tcp sockets should use. */
+      /** set socks4 server hostname that all new tcp sockets should use. */
       virtual void SetSocks4Host(const string & ) = 0;
-      /** Set socks4 server port number that all new tcp sockets should use. */
+      /** set socks4 server port number that all new tcp sockets should use. */
       virtual void SetSocks4Port(port_t) = 0;
-      /** Set optional socks4 userid. */
+      /** set optional socks4 userid. */
       virtual void SetSocks4Userid(const string & ) = 0;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       virtual void SetSocks4TryDirect(bool = true) = 0;

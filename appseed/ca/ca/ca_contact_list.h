@@ -4,7 +4,7 @@ namespace ca
 {
 
    class CLASS_DECL_ca contact_list :
-      public array_ptr_alloc < ::user::profile *, ::user::profile * >
+      public ::ca::smart_pointer_array < ::user::profile *, ::user::profile * >
    {
    public:
       contact_list();

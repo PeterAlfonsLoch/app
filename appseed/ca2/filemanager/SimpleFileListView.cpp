@@ -78,16 +78,15 @@ namespace filemanager
    }
    #endif //DEBUG
 
+
    void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    {
+
       FileManagerViewInterface::on_update(pSender, lHint, phint);
 
-      if(m_bStatic && lHint == 89127784)
+      if(m_bStatic && lHint == hint_add_location)
       {
 
-         add_item(GetFileManager()->get_item().m_strPath, System.file().name_(GetFileManager()->get_item().m_strPath));
-
-         /*
          stringa stra;
 
          GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
@@ -96,17 +95,21 @@ namespace filemanager
 
          strPath.trim();
 
-         if(strPath.has_char())
+         if(strPath.has_char() && GetFileManager()->get_fs_data()->is_dir(strPath))
          {
 
-            stra.add_unique(strPath);
+            if(stra.add_unique(strPath))
+            {
 
-            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
+               GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
 
-            _017UpdateList();
+               add_item(GetFileManager()->get_item().m_strPath, System.file().name_(GetFileManager()->get_item().m_strPath));
+            
+               _001OnUpdateItemCount();
+
+            }
 
          }
-         */
 
       }
       else if(lHint == 123)
@@ -224,11 +227,11 @@ namespace filemanager
                   html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_html_data()->get_element_by_name("encontrar"));
                   html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
                   text_interface * ptext = dynamic_cast < text_interface * > (pinput->m_pedit);
-                  Range range;
+                  range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)
                   {
-                     ptext->_001SetText(get_fs_list_data()->m_itema.get_item(range.ItemAt(0).GetLBound()).m_strName);
+                     ptext->_001SetText(get_fs_list_data()->m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName);
                   }
                }
             }
@@ -602,14 +605,14 @@ namespace filemanager
       SCAST_PTR(BaseCommand, pcommand, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       for(iItemRange = 0;
           iItemRange < range.get_item_count();
           iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
             itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
          }
@@ -624,14 +627,14 @@ namespace filemanager
       SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       for(iItemRange = 0;
           iItemRange < range.get_item_count();
           iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
             itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
          }
@@ -707,7 +710,7 @@ namespace filemanager
    void SimpleFileListView::_001OnUpdateEditCopy(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      Range range;
+      range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
       pobj->m_bRet = true;
@@ -775,7 +778,7 @@ namespace filemanager
    void SimpleFileListView::_001OnUpdateTrashThatIsNotTrash(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      Range range;
+      range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
       pobj->m_bRet = true;
@@ -804,7 +807,7 @@ namespace filemanager
          {
             ::userbase::menu_item_ptra * pitema = pcmdui1->m_pitema;
 
-            ::userbase::menu_base * pbase = pitema->ptr_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
+            ::userbase::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
             pitema->remove_at(pcmdui->m_pcmdui->m_iIndex);
 
 
@@ -919,7 +922,7 @@ namespace filemanager
    void SimpleFileListView::_001OnUpdateSpafy(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      Range range;
+      range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
       pobj->m_bRet = true;

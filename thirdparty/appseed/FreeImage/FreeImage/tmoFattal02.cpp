@@ -601,7 +601,7 @@ static FIBITMAP* tmoFattal02(FIBITMAP *Y, float alpha, float beta) {
 // ----------------------------------------------------------
 
 /**
-Apply the Gradient Domain High Dynamic Range Compression to a RGBF image and convert to 24-bit RGB
+Apply the Gradient Domain High Dynamic range Compression to a RGBF image and convert to 24-bit RGB
 @param dib Input RGBF / RGB16 image
 @param color_saturation Color saturation (s parameter in the paper) in [0.4..0.6]
 @param attenuation Atenuation factor (beta parameter in the paper) in [0.8..0.9]

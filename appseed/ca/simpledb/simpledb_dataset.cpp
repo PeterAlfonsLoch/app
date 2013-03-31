@@ -510,7 +510,7 @@ namespace simpledb
 //            char* err=NULL;
             set::parse_sql(query);
             //cout << "Executing: "<<query<<"\n\n";
-/*            if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
+/*            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
                throw database::DbErrors(db->getErrorMsg());
@@ -634,7 +634,7 @@ namespace simpledb
 
       close();
 
-      if(db->setErr(sqlite3_exec((sqlite3 *) handle(),query,&callback,&m_resultset,&errmsg)) == SQLITE_OK)
+      if(db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) handle(),query,&callback,&m_resultset,&errmsg)) == SQLITE_OK)
       {
          m_strQueryErrorMessage = "";
          m_strDatabaseErrorMessage = "";

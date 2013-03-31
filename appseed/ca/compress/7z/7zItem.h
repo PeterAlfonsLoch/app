@@ -13,7 +13,8 @@ namespace n7z
    const CNum kNumMax     = 0x7FFFFFFF;
    const CNum kNumNoIndex = 0xFFFFFFFF;
 
-   struct CCoderInfo
+   struct CCoderInfo :
+      virtual public ::ca::ca
    {
       ::libcompress::method_id MethodID;
       ::ca::byte_buffer Props;
@@ -28,9 +29,10 @@ namespace n7z
       CNum OutIndex;
    };
 
-   struct CFolder
+   struct CFolder :
+      virtual public ::ca::ca
    {
-      array_ptr_alloc<CCoderInfo> Coders;
+      ::ca::smart_pointer_array<CCoderInfo> Coders;
       base_array<CBindPair> BindPairs;
       base_array<CNum> PackStreams;
       base_array<file_size> UnpackSizes;
@@ -53,7 +55,7 @@ namespace n7z
       {
          CNum result = 0;
          for (index i = 0; i < Coders.get_count(); i++)
-            result += Coders[i].NumOutStreams;
+            result += Coders[i]->NumOutStreams;
          return result;
       }
 
@@ -82,7 +84,7 @@ namespace n7z
       bool IsEncrypted() const
       {
          for (index i = Coders.get_count() - 1; i >= 0; i--)
-            if (Coders[i].MethodID == k_AES)
+            if (Coders[i]->MethodID == k_AES)
                return true;
          return false;
       }
@@ -137,7 +139,8 @@ namespace n7z
 
    };
 
-   struct CFileItem
+   struct CFileItem :
+      virtual public ::ca::ca
    {
       file_size get_count;
       uint32_t Attrib;
@@ -181,9 +184,9 @@ namespace n7z
       base_array<file_size> PackSizes;
       bool_array PackCRCsDefined;
       base_array<uint32_t> PackCRCs;
-      array_ptr_alloc<CFolder> Folders;
+      ::ca::smart_pointer_array<CFolder> Folders;
       base_array<CNum> NumUnpackStreamsVector;
-      array_ptr_alloc<CFileItem> Files;
+      ::ca::smart_pointer_array<CFileItem> Files;
 
       CUInt64DefVector CTime;
       CUInt64DefVector ATime;

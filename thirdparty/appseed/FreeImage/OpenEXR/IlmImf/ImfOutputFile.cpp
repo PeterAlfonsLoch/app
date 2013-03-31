@@ -332,7 +332,7 @@ convertToXdr (OutputFile::Data *ofd,
     for (int y = startY; y != endY; y += step)
     {
 	//
-        // Set these to point to the start of line y.
+        // set these to point to the start of line y.
         // We will write to writePtr from readPtr.
 	//
 	

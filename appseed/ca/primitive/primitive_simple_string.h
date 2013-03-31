@@ -1123,7 +1123,7 @@ public:
    enum
    {
       AUTO_LENGTH = 0x01,  // Automatically determine the new length of the string at release.  The string must be null-terminated.
-         SET_LENGTH = 0x02,  // Set the length of the string object at GetBuffer time
+         SET_LENGTH = 0x02,  // set the length of the string object at GetBuffer time
    };
 
 public:

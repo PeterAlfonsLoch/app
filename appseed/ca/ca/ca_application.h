@@ -387,10 +387,10 @@ namespace ca
 
       EExclusiveInstance            m_eexclusiveinstance;
 
-      ::mutex *                     m_pmutexLocal;
-      ::mutex *                     m_pmutexLocalId;
-      ::mutex *                     m_pmutexGlobal;
-      ::mutex *                     m_pmutexGlobalId;
+      sp(::mutex)                    m_pmutexLocal;
+      sp(::mutex)                    m_pmutexLocalId;
+      sp(::mutex)                     m_pmutexGlobal;
+      sp(::mutex)                     m_pmutexGlobalId;
       // This module's hInstance.
 #ifdef WINDOWS
       HINSTANCE                     m_hInstance;
@@ -767,7 +767,7 @@ namespace ca
       virtual bool on_run_exception(::ca::exception & e);
 
 
-      // Set regsitry key name to be used by application's
+      // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
       void SetRegistryKey(const char * lpszRegistryKey);
       void SetRegistryKey(UINT nIDRegistryKey);

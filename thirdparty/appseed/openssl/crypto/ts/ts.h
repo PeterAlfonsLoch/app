@@ -469,7 +469,7 @@ void *TS_TST_INFO_get_ext_d2i(TS_TST_INFO *a, int nid, int *crit, int *idx);
 /* Don't include the TSA name in response. */
 #define	TS_TSA_NAME		0x01
 
-/* Set ordering to true in response. */
+/* set ordering to true in response. */
 #define	TS_ORDERING		0x02
 
 /*
@@ -651,7 +651,7 @@ int TS_RESP_verify_signature(PKCS7 *token, STACK_OF(X509) *certs,
 
 typedef struct TS_verify_ctx
 	{
-	/* Set this to the union of TS_VFY_... flags you want to carry out. */
+	/* set this to the union of TS_VFY_... flags you want to carry out. */
 	unsigned	flags;
 
 	/* Must be set only with TS_VFY_SIGNATURE. certs is optional. */
@@ -685,7 +685,7 @@ int TS_RESP_verify_token(TS_VERIFY_CTX *ctx, PKCS7 *token);
  * they are defined in ts/ts_verify_ctx.c.
  */
 
-/* Set all fields to zero. */
+/* set all fields to zero. */
 TS_VERIFY_CTX *TS_VERIFY_CTX_new(void);
 void TS_VERIFY_CTX_init(TS_VERIFY_CTX *ctx);
 void TS_VERIFY_CTX_free(TS_VERIFY_CTX *ctx);

@@ -476,7 +476,7 @@
 
 /* Any features you will not be using can be undef'ed here */
 
-/* GR-P, 0.96a: Set "*TRANSFORMS_SUPPORTED as default but allow user
+/* GR-P, 0.96a: set "*TRANSFORMS_SUPPORTED as default but allow user
  * to turn it off with PNG_NO_READ|WRITE_TRANSFORMS on the compile line,
  * then pick and choose which ones to define without having to edit this
  * file. It is safe to use the PNG_NO_READ|WRITE_TRANSFORMS

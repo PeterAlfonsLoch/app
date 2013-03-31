@@ -223,7 +223,7 @@ static int parse_http_line1(char *line)
 		return 0;
 		}
 
-	/* Set end of response code and start of message */ 
+	/* set end of response code and start of message */ 
 	*q++ = 0;
 
 	/* Attempt to parse numeric code */

@@ -128,7 +128,7 @@ start_output_rle (j_decompress_ptr cinfo, djpeg_dest_ptr dinfo)
     }
   }
 
-  /* Set the output buffer to the first row */
+  /* set the output buffer to the first row */
   dest->pub.buffer = (*cinfo->mem->access_virt_sarray)
     ((j_common_ptr) cinfo, dest->image, (JDIMENSION) 0, (JDIMENSION) 1, TRUE);
   dest->pub.buffer_height = 1;

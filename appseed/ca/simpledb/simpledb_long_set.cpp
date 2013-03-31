@@ -85,7 +85,7 @@ repeat:;
 
           for(int32_t i = 1; i < m_itema.get_size(); i++)
           {
-             if(m_itema[i].m_strKey == m_itema[0].m_strKey)
+             if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
              {
                 m_itema.remove_at(0);
                 goto repeat;
@@ -104,9 +104,9 @@ repeat:;
           set["interactive_user"] = true;
 
           strUrl = "https://api.ca2.cc/account/long_set_save?key=";
-          strUrl += System.url().url_encode(m_itema[0].m_strKey);
+          strUrl += System.url().url_encode(m_itema[0]->m_strKey);
           strUrl += "&value=";
-          strUrl += ::ca::str::from(m_itema[0].m_l);
+          strUrl += ::ca::str::from(m_itema[0]->m_l);
 
           m_itema.remove_at(0);
 

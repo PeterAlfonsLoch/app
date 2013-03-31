@@ -230,7 +230,7 @@ namespace sockets
    #endif
 
 
-   bool ipv6_address::IsValid()
+   bool ipv6_address::IsValid() const
    {
       return m_bValid;
    }

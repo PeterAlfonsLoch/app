@@ -188,7 +188,7 @@ public:
   void replaceWith(CScriptVar *newVar); ///< Replace the Variable pointed to
   void replaceWith(CScriptVarLink *newVar); ///< Replace the Variable pointed to (just dereferences)
   int32_t getIntName(); ///< Get the name as an integer (for arrays)
-  void setIntName(int32_t n); ///< Set the name as an integer (for arrays)
+  void setIntName(int32_t n); ///< set the name as an integer (for arrays)
 };
 
 /// Variable class (containing a doubly-linked list of children)
@@ -203,7 +203,7 @@ public:
     ~CScriptVar(void);
 
     CScriptVar *getReturnVar(); ///< If this is a function, get the result value (for use by native functions)
-    void setReturnVar(CScriptVar *var); ///< Set the result value. Use this when setting complex return data as it avoids a deepCopy()
+    void setReturnVar(CScriptVar *var); ///< set the result value. Use this when setting complex return data as it avoids a deepCopy()
     CScriptVar *getParameter(const string &name); ///< If this is a function, get the parameter with the given name (for use by native functions)
 
     CScriptVarLink *findChild(const string &childName); ///< Tries to find a child with the given name, may return 0
@@ -215,7 +215,7 @@ public:
     void removeLink(CScriptVarLink *link); ///< Remove a specific link (this is faster than finding via a child)
     void removeAllChildren();
     CScriptVar *getArrayIndex(int32_t idx); ///< The the value at an array index
-    void setArrayIndex(int32_t idx, CScriptVar *value); ///< Set the value at an array index
+    void setArrayIndex(int32_t idx, CScriptVar *value); ///< set the value at an array index
     int32_t getArrayLength(); ///< If this is an array, return the number of items in it (else 0)
     int32_t getChildren(); ///< Get the number of children
 
@@ -250,7 +250,7 @@ public:
     void trace(string indentStr = "", const string &name = ""); ///< Dump out the contents of this using trace
     string getFlagsAsString(); ///< For debugging - just dump a string version of the flags
     void getJSON(string & str, const string linePrefix=""); ///< Write out all the JS code needed to recreate this script variable to the stream (as JSON)
-    void setCallback(JSCallback callback, void *userdata); ///< Set the callback for native functions
+    void setCallback(JSCallback callback, void *userdata); ///< set the callback for native functions
 
     CScriptVarLink *firstChild;
     CScriptVarLink *lastChild;

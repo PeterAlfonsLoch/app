@@ -16,7 +16,7 @@ namespace xml
 
 
       class CLASS_DECL_ca base_array :
-         virtual public array_ptr_copy < node >
+         virtual public ::ca::smart_pointer_array < node >
       {
       public:
 

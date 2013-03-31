@@ -60,7 +60,7 @@ class BaseDockState;
 #define LM_MRUWIDTH 0x04    // Most Recently Used Dynamic width
 #define LM_HORZDOCK 0x08    // Horizontal Docked Dimensions
 #define LM_VERTDOCK 0x10    // Vertical Docked Dimensions
-#define LM_LENGTHY  0x20    // Set if nLength is a height instead of a width
+#define LM_LENGTHY  0x20    // set if nLength is a height instead of a width
 #define LM_COMMIT   0x40    // Remember MRUWidth
 
 

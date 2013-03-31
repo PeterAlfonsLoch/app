@@ -204,7 +204,7 @@ int X509_PURPOSE_add(int id, int trust, int flags,
 	}
 	/* Keep the dynamic flag of existing entry */
 	ptmp->flags &= X509_PURPOSE_DYNAMIC;
-	/* Set all other flags */
+	/* set all other flags */
 	ptmp->flags |= flags;
 
 	ptmp->purpose = id;

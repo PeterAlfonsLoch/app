@@ -47,7 +47,7 @@ namespace visual
       m_iWidth = iWidth;
       m_iHeight = iHeight;
 
-      // Set our page to 0
+      // set our page to 0
       m_iHpage = 0;
 
    }
@@ -81,7 +81,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(npage == 0)
      {
       newptr = &m_iHeightField1[0];
@@ -143,7 +143,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(npage == 0)
      {
       newptr = &m_iHeightField1[0];
@@ -194,7 +194,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(npage == 0)
      {
       newptr = &m_iHeightField1[0];
@@ -266,7 +266,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(page == 0)
      {
       newptr = &m_iHeightField1[0];
@@ -313,7 +313,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(page == 0)
      {
       newptr = &m_iHeightField1[0];
@@ -357,7 +357,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(page == 0)
      {
       newptr = &m_iHeightField1[0];
@@ -409,7 +409,7 @@ namespace visual
      int32_t *newptr;
      int32_t *oldptr;
 
-     // Set up the pointers
+     // set up the pointers
      if(page == 0)
      {
       newptr = &m_iHeightField1[0];

@@ -271,7 +271,7 @@ static void oc_state_border_init(oc_theora_state *_state){
   yfrag_end=frag=_state->frags;
   for(pli=0;pli<3;pli++){
     fplane=_state->fplanes+pli;
-    /*Set up the cropping rectangle for this plane.*/
+    /*set up the cropping rectangle for this plane.*/
     crop_x0=_state->info.pic_x;
     crop_xf=_state->info.pic_x+_state->info.pic_width;
     crop_y0=_state->info.pic_y;
@@ -505,7 +505,7 @@ static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
     _ogg_free(ref_frame_data);
     return TH_EFAULT;
   }
-  /*Set up the width, height and stride for the image buffers.*/
+  /*set up the width, height and stride for the image buffers.*/
   _state->ref_frame_bufs[0][0].width=info->frame_width;
   _state->ref_frame_bufs[0][0].height=info->frame_height;
   _state->ref_frame_bufs[0][0].stride=yhstride;
@@ -519,7 +519,7 @@ static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
     memcpy(_state->ref_frame_bufs[rfi],_state->ref_frame_bufs[0],
      sizeof(_state->ref_frame_bufs[0]));
   }
-  /*Set up the data pointers for the image buffers.*/
+  /*set up the data pointers for the image buffers.*/
   for(rfi=0;rfi<_nrefs;rfi++){
     _state->ref_frame_data[rfi]=ref_frame_data;
     _state->ref_frame_bufs[rfi][0].data=ref_frame_data+yoffset;

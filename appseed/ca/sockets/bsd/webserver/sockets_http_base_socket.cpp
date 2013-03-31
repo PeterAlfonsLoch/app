@@ -158,7 +158,7 @@ namespace sockets
       for(int32_t i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.add(__str(set_cookie), m_response.cookies().element_at(i).get_cookie_string());
+         m_response.m_propertysetHeader.add(__str(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
 
       }
 

@@ -28,7 +28,7 @@ namespace filemanager
          };
 
          class FolderArray :
-            public array_ptr_alloc < Folder, Folder & >
+            public spa(Folder)
          {
          public:
             int32_t FindAbsolute(int64_t iFolder);

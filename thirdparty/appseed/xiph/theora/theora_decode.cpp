@@ -1327,7 +1327,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
   memcpy(_pipe->ti,_dec->ti0,sizeof(_pipe->ti));
   /*Also copy over the initial the EOB run counts.*/
   memcpy(_pipe->eob_runs,_dec->eob_runs,sizeof(_pipe->eob_runs));
-  /*Set up per-plane pointers to the coded and uncoded fragments lists.*/
+  /*set up per-plane pointers to the coded and uncoded fragments lists.*/
   coded_fragis=_dec->state.coded_fragis;
   uncoded_fragis=coded_fragis+_dec->state.nfrags;
   for(pli=0;pli<3;pli++){
@@ -1338,7 +1338,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
     coded_fragis+=ncoded_fragis;
     uncoded_fragis+=ncoded_fragis-_dec->state.fplanes[pli].nfrags;
   }
-  /*Set up condensed quantizer tables.*/
+  /*set up condensed quantizer tables.*/
   for(pli=0;pli<3;pli++){
     for(qii=0;qii<_dec->state.nqis;qii++){
       for(qti=0;qti<2;qti++){
@@ -1347,7 +1347,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
       }
     }
   }
-  /*Set the previous DC predictor to 0 for all color planes and frame types.*/
+  /*set the previous DC predictor to 0 for all color planes and frame types.*/
   memset(_pipe->pred_last,0,sizeof(_pipe->pred_last));
   /*Initialize the bounding value array for the loop filter.*/
   _pipe->loop_filter=!oc_state_loop_filter_init(&_dec->state,

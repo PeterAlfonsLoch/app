@@ -62,10 +62,10 @@
 #define SC_EXEC_SCSI_CMD          0x02   /* Execute SCSI command           */
 #define SC_ABORT_SRB              0x03   /* Abort an SRB                   */
 #define SC_RESET_DEV              0x04   /* SCSI bus device reset          */
-#define SC_SET_HA_PARMS           0x05   /* Set HA parameters              */
+#define SC_SET_HA_PARMS           0x05   /* set HA parameters              */
 #define SC_GET_DISK_INFO          0x06   /* Get Disk                       */
 #define SC_RESCAN_SCSI_BUS        0x07   /* Rebuild SCSI device map        */
-#define SC_GETSET_TIMEOUTS        0x08   /* Get/Set target timeouts        */
+#define SC_GETSET_TIMEOUTS        0x08   /* Get/set target timeouts        */
 
 
 /***************************************************************************

@@ -262,7 +262,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		}
 		
 		if(bIsRLE) {
-			// read the Offset Tables 
+			// read the offset Tables 
 			int index_len = height * zsize;
 			pRowIndex = (LONG*)malloc(index_len * sizeof(LONG));
 			if(!pRowIndex) {

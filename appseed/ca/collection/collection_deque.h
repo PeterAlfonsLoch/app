@@ -7,7 +7,7 @@ namespace collection
 
    template < class T > 
    class deque :
-      virtual public array_ptr_alloc < T >
+      virtual public ::ca::smart_pointer_array < T >
    {
    public:
 

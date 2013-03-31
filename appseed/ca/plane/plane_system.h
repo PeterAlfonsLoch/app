@@ -290,8 +290,8 @@ namespace plane
       plane::session::map *                        m_pbergedgemap;
 
 
-      class ::ca::log *                       m_plog;
-      class factory *                              m_pfactory;
+      sp(class ::ca::log)                       m_plog;
+      sp(factory)                              m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
       //      ::sockets::net                               m_net;
@@ -886,24 +886,8 @@ bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput,
 
 
 
-template < class TYPE, class ARG_TYPE >
-inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
-{
-   ::ca::type_info & ti = System.template type_info < TYPE > ();
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
-   this->ptra().add(pt);
-   return pt;
-}
 
 
-template < class TYPE, class ARG_TYPE >
-inline index array_app_alloc < TYPE, ARG_TYPE >::add(const TYPE & t)
-{
-   ::ca::type_info & ti = System.template type_info < TYPE > ();
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
-   *pt = t;
-   return this->ptra().add(pt);
-}
 
 
 
@@ -938,121 +922,6 @@ inline index array_app_alloc < TYPE, ARG_TYPE >::add(const TYPE & t)
 
 
 
-
-
-
-
-
-
-
-
-
-template <class TYPE, class ARG_TYPE, class BASE_PTRA>
-inline TYPE * array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
-{
-   TYPE * p = System.alloc(this->get_app(), System.type_info());
-   array_release_ptr < TYPE, ARG_TYPE >::add(p);
-   return p;
-}
-
-
-template < class TYPE, class ARG_TYPE, class BASE_PTRA >
-void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, ARG_TYPE t)
-{
-   ASSERT(iIndex >= 0);
-
-   if(iIndex < this->ptra().get_size())
-   {
-      this->element_at(iIndex) = t;
-   }
-   else
-   {
-      for(index i = this->get_size(); i < iIndex; i++)
-      {
-         this->ptra().add(System.alloc(this->get_app(), System.type_info()));
-      }
-      this->ptra().add(System.alloc(this->get_app(), System.type_info()));
-   }
-}
-
-template <class TYPE, class ARG_TYPE>
-inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(index iIndex, ARG_TYPE t)
-{
-
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info  < TYPE > ()));
-
-   *pt = t;
-
-   this->ptra().insert_at(iIndex, pt);
-
-}
-
-
-template <class TYPE, class ARG_TYPE>
-inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::operator = (const array_app_alloc <TYPE, ARG_TYPE> & a)
-{
-
-   remove_all();
-
-   for(index i = 0; i < a.ptra().get_size(); i++)
-   {
-
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info  < TYPE > ()));
-
-      *pt = *a.ptra()[i];
-
-      this->ptra().add(pt);
-
-   }
-
-   this->ptra().set_size(a.ptra().get_size());
-
-   return *this;
-
-}
-
-
-
-template<class TYPE, class ARG_TYPE>
-void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
-{
-
-   ASSERT(iIndex >= 0);
-
-   if(iIndex < this->ptra().get_size())
-   {
-      this->element_at(iIndex) = t;
-   }
-   else
-   {
-      int_ptr iOldSize = this->ptra().get_size();
-      this->ptra().set_size(iIndex + 1);
-      int_ptr iEmptySize = this->ptra().get_size() - 1;
-      index i;
-      if(this->get_app() == NULL)
-         this->set_app(t.get_app());
-      for(i = iOldSize; i < iEmptySize; i++)
-      {
-         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info   < TYPE > ()));
-      }
-      this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
-   }
-}
-
-template <class TYPE, class ARG_TYPE>
-inline void array_app_alloc < TYPE, ARG_TYPE >::
-   set_size(::count iSize)
-{
-   while(this->get_size() < iSize)
-   {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info  < TYPE > ()));
-      add(pt);
-   }
-   while(this->get_size() > iSize)
-   {
-      remove_at(this->get_size() - 1);
-   }
-}
 
 
 #include "ca/collection/collection_gen_lemon_array.h"

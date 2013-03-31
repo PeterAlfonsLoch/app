@@ -16,8 +16,8 @@ public:
    virtual void pre_subclass_window();
 
    bool RemoveItem(int32_t iItem);
-   bool RemoveItem(Range & range);
-   bool RemoveItem(ItemRange & range);
+   bool RemoveItem(range & range);
+   bool RemoveItem(item_range & range);
    void get_data(stringa & stra);
    void set_data(stringa & stra);
    virtual ~simple_list_control();

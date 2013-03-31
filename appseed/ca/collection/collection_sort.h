@@ -861,14 +861,14 @@ namespace sort
       {
          return false;
       }
-      index iLBound = iStart;
+      index iLowerBound = iStart;
       index iMaxBound = iEnd;
-      index iUBound = iMaxBound;
+      index iUpperBound = iMaxBound;
       index iCompare;
 
       while(true)
       {
-         iIndex = (iUBound + iLBound) / 2;
+         iIndex = (iUpperBound + iLowerBound) / 2;
          iCompare = SortCompare((ARG_TYPE) a.element_at(iIndex), (ARG_TYPE) t);
          if(iCompare == 0)
          {
@@ -876,20 +876,20 @@ namespace sort
          }
          else if(iCompare > 0)
          {
-            iUBound = iIndex - 1;
-            if(iUBound < 0)
+            iUpperBound = iIndex - 1;
+            if(iUpperBound < 0)
                break;
          }
          else
          {
-            iLBound = iIndex + 1;
-            if(iLBound > iMaxBound)
+            iLowerBound = iIndex + 1;
+            if(iLowerBound > iMaxBound)
             {
-               iIndex = iLBound;
+               iIndex = iLowerBound;
                break;
             }
          }
-         if(iUBound < iLBound)
+         if(iUpperBound < iLowerBound)
             break;
 
       }
@@ -909,9 +909,9 @@ namespace sort
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByGetSize(base_array < TYPE, ARG_TYPE > & a, bool bAsc = true);
 
-   template < class TYPE, class ARG_TYPE >
+   template < class TYPE >
    void BubbleSortByPtrAtGetSize(
-      array_ptr_alloc < TYPE, ARG_TYPE > & a,
+      ::ca::smart_pointer_array < TYPE > & a,
       bool bAsc = true);
 
    template <class TYPE, class ARG_TYPE>
@@ -997,9 +997,9 @@ namespace sort
       return;
    }
 
-   template < class TYPE, class ARG_TYPE >
+   template < class TYPE >
    void BubbleSortByPtrAtGetSize(
-      array_ptr_alloc < TYPE, ARG_TYPE > & a,
+      ::ca::smart_pointer_array < TYPE > & a,
       bool bAsc)
    {
       TYPE t;
@@ -1008,7 +1008,7 @@ namespace sort
          for(index i = 0; i < a.get_size(); i++)
             for(index j = i + 1; j < a.get_size(); j++)
             {
-               if(a.ptr_at(i)->get_size() > a.ptr_at(j)->get_size())
+               if(a.element_at(i)->get_size() > a.element_at(j)->get_size())
                {
                   a.swap(i, j);
                }
@@ -1019,7 +1019,7 @@ namespace sort
          for(index i = 0; i < a.get_size(); i++)
             for(index j = i + 1; j < a.get_size(); j++)
             {
-               if(a.ptr_at(i)->get_size() < a.ptr_at(j)->get_size())
+               if(a.element_at(i)->get_size() < a.element_at(j)->get_size())
                {
                   a.swap(i, j);
                }

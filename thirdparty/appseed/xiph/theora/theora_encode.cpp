@@ -1191,7 +1191,7 @@ static void oc_enc_compress_frame(oc_enc_ctx *_enc,int32_t _recode){
   }
 }
 
-/*Set the granule position for the next packet to output based on the current
+/*set the granule position for the next packet to output based on the current
    internal state.*/
 static void oc_enc_set_granpos(oc_enc_ctx *_enc){
   uint32_t dup_offs;

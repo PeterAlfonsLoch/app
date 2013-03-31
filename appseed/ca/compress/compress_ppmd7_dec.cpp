@@ -10,7 +10,7 @@ bool Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
 {
   uint32_t i;
   p->Code = 0;
-  p->Range = 0xFFFFFFFF;
+  p->range = 0xFFFFFFFF;
   if (p->Stream->Read((void *)p->Stream) != 0)
     return false;
   for (i = 0; i < 4; i++)
@@ -21,19 +21,19 @@ bool Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
 static uint32_t Range_GetThreshold(void *pp, uint32_t total)
 {
   CPpmd7z_RangeDec *p = (CPpmd7z_RangeDec *)pp;
-  return (p->Code) / (p->Range /= total);
+  return (p->Code) / (p->range /= total);
 }
 
 static void Range_Normalize(CPpmd7z_RangeDec *p)
 {
-  if (p->Range < kTopValue)
+  if (p->range < kTopValue)
   {
     p->Code = (p->Code << 8) | p->Stream->Read((void *)p->Stream);
-    p->Range <<= 8;
-    if (p->Range < kTopValue)
+    p->range <<= 8;
+    if (p->range < kTopValue)
     {
       p->Code = (p->Code << 8) | p->Stream->Read((void *)p->Stream);
-      p->Range <<= 8;
+      p->range <<= 8;
     }
   }
 }
@@ -41,26 +41,26 @@ static void Range_Normalize(CPpmd7z_RangeDec *p)
 static void Range_Decode(void *pp, uint32_t start, uint32_t size)
 {
   CPpmd7z_RangeDec *p = (CPpmd7z_RangeDec *)pp;
-  p->Code -= start * p->Range;
-  p->Range *= size;
+  p->Code -= start * p->range;
+  p->range *= size;
   Range_Normalize(p);
 }
 
 static uint32_t Range_DecodeBit(void *pp, uint32_t size0)
 {
   CPpmd7z_RangeDec *p = (CPpmd7z_RangeDec *)pp;
-  uint32_t newBound = (p->Range >> 14) * size0;
+  uint32_t newBound = (p->range >> 14) * size0;
   uint32_t symbol;
   if (p->Code < newBound)
   {
     symbol = 0;
-    p->Range = newBound;
+    p->range = newBound;
   }
   else
   {
     symbol = 1;
     p->Code -= newBound;
-    p->Range -= newBound;
+    p->range -= newBound;
   }
   Range_Normalize(p);
   return symbol;

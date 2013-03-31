@@ -173,7 +173,8 @@ namespace ca
             bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
-         class CLASS_DECL_ca Signal
+         class CLASS_DECL_ca Signal :
+            virtual public ::ca::ca
          {
          public:
             e_prototype          m_eprototype;
@@ -195,7 +196,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca SignalArray :
-            public array_ptr_alloc < Signal , Signal & >
+            public ::ca::smart_pointer_array < Signal >
          {
          public:
             virtual ~SignalArray();

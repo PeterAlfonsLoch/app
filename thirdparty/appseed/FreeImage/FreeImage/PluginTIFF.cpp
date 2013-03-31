@@ -192,7 +192,7 @@ TIFF *
 TIFFFdOpen(thandle_t handle, const char *name, const char *mode) {
 	TIFF *tif;
 
-    // Set up the callback for extended TIFF directory tag support
+    // set up the callback for extended TIFF directory tag support
 	// (see XTIFF.cpp)
     XTIFFInitialize();
 
@@ -355,7 +355,7 @@ ReadResolution(TIFF *tiff, FIBITMAP *dib) {
 }
 
 /**
-Set the resolution to the TIFF using english units
+set the resolution to the TIFF using english units
 */
 static void
 WriteResolution(TIFF *tiff, FIBITMAP *dib) {

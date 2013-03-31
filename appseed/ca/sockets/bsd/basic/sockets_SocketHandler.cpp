@@ -204,9 +204,9 @@ namespace sockets
    }
 
 
-   void socket_handler::Set(SOCKET s,bool bRead,bool bWrite,bool bException)
+   void socket_handler::set(SOCKET s,bool bRead,bool bWrite,bool bException)
    {
-   //TRACE("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
+   //TRACE("set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
       if (s >= 0)
       {
          if (bRead)
@@ -306,7 +306,7 @@ namespace sockets
             stream_socket *scp = dynamic_cast<stream_socket *>(p);
             if (scp && scp -> Connecting()) // 'open' called before adding socket
             {
-               Set(s,false,true);
+               set(s,false,true);
             }
             else
             {
@@ -314,11 +314,11 @@ namespace sockets
                bool bWrite = tcp ? tcp -> GetOutputLength() != 0 : false;
                if (p -> IsDisableRead())
                {
-                  Set(s, false, bWrite);
+                  set(s, false, bWrite);
                }
                else
                {
-                  Set(s, true, bWrite);
+                  set(s, true, bWrite);
                }
             }
             m_maxsock = (s > m_maxsock) ? s : m_maxsock;
@@ -701,7 +701,7 @@ namespace sockets
             {
                if (p -> IsDetach())
                {
-                  Set(p -> GetSocket(), false, false, false);
+                  set(p -> GetSocket(), false, false, false);
                   // After DetachSocket(), all calls to Handler() will return a reference
                   // to the new slave socket_handler running in the new thread.
                   p -> DetachSocket();
@@ -877,7 +877,7 @@ namespace sockets
                      }
                      else
                      {
-                        Set(p -> GetSocket(),false,false,false);
+                        set(p -> GetSocket(),false,false,false);
                         //TRACE("close() before OnDelete\n");
                         p -> close();
                      }

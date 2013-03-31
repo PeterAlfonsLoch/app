@@ -81,7 +81,7 @@ namespace ca
          {
             for(int32_t i = 0; i < this->get_count(); i++)
             {
-               if(ptr_at(i)->matches(var))
+               if(element_at(i)->matches(var))
                   return true;
             }
             return false;

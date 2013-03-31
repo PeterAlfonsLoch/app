@@ -348,10 +348,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					mask = 1;
 				}
 				if(*bP & mask) {
-					// Set bit(x, y) to 0
+					// set bit(x, y) to 0
 					bits[x >> 3] &= (0xFF7F >> (x & 0x7));
 				} else {
-					// Set bit(x, y) to 1
+					// set bit(x, y) to 1
 					bits[x >> 3] |= (0x80 >> (x & 0x7));
 				}
 				count++;

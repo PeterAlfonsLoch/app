@@ -1307,7 +1307,7 @@ static long dgram_sctp_ctrl(BIO *b, int cmd, long num, void *ptr)
 	switch (cmd)
 		{
 	case BIO_CTRL_DGRAM_QUERY_MTU:
-		/* Set to maximum (2^14)
+		/* set to maximum (2^14)
 		 * and ignore user input to enable transport
 		 * protocol fragmentation.
 		 * Returns always 2^14.
@@ -1316,7 +1316,7 @@ static long dgram_sctp_ctrl(BIO *b, int cmd, long num, void *ptr)
 		ret = data->mtu;
 		break;
 	case BIO_CTRL_DGRAM_SET_MTU:
-		/* Set to maximum (2^14)
+		/* set to maximum (2^14)
 		 * and ignore input to enable transport
 		 * protocol fragmentation.
 		 * Returns always 2^14.
@@ -1382,7 +1382,7 @@ static long dgram_sctp_ctrl(BIO *b, int cmd, long num, void *ptr)
 		ret = getsockopt(b->num, IPPROTO_SCTP, SCTP_AUTH_ACTIVE_KEY, &authkeyid, &sockopt_len);
 		if (ret < 0) break;
 
-		/* Set active key */
+		/* set active key */
 		authkeyid.scact_keynumber = authkeyid.scact_keynumber + 1;
 		ret = setsockopt(b->num, IPPROTO_SCTP, SCTP_AUTH_ACTIVE_KEY,
 		      &authkeyid, sizeof(struct sctp_authkeyid));

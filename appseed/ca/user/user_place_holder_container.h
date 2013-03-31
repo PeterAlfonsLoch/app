@@ -10,7 +10,7 @@ namespace user
    public:
 
       
-      array_app_alloc < place_holder, place_holder & > m_holdera;
+      spa(place_holder) m_holdera;
 
 
       place_holder_container(::ca::application * papp);

@@ -97,7 +97,7 @@ namespace ca
             printf("ERROR - CryptDuplicateKey");
          }
          //-------------------------------------------------------------------
-         // Set additional parameters on the original key.
+         // set additional parameters on the original key.
          // First, set the cipher mode.
 
          dwMode = CRYPT_MODE_ECB;
@@ -127,7 +127,7 @@ namespace ca
               printf("Error during CryptGenRandom.");
          }
          //-------------------------------------------------------------------
-         // Set the initialization vector.
+         // set the initialization vector.
          if(CryptSetKeyParam(
             hOriginalKey,
             KP_IV,

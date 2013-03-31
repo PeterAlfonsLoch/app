@@ -494,7 +494,7 @@ namespace datetime
       int32_t nMins,
       int32_t nSecs) RELEASENOTHROW
    {
-      // Set date span by breaking into fractional days (all input ranges valid)
+      // set date span by breaking into fractional days (all input ranges valid)
       m_span = lDays + ((double)nHours)/24 + ((double)nMins)/(24*60) +
          ((double)nSecs)/(24*60*60);
       m_status = valid;
@@ -899,7 +899,7 @@ valid : invalid;
 
    inline int32_t float_time::SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW
    {
-      // Set date to zero date - 12/30/1899
+      // set date to zero date - 12/30/1899
       return SetDateTime(1899, 12, 30, nHour, nMin, nSec);
    }
 

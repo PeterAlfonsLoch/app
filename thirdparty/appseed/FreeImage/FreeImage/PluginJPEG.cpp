@@ -1517,7 +1517,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				cinfo.optimize_coding = TRUE;
 			}
 
-			// Set JFIF density parameters from the DIB data
+			// set JFIF density parameters from the DIB data
 
 			cinfo.X_density = (UINT16) (0.5 + 0.0254 * FreeImage_GetDotsPerMeterX(dib));
 			cinfo.Y_density = (UINT16) (0.5 + 0.0254 * FreeImage_GetDotsPerMeterY(dib));

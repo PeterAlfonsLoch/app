@@ -61,7 +61,7 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
       semun semctl_arg;
 
-      //Set Initial value for the resource
+      //set Initial value for the resource
       semctl_arg.val = 1; //Setting semval to 1
 
       semctl(m_semid, 0, SETVAL, semctl_arg);

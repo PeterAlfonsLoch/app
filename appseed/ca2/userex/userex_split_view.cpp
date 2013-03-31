@@ -30,7 +30,7 @@ namespace userex
       if(iPane < 0)
          return;
 
-      Pane * ppane = (Pane *) m_panea.ptr_at(iPane);
+      Pane * ppane = (Pane *) m_panea.element_at(iPane);
 
       ppane->m_pholder = pcreatordata->m_pholder;
 

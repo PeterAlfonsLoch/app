@@ -26,8 +26,8 @@ namespace sockets
    public:
 
 
-      ipv4_address *    m_pipv4;
-      ipv6_address *    m_pipv6;
+      sp(ipv4_address)  m_pipv4;
+      sp(ipv6_address)  m_pipv6;
       string            m_strServiceName;
 
 

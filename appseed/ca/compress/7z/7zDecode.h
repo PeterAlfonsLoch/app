@@ -28,7 +28,7 @@ namespace n7z
 
       ::ca::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
       base_array < ::ca::smart_pointer < ::ca::ca > > _decoders;
-      // array_ptr_alloc<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
+      // ::ca::smart_pointer_array<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
    public:
       CDecoder(::ca::application * papp,  bool multiThread);
       virtual ~CDecoder();

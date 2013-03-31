@@ -53,7 +53,7 @@ namespace fs
 
    void list_interface::GetSelectedFilePath(stringa & base_array)
    {
-      Range range;
+      range range;
 
       _001GetSelection(range);
 
@@ -62,8 +62,8 @@ namespace fs
 //      HRESULT hr;
       for(index i = 0; i < range.get_item_count(); i++)
       {
-         ItemRange & itemrange = range.ItemAt(i);
-         for(index iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
+         item_range & itemrange = range.ItemAt(i);
+         for(index iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
             index iStrict;
             if(m_eview == ViewIcon)
@@ -115,33 +115,9 @@ namespace fs
       iaDisplayToStrict = iconlayout.m_iaDisplayToStrict;
       index_biunique iaDisplayToStrictNew;
 
-      //m_straFileSize.remove_all();
       ::fs::list_item item;
-//      get_fs_list_data()->m_itema.clear(NULL, NULL);
-      _001OnUpdateItemCount();
-      /*if(m_bStatic)
-      {
-         stringa stra;
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
-         for(int32_t i = 0; i < stra.get_size(); i++)
-         {
-            item.m_flags.unsignalize_all();
-            if(get_fs_data()->is_dir(stra[i]))
-            {
-               item.m_flags.signalize(filemanager::FlagFolder);
-            }
-            else
-            {
-            }
-            item.m_iImage = -1;
-            item.m_strPath = stra[i];
-            item.m_strName = get_fs_data()->file_title(stra[i]);
 
-            m_itema.add_item(item);
-         }
-         _001OnUpdateItemCount();
-         return;
-      }*/
+      _001OnUpdateItemCount();
 
       string strParent = lpcsz;
 
@@ -366,15 +342,15 @@ namespace fs
       list_data * pdata = get_fs_list_data();
       ::fs::item_array itema;
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       for(iItemRange = 0;
             iItemRange < range.get_item_count();
             iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound();
-               iItem <= itemrange.GetUBound();
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = itemrange.get_lower_bound();
+               iItem <= itemrange.get_upper_bound();
                iItem++)
          {
             if(iItem < 0)
@@ -413,15 +389,15 @@ namespace fs
       list_data * pdata = get_fs_list_data();
       ::fs::item_array itema;
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       for(iItemRange = 0;
             iItemRange < range.get_item_count();
             iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound();
-               iItem <= itemrange.GetUBound();
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = itemrange.get_lower_bound();
+               iItem <= itemrange.get_upper_bound();
                iItem++)
          {
             if(iItem < 0)
@@ -537,16 +513,16 @@ namespace fs
    {
       list_data * pdata = get_fs_list_data();
       index iItemRange, iItem;
-      Range range;
+      range range;
       _001GetSelection(range);
       index_array iaItem;
       for(iItemRange = 0;
             iItemRange < range.get_item_count();
             iItemRange++)
       {
-         ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = max(0, itemrange.GetLBound());
-               iItem <= itemrange.GetUBound();
+         item_range itemrange = range.ItemAt(iItemRange);
+         for(iItem = max(0, itemrange.get_lower_bound());
+               iItem <= itemrange.get_upper_bound();
                iItem++)
          {
             ::fs::item item;
@@ -615,9 +591,9 @@ namespace fs
    {
       UNREFERENCED_PARAMETER(pobj);
       user::control * pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
-      Range range;
+      range range;
       _001GetSelection(range);
-      if(range.get_item_count() == 1 && range.ItemAt(0).GetLBound() == range.ItemAt(0).GetUBound())
+      if(range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
          _001PlaceControl(pcontrol);
       }
@@ -626,11 +602,11 @@ namespace fs
    void list_interface::_001OnUpdateFileRename(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      Range range;
+      range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
          range.get_item_count() == 1
-         && range.ItemAt(0).GetLBound() == range.ItemAt(0).GetUBound());
+         && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
       pobj->m_bRet = true;
    }
 

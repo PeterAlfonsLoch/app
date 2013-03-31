@@ -637,7 +637,7 @@ static void write_dsa(unsigned char **out, DSA *dsa, int ispub)
 		write_lebn(out, dsa->pub_key, nbyte);
 	else
 		write_lebn(out, dsa->priv_key, 20);
-	/* Set "invalid" for seed structure values */
+	/* set "invalid" for seed structure values */
 	memset(*out, 0xff, 24);
 	*out += 24;
 	return;

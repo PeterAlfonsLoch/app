@@ -493,7 +493,7 @@ static int TS_check_status_info(TS_RESP *response)
 	else
 		status_text = "unknown code";
 
-	/* Set the embedded_status_text to the returned description. */
+	/* set the embedded_status_text to the returned description. */
 	if (sk_ASN1_UTF8STRING_num(info->text) > 0
 	    && !(embedded_status_text = TS_get_status_text(info->text)))
 		return 0;

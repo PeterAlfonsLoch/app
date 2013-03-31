@@ -244,9 +244,9 @@ public:
    virtual ::ca::ca * create(::ca::application * papp, ::ca::type_info & info);
    virtual ::ca::ca * base_clone(::ca::ca * pobject);
    template < class T >
-   T * clone(T * pobject)
+   T * clone(const T * pobject)
    {
-      return dynamic_cast < T * > (base_clone(pobject));
+      return dynamic_cast < T * > (base_clone((::ca::ca *) (T *) pobject));
    }
 
    template < class T >

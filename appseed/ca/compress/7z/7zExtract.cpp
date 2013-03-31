@@ -15,7 +15,8 @@
 namespace n7z
 {
 
-   struct CExtractFolderInfo
+   struct CExtractFolderInfo :
+      virtual public ::ca::ca
    {
      #ifdef _7Z_VOL
      int32_t VolumeIndex;
@@ -71,7 +72,7 @@ namespace n7z
      IInStream *_inStream = volume.Stream;
      */
 
-     array_del_ptr<CExtractFolderInfo> extractFolderInfoVector;
+     ::ca::smart_pointer_array<CExtractFolderInfo> extractFolderInfoVector;
      for (uint32_t ii = 0; ii < numItems; ii++)
      {
        // uint32_t fileIndex = allFilesMode ? indexIndex : indices[indexIndex];
@@ -104,7 +105,7 @@ namespace n7z
            continue;
          }
          if (extractFolderInfoVector.is_empty() ||
-           folderIndex != extractFolderInfoVector.last_element().FolderIndex
+           folderIndex != extractFolderInfoVector.last_element()->FolderIndex
            #ifdef _7Z_VOL
            || volumeIndex != extractFolderInfoVector.last_element().VolumeIndex
            #endif
@@ -118,7 +119,7 @@ namespace n7z
            const CFolder &folderInfo = db.Folders[folderIndex];
            uint64_t unpackSize = folderInfo.GetUnpackSize();
            importantTotalUnpacked += unpackSize;
-           extractFolderInfoVector.last_element().UnpackSize = unpackSize;
+           extractFolderInfoVector.last_element()->UnpackSize = unpackSize;
          }
 
          CExtractFolderInfo &efi = extractFolderInfoVector.last_element();

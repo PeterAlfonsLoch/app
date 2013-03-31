@@ -159,7 +159,7 @@ namespace filemanager
 
 
       virtual COLORREF get_background_color();
-      void add_item(const char * pszPath, const char * pszTitle);
+      bool add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
    // Attributes
       virtual void _017Synchronize();

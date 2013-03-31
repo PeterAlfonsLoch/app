@@ -67,7 +67,8 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca timer_item
+      class CLASS_DECL_ca timer_item :
+         virtual public ::ca::ca
       {
       public:
 
@@ -89,7 +90,7 @@ namespace user
 
 
          mutex                               m_mutex;
-         array_ptr_alloc < timer_item >      m_timera;
+         ::ca::smart_pointer_array < timer_item >      m_timera;
          index                               m_iItem;
 
 
@@ -101,7 +102,7 @@ namespace user
          void check();
          bool unset(interaction * pguie, uint_ptr uiId);
          void unset(interaction * pguie);
-         void detach(array_ptr_alloc < timer_item > & timera, interaction * pguie);
+         void detach(::ca::smart_pointer_array < timer_item > & timera, interaction * pguie);
          void transfer(::ca::window * pwindow, interaction * pguie);
          interaction * find(::ca::ca * pca);
          index find(interaction * pguie, uint_ptr uiId);
@@ -130,7 +131,7 @@ namespace user
 
       sp(mutex)                           m_spmutex;
       e_appearance                        m_eappearance;
-      interaction *                       m_pimpl;
+      sp(interaction)                     m_pimpl;
       static interaction *                g_pguieMouseMoveCapture;
       pha(interaction)                    m_uiptraChild;
       string                              m_strName;
@@ -171,7 +172,7 @@ namespace user
       void set_cursor(::visual::e_cursor ecursor);
 
 
-      void set_timer(array_ptr_alloc < timer_item > timera);
+      void set_timer(::ca::smart_pointer_array < timer_item > timera);
 
 
       virtual bool IsWindow();

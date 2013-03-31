@@ -2562,7 +2562,7 @@ BSTR string::SetSysString(BSTR* pbstr ) const
 
 #endif
 
-// Set the string to the value of environment var 'pszVar'
+// set the string to the value of environment var 'pszVar'
 bool string::GetEnvironmentVariable(const char * pszVar )
 {
 

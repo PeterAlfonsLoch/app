@@ -56,7 +56,7 @@ write_header (j_decompress_ptr cinfo, djpeg_dest_ptr dinfo, int num_colors)
 {
   char targaheader[18];
 
-  /* Set unused fields of header to 0 */
+  /* set unused fields of header to 0 */
   MEMZERO(targaheader, SIZEOF(targaheader));
 
   if (num_colors > 0) {

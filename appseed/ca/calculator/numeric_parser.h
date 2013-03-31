@@ -18,7 +18,7 @@ namespace calculator
       element * factor();
 
       scanner m_scanner;
-      array_ptr_alloc < element > m_elementa;
+      ::ca::smart_pointer_array < element > m_elementa;
 
       void error(const char * pszMessage);
       void syntax_error(const char * pszMessage);

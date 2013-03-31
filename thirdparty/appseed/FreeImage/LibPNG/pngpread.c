@@ -1138,13 +1138,13 @@ png_read_push_finish_row(png_structp png_ptr)
    /* Start of interlace block */
    PNG_CONST int FARDATA png_pass_start[] = {0, 4, 0, 2, 0, 1, 0};
 
-   /* Offset to next interlace block */
+   /* offset to next interlace block */
    PNG_CONST int FARDATA png_pass_inc[] = {8, 8, 4, 4, 2, 2, 1};
 
    /* Start of interlace block in the y direction */
    PNG_CONST int FARDATA png_pass_ystart[] = {0, 0, 4, 0, 2, 0, 1};
 
-   /* Offset to next interlace block in the y direction */
+   /* offset to next interlace block in the y direction */
    PNG_CONST int FARDATA png_pass_yinc[] = {8, 8, 8, 4, 4, 2, 2};
 
    /* Height of interlace block.  This is not currently used - if you need

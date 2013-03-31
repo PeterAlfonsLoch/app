@@ -54,23 +54,23 @@ namespace libcompress
          static uint32_t Range_GetThreshold(void *pp, uint32_t total)
          {
             CRangeDecoder *p = (CRangeDecoder *)pp;
-            return p->Code / (p->Range /= total);
+            return p->Code / (p->range /= total);
          }
 
          static void Range_Decode(void *pp, uint32_t start, uint32_t size)
          {
             CRangeDecoder *p = (CRangeDecoder *)pp;
-            start *= p->Range;
+            start *= p->range;
             p->Low += start;
             p->Code -= start;
-            p->Range *= size;
+            p->range *= size;
             p->Normalize();
          }
 
          static uint32_t Range_DecodeBit(void *pp, uint32_t size0)
          {
             CRangeDecoder *p = (CRangeDecoder *)pp;
-            if (p->Code / (p->Range >>= 14) < size0)
+            if (p->Code / (p->range >>= 14) < size0)
             {
                Range_Decode(p, 0, size0);
                return 0;
@@ -195,10 +195,10 @@ namespace libcompress
                      if (nextFilter == NULL || nextFilter->BlockStart != blockStart ||
                         nextFilter->BlockSize != outBlockRef.Size || nextFilter->NextWindow)
                         break;
-                     _vm.SetMemory(0, _vm.GetDataPointer(outBlockRef.Offset), outBlockRef.Size);
+                     _vm.SetMemory(0, _vm.GetDataPointer(outBlockRef.offset), outBlockRef.Size);
                      ExecuteFilter(++i, outBlockRef);
                   }
-                  WriteDataToStream(_vm.GetDataPointer(outBlockRef.Offset), outBlockRef.Size);
+                  WriteDataToStream(_vm.GetDataPointer(outBlockRef.offset), outBlockRef.Size);
                   _writtenFileSize += outBlockRef.Size;
                   writtenBorder = blockEnd;
                   writeSize = (_winPos - writtenBorder) & kWindowMask;

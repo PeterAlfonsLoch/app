@@ -58,14 +58,14 @@ namespace fs
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
-      Range range;
+      range range;
       _001GetSelection(range);
       if(range.get_item_count() > 0)
       {
          list_data * pdata = get_fs_list_data();
-         ItemRange & itemrange = range.ItemAt(0);
-         index iLItem = itemrange.GetLBound();
-         index iUItem = itemrange.GetUBound();
+         item_range & itemrange = range.ItemAt(0);
+         index iLItem = itemrange.get_lower_bound();
+         index iUItem = itemrange.get_upper_bound();
          if(iUItem < iLItem)
          {
             iUItem = pdata->m_itema.get_upper_bound();

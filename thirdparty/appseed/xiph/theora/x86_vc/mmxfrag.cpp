@@ -55,19 +55,19 @@ void oc_frag_recon_intra_mmx(uchar *_dst,int32_t _ystride,
     mov RESIDUE,_residue
     lea DST4,[DST+YSTRIDE*4]
     lea YSTRIDE3,[YSTRIDE+YSTRIDE*2]
-    /*Set mm0 to 0xFFFFFFFFFFFFFFFF.*/
+    /*set mm0 to 0xFFFFFFFFFFFFFFFF.*/
     pcmpeqw mm0,mm0
     /*#0 Load low residue.*/
     movq mm1,[0*8+RESIDUE]
     /*#0 Load high residue.*/
     movq mm2,[1*8+RESIDUE]
-    /*Set mm0 to 0x8000800080008000.*/
+    /*set mm0 to 0x8000800080008000.*/
     psllw mm0,15
     /*#1 Load low residue.*/
     movq mm3,[2*8+RESIDUE]
     /*#1 Load high residue.*/
     movq mm4,[3*8+RESIDUE]
-    /*Set mm0 to 0x0080008000800080.*/
+    /*set mm0 to 0x0080008000800080.*/
     psrlw mm0,8
     /*#2 Load low residue.*/
     movq mm5,[4*8+RESIDUE]

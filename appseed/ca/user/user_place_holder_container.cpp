@@ -23,12 +23,12 @@ namespace user
    {
       if(!m_holdera.add_new())
          return NULL;
-      if(!m_holdera.last_element().create(this, m_holdera.get_upper_bound()))
+      if(!m_holdera.last_element()->create(this, m_holdera.get_upper_bound()))
       {
          m_holdera.remove_last();
          return NULL;
       }
-      return &m_holdera.last_element();
+      return m_holdera.last_element();
    }
 
    bool place_holder_container::remove_place_holder(place_holder * pholder)
@@ -53,9 +53,9 @@ namespace user
    {
       for(int32_t i = 0; i < m_holdera.get_count(); i++)
       {
-         if(m_holdera[i].is_holding(pui))
+         if(m_holdera[i]->is_holding(pui))
          {
-            if(on_unhold(pui, &m_holdera[i]))
+            if(on_unhold(pui, m_holdera[i]))
             {
                m_holdera.remove_at(i);
                return true;

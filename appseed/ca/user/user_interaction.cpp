@@ -119,10 +119,7 @@ namespace user
             {
             }
          }*/
-         if(m_pimpl != NULL && m_pimpl != this)
-         {
-            ::ca::del(m_pimpl);
-         }
+         m_pimpl.release();
       }
       catch(...)
       {
@@ -169,11 +166,11 @@ namespace user
          return m_pimpl->get_parent();
    }
 
-   void interaction::set_timer(array_ptr_alloc < timer_item > timera)
+   void interaction::set_timer(::ca::smart_pointer_array < timer_item > timera)
    {
       for(int32_t i = 0; i < timera.get_count(); i++)
       {
-         SetTimer(timera[i].m_uiId, timera[i].m_uiElapse, NULL);
+         SetTimer(timera[i]->m_uiId, timera[i]->m_uiElapse, NULL);
       }
    }
 
@@ -212,7 +209,7 @@ namespace user
             {
                iStyle &= ~WS_VISIBLE;
             }
-            array_ptr_alloc < timer_item > timera;
+            ::ca::smart_pointer_array < timer_item > timera;
             if(pimplOld->m_pthread != NULL
             && pimplOld->m_pthread->m_pthread->m_p != NULL
             && pimplOld->m_pthread->m_pthread->m_p->m_ptimera != NULL)
@@ -1292,7 +1289,7 @@ namespace user
    oswindow interaction::unsubclass_window()
    {
 
-      ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl);
+      ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl->m_p);
 
       if(pwindow != NULL)
       {
@@ -1470,7 +1467,7 @@ namespace user
             {
                on_set_parent(pParentWnd);
             }
-            ::ca::del(pimplOld);
+            pimplOld->release();
          }
          return true;
       }
@@ -2922,7 +2919,7 @@ ExitModal:
       return false;
    }
 
-   void interaction::timer_array::detach(array_ptr_alloc < timer_item > & timera, interaction * pguie)
+   void interaction::timer_array::detach(::ca::smart_pointer_array < timer_item > & timera, interaction * pguie)
    {
 
 
@@ -2952,7 +2949,7 @@ ExitModal:
 
       single_lock sl(&m_mutex, TRUE);
 
-      array_ptr_alloc < timer_item > timera;
+      ::ca::smart_pointer_array < timer_item > timera;
       detach(timera, pguie);
       pwindow->set_timer(timera);
 

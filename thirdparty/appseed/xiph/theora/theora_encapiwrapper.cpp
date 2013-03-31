@@ -61,7 +61,7 @@ int32_t theora_encode_init(theora_state *_te,theora_info *_ci){
   _te->granulepos=0;
   _te->i=&apiinfo->info;
   _te->i->codec_setup=&apiinfo->api;
-  /*Set the precise requested keyframe frequency.*/
+  /*set the precise requested keyframe frequency.*/
   keyframe_frequency_force=_ci->keyframe_auto_p?
    _ci->keyframe_frequency_force:_ci->keyframe_frequency;
   th_encode_ctl(apiinfo->api.encode,

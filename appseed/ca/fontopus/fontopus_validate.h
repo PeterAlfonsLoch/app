@@ -28,7 +28,8 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_ca http_execute
+   class CLASS_DECL_ca http_execute :
+      virtual public ::ca::ca
    {
    public:
       string                  m_strUrl;
@@ -39,7 +40,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca http_execute_array : 
-      public array_ptr_alloc < http_execute, http_execute & >
+      public spa(http_execute)
    {
    };
 

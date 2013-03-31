@@ -66,7 +66,7 @@ namespace userbase
          CalcTension(pt);
          set_capture();
          m_dwLastTime = ::get_tick_count();
-         m_daScalar.Set(0.0);
+         m_daScalar.set(0.0);
          m_iScalar = 0;
          m_bSlide = true;
          pmouse->m_bRet = true;

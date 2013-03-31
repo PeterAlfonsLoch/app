@@ -320,7 +320,7 @@ dividerOK:
       popfd                           // cleanup stack
       jmp      done
 multiNotNUL:
-      // Set result HI part to 0
+      // set result HI part to 0
       xor      eax,eax
       mov      dword ptr[edi+12], eax
       mov      dword ptr[edi+8], eax
@@ -542,7 +542,7 @@ shiftOK:
       popfd                           // cleanup stack
       jmp      done
 multiNotNUL:
-      // Set result HI part to 0
+      // set result HI part to 0
       xor      eax,eax
       mov      dword ptr[edi+12], eax
       mov      dword ptr[edi+8], eax

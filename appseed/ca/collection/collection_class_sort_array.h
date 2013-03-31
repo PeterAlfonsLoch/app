@@ -32,12 +32,12 @@ SortFind(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
 		return false;
 	}
    int32_t iIntProperty = (((TYPE &)t).*lpfnIntSortProperty)();
-	index iLBound = iIndex;
-	index iUBound = this->get_size() - 1;
+	index iLowerBound = iIndex;
+	index iUpperBound = this->get_size() - 1;
 	int32_t iCompare;
 	while(true)
 	{
-		iIndex = (iUBound + iLBound) / 2;
+		iIndex = (iUpperBound + iLowerBound) / 2;
 		iCompare = (this->element_at(iIndex).*lpfnIntSortProperty)() - iIntProperty;
 		if(iCompare == 0)
 		{
@@ -45,13 +45,13 @@ SortFind(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
 		}
 		else if(iCompare > 0)
 		{
-			iUBound = iIndex - 1;
+			iUpperBound = iIndex - 1;
 		}
 		else
 		{
-			iLBound = iIndex + 1;
+			iLowerBound = iIndex + 1;
 		}
-		if(iUBound < iLBound)
+		if(iUpperBound < iLowerBound)
 			break;
 
 	}

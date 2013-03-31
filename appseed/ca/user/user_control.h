@@ -101,7 +101,8 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca descriptor
+      class CLASS_DECL_ca descriptor :
+         virtual public ::ca::ca
       {
       public:
 
@@ -119,7 +120,7 @@ namespace user
          } m_data;
 
          form *                  m_pform;
-         control *               m_pcontrol;
+         sp(control)             m_pcontrol;
          id                      m_id;
          id                      m_uiText;
          ::ca::type_info         m_typeinfo;
@@ -156,7 +157,7 @@ namespace user
       };
 
       class CLASS_DECL_ca descriptor_set :
-         public array_ptr_alloc < descriptor >
+         public ::ca::smart_pointer_array < descriptor >
       {
       public:
 

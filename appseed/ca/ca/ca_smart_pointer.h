@@ -28,6 +28,7 @@ namespace ca
       smart_pointer();
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(T * p);
+      smart_pointer(const T & t);
       smart_pointer(::ca::application * papp);
       smart_pointer(const ::ca::null &);
       virtual ~smart_pointer();
@@ -37,8 +38,8 @@ namespace ca
       inline const T * operator ->() const ;
       inline operator T & ();
       inline operator const T & () const ;
-      inline operator T * & ();
-      inline operator T * const & () const;
+      inline operator T * const ();
+      inline operator const T * const () const;
       inline T * get_();
       inline const T * get_() const;
 
@@ -53,7 +54,7 @@ namespace ca
       inline smart_pointer & operator() (T * p);
 
 
-      void oattrib(T * p);
+      void oattrib(const T * p);
 
 
       T * clone() const;
@@ -80,6 +81,14 @@ namespace ca
    {
       m_p = NULL;
       operator = (t);
+   }
+
+   template < class T >
+   smart_pointer < T > ::smart_pointer(const T & t) :
+      ca(&t != NULL ? t.get_app() : NULL)
+   {
+      m_p = NULL;
+      operator = (System.factory().clone(&t));
    }
 
    template < class T >
@@ -137,13 +146,13 @@ namespace ca
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator T * & ()
+   inline smart_pointer < T > ::operator T * const ()
    {
       return m_p;
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator T * const & () const
+   inline smart_pointer < T > ::operator const T * const () const
    {
       return m_p;
    }
@@ -242,7 +251,7 @@ namespace ca
    }
 
    template < class T >
-   void smart_pointer < T > ::oattrib(T * p)
+   void smart_pointer < T > ::oattrib(const T * p)
    {
       if(p == NULL)
       {
@@ -259,6 +268,16 @@ namespace ca
       virtual public base_array < ::ca::smart_pointer < T > >
    {
    public:
+
+      smart_pointer_array()
+      {
+      }
+
+      smart_pointer_array(::ca::application * papp) :
+         ca(papp),
+         base_array < ::ca::smart_pointer < T > >(papp)
+      {
+      }
 
 
       template < class DERIVED >
@@ -290,15 +309,107 @@ namespace ca
 
       }
 
+      template < class DERIVED >
+      DERIVED * typed_ptr_at(index iIndex)
+      {
+
+         return dynamic_cast < DERIVED * > (this->element_at(iIndex).m_p);
+
+      }
+
+      ::count remove(T * p)
+      {
+         ::count c = 0;
+         for(int i = 0; i < get_count(); )
+         {
+            if(element_at(i).m_p == p)
+            {
+               c++;
+               remove_at(i);
+            }
+            else
+               i++;
+         }
+         return c;
+      }
 
    };
 
 
+   template < class T >
+   class smart_pointer_query :
+      virtual ::ca::object
+   {
+   public:
+
+
+      ::ca::smart_pointer < T > * m_psp;
+
+      T * m_p;
+
+      smart_pointer_query(smart_pointer_query && q)
+      {
+
+         m_psp    = q.m_psp;
+
+         m_p      = q.m_p;
+
+         q.m_psp  = NULL;
+
+      }
+
+      smart_pointer_query & operator = (smart_pointer_query && q)
+      {
+
+         m_psp    = q.m_psp;
+
+         m_p      = q.m_p;
+
+         q.m_psp  = NULL;
+
+      }
+
+
+      smart_pointer_query(::ca::smart_pointer < T > & sp)
+      {
+
+         m_psp    = &sp;
+
+         m_p      = NULL;
+
+      }
+
+      virtual ~smart_pointer_query()
+      {
+         
+         if(m_psp != NULL)
+         {
+
+            (*m_psp) = m_p;
+
+         }
+
+      }
+
+      operator T * &()
+      {
+
+         return m_p;
+
+      }
+
+   };
+
 } // namespace ca
 
 
-
+template < class T >
+inline ::ca::smart_pointer_query < T > ca_smart_pointer_query(::ca::smart_pointer < T > & sp)
+{
+   return ::ca::smart_pointer_query < T > (sp);
+}
 
 
 #define sp(TYPE) ::ca::smart_pointer < TYPE >
 #define spa(TYPE) ::ca::smart_pointer_array < TYPE >
+#define spquery(t) ::ca_smart_pointer_query(t)

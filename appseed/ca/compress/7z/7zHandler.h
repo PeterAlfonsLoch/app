@@ -79,7 +79,7 @@ namespace n7z
       base_array<CBind> _binds;
 
       ::ca::HRes SetCompressionMethod(CCompressionMethodMode &method,
-         array_ptr_alloc < ::libcompress::COneMethodInfo > &methodsInfo
+         ::ca::smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
          , uint32_t numThreads
          );
 

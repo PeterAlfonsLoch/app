@@ -19,7 +19,7 @@ namespace ca
       return true;
    }
       
-   data * data_container::get_data() const
+   data * data_container::get_data()
    {
       return m_spdata;
    }
@@ -85,7 +85,7 @@ namespace ca
 
    }
 
-   data * data_container_base::get_data(index i) const
+   data * data_container_base::get_data(index i)
    {
       
       return m_spadata[i];

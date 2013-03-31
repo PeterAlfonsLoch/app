@@ -103,7 +103,7 @@ namespace userex
       if(iTab < 0)
          return;
 
-      pane * ppane = (pane *) get_data()->m_panea.ptr_at(iTab);
+      pane * ppane = (pane *) get_data()->m_panea.element_at(iTab);
 
       if(ppane == NULL)
          return;

@@ -167,16 +167,8 @@ namespace plane
       m_puiMain      = NULL;
       m_puiActive    = NULL;
 
-      try
-      {
-         if(m_pfactory != NULL)
-         {
-            ::ca::del(m_pfactory);
-         }
-      }
-      catch(...)
-      {
-      }
+
+      m_pfactory.release();
 
    }
 
@@ -750,10 +742,7 @@ namespace plane
       }
       try
       {
-         if(m_spdir.m_p != NULL)
-         {
-            ::ca::del(m_spdir.m_p);
-         }
+         m_spdir.release();
       }
       catch(...)
       {
@@ -793,13 +782,7 @@ namespace plane
       }
 
 
-      try
-      {
-         ::ca::del(m_plog);
-      }
-      catch(...)
-      {
-      }
+      m_plog.release();
 
 
       return iRet;
@@ -1187,7 +1170,7 @@ namespace plane
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
       {
-         ::ca::del(m_plog);
+         m_plog.release();
          return false;
       }
       //      ::ca::trace_v = &::ca::system_log_trace_v;

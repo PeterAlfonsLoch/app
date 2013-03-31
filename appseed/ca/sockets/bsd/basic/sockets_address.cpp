@@ -106,14 +106,9 @@ namespace sockets
    bool address::create_address(const string & strAddress)
    {
 
-      if(m_pipv4 != NULL)
-      {
-         ::ca::del(m_pipv4);
-      }
-      if(m_pipv6 != NULL)
-      {
-         ::ca::del(m_pipv6);
-      }
+      m_pipv4.release();
+      m_pipv6.release();
+      
 
       if(System.net().isipv4(strAddress))
          m_pipv4 = new ipv4_address(get_app(), strAddress, System.net().service_port(m_strServiceName));
@@ -146,15 +141,8 @@ namespace sockets
    address & address::operator = (const address & address)
    {
 
-      if(m_pipv4 != NULL)
-      {
-         ::ca::del(m_pipv4);
-      }
-      if(m_pipv6 != NULL)
-      {
-         ::ca::del(m_pipv6);
-      }
-
+      m_pipv4.release();
+      m_pipv6.release();
 
       if(address.m_pipv6 != NULL)
       {

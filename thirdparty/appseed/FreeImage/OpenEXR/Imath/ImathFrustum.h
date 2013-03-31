@@ -96,7 +96,7 @@ class Frustum
     bool                        operator != (const Frustum<T> &src) const;
 
     //--------------------------------------------------------
-    //  Set functions change the entire state of the Frustum
+    //  set functions change the entire state of the Frustum
     //--------------------------------------------------------
 
     void		set(T near, T far, 

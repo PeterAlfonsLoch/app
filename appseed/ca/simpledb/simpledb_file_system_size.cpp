@@ -165,14 +165,14 @@ file_size_table::item * file_size_table::item::FindItem(::ca::application * papp
       iFindName = FindName(papp, strPath, iIteration);
       if(iFindName < 0)
          return NULL;
-      return &m_itema[iFindName];
+      return m_itema[iFindName];
    }
    else
    {
       iFindName = FindName(papp, strPath.Left(iFind), iIteration);
       if(iFindName < 0)
          return NULL;
-      return m_itema[iFindName].FindItem(papp, strPath.Mid(iFind + 1), iIteration);
+      return m_itema[iFindName]->FindItem(papp, strPath.Mid(iFind + 1), iIteration);
 
    }
 }
@@ -186,7 +186,7 @@ index file_size_table::item::FindName(::ca::application * papp, const char * psz
    }
    for(index i = 0; i < m_itema.get_size(); i++)
    {
-      if(m_itema[i].m_strName == pszName)
+      if(m_itema[i]->m_strName == pszName)
          return i;
    }
    return -1;
@@ -202,8 +202,8 @@ void file_size_table::item::update_size(::ca::application * papp, index & iItera
       m_bPending = false;
       for(int32_t i = 0; i < m_itema.get_size(); i++)
       {
-         m_iSize += m_itema[i].m_iSize;
-         if(m_itema[i].m_bPending || m_itema[i].m_bPendingLs)
+         m_iSize += m_itema[i]->m_iSize;
+         if(m_itema[i]->m_bPending || m_itema[i]->m_bPendingLs)
             m_bPending = true;
       }
       if(m_pitemParent != NULL && m_bPending)
@@ -220,7 +220,7 @@ void file_size_table::item::update_size_recursive(::ca::application * papp, inde
    }
    for(int32_t i = 0; i < m_itema.get_size(); i++)
    {
-      m_itema[i].update_size_recursive(papp, iIteration);
+      m_itema[i]->update_size_recursive(papp, iIteration);
       if(iIteration > 230)
          break;
    }

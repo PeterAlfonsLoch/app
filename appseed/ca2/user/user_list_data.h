@@ -32,6 +32,7 @@ namespace user
 
       virtual ::count _001GetGroupMetaItemCount(index iGroup);
 
+      virtual void _001OnDeleteRange(::user::list::range & range);
 
    };
 

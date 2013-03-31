@@ -47,7 +47,7 @@ namespace userbase
 
 
       array_app_alloc < split_bar, split_bar & >   m_splitbara;
-      array_ptr_alloc < Pane, Pane &>              m_panea;
+      ::ca::smart_pointer_array < Pane, Pane &>              m_panea;
       e_orientation                                m_eorientationSplit;
       int32_t                                          m_iIndex;
       int32_t                                          m_iState;

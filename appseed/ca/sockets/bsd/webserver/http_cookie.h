@@ -8,7 +8,8 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca cookie
+   class CLASS_DECL_ca cookie :
+      virtual public ::ca::ca
    {
    public:
 
@@ -63,7 +64,7 @@ namespace http
 
 
    class CLASS_DECL_ca cookies :
-      public array_ptr_alloc < cookie, cookie & >
+      public ::ca::smart_pointer_array < cookie >
    {
    public:
 
@@ -77,7 +78,7 @@ namespace http
       index lowfind_cookie(const char * name);
       http::cookie & cookie(const char * name);
       http::cookie & lowcookie(const char * name);
-      using array_ptr_alloc < http::cookie, http::cookie & >::add;
+      using ::ca::smart_pointer_array < http::cookie >::add;
       void add(const char * psz);
       void parse_header(const char * psz);
       string get_cookie_header();
@@ -92,7 +93,7 @@ namespace http
       static string expire(time_t iExpire = 0);
 
 
-      using array_ptr_alloc < class http::cookie, class http::cookie & >::operator [];
+      using ::ca::smart_pointer_array < class http::cookie >::operator [];
       http::cookie & operator [](const char * name);
 
    };

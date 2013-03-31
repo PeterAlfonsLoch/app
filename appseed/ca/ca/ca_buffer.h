@@ -5,7 +5,8 @@
 namespace ca
 {
 
-   template <class T> class buffer
+   template <class T> class buffer :
+      virtual public ::ca::ca
    {
    protected:
       size_t _capacity;

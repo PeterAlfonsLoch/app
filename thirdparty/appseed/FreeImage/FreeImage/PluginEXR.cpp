@@ -446,7 +446,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 }
 
 /**
-Set the preview image using the dib embedded thumbnail
+set the preview image using the dib embedded thumbnail
 */
 static BOOL
 SetPreviewImage(FIBITMAP *dib, Imf::Header& header) {

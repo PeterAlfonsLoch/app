@@ -243,7 +243,7 @@ png_text_compress(png_structp png_ptr,
     * wouldn't cause a failure, just a slowdown due to swapping).
     */
 
-   /* Set up the compression buffers */
+   /* set up the compression buffers */
    /* TODO: the following cast hides a potential overflow problem. */
    png_ptr->zstream.avail_in = (uInt)text_len;
    /* NOTE: assume zlib doesn't overwrite the input */
@@ -522,7 +522,7 @@ png_write_IHDR(png_structp png_ptr, png_uint_32 width, png_uint_32 height,
 
    png_ptr->pixel_depth = (png_byte)(bit_depth * png_ptr->channels);
    png_ptr->rowbytes = PNG_ROWBYTES(png_ptr->pixel_depth, width);
-   /* Set the usr info, so any transformations can modify it */
+   /* set the usr info, so any transformations can modify it */
    png_ptr->usr_width = png_ptr->width;
    png_ptr->usr_bit_depth = png_ptr->bit_depth;
    png_ptr->usr_channels = png_ptr->channels;
@@ -582,7 +582,7 @@ png_write_IHDR(png_structp png_ptr, png_uint_32 width, png_uint_32 height,
    png_ptr->zstream.next_out = png_ptr->zbuf;
    png_ptr->zstream.avail_out = (uInt)png_ptr->zbuf_size;
    /* libpng is not interested in zstream.data_type */
-   /* Set it to a predefined value, to avoid its evaluation inside zlib */
+   /* set it to a predefined value, to avoid its evaluation inside zlib */
    png_ptr->zstream.data_type = Z_BINARY;
 
    png_ptr->mode = PNG_HAVE_IHDR;
@@ -1500,13 +1500,13 @@ png_write_iTXt(png_structp png_ptr, int compression, png_charp key,
    png_write_chunk_data(png_ptr, (png_bytep)new_key,
      (png_size_t)(key_len + 1));
 
-   /* Set the compression flag */
+   /* set the compression flag */
    if (compression == PNG_ITXT_COMPRESSION_NONE || \
        compression == PNG_TEXT_COMPRESSION_NONE)
        cbuf[0] = 0;
    else /* compression == PNG_ITXT_COMPRESSION_zTXt */
        cbuf[0] = 1;
-   /* Set the compression method */
+   /* set the compression method */
    cbuf[1] = 0;
    png_write_chunk_data(png_ptr, cbuf, (png_size_t)2);
 
@@ -1722,13 +1722,13 @@ png_write_start_row(png_structp png_ptr)
    /* Start of interlace block */
    int png_pass_start[7] = {0, 4, 0, 2, 0, 1, 0};
 
-   /* Offset to next interlace block */
+   /* offset to next interlace block */
    int png_pass_inc[7] = {8, 8, 4, 4, 2, 2, 1};
 
    /* Start of interlace block in the y direction */
    int png_pass_ystart[7] = {0, 0, 4, 0, 2, 0, 1};
 
-   /* Offset to next interlace block in the y direction */
+   /* offset to next interlace block in the y direction */
    int png_pass_yinc[7] = {8, 8, 8, 4, 4, 2, 2};
 #endif
 
@@ -1739,13 +1739,13 @@ png_write_start_row(png_structp png_ptr)
    buf_size = (png_size_t)(PNG_ROWBYTES(
       png_ptr->usr_channels*png_ptr->usr_bit_depth, png_ptr->width) + 1);
 
-   /* Set up row buffer */
+   /* set up row buffer */
    png_ptr->row_buf = (png_bytep)png_malloc(png_ptr,
      (png_alloc_size_t)buf_size);
    png_ptr->row_buf[0] = PNG_FILTER_VALUE_NONE;
 
 #ifdef PNG_WRITE_FILTER_SUPPORTED
-   /* Set up filtering buffer, if using this filter */
+   /* set up filtering buffer, if using this filter */
    if (png_ptr->do_filter & PNG_FILTER_SUB)
    {
       png_ptr->sub_row = (png_bytep)png_malloc(png_ptr,
@@ -1756,7 +1756,7 @@ png_write_start_row(png_structp png_ptr)
    /* We only need to keep the previous row if we are using one of these. */
    if (png_ptr->do_filter & (PNG_FILTER_AVG | PNG_FILTER_UP | PNG_FILTER_PAETH))
    {
-      /* Set up previous row buffer */
+      /* set up previous row buffer */
       png_ptr->prev_row = (png_bytep)png_calloc(png_ptr,
          (png_alloc_size_t)buf_size);
 
@@ -1820,13 +1820,13 @@ png_write_finish_row(png_structp png_ptr)
    /* Start of interlace block */
    int png_pass_start[7] = {0, 4, 0, 2, 0, 1, 0};
 
-   /* Offset to next interlace block */
+   /* offset to next interlace block */
    int png_pass_inc[7] = {8, 8, 4, 4, 2, 2, 1};
 
    /* Start of interlace block in the y direction */
    int png_pass_ystart[7] = {0, 0, 4, 0, 2, 0, 1};
 
-   /* Offset to next interlace block in the y direction */
+   /* offset to next interlace block in the y direction */
    int png_pass_yinc[7] = {8, 8, 8, 4, 4, 2, 2};
 #endif
 
@@ -1937,7 +1937,7 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
    /* Start of interlace block */
    int png_pass_start[7] = {0, 4, 0, 2, 0, 1, 0};
 
-   /* Offset to next interlace block */
+   /* offset to next interlace block */
    int png_pass_inc[7] = {8, 8, 4, 4, 2, 2, 1};
 
    png_debug(1, "in png_do_write_interlace");
@@ -2076,7 +2076,7 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             break;
          }
       }
-      /* Set new row width */
+      /* set new row width */
       row_info->width = (row_info->width +
          png_pass_inc[pass] - 1 -
          png_pass_start[pass]) /
@@ -2729,7 +2729,7 @@ png_write_filtered_row(png_structp png_ptr, png_bytep filtered_row)
    png_debug(1, "in png_write_filtered_row");
 
    png_debug1(2, "filter = %d", filtered_row[0]);
-   /* Set up the zlib input buffer */
+   /* set up the zlib input buffer */
 
    png_ptr->zstream.next_in = filtered_row;
    png_ptr->zstream.avail_in = (uInt)png_ptr->row_info.rowbytes + 1;

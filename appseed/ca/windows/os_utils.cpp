@@ -198,7 +198,7 @@ bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
         tkp.PrivilegeCount = 1;  // one privilege to set    
         tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
-        // Set the privilege for this process. 
+        // set the privilege for this process. 
         AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
                               (PTOKEN_PRIVILEGES)NULL, 0); 
 

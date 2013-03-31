@@ -367,7 +367,7 @@ namespace ca
       bool retVal = false;
       if( true && userInfo.get_length() )
       {
-         /* Set URL */
+         /* set URL */
          string strUrl( "" );
          strUrl = build_url(Application.TWIT_SHOWUSERS_URL, userInfo, isUserId );
 
@@ -394,7 +394,7 @@ namespace ca
       bool retVal = false;
       if( true )
       {
-         /* Set URL */
+         /* set URL */
          string strUrl( "" );
          strUrl = build_url(Application.TWIT_SHOWFRIENDS_URL, userInfo, isUserId );
 
@@ -1111,10 +1111,10 @@ namespace ca
    {
       if( !m_curlLoginParamsSet )
       {
-         /* Set username and password */
+         /* set username and password */
          m_setHttp["basic_authentication"] = prepare_basic_authentication(get_app(), getTwitterUsername(), getTwitterPassword());
 
-         /* Set the flag to true indicating that twitter credentials are set in cURL */
+         /* set the flag to true indicating that twitter credentials are set in cURL */
          m_curlLoginParamsSet = true;
       }
    }
@@ -1161,7 +1161,7 @@ namespace ca
       ::ca::property_set post;
       ::ca::property_set set(get_app());
 
-      /* Set OAuth header */
+      /* set OAuth header */
       m_oauth.getOAuthHeader(eOAuthHttpGet, getUrl, set, headers);
 
       /* Send http request */
@@ -1226,7 +1226,7 @@ namespace ca
       ::ca::property_set post;
       ::ca::property_set set(get_app());
 
-      /* Set OAuth header */
+      /* set OAuth header */
       m_oauth.getOAuthHeader( eOAuthHttpDelete, deleteUrl, set, headers);
 
       /* Send http request */
@@ -1251,7 +1251,7 @@ namespace ca
    {
       ::ca::property_set headers(get_app());
 
-      /* Set OAuth header */
+      /* set OAuth header */
       m_oauth.getOAuthHeader( eOAuthHttpPost, postUrl, post, headers );
 
       return Application.http().get(postUrl, m_strResponse, post, headers, m_setHttp);

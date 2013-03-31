@@ -62,7 +62,7 @@
 
 #include "pcy_int.h"
 
-/* Set policy mapping entries in cache.
+/* set policy mapping entries in cache.
  * Note: this modifies the passed POLICY_MAPPINGS structure
  */
 

@@ -103,7 +103,7 @@ typedef struct
 typedef struct
 {
   IPpmd7_RangeDec p;
-  uint32_t Range;
+  uint32_t range;
   uint32_t Code;
   ::ca::IByteIn *Stream;
 } CPpmd7z_RangeDec;
@@ -120,7 +120,7 @@ int32_t Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc);
 typedef struct
 {
   uint64_t Low;
-  uint32_t Range;
+  uint32_t range;
   byte Cache;
   uint64_t CacheSize;
   ::ca::IByteOut *Stream;

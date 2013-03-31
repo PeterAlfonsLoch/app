@@ -42,7 +42,8 @@ namespace ca
 	   // these are public because they are needed by classes that call the 
 	   // GetPortMappingVector() and GetDeviceInformationContainer() methods
 	
-	   class CLASS_DECL_ca port_map
+	   class CLASS_DECL_ca port_map :
+         virtual public ::ca::ca
 	   {
 	   public:
 		   string ExternalIPAddress;
@@ -54,7 +55,8 @@ namespace ca
 		   string Description;
 	   };
 		
-	   class CLASS_DECL_ca device
+	   class CLASS_DECL_ca device :
+         virtual public ::ca::ca
 	   {
 	   public:
 		   // see http://msdn.microsoft.com/library/en-us/upnp/upnp/iupnpdevice.asp
@@ -96,8 +98,8 @@ namespace ca
 	   virtual bool AddMappingUsingThread( port_map& newMapping, oswindow oswindow );  // starts a thread that will add one new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 	   virtual bool DeleteMappingUsingThread( port_map& oldMapping, oswindow oswindow );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 	
-	   virtual array_ptr_alloc < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
-	   virtual array_ptr_alloc < device > get_igd() const;  // gets a copy of currently-know device information
+	   virtual ::ca::smart_pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
+	   virtual ::ca::smart_pointer_array < device > get_igd() const;  // gets a copy of currently-know device information
 	
 	   virtual bool IsAnyThreadRunning() const;  // returns TRUE if there is any thread currently running
 	

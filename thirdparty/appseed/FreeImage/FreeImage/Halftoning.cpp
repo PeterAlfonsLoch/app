@@ -454,10 +454,10 @@ FreeImage_Threshold(FIBITMAP *dib, BYTE T) {
 		BYTE *bits1 = FreeImage_GetScanLine(new_dib, y);
 		for(int x = 0; x < width; x++) {
 			if(bits8[x] < T) {
-				// Set bit(x, y) to 0
+				// set bit(x, y) to 0
 				bits1[x >> 3] &= (0xFF7F >> (x & 0x7));
 			} else {
-				// Set bit(x, y) to 1
+				// set bit(x, y) to 1
 				bits1[x >> 3] |= (0x80 >> (x & 0x7));
 			}
 		}

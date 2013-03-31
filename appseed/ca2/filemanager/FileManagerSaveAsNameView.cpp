@@ -69,11 +69,11 @@ void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::ca::obje
                   html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_document()->m_document.get_element_by_name("encontrar"));
                   html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
                   text_interface * ptext = dynamic_cast < text_interface * > (pinput->m_pedit);
-                  Range range;
+                  range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)
                   {
-                     ptext->_001SetText(m_itema.get_item(range.ItemAt(0).GetLBound()).m_strName);
+                     ptext->_001SetText(m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName);
                   }
                }
             }

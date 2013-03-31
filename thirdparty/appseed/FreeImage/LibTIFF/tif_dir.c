@@ -27,7 +27,7 @@
 /*
  * TIFF Library.
  *
- * Directory Tag Get & Set Routines.
+ * Directory Tag Get & set Routines.
  * (and also some miscellaneous stuff)
  */
 #include "tiffiop.h"
@@ -458,7 +458,7 @@ _TIFFVSetField(TIFF* tif, ttag_t tag, va_list ap)
             }
 
             /*
-             * Set custom value ... save a copy of the custom tag value.
+             * set custom value ... save a copy of the custom tag value.
              */
 	    tv_size = _TIFFDataSize(fip->field_type);
 	    if (tv_size == 0) {
@@ -1191,7 +1191,7 @@ TIFFNumberOfDirectories(TIFF* tif)
 }
 
 /*
- * Set the n-th directory as the current directory.
+ * set the n-th directory as the current directory.
  * NB: Directories are numbered starting at 0.
  */
 int
@@ -1206,7 +1206,7 @@ TIFFSetDirectory(TIFF* tif, tdir_t dirn)
 			return (0);
 	tif->tif_nextdiroff = nextdir;
 	/*
-	 * Set curdir to the actual directory index.  The
+	 * set curdir to the actual directory index.  The
 	 * -1 is because TIFFReadDirectory will increment
 	 * tif_curdir after successfully reading the directory.
 	 */
@@ -1220,7 +1220,7 @@ TIFFSetDirectory(TIFF* tif, tdir_t dirn)
 }
 
 /*
- * Set the current directory to be the directory
+ * set the current directory to be the directory
  * located at the specified file offset.  This interface
  * is used mainly to access directories linked with
  * the SubIFD tag (e.g. thumbnail images).
@@ -1333,7 +1333,7 @@ TIFFUnlinkDirectory(TIFF* tif, tdir_t dirn)
  *
  * Author: Bruce Cameron <cameron@petris.com>
  *
- * Set a table of tags that are to be replaced during directory process by the
+ * set a table of tags that are to be replaced during directory process by the
  * 'IGNORE' state - or return TRUE/FALSE for the requested tag such that
  * 'ReadDirectory' can use the stored information.
  *

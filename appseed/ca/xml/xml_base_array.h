@@ -3,7 +3,7 @@
 namespace xml
 {
 
-template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = array_ptr_alloc < TYPE, ARG_TYPE > >
+template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = ::ca::smart_pointer_array < TYPE, ARG_TYPE > >
 class base_array :
    public ARRAY,
    public exportable,

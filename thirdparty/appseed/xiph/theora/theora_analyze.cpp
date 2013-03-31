@@ -507,7 +507,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
      all three planes, so we can't compute them in parallel.*/
   for(pli=0;pli<3;pli++)oc_fr_state_init(_pipe->fr+pli);
   for(pli=0;pli<3;pli++)oc_qii_state_init(_pipe->qs+pli);
-  /*Set up the per-plane skip SSD storage pointers.*/
+  /*set up the per-plane skip SSD storage pointers.*/
   mcu_nvsbs=_enc->mcu_nvsbs;
   mcu_nfrags=mcu_nvsbs*_enc->state.fplanes[0].nhsbs*16;
   hdec=!(_enc->state.info.pixel_fmt&1);
@@ -515,7 +515,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   _pipe->skip_ssd[0]=_enc->mcu_skip_ssd;
   _pipe->skip_ssd[1]=_pipe->skip_ssd[0]+mcu_nfrags;
   _pipe->skip_ssd[2]=_pipe->skip_ssd[1]+(mcu_nfrags>>hdec+vdec);
-  /*Set up per-plane pointers to the coded and uncoded fragments lists.
+  /*set up per-plane pointers to the coded and uncoded fragments lists.
     Unlike the decoder, each planes' coded and uncoded fragment list is kept
      separate during the analysis stage; we only make the coded list for all
      three planes contiguous right before the final packet is output
@@ -528,7 +528,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   }
   memset(_pipe->ncoded_fragis,0,sizeof(_pipe->ncoded_fragis));
   memset(_pipe->nuncoded_fragis,0,sizeof(_pipe->nuncoded_fragis));
-  /*Set up condensed quantizer tables.*/
+  /*set up condensed quantizer tables.*/
   for(pli=0;pli<3;pli++){
     for(qii=0;qii<_enc->state.nqis;qii++){
       int32_t qi;
@@ -2519,7 +2519,7 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
     ptrdiff_t ti[64];
     int32_t       eob_token[64];
     int32_t       eob_run[64];
-    /*Set up token indices and eob run counts.
+    /*set up token indices and eob run counts.
       We don't bother trying to figure out the real cost of the runs that span
        coefficients; instead we use the costs that were available when R-D
        token optimization was done.*/

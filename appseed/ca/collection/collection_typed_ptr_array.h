@@ -96,13 +96,13 @@ public:
       {
          return false;
       }
-      index iLBound = iStart;
+      index iLowerBound = iStart;
       index iMaxBound = iEnd;
-      index iUBound = iMaxBound;
+      index iUpperBound = iMaxBound;
       ::primitive::memory_offset iCompare;
       // do binary search
-      iIndex = (iUBound + iLBound) / 2;
-      while(iUBound - iLBound >= 8)
+      iIndex = (iUpperBound + iLowerBound) / 2;
+      while(iUpperBound - iLowerBound >= 8)
       {
          iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
          if(iCompare == 0)
@@ -111,8 +111,8 @@ public:
          }
          else if(iCompare > 0)
          {
-            iUBound = iIndex - 1;
-            if(iUBound < 0)
+            iUpperBound = iIndex - 1;
+            if(iUpperBound < 0)
             {
                iIndex = 0;
                break;
@@ -120,14 +120,14 @@ public:
          }
          else
          {
-            iLBound = iIndex + 1;
-            if(iLBound > iMaxBound)
+            iLowerBound = iIndex + 1;
+            if(iLowerBound > iMaxBound)
             {
                iIndex = iMaxBound + 1;
                break;
             }
          }
-         iIndex = (iUBound + iLBound) / 2;
+         iIndex = (iUpperBound + iLowerBound) / 2;
       }
       // do sequential search
       while(iIndex < this->get_count())

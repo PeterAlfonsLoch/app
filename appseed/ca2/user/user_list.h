@@ -96,7 +96,7 @@ namespace user
    };
 
    class CLASS_DECL_ca2 list_column_array :
-      public array_ptr_alloc < ::user::list_column >
+      public ::ca::smart_pointer_array < ::user::list_column >
    {
    public:
 
@@ -269,85 +269,96 @@ namespace user
 
 
 
-      class Range;
+      class range;
       class list_column_array;
 
-      class CListItemRange
+      class list_item_range
       {
       public:
-         void Set(index iLBoundListItem, index iUBoundListItem);
-         index      m_iLBound;
-         index      m_iUBound;
-      };
+         
 
-      class CLASS_DECL_ca2 CSubItemRange
-      {
-
-      public:
-         CSubItemRange();
-         CSubItemRange(CSubItemRange & subitemrange);
-
-         index      m_iLBound;
-         index      m_iUBound;
-      protected:
-         CListItemRange    m_listitemrange;
+         index      m_iLowerBound;
+         index      m_iUpperBound;
 
 
-      public:
-         void Set(index iLBoundSubItem, index iUBoundSubItem, index iLBoundListItem, index iUBoundListItem);
-         bool HasSubItem(index iSubItem) const;
+         void set(index iLowerBoundListItem, index iUpperBoundListItem);
 
-         CSubItemRange & operator =(const CSubItemRange & subitemrange);
+
 
       };
 
-      class CLASS_DECL_ca2 ItemRange
+      class CLASS_DECL_ca2 sub_item_range
       {
-         friend class Range;
       public:
-         ItemRange();
-         ItemRange(ItemRange & itemrange);
-      protected:
-         index      m_iLBound;
-         index      m_iUBound;
-         CSubItemRange  m_subitemrange;
+
+         index                m_iLowerBound;
+         index                m_iUpperBound;
+         list_item_range      m_listitemrange;
 
 
+         sub_item_range();
+         sub_item_range(const sub_item_range & subitemrange);
 
+         void set(index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem);
 
+         bool has_sub_item(index iSubItem) const;
 
-      public:
-         void Offset(index iOffset);
-         void Set(index iLBoundItem, index iUBoundItem, index iLBoundSubItem, index iUBoundSubItem, index iLBoundListItem, index iUBoundListItem);
-         void SetLBound(index iLBoundItem);
-         void SetUBound(index iUBoundItem);
-         bool HasSubItem(index iSubItem) const;
-         index GetLBound() const;
-         index GetUBound() const;
-         ItemRange & operator =(const ItemRange & itemrange);
-         bool HasItem(index iItem) const;
-   //      int32_t get_count();
-   //      int32_t get_item(int32_t iItemIndex);
+         sub_item_range & operator =(const sub_item_range & subitemrange);
 
       };
 
-      class CLASS_DECL_ca2 Range
+      class CLASS_DECL_ca2 item_range
       {
-      protected:
-         base_array < ItemRange > m_itemrangea;
       public:
-         Range(Range & range);
-         Range();
-         Range & operator = (const Range & range);
+         
+         
+         index      m_iLowerBound;
+         index      m_iUpperBound;
+         sub_item_range  m_subitemrange;
 
-         bool HasItem(index iItem) const;
-         bool HasSubItem(index iItem, index iSubItem) const;
+
+         item_range();
+         item_range(const item_range & itemrange);
+
+
+         void offset(index iOffset);
+         void set(index iLowerBoundItem, index iUpperBoundItem, index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem);
+         void set_lower_bound(index iLowerBoundItem);
+         void set_upper_bound(index iUpperBoundItem);
+         bool has_sub_item(index iSubItem) const;
+         index get_lower_bound() const;
+         index get_upper_bound() const;
+         item_range & operator =(const item_range & itemrange);
+         bool has_item(index iItem) const;
+         void get_item_indexes(index_array & ia);
+
+      };
+
+      class CLASS_DECL_ca2 range
+      {
+      public:
+
+
+         base_array < item_range > m_itemrangea;
+
+
+         range(const range & range);
+         range();
+
+
+         range & operator = (const range & range);
+
+
+         bool has_item(index iItem) const;
+         bool has_sub_item(index iItem, index iSubItem) const;
          bool RemoveItem(index iItem);
          bool OnRemoveItem(index iItem);
          void clear();
-         void add_item(const ItemRange & itemrange);
-         ItemRange & ItemAt(index iIndex);
+         void add_item(const item_range & itemrange);
+         item_range & ItemAt(index iIndex);
          ::count get_item_count() const;
+         void get_item_indexes(index_array & ia);
+
       };
 
 
@@ -477,8 +488,8 @@ namespace user
       index                         m_iSubItemSel;
 
 
-      Range                         m_rangeSelection;
-      Range                         m_rangeHighlight;
+      range                         m_rangeSelection;
+      range                         m_rangeHighlight;
 
 
 
@@ -552,6 +563,11 @@ namespace user
       int32_t _001CalcListWidth();
       virtual void _001OnSort();
 
+
+      virtual void _001OnBeforeDeleteRange(range & range);
+      virtual void _001OnDeleteRange(range & range);
+      virtual void _001DeleteRange(range & range);
+
       // Sort
       virtual index _001Compare(index iItem1, index iItem2);
       virtual index _002Compare(index iItem1, index iItem2, index iSubItem);
@@ -590,7 +606,7 @@ namespace user
       virtual bool _001OnRemoveItem(index iItem);
       bool _001RemoveItem(index iItem, bool bRedraw = true);
       void _001EnsureVisible(index iItem, bool bRedraw = true);
-      void _001EnsureVisible(index iItem, Range & rangeRedraw);
+      void _001EnsureVisible(index iItem, range & rangeRedraw);
       void _001ItemScroll(index iItem, bool bRedraw = true);
       index _001ConfigIdToColumnKey(const ::database::id & key);
       index _001ConfigIdToSubItem(const ::database::id & key);
@@ -738,7 +754,7 @@ namespace user
       virtual void _001OnClick(UINT uiFlags, point point);
       virtual void _001OnRightClick(UINT uiFlags, point point);
 
-      void _001GetSelection(Range & selection);
+      void _001GetSelection(range & selection);
 
 
       virtual bool _001IsEditing();
@@ -783,14 +799,14 @@ namespace user
 
       void _001ClearSelection();
 
-      void _001SetSelection(const Range &range);
+      void _001SetSelection(const range &range);
 
-      void _001AddSelection(const ItemRange & itemrange);
+      void _001AddSelection(const item_range & itemrange);
 
       index set_cur_sel(index iSel);
       index get_cur_sel();
 
-      void _001SetHighlightRange(Range & range);
+      void _001SetHighlightRange(range & range);
 
       void _001SetView(EView eview);
 

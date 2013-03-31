@@ -139,7 +139,7 @@ namespace simpledb
 
    void socket::simple_file_server(const char * psz, const char * pszRelative)
    {
-      array_ptr_alloc < int_array > rangea;
+      ::ca::smart_pointer_array < int_array > rangea;
       if(strlen(inheader("range")) > 0)
       {
          stringa straItem;
@@ -156,12 +156,12 @@ namespace simpledb
                if(straRange.get_count() == 2)
                {
                   rangea.add(int_array());
-                  rangea.last_element().add(atoi(straRange[0]));
+                  rangea.last_element()->add(atoi(straRange[0]));
                   straRange[1].trim();
                   if(strlen(straRange[1]) == 0)
-                     rangea.last_element().add(-1);
+                     rangea.last_element()->add(-1);
                   else
-                     rangea.last_element().add(atoi(straRange[1]));
+                     rangea.last_element()->add(atoi(straRange[1]));
                }
             }
          }
@@ -181,7 +181,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const char * lpcsz, array_ptr_alloc < int_array > * prangea, const char * pszContentType)
+   bool socket::read_file(const char * lpcsz, ::ca::smart_pointer_array < int_array > * prangea, const char * pszContentType)
    {
       string strExtension = System.file().extension(lpcsz);
       string str = strExtension;
@@ -246,8 +246,8 @@ namespace simpledb
             mem.allocate(128 * 1024 * 1024);
             for(int32_t i = 0; i < prangea->get_count(); i++)
             {
-               primitive::memory_position  iStart = prangea->element_at(i)[0];
-               primitive::memory_position  iEnd = prangea->element_at(i)[1];
+               primitive::memory_position  iStart = prangea->element_at(i)->element_at(0);
+               primitive::memory_position  iEnd = prangea->element_at(i)->element_at(1);
                if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
@@ -299,8 +299,8 @@ namespace simpledb
             primitive::memory_size uiTotal = 0;
             primitive::memory mem;
             mem.allocate(128 * 1024 * 1024);
-            primitive::memory_position iStart = prangea->element_at(0)[0];
-            primitive::memory_position iEnd = prangea->element_at(0)[1];
+            primitive::memory_position iStart = prangea->element_at(0)->element_at(0);
+            primitive::memory_position iEnd = prangea->element_at(0)->element_at(1);
             if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
@@ -339,11 +339,11 @@ namespace simpledb
             outattr("http_status") = "Partial Content";
             if(iEnd == -1)
             {
-               outheader("Content-Range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/*";
+               outheader("Content-range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/*";
             }
             else
             {
-               outheader("Content-Range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/" + ::ca::str::from(iLen);
+               outheader("Content-range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/" + ::ca::str::from(iLen);
             }
 
          }

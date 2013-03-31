@@ -23,18 +23,6 @@
 #include "collection_typed_pointer_array.h"
 
 
-#include "collection_array_ptr.h"
-#include "collection_array_del_ptr.h"
-#include "collection_array_ptr_copy.h"
-#include "collection_array_ptr_alloc.h"
-
-#include "collection_array_release_ptr.h"
-#include "collection_array_smart_ptr.h"
-
-#include "collection_array_parent_alloc.h"
-
-#include "collection_array_app_alloc.h"
-
 #include "collection_sort_array.h"
 #include "collection_class_sort_array.h"
 
@@ -169,13 +157,13 @@ public:
 
 
 class CLASS_DECL_ca dword_2darray :
-   public array_ptr_alloc < uint32_array, uint32_array & >
+   public spa(uint32_array)
 {
 public:
 };
 
 class CLASS_DECL_ca index_2darray :
-   public array_ptr_alloc < index_array, index_array & >
+   public spa(index_array)
 {
 public:
 };

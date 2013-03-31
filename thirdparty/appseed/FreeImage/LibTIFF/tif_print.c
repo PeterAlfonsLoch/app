@@ -120,7 +120,7 @@ _TIFFPrettyPrintField(TIFF* tif, FILE* fd, ttag_t tag,
 	switch (tag)
 	{
 		case TIFFTAG_INKSET:
-			fprintf(fd, "  Ink Set: ");
+			fprintf(fd, "  Ink set: ");
 			switch (*((uint16*)raw_data)) {
 				case INKSET_CMYK:
 					fprintf(fd, "CMYK\n");

@@ -185,7 +185,6 @@ namespace user
          TRACE("setting keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
          if(playout->load(playout->m_strPath))
          {
-            ::ca::del(m_playout);
             m_playout = playout;
             System.simpledb().on_set_keyboard_layout(playout->m_strPath, bUser);
             TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
@@ -193,7 +192,7 @@ namespace user
          }
          else
          {
-            ::ca::del(playout);
+            playout->release();
             TRACE("failed to load keyboard layout : %s (path=%s)", playout->m_strName, playout->m_strPath);
          }
       }

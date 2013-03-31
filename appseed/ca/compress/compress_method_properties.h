@@ -6,7 +6,8 @@ namespace libcompress
 {
 
 
-   struct method
+   struct method :
+      virtual public ::ca::ca
    {
 
 
@@ -21,7 +22,7 @@ namespace libcompress
    {
 
 
-      array_ptr_alloc < method > methods;
+      ::ca::smart_pointer_array < method > methods;
 
       uint32_t NumThreads;
 

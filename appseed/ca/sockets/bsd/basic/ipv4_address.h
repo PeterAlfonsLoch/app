@@ -73,7 +73,7 @@ namespace sockets
       void SetAddress(struct sockaddr *sa);
       int32_t GetFamily();
 
-      bool IsValid();
+      bool IsValid() const;
 
       /** Convert address struct to text. */
       string Convert(bool include_port = false);

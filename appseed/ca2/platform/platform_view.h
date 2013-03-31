@@ -72,8 +72,7 @@ namespace platform
       ::user::front_end_schema::button  
                                  m_buttonschema;
 
-      array_del_ptr < link, link & > 
-                                 m_linka;
+      spa(link)                  m_linka;
 
       int32_t                    m_iScreen;
       ::ca::font_sp              m_font1;

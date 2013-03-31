@@ -286,11 +286,11 @@ namespace exception
 
 
 #ifdef AMD64
-      m_pstackframe->AddrPC.Offset       = pcontext->Rip;
+      m_pstackframe->AddrPC.offset       = pcontext->Rip;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrStack.Offset    = pcontext->Rsp;
+      m_pstackframe->AddrStack.offset    = pcontext->Rsp;
       m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.Offset    = pcontext->Rsp;
+      m_pstackframe->AddrFrame.offset    = pcontext->Rsp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #elif defined(X86)
       m_pstackframe->AddrPC.Offset       = pcontext->Eip;
@@ -300,13 +300,13 @@ namespace exception
       m_pstackframe->AddrFrame.Offset    = pcontext->Ebp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #else
-      m_pstackframe->AddrPC.Offset       = (uint32_t)pcontext->Fir;
+      m_pstackframe->AddrPC.offset       = (uint32_t)pcontext->Fir;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrReturn.Offset   = (uint32_t)pcontext->IntRa;
+      m_pstackframe->AddrReturn.offset   = (uint32_t)pcontext->IntRa;
       m_pstackframe->AddrReturn.Mode     = AddrModeFlat;
-      m_pstackframe->AddrStack.Offset    = (uint32_t)pcontext->IntSp;
+      m_pstackframe->AddrStack.offset    = (uint32_t)pcontext->IntSp;
       m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.Offset    = (uint32_t)pcontext->IntFp;
+      m_pstackframe->AddrFrame.offset    = (uint32_t)pcontext->IntFp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #endif
 

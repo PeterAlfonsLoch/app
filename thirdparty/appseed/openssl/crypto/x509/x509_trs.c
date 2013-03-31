@@ -185,7 +185,7 @@ int X509_TRUST_add(int id, int flags, int (*ck)(X509_TRUST *, X509 *, int),
 	}
 	/* Keep the dynamic flag of existing entry */
 	trtmp->flags &= X509_TRUST_DYNAMIC;
-	/* Set all other flags */
+	/* set all other flags */
 	trtmp->flags |= flags;
 
 	trtmp->trust = id;

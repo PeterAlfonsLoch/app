@@ -25,7 +25,8 @@ public:
 
    };
 
-   class CLASS_DECL_ca queue_item
+   class CLASS_DECL_ca queue_item :
+      virtual public ::ca::ca
    {
    public:
 
@@ -53,7 +54,7 @@ public:
       sockets::socket_handler                      m_handler;
       sockets::http_session *                      m_phttpsession;
 
-      array_ptr_alloc < queue_item >                     m_itema;
+      ::ca::smart_pointer_array < queue_item >                     m_itema;
 
 
 

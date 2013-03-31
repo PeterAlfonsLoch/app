@@ -79,7 +79,7 @@ namespace ca
          return ::comparable_array < signalizable * >::remove(psignalizable);
       }
 
-      inline signalizable * ptr_at(index i) { return ::comparable_array < signalizable * >::element_at(i); }
+      inline signalizable * element_at(index i) { return ::comparable_array < signalizable * >::element_at(i); }
       inline ::count get_size() { return ::comparable_array < signalizable * >::get_size(); }
       inline ::count get_count() { return ::comparable_array < signalizable * >::get_count(); }
       inline ::count size() { return ::comparable_array < signalizable * >::size(); }
@@ -106,14 +106,17 @@ namespace ca
          return base_signalizable_array::remove(psignalizable);
       }
 
-      SIGNALIZABLE * ptr_at(index i) { return dynamic_cast < SIGNALIZABLE * > (base_signalizable_array::ptr_at(i)); }
+      SIGNALIZABLE * element_at(index i) { return dynamic_cast < SIGNALIZABLE * > (base_signalizable_array::element_at(i)); }
 
    };
 
    class CLASS_DECL_ca signal
    {
    protected:
-      class signal_delegate
+
+
+      class signal_delegate :
+         virtual public ::ca::ca
       {
       public:
          virtual ~signal_delegate()
@@ -156,7 +159,7 @@ namespace ca
       {
          signal_delegate_instance < T > * pdelegate = new signal_delegate_instance < T >(psignalizable);
          pdelegate->m_pfn = pfn;
-         m_delegatea.add_unique(pdelegate);
+         m_delegatea.add(pdelegate);
          psignalizable->register_signal(this);
       }
       template < class T >
@@ -172,7 +175,7 @@ namespace ca
       }
 
    protected:
-      array_del_ptr < signal_delegate > m_delegatea;
+      spa(signal_delegate) m_delegatea;
       void disconnect(signalizable * psignalizable);
       void leave_only(signalizable * psignalizable);
    };
@@ -265,7 +268,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca signal_array :
-            public array_ptr_alloc < signal , signal & >
+            public spa(signal)
          {
          public:
             void GetSignalsById(signal_ptr_array & signalptra, signalid * pid);

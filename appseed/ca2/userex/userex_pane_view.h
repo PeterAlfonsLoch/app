@@ -19,7 +19,7 @@ namespace userex
       };
 
 
-      array_ptr_alloc < menu, menu & > m_menua;
+      ::ca::smart_pointer_array < menu, menu & > m_menua;
 
 
       pane_view(::ca::application * papp);

@@ -27,7 +27,7 @@
 // ----------------------------------------------------------
 // Global and/or local tone mapping operator
 // References: 
-// [1] Erik Reinhard and Kate Devlin, 'Dynamic Range Reduction Inspired by Photoreceptor Physiology', 
+// [1] Erik Reinhard and Kate Devlin, 'Dynamic range Reduction Inspired by Photoreceptor Physiology', 
 //     IEEE Transactions on Visualization and Computer Graphics, 11(1), Jan/Feb 2005. 
 // [2] Erik Reinhard, 'Parameter estimation for photographic tone reproduction',
 //     Journal of Graphics Tools, vol. 7, no. 1, pp. 45–51, 2003.

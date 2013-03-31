@@ -30,7 +30,7 @@ namespace primitive
       void allocate_internal(memory_size dwNewLength);
 
       virtual memory_base * create_memory();
-      memory_base * get_memory() const;
+      memory_base * get_memory();
 
       memory_size get_size() const;
 

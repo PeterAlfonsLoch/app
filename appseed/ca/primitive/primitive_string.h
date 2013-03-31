@@ -663,10 +663,10 @@ public:
 
 #endif
 
-   // Set the string to the value of environment var 'pszVar'
+   // set the string to the value of environment var 'pszVar'
    bool GetEnvironmentVariable(const char * pszVar);
 
-   // Set the string to the value of environment var 'pszVar'
+   // set the string to the value of environment var 'pszVar'
    bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'

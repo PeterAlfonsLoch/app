@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "SimpleFolderListInterface.h"
 
+
 namespace filemanager
 {
 
@@ -10,10 +11,13 @@ namespace filemanager
       ::user::scroll_view(papp),
       ::user::list(papp)
    {
+
    }
+
 
    SimpleFolderListInterface::~SimpleFolderListInterface()
    {
+   
    }
 
 
@@ -50,6 +54,7 @@ namespace filemanager
       _017UpdateList(lpcsz);
 
       _017UpdateList();
+
    }
 
    void SimpleFolderListInterface::_017UpdateList(const char * lpcsz)

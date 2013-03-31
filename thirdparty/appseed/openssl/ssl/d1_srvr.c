@@ -317,7 +317,7 @@ int dtls1_accept(SSL *s)
 				{
 				ret = 2;
 				s->d1->listen = 0;
-				/* Set expected sequence numbers
+				/* set expected sequence numbers
 				 * to continue the handshake.
 				 */
 				s->d1->handshake_read_seq = 2;

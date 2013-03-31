@@ -470,7 +470,7 @@ TIFFFileName(TIFF* tif)
 }
 
 /*
- * Set the file name.
+ * set the file name.
  */
 const char *
 TIFFSetFileName(TIFF* tif, const char *name)
@@ -490,7 +490,7 @@ TIFFFileno(TIFF* tif)
 }
 
 /*
- * Set open file's I/O descriptor, and return previous value.
+ * set open file's I/O descriptor, and return previous value.
  */
 int
 TIFFSetFileno(TIFF* tif, int fd)
@@ -510,7 +510,7 @@ TIFFClientdata(TIFF* tif)
 }
 
 /*
- * Set open file's clientdata, and return previous value.
+ * set open file's clientdata, and return previous value.
  */
 thandle_t
 TIFFSetClientdata(TIFF* tif, thandle_t newvalue)

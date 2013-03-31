@@ -135,7 +135,7 @@ struct inflate_state FAR *state;
         bits = state->bits; \
     } while (0)
 
-/* Set state from registers for inflate_fast() */
+/* set state from registers for inflate_fast() */
 #define RESTORE() \
     do { \
         strm->next_out = put; \

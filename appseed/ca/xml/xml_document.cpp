@@ -221,7 +221,7 @@ namespace xml
       for(index iEdit = pedit->m_iEdit; iEdit < pedit->get_count(); iEdit++)
       {
 
-         ::xml::edit_item * pitem = pedit->ptr_at(iEdit);
+         ::xml::edit_item * pitem = pedit->element_at(iEdit);
 
          try
          {

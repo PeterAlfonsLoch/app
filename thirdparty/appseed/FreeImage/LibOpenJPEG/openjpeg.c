@@ -299,7 +299,7 @@ void OPJ_CALLCONV opj_setup_encoder(opj_cinfo_t *cinfo, opj_cparameters_t *param
 
 bool OPJ_CALLCONV opj_encode(opj_cinfo_t *cinfo, opj_cio_t *cio, opj_image_t *image, char *index) {
 	if (index != NULL)
-		opj_event_msg((opj_common_ptr)cinfo, EVT_WARNING, "Set index to NULL when calling the opj_encode function.\n"
+		opj_event_msg((opj_common_ptr)cinfo, EVT_WARNING, "set index to NULL when calling the opj_encode function.\n"
 		"To extract the index, use the opj_encode_with_info() function.\n"
 		"No index will be generated during this encoding\n");
 	return opj_encode_with_info(cinfo, cio, image, NULL);

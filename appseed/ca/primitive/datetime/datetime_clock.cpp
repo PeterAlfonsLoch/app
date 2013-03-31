@@ -32,7 +32,7 @@ void clock::_001OnDraw(::ca::graphics * pdc)
       double angle = System.math().GetPi() / 2.0 - i * System.math().GetPi() * 2.0 / (60.0);
       point ptInt;
       point ptExt((int64_t) (cos(angle) * dRExt), (int64_t)(-sin(angle) * dRExt));
-      ptExt.Offset(ptCenter);
+      ptExt.offset(ptCenter);
       if(i % 5 == 0)
       {
          ptInt.x = (LONG) (cos(angle) * dRIntH);
@@ -45,7 +45,7 @@ void clock::_001OnDraw(::ca::graphics * pdc)
          ptInt.y = (LONG) (-sin(angle) * dRIntM);
          pdc->SelectObject(penMinute);
       }
-      ptInt.Offset(ptCenter);
+      ptInt.offset(ptCenter);
       pdc->MoveTo(ptInt);
       pdc->LineTo(ptExt);
    }
@@ -61,14 +61,14 @@ void clock::_001OnDraw(::ca::graphics * pdc)
    {
       double angle = System.math().GetPi() / 2.0 - timeNow.GetHour() * System.math().GetPi() * 2.0 / (12.0);
       point ptHour((int64_t)(cos(angle) * dRHour), (int64_t)(-sin(angle) * dRHour));
-      ptHour.Offset(ptCenter);
+      ptHour.offset(ptCenter);
       pdc->LineTo(ptHour);
    }
    pdc->MoveTo(ptCenter);
    {
       double angle = System.math().GetPi() / 2.0 - timeNow.GetMinute() * System.math().GetPi() * 2.0 / (60.0);
       point ptMinute((int64_t)(cos(angle) * dRMinute), (int64_t)(-sin(angle) * dRMinute));
-      ptMinute.Offset(ptCenter);
+      ptMinute.offset(ptCenter);
       pdc->LineTo(ptMinute);
    }
    ::ca::pen_sp penRed(pdc, 1, ARGB(255, 200, 0, 0));
@@ -77,7 +77,7 @@ void clock::_001OnDraw(::ca::graphics * pdc)
    {
       double angle = System.math().GetPi() / 2.0 - timeNow.GetSecond() * System.math().GetPi() * 2.0 / (60.0);
       point ptSecond((int64_t)(cos(angle) * dRSecond), (int64_t)(-sin(angle) * dRSecond));
-      ptSecond.Offset(ptCenter);
+      ptSecond.offset(ptCenter);
       pdc->LineTo(ptSecond);
    }
 

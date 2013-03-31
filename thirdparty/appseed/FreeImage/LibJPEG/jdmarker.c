@@ -214,7 +214,7 @@ get_soi (j_decompress_ptr cinfo)
   }
   cinfo->restart_interval = 0;
 
-  /* Set initial assumptions for colorspace etc */
+  /* set initial assumptions for colorspace etc */
 
   cinfo->jpeg_color_space = JCS_UNKNOWN;
   cinfo->CCIR601_sampling = FALSE; /* Assume non-CCIR sampling??? */

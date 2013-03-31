@@ -943,8 +943,8 @@ typedef png_info FAR * FAR * png_infopp;
 #define PNG_INTERLACE_LAST        2 /* Not a valid value */
 
 /* These are for the oFFs chunk.  These values should NOT be changed. */
-#define PNG_OFFSET_PIXEL          0 /* Offset in pixels */
-#define PNG_OFFSET_MICROMETER     1 /* Offset in micrometers (1/10^6 meter) */
+#define PNG_OFFSET_PIXEL          0 /* offset in pixels */
+#define PNG_OFFSET_MICROMETER     1 /* offset in micrometers (1/10^6 meter) */
 #define PNG_OFFSET_LAST           2 /* Not a valid value */
 
 /* These are for the pCAL chunk.  These values should NOT be changed. */
@@ -1752,7 +1752,7 @@ PNG_EXPORT(void,png_set_gamma) PNGARG((png_structp png_ptr,
 
 
 #ifdef PNG_WRITE_FLUSH_SUPPORTED
-/* Set how many lines between output flushes - 0 for no flushing */
+/* set how many lines between output flushes - 0 for no flushing */
 PNG_EXPORT(void,png_set_flush) PNGARG((png_structp png_ptr, int nrows));
 /* Flush the current PNG output buffer */
 PNG_EXPORT(void,png_write_flush) PNGARG((png_structp png_ptr));
@@ -1818,7 +1818,7 @@ PNG_EXPORT(void,png_destroy_read_struct) PNGARG((png_structpp
 PNG_EXPORT(void,png_destroy_write_struct)
    PNGARG((png_structpp png_ptr_ptr, png_infopp info_ptr_ptr));
 
-/* Set the libpng method of handling chunk CRC errors */
+/* set the libpng method of handling chunk CRC errors */
 PNG_EXPORT(void,png_set_crc_action) PNGARG((png_structp png_ptr,
    int crit_action, int ancil_action));
 
@@ -1846,7 +1846,7 @@ PNG_EXPORT(void,png_set_crc_action) PNGARG((png_structp png_ptr,
  * header file (zlib.h) for an explination of the compression functions.
  */
 
-/* Set the filtering method(s) used by libpng.  Currently, the only valid
+/* set the filtering method(s) used by libpng.  Currently, the only valid
  * value for "method" is 0.
  */
 PNG_EXPORT(void,png_set_filter) PNGARG((png_structp png_ptr, int method,
@@ -1920,7 +1920,7 @@ PNG_EXPORT(void,png_set_filter_heuristics) PNGARG((png_structp png_ptr,
 #define PNG_FILTER_HEURISTIC_WEIGHTED   2  /* Experimental feature */
 #define PNG_FILTER_HEURISTIC_LAST       3  /* Not a valid value */
 
-/* Set the library compression level.  Currently, valid values range from
+/* set the library compression level.  Currently, valid values range from
  * 0 - 9, corresponding directly to the zlib compression levels 0 - 9
  * (0 - no compression, 9 - "maximal" compression).  Note that tests have
  * shown that zlib compression levels 3-6 usually perform as well as level 9
@@ -2164,7 +2164,7 @@ png_infop info_ptr));
  */
 PNG_EXPORT(png_bytepp,png_get_rows) PNGARG((png_structp png_ptr,
 png_infop info_ptr));
-/* Set row_pointers, which is an array of pointers to scanlines for use
+/* set row_pointers, which is an array of pointers to scanlines for use
  * by png_write_png().
  */
 PNG_EXPORT(void,png_set_rows) PNGARG((png_structp png_ptr,

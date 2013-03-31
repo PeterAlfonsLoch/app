@@ -100,7 +100,7 @@ namespace libcompress
       struct CRangeDecoder
       {
          IPpmd7_RangeDec s;
-         uint32_t Range;
+         uint32_t range;
          uint32_t Code;
          uint32_t Low;
          bit_decoder bitDecoder;
@@ -111,18 +111,18 @@ namespace libcompress
          {
             Code = 0;
             Low = 0;
-            Range = 0xFFFFFFFF;
+            range = 0xFFFFFFFF;
             for (int32_t i = 0; i < 4; i++)
                Code = (Code << 8) | bitDecoder.ReadBits(8);
          }
 
          void Normalize()
          {
-            while ((Low ^ (Low + Range)) < kTopValue ||
-               Range < kBot && ((Range = (0 - Low) & (kBot - 1)), 1))
+            while ((Low ^ (Low + range)) < kTopValue ||
+               range < kBot && ((range = (0 - Low) & (kBot - 1)), 1))
             {
                Code = (Code << 8) | bitDecoder.m_Stream.ReadByte();
-               Range <<= 8;
+               range <<= 8;
                Low <<= 8;
             }
          }

@@ -27,11 +27,11 @@ public:
    ::count add_unique(const ARRAY_TYPE & a);
 
 
-   // Set
+   // set
    void merge(const comparable_eq_array & a);
    void intersect(const comparable_eq_array & a);
 
-   // Set operators
+   // set operators
    comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator -= (const TYPE & t);
    comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator &= (const comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & a);
    comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator -= (const comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & a);

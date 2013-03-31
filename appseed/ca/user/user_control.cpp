@@ -24,7 +24,7 @@ namespace user
          {
             m_pcontrol->unsubclass_window();
          }
-         ::ca::del(m_pcontrol);
+         m_pcontrol.release();
       }
    }
 

@@ -635,7 +635,7 @@ void view::_001OnMouseMove(::ca::signal_object * pobj)
 }
 
 
-::user::document_interface * view::get_document() const
+::user::document_interface * view::get_document()
  {
     ASSERT(this != NULL);
     return m_spdocument;

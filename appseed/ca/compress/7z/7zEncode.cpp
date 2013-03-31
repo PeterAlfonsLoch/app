@@ -40,12 +40,12 @@ namespace n7z
       }
       for (i = 0; i < bindInfo.Coders.get_count(); i++)
       {
-         CCoderInfo coderInfo;
+         CCoderInfo & coderInfo = * folder.Coders.add_new();
          const ::libcompress::coder_mixer::CCoderStreamsInfo &coderStreamsInfo = bindInfo.Coders[i];
          coderInfo.NumInStreams = coderStreamsInfo.NumInStreams;
          coderInfo.NumOutStreams = coderStreamsInfo.NumOutStreams;
          coderInfo.MethodID = decompressionMethods[i];
-         folder.Coders.add(coderInfo);
+         
       }
       for (i = 0; i < bindInfo.InStreams.get_count(); i++)
          folder.PackStreams.add(bindInfo.InStreams[i]);
@@ -63,8 +63,7 @@ namespace n7z
       for (int32_t i = 0; i < _options.Methods.get_count(); i++)
       {
          const CMethodFull &methodFull = _options.Methods[i];
-         _codersInfo.add(CCoderInfo());
-         CCoderInfo &encodingInfo = _codersInfo.last_element();
+         CCoderInfo &encodingInfo = *_codersInfo.add_new();
          encodingInfo.MethodID = methodFull.Id;
          ::ca::smart_pointer < ::libcompress::coder_interface > encoder;
          ::ca::smart_pointer < ::libcompress::coder2_interface > encoder2;
@@ -72,7 +71,7 @@ namespace n7z
 
          if(FAILED(hr = CreateCoder(
             codecsInfo, externalCodecs,
-            methodFull.Id, encoder, encoder2, true)))
+            methodFull.Id, spquery(encoder), spquery(encoder2), true)))
          {
             return hr;
          }
@@ -161,22 +160,22 @@ namespace n7z
       _mixerCoderSpec->ReInit();
       // _mixerCoderSpec->SetCoderInfo(0, NULL, NULL, progress);
 
-      array_ptr_alloc < ::ca::temp_io_buffer > inOutTempBuffers;
-      array_ptr_alloc < ::ca::temp_io_writer * > tempBufferSpecs;
-      array_ptr_alloc < ::ca::smart_pointer < ::ca::writer > > tempBuffers;
+      ::ca::smart_pointer_array < ::ca::temp_io_buffer > inOutTempBuffers;
+      ::ca::smart_pointer_array < ::ca::temp_io_writer > tempBufferSpecs;
+      ::ca::smart_pointer_array < ::ca::writer > tempBuffers;
       count numMethods = _bindInfo.Coders.get_count();
       index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          inOutTempBuffers.add(::ca::temp_io_buffer());
-         inOutTempBuffers.last_element().create();
-         inOutTempBuffers.last_element().InitWriting();
+         inOutTempBuffers.last_element()->create();
+         inOutTempBuffers.last_element()->InitWriting();
       }
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          ::ca::temp_io_writer *tempBufferSpec = new ::ca::temp_io_writer;
          ::ca::smart_pointer < ::ca::writer > tempBuffer = tempBufferSpec;
-         tempBufferSpec->Init(&inOutTempBuffers[i - 1]);
+         tempBufferSpec->Init(inOutTempBuffers[i - 1]);
          tempBuffers.add(tempBuffer);
          tempBufferSpecs.add(tempBufferSpec);
       }
@@ -247,7 +246,7 @@ namespace n7z
 
       for (i = 0; i + 1 < _codersInfo.get_count(); i++)
       {
-         uint64_t m = _codersInfo[i].MethodID;
+         uint64_t m = _codersInfo[i]->MethodID;
          if (m == k_Delta || m == k_BCJ || m == k_BCJ2)
             progressIndex = (uint32_t) (i + 1);
       }
@@ -279,7 +278,7 @@ namespace n7z
          folderItem.UnpackSizes.add(streamSize);
       }
       for (i = numMethods - 1; i >= 0; i--)
-         folderItem.Coders[numMethods - 1 - i].Props = _codersInfo[i].Props;
+         folderItem.Coders[numMethods - 1 - i]->Props = _codersInfo[i]->Props;
       return S_OK;
    }
 

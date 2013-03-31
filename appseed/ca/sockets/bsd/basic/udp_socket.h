@@ -148,7 +148,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send string to connected address. */
          void Send(const string & ,int32_t flags = 0);
 
-         /** Set broadcast */
+         /** set broadcast */
          void SetBroadcast(bool b = true);
          /** Check broadcast flag.
          \return true broadcast is enabled. */

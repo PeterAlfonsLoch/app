@@ -56,9 +56,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          ~http_put_socket();
 
          // these must be specified before connecting / adding to handler
-         /** Set filename to send. */
+         /** set filename to send. */
          void SetFile(const string & );
-         /** Set mimetype of file to send. */
+         /** set mimetype of file to send. */
          void SetContentType(const string & );
 
          /** http put client implemented in OnConnect */

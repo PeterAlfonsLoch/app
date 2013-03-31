@@ -1,16 +1,20 @@
 #pragma once
 
+
 class file_manager_operation_thread;
 class file_manager_operation_view;
+
 
 class CLASS_DECL_ca2 file_manager_operation_thread :
    public simple_thread
 {
 public:
+
+
    filemanager::estate              m_estate;
    file_manager_operation_view *    m_pview;
-   array_del_ptr < file_operation, file_operation & > m_fileoperationa;
-   int32_t                              m_iOperation;
+   spa(file_operation)              m_fileoperationa;
+   int32_t                          m_iOperation;
    bool                             m_bStep;
    mutex                            m_mutexFileOperationA;
    mutex                            m_mutexStep;

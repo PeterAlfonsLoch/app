@@ -143,7 +143,7 @@ namespace userbase
       menu_item * pitemFind;
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         menu_item * pitem = ptr_at(i);
+         menu_item * pitem = element_at(i);
          if(pitem->m_id  == id)
             return pitem;
          pitemFind = pitem->find(id);

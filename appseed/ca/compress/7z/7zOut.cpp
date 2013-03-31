@@ -392,7 +392,7 @@ namespace n7z
       WriteByte(NID::kEnd);
    }
 
-   void COutArchive::WriteUnpackInfo(const array_ptr_alloc<CFolder> &folders)
+   void COutArchive::WriteUnpackInfo(const ::ca::smart_pointer_array<CFolder> &folders)
    {
       if (folders.is_empty())
          return;
@@ -430,7 +430,7 @@ namespace n7z
    }
 
    void COutArchive::WriteSubStreamsInfo(
-      const array_ptr_alloc<CFolder> &folders,
+      const ::ca::smart_pointer_array<CFolder> &folders,
       const base_array<CNum> &numUnpackStreamsInFolders,
       const base_array<file_size> &unpackSizes,
       const bool_array &digestsDefined,
@@ -473,7 +473,7 @@ namespace n7z
          for (i = 0; i < folders.get_count(); i++)
          {
             int32_t numSubStreams = (int32_t)numUnpackStreamsInFolders[i];
-            if (numSubStreams == 1 && folders[i].UnpackCRCDefined)
+            if (numSubStreams == 1 && folders[i]->UnpackCRCDefined)
                digestIndex++;
             else
                for (int32_t j = 0; j < numSubStreams; j++, digestIndex++)
@@ -556,7 +556,7 @@ namespace n7z
       CEncoder & encoder,
       const ::ca::byte_buffer & data,
       base_array < file_size > & packSizes,
-      array_ptr_alloc < CFolder > & folders)
+      ::ca::smart_pointer_array < CFolder > & folders)
    {
       UNREFERENCED_PARAMETER(codecsInfo);
       UNREFERENCED_PARAMETER(externalCodecs);
@@ -566,7 +566,7 @@ namespace n7z
       //CBufInStream *streamSpec = new CBufInStream;
       //::ca::smart_pointer<::ca::reader> stream = streamSpec;
       //streamSpec->Init(data, data.GetCapacity());
-      CFolder folderItem;
+      CFolder & folderItem = folders.add_new();
       folderItem.UnpackCRCDefined = true;
       folderItem.UnpackCRC = crc_calc(data, data.GetCapacity());
       //  uint64_t dataSize64 = data.GetCapacity();
@@ -574,7 +574,7 @@ namespace n7z
       /*  RINOK(encoder.Encode(
       codecsInfo, externalCodecs,
       stream, NULL, &dataSize64, folderItem, SeqStream, packSizes, NULL))*/
-      folders.add(folderItem);
+      //folders.add(folderItem);
       return S_OK;
    }
 
@@ -641,7 +641,7 @@ namespace n7z
          emptyStreamVector.set_size(0, db.Files.get_count());
          int32_t numEmptyStreams = 0;
          for (i = 0; i < db.Files.get_count(); i++)
-            if (db.Files[i].HasStream)
+            if (db.Files[i]->HasStream)
                emptyStreamVector.add(false);
             else
             {
@@ -697,7 +697,7 @@ namespace n7z
          size_t namesDataSize = 0;
          for (int32_t i = 0; i < db.Files.get_count(); i++)
          {
-            const string &name = db.Files[i].Name;
+            const string &name = db.Files[i]->Name;
             if (!name.is_empty())
                numDefined++;
             namesDataSize += (name.get_length() + 1) * 2;
@@ -713,7 +713,7 @@ namespace n7z
             WriteByte(0);
             for (int32_t i = 0; i < db.Files.get_count(); i++)
             {
-               const string &name = db.Files[i].Name;
+               const string &name = db.Files[i]->Name;
                for (int32_t t = 0; t <= name.get_length(); t++)
                {
                   wchar_t c = name[t];
@@ -736,7 +736,7 @@ namespace n7z
          int32_t numDefined = 0;
          for (i = 0; i < db.Files.get_count(); i++)
          {
-            bool defined = db.Files[i].AttribDefined;
+            bool defined = db.Files[i]->AttribDefined;
             boolVector.add(defined);
             if (defined)
                numDefined++;
@@ -812,7 +812,7 @@ namespace n7z
             encryptOptions.Password = options->Password;
             CEncoder encoder(get_app(), headerOptions.CompressMainHeader ? *options : encryptOptions);
             base_array<file_size> packSizes;
-            array_ptr_alloc<CFolder> folders;
+            ::ca::smart_pointer_array<CFolder> folders;
             RINOK(EncodeStream(
                codecsInfo, externalCodecs,
                encoder, buf,
@@ -883,7 +883,7 @@ namespace n7z
       MTime.SetItem(index, file2.MTimeDefined, file2.MTime);
       StartPos.SetItem(index, file2.StartPosDefined, file2.StartPos);
       SetItemAnti(index, file2.IsAnti);
-      Files.add(file);
+      Files.add(new CFileItem(file));
 
    }
 

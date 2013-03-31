@@ -40,4 +40,9 @@ namespace user
       return 0;
    }
 
+   void list_data::_001OnDeleteRange(::user::list::range & range)
+   {
+      UNREFERENCED_PARAMETER(range);
+   }
+
 } // namespace user

@@ -14,6 +14,9 @@
 #endif
 
 
+class index_array;
+
+
 #undef new
 
 
@@ -185,6 +188,9 @@ public:
    // Operations that move elements around
    void insert_at(index nIndex, ARG_TYPE newElement, count nCount = 1);
    index remove_at(index nIndex, count nCount = 1);
+   void _001RemoveIndexes(index_array & ia);
+   void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
+   void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
    void insert_at(index nStartIndex, raw_array* pNewArray);
    TYPE pop(index index = 0);
    void swap(index index1, index index2);
@@ -673,6 +679,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
    m_nSize -= nCount;
    return nIndex;
 }
+
 
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArray)

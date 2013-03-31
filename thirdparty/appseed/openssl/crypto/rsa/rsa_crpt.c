@@ -231,7 +231,7 @@ BN_BLINDING *RSA_setup_blinding(RSA *rsa, BN_CTX *in_ctx)
 
 	if (!(rsa->flags & RSA_FLAG_NO_CONSTTIME))
 		{
-		/* Set BN_FLG_CONSTTIME flag */
+		/* set BN_FLG_CONSTTIME flag */
 		n = &local_n;
 		BN_with_flags(n, rsa->n, BN_FLG_CONSTTIME);
 		}

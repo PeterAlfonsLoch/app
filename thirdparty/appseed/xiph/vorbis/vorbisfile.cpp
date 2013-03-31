@@ -892,7 +892,7 @@ static int32_t _ov_open1(void *f,OggVorbis_File *vf,const char *initial,
   /* can we seek? Stevens suggests the seek test was portable */
   if(offsettest!=-1)vf->seekable=1;
 
-  /* No seeking yet; Set up a 'single' (current) logical bitstream
+  /* No seeking yet; set up a 'single' (current) logical bitstream
      entry for partial open */
   vf->links=1;
   vf->vi=(vorbis_info *) _ogg_calloc(vf->links,sizeof(*vf->vi));

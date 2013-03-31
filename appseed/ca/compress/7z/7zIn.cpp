@@ -141,9 +141,9 @@ public:
   CStreamSwitch(): _needRemove(false) {}
   ~CStreamSwitch() { Remove(); }
   void Remove();
-  void Set(CInArchive *archive, const byte *data, size_t size);
-  void Set(CInArchive *archive, const ::ca::byte_buffer &byteBuffer);
-  void Set(CInArchive *archive, const array_ptr_alloc < ::ca::byte_buffer > *dataVector);
+  void set(CInArchive *archive, const byte *data, size_t size);
+  void set(CInArchive *archive, const ::ca::byte_buffer &byteBuffer);
+  void set(CInArchive *archive, const ::ca::smart_pointer_array < ::ca::byte_buffer > *dataVector);
 };
 
 void CStreamSwitch::Remove()
@@ -155,7 +155,7 @@ void CStreamSwitch::Remove()
   }
 }
 
-void CStreamSwitch::Set(CInArchive *archive, const byte *data, size_t size)
+void CStreamSwitch::set(CInArchive *archive, const byte *data, size_t size)
 {
   Remove();
   _archive = archive;
@@ -163,12 +163,12 @@ void CStreamSwitch::Set(CInArchive *archive, const byte *data, size_t size)
   _needRemove = true;
 }
 
-void CStreamSwitch::Set(CInArchive *archive, const ::ca::byte_buffer &byteBuffer)
+void CStreamSwitch::set(CInArchive *archive, const ::ca::byte_buffer &byteBuffer)
 {
-  Set(archive, byteBuffer, byteBuffer.GetCapacity());
+  set(archive, byteBuffer, byteBuffer.GetCapacity());
 }
 
-void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc < ::ca::byte_buffer > *dataVector)
+void CStreamSwitch::set(CInArchive *archive, const ::ca::smart_pointer_array < ::ca::byte_buffer > *dataVector)
 {
   Remove();
   byte external = archive->ReadByte();
@@ -177,7 +177,7 @@ void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc < ::ca::byte_
     int32_t dataIndex = (int32_t)archive->ReadNum();
     if (dataIndex < 0 || dataIndex >= dataVector->get_count())
       ThrowIncorrect();
-    Set(archive, (*dataVector)[dataIndex]);
+    set(archive, (*dataVector)[dataIndex]);
   }
 }
 
@@ -535,15 +535,15 @@ void CInArchive::ReadPackInfo(
 }
 
 void CInArchive::ReadUnpackInfo(
-    const array_ptr_alloc < ::ca::byte_buffer > *dataVector,
-    array_ptr_alloc < CFolder > &folders)
+    const ::ca::smart_pointer_array < ::ca::byte_buffer > *dataVector,
+    ::ca::smart_pointer_array < CFolder > &folders)
 {
   WaitAttribute(NID::kFolder);
   CNum numFolders = ReadNum();
 
   {
     CStreamSwitch streamSwitch;
-    streamSwitch.Set(this, dataVector);
+    streamSwitch.set(this, dataVector);
     folders.remove_all();
     folders.set_size(numFolders);
     for (CNum i = 0; i < numFolders; i++)
@@ -587,7 +587,7 @@ void CInArchive::ReadUnpackInfo(
 }
 
 void CInArchive::ReadSubStreamsInfo(
-    const array_ptr_alloc<CFolder> &folders,
+    const ::ca::smart_pointer_array<CFolder> &folders,
     base_array<CNum> &numUnpackStreamsInFolders,
     base_array<file_size> &unpackSizes,
     bool_array &digestsDefined,
@@ -632,7 +632,7 @@ void CInArchive::ReadSubStreamsInfo(
         unpackSizes.add((file_size) size);
         sum += size;
       }
-    unpackSizes.add((file_size) (folders[i].GetUnpackSize() - sum));
+    unpackSizes.add((file_size) (folders[i]->GetUnpackSize() - sum));
   }
   if (type == NID::kSize)
     type = ReadID();
@@ -642,7 +642,7 @@ void CInArchive::ReadSubStreamsInfo(
   for (i = 0; i < folders.get_count(); i++)
   {
     CNum numSubstreams = numUnpackStreamsInFolders[i];
-    if (numSubstreams != 1 || !folders[i].UnpackCRCDefined)
+    if (numSubstreams != 1 || !folders[i]->UnpackCRCDefined)
       numDigests += numSubstreams;
     numDigestsTotal += numSubstreams;
   }
@@ -690,12 +690,12 @@ void CInArchive::ReadSubStreamsInfo(
 }
 
 void CInArchive::ReadStreamsInfo(
-    const array_ptr_alloc < ::ca::byte_buffer > * dataVector,
+    const ::ca::smart_pointer_array < ::ca::byte_buffer > * dataVector,
     file_position & dataOffset,
     base_array < file_size > & packSizes,
     bool_array & packCRCsDefined,
     base_array < uint32_t > & packCRCs,
-    array_ptr_alloc < CFolder > & folders,
+    ::ca::smart_pointer_array < CFolder > & folders,
     base_array < CNum > & numUnpackStreamsInFolders,
     base_array < file_size > & unpackSizes,
     bool_array & digestsDefined,
@@ -764,12 +764,12 @@ void CInArchive::ReadBoolVector2(int32_t numItems, bool_array &v)
     v.add(true);
 }
 
-void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ca::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
+void CInArchive::ReadUInt64DefVector(const ::ca::smart_pointer_array < ::ca::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
 {
   ReadBoolVector2(numFiles, v.Defined);
 
   CStreamSwitch streamSwitch;
-  streamSwitch.Set(this, &dataVector);
+  streamSwitch.set(this, &dataVector);
   v.Values.set_size(0, numFiles);
 
   for (int32_t i = 0; i < numFiles; i++)
@@ -786,7 +786,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     const base_array < ::libcompress::codec_info_ex > *externalCodecs,
     file_position baseOffset,
     file_position & dataOffset,
-    array_ptr_alloc < ::ca::byte_buffer > &dataVector
+    ::ca::smart_pointer_array < ::ca::byte_buffer > &dataVector
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
     #endif
@@ -801,7 +801,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   base_array<file_size> packSizes;
   bool_array packCRCsDefined;
   base_array<uint32_t> packCRCs;
-  array_ptr_alloc<CFolder> folders;
+  ::ca::smart_pointer_array<CFolder> folders;
 
   base_array<CNum> numUnpackStreamsInFolders;
   base_array<file_size> unpackSizes;
@@ -889,7 +889,7 @@ HRESULT CInArchive::ReadHeader(
     type = ReadID();
   }
 
-  array_ptr_alloc < ::ca::byte_buffer > dataVector;
+  ::ca::smart_pointer_array < ::ca::byte_buffer > dataVector;
 
   if (type == NID::kAdditionalStreamsInfo)
   {
@@ -979,9 +979,9 @@ HRESULT CInArchive::ReadHeader(
       case NID::kName:
       {
         CStreamSwitch streamSwitch;
-        streamSwitch.Set(this, &dataVector);
+        streamSwitch.set(this, &dataVector);
         for (int32_t i = 0; i < db.Files.get_count(); i++)
-          _inByteBack->ReadString(db.Files[i].Name);
+          _inByteBack->ReadString(db.Files[i]->Name);
         break;
       }
       case NID::kWinAttributes:
@@ -989,7 +989,7 @@ HRESULT CInArchive::ReadHeader(
         bool_array boolVector;
         ReadBoolVector2((int32_t) db.Files.get_count(), boolVector);
         CStreamSwitch streamSwitch;
-        streamSwitch.Set(this, &dataVector);
+        streamSwitch.set(this, &dataVector);
         for (i = 0; i < numFiles; i++)
         {
           CFileItem &file = db.Files[i];
@@ -1086,7 +1086,7 @@ void CArchiveDatabaseEx::FillFolderStartPackStream()
   for (int32_t i = 0; i < Folders.get_count(); i++)
   {
     FolderStartPackStreamIndex.add(startPos);
-    startPos += (CNum)Folders[i].PackStreams.get_count();
+    startPos += (CNum)Folders[i]->PackStreams.get_count();
   }
 }
 
@@ -1227,9 +1227,9 @@ HRESULT CInArchive::ReadDatabase2(
     ThrowIncorrect();
 
   CStreamSwitch streamSwitch;
-  streamSwitch.Set(this, buffer2);
+  streamSwitch.set(this, buffer2);
 
-  array_ptr_alloc < ::ca::byte_buffer > dataVector;
+  ::ca::smart_pointer_array < ::ca::byte_buffer > dataVector;
 
   uint64_t type = ReadID();
   if (type != NID::kHeader)
@@ -1251,7 +1251,7 @@ HRESULT CInArchive::ReadDatabase2(
     if (dataVector.get_count() > 1)
       ThrowIncorrect();
     streamSwitch.Remove();
-    streamSwitch.Set(this, dataVector[0]);
+    streamSwitch.set(this, dataVector[0]);
     if (ReadID() != NID::kHeader)
       ThrowIncorrect();
   }

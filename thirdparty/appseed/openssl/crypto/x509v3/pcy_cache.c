@@ -66,7 +66,7 @@ static int policy_data_cmp(const X509_POLICY_DATA * const *a,
 				const X509_POLICY_DATA * const *b);
 static int policy_cache_set_int(long *out, ASN1_INTEGER *value);
 
-/* Set cache entry according to CertificatePolicies extension.
+/* set cache entry according to CertificatePolicies extension.
  * Note: this destroys the passed CERTIFICATEPOLICIES structure.
  */
 

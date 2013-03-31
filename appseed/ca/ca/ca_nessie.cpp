@@ -30,9 +30,8 @@ namespace ca
          if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read))
             return "";
       }
-      catch(::ca::file_exception * pe)
+      catch(::ca::file_exception &)
       {
-         ::ca::del(pe);
          return "";
       }
       return nessie(spfile);

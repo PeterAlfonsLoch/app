@@ -10,7 +10,7 @@ namespace html
    public:
 
 
-      array_ptr_alloc < style > m_stylea;
+      ::ca::smart_pointer_array < style > m_stylea;
       
 
       style_sheet();

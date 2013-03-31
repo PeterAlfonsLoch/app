@@ -104,14 +104,14 @@ namespace n7z
       {
          // headerMethod.Methods.add(methodMode.Methods.Back());
 
-         array_ptr_alloc < ::libcompress::COneMethodInfo > headerMethodInfoVector;
-         ::libcompress::COneMethodInfo oneMethodInfo;
+         ::ca::smart_pointer_array < ::libcompress::COneMethodInfo > headerMethodInfoVector;
+         ::libcompress::COneMethodInfo & oneMethodInfo = *headerMethodInfoVector.add_new();
          oneMethodInfo.MethodName = kLZMAMethodName;
          oneMethodInfo.Props[NCoderPropID::kMatchFinder] = kLzmaMatchFinderForHeaders;
          oneMethodInfo.Props[NCoderPropID::kAlgorithm] = (int32_t) kAlgorithmForHeaders;
          oneMethodInfo.Props[NCoderPropID::kNumFastBytes] = (int32_t) kAlgorithmForHeaders;
          oneMethodInfo.Props[NCoderPropID::kDictionarySize] = (int32_t) kDictionaryForHeaders;
-         headerMethodInfoVector.add(oneMethodInfo);
+         
          ::ca::HRes res = SetCompressionMethod(headerMethod, headerMethodInfoVector
 #ifndef _7ZIP_ST
             , 1
@@ -124,7 +124,7 @@ namespace n7z
 
    ::ca::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
-      array_ptr_alloc < ::libcompress::COneMethodInfo > &methodsInfo
+      ::ca::smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
       , uint32_t numThreads
 #endif
@@ -134,9 +134,9 @@ namespace n7z
 
       if (methodsInfo.is_empty())
       {
-         ::libcompress::COneMethodInfo oneMethodInfo;
+         ::libcompress::COneMethodInfo & oneMethodInfo = *methodsInfo.add_new();
          oneMethodInfo.MethodName = ((level == 0) ? kCopyMethod : kDefaultMethodName);
-         methodsInfo.add(oneMethodInfo);
+         
       }
 
       bool needSolid = false;
@@ -152,14 +152,14 @@ namespace n7z
          if (!IsCopyMethod(oneMethodInfo.MethodName))
             needSolid = true;
 
-         CMethodFull methodFull;
+         CMethodFull & methodFull = *methodMode.Methods.add_new();
 
          if (!FindMethod(
             _codecsInfo, &_externalCodecs,
             oneMethodInfo.MethodName, methodFull.Id, methodFull.NumInStreams, methodFull.NumOutStreams))
             return E_INVALIDARG;
          methodFull.Props = oneMethodInfo.Props;
-         methodMode.Methods.add(methodFull);
+         
 
          if (!_numSolidBytesDefined)
          {
@@ -226,7 +226,7 @@ namespace n7z
          db = &_db;
 #endif
 
-      array_ptr_alloc<CUpdateItem> updateItems;
+      ::ca::smart_pointer_array<CUpdateItem> updateItems;
 
       for (uint32_t i = 0; i < numItems; i++)
       {

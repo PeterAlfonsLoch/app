@@ -25,7 +25,7 @@ typedef struct oc_mcenc_ctx           oc_mcenc_ctx;
 struct oc_mcenc_ctx{
   /*The candidate motion vectors.*/
   int32_t                candidates[13][2];
-  /*The start of the Set B candidates.*/
+  /*The start of the set B candidates.*/
   int32_t                setb0;
   /*The total number of candidates.*/
   int32_t                ncandidates;

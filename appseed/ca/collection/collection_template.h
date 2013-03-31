@@ -18,8 +18,8 @@
 
 #include "_array_smart_ptr.h"
 #include "_array_ptr.h"
-#include "_array_ptr_copy.h"
-#include "_array_ptr_alloc.h"
+#include "_::ca::smart_pointer_array.h"
+#include "_::ca::smart_pointer_array.h"
 
 #include "_array_parent_alloc.h"
 

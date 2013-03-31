@@ -10,7 +10,7 @@ namespace webserver
    class simage_accepta;
    typedef base_array < simage_accepta * > simage_accepta_ptr_array;
    class match_host;
-   typedef array_del_ptr < match_host > match_host_array;
+   typedef ::ca::smart_pointer_array < match_host > match_host_array;
    class ui_redir;
    class fontopus_database;
    class way_database;
@@ -62,7 +62,8 @@ namespace dynamic_source
 
       };
 
-      class CLASS_DECL_ca plugin_map_item
+      class CLASS_DECL_ca plugin_map_item :
+         virtual public ::ca::ca
       {
       public:
 
@@ -91,7 +92,7 @@ namespace dynamic_source
       };
 
 
-      ::array_ptr_alloc < plugin_map_item >     m_pluginmapitema;
+      spa(plugin_map_item)                      m_pluginmapitema;
 
       mutex                                     m_mutexIncludeMatches;
       ::collection::string_map < bool >         m_mapIncludeMatchesFileExists;

@@ -72,7 +72,7 @@ jpeg_read_coefficients (j_decompress_ptr cinfo)
 	}
       }
     }
-    /* Set state so that jpeg_finish_decompress does the right thing */
+    /* set state so that jpeg_finish_decompress does the right thing */
     cinfo->global_state = DSTATE_STOPPING;
   }
   /* At this point we should be in state DSTATE_STOPPING if being used

@@ -1976,30 +1976,6 @@
     <ClInclude Include=".\collection\collection_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include=".\collection\collection_array_app_alloc.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_del_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_parent_alloc.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_ptr_alloc.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_ptr_copy.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_release_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_array_smart_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include=".\collection\collection_base_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -4496,18 +4472,6 @@
       <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="collection\collection_bit_array.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_ptr_copy.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_ptr_alloc.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_ptr.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\collection_array_app_copy.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="collection\collection_array.cpp">

@@ -43,8 +43,8 @@ namespace zip
       string                              m_strFileName;
       uint64_t                            m_iPosition;
       stringa                             m_straPath;
-      array_del_ptr < File, File & >      m_filea;
-      array_del_ptr < InFile, InFile & >  m_izfilea;
+      spa(File)                           m_filea;
+      spa(InFile)                         m_izfilea;
       stringa                             m_straPrefix;
       e_mode                              m_emode;
       string                              m_strZipFile;

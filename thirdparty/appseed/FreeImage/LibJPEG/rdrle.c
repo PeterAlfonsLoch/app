@@ -338,7 +338,7 @@ load_image (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
     progress->completed_extra_passes++;
 #endif
 
-  /* Set up to call proper row-extraction routine in future */
+  /* set up to call proper row-extraction routine in future */
   if (source->visual == PSEUDOCOLOR) {
     source->pub.buffer = source->rle_row;
     source->pub.get_pixel_rows = get_pseudocolor_row;

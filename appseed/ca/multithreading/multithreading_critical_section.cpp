@@ -75,7 +75,7 @@ bool critical_section::Init()
 
       pthread_mutexattr_init(&mutexattr);
 
-      // Set the mutex as a recursive mutex
+      // set the mutex as a recursive mutex
 
 #ifdef MACOS
 

@@ -324,7 +324,7 @@ struct ovectl_ratemanage2_arg {
 #define OV_ECTL_RATEMANAGE2_GET      0x14
 
 /**
- * Set the current encoder bitrate management settings.
+ * set the current encoder bitrate management settings.
  *
  * Argument: <tt>struct ovectl_ratemanage2_arg *</tt>
  *

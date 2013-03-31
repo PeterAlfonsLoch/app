@@ -278,7 +278,7 @@ namespace user
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         this->element_at(i).EnumDescendants();
+         this->element_at(i)->EnumDescendants();
       }
    }
 
@@ -308,7 +308,7 @@ namespace user
    {
       oswindow_tree tree;
       tree.m_oswindow = oswindow;
-      return array_ptr_alloc < oswindow_tree, const oswindow_tree & >::find_first(tree, oswindow_tree::compare_oswindow);
+      return ::ca::smart_pointer_array < oswindow_tree >::find_first(tree, oswindow_tree::compare_oswindow);
    }
 
 

@@ -6,7 +6,8 @@
 namespace libcompress
 {
 
-   struct COneMethodInfo
+   struct COneMethodInfo :
+      virtual public ::ca::ca
    {
       ::ca::property_set Props;
       string MethodName;
@@ -30,7 +31,7 @@ namespace libcompress
 
       uint32_t _crcSize;
 
-      array_ptr_alloc<COneMethodInfo> _methods;
+      ::ca::smart_pointer_array<COneMethodInfo> _methods;
       bool _removeSfxBlock;
 
       uint64_t _numSolidFiles;

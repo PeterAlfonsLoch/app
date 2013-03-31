@@ -32,7 +32,7 @@ namespace primitive
 
    memory_file::memory_file(::ca::application * papp, const memory_file & memoryfile) :
       ca(papp),
-      memory_container (papp, memoryfile.get_memory())
+      memory_container (papp, ((memory_file &) memoryfile).get_memory())
    {
 
       m_dwPosition = 0;

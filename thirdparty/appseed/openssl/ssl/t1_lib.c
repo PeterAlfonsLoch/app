@@ -628,7 +628,7 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *p, unsigned cha
 	/* Add Heartbeat extension */
 	s2n(TLSEXT_TYPE_heartbeat,ret);
 	s2n(1,ret);
-	/* Set mode:
+	/* set mode:
 	 * 1: peer may send requests
 	 * 2: peer not allowed to send requests
 	 */
@@ -822,7 +822,7 @@ unsigned char *ssl_add_serverhello_tlsext(SSL *s, unsigned char *p, unsigned cha
 		{
 		s2n(TLSEXT_TYPE_heartbeat,ret);
 		s2n(1,ret);
-		/* Set mode:
+		/* set mode:
 		 * 1: peer may send requests
 		 * 2: peer not allowed to send requests
 		 */
@@ -1517,7 +1517,7 @@ int ssl_parse_serverhello_tlsext(SSL *s, unsigned char **p, unsigned char *d, in
 				*al = TLS1_AD_UNSUPPORTED_EXTENSION;
 				return 0;
 				}
-			/* Set flag to expect CertificateStatus message */
+			/* set flag to expect CertificateStatus message */
 			s->tlsext_status_expected = 1;
 			}
 #ifndef OPENSSL_NO_NEXTPROTONEG
@@ -1962,7 +1962,7 @@ int ssl_check_serverhello_tlsext(SSL *s)
 			&& s->ctx && s->ctx->tlsext_status_cb)
 		{
 		int r;
-		/* Set resp to NULL, resplen to -1 so callback knows
+		/* set resp to NULL, resplen to -1 so callback knows
  		 * there is no response.
  		 */
 		if (s->tlsext_ocsp_resp)
@@ -2352,7 +2352,7 @@ const EVP_MD *tls12_get_hash(unsigned char hash_alg)
 		}
 	}
 
-/* Set preferred digest for each key type */
+/* set preferred digest for each key type */
 
 int tls1_process_sigalgs(SSL *s, const unsigned char *data, int dsize)
 	{
@@ -2410,7 +2410,7 @@ int tls1_process_sigalgs(SSL *s, const unsigned char *data, int dsize)
 		}
 
 
-	/* Set any remaining keys to default values. NOTE: if alg is not
+	/* set any remaining keys to default values. NOTE: if alg is not
 	 * supported it stays as NULL.
 	 */
 #ifndef OPENSSL_NO_DSA

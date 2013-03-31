@@ -169,7 +169,7 @@ namespace sockets
    }
 
 
-   bool ipv4_address::IsValid()
+   bool ipv4_address::IsValid() const
    {
       return m_bValid;
    }

@@ -169,7 +169,7 @@ struct X509_POLICY_TREE_st
 	unsigned int flags;
 	};
 
-/* Set if anyPolicy present in user policies */
+/* set if anyPolicy present in user policies */
 #define POLICY_FLAG_ANY_POLICY		0x2
 
 /* Useful macros */

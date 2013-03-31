@@ -232,7 +232,7 @@ class Euler : public Vec3<T>
     const Euler<T>&	operator=  (const Vec3<T>&);
 
     //--------------------------------------------------------
-    //	Set the euler value
+    //	set the euler value
     //  This does NOT convert the angles, but setXYZVector() 
     //	does reorder the input vector.
     //--------------------------------------------------------

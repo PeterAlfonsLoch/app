@@ -11,7 +11,8 @@ namespace ca
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
       m_papp               = 0; // NULL
-      m_countReference     = 1; // avoid creating a "perambulator" phantom
+      //m_countReference     = 1; // avoid creating a "perambulator" phantom
+      m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;
@@ -21,7 +22,8 @@ namespace ca
    {
       m_ulFlags            = o.m_ulFlags;
       m_papp               = o.m_papp;
-      m_countReference     = 1; // avoid creating a "perambulator" phantom  
+      //m_countReference     = 1; // avoid creating a "perambulator" phantom  
+      m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;

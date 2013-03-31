@@ -435,7 +435,7 @@ FreeImage_GetComplexChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 	return dst;
 }
 
-/** @brief Set the real or imaginary part of a complex image.
+/** @brief set the real or imaginary part of a complex image.
 Both src and dst must have the same width and height.
 @param dst Image to modify (image of type FIT_COMPLEX)
 @param src Input image of type FIT_DOUBLE

@@ -47,7 +47,7 @@ namespace database
       string getPasswd() const { return passwd; }
       /* active status is OK state */
       virtual bool isActive() const { return active; }
-      /* Set new name of sequence table */
+      /* set new name of sequence table */
       void setSequenceTable(const char *new_seq_table) { sequence_table = new_seq_table; };
       /* get name of sequence table */
       const char *getSequenceTable() { return sequence_table; }

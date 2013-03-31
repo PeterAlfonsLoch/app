@@ -11,7 +11,7 @@ namespace user
       
       bool m_bEnable;
 
-      array_ptr_alloc < stringa , stringa & > m_array;
+      ::ca::smart_pointer_array < stringa , stringa & > m_array;
 
       
       simple_list_data(::ca::application * papp);
@@ -28,6 +28,9 @@ namespace user
       
 
       virtual void _001GetItemText(list_item * pitem);
+
+      virtual void _001OnDeleteRange(::user::list::range & range);
+
 
       virtual int_ptr _001GetItemCount();
 

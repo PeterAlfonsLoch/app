@@ -56,7 +56,7 @@ public:
 
    bool             m_bTransparentBackground;
    bool             m_bSimpleLayout;
-   array_ptr_alloc < simple_toolbar_item, simple_toolbar_item & >
+   ::ca::smart_pointer_array < simple_toolbar_item, simple_toolbar_item & >
                     m_itema;
    int32_t              m_iHover;
 

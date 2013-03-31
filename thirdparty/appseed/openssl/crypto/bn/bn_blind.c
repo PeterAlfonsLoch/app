@@ -160,7 +160,7 @@ BN_BLINDING *BN_BLINDING_new(const BIGNUM *A, const BIGNUM *Ai, BIGNUM *mod)
 	if (BN_get_flags(mod, BN_FLG_CONSTTIME) != 0)
 		BN_set_flags(ret->mod, BN_FLG_CONSTTIME);
 
-	/* Set the counter to the special value -1
+	/* set the counter to the special value -1
 	 * to indicate that this is never-used fresh blinding
 	 * that does not need updating before first use. */
 	ret->counter = -1;

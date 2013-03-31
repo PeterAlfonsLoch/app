@@ -38,12 +38,13 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca oswindow_tree
+   class CLASS_DECL_ca oswindow_tree :
+      virtual public ::ca::ca
    {
    public:
 
       class CLASS_DECL_ca Array :
-         public array_ptr_alloc < oswindow_tree, const oswindow_tree &>
+         public ::ca::smart_pointer_array < oswindow_tree >
       {
       public:
          bool remove(oswindow oswindow);

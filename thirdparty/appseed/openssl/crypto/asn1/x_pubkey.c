@@ -357,7 +357,7 @@ int X509_PUBKEY_set0_param(X509_PUBKEY *pub, ASN1_OBJECT *aobj,
 			OPENSSL_free(pub->public_key->data);
 		pub->public_key->data = penc;
 		pub->public_key->length = penclen;
-  		/* Set number of unused bits to zero */
+  		/* set number of unused bits to zero */
 		pub->public_key->flags&= ~(ASN1_STRING_FLAG_BITS_LEFT|0x07);
 		pub->public_key->flags|=ASN1_STRING_FLAG_BITS_LEFT;
 		}

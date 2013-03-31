@@ -93,7 +93,7 @@ namespace libcompress
 
          struct CBlockRef
          {
-            uint32_t Offset;
+            uint32_t offset;
             uint32_t Size;
          };
 

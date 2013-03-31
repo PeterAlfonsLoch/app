@@ -3466,7 +3466,7 @@ namespace gcom
          m_iWidth = iWidth;
          m_iHeight = iHeight;
 
-         // Set our page to 0
+         // set our page to 0
          m_iHpage = 0;
 
       }

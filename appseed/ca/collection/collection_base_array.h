@@ -202,7 +202,7 @@ public:
    };
 
 
-   base_array();
+   base_array(::ca::application * papp = NULL);
    base_array(const base_array <TYPE, ARG_TYPE> & a);
    base_array(::count n, const TYPE & t = TYPE());
    base_array(TYPE * ptypea, ::count n)
@@ -687,7 +687,8 @@ inline TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 // base_array<TYPE, ARG_TYPE> out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-base_array<TYPE, ARG_TYPE>::base_array()
+base_array<TYPE, ARG_TYPE>::base_array(::ca::application * papp) :
+   ca(papp)
 {
    m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;

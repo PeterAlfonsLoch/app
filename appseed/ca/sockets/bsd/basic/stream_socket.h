@@ -38,7 +38,7 @@
          be closed. */
          bool Ready();
 
-         /** Set timeout to use for connection attempt.
+         /** set timeout to use for connection attempt.
          \param x Timeout in seconds */
          void SetConnectTimeout(int32_t x);
 
@@ -46,7 +46,7 @@
          \return Connection timeout (seconds) */
          int32_t GetConnectTimeout();
 
-         /** Set flush before close to make a tcp socket completely is_empty its
+         /** set flush before close to make a tcp socket completely is_empty its
          output buffer before closing the connection. */
          void SetFlushBeforeClose(bool = true);
 
@@ -83,7 +83,7 @@
 
          // LIST_RETRY
 
-         /** Set flag to initiate a connection attempt after a connection timeout. */
+         /** set flag to initiate a connection attempt after a connection timeout. */
          void SetRetryClientConnect(bool x = true);
 
          /** Check if a connection attempt should be made.
@@ -91,7 +91,7 @@
          bool RetryClientConnect();
 
 
-         /** Set shutdown status. */
+         /** set shutdown status. */
          void SetShutdown(int32_t);
 
          /** get shutdown status. */

@@ -800,7 +800,7 @@ static int TS_RESP_sign(TS_RESP_CTX *ctx)
 		goto err;
 		}
 
-	/* Set new PKCS7 and TST_INFO objects. */
+	/* set new PKCS7 and TST_INFO objects. */
 	TS_RESP_set_tst_info(ctx->response, p7, ctx->tst_info);
 	p7 = NULL;		/* Ownership is lost. */
 	ctx->tst_info = NULL;	/* Ownership is lost. */

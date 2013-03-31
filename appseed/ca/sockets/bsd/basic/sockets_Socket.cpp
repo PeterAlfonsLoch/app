@@ -165,7 +165,7 @@ namespace sockets
          // failed...
          Handler().LogError(this, "close", Errno, StrError(Errno), ::ca::log::level_error);
       }
-      Handler().Set(m_socket, false, false, false); // remove from fd_set's
+      Handler().set(m_socket, false, false, false); // remove from fd_set's
       Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
       Handler().AddList(m_socket, LIST_DETACH, false);
       Handler().AddList(m_socket, LIST_TIMEOUT, false);
@@ -400,9 +400,9 @@ namespace sockets
    }
 
 
-   void socket::Set(bool bRead, bool bWrite, bool bException)
+   void socket::set(bool bRead, bool bWrite, bool bException)
    {
-      Handler().Set(m_socket, bRead, bWrite, bException);
+      Handler().set(m_socket, bRead, bWrite, bException);
    }
 
 

@@ -22,11 +22,11 @@ point::operator POINT *() throw()
 point::operator const POINT *() const throw()
    { return this; }
 
-void point::Offset(int32_t xOffset, int32_t yOffset) throw()
+void point::offset(int32_t xOffset, int32_t yOffset) throw()
    { x += xOffset; y += yOffset; }
-void point::Offset(POINT point) throw()
+void point::offset(POINT point) throw()
    { x += point.x; y += point.y; }
-void point::Offset(SIZE size) throw()
+void point::offset(SIZE size) throw()
    { x += size.cx; y += size.cy; }
 void point::SetPoint(int32_t X, int32_t Y) throw()
    { x = X; y = Y; }
@@ -104,11 +104,11 @@ point64::operator const __point64 *() const throw()
    { return this; }
 
 
-void point64::Offset(int64_t xOffset, int64_t yOffset) throw()
+void point64::offset(int64_t xOffset, int64_t yOffset) throw()
    { x += xOffset; y += yOffset; }
-void point64::Offset(__point64 point64) throw()
+void point64::offset(__point64 point64) throw()
    { x += point64.x; y += point64.y; }
-void point64::Offset(__size64 size64) throw()
+void point64::offset(__size64 size64) throw()
    { x += size64.cx; y += size64.cy; }
 void point64::SetPoint(int64_t X, int64_t Y) throw()
    { x = X; y = Y; }
@@ -205,11 +205,11 @@ pointd::operator POINTD *() throw()
 pointd::operator const POINTD *() const throw()
    { return this; }
 
-void pointd::Offset(int32_t xOffset, int32_t yOffset) throw()
+void pointd::offset(int32_t xOffset, int32_t yOffset) throw()
    { x += xOffset; y += yOffset; }
-void pointd::Offset(POINTD pointd) throw()
+void pointd::offset(POINTD pointd) throw()
    { x += pointd.x; y += pointd.y; }
-void pointd::Offset(SIZED size) throw()
+void pointd::offset(SIZED size) throw()
    { x += size.cx; y += size.cy; }
 void pointd::SetPoint(int32_t X, int32_t Y) throw()
    { x = X; y = Y; }

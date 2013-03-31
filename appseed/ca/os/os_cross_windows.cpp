@@ -127,7 +127,7 @@ CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, u
 {
    OVERLAPPED ov;
    zero(&ov, sizeof(ov));
-   ov.Offset = dwLo;
+   ov.offset = dwLo;
    ov.OffsetHigh = dwHi;
    return LockFileEx(hfile, LOCKFILE_FAIL_IMMEDIATELY, 0, dwCountLo, dwCountHi, &ov);
 
@@ -137,7 +137,7 @@ CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi,
 {
    OVERLAPPED ov;
    zero(&ov, sizeof(ov));
-   ov.Offset = dwLo;
+   ov.offset = dwLo;
    ov.OffsetHigh = dwHi;
    return UnlockFileEx(hfile, 0, dwCountLo, dwCountHi, &ov);
 

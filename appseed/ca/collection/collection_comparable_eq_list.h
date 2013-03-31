@@ -29,12 +29,12 @@ public:
    bool add_head_unique(ARG_TYPE t);
 
 
-   // Set
+   // set
    void merge_tail(const comparable_eq_list & l); // add_tail
    void merge_head(const comparable_eq_list & l); // add_tail
    void intersect(const comparable_eq_list & l);
 
-   // Set operators
+   // set operators
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator -= (const TYPE & t);
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator &= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator -= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);

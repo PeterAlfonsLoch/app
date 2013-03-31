@@ -1393,7 +1393,7 @@ retry:
             return;
          }
          ::sockets::socket_handler handler(get_app());
-         ::sockets::http_client_socket * psocket = get(handler, psignal->m_strUrl, psignal->m_setPost, psignal->m_setHeaders, psignal->m_set, psignal->m_pcookies, psignal->m_puser, psignal->m_strVersion, &psignal->m_estatusRet);
+         sp(::sockets::http_client_socket) psocket = get(handler, psignal->m_strUrl, psignal->m_setPost, psignal->m_setHeaders, psignal->m_set, psignal->m_pcookies, psignal->m_puser, psignal->m_strVersion, &psignal->m_estatusRet);
          if(psocket == NULL)
          {
             psignal->m_bRet = false;
@@ -1408,7 +1408,6 @@ retry:
             psignal->m_memoryRet.allocate(0);
          }
          psignal->m_setHeaders = psocket->outheaders();
-         ::ca::del(psocket);
          psignal->m_bRet = true;
          return;
       }
@@ -1425,7 +1424,7 @@ retry:
                      const char * pszVersion)
       {
          ::sockets::socket_handler handler(get_app());
-         ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion);
+         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion);
          if(psocket == NULL)
             return false;
 
@@ -1433,12 +1432,10 @@ retry:
          if(!spfile->open(pszFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_read_write
             | ::ca::file::defer_create_directory))
          {
-            ::ca::del(psocket);
             return false;
          }
          spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
-         ::ca::del(psocket);
          return true;
       }
 
@@ -1490,13 +1487,12 @@ retry:
                      e_status * pestatus)
       {
          ::sockets::socket_handler handler(get_app());
-         ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
+         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
          if(psocket == NULL)
             return false;
          memory.allocate(psocket->GetContentLength());
          memcpy(memory.get_data(), psocket->GetDataPtr(), memory.get_size());
          headers = psocket->outheaders();
-         ::ca::del(psocket);
          return true;
       }
 
@@ -1512,12 +1508,11 @@ retry:
                      e_status * pestatus)
       {
          ::sockets::socket_handler handler(get_app());
-         ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
+         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
          if(psocket == NULL)
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetDataLength());
          headers = psocket->outheaders();
-         ::ca::del(psocket);
          return true;
       }
 
@@ -1555,17 +1550,10 @@ retry:
          ::ca::property_set headers;
          ::ca::property_set set;
          set["only_headers"] = true;
-         ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
+         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
          if(psocket == NULL)
             return false;
          int32_t iStatusCode = psocket->outattr("http_status_code");
-         try
-         {
-            ::ca::del(psocket);
-         }
-         catch(...)
-         {
-         }
          return iStatusCode == 200;
       }
 
@@ -1584,12 +1572,11 @@ retry:
       {
          ::sockets::socket_handler handler(get_app());
          set["http_request"] = pszRequest;
-         ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
+         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
          if(psocket == NULL)
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
-         ::ca::del(psocket);
          return true;
       }
 

@@ -122,6 +122,19 @@ namespace user
    }
 
 
+   void simple_list_data::_001OnDeleteRange(::user::list::range & range)
+   {
+      
+      index_array ia;
+
+      range.get_item_indexes(ia);
+
+      m_array._001RemoveIndexes(ia);
+
+   }
+
+
+
 } // namespace user
 
 

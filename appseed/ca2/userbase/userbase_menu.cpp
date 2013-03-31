@@ -62,7 +62,7 @@ namespace userbase
 
    menu_item * menu::GetSubMenu(int32_t i)
    {
-      return m_pitem->m_spitema->ptr_at(i);
+      return m_pitem->m_spitema->element_at(i);
    }
 
    bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
@@ -137,8 +137,8 @@ namespace userbase
       m_iHeaderHeight = size.cy;
       for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
       {
-         class size size = pdc->GetTextExtent(m_pitem->m_spitema->ptr_at(i)->m_button._001GetButtonText());
-         if(m_pitem->m_spitema->ptr_at(i)->IsPopup())
+         class size size = pdc->GetTextExtent(m_pitem->m_spitema->element_at(i)->m_button._001GetButtonText());
+         if(m_pitem->m_spitema->element_at(i)->IsPopup())
             size.cx += 12 + 16;
          if(size.cy > iMaxHeight)
             iMaxHeight = size.cy;
@@ -158,7 +158,7 @@ namespace userbase
       string str;
       for(int32_t i = 0; i < iItemCount; i++)
       {
-         menu_item * pitem = m_pitem->m_spitema->ptr_at(i);
+         menu_item * pitem = m_pitem->m_spitema->element_at(i);
          if(pitem->m_id == "separator")
          {
             rect.bottom = rect.top + 3;
@@ -437,8 +437,8 @@ namespace userbase
             {
 
                cmdui.m_iIndex    = i;
-               cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
-               cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
+               cmdui.m_id        = m_pitem->m_spitema->element_at(i)->m_id;
+               cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->element_at(i)->m_button;
 
                ::user::interaction * pwndParent = m_oswindowParent;
                if(pwndParent != NULL)
@@ -493,8 +493,8 @@ namespace userbase
          {
 
             cmdui.m_iIndex    = i;
-            cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
-            cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
+            cmdui.m_id        = m_pitem->m_spitema->element_at(i)->m_id;
+            cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->element_at(i)->m_button;
 
             ::user::interaction * pwndParent = m_oswindowParent;
             if(pwndParent != NULL)

@@ -1455,7 +1455,7 @@ void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
    // default implementation changes control bars, menu and main pane ::ca::window
 
 
-   // Set visibility of standard ControlBars (only the first 32)
+   // set visibility of standard ControlBars (only the first 32)
 //   uint32_t dwOldStates = 0;
 
    if (bPreview)

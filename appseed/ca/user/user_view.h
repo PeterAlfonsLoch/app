@@ -26,6 +26,7 @@ public:
       
       hint_begin = 1984,
       hint_set_edit_file = hint_begin,
+      hint_add_location,
       hint_end,
 
    };
@@ -37,7 +38,7 @@ public:
    view();
    virtual ~view() = 0;
 
-   user::document_interface * get_document() const;
+   user::document_interface * get_document();
 
    template < class DOCUMENT >
    ::ca::data * get_data();

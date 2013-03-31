@@ -140,7 +140,7 @@ namespace ca
       {
          try
          {
-            m_delegatea[i].get_signalizable()->unregister_signal(this);
+            m_delegatea[i]->get_signalizable()->unregister_signal(this);
          }
          catch(...)
          {
@@ -155,14 +155,14 @@ namespace ca
       {
          for(index i = m_delegatea.get_size() - 1; i >= 0 ; i++)
          {
-            m_delegatea[i].emit(NULL);
+            m_delegatea[i]->emit(NULL);
          }
       }
       else
       {
          for(pobj->m_iIndex = m_delegatea.get_upper_bound(); pobj->m_iIndex >= 0 ; pobj->m_iIndex = min(pobj->m_iIndex - 1, m_delegatea.get_upper_bound()))
          {
-            signal_delegate * pdelegate = m_delegatea.ptr_at(pobj->m_iIndex);
+            signal_delegate * pdelegate = m_delegatea.element_at(pobj->m_iIndex);
             pdelegate->emit(pobj);
             if(pobj->m_bRet)
                return;
@@ -175,7 +175,7 @@ namespace ca
       if(pobj->m_iIndex <= 0)
          return;
       pobj->m_iIndex--;
-      signal_delegate * pdelegate = m_delegatea.ptr_at(pobj->m_iIndex);
+      signal_delegate * pdelegate = m_delegatea.element_at(pobj->m_iIndex);
       pdelegate->emit(pobj);
    }
 
@@ -198,7 +198,7 @@ namespace ca
    {
       for(int32_t i = 0; i < m_delegatea.get_size();)
       {
-         if(m_delegatea[i].get_signalizable() == psignalizable)
+         if(m_delegatea[i]->get_signalizable() == psignalizable)
          {
             m_delegatea.remove_at(i);
          }
@@ -213,9 +213,9 @@ namespace ca
    {
       for(int32_t i = 0; i < m_delegatea.get_size();)
       {
-         if(m_delegatea[i].get_signalizable() != psignalizable)
+         if(m_delegatea[i]->get_signalizable() != psignalizable)
          {
-            m_delegatea[i].get_signalizable()->unregister_signal(this);
+            m_delegatea[i]->get_signalizable()->unregister_signal(this);
             m_delegatea.remove_at(i);
          }
          else

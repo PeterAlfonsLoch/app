@@ -130,7 +130,7 @@ CLASS_DECL_ca bool __enable_memory_leak_override(bool bEnable);
 // A failure hook returns whether to permit allocation
 typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
 
-// Set new hook, return old (never NULL)
+// set new hook, return old (never NULL)
 CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 
 #include "exception_memory_state.h"

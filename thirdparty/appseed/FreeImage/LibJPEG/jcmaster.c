@@ -526,7 +526,7 @@ reduce_script (j_compress_ptr cinfo)
 
 LOCAL(void)
 select_scan_parameters (j_compress_ptr cinfo)
-/* Set up the scan parameters for the current scan */
+/* set up the scan parameters for the current scan */
 {
   int ci;
 
@@ -731,7 +731,7 @@ prepare_for_pass (j_compress_ptr cinfo)
 
   master->pub.is_last_pass = (master->pass_number == master->total_passes-1);
 
-  /* Set up progress monitor's pass info if present */
+  /* set up progress monitor's pass info if present */
   if (cinfo->progress != NULL) {
     cinfo->progress->completed_passes = master->pass_number;
     cinfo->progress->total_passes = master->total_passes;

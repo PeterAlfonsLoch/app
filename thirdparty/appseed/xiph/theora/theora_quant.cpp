@@ -42,7 +42,7 @@ void oc_dequant_tables_init(uint16_t *_dequant[64][3][2],
   for(qti=0;qti<2;qti++)for(pli=0;pli<3;pli++){
     /*Quality index.*/
     int32_t qi;
-    /*Range iterator.*/
+    /*range iterator.*/
     int32_t qri;
     for(qi=0,qri=0;qri<=_qinfo->qi_ranges[qti][pli].nranges;qri++){
       th_quant_base base;

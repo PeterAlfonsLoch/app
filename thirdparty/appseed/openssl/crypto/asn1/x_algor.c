@@ -128,7 +128,7 @@ void X509_ALGOR_get0(ASN1_OBJECT **paobj, int *pptype, void **ppval,
 		}
 	}
 
-/* Set up an X509_ALGOR DigestAlgorithmIdentifier from an EVP_MD */
+/* set up an X509_ALGOR DigestAlgorithmIdentifier from an EVP_MD */
 
 void X509_ALGOR_set_md(X509_ALGOR *alg, const EVP_MD *md)
 	{

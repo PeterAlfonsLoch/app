@@ -53,7 +53,7 @@ namespace html
             iFont = create_font(pelemental);
             pelemental->m_pimpl->m_mapFont.set_at("hover", iFont);
          }
-         return m_fonta.ptr_at(iFont);
+         return m_fonta.element_at(iFont);
       }
       else if(pelemental->m_pimpl->has_link())
       {
@@ -62,7 +62,7 @@ namespace html
             iFont = create_font(pelemental);
             pelemental->m_pimpl->m_mapFont.set_at("link", iFont);
          }
-         return m_fonta.ptr_at(iFont);
+         return m_fonta.element_at(iFont);
       }
       else
       {
@@ -71,7 +71,7 @@ namespace html
             iFont = create_font(pelemental);
             pelemental->m_pimpl->m_mapFont.set_at("", iFont);
          }
-         return m_fonta.ptr_at(iFont);
+         return m_fonta.element_at(iFont);
       }
 
    }

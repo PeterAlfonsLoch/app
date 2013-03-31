@@ -214,7 +214,7 @@ static void drbg_free_entropy(DRBG_CTX *ctx, unsigned char *out, size_t olen)
 	OPENSSL_free(out);
 	}
 
-/* Set "additional input" when generating random data. This uses the
+/* set "additional input" when generating random data. This uses the
  * current PID, a time value and a counter.
  */
 

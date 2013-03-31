@@ -72,10 +72,10 @@ namespace ca2 // ca8 + cube
          }
          if(iFind >= 0)
          {
-            ::user::list::Range range;
-            ::user::list::ItemRange itemrange;
-            itemrange.SetLBound(iFind);
-            itemrange.SetUBound(iFind);
+            ::user::list::range range;
+            ::user::list::item_range itemrange;
+            itemrange.set_lower_bound(iFind);
+            itemrange.set_upper_bound(iFind);
             range.add_item(itemrange);
             m_plistview->_001SetSelection(range);
          }
@@ -128,11 +128,11 @@ namespace ca2 // ca8 + cube
       {
          if(pevent->m_puie == m_plistview)
          {
-            ::user::list::Range range;
+            ::user::list::range range;
             m_plistview->_001GetSelection(range);
             if(range.get_item_count() > 0)
             {
-               index iItem = range.ItemAt(0).GetLBound();
+               index iItem = range.ItemAt(0).get_lower_bound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
                   System.user().set_keyboard_layout(m_layoutida[iItem].m_strPath, true);

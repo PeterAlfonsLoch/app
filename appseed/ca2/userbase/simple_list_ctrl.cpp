@@ -63,10 +63,10 @@ bool simple_list_control::RemoveItem(int32_t iItem)
    return true;
 }
 
-bool simple_list_control::RemoveItem(ItemRange & range)
+bool simple_list_control::RemoveItem(item_range & range)
 {
    bool bOk = true;
-   for(::index iItem = range.GetUBound(); iItem >= range.GetLBound(); iItem++)
+   for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {
       if(!m_listctrldata.RemoveItem(iItem))
          bOk = false;
@@ -75,14 +75,14 @@ bool simple_list_control::RemoveItem(ItemRange & range)
    return true;
 }
 
-bool simple_list_control::RemoveItem(Range & range)
+bool simple_list_control::RemoveItem(range & range)
 {
    bool bOk = true;
    index_array iaRemove;
    for(::index iRange = 0; iRange < range.get_item_count(); iRange++)
    {
-      ItemRange & itemrange = range.ItemAt(iRange);
-      for(::index iItem = itemrange.GetLBound(); iItem <= itemrange.GetUBound(); iItem++)
+      item_range & itemrange = range.ItemAt(iRange);
+      for(::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
       {
          iaRemove.add_unique(iItem);
       }

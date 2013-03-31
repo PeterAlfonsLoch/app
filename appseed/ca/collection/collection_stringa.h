@@ -293,7 +293,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
 
 
 class string2a :
-   public array_ptr_alloc < stringa, stringa & >
+   public spa(stringa)
 {
 public:
 };

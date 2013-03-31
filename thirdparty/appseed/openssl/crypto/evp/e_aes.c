@@ -73,8 +73,8 @@ typedef struct
 typedef struct
 	{
 	AES_KEY ks;		/* AES key schedule to use */
-	int key_set;		/* Set if key initialised */
-	int iv_set;		/* Set if an iv is set */
+	int key_set;		/* set if key initialised */
+	int iv_set;		/* set if an iv is set */
 	GCM128_CONTEXT gcm;
 	unsigned char *iv;	/* Temporary IV store */
 	int ivlen;		/* IV length */
@@ -97,10 +97,10 @@ typedef struct
 typedef struct
 	{
 	AES_KEY ks;		/* AES key schedule to use */
-	int key_set;		/* Set if key initialised */
-	int iv_set;		/* Set if an iv is set */
-	int tag_set;		/* Set if tag is valid */
-	int len_set;		/* Set if message length set */
+	int key_set;		/* set if key initialised */
+	int iv_set;		/* set if an iv is set */
+	int tag_set;		/* set if tag is valid */
+	int len_set;		/* set if message length set */
 	int L, M;		/* L and M parameters from RFC3610 */
 	CCM128_CONTEXT ccm;
 	ccm128_f str;
@@ -891,7 +891,7 @@ static int aes_gcm_tls_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
 	/* Encrypt/decrypt must be performed in place */
 	if (out != in || len < (EVP_GCM_TLS_EXPLICIT_IV_LEN+EVP_GCM_TLS_TAG_LEN))
 		return -1;
-	/* Set IV from start of buffer or generate IV and write to start
+	/* set IV from start of buffer or generate IV and write to start
 	 * of buffer.
 	 */
 	if (EVP_CIPHER_CTX_ctrl(ctx, ctx->encrypt ?

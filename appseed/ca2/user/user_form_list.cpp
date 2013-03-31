@@ -404,7 +404,7 @@ namespace user
       {
          if(m_columna[i].m_iControl >= 0 && m_columna[i].m_iControl < m_controldescriptorset.get_size())
          {
-            class control::descriptor * pdescriptor = m_controldescriptorset.ptr_at(m_columna[i].m_iControl);
+            class control::descriptor * pdescriptor = m_controldescriptorset.element_at(m_columna[i].m_iControl);
             if(pdescriptor != NULL)
             {
                if(m_columna[i].m_iSubItem >= 0)
@@ -429,7 +429,7 @@ namespace user
       {
          int32_t iItem;
          int32_t iSubItem;
-         Range range;
+         range range;
          _001GetSelection(range);
          if(_001DisplayHitTest(pt, iItem, iSubItem))
          {
@@ -438,7 +438,7 @@ namespace user
             && pcontrol->m_pcontrol != NULL
             && (pcontrol->m_etype == type_edit
              || pcontrol->m_etype == type_edit_plain_text)
-            && !range.HasSubItem(iItem, iSubItem))
+            && !range.has_sub_item(iItem, iSubItem))
             {
                _001HideEditingControls();
                return false;
@@ -449,7 +449,7 @@ namespace user
       {
          int32_t iItem;
          int32_t iSubItem;
-         Range range;
+         range range;
          _001GetSelection(range);
          if(_001DisplayHitTest(pt, iItem, iSubItem))
          {

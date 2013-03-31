@@ -298,7 +298,7 @@ static int kek_wrap_key(unsigned char *out, size_t *outlen,
 		}
 	if (out)
 		{
-		/* Set header */
+		/* set header */
 		out[0] = (unsigned char)inlen;
 		out[1] = in[0] ^ 0xFF;
 		out[2] = in[1] ^ 0xFF;

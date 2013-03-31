@@ -106,7 +106,7 @@ namespace primitive
    }
 
 
-   memory_base * memory_container::get_memory() const
+   memory_base * memory_container::get_memory()
    {
 
       if(m_spmemory.is_null())

@@ -79,7 +79,7 @@ namespace spa
 
       bf.BlendOp             = AC_SRC_OVER;						// Only works with a 32bpp bitmap
       bf.BlendFlags          = 0;									// Always 0
-      bf.SourceConstantAlpha = 255;									// Set to 255 for per-pixel alpha values
+      bf.SourceConstantAlpha = 255;									// set to 255 for per-pixel alpha values
       bf.AlphaFormat         = AC_SRC_ALPHA;						// Only works when the bitmap contains an alpha channel
 
       gScreen.alpha_blend(0, 0, 800, 584, m_sgraphicsAlpha, 0, 0, 800, 584, bf);*/

@@ -85,7 +85,8 @@ namespace n7z
       }
    };
 
-   class CInByte2
+   class CInByte2 :
+      virtual public ::ca::ca
    {
       const byte *_buffer;
       size_t _size;
@@ -119,7 +120,7 @@ namespace n7z
 
       ::ca::smart_pointer < ::ca::byte_input_stream > _stream;
 
-      array_ptr_alloc < CInByte2 > _inByteVector;
+      ::ca::smart_pointer_array < CInByte2 > _inByteVector;
       CInByte2 *_inByteBack;
 
       file_position _arhiveBeginStreamPosition;
@@ -130,8 +131,7 @@ namespace n7z
 
       void AddByteStream(const byte *buffer, size_t size)
       {
-         _inByteVector.add(CInByte2());
-         _inByteBack = &_inByteVector.last_element();
+         _inByteBack = _inByteVector.add_new();
          _inByteBack->Init(buffer, size);
       }
 
@@ -139,7 +139,7 @@ namespace n7z
       {
          _inByteVector.remove_last();
          if (!_inByteVector.is_empty())
-            _inByteBack = &_inByteVector.last_element();
+            _inByteBack = _inByteVector.last_element();
       }
 
    private:
@@ -168,23 +168,23 @@ namespace n7z
          base_array<uint32_t> &packCRCs);
 
       void ReadUnpackInfo(
-         const array_ptr_alloc < ::ca::byte_buffer >  *dataVector,
-         array_ptr_alloc < CFolder > &folders);
+         const ::ca::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         ::ca::smart_pointer_array < CFolder > &folders);
 
       void ReadSubStreamsInfo(
-         const array_ptr_alloc<CFolder> &folders,
+         const ::ca::smart_pointer_array<CFolder> &folders,
          base_array<CNum> &numUnpackStreamsInFolders,
          base_array<file_size> &unpackSizes,
          bool_array &digestsDefined,
          base_array<uint32_t> &digests);
 
       void ReadStreamsInfo(
-         const array_ptr_alloc < ::ca::byte_buffer >  *dataVector,
+         const ::ca::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
          file_position &dataOffset,
          base_array<file_size> &packSizes,
          bool_array &packCRCsDefined,
          base_array<uint32_t> &packCRCs,
-         array_ptr_alloc<CFolder> &folders,
+         ::ca::smart_pointer_array<CFolder> &folders,
          base_array<CNum> &numUnpackStreamsInFolders,
          base_array<file_size> &unpackSizes,
          bool_array &digestsDefined,
@@ -193,11 +193,11 @@ namespace n7z
 
       void ReadBoolVector(int32_t numItems, bool_array &v);
       void ReadBoolVector2(int32_t numItems, bool_array &v);
-      void ReadUInt64DefVector(const array_ptr_alloc < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
+      void ReadUInt64DefVector(const ::ca::smart_pointer_array < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
          ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,
-         array_ptr_alloc < ::ca::byte_buffer > &dataVector,
+         ::ca::smart_pointer_array < ::ca::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadHeader(

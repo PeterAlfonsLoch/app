@@ -2683,21 +2683,21 @@ namespace ca
 
    bool application::release_exclusive()
    {
-      if(m_pmutexGlobal != NULL)
+      if(m_pmutexGlobal.is_set())
       {
-         ::ca::sdel(m_pmutexGlobal);
+         m_pmutexGlobal.release();
       }
-      if(m_pmutexGlobalId != NULL)
+      if(m_pmutexGlobalId.is_set())
       {
-         ::ca::sdel(m_pmutexGlobalId);
+         m_pmutexGlobalId.release();
       }
-      if(m_pmutexLocal != NULL)
+      if(m_pmutexLocal.is_set())
       {
-         ::ca::sdel(m_pmutexLocal);
+         m_pmutexLocal.release();
       }
-      if(m_pmutexLocalId != NULL)
+      if(m_pmutexLocalId.is_set())
       {
-         ::ca::sdel(m_pmutexLocalId);
+         m_pmutexLocalId.release();
       }
       return true;
    }
@@ -4043,7 +4043,7 @@ namespace ca
       int32_t iId;
       if(!m_imapResource.get(pspace, iKey, iId))
       {
-         m_imapResource.Set(pspace, iKey, m_iResourceId);
+         m_imapResource.set(pspace, iKey, m_iResourceId);
          m_iResourceId++;
          if(!m_imapResource.get(pspace, iKey, iId))
          {
@@ -4058,7 +4058,7 @@ namespace ca
       int32_t iId;
       if(!m_strmapResource.get(pspace, lpcszKey, iId))
       {
-         m_strmapResource.Set(pspace, lpcszKey, m_iResourceId);
+         m_strmapResource.set(pspace, lpcszKey, m_iResourceId);
          m_iResourceId++;
          if(!m_strmapResource.get(pspace, lpcszKey, iId))
          {

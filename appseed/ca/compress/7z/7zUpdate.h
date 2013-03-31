@@ -12,7 +12,8 @@
 namespace n7z
 {
 
-   struct CUpdateItem
+   struct CUpdateItem :
+      virtual public ::ca::ca
    {
       int32_t IndexInArchive;
       int32_t IndexInClient;
@@ -73,7 +74,7 @@ namespace n7z
       ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
       ::ca::byte_input_stream *inStream,
       const CArchiveDatabaseEx *db,
-      const array_ptr_alloc<CUpdateItem> &updateItems,
+      const ::ca::smart_pointer_array<CUpdateItem> &updateItems,
       COutArchive &archive,
       CArchiveDatabase &newDatabase,
       ::ca::writer *seqOutStream,

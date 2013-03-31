@@ -12,7 +12,8 @@ namespace ca
    class byte_output_stream;
 
 
-   class CLASS_DECL_ca byte_serializable
+   class CLASS_DECL_ca byte_serializable :
+      virtual public ::ca::ca
    {
    public:
 
@@ -27,6 +28,17 @@ namespace ca
    template < class type_array >
    class byte_serializable_array :
       virtual public type_array,
+      virtual public byte_serializable
+   {
+   public:
+      virtual void write(byte_output_stream & ostream);
+      virtual void read(byte_input_stream & istream);
+      virtual void on_after_read();
+   };
+
+   template < class type_pointer_array >
+   class byte_serializable_pointer_array :
+      virtual public type_pointer_array,
       virtual public byte_serializable
    {
    public:
@@ -60,8 +72,38 @@ namespace ca
       on_after_read();
    }
 
+   template < class type_pointer_array >
+   void byte_serializable_pointer_array < type_pointer_array >::write(byte_output_stream & ostream)
+   {
+      ::count count = this->get_count();
+      ostream.write_arbitrary(count);
+      for(index index = 0; index < count; index++)
+      {
+         ostream << *this->element_at(index);
+      }
+   }
+
+   template < class type_pointer_array >
+   void byte_serializable_pointer_array < type_pointer_array >::read(byte_input_stream & istream)
+   {
+      ::count count;
+      //istream >> count;
+      istream.read_arbitrary(count);
+      this->set_size(count);
+      for(index index = 0; index < count; index++)
+      {
+         istream >> *this->element_at(index);
+      }
+      on_after_read();
+   }
+
    template < class type_array >
    void byte_serializable_array < type_array >::on_after_read()
+   {
+   }
+
+   template < class type_pointer_array >
+   void byte_serializable_pointer_array < type_pointer_array >::on_after_read()
    {
    }
 

@@ -185,9 +185,9 @@ typedef struct ssl2_state_st
 
 	unsigned int padding;
 	unsigned int rlength; /* passed to ssl2_enc */
-	int ract_data_length; /* Set when things are encrypted. */
+	int ract_data_length; /* set when things are encrypted. */
 	unsigned int wlength; /* passed to ssl2_enc */
-	int wact_data_length; /* Set when things are decrypted. */
+	int wact_data_length; /* set when things are decrypted. */
 	unsigned char *ract_data;
 	unsigned char *wact_data;
 	unsigned char *mac_data;

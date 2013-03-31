@@ -19,7 +19,7 @@
 #include "png_framework.h"
 #ifdef PNG_READ_SUPPORTED
 
-/* Set the action on getting a CRC error for an ancillary or critical chunk. */
+/* set the action on getting a CRC error for an ancillary or critical chunk. */
 void PNGAPI
 png_set_crc_action(png_structp png_ptr, int crit_action, int ancil_action)
 {

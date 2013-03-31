@@ -98,7 +98,7 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 	// check for UNICODE filenames - previous structure filling was done before
 	bool bUseUnicode = filenameIO && filenameIO->wsrc_file && filenameIO->wdst_file;
 
-	// Set up the jpeglib structures
+	// set up the jpeglib structures
 	jpeg_decompress_struct srcinfo;
 	jpeg_compress_struct dstinfo;
 	jpeg_error_mgr jsrcerr, jdsterr;
@@ -119,7 +119,7 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 	// Copy all extra markers from source file
 	copyoption = JCOPYOPT_ALL;
 	
-	// Set up default JPEG parameters
+	// set up default JPEG parameters
 	transfoptions.force_grayscale = FALSE;
 	transfoptions.crop = FALSE;
 

@@ -59,7 +59,7 @@ namespace ca
 
 
 
-// Set up members of the PROCESS_INFORMATION structure.
+// set up members of the PROCESS_INFORMATION structure.
 
 
 
@@ -77,7 +77,7 @@ namespace ca
       bool bSuccess = FALSE;
 
 
-// Set up members of the STARTUPINFO structure.
+// set up members of the STARTUPINFO structure.
 // This structure specifies the STDIN and STDOUT handles for redirection.
 
 

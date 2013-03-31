@@ -912,18 +912,7 @@ namespace ca
    void thread::Delete()
    {
 
-      //if(m_p != NULL)
-      //{
-
-        // m_p->Delete();
-
-         //m_p = NULL;
-
-      //}
-
-      thread * pthread = this;
-
-      ::ca::del(pthread);
+      release();
 
    }
 

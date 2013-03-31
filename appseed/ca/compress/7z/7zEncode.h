@@ -13,7 +13,7 @@ namespace n7z
       ::libcompress::coder_mixer::CCoderMixer2MT *                 _mixerCoderSpec;
       ::ca::smart_pointer < ::libcompress::coder2_interface >      _mixerCoder;
 
-      array_ptr_alloc<CCoderInfo>                               _codersInfo;
+      ::ca::smart_pointer_array<CCoderInfo>                               _codersInfo;
 
       CCompressionMethodMode                                    _options;
       ::libcompress::coder_mixer::CBindInfo                        _bindInfo;

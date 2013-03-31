@@ -761,7 +761,7 @@ extern int32_t CLASS_DECL_ca unzGetCurrentFileInfo (
 }
 
 /*
-  Set the current file of the zipfile to the first spfile->
+  set the current file of the zipfile to the first spfile->
   return UNZ_OK if there is no problem
 */
 extern int32_t CLASS_DECL_ca unzGoToFirstFile (unzFile file)
@@ -781,7 +781,7 @@ extern int32_t CLASS_DECL_ca unzGoToFirstFile (unzFile file)
 }
 
 /*
-  Set the current file of the zipfile to the next spfile->
+  set the current file of the zipfile to the next spfile->
   return UNZ_OK if there is no problem
   return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
 */

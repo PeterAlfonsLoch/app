@@ -333,11 +333,11 @@ struct evp_cipher_st
 #define		EVP_CIPH_CCM_MODE		0x7
 #define		EVP_CIPH_XTS_MODE		0x10001
 #define 	EVP_CIPH_MODE			0xF0007
-/* Set if variable length cipher */
+/* set if variable length cipher */
 #define 	EVP_CIPH_VARIABLE_LENGTH	0x8
-/* Set if the iv handling should be done by the cipher itself */
+/* set if the iv handling should be done by the cipher itself */
 #define 	EVP_CIPH_CUSTOM_IV		0x10
-/* Set if the cipher's init() function should be called if key is NULL */
+/* set if the cipher's init() function should be called if key is NULL */
 #define 	EVP_CIPH_ALWAYS_CALL_INIT	0x20
 /* Call ctrl() to init cipher parameters */
 #define 	EVP_CIPH_CTRL_INIT		0x40
@@ -391,7 +391,7 @@ struct evp_cipher_st
 #define		EVP_CTRL_AEAD_TLS1_AAD		0x16
 /* Used by composite AEAD ciphers, no-op in GCM, CCM... */
 #define		EVP_CTRL_AEAD_SET_MAC_KEY	0x17
-/* Set the GCM invocation field, decrypt only */
+/* set the GCM invocation field, decrypt only */
 #define		EVP_CTRL_GCM_SET_IV_INV		0x18
 
 /* GCM TLS constants */

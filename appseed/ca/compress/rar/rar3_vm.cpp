@@ -152,7 +152,7 @@ namespace libcompress
             uint32_t newBlockSize = GetFixedGlobalValue32(NGlobalOffset::kBlockSize) & kSpaceMask;
             if (newBlockPos + newBlockSize >= kSpaceSize)
                newBlockPos = newBlockSize = 0;
-            outBlockRef.Offset = newBlockPos;
+            outBlockRef.offset = newBlockPos;
             outBlockRef.Size = newBlockSize;
 
             //outGlobalData.remove_all();

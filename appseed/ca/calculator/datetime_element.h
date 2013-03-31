@@ -5,7 +5,8 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ca element
+   class CLASS_DECL_ca element :
+      virtual public ::ca::ca
    {
    public:
 

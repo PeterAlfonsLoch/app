@@ -38,7 +38,8 @@ public:
    };
 
 
-   class item
+   class item :
+      virtual public ::ca::ca
    {
    public:
 
@@ -51,7 +52,7 @@ public:
       bool        m_bDir;
       bool        m_bPendingLs;
 
-      array_ptr_alloc < class item, class item & > m_itema;
+      spa(item)   m_itema;
 
 
       item();

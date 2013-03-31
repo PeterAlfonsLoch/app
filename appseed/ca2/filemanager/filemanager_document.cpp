@@ -197,25 +197,40 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
+
    void document::_001OnUpdateAddLocation(::ca::signal_object * pobj)
    {
+
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-         pcmdui->m_pcmdui->Enable(TRUE);
+   
+      pcmdui->m_pcmdui->Enable(TRUE);
+
       pobj->m_bRet = true;
+
    }
+
 
    void document::_001OnAddLocation(::ca::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
-      update_all_views(NULL, 89127784, NULL);
+      
+      update_all_views(NULL, ::view::hint_add_location, NULL);
+
+      pobj->m_bRet = true;
+
    }
+
 
    void document::_001OnUpdateReplaceText(::ca::signal_object * pobj)
    {
+      
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-         pcmdui->m_pcmdui->Enable(TRUE);
+   
+      pcmdui->m_pcmdui->Enable(TRUE);
+
       pobj->m_bRet = true;
+
    }
+
 
    void document::_001OnReplaceText(::ca::signal_object * pobj)
    {

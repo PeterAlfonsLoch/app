@@ -960,13 +960,13 @@ namespace plugin
          if(uiMessage == WM_MOUSEMOVE)
          {
 
-            ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
+            ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl.m_p);
 
             pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
 
          }
 
-         ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
+         ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl.m_p);
 
          oswindow oswindow = pwindow->get_handle();
 

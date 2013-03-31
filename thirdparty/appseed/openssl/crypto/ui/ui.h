@@ -337,7 +337,7 @@ const char *UI_get0_test_string(UI_STRING *uis);
 int UI_get_result_minsize(UI_STRING *uis);
 /* Return the required maximum size of the result */
 int UI_get_result_maxsize(UI_STRING *uis);
-/* Set the result of a UI_STRING. */
+/* set the result of a UI_STRING. */
 int UI_set_result(UI *ui, UI_STRING *uis, const char *result);
 
 

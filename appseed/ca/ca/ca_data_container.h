@@ -19,7 +19,7 @@ namespace ca
 
 
       virtual bool set_data(::ca::data * pdata);
-      data * get_data() const;
+      data * get_data();
 
       virtual bool is_data_in_use() const;
 
@@ -42,7 +42,7 @@ namespace ca
 
       bool add_data(::ca::data * pdata);
       bool remove_data(::ca::data * pdata);
-      data * get_data(index i) const;
+      data * get_data(index i);
       count get_count() const;
 
 

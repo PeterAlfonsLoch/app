@@ -46,7 +46,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 pane_array :
-         public array_del_ptr < pane, pane & >
+         public ::ca::smart_pointer_array < pane, pane & >
       {
       public:
 

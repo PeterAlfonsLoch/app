@@ -328,7 +328,7 @@ void sendMTFValues ( e_state* s )
             s->rfreq[t][v] = 0;
 
       /*---
-        Set up an auxiliary length table which is used to fast-track
+        set up an auxiliary length table which is used to fast-track
    the common case (nGroups == 6). 
       ---*/
       if (nGroups == 6) {
@@ -344,7 +344,7 @@ void sendMTFValues ( e_state* s )
       gs = 0;
       while (True) {
 
-         /*--- Set group start & end marks. --*/
+         /*--- set group start & end marks. --*/
          if (gs >= s->nMTF) break;
          ge = gs + BZ_G_SIZE - 1; 
          if (ge >= s->nMTF) ge = s->nMTF-1;

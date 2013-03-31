@@ -181,7 +181,7 @@ namespace userbase
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
 
-         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->element_at(i);
 
          cmdui.m_iIndex       = i;
          cmdui.m_id           = pitem->m_id;
@@ -213,7 +213,7 @@ namespace userbase
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->element_at(i);
          size size = pdc->GetTextExtent(pitem->m_button._001GetButtonText());
          size.cx += pitem->m_iLevel * g_base_menu_indent;
          if(pitem->IsPopup())
@@ -271,7 +271,7 @@ namespace userbase
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->element_at(i);
          if(pitem->m_id  == "separator")
          {
             lprect->bottom = lprect->top + 3;
@@ -334,7 +334,7 @@ namespace userbase
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->element_at(i);
          if(!pitem->m_button.IsWindow())
          {
             pitem->m_button.create(this, pitem->m_id);

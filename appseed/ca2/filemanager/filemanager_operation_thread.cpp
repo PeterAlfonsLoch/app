@@ -79,14 +79,14 @@ bool file_manager_operation_thread::step()
 double file_manager_operation_thread::get_item_progress(int32_t iItem)
 {
    single_lock sl(&m_mutexFileOperationA, TRUE);
-   int32_t iLBound = 0;
-   int32_t iUBound;
+   int32_t iLowerBound = 0;
+   int32_t iUpperBound;
    for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
-      iUBound = iLBound + m_fileoperationa[i].get_item_count() - 1;
-      if(iItem >= iLBound && iItem <= iUBound)
-         return m_fileoperationa[i].get_item_progress(iItem - iLBound);
-      iLBound = iUBound + 1;
+      iUpperBound = iLowerBound + m_fileoperationa[i].get_item_count() - 1;
+      if(iItem >= iLowerBound && iItem <= iUpperBound)
+         return m_fileoperationa[i].get_item_progress(iItem - iLowerBound);
+      iLowerBound = iUpperBound + 1;
    }
    return 0.0;
 }
@@ -95,15 +95,15 @@ double file_manager_operation_thread::get_item_progress(int32_t iItem)
 string file_manager_operation_thread::get_item_message(int32_t iItem)
 {
    single_lock sl(&m_mutexFileOperationA, TRUE);
-   int32_t iLBound = 0;
-   int32_t iUBound;
+   int32_t iLowerBound = 0;
+   int32_t iUpperBound;
    for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
-      iUBound = iLBound + m_fileoperationa[i].get_item_count() - 1;
-      if(iItem >= iLBound && iItem <= iUBound)
+      iUpperBound = iLowerBound + m_fileoperationa[i].get_item_count() - 1;
+      if(iItem >= iLowerBound && iItem <= iUpperBound)
 
-         return m_fileoperationa[i].get_item_message(iItem - iLBound);
-      iLBound = iUBound + 1;
+         return m_fileoperationa[i].get_item_message(iItem - iLowerBound);
+      iLowerBound = iUpperBound + 1;
    }
    return "";
 }

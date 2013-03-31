@@ -76,7 +76,7 @@ index cookies::find_cookie(const char * name)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      if(this->element_at(i).m_strName == name)
+      if(this->element_at(i)->m_strName == name)
       {
          return i;
       }
@@ -88,7 +88,7 @@ index cookies::lowfind_cookie(const char * name)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      if(this->element_at(i).m_strNameLow == name)
+      if(this->element_at(i)->m_strNameLow == name)
       {
          return i;
       }
@@ -209,7 +209,7 @@ string cookies::get_cookie_header()
    string strCookie;
    for(index i = 0; i < this->get_size(); i++)
    {
-      strCookie += (const char *) (this->element_at(i).m_strName + "=" + this->element_at(i).m_varValue.get_string());
+      strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue.get_string());
       strCookie += ";";
    }
    return strCookie;

@@ -295,7 +295,7 @@ static void oc_enc_rc_reset(oc_enc_ctx *_enc){
   }
   _enc->rc.prev_drop_count=0;
   _enc->rc.log_drop_scale=OC_Q57(0);
-  /*Set up second order followers, initialized according to corresponding
+  /*set up second order followers, initialized according to corresponding
      time constants.*/
   oc_iir_filter_init(&_enc->rc.scalefilter[0],4,
    oc_q57_to_q24(_enc->rc.log_scale[0]));

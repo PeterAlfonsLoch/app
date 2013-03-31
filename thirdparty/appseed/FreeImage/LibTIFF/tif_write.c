@@ -697,7 +697,7 @@ TIFFFlushData1(TIFF* tif)
 }
 
 /*
- * Set the current write offset.  This should only be
+ * set the current write offset.  This should only be
  * used to set the offset to a known previous location
  * (very carefully), or to 0 so that the next write gets
  * appended to the end of the file.

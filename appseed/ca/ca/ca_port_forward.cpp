@@ -36,17 +36,17 @@ namespace ca
 
 
 
-   array_ptr_alloc < port_forward::port_map > port_forward::get_port_map() const
+   ::ca::smart_pointer_array < port_forward::port_map > port_forward::get_port_map() const
    {
-	   return array_ptr_alloc < port_forward::port_map > ();
+	   return ::ca::smart_pointer_array < port_forward::port_map > ();
    }
 
-   array_ptr_alloc < port_forward::device > port_forward::get_igd() const
+   ::ca::smart_pointer_array < port_forward::device > port_forward::get_igd() const
    {
 	   // returns a copy of the current device information (note: thread-awareness is needed)
 
 	   // cast away const-ness of the critical section (since this is a const function)
-	   return array_ptr_alloc < port_forward::device > ();
+	   return ::ca::smart_pointer_array < port_forward::device > ();
    }
 
 

@@ -90,7 +90,7 @@ TS_STATUS_INFO *TS_RESP_get_status_info(TS_RESP *a)
 /* Caller loses ownership of PKCS7 and TS_TST_INFO objects. */
 void TS_RESP_set_tst_info(TS_RESP *a, PKCS7 *p7, TS_TST_INFO *tst_info)
 	{
-	/* Set new PKCS7 and TST_INFO objects. */
+	/* set new PKCS7 and TST_INFO objects. */
 	PKCS7_free(a->token);
 	a->token = p7;
 	TS_TST_INFO_free(a->tst_info);

@@ -75,7 +75,7 @@ namespace sockets
       bool                    m_bDisableRead; ///< Disable checking for read events
       bool                    m_bConnected; ///< socket is connected (tcp/udp)
       bool                    m_bLost; ///< connection lost
-      bool                    m_bErasedByHandler; ///< Set by handler before delete
+      bool                    m_bErasedByHandler; ///< set by handler before delete
       time_t                  m_timeClose; ///< time in seconds when ordered to close
       int32_t                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
@@ -83,7 +83,7 @@ namespace sockets
       socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
       ::ca::file *             m_pfileTrafficMonitor;
-      time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
+      time_t                  m_timeTimeoutStart; ///< set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
@@ -138,7 +138,7 @@ namespace sockets
       SOCK_DISABLE_READ =       0x04, ///< Disable checking for read events
       SOCK_CONNECTED =       0x08, ///< socket is connected (tcp/udp)
 
-      SOCK_ERASED_BY_HANDLER =    0x10, ///< Set by handler before delete
+      SOCK_ERASED_BY_HANDLER =    0x10, ///< set by handler before delete
       // HAVE_OPENSSL
       SOCK_ENABLE_SSL =       0x20, ///< Enable SSL for this tcp_socket
       SOCK_SSL =          0x40, ///< ssl negotiation mode (tcp_socket)
@@ -218,7 +218,7 @@ namespace sockets
       virtual int32_t close();
 
       /** add file descriptor to sockethandler fd_set's. */
-      void Set(bool bRead,bool bWrite,bool bException = true);
+      void set(bool bRead,bool bWrite,bool bException = true);
 
       /** Returns true when socket file descriptor is valid
       and socket is not about to be closed. */
@@ -237,16 +237,16 @@ namespace sockets
       /** get listening port from listen_socket<>. */
       virtual port_t GetPort();
 
-      /** Set socket non-block operation. */
+      /** set socket non-block operation. */
       bool SetNonblocking(bool);
 
-      /** Set socket non-block operation. */
+      /** set socket non-block operation. */
       bool SetNonblocking(bool, SOCKET);
 
       /** Total lifetime of instance. */
       time_t Uptime();
 
-      /** Set address/port of last connect() call. */
+      /** set address/port of last connect() call. */
       void SetClientRemoteAddress(const ::sockets::address &);
 
       /** get address/port of last connect() call. */
@@ -320,7 +320,7 @@ namespace sockets
 
       /** \name socket mode flags, set/reset */
       //@{
-      /** Set delete by handler true when you want the sockethandler to
+      /** set delete by handler true when you want the sockethandler to
       delete the socket instance after use. */
       void SetDeleteByHandler(bool = true);
       /** Check delete by handler flag.
@@ -329,7 +329,7 @@ namespace sockets
 
       // LIST_CLOSE - conditional event queue
 
-      /** Set close and delete to terminate the connection. */
+      /** set close and delete to terminate the connection. */
       void SetCloseAndDelete(bool = true);
       /** Check close and delete flag.
       \return true if this socket should be closed and the instance removed */
@@ -344,7 +344,7 @@ namespace sockets
       \return true if read events should be ignored */
       bool IsDisableRead();
 
-      /** Set connected status. */
+      /** set connected status. */
       void SetConnected(bool = true);
       /** Check connected status.
       \return true if connected */
@@ -356,7 +356,7 @@ namespace sockets
       \return true if there was an error while r/w causing the socket to close */
       bool Lost();
 
-      /** Set flag indicating the socket is being actively deleted by the sockethandler. */
+      /** set flag indicating the socket is being actively deleted by the sockethandler. */
       void SetErasedByHandler(bool x = true);
       /** get value of flag indicating socket is deleted by sockethandler. */
       bool ErasedByHandler();
@@ -551,12 +551,12 @@ namespace sockets
       /** Still negotiating ssl connection.
       \return true if ssl negotiating is still in progress */
       bool IsSSLNegotiate();
-      /** Set flag indicating ssl handshaking still in progress. */
+      /** set flag indicating ssl handshaking still in progress. */
       void SetSSLNegotiate(bool x = true);
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       bool IsSSLServer();
-      /** Set flag indicating that this is a tcp_socket with incoming SSL connection. */
+      /** set flag indicating that this is a tcp_socket with incoming SSL connection. */
       void SetSSLServer(bool x = true);
       /** SSL; get pointer to ssl context structure. */
       virtual SSL_CTX *GetSslContext() { return NULL; }
@@ -605,12 +605,12 @@ namespace sockets
       * become is_empty. */
       /** socket still in socks4 negotiation mode */
       bool Socks4();
-      /** Set flag indicating Socks4 handshaking in progress */
+      /** set flag indicating Socks4 handshaking in progress */
       void SetSocks4(bool x = true);
 
-      /** Set socks4 server host address to use */
+      /** set socks4 server host address to use */
       void SetSocks4Host(in_addr a);
-      /** Set socks4 server hostname to use. */
+      /** set socks4 server hostname to use. */
       void SetSocks4Host(const string & );
       /** Socks4 server port to use. */
       void SetSocks4Port(port_t p);

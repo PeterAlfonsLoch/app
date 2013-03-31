@@ -42,14 +42,14 @@ namespace libcompress
          virtual public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         array_app_alloc < ::ca::stream_binder > _streamBinders;
+         ::ca::smart_pointer_array < ::ca::stream_binder > _streamBinders;
          int32_t _progressCoderIndex;
 
          void AddCoderCommon();
          HRESULT Init(::ca::reader **inStreams, ::ca::writer **outStreams);
          HRESULT ReturnIfError(HRESULT code);
       public:
-         array_app_alloc<CCoder2> _coders;
+         ::ca::smart_pointer_array<CCoder2> _coders;
 
 
          CCoderMixer2MT(::ca::application * papp);
@@ -69,9 +69,9 @@ namespace libcompress
 
          void ReInit();
          void SetCoderInfo(uint32_t coderIndex, const file_size **inSizes, const file_size **outSizes)
-         {  _coders[coderIndex].SetCoderInfo(inSizes, outSizes); }
+         {  _coders[coderIndex]->SetCoderInfo(inSizes, outSizes); }
          uint64_t GetWriteProcessedSize(uint32_t binderIndex) const
-         {  return _streamBinders[binderIndex].ProcessedSize; }
+         {  return _streamBinders[binderIndex]->ProcessedSize; }
       };
 
    } // namespace coder_mixer

@@ -114,7 +114,7 @@ class OutputFile
 
 
     //-------------------------------------------------------
-    // Set the current frame buffer -- copies the FrameBuffer
+    // set the current frame buffer -- copies the FrameBuffer
     // object into the OutputFile object.
     //
     // The current frame buffer is the source of the pixel

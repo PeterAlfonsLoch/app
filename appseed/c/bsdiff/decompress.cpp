@@ -483,7 +483,7 @@ int32_t BZ2_decompress ( DState* s )
       if (s->origPtr < 0 || s->origPtr >= nblock)
          RETURN(BZ_DATA_ERROR);
 
-      /*-- Set up cftab to facilitate generation of T^(-1) --*/
+      /*-- set up cftab to facilitate generation of T^(-1) --*/
       s->cftab[0] = 0;
       for (i = 1; i <= 256; i++) s->cftab[i] = s->unzftab[i-1];
       for (i = 1; i <= 256; i++) s->cftab[i] += s->cftab[i-1];

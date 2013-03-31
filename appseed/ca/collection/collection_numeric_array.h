@@ -50,7 +50,7 @@ public:
 
    TYPE GetMean();
 
-   void Set(const TYPE & t, index iStart = 0, index iEnd = -1);
+   void set(const TYPE & t, index iStart = 0, index iEnd = -1);
 
    index Cmp(const numeric_array  < TYPE > & array1);
 
@@ -67,13 +67,13 @@ public:
       {
          return false;
       }
-      index iLBound = iStart;
+      index iLowerBound = iStart;
       index iMaxBound = iEnd;
-      index iUBound = iMaxBound;
+      index iUpperBound = iMaxBound;
       typename ::numeric_info::offset < TYPE >::TYPE iCompare;
       // do binary search
-      iIndex = (iUBound + iLBound) / 2;
-      while(iUBound - iLBound >= 8)
+      iIndex = (iUpperBound + iLowerBound) / 2;
+      while(iUpperBound - iLowerBound >= 8)
       {
          iCompare = this->element_at(iIndex) - t;
          if(iCompare == ::numeric_info::get_null_value < TYPE > ())
@@ -82,8 +82,8 @@ public:
          }
          else if(iCompare > (typename ::numeric_info::offset < TYPE >::TYPE) ::numeric_info::get_null_value < TYPE > ())
          {
-            iUBound = iIndex - 1;
-            if(iUBound < 0)
+            iUpperBound = iIndex - 1;
+            if(iUpperBound < 0)
             {
                iIndex = 0;
                break;
@@ -91,14 +91,14 @@ public:
          }
          else
          {
-            iLBound = iIndex + 1;
-            if(iLBound > iMaxBound)
+            iLowerBound = iIndex + 1;
+            if(iLowerBound > iMaxBound)
             {
                iIndex = iMaxBound + 1;
                break;
             }
          }
-         iIndex = (iUBound + iLBound) / 2;
+         iIndex = (iUpperBound + iLowerBound) / 2;
       }
       // do sequential search
       while(iIndex < this->get_count())
@@ -215,7 +215,7 @@ public:
 
    //TYPE GetMean();
 
-   //void Set(const TYPE & t, int32_t iStart = 0, int32_t iEnd = -1);
+   //void set(const TYPE & t, int32_t iStart = 0, int32_t iEnd = -1);
 
    //int32_t Cmp(const numeric_array  < TYPE > & array1);
 
@@ -487,7 +487,7 @@ TYPE numeric_array < TYPE >::GetMean()
 }
 
 template < class TYPE >
-void numeric_array < TYPE >::Set(const TYPE & t, index iStart, index iEnd)
+void numeric_array < TYPE >::set(const TYPE & t, index iStart, index iEnd)
 {
    if(iEnd == -1)
       iEnd = this->get_upper_bound();
@@ -535,6 +535,7 @@ public:
    index_array operator - (const index_array & inta) const;
    index_array operator + (const index_array & inta) const;
 };
+
 
 class CLASS_DECL_ca count_array :
    virtual public numeric_array < count >
@@ -683,3 +684,81 @@ public:
 
 
 
+// take in account that _001RemoveIndexes change
+// the index array by sorting it and returning
+// only the indexes that could be removed 
+// without indexes duplicates
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
+{
+
+   // sort
+   ia.QuickSort(true);
+
+   index i = ia.get_upper_bound();
+
+   // filter out of upper bound indexes
+   while(i >= 0 && ia[i] >= get_size())
+   {
+      
+      ia.remove_at(i);
+
+      i--;
+
+   }
+
+   // filter out of lower bound indexes
+   while(ia.get_size() > 0 && ia[0] < 0)
+   {
+      
+      ia.remove_at(0);
+
+   }
+
+   i = ia.get_upper_bound();
+
+   // filter out duplicates
+   while(i > 0 && ia[i] >= get_size())
+   {
+
+      if(ia[i] == ia[i - 1])
+         ia.remove_at(i);
+
+      i--;
+
+   }
+
+   remove_indexes(ia);
+   
+}
+
+
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
+{
+
+
+   // remove indexes
+   for(index i = ia.get_upper_bound(); i >= 0; i--)
+   {
+
+      remove_at(ia[i]);
+
+   }
+   
+}
+
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
+{
+
+   for(index i = 0; i < ia.get_count(); i++)
+   {
+
+      remove_at(ia[i]);
+
+   }
+   
+}

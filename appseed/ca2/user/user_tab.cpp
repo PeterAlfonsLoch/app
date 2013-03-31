@@ -1459,7 +1459,7 @@ namespace user
       {
          if(this->element_at(i).m_id == id)
          {
-            return ptr_at(i);
+            return element_at(i);
          }
       }
       return NULL;
@@ -1607,7 +1607,7 @@ namespace user
             {
                if(iPane <= 0)
                {
-                  return get_data()->m_panea.ptr_at(i);
+                  return get_data()->m_panea.element_at(i);
                }
                else
                {
@@ -1619,7 +1619,7 @@ namespace user
       }
       else
       {
-         return get_data()->m_panea.ptr_at(iPane);
+         return get_data()->m_panea.element_at(iPane);
       }
    }
 

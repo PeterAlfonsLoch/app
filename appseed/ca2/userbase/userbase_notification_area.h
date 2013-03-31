@@ -40,7 +40,7 @@ namespace userbase
 
       oswindow m_oswindowTray;
       image_list * m_pil16;
-      array_ptr_alloc < TrayItemInfo, TrayItemInfo & > m_infoa;
+      ::ca::smart_pointer_array < TrayItemInfo, TrayItemInfo & > m_infoa;
       HFONT m_hfontHidden;
       HFONT m_hfontRegular;
 

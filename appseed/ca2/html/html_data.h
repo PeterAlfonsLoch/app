@@ -73,7 +73,7 @@ namespace html
       array_app_alloc < image, image & > 
                                  m_imagea;
 
-      array_ptr_alloc < font, font >  
+      ::ca::smart_pointer_array < font, font >  
                                  m_fonta;
 
       comparable_array < ::user::interaction *, ::user::interaction * >   

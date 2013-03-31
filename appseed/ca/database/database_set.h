@@ -189,7 +189,7 @@ namespace database
      virtual count  fieldSize(index n);
 
 
-   /* Set field value */
+   /* set field value */
      virtual bool SetFieldValue(const char *f_name, const var &value);
    /* alias for set_CFieldValue */
      virtual bool sf(const char *f, const var &v) { return SetFieldValue(f,v); }

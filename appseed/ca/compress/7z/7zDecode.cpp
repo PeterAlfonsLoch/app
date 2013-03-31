@@ -108,7 +108,7 @@ namespace n7z
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
-      array_ptr_alloc < ::ca::smart_pointer < ::ca::reader > > inStreams;
+      ::ca::smart_pointer_array < ::ca::reader > inStreams;
 
       ::ca::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
@@ -120,12 +120,10 @@ namespace n7z
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
-         ::ca::limited_reader *streamSpec = new
-            ::ca::limited_reader;
-         ::ca::smart_pointer < ::ca::reader > inStream = streamSpec;
+         ::ca::limited_reader *streamSpec = new ::ca::limited_reader;
          streamSpec->SetStream(lockedStreamImp);
          streamSpec->Init(packSizes[j]);
-         inStreams.add(inStream);
+         inStreams.add((::ca::reader *) streamSpec);
       }
 
       count numCoders = folderInfo.Coders.get_count();
@@ -171,7 +169,7 @@ namespace n7z
 
             if(FAILED(hr = ::libcompress::CreateCoder(
                codecsInfo, externalCodecs,
-               coderInfo.MethodID, decoder, decoder2, false)))
+               coderInfo.MethodID, spquery(decoder), spquery(decoder2), false)))
             {
                return  hr;
             }

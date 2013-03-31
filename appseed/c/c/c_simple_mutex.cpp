@@ -87,7 +87,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
 
       semun semctl_arg;
 
-      //Set Initial value for the resource
+      //set Initial value for the resource
       semctl_arg.val = bInitialLock ? 1 : 0; //Setting semval to 1
 
 

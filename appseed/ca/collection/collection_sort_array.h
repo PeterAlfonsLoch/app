@@ -81,13 +81,13 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
    {
       return false;
    }
-   index iLBound = iStart;
+   index iLowerBound = iStart;
    index iMaxBound = iEnd;
-   index iUBound = iMaxBound;
+   index iUpperBound = iMaxBound;
    index iCompare;
    // do binary search
-   iIndex = (iUBound + iLBound) / 2;
-   while(iUBound - iLBound >= 8)
+   iIndex = (iUpperBound + iLowerBound) / 2;
+   while(iUpperBound - iLowerBound >= 8)
    {
       iCompare = BaseSortCompare((ARG_TYPE) this->m_pData[iIndex], (ARG_TYPE) t);
       if(iCompare == 0)
@@ -96,8 +96,8 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
       }
       else if(iCompare > 0)
       {
-         iUBound = iIndex - 1;
-         if(iUBound < 0)
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
          {
             iIndex = 0;
             break;
@@ -105,14 +105,14 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
       }
       else
       {
-         iLBound = iIndex + 1;
-         if(iLBound > iMaxBound)
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
          {
             iIndex = iMaxBound + 1;
             break;
          }
       }
-      iIndex = (iUBound + iLBound) / 2;
+      iIndex = (iUpperBound + iLowerBound) / 2;
    }
    // do sequential search
    while(iIndex < this->get_count())

@@ -30,12 +30,12 @@ namespace databaseuser
       stringa wstraTotal;
       if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, wstraTotal))
          return;
-      ::user::list::Range range;
+      ::user::list::range range;
       plist->_001GetSelection(range);
       for(index i = 0; i < range.get_item_count() ; i++)
       {
-         ::user::list::ItemRange itemrange = range.ItemAt(i);
-         for(index iItem = itemrange.GetLBound(); iItem <= itemrange.GetUBound(); iItem++)
+         ::user::list::item_range itemrange = range.ItemAt(i);
+         for(index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
          {
             stra.add(wstraTotal[iItem]);
          }

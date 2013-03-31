@@ -29,7 +29,7 @@ namespace ca
       {
          index indexNew = m_controldescriptorset.add(descriptorParam);
          descriptorParam.clear();
-         class control::descriptor * pdescriptor = m_controldescriptorset.ptr_at(indexNew);
+         class control::descriptor * pdescriptor = m_controldescriptorset.element_at(indexNew);
          pdescriptor->m_pform = this;
          if(pdescriptor->m_bTransparent)
          {

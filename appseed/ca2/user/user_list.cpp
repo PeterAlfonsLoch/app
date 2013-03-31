@@ -511,8 +511,8 @@ namespace user
 
       pdrawitem->m_iState = 0;
 
-      Range & rangeSelection = m_rangeSelection;
-      Range & rangeHighlight = m_rangeHighlight;
+      range & rangeSelection = m_rangeSelection;
+      range & rangeHighlight = m_rangeHighlight;
 
 
       if(pdrawitem->m_iItem < 0)
@@ -534,7 +534,7 @@ namespace user
       }
       pdrawitem->m_pgraphics->set_font(pfont);
 
-      pdrawitem->m_bListItemSelected = (m_eview != ViewIcon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.HasItem(pdrawitem->m_iDisplayItem);
+      pdrawitem->m_bListItemSelected = (m_eview != ViewIcon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.has_item(pdrawitem->m_iDisplayItem);
 
       if(pdrawitem->m_bListItemHover)
          pdrawitem->m_iState |= ItemStateHover;
@@ -604,7 +604,7 @@ namespace user
          _001DrawSubItem(pdrawitem);
 
       }
-      if(rangeHighlight.HasItem(pdrawitem->m_iDisplayItem))
+      if(rangeHighlight.has_item(pdrawitem->m_iDisplayItem))
       {
          ::ca::pen_sp penHighlight(get_app());
          ::ca::pen * ppenHighlight = _001GetPenHighlight();
@@ -1196,7 +1196,7 @@ namespace user
    {
       for(index iColumn = 0; iColumn < m_columna.get_size(); iColumn++)
       {
-         list_column * pcolumn = m_columna.ptr_at(iColumn);
+         list_column * pcolumn = m_columna.element_at(iColumn);
          if(pcolumn->m_bVisible && pcolumn->m_iOrder == iOrder)
             return iColumn;
       }
@@ -2102,59 +2102,74 @@ namespace user
    }
 
 
-   bool list::Range::HasItem(index iItem) const
+   bool list::range::has_item(index iItem) const
    {
       for(index i = 0; i < m_itemrangea.get_size(); i++)
       {
-         const ItemRange & itemrange = m_itemrangea[i];
-         if(itemrange.HasItem(iItem))
+         const item_range & itemrange = m_itemrangea[i];
+         if(itemrange.has_item(iItem))
             return true;
       }
       return false;
    }
 
-   bool list::Range::HasSubItem(int_ptr iItem, int_ptr iSubItem) const
+   void list::range::get_item_indexes(index_array & ia)
+   {
+
+      for(index i = 0; i < m_itemrangea.get_size(); i++)
+      {
+
+         const item_range & itemrange = m_itemrangea[i];
+
+         itemrange.get_item_indexes(ia);
+
+      }
+
+   }
+
+
+   bool list::range::has_sub_item(int_ptr iItem, int_ptr iSubItem) const
    {
       for(index i = 0; i < m_itemrangea.get_size(); i++)
       {
-         const ItemRange & itemrange = m_itemrangea[i];
-         if(itemrange.HasItem(iItem))
-            if(itemrange.HasSubItem(iSubItem))
+         const item_range & itemrange = m_itemrangea[i];
+         if(itemrange.has_item(iItem))
+            if(itemrange.has_sub_item(iSubItem))
                return true;
       }
       return false;
    }
 
    // remove the specified item
-   bool list::Range::RemoveItem(index iItem)
+   bool list::range::RemoveItem(index iItem)
    {
       for(index i = 0; i < m_itemrangea.get_size();)
       {
-         ItemRange & itemrange = m_itemrangea[i];
-         if(itemrange.HasItem(iItem))
+         item_range & itemrange = m_itemrangea[i];
+         if(itemrange.has_item(iItem))
          {
-            if(itemrange.GetLBound() == iItem)
+            if(itemrange.get_lower_bound() == iItem)
             {
-               itemrange.SetLBound(itemrange.GetLBound() + 1);
-               if(itemrange.GetLBound() > itemrange.GetUBound())
+               itemrange.set_lower_bound(itemrange.get_lower_bound() + 1);
+               if(itemrange.get_lower_bound() > itemrange.get_upper_bound())
                {
                   m_itemrangea.remove_at(i);
                   continue;
                }
             }
-            else if(itemrange.GetUBound() == iItem)
+            else if(itemrange.get_upper_bound() == iItem)
             {
-               itemrange.SetUBound(itemrange.GetUBound() - 1);
+               itemrange.set_upper_bound(itemrange.get_upper_bound() - 1);
             }
             else
             {
                // split the current range as it will be segmented
-               ItemRange itemrangeL;
-               ItemRange itemrangeU;
+               item_range itemrangeL;
+               item_range itemrangeU;
                itemrangeL = itemrange;
                itemrangeU = itemrange;
-               itemrangeL.SetUBound(iItem - 1);
-               itemrangeU.SetLBound(iItem + 1);
+               itemrangeL.set_upper_bound(iItem - 1);
+               itemrangeU.set_lower_bound(iItem + 1);
                m_itemrangea.remove_at(i);
                m_itemrangea.add(itemrangeL);
                m_itemrangea.add(itemrangeU);
@@ -2167,7 +2182,7 @@ namespace user
    }
 
    // remove the specified item and offset remaining items.
-   bool list::Range::OnRemoveItem(index iItem)
+   bool list::range::OnRemoveItem(index iItem)
    {
       RemoveItem(iItem);
       // All ranges that has item "iItem + 1",
@@ -2176,16 +2191,16 @@ namespace user
       iItem++;
       for(index i = 0; i < m_itemrangea.get_size();)
       {
-         ItemRange & itemrange = m_itemrangea[i];
-         if(itemrange.HasItem(iItem))
+         item_range & itemrange = m_itemrangea[i];
+         if(itemrange.has_item(iItem))
          {
-            if(itemrange.GetLBound() >= iItem)
+            if(itemrange.get_lower_bound() >= iItem)
             {
-               itemrange.Offset(-1);
+               itemrange.offset(-1);
             }
-            else if(itemrange.GetUBound() >= iItem)
+            else if(itemrange.get_upper_bound() >= iItem)
             {
-               itemrange.SetUBound(itemrange.GetUBound() - 1);
+               itemrange.set_upper_bound(itemrange.get_upper_bound() - 1);
             }
          }
          i++;
@@ -2194,20 +2209,20 @@ namespace user
    }
 
 
-   bool list::ItemRange::HasItem(index iItem) const
+   bool list::item_range::has_item(index iItem) const
    {
-      if(m_iLBound == -1 || m_iUBound == -1)
+      if(m_iLowerBound == -1 || m_iUpperBound == -1)
          return false;
-      if(iItem >= m_iLBound
-         && iItem <= m_iUBound)
+      if(iItem >= m_iLowerBound
+         && iItem <= m_iUpperBound)
          return true;
       else
          return false;
    }
 
-   bool list::ItemRange::HasSubItem(index iSubItem) const
+   bool list::item_range::has_sub_item(index iSubItem) const
    {
-      return m_subitemrange.HasSubItem(iSubItem);
+      return m_subitemrange.has_sub_item(iSubItem);
    }
 
    void list::LayoutHeaderCtrl()
@@ -2241,7 +2256,7 @@ namespace user
       {
          if(m_nItemCount > 0)
          {
-            Range range = m_rangeSelection;
+            range range = m_rangeSelection;
             m_rangeSelection.clear();
 
             int_ptr iItem = m_iItemFocus;
@@ -2295,8 +2310,8 @@ namespace user
             m_iShiftFirstSelection = iItem;
             m_iItemFocus = iItem;
 
-            ItemRange itemrange;
-            itemrange.Set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
+            item_range itemrange;
+            itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
             m_rangeSelection.add_item(itemrange);
 
             _001EnsureVisible(iItem, range);
@@ -2307,6 +2322,18 @@ namespace user
 
             _001OnSelectionChange();
          }
+      }
+      else if(pkey->m_ekey == ::user::key_delete)
+      {
+
+         range range;
+
+         _001GetSelection(range);
+
+         _001DeleteRange(range);
+
+         pobj->m_bRet = true;
+
       }
 
       pobj->m_bRet = false;
@@ -2325,10 +2352,10 @@ namespace user
          {
             if(_001DisplayHitTest(pt, iItem))
             {
-               ItemRange itemrange;
+               item_range itemrange;
                int_ptr iLItem = min(m_iShiftFirstSelection, iItem);
                int_ptr iUItem = max(m_iShiftFirstSelection, iItem);
-               itemrange.Set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
+               itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                m_iShiftFirstSelection = iItem;
             }
@@ -2337,10 +2364,10 @@ namespace user
          {
             if(_001DisplayHitTest(pt, iItem))
             {
-               ItemRange itemrange;
+               item_range itemrange;
                int_ptr iLItem = min(m_iShiftFirstSelection, iItem);
                int_ptr iUItem = max(m_iShiftFirstSelection, iItem);
-               itemrange.Set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
+               itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                m_iShiftFirstSelection = iItem;
             }
@@ -2356,8 +2383,8 @@ namespace user
                _001DisplayHitTest(pt, m_iItemDrag);
                m_iItemDrop = m_iItemDrag;
                SetTimer(12345678, 400, NULL);
-               ItemRange itemrange;
-               itemrange.Set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
+               item_range itemrange;
+               itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
             }
          }
@@ -2441,12 +2468,12 @@ namespace user
          index iItem;
          if(_001DisplayHitTest(pt, iItem))
          {
-            if(!m_rangeSelection.HasItem(iItem))
+            if(!m_rangeSelection.has_item(iItem))
             {
                m_rangeSelection.clear();
                m_iShiftFirstSelection = iItem;
-               ItemRange itemrange;
-               itemrange.Set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
+               item_range itemrange;
+               itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                _001RedrawWindow();
             }
@@ -2491,87 +2518,87 @@ namespace user
       UNREFERENCED_PARAMETER(point);
    }
 
-   void list::Range::clear()
+   void list::range::clear()
    {
       m_itemrangea.remove_all();
    }
 
-   void list::Range::add_item(const ItemRange & itemrange)
+   void list::range::add_item(const item_range & itemrange)
    {
       m_itemrangea.add(itemrange);
    }
 
-   list::ItemRange::ItemRange()
+   list::item_range::item_range()
    {
-      m_iLBound = -1;
-      m_iUBound = -1;
+      m_iLowerBound = -1;
+      m_iUpperBound = -1;
    }
 
-   index list::ItemRange::GetLBound() const
+   index list::item_range::get_lower_bound() const
    {
-      return m_iLBound;
+      return m_iLowerBound;
    }
 
-   index list::ItemRange::GetUBound() const
+   index list::item_range::get_upper_bound() const
    {
-      return m_iUBound;
+      return m_iUpperBound;
    }
 
 
 
-   list::ItemRange::ItemRange(ItemRange & itemrange)
+   list::item_range::item_range(item_range & itemrange)
    {
       operator =(itemrange);
    }
 
-   list::ItemRange & list::ItemRange::operator =(const ItemRange & itemrange)
+   list::item_range & list::item_range::operator =(const item_range & itemrange)
    {
-      m_iLBound         = itemrange.m_iLBound;
-      m_iUBound         = itemrange.m_iUBound;
+      m_iLowerBound         = itemrange.m_iLowerBound;
+      m_iUpperBound         = itemrange.m_iUpperBound;
       m_subitemrange    = itemrange.m_subitemrange;
       return *this;
    }
 
 
 
-   list::CSubItemRange::CSubItemRange()
+   list::sub_item_range::sub_item_range()
    {
-      m_iLBound = -1;
-      m_iUBound = -1;
+      m_iLowerBound = -1;
+      m_iUpperBound = -1;
    }
 
-   list::CSubItemRange::CSubItemRange(CSubItemRange & subitemrange)
+   list::sub_item_range::sub_item_range(sub_item_range & subitemrange)
    {
       operator =(subitemrange);
    }
 
-   list::CSubItemRange & list::CSubItemRange::operator =(const CSubItemRange & subitemrange)
+   list::sub_item_range & list::sub_item_range::operator =(const sub_item_range & subitemrange)
    {
-      m_iLBound         = subitemrange.m_iLBound;
-      m_iUBound         = subitemrange.m_iUBound;
+      m_iLowerBound         = subitemrange.m_iLowerBound;
+      m_iUpperBound         = subitemrange.m_iUpperBound;
       m_listitemrange   = subitemrange.m_listitemrange;
       return *this;
    }
 
-   bool list::CSubItemRange::HasSubItem(index iSubItem) const
+   bool list::sub_item_range::has_sub_item(index iSubItem) const
    {
-      if(m_iLBound == -1 || m_iUBound == -1)
+      if(m_iLowerBound == -1 || m_iUpperBound == -1)
          return false;
-      if(iSubItem >= m_iLBound
-         && iSubItem <= m_iUBound)
+      if(iSubItem >= m_iLowerBound
+         && iSubItem <= m_iUpperBound)
          return true;
       else
          return false;
    }
 
 
-   list::Range & list::Range::operator = (const Range & range)
+   list::range & list::range::operator = (const range & range)
    {
       m_itemrangea.copy(range.m_itemrangea);
       return *this;
    }
 
-   void list::_001GetSelection(Range &range)
+   void list::_001GetSelection(range &range)
    {
       range = m_rangeSelection;
    }
@@ -2583,14 +2610,14 @@ namespace user
       if(!_001HasConfigId(key))
          return;
       int_ptr iFilterSubItem = _001ConfigIdToColumnKey(key);
-      Range & range = m_rangeSelection;
+      range & range = m_rangeSelection;
       for(index i = 0; i < range.get_item_count(); i++)
       {
-         ItemRange & itemrange = range.ItemAt(i);
-         if(itemrange.HasSubItem(iFilterSubItem))
+         item_range & itemrange = range.ItemAt(i);
+         if(itemrange.has_sub_item(iFilterSubItem))
          {
-            for(index iLine = itemrange.GetLBound();
-               iLine <= itemrange.GetUBound(); iLine++)
+            for(index iLine = itemrange.get_lower_bound();
+               iLine <= itemrange.get_upper_bound(); iLine++)
             {
                selection.add_item(key, (int32_t) iLine);
             }
@@ -2599,7 +2626,7 @@ namespace user
    }
 
 
-   /*index list::Range::get_item(index iItemIndex)
+   /*index list::range::get_item(index iItemIndex)
    {
    index iFirst = 0;
    index i = 0;
@@ -2610,7 +2637,7 @@ namespace user
    if(i >= m_itemrangea.get_size())
    return -1;
    iItem = iItemIndex - iFirst;
-   ItemRange & itemrange = m_itemrangea[i];
+   item_range & itemrange = m_itemrangea[i];
    if(iItem < itemrange.get_count())
    {
    return itemrange.get_item(iItem);
@@ -2623,31 +2650,31 @@ namespace user
 
    }*/
 
-   /*index list::ItemRange::get_count()
+   /*index list::item_range::get_count()
    {
    return m_iItemEnd - m_iItemStart + 1;
    }*/
 
-   /*index list::ItemRange::get_item(index iItemIndex)
+   /*index list::item_range::get_item(index iItemIndex)
    {
    return m_iItemStart + iItemIndex;
    }*/
 
-   count list::Range::get_item_count() const
+   count list::range::get_item_count() const
    {
       return m_itemrangea.get_size();
       /*   index iCount = 0;
 
       for(index i = 0; i < m_itemrangea.get_size(); i++)
       {
-      ItemRange & itemrange = m_itemrangea[i];
+      item_range & itemrange = m_itemrangea[i];
       iCount += itemrange.get_count();
       }
 
       return iCount;*/
    }
 
-   list::ItemRange & list::Range::ItemAt(index iItem)
+   list::item_range & list::range::ItemAt(index iItem)
    {
       return m_itemrangea.element_at(iItem);
    }
@@ -2826,7 +2853,7 @@ namespace user
 
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_iKey == iKey)
          {
             return pcolumn;
@@ -2841,7 +2868,7 @@ namespace user
    {
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_iSubItem == iSubItem)
          {
             if(pcolumn->m_bVisible)
@@ -2862,7 +2889,7 @@ namespace user
    {
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_iNextGlobalOrderKey == iKey)
          {
             return pcolumn;
@@ -2881,7 +2908,7 @@ namespace user
    {
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_iKeyVisible == iKeyVisible)
          {
             return pcolumn;
@@ -2894,7 +2921,7 @@ namespace user
    {
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_iKeyNonVisible == iKeyNonVisible)
          {
             return pcolumn;
@@ -2910,7 +2937,7 @@ namespace user
       column.m_iOrder = this->get_size();
       column.m_pcontainer = this;
 
-      index index = array_ptr_alloc < list_column >::add(column);
+      index index = ::ca::smart_pointer_array < list_column >::add(column);
 
       OnChange();
 
@@ -2919,7 +2946,7 @@ namespace user
 
    void list_column_array::remove_all()
    {
-      array_ptr_alloc < list_column >::remove_all(),
+      ::ca::smart_pointer_array < list_column >::remove_all(),
          OnChange();
    }
 
@@ -2949,7 +2976,7 @@ namespace user
 
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_bVisible)
          {
             pcolumn->m_iKeyVisible = iKeyVisible;
@@ -2991,7 +3018,7 @@ namespace user
       index iCount = 0;
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(pcolumn->m_bVisible)
             iCount++;
       }
@@ -3003,7 +3030,7 @@ namespace user
       index iCount = 0;
       for(index i = 0; i < this->get_size(); i++)
       {
-         list_column * pcolumn = ptr_at(i);
+         list_column * pcolumn = element_at(i);
          if(!pcolumn->m_bVisible)
             iCount++;
       }
@@ -3047,7 +3074,7 @@ namespace user
       int32_t iVisible = 0;
       for(index iColumn = 0; iColumn < this->get_count(); iColumn++)
       {
-         list_column * pcolumn = ptr_at(iColumn);
+         list_column * pcolumn = element_at(iColumn);
          if(pcolumn->m_bVisible)
          {
             if(pcolumn->m_iSubItem == iSubItem)
@@ -3068,7 +3095,7 @@ namespace user
       int32_t iNonVisible = 0;
       for(index iColumn = 0; iColumn < this->get_count(); iColumn++)
       {
-         list_column * pcolumn = ptr_at(iColumn);
+         list_column * pcolumn = element_at(iColumn);
          if(!pcolumn->m_bVisible)
          {
             if(pcolumn->m_iSubItem == iSubItem)
@@ -3615,8 +3642,8 @@ namespace user
                   {
                      if(bControlKeyDown)
                      {
-                        ItemRange itemrange;
-                        itemrange.Set(
+                        item_range itemrange;
+                        itemrange.set(
                            min(iItemSel, m_iItemSel),
                            max(iItemSel, m_iItemSel),
                            min(iSubItemSel, m_iSubItemSel),
@@ -3627,15 +3654,15 @@ namespace user
                      }
                      else
                      {
-                        ItemRange itemrange;
-                        itemrange.Set(
+                        item_range itemrange;
+                        itemrange.set(
                            min(iItemSel, m_iItemSel),
                            max(iItemSel, m_iItemSel),
                            min(iSubItemSel, m_iSubItemSel),
                            max(iSubItemSel, m_iSubItemSel),
                            -1,
                            -1);
-                        Range range;
+                        range range;
                         range.add_item(itemrange);
                         _001SetSelection(range);
                      }
@@ -3646,8 +3673,8 @@ namespace user
                      m_iLastSubItemSel = m_iSubItemSel;
                      m_iItemSel = iItemSel;
                      m_iSubItemSel = iSubItemSel;
-                     ItemRange itemrange;
-                     itemrange.Set(
+                     item_range itemrange;
+                     itemrange.set(
                         m_iItemSel,
                         m_iItemSel,
                         m_iSubItemSel,
@@ -3662,15 +3689,15 @@ namespace user
                      m_iLastSubItemSel = m_iSubItemSel;
                      m_iItemSel = iItemSel;
                      m_iSubItemSel = iSubItemSel;
-                     ItemRange itemrange;
-                     itemrange.Set(
+                     item_range itemrange;
+                     itemrange.set(
                         m_iItemSel,
                         m_iItemSel,
                         m_iSubItemSel,
                         m_iSubItemSel,
                         -1,
                         -1);
-                     Range range;
+                     range range;
                      range.add_item(itemrange);
                      _001SetSelection(range);
                   }
@@ -3712,21 +3739,21 @@ namespace user
       _001OnSelectionChange();
    }
 
-   void list::_001SetSelection(const Range &range)
+   void list::_001SetSelection(const range &range)
    {
       m_rangeSelection = range;
       on_select();
       _001OnSelectionChange();
    }
 
-   void list::_001AddSelection(const ItemRange & itemrange)
+   void list::_001AddSelection(const item_range & itemrange)
    {
       m_rangeSelection.add_item(itemrange);
       on_select();
       _001OnSelectionChange();
    }
 
-   void list::_001SetHighlightRange(Range & range)
+   void list::_001SetHighlightRange(range & range)
    {
       m_rangeHighlight = range;
    }
@@ -3987,7 +4014,7 @@ namespace user
    {
       index iKey = MapConfigIdToKey(key);
       if(iKey >= 0)
-         return ptr_at(iKey);
+         return element_at(iKey);
       else
          return NULL;
 
@@ -4007,41 +4034,41 @@ namespace user
 
 
 
-   void list::ItemRange::Set(index iLBoundItem, index iUBoundItem, index iLBoundSubItem, index iUBoundSubItem, index iLBoundListItem, index iUBoundListItem)
+   void list::item_range::set(index iLowerBoundItem, index iUpperBoundItem, index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem)
    {
 
-      m_iLBound = iLBoundItem;
-      m_iUBound = iUBoundItem;
-      m_subitemrange.Set(
-         iLBoundSubItem,
-         iUBoundSubItem,
-         iLBoundListItem,
-         iUBoundListItem);
+      m_iLowerBound = iLowerBoundItem;
+      m_iUpperBound = iUpperBoundItem;
+      m_subitemrange.set(
+         iLowerBoundSubItem,
+         iUpperBoundSubItem,
+         iLowerBoundListItem,
+         iUpperBoundListItem);
    }
 
-   void list::ItemRange::SetLBound(index iLBoundItem)
+   void list::item_range::set_lower_bound(index iLowerBoundItem)
    {
-      m_iLBound = iLBoundItem;
+      m_iLowerBound = iLowerBoundItem;
    }
 
-   void list::ItemRange::SetUBound(index iUBoundItem)
+   void list::item_range::set_upper_bound(index iUpperBoundItem)
    {
-      m_iUBound = iUBoundItem;
+      m_iUpperBound = iUpperBoundItem;
    }
 
-   void list::CSubItemRange::Set(index iLBoundSubItem, index iUBoundSubItem, index iLBoundListItem, index iUBoundListItem)
+   void list::sub_item_range::set(index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem)
    {
-      m_iLBound = iLBoundSubItem;
-      m_iUBound = iUBoundSubItem;
-      m_listitemrange.Set(
-         iLBoundListItem,
-         iUBoundListItem);
+      m_iLowerBound = iLowerBoundSubItem;
+      m_iUpperBound = iUpperBoundSubItem;
+      m_listitemrange.set(
+         iLowerBoundListItem,
+         iUpperBoundListItem);
    }
 
-   void list::CListItemRange::Set(index iLBoundListItem, index iUBoundListItem)
+   void list::list_item_range::set(index iLowerBoundListItem, index iUpperBoundListItem)
    {
-      m_iLBound = iLBoundListItem;
-      m_iUBound = iUBoundListItem;
+      m_iLowerBound = iLowerBoundListItem;
+      m_iUpperBound = iUpperBoundListItem;
 
    }
 
@@ -4074,7 +4101,7 @@ namespace user
       }
    }
 
-   void list::_001EnsureVisible(index iItem, Range & range)
+   void list::_001EnsureVisible(index iItem, range & range)
    {
 
       index iyScroll = m_scrollinfo.m_ptScroll.y / max(1, m_iItemHeight);
@@ -4088,11 +4115,11 @@ namespace user
       }
       if(m_scrollinfo.m_ptScroll.y  / max(1, m_iItemHeight) != iyScroll)
       {
-         ItemRange item;
+         item_range item;
          m_scrollinfo.m_ptScroll.y = (LONG) (iyScroll * m_iItemHeight);
          _001UpdateScrollBars();
-         item.SetLBound(iyScroll);
-         item.SetUBound(min(iyScroll + m_nDisplayCount - 1, m_nItemCount - 1));
+         item.set_lower_bound(iyScroll);
+         item.set_upper_bound(min(iyScroll + m_nDisplayCount - 1, m_nItemCount - 1));
          range.add_item(item);
       }
    }
@@ -4100,8 +4127,8 @@ namespace user
    void list::_001Highlight(index iItem, bool bRedraw)
    {
       m_rangeHighlight.clear();
-      ItemRange itemrange;
-      itemrange.Set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
+      item_range itemrange;
+      itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
       m_rangeHighlight.add_item(itemrange);
       if(bRedraw)
       {
@@ -4128,22 +4155,22 @@ namespace user
       return true;
    }
 
-   void list::ItemRange::Offset(index iOffset)
+   void list::item_range::offset(index iOffset)
    {
-      m_iLBound += iOffset;
-      m_iUBound += iOffset;
+      m_iLowerBound += iOffset;
+      m_iUpperBound += iOffset;
    }
 
    void list::_001RemoveSelection()
    {
-      Range range;
+      range range;
 
       _001GetSelection(range);
 
 
       while(range.get_item_count() > 0)
       {
-         index iItem = range.ItemAt(0).GetLBound();
+         index iItem = range.ItemAt(0).get_lower_bound();
          if(!_001RemoveItem(iItem, false))
             break;
          _001GetSelection(range);
@@ -4156,8 +4183,8 @@ namespace user
    void list::_001Select(index iItem, index iSubItem)
    {
       m_rangeSelection.clear();
-      ItemRange itemrange;
-      itemrange.Set(iItem, iItem, iSubItem, iSubItem, - 1, -1);
+      item_range itemrange;
+      itemrange.set(iItem, iItem, iSubItem, iSubItem, - 1, -1);
       m_rangeSelection.add_item(itemrange);
 
    }
@@ -4773,12 +4800,12 @@ namespace user
    }
 
 
-   list::Range::Range()
+   list::range::range()
    {
 
    }
 
-   list::Range::Range(Range & range)
+   list::range::range(range & range)
    {
       m_itemrangea = range.m_itemrangea;
    }
@@ -5116,9 +5143,9 @@ namespace user
       m_rangeSelection.clear();
       if(iSel >= 0)
       {
-         ItemRange itemrange;
-         itemrange.SetLBound(iSel);
-         itemrange.SetUBound(iSel);
+         item_range itemrange;
+         itemrange.set_lower_bound(iSel);
+         itemrange.set_upper_bound(iSel);
          m_rangeSelection.add_item(itemrange);
       }
       return iOld;
@@ -5128,8 +5155,8 @@ namespace user
    {
       if(m_rangeSelection.get_item_count() != 1)
          return -1;
-      if(m_rangeSelection.ItemAt(0).GetLBound() == m_rangeSelection.ItemAt(0).GetUBound() && m_rangeSelection.ItemAt(0).GetLBound() >= 0)
-         return m_rangeSelection.ItemAt(0).GetLBound();
+      if(m_rangeSelection.ItemAt(0).get_lower_bound() == m_rangeSelection.ItemAt(0).get_upper_bound() && m_rangeSelection.ItemAt(0).get_lower_bound() >= 0)
+         return m_rangeSelection.ItemAt(0).get_lower_bound();
       return -1;
    }
 
@@ -5427,6 +5454,31 @@ namespace user
 
    }
 
+   void list::_001OnBeforeDeleteRange(range & range)
+   {
+   }
+
+   void list::_001OnDeleteRange(range & range)
+   {
+
+      if(m_pdata != NULL)
+      {
+
+         m_pdata->_001OnDeleteRange(range);
+
+      }
+
+   }
+
+
+   void list::_001DeleteRange(range & range)
+   {
+
+      _001OnBeforeDeleteRange(range);
+
+      _001OnDeleteRange(range);
+
+   }
 
 } // namespace user
 

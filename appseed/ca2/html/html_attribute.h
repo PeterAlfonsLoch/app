@@ -24,7 +24,7 @@ namespace html
    };
 
 
-   class attribute_array : public array_ptr_alloc < attribute, attribute & >
+   class attribute_array : public ::ca::smart_pointer_array < attribute, attribute & >
    {
    public:
 
