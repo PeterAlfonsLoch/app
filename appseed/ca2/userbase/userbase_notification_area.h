@@ -5,6 +5,7 @@
 namespace userbase
 {
 
+#ifdef WINDOWSEX
 
    struct CLASS_DECL_ca2 TRAYDATA
    {
@@ -27,6 +28,7 @@ namespace userbase
       bool        bVisible;
    };
 
+#endif
 
    CLASS_DECL_ca2 char GetDriveLetter(const char * lpDevicePath);
    CLASS_DECL_ca2 oswindow FindTrayToolbarWindow();
@@ -41,7 +43,9 @@ namespace userbase
 
       oswindow             m_oswindowTray;
       image_list *         m_pil16;
+#ifdef WINDOWSEX
       spa(TrayItemInfo)    m_infoa;
+#endif
       HFONT                m_hfontHidden;
       HFONT                m_hfontRegular;
 

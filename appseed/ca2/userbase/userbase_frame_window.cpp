@@ -25,7 +25,6 @@ namespace userbase
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
-      m_pViewActive = NULL;
 
       m_cModalStack = 0;              // initialize modality support
       m_hMenuAlt = NULL;

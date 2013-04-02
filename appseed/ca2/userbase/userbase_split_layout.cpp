@@ -492,7 +492,7 @@ namespace userbase
          else
             pwnd->ShowWindow(SW_HIDE);
          }
-         m_bVisible = bNewValue;
+//         m_bVisible = bNewValue;
 
 
       }*/

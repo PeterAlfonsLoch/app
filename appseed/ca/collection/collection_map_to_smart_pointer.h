@@ -11,12 +11,13 @@ namespace collection
    {
    public:
 
+
       map_to_smart_pointer()
       {
       }
 
       map_to_smart_pointer(::ca::application * papp) :
-         ca(papp),
+         ::ca::ca(papp),
          map_to_smart_pointer < TYPE, ARG_TYPE, ::ca::smart_pointer < T > >(papp)
       {
       }

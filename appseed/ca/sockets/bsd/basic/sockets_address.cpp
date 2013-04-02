@@ -9,7 +9,6 @@ namespace sockets
    {
 
       m_pipv4 = new ipv4_address(papp, a, iPort);
-      m_pipv6 = NULL;
 
    }
 
@@ -18,16 +17,12 @@ namespace sockets
    {
 
       m_pipv6 = new ipv6_address(papp, a, iPort);
-      m_pipv4 = NULL;
 
    }
 
 
    address::address(::ca::application * papp, const sockaddr & sa, int32_t sa_len)
    {
-
-      m_pipv4 = NULL;
-      m_pipv6 = NULL;
 
       if (sa_len == sizeof(struct sockaddr_in6))
       {
@@ -62,9 +57,6 @@ namespace sockets
    {
 
 
-      m_pipv4 = NULL;
-      m_pipv6 = NULL;
-
       m_strServiceName = strServiceName;
 
       create_address(strAddress);
@@ -77,9 +69,6 @@ namespace sockets
    {
 
 
-      m_pipv4 = NULL;
-      m_pipv6 = NULL;
-
       m_strServiceName = ::ca::str::from(iPort);
 
       if(!create_address(strAddress))
@@ -89,9 +78,6 @@ namespace sockets
 
    address::address(const address & address)
    {
-
-      m_pipv4 = NULL;
-      m_pipv6 = NULL;
 
       operator = (address);
 
@@ -108,7 +94,7 @@ namespace sockets
 
       m_pipv4.release();
       m_pipv6.release();
-      
+
 
       if(System.net().isipv4(strAddress))
          m_pipv4 = new ipv4_address(get_app(), strAddress, System.net().service_port(m_strServiceName));

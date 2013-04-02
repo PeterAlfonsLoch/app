@@ -706,7 +706,8 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 
 	if(!(dpy=XOpenDisplay(NULL))) {
 		fprintf(stderr, "ERROR: Could not open display\n");
-		exit(1);
+		return ;
+//		exit(1);
 	}
 
 	scr=DefaultScreen(dpy);

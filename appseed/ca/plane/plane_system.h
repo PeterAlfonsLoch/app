@@ -290,8 +290,8 @@ namespace plane
       plane::session::map *                        m_pbergedgemap;
 
 
-      sp(class ::ca::log)                       m_plog;
-      sp(factory)                              m_pfactory;
+      sp(class ::ca::log)                          m_plog;
+      sp(class ::ca::factory)                      m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
       //      ::sockets::net                               m_net;
@@ -411,32 +411,31 @@ namespace plane
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      virtual ::ca::window_draw        * _001GetTwf();
+      virtual ::ca::window_draw           * _001GetTwf();
+      class ::ca::factory                 & factory();
+      class ::ca::log                     & log();
 
-      class factory                    & factory();
-      class ::ca::log                  & log();
+      ::ca::window_draw                   * get_twf();
 
-      ::ca::window_draw                * get_twf();
+      FT_Library                          & ftlibrary();
 
-      FT_Library                       & ftlibrary();
+      ::ca::application_ptra              & appptra();
+      ::ca::datetime                      & datetime();
 
-      ::ca::application_ptra           & appptra();
-      ::ca::datetime                  & datetime();
-
-      inline ::ca::file_system        & file()    { return m_spfile; }
-      inline ::ca::dir::system         & dir()     { return m_spdir; }
-      ::ca::stra                      & stra();
-      inline ::ca::url                & url()     { return m_url; }
-      ::xml::xml                       & xml();
-      ::ca::install                   & install();
-      ::ca::service                   & service();
-      class ::machine_event_central    & machine_event_central();
-      class ::ca::os                   & os();
+      inline ::ca::file_system            & file()    { return m_spfile; }
+      inline ::ca::dir::system            & dir()     { return m_spdir; }
+      ::ca::stra                          & stra();
+      inline ::ca::url                    & url()     { return m_url; }
+      ::xml::xml                          & xml();
+      ::ca::install                       & install();
+      ::ca::service                       & service();
+      class ::machine_event_central       & machine_event_central();
+      class ::ca::os                      & os();
       using ::plane::application::process;
 #ifndef METROWIN
-      ::ca::process_section                   & process();
+      ::ca::process_section               & process();
 #endif
-      class ::sockets::net             & net();
+      class ::sockets::net                & net();
 
       ::ca::history                    & hist();
 

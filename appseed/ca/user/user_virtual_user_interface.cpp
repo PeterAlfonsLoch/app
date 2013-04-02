@@ -1,28 +1,30 @@
 #include "framework.h"
 
+
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCRECT lpRect);
 
 
 virtual_user_interface::virtual_user_interface()
 {
 
-   m_pguieMessage    = NULL;
    m_bCreate         = false;
    m_pthread         = NULL;
-   m_pparent         = NULL;
    m_bEnabled        = true;
+
 }
+
 
 virtual_user_interface::virtual_user_interface(::ca::application * papp) :
    ca(papp),
    ::user::interaction(papp)
 {
-   m_pguieMessage    = NULL;
+
    m_bCreate         = false;
    m_pthread         = NULL;
-   m_pparent         = NULL;
    m_bEnabled        = true;
+
 }
+
 
 virtual_user_interface::~virtual_user_interface()
 {

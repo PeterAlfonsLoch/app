@@ -1,7 +1,6 @@
 #include "framework.h"
 
 
-bool is_safe_set(void * p);
 
 void itemswap(void * pswaparg, index i1, index i2);
 
@@ -11,6 +10,12 @@ void itemswap(void * pswaparg, index i1, index i2)
    base_array < factory_item_base * > * pitemptra = (base_array < factory_item_base * > *) pswaparg;
    pitemptra->swap(i1, i2);
 }
+
+namespace ca
+{
+
+
+bool is_safe_set(void * p);
 
 factory::factory(::ca::application * papp) :
    ca(papp)
@@ -106,7 +111,7 @@ void factory::enable_simple_factory_request(bool bEnable)
       {
 
          ::ca::type_info * ptypeinfo = m_typeinfoptraSimpleFactoryRequest[i];
-         
+
          factory_item_base * pitem = m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem;
 
 
@@ -130,7 +135,7 @@ void factory::enable_simple_factory_request(bool bEnable)
                try
                {
 
-                  ptypeinfo->m_pfactoryitem = NULL;
+                  ptypeinfo->m_pfactoryitem.release();
 
                }
                catch(...)
@@ -204,7 +209,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
       if(m_bSimpleFactoryRequest)
          return info.m_pfactoryitem->create(papp);
 
-      info.m_pfactoryitem = NULL;
+      info.m_pfactoryitem.release();
    }
 
    single_lock sl(m_pmutex, TRUE);
@@ -246,3 +251,41 @@ factory_allocator * factory::get_allocator(const char * pszType)
    return pitem->clone(pobject);
 
 }
+
+
+} // namespace ca
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

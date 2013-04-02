@@ -111,14 +111,14 @@ bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlSt
 #ifdef WINDOWSEX
    dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
 #else
-   throw todo(get_app());
+//   throw todo(get_app());
 #endif
    dwStyle |= dwCtrlStyle & 0xffff;
 
 #ifdef WINDOWSEX
    m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 #else
-   throw todo(get_app());
+  // throw todo(get_app());
 #endif
 
 
@@ -211,7 +211,7 @@ size simple_toolbar::CalcSimpleLayout()
 
 void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 {
-   
+
 
    if(m_bDelayedButtonLayout)
       layout();
@@ -397,10 +397,10 @@ size simple_toolbar::CalcSize(int32_t nCount)
    size sizeResult(0,0);
 
    //   uint32_t dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
 
    int32_t buttonx, buttony;
-   
+
    for (int32_t i = 0; i < nCount; i++)
    {
       //WINBUG: The IE4 version of COMCTL32.DLL calculates the separation
@@ -566,17 +566,17 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
 
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
 
    simple_toolbar_item & item = m_itema[iItem];
-   
-   
+
+
    UINT nStyle = GetButtonStyle(iItem);
-   
+
    bool bHover = iItem == _001GetHoverItem();
-   
+
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-   
+
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
    EElement eelement = ElementItem;
@@ -862,9 +862,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    //   ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
 
-#ifdef WINDOWSEX
-
-   TBBUTTON tb;
+#if defined(WINDOWSEX) || defined(LINUX)
 
    simple_toolbar_item item;
 
@@ -874,7 +872,6 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
       if(pchild->get_name() == "button")
       {
          xml::attr * pattr = pchild->find_attr("id");
-         memset(&tb, 0, sizeof(tb));
          item.m_id = pattr->get_string();
          item.m_str = pchild->get_value();
          if(pchild->attr("image").get_string().has_char())
@@ -934,14 +931,14 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
 
    rect rect;
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
 
    simple_toolbar_item & item = m_itema[iItem];
-   
+
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-   
+
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
-   
+
    if((item.m_fsStyle & TBSTYLE_SEP) != 0)
    {
       rect.left   = item.m_rect.left + ITEMCX;
@@ -1241,10 +1238,10 @@ void simple_toolbar::layout()
             sizeText);
       }
 
-#ifdef WINDOWSEX
-      
+#if defined(WINDOWSEX) || defined(LINUX)
+
       BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-      
+
       int32_t iy = 0;
 
       UINT uiImage = pmenucentral->CommandToImage(item.m_id);
@@ -1573,7 +1570,7 @@ void SimpleToolCmdUI::Enable(bool bOn)
    ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
    UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) & ~TBBS_DISABLED;
    if (!bOn)
    {
@@ -1601,7 +1598,7 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
    UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) &
       ~(TBBS_CHECKED | TBBS_INDETERMINATE);
    if(echeck == check::checked)
@@ -1659,7 +1656,7 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
 
 void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
 {
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) //|| defined(LINUX)
    SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
@@ -1690,7 +1687,7 @@ void simple_toolbar::_001OnNcHitTest(::ca::signal_object * pobj)
 int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 {
    int32_t nResult = 0;
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
    ASSERT(nCount > 0);
    ::ca::client_graphics pdc(this);
    int32_t x = 0;
@@ -1901,7 +1898,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
       sizeResult = CalcSize(nCount);
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
       if (dwMode & LM_COMMIT)
       {
          ___CONTROLPOS* pControl = NULL;
@@ -1968,15 +1965,15 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             //            button.m_id = i;
             //            GetToolBarCtrl().SetButtonInfo(i, &button);
          }
-         for (i = 0; i < nCount; i++)
+         //for (i = 0; i < nCount; i++)
          {
-            TBBUTTONINFOW buttona;
-            memset(&buttona, 0, sizeof(buttona));
-            buttona.cbSize = sizeof(buttona);
-            buttona.dwMask =
-               TBIF_COMMAND
-               | TBIF_STYLE
-               | TBIF_SIZE;
+//            TBBUTTONINFOW buttona;
+  //          memset(&buttona, 0, sizeof(buttona));
+    //        buttona.cbSize = sizeof(buttona);
+      //      buttona.dwMask =
+        //       TBIF_COMMAND
+          //     | TBIF_STYLE
+            //   | TBIF_SIZE;
             //            UINT uiID = GetItemID(i);
             ///            GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
             //         TRACE("BUTTON.m_id = %d\n", buttona.m_id  );

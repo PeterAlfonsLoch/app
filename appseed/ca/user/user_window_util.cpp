@@ -299,7 +299,7 @@ namespace user
    oswindow_tree::oswindow_tree(oswindow window) :
       m_oswindow(window)
    {
-      
+
    }
 
 
@@ -316,14 +316,14 @@ namespace user
       return * this;
    }
 
-   index oswindow_tree::compare_oswindow(oswindow_tree * ptree1, oswindow_tree * ptree2)
+   index oswindow_tree::compare_oswindow(const ::user::oswindow_tree * ptree1, const ::user::oswindow_tree * ptree2)
    {
-      return (int32_t) ((byte *) (void *) ptree1->m_oswindow - (byte *) (void *) ptree2->m_oswindow);
+      return (index) ((byte *) (void *) ptree1->m_oswindow - (byte *) (void *) ptree2->m_oswindow);
    }
 
    int_ptr oswindow_tree::Array::find(oswindow oswindow)
    {
-      return find_first(oswindow_tree(oswindow), oswindow_tree::compare_oswindow);
+      return find_first(oswindow_tree(oswindow), &::user::oswindow_tree::compare_oswindow);
    }
 
 

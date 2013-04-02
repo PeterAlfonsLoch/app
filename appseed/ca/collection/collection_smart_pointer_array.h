@@ -11,25 +11,25 @@ namespace collection
    {
    public:
 
-      smart_pointer_array()
+      smart_pointer_array < T >()
       {
       }
 
-      smart_pointer_array(::ca::application * papp) :
-         ca(papp),
+      smart_pointer_array < T  > (::ca::application * papp) :
+         ::ca::ca(papp),
          base_array < ::ca::smart_pointer < T > >(papp)
       {
       }
 
 
-      ::ca::smart_pointer < T > & add_new()
+      sp(T) & add_new()
       {
 
-         base_array < ::ca::smart_pointer < T > >::add_new();
+         sp(T) & sp = base_array < ::ca::smart_pointer < T > >::add_new();
 
-         last_element().create(get_app());
+         sp.create(this->get_app());
 
-         return last_element();
+         return sp;
 
       }
 
@@ -37,15 +37,15 @@ namespace collection
       ::count set_size(::count nNewSize, ::count nGrowBy = -1)
       {
          UNREFERENCED_PARAMETER(nGrowBy);
-         while(nNewSize > get_size())
+         while(nNewSize > this->get_size())
          {
             add_new();
          }
-         if(get_size() > nNewSize)
+         if(this->get_size() > nNewSize)
          {
-            base_array < ::ca::smart_pointer < T > >::set_size(nNewSize);
+            this->base_array < ::ca::smart_pointer < T > >::set_size(nNewSize);
          }
-         return get_size();
+         return this->get_size();
       }
 
 
@@ -88,7 +88,7 @@ namespace collection
 
       bool add_unique(T * p)
       {
-         
+
          if(contains(p))
             return false;
 
@@ -106,22 +106,22 @@ namespace collection
 
       }
 
-      ::index find_first(T * p, index iStart = 0, ::count nCount = -1)
+      ::index find_first(const T * p, index iStart = 0, ::count nCount = -1)
       {
-         
+
          ::count c = 0;
 
          index iEnd;
 
          if(nCount < 0)
-            iEnd = get_upper_bound(nCount);
-         else 
+            iEnd = this->get_upper_bound(nCount);
+         else
             iEnd = iStart + nCount - 1;
 
          for(int i = iStart; i <= iEnd; i++)
          {
-            
-            if(element_at(i).m_p == p)
+
+            if(this->element_at(i).m_p == p)
                return i;
 
          }
@@ -131,15 +131,15 @@ namespace collection
       }
 
 
-      ::index find_first(T & t, index (* lpfnCompare)(T *, T *), index iStart = 0, ::count nCount = -1)
+      ::index find_first(const T & t, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1)
       {
 
-         return find_first(&t, lpfnCompare, iStart, nCount);
+         return this->find_first(&t, lpfnCompare, iStart, nCount);
 
       }
 
 
-      ::index find_first(T * p, index (* lpfnCompare)(T *, T *), index iStart = 0, ::count nCount = -1)
+      ::index find_first(const T * p, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1)
       {
 
          ::count c = 0;
@@ -147,14 +147,14 @@ namespace collection
          index iEnd;
 
          if(nCount < 0)
-            iEnd = get_upper_bound(nCount);
-         else 
+            iEnd = this->get_upper_bound(nCount);
+         else
             iEnd = iStart + nCount - 1;
 
          for(int i = iStart; i <= iEnd; i++)
          {
-            
-            if(lpfnCompare(element_at(i).m_p, p) == 0)
+
+            if(lpfnCompare(this->element_at(i).m_p, p) == 0)
                return i;
 
          }
@@ -166,8 +166,8 @@ namespace collection
       template < class DERIVED >
       smart_pointer_array & operator -= (DERIVED * p)
       {
-         
-         remove(dynamic_cast < T * > (p));
+
+         this->remove(dynamic_cast < T * > (p));
 
          return *this;
 
@@ -180,12 +180,12 @@ namespace collection
 
          index iFind = 0;
 
-         while((iFind = find_first(p, iFind)) >= 0)
+         while((iFind = this->find_first(p, iFind)) >= 0)
          {
 
             c++;
 
-            remove_at(iFind);
+            this->remove_at(iFind);
 
          }
 
@@ -197,21 +197,21 @@ namespace collection
       const T & operator[](index nIndex) const
       {
 
-         return *base_array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
+         return *this->base_array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
 
       }
 
       T & operator[](index nIndex)
       {
 
-         return *base_array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
+         return *this->base_array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
 
       }
 
       const ::ca::smart_pointer < T > & sp_at(index nIndex) const
       {
 
-         return base_array < ::ca::smart_pointer < T > >::element_at(nIndex);
+         return this->base_array < ::ca::smart_pointer < T > >::element_at(nIndex);
 
       }
 
@@ -219,7 +219,7 @@ namespace collection
       ::ca::smart_pointer < T > & sp_at(index nIndex)
       {
 
-         return base_array < ::ca::smart_pointer < T > >::element_at(nIndex);
+         return this->base_array < ::ca::smart_pointer < T > >::element_at(nIndex);
 
       }
 
@@ -227,7 +227,7 @@ namespace collection
       T * ptr_at(index nIndex) const
       {
 
-         return sp_at(nIndex);
+         return this->sp_at(nIndex);
 
       }
 
@@ -235,15 +235,15 @@ namespace collection
       T * ptr_at(index nIndex)
       {
 
-         return sp_at(nIndex);
+         return this->sp_at(nIndex);
 
       }
 
-      
+
       T & at(index nIndex) const
       {
 
-         return *ptr_at(nIndex);
+         return *this->ptr_at(nIndex);
 
       }
 
@@ -251,14 +251,14 @@ namespace collection
       T & at(index nIndex)
       {
 
-         return *ptr_at(nIndex);
+         return *this->ptr_at(nIndex);
 
       }
 
       const ::ca::smart_pointer < T > & first_sp(index n = 0) const
       {
 
-         return base_array < ::ca::smart_pointer < T > >::first_element(n);
+         return this->base_array < ::ca::smart_pointer < T > >::first_element(n);
 
       }
 
@@ -266,15 +266,15 @@ namespace collection
       ::ca::smart_pointer < T > & first_sp(index n = 0)
       {
 
-         return base_array < ::ca::smart_pointer < T > >::first_element(n);
+         return this->base_array < ::ca::smart_pointer < T > >::first_element(n);
 
       }
 
-      
+
       T * first_ptr(index n = 0) const
       {
 
-         return first_sp(n);
+         return this->first_sp(n);
 
       }
 
@@ -282,7 +282,7 @@ namespace collection
       T * first_ptr(index n = 0)
       {
 
-         return first_sp(n);
+         return this->first_sp(n);
 
       }
 
@@ -290,7 +290,7 @@ namespace collection
       T & first(index n = 0) const
       {
 
-         return *first_ptr(n);
+         return *this->first_ptr(n);
 
       }
 
@@ -298,7 +298,7 @@ namespace collection
       T & first(index n = 0)
       {
 
-         return *first_ptr(n);
+         return *this->first_ptr(n);
 
       }
 
@@ -306,7 +306,7 @@ namespace collection
       T * last_sp(index n = 0) const
       {
 
-         return base_array < ::ca::smart_pointer < T > >::last_element(n);
+         return this->base_array < ::ca::smart_pointer < T > >::last_element(n);
 
       }
 
@@ -314,7 +314,7 @@ namespace collection
       ::ca::smart_pointer < T > & last_sp(index n = 0)
       {
 
-         return base_array < ::ca::smart_pointer < T > >::last_element(n);
+         return this->base_array < ::ca::smart_pointer < T > >::last_element(n);
 
       }
 
@@ -322,7 +322,7 @@ namespace collection
       T * last_ptr(index n = 0) const
       {
 
-         return last_sp(n);
+         return this->last_sp(n);
 
       }
 
@@ -330,7 +330,7 @@ namespace collection
       T * last_ptr(index n = 0)
       {
 
-         return last_sp(n);
+         return this->last_sp(n);
 
       }
 
@@ -346,7 +346,7 @@ namespace collection
       T & last(index n = 0)
       {
 
-         return *last_ptr(n);
+         return *this->last_ptr(n);
 
       }
 
@@ -354,7 +354,7 @@ namespace collection
       const ::ca::smart_pointer < T > & operator() (index nIndex) const
       {
 
-         return sp_at(nIndex);
+         return this->sp_at(nIndex);
 
       }
 
@@ -362,7 +362,7 @@ namespace collection
       ::ca::smart_pointer < T > & operator() (index nIndex)
       {
 
-         return sp_at(nIndex);
+         return this->sp_at(nIndex);
 
       }
 
@@ -376,7 +376,7 @@ namespace collection
 
          for(int i = 0; i < pa->get_count(); i++)
          {
-            add(pa->operator[](i));
+            this->add(pa->operator[](i));
          }
 
          return *this;
@@ -392,7 +392,7 @@ namespace collection
 
          for(int i = 0; i < pa->get_count(); i++)
          {
-            add(pa->operator[](i));
+            this->add(pa->operator[](i));
          }
 
          return *this;
@@ -407,7 +407,7 @@ namespace collection
 
          for(int i = 0; i < a.get_count(); i++)
          {
-            add(a[i]);
+            this->add(a[i]);
          }
 
          return *this;
@@ -421,7 +421,7 @@ namespace collection
 
          for(int i = 0; i < pptra->get_count(); i++)
          {
-            add(*pptra->operator[](i));
+            this->add(*pptra->operator[](i));
          }
 
          return *this;

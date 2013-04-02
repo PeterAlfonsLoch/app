@@ -176,12 +176,6 @@ namespace ca
       m_pframea                     = NULL;
 
 
-      m_pmutexGlobal                = NULL;
-      m_pmutexGlobalId              = NULL;
-
-      m_pmutexLocal                 = NULL;
-      m_pmutexLocalId               = NULL;
-
       m_nSafetyPoolSize             = 512;        // default size
 
       m_pwndMain                    = NULL;
@@ -201,8 +195,6 @@ namespace ca
       m_psignal->connect(this, &::ca::application::on_application_signal);
 
       m_eexclusiveinstance       = ::ca::ExclusiveInstanceNone;
-      m_pmutexLocal              = NULL;
-      m_pmutexGlobal             = NULL;
       m_peventReady              = NULL;
       m_pmapKeyPressed           = NULL;
       m_bLicense                 = true;
@@ -4198,7 +4190,7 @@ namespace ca
       if(oswindowCapture == NULL)
          return NULL;
 
-      return dynamic_cast < ::ca::window * > (::GetCapture().get_user_interaction()->m_pimpl)->get_capture();
+      return dynamic_cast < ::ca::window * > (::GetCapture().get_user_interaction()->m_pimpl.m_p)->get_capture();
 
 #endif
 

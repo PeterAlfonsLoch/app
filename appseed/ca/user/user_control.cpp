@@ -38,7 +38,7 @@ namespace user
       m_bCreated                 = false;
       m_edatatype                = DataTypeString;
       m_flagsfunction.unsignalize_all();
-      m_pcontrol                 = NULL;
+      m_pcontrol.release();
       m_pform                    = NULL;
       m_bSubclassed              = false;
       m_iSubItem                 = -1;

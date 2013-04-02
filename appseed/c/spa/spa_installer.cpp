@@ -185,21 +185,21 @@ namespace spa
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
       trace("another instance of spa is already running");
-      exit(-202);
+//      exit(-202);
       return -202;
       }*/
       /* }
       else
       {
       trace("error when trying to analyze if another instance of spa is already running");
-      exit(-200);
+//      exit(-200);
       return -200;
       }
       }
       else
       {
       trace("error when trying to analyze if another instance of spa is already running");
-      exit(-201);
+//      exit(-201);
       return -201;
       }*/
 
@@ -2681,7 +2681,7 @@ RetryHost:
          else
          {
             trace("main server seems to be unavailable. could not get application name");
-            exit(-1);
+/////////            exit(-1);
             return -1;
          }
          trace_add(".");
@@ -2741,7 +2741,7 @@ RetryHost:
          else
          {
             trace("main server seems to be unavailable. could not get appmatter list");
-            exit(-1);
+//            exit(-1);
             return -1;
          }
          trace_add(".");
@@ -2771,7 +2771,7 @@ RetryBuildNumber:
          if(iRetry > 10)
          {
             trace("could not get build number. exiting");
-            exit(-1);
+//            exit(-1);
             return -1;
          }
          iRetry++;
@@ -2792,7 +2792,7 @@ RetryBuildNumber:
 RetryHost:
       if(iHostRetry > 84)
       {
-         exit(-1);
+//         exit(-1);
          return -1;
       }
       else if(iHostRetry > 0)

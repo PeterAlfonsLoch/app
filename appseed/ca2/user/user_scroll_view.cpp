@@ -9,10 +9,6 @@ namespace user
       ca(papp)
    {
 
-      m_pscrollbarHorz = NULL;
-      m_pscrollbarVert = NULL;
-
-
       m_scrollinfo.m_ptScroll.x = 0;
       m_scrollinfo.m_ptScroll.y = 0;
       m_scrollinfo.m_rectMargin.left = 0;

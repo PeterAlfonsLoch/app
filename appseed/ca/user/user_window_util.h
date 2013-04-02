@@ -70,10 +70,10 @@ namespace user
       oswindow_tree(const oswindow_tree & tree);
 
       void EnumDescendants();
-      
+
       oswindow_tree & operator = (const oswindow_tree & tree);
 
-      static index compare_oswindow(oswindow_tree * ptree1, oswindow_tree * ptree2);
+      static index compare_oswindow(const oswindow_tree * ptree1, const oswindow_tree * ptree2);
 
 
    };

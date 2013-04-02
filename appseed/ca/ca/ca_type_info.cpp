@@ -11,7 +11,7 @@ string demangle (const char* name);
 
 string demangle (const char* name)
 {
-   
+
    int status = -4;
    char* res = abi::__cxa_demangle(name, 0, 0, &status);
    return (status == 0) ? res : name;
@@ -29,7 +29,6 @@ namespace ca
 
       m_id              = id;
       m_idFriendly      = idFriendly;
-      m_pfactoryitem    = NULL;
 
    }
 
@@ -37,7 +36,6 @@ namespace ca
    type_info::type_info()
    {
 
-      m_pfactoryitem = NULL;
 
    }
 
@@ -71,7 +69,6 @@ namespace ca
       m_idFriendly      = demangle(info.name());
       m_id              = info.name();
 #endif
-      m_pfactoryitem    = NULL;
 
    }
 
@@ -81,7 +78,6 @@ namespace ca
 
       m_id              = strName;
       m_idFriendly      = strFriendlyName;
-      m_pfactoryitem    = NULL;
 
    }
 
@@ -112,8 +108,8 @@ namespace ca
       m_idFriendly      = demangle(info.name());
       m_id              = info.name();
 #endif
-      m_pfactoryitem    = NULL;
-      m_spmutex         = ::ca::null();
+      m_pfactoryitem.release();
+      m_spmutex.release();
 
       return *this;
 
@@ -193,11 +189,11 @@ namespace ca
 
    const char * type_info::friendly_name() const
    {
-      
+
       return m_idFriendly;
-      
+
    }
-   
+
 
    ptra * type_info::new_ptra()
    {
@@ -214,7 +210,7 @@ CLASS_DECL_ca bool operator == (const std_type_info & info1, const ::ca::type_in
 {
 
 #ifdef WINDOWS
-   
+
    return strcmp(info1.raw_name(), info2.name()) == 0;
 
 #else

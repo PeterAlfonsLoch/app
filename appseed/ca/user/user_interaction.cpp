@@ -11,7 +11,6 @@ namespace user
 
       m_pmutex                = NULL;
       m_eappearance           = appearance_normal;
-      m_pimpl                 = NULL;
       m_bCursorInside         = false;
       m_nFlags                = 0;
       m_pguieOwner            = NULL;
@@ -37,7 +36,6 @@ namespace user
 
       m_pmutex                      = NULL;
       m_eappearance                 = appearance_normal;
-      m_pimpl                       = NULL;
       m_bCursorInside               = false;
       m_nFlags                      = 0;
       m_pguieOwner                  = NULL;
@@ -1337,7 +1335,7 @@ namespace user
       if(!m_pimpl->create(pparent, id))
       {
          delete m_pimpl;
-         m_pimpl = NULL;
+         m_pimpl.release();
          return false;
       }
       //install_message_handling(this);
@@ -1433,7 +1431,7 @@ namespace user
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
          {
-            m_pimpl = NULL;
+            m_pimpl.release();
             delete pimplNew;
             pimplNew = NULL;
          }
@@ -1494,7 +1492,7 @@ namespace user
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
          delete m_pimpl;
-         m_pimpl = NULL;
+         m_pimpl.release();
          return false;
       }
       //install_message_handling(this);
@@ -1522,7 +1520,7 @@ namespace user
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
          {
             delete m_pimpl;
-            m_pimpl = NULL;
+            m_pimpl.release();
             return false;
          }
          //install_message_handling(this);
@@ -1540,7 +1538,7 @@ namespace user
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
          {
             delete m_pimpl;
-            m_pimpl = NULL;
+            m_pimpl.release();
             return false;
          }
          //install_message_handling(this);

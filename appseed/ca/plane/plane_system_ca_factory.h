@@ -1,5 +1,7 @@
 #pragma once
 
+namespace ca
+{
 
 template < class T >
 void factory::creatable(int32_t iCount, bool bOverwrite)
@@ -36,3 +38,7 @@ factory_allocator * factory::get_allocator(int32_t iCount)
    return pallocator;
 
 }
+
+
+} // namespace ca
+

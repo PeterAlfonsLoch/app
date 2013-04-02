@@ -49,7 +49,6 @@ namespace plane
       ::plane::application::m_dir.set_app(this);
 
       m_bDoNotExitIfNoApplications              = true;
-      m_plog                     = NULL;
 
       m_phistory = NULL;
 
@@ -97,7 +96,7 @@ namespace plane
       use_base_ca2_allocator();
 
 
-      m_pfactory = new class factory(this);
+      m_pfactory = new class ::ca::factory(this);
       m_pfactory->set_app(this);
 
       m_pfactory->cloneable_large < ::ca::create_context > ();
@@ -153,24 +152,12 @@ namespace plane
 
    }
 
+
    system::~system()
    {
 
-#ifdef WINDOWS
-
-      //m_gdiplusStartupOutput.NotificationUnhook(m_gdiplusHookToken);
-
-      //Gdiplus::GdiplusShutdown(m_gdiplusToken);
-
-#endif
-
-      m_puiMain      = NULL;
-      m_puiActive    = NULL;
-
-
-      m_pfactory.release();
-
    }
+
 
    bool system::InitApplication()
    {
@@ -689,7 +676,7 @@ namespace plane
 
             m_pfactory->enable_simple_factory_request(false);
 
-            m_pfactory = NULL;
+            m_pfactory.release();
 
          }
 
@@ -879,7 +866,7 @@ namespace plane
       return *m_plog;
    }
 
-   factory & system::factory()
+   ::ca::factory & system::factory()
    {
       return *m_pfactory;
    }

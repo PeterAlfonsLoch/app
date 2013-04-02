@@ -36,7 +36,7 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
 /*Display *dpy = XOpenDisplay ( 0 ); // open default display
     if ( !dpy ) {
         qWarning ( "Cannot connect to the X server" );
-        exit ( 1 );
+        //exit ( 1 );
     }
 
 /**code for argb visual*/

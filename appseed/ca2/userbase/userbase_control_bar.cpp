@@ -300,7 +300,7 @@ namespace userbase
          ti.cbSize = sizeof(__OLDTOOLINFO);
       }
 #else
-      throw todo(get_app());
+//      throw todo(get_app());
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode

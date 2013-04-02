@@ -117,7 +117,6 @@ namespace ca
       m_pthread = this;
 
       m_pappDelete      = NULL;
-      m_puiMain         = NULL;
       m_pbReady         = NULL;
       m_bReady          = false;
 /*      m_ptimera = NULL;
@@ -578,7 +577,7 @@ namespace ca
 
       try
       {
-         
+
          if(m_p == NULL)
             return false;
 

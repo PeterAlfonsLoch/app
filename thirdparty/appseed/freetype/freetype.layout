@@ -25,4 +25,7 @@
 	<File name="src/lzw/ftlzw.c" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="src/tools/ftrandom/ftrandom.c" open="0" top="0" tabpos="59">
+		<Cursor position="15458" topLine="607" />
+	</File>
 </CodeBlocks_layout_file>

@@ -2048,7 +2048,7 @@ namespace user
             else if(pdrawitem->m_pcolumnSubItemRect->m_pil != NULL)
             {
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) ||  defined(LINUX)
 
                ::image_list::info ii;
 
@@ -2948,7 +2948,7 @@ namespace user
 
    index list_column_array::add(list_column &column)
    {
-      
+
       column.m_iKey = this->get_size();
       column.m_iOrder = this->get_size();
       column.m_pcontainer = this;
@@ -3633,7 +3633,7 @@ namespace user
       }
       else if(ptimer->m_nIDEvent == 12321)
       {
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
          KillTimer(ptimer->m_nIDEvent);
          index iItemSel;
          index iSubItemSel;
@@ -3649,10 +3649,10 @@ namespace user
                {
                   m_iSubItemEnter = -1;
                   m_iItemEnter = -1;
-                  bool bLShiftKeyDown     = (GetAsyncKeyState (VK_LSHIFT)      >> ((sizeof(SHORT) * 8) - 1)) != 0;
-                  bool bRShiftKeyDown     = (GetAsyncKeyState (VK_RSHIFT)      >> ((sizeof(SHORT) * 8) - 1)) != 0;
-                  bool bLControlKeyDown   = (GetAsyncKeyState (VK_LCONTROL)    >> ((sizeof(SHORT) * 8) - 1)) != 0;
-                  bool bRControlKeyDown   = (GetAsyncKeyState (VK_RCONTROL)    >> ((sizeof(SHORT) * 8) - 1)) != 0;
+                  bool bLShiftKeyDown     = Application.is_key_pressed(::user::key_lshift);
+                  bool bRShiftKeyDown     = Application.is_key_pressed(::user::key_rshift);
+                  bool bLControlKeyDown   = Application.is_key_pressed(::user::key_lcontrol);
+                  bool bRControlKeyDown   = Application.is_key_pressed(::user::key_rcontrol);
                   bool bShiftKeyDown      = bLShiftKeyDown     || bRShiftKeyDown;
                   bool bControlKeyDown    = bLControlKeyDown   || bRControlKeyDown;
 

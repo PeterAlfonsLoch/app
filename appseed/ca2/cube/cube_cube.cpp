@@ -10,6 +10,7 @@
 namespace cube
 {
 
+
    cube::cube()
    {
 
@@ -22,13 +23,12 @@ namespace cube
 
    }
 
+
    cube::~cube()
    {
-      m_puiMain      = NULL;
-      m_puiActive    = NULL;
-
 
    }
+
 
    bool cube::InitApplication()
    {

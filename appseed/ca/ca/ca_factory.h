@@ -28,7 +28,7 @@ public:
    {
       m_iAllocCount = 0;
    }
-   
+
    virtual ~factory_allocator() {}
 
    inline void * alloc()
@@ -113,7 +113,7 @@ public:
 
    virtual ::ca::ca * create(::ca::application * papp)
    {
-      
+
       if(m_pallocator == NULL)
          return NULL;
 
@@ -157,6 +157,10 @@ public:
    }
 
 };
+
+
+namespace ca
+{
 
 class CLASS_DECL_ca factory :
    virtual public ::ca::object
@@ -275,4 +279,6 @@ private:
 
 
 
+
+} // namespace ca
 

@@ -66,7 +66,7 @@ namespace user
 
             delete pdescriptor->m_pcontrol;
 
-            pdescriptor->m_pcontrol = NULL;
+            pdescriptor->m_pcontrol.release();
 
          }
 

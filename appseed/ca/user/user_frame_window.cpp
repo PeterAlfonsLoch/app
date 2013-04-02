@@ -79,7 +79,6 @@ frame_window::frame_window()
    //m_nIDHelp = 0;
    m_nIDTracking = 0;
    m_nIDLastMessage = 0;
-   m_pViewActive = NULL;
 
    m_cModalStack = 0;              // initialize modality support
    m_hMenuAlt = NULL;
@@ -1208,7 +1207,7 @@ void frame_window::SetActiveView(::view * pViewNew, bool bNotify)
    if (pViewNew == pViewOld)
       return;     // do not re-activate if SetActiveView called more than once
 
-   m_pViewActive = NULL;   // no active for the following processing
+   m_pViewActive.release();   // no active for the following processing
 
    // deactivate the old one
    if (pViewOld != NULL)

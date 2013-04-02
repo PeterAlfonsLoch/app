@@ -13,7 +13,6 @@ namespace user
 
       m_iSel                  = -1;
       m_bCaseSensitiveMatch   = false;
-      m_plist                 = NULL;
       m_typeComboList         = typeid(simple_combo_list);
       m_estyle                = style_simply;
       m_bEdit                 = true;
@@ -187,9 +186,9 @@ namespace user
 #ifdef WINDOWSEX
 
       int32_t iMargin = rectClient.height() / 8;
-      
+
       rect r = rectDropDown;
-      
+
       int32_t i = 0;
 
       int32_t iColorRate;
@@ -673,7 +672,7 @@ namespace user
 
             m_plist->PostMessage(WM_CLOSE, 0, 0);
 
-            m_plist = NULL;
+            m_plist.release();
 
          }
 

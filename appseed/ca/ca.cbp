@@ -414,6 +414,7 @@
 		<Unit filename="ca/ca_size_count_writer.h" />
 		<Unit filename="ca/ca_smart_pointer.cpp" />
 		<Unit filename="ca/ca_smart_pointer.h" />
+		<Unit filename="ca/ca_smart_pointer_query.h" />
 		<Unit filename="ca/ca_sockets_address.h" />
 		<Unit filename="ca/ca_std_pair.h" />
 		<Unit filename="ca/ca_str.cpp" />
@@ -514,14 +515,10 @@
 		<Unit filename="collection/collection_array.cpp" />
 		<Unit filename="collection/collection_array.h" />
 		<Unit filename="collection/collection_array_app_alloc.h" />
-		<Unit filename="collection/collection_array_app_copy.cpp" />
 		<Unit filename="collection/collection_array_del_ptr.h" />
 		<Unit filename="collection/collection_array_parent_alloc.h" />
-		<Unit filename="collection/collection_array_ptr.cpp" />
 		<Unit filename="collection/collection_array_ptr.h" />
-		<Unit filename="collection/collection_array_ptr_alloc.cpp" />
 		<Unit filename="collection/collection_array_ptr_alloc.h" />
-		<Unit filename="collection/collection_array_ptr_copy.cpp" />
 		<Unit filename="collection/collection_array_ptr_copy.h" />
 		<Unit filename="collection/collection_array_release_ptr.h" />
 		<Unit filename="collection/collection_array_smart_ptr.h" />
@@ -550,6 +547,7 @@
 		<Unit filename="collection/collection_logic_array.h" />
 		<Unit filename="collection/collection_map.h" />
 		<Unit filename="collection/collection_map_misc.cpp" />
+		<Unit filename="collection/collection_map_to_smart_pointer.h" />
 		<Unit filename="collection/collection_numeric_array.cpp" />
 		<Unit filename="collection/collection_numeric_array.h" />
 		<Unit filename="collection/collection_object_list.cpp" />
@@ -570,6 +568,7 @@
 		<Unit filename="collection/collection_simple_pointer_array.h" />
 		<Unit filename="collection/collection_simple_template.h" />
 		<Unit filename="collection/collection_simple_typed_pointer_array.h" />
+		<Unit filename="collection/collection_smart_pointer_array.h" />
 		<Unit filename="collection/collection_sort.cpp" />
 		<Unit filename="collection/collection_sort.h" />
 		<Unit filename="collection/collection_sort_array.h" />
@@ -1281,8 +1280,9 @@
 		<Unit filename="plane/plane_system.cpp" />
 		<Unit filename="plane/plane_system.h" />
 		<Unit filename="plane/plane_system_allocate.h" />
+		<Unit filename="plane/plane_system_ca_factory.h" />
+		<Unit filename="plane/plane_system_ca_str.h" />
 		<Unit filename="plane/plane_system_ca_template.h" />
-		<Unit filename="plane/plane_system_gen_str.h" />
 		<Unit filename="plane/plane_system_primitive_string_format_spec.h" />
 		<Unit filename="plane/plane_system_primitive_var.h" />
 		<Unit filename="plane/plane_system_radix_factory.h" />

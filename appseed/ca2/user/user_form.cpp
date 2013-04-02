@@ -57,7 +57,7 @@ namespace ca
             {
                pdescriptor->m_bCreated = false;
                delete pdescriptor->m_pcontrol;
-               pdescriptor->m_pcontrol = NULL;
+               pdescriptor->m_pcontrol.release();
             }
             if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol.m_p) != NULL)
             {

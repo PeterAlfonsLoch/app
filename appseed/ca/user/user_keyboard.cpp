@@ -76,8 +76,6 @@ namespace user
      System.set_enum_name(key_hyphen, "key_hyphen");
 
 
-      m_playout = NULL;
-
    }
 
 
