@@ -2386,10 +2386,10 @@ namespace ca
 
       TRACE("An unexpected error has occurred and no special exception handling is available.");
 
-      ::not_installed & notinstalled = dynamic_cast < ::not_installed & > (e);
-
-      if(&notinstalled != NULL)
+      if(typeid(e) == typeid(not_installed))
       {
+
+         not_installed & notinstalled = dynamic_cast < not_installed & > (e);
 
          if(::is_debugger_attached())
          {
