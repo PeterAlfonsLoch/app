@@ -12,8 +12,8 @@ public:
    bool                       m_bEnabled;
    ::ca::font_sp              m_spfont;
    bool                       m_bCreate;
-   ph(::user::interaction)    m_pparent;
-   ph(::user::interaction)    m_pguieMessage;
+   sp(::user::interaction)    m_pparent;
+   sp(::user::interaction)    m_pguieMessage;
 
 
    virtual_user_interface();

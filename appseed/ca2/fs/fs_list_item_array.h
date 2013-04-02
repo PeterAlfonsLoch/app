@@ -11,7 +11,7 @@ namespace fs
    protected:
 
       class CLASS_DECL_ca2 base_list_item_array :
-         public class_sort_array < base_list_item_array, list_item, const list_item &, ::ca::smart_pointer_array < list_item > >
+         public class_sort_array < base_list_item_array, list_item, const list_item &, ::collection::smart_pointer_array < list_item > >
       {
       public:
          list_item & get_item(index i);

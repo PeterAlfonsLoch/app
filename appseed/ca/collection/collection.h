@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "collection_base_array.h"
+#include "collection_smart_pointer_array.h"
+
+
 #include "collection_raw_array.h"
 #include "collection_comparable_eq_array.h"
 #include "collection_comparable_array.h"
@@ -28,6 +32,7 @@
 
 
 #include "collection_map.h"
+#include "collection_map_to_smart_pointer.h"
 #include "collection_fifo_map.h"
 #include "collection_sort_map.h"
 

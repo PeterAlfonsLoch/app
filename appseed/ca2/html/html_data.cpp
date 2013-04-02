@@ -122,7 +122,7 @@ namespace html
       font.m_strTextDecoration.trim();
       for(int32_t i = 0; i < m_fonta.get_count(); i++)
       {
-         if(*m_fonta[i] == font)
+         if(m_fonta[i] == font)
             return i;
       }
       class font * pfont = new class font(font);
@@ -300,7 +300,7 @@ namespace html
       }
       for(int32_t i = 0; i < m_imagea.get_size(); i++)
       {
-         if(m_imagea[i]->m_strPath == strUrl)
+         if(m_imagea[i].m_strPath == strUrl)
             return i;
       }
       image * pimage = m_imagea.add_new();

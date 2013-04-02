@@ -3,7 +3,7 @@
 /*
 template < class MANAGED > 
 class PointerManager :
-   public pha(MANAGED)
+   public spa(MANAGED)
 {
 public:
    PointerManager(MANAGED * pmanaged = NULL, bool bAutoDelete = false);

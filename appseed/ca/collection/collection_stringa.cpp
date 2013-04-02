@@ -989,56 +989,53 @@ string stringa::pop(index i)
    return strRet;
 }
 
-void stringa::slice(stringa & stra, index iOffset)
-{
-   slice(stra, iOffset, this->get_count() - 1 - iOffset);
-}
-
 void stringa::slice(stringa & stra, index iOffset, count count)
 {
-   index iUpperBound = get_upper_bound(iOffset, count);
-   for(index i = get_lower_bound(iOffset); i <= iUpperBound; i++)
+
+   index iEnd;
+
+   if(count < 0)
+      iEnd = get_upper_bound(count);
+   else
+      iEnd = iOffset + count - 1;
+
+   for(index i = iOffset; i <= iEnd; i++)
    {
       stra.add(this->element_at(i));
    }
+
 }
 
 void stringa::remove(index iOffset, count count)
 {
-   index iLowerBound = get_lower_bound(iOffset);
-   index iUpperBound = get_upper_bound(iOffset, count);
-   if(iUpperBound < 0)
-      return;
-   for(index i = iUpperBound; i >= iLowerBound; i--)
+   for(index i = iOffset + count - 1; i >= iOffset; i--)
    {
       remove_at(i);
    }
 }
 
-void stringa::splice(const stringa & stra, index iOffset)
-{
-   splice(stra, iOffset, this->get_count() - 1 - iOffset);
-}
 
 void stringa::splice(const stringa & stra, index iOffset, count count)
 {
-   UNREFERENCED_PARAMETER(iOffset);
-   //index iUpperBound = get_upper_bound(iOffset, count);
+
    remove(iOffset, count);
+
    insert_at(iOffset, stra);
+
 }
 
-void stringa::splice(const stringa & stra, index iOffset, stringa & straRemoved)
-{
-   splice(stra, iOffset, this->get_count() - 1 - iOffset, straRemoved);
-}
 
-void stringa::splice(const stringa & stra, index iOffset, count count, stringa & straRemoved)
+void stringa::splice(const stringa & stra, index iOffset, stringa & straRemoved, ::count count)
 {
+
    slice(straRemoved, iOffset, count);
+
    remove(iOffset, count);
+
    insert_at(iOffset, stra);
+
 }
+
 
 bool stringa::is_empty(count countMinimum)
 {

@@ -1627,8 +1627,8 @@ finishedCa2ModuleFolder:;
 
    bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
    {
-      count len = strlen(pszHex);
-      count count = (len + 1) / 2;
+      ::count len = strlen(pszHex);
+      ::count count = (len + 1) / 2;
       memory.allocate(count);
       index i = 0;
       byte b;
@@ -1692,7 +1692,7 @@ finishedCa2ModuleFolder:;
 
    void application::memory_to_hex(string & strHex, primitive::memory & memory)
    {
-      count count = memory.get_size();
+      ::count count = memory.get_size();
       LPSTR lpsz = strHex.GetBufferSetLength(count * 2);
       for(index i = 0; i < count; i++)
       {

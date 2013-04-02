@@ -38,12 +38,18 @@ namespace userbase
          virtual public ::ca::ca
       {
       public:
-         Pane();
+         
+         
          id                      m_id;
          rect                    m_rect;
          size                    m_sizeFixed;
          bool                    m_bFixedSize;
          user::place_holder *    m_pholder;
+
+
+         Pane(::ca::application * papp);
+
+
       };
 
 

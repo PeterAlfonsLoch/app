@@ -220,7 +220,7 @@ namespace n7z
 
    static int32_t CompareEmptyItems(const int32_t *p1, const int32_t *p2, void *param)
    {
-      const ::ca::smart_pointer_array<CUpdateItem> &updateItems = *(const ::ca::smart_pointer_array<CUpdateItem> *)param;
+      const ::collection::smart_pointer_array<CUpdateItem> &updateItems = *(const ::collection::smart_pointer_array<CUpdateItem> *)param;
       const CUpdateItem &u1 = updateItems[*p1];
       const CUpdateItem &u2 = updateItems[*p2];
       if (u1.IsDir != u2.IsDir)
@@ -543,7 +543,7 @@ namespace n7z
       _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream.m_p : NULL);
       _crcStreamSpec->Init(true);
       _fileIsOpen = true;
-      _rem = _db->Files[_startIndex + _currentIndex]->get_count;
+      _rem = _db->Files[_startIndex + _currentIndex].get_count;
    }
 
    void CFolderOutStream2::CloseFile()
@@ -562,7 +562,7 @@ namespace n7z
 
    HRESULT CFolderOutStream2::ProcessEmptyFiles()
    {
-      while (_currentIndex < _extractStatuses->get_count() && _db->Files[_startIndex + _currentIndex]->get_count == 0)
+      while (_currentIndex < _extractStatuses->get_count() && _db->Files[_startIndex + _currentIndex].get_count == 0)
       {
          OpenFile();
          RINOK(CloseFileAndSetResult());
@@ -689,7 +689,7 @@ namespace n7z
    {
       for (int32_t i = 0; i < f.Coders.get_count(); i++)
       {
-         ::libcompress::method_id m = f.Coders[i]->MethodID;
+         ::libcompress::method_id m = f.Coders[i].MethodID;
          if (m == k_BCJ || m == k_BCJ2)
             return true;
       }
@@ -730,7 +730,7 @@ namespace n7z
       const base_array < ::libcompress::codec_info_ex > * externalCodecs,
       ::ca::byte_input_stream * inStream,
       const CArchiveDatabaseEx * db,
-      const ::ca::smart_pointer_array < CUpdateItem > & updateItems,
+      const ::collection::smart_pointer_array < CUpdateItem > & updateItems,
       COutArchive & archive,
       CArchiveDatabase & newDatabase,
       ::ca::writer * seqOutStream,
@@ -771,7 +771,7 @@ namespace n7z
 
          for (i = 0; i < updateItems.get_count(); i++)
          {
-            int32_t index = updateItems[i]->IndexInArchive;
+            int32_t index = updateItems[i].IndexInArchive;
             if (index != -1)
                fileIndexToUpdateIndexMap[index] = i;
          }
@@ -789,7 +789,7 @@ namespace n7z
                {
                   indexInFolder++;
                   int32_t updateIndex = fileIndexToUpdateIndexMap[fi];
-                  if (updateIndex >= 0 && !updateItems[updateIndex]->NewData)
+                  if (updateIndex >= 0 && !updateItems[updateIndex].NewData)
                   {
                      numCopyItems++;
                      repackSize += file.get_count;
@@ -861,7 +861,7 @@ namespace n7z
          //RINOK(threadDecoder.Create());
       }
 
-      ::ca::smart_pointer_array<CSolidGroup> groups;
+      ::collection::smart_pointer_array<CSolidGroup> groups;
       for (i = 0; i < kNumGroupsMax; i++)
          groups.add(CSolidGroup());
 
@@ -895,7 +895,7 @@ namespace n7z
 
             }
 
-            groups[GetGroupIndex(method.PasswordIsDefined, filteredGroup)]->Indices.add(i);
+            groups[GetGroupIndex(method.PasswordIsDefined, filteredGroup)].Indices.add(i);
 
          }
 
@@ -990,9 +990,9 @@ namespace n7z
             {
                ::ca::stream_binder sb(codecsInfo->get_app());
                RINOK(sb.CreateEvents());
-               ::ca::smart_pointer < ::ca::writer > sbOutStream;
-               ::ca::smart_pointer < ::ca::reader > sbInStream;
-               sb.CreateStreams(&sbInStream.m_p,&sbOutStream.m_p);
+               sp(::ca::writer) sbOutStream;
+               sp(::ca::reader) sbInStream;
+               sb.CreateStreams(sbInStream, sbOutStream);
                bool_array extractStatuses;
 
                CNum numUnpackStreams = db->NumUnpackStreamsVector[folderIndex];
@@ -1001,11 +1001,11 @@ namespace n7z
                for (CNum fi = db->FolderStartFileIndex[folderIndex]; indexInFolder < numUnpackStreams; fi++)
                {
                   bool needExtract = false;
-                  if (db->Files[fi]->HasStream)
+                  if (db->Files[fi].HasStream)
                   {
                      indexInFolder++;
                      int32_t updateIndex = fileIndexToUpdateIndexMap[fi];
-                     if (updateIndex >= 0 && !updateItems[updateIndex]->NewData)
+                     if (updateIndex >= 0 && !updateItems[updateIndex].NewData)
                         needExtract = true;
                   }
                   extractStatuses.add(needExtract);
@@ -1015,7 +1015,7 @@ namespace n7z
                ::ca::release(sbOutStream.m_p);
 
                threadDecoder.InStream = inStream;
-               threadDecoder.Folder = db->Folders[folderIndex];
+               threadDecoder.Folder = db->Folders(folderIndex);
                threadDecoder.StartPos = db->GetFolderStreamPos(folderIndex, 0);
                threadDecoder.PackSizes = &db->PackSizes[db->FolderStartPackStreamIndex[folderIndex]];
 
@@ -1080,7 +1080,7 @@ namespace n7z
          count numFiles = group.Indices.get_count();
          if (numFiles == 0)
             continue;
-         ::ca::smart_pointer_array<CRefItem> refItems;
+         ::collection::smart_pointer_array<CRefItem> refItems;
          //refItems.set_size(0, numFiles);
          bool sortByType = (numSolidFiles > 1);
          for (i = 0; i < numFiles; i++)
@@ -1093,7 +1093,7 @@ namespace n7z
 
          for (i = 0; i < numFiles; i++)
          {
-            ::index index = refItems[i]->Index;
+            ::index index = refItems[i].Index;
             indices.add((const uint32_t) index);
             /*
             const CUpdateItem &ui = updateItems[index];
@@ -1221,7 +1221,7 @@ namespace n7z
                if (ui.HasStream())
                   continue;
             }
-            else if (ui.IndexInArchive != -1 && db->Files[ui.IndexInArchive]->HasStream)
+            else if (ui.IndexInArchive != -1 && db->Files[ui.IndexInArchive].HasStream)
                continue;
             emptyRefs.add(i);
          }

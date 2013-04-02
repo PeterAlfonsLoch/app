@@ -166,11 +166,11 @@ namespace user
          return m_pimpl->get_parent();
    }
 
-   void interaction::set_timer(::ca::smart_pointer_array < timer_item > timera)
+   void interaction::set_timer(::collection::smart_pointer_array < timer_item > timera)
    {
       for(int32_t i = 0; i < timera.get_count(); i++)
       {
-         SetTimer(timera[i]->m_uiId, timera[i]->m_uiElapse, NULL);
+         SetTimer(timera[i].m_uiId, timera[i].m_uiElapse, NULL);
       }
    }
 
@@ -209,7 +209,7 @@ namespace user
             {
                iStyle &= ~WS_VISIBLE;
             }
-            ::ca::smart_pointer_array < timer_item > timera;
+            ::collection::smart_pointer_array < timer_item > timera;
             if(pimplOld->m_pthread != NULL
             && pimplOld->m_pthread->m_pthread->m_p != NULL
             && pimplOld->m_pthread->m_pthread->m_p->m_ptimera != NULL)
@@ -1289,7 +1289,7 @@ namespace user
    oswindow interaction::unsubclass_window()
    {
 
-      ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl->m_p);
+      ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl.m_p);
 
       if(pwindow != NULL)
       {
@@ -1639,7 +1639,7 @@ namespace user
          {
             if(piLevel  != NULL)
                (*piLevel)++;
-            return m_uiptraChild[0];
+            return m_uiptraChild(0);
          }
       }
       if(get_parent() == NULL)
@@ -1648,24 +1648,27 @@ namespace user
          return NULL;
       }
 
-      index iFind = get_parent()->m_uiptraChild.find(this);
+      index iFind = get_parent()->m_uiptraChild.find_first(this);
 
       if(iFind < 0)
-      {
          throw "not expected situation";
-      }
+
       if(iFind < get_parent()->m_uiptraChild.get_upper_bound())
       {
-         return get_parent()->m_uiptraChild[iFind + 1];
+         return get_parent()->m_uiptraChild(iFind + 1);
       }
+
       if(get_parent()->get_parent() == NULL)
       {
          // todo, reached desktop or similar very top system window
          return NULL;
       }
+
       if(piLevel != NULL)
          (*piLevel)--;
+
       return get_parent()->get_parent()->get_next(true, piLevel);
+
    }
 
    interaction * interaction::GetTopWindow()
@@ -2638,7 +2641,7 @@ ExitModal:
 
          single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_pthread->m_mutex, TRUE);
 
-         pguieParent->m_uiptraChild.add(m_pguie);
+         pguieParent->m_uiptraChild.add_unique(m_pguie);
 
       }
 
@@ -2792,12 +2795,12 @@ ExitModal:
       else
       {
 
-         timer_item item;
+         sp(timer_item) item(new timer_item);
 
-         item.m_pguie = pguie;
-         item.m_uiId = uiId;
-         item.m_uiElapse = uiElapse;
-         item.m_uiLastSent = ::get_tick_count();
+         item->m_pguie = pguie;
+         item->m_uiId = uiId;
+         item->m_uiElapse = uiElapse;
+         item->m_uiLastSent = ::get_tick_count();
 
          return (UINT) m_timera.add(item);
 
@@ -2919,7 +2922,7 @@ ExitModal:
       return false;
    }
 
-   void interaction::timer_array::detach(::ca::smart_pointer_array < timer_item > & timera, interaction * pguie)
+   void interaction::timer_array::detach(::collection::smart_pointer_array < timer_item > & timera, interaction * pguie)
    {
 
 
@@ -2949,7 +2952,7 @@ ExitModal:
 
       single_lock sl(&m_mutex, TRUE);
 
-      ::ca::smart_pointer_array < timer_item > timera;
+      ::collection::smart_pointer_array < timer_item > timera;
       detach(timera, pguie);
       pwindow->set_timer(timera);
 
@@ -3066,20 +3069,20 @@ ExitModal:
       }
       if(pui == NULL)
          return NULL;
-      index i = pui->m_uiptraChild.find(this);
+      index i = pui->m_uiptraChild.find_first(this);
       if(i < 0)
          return NULL;
       i++;
       if(i >= pui->m_uiptraChild.get_count())
          return NULL;
       else
-         return pui->m_uiptraChild[i];
+         return pui->m_uiptraChild(i);
    }
 
    interaction * interaction::under_sibling(interaction * pui)
    {
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
-      index i = m_uiptraChild.find(pui);
+      index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
       i++;
@@ -3090,7 +3093,7 @@ ExitModal:
       {
          try
          {
-            return m_uiptraChild[i];
+            return m_uiptraChild(i);
          }
          catch(...)
          {
@@ -3114,14 +3117,14 @@ ExitModal:
       }
       if(pui == NULL)
          return NULL;
-      index i = pui->m_uiptraChild.find(this);
+      index i = pui->m_uiptraChild.find_first(this);
       if(i < 0)
          return NULL;
       i--;
       if(i < 0)
          return NULL;
       else
-         return pui->m_uiptraChild[i];
+         return pui->m_uiptraChild(i);
    }
 
 
@@ -3137,7 +3140,7 @@ ExitModal:
    interaction * interaction::above_sibling(interaction * pui)
    {
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
-      index i = m_uiptraChild.find(pui);
+      index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
 restart:
@@ -3148,7 +3151,7 @@ restart:
       {
          try
          {
-            return m_uiptraChild[i];
+            return m_uiptraChild(i);
          }
          catch(...)
          {
@@ -3187,7 +3190,7 @@ restart:
    {
       if(m_pimpl != NULL)
       {
-         ::ca::window * pwnd = dynamic_cast < ::ca::window * > (m_pimpl);
+         ::ca::window * pwnd = dynamic_cast < ::ca::window * > (m_pimpl.m_p);
          if(pwnd != NULL)
             return pwnd;
       }

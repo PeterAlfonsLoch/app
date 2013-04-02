@@ -401,13 +401,13 @@ void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
       m_dialogbar.ShowWindow(nShow);*/
 
 
-      POSITION pos = m_toolbarmap.m_keymap.get_start_position();
+      POSITION pos = m_toolbarmap.get_start_position();
 
       id idKey;
-      ::user::interaction * pbar;
+      sp(::user::interaction) pbar;
       while(pos != NULL)
       {
-          m_toolbarmap.m_keymap.get_next_assoc(pos, idKey, pbar);
+          m_toolbarmap.get_next_assoc(pos, idKey, pbar);
           try
           {
              pbar->ShowWindow(nShow);

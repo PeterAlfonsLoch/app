@@ -416,7 +416,7 @@ namespace userbase
       if(pcreatordata->m_pwnd != NULL)
          return pcreatordata->m_pwnd;
       if(pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraHold.get_count() == 1)
-         return pcreatordata->m_pholder->m_uiptraHold[0];
+         return pcreatordata->m_pholder->m_uiptraHold(0);
       return NULL;
    }
 

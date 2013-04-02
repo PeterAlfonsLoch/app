@@ -21,7 +21,8 @@ namespace user
 
    place_holder *place_holder_container::get_new_place_holder()
    {
-      if(!m_holdera.add_new())
+      m_holdera.add(new place_holder(get_app()));
+      if(m_holdera.last_element().is_null())
          return NULL;
       if(!m_holdera.last_element()->create(this, m_holdera.get_upper_bound()))
       {
@@ -53,9 +54,9 @@ namespace user
    {
       for(int32_t i = 0; i < m_holdera.get_count(); i++)
       {
-         if(m_holdera[i]->is_holding(pui))
+         if(m_holdera[i].is_holding(pui))
          {
-            if(on_unhold(pui, m_holdera[i]))
+            if(on_unhold(pui, m_holdera(i)))
             {
                m_holdera.remove_at(i);
                return true;

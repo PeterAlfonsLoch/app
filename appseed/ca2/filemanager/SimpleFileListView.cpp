@@ -170,7 +170,7 @@ namespace filemanager
                {
                   if(GetFileManager()->get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)
                   {
-                     GetFileManager()->get_filemanager_data()->m_pholderFileList->m_uiptraHold[0]->ShowWindow(SW_HIDE);
+                     GetFileManager()->get_filemanager_data()->m_pholderFileList->m_uiptraHold[0].ShowWindow(SW_HIDE);
                   }
                   GetFileManager()->get_filemanager_data()->m_pholderFileList->hold(this);
                   GetFileManager()->get_filemanager_data()->m_pholderFileList->layout();
@@ -735,7 +735,7 @@ namespace filemanager
       }
       for(int32_t i = 1; i < itema.get_size(); i++)
       {
-         str += "|" + itema[i].m_strPath;
+         str += "|" + itema[i]->m_strPath;
       }
       System.m_strCopy = str;
    */

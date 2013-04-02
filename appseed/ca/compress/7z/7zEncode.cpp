@@ -160,9 +160,9 @@ namespace n7z
       _mixerCoderSpec->ReInit();
       // _mixerCoderSpec->SetCoderInfo(0, NULL, NULL, progress);
 
-      ::ca::smart_pointer_array < ::ca::temp_io_buffer > inOutTempBuffers;
-      ::ca::smart_pointer_array < ::ca::temp_io_writer > tempBufferSpecs;
-      ::ca::smart_pointer_array < ::ca::writer > tempBuffers;
+      ::collection::smart_pointer_array < ::ca::temp_io_buffer > inOutTempBuffers;
+      ::collection::smart_pointer_array < ::ca::temp_io_writer > tempBufferSpecs;
+      ::collection::smart_pointer_array < ::ca::writer > tempBuffers;
       count numMethods = _bindInfo.Coders.get_count();
       index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
@@ -175,7 +175,7 @@ namespace n7z
       {
          ::ca::temp_io_writer *tempBufferSpec = new ::ca::temp_io_writer;
          ::ca::smart_pointer < ::ca::writer > tempBuffer = tempBufferSpec;
-         tempBufferSpec->Init(inOutTempBuffers[i - 1]);
+         tempBufferSpec->Init(inOutTempBuffers(i - 1));
          tempBuffers.add(tempBuffer);
          tempBufferSpecs.add(tempBufferSpec);
       }
@@ -204,20 +204,20 @@ namespace n7z
       // RINOK(stream->Seek(0, STREAM_SEEK_CUR, &outStreamStartPos));
 
       ::libcompress::size_count_reader2 * inStreamSizeCountSpec = new ::libcompress::size_count_reader2;
-      ::ca::smart_pointer < ::ca::reader > inStreamSizeCount = inStreamSizeCountSpec;
+      sp(::ca::reader) inStreamSizeCount = inStreamSizeCountSpec;
       ::ca::size_count_writer * outStreamSizeCountSpec = new ::ca::size_count_writer;
-      ::ca::smart_pointer < ::ca::writer > outStreamSizeCount = outStreamSizeCountSpec;
+      sp(::ca::writer) outStreamSizeCount = outStreamSizeCountSpec;
 
       inStreamSizeCountSpec->Init(inStream);
       outStreamSizeCountSpec->SetStream(outStream);
       outStreamSizeCountSpec->Init();
 
-      base_array < ::ca::reader * > inStreamPointers;
-      base_array < ::ca::writer * > outStreamPointers;
+      spa(::ca::reader) inStreamPointers;
+      spa(::ca::writer) outStreamPointers;
       inStreamPointers.add(inStreamSizeCount);
       outStreamPointers.add(outStreamSizeCount);
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
-         outStreamPointers.add(tempBuffers[i - 1]);
+         outStreamPointers.add(tempBuffers(i - 1));
 
       for (i = 0; i < _codersInfo.get_count(); i++)
       {
@@ -246,14 +246,18 @@ namespace n7z
 
       for (i = 0; i + 1 < _codersInfo.get_count(); i++)
       {
-         uint64_t m = _codersInfo[i]->MethodID;
+         uint64_t m = _codersInfo[i].MethodID;
          if (m == k_Delta || m == k_BCJ || m == k_BCJ2)
             progressIndex = (uint32_t) (i + 1);
       }
 
       _mixerCoderSpec->SetProgressCoderIndex(progressIndex);
 
-      RINOK(_mixerCoder->Code(&inStreamPointers.first_element(), NULL, 1, &outStreamPointers.first_element(), NULL, (const uint32_t) outStreamPointers.get_count(), compressProgress));
+      spa(::ca::reader) inStreamPointersCode;
+
+      inStreamPointersCode.add(inStreamPointers(0));
+
+      RINOK(_mixerCoder->Code(inStreamPointersCode, NULL, outStreamPointers, NULL, compressProgress));
 
       ConvertBindInfoToFolderItemInfo(_decompressBindInfo, _decompressionMethods, folderItem);
 
@@ -278,7 +282,7 @@ namespace n7z
          folderItem.UnpackSizes.add(streamSize);
       }
       for (i = numMethods - 1; i >= 0; i--)
-         folderItem.Coders[numMethods - 1 - i]->Props = _codersInfo[i]->Props;
+         folderItem.Coders[numMethods - 1 - i].Props = _codersInfo[i].Props;
       return S_OK;
    }
 

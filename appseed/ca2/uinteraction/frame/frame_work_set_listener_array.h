@@ -12,7 +12,7 @@ namespace frame
    class WorkSet;
 
    class CLASS_DECL_ca2 WorkSetListenerArray :
-      public pha(WorkSetListener)
+      public spa(WorkSetListener)
    {
       friend class WorkSet;
       friend class WorkSetListener;

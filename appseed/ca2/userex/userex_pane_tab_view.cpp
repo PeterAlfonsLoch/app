@@ -68,7 +68,7 @@ namespace userex
             pguie = pguieNext;
          }
 //         int32_t i = max(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
-         pguie = wnda[wnda.get_size() + m_pviewdata->m_iExtendOnParent];
+         pguie = wnda(wnda.get_size() + m_pviewdata->m_iExtendOnParent);
          pguie->GetWindowRect(lprect);
          ScreenToClient(lprect);
       }
@@ -125,9 +125,9 @@ namespace userex
       ::user::tab::pane_array & panea = get_data()->m_panea;
       for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
-         if(panea[iTab]->m_pholder == pholder)
+         if(panea[iTab].m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure(panea[iTab]->m_id);
+            ::user::view_creator_data * pcreatordata = ensure(panea[iTab].m_id);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)

@@ -293,10 +293,10 @@ namespace platform
       {
          for(int32_t i = 0; i < m_linka.get_size(); i++)
          {
-            if(pevent->m_puie->m_id == m_linka[i]->m_strBrief)
+            if(pevent->m_puie->m_id == m_linka[i].m_strBrief)
             {
                SetScreen(1);
-               string strApp = m_linka[i]->m_strSrc;
+               string strApp = m_linka[i].m_strSrc;
                ::ca::str::ends_eat_ci(strApp, ".dll");
 
                ::ca::create_context_sp cc(&Application.command_central());
@@ -890,7 +890,7 @@ namespace platform
    {
       for(int32_t i = 0; i < m_linka.get_size(); i++)
       {
-         m_linka[i]->m_button.DestroyWindow();
+         m_linka[i].m_button.DestroyWindow();
       }
       m_linka.remove_all();
 
@@ -942,7 +942,7 @@ namespace platform
       int32_t y = 400;
       for(int32_t i = 0; i < m_linka.get_count(); i++)
       {
-         m_linka[i]->m_button.SetWindowPos(ZORDER_TOP, 11, y, 300, h, SWP_SHOWWINDOW);
+         m_linka[i].m_button.SetWindowPos(ZORDER_TOP, 11, y, 300, h, SWP_SHOWWINDOW);
          y+=h;
       }
    }

@@ -1010,7 +1010,6 @@ namespace ca
 
       ::user::str_context * str_context();
 
-      using pha(::user::interaction)::on_delete;
       virtual void on_delete(::ca::ca * pobject);
 
 //      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
@@ -1098,23 +1097,6 @@ namespace ca
 
 
 } // namespace ca
-
-
-template < class KEY, class ARG_KEY, class T >
-void ::ca::holder_map < KEY, ARG_KEY, T > ::set_at(ARG_KEY key, T * p)
-{
-   ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
-   if(pca == NULL)
-      return;
-   if(pca->m_papp == NULL)
-      return;
-   if(pca->m_papp->m_psystem == NULL)
-      return;
-   m_papp = pca->m_papp;
-   m_keymap.set_at(key, p);
-   m_camap.set_at(pca, key);
-}
-
 
 // impl
 template < class APP >

@@ -274,18 +274,35 @@ namespace user
 
    }
 
+
    void oswindow_tree::Array::EnumDescendants()
    {
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
+
          this->element_at(i)->EnumDescendants();
+
       }
+
    }
+
 
    oswindow_tree::oswindow_tree()
    {
+
       m_oswindow = ::ca::null();
+
    }
+
+
+   oswindow_tree::oswindow_tree(oswindow window) :
+      m_oswindow(window)
+   {
+      
+   }
+
+
    oswindow_tree::oswindow_tree(const oswindow_tree & tree)
    {
       operator =(tree);
@@ -295,20 +312,18 @@ namespace user
    oswindow_tree & oswindow_tree::operator = (const oswindow_tree & tree)
    {
       m_oswindow = tree.m_oswindow;
-      m_oswindowtreea.copy(tree.m_oswindowtreea);
+      m_oswindowtreea.copy(&tree.m_oswindowtreea);
       return * this;
    }
 
-   int32_t oswindow_tree::compare_oswindow(oswindow_tree &tree1, oswindow_tree &tree2)
+   index oswindow_tree::compare_oswindow(oswindow_tree * ptree1, oswindow_tree * ptree2)
    {
-      return (int32_t) ((byte *) (void *) tree1.m_oswindow - (byte *) (void *) tree2.m_oswindow);
+      return (int32_t) ((byte *) (void *) ptree1->m_oswindow - (byte *) (void *) ptree2->m_oswindow);
    }
 
    int_ptr oswindow_tree::Array::find(oswindow oswindow)
    {
-      oswindow_tree tree;
-      tree.m_oswindow = oswindow;
-      return ::ca::smart_pointer_array < oswindow_tree >::find_first(tree, oswindow_tree::compare_oswindow);
+      return find_first(oswindow_tree(oswindow), oswindow_tree::compare_oswindow);
    }
 
 

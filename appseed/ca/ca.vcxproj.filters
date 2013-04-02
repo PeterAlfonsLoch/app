@@ -387,6 +387,9 @@
     <Filter Include="Source Files\ca\localization">
       <UniqueIdentifier>{501aa0ea-f4a8-45a2-b78c-bbffe6093259}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\NewFilter1">
+      <UniqueIdentifier>{05bd5394-0cfa-4688-b82c-cceb40d2e2c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -2678,9 +2681,6 @@
     <ClInclude Include="ca\ca_heap.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_holder.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_inline.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -3148,6 +3148,24 @@
     </ClInclude>
     <ClInclude Include="exception\exception_io.h">
       <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_map_to_smart_pointer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_smart_pointer_query.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_smart_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_map_to_smart_pointer.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_string_interface.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_string_composite.h">
+      <Filter>Header Files\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

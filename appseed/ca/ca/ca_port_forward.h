@@ -98,8 +98,8 @@ namespace ca
 	   virtual bool AddMappingUsingThread( port_map& newMapping, oswindow oswindow );  // starts a thread that will add one new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 	   virtual bool DeleteMappingUsingThread( port_map& oldMapping, oswindow oswindow );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 	
-	   virtual ::ca::smart_pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
-	   virtual ::ca::smart_pointer_array < device > get_igd() const;  // gets a copy of currently-know device information
+	   virtual ::collection::smart_pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
+	   virtual ::collection::smart_pointer_array < device > get_igd() const;  // gets a copy of currently-know device information
 	
 	   virtual bool IsAnyThreadRunning() const;  // returns TRUE if there is any thread currently running
 	

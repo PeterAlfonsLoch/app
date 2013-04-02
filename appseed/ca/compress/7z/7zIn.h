@@ -118,9 +118,9 @@ namespace n7z
    {
       friend class CStreamSwitch;
 
-      ::ca::smart_pointer < ::ca::byte_input_stream > _stream;
+      sp(::ca::byte_input_stream) _stream;
 
-      ::ca::smart_pointer_array < CInByte2 > _inByteVector;
+      spa(CInByte2) _inByteVector;
       CInByte2 *_inByteBack;
 
       file_position _arhiveBeginStreamPosition;
@@ -168,23 +168,23 @@ namespace n7z
          base_array<uint32_t> &packCRCs);
 
       void ReadUnpackInfo(
-         const ::ca::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
-         ::ca::smart_pointer_array < CFolder > &folders);
+         const ::collection::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         ::collection::smart_pointer_array < CFolder > &folders);
 
       void ReadSubStreamsInfo(
-         const ::ca::smart_pointer_array<CFolder> &folders,
+         const ::collection::smart_pointer_array<CFolder> &folders,
          base_array<CNum> &numUnpackStreamsInFolders,
          base_array<file_size> &unpackSizes,
          bool_array &digestsDefined,
          base_array<uint32_t> &digests);
 
       void ReadStreamsInfo(
-         const ::ca::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         const ::collection::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
          file_position &dataOffset,
          base_array<file_size> &packSizes,
          bool_array &packCRCsDefined,
          base_array<uint32_t> &packCRCs,
-         ::ca::smart_pointer_array<CFolder> &folders,
+         ::collection::smart_pointer_array<CFolder> &folders,
          base_array<CNum> &numUnpackStreamsInFolders,
          base_array<file_size> &unpackSizes,
          bool_array &digestsDefined,
@@ -193,11 +193,11 @@ namespace n7z
 
       void ReadBoolVector(int32_t numItems, bool_array &v);
       void ReadBoolVector2(int32_t numItems, bool_array &v);
-      void ReadUInt64DefVector(const ::ca::smart_pointer_array < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
+      void ReadUInt64DefVector(const ::collection::smart_pointer_array < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
          ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,
-         ::ca::smart_pointer_array < ::ca::byte_buffer > &dataVector,
+         ::collection::smart_pointer_array < ::ca::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadHeader(

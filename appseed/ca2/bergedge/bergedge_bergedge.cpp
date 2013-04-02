@@ -157,7 +157,7 @@ namespace bergedge
       ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
-      m_ptemplate_html->open_document_file(itema[0]->m_strPath);
+      m_ptemplate_html->open_document_file(itema[0].m_strPath);
    }
 
    void bergedge::load_string_table()

@@ -693,7 +693,7 @@ namespace filemanager
       if(m_bStatic)
       {
 
-         ::fs::list_item item;
+         ::fs::list_item item(get_app());
 
          stringa stra;
 
@@ -738,7 +738,7 @@ namespace filemanager
       }
 
 
-      ::fs::list_item folder;
+      ::fs::list_item folder(get_app());
 
 //      HRESULT hr;
       string strPath = GetFileManagerItem().m_strPath;
@@ -1101,7 +1101,7 @@ namespace filemanager
    bool SimpleFileListInterface::add_item(const char * pszPath, const char * pszTitle)
    {
 
-      ::fs::list_item item;
+      ::fs::list_item item(get_app());
 
       item.m_strPath = pszPath;
 

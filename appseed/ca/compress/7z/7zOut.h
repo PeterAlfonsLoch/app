@@ -81,10 +81,10 @@ namespace n7z
          const bool_array &packCRCsDefined,
          const base_array<uint32_t> &packCRCs);
 
-      void WriteUnpackInfo(const ::ca::smart_pointer_array<CFolder> &folders);
+      void WriteUnpackInfo(const ::collection::smart_pointer_array<CFolder> &folders);
 
       void WriteSubStreamsInfo(
-         const ::ca::smart_pointer_array<CFolder> &folders,
+         const ::collection::smart_pointer_array<CFolder> &folders,
          const base_array<CNum> &numUnpackStreamsInFolders,
          const base_array<file_size> &unpackSizes,
          const bool_array &digestsDefined,
@@ -97,7 +97,7 @@ namespace n7z
       HRESULT EncodeStream(
          ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          CEncoder &encoder, const ::ca::byte_buffer &data,
-         base_array<file_size> &packSizes, ::ca::smart_pointer_array<CFolder> &folders);
+         base_array<file_size> &packSizes, ::collection::smart_pointer_array<CFolder> &folders);
       void WriteHeader(
          const CArchiveDatabase &db,
          const CHeaderOptions &headerOptions,

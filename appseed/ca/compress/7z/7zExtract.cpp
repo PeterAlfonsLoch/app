@@ -72,7 +72,7 @@ namespace n7z
      IInStream *_inStream = volume.Stream;
      */
 
-     ::ca::smart_pointer_array<CExtractFolderInfo> extractFolderInfoVector;
+     ::collection::smart_pointer_array<CExtractFolderInfo> extractFolderInfoVector;
      for (uint32_t ii = 0; ii < numItems; ii++)
      {
        // uint32_t fileIndex = allFilesMode ? indexIndex : indices[indexIndex];

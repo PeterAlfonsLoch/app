@@ -129,7 +129,7 @@ public:
    inline count get_byte_count() const;
    inline bool is_empty(count countMinimum = 1) const;
    inline bool has_elements(count countMinimum = 1) const;
-   inline index get_upper_bound(index i = 0) const;
+   inline index get_upper_bound(index i = -1) const;
    count set_size(index nNewSize, count nGrowBy = -1);
    count set_size_in_bytes(index nNewSize, count nGrowBy = -1);
 
@@ -163,8 +163,12 @@ public:
    index add(const raw_array& src);
    index append(const raw_array& src);
    void copy(const raw_array& src);
-   index push(ARG_TYPE newElement);
-   void push_back(const TYPE & newElement);
+
+
+   TYPE pop(index index = -1);
+   index push(ARG_TYPE newElement, index i = 0);
+   void pop_back(index index = -1);
+   void push_back(const TYPE & newElement, index = 0);
 
 
 
@@ -186,13 +190,12 @@ public:
    inline TYPE& operator[](index nIndex);
 
    // Operations that move elements around
-   void insert_at(index nIndex, ARG_TYPE newElement, count nCount = 1);
+   index insert_at(index nIndex, ARG_TYPE newElement, count nCount = 1);
    index remove_at(index nIndex, count nCount = 1);
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
    void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
-   void insert_at(index nStartIndex, raw_array* pNewArray);
-   TYPE pop(index index = 0);
+   index insert_at(index nStartIndex, raw_array* pNewArray);
    void swap(index index1, index index2);
 
    raw_array & operator = (const raw_array & src);
@@ -255,7 +258,7 @@ inline bool raw_array<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
 {
-   return m_nSize - 1 - index;
+   return m_nSize + index;
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -355,11 +358,6 @@ inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
    return nIndex;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::push_back(const TYPE & newElement)
-{
-   set_at_grow(m_nSize, newElement);
-}
 
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::add(const raw_array & src)
@@ -368,10 +366,39 @@ inline index raw_array<TYPE, ARG_TYPE>::add(const raw_array & src)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement)
+inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index n)
 {
-   return add(newElement);
+   
+   index i = get_upper_bound(n);
+   
+   TYPE t = element_at(i);
+
+   remove_at(i);
+
+   return t;
+
 }
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::pop_back(index n)
+{
+   
+   remove_at(get_upper_bound(n));
+
+}
+
+template<class TYPE, class ARG_TYPE>
+inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement, index n)
+{
+   return insert_at(get_upper_bound(n), newElement);
+}
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::push_back(const TYPE & newElement, index n)
+{
+   insert_at(get_upper_bound(n), newElement);
+}
+
 
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
@@ -385,22 +412,6 @@ inline TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex)
    return this->element_at(nIndex);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index index)
-{
-   
-   index = get_upper_bound(index);
-   
-   if(index < 0 || index >= m_nSize)
-      throw invalid_argument_exception(get_app());
-   
-   TYPE t = m_pData[index];
-
-   remove_at(index);
-
-   return t;
-
-}
 
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
@@ -620,7 +631,7 @@ void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, count nCount /*=1*/)
+index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, count nCount /*=1*/)
 {
    //ASSERT_VALID(this);
    //ASSERT(nIndex >= 0);    // will expand to meet need
@@ -654,8 +665,14 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, cou
 
    // insert new value in the gap
    ASSERT(nIndex + nCount <= m_nSize);
+
+   index nIndexParam = nIndex;
+
    while (nCount--)
       m_pData[nIndex++] = newElement;
+
+   return nIndexParam;
+
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -682,7 +699,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
 
 
 template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArray)
+index raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array * pNewArray)
 {
    ASSERT_VALID(this);
    ASSERT(pNewArray != NULL);
@@ -694,11 +711,16 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArra
 
    if (pNewArray->get_size() > 0)
    {
-      insert_at(nStartIndex, pNewArray->get_at(0), pNewArray->get_size());
-      for (index i = 0; i < pNewArray->get_size(); i++)
-         set_at(nStartIndex + i, pNewArray->get_at(i));
+      insert_at(nStartIndex, pNewArray->element_at(0), pNewArray->get_size());
+      for (index i = 1; i < pNewArray->get_size(); i++)
+         insert_at(nStartIndex + i, pNewArray->element_at(i));
    }
+
+   return nStartIndex;
+
 }
+
+
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {

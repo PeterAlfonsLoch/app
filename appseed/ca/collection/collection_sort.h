@@ -911,7 +911,7 @@ namespace sort
 
    template < class TYPE >
    void BubbleSortByPtrAtGetSize(
-      ::ca::smart_pointer_array < TYPE > & a,
+      spa(TYPE) & a,
       bool bAsc = true);
 
    template <class TYPE, class ARG_TYPE>
@@ -999,7 +999,7 @@ namespace sort
 
    template < class TYPE >
    void BubbleSortByPtrAtGetSize(
-      ::ca::smart_pointer_array < TYPE > & a,
+      spa(TYPE) & a,
       bool bAsc)
    {
       TYPE t;

@@ -159,7 +159,7 @@ namespace filehandler
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
-         element_at(i).draw(pview, pdc, plist, &plist->element_at(i));
+         element_at(i)->draw(pview, pdc, plist, plist->element_at(i));
       }
    }
 

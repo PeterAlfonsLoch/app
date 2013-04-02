@@ -64,7 +64,7 @@ namespace http
 
 
    class CLASS_DECL_ca cookies :
-      public ::ca::smart_pointer_array < cookie >
+      public spa(cookie)
    {
    public:
 
@@ -78,7 +78,7 @@ namespace http
       index lowfind_cookie(const char * name);
       http::cookie & cookie(const char * name);
       http::cookie & lowcookie(const char * name);
-      using ::ca::smart_pointer_array < http::cookie >::add;
+      using  spa(http::cookie)::add;
       void add(const char * psz);
       void parse_header(const char * psz);
       string get_cookie_header();
@@ -93,7 +93,7 @@ namespace http
       static string expire(time_t iExpire = 0);
 
 
-      using ::ca::smart_pointer_array < class http::cookie >::operator [];
+      using spa(class http::cookie)::operator [];
       http::cookie & operator [](const char * name);
 
    };

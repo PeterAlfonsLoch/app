@@ -50,7 +50,7 @@ namespace ca
       for(index i = 0; i < m_spadata.get_count(); i++)
       {
 
-         if(m_spadata[i].m_p == pdata)
+         if(m_spadata.sp_at(i) == pdata)
             return true;
 
       }
@@ -69,7 +69,7 @@ namespace ca
       for(index i = 0; i < m_spadata.get_count();)
       {
 
-         if(m_spadata[i].m_p == pdata)
+         if(m_spadata.sp_at(i) == pdata)
          {
             m_spadata.remove_at(i);
             cRemove++;
@@ -88,7 +88,7 @@ namespace ca
    data * data_container_base::get_data(index i)
    {
       
-      return m_spadata[i];
+      return m_spadata.sp_at(i);
 
    }
 
@@ -107,7 +107,7 @@ namespace ca
       for(index i = 0; i < m_spadata.get_count(); i++)
       {
 
-         ptra.add(m_spadata[i]->data_mutex());
+         ptra.add(m_spadata[i].data_mutex());
 
       }
 

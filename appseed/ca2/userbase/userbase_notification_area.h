@@ -8,7 +8,7 @@ namespace userbase
 
    struct CLASS_DECL_ca2 TRAYDATA
    {
-      oswindow    m_oswindow;
+      HWND    m_oswindow;
       UINT        uID;
       UINT        uCallbackMessage;
       uint32_t       Reserved[2];

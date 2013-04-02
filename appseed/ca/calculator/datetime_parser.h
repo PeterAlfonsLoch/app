@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace datetime
 {
+
 
    class CLASS_DECL_ca parser :
       virtual public ::ca::object
@@ -10,7 +12,7 @@ namespace datetime
 
       
       scanner                       m_scanner;
-      ::ca::smart_pointer_array < element >   m_elementa;
+      spa(element)                  m_elementa;
 
 
       parser(::ca::application * papp, ::user::str_context * pcontext);

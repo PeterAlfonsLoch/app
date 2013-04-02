@@ -157,7 +157,7 @@ namespace user
       };
 
       class CLASS_DECL_ca descriptor_set :
-         public ::ca::smart_pointer_array < descriptor >
+         public ::collection::smart_pointer_array < descriptor >
       {
       public:
 

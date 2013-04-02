@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "ca/ca/ca_holder.h"
 #include "ca/user/user_window_interface.h"
 
 
@@ -84,13 +83,13 @@ namespace user
       };
 
       class CLASS_DECL_ca timer_array :
-         virtual public pha(interaction)
+         virtual public spa(interaction)
       {
       public:
 
 
          mutex                               m_mutex;
-         ::ca::smart_pointer_array < timer_item >      m_timera;
+         spa(timer_item)                     m_timera;
          index                               m_iItem;
 
 
@@ -102,7 +101,7 @@ namespace user
          void check();
          bool unset(interaction * pguie, uint_ptr uiId);
          void unset(interaction * pguie);
-         void detach(::ca::smart_pointer_array < timer_item > & timera, interaction * pguie);
+         void detach(spa(timer_item) & timera, interaction * pguie);
          void transfer(::ca::window * pwindow, interaction * pguie);
          interaction * find(::ca::ca * pca);
          index find(interaction * pguie, uint_ptr uiId);
@@ -133,7 +132,7 @@ namespace user
       e_appearance                        m_eappearance;
       sp(interaction)                     m_pimpl;
       static interaction *                g_pguieMouseMoveCapture;
-      pha(interaction)                    m_uiptraChild;
+      spa(interaction)                    m_uiptraChild;
       string                              m_strName;
       id                                  m_id;
       interaction *                       m_pguieOwner;
@@ -172,7 +171,7 @@ namespace user
       void set_cursor(::visual::e_cursor ecursor);
 
 
-      void set_timer(::ca::smart_pointer_array < timer_item > timera);
+      void set_timer(spa(timer_item) timera);
 
 
       virtual bool IsWindow();

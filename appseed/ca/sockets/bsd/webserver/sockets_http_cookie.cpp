@@ -101,9 +101,9 @@ http::cookie & cookies::cookie(const char * name)
    index iFind = find_cookie(name);
    if(iFind < 0)
    {
-      class cookie c;
-      c.m_strName = name;
-      c.m_strNameLow = name;
+      sp(class cookie) c(new class cookie);
+      c->m_strName = name;
+      c->m_strNameLow = name;
       add(c);
       iFind = find_cookie(name);
       if(iFind < 0)
@@ -136,8 +136,8 @@ http::cookie & cookies::lowcookie(const char * name)
 
 void cookies::add(const char * psz)
 {
-   class cookie cookie;
-   cookie.m_bSecure = false;
+   sp(class cookie) cookie(new class cookie);
+   cookie->m_bSecure = false;
    //stringa stra;
    //stra.add_tokens(psz, ";", TRUE);
    bool bRun = true;
@@ -156,10 +156,10 @@ void cookies::add(const char * psz)
       {
          if(pszEqual != NULL)
          {
-            cookie.m_strName = string(psz, pszEqual - psz);
-            cookie.m_strNameLow = cookie.m_strName;
-            cookie.m_strNameLow.make_lower();
-            cookie.m_varValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
+            cookie->m_strName = string(psz, pszEqual - psz);
+            cookie->m_strNameLow = cookie->m_strName;
+            cookie->m_strNameLow.make_lower();
+            cookie->m_varValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
          }
          else
          {
@@ -172,28 +172,28 @@ void cookies::add(const char * psz)
          string strValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
          if(strKey == "expires")
          {
-            cookie.m_strExpire = strValue;
+            cookie->m_strExpire = strValue;
          }
          else if(strKey == "domain")
          {
-            cookie.m_strDomain = strValue;
+            cookie->m_strDomain = strValue;
          }
          else if(strKey == "path")
          {
-            cookie.m_strPath = strValue;
+            cookie->m_strPath = strValue;
          }
       }
       else
       {
          if(string(psz, pszEnd - psz) == "secure")
          {
-            cookie.m_bSecure = true;
+            cookie->m_bSecure = true;
          }
       }
       i++;
       psz = pszEnd + 1;
    }
-   index iFind = find_cookie(cookie.m_strName);
+   index iFind = find_cookie(cookie->m_strName);
    if(iFind < 0)
    {
       add(cookie);

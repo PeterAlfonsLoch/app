@@ -23,7 +23,7 @@ namespace ca
       stream_binder(::ca::application * papp);
       HRes CreateEvents();
 
-      virtual void CreateStreams(::ca::reader **inStream, ::ca::writer **outStream);
+      virtual void CreateStreams(sp(::ca::reader) & inStream, sp(::ca::writer) & outStream);
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void CloseRead();

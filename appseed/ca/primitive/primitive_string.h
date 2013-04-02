@@ -1,74 +1,8 @@
 #pragma once
 
 
-#ifdef LINUX
-#undef __USE_MISC
-#include <strings.h>
-#endif
-
-
 CLASS_DECL_ca string_manager * __get_string_manager();
-
-
-class string;
-class istring;
-
-
-class CLASS_DECL_ca string_interface
-{
-public:
-
-
-   // the string returned by get_string should be valid
-   // during all lifetime of an derived object of
-   // string_interface
-   virtual strsize get_length() const;
-
-   virtual void get_string(char * psz) const;
-
-   virtual void set_string(const char * psz);
-
-   string_interface & operator = (const string_interface & str);
-
-   string_interface & operator = (const char * psz);
-
-};
-
-
-
-
-class CLASS_DECL_ca string_composite :
-   public string_interface
-{
-private:
-
-
-   string * m_pstring;
-   string_interface * m_pinterface;
-
-
-public:
-
-
-   inline string_composite() : m_pstring(NULL), m_pinterface(NULL) {}
-   inline string_composite(const string_composite & str) : m_pstring(str.m_pstring), m_pinterface(str.m_pinterface) {}
-   inline string_composite(string & str) : m_pstring(&str), m_pinterface(NULL) {}
-   inline string_composite(const string & str) : m_pstring((string *) &str), m_pinterface(NULL) {}
-   inline string_composite(const string * pstr) : m_pstring(const_cast < string *  > (pstr)) , m_pinterface(NULL) {}
-   inline string_composite(string_interface & strinterface) : m_pinterface(&strinterface), m_pstring(NULL) {}
-   inline string_composite(const string_interface & strinterface) : m_pinterface(const_cast < string_interface * > (&strinterface)) , m_pstring(NULL) {}
-
-
-   virtual strsize get_length() const;
-   virtual void get_string(char * psz) const;
-   virtual void set_string(const char * psz);
-
-
-};
-
-
 CLASS_DECL_ca int64_t strtoi(const char * psz);
-
 CLASS_DECL_ca int64_t strtoi(const wchar_t * psz);
 
 
@@ -82,15 +16,6 @@ inline UINT _gen_GetConversionACP()
 }
 
 
-
-
-
-
-#ifndef _AFX
-#define ___FUNCNAME(_Name) _Name
-#endif
-
-//#pragma push_macro("new")
 #undef new
 
 /////////////////////////////////////////////////////////////////////////////

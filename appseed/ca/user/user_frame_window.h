@@ -77,7 +77,7 @@ public:
    string m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
    UINT m_nIDTracking;         // tracking command ID or string IDS
    UINT m_nIDLastMessage;      // last displayed message string IDS
-   ph(::view) m_pViewActive;       // current active ::view
+   sp(::view) m_pViewActive;       // current active ::view
    bool (CALLBACK* m_lpfnCloseProc)(frame_window* pFrameWnd);
    UINT m_cModalStack;         // BeginModalState depth
    comparable_array < ::user::interaction *, ::user::interaction * > m_uiptraDisable;       // windows disabled because of BeginModalState

@@ -108,7 +108,7 @@ namespace n7z
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
-      ::ca::smart_pointer_array < ::ca::reader > inStreams;
+      ::collection::smart_pointer_array < ::ca::reader > inStreams;
 
       ::ca::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
@@ -319,12 +319,13 @@ namespace n7z
 
       if (numCoders == 0)
          return 0;
-      base_array < ::ca::reader * > inStreamPointers;
+      spa(::ca::reader) inStreamPointers;
       inStreamPointers.set_size(0, inStreams.get_count());
       for (i = 0; i < inStreams.get_count(); i++)
-         inStreamPointers.add(inStreams[i]);
-      ::ca::writer *outStreamPointer = outStream;
-      return _mixerCoder->Code(&inStreamPointers.first_element(), NULL, (const uint32_t) inStreams.get_count(), &outStreamPointer, NULL, 1, compressProgress);
+         inStreamPointers.add(inStreams(i));
+      spa(::ca::writer) outStreamPointers;
+      outStreamPointers.add(outStream);
+      return _mixerCoder->Code(inStreamPointers, NULL, outStreamPointers, NULL, compressProgress);
    }
 
 } // namespace n7z

@@ -128,7 +128,7 @@ repeat:;
 
           for(int32_t i = 1; i < m_itema.get_size(); i++)
           {
-             if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
+             if(m_itema[i].m_strKey == m_itema[0].m_strKey)
              {
                 m_itema.remove_at(0);
                 sl.unlock();
@@ -162,9 +162,9 @@ repeat:;
 
 
              strUrl = "https://" + strApiServer +"/account/str_set_save?key=";
-             strUrl += System.url().url_encode(m_itema[0]->m_strKey);
+             strUrl += System.url().url_encode(m_itema[0].m_strKey);
              strUrl += "&value=";
-             strUrl += System.url().url_encode(m_itema[0]->m_str);
+             strUrl += System.url().url_encode(m_itema[0].m_str);
 
              m_itema.remove_at(0);
 
@@ -205,10 +205,10 @@ void db_str_set::sync_queue::queue(const char * pszKey, const char * psz)
 
    single_lock sl(&m_mutex, true);
 
-   queue_item item;
+   sp(queue_item) item(new queue_item);
 
-   item.m_strKey = pszKey;
-   item.m_str = psz;
+   item->m_strKey = pszKey;
+   item->m_str = psz;
 
    m_itema.add(item);
 

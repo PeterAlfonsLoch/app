@@ -32,6 +32,7 @@ namespace userbase
       {
          System.factory().cloneable_small < ::userbase::split_layout > ();
          System.factory().cloneable_small < ::userbase::split_bar >();
+         System.factory().cloneable_small < ::userbase::split_view::Pane >();
          System.factory().cloneable_small < simple_frame_window >();
          System.factory().creatable_small < MetaButton >();
          System.factory().creatable_small < BaseButtonControl >();

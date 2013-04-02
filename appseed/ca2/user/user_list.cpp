@@ -2113,7 +2113,7 @@ namespace user
       return false;
    }
 
-   void list::range::get_item_indexes(index_array & ia)
+   void list::range::get_item_indexes(index_array & ia) const
    {
 
       for(index i = 0; i < m_itemrangea.get_size(); i++)
@@ -2208,6 +2208,20 @@ namespace user
       return false;
    }
 
+   void list::item_range::get_item_indexes(index_array & ia) const
+   {
+
+      if(m_iLowerBound == -1 || m_iUpperBound == -1)
+         return;
+
+      for(index iItem = m_iLowerBound; iItem <= m_iUpperBound; iItem++)
+      {
+
+         ia.add_unique(iItem);
+
+      }
+
+   }
 
    bool list::item_range::has_item(index iItem) const
    {
@@ -2546,7 +2560,7 @@ namespace user
 
 
 
-   list::item_range::item_range(item_range & itemrange)
+   list::item_range::item_range(const item_range & itemrange)
    {
       operator =(itemrange);
    }
@@ -2567,7 +2581,7 @@ namespace user
       m_iUpperBound = -1;
    }
 
-   list::sub_item_range::sub_item_range(sub_item_range & subitemrange)
+   list::sub_item_range::sub_item_range(const sub_item_range & subitemrange)
    {
       operator =(subitemrange);
    }
@@ -2807,7 +2821,7 @@ namespace user
       for(i = 0; i < m_columna.get_count(); i++)
       {
          str.Format("list_column[%d].width", i);
-         width = m_columna.element_at(i).m_iWidth;
+         width = m_columna.element_at(i)->m_iWidth;
          data_set(
             str,
             ::ca::system::idEmpty,
@@ -2931,22 +2945,26 @@ namespace user
 
    }
 
+
    index list_column_array::add(list_column &column)
    {
+      
       column.m_iKey = this->get_size();
       column.m_iOrder = this->get_size();
       column.m_pcontainer = this;
 
-      index index = ::ca::smart_pointer_array < list_column >::add(column);
+      index index = ::collection::smart_pointer_array < list_column >::add(new list_column(column));
 
       OnChange();
 
       return index;
+
    }
+
 
    void list_column_array::remove_all()
    {
-      ::ca::smart_pointer_array < list_column >::remove_all(),
+      ::collection::smart_pointer_array < list_column >::remove_all(),
          OnChange();
    }
 
@@ -2969,7 +2987,7 @@ namespace user
 
    void list_column_array::OnChange()
    {
-      sort::array::quick_sort(m_ptra, list_column::CompareKey);
+      sort::array::quick_sort(*this, list_column::CompareKey);
 
       index iKeyVisible = 0;
       index iKeyNonVisible = 0;
@@ -2991,7 +3009,7 @@ namespace user
          }
       }
 
-      sort::array::quick_sort(m_ptra, list_column::CompareOrderSectEndNonVisible);
+      sort::array::quick_sort(*this, list_column::CompareOrderSectEndNonVisible);
 
       for(index iOrder = 0; iOrder < this->get_size(); iOrder++)
       {
@@ -4024,7 +4042,7 @@ namespace user
    {
       for(index iKey = 0; iKey < this->get_size(); iKey++)
       {
-         if(this->element_at(iKey).m_datakey == key)
+         if(this->element_at(iKey)->m_datakey == key)
             return iKey;
       }
       return -1;
@@ -4805,7 +4823,7 @@ namespace user
 
    }
 
-   list::range::range(range & range)
+   list::range::range(const range & range)
    {
       m_itemrangea = range.m_itemrangea;
    }

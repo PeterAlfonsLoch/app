@@ -20,11 +20,12 @@ namespace ca
       bool fs::initialize()
       {
 
-         if(Application.is_system())
+         if(Application.is_cube())
          {
             System.factory().creatable_small < ::fs::main_view > ();
             System.factory().creatable_small < ::fs::tree > ();
             System.factory().creatable_small < ::fs::list > ();
+            System.factory().creatable_small < ::fs::list_item > ();
          }
 
 

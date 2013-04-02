@@ -722,20 +722,6 @@ void string_array::add(const id & id)
 
 
 
-////////////////////////////////////////////////////////////////////////////
-
-
-index string_array::get_upper_bound(index i, count count) const
-{
-   if(count >= 0)
-   {
-      return min(get_upper_bound(), get_lower_bound(i) + count);
-   }
-   else
-   {
-      return m_nSize + count;
-   }
-}
 
 // same as clear
 void string_array::remove_all()

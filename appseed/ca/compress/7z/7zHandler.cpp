@@ -104,7 +104,7 @@ stat_prop_stg kArcProps[] =
       {
         const CFolder &f = _db.Folders[i];
         for (index j = f.Coders.get_count() - 1; j >= 0; j--)
-           ids.add_unique(f.Coders[j]->MethodID);
+           ids.add_unique(f.Coders[j].MethodID);
       }
       ids.QuickSort(true);
 
@@ -201,7 +201,7 @@ bool handler::IsEncrypted(uint32_t index1) const
 {
   CNum folderIndex = _db.FileIndexToFolderIndexMap[index1];
   if (folderIndex != kNumNoIndex)
-    return _db.Folders[folderIndex]->IsEncrypted();
+    return _db.Folders[folderIndex].IsEncrypted();
   return false;
 }
 

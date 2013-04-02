@@ -236,9 +236,9 @@ namespace plugin
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_papp != NULL && m_uiptraChild[0]->m_papp->m_psession != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_papp != NULL && m_uiptraChild[0].m_papp->m_psession != NULL)
          {
-            set_app(m_uiptraChild[0]->m_papp);
+            set_app(m_uiptraChild[0].m_papp);
          }
       }
       ::user::interaction::_000OnMouse(pmouse);

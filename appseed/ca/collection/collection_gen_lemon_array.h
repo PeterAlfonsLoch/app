@@ -116,7 +116,7 @@ namespace ca
 	   }
 
       template < class A >
-	   void array_makecombination(::ca::smart_pointer_array < A > & comb, const A & a, A blindprefixa = A(), index idx = 0)
+	   void array_makecombination(::collection::smart_pointer_array < A > & comb, const A & a, A blindprefixa = A(), index idx = 0)
 	   {
 		   comb.add(blindprefixa);
 		   for(::index i = idx; i < a.get_count(); i++)
@@ -140,7 +140,7 @@ namespace ca
       }*/
 
       template < class A >
-	   void array_permute(::ca::smart_pointer_array < A > & perm, const A & a)
+	   void array_permute(::collection::smart_pointer_array < A > & perm, const A & a)
 	   {
 		   count count = a.get_count();
 		   if(count == 1)
@@ -150,7 +150,7 @@ namespace ca
          }
          A elema;
          A topermut;
-         ::ca::smart_pointer_array < A > perm2;
+         ::collection::smart_pointer_array < A > perm2;
          for(int32_t i = 0; i < count; i++)
 		   {
             elema.remove_all();

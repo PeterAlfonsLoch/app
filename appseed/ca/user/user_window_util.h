@@ -26,15 +26,19 @@ namespace user
 
 
    class CLASS_DECL_ca interaction_ptr_array :
-      virtual public pha(::user::interaction)
+      virtual public spa(::user::interaction)
    {
    public:
-//      using pha(::user::interaction)::find_first;
+
+
+      using spa(::user::interaction)::find_first;
       ::user::interaction * find_first(::ca::type_info info);
       ::user::interaction * find_first(oswindow oswindow);
+
       void get_wnda(::user::oswindow_array & oswindowa);
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
+
    };
 
 
@@ -44,9 +48,10 @@ namespace user
    public:
 
       class CLASS_DECL_ca Array :
-         public ::ca::smart_pointer_array < oswindow_tree >
+         public spa(oswindow_tree)
       {
       public:
+
          bool remove(oswindow oswindow);
          int_ptr find(oswindow oswindow);
          void EnumDescendants();
@@ -54,18 +59,23 @@ namespace user
 
       };
 
+      oswindow       m_oswindow;
+      uint32_t       m_dwUser;
+      oswindow       m_pvoidUser;
+      Array          m_oswindowtreea;
+
+
       oswindow_tree();
+      oswindow_tree(oswindow window);
       oswindow_tree(const oswindow_tree & tree);
 
-      oswindow   m_oswindow;
-      uint32_t m_dwUser;
-      oswindow m_pvoidUser;
-      Array m_oswindowtreea;
-      public:
-         void EnumDescendants();
-      static int32_t compare_oswindow(oswindow_tree & tree1,  oswindow_tree & tree2);
-      public:
+      void EnumDescendants();
+      
       oswindow_tree & operator = (const oswindow_tree & tree);
+
+      static index compare_oswindow(oswindow_tree * ptree1, oswindow_tree * ptree2);
+
+
    };
 
 

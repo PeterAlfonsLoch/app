@@ -196,7 +196,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca SignalArray :
-            public ::ca::smart_pointer_array < Signal >
+            public spa(Signal)
          {
          public:
             virtual ~SignalArray();

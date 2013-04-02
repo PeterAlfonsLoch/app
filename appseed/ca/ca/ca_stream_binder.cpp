@@ -81,22 +81,21 @@ namespace ca
    }
 
 
-   void stream_binder::CreateStreams(::ca::reader **inStream, ::ca::writer **outStream)
+   void stream_binder::CreateStreams(sp(::ca::reader) & inStream, sp(::ca::writer) & outStream)
    {
+      
       reader_for_binder * inStreamSpec = new reader_for_binder;
-      sp(::ca::reader) inStreamLoc(inStreamSpec);
       inStreamSpec->set_binder(this);
-      *inStream = inStreamLoc.detach();
+      inStream = inStreamSpec;
 
-      writer_for_binder *outStreamSpec = new
-         writer_for_binder;
-      sp(::ca::writer) outStreamLoc(outStreamSpec);
+      writer_for_binder *outStreamSpec = new writer_for_binder;
       outStreamSpec->set_binder(this);
-      *outStream = outStreamLoc.detach();
+      outStream = outStreamSpec;
 
       _data = NULL;
       _size = 0;
       ProcessedSize = 0;
+
    }
 
    ::primitive::memory_size stream_binder::read(void *data, ::primitive::memory_size size)

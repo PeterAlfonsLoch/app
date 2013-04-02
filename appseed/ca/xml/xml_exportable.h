@@ -1,11 +1,15 @@
 #pragma once
 
+
 namespace xml
 {
 
+
    class output_tree;
 
-   class CLASS_DECL_ca exportable
+
+   class CLASS_DECL_ca exportable :
+      virtual public ::ca::object
    {
    public:
 
@@ -18,4 +22,12 @@ namespace xml
 
    };
 
+
 } // namespace xml
+
+
+
+
+
+
+

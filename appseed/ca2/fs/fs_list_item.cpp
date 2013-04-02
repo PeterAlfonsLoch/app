@@ -5,7 +5,8 @@ namespace fs
 {
 
 
-   list_item::list_item()
+   list_item::list_item(::ca::application * papp) :
+      ca(papp)
    {
       m_iIndex = -1;
       m_iArrange = -1;
@@ -89,6 +90,7 @@ namespace fs
       if(&item == this)
          return *this;
 
+      set_app(item.get_app());
       m_strPath   = item.m_strPath;
       m_strName   = item.m_strName;
       m_iImage    = item.m_iImage;

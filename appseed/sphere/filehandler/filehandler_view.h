@@ -11,7 +11,8 @@ namespace filehandler
    public:
 
 
-      class CLASS_DECL_sphere item
+      class CLASS_DECL_sphere item :
+         virtual public ::ca::object
       {
       public:
          
@@ -26,7 +27,7 @@ namespace filehandler
       };
 
       class CLASS_DECL_sphere list :
-         public array_ptr_alloc < item >
+         public ::collection::smart_pointer_array < item >
       {
       public:
 
@@ -36,7 +37,8 @@ namespace filehandler
 
       };
 
-      class CLASS_DECL_sphere draw_item
+      class CLASS_DECL_sphere draw_item :
+         virtual public ::ca::object
       {
       public:
 
@@ -49,7 +51,7 @@ namespace filehandler
       };
 
       class CLASS_DECL_sphere draw_list :
-         public array_ptr_alloc < draw_item >
+         public ::collection::smart_pointer_array < draw_item >
       {
       public:
 

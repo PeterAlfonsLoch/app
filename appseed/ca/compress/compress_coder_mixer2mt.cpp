@@ -29,29 +29,21 @@ namespace libcompress
          {
             if (InSizePointers[i] != NULL)
                InSizePointers[i] = &InSizes[i];
-            InStreamPointers.add((::ca::reader *)InStreams[i]);
+            InStreamPointers.add(InStreams(i));
          }
          for(uint32_t i = 0; i < NumOutStreams; i++)
          {
             if (OutSizePointers[i] != NULL)
                OutSizePointers[i] = &OutSizes[i];
-            OutStreamPointers.add((::ca::writer *)OutStreams[i]);
+            OutStreamPointers.add(OutStreams(i));
          }
          if (Coder)
-            Result = Coder->Code(InStreamPointers[0], OutStreamPointers[0],
-            InSizePointers[0], OutSizePointers[0], progress);
+            Result = Coder->Code(InStreamPointers(0), OutStreamPointers(0), InSizePointers[0], OutSizePointers[0], progress);
          else
-            Result = Coder2->Code(&InStreamPointers.first_element(), &InSizePointers.first_element(), NumInStreams,
-            &OutStreamPointers.first_element(), &OutSizePointers.first_element(), NumOutStreams, progress);
+            Result = Coder2->Code(InStreamPointers, &InSizePointers[0], OutStreamPointers, &OutSizePointers[0], progress);
          {
-            for(int32_t i = 0; i < InStreams.get_count(); i++)
-            {
-               ::ca::release(InStreams[i].m_p);
-            }
-            for(int32_t i = 0; i < OutStreams.get_count(); i++)
-            {
-               ::ca::release(OutStreams[i].m_p);
-            }
+            InStreams(0).release();
+            OutStreams(0).release();
          }
       }
 
@@ -120,7 +112,7 @@ namespace libcompress
       void CCoderMixer2MT::ReInit()
       {
          for (int32_t i = 0; i < _streamBinders.get_count(); i++)
-            _streamBinders[i]->ReInit();
+            _streamBinders[i].ReInit();
       }
 
       CCoderMixer2MT::CCoderMixer2MT(::ca::application * papp) :
@@ -129,7 +121,7 @@ namespace libcompress
       {
       }
 
-      HRESULT CCoderMixer2MT::Init(::ca::reader **inStreams, ::ca::writer **outStreams)
+      HRESULT CCoderMixer2MT::Init(spa(::ca::reader) & inStreams, spa(::ca::writer) & outStreams)
       {
          /*
          if (_coders.get_count() != _bindInfo.Coders.get_count())
@@ -157,9 +149,8 @@ namespace libcompress
             _bindInfo.FindInStream(bindPair.InIndex, inCoderIndex, inCoderStreamIndex);
             _bindInfo.FindOutStream(bindPair.OutIndex, outCoderIndex, outCoderStreamIndex);
 
-            _streamBinders[i]->CreateStreams(
-               &_coders[inCoderIndex]->InStreams[inCoderStreamIndex].m_p,
-               &_coders[outCoderIndex]->OutStreams[outCoderStreamIndex].m_p);
+            _streamBinders[i].CreateStreams(_coders[inCoderIndex].InStreams(inCoderStreamIndex),
+                                            _coders[outCoderIndex].OutStreams(outCoderStreamIndex));
 
             throw "implement below";
             /*::ca::smart_pointer<::libcompress::set_buffer_size_interface> inSetSize, outSetSize;
@@ -177,14 +168,14 @@ namespace libcompress
          {
             uint32_t inCoderIndex, inCoderStreamIndex;
             _bindInfo.FindInStream(_bindInfo.InStreams[i], inCoderIndex, inCoderStreamIndex);
-            _coders[inCoderIndex]->InStreams[inCoderStreamIndex] = inStreams[i];
+            _coders[inCoderIndex].InStreams(inCoderStreamIndex) = inStreams(i);
          }
 
          for (i = 0; i < _bindInfo.OutStreams.get_count(); i++)
          {
             uint32_t outCoderIndex, outCoderStreamIndex;
             _bindInfo.FindOutStream(_bindInfo.OutStreams[i], outCoderIndex, outCoderStreamIndex);
-            _coders[outCoderIndex]->OutStreams[outCoderStreamIndex] = outStreams[i];
+            _coders[outCoderIndex].OutStreams(outCoderStreamIndex) = outStreams(i);
          }
          return S_OK;
       }
@@ -192,21 +183,19 @@ namespace libcompress
       HRESULT CCoderMixer2MT::ReturnIfError(HRESULT code)
       {
          for (int32_t i = 0; i < _coders.get_count(); i++)
-            if (_coders[i]->Result == code)
+            if (_coders[i].Result == code)
                return code;
          return S_OK;
       }
 
-      ::ca::HRes CCoderMixer2MT::Code(::ca::reader **inStreams,
+      ::ca::HRes CCoderMixer2MT::Code(spa(::ca::reader) & inStreams,
          const file_size ** /* inSizes */,
-         uint32_t numInStreams,
-         ::ca::writer **outStreams,
+         spa(::ca::writer) & outStreams,
          const file_size ** /* outSizes */,
-         uint32_t numOutStreams,
          ::libcompress::progress_info_interface *progress)
       {
-         if (numInStreams != (uint32_t)_bindInfo.InStreams.get_count() ||
-            numOutStreams != (uint32_t)_bindInfo.OutStreams.get_count())
+         if(inStreams.get_count() != (uint32_t)_bindInfo.InStreams.get_count() ||
+            outStreams.get_count() != (uint32_t)_bindInfo.OutStreams.get_count())
             return E_INVALIDARG;
 
          Init(inStreams, outStreams);
@@ -222,7 +211,7 @@ namespace libcompress
                if (i != _progressCoderIndex)
                   _coders[i]->begin();
 
-            _coders[_progressCoderIndex]->Code(progress);
+            _coders[_progressCoderIndex].Code(progress);
 
             throw "should implement below";
             /*
@@ -235,7 +224,7 @@ namespace libcompress
 
             for (i = 0; i < _coders.get_count(); i++)
             {
-               HRESULT result = _coders[i]->Result;
+               HRESULT result = _coders[i].Result;
                if (result != S_OK && result != E_FAIL && result != S_FALSE)
                   return result;
             }
@@ -244,7 +233,7 @@ namespace libcompress
 
             for (i = 0; i < _coders.get_count(); i++)
             {
-               HRESULT result = _coders[i]->Result;
+               HRESULT result = _coders[i].Result;
                if (result != S_OK)
                   return result;
             }

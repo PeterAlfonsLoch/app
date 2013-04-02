@@ -32,7 +32,7 @@ namespace n7z
    struct CFolder :
       virtual public ::ca::ca
    {
-      ::ca::smart_pointer_array<CCoderInfo> Coders;
+      spa(CCoderInfo) Coders;
       base_array<CBindPair> BindPairs;
       base_array<CNum> PackStreams;
       base_array<file_size> UnpackSizes;
@@ -55,7 +55,7 @@ namespace n7z
       {
          CNum result = 0;
          for (index i = 0; i < Coders.get_count(); i++)
-            result += Coders[i]->NumOutStreams;
+            result += Coders[i].NumOutStreams;
          return result;
       }
 
@@ -84,7 +84,7 @@ namespace n7z
       bool IsEncrypted() const
       {
          for (index i = Coders.get_count() - 1; i >= 0; i--)
-            if (Coders[i]->MethodID == k_AES)
+            if (Coders[i].MethodID == k_AES)
                return true;
          return false;
       }
@@ -184,9 +184,9 @@ namespace n7z
       base_array<file_size> PackSizes;
       bool_array PackCRCsDefined;
       base_array<uint32_t> PackCRCs;
-      ::ca::smart_pointer_array<CFolder> Folders;
+      spa(CFolder) Folders;
       base_array<CNum> NumUnpackStreamsVector;
-      ::ca::smart_pointer_array<CFileItem> Files;
+      spa(CFileItem) Files;
 
       CUInt64DefVector CTime;
       CUInt64DefVector ATime;

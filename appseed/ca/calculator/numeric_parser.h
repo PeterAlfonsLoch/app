@@ -7,6 +7,12 @@ namespace calculator
       virtual public ::ca::object
    {
    public:
+
+
+      scanner           m_scanner;
+      spa(element)      m_elementa;
+
+
       parser(::ca::application * papp);
       virtual ~parser();
 
@@ -16,9 +22,6 @@ namespace calculator
       element * expr(element * pelement1);
       element * term(element * pelement1);
       element * factor();
-
-      scanner m_scanner;
-      ::ca::smart_pointer_array < element > m_elementa;
 
       void error(const char * pszMessage);
       void syntax_error(const char * pszMessage);

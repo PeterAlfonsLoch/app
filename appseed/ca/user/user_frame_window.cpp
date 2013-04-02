@@ -1743,7 +1743,7 @@ void frame_window::assert_valid() const
 {
    user::frame_window_interface::assert_valid();
    if (m_pViewActive != NULL)
-      ASSERT_VALID(m_pViewActive.get_p());
+      ASSERT_VALID(m_pViewActive);
 }
 
 void frame_window::dump(dump_context & dumpcontext) const

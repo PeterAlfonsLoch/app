@@ -44,13 +44,10 @@ public:
    string pop_random_element();
 
    string pop(index i = 0);
-   void slice(stringa & stra, index index);
-   void slice(stringa & stra, index index, count count);
+   void slice(stringa & stra, index index, count c = -1);
    void remove(index index, count count);
-   void splice(const stringa & stra, index index);
-   void splice(const stringa & stra, index index, count count);
-   void splice(const stringa & stra, index index, stringa & straRemoved);
-   void splice(const stringa & stra, index index, count count, stringa & straRemoved);
+   void splice(const stringa & stra, index index, count c = -1);
+   void splice(const stringa & stra, index index, stringa & straRemoved, count c = -1);
 
 
    // if string is found, move it to specified position

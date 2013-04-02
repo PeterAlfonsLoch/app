@@ -10,7 +10,7 @@ namespace webserver
    class simage_accepta;
    typedef base_array < simage_accepta * > simage_accepta_ptr_array;
    class match_host;
-   typedef ::ca::smart_pointer_array < match_host > match_host_array;
+   typedef ::collection::smart_pointer_array < match_host > match_host_array;
    class ui_redir;
    class fontopus_database;
    class way_database;
@@ -115,7 +115,7 @@ namespace dynamic_source
                                                 m_mapTunnel;
 
       mutex                                     m_mutexImageSize;
-      ::collection::string_map < size >         m_mapImageSize;
+      ::collection::string_map < ::size >         m_mapImageSize;
 
 
 
@@ -242,8 +242,8 @@ namespace dynamic_source
       ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const char * pszServer);
       ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
-      size get_image_size(const string & strFile);
-      bool extract_image_size(const string & strFile, size * psize);
+      ::size get_image_size(const string & strFile);
+      bool extract_image_size(const string & strFile, ::size * psize);
 
 
    };

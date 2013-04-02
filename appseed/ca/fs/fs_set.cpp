@@ -39,11 +39,11 @@ namespace fs
       for(int32_t i = 0; i < m_spafsdata.get_count(); i++)
       {
          straFs.remove_all();
-         m_spafsdata[i]->root_ones(straFs);
+         m_spafsdata[i].root_ones(straFs);
          stra.add(straFs);
          for(int32_t j = 0; j < straFs.get_size(); j++)
          {
-            m_fsdatamap[straFs[j]] = m_spafsdata[i];
+            m_fsdatamap[straFs[j]] = &m_spafsdata[i];
          }
       }
 

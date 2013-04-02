@@ -1,11 +1,15 @@
 #pragma once
 
+
 namespace xml
 {
 
+
    class input_tree;
 
-   class CLASS_DECL_ca importable
+
+   class CLASS_DECL_ca importable :
+      virtual public ::ca::object
    {
    public:
 
@@ -20,3 +24,8 @@ namespace xml
 
 
 } // namespace xml
+
+
+
+
+

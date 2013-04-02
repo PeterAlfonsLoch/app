@@ -16,7 +16,7 @@ namespace xml
 
 
       class CLASS_DECL_ca base_array :
-         virtual public ::ca::smart_pointer_array < node >
+         virtual public spa(node)
       {
       public:
 

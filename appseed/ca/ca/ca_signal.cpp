@@ -140,7 +140,7 @@ namespace ca
       {
          try
          {
-            m_delegatea[i]->get_signalizable()->unregister_signal(this);
+            m_delegatea[i].get_signalizable()->unregister_signal(this);
          }
          catch(...)
          {
@@ -155,7 +155,7 @@ namespace ca
       {
          for(index i = m_delegatea.get_size() - 1; i >= 0 ; i++)
          {
-            m_delegatea[i]->emit(NULL);
+            m_delegatea[i].emit(NULL);
          }
       }
       else
@@ -198,7 +198,7 @@ namespace ca
    {
       for(int32_t i = 0; i < m_delegatea.get_size();)
       {
-         if(m_delegatea[i]->get_signalizable() == psignalizable)
+         if(m_delegatea[i].get_signalizable() == psignalizable)
          {
             m_delegatea.remove_at(i);
          }
@@ -213,9 +213,9 @@ namespace ca
    {
       for(int32_t i = 0; i < m_delegatea.get_size();)
       {
-         if(m_delegatea[i]->get_signalizable() != psignalizable)
+         if(m_delegatea[i].get_signalizable() != psignalizable)
          {
-            m_delegatea[i]->get_signalizable()->unregister_signal(this);
+            m_delegatea[i].get_signalizable()->unregister_signal(this);
             m_delegatea.remove_at(i);
          }
          else

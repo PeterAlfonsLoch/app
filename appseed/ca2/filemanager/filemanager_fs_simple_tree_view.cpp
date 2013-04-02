@@ -206,7 +206,7 @@ namespace filemanager
 
          void tree_view::_001OnItemExpand(::ca::tree_item *pitem)
          {
-            m_pserver->open_folder(m_foldera[pitem->m_dwUser]->m_iFolder);
+            m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
          void tree_view::install_message_handling(::ca::message::dispatch * pdispatch)

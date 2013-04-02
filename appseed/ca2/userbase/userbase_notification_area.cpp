@@ -192,10 +192,7 @@ namespace userbase
 
    void notification_area::PostMessageToTrayIcon(int32_t iItem, LPARAM lParam)
    {
-      ::PostMessage(m_infoa[iItem]->m_oswindow,
-         m_infoa[iItem]->uCallbackMessage,
-         m_infoa[iItem]->uID,
-         lParam);
+      ::PostMessage(m_infoa[iItem].m_oswindow, m_infoa[iItem].uCallbackMessage, m_infoa[iItem].uID, lParam);
    }
 
    void notification_area::MoveLeft(int32_t iItem)

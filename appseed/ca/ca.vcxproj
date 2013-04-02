@@ -1017,7 +1017,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_hash.h" />
     <ClInclude Include="ca\ca_heap.h" />
     <ClInclude Include="ca\ca_hex.h" />
-    <ClInclude Include="ca\ca_holder.h" />
     <ClInclude Include="ca\ca_http.h" />
     <ClInclude Include="ca\ca_http_application.h" />
     <ClInclude Include="ca\ca_http_get_socket.h" />
@@ -1043,6 +1042,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_logic.h" />
     <ClInclude Include="ca\ca_machine_event_central.h" />
     <ClInclude Include="ca\ca_main.h" />
+    <ClInclude Include="ca\ca_map_to_smart_pointer.h" />
     <ClInclude Include="ca\ca_match.h" />
     <ClInclude Include="ca\ca_math.h" />
     <ClInclude Include="ca\ca_math_rng.h" />
@@ -1124,6 +1124,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_simple_tree_item_data.h" />
     <ClInclude Include="ca\ca_size_count_writer.h" />
     <ClInclude Include="ca\ca_smart_pointer.h" />
+    <ClInclude Include="ca\ca_smart_pointer_query.h" />
     <ClInclude Include="ca\ca_sockets_address.h" />
     <ClInclude Include="ca\ca_std_pair.h" />
     <ClInclude Include="ca\ca_str.h" />
@@ -1177,9 +1178,11 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="collection\collection.h" />
     <ClInclude Include="collection\collection_deque.h" />
     <ClInclude Include="collection\collection_fifo_map.h" />
+    <ClInclude Include="collection\collection_map_to_smart_pointer.h" />
     <ClInclude Include="collection\collection_priority_queue.h" />
     <ClInclude Include="collection\collection_queue.h" />
     <ClInclude Include="collection\collection_simple_template.h" />
+    <ClInclude Include="collection\collection_smart_pointer_array.h" />
     <ClInclude Include="collection\collection_sort_map.h" />
     <ClInclude Include="collection\collection_template.h" />
     <ClInclude Include=".\collection\collection_comparable_array.h" />
@@ -1636,7 +1639,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include=".\primitive\primitive_shared_memory.h" />
     <ClInclude Include=".\primitive\primitive_simple_string.h" />
     <ClInclude Include=".\primitive\primitive_size.h" />
+    <ClInclude Include="primitive\primitive_string_composite.h" />
     <ClInclude Include="primitive\primitive_string_format.h" />
+    <ClInclude Include="primitive\primitive_string_interface.h" />
     <ClInclude Include="primitive\primitive_var.h" />
     <ClInclude Include=".\primitive\primitive_virtual_memory.h" />
     <ClInclude Include="ca.h" />

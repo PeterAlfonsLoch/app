@@ -139,7 +139,7 @@ namespace simpledb
 
    void socket::simple_file_server(const char * psz, const char * pszRelative)
    {
-      ::ca::smart_pointer_array < int_array > rangea;
+      ::collection::smart_pointer_array < int_array > rangea;
       if(strlen(inheader("range")) > 0)
       {
          stringa straItem;
@@ -181,7 +181,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const char * lpcsz, ::ca::smart_pointer_array < int_array > * prangea, const char * pszContentType)
+   bool socket::read_file(const char * lpcsz, ::collection::smart_pointer_array < int_array > * prangea, const char * pszContentType)
    {
       string strExtension = System.file().extension(lpcsz);
       string str = strExtension;

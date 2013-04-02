@@ -11,7 +11,7 @@ namespace html
    public:
 
 
-      ::ca::smart_pointer_array < style > m_stylea;
+      ::collection::smart_pointer_array < style > m_stylea;
       
 
       style_sheet();

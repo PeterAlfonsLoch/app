@@ -127,7 +127,7 @@ namespace ca
 
 
       class CLASS_DECL_ca any :
-         virtual public ::ca::smart_pointer_array < item >,
+         virtual public spa(item),
          virtual public item
       {
       public:

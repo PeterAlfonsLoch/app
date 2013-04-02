@@ -14,10 +14,10 @@ namespace ca
    public:
 
 
-      ::ca::smart_pointer < mutex >       m_spmutex;
+      sp(mutex)                           m_spmutex;
       id                                  m_id;
       id                                  m_idFriendly;
-      ph(factory_item_base)               m_pfactoryitem;
+      sp(factory_item_base)               m_pfactoryitem;
 
 
       type_info();

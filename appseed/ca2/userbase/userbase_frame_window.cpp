@@ -276,7 +276,7 @@ namespace userbase
       try
       {
          if (m_pViewActive != NULL)
-            ASSERT_VALID(m_pViewActive.get_p());
+            ASSERT_VALID(m_pViewActive);
       }
       catch(...)
       {

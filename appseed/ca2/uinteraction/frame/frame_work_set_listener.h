@@ -12,7 +12,7 @@ namespace frame
    class WorkSetListenerArray;
 
    class CLASS_DECL_ca2 WorkSetListener :
-      public pha(WorkSetListenerArray)
+      public spa(WorkSetListenerArray)
    {
    public:
       virtual void on_delete(::ca::ca * poc);
@@ -41,7 +41,7 @@ namespace frame
          point point);
 
    protected:
-      pha(WorkSetListenerArray) m_listenerpapa;
+      spa(WorkSetListenerArray) m_listenerpapa;
 
    };
 

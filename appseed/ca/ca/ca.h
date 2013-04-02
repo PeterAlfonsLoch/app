@@ -275,6 +275,8 @@ class dump_context;
 #include "ca/primitive/primitive_id.h"
 #include "ca/primitive/primitive_string_format.h"
 #include "ca/primitive/primitive_fixed_string.h"
+#include "ca/primitive/primitive_string_interface.h"
+#include "ca/primitive/primitive_string_composite.h"
 #include "ca/primitive/primitive_string.h"
 #include "ca/primitive/datetime/datetime_time.h"
 
@@ -292,9 +294,10 @@ class dump_context;
 #include "ca_template.h"
 
 
-#include "ca/collection/collection_base_array.h"
+
 
 #include "ca_smart_pointer.h"
+#include "ca_smart_pointer_query.h"
 
 
 
@@ -338,7 +341,6 @@ class dump_context;
 
 
 
-#include "ca_holder.h"
 #include "ca_base.h"
 
 
@@ -1451,7 +1453,6 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 
 #include "ca_base_enum.h"
 #include "ca_base_enum.h"
-#include "ca_holder.h"
 #include "ca_raw_pointer.h"
 //#include "ca_full_pointer.h"
 //#include "ca_time.h"

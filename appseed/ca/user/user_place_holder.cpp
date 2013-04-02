@@ -20,53 +20,73 @@ namespace user
 
    bool place_holder::can_merge(::user::interaction * pui)
    {
+
       if(m_uiptraHold.contains(pui))
          return false;
+
       if(m_uiptraHold.get_count() == 0)
          return false;
-      return m_uiptraHold[0]->can_merge(pui);
+
+      return m_uiptraHold[0].can_merge(pui);
+
    }
+
 
    bool place_holder::merge(::user::interaction * pui)
    {
+
       if(!can_merge(pui))
          return false;
-      if(!m_uiptraHold[0]->merge(pui))
+
+      if(!m_uiptraHold[0].merge(pui))
          return false;
+
       m_uiptraHold.add(pui);
+
       return true;
+
    }
+
 
    bool place_holder::is_holding(::user::interaction * pui)
    {
+
       return m_uiptraHold.contains(pui);
+
    }
+
 
    bool place_holder::hold(::user::interaction * pui)
    {
+
       if(pui == NULL)
-      {
          return false;
-      }
+
       if(m_uiptraHold.contains(pui))
          return true;
+
       for(index i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
       {
-         System.hold(m_uiptraHold[i]);
+         System.hold(m_uiptraHold(i));
       }
+
       m_uiptraHold.remove_all();
+
       m_uiptraHold.add(pui);
+
       if(m_uiptraHold.get_count() == 1)
       {
          pui->set_parent(this);
       }
-      //layout();
+
       return true;
+
    }
+
 
    bool place_holder::unhold(::user::interaction * pui)
    {
-      if(m_uiptraHold.find(pui) == 0)
+      if(m_uiptraHold.find_first(pui) == 0)
          return m_uiptraHold.remove_all() > 0;
       else
          return m_uiptraHold.remove(pui) >= 0;
@@ -77,7 +97,7 @@ namespace user
       if(m_uiptraHold.get_count() <= 0)
          return;
 
-      ::user::interaction * puiHold = m_uiptraHold[0];
+      ::user::interaction * puiHold = m_uiptraHold(0);
 
       rect rectClient;
       GetClientRect(rectClient);
@@ -108,7 +128,7 @@ namespace user
    {
       if(m_uiptraHold.get_count() <= 0)
          return NULL;
-      return m_uiptraHold[0];
+      return m_uiptraHold(0);
    }
 
    int32_t place_holder_ptra::hold(::user::interaction * pui)

@@ -115,7 +115,7 @@ namespace fs
       iaDisplayToStrict = iconlayout.m_iaDisplayToStrict;
       index_biunique iaDisplayToStrictNew;
 
-      ::fs::list_item item;
+      ::fs::list_item item(get_app());
 
       _001OnUpdateItemCount();
 
@@ -566,7 +566,7 @@ namespace fs
 
    void list_interface::add_item(const char * pszPath, const char * pszTitle)
    {
-      list_item item;
+      list_item item(get_app());
       item.m_strPath = pszPath;
       item.m_strName = pszTitle;
       if(get_document()->set().is_dir(pszPath))

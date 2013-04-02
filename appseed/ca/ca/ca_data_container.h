@@ -58,7 +58,7 @@ namespace ca
             try
             {
 
-               pderived = dynamic_cast < TYPE * > (m_spadata[i].m_p);
+               pderived = m_spadata.typed_ptr_at < TYPE > (i);
 
             }
             catch(...)
@@ -73,7 +73,7 @@ namespace ca
 
                retry_single_lock rsl2(pdata->data_mutex(), millis(1), millis(1));
 
-               m_spadata[i] = pdata;
+               m_spadata(i) = pdata;
 
                return true;
 
@@ -84,6 +84,15 @@ namespace ca
          m_spadata.add(pdata);
 
          return true;
+
+      }
+
+
+      template < class TYPE >
+      bool replace_data(::ca::smart_pointer < TYPE > & data)
+      {
+         
+         return replace_data(data.m_p);
 
       }
 

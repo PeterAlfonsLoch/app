@@ -824,7 +824,7 @@ namespace dynamic_source
 
       sl.lock();
 
-      size size;
+      ::size size;
 
       if(m_mapImageSize.Lookup(strFile, size))
          return size;
@@ -850,7 +850,7 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::extract_image_size(const string & strFile, size * psize)
+   bool script_manager::extract_image_size(const string & strFile, ::size * psize)
    {
 
       ::ca::filesp f;

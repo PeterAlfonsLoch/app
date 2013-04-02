@@ -41,7 +41,7 @@ namespace xml
 
    class CLASS_DECL_ca edit :
       public ::ca::edit < ::xml::document >,
-      public ::ca::byte_serializable_pointer_array < ::ca::smart_pointer_array < edit_item > >
+      public ::ca::byte_serializable_pointer_array < spa(edit_item) >
    {
    public:
 

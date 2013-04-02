@@ -1879,13 +1879,13 @@ namespace plane
    index system::get_best_intersection_monitor(LPRECT lprect)
    {
 
-      count c = get_monitor_count();
+      ::count c   = get_monitor_count();
 
-      rect rectIntersect;
-      rect rectMonitor;
-      int64_t  iBestArea = 0;
-      index    iBestAreaIndex = -1;
-      int64_t iArea;
+      rect        rectIntersect;
+      rect        rectMonitor;
+      int64_t     iBestArea = 0;
+      index       iBestAreaIndex = -1;
+      int64_t     iArea;
 
       for(index i = 0; i < c; i++)
       {

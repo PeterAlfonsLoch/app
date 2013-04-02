@@ -19,11 +19,8 @@ public:
 
    count get_size() const;
    count get_count() const;
-   index get_lower_bound() const;
-   index get_lower_bound(index i) const;
-   index get_upper_bound() const;
-   index get_upper_bound(count i) const;
-   index get_upper_bound(index i, count count) const;
+   index get_lower_bound(index i = 0) const;
+   index get_upper_bound(index i = -1) const;
    void set_size(count nNewSize, count nGrowBy = -1);
 
    count size() const;
@@ -43,11 +40,11 @@ public:
    index add_new(const char * psz = NULL, index i = -1);
    string & new_element(index i = -1);
 
-   string & last_element(count count);
-   string last_element(count count) const;
+   string & first_element(index count = 0);
+   string first_element(index count = 0) const;
 
-   string & last_element();
-   string last_element() const;
+   string & last_element(index count = -1);
+   string last_element(index count = -1) const;
 
    const string* get_data() const;
    string* get_data();
@@ -145,15 +142,26 @@ static inline void DestructElement(string* pOldData)
 }
 
 
-inline string & string_array::last_element()
+inline string & string_array::last_element(index i)
 {
-   return this->element_at(get_upper_bound());
+   return this->element_at(get_upper_bound(i));
 }
 
 
-inline string & string_array::last_element(count count)
+inline string string_array::last_element(index count) const
 {
    return this->element_at(get_upper_bound(count));
+}
+
+inline string & string_array::first_element(index i)
+{
+   return this->element_at(get_lower_bound(i));
+}
+
+
+inline string string_array::first_element(index count) const
+{
+   return this->element_at(get_lower_bound(count));
 }
 
 
@@ -163,12 +171,8 @@ inline count string_array::get_count() const
    { return m_nSize; }
 inline index string_array::get_lower_bound(index i) const
    { return i; }
-inline index string_array::get_lower_bound() const
-   { return 0; }
-inline index string_array::get_upper_bound() const
-   { return m_nSize - 1; }
-inline index string_array::get_upper_bound(count count) const
-   { return m_nSize - 1 - count; }
+inline index string_array::get_upper_bound(index count) const
+   { return m_nSize + count; }
 
 inline count string_array::size() const
    { return m_nSize; }

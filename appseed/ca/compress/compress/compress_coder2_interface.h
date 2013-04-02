@@ -7,8 +7,7 @@ namespace libcompress
       virtual public ::ca::object
    {
    public:
-      virtual ::ca::HRes Code(::ca::reader ** inStreams, const file_size ** inSizes, uint32_t numInStreams,
-         ::ca::writer ** outStreams, const file_size ** outSizes, uint32_t numOutStreams,
+      virtual ::ca::HRes Code(spa(::ca::reader) & InStreams, const file_size ** inSizes, spa(::ca::writer) & OutStreams, const file_size ** outSizes,
          progress_info_interface * progress) = 0;
    };
 

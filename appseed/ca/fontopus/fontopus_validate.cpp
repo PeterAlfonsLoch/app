@@ -1362,16 +1362,16 @@ namespace fontopus
       {
          strFilename = System.file().time_square(get_app());
          System.http().download(
-            m_httpexecutea[i]->m_strUrl,
+            m_httpexecutea[i].m_strUrl,
             strFilename,
-            m_httpexecutea[i]->m_propertysetPost,
-            m_httpexecutea[i]->m_propertysetHeaders,
+            m_httpexecutea[i].m_propertysetPost,
+            m_httpexecutea[i].m_propertysetHeaders,
             set,
             m_puser->m_phttpcookies,
             m_puser);
          strResponse = Application.file().as_string(strFilename);
          TRACE0(strResponse);
-         m_httpexecutea[i]->m_strResponse = strResponse;
+         m_httpexecutea[i].m_strResponse = strResponse;
       }
    }
 

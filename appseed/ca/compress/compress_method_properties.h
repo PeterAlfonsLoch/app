@@ -22,7 +22,7 @@ namespace libcompress
    {
 
 
-      ::ca::smart_pointer_array < method > methods;
+      spa(method) methods;
 
       uint32_t NumThreads;
 

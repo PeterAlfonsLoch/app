@@ -238,7 +238,7 @@ namespace ca
       virtual public ::ca::thread_base,
       virtual public command_target,
       virtual public ::exception::translator,
-      virtual public pha(::user::interaction),
+      virtual public spa(::user::interaction),
       virtual public ::ca::live_object,
       virtual public event_base,
       virtual public ::ca::thread_sp
@@ -255,18 +255,18 @@ namespace ca
       mutex          m_mutex;
 
       bool                                m_bRun;
-      user::interaction_ptr_array *                  m_puiptra;
+      user::interaction_ptr_array *       m_puiptra;
       ::user::interaction::timer_array *  m_ptimera;
       comparable_array < ::ca::ca * >     m_captraDeletePool;
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
-      uint_ptr                           m_dwAlive;
+      uint_ptr                            m_dwAlive;
       bool                                m_bReady;
-      int32_t                                 m_iReturnCode;
+      int32_t                             m_iReturnCode;
       ::ca::application *                 m_pappDelete;
-      ph(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
-      ph(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
+      sp(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
+      sp(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       bool *                              m_pbReady;
-      ::ca::property_set                   m_set;
+      ::ca::property_set                  m_set;
       string                              m_strWorkUrl;
 
 
@@ -349,10 +349,10 @@ namespace ca
 //      virtual ::user::interaction * GetMainWnd();
 //      virtual ::user::interaction * SetMainWnd(::user::interaction * pui);
 
-      //using pha(::user::interaction)::add;
+      //using spa(::user::interaction)::add;
 //      virtual void add(::user::interaction * pui);
 
-      //using pha(::user::interaction)::remove;
+      //using spa(::user::interaction)::remove;
 //      virtual void remove(::user::interaction * pui);
 
 //      virtual ::count get_ui_count();

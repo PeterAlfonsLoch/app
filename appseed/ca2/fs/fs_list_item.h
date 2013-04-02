@@ -19,7 +19,7 @@ namespace fs
       flags < e_flag >                 m_flags;
 
 
-      list_item();
+      list_item(::ca::application * papp);
       list_item(const list_item & item);
 
       static index CompareArrangeByName(list_item & pitema, list_item & itemb);

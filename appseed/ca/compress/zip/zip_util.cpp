@@ -175,7 +175,7 @@ namespace zip
 
 
       //string wstrFileName(lpszFileName);
-//      ::ca::smart_pointer_array < File, File & > filea;
+//      ::collection::smart_pointer_array < File, File & > filea;
 
       /*int32_t iStart = 0;
       int32_t iFind;
@@ -197,8 +197,8 @@ namespace zip
       stringa wstraPrefix;
       string str;
       int32_t i;
-      ::ca::smart_pointer_array < InFile, InFile & > izfilea;
-   //   ::ca::smart_pointer_array < buffered_file, buffered_file & > bzfilea;
+      ::collection::smart_pointer_array < InFile, InFile & > izfilea;
+   //   ::collection::smart_pointer_array < buffered_file, buffered_file & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
       {
          izfilea.add(new InFile(get_app()));

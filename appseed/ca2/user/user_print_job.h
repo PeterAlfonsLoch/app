@@ -10,7 +10,7 @@ namespace user
    {
    public:
 
-      ph(printer)     m_phprinter;
+      sp(printer)     m_phprinter;
 
       print_job(::ca::application * papp);
       virtual ~print_job();

@@ -30,8 +30,8 @@ namespace user
       };
 
 
-      ph(scroll_bar)    m_pscrollbarHorz;
-      ph(scroll_bar)    m_pscrollbarVert;
+      sp(scroll_bar)    m_pscrollbarHorz;
+      sp(scroll_bar)    m_pscrollbarVert;
       scroll_info       m_scrollinfo;
 
       int16_t             m_iWheelDelta;

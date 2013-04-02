@@ -97,7 +97,7 @@ namespace user
    };
 
    class CLASS_DECL_ca2 list_column_array :
-      public ::ca::smart_pointer_array < ::user::list_column >
+      public ::collection::smart_pointer_array < ::user::list_column >
    {
    public:
 
@@ -331,7 +331,7 @@ namespace user
          index get_upper_bound() const;
          item_range & operator =(const item_range & itemrange);
          bool has_item(index iItem) const;
-         void get_item_indexes(index_array & ia);
+         void get_item_indexes(index_array & ia) const;
 
       };
 
@@ -358,7 +358,7 @@ namespace user
          void add_item(const item_range & itemrange);
          item_range & ItemAt(index iIndex);
          ::count get_item_count() const;
-         void get_item_indexes(index_array & ia);
+         void get_item_indexes(index_array & ia) const;
 
       };
 

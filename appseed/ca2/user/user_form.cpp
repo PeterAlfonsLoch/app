@@ -27,7 +27,7 @@ namespace ca
 
       index form::_001AddControl(class control::descriptor & descriptorParam)
       {
-         index indexNew = m_controldescriptorset.add(descriptorParam);
+         index indexNew = m_controldescriptorset.add(new  class control::descriptor(descriptorParam));
          descriptorParam.clear();
          class control::descriptor * pdescriptor = m_controldescriptorset.element_at(indexNew);
          pdescriptor->m_pform = this;
@@ -352,7 +352,7 @@ namespace ca
          UNREFERENCED_PARAMETER(phint);
          for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
-            control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
+            control * pcontrol = m_controldescriptorset[i].m_pcontrol;
             if(pcontrol == NULL)
                continue;
             _001Update(pcontrol);
@@ -616,7 +616,7 @@ namespace ca
          {
             for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
             {
-               control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
+               control * pcontrol = m_controldescriptorset[i].m_pcontrol;
                if(pcontrol == NULL)
                   continue;
                _001Update(pcontrol);
@@ -709,14 +709,14 @@ namespace ca
          }
          for(int32_t iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
          {
-            control * pcontrol = m_controldescriptorset[iControl]->m_pcontrol;
+            control * pcontrol = m_controldescriptorset[iControl].m_pcontrol;
             if(pcontrol == NULL)
                continue;
-            if(m_controldescriptorset[iControl]->m_eddx == control::ddx_dbflags)
+            if(m_controldescriptorset[iControl].m_eddx == control::ddx_dbflags)
             {
                _001UpdateDbFlags(pcontrol);
             }
-            else if(m_controldescriptorset[iControl]->m_dataid == pchange->m_key.m_idKey)
+            else if(m_controldescriptorset[iControl].m_dataid == pchange->m_key.m_idKey)
             {
                _001Update(pcontrol);
             }
@@ -1000,7 +1000,7 @@ namespace ca
       //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
          for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
-            control * pcontrol = m_controldescriptorset[i]->m_pcontrol;
+            control * pcontrol = m_controldescriptorset[i].m_pcontrol;
             if(pcontrol == NULL)
                continue;
             _001Update(pcontrol);

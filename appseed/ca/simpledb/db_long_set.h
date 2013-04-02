@@ -54,7 +54,7 @@ public:
       sockets::socket_handler                      m_handler;
       sockets::http_session *                      m_phttpsession;
 
-      ::ca::smart_pointer_array < queue_item >                     m_itema;
+      ::collection::smart_pointer_array < queue_item >                     m_itema;
 
 
 

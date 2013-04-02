@@ -70,10 +70,10 @@ namespace html
       base_array < impl::table *, impl::table * > 
                                  m_tableptra;
 
-      ::ca::smart_pointer_array < image> 
+      ::collection::smart_pointer_array < image> 
                                  m_imagea;
 
-      ::ca::smart_pointer_array < font >  
+      ::collection::smart_pointer_array < font >  
                                  m_fonta;
 
       comparable_array < ::user::interaction *, ::user::interaction * >   

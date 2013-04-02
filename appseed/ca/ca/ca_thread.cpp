@@ -710,7 +710,7 @@ namespace ca
       {
          if(m_p != NULL)
          {
-            m_p->::ca::holder_array < ::user::interaction > ::remove(pui, false);
+            m_p->remove(pui);
          }
       }
       catch(...)

@@ -104,7 +104,7 @@ namespace n7z
       {
          // headerMethod.Methods.add(methodMode.Methods.Back());
 
-         ::ca::smart_pointer_array < ::libcompress::COneMethodInfo > headerMethodInfoVector;
+         ::collection::smart_pointer_array < ::libcompress::COneMethodInfo > headerMethodInfoVector;
          ::libcompress::COneMethodInfo & oneMethodInfo = *headerMethodInfoVector.add_new();
          oneMethodInfo.MethodName = kLZMAMethodName;
          oneMethodInfo.Props[NCoderPropID::kMatchFinder] = kLzmaMatchFinderForHeaders;
@@ -124,7 +124,7 @@ namespace n7z
 
    ::ca::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
-      ::ca::smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
+      ::collection::smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
       , uint32_t numThreads
 #endif
@@ -226,7 +226,7 @@ namespace n7z
          db = &_db;
 #endif
 
-      ::ca::smart_pointer_array<CUpdateItem> updateItems;
+      ::collection::smart_pointer_array<CUpdateItem> updateItems;
 
       for (uint32_t i = 0; i < numItems; i++)
       {

@@ -31,7 +31,7 @@ namespace libcompress
 
       uint32_t _crcSize;
 
-      ::ca::smart_pointer_array<COneMethodInfo> _methods;
+      spa(COneMethodInfo) _methods;
       bool _removeSfxBlock;
 
       uint64_t _numSolidFiles;

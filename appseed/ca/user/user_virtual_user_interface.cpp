@@ -133,7 +133,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
             single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex);
             if(sl.lock(millis(84)))
             {
-               index iFind = get_parent()->m_uiptraChild.find(m_pguie);
+               index iFind = get_parent()->m_uiptraChild.find_first(m_pguie);
                if(iFind >= 0)
                {
                   try
@@ -234,7 +234,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    && pparent != m_pguie
    && pparent != m_pimpl)
    {
-      pparent->m_uiptraChild.add(m_pguie);
+      pparent->m_uiptraChild.add_unique(m_pguie);
       m_pparent   = pparent;
    }
    m_id      = id;
@@ -341,7 +341,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    && pparent != m_pimpl)
    {
       m_pparent   = pparent;
-      pparent->m_uiptraChild.add(m_pguie);
+      pparent->m_uiptraChild.add_unique(m_pguie);
    }
    m_id      = id;
    m_pguie->m_id      = id;
@@ -450,7 +450,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    && pparent != m_pimpl)
    {
       m_pparent   = pparent;
-      pparent->m_uiptraChild.add(m_pguie);
+      pparent->m_uiptraChild.add_unique(m_pguie);
    }
    m_id      = id;
    m_pguie->m_id = id;
@@ -1200,11 +1200,11 @@ void virtual_user_interface::message_handler(::ca::signal_object * pobj)
       return pparentOld;
    if(m_pguie != NULL)
    {
-      m_pparent->m_uiptraChild.add(m_pguie);
+      m_pparent->m_uiptraChild.add_unique(m_pguie);
    }
    else
    {
-      m_pparent->m_uiptraChild.add(this);
+      m_pparent->m_uiptraChild.add_unique(this);
    }
    return pparentOld;
 }
@@ -1308,12 +1308,12 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
    single_lock sl(&m_pthread->m_pthread->m_mutex, TRUE);
    for(int32_t i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
    {
-      if(m_pguie->m_uiptraChild[i]->GetDlgCtrlId() == id)
+      if(m_pguie->m_uiptraChild[i].GetDlgCtrlId() == id)
       {
-         if(m_pguie->m_uiptraChild[i]->GetDescendantWindow(id))
-            return m_pguie->m_uiptraChild[i]->GetDescendantWindow(id);
+         if(m_pguie->m_uiptraChild[i].GetDescendantWindow(id))
+            return m_pguie->m_uiptraChild[i].GetDescendantWindow(id);
          else
-            return m_pguie->m_uiptraChild[i];
+            return m_pguie->m_uiptraChild(i);
       }
    }
 

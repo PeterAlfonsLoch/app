@@ -48,7 +48,7 @@ public:
    rect                          m_FullScreenWindowRect;
    visual::fastblur              m_fastblur;
 
-   phm(id, id, ::user::interaction)    m_toolbarmap;
+   mapsp(id, id, ::user::interaction)    m_toolbarmap;
 
 
    simple_frame_window(::ca::application * papp);

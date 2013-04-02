@@ -74,7 +74,7 @@ namespace n7z
 
    ::ca::HRes CFolderOutStream::ProcessEmptyFiles()
    {
-      while (_currentIndex < _extractStatuses->get_count() && _db->Files[_startIndex + _currentIndex]->get_count == 0)
+      while (_currentIndex < _extractStatuses->get_count() && _db->Files[_startIndex + _currentIndex].get_count == 0)
       {
          RINOK(OpenFile());
          RINOK(CloseFileAndSetResult());
@@ -126,7 +126,7 @@ namespace n7z
       *value = 0;
       if ((int32_t)subStream >= _extractStatuses->get_count())
          return S_FALSE;
-      *value = _db->Files[_startIndex + (int32_t)subStream]->get_count;
+      *value = _db->Files[_startIndex + (int32_t)subStream].get_count;
       return S_OK;
    }
 
