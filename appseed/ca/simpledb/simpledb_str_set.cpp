@@ -101,12 +101,12 @@ int32_t db_str_set::sync_queue::run()
    try
    {
 
-      while(m_bRun)
+      while(get_run())
       {
 
 repeat:;
 
-      if(!m_bRun)
+      if(!get_run())
          break;
        {
 

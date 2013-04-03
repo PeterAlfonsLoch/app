@@ -18,13 +18,12 @@ namespace simpledb
    {
    }
 
-   void service::ServiceThread()
+   void service::serve()
    {
       ::ca::application * pcaapp = get_app();
 
       Sys(pcaapp).set_thread(&Sys(pcaapp->m_psystem));
 
-      m_stopping = false;
 
       m_pmanager = new ::simpledb::manager(pcaapp);
 
@@ -57,7 +56,7 @@ namespace simpledb
          }
       }
 
-      while (!m_stopping)
+      while (!is_stopping())
       {
          Sleep(1000);
       }

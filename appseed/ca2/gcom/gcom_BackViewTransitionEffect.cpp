@@ -71,7 +71,7 @@ namespace gcom
          //iStart = iEnd = (int32_t) VisualEffectPixelExplosion;
          //iStart = iEnd = (int32_t) VisualEffectAlphaPixelExplosion;
          //iStart = iEnd = (int32_t) VisualEffectPixelExplosion2;
-         
+
          //iStart = iEnd = (int32_t) VisualEffectRotateEx8;
          //iStart = iEnd = (int32_t) VisualEffectRotateEx4;
          //iStart = iEnd = (int32_t) VisualEffectRain1;
@@ -100,7 +100,7 @@ namespace gcom
          {
             m_iaVisual.add(i);
          }
-         
+
 
          m_bInitialized    = false;
          m_bActive         = false;
@@ -180,7 +180,7 @@ namespace gcom
          {
              iTypeNew = iTypeOld + 1;
          }
-         
+
          if(iTypeNew >= m_etypea.get_size())
          {
             iTypeNew = 0;
@@ -201,7 +201,7 @@ namespace gcom
             m_iType = 0;
          else
             m_iType = iTypeNew;
-         
+
       }
 
       void TransitionEffect::Initialize()
@@ -993,7 +993,7 @@ namespace gcom
 //               ::rect & rectUpdate = m_tool001.m_rect;
 
 
-               
+
 
                rect rect;
                graphics.GetFinalPlacement(rect);
@@ -1296,7 +1296,7 @@ namespace gcom
                rect rectBound;
                graphics.GetFinalPlacement(rectBound);
 
-               
+
 
                int32_t finalX = rectBound.left;
                int32_t finalY = rectBound.top;
@@ -1320,7 +1320,7 @@ namespace gcom
                int32_t iSize = m_tool001.m_ia[iSizeIndex];
                int32_t nextc = m_tool001.m_pointa[iIndex].y;
                int32_t c;
-               
+
                if(iIndex <= 0 || nextc == 0)
                {
                   c = 0;
@@ -1556,7 +1556,7 @@ namespace gcom
                      rectDest.top - rectBound.top,
                      SRCCOPY);
 
-                  
+
                   recta.add(rectDest);
 
                }
@@ -1614,14 +1614,14 @@ namespace gcom
                      wWindow,
                      hWindow,
                      pdibT2->get_graphics(),
-                     xOff, 
+                     xOff,
                      yOff,
                      pdibT2->cx - xOff * 2,
                      pdibT2->cy - yOff * 2,
                      SRCCOPY);
 
                   pdib2->get_graphics()->BitBlt(
-                     0, 0, 
+                     0, 0,
                      wWindow, hWindow,
                      &dcBuffer,
                      x1, y1,
@@ -1744,7 +1744,7 @@ namespace gcom
                ::index iIndex = m_tool001.m_iStep - 1;
                int32_t iSizeIndex = m_tool001.m_pointa[iIndex].x;
                int32_t iSize = m_tool001.m_ia[iSizeIndex];
-               
+
                if(iSize < 64)
                   iSize = 64;
 

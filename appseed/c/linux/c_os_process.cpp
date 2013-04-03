@@ -5,6 +5,9 @@
 #include <unistd.h>
 
 
+extern __thread os_thread * t_posthread;
+
+
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 {
    char *   exec_path_name;
@@ -161,9 +164,13 @@ CLASS_DECL_c bool main_finalize()
 bool os_initialize()
 {
 
+
    if(!initialize_primitive_trace())
       return false;
 
+   t_posthread = new os_thread(NULL, NULL);
+
+   t_posthread->m_bRun = true;
 
    return TRUE;
 
@@ -172,6 +179,8 @@ bool os_initialize()
 
 bool os_finalize()
 {
+
+   os_thread::stop_all((1984 + 1977) * 49);
 
    finalize_primitive_trace();
 

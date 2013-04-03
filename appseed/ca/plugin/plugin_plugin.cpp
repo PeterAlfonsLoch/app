@@ -873,7 +873,7 @@ namespace plugin
 
          ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
 
-         if(pthread->m_bRun)
+         if(pthread->get_run())
          {
             if(m_pbReady != NULL)
             {

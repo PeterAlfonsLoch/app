@@ -5685,7 +5685,7 @@ ret:
          try
          {
 //            MESSAGE msg;
-            while(m_bRun)
+            while(get_run())
             {
                // phase1: check to see if we can do idle work
                while (!has_message())

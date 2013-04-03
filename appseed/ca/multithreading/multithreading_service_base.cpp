@@ -8,8 +8,15 @@
 //                      derived when creating a new service class.
 //
 //*****************************************************************************
-
 #include "framework.h"
+
+
+#ifdef LINUX
+
+extern __thread os_thread * t_posthread;
+
+
+#endif
 
 uint32_t Win32FromHResult(HRESULT value);
 
@@ -28,7 +35,7 @@ service_base* service_base::s_pservice = 0;
 //*****************************************************************************
 service_base::service_base(::ca::application * papp, uint32_t controlsAccepted) :
    ca(papp),
-   m_stopping(false),
+   m_bStopping(false),
    m_stopped(papp)
 #ifdef WINDOWSEx
    , m_handle(0)
@@ -68,7 +75,7 @@ service_base::~service_base()
 //                      the service has stopped.
 //
 //*****************************************************************************
-void service_base::run(service_base& service)
+void service_base::serve(service_base& service)
 {
 
    ASSERT(0 == s_pservice);
@@ -102,8 +109,11 @@ void service_base::run(service_base& service)
 
 uint32_t Win32FromHResult(HRESULT value)
 {
+
     ASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));
+
     return value & ~0x80070000;
+
 }
 
 
@@ -114,8 +124,7 @@ uint32_t Win32FromHResult(HRESULT value)
 //                      and notifies the service control manager of the change.
 //
 //*****************************************************************************
-void service_base::UpdateState(uint32_t state,
-                                    HRESULT errorCode)
+void service_base::UpdateState(uint32_t state, HRESULT errorCode)
 {
 
 
@@ -199,6 +208,9 @@ string service_base::get_service_name() const
     return m_serviceName;
 }
 
+
+#ifdef WINDOWSEX
+
 //*****************************************************************************
 //
 //      Name:           ServiceMain
@@ -208,11 +220,6 @@ string service_base::get_service_name() const
 void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 {
 
-
-#ifdef WINDOWSEX
-
-
-    //
     // Since there's no way to inform the SCM of failure before a successful
     // call to RegisterServiceCtrlHandler, if an error occurs before we have
     // a service status handle we don't catch any exceptions and let the
@@ -223,7 +230,9 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 
     if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
     {
-        throw invalid_argument_exception(s_pservice->get_app());
+
+      throw invalid_argument_exception(s_pservice->get_app());
+
     }
 
     s_pservice->m_serviceName = arguments[0];
@@ -239,8 +248,11 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 
     try
     {
+
         s_pservice->Start(0);
+
         s_pservice->UpdateState(SERVICE_RUNNING);
+
     }
     catch (const hresult_exception& e)
     {
@@ -254,9 +266,6 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
     }
 
 
-#endif
-
-
 }
 
 //*****************************************************************************
@@ -268,9 +277,6 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 //*****************************************************************************
 void WINAPI service_base::ServiceHandler(DWORD control)
 {
-
-
-#ifdef WINDOWSEX
 
 
     try
@@ -307,9 +313,42 @@ void WINAPI service_base::ServiceHandler(DWORD control)
     }
 
 
+}
+
 #endif
 
+
+bool service_base::is_stopping()
+{
+
+   return m_bStopping || !::os_thread::get_run();
 
 }
 
 
+
+void service_base::call_server()
+{
+
+   m_bStopping = false;
+
+   os_thread * posthreadNew = NULL;
+
+   if(::os_thread::get() == NULL)
+      t_posthread = posthreadNew = new ::os_thread(NULL, NULL);
+
+
+   serve();
+
+
+   if(posthreadNew != NULL)
+   {
+
+      delete posthreadNew;
+      t_posthread = NULL;
+
+   }
+
+   m_stopped.SetEvent();
+
+}

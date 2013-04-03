@@ -22,8 +22,8 @@ public:
    service_status          m_status;
    string                  m_serviceName;
 
-   manual_reset_event m_stopped;
-   bool m_stopping;
+   manual_reset_event      m_stopped;
+   bool                    m_bStopping;
 
 #ifdef WINDOWSEX
 
@@ -31,7 +31,7 @@ public:
 
 #else
 
-   int32_t                     m_iPid;
+   int32_t                 m_iPid;
 
 #endif
 
@@ -50,20 +50,30 @@ public:
    virtual ~service_base();
 
    virtual void Start(uint32_t control) = 0;
+
    virtual void Stop(uint32_t control) = 0;
 
-   static void run(service_base& service);
+   virtual void UpdateState(uint32_t state, HRESULT errorCode = S_OK);
 
+   virtual string get_service_name() const;
 
-   void UpdateState(uint32_t state, HRESULT errorCode = S_OK);
+   virtual void SetServiceStatus();
 
-   string get_service_name() const;
+   virtual bool is_stopping();
 
-   void SetServiceStatus();
+   virtual void call_server();
+
+   virtual void serve() = 0;
+
+   static void serve(service_base& service);
+
+#ifdef WINDOWSX
+
    static void WINAPI ServiceMain(DWORD argumentCount, PWSTR* arguments);
 
    static void WINAPI ServiceHandler(DWORD control);
 
+#endif
 
 };
 

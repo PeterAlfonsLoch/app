@@ -517,7 +517,7 @@ namespace plane
 
          papp->post_thread_message(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
-         while(m_bRun)
+         while(get_run())
          {
 
             if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
@@ -525,7 +525,7 @@ namespace plane
 
          }
 
-         if(!m_bRun)
+         if(!get_run())
          {
             try
             {

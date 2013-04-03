@@ -55,13 +55,13 @@ namespace ca
 
 #endif
 
-      
+
 
    }
 
    int32_t process_section::s_on_retry(int32_t iTry, uint_ptr dwParam)
    {
-      
+
       UNREFERENCED_PARAMETER(iTry);
 
       class on_retry * ponretry = (on_retry *) dwParam;
@@ -79,7 +79,7 @@ namespace ca
    {
 
       const char * pszEnd = NULL;
-      
+
       vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
 #ifndef METROWIN
@@ -113,7 +113,7 @@ namespace ca
       }
       int32_t iRetry = 50;
       string strRead;
-      while(iRetry > 0 && m_bRun)
+      while(iRetry > 0 && get_run())
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
          if(strRead.is_empty())

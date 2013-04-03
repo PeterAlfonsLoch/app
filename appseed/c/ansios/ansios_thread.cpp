@@ -63,8 +63,6 @@ using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 */
 
-void * WINAPI thread_proc_create_thread(LPVOID lpparameter);
-
 // Stored data for CREATE_SUSPENDED and ResumeThread.
 struct PendingThreadInfo
 {
@@ -141,6 +139,7 @@ typedef simple_array < void * > ThreadLocalData;
 static __thread ThreadLocalData* currentThreadData = NULL;
 static __thread DWORD currentThreadId = -1;
 static __thread HTHREAD currentThread = NULL;
+__thread os_thread * t_posthread = NULL;
 
 
 simple_map < HTHREAD, ThreadLocalData * > & all_thread_data()
@@ -155,6 +154,8 @@ simple_map < HTHREAD, ThreadLocalData * > & all_thread_data()
 static DWORD nextTlsIndex = 0;
 static simple_array<DWORD> freeTlsIndices;
 static simple_mutex tlsAllocationLock;
+simple_mutex * os_thread::s_pmutex = new simple_mutex();
+simple_array < os_thread * > * os_thread::s_pptra = new simple_array < os_thread * > ();
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -196,7 +197,7 @@ static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD ht
    pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED);
 
    // Create the thread
-   pthread_create(&thread, &threadAttr, &thread_proc_create_thread, (LPVOID) pthread);
+   pthread_create(&thread, &threadAttr, &::os_thread::thread_proc, (LPVOID) pthread);
 
    return pthread;
 
@@ -613,19 +614,109 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hThread)
 
 os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
 {
-   m_pfn = pfn;
-   m_pv = pv;
+
+   m_pfn    = pfn;
+   m_pv     = pv;
+   m_bRun   = true;
+
 }
 
+os_thread * os_thread::get()
+{
 
-void * WINAPI thread_proc_create_thread(LPVOID lpparameter)
+   return t_posthread;
+
+}
+
+void os_thread::stop_all(uint32_t millisMaxWait)
+{
+
+   int iMult = 6;
+
+   millisMaxWait = millisMaxWait * iMult;
+
+   uint32_t start = get_tick_count();
+
+   while(get_tick_count() - start < millisMaxWait)
+   {
+
+      {
+
+         mutex_lock ml(*s_pmutex);
+
+         for(int i = 0; i < s_pptra->get_count(); i++ )
+         {
+
+            s_pptra->element_at(i)->m_bRun = false;
+
+         }
+
+         if(s_pptra->get_count() <= 0)
+         {
+
+            break;
+
+         }
+
+      }
+
+      Sleep(10000 * iMult);
+
+   }
+
+
+}
+
+void * WINAPI os_thread::thread_proc(LPVOID lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
 
+   t_posthread = posthread;
+
+   {
+
+      mutex_lock ml(*s_pmutex);
+
+      s_pptra->add(posthread);
+
+   }
+
+   void * pvRet = posthread->run();
+
+   {
+
+      mutex_lock ml(*s_pmutex);
+
+      for(int i = 0; i < s_pptra->get_count(); i++ )
+      {
+
+         if(s_pptra->element_at(i) == posthread)
+         {
+
+            s_pptra->remove_at(i);
+
+            break;
+
+         }
+
+      }
+
+   }
+
+   delete posthread;
+
+   return pvRet;
+
+}
+
+void * os_thread::run()
+{
+
+
    mutex_lock mlThreadHandle(threadHandleLock);
 
-   currentThread =  posthread->m_hthread;
+   currentThread =  m_hthread;
 
    mlThreadHandle.unlock();
 
@@ -645,7 +736,7 @@ void * WINAPI thread_proc_create_thread(LPVOID lpparameter)
    try
    {
 
-      dwRet = posthread->m_pfn(posthread->m_pv);
+      dwRet = m_pfn(m_pv);
 
    }
    catch (...)
@@ -658,9 +749,8 @@ void * WINAPI thread_proc_create_thread(LPVOID lpparameter)
 
    // Signal that the thread has completed.
    currentThread->m_pevent->set_event();
-   delete currentThread;
 
-   delete posthread;
+   delete currentThread;
 
    return (void *) (int_ptr) dwRet;
 

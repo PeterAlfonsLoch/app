@@ -87,7 +87,7 @@ namespace simpledb
       if(pbase->m_wparam == 0)
       {
 
-         while(!m_pservice->m_stopping)
+         while(!m_pservice->is_stopping())
          {
             try
             {
@@ -114,10 +114,10 @@ namespace simpledb
                   while (true)
                   {
                      Select(8,0);
-                     if(m_pservice->m_stopping)
+                     if(m_pservice->is_stopping())
                         break;
                   }
-                  if(m_pservice->m_stopping)
+                  if(m_pservice->is_stopping())
                      break;
                }
             }

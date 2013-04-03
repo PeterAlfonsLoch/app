@@ -22,7 +22,7 @@ namespace simpledb
       virtual ~service();
 
 
-      virtual void ServiceThread();
+      virtual void serve();
 
 
    };

@@ -19,7 +19,7 @@ namespace mail
    UINT pop3::pop3_thread_proc(LPVOID lpvoid)
    {
       pop3 * ppop3 = (pop3 *) lpvoid;
-      ppop3->run(); 
+      ppop3->run();
       return 0;
    }
 

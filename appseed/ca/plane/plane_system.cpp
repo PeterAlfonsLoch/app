@@ -637,7 +637,7 @@ namespace plane
       {
          try
          {
-            m_serviceptra[i]->m_stopping = true;
+            m_serviceptra[i]->Stop(0);
          }
          catch(...)
          {

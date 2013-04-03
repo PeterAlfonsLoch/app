@@ -66,18 +66,31 @@ class CLASS_DECL_c os_thread
 public:
 
 
-   uint32_t (*       m_pfn)(void *);
-   LPVOID            m_pv;
+   uint32_t (*                            m_pfn)(void *);
+   LPVOID                                 m_pv;
+   bool                                   m_bRun;
 
 #if defined(LINUX) || defined(MACOS)
 
-   HTHREAD           m_hthread;
+   HTHREAD                                m_hthread;
 
 #endif
+
+   static simple_mutex *                  s_pmutex;
+   static simple_array < os_thread * > *  s_pptra;
 
 
    os_thread(uint32_t (* pfn)(void *), void * pv);
 
+   static void * thread_proc(void * pparam);
+
+   void * run();
+
+   static os_thread * get();
+
+   inline static bool get_run() { get()->m_bRun; }
+
+   static void stop_all(uint32_t millisMaxWait);
 
 };
 

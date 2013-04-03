@@ -1390,7 +1390,7 @@ exit_application:
          else if(command().m_varTopicQuery.has_property("service"))
          {
             create_new_service();
-            service_base::run(*m_pservice);
+            service_base::serve(*m_pservice);
          }
          else if(command().m_varTopicQuery.has_property("run") || is_serviceable())
          {
