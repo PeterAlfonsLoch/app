@@ -110,7 +110,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         m_spmemory(create_memory());
+         m_spmemory = create_memory();
 
       m_spmemory->from_string(pwsz);
 
@@ -121,7 +121,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         m_spmemory(create_memory());
+         m_spmemory = create_memory();
 
       m_spmemory->from_string(psz);
 
@@ -131,7 +131,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         m_spmemory(create_memory());
+          m_spmemory = create_memory();
 
       m_spmemory->from_string(str);
 
@@ -141,7 +141,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         m_spmemory(create_memory());
+         m_spmemory = create_memory();
 
       m_spmemory->from_string(var);
 
@@ -151,7 +151,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         m_spmemory(create_memory());
+         m_spmemory = create_memory();
 
       m_spmemory->to_string(str);
 

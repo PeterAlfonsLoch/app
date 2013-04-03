@@ -40,17 +40,10 @@ namespace plane
       }
 
 
-      m_pxml = NULL;
-
-
-//      ::plane::system * psystemParent             = oprop("parent_system").ca < ::plane::system > ();
-
       ::plane::application::m_file.set_app(this);
       ::plane::application::m_dir.set_app(this);
 
       m_bDoNotExitIfNoApplications              = true;
-
-      m_phistory = NULL;
 
       string strId;
       //strId = m_strAppName;
@@ -123,16 +116,13 @@ namespace plane
       m_compress.set_app(this);
       m_file.set_app(this);
 
-      m_prunstartinstaller       = NULL;
       m_pmachineeventcentral     = NULL;
       //m_pfactory                 = NULL;
 
-      m_ptwf                     = NULL;
-      m_pbergedgemap             = NULL;
 
 
 
-      m_spfsdata(new ::fs::native(this));
+      m_spfsdata = new ::fs::native(this);
 
 
 

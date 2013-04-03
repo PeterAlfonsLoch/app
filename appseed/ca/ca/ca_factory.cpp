@@ -199,7 +199,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
 {
    if(info.m_spmutex.is_null())
    {
-      info.m_spmutex(new mutex(papp));
+      info.m_spmutex = new mutex(papp);
    }
    single_lock slInfo(info.m_spmutex, TRUE);
 

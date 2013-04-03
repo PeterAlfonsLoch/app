@@ -49,9 +49,6 @@ namespace ca
       inline smart_pointer & operator = (uint_ptr dw);
       inline smart_pointer & operator = (int32_t i);
 
-      inline smart_pointer & operator() (T * p);
-
-
       void oattrib(const T * p);
 
 
@@ -227,17 +224,6 @@ namespace ca
 
       }
 
-   }
-
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator () (T * p)
-   {
-      if(p != m_p)
-      {
-         ::ca::release(m_p);
-         m_p = p;
-      }
-      return *this;
    }
 
    template < class T >

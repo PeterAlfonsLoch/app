@@ -60,8 +60,8 @@ namespace zip
 
    bool File::unzip_open(::ca::filesp pfile)
    {
-      m_pbuffile1(new ::ca::buffered_file(get_app(), pfile, 1024 * 256));
-      m_pbuffile2(new ::ca::buffered_file(get_app(), m_pbuffile1, 1024 * 256));
+      m_pbuffile1 = new ::ca::buffered_file(get_app(), pfile, 1024 * 256);
+      m_pbuffile2 = new ::ca::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;
@@ -118,7 +118,7 @@ namespace zip
       while((iRead = unzReadCurrentFile(m_pfUnzip, buf, sizeof(buf))) > 0)
       {
          pfileOut->write(buf, iRead);
-      }  
+      }
       if(unzCloseCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
    }
@@ -152,7 +152,7 @@ namespace zip
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
       ::ca::file * pfile = pzipfile->m_pfile;
-      return (long) pfile->get_position();      
+      return (long) pfile->get_position();
    }
 
    long   File::seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)

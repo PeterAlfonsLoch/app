@@ -80,7 +80,7 @@ namespace ca
 
    create_context & create_context::operator = (const create_context & createcontext)
    {
-      
+
       m_bMakeVisible             = createcontext.m_bMakeVisible;
       m_bTransparentBackground   = createcontext.m_bTransparentBackground;
       m_bClientOnly              = createcontext.m_bClientOnly;
@@ -111,17 +111,17 @@ namespace ca
    {
 
       m_p = NULL;
-      operator ()(new ::ca::create_context(pthreadParent));
+      sp(create_context)::operator = (new ::ca::create_context(pthreadParent));
 
    }
 
    create_context_sp::create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
       ca(pthreadParent->get_app())
    {
-      
+
       m_p = NULL;
-      operator ()(new ::ca::create_context(pthreadParent, varFile, bMakeVisible, puiParent));
-      
+      sp(create_context)::operator = (new ::ca::create_context(pthreadParent, varFile, bMakeVisible, puiParent));
+
    }
 
 
@@ -132,7 +132,7 @@ namespace ca
    {
    }
 
-    
+
    create_context_sp::~create_context_sp()
    {
    }

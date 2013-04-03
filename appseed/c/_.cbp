@@ -54,7 +54,6 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h" />
 		<Unit filename="ansios/ansios.h" />
 		<Unit filename="ansios/ansios_cross_win.cpp" />
 		<Unit filename="ansios/ansios_cross_win_file.cpp" />

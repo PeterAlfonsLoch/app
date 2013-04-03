@@ -189,7 +189,7 @@ namespace ca
       if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca < ::ca::file >() != NULL)
       {
 
-         spfile(varFile.propset()["file"].ca < ::ca::file >());
+         spfile = varFile.propset()["file"].ca < ::ca::file >();
 
       }
       else if(::ca::str::find_ci(".zip:", strPath) >= 0)
@@ -211,7 +211,7 @@ namespace ca
 
          }
 
-         spfile(pinfile);
+         spfile = pinfile;
 
       }
       else if(::ca::str::begins(strPath, "http://matter.ca2.cc/") || ::ca::str::begins(strPath, "https://matter.ca2.cc/"))
@@ -276,7 +276,7 @@ namespace ca
          if(m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
          {
 
-            spfile(new sockets::http::file(get_app()));
+            spfile = new sockets::http::file(get_app());
 
             if(!spfile->open(strPath, nOpenFlags))
             {
@@ -309,7 +309,7 @@ namespace ca
       else if(::ca::str::begins(strPath, "http://") || ::ca::str::begins(strPath, "https://"))
       {
 
-         spfile(new sockets::http::file(get_app()));
+         spfile = new sockets::http::file(get_app());
 
          if(!spfile->open(strPath, nOpenFlags))
          {

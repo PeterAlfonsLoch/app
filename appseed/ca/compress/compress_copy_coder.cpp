@@ -67,7 +67,7 @@ namespace libcompress
    HRESULT CopyStream(::ca::reader * inStream, ::ca::writer * outStream, progress_info_interface * progress)
    {
       sp(coder_interface) copyCoder;
-      copyCoder(new copy_coder);
+      copyCoder = new copy_coder;
       return copyCoder->Code(inStream, outStream, NULL, NULL, progress);
    }
 
