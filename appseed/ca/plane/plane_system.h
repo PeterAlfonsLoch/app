@@ -238,37 +238,37 @@ namespace plane
 
       mutex                                        m_mutex;
 #ifdef METROWIN
-      ::user::interaction *                        m_pui;
+      sp(::user::interaction)                      m_pui;
       ::ca::system_window ^                        m_pwindow;
-      ID2D1DeviceContext *                         m_pdc;
-      mutex *                                      m_pmutexDc;
+      sp(ID2D1DeviceContext)                       m_pdc;
+      sp(mutex)                                    m_pmutexDc;
 #endif
       sp(::filehandler::handler)                   m_spfilehandler;
-      ::cube::cube *                               m_pcube;
-      ::plane::application *                       m_pcubeInterface;
+      sp(::cube::cube)                             m_pcube;
+      sp(::plane::application)                     m_pcubeInterface;
 
 
       const str_pool                               m_cstrpool;
 
-      comparable_array < service_base * >          m_serviceptra;
+      spa(service_base)                            m_serviceptra;
 
       ::collection::strid_map < ::ca::type_info >  m_typemap;
 
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
       ::ca::application_ptra                       m_appptra;
-      ::ca::file_system_sp                        m_spfile;
+      ::ca::file_system_sp                         m_spfile;
       ::ca::dir::system_sp                         m_spdir;
       class ::ca::stra                             m_stra;
       class ::ca::url                              m_url;
-      class ::xml::xml *                           m_pxml;
+      sp(class ::xml::xml)                         m_pxml;
       class ::ca::service                          m_service;
       class ::ca::install                          m_install;
       ::ca::os_sp                                  m_spos;
 #ifndef METROWIN
       class ::ca::process_section                  m_processsection;
 #endif
-      class ::ca::datetime *                       m_pdatetime;
+      sp(class ::ca::datetime)                     m_pdatetime;
       class ::sockets::net                         m_net;
 
       class ::ca::compress                         m_compress;
@@ -279,21 +279,21 @@ namespace plane
       ::ca::copydesk_sp                            m_spcopydesk;
       ::ca::port_forward_sp                        m_spportforward;
       ::string_to_string_map                       m_mapAppLibrary;
-      colorertake5::ParserFactory *                m_pparserfactory;
+      sp(colorertake5::ParserFactory)              m_pparserfactory;
 
 
       class ::fontopus::user_set                   m_userset;
       string_to_string_map                         m_mapFontopusServer;
 
 
-      plane::session::run_start_installer *        m_prunstartinstaller;
-      plane::session::map *                        m_pbergedgemap;
+      sp(plane::session::run_start_installer)      m_prunstartinstaller;
+      sp(plane::session::map)                      m_pbergedgemap;
 
 
       sp(class ::ca::log)                          m_plog;
       sp(class ::ca::factory)                      m_pfactory;
-      class ::ca::history *                        m_phistory;
-      class ::ca::window_draw *                    m_ptwf;
+      sp(class ::ca::history)                      m_phistory;
+      sp(::ca::window_draw)                        m_ptwf;
       //      ::sockets::net                               m_net;
       //      sp(::ca::filehandler::handler)  m_spfilehandler;
 

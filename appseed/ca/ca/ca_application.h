@@ -138,9 +138,11 @@ namespace ca
    };
 
 
+   class application_base;
+
 
    class CLASS_DECL_ca application_ptra :
-      virtual public comparable_array < ::ca::application *, ::ca::application * >
+      virtual public spa(::ca::application_base)
    {
    public:
 

@@ -7,7 +7,7 @@ namespace plane
 
    application::application()
    {
-      
+
       m_papp      = this;
       m_pappThis  = this;
 
@@ -15,7 +15,7 @@ namespace plane
 
    application::application(const char * pszId)
    {
-      
+
 
       m_papp      = this;
       m_pappThis  = this;
@@ -224,13 +224,13 @@ namespace plane
    ::planebase::application * application::assert_running(const char * pszAppId)
    {
 
-      
+
       ::planebase::application * papp = NULL;
 
 
       try
       {
-         
+
          bool bFound = false;
 
          for(int32_t i  = 0; i < System.m_appptra.get_count(); i++)
@@ -238,7 +238,7 @@ namespace plane
             try
             {
 
-               papp = dynamic_cast < ::planebase::application * > (System.m_appptra[i]);
+               papp = dynamic_cast < ::planebase::application * > (System.m_appptra(i).m_p);
 
                if(papp->m_strAppName == pszAppId)
                {
@@ -273,7 +273,7 @@ namespace plane
 
             if(!bRunning)
             {
-               
+
                try
                {
                   papp->post_thread_message(WM_QUIT, 0, 0);
@@ -293,7 +293,7 @@ namespace plane
 
             }
 
-            
+
          }
 
          if(bCreate)
@@ -308,13 +308,13 @@ namespace plane
       }
       catch(::exit_exception & e)
       {
-            
+
          throw e;
 
       }
       catch(::ca::exception & e)
       {
-            
+
          if(!Application.on_run_exception(e))
             throw exit_exception(get_app());
 
