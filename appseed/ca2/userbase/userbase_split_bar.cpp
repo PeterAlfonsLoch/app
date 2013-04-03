@@ -8,7 +8,7 @@ namespace userbase
    split_bar::split_bar(::ca::application * papp) :
       ca(papp)
    {
-      
+
       m_pparent                                 = NULL;
       m_dMinimumRate                            = 0.1;
       m_dMaximumRate                            = 0.9;
@@ -54,7 +54,9 @@ namespace userbase
 
    void split_bar::_001OnDraw(::ca::graphics *pdc)
    {
+
       UNREFERENCED_PARAMETER(pdc);
+
    }
 
 
@@ -106,11 +108,11 @@ namespace userbase
 
    void split_bar::_001OnMouseMove(::ca::signal_object * pobj)
    {
-      
+
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
-      
+
       single_lock sl(&m_pparent->m_mutex, TRUE);
-      
+
       point ptClient = pmouse->m_pt;
 
       m_pparent->ScreenToClient(&ptClient);

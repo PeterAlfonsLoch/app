@@ -58,7 +58,7 @@ namespace userex
       {
          ::user::interaction* pguie = m_pviewdata->m_pwnd;
          ::user::interaction* pguieNext = m_pviewdata->m_pwnd;
-         user::interaction_ptr_array wnda;
+         user::interaction_ptr_array wnda(get_app());
          while(true)
          {
             wnda.add(pguie);
@@ -149,7 +149,7 @@ namespace userex
 
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      
+
       if(pcreatordata->m_id.is_text())
       {
          ::ca::library * plibrary = NULL;
@@ -231,7 +231,7 @@ namespace userex
 
    void pane_tab_view::_001OnTabClose(int32_t iTab)
    {
-      
+
       ::user::tab::_001OnTabClose(iTab);
 
       if(GetParentFrame()->ContinueModal(0) && get_filemanager_document() != NULL

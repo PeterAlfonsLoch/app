@@ -13,7 +13,7 @@ namespace filemanager
    filemanager::filemanager()
    {
       m_ptemplateStd       = NULL;
-      
+
    }
 
    filemanager::~filemanager()
@@ -111,7 +111,7 @@ namespace filemanager
 
 
       m_ptemplateStd = new FileManagerTemplate(this);
-      Application.user().shellimageset().initialize();
+      Application.user()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
       m_ptemplateFs = new FileManagerTemplate(this);

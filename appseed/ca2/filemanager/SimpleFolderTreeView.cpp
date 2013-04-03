@@ -292,13 +292,13 @@ namespace filemanager
       if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
-      m_pimagelist = System.user().shellimageset().GetImageList16();
-      m_iDefaultImage = System.user().shellimageset().GetImage(
+      m_pimagelist = System.user()->shellimageset().GetImageList16();
+      m_iDefaultImage = System.user()->shellimageset().GetImage(
          "foo",
          _shell::FileAttributeDirectory,
          _shell::IconNormal);
 
-      m_iDefaultImageSelected = System.user().shellimageset().GetImage(
+      m_iDefaultImageSelected = System.user()->shellimageset().GetImage(
          "foo",
          _shell::FileAttributeDirectory,
          _shell::IconOpen);

@@ -40,22 +40,23 @@ namespace userbase
    #endif //DEBUG
 
 
-   void split_view::_001OnSize(::ca::signal_object * pobj) 
+   void split_view::_001OnSize(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::size, psize, pobj)
       psize->previous();
       //layout();
    }
 
-   bool split_view::pre_create_window(CREATESTRUCT& cs) 
+   bool split_view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
-      
+
       return view::pre_create_window(cs);
    }
 
    void split_view::_001OnDraw(::ca::graphics *pdc)
    {
+
       int32_t i;
       rect rect;
       COLORREF cr = ARGB(184, 92, 92, 80);
@@ -70,32 +71,32 @@ namespace userbase
 
          // Top
          pdc->FillSolidRect(
-            rect.left, 
-            rect.top, 
+            rect.left,
+            rect.top,
             rect.width(),
             m_cyBorder,
             cr);
 
          // Right
          pdc->FillSolidRect(
-            rect.right - m_cxBorder, 
-            rect.top, 
+            rect.right - m_cxBorder,
+            rect.top,
             m_cxBorder,
             rect.height(),
             cr);
 
          // Bottom
          pdc->FillSolidRect(
-            rect.left, 
-            rect.bottom - m_cyBorder, 
+            rect.left,
+            rect.bottom - m_cyBorder,
             rect.width(),
             m_cyBorder,
             cr);
 
          // Left
          pdc->FillSolidRect(
-            rect.left, 
-            rect.top, 
+            rect.left,
+            rect.top,
             m_cxBorder,
             rect.height(),
             cr);
@@ -103,7 +104,7 @@ namespace userbase
    }
 
 
-   void split_view::_001OnShowWindow(::ca::signal_object * pobj) 
+   void split_view::_001OnShowWindow(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       pshowwindow->previous();

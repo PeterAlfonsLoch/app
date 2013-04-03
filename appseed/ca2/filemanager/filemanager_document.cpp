@@ -32,7 +32,7 @@ namespace filemanager
    {
    }
 
-   
+
    bool document::on_new_document()
    {
 
@@ -40,7 +40,7 @@ namespace filemanager
          return FALSE;
 
 
-      
+
       m_fsset.m_spafsdata.remove_all();
 
 
@@ -100,7 +100,6 @@ namespace filemanager
          update_all_views(NULL, 0, &uh);
       }
 
-      data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item.m_strPath);
 
       FileManagerInterface::OnFileManagerBrowse();
 
@@ -119,7 +118,7 @@ namespace filemanager
 
    bool document::_001OnCommand(id id)
    {
-      
+
       if(get_filemanager_data() != NULL
       && get_filemanager_data()->m_ptemplate != NULL)
       {
@@ -144,7 +143,7 @@ namespace filemanager
    }
 
 
-   /*bool document::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   /*bool document::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
    if (nCode == CN_UPDATE_COMMAND_UI)
    {
@@ -202,7 +201,7 @@ namespace filemanager
    {
 
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-   
+
       pcmdui->m_pcmdui->Enable(TRUE);
 
       pobj->m_bRet = true;
@@ -212,7 +211,7 @@ namespace filemanager
 
    void document::_001OnAddLocation(::ca::signal_object * pobj)
    {
-      
+
       update_all_views(NULL, ::view::hint_add_location, NULL);
 
       pobj->m_bRet = true;
@@ -222,9 +221,9 @@ namespace filemanager
 
    void document::_001OnUpdateReplaceText(::ca::signal_object * pobj)
    {
-      
+
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-   
+
       pcmdui->m_pcmdui->Enable(TRUE);
 
       pobj->m_bRet = true;
@@ -248,7 +247,7 @@ namespace filemanager
 
    void document::_001OnEditPaste(::ca::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);   
+      UNREFERENCED_PARAMETER(pobj);
       //System.file().paste(get_filemanager_data()->GetFileManager()->get_item().m_strPath, System.m_strCopy);
       //update_all_views(NULL, 123, NULL);
       //pobj->m_bRet = true;
@@ -292,7 +291,31 @@ namespace filemanager
 
       if(data_get("InitialBrowsePath", ::ca::system::idEmpty, str))
       {
-         FileManagerBrowse(str);
+
+         if(str == "machinefs://")
+         {
+
+            id idMachine;
+
+            #ifdef LINUX
+               idMachine = "Linux";
+            #elif defined(WINDOWSEX)
+               idMachine = "Windows Desktop";
+            #endif
+
+            if(data_get("InitialBrowsePath", idMachine, str))
+            {
+               FileManagerBrowse(str);
+            }
+            else
+            {
+               FileManagerBrowse("");
+            }
+         }
+         else
+         {
+            FileManagerBrowse(str);
+         }
       }
       else
       {
@@ -344,7 +367,7 @@ namespace filemanager
       update_all_views(NULL, 0, &uh);
    }
 
-   bool document::HandleDefaultFileManagerItemCmdMsg(BaseCmdMsg * pcmdmsg, ::fs::item_array & itema) 
+   bool document::HandleDefaultFileManagerItemCmdMsg(BaseCmdMsg * pcmdmsg, ::fs::item_array & itema)
    {
       if(pcmdmsg->m_etype == BaseCmdMsg::type_cmdui)
       {

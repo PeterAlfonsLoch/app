@@ -1,5 +1,8 @@
 #include "framework.h"
 
+cairo_surface_t *  g_cairosurface;
+cairo_t *  g_cairo;
+
 
 DWORD GetTickCount()
 {

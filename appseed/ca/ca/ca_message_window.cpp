@@ -4,12 +4,12 @@ namespace ca
 {
 
    message_window_simple_callback::message_window_simple_callback()
-   { 
+   {
    }
 
    message_window_simple_callback::message_window_simple_callback(::ca::application * papp) :
-      m_uiMessage(papp)
-   { 
+      ca(papp)
+   {
    }
 
    message_window_simple_callback::~message_window_simple_callback()
@@ -18,12 +18,10 @@ namespace ca
 
    bool message_window_simple_callback::initialize_message_window(::ca::application * papp, const char * pszName)
    {
-      
+
       set_app(papp);
 
-      m_uiMessage.set_app(papp);
-
-      return m_uiMessage.create_message_window(pszName, this);
+      return initialize_message_window(pszName);
 
    }
 
@@ -31,7 +29,9 @@ namespace ca
    bool message_window_simple_callback::initialize_message_window(const char * pszName)
    {
 
-      return m_uiMessage.create_message_window(pszName, this);
+      m_spuiMessage = new user::interaction(get_app());
+
+      return m_spuiMessage->create_message_window(pszName, this);
 
    }
 
@@ -41,9 +41,29 @@ namespace ca
 
       bool bOk = true;
 
-      if(m_uiMessage.IsWindow())
+      if(m_spuiMessage.is_set())
       {
-         bOk = m_uiMessage.DestroyWindow();
+
+         try
+         {
+
+            if(m_spuiMessage->IsWindow())
+            {
+
+               bOk = m_spuiMessage->DestroyWindow();
+
+            }
+
+         }
+         catch(...)
+         {
+
+            bOk = false;
+
+         }
+
+         m_spuiMessage.release();
+
       }
 
       return bOk;

@@ -75,7 +75,7 @@ namespace ca
 
    template < class T >
    smart_pointer < T > ::smart_pointer(const smart_pointer < T > & t) :
-      ca(&t != NULL ? t.get_app() : NULL)
+      ca(t.get_app())
    {
       m_p = NULL;
       operator = (t);

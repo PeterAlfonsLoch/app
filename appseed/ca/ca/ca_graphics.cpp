@@ -2458,7 +2458,16 @@ namespace ca
 
    }
 
+   memory_graphics::memory_graphics(::ca::application * papp) :
+      ::ca::graphics_sp(papp)
+   {
+      ::ca::graphics_sp::m_p->CreateCompatibleDC(NULL);
+   }
 
+   memory_graphics::~memory_graphics()
+   {
+
+   }
 
    client_graphics::client_graphics(::user::interaction * pui)
    {

@@ -873,28 +873,28 @@ namespace user
 
    void interaction::_001OnKeyDown(::ca::signal_object * pobj)
    {
-      if(Application.user().get_keyboard_focus() != this
-      && Application.user().get_keyboard_focus() != NULL)
+      if(Application.user()->get_keyboard_focus() != this
+      && Application.user()->get_keyboard_focus() != NULL)
       {
-         Application.user().get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+         Application.user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
       }
    }
 
    void interaction::_001OnKeyUp(::ca::signal_object * pobj)
    {
-      if(Application.user().get_keyboard_focus() != this
-      && Application.user().get_keyboard_focus() != NULL)
+      if(Application.user()->get_keyboard_focus() != this
+      && Application.user()->get_keyboard_focus() != NULL)
       {
-         Application.user().get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+         Application.user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
       }
    }
 
    void interaction::_001OnChar(::ca::signal_object * pobj)
    {
-      if(Application.user().get_keyboard_focus() != this
-      && Application.user().get_keyboard_focus() != NULL)
+      if(Application.user()->get_keyboard_focus() != this
+      && Application.user()->get_keyboard_focus() != NULL)
       {
-         Application.user().get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+         Application.user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
       }
    }
 

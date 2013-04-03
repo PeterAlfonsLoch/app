@@ -28,7 +28,7 @@ public:
    rect                 m_rect;
    bool                 m_bEnableIfHasCommandHandler;
 
-   
+
    simple_toolbar_item();
 
 
@@ -89,7 +89,7 @@ public:
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       id nID = "__IDW_TOOLBAR");
    using ::user::interaction::CreateEx;
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) || defined(LINUX)
    bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),

@@ -97,7 +97,7 @@ image_list * FileManagerFileListCallback::GetActionButtonImageList(id i)
    UNREFERENCED_PARAMETER(i);
    //if(i == 0)
    {
-      //return System.user().shellimageset().GetImageList16();
+      //return System.user()->shellimageset().GetImageList16();
    }
    return NULL;
 }

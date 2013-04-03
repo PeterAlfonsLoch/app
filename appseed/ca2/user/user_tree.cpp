@@ -88,6 +88,9 @@ namespace user
 
    void tree::_001OnDrawBackground(::ca::graphics *pdc)
    {
+
+      return;
+
       rect rectClient;
       GetClientRect(rectClient);
 
@@ -130,10 +133,6 @@ namespace user
 
    void tree::_001OnDraw(::ca::graphics *pdc)
    {
-
-
-
-
 
       rect rectClient;
 
@@ -232,6 +231,7 @@ namespace user
 
       pdc->OffsetViewportOrg((int32_t) -m_scrollinfo.m_ptScroll.x, (int32_t) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
 
+
    //   BaseTreeItemData itemdata;
 /*      ::ca::tree_path itempath;*/
       ::user::tree_draw_item drawitemdata;
@@ -323,6 +323,9 @@ namespace user
       bool bSelected    = ptree->is_selected(pitem);
       bool bHover       = ptree->is_hover(pitem);
 
+      if(false)
+      {
+
       if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ca::tree_item_state_expandable)
       {
 
@@ -408,6 +411,8 @@ namespace user
                0);
          }
       }
+      }
+
 
       string strItem = data.m_pitem->get_text();
 

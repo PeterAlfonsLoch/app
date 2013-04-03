@@ -470,7 +470,7 @@ finishedCa2ModuleFolder:;
          System.factory().cloneable_large < ::primitive::memory > ();
       }
 
-      m_pframea = new ::user::interaction_ptr_array;
+      m_pframea = new ::user::interaction_ptr_array(this);
 
       if(!ca_process_initialize())
          return false;
@@ -4711,13 +4711,6 @@ namespace ca
       ::ca::smart_pointer < application_base >::m_p->set_thread(pthread);
    }
 
-   ::user::interaction * application::GetMainWnd()
-   {
-      if(m_puiMain != NULL)
-         return m_puiMain;
-      return NULL;
-   }
-
 /*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
       return ::ca::smart_pointer < application_base >::m_p->graphics_from_os_data(pdata);
@@ -5490,7 +5483,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          SCAST_PTR(::ca::message::timer, ptimer, pobj);
          if(ptimer->m_nIDEvent == 123)
          {
-            m_uiMessage.KillTimer(ptimer->m_nIDEvent);
+            m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
             frames().send_message_to_descendants(::ca::application::APPM_LANGUAGE);
             System.appa_load_string_table();
          }

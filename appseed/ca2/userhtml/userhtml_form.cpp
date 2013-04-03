@@ -314,7 +314,7 @@ void html_form::_001GetText(string & str)
 void html_form::_001SetText(const char * psz)
 {
 
-   bool bFocus = Application.user().get_keyboard_focus() == this || is_descendant(dynamic_cast < ::user::interaction * > (Application.user().get_keyboard_focus()));
+   bool bFocus = Application.user()->get_keyboard_focus() == this || is_descendant(dynamic_cast < ::user::interaction * > (Application.user()->get_keyboard_focus()));
 
    sp(::html::data) sphtmldata;
 
@@ -333,7 +333,7 @@ void html_form::_001SetText(const char * psz)
 	   ::user::keyboard_focus * pfocus = get_focusable_descendant();
       if(pfocus != NULL)
       {
-         Application.user().set_keyboard_focus(pfocus);
+         Application.user()->set_keyboard_focus(pfocus);
       }
    }
 }

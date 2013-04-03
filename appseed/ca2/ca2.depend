@@ -1701,7 +1701,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_heap.h
 
-1364021827 /ca2/app/appseed/ca/ca/ca_plex_heap.h
+1364991274 /ca2/app/appseed/ca/ca/ca_plex_heap.h
 
 1364021827 /ca2/app/appseed/ca/ca/ca_fixed_alloc.h
 
@@ -1770,7 +1770,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_template.h
 
-1364887522 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
+1364988794 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
 
 1364887522 /ca2/app/appseed/ca/ca/ca_smart_pointer_query.h
 
@@ -2081,7 +2081,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_dib.h
 
-1364021827 /ca2/app/appseed/ca/ca/ca_graphics.h
+1364941223 /ca2/app/appseed/ca/ca/ca_graphics.h
 	"ca/user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -2106,7 +2106,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1364887522 /ca2/app/appseed/ca/ca/ca_message.h
+1364921296 /ca2/app/appseed/ca/ca/ca_message.h
 	<agile.h>
 	"ca/user/user_key_enum.h"
 
@@ -2130,7 +2130,7 @@
 
 1364021842 /ca2/app/appseed/ca/user/user_elemental.h
 
-1364890893 /ca2/app/appseed/ca/user/user_window_util.h
+1364927188 /ca2/app/appseed/ca/user/user_window_util.h
 
 1360438719 /ca2/app/appseed/ca/user/user_text_interface.h
 
@@ -2184,7 +2184,7 @@
 1364021827 /ca2/app/appseed/ca/ca/ca_window.h
 	"ca/user/user_interaction.h"
 
-1364541654 /ca2/app/appseed/ca/ca/ca_message_window.h
+1364989015 /ca2/app/appseed/ca/ca/ca_message_window.h
 	"ca_window.h"
 
 1364021827 /ca2/app/appseed/ca/ca/ca_profiler.h
@@ -3680,7 +3680,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_process_section.h
 
-1364887522 /ca2/app/appseed/ca/ca/ca_application.h
+1364979036 /ca2/app/appseed/ca/ca/ca_application.h
 	"ca/ca/ca_font.h"
 
 1360438674 /ca2/app/appseed/ca/ca/ca_session.h
@@ -3910,7 +3910,7 @@
 
 1364021841 /ca2/app/appseed/ca/fontopus/fontopus_fontopus.h
 
-1364021835 /ca2/app/appseed/ca/planebase/planebase_application.h
+1364987486 /ca2/app/appseed/ca/planebase/planebase_application.h
 
 1360438705 /ca2/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.h
 
@@ -4319,7 +4319,7 @@
 
 1364021724 /ca2/app/appseed/ca2/userbase/simple_scroll_bar.h
 
-1364887543 /ca2/app/appseed/ca2/userbase/simple_tool_bar.h
+1364921012 /ca2/app/appseed/ca2/userbase/simple_tool_bar.h
 
 1364887543 /ca2/app/appseed/ca2/userbase/simple_menu_bar.h
 
@@ -4439,7 +4439,7 @@
 
 1360438722 /ca2/app/appseed/ca2/html/html_table.h
 
-1364887538 /ca2/app/appseed/ca2/html/html_data.h
+1364929984 /ca2/app/appseed/ca2/html/html_data.h
 
 1364021737 /ca2/app/appseed/ca2/html/html_ex.h
 
@@ -4919,10 +4919,10 @@
 
 1364021796 source:/ca2/app/appseed/ca2/bergedge/bergedge_view.cpp
 
-1364021787 source:/ca2/app/appseed/ca2/ca2/ca2_application.cpp
+1364988210 source:/ca2/app/appseed/ca2/ca2/ca2_application.cpp
 	"framework.h"
 
-1364887539 source:/ca2/app/appseed/ca2/ca2/ca2_keyboard_layout.cpp
+1364988153 source:/ca2/app/appseed/ca2/ca2/ca2_keyboard_layout.cpp
 	"framework.h"
 
 1364021787 source:/ca2/app/appseed/ca2/ca2/ca2_message_box.cpp
@@ -4965,14 +4965,14 @@
 	"framework.h"
 	<GdiPlus.h>
 
-1364021796 source:/ca2/app/appseed/ca2/filemanager/FileManagerFileListCallback.cpp
+1364988153 source:/ca2/app/appseed/ca2/filemanager/FileManagerFileListCallback.cpp
 	"framework.h"
 
 1364021796 source:/ca2/app/appseed/ca2/filemanager/FileManagerFrame.cpp
 	"framework.h"
 	"FileManagerFrame.h"
 
-1364021796 source:/ca2/app/appseed/ca2/filemanager/FileManagerInterface.cpp
+1364977308 source:/ca2/app/appseed/ca2/filemanager/FileManagerInterface.cpp
 	"framework.h"
 
 1364021796 source:/ca2/app/appseed/ca2/filemanager/FileManagerLeftView.cpp
@@ -5024,7 +5024,7 @@
 	"framework.h"
 	"FileManagerViewUpdateHint.h"
 
-1364887540 source:/ca2/app/appseed/ca2/filemanager/SimpleFileListInterface.cpp
+1364988153 source:/ca2/app/appseed/ca2/filemanager/SimpleFileListInterface.cpp
 	"framework.h"
 	"SimpleFileListInterface.h"
 
@@ -5045,10 +5045,10 @@
 	"FileManagerViewUpdateHint.h"
 	"SimpleFolderListView.h"
 
-1364021796 source:/ca2/app/appseed/ca2/filemanager/SimpleFolderTreeInterface.cpp
+1364988153 source:/ca2/app/appseed/ca2/filemanager/SimpleFolderTreeInterface.cpp
 	"framework.h"
 
-1364021796 source:/ca2/app/appseed/ca2/filemanager/SimpleFolderTreeView.cpp
+1364988153 source:/ca2/app/appseed/ca2/filemanager/SimpleFolderTreeView.cpp
 	"framework.h"
 
 1364887540 source:/ca2/app/appseed/ca2/filemanager/SimplePreview.cpp
@@ -5068,10 +5068,10 @@
 1364887540 source:/ca2/app/appseed/ca2/filemanager/filemanager_data.cpp
 	"framework.h"
 
-1364887540 source:/ca2/app/appseed/ca2/filemanager/filemanager_document.cpp
+1364977308 source:/ca2/app/appseed/ca2/filemanager/filemanager_document.cpp
 	"framework.h"
 
-1364887540 source:/ca2/app/appseed/ca2/filemanager/filemanager_filemanager.cpp
+1364988153 source:/ca2/app/appseed/ca2/filemanager/filemanager_filemanager.cpp
 	"framework.h"
 	"SimpleFileListView.h"
 	"SimpleFolderTreeView.h"
@@ -5149,7 +5149,7 @@
 1364887544 source:/ca2/app/appseed/ca2/fontopus/fontopus_fontopus.cpp
 	"framework.h"
 
-1364021725 source:/ca2/app/appseed/ca2/fontopus/fontopus_validate.cpp
+1364988153 source:/ca2/app/appseed/ca2/fontopus/fontopus_validate.cpp
 	"framework.h"
 
 1360438730 source:/ca2/app/appseed/ca2/framework.cpp
@@ -5166,7 +5166,7 @@
 1360438723 source:/ca2/app/appseed/ca2/fs/fs_list_data.cpp
 	"framework.h"
 
-1364887540 source:/ca2/app/appseed/ca2/fs/fs_list_interface.cpp
+1364988153 source:/ca2/app/appseed/ca2/fs/fs_list_interface.cpp
 	"framework.h"
 
 1364887540 source:/ca2/app/appseed/ca2/fs/fs_list_item.cpp
@@ -5178,7 +5178,7 @@
 1364021795 source:/ca2/app/appseed/ca2/fs/fs_main_view.cpp
 	"framework.h"
 
-1364021795 source:/ca2/app/appseed/ca2/fs/fs_tree.cpp
+1364988153 source:/ca2/app/appseed/ca2/fs/fs_tree.cpp
 	"framework.h"
 
 1364021795 source:/ca2/app/appseed/ca2/fs/fs_tree_data.cpp
@@ -5244,7 +5244,7 @@
 1360438722 source:/ca2/app/appseed/ca2/html/html_cell.cpp
 	"framework.h"
 
-1364887538 source:/ca2/app/appseed/ca2/html/html_data.cpp
+1364988153 source:/ca2/app/appseed/ca2/html/html_data.cpp
 	"framework.h"
 
 1364021737 source:/ca2/app/appseed/ca2/html/html_elemental.cpp
@@ -5415,7 +5415,7 @@
 1364021726 source:/ca2/app/appseed/ca2/user/user_combo_list.cpp
 	"framework.h"
 
-1364032081 source:/ca2/app/appseed/ca2/user/user_edit_plain_text.cpp
+1364988153 source:/ca2/app/appseed/ca2/user/user_edit_plain_text.cpp
 
 1364887544 source:/ca2/app/appseed/ca2/user/user_form_list.cpp
 	"framework.h"
@@ -5426,7 +5426,7 @@
 1364021726 source:/ca2/app/appseed/ca2/user/user_front_end_schema.cpp
 	"framework.h"
 
-1364898603 source:/ca2/app/appseed/ca2/user/user_list.cpp
+1364988154 source:/ca2/app/appseed/ca2/user/user_list.cpp
 	"framework.h"
 
 1364887544 source:/ca2/app/appseed/ca2/user/user_list_cache.cpp
@@ -5438,13 +5438,13 @@
 1364887544 source:/ca2/app/appseed/ca2/user/user_list_data.cpp
 	"framework.h"
 
-1364891709 source:/ca2/app/appseed/ca2/user/user_form.cpp
+1364988154 source:/ca2/app/appseed/ca2/user/user_form.cpp
 	"framework.h"
 
 1364887544 source:/ca2/app/appseed/ca2/user/user_list_data_interface.cpp
 	"framework.h"
 
-1364021726 source:/ca2/app/appseed/ca2/user/user_list_header.cpp
+1364954559 source:/ca2/app/appseed/ca2/user/user_list_header.cpp
 	"framework.h"
 
 1364021726 source:/ca2/app/appseed/ca2/user/user_plain_text_data.cpp
@@ -5462,7 +5462,7 @@
 1364891723 source:/ca2/app/appseed/ca2/user/user_combo_box.cpp
 	"framework.h"
 
-1364887544 source:/ca2/app/appseed/ca2/user/user_tab.cpp
+1364955046 source:/ca2/app/appseed/ca2/user/user_tab.cpp
 	"framework.h"
 
 1364021726 source:/ca2/app/appseed/ca2/user/user_tab_callback.cpp
@@ -5474,7 +5474,7 @@
 1364021726 source:/ca2/app/appseed/ca2/user/user_tool_tip_window.cpp
 	"framework.h"
 
-1364021726 source:/ca2/app/appseed/ca2/user/user_tree.cpp
+1364975661 source:/ca2/app/appseed/ca2/user/user_tree.cpp
 	"framework.h"
 
 1364021726 source:/ca2/app/appseed/ca2/user/user_user.cpp
@@ -5519,7 +5519,7 @@
 1364021724 source:/ca2/app/appseed/ca2/userbase/simple_form_list_view.cpp
 	"framework.h"
 
-1364887543 source:/ca2/app/appseed/ca2/userbase/simple_frame_window.cpp
+1364988268 source:/ca2/app/appseed/ca2/userbase/simple_frame_window.cpp
 	"framework.h"
 	<dde.h>
 
@@ -5545,7 +5545,7 @@
 1364021724 source:/ca2/app/appseed/ca2/userbase/simple_push_button.cpp
 	"framework.h"
 
-1364021724 source:/ca2/app/appseed/ca2/userbase/simple_scroll_bar.cpp
+1364954837 source:/ca2/app/appseed/ca2/userbase/simple_scroll_bar.cpp
 	"framework.h"
 
 1364021724 source:/ca2/app/appseed/ca2/userbase/simple_static.cpp
@@ -5561,7 +5561,7 @@
 1364021724 source:/ca2/app/appseed/ca2/userbase/simple_tab_view.cpp
 	"framework.h"
 
-1364898374 source:/ca2/app/appseed/ca2/userbase/simple_toolbar.cpp
+1364954837 source:/ca2/app/appseed/ca2/userbase/simple_toolbar.cpp
 	"framework.h"
 
 1364021724 source:/ca2/app/appseed/ca2/userbase/simple_tree_view.cpp
@@ -5582,7 +5582,7 @@
 1364021724 source:/ca2/app/appseed/ca2/userbase/userbase_combo_list.cpp
 	"framework.h"
 
-1364895984 source:/ca2/app/appseed/ca2/userbase/userbase_control_bar.cpp
+1364921665 source:/ca2/app/appseed/ca2/userbase/userbase_control_bar.cpp
 	"framework.h"
 
 1364021724 source:/ca2/app/appseed/ca2/userbase/userbase_document.cpp
@@ -5609,7 +5609,7 @@
 1364021724 source:/ca2/app/appseed/ca2/userbase/userbase_form_view.cpp
 	"framework.h"
 
-1364130347 source:/ca2/app/appseed/ca2/userbase/userbase_frame_window_interface.cpp
+1364948333 source:/ca2/app/appseed/ca2/userbase/userbase_frame_window_interface.cpp
 	"framework.h"
 
 1364021724 source:/ca2/app/appseed/ca2/userbase/userbase_image_manager.cpp
@@ -5660,13 +5660,13 @@
 1360438727 source:/ca2/app/appseed/ca2/userbase/userbase_single_document_template.cpp
 	"framework.h"
 
-1364887543 source:/ca2/app/appseed/ca2/userbase/userbase_split_bar.cpp
+1364954837 source:/ca2/app/appseed/ca2/userbase/userbase_split_bar.cpp
 	"framework.h"
 
-1364901381 source:/ca2/app/appseed/ca2/userbase/userbase_split_layout.cpp
+1364947264 source:/ca2/app/appseed/ca2/userbase/userbase_split_layout.cpp
 	"framework.h"
 
-1364021724 source:/ca2/app/appseed/ca2/userbase/userbase_split_view.cpp
+1364954837 source:/ca2/app/appseed/ca2/userbase/userbase_split_view.cpp
 	"framework.h"
 
 1364891802 source:/ca2/app/appseed/ca2/userbase/userbase_notification_area.cpp
@@ -5753,7 +5753,7 @@
 1360438728 source:/ca2/app/appseed/ca2/userex/userex_pane_split_view.cpp
 	"framework.h"
 
-1364887543 source:/ca2/app/appseed/ca2/userex/userex_pane_tab_view.cpp
+1364930597 source:/ca2/app/appseed/ca2/userex/userex_pane_tab_view.cpp
 	"framework.h"
 
 1364887543 source:/ca2/app/appseed/ca2/userex/userex_pane_view.cpp
@@ -5779,9 +5779,9 @@
 
 1364021727 source:/ca2/app/appseed/ca2/userhtml/userhtml_document.cpp
 
-1364032081 source:/ca2/app/appseed/ca2/userhtml/userhtml_form.cpp
+1364988154 source:/ca2/app/appseed/ca2/userhtml/userhtml_form.cpp
 
-1364887534 source:/ca2/app/appseed/ca2/userhtml/userhtml_form_view.cpp
+1364988154 source:/ca2/app/appseed/ca2/userhtml/userhtml_form_view.cpp
 	"framework.h"
 
 1364021727 source:/ca2/app/appseed/ca2/userhtml/userhtml_frame.cpp

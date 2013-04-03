@@ -31,6 +31,9 @@ namespace user
    public:
 
 
+      interaction_ptr_array(::ca::application * papp);
+
+
       using spa(::user::interaction)::find_first;
       ::user::interaction * find_first(::ca::type_info info);
       ::user::interaction * find_first(oswindow oswindow);

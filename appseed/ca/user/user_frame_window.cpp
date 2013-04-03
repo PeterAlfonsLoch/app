@@ -512,6 +512,7 @@ bool frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext
 
 void frame_window::_001OnCreate(::ca::signal_object * pobj)
 {
+
    ::ca::thread * pappthread = System.GetThread()->get_app_thread();
    if(pappthread != NULL)
    {
@@ -519,6 +520,10 @@ void frame_window::_001OnCreate(::ca::signal_object * pobj)
       {
          pappthread->SetMainWnd(this);
       }
+   }
+   if(Application.GetMainWnd() == NULL)
+   {
+      Application.SetMainWnd(this);
    }
 
    if(pobj->previous())
@@ -850,7 +855,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   command_target_interface * pcommandtargetinterface= dynamic_cast < command_target_interface * > (Application.user().get_keyboard_focus());
+   command_target_interface * pcommandtargetinterface= dynamic_cast < command_target_interface * > (Application.user()->get_keyboard_focus());
 
    if(pcommandtargetinterface != NULL)
    {

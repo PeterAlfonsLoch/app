@@ -244,7 +244,6 @@ namespace user
    void tab::_001OnDraw(::ca::graphics * pdc)
    {
 
-
       get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
 
 
@@ -1891,7 +1890,7 @@ namespace user
          {
             if(!m_bNoTabs && GetParentFrame()->IsFullScreen())
             {
-               
+
                rect rectWindow;
 
                GetWindowRect(rectWindow);
@@ -1908,7 +1907,7 @@ namespace user
                }
 
                m_bShowTabs = bShowTabs;
-               
+
                if(bShowTabs)
                {
 

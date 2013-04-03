@@ -8,18 +8,18 @@ namespace userpresence
       message_window_simple_callback(papp)
    {
    }
-      
+
    presence_central::~presence_central()
    {
    }
 
    bool presence_central::initialize()
    {
-         
+
       if(!initialize_message_window("ca5::user::presence_central::message_window"))
          return false;
 
-      m_uiMessage.SetTimer(1984, 1000, NULL);
+      m_spuiMessage->SetTimer(1984, 1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
@@ -36,8 +36,8 @@ namespace userpresence
    bool presence_central::finalize()
    {
 
-      m_uiMessage.KillTimer(1984);
-         
+      m_spuiMessage->KillTimer(1984);
+
       finalize_message_window();
 
       if(ApplicationUser.m_ppresence != NULL)
@@ -52,8 +52,8 @@ namespace userpresence
 
    bool presence_central::is_initialized()
    {
-         
-      if(!m_uiMessage.IsWindow())
+
+      if(!m_spuiMessage->IsWindow())
          return false;
 
       return true;

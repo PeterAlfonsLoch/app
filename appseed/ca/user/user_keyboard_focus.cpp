@@ -5,11 +5,11 @@ namespace user
 
    keyboard_focus::~keyboard_focus()
    {
-      if(m_papp != NULL && &System != NULL)
+      if(m_papp != NULL && &System != NULL && System.user().is_set())
       {
-         if(System.user().m_pkeyboardfocus == this)
+         if(System.user()->m_pkeyboardfocus == this)
          {
-            Application.user().set_keyboard_focus(NULL);
+            Application.user()->set_keyboard_focus(NULL);
          }
       }
    }
@@ -89,7 +89,7 @@ namespace user
 
    bool keyboard_focus::keyboard_set_focus()
    {
-      Application.user().set_keyboard_focus(dynamic_cast < ::user::interaction * > (this));
+      Application.user()->set_keyboard_focus(dynamic_cast < ::user::interaction * > (this));
       return true;
    }
 

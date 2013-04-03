@@ -795,6 +795,9 @@ mq * get_mq(HTHREAD  h)
 CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
 {
 
+
+   bool bFirst = true;
+
    mq * pmq = get_mq();
 
    if(pmq == NULL)
@@ -821,6 +824,8 @@ restart:
 
       if(msg.message == WM_QUIT)
       {
+         *lpMsg = msg;
+         pmq->ma.remove_at(i);
          return FALSE;
       }
 
@@ -845,11 +850,27 @@ restart:
    }
 #endif
 
-   pmq->m_eventNewMessage.wait(25);
+   if(bFirst)
+   {
 
-   pmq->m_eventNewMessage.reset_event();
+      pmq->m_eventNewMessage.wait(25);
 
-   goto restart;
+      pmq->m_eventNewMessage.reset_event();
+
+      bFirst = false;
+
+      goto restart;
+
+   }
+   else
+   {
+
+      lpMsg->message = 0xffffffff;
+
+      return true;
+
+   }
+
 
 }
 

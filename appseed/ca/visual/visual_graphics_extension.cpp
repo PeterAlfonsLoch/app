@@ -6,8 +6,8 @@ namespace visual
 
 
    void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
-   
-   
+
+
    graphics_extension::graphics_extension(::ca::application * papp) :
       ca(papp)
    {
@@ -289,6 +289,10 @@ namespace visual
       string str2;
       rect rectClip(lpcrect);
 
+
+      if(rectClip.area() <= 0)
+         return 0;
+
       size sz;
       sz.cx = 0;
       sz.cy = 0;
@@ -379,14 +383,14 @@ namespace visual
             if(i < 0)
                i = 0;
             char * lpsz = str.GetBuffer(max(0, i) + 1);
-            while(true)
+            while(i > 0)
             {
                sz = pdc->GetTextExtent(str, (int32_t) i);
                if(sz.cx > rectClip.width())
                {
+                  i--;
                   if(i <= 0)
                      break;
-                  i--;
                }
                else
                {
@@ -397,6 +401,9 @@ namespace visual
             str.ReleaseBuffer();
          }
       }
+
+      if(str.is_empty())
+         return 0;
 
 
       ::ca::font_sp fontUnderline;

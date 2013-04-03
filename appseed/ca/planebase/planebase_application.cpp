@@ -23,9 +23,6 @@ namespace planebase
       m_bIfs                     = true;
       m_bUpdateMatterOnInstall   = true;
 
-      m_pservice                 = NULL;
-
-      m_pfontopus                = NULL;
 
    }
 
@@ -706,7 +703,7 @@ InitFailure:
 
          if(!on_uninstall())
             return false;
-         
+
          System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
 
       }
@@ -885,6 +882,8 @@ exit_application:
    int32_t application::exit_instance()
    {
 
+      m_spuser.release();
+
       try
       {
 
@@ -1002,7 +1001,7 @@ exit_application:
       if(!m_simpledb.initialize())
          return false;
 
-      if(!m_puser->initialize())
+      if(!m_spuser->initialize())
          return false;
 
       if(!m_phtml->initialize())
@@ -1099,11 +1098,11 @@ exit_application:
          // keyboard layout
          if(data_get("keyboard_layout", str) && str.has_char())
          {
-            user().set_keyboard_layout(str, false);
+            user()->set_keyboard_layout(str, false);
          }
          else
          {
-            user().set_keyboard_layout(NULL, false);
+            user()->set_keyboard_layout(NULL, false);
          }
 
          data_pulse_change("ca2", "savings", NULL);
@@ -1134,12 +1133,12 @@ exit_application:
 
       m_pfontopus->construct(this);
 
-      m_puser = create_user();
+      m_spuser = create_user();
 
-      if(m_puser == NULL)
+      if(m_spuser == NULL)
          return false;
 
-      m_puser->construct(this);
+      m_spuser->construct(this);
 
       m_pfs = create_fs();
 
@@ -1162,7 +1161,7 @@ exit_application:
    bool application::initialize1()
    {
 
-      
+
 
 
       if(!is_system() && !is_bergedge())
@@ -1180,16 +1179,16 @@ exit_application:
         (Application.directrix().m_varTopicQuery.has_property("install")
       || Application.directrix().m_varTopicQuery.has_property("uninstall")))
       {
-         
+
          if(fontopus().create_system_user("system") == NULL)
             return false;
-         
+
       }
 
       if(!::ca::application::initialize1())
          return false;
 
-      if(!m_puser->initialize1())
+      if(!m_spuser->initialize1())
          return false;
 
       return true;
@@ -1214,7 +1213,7 @@ exit_application:
       if(!is_installing() && !is_uninstalling())
       {
 
-         if(!user().keyboard().initialize())
+         if(!user()->keyboard().initialize())
             return false;
 
          simpledb().set_keyboard_layout(NULL, false);
@@ -1235,7 +1234,7 @@ exit_application:
 
       if(!m_pfontopus->initialize_instance())
          return false;
-      
+
 
       return true;
 

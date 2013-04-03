@@ -26,7 +26,7 @@ namespace user
       }
       else
       {
-         m_pwindowmap = System.m_puser->m_pwindowmap;
+         m_pwindowmap = System.user()->m_pwindowmap;
       }
 
       m_pkeyboard = new ::user::keyboard(m_papp);
@@ -353,11 +353,11 @@ retry_license:
       }
       else if(Application.m_psession != NULL)
       {
-         return Sess(get_app()).user().get_keyboard_focus();
+         return Sess(get_app()).user()->get_keyboard_focus();
       }
       else if(Application.m_psystem != NULL)
       {
-         return Sys(get_app()).user().get_keyboard_focus();
+         return Sys(get_app()).user()->get_keyboard_focus();
       }
       else
       {
@@ -375,7 +375,7 @@ retry_license:
          }
          if(Application.m_psystem != NULL)
          {
-            return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
+            return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
          }
       }
       else if(Application.is_system() || Application.is_cube())
@@ -387,11 +387,11 @@ retry_license:
       }
       else if(Application.m_psession != NULL)
       {
-         return Sess(get_app()).user().set_keyboard_focus(pkeyboardfocus);
+         return Sess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
       else if(Application.m_psystem != NULL)
       {
-         return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
+         return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
    }
 
@@ -453,7 +453,7 @@ retry_license:
          return true;
       }
 
-      if(!System.user().keyboard().load_layout(pszPath, bUser))
+      if(!System.user()->keyboard().load_layout(pszPath, bUser))
          return false;
 
       Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
@@ -466,7 +466,7 @@ retry_license:
    {
       if(!Application.is_system())
       {
-         return System.user().keyboard();
+         return System.user()->keyboard();
       }
       return *m_pkeyboard;
    }
@@ -488,14 +488,14 @@ retry_license:
    int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
    {
 
-      if(m_papp->m_psession->m_pbergedgeInterface->m_puser == this)
+      if(m_papp->m_psession->m_pbergedgeInterface->user() == this)
       {
 
          throw not_implemented(get_app());
 
       }
 
-      return m_papp->m_psession->m_pbergedgeInterface->m_puser->GetVisibleTopLevelFrameCountExcept(pwndExcept);
+      return m_papp->m_psession->m_pbergedgeInterface->user()->GetVisibleTopLevelFrameCountExcept(pwndExcept);
 
    }
 

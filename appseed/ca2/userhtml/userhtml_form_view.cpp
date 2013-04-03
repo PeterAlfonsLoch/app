@@ -84,7 +84,7 @@ bool html_form_view::pre_create_window(CREATESTRUCT& cs)
 }
 void html_form_view::_001OnInitialUpdate(::ca::signal_object * pobj)
 {
-   
+
    html_form::_001OnInitialUpdate(pobj);
 
 }
@@ -103,9 +103,9 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phi
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {
             ASSERT(get_html_data() != NULL);
-            
+
             defer_implement();
-            
+
             _001InitializeFormPreData();
 
             _001UpdateFunctionStatic();
@@ -120,7 +120,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phi
             }
 
             defer_layout();
-            
+
             on_document_complete(puh->m_strUrl);
 
             GetParentFrame()->SetActiveView(this);
@@ -167,7 +167,7 @@ void html_form_view::_001OnSetFocus(::ca::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data()->m_focusptra.get_size() > 0)
    {
-      Application.user().set_keyboard_focus(get_html_data()->m_focusptra[0]);
+      Application.user()->set_keyboard_focus(get_html_data()->m_focusptra[0]);
    }
 }
 

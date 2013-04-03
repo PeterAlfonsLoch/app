@@ -312,7 +312,7 @@ namespace filemanager
          lpcsz = "";
 
 
-      m_pimagelist = System.user().shellimageset().GetImageList16();
+      m_pimagelist = System.user()->shellimageset().GetImageList16();
       /*if(lpcsz == NULL)
       {
       if(zip::Util(get_app()).IsUnzipable(pitemParent->m_strPath))
@@ -425,7 +425,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-         pitemChild->m_iImage = System.user().shellimageset().GetImage(
+         pitemChild->m_iImage = System.user()->shellimageset().GetImage(
             NULL,
             pitemChild->m_strPath,
             NULL,
@@ -630,13 +630,13 @@ namespace filemanager
 #ifdef WINDOWSEX
          try
          {
-            pitemChild->m_iImage = System.user().shellimageset().GetImage(
+            pitemChild->m_iImage = System.user()->shellimageset().GetImage(
                NULL,
                pitemChild->m_strPath,
                NULL,
                _shell::IconNormal,
                true);
-            pitemChild->m_iImageSelected = System.user().shellimageset().GetImage(
+            pitemChild->m_iImageSelected = System.user()->shellimageset().GetImage(
                NULL,
                pitemChild->m_strPath,
                NULL,

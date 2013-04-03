@@ -503,6 +503,7 @@ namespace userbase
    bool split_layout::InsertPaneAt(int32_t iIndex, ::user::interaction *pwnd, bool bFixedSize, class id id)
    {
 
+
       int32_t iSplitBarCount = get_pane_count();
 
       m_splitbara.remove_all();

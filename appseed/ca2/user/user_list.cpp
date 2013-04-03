@@ -168,6 +168,7 @@ namespace user
    {
 
       m_penFocused->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
+
       m_penHighlight->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -1111,7 +1112,7 @@ namespace user
       }
 
       ::ca::font * pfont = _001GetFont();
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       pdc->SelectObject(pfont);
       size size;
       size = pdc->GetTextExtent("Ap");
@@ -2409,8 +2410,8 @@ namespace user
       {
          SetFocus();
       }
-      Application.user().set_keyboard_focus(this);
-      System.user().set_mouse_focus_LButtonDown(this);
+      Application.user()->set_keyboard_focus(this);
+      System.user()->set_mouse_focus_LButtonDown(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -3801,7 +3802,7 @@ namespace user
    void list::_001LayoutTopText()
    {
       ::ca::font * pfont = _001GetFont();
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       pdc->SelectObject(pfont);
       base_array < size > sizea;
       m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
@@ -3954,7 +3955,7 @@ namespace user
 
    int32_t list::_001CalcItemWidth(index iItem, index iSubItem)
    {
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       ::ca::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
 
@@ -4657,7 +4658,7 @@ namespace user
    int32_t list::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       ::ca::font * pfont = _001GetFont();
       pdc->SelectObject(pfont);
       int32_t iMaxWidth = 0;

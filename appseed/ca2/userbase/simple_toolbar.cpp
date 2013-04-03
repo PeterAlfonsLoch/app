@@ -212,7 +212,6 @@ size simple_toolbar::CalcSimpleLayout()
 void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 {
 
-
    if(m_bDelayedButtonLayout)
       layout();
 
@@ -1689,8 +1688,8 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
    int32_t nResult = 0;
 #if defined(WINDOWSEX) || defined(LINUX)
    ASSERT(nCount > 0);
-   ::ca::client_graphics pdc(this);
-   int32_t x = 0;
+   ::ca::memory_graphics pdc(get_app());
+    int32_t x = 0;
    string str;
    for (int32_t i = 0; i < nCount; i++)
    {

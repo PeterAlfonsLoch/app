@@ -1671,7 +1671,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_heap.h
 
-1364021827 /ca2/app/appseed/ca/ca/ca_plex_heap.h
+1364991274 /ca2/app/appseed/ca/ca/ca_plex_heap.h
 
 1364021827 /ca2/app/appseed/ca/ca/ca_fixed_alloc.h
 
@@ -1740,7 +1740,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_template.h
 
-1364887522 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
+1364988794 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
 
 1364887522 /ca2/app/appseed/ca/ca/ca_smart_pointer_query.h
 
@@ -2051,7 +2051,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_dib.h
 
-1364021827 /ca2/app/appseed/ca/ca/ca_graphics.h
+1364941223 /ca2/app/appseed/ca/ca/ca_graphics.h
 	"ca/user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -2076,7 +2076,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1364887522 /ca2/app/appseed/ca/ca/ca_message.h
+1364921296 /ca2/app/appseed/ca/ca/ca_message.h
 	<agile.h>
 	"ca/user/user_key_enum.h"
 
@@ -2100,7 +2100,7 @@
 
 1364021842 /ca2/app/appseed/ca/user/user_elemental.h
 
-1364890893 /ca2/app/appseed/ca/user/user_window_util.h
+1364927188 /ca2/app/appseed/ca/user/user_window_util.h
 
 1360438719 /ca2/app/appseed/ca/user/user_text_interface.h
 
@@ -2154,7 +2154,7 @@
 1364021827 /ca2/app/appseed/ca/ca/ca_window.h
 	"ca/user/user_interaction.h"
 
-1364541654 /ca2/app/appseed/ca/ca/ca_message_window.h
+1364989015 /ca2/app/appseed/ca/ca/ca_message_window.h
 	"ca_window.h"
 
 1364021827 /ca2/app/appseed/ca/ca/ca_profiler.h
@@ -3650,7 +3650,7 @@
 
 1364021827 /ca2/app/appseed/ca/ca/ca_process_section.h
 
-1364887522 /ca2/app/appseed/ca/ca/ca_application.h
+1364979036 /ca2/app/appseed/ca/ca/ca_application.h
 	"ca/ca/ca_font.h"
 
 1360438674 /ca2/app/appseed/ca/ca/ca_session.h
@@ -3880,7 +3880,7 @@
 
 1364021841 /ca2/app/appseed/ca/fontopus/fontopus_fontopus.h
 
-1364021835 /ca2/app/appseed/ca/planebase/planebase_application.h
+1364987486 /ca2/app/appseed/ca/planebase/planebase_application.h
 
 1360438705 /ca2/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.h
 
@@ -4080,7 +4080,7 @@
 1364021827 source:/ca2/app/appseed/ca/ca/ca_byte_stream_memory_file.cpp
 	"framework.h"
 
-1364887522 source:/ca2/app/appseed/ca/ca/ca_ca.cpp
+1364986876 source:/ca2/app/appseed/ca/ca/ca_ca.cpp
 	"framework.h"
 
 1364021827 source:/ca2/app/appseed/ca/ca/ca_ch.cpp
@@ -4158,7 +4158,7 @@
 
 1364888521 /ca2/app/appseed/ca/plane/plane_system_ca_factory.h
 
-1364888719 source:/ca2/app/appseed/ca/ca/ca_application.cpp
+1364989379 source:/ca2/app/appseed/ca/ca/ca_application.cpp
 	"framework.h"
 	<dlfcn.h>
 	<link.h>
@@ -4263,7 +4263,7 @@
 	"framework.h"
 	<unistd.h>
 
-1364021827 source:/ca2/app/appseed/ca/ca/ca_graphics.cpp
+1364941160 source:/ca2/app/appseed/ca/ca/ca_graphics.cpp
 	"framework.h"
 	<math.h>
 
@@ -4374,12 +4374,12 @@
 1364021827 source:/ca2/app/appseed/ca/ca/ca_memory.cpp
 	"framework.h"
 
-1364541654 source:/ca2/app/appseed/ca/ca/ca_message.cpp
+1364987671 source:/ca2/app/appseed/ca/ca/ca_message.cpp
 	"framework.h"
 	<X11/Xlib.h>
 	<X11/Xutil.h>
 
-1364541654 source:/ca2/app/appseed/ca/ca/ca_message_window.cpp
+1364989843 source:/ca2/app/appseed/ca/ca/ca_message_window.cpp
 	"framework.h"
 
 1364021827 source:/ca2/app/appseed/ca/ca/ca_microtimer.cpp
@@ -5389,7 +5389,7 @@
 1364021841 source:/ca2/app/appseed/ca/fontopus/fontopus_usera.cpp
 	"framework.h"
 
-1364887530 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
+1364987993 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
 	"framework.h"
 	<openssl/rsa.h>
 	<openssl/engine.h>
@@ -5860,7 +5860,7 @@
 1364218627 source:/ca2/app/appseed/ca/plane/plane_session.cpp
 	"framework.h"
 
-1364032080 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
+1364987862 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
 	"framework.h"
 
 1360438693 source:/ca2/app/appseed/ca/plugin/plugin_history.cpp
@@ -6071,7 +6071,7 @@
 1360438663 source:/ca2/app/appseed/ca/simpledb/simpledb_set.cpp
 	"framework.h"
 
-1364021843 source:/ca2/app/appseed/ca/simpledb/simpledb_simpledb.cpp
+1364987993 source:/ca2/app/appseed/ca/simpledb/simpledb_simpledb.cpp
 	"framework.h"
 	"mysql/mysql.h"
 
@@ -6358,7 +6358,7 @@
 1364130347 source:/ca2/app/appseed/ca/user/user_document_interface.cpp
 	"framework.h"
 
-1364021842 source:/ca2/app/appseed/ca/user/user_document_manager.cpp
+1364987671 source:/ca2/app/appseed/ca/user/user_document_manager.cpp
 	"framework.h"
 
 1364889890 source:/ca2/app/appseed/ca/user/user_control.cpp
@@ -6382,7 +6382,7 @@
 1364021842 source:/ca2/app/appseed/ca/user/user_elemental.cpp
 	"framework.h"
 
-1364889903 source:/ca2/app/appseed/ca/user/user_form.cpp
+1364987993 source:/ca2/app/appseed/ca/user/user_form.cpp
 	"framework.h"
 
 1364021842 source:/ca2/app/appseed/ca/user/user_form_callback.cpp
@@ -6391,13 +6391,13 @@
 1364130347 source:/ca2/app/appseed/ca/user/user_frame_window_interface.cpp
 	"framework.h"
 
-1364021842 source:/ca2/app/appseed/ca/user/user_keyboard_focus.cpp
+1364988035 source:/ca2/app/appseed/ca/user/user_keyboard_focus.cpp
 	"framework.h"
 
 1364021842 source:/ca2/app/appseed/ca/user/user_keyboard_layout.cpp
 	"framework.h"
 
-1364887522 source:/ca2/app/appseed/ca/user/user_keyboard_layout_cfg.cpp
+1364987671 source:/ca2/app/appseed/ca/user/user_keyboard_layout_cfg.cpp
 	"framework.h"
 
 1364021842 source:/ca2/app/appseed/ca/user/user_message.cpp
@@ -6418,10 +6418,10 @@
 1364021842 source:/ca2/app/appseed/ca/user/user_network_configuration.cpp
 	"framework.h"
 
-1364887522 source:/ca2/app/appseed/ca/user/user_place_holder.cpp
+1364929093 source:/ca2/app/appseed/ca/user/user_place_holder.cpp
 	"framework.h"
 
-1364889943 source:/ca2/app/appseed/ca/user/user_frame_window.cpp
+1364987993 source:/ca2/app/appseed/ca/user/user_frame_window.cpp
 	"framework.h"
 	<dde.h>
 
@@ -6442,7 +6442,7 @@
 1364021842 source:/ca2/app/appseed/ca/user/user_text_interface.cpp
 	"framework.h"
 
-1364021842 source:/ca2/app/appseed/ca/user/user_user.cpp
+1364988141 source:/ca2/app/appseed/ca/user/user_user.cpp
 	"framework.h"
 
 1364887522 source:/ca2/app/appseed/ca/user/user_view.cpp
@@ -6466,7 +6466,7 @@
 1364887528 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence.cpp
 	"framework.h"
 
-1364541654 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central.cpp
+1364989379 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central.cpp
 	"framework.h"
 
 1364889966 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
@@ -6511,7 +6511,7 @@
 1364887526 source:/ca2/app/appseed/ca/visual/visual_font.cpp
 	"framework.h"
 
-1362802838 source:/ca2/app/appseed/ca/visual/visual_font_central.cpp
+1364974864 source:/ca2/app/appseed/ca/visual/visual_font_central.cpp
 	"framework.h"
 
 1362802838 source:/ca2/app/appseed/ca/visual/visual_glyph.cpp
@@ -6520,7 +6520,7 @@
 1360438696 source:/ca2/app/appseed/ca/visual/visual_glyph_set.cpp
 	"framework.h"
 
-1362802838 source:/ca2/app/appseed/ca/visual/visual_graphics_extension.cpp
+1364976146 source:/ca2/app/appseed/ca/visual/visual_graphics_extension.cpp
 	"framework.h"
 
 1360438696 source:/ca2/app/appseed/ca/visual/visual_icon.cpp
@@ -6603,10 +6603,10 @@
 
 1360438705 source:/ca2/app/appseed/ca/xml/xml_xmlite.cpp
 
-1364890532 source:/ca2/app/appseed/ca/user/user_interaction.cpp
+1364987993 source:/ca2/app/appseed/ca/user/user_interaction.cpp
 	"framework.h"
 
-1364891063 source:/ca2/app/appseed/ca/user/user_window_util.cpp
+1364927253 source:/ca2/app/appseed/ca/user/user_window_util.cpp
 	"framework.h"
 
 1364896540 /ca2/nodeapp/operational_system/cross/win/win_common_controls.h

@@ -187,7 +187,6 @@ namespace ca
 
       virtual ::ca::thread * GetThread() = 0;
       virtual void set_thread(::ca::thread * pthread) = 0;
-      virtual ::user::interaction * GetMainWnd() = 0;
 
       virtual void SetCurrentHandles() = 0;
 
@@ -1076,7 +1075,6 @@ namespace ca
 
       virtual ::ca::thread * GetThread();
       virtual void set_thread(::ca::thread * pthread);
-      virtual ::user::interaction * GetMainWnd();
 
 
       virtual ::ca::window * get_desktop_window();

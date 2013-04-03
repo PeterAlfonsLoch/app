@@ -79,7 +79,27 @@ critical_section * FileManagerInterface::GetItemIdListCriticalSection()
 
 void FileManagerInterface::OnFileManagerBrowse()
 {
-   data_set("InitialBrowsePath", ::ca::system::idEmpty, get_item().m_strPath);
+
+      if(::ca::str::begins(m_item.m_strPath, "uifs://")
+      || ::ca::str::begins(m_item.m_strPath, "fs://"))
+      {
+         data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item.m_strPath);
+      }
+      else
+      {
+
+         id idMachine;
+
+         #ifdef LINUX
+            idMachine = "Linux";
+         #elif defined(WINDOWSEX)
+            idMachine = "Windows Desktop";
+         #endif
+
+         data_set("InitialBrowsePath", ::ca::system::idEmpty, "machinefs://");
+         data_set("InitialBrowsePath", idMachine, m_item.m_strPath);
+
+      }
    //get_filemanager_data()->OnFileManagerOpenFolder(get_item());
 }
 

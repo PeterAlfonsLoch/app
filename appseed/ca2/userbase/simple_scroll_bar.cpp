@@ -9,7 +9,7 @@ simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
    m_rgnB(papp) // região da segunda seta
 {
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-   
+
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -37,7 +37,7 @@ void simple_scroll_bar::install_message_handling(::ca::message::dispatch * pinte
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
+bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext)
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -49,7 +49,7 @@ bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rec
    return TRUE;
 }
 
-void simple_scroll_bar::_001OnMouseMove(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnMouseMove(::ca::signal_object * pobj)
 {
 
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
@@ -82,7 +82,7 @@ void simple_scroll_bar::_001OnMouseMove(::ca::signal_object * pobj)
          pmouse->m_bRet = true;
       }
       else if(m_rgnA->contains(pt))
-      {   
+      {
          pmouse->m_bRet = true;
       }
       else if(m_rgnB->contains(pt))
@@ -102,14 +102,14 @@ void simple_scroll_bar::_001OnMouseMove(::ca::signal_object * pobj)
 
    if(pmouse->m_bRet)
    {
-    
+
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
    }
 
 }
 
-void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
@@ -135,7 +135,7 @@ void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
       pmouse->set_lresult(1);
    }
    else if(m_rgnA->contains(pt))
-   {   
+   {
       set_capture();
       ScrollLineA();
       SetTimer(100, 300, NULL);
@@ -174,12 +174,12 @@ void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
    }
 }
 
-void simple_scroll_bar::_001OnLButtonUp(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnLButtonUp(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
-   simple_scroll_bar * pcandidate = 
+   simple_scroll_bar * pcandidate =
       dynamic_cast < simple_scroll_bar * > (
       System.get_capture_uie());
    KillTimer(100);
@@ -257,12 +257,12 @@ bool simple_scroll_bar::_001GetScrollInfo(::user::scroll_info * lpsi)
    }
    if(lpsi->fMask & SIF_RANGE)
    {
-      lpsi->nMin = m_scrollinfo.nMin; 
+      lpsi->nMin = m_scrollinfo.nMin;
       lpsi->nMax = m_scrollinfo.nMax;
    }
    if(lpsi->fMask & SIF_TRACKPOS)
    {
-      lpsi->nTrackPos = m_scrollinfo.nTrackPos; 
+      lpsi->nTrackPos = m_scrollinfo.nTrackPos;
    }
    return TRUE;
 }
@@ -275,7 +275,7 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * lpsi, bool bRedr
    }
    if(lpsi->fMask & SIF_RANGE)
    {
-      m_scrollinfo.nMin = lpsi->nMin; 
+      m_scrollinfo.nMin = lpsi->nMin;
       m_scrollinfo.nMax = lpsi->nMax;
    }
    if(lpsi->fMask & SIF_POS)
@@ -292,7 +292,7 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * lpsi, bool bRedr
    }
    if(lpsi->fMask & SIF_TRACKPOS)
    {
-      m_scrollinfo.nTrackPos = lpsi->nTrackPos; 
+      m_scrollinfo.nTrackPos = lpsi->nTrackPos;
    }
    if(bRedraw)
    {
@@ -425,7 +425,7 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
    return TRUE;
 }
 
-void simple_scroll_bar::_001OnHScroll(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnHScroll(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::scroll, pscroll, pobj)
       pscroll->m_bRet = false;
@@ -439,7 +439,7 @@ int32_t simple_scroll_bar::_001GetScrollPos()
       return m_scrollinfo.nPos;
 }
 
-void simple_scroll_bar::_001OnSize(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnSize(::ca::signal_object * pobj)
 {
 
    //SCAST_PTR(::ca::message::size, psize, pobj)
@@ -503,7 +503,7 @@ void simple_scroll_bar::_001OnSize(::ca::signal_object * pobj)
 //   psize->m_bRet = false;
 }
 
-void simple_scroll_bar::_001OnTimer(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnTimer(::ca::signal_object * pobj)
 {
 //   return; //xxxtimer
    SCAST_PTR(::ca::message::timer, ptimer, pobj)
@@ -686,7 +686,7 @@ pParentWnd->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), 
 
 //}
 
-void simple_scroll_bar::_001OnCreate(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnCreate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::create, pcreate, pobj)
 
@@ -701,7 +701,7 @@ void simple_scroll_bar::OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen)
    UNREFERENCED_PARAMETER(sizeScreen);
 }
 
-void simple_scroll_bar::pre_translate_message(::ca::signal_object * pobj) 
+void simple_scroll_bar::pre_translate_message(::ca::signal_object * pobj)
 {
 
    SCAST_PTR(::ca::message::base, pbase, pobj);
@@ -815,11 +815,14 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
    pdc->SelectClipRgn(NULL);
 
    rect rectClient;
+
    GetClientRect(rectClient);
 
    if(System.savings().is_trying_to_save(::ca::resource_processing))
    {
+
       pdc->FillSolidRect(rectClient, RGB(255,255,255));
+
    }
    else
    {
@@ -851,7 +854,7 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 
 }
 
-void simple_scroll_bar::_001OnShowWindow(::ca::signal_object * pobj) 
+void simple_scroll_bar::_001OnShowWindow(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       pshowwindow->m_bRet = false;

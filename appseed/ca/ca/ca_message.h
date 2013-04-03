@@ -602,8 +602,6 @@ namespace ca
          };
 
 
-#ifdef WINDOWSEX
-
 
          class CLASS_DECL_ca window_pos : public base
          {
@@ -614,8 +612,6 @@ namespace ca
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
-
-#endif
 
 
 #ifdef WINDOWSEX
@@ -631,6 +627,8 @@ namespace ca
             LPMEASUREITEMSTRUCT m_lpmis;
          };
 
+#endif
+
          class CLASS_DECL_ca nc_calc_size : public base
          {
          public:
@@ -642,8 +640,6 @@ namespace ca
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
          };
-
-#endif
 
 
          class CLASS_DECL_ca enable : public base

@@ -117,7 +117,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
 
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       _001OnCalcLayout(pdc);
 
 
@@ -138,7 +138,7 @@ namespace user
    {
       _001OnUpdate();
 
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       _001OnCalcLayout(pdc);
 
 
@@ -310,7 +310,7 @@ namespace user
 
    //   pdc->SelectClipRgn(&rgn);
 
-      if(Application.user().get_keyboard_focus() == this)
+      if(Application.user()->get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }
@@ -604,7 +604,7 @@ namespace user
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
-         if(this == Application.user().get_keyboard_focus())
+         if(this == Application.user()->get_keyboard_focus())
          {
             _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
          }
@@ -907,15 +907,15 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       if(pdc == NULL)
          return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
 
       _001RedrawWindow();
-      Application.user().set_keyboard_focus(this);
-      Application.user().set_mouse_focus_LButtonDown(this);
+      Application.user()->set_keyboard_focus(this);
+      Application.user()->set_mouse_focus_LButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -925,7 +925,7 @@ namespace user
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
 
@@ -942,13 +942,13 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
 
       _001RedrawWindow();
-      Application.user().set_keyboard_focus(this);
-      Application.user().set_mouse_focus_RButtonDown(this);
+      Application.user()->set_keyboard_focus(this);
+      Application.user()->set_mouse_focus_RButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -958,7 +958,7 @@ namespace user
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(get_app());
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
 
@@ -1072,7 +1072,7 @@ namespace user
          if(iSel >= i1
             && iSel < i2)
          {
-            ::ca::client_graphics pgraphics(this);
+            ::ca::memory_graphics pgraphics(get_app());
 
             pgraphics->SelectObject(GetFont());
             pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -1136,7 +1136,7 @@ namespace user
    strsize edit_plain_text::LineXToSel(index iLine, int32_t x)
    {
 
-      ::ca::client_graphics pgraphics(this);
+      ::ca::memory_graphics pgraphics(get_app());
 
       pgraphics->SelectObject(GetFont());
       pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -1311,7 +1311,7 @@ namespace user
 
       if(m_bMouseDown)
       {
-         ::ca::client_graphics pdc(this);
+         ::ca::memory_graphics pdc(get_app());
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
 
        //  _001RedrawWindow();
@@ -1671,7 +1671,7 @@ namespace user
                iCode |= 0x80000000;
             }
             string strMap;
-            str = Application.user().keyboard().process_key(pkey->m_ekey);
+            str = Application.user()->keyboard().process_key(pkey->m_ekey);
             m_iSelEnd += str.get_length();
             m_iSelStart = m_iSelEnd;
            m_pdata-> m_editfile.Insert(str, str.get_length());

@@ -16,17 +16,23 @@
 	<File name="bergedge/bergedge_view.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="10977" topLine="397" />
 	</File>
-	<File name="ca2.h" open="0" top="0" tabpos="53">
-		<Cursor position="48" topLine="0" />
+	<File name="ca2.h" open="0" top="0" tabpos="33">
+		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="16">
-		<Cursor position="14268" topLine="630" />
+	<File name="ca2/ca2_application.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="16873" topLine="741" />
 	</File>
-	<File name="cube/cube.h" open="0" top="0" tabpos="51">
-		<Cursor position="53" topLine="0" />
+	<File name="ca2/ca2_application.h" open="0" top="0" tabpos="23">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="cube/cube.h" open="0" top="0" tabpos="34">
+		<Cursor position="69" topLine="0" />
 	</File>
 	<File name="cube/cube_application.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="4573" topLine="202" />
+	</File>
+	<File name="cube/cube_application.h" open="0" top="0" tabpos="22">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="cube/cube_cube.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="131" topLine="4" />
@@ -40,10 +46,10 @@
 	<File name="cubebase/cubebase.h" open="0" top="0" tabpos="47">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="cubebase/cubebase_application.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="3489" topLine="153" />
+	<File name="cubebase/cubebase_application.cpp" open="0" top="0" tabpos="20">
+		<Cursor position="1452" topLine="35" />
 	</File>
-	<File name="cubebase/cubebase_application.h" open="0" top="0" tabpos="13">
+	<File name="cubebase/cubebase_application.h" open="0" top="0" tabpos="24">
 		<Cursor position="504" topLine="14" />
 	</File>
 	<File name="cubebase/cubebase_cubebase.cpp" open="0" top="0" tabpos="2">
@@ -53,7 +59,7 @@
 		<Cursor position="40" topLine="0" />
 	</File>
 	<File name="filemanager/FileManagerChildFrame.h" open="0" top="0" tabpos="15">
-		<Cursor position="47" topLine="0" />
+		<Cursor position="668" topLine="2" />
 	</File>
 	<File name="filemanager/FileManagerFileListCallback.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="707" topLine="0" />
@@ -61,14 +67,23 @@
 	<File name="filemanager/FileManagerFileListCallback.h" open="0" top="0" tabpos="14">
 		<Cursor position="84" topLine="0" />
 	</File>
+	<File name="filemanager/FileManagerInterface.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="2208" topLine="58" />
+	</File>
 	<File name="filemanager/FileManagerInterface.h" open="0" top="0" tabpos="17">
 		<Cursor position="84" topLine="0" />
 	</File>
 	<File name="filemanager/FileManagerPathView.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4520" topLine="125" />
+		<Cursor position="4296" topLine="124" />
+	</File>
+	<File name="filemanager/FileManagerPathView.h" open="0" top="0" tabpos="0">
+		<Cursor position="96" topLine="0" />
 	</File>
 	<File name="filemanager/FileManagerSaveAsNameView.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4443" topLine="97" />
+	</File>
+	<File name="filemanager/FileManagerTabView.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="606" topLine="0" />
 	</File>
 	<File name="filemanager/FileManagerTemplate.cpp" open="0" top="0" tabpos="28">
 		<Cursor position="4336" topLine="80" />
@@ -76,17 +91,20 @@
 	<File name="filemanager/FileManagerTemplate.h" open="0" top="0" tabpos="18">
 		<Cursor position="55" topLine="0" />
 	</File>
-	<File name="filemanager/FileManagerView.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="13772" topLine="364" />
+	<File name="filemanager/FileManagerView.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="5141" topLine="82" />
 	</File>
-	<File name="filemanager/SimpleFileListInterface.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="11446" topLine="392" />
+	<File name="filemanager/FileManagerViewInterface.cpp" open="0" top="0" tabpos="14">
+		<Cursor position="362" topLine="4" />
+	</File>
+	<File name="filemanager/SimpleFileListInterface.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="23930" topLine="807" />
 	</File>
 	<File name="filemanager/SimpleFileListInterface.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="filemanager/SimpleFileListView.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="6730" topLine="179" />
+	<File name="filemanager/SimpleFileListView.cpp" open="0" top="0" tabpos="15">
+		<Cursor position="6705" topLine="165" />
 	</File>
 	<File name="filemanager/SimpleFileListView.h" open="0" top="0" tabpos="21">
 		<Cursor position="90" topLine="0" />
@@ -94,23 +112,23 @@
 	<File name="filemanager/SimpleFilePropertiesForm.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="403" topLine="0" />
 	</File>
-	<File name="filemanager/SimpleFolderListInterface.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+	<File name="filemanager/SimpleFolderListInterface.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="616" topLine="0" />
 	</File>
 	<File name="filemanager/SimpleFolderListInterface.h" open="0" top="0" tabpos="13">
 		<Cursor position="791" topLine="17" />
 	</File>
-	<File name="filemanager/SimpleFolderListView.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
+	<File name="filemanager/SimpleFolderListView.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="710" topLine="0" />
 	</File>
-	<File name="filemanager/SimpleFolderTreeInterface.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="22414" topLine="516" />
+	<File name="filemanager/SimpleFolderTreeInterface.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="22451" topLine="799" />
 	</File>
 	<File name="filemanager/SimpleFolderTreeInterface.h" open="0" top="0" tabpos="16">
 		<Cursor position="168" topLine="0" />
 	</File>
-	<File name="filemanager/SimpleFolderTreeView.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="5776" topLine="39" />
+	<File name="filemanager/SimpleFolderTreeView.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="3433" topLine="78" />
 	</File>
 	<File name="filemanager/file_operation.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="5900" topLine="193" />
@@ -118,8 +136,8 @@
 	<File name="filemanager/filemanager_data.h" open="0" top="0" tabpos="13">
 		<Cursor position="163" topLine="0" />
 	</File>
-	<File name="filemanager/filemanager_document.cpp" open="0" top="0" tabpos="29">
-		<Cursor position="6824" topLine="281" />
+	<File name="filemanager/filemanager_document.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="7595" topLine="286" />
 	</File>
 	<File name="filemanager/filemanager_fs_simple_list_view.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="27073" topLine="797" />
@@ -172,11 +190,11 @@
 	<File name="html/html_base.h" open="0" top="0" tabpos="12">
 		<Cursor position="419" topLine="0" />
 	</File>
-	<File name="html/html_data.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="6589" topLine="205" />
+	<File name="html/html_data.cpp" open="0" top="0" tabpos="36">
+		<Cursor position="380" topLine="0" />
 	</File>
-	<File name="html/html_data.h" open="0" top="0" tabpos="21">
-		<Cursor position="0" topLine="131" />
+	<File name="html/html_data.h" open="0" top="0" tabpos="35">
+		<Cursor position="4317" topLine="132" />
 	</File>
 	<File name="html/html_elemental.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="17243" topLine="587" />
@@ -301,8 +319,8 @@
 	<File name="uinteraction/frame/frame_work_set.h" open="0" top="0" tabpos="12">
 		<Cursor position="4797" topLine="120" />
 	</File>
-	<File name="uinteraction/frame/frame_work_set_client_interface.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="8436" topLine="342" />
+	<File name="uinteraction/frame/frame_work_set_client_interface.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="9143" topLine="370" />
 	</File>
 	<File name="uinteraction/frame/frame_work_set_listener.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="0" topLine="0" />
@@ -331,23 +349,26 @@
 	<File name="user/user_combo_list.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="9622" topLine="363" />
 	</File>
-	<File name="user/user_edit_plain_text.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="13653" topLine="427" />
+	<File name="user/user_edit_plain_text.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="5365" topLine="171" />
 	</File>
 	<File name="user/user_form.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1911" topLine="36" />
+	</File>
+	<File name="user/user_form_list.cpp" open="0" top="0" tabpos="17">
+		<Cursor position="7428" topLine="252" />
 	</File>
 	<File name="user/user_front_end_schema.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="958" topLine="14" />
 	</File>
 	<File name="user/user_list.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="26793" topLine="973" />
+		<Cursor position="5017" topLine="159" />
 	</File>
 	<File name="user/user_list.h" open="0" top="0" tabpos="20">
 		<Cursor position="891" topLine="35" />
 	</File>
 	<File name="user/user_list_header.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="12447" topLine="441" />
+		<Cursor position="13352" topLine="499" />
 	</File>
 	<File name="user/user_printer.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="25" topLine="0" />
@@ -358,8 +379,8 @@
 	<File name="user/user_scroll_view.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="2931" topLine="55" />
 	</File>
-	<File name="user/user_tab.cpp" open="0" top="0" tabpos="21">
-		<Cursor position="30630" topLine="1075" />
+	<File name="user/user_tab.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="5553" topLine="220" />
 	</File>
 	<File name="user/user_tab.h" open="0" top="0" tabpos="4">
 		<Cursor position="64" topLine="0" />
@@ -367,8 +388,8 @@
 	<File name="user/user_template.h" open="0" top="0" tabpos="9">
 		<Cursor position="836" topLine="0" />
 	</File>
-	<File name="user/user_tree.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="16628" topLine="579" />
+	<File name="user/user_tree.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="12127" topLine="404" />
 	</File>
 	<File name="user/user_xfplayer_view_line.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="38809" topLine="1449" />
@@ -380,13 +401,13 @@
 		<Cursor position="1991" topLine="55" />
 	</File>
 	<File name="userbase/simple_child_frame.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="285" topLine="11" />
+		<Cursor position="28" topLine="13" />
 	</File>
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="9506" topLine="338" />
+	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="16747" topLine="624" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="555" topLine="19" />
@@ -404,13 +425,16 @@
 		<Cursor position="1462" topLine="34" />
 	</File>
 	<File name="userbase/simple_scroll_bar.cpp" open="0" top="0" tabpos="22">
-		<Cursor position="18783" topLine="656" />
+		<Cursor position="22275" topLine="808" />
 	</File>
 	<File name="userbase/simple_static.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="361" topLine="0" />
 	</File>
-	<File name="userbase/simple_toolbar.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="45856" topLine="1636" />
+	<File name="userbase/simple_tool_bar.h" open="0" top="0" tabpos="18">
+		<Cursor position="5460" topLine="135" />
+	</File>
+	<File name="userbase/simple_toolbar.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="5658" topLine="192" />
 	</File>
 	<File name="userbase/userbase.h" open="0" top="0" tabpos="73">
 		<Cursor position="42" topLine="0" />
@@ -430,8 +454,8 @@
 	<File name="userbase/userbase_combo_box.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="9678" topLine="438" />
 	</File>
-	<File name="userbase/userbase_control_bar.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="9525" topLine="296" />
+	<File name="userbase/userbase_control_bar.cpp" open="0" top="0" tabpos="19">
+		<Cursor position="24021" topLine="731" />
 	</File>
 	<File name="userbase/userbase_control_bar.h" open="0" top="0" tabpos="5">
 		<Cursor position="116" topLine="0" />
@@ -439,14 +463,17 @@
 	<File name="userbase/userbase_document_manager.cpp" open="0" top="0" tabpos="27">
 		<Cursor position="1551" topLine="20" />
 	</File>
+	<File name="userbase/userbase_edit_plain_text_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="275" topLine="0" />
+	</File>
 	<File name="userbase/userbase_form_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4599" topLine="107" />
 	</File>
-	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="532" topLine="4" />
+	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="9665" topLine="321" />
 	</File>
-	<File name="userbase/userbase_frame_window_interface.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="4335" topLine="114" />
+	<File name="userbase/userbase_frame_window_interface.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3866" topLine="94" />
 	</File>
 	<File name="userbase/userbase_menu.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="17406" topLine="524" />
@@ -469,14 +496,17 @@
 	<File name="userbase/userbase_notification_area.h" open="0" top="0" tabpos="1">
 		<Cursor position="966" topLine="22" />
 	</File>
-	<File name="userbase/userbase_split_bar.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3540" topLine="103" />
+	<File name="userbase/userbase_split_bar.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="1126" topLine="31" />
 	</File>
 	<File name="userbase/userbase_split_layout.cpp" open="0" top="0" tabpos="22">
-		<Cursor position="13951" topLine="471" />
+		<Cursor position="14127" topLine="482" />
 	</File>
 	<File name="userbase/userbase_split_layout.h" open="0" top="0" tabpos="0">
 		<Cursor position="2913" topLine="53" />
+	</File>
+	<File name="userbase/userbase_split_view.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="1326" topLine="48" />
 	</File>
 	<File name="userbase/userbase_static.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="2607" topLine="125" />
@@ -490,8 +520,8 @@
 	<File name="userbase/userbase_status_bar.h" open="0" top="0" tabpos="6">
 		<Cursor position="167" topLine="0" />
 	</File>
-	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="6949" topLine="236" />
+	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="12859" topLine="418" />
 	</File>
 	<File name="userbase/userbase_tool_bar.h" open="0" top="0" tabpos="41">
 		<Cursor position="3821" topLine="90" />
@@ -514,8 +544,8 @@
 	<File name="userex/userex.h" open="0" top="0" tabpos="70">
 		<Cursor position="41" topLine="0" />
 	</File>
-	<File name="userex/userex_pane_tab_view.cpp" open="0" top="0" tabpos="27">
-		<Cursor position="5315" topLine="145" />
+	<File name="userex/userex_pane_tab_view.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="5435" topLine="157" />
 	</File>
 	<File name="userex/userex_pane_view.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="1189" topLine="39" />

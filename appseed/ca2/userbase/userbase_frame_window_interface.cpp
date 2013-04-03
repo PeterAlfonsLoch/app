@@ -7,7 +7,7 @@ namespace userbase
 
    frame_window_interface::frame_window_interface()
    {
-      
+
       m_bAutoWindowFrame      = true;
       m_bWindowFrame          = true;
 
@@ -75,7 +75,7 @@ namespace userbase
             }
             if (pview != NULL)
                pview->OnActivateView(TRUE, pview, pview);
-            
+
          }
 
          ::userbase::document * pdoc = pfiu->m_pdoc;
@@ -109,6 +109,7 @@ namespace userbase
             pui = m_pguie->get_bottom_child();
          else
             pui = get_bottom_child();
+
          while(pui != NULL)
          {
             if(pui->IsWindowVisible() && !base < MetaButton > ::bases(pui))
@@ -140,7 +141,7 @@ namespace userbase
 
    void frame_window_interface::_001OnDraw(::ca::graphics *pdc)
    {
-      if((m_bWindowFrame 
+      if((m_bWindowFrame
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent) &&
       !Session.savings().is_trying_to_save(::ca::resource_display_bandwidth))
@@ -192,7 +193,7 @@ namespace userbase
 
    void frame_window_interface::WfiOnRestore()
    {
-      
+
       _001WindowRestore();
 
       class rect rectWindow;
@@ -209,16 +210,16 @@ namespace userbase
       }
       else
       {
-         
+
          bOk = false;
 
          class rect rectSession;
 
          for(int32_t i = 0; i < Session.get_monitor_count(); i++)
          {
-            
+
             Session.get_monitor_rect(i, rectSession);
-            
+
             if(rectSession.contains(rectWindow))
             {
                bOk = true;
@@ -306,8 +307,8 @@ namespace userbase
    const char * frame_window_interface::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
    {
       HICON hIcon = ::ExtractIcon(
-         System.m_hInstance, 
-         System.dir().path(Application.dir().matter(pszMatter), "icon.ico"), 
+         System.m_hInstance,
+         System.dir().path(Application.dir().matter(pszMatter), "icon.ico"),
          1);
       if (hIcon != NULL)
       {
@@ -353,10 +354,10 @@ namespace userbase
    {
       if(m_bLayered)
       {
-         return !Session.savings().is_trying_to_save(::ca::resource_processing) 
+         return !Session.savings().is_trying_to_save(::ca::resource_processing)
             && !Session.savings().is_trying_to_save(::ca::resource_display_bandwidth);
       }
-      else 
+      else
       {
          return false;
       }

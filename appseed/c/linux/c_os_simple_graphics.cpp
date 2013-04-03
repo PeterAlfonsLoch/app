@@ -4,6 +4,8 @@
 
 #include "linux/c_os_cross_win_gdi_internal.h"
 
+extern cairo_surface_t *  g_cairosurface;
+extern cairo_t *  g_cairo;
 
 
 void set(XColor & color, COLORREF cr)
@@ -61,7 +63,10 @@ bool os_simple_graphics::create(os_simple_graphics * pgraphics)
          return false;
 
       m_pdc = cairo_create(psurface);
-
+if(psurface == g_cairosurface)
+{
+   printf("123");
+}
       cairo_surface_destroy(psurface);
 
       m_iType = 1;
@@ -81,7 +86,10 @@ bool os_simple_graphics::create(os_simple_graphics * pgraphics)
 
       if(psurfaceNew == NULL)
          return false;
-
+if(psurfaceNew == g_cairosurface)
+{
+   printf("123");
+}
       m_pdc = cairo_create(psurfaceNew);
 
       cairo_surface_destroy(psurfaceNew);

@@ -601,6 +601,16 @@ namespace ca
 
    typedef smart_pointer < graphics > graphics_sp;
 
+   class CLASS_DECL_ca memory_graphics :
+      public graphics_sp
+   {
+   public:
+
+      memory_graphics(::ca::application * papp);
+      virtual ~memory_graphics();
+
+   };
+
    class CLASS_DECL_ca client_graphics :
       virtual public graphics_sp
    {

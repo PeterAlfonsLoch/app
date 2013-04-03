@@ -3,7 +3,7 @@
 #include <dde.h>
 #endif
 
-
+#define TEST 0
 
 
 
@@ -655,7 +655,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       }
 
    }
-   else if(papp->user().GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if(papp->user()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
       if(!papp->_001CloseApplicationByUser(this))
@@ -887,12 +887,30 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
    && !Session.savings().is_trying_to_save(::ca::resource_memory))
    //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
+      #if TEST
+
+      pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+      #endif
+
       ::userbase::frame_window::_000OnDraw(pdc);
+      #if TEST
+
+      pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
+      #endif
    }
    else
    {
+      #if TEST
+
+      pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+      #endif
+
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
+      #if TEST
+
+      pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
+      #endif
    }
 }
 

@@ -22,7 +22,7 @@ namespace ca
    {
       m_ulFlags            = o.m_ulFlags;
       m_papp               = o.m_papp;
-      //m_countReference     = 1; // avoid creating a "perambulator" phantom  
+      //m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
@@ -41,7 +41,7 @@ namespace ca
 
    ca::~ca()
    {
-      if(m_papp != NULL)
+/*      if(m_papp != NULL)
       {
          try
          {
@@ -126,6 +126,8 @@ namespace ca
          m_pptraListened = NULL;
       }
 
+*/
+
 
    }
 
@@ -166,7 +168,7 @@ namespace ca
       }
       return *m_pptraListener;
    }
-   
+
    ptra & ca::listenedptra()
    {
       if(m_pptraListened == NULL)

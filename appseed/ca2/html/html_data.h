@@ -30,7 +30,7 @@ namespace html
 
       class CLASS_DECL_ca2 load_image
       {
-      public: 
+      public:
          image * m_pimage;
          data * m_pdocument;
       };
@@ -50,7 +50,7 @@ namespace html
          bool     m_bLastCellY;
          bool     m_bHasChar;
 
-         
+
          //base_array < impl::table *, impl::table *> m_tableptraStack;
          //base_array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
 
@@ -66,19 +66,19 @@ namespace html
       box                        m_box;
       string                     m_strTitle;
       layout_state               m_layoutstate;
-      
-      base_array < impl::table *, impl::table * > 
+
+      base_array < impl::table *, impl::table * >
                                  m_tableptra;
 
-      ::collection::smart_pointer_array < image> 
+      ::collection::smart_pointer_array < image>
                                  m_imagea;
 
-      ::collection::smart_pointer_array < font >  
+      ::collection::smart_pointer_array < font >
                                  m_fonta;
 
-      comparable_array < ::user::interaction *, ::user::interaction * >   
+      comparable_array < ::user::interaction *, ::user::interaction * >
                                  m_focusptra;
-      
+
       style_sheet_array          m_stylesheeta;
       string                     m_strPathName;
       user::interaction_ptr_array           m_uiptra;
@@ -90,7 +90,7 @@ namespace html
       bool                       m_bImplement;
       bool                       m_bLayout;
 
-      
+
       http::cookies *            m_pcookies;
       ::fontopus::user *         m_puser;
       string                     m_strUser;
@@ -121,7 +121,7 @@ namespace html
 
 
       //virtual bool is_in_use();
-   
+
       void load(const char *);
       void implement(::ca::graphics * pdc);
       void layout(::ca::graphics * pdc);
@@ -163,7 +163,8 @@ namespace html
 
       data(const data & ) :
          ::ca::data(NULL),
-         m_elemental(NULL)
+         m_elemental(NULL),
+         m_uiptra(NULL)
       {
       }
 

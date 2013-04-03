@@ -908,6 +908,12 @@ namespace user
 
    }
 
+   interaction_ptr_array::interaction_ptr_array(::ca::application * papp) :
+      ca(papp)
+   {
+
+   }
+
    void interaction_ptr_array::get_wnda(oswindow_array & oswindowa)
    {
       oswindowa.remove_all();

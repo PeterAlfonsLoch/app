@@ -19,6 +19,7 @@ namespace html
       ca(papp),
       ::ca::data(papp),
       m_imagea(papp),
+      m_uiptra(papp),
       m_elemental(NULL)
    {
       m_elemental.m_pdata        = this;
@@ -203,13 +204,13 @@ namespace html
       if(pkey->m_ekey == ::user::key_tab)
       {
 
-         user::keyboard_focus * pfocus = Application.user().get_keyboard_focus();
+         user::keyboard_focus * pfocus = Application.user()->get_keyboard_focus();
 
          if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();
 
          if(pfocus != NULL)
-            Application.user().set_keyboard_focus(pfocus);
+            Application.user()->set_keyboard_focus(pfocus);
 
          pkey->m_bRet = true;
 

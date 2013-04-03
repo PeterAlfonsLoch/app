@@ -19,8 +19,8 @@
 	<File name="ansios/ansios_file_std.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="11423" topLine="632" />
 	</File>
-	<File name="ansios/ansios_thread.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="16596" topLine="744" />
+	<File name="ansios/ansios_thread.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="16596" topLine="838" />
 	</File>
 	<File name="ansios/ansios_thread.h" open="0" top="0" tabpos="8">
 		<Cursor position="280" topLine="3" />
@@ -40,8 +40,8 @@
 	<File name="c/_initterm.cpp" open="0" top="0" tabpos="59">
 		<Cursor position="1502" topLine="49" />
 	</File>
-	<File name="c/c.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="365" topLine="0" />
+	<File name="c/c.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="316" topLine="0" />
 	</File>
 	<File name="c/c.h" open="0" top="0" tabpos="3">
 		<Cursor position="2268" topLine="139" />
@@ -101,7 +101,7 @@
 		<Cursor position="20" topLine="0" />
 	</File>
 	<File name="c/c_mutex_lock.cpp" open="0" top="0" tabpos="39">
-		<Cursor position="282" topLine="0" />
+		<Cursor position="183" topLine="0" />
 	</File>
 	<File name="c/c_natural.h" open="0" top="0" tabpos="0">
 		<Cursor position="413" topLine="4" />
@@ -121,8 +121,8 @@
 	<File name="c/c_simple_array.h" open="0" top="0" tabpos="7">
 		<Cursor position="4170" topLine="129" />
 	</File>
-	<File name="c/c_simple_event.cpp" open="1" top="0" tabpos="14">
-		<Cursor position="2401" topLine="169" />
+	<File name="c/c_simple_event.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="2401" topLine="153" />
 	</File>
 	<File name="c/c_simple_event.h" open="0" top="0" tabpos="5">
 		<Cursor position="18" topLine="0" />
@@ -136,7 +136,7 @@
 	<File name="c/c_simple_memory.h" open="0" top="0" tabpos="6">
 		<Cursor position="657" topLine="3" />
 	</File>
-	<File name="c/c_simple_mutex.cpp" open="1" top="0" tabpos="19">
+	<File name="c/c_simple_mutex.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="2644" topLine="131" />
 	</File>
 	<File name="c/c_simple_mutex.h" open="0" top="0" tabpos="0">
@@ -202,8 +202,8 @@
 	<File name="cross/windows/windows_user.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="2218" topLine="103" />
 	</File>
-	<File name="cross/windows/windows_user.h" open="0" top="0" tabpos="9">
-		<Cursor position="2057" topLine="75" />
+	<File name="cross/windows/windows_user.h" open="0" top="0" tabpos="6">
+		<Cursor position="12697" topLine="455" />
 	</File>
 	<File name="crypt/crypt.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="1574" topLine="37" />
@@ -220,8 +220,8 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="140" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="581" topLine="29" />
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="79" topLine="0" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="3">
 		<Cursor position="1645" topLine="53" />
@@ -233,7 +233,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="2838" topLine="148" />
+		<Cursor position="2180" topLine="95" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.h" open="0" top="0" tabpos="13">
 		<Cursor position="1270" topLine="0" />
@@ -257,7 +257,7 @@
 		<Cursor position="2348" topLine="35" />
 	</File>
 	<File name="linux/c_os_graphics.h" open="0" top="0" tabpos="60">
-		<Cursor position="738" topLine="15" />
+		<Cursor position="550" topLine="9" />
 	</File>
 	<File name="linux/c_os_http.cpp" open="0" top="0" tabpos="47">
 		<Cursor position="64" topLine="0" />
@@ -292,8 +292,8 @@
 	<File name="linux/c_os_process_pid.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="23" topLine="0" />
 	</File>
-	<File name="linux/c_os_simple_bitmap.cpp" open="0" top="0" tabpos="29">
-		<Cursor position="1240" topLine="42" />
+	<File name="linux/c_os_simple_bitmap.cpp" open="0" top="0" tabpos="90">
+		<Cursor position="73" topLine="0" />
 	</File>
 	<File name="linux/c_os_simple_bitmap.h" open="0" top="0" tabpos="30">
 		<Cursor position="323" topLine="0" />
@@ -310,8 +310,8 @@
 	<File name="linux/c_os_simple_font.h" open="0" top="0" tabpos="34">
 		<Cursor position="602" topLine="0" />
 	</File>
-	<File name="linux/c_os_simple_graphics.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="6469" topLine="422" />
+	<File name="linux/c_os_simple_graphics.cpp" open="0" top="0" tabpos="91">
+		<Cursor position="128" topLine="0" />
 	</File>
 	<File name="linux/c_os_simple_graphics.h" open="0" top="0" tabpos="18">
 		<Cursor position="2634" topLine="0" />
@@ -334,17 +334,17 @@
 	<File name="linux/c_os_small_ipc_channel.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="25" topLine="0" />
 	</File>
-	<File name="linux/c_os_thread.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="3000" topLine="94" />
+	<File name="linux/c_os_thread.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="3000" topLine="81" />
 	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="23" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="62">
-		<Cursor position="12274" topLine="685" />
+	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="89">
+		<Cursor position="13709" topLine="781" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="6">
-		<Cursor position="66" topLine="0" />
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="os/os.h" open="0" top="0" tabpos="2">
 		<Cursor position="69" topLine="0" />

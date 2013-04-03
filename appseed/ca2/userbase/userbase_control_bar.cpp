@@ -740,9 +740,13 @@ namespace userbase
    void control_bar::DelayShow(bool bShow)
    {
       m_nStateFlags &= ~(delayHide|delayShow);
-      if (bShow && (GetStyle() & WS_VISIBLE) == 0)
+//      /*if (bShow && (GetStyle() & WS_VISIBLE) == 0)
+  //       m_nStateFlags |= delayShow;
+    //  else if (!bShow && (GetStyle() & WS_VISIBLE) != 0)
+      //   m_nStateFlags |= delayHide;*/
+      if (bShow && !m_bVisible)
          m_nStateFlags |= delayShow;
-      else if (!bShow && (GetStyle() & WS_VISIBLE) != 0)
+      else if (!bShow && m_bVisible)
          m_nStateFlags |= delayHide;
    }
 

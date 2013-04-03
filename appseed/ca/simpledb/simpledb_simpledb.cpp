@@ -38,7 +38,7 @@ namespace simpledb
 
       if(!m_pserver->initialize())
       {
-         Application.m_puser->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+         Application.user()->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
          return false;
       }
 
@@ -118,10 +118,10 @@ namespace simpledb
 //      if(&AppUser(this) == NULL)
   //       return false;
 
-      if(!InitializeDataCentral())  
+      if(!InitializeDataCentral())
       {
-         m_papp->m_pappThis->simple_message_box(NULL, "Could not initialize data central"); 
-         return false; 
+         m_papp->m_pappThis->simple_message_box(NULL, "Could not initialize data central");
+         return false;
       }
 
       ::database::client::initialize_data_client(m_pserver);
@@ -150,8 +150,8 @@ namespace simpledb
    bool simpledb::initialize()
    {
 
-   
-      
+
+
       if(!::database::database::initialize())
          return false;
 
@@ -200,19 +200,19 @@ namespace simpledb
 
    bool simpledb::set_keyboard_layout(const char * pszPath, bool bUser)
    {
-      return Application.user().set_keyboard_layout(pszPath, bUser);
-      
+      return Application.user()->set_keyboard_layout(pszPath, bUser);
+
    }
 
    void simpledb::on_set_keyboard_layout(const char * pszPath, bool bUser)
    {
-      
+
       if(bUser)
       {
-      
+
          if(App(m_papp).get_safe_user() != NULL)
          {
-            
+
             data_set("keyboard_layout", pszPath);
 
          }

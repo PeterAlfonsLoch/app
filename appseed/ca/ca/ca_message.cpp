@@ -643,7 +643,7 @@ namespace ca
 
          m_nFlags = HIWORD(lparam);
 
-         System.user().keyboard().translate_os_key_message(this);
+         System.user()->keyboard().translate_os_key_message(this);
 
       }
 
@@ -761,8 +761,6 @@ namespace ca
          m_pwnd = NULL;
       }
 
-#ifdef WINDOWSEX
-
       void window_pos::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
@@ -779,8 +777,6 @@ namespace ca
       {
          return m_wparam != FALSE;
       }
-
-#endif
 
 
       bool enable::get_enable()

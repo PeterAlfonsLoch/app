@@ -4,8 +4,10 @@
 namespace user
 {
 
+
    place_holder::place_holder(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_uiptraHold(papp)
    {
    }
 

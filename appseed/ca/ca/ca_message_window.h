@@ -20,7 +20,7 @@ namespace ca
    public:
 
 
-      ::user::interaction        m_uiMessage;
+      sp(::user::interaction)        m_spuiMessage;
 
 
       message_window_simple_callback();

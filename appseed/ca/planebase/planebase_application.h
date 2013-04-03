@@ -12,20 +12,20 @@ namespace planebase
    public:
 
 
-      service_base *                      m_pservice;
+      sp(service_base)                    m_pservice;
       class ::ca::dir::application        m_dir;
-      class ::ca::file_application       m_file;
-      class ::ca::http::application      m_http;
+      class ::ca::file_application        m_file;
+      class ::ca::http::application       m_http;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
 
       bool                                m_bIfs;
       bool                                m_bUpdateMatterOnInstall;
-      ::user::user                      * m_puser;
-      ::fs::fs                          * m_pfs;
-      ::fontopus::fontopus              * m_pfontopus;
-      ::html::html                      * m_phtml;
+      sp(user::user)                      m_spuser;
+      sp(::fs::fs)                        m_pfs;
+      sp(::fontopus::fontopus)            m_pfontopus;
+      sp(::html::html)                    m_phtml;
       ::simpledb::simpledb                m_simpledb;
 
 
@@ -45,12 +45,12 @@ namespace planebase
 
       virtual int32_t run();
 
-      
+
       service_base * get_service();
       virtual service_base * allocate_new_service();
       virtual bool create_new_service();
 
-      
+
       virtual bool create_service();
       virtual bool remove_service();
 
@@ -67,19 +67,19 @@ namespace planebase
 
 
       inline class ::ca::dir::application       & dir()        { return m_dir          ; }
-      inline class ::ca::file_application      & file()       { return m_file         ; }
-      inline class ::ca::http::application     & http()       { return m_http         ; }
+      inline class ::ca::file_application      & file()        { return m_file         ; }
+      inline class ::ca::http::application     & http()        { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
       inline class ::fs::data                   * fs()         { return m_spfsdata     ; }
-      inline class ::user::user                 & user()       { return *m_puser       ; }
+      inline sp(class ::user::user)             user()         { return m_spuser       ; }
       inline class ::fontopus::fontopus         & fontopus()   { return *m_pfontopus   ; }
       inline class ::html::html                 & html()       { return *m_phtml       ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
 
-      
+
       virtual bool process_initialize();
 
-      
+
       virtual bool initialize();
       virtual bool initialize1();
       virtual bool initialize2();
@@ -113,7 +113,7 @@ namespace planebase
       virtual void set_title(const char * pszTitle);
 
 
-      
+
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////

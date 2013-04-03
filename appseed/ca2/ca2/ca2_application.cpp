@@ -11,8 +11,6 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    application::application()
    {
 
-      m_phtml = NULL;
-
       m_puserex = NULL;
 
       m_dir.set_app(this);
@@ -480,7 +478,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
    bool application::set_keyboard_layout(const char * pszPath, bool bUser)
    {
-      return user().keyboard().load_layout(pszPath, bUser);
+      return user()->keyboard().load_layout(pszPath, bUser);
    }
 
 
@@ -770,7 +768,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       //  main ::ca::window of the application.
       //bool b::ca::ContextIsDll = afxContextIsDLL;
       //if (!b::ca::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
-      if(user().GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+      if(user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
          post_thread_message(WM_QUIT, 0, 0);
