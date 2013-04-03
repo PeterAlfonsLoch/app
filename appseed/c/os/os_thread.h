@@ -81,6 +81,7 @@ public:
 
 
    os_thread(uint32_t (* pfn)(void *), void * pv);
+   virtual ~os_thread();
 
    static void * thread_proc(void * pparam);
 
@@ -88,7 +89,7 @@ public:
 
    static os_thread * get();
 
-   inline static bool get_run() { get()->m_bRun; }
+   static bool get_run();
 
    static void stop_all(uint32_t millisMaxWait);
 

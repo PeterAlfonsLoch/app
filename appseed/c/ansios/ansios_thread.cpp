@@ -612,6 +612,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hThread)
 
 
 
+
 os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
 {
 
@@ -619,7 +620,33 @@ os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
    m_pv     = pv;
    m_bRun   = true;
 
+
+   mutex_lock ml(*s_pmutex);
+
+   s_pptra->add(this);
+
 }
+
+
+os_thread::~os_thread()
+{
+
+   mutex_lock ml(*s_pmutex);
+
+   for(int i = s_pptra->get_count() - 1; i >= 0; i--)
+   {
+
+      if(s_pptra->element_at(i) == this)
+      {
+
+         s_pptra->remove_at(i);
+
+      }
+
+   }
+
+}
+
 
 os_thread * os_thread::get()
 {
@@ -628,12 +655,17 @@ os_thread * os_thread::get()
 
 }
 
+bool os_thread::get_run()
+{
+
+   return get()->m_bRun;
+
+}
+
 void os_thread::stop_all(uint32_t millisMaxWait)
 {
 
-   int iMult = 6;
-
-   millisMaxWait = millisMaxWait * iMult;
+   millisMaxWait = millisMaxWait;
 
    uint32_t start = get_tick_count();
 
@@ -660,7 +692,7 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
       }
 
-      Sleep(10000 * iMult);
+      Sleep(184);
 
    }
 
@@ -674,35 +706,9 @@ void * WINAPI os_thread::thread_proc(LPVOID lpparameter)
 
    t_posthread = posthread;
 
-   {
-
-      mutex_lock ml(*s_pmutex);
-
-      s_pptra->add(posthread);
-
-   }
-
    void * pvRet = posthread->run();
 
-   {
-
-      mutex_lock ml(*s_pmutex);
-
-      for(int i = 0; i < s_pptra->get_count(); i++ )
-      {
-
-         if(s_pptra->element_at(i) == posthread)
-         {
-
-            s_pptra->remove_at(i);
-
-            break;
-
-         }
-
-      }
-
-   }
+   t_posthread = NULL;
 
    delete posthread;
 

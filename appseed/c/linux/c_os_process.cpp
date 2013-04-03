@@ -180,6 +180,24 @@ bool os_initialize()
 bool os_finalize()
 {
 
+   if(t_posthread != NULL)
+   {
+
+      try
+      {
+
+         delete t_posthread;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      t_posthread = NULL;
+
+   }
+
    os_thread::stop_all((1984 + 1977) * 49);
 
    finalize_primitive_trace();
