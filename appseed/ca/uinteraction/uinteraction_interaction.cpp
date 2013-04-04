@@ -32,7 +32,7 @@ namespace uinteraction
       
       UNREFERENCED_PARAMETER(pszSchema);
 
-      return NULL;
+      return ::null();
 
    }
 

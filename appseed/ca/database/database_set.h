@@ -42,7 +42,7 @@ namespace database
      string empty_sql;       // Executed when result set is is_empty
      string select_sql;       // May be only single string var
 
-     stringa update_sql;       // May be an base_array in complex queries
+     stringa update_sql;       // May be an array in complex queries
    /* Field values for updating must has prefix :NEW_ and :OLD_ and field name
       Example:
       update  wt_story set idobject set idobject=:NEW_idobject,body=:NEW_body
@@ -50,14 +50,14 @@ namespace database
       Essentually fields idobject and body must present in the
       result set (select_sql statement) */
 
-     stringa insert_sql;       // May be an base_array in complex queries
+     stringa insert_sql;       // May be an array in complex queries
    /* Field values for inserting must has prefix :NEW_ and field name
       Example:
       insert into wt_story (idobject, body) values (:NEW_idobject, :NEW_body)
       Essentually fields idobject and body must present in the
       result set (select_sql statement) */
 
-     stringa delete_sql;       // May be an base_array in complex queries
+     stringa delete_sql;       // May be an array in complex queries
    /* Field values for deleing must has prefix :OLD_ and field name
       Example:
       delete from wt_story where idobject=:OLD_idobject
@@ -118,7 +118,7 @@ namespace database
    /* sequence numbers */
      virtual long nextid(const char *seq_name)=0;
    /* sequence numbers */
-     virtual count num_rows()= 0;
+     virtual ::count num_rows()= 0;
 
    /* open SQL query */
      virtual void open(const char * sql) = 0;
@@ -179,14 +179,14 @@ namespace database
 
    /* func. retrieves a number of fields */
    /* Number of fields in a record */
-     virtual count field_count();                      
-     virtual count fieldCount();
+     virtual ::count field_count();                      
+     virtual ::count fieldCount();
    /* func. retrieves a field name with 'n' index */
      virtual const char *fieldName(index n);
    /* func. retrieves a field index with 'fn' field name,return -1 when field name not found */
      virtual int32_t  fieldIndex(const char *fn);
    /* func. retrieves a field size */
-     virtual count  fieldSize(index n);
+     virtual ::count fieldSize(index n);
 
 
    /* set field value */

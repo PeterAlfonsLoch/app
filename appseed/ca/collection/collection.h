@@ -1,11 +1,14 @@
 #pragma once
 
 
-#include "collection_base_array.h"
+
+
+
+#include "collection_pair.h"
+
+
+#include "collection_array.h"
 #include "collection_smart_pointer_array.h"
-
-
-#include "collection_raw_array.h"
 #include "collection_comparable_eq_array.h"
 #include "collection_comparable_array.h"
 #include "collection_comparable_raw_array.h"
@@ -27,14 +30,20 @@
 #include "collection_typed_pointer_array.h"
 
 
-#include "collection_sort_array.h"
-#include "collection_class_sort_array.h"
+#include "collection_map_association.h"
 
 
 #include "collection_map.h"
+#include "collection_attrib_map.h"
+#include "collection_int_map.h"
+#include "collection_string_map.h"
+#include "collection_strid_map.h"
 #include "collection_map_to_smart_pointer.h"
 #include "collection_fifo_map.h"
 #include "collection_sort_map.h"
+
+
+#include "collection_sort_array.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -42,28 +51,28 @@
 
 //::ca::object
    // Arrays
-   class byte_array;           // base_array of BYTE
-   class uint16_array;           // base_array of WORD
-   class uint32_array;          // base_array of uint32_t
-   class CUIntArray;           // base_array of UINT
-   class CPtrArray;            // base_array of void *
-   class CObArray;             // base_array of ::ca::object*
+   class byte_array;           // array of BYTE
+   class uint16_array;           // array of WORD
+   class uint32_array;          // array of uint32_t
+   class CUIntArray;           // array of UINT
+   class CPtrArray;            // array of void *
+   class CObArray;             // array of ::ca::object*
 
    // Lists
    class pointer_list;             // list of void *
    class object_list;              // list of ::ca::object*
 
    // Maps (aka Dictionaries)
-   class CMapWordToOb;         // ::collection::map from WORD to ::ca::object*
-   class CMapWordToPtr;        // ::collection::map from WORD to void *
-   class CMapPtrToWord;        // ::collection::map from void * to WORD
-   class map_ptr_to_ptr;         // ::collection::map from void * to void *
+   class CMapWordToOb;         // map from WORD to ::ca::object*
+   class CMapWordToPtr;        // map from WORD to void *
+   class CMapPtrToWord;        // map from void * to WORD
+   class map_ptr_to_ptr;         // map from void * to void *
 
    // Special string variants
    class string_list;          // list of Strings
-   class CMapStringToPtr;      // ::collection::map from string to void *
-   class CMapStringToOb;       // ::collection::map from string to ::ca::object*
-   class string_to_string_map;   // ::collection::map from string to string
+   class CMapStringToPtr;      // map from string to void *
+   class CMapStringToOb;       // map from string to ::ca::object*
+   class string_to_string_map;   // map from string to string
 
 
 
@@ -79,14 +88,14 @@
 
 
 class CLASS_DECL_ca map_word_to_ptr :
-   virtual public ::collection::map < WORD, WORD, void *, void * >
+   virtual public map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca map_ptr_to_word :
-   virtual public ::collection::map < void *, void *, WORD, WORD >
+   virtual public map < void *, void *, WORD, WORD >
 {
 public:
    map_ptr_to_word(::count nBlockSize = 10);
@@ -94,14 +103,14 @@ public:
 
 
 class CLASS_DECL_ca map_ptr_to_ptr :
-   virtual public ::collection::map < void *, void *, void *, void * >
+   virtual public map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca map_word_to_ob :
-   virtual public ::collection::map < WORD, WORD, ::ca::object *, ::ca::object * >
+   virtual public map < WORD, WORD, ::ca::object *, ::ca::object * >
 {
 public:
    map_word_to_ob(::count nBlockSize = 10);
@@ -109,14 +118,14 @@ public:
 
 
 class CLASS_DECL_ca map_string_to_ptr :
-   virtual public ::collection::map < string, const string &, void *, void * >
+   virtual public map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca map_string_to_ob :
-   virtual public ::collection::map < string, const string &, ::ca::object *, ::ca::object * >
+   virtual public map < string, const string &, ::ca::object *, ::ca::object * >
 {
 public:
    map_string_to_ob(::count nBlockSize = 10);
@@ -194,7 +203,7 @@ public:
 #include "collection_priority_queue.h"
 
 class CLASS_DECL_ca time_array :
-   public base_array < ::datetime::time, ::datetime::time & >
+   public array < ::datetime::time, ::datetime::time & >
 {
 };
 

@@ -89,10 +89,10 @@ namespace visual
    bool dib_sp::read_from_file(::ca::file * pfile)
    {
       FIBITMAP * pfi = System.visual().imaging().LoadImageFile(pfile);
-      if(pfi == NULL)
+      if(pfi == ::null())
          return false;
       ::ca::graphics_sp spgraphics(get_app());
-      spgraphics->CreateCompatibleDC(NULL);
+      spgraphics->CreateCompatibleDC(::null());
       if(!m_p->from(spgraphics, pfi, true))
          return false;
       return true;
@@ -110,7 +110,7 @@ namespace visual
    bool dib_sp::write_to_file(::ca::file * pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
-      if(psaveimage == NULL)
+      if(psaveimage == ::null())
          psaveimage = &saveimageDefault;
 
 #ifdef METROWIN
@@ -147,7 +147,7 @@ namespace visual
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
       FIBITMAP * pfi7 = System.visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
-      FIBITMAP * pfi8 = NULL;
+      FIBITMAP * pfi8 = ::null();
       bool bConv;
       if(b8)
       {
@@ -167,7 +167,7 @@ namespace visual
 
       bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT) != FALSE;
 
-      BYTE * pbData = NULL;
+      BYTE * pbData = ::null();
       DWORD dwSize;
       if(bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;

@@ -36,17 +36,17 @@ namespace ca
 
 
 
-   ::collection::smart_pointer_array < port_forward::port_map > port_forward::get_port_map() const
+   smart_pointer_array < port_forward::port_map > port_forward::get_port_map() const
    {
-	   return ::collection::smart_pointer_array < port_forward::port_map > ();
+	   return smart_pointer_array < port_forward::port_map > ();
    }
 
-   ::collection::smart_pointer_array < port_forward::device > port_forward::get_igd() const
+   smart_pointer_array < port_forward::device > port_forward::get_igd() const
    {
 	   // returns a copy of the current device information (note: thread-awareness is needed)
 
 	   // cast away const-ness of the critical section (since this is a const function)
-	   return ::collection::smart_pointer_array < port_forward::device > ();
+	   return smart_pointer_array < port_forward::device > ();
    }
 
 
@@ -240,7 +240,7 @@ namespace ca
    }
 
 
-   HRESULT port_forward::ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks /* =NULL */ )
+   HRESULT port_forward::ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks /* =::null() */ )
    {
 	   // check if we are already listening
       UNREFERENCED_PARAMETER(pCallbacks);

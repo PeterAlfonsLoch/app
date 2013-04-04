@@ -170,7 +170,7 @@ namespace user
    {
       ::user::keyboard_layout * playout = new ::user::keyboard_layout(get_app());
       string strPath;
-      if(pszPath == NULL)
+      if(pszPath == ::null())
       {
          strPath = get_current_system_layout();
       }
@@ -204,7 +204,7 @@ namespace user
    string keyboard::process_key(::user::e_key ekey)
    {
 
-      if(m_playout == NULL)
+      if(m_playout == ::null())
       {
 
          return (char) ekey;
@@ -224,7 +224,7 @@ namespace user
 
    string keyboard::process_char(const char * pszKey)
    {
-      if(m_playout == NULL)
+      if(m_playout == ::null())
       {
          return pszKey;
       }
@@ -233,7 +233,7 @@ namespace user
 
    string keyboard::process_escape(const char * pszEscape)
    {
-      if(m_playout == NULL)
+      if(m_playout == ::null())
       {
          return pszEscape;
       }
@@ -254,7 +254,7 @@ namespace user
             layoutida.add(layoutid);
          }
       }
-      layoutida.QuickSort(true);
+      layoutida.quick_sort(true);
 
 #ifdef WINDOWSEX
 

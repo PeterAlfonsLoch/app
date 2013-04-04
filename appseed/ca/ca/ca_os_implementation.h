@@ -197,9 +197,9 @@ typedef struct
    #define gen_DBCS FALSE
 #endif
    */
-// determine number of elements in an base_array (not bytes)
+// determine number of elements in an array (not bytes)
 #ifndef _countof
-#define _countof(base_array) (sizeof(base_array)/sizeof(base_array[0]))
+#define _countof(array) (sizeof(array)/sizeof(array[0]))
 #endif
 
 #ifndef ___PORTABLE
@@ -283,7 +283,7 @@ CLASS_DECL_ca bool __get_in_proc_server(const char * lpszCLSID, string & str);
 #define NULL_TLS ((uint32_t)-1)
 
 /////////////////////////////////////////////////////////////////////////////
-// Message ::collection::map and message dispatch
+// Message map and message dispatch
 
 
 

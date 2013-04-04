@@ -133,13 +133,13 @@ namespace simpledb
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System.m_simpledb.db().data_load(NULL, "netnodec", GetLocalAddress().get_display_number(), ::database::id());
+      m_strCat = System.m_simpledb.db().data_load(::null(), "netnodec", GetLocalAddress().get_display_number(), ::database::id());
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
    void socket::simple_file_server(const char * psz, const char * pszRelative)
    {
-      ::collection::smart_pointer_array < int_array > rangea;
+      smart_pointer_array < int_array > rangea;
       if(strlen(inheader("range")) > 0)
       {
          stringa straItem;
@@ -167,7 +167,7 @@ namespace simpledb
          }
       }
       string strRelative;
-      if(pszRelative != NULL)
+      if(pszRelative != ::null())
       {
          strRelative = string(pszRelative);
       }
@@ -181,7 +181,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const char * lpcsz, ::collection::smart_pointer_array < int_array > * prangea, const char * pszContentType)
+   bool socket::read_file(const char * lpcsz, smart_pointer_array < int_array > * prangea, const char * pszContentType)
    {
       string strExtension = System.file().extension(lpcsz);
       string str = strExtension;
@@ -232,7 +232,7 @@ namespace simpledb
       {
          return false;
       }
-      if(prangea == NULL || prangea->get_count() == 0)
+      if(prangea == ::null() || prangea->get_count() == 0)
       {
          response().file() << spfile;
       }

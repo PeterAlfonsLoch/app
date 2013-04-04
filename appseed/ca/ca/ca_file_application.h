@@ -28,12 +28,12 @@ namespace ca
       virtual bool exists(const var & var);
 
 
-      string time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_square(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
+      string time_square(const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
       string time_log(const char * pszId);
 
 
-      virtual ::ca::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::ca::filesp time_square_file(const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
       virtual ::ca::filesp get(const char * name);
 
 
@@ -42,7 +42,7 @@ namespace ca
       virtual void as_memory(var varFile, primitive::memory & mem);
       virtual void lines(stringa & stra, var varFile);
 
-      virtual bool put_contents(var varFile, const void * pvoidContents, count count);
+      virtual bool put_contents(var varFile, const void * pvoidContents, ::count count);
       virtual bool put_contents(var varFile, const char * lpcszContents);
       virtual bool put_contents(var varFile, ::ca::file & file);
       virtual bool put_contents(var varFile, primitive::memory & mem);

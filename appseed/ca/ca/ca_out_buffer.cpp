@@ -53,7 +53,7 @@ namespace ca
          return true;
       m_memory.free_data();
       m_memory.allocate(bufferSize);
-      return m_memory.get_data() != NULL;
+      return m_memory.get_data() != ::null();
    }
 
    void out_buffer::free()

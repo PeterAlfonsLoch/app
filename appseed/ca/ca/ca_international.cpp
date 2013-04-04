@@ -16,12 +16,12 @@ namespace ca
 
       bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz)
       {
-         return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, lpstrMultiByte, (int32_t) nCount, NULL, NULL) != FALSE;
+         return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, lpstrMultiByte, (int32_t) nCount, ::null(), ::null()) != FALSE;
       }
 
       bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize iMultiByteCount, const wchar_t * lpcsz, strsize iCount)
       {
-         return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, lpstrMultiByte, (int32_t) iMultiByteCount, NULL, NULL) != FALSE;
+         return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, lpstrMultiByte, (int32_t) iMultiByteCount, ::null(), ::null()) != FALSE;
       }
 
       bool UnicodeToMultiByte(UINT uiCodePage, string &str, const wchar_t * lpcsz)
@@ -73,26 +73,26 @@ namespace ca
       {
          if(iCount == -1)
          {
-            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0, NULL, NULL) - 1;
+            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, ::null(), 0, ::null(), ::null()) - 1;
          }
          else
          {
-            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0, NULL, NULL);
+            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, ::null(), 0, ::null(), ::null());
          }
       }
 
       strsize Utf8ToMultiByteCount(UINT uiCodePage, const char * lpcsz)
       {
-         return WideCharToMultiByte(uiCodePage, 0, MultiByteToUnicode(uiCodePage, lpcsz), -1, NULL, 0, NULL, NULL) - 1;
+         return WideCharToMultiByte(uiCodePage, 0, MultiByteToUnicode(uiCodePage, lpcsz), -1, ::null(), 0, ::null(), ::null()) - 1;
       }
 
       bool MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
       {
-         if(lpwsz == NULL)
+         if(lpwsz == ::null())
          {
             if(iBuffer > 0)
                return false;
-            else if(lpcsz != NULL)
+            else if(lpcsz != ::null())
                return false;
             else if(iCount > 0)
                return false;
@@ -111,11 +111,11 @@ namespace ca
       {
          if(iCount == -1)
          {
-            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0) - 1;
+            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, ::null(), 0) - 1;
          }
          else
          {
-            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0);
+            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, ::null(), 0);
          }
       }
 

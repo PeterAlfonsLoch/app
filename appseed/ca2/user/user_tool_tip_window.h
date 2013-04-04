@@ -46,7 +46,7 @@ namespace user
       };
 
       class CToolMap :
-         public ::collection::map < int32_t, int32_t, tool_tip_tool *, tool_tip_tool * >
+         public map < int32_t, int32_t, tool_tip_tool *, tool_tip_tool * >
       {
       public:
           void AddTool(tool_tip_tool * ptool);
@@ -65,7 +65,7 @@ namespace user
       bool                       m_bTipEnable;     // set if the tip is enabled
 
       point                      m_pt;             // coordinates fo the cursor position used to track changes in cursor position
-      CToolMap                   m_toolmap;        // ::collection::map of tool index to tool pointers
+      CToolMap                   m_toolmap;        // map of tool index to tool pointers
 
       void RemoveAllTools();
       tool_tip_tool * GetTool(int32_t iTool);

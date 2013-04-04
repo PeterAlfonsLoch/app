@@ -161,8 +161,8 @@ namespace exception
 
 #ifdef WINDOWS
 
-   static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
-   static LPVOID s_readMemoryFunction_UserData = NULL;
+   static PReadProcessMemoryRoutine s_readMemoryFunction = ::null();
+   static LPVOID s_readMemoryFunction_UserData = ::null();
 
 #endif
 
@@ -170,7 +170,7 @@ namespace exception
       ca(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)
-      ,m_pstackframe(NULL)
+      ,m_pstackframe(::null())
       ,m_iRef(0)
 #endif
    {
@@ -353,10 +353,10 @@ namespace exception
          m_pstackframe,                       // __inout   LP STACKFRAME64 StackFrame,
          m_pcontext,                  // __inout   PVOID ContextRecord,
          My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
-         //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+         //::null(),                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
          SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
          SymGetModuleBase64,                     // __in_opt  PGET_MODULE_BASE_ROUTINE64 GetModuleBaseRoutine,
-         NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
+         ::null()                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
          ) != FALSE;
       /*#else
       bool r = StackWalk64 (
@@ -788,7 +788,7 @@ retry_get_base:
          return false;
       }
 
-      HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
+      HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, ::null(), OPEN_EXISTING, 0, 0);
       if (hFile == INVALID_HANDLE_VALUE)
       {
          return false;
@@ -998,7 +998,7 @@ retry_get_base:
        void * array[1024];
        int32_t size = backtrace(array, 1024);
 
-       if(caller_address != NULL)
+       if(caller_address != ::null())
        {
 
          array[1] = caller_address;
@@ -1009,7 +1009,7 @@ retry_get_base:
        char ** messages = backtrace_symbols(array, size);
 
        // skip first stack frame (points here)
-       for (int32_t i = 1; i < size && messages != NULL; ++i)
+       for (int32_t i = 1; i < size && messages != ::null(); ++i)
        {
            char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 

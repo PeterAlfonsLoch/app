@@ -17,13 +17,13 @@ class CLASS_DECL_ca string_array :
 public:
    string_array();
 
-   count get_size() const;
-   count get_count() const;
+   ::count get_size() const;
+   ::count get_count() const;
    index get_lower_bound(index i = 0) const;
    index get_upper_bound(index i = -1) const;
-   void set_size(count nNewSize, count nGrowBy = -1);
+   void set_size(::count nNewSize, ::count nGrowBy = -1);
 
-   count size() const;
+   ::count size() const;
 
    void free_extra();
    void remove_all();
@@ -37,7 +37,7 @@ public:
    string & element_at(index nIndex);
    const string & element_at(index nIndex) const;
 
-   index add_new(const char * psz = NULL, index i = -1);
+   index add_new(const char * psz = ::null(), index i = -1);
    string & new_element(index i = -1);
 
    string & first_element(index count = 0);
@@ -49,7 +49,7 @@ public:
    const string* get_data() const;
    string* get_data();
 
-   // Potentially growing the base_array
+   // Potentially growing the array
    void set_at_grow(index nIndex, const char * newElement);
 
    void set_at_grow(index nIndex, const string & newElement);
@@ -72,7 +72,7 @@ public:
 
    void push_back(const string & newElement);
 
-   count add(const string_array & src);
+   ::count add(const string_array & src);
 
    void copy(const string_array & src);
    void copy(const int64_array & src);
@@ -84,33 +84,33 @@ public:
    string & operator[](index nIndex);
 
    // Operations that move elements around
-   void insert_at(index nIndex, const char * newElement, count nCount = 1);
+   void insert_at(index nIndex, const char * newElement, ::count nCount = 1);
 
-   void insert_at(index nIndex, const string & newElement, count nCount = 1);
+   void insert_at(index nIndex, const string & newElement, ::count nCount = 1);
 
-   void remove_at(index nIndex, count nCount = 1);
+   void remove_at(index nIndex, ::count nCount = 1);
 
    void insert_at(index nStartIndex, const string_array & NewArray);
 
-   void QuickSort(
-      void swap(void * lpVoidSwapArg, const index, const index) = NULL,
-      void * lpvoidSwapArg = NULL,
+   void quick_sort(
+      void swap(void * lpVoidSwapArg, const index, const index) = ::null(),
+      void * lpvoidSwapArg = ::null(),
       bool bNoCase = false);
 
    void get_quick_sort_ci(index_array & ia);
 
-   string_array slice(index iStart, count iCount = -1);
+   string_array slice(index iStart, ::count iCount = -1);
 
    string_array & operator =(const string_array & stra);
 
 
 protected:
-   string * m_pData;   // the actual base_array of data
-   count    m_nSize;     // # of elements (upperBound - 1)
-   count    m_nMaxSize;  // max allocated
-   count    m_nGrowBy;   // grow amount
+   string * m_pData;   // the actual array of data
+   ::count m_nSize;     // # of elements (upperBound - 1)
+   ::count m_nMaxSize;  // max allocated
+   ::count m_nGrowBy;   // grow amount
 
-   void InsertEmpty(index nIndex, count nCount);
+   void InsertEmpty(index nIndex, ::count nCount);
 
 
 
@@ -165,14 +165,14 @@ inline string string_array::first_element(index count) const
 }
 
 
-inline count string_array::get_size() const
+inline ::count string_array::get_size() const
    { return m_nSize; }
-inline count string_array::get_count() const
+inline ::count string_array::get_count() const
    { return m_nSize; }
 inline index string_array::get_lower_bound(index i) const
    { return i; }
 inline index string_array::get_upper_bound(index count) const
    { return m_nSize + count; }
 
-inline count string_array::size() const
+inline ::count string_array::size() const
    { return m_nSize; }

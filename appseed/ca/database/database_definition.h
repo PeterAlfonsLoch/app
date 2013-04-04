@@ -125,12 +125,12 @@ namespace database
    };
 
    class CLASS_DECL_ca query_data :
-      public ::ca::byte_serializable_array < base_array < record, record & > >
+      public ::ca::byte_serializable_array < array < record, record & > >
    {
    };
 
-   typedef base_array <field, field &> CFields;
-   typedef ::ca::byte_serializable_array < base_array < field_properties, field_properties & > > record_properties;
+   typedef array <field, field &> CFields;
+   typedef ::ca::byte_serializable_array < array < field_properties, field_properties & > > record_properties;
 
    class CLASS_DECL_ca result_set :
       public ::ca::object,
@@ -168,7 +168,7 @@ namespace database
 
       var & GetFieldValue(index i);
       const char * GetKey(index i);
-      count get_size();
+      ::count get_size();
       bool is_empty();
       parameter_list & operator = (const parameter_list & paramlist);
 

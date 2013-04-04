@@ -10,7 +10,7 @@ namespace user
    protected:
       control * m_pcontrolEdit;
 
-      count         m_iOnClickClickCount;
+      ::count m_iOnClickClickCount;
       index         m_iOnClickClickItem;
       index         m_iOnClickClickSubItem;
 

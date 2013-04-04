@@ -23,12 +23,12 @@ namespace ca2
       ::filemanager::filemanager        * m_pfilemanager;
       ::mail::mail                      * m_pmail;
 #ifdef WINDOWSEX
-      base_array < MONITORINFO >          m_monitorinfoa;
-      base_array < MONITORINFO >          m_monitorinfoaDesk;
+      array < MONITORINFO >          m_monitorinfoa;
+      array < MONITORINFO >          m_monitorinfoaDesk;
 #endif
 
       stringa m_straAppInterest;
-      ::collection::string_map < oswindow, oswindow > m_mapAppInterest;
+      string_map < oswindow, oswindow > m_mapAppInterest;
 
 
       application();

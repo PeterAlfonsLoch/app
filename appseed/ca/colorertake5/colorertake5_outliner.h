@@ -40,7 +40,7 @@ namespace colorertake5
       * Static service method to make easy tree reconstruction
       * from created list of outline items. This list contains
       * unpacked level indexed of item's enclosure in scheme.
-      * @param treeStack external base_array of integer, storing
+      * @param treeStack external array of integer, storing
       *        temporary tree structure. Must not be changed
       *        externally.
       * @param newLevel Unpacked level of item to be added into
@@ -54,7 +54,7 @@ namespace colorertake5
      /**
       * Total number of currently available outline items
       */
-     count itemCount();
+     ::count itemCount();
 
      void startParsing(index lno);
      void endParsing(index lno);
@@ -69,7 +69,7 @@ namespace colorertake5
 
      base_editor *baseEditor;
      class region *searchRegion;
-     base_array<OutlineItem*> outline;
+     array<OutlineItem*> outline;
      bool lineIsEmpty;
      index curLevel;
      index modifiedLine;

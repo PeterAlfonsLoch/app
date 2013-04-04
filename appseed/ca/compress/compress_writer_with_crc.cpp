@@ -13,7 +13,7 @@ namespace libcompress
      if (_calculate)
        _crc = crc_update(_crc, data, size);
      _size += size;
-     if (processedSize != NULL)
+     if (processedSize != ::null())
        *processedSize = size;
    }
 

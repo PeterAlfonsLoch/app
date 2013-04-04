@@ -37,12 +37,12 @@ namespace math
   //    bool bLeft              = false;
     //  bool bNumber            = false;
       m_pimpl                 = new number();
-//      const char * pszNumber  = NULL;
+//      const char * pszNumber  = ::null();
   //    value_impl * pimpl      = m_pimpl;
 
       string strNumber;
 //      binary_operation * pbinopNew;
-      base_array < number *, number * > stackptra;
+      array < number *, number * > stackptra;
 
       throw not_implemented(::ca::get_thread_app());
 
@@ -64,7 +64,7 @@ namespace math
             {
                string str(pszNumber, psz - pszNumber - 1);
                strNumber = str;
-               if(dynamic_cast < binary_operation * > (pimpl) != NULL)
+               if(dynamic_cast < binary_operation * > (pimpl) != ::null())
                {
                   dynamic_cast < binary_operation * > (pimpl)->m_pvalue2 = new number();
                   dynamic_cast < binary_operation * > (pimpl)->m_pvalue2->set_value_string(strNumber);
@@ -72,7 +72,7 @@ namespace math
                   pimpl = dynamic_cast < binary_operation * > (pimpl)->m_pvalue2;
 
                }
-               else(dynamic_cast < number * > (pimpl) != NULL)
+               else(dynamic_cast < number * > (pimpl) != ::null())
                {
                   dynamic_cast < number * > (pimpl)->set_value_string(strNumber);
                }
@@ -87,28 +87,28 @@ namespace math
             }
             else if(*psz == '+')
             {
-               ASSERT(dynamic_cast < number * > (pimpl) != NULL);
+               ASSERT(dynamic_cast < number * > (pimpl) != ::null());
                pbinopNew = new binary_operation;
                pbinopNew->m_etype = binary_operation::type_addition;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }
             else if(*psz == '-')
             {
-               ASSERT(dynamic_cast < number * > (pimpl) != NULL);
+               ASSERT(dynamic_cast < number * > (pimpl) != ::null());
                pbinopNew = new binary_operation;
                pbinopNew->m_etype = binary_operation::type_subtraction;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }
             else if(*psz == '*')
             {
-               ASSERT(dynamic_cast < number * > (pimpl) != NULL);
+               ASSERT(dynamic_cast < number * > (pimpl) != ::null());
                pbinopNew = new binary_operation;
                pbinopNew->m_etype = binary_operation::type_multiplication;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }
             else if(*psz == '/')
             {
-               ASSERT(dynamic_cast < number * > (pimpl) != NULL);
+               ASSERT(dynamic_cast < number * > (pimpl) != ::null());
                pbinopNew = new binary_operation;
                pbinopNew->m_etype = binary_operation::type_division;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);

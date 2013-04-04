@@ -87,7 +87,7 @@ bool simple_list_control::remove_item(range & range)
          iaRemove.add_unique(iItem);
       }
    }
-   iaRemove.QuickSort(false);
+   iaRemove.quick_sort(false);
    for(index i = 0; i < iaRemove.get_size(); i++)
    {
       if(!m_listctrldata.remove_item(iaRemove[i]))

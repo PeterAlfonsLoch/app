@@ -34,7 +34,7 @@ namespace fontopus
 
       bool bLicensed = false;
 
-      if(m_papp != NULL && m_papp->m_psession != NULL && m_papp->m_psession->m_pbergedge != NULL)
+      if(m_papp != ::null() && m_papp->m_psession != ::null() && m_papp->m_psession->m_pbergedge != ::null())
       {
          bLicensed = App(m_papp->m_psession->m_pbergedgeInterface).m_pfontopus->check_license(pszId, bInteractive);
       }
@@ -49,9 +49,9 @@ namespace fontopus
 
    }
 
-   count license::clear_all_cache()
+   ::count license::clear_all_cache()
    {
-      count count = m_mapInfo.get_count();
+      ::count count = m_mapInfo.get_count();
       m_mapInfo.remove_all();
       return count;
    }

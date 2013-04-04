@@ -6,7 +6,7 @@ namespace database
    set::set()
    {
 
-     db = NULL;
+     db = ::null();
      haveError = active = false;
      frecno = 0;
      fbof = feof = true;
@@ -448,12 +448,12 @@ namespace database
      delete_sql.remove_all();
    }
 
-   count set::field_count()
+   ::count set::field_count()
    {
       return fields_object.get_size();
    }
 
-   count set::fieldCount()
+   ::count set::fieldCount()
    {
       return fields_object.get_size();
    }
@@ -463,10 +463,10 @@ namespace database
      if ( n < field_count() && n >= 0)
        return fields_object[n].m_properties.name;
      else
-       return NULL;
+       return ::null();
    }
 
-   count set::fieldSize(index n)
+   ::count set::fieldSize(index n)
    {
      if ( n < field_count() && n >= 0)
        return fields_object[n].m_properties.field_len;

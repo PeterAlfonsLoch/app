@@ -147,11 +147,11 @@ namespace gcom
             rect         m_rectB;
             rect         m_rectC;
             rect         m_rectD;
-            base_array <point, point> m_pointa;
-            base_array <point, point> m_pointa2;
+            array <point, point> m_pointa;
+            array <point, point> m_pointa2;
             int_array   m_ia;
             index            m_iStep; // 0 - Inactive, >= 1 Active
-            ::count            m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 count out
+            ::count m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 ::count out
             index m_iFrame;
          public:
             void Start(int32_t cx, int32_t cy, double dRate, double dRateEx);

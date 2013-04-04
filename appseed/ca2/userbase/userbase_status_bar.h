@@ -37,7 +37,7 @@ namespace userbase
 
 
 
-      ::collection::smart_pointer_array < __STATUSPANE >     m_panea;
+      smart_pointer_array < __STATUSPANE >     m_panea;
       int32_t                                    m_nMinHeight;
 
 

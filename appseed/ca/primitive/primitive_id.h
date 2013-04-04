@@ -308,7 +308,7 @@ inline id::operator int_ptr() const
 
 inline bool id::is_null() const
 {
-   return this == NULL || m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_pstr == NULL);
+   return this == ::null() || m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_pstr == ::null());
 }
 
 inline bool id::has_char() const
@@ -357,7 +357,7 @@ inline CLASS_DECL_ca bool id_is_text(const char * psz)
 
 inline CLASS_DECL_ca bool id_is_null(const char * psz)
 {
-   return psz == NULL;
+   return psz == ::null();
 }
 
 inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, int_ptr i)

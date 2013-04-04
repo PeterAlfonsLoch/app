@@ -772,7 +772,7 @@ RetryHost:
 
 
 
-   count installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
+   ::count installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
    {
 
       class stra_dup straExpandFileSet;
@@ -2058,7 +2058,7 @@ RetryHost:
    }
 
 
-   count installer::UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapMd5)
+   ::count installer::UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapMd5)
    {
       vsstring strStage;
       vsstring strStageGz;
@@ -2088,7 +2088,7 @@ RetryHost:
       return stra_dup.get_count();
    }
 
-   count installer::CopyFileList(stra_dup & stra_dup, simple_string_to_intptr & mapFlag)
+   ::count installer::CopyFileList(stra_dup & stra_dup, simple_string_to_intptr & mapFlag)
    {
       vsstring strStage;
       vsstring strStageUnbz;
@@ -3075,7 +3075,7 @@ RetryHost:
       }
       if(strExe.begins_ci("Install "))
       {
-         count iStart = strlen_dup("Install ");
+         ::count iStart = strlen_dup("Install ");
          i = strExe.find(" ", iStart);
          vsstring strIdStart;
          if(i != vsstring::npos)

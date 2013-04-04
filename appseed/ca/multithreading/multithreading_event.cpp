@@ -11,14 +11,14 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
    ca(papp)
 {
 
-   //if(papp == NULL)
+   //if(papp == ::null())
       //throw invalid_argument_exception(::ca::get_thread_app());
 
 #ifdef WINDOWSEX
 
    m_object = ::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
 
-   if(m_object == NULL)
+   if(m_object == ::null())
       throw resource_exception(papp);
 
 #elif defined(METROWIN)
@@ -41,7 +41,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
    m_object = ::CreateEventEx(lpsaAttribute, ::ca::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
-   if(m_object == NULL)
+   if(m_object == ::null())
       throw resource_exception(papp);
 
 #else
@@ -61,7 +61,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
    else
    {
 
-      if(pstrName != NULL && *pstrName != '\0')
+      if(pstrName != ::null() && *pstrName != '\0')
       {
 
          string strPath = "/ca2/time/ftok/event/" + string(pstrName);
@@ -107,7 +107,7 @@ bool event::SetEvent()
 
 #ifdef WINDOWS
 
-   ASSERT(m_object != NULL);
+   ASSERT(m_object != ::null());
 
    try
    {
@@ -161,7 +161,7 @@ bool event::PulseEvent()
 #ifdef WINDOWSEX
 
 
-   ASSERT(m_object != NULL);
+   ASSERT(m_object != ::null());
 
    return ::PulseEvent(m_object) != FALSE;
 
@@ -188,7 +188,7 @@ bool event::ResetEvent()
 
 #ifdef WINDOWS
 
-   ASSERT(m_object != NULL);
+   ASSERT(m_object != ::null());
 
    return ::ResetEvent(m_object) != FALSE;
 
@@ -341,7 +341,7 @@ wait_result event::wait (const duration & durationTimeout)
          {
             if(ret == EPERM)
             {
-               nanosleep(&delay, NULL);
+               nanosleep(&delay, ::null());
             }
             else
             {
@@ -528,7 +528,7 @@ int iError2 = 0;
          {
             if(ret == EPERM)
             {
-               nanosleep(&delay, NULL);
+               nanosleep(&delay, ::null());
             }
             else
             {

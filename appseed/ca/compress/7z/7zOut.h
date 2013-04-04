@@ -73,31 +73,31 @@ namespace n7z
       void WriteBoolVector(const bool_array &boolVector);
       void WriteHashDigests(
          const bool_array &digestsDefined,
-         const base_array<uint32_t> &hashDigests);
+         const array<uint32_t> &hashDigests);
 
       void WritePackInfo(
          uint64_t dataOffset,
-         const base_array<file_size> &packSizes,
+         const array<file_size> &packSizes,
          const bool_array &packCRCsDefined,
-         const base_array<uint32_t> &packCRCs);
+         const array<uint32_t> &packCRCs);
 
-      void WriteUnpackInfo(const ::collection::smart_pointer_array<CFolder> &folders);
+      void WriteUnpackInfo(const smart_pointer_array<CFolder> &folders);
 
       void WriteSubStreamsInfo(
-         const ::collection::smart_pointer_array<CFolder> &folders,
-         const base_array<CNum> &numUnpackStreamsInFolders,
-         const base_array<file_size> &unpackSizes,
+         const smart_pointer_array<CFolder> &folders,
+         const array<CNum> &numUnpackStreamsInFolders,
+         const array<file_size> &unpackSizes,
          const bool_array &digestsDefined,
-         const base_array<uint32_t> &hashDigests);
+         const array<uint32_t> &hashDigests);
 
       void SkipAlign(uint32_t pos, uint32_t alignSize);
       void WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, uint32_t itemSize);
       void WriteUInt64DefVector(const CUInt64DefVector &v, byte type);
 
       HRESULT EncodeStream(
-         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          CEncoder &encoder, const ::ca::byte_buffer &data,
-         base_array<file_size> &packSizes, ::collection::smart_pointer_array<CFolder> &folders);
+         array<file_size> &packSizes, smart_pointer_array<CFolder> &folders);
       void WriteHeader(
          const CArchiveDatabase &db,
          const CHeaderOptions &headerOptions,
@@ -124,7 +124,7 @@ namespace n7z
       void Close();
       HRESULT SkipPrefixArchiveHeader();
       HRESULT WriteDatabase(
-         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          const CArchiveDatabase &db,
          const CCompressionMethodMode *options,
          const CHeaderOptions &headerOptions);

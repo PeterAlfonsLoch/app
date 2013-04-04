@@ -32,28 +32,28 @@ namespace ca
    tree_item::tree_item()
    {
       m_dwUser          = 0;
-      m_pparent         = NULL;
-      m_pchild          = NULL;
-      m_pprevious       = NULL;
-      m_pnext           = NULL;
+      m_pparent         = ::null();
+      m_pchild          = ::null();
+      m_pprevious       = ::null();
+      m_pnext           = ::null();
       m_dwState         = 0;
-      m_pitemdata       = NULL;
+      m_pitemdata       = ::null();
    }
 
    tree_item::~tree_item()
    {
-      if(m_pparent != NULL)
+      if(m_pparent != ::null())
       {
          if(this == m_pparent->m_pchild)
          {
             m_pparent->m_pchild = m_pnext;
          }
       }
-      if(m_pprevious != NULL)
+      if(m_pprevious != ::null())
       {
          m_pprevious->m_pnext = m_pnext;
       }
-      if(m_pnext != NULL)
+      if(m_pnext != ::null())
       {
          m_pnext->m_pprevious = m_pprevious;
       }
@@ -72,10 +72,10 @@ namespace ca
       tree_item * pitem;
       tree_item * pitem1 = pitemParent->m_pchild;
       tree_item * pitem2;
-      for(; pitem1 != NULL; pitem1 = pitem1->m_pnext)
+      for(; pitem1 != ::null(); pitem1 = pitem1->m_pnext)
       {
          pitem2 = pitem1->m_pnext;
-         for(;pitem2 != NULL; pitem2 = pitem2->m_pnext)
+         for(;pitem2 != ::null(); pitem2 = pitem2->m_pnext)
          {
             if(lpfnCompare(pitem1, pitem2, ptreedata) > 0)
             {
@@ -91,8 +91,8 @@ namespace ca
 
    void tree_item::swap_sibling(tree_item * pitem1, tree_item * pitem2)
    {
-      ASSERT(pitem1 != NULL);
-      ASSERT(pitem2 != NULL);
+      ASSERT(pitem1 != ::null());
+      ASSERT(pitem2 != ::null());
       ASSERT(pitem1->m_pparent == pitem2->m_pparent);
 
       tree_item * pprevious1 = pitem1->m_pprevious;
@@ -105,11 +105,11 @@ namespace ca
          pitem2->m_pprevious  = pprevious1;
          pitem1->m_pprevious  = pitem2;
          pitem2->m_pnext      = pitem1;
-         if(pprevious1 != NULL)
+         if(pprevious1 != ::null())
          {
             pprevious1->m_pnext = pitem2;
          }
-         if(pnext2 != NULL)
+         if(pnext2 != ::null())
          {
             pnext2->m_pprevious = pitem1;
          }
@@ -120,11 +120,11 @@ namespace ca
          pitem2->m_pnext      = pnext1;
          pitem1->m_pnext      = pitem2;
          pitem2->m_pprevious  = pitem1;
-         if(pnext1 != NULL)
+         if(pnext1 != ::null())
          {
             pnext1->m_pprevious = pitem2;
          }
-         if(pprevious2 != NULL)
+         if(pprevious2 != ::null())
          {
             pprevious2->m_pnext = pitem1;
          }
@@ -135,19 +135,19 @@ namespace ca
          pitem1->m_pnext      = pnext2;
          pitem2->m_pprevious  = pprevious1;
          pitem2->m_pnext      = pnext1;
-         if(pprevious1 != NULL)
+         if(pprevious1 != ::null())
          {
             pprevious1->m_pnext = pitem2;
          }
-         if(pnext1 != NULL)
+         if(pnext1 != ::null())
          {
             pnext1->m_pprevious = pitem2;
          }
-         if(pprevious2 != NULL)
+         if(pprevious2 != ::null())
          {
             pprevious2->m_pnext = pitem1;
          }
-         if(pnext2 != NULL)
+         if(pnext2 != ::null())
          {
             pnext2->m_pprevious = pitem1;
          }
@@ -170,8 +170,8 @@ namespace ca
       while(true)
       {
          pitem = pitem->get_item(TreeNavigationExpandedForward);
-         if(pitem == NULL)
-            return NULL;
+         if(pitem == ::null())
+            return ::null();
          if(pitem->m_dwUser == (uint32_t) iUserData)
             return pitem;
       }
@@ -180,19 +180,19 @@ namespace ca
    tree_item * tree_item::get_child_by_user_data(uint_ptr iUserData)
    {
       tree_item * pitem = m_pchild;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          if(pitem->m_dwUser == iUserData)
             return pitem;
          pitem = pitem->m_pnext;
       }
-      return NULL;
+      return ::null();
    }
 
    void tree_item::get_children(tree_item_ptr_array & ptra)
    {
       tree_item * pitem = m_pchild;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          ptra.add(pitem);
          pitem = pitem->m_pnext;
@@ -200,11 +200,11 @@ namespace ca
    }
 
 
-   count tree_item::get_children_count()
+   ::count tree_item::get_children_count()
    {
-      count iCount = 0;
+      ::count iCount = 0;
       tree_item * pitem = m_pchild;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          iCount++;
          pitem = pitem->m_pnext;
@@ -212,11 +212,11 @@ namespace ca
       return iCount;
    }
 
-   count tree_item::get_expandable_children_count()
+   ::count tree_item::get_expandable_children_count()
    {
-      count iCount = 0;
+      ::count iCount = 0;
       tree_item * pitem = m_pchild;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          if(pitem->get_children_count() > 0)
          {
@@ -229,9 +229,9 @@ namespace ca
 
    tree_item * tree_item::get_expandable_child(index iIndex)
    {
-      count iCount = 0;
+      ::count iCount = 0;
       tree_item * pitem = m_pchild;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          if(pitem->get_children_count() > 0)
          {
@@ -241,18 +241,18 @@ namespace ca
          }
          pitem = pitem->m_pnext;
       }
-      return NULL;
+      return ::null();
    }
 
-   count tree_item::get_proper_descendant_count()
+   ::count tree_item::get_proper_descendant_count()
    {
-      count iCount = 0;
+      ::count iCount = 0;
       index iLevel = 0;
       tree_item * pitem = this;
       for(;;)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, &iLevel);
-         if(pitem == NULL || iLevel <= 0)
+         if(pitem == ::null() || iLevel <= 0)
             break;
          iCount++;
       }
@@ -264,7 +264,7 @@ namespace ca
    {
       tree_item * pitem = m_pchild;
       tree_item_ptr_array ptra;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          ptra.add(pitem);
          try
@@ -280,7 +280,7 @@ namespace ca
       {
          m_ptree->delete_item(ptra[i]);
       }
-      m_pchild = NULL;
+      m_pchild = ::null();
    }
 
 
@@ -295,7 +295,7 @@ namespace ca
       default:
          // Not Expected
          ASSERT(FALSE);
-         return NULL;
+         return ::null();
       }
    }
 
@@ -311,10 +311,10 @@ namespace ca
          break;
       case RelativeLastChild:
          {
-            if(m_pchild == NULL)
-               return NULL;
+            if(m_pchild == ::null())
+               return ::null();
             pitem = m_pchild;
-            while(pitem->m_pnext != NULL)
+            while(pitem->m_pnext != ::null())
             {
                pitem = pitem->m_pnext;
             }
@@ -327,7 +327,7 @@ namespace ca
          break;
       case RelativeFirstSibling:
          {
-            ASSERT(m_pparent != NULL);
+            ASSERT(m_pparent != ::null());
             return m_pparent->get_item(RelativeFirstChild);
          }
          break;
@@ -343,20 +343,20 @@ namespace ca
          break;
       case RelativeLastSibling:
          {
-            ASSERT(m_pparent != NULL);
+            ASSERT(m_pparent != ::null());
             return m_pparent->get_item(RelativeLastChild);
          }
          break;
       default:
          // Not Expected
          ASSERT(FALSE);
-         return NULL;
+         return ::null();
       }
    }
 
    tree_item * tree_item::get_previous()
    {
-      if(m_pprevious != NULL)
+      if(m_pprevious != ::null())
          return m_pprevious;
       else
          return m_pparent;
@@ -365,20 +365,20 @@ namespace ca
 
    tree_item * tree_item::get_next(bool bChild, bool bParent, index * pindexLevel)
    {
-      if(bChild && m_pchild != NULL)
+      if(bChild && m_pchild != ::null())
       {
-         if(pindexLevel != NULL) (*pindexLevel)++;
+         if(pindexLevel != ::null()) (*pindexLevel)++;
          return m_pchild;
       }
-      else if(m_pnext != NULL)
+      else if(m_pnext != ::null())
          return m_pnext;
-      else if(bParent && m_pparent != NULL)
+      else if(bParent && m_pparent != ::null())
       {
-         if(pindexLevel != NULL) (*pindexLevel)--;
+         if(pindexLevel != ::null()) (*pindexLevel)--;
          return m_pparent->get_next(false, true, pindexLevel);
       }
       else
-         return NULL;
+         return ::null();
    }
 
 
@@ -420,14 +420,14 @@ namespace ca
 
    string tree_item::get_text()
    {
-      if(m_pitemdata == NULL)
+      if(m_pitemdata == ::null())
          return "";
       return m_pitemdata->get_text(m_ptree);
    }
 
    index tree_item::get_image()
    {
-      if(m_pitemdata == NULL)
+      if(m_pitemdata == ::null())
          return -1;
       return m_pitemdata->get_image(m_ptree);
    }
@@ -442,7 +442,7 @@ namespace ca
    {
       if(*piLevel) *piLevel = 0;
       tree_item * pitem = this;
-      while(pitem != NULL && iIndex >= 0)
+      while(pitem != ::null() && iIndex >= 0)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
          iIndex--;
@@ -453,9 +453,9 @@ namespace ca
    index tree_item::get_proper_item_index(tree_item * pitemParam, index * piLevel)
    {
       int32_t iIndex = 0;
-      if(piLevel != NULL) *piLevel = 0;
+      if(piLevel != ::null()) *piLevel = 0;
       tree_item * pitem = this;
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
          if(pitem == pitemParam)
@@ -465,12 +465,12 @@ namespace ca
       return -1;
    }
 
-   count tree_item::get_proper_item_count()
+   ::count tree_item::get_proper_item_count()
    {
       tree_item * pitem = this;
       index iLevel = 0;
-      count iCount = -1;
-      while(pitem != NULL)
+      ::count iCount = -1;
+      while(pitem != ::null())
       {
          pitem = pitem->get_item(TreeNavigationProperForward, &iLevel);
          iCount++;

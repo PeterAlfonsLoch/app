@@ -427,8 +427,7 @@ namespace ca
             ::user::check_box * pcheck = dynamic_cast < ::user::check_box * > (pcontrol);
             if(pcheck != NULL)
             {
-               index i = 0;
-               if(ia.BaseSortFind(pcontrol->descriptor().m_ddx.m_pdbflags->m_value, i))
+               if(ia.contains(pcontrol->descriptor().m_ddx.m_pdbflags->m_value))
                {
                   pcheck->_001SetCheck(check::checked, false);
                }
@@ -957,19 +956,11 @@ namespace ca
                check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie);
                if(pcheck->_001GetCheck() == check::checked)
                {
-                  index i = 0;
-                  if(!ia.BaseSortFind(pdescriptor->m_ddx.m_pdbflags->m_value, i))
-                  {
-                     ia.add(pdescriptor->m_ddx.m_pdbflags->m_value);
-                  }
+                  ia.add_unique(pdescriptor->m_ddx.m_pdbflags->m_value);
                }
                else
                {
-                  index i = 0;
-                  while(ia.BaseSortFind(pdescriptor->m_ddx.m_pdbflags->m_value, i))
-                  {
-                     ia.remove_at(i);
-                  }
+                  ia.remove(pdescriptor->m_ddx.m_pdbflags->m_value);
                }
                m_pdataserver->data_server_save(
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient,

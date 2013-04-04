@@ -440,8 +440,8 @@ namespace ca
       var equals_ci_get(const char * pszCompare, var varOnEqual) const;
 
 
-      count get_count() const;
-      count array_get_count() const;
+      ::count get_count() const;
+      ::count array_get_count() const;
       bool array_contains(const char * psz, index first = 0, index last = -1) const;
       bool array_contains_ci(const char * psz, index first = 0, index last = -1) const;
 
@@ -659,7 +659,7 @@ namespace ca
 
 
    class CLASS_DECL_ca property_array :
-      public ::ca::byte_serializable_array < base_array < property > >
+      public ::ca::byte_serializable_array < array < property > >
    {
    public:
 
@@ -672,7 +672,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca property_map :
-      public ::collection::string_to_intptr
+      public string_to_intptr
    {
    public:
 

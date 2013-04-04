@@ -19,7 +19,7 @@ namespace user
       if(m_map.Lookup(iWindow, pinterface))
          return pinterface;
       else
-         return NULL;
+         return ::null();
    }
 
    void window_map::set(int_ptr iWindow, const ::user::window_interface *pinterface)

@@ -312,11 +312,11 @@ namespace userbase
             {
                try
                {
-                  if(ppair->m_value != m_pviewdata)
+                  if(ppair->m_element2 != m_pviewdata)
                   {
-                     if(ppair->m_value->m_pholder != NULL)
+                     if(ppair->m_element2->m_pholder != NULL)
                      {
-                        ppair->m_value->m_pholder->ShowWindow(SW_HIDE);
+                        ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
                      }
                   }
                }

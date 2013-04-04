@@ -4,8 +4,8 @@
 namespace  sort
 {
 
-   void QuickSort(
-                  base_array<uint32_t, uint32_t> & base_array,
+   void quick_sort(
+                  ::array<uint32_t, uint32_t> & array,
                   int32_t fCompare(const index, const index),
                   void swap(void * lpVoidSwapArg, index iA, index iB),
                   void * lpVoidSwapArg);
@@ -14,8 +14,8 @@ namespace  sort
    
 
 
-   void QuickSort(
-      base_array<uint32_t, uint32_t> & base_array,
+   void quick_sort(
+      ::array<uint32_t, uint32_t> & array,
       int32_t fCompare(const index, const index),
       void swap(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg)
@@ -29,10 +29,10 @@ namespace  sort
 
       uint32_t t;
 
-      if(base_array.get_size() >= 2)
+      if(array.get_size() >= 2)
       {
          stackLowerBound.push(0);
-         stackUpperBound.push(base_array.get_upper_bound());
+         stackUpperBound.push(array.get_upper_bound());
          while(true)
          {
             iLowerBound = stackLowerBound.pop();
@@ -46,13 +46,13 @@ namespace  sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(fCompare(base_array.get_at(iMPos), base_array.get_at(iUPos)) <= 0)
+                  if(fCompare(array.get_at(iMPos), array.get_at(iUPos)) <= 0)
                      iUPos--;
                   else
                   {
-                     t = base_array.get_at(iMPos);
-                     base_array.set_at(iMPos, base_array.get_at(iUPos));
-                     base_array.set_at(iUPos, t);
+                     t = array.get_at(iMPos);
+                     array.set_at(iMPos, array.get_at(iUPos));
+                     array.set_at(iUPos, t);
                      swap(lpVoidSwapArg, iUPos, iMPos);
                      break;
                   }
@@ -64,13 +64,13 @@ namespace  sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(fCompare(base_array.get_at(iLPos), base_array.get_at(iMPos)) <= 0)
+                  if(fCompare(array.get_at(iLPos), array.get_at(iMPos)) <= 0)
                      iLPos++;
                   else
                   {
-                     t = base_array.get_at(iMPos);
-                     base_array.set_at(iMPos, base_array.get_at(iLPos));
-                     base_array.set_at(iLPos, t);
+                     t = array.get_at(iMPos);
+                     array.set_at(iMPos, array.get_at(iLPos));
+                     array.set_at(iLPos, t);
                      swap(lpVoidSwapArg, iLPos, iMPos);
                      break;
                   }
@@ -113,12 +113,12 @@ namespace  sort
 
 
 
-   void CLASS_DECL_ca QuickSort(
+   void CLASS_DECL_ca quick_sort(
       index iSize,
-      base_array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
-      base_array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
-      base_array < void *, void * > & comparearga,
-      base_array < void *, void * > & swaparga)
+      ::array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
+      ::array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
+      ::array < void *, void * > & comparearga,
+      ::array < void *, void * > & swaparga)
    {
       
       index_array stackLowerBound;

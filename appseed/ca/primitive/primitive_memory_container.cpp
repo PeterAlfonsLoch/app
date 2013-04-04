@@ -15,7 +15,7 @@ namespace primitive
    memory_container ::memory_container(::ca::application * papp, void * pmemory, memory_size dwSize) :
       ca(papp)
    {
-      m_spmemory(new primitive::memory(this, pmemory, dwSize));
+      m_spmemory = new primitive::memory(this, pmemory, dwSize);
    }
 
 
@@ -65,10 +65,10 @@ namespace primitive
          return;
       }
 
-      if(m_spmemory == NULL)
+      if(m_spmemory == ::null())
       {
          
-         m_spmemory(new primitive::memory(this));
+         m_spmemory = new primitive::memory(this);
 
          if(m_spmemory.is_null())
          {
@@ -93,9 +93,9 @@ namespace primitive
 
    void memory_container ::allocate_internal(memory_size dwNewLength)
    {
-      if(m_spmemory == NULL)
+      if(m_spmemory == ::null())
       {
-         m_spmemory(new primitive::memory(this));
+         m_spmemory = new primitive::memory(this);
          if(m_spmemory.is_null())
          {
             throw new memory_exception(get_app());
@@ -111,7 +111,7 @@ namespace primitive
 
       if(m_spmemory.is_null())
       {
-         (const_cast < memory_container * > (this))->m_spmemory((const_cast < memory_container * > (this))->create_memory());
+         (const_cast < memory_container * > (this))->m_spmemory = (const_cast < memory_container * > (this))->create_memory();
       }
 
       return m_spmemory;
@@ -132,7 +132,7 @@ namespace primitive
    {
       if(m_spmemory.is_null())
       {
-         m_spmemory(new primitive::memory(this));
+         m_spmemory = new primitive::memory(this);
       }
       m_spmemory->copy_from(pmemory);
    }
@@ -142,7 +142,7 @@ namespace primitive
    {
       if(m_spmemory.is_null())
       {
-         m_spmemory(new primitive::memory(this));
+         m_spmemory = new primitive::memory(this);
       }
       m_spmemory->FullLoad(file);
    }
@@ -174,7 +174,7 @@ namespace primitive
          m_spmemory.destroy();
       else
       {
-         m_spmemory(new primitive::memory(this));
+         m_spmemory = new primitive::memory(this);
          m_spmemory->copy_from(container.m_spmemory);
       }
       m_vppa.remove_all();
@@ -185,7 +185,7 @@ namespace primitive
    bool memory_container ::attach(memory_base * pstorage)
    {
 
-      m_spmemory(pstorage);
+      m_spmemory = pstorage;
 
       return true;
 
@@ -221,10 +221,10 @@ namespace primitive
    memory *          memory_container::detach_primitive_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != NULL)
-         return NULL;
+      if(pmemorybase != ::null())
+         return ::null();
       ::primitive::memory * pmemory = dynamic_cast < ::primitive::memory * > (pmemorybase);
-      if(pmemory != NULL)
+      if(pmemory != ::null())
       {
          return pmemory;
       }
@@ -237,10 +237,10 @@ namespace primitive
    shared_memory *   memory_container::detach_shared_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != NULL)
-         return NULL;
+      if(pmemorybase != ::null())
+         return ::null();
       ::primitive::shared_memory * psharedmemory = dynamic_cast < ::primitive::shared_memory * > (pmemorybase);
-      if(psharedmemory != NULL)
+      if(psharedmemory != ::null())
       {
          return psharedmemory;
       }
@@ -253,10 +253,10 @@ namespace primitive
    virtual_memory *  memory_container::detach_virtual_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != NULL)
-         return NULL;
+      if(pmemorybase != ::null())
+         return ::null();
       ::primitive::virtual_memory * pvirtualmemory = dynamic_cast < ::primitive::virtual_memory * > (pmemorybase);
-      if(pvirtualmemory != NULL)
+      if(pvirtualmemory != ::null())
       {
          return pvirtualmemory;
       }

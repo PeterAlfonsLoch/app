@@ -45,7 +45,7 @@ namespace simpledb
 
    table * base::get_table(const char * pszName)
    {
-      table * ptable = NULL;
+      table * ptable = ::null();
       string strName(pszName);
       strName.make_lower();
       if(!m_mapTable.Lookup(strName, ptable))
@@ -88,7 +88,7 @@ namespace simpledb
       database::result_set res;
       char sqlcmd[512];
       sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table, sname);
-      if(last_err = sqlite3_exec((::sqlite3::sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK)
+      if(last_err = sqlite3_exec((::sqlite3::sqlite3 *) getHandle(),sqlcmd,&callback,&res,::null()) != SQLITE_OK)
       {
          return DB_UNEXPECTED_RESULT;
       }
@@ -96,14 +96,14 @@ namespace simpledb
       {
          id = 1;
          sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table,id,sname);
-         if (last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+         if (last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,::null(),::null(),::null()) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;
       }
       else
       {
          id = res.records[0][0].int32()+1;
          sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table,id,sname);
-         if (last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+         if (last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,::null(),::null(),::null()) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;
       }*/
       return DB_UNEXPECTED_RESULT;

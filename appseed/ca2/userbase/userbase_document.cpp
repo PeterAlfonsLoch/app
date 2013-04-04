@@ -48,7 +48,7 @@ namespace userbase
 
       if (dumpcontext.GetDepth() > 0)
       {
-         count count = get_view_count();
+         ::count count = get_view_count();
          for(index index = 0; index < count; index++)
          {
             ::view * pview = get_view(index);
@@ -63,7 +63,7 @@ namespace userbase
    {
       ::ca::object::assert_valid();
 
-      count count = get_view_count();
+      ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
          ::view * pview = get_view(index);

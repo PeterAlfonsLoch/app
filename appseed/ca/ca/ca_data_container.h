@@ -43,14 +43,14 @@ namespace ca
       bool add_data(::ca::data * pdata);
       bool remove_data(::ca::data * pdata);
       data * get_data(index i);
-      count get_count() const;
+      ::count get_count() const;
 
 
       template < class TYPE >
       bool replace_data(TYPE * pdata)
       {
          
-         TYPE * pderived = NULL;
+         TYPE * pderived = ::null();
 
          for(index i = 0; i < m_spadata.get_count(); i++)
          {
@@ -66,7 +66,7 @@ namespace ca
 
             }
 
-            if(pderived != NULL)
+            if(pderived != ::null())
             {
 
                retry_single_lock rsl1(pderived->data_mutex(), millis(1), millis(1));

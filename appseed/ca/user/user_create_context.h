@@ -15,11 +15,11 @@ namespace user
 
 
    class CLASS_DECL_ca create_context   // Creation information structure
-      // All fields are optional and may be NULL
+      // All fields are optional and may be ::null()
    {
    public:
       // for creating new views
-      ::ca::type_info         m_typeinfoNewView; // runtime class of ::view to create or NULL
+      ::ca::type_info         m_typeinfoNewView; // runtime class of ::view to create or ::null()
       ::user::document_interface *              m_pCurrentDoc;
       ::user::interaction *   m_puiNew;
 

@@ -21,8 +21,8 @@ public:
    id ImageToCommand(UINT uiImage);
 
 
-   ::collection::map < id, id, UINT, UINT > m_mapCommandToImage;
-   ::collection::map < UINT, UINT, id, id > m_mapImageToCommand;
+   map < id, id, UINT, UINT > m_mapCommandToImage;
+   map < UINT, UINT, id, id > m_mapImageToCommand;
 
    image_list *    m_pil;
    image_list *    m_pilHue;

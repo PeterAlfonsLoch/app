@@ -22,98 +22,91 @@
 
 
 
-namespace collection
+template < class TYPE, class CONTAINER = deque < TYPE > >
+class queue :
+   virtual public CONTAINER
+{
+public:
+
+   inline bool is_empty() const;
+   inline ::count size() const;
+
+   inline TYPE & front();
+   inline const TYPE & front() const;
+
+   inline TYPE & back();
+   inline const TYPE & back() const;
+
+   inline void push(const TYPE & t);
+
+   inline void pop();
+
+};
+
+
+template < class TYPE, class CONTAINER >
+inline bool queue < TYPE, CONTAINER > ::is_empty() const
 {
 
+   return this->CONTAINER::is_empty();
 
-   template < class TYPE, class CONTAINER = deque < TYPE > >
-   class queue :
-      virtual public CONTAINER
-   {
-   public:
+}
 
-      inline bool is_empty() const;
-      inline count size() const;
+template < class TYPE, class CONTAINER >
+inline ::count queue < TYPE, CONTAINER > ::size() const
+{
 
-      inline TYPE & front();
-      inline const TYPE & front() const;
+   return this->CONTAINER::size();
 
-      inline TYPE & back();
-      inline const TYPE & back() const;
-
-      inline void push(const TYPE & t);
-
-      inline void pop();
-
-   };
+}
 
 
-   template < class TYPE, class CONTAINER >
-   inline bool queue < TYPE, CONTAINER > ::is_empty() const
-   {
+template < class TYPE, class CONTAINER >
+inline TYPE & queue < TYPE, CONTAINER > ::front()
+{
 
-      return this->CONTAINER::is_empty();
+   return this->CONTAINER::front();
 
-   }
+}
 
-   template < class TYPE, class CONTAINER >
-   inline count queue < TYPE, CONTAINER > ::size() const
-   {
+template < class TYPE, class CONTAINER >
+inline const TYPE & queue < TYPE, CONTAINER > ::front() const
+{
 
-      return this->CONTAINER::size();
+   return this->CONTAINER::front();
 
-   }
+}
 
+template < class TYPE, class CONTAINER >
+inline TYPE & queue < TYPE, CONTAINER > ::back()
+{
 
-   template < class TYPE, class CONTAINER >
-   inline TYPE & queue < TYPE, CONTAINER > ::front()
-   {
+   return this->CONTAINER::back();
 
-      return this->CONTAINER::front();
+}
 
-   }
+template < class TYPE, class CONTAINER >
+inline const TYPE & queue < TYPE, CONTAINER > ::back() const
+{
 
-   template < class TYPE, class CONTAINER >
-   inline const TYPE & queue < TYPE, CONTAINER > ::front() const
-   {
+   return this->CONTAINER::back();
 
-      return this->CONTAINER::front();
+}
 
-   }
+template < class TYPE, class CONTAINER >
+inline void queue < TYPE, CONTAINER > ::push(const TYPE & t)
+{
 
-   template < class TYPE, class CONTAINER >
-   inline TYPE & queue < TYPE, CONTAINER > ::back()
-   {
+   this->CONTAINER::push_back(t);
 
-      return this->CONTAINER::back();
+}
 
-   }
+template < class TYPE, class CONTAINER >
+inline void queue < TYPE, CONTAINER > ::pop()
+{
 
-   template < class TYPE, class CONTAINER >
-   inline const TYPE & queue < TYPE, CONTAINER > ::back() const
-   {
+   this->CONTAINER::pop_front();
 
-      return this->CONTAINER::back();
-
-   }
-
-   template < class TYPE, class CONTAINER >
-   inline void queue < TYPE, CONTAINER > ::push(const TYPE & t)
-   {
-
-      this->CONTAINER::push_back(t);
-
-   }
-
-   template < class TYPE, class CONTAINER >
-   inline void queue < TYPE, CONTAINER > ::pop()
-   {
-
-      this->CONTAINER::pop_front();
-
-   }
-
-} // namespace collection
-
+}
 
 

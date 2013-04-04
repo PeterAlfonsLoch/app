@@ -11,7 +11,7 @@ namespace user
    {
    public:
 
-      ::collection::int_map < ::user::e_key >         m_mapKey;
+      int_map < ::user::e_key >         m_mapKey;
       sp(keyboard_layout)                             m_playout;
 
       keyboard(::ca::application * papp);

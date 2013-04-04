@@ -263,7 +263,7 @@ namespace sockets
 
    int32_t SctpSocket::getpaddrs(sctp_assoc_t id,list<string>& vec)
    {
-      struct sockaddr *p = NULL;
+      struct sockaddr *p = ::null();
       int32_t n = sctp_getpaddrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
@@ -281,7 +281,7 @@ namespace sockets
 
    int32_t SctpSocket::getladdrs(sctp_assoc_t id,list<string>& vec)
    {
-      struct sockaddr *p = NULL;
+      struct sockaddr *p = ::null();
       int32_t n = sctp_getladdrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
@@ -324,7 +324,7 @@ namespace sockets
       sctp_recvmsg  is  a  wrapper library function that can be used to receive a message from a socket while using the advanced
       features of SCTP.  sd is the socket descriptor on which the message pointed to by msg of length len is received.
 
-      If from is not NULL, the source address of the message is filled in. The argument fromlen  is  a  value-result  parameter.
+      If from is not ::null(), the source address of the message is filled in. The argument fromlen  is  a  value-result  parameter.
       initialized  to  the  size  of the buffer associated with from , and modified on return to indicate the actual size of the
       address stored.
 

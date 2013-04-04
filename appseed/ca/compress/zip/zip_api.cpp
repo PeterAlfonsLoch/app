@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   //::collection::map < unzFile, unzFile, memory_file *, memory_file * & > api::m_mapUnzip;
+   //map < unzFile, unzFile, memory_file *, memory_file * & > api::m_mapUnzip;
 
    api::api()
    {
@@ -20,8 +20,8 @@ namespace zip
    unzFile api::unzipOpen(memory_file * pfile)
    {
       unzFile pf = unzOpen2("pad", &pfile->m_filefuncdef);
-      if(pf == NULL)
-         return NULL;
+      if(pf == ::null())
+         return ::null();
 
      // m_mapUnzip.set_at(pf, pfile);
 
@@ -33,8 +33,8 @@ namespace zip
    unzFile api::unzipOpen (File * pfile)
    {
       unzFile pf = unzOpen2("pad", &pfile->m_filefuncdef);
-      if(pf == NULL)
-         return NULL;
+      if(pf == ::null())
+         return ::null();
 
    //   m_mapUnzip.set_at(pf, pfile);
 
@@ -44,9 +44,9 @@ namespace zip
 
    zipFile api::zipOpen(File * pfile)
    {
-      zipFile pf = zipOpen2("pad", APPEND_STATUS_CREATE, NULL, &pfile->m_filefuncdef);
-      if(pf == NULL)
-         return NULL;
+      zipFile pf = zipOpen2("pad", APPEND_STATUS_CREATE, ::null(), &pfile->m_filefuncdef);
+      if(pf == ::null())
+         return ::null();
 
      // m_mapUnzip.set_at(pf, pfile);
 

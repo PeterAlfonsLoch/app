@@ -227,7 +227,7 @@ static void *AllocUnitsRare(CPpmd7 *p, uint32_t indx)
     {
       uint32_t numBytes = U2B(I2U(indx));
       p->GlueCount--;
-      return ((uint32_t)(p->UnitsStart - p->Text) > numBytes) ? (p->UnitsStart -= numBytes) : (NULL);
+      return ((uint32_t)(p->UnitsStart - p->Text) > numBytes) ? (p->UnitsStart -= numBytes) : (::null());
     }
   }
   while (p->FreeList[i] == 0);
@@ -396,7 +396,7 @@ static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
     {
       c1 = (CTX_PTR)AllocUnitsRare(p, 0);
       if (!c1)
-        return NULL;
+        return ::null();
     }
     c1->NumStats = 1;
     *ONE_STATE(c1) = upState;
@@ -477,7 +477,7 @@ static void UpdateModel(CPpmd7 *p)
     if (fSuccessor <= successor)
     {
       CTX_PTR cs = CreateSuccessors(p, false);
-      if (cs == NULL)
+      if (cs == ::null())
       {
         RestartModel(p);
         return;

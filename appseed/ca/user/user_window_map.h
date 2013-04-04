@@ -33,7 +33,7 @@ namespace user
 
 
       void set(int_ptr iWindow, const ::user::window_interface * pinterface);
-      ::collection::map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
+      map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
 
    };
 

@@ -170,12 +170,9 @@ class dump_context;
 // Standard constants
 #undef FALSE
 #undef TRUE
-#undef NULL
 
 #define FALSE   0
 #define TRUE    1
-#define NULL    0
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Turn off warnings for /W4
@@ -199,7 +196,7 @@ class dump_context;
 #endif
 
 // warnings caerated with common ca API/Windows code
-#pragma warning(disable: 4134)  // message ::collection::map member fxn casts
+#pragma warning(disable: 4134)  // message map member fxn casts
 #pragma warning(disable: 4201)  // nameless unions are part of C++
 #pragma warning(disable: 4320)  // structs with uuid handled as interfaces
 #pragma warning(disable: 4705)  // statement has no effect in optimized code
@@ -660,13 +657,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::ca::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca ::ca::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
-   uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
+   uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null()); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null())
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -728,7 +725,7 @@ protected:
 
 
 CLASS_DECL_ca bool _API
-__set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
+__set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = ::null());
 
 */
 
@@ -1067,7 +1064,7 @@ class CDockContext;                     // for dragging control bars
 
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
-                           // lParam = lpszOther (or NULL)
+                           // lParam = lpszOther (or ::null())
 #define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
 #define WM_COMMANDHELP      0x0365  // lResult = TRUE/FALSE,
@@ -1236,8 +1233,8 @@ struct __EVENT
 
    __EVENT(int32_t eventKind);
 
-   __EVENT(int32_t eventKind, DISPID dispid, DISPPARAMS* pDispParams = NULL,
-      EXCEPINFO* pExcepInfo = NULL, UINT* puArgError = NULL);
+   __EVENT(int32_t eventKind, DISPID dispid, DISPPARAMS* pDispParams = ::null(),
+      EXCEPINFO* pExcepInfo = ::null(), UINT* puArgError = ::null());
 
    int32_t m_eventKind;
    DISPID m_dispid;
@@ -1254,9 +1251,9 @@ inline __EVENT::__EVENT(int32_t eventKind)
 {
    m_eventKind = eventKind;
    m_dispid = DISPID_UNKNOWN;
-   m_pDispParams = NULL;
-   m_pExcepInfo = NULL;
-   m_puArgError = NULL;
+   m_pDispParams = ::null();
+   m_pExcepInfo = ::null();
+   m_puArgError = ::null();
    m_hResult = NOERROR;
    m_nDSCState = dscNoState;
    m_nDSCReason = dscNoReason;
@@ -1431,7 +1428,7 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "ca_scoped_ptr.h"
+//#include "ca_scoped_ptr.h"
 #include "ca_logic.h"
 
 
@@ -1490,12 +1487,12 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 #include "ca_microtimer.h"
 
 template <class TYPE>
-inline bool IsRefNull(const TYPE & ref)
+inline bool is_null(const TYPE & ref)
 {
-   return &ref == NULL;
+   return &ref == ::null();
 }
 
-#define NULL_REF(class) (*((class *) NULL))
+#define NULL_REF(class) (*((class *) ::null()))
 
 
 CLASS_DECL_ca ::ca::byte_input_stream &  operator >>(::ca::byte_input_stream & istream, string & string);
@@ -1614,21 +1611,22 @@ namespace ca
 {
 
 
-
-   namespace lemon
-   {
-
-
-      class array;
-
-
-   } // namespace lemon
-
-
    class file_manager_interface;
 
-
 } // namespace ca
+
+
+namespace lemon
+{
+
+
+   class array;
+
+
+} // namespace lemon
+
+
+
 
 #include "ca_trace.h"
 

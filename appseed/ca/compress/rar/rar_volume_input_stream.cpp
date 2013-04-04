@@ -9,7 +9,7 @@
 namespace rar
 {
 
-   void folder_reader::Init(base_array<input_file> *archives, const base_array<CItemEx> *items, const CRefItem &refItem)
+   void folder_reader::Init(array<input_file> *archives, const array<CItemEx> *items, const CRefItem &refItem)
    {
       _archives = archives;
       _items = items;

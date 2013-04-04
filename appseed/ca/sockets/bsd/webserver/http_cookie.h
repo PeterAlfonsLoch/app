@@ -87,8 +87,8 @@ namespace http
          const char * pszKey,
          var var,
          int32_t iExpire = 0,
-         const char * pszDomain = NULL, 
-         const char * pszPath = NULL,
+         const char * pszDomain = ::null(), 
+         const char * pszPath = ::null(),
          bool bSecure = false);
       static string expire(time_t iExpire = 0);
 

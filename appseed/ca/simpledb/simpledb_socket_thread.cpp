@@ -12,7 +12,7 @@ namespace simpledb
       m_evCanInit(papp),
       m_evInitialized(papp)
    {
-      m_psocket = NULL;
+      m_psocket = ::null();
       m_evCanInit.ResetEvent();
       m_evInitialized.ResetEvent();
       m_bInitialized = false;
@@ -36,12 +36,12 @@ namespace simpledb
 
       /*   STARTUPINFO startupinfo;
       memset(&startupinfo, 0, sizeof(startupinfo));
-      if(!::CreateProcess(NULL, "netnoderewrite.exe",
-      NULL,
-      NULL,
+      if(!::CreateProcess(::null(), "netnoderewrite.exe",
+      ::null(),
+      ::null(),
       TRUE,
       0,
-      NULL,
+      ::null(),
       ".",
       &startupinfo,
       &m_pi))
@@ -87,7 +87,7 @@ namespace simpledb
       if(pbase->m_wparam == 0)
       {
 
-         while(!m_pservice->is_stopping())
+         while(m_pservice->get_run())
          {
             try
             {
@@ -107,17 +107,17 @@ namespace simpledb
                      string strMessage;
                      strMessage.Format("could not bind to address %s %d", m_strIp, m_iPort);
                      TRACE(strMessage);
-                     //System.simple_message_box(NULL, strMessage);
+                     //System.simple_message_box(::null(), strMessage);
                      return;
                   }
                   ::sockets::socket_handler::add(&ll);
                   while (true)
                   {
                      Select(8,0);
-                     if(m_pservice->is_stopping())
+                     if(!m_pservice-get_run())
                         break;
                   }
-                  if(m_pservice->is_stopping())
+                  if(!m_pservice->get_run())
                      break;
                }
             }

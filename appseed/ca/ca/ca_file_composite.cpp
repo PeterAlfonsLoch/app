@@ -16,11 +16,6 @@ namespace ca
 
    }
 
-   file_composite::operator HFILE() const
-   {
-      return m_spfile->operator HFILE();
-   }
-
    file_position file_composite::get_position() const
    {
 

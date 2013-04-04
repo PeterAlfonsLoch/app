@@ -155,7 +155,7 @@ namespace userbase
       UINT m_nMRUWidth;   // For dynamic resizing.
       bool  m_bDockTrack;
 
-      // base_array of elements
+      // array of elements
       //int32_t m_nCount;
       //void * m_pData;        // m_nCount elements - type depends on derived class
 

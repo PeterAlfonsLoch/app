@@ -108,7 +108,7 @@ http::cookie & cookies::cookie(const char * name)
       iFind = find_cookie(name);
       if(iFind < 0)
       {
-         return *((http::cookie *) NULL);
+         return *((http::cookie *) ::null());
       }
       return this->element_at(iFind);;
    }
@@ -127,7 +127,7 @@ http::cookie & cookies::lowcookie(const char * name)
       iFind = find_cookie(name);
       if(iFind < 0)
       {
-         return *((http::cookie *) NULL);
+         return *((http::cookie *) ::null());
       }
       return this->element_at(iFind);;
    }
@@ -145,16 +145,16 @@ void cookies::add(const char * psz)
    while(bRun)
    {
       const char * pszEnd = strchr(psz, ';');
-      bRun = pszEnd != NULL;
+      bRun = pszEnd != ::null();
       if(!bRun)
          pszEnd = psz + strlen(psz);
       
       const char * pszEqual = strchr(psz, '=');
       if(pszEqual > pszEnd)
-         pszEqual = NULL;
+         pszEqual = ::null();
       if(i == 0)
       {
-         if(pszEqual != NULL)
+         if(pszEqual != ::null())
          {
             cookie->m_strName = string(psz, pszEqual - psz);
             cookie->m_strNameLow = cookie->m_strName;
@@ -166,7 +166,7 @@ void cookies::add(const char * psz)
             return;
          }
       }
-      else if(pszEqual != NULL)
+      else if(pszEqual != ::null())
       {
          string strKey = string(psz, pszEqual - psz);
          string strValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
@@ -246,14 +246,14 @@ string cookies::set_cookie(
       str += "=";
       str += expire(0);
    }
-   if(path != NULL && strlen(path) > 0)
+   if(path != ::null() && strlen(path) > 0)
    {
       str += "; ";
       str += "path";
       str += "=";
       str += path;
    }
-   if(domain != NULL && strlen(domain) > 0)
+   if(domain != ::null() && strlen(domain) > 0)
    {
       str += "; ";
       str += "domain";
@@ -274,7 +274,7 @@ string cookies::set_cookie(
 string cookies::expire(time_t t)
 {
    if(t == 0)
-      t = time(NULL);
+      t = time(::null());
 
    //time_t t = time((time_t *)&iExpire);
    struct tm tp;
@@ -307,7 +307,7 @@ string cookies::expire(time_t t)
 void cookies::parse_header(const char * psz)
 {
    
-   if(psz == NULL)
+   if(psz == ::null())
       return;
 
    stringa stra;
@@ -325,9 +325,9 @@ void cookies::parse_header(const char * psz)
          break;
       pszParamEnd = strchr(pszParam, ';');
       pszKeyEnd = strchr(pszParam, '=');
-      if(pszParamEnd == NULL)
+      if(pszParamEnd == ::null())
       {
-         if(pszKeyEnd == NULL)
+         if(pszKeyEnd == ::null())
          {
             c.m_strName = string(pszParam);
             c.m_strNameLow = c.m_strName;
@@ -347,7 +347,7 @@ void cookies::parse_header(const char * psz)
       }
       else
       {
-         if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
+         if(pszKeyEnd == ::null() || pszKeyEnd > pszParamEnd)
          {
             c.m_strName = string(pszParam, pszParamEnd - pszKeyEnd);
             c.m_strNameLow = c.m_strName;

@@ -102,8 +102,8 @@ namespace ca
 
       inline heap_item()
       {
-         m_pbStart = NULL;
-         m_pbEnd = NULL;
+         m_pbStart = ::null();
+         m_pbEnd = ::null();
       }
 
 
@@ -255,9 +255,8 @@ namespace ca
       mutex          m_mutex;
 
       bool                                m_bRun;
-      user::interaction_ptr_array *       m_puiptra;
-      ::user::interaction::timer_array *  m_ptimera;
-      comparable_array < ::ca::ca * >     m_captraDeletePool;
+      sp(user::interaction_ptr_array)     m_puiptra;
+      sp(user::interaction::timer_array)  m_ptimera;
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
       uint_ptr                            m_dwAlive;
       bool                                m_bReady;
@@ -301,9 +300,9 @@ namespace ca
 
       virtual void CommonConstruct();
 
-//      virtual bool begin(::ca::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+//      virtual bool begin(::ca::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
 
-//      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+//      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
 
 //      virtual ::ca::e_thread_priority get_thread_priority();
   //    virtual bool set_thread_priority(::ca::e_thread_priority epriority);
@@ -462,9 +461,9 @@ namespace ca
 
 
 
-      virtual bool begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
 
-      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
 
       virtual ::ca::e_thread_priority get_thread_priority();
       virtual bool set_thread_priority(::ca::e_thread_priority epriority);

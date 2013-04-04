@@ -139,7 +139,7 @@ namespace hotplugin
 
    }
 
-   void plugin::set_memory(void * puchMemory, count c)
+   void plugin::set_memory(void * puchMemory, ::count c)
    {
       if(m_phost != NULL)
       {
@@ -147,7 +147,7 @@ namespace hotplugin
       }
    }
 
-   void plugin::append_memory(void * puchMemory, count c)
+   void plugin::append_memory(void * puchMemory, ::count c)
    {
       if(m_phost != NULL)
       {
@@ -155,7 +155,7 @@ namespace hotplugin
       }
    }
 
-   count plugin::get_memory_length()
+   ::count plugin::get_memory_length()
    {
       if(m_phost != NULL)
       {
@@ -164,7 +164,7 @@ namespace hotplugin
       return 0;
    }
 
-   count plugin::read_memory(void * puchMemory, count c)
+   ::count plugin::read_memory(void * puchMemory, ::count c)
    {
       if(m_phost != NULL)
       {

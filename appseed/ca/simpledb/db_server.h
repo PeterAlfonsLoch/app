@@ -60,10 +60,10 @@ public:
 
 
    using database::server::data_server_load;
-   virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca::writable & writable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca::writable & writable, ::database::update_hint * phint = ::null());
 
    using database::server::data_server_save;
-   virtual bool data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca::readable & readable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca::readable & readable, ::database::update_hint * phint = ::null());
 
 
    virtual bool data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh);

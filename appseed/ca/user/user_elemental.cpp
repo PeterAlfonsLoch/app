@@ -5,7 +5,7 @@ namespace user
 
    ::user::interaction * elemental::get_guie()
    {
-      return NULL;
+      return ::null();
    }
 
    ::ca::graphics * elemental::_001GetDC()

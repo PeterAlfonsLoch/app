@@ -7,7 +7,7 @@ namespace xml
       ca(papp),
       m_varexchange(papp)
    {
-      m_pschema = NULL;
+      m_pschema = ::null();
    }
 
    tree_base::tree_base(::ca::application * papp, tree_schema * pschema) :

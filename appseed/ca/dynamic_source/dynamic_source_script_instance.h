@@ -15,10 +15,10 @@ namespace dynamic_source
 
 
       uint32_t             m_dwCreate;
-      script *          m_pscriptScriptInstance;
+      sp(script)           m_pscriptScriptInstance;
 
-      string            m_strDebugRequestUri;
-      string            m_strDebugThisScript;
+      string               m_strDebugRequestUri;
+      string               m_strDebugThisScript;
 
 
       script_instance(script * pscript);

@@ -64,24 +64,24 @@ namespace ca
       tree_item * get_child_by_user_data(uint_ptr iUserData);
       tree_item * find_next_by_user_data(uint_ptr iUserData);
       void get_children(::ca::tree_item_ptr_array &ptra);
-      count get_children_count();
-      count get_expandable_children_count();
-      count get_proper_descendant_count();
+      ::count get_children_count();
+      ::count get_expandable_children_count();
+      ::count get_proper_descendant_count();
       tree_item * get_expandable_child(index iIndex);
       tree_item * get_previous();
-      tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
+      tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = ::null());
 
 
       void sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *), ::ca::tree_data * ptreedata);
 
       static void swap_sibling(tree_item * pitem1, tree_item * pitem2);
 
-      tree_item * get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
+      tree_item * get_item(ETreeNavigation enavigation, index * piLevelOffset = ::null());
       tree_item * get_item(ERelative erelative);
 
       virtual tree_item * get_proper_item(index iIndex, index * piLevel);
       virtual index get_proper_item_index(tree_item * pitem, index * piLevel);
-      virtual count get_proper_item_count();
+      virtual ::count get_proper_item_count();
 
       virtual tree * get_tree();
       

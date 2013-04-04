@@ -30,8 +30,8 @@ protected:
 public:
 
 
-   count          m_iAllocation; // in chars "with null characters"
-   count          m_iLength; // in chars without null character
+   ::count m_iAllocation; // in chars "with null characters"
+   ::count m_iLength; // in chars without null character
    wchar_t        m_wchFirst;
 
 
@@ -44,7 +44,7 @@ public:
    }
 
 
-   inline static wchar_t * alloc(count iCount)
+   inline static wchar_t * alloc(::count iCount)
    {
 
       wstring_data * pdata = (wstring_data *) _ca_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
@@ -155,39 +155,39 @@ public:
       return m_pwsz[iIndex];
    }
 
-   wchar_t * alloc(count iCount);
+   wchar_t * alloc(::count iCount);
 
-   inline count get_length() const
+   inline ::count get_length() const
    {
       return get_data()->m_iLength;
    }
 
-   inline count length() const
+   inline ::count length() const
    {
       return get_data()->m_iLength;
    }
 
-   inline count size() const
+   inline ::count size() const
    {
       return get_data()->m_iLength;
    }
 
-   inline count storage_size() const
+   inline ::count storage_size() const
    {
       return get_data()->m_iAllocation;
    }
 
-   inline count allocation_size() const
+   inline ::count allocation_size() const
    {
       return get_data()->m_iAllocation;
    }
 
-   inline count get_storage_size() const
+   inline ::count get_storage_size() const
    {
       return get_data()->m_iAllocation;
    }
 
-   inline count get_allocation_size() const
+   inline ::count get_allocation_size() const
    {
       return get_data()->m_iAllocation;
    }
@@ -219,7 +219,7 @@ public:
    }
 
 
-   inline void set_length(count iLength)
+   inline void set_length(::count iLength)
    {
 
       if(iLength <= get_data()->m_iAllocation)

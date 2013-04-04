@@ -24,8 +24,8 @@ public:
    };
 
 protected:
-   ::collection::map < int32_t, int32_t, LPBYTE, LPBYTE > m_alpha_spread__24CC_filterMap;
-   ::collection::map < int32_t, int32_t, LPBYTE, LPBYTE > m_alpha_spread__32CC_filterMap;
+   map < int32_t, int32_t, LPBYTE, LPBYTE > m_alpha_spread__24CC_filterMap;
+   map < int32_t, int32_t, LPBYTE, LPBYTE > m_alpha_spread__32CC_filterMap;
 
 
 public:
@@ -95,9 +95,9 @@ public:
       COLORREF cr);
 
 
-   bool true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL, ::ca::dib * pdibWork2 = NULL, ::ca::dib * pdibWork3 = NULL);
+   bool true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = ::null(), ::ca::dib * pdibWork2 = ::null(), ::ca::dib * pdibWork3 = ::null());
 
-   bool true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL, ::ca::dib * pdibWork2 = NULL, ::ca::dib * pdibWork3 = NULL);
+   bool true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = ::null(), ::ca::dib * pdibWork2 = ::null(), ::ca::dib * pdibWork3 = ::null());
 
    bool blur(::ca::graphics * pdcDst, point ptDst, size size, ::ca::graphics * pdcSrc, point ptSrc, int32_t iRadius);
 
@@ -115,8 +115,8 @@ public:
       int32_t w3);
 
 
-   bool color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL, ::ca::dib * pdibWork2 = NULL);
-   bool color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL);
+   bool color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = ::null(), ::ca::dib * pdibWork2 = ::null());
+   bool color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = ::null());
 
    bool color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
    bool color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
@@ -263,8 +263,8 @@ public:
       ::ca::graphics * pdcAlpha, // alpha information device (in red channel)
       point ptAlpha,
       BYTE alphaConstant = 255,
-      ::ca::dib * pdibWorkA = NULL,
-      ::ca::dib * pdibWorkB = NULL);*/
+      ::ca::dib * pdibWorkA = ::null(),
+      ::ca::dib * pdibWorkB = ::null());*/
 
 
 /*   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::dib * pdibSrc, point ptSrc,

@@ -145,17 +145,17 @@ namespace ca
       }
 
 
-      void application::ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
+      void application::ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          return m_papp->m_psystem->m_spdir.m_p->ls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
 
-      void application::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
+      void application::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          return m_papp->m_psystem->m_spdir.m_p->ls(m_papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
 
-      void application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
+      void application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          return m_papp->m_psystem->m_spdir.m_p->rls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize);
       }

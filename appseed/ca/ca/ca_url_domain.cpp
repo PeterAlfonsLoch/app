@@ -3,17 +3,17 @@
 url_domain_base::url_domain_base()
 {
 
-   m_pszRadix     = NULL;
+   m_pszRadix     = ::null();
    m_iLenRadix    = 0;
-   m_pszSuffix    = NULL;
+   m_pszSuffix    = ::null();
    m_iLenSuffix   = 0;
-   m_pszDomain    = NULL;
+   m_pszDomain    = ::null();
    m_iLenDomain   = 0;
-   m_pszPrefix    = NULL;
+   m_pszPrefix    = ::null();
    m_iLenPrefix   = 0;
-   m_pszTopLevel  = NULL;
+   m_pszTopLevel  = ::null();
    m_iLenTopLevel = 0;
-   m_pszName      = NULL;
+   m_pszName      = ::null();
    m_iLenName     = 0;
 
    m_iCount       = 0;
@@ -55,7 +55,7 @@ void url_domain_base::create(const char * pszServerName)
    }
    else
    {
-      m_pszTopLevel     = NULL;
+      m_pszTopLevel     = ::null();
       m_iLenTopLevel    = 0;
       m_pszRadix        = psz;
       m_iLenRadix       = m_strOriginalName.get_length();
@@ -92,9 +92,9 @@ void url_domain_base::create(const char * pszServerName)
    {
       throw "not_expected";
    }
-   const char * pszPreTopLevel2 = NULL;
+   const char * pszPreTopLevel2 = ::null();
    int32_t iLenPreTopLevel2 = 0;
-   const char * pszPreTopLevel3 = NULL;
+   const char * pszPreTopLevel3 = ::null();
    //      int32_t iLenPreTopLevel3 = 0;
    if(m_iCount >= 4)
    {
@@ -219,7 +219,7 @@ void url_domain_base::create(const char * pszServerName)
    }
    m_pszDomain       = m_pszRadix;
    m_iLenDomain      = pszEnd - m_pszDomain;
-   if(m_pszPrefix != NULL)
+   if(m_pszPrefix != ::null())
    {
       m_pszName      = m_pszPrefix;
       m_iLenName     = pszEnd - m_pszPrefix;
@@ -239,7 +239,7 @@ string url_domain_base::get_name(const char * pszServerName)
 
    domainbase.create(pszServerName);
 
-   if(domainbase.m_pszName != NULL)
+   if(domainbase.m_pszName != ::null())
       return string(domainbase.m_pszName, domainbase.m_iLenName);
    else
       return "";
@@ -251,32 +251,32 @@ void url_domain::create(const char * pszServerName)
 
    url_domain_base::create(pszServerName);
 
-   if(m_pszRadix != NULL)
+   if(m_pszRadix != ::null())
    {
       m_strRadix.assign(m_pszRadix, m_iLenRadix);
    }
 
-   if(m_pszSuffix != NULL)
+   if(m_pszSuffix != ::null())
    {
       m_strSuffix.assign(m_pszSuffix, m_iLenSuffix);
    }
 
-   if(m_pszDomain != NULL)
+   if(m_pszDomain != ::null())
    {
       m_strDomain.assign(m_pszDomain, m_iLenDomain);
    }
 
-   if(m_pszPrefix != NULL)
+   if(m_pszPrefix != ::null())
    {
       m_strPrefix.assign(m_pszPrefix, m_iLenPrefix);
    }
 
-   if(m_pszTopLevel != NULL)
+   if(m_pszTopLevel != ::null())
    {
       m_strTopLevel.assign(m_pszTopLevel, m_iLenTopLevel);
    }
 
-   if(m_pszName != NULL)
+   if(m_pszName != ::null())
    {
       m_strName.assign(m_pszName, m_iLenName);
    }

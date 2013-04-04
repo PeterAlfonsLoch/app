@@ -35,7 +35,7 @@ namespace visual
 
       void DrawAndFillBeziers(
          ::ca::graphics                     *pdc,
-         base_array<point_array, point_array &> *
+         array<point_array, point_array &> *
                             lpglyph,
          double               dRateX,
          LPPOINT               lppointOffset);

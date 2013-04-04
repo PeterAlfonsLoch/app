@@ -10,7 +10,7 @@ namespace ca
       void * p = ::operator new(nSize);
       /*try
       {
-         if(::ca::get_thread_state() != NULL)
+         if(::ca::get_thread_state() != ::null())
          {
             ::ca::get_thread_state()->m_heapitema.add_item(p, nSize);
          }
@@ -29,7 +29,7 @@ namespace ca
       void * p = ::operator new(nSize, ___CLIENT_BLOCK, lpszFileName, nLine);
       /*try
       {
-         if(::ca::get_thread_state() != NULL)
+         if(::ca::get_thread_state() != ::null())
          {
             ::ca::get_thread_state()->m_heapitema.add_item(p, nSize);
          }

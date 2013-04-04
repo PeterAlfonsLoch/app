@@ -9,7 +9,7 @@ document_template::document_template(::ca::application * papp, const char * pszM
    m_typeinfoDocument         = pDocClass;
    m_typeinfoFrame            = pFrameClass;
    m_typeinfoView             = pViewClass;
-   m_pAttachedFactory         = NULL;
+   m_pAttachedFactory         = ::null();
    m_bAutoDelete              = TRUE;   // usually allocated on the heap
 
    load_template();
@@ -36,7 +36,7 @@ bool document_template::GetDocString(string & rString, enum DocStringIndex i) co
 
 void document_template::add_document(::user::document_interface * pdocument)
 {
-   ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
+   ASSERT(pdocument->m_pdocumentemplate == ::null());   // no template attached yet
    Application.defer_add_document_template(this);
    pdocument->m_pdocumentemplate = this;
    pdocument->install_message_handling(pdocument);
@@ -45,17 +45,17 @@ void document_template::add_document(::user::document_interface * pdocument)
 void document_template::remove_document(::user::document_interface * pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
-   pdocument->m_pdocumentemplate = NULL;
+   pdocument->m_pdocumentemplate = ::null();
 }
 
 document_template::Confidence document_template::MatchDocType(const char * lpszPathName,
    ::user::document_interface *& rpDocMatch)
 {
-   ASSERT(lpszPathName != NULL);
-   rpDocMatch = NULL;
+   ASSERT(lpszPathName != ::null());
+   rpDocMatch = ::null();
 
    // go through all documents
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       ::user::document_interface * pdocument = get_document(index);
@@ -95,14 +95,14 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
       ASSERT(FALSE);
-      return NULL;
+      return ::null();
    }
    ::user::document_interface * pdocument = dynamic_cast < ::user::document_interface * > (Application.alloc(m_typeinfoDocument));
-   if (pdocument == NULL)
+   if (pdocument == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
          m_typeinfoDocument.name());
-      return NULL;
+      return ::null();
    }
    pdocument->on_alloc(get_app());
    ASSERT_KINDOF(::user::document_interface, pdocument);
@@ -122,7 +122,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
    stacker < ::user::create_context > context(pcreatecontext->m_user);
    context->m_pCurrentFrame    = pOther;
    context->m_pCurrentDoc      = pdocument;
-   if(pcreatecontext->m_pviewAlloc != NULL)
+   if(pcreatecontext->m_pviewAlloc != ::null())
    {
       context->m_puiNew           = pcreatecontext->m_pviewAlloc;   
    }
@@ -136,14 +136,14 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_frame.\n");
       ASSERT(FALSE);
-      return NULL;
+      return ::null();
    }
    frame_window* pFrame = dynamic_cast < frame_window * > (Application.alloc(m_typeinfoFrame));
-   if (pFrame == NULL)
+   if (pFrame == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
          m_typeinfoFrame.name());
-      return NULL;
+      return ::null();
    }
    ASSERT_KINDOF(frame_window, pFrame);
    pFrame->m_pdocumenttemplate = this;
@@ -158,7 +158,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: document_template couldn't create a frame.\n");
       // frame will be deleted in PostNcDestroy cleanup
-      return NULL;
+      return ::null();
    }
 
    // it worked !
@@ -170,24 +170,24 @@ frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user
    bool bCreateView)
 {
    create_context context;
-   context.m_pCurrentFrame = NULL;
+   context.m_pCurrentFrame = ::null();
    context.m_pCurrentDoc = pdocument;
-   context.m_typeinfoNewView = bCreateView ? m_pOleViewClass : NULL;
+   context.m_typeinfoNewView = bCreateView ? m_pOleViewClass : ::null();
    context.m_pNewDocTemplate = this;
 
-   if (m_pOleFrameClass == NULL)
+   if (m_pOleFrameClass == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: pOleFrameClass not specified for doc template.\n");
-      return NULL;
+      return ::null();
    }
 
    ASSERT(!m_strServerMatter.is_empty()); // must have a resource ID to load from
    frame_window* pFrame = dynamic_cast < frame_window * > (System.alloc(m_pOleFrameClass));
-   if (pFrame == NULL)
+   if (pFrame == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
          m_pOleFrameClass->name());
-      return NULL;
+      return ::null();
    }
 
    // create new from resource (OLE frames are created as child windows)
@@ -196,7 +196,7 @@ frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: document_template couldn't create an OLE frame.\n");
       // frame will be deleted in PostNcDestroy cleanup
-      return NULL;
+      return ::null();
    }
 
    // it worked !
@@ -216,7 +216,7 @@ void document_template::InitialUpdateFrame(frame_window* pFrame, ::user::documen
 
 bool document_template::save_all_modified()
 {
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       ::user::document_interface * pdocument = get_document(index);
@@ -246,7 +246,7 @@ void document_template::close_all_documents(bool)
 
 void document_template::on_idle()
 {
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       ::user::document_interface * pdocument = get_document(index);
@@ -271,12 +271,12 @@ void document_template::dump(dump_context & dumpcontext) const
    if (m_typeinfoDocument)
       dumpcontext << "\nm_pDocClass = " << m_typeinfoDocument.name();
    else
-      dumpcontext << "\nm_pDocClass = NULL";
+      dumpcontext << "\nm_pDocClass = ::null()";
 
    if (dumpcontext.GetDepth() > 0)
    {
       dumpcontext << "\ndocument list = {";
-      count count = get_document_count();
+      ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
          ::user::document_interface * pdocument = get_document(index);
@@ -292,7 +292,7 @@ void document_template::assert_valid() const
 {
    command_target::assert_valid();
 
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       ::user::document_interface * pdocument = get_document(index);
@@ -304,7 +304,7 @@ void document_template::assert_valid() const
 
 void document_template::update_all_views(::view * pviewSender, LPARAM lhint, ::ca::object * puh)
 {
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       ::user::document_interface * pdoc = get_document(index);

@@ -30,7 +30,7 @@ namespace plane
       //   return;
       //m_strAppName.Empty();
       //m_strId.Empty();
-      if(pszId == NULL)
+      if(pszId == ::null())
       {
 #ifdef WINDOWSEX
          wstring wstr = ::GetCommandLineW();
@@ -122,7 +122,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      planebase::application::_001OnFileNew(NULL);
+      planebase::application::_001OnFileNew(::null());
    }
 
 
@@ -225,7 +225,7 @@ namespace plane
    {
 
 
-      ::planebase::application * papp = NULL;
+      ::planebase::application * papp = ::null();
 
 
       try
@@ -322,7 +322,7 @@ namespace plane
       catch(...)
       {
 
-         papp = NULL;
+         papp = ::null();
 
       }
 

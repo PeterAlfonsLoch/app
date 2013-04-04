@@ -17,13 +17,13 @@ public:
 	};
 
 // Construction
-	object_list(count nBlockSize = 10);
+	object_list(::count nBlockSize = 10);
 	virtual ~object_list();
 
 // Attributes (head and tail)
-	// count of elements
-	count get_count() const;
-	count get_size() const;
+	// ::count of elements
+	::count get_count() const;
+	::count get_size() const;
 	bool is_empty() const;
 
 	// peek at head or tail
@@ -70,11 +70,11 @@ public:
 
 
 	// helper functions (note: O(n) speed)
-	POSITION find(::ca::object* searchValue, POSITION startAfter = NULL) const;
+	POSITION find(::ca::object* searchValue, POSITION startAfter = ::null()) const;
 						// defaults to starting at the HEAD
-						// return NULL if not found
+						// return ::null() if not found
 	POSITION find_index(index nIndex) const;
-						// get the 'nIndex'th element (may return NULL)
+						// get the 'nIndex'th element (may return ::null())
 
 // Implementation
 protected:
@@ -109,16 +109,16 @@ inline ::count object_list::get_size() const
 inline bool object_list::is_empty() const
    { return m_nCount == 0; }
 inline ::ca::object*& object_list::get_head()
-   { ASSERT(m_pnodeHead != NULL);
+   { ASSERT(m_pnodeHead != ::null());
       return m_pnodeHead->m_pdata; }
 inline const ::ca::object* object_list::get_head() const
-   { ASSERT(m_pnodeHead != NULL);
+   { ASSERT(m_pnodeHead != ::null());
       return m_pnodeHead->m_pdata; }
 inline ::ca::object*& object_list::get_tail()
-   { ASSERT(m_pnodeTail != NULL);
+   { ASSERT(m_pnodeTail != ::null());
       return m_pnodeTail->m_pdata; }
 inline const ::ca::object* object_list::get_tail() const
-   { ASSERT(m_pnodeTail != NULL);
+   { ASSERT(m_pnodeTail != ::null());
       return m_pnodeTail->m_pdata; }
 inline POSITION object_list::get_head_position() const
    { return (POSITION) m_pnodeHead; }
@@ -127,46 +127,46 @@ inline POSITION object_list::get_tail_position() const
 inline ::ca::object*& object_list::get_next(POSITION& rPosition) // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnext;
       return pNode->m_pdata; }
 inline const ::ca::object* object_list::get_next(POSITION& rPosition) const // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnext;
       return pNode->m_pdata; }
 inline ::ca::object*& object_list::get_previous(POSITION& rPosition) // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pprevious;
       return pNode->m_pdata; }
 inline const ::ca::object* object_list::get_previous(POSITION& rPosition) const // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pprevious;
       return pNode->m_pdata; }
 inline ::ca::object*& object_list::get_at(POSITION position)
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       return pNode->m_pdata; }
 inline const ::ca::object* object_list::get_at(POSITION position) const
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       return pNode->m_pdata; }
 inline void object_list::set_at(POSITION pos, ::ca::object* newElement)
    { node* pNode = (node*) pos;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       pNode->m_pdata = newElement; }

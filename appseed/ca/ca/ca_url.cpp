@@ -176,7 +176,7 @@ namespace ca
    string url::path(const char * psz1, const char * psz2)
    {
 
-      if(psz2 == NULL)
+      if(psz2 == ::null())
          return psz1;
 
       string str1(psz1);
@@ -290,7 +290,7 @@ namespace ca
          else
          {
 
-            char ch = (char) strtol(str.Mid(iFind + 1, 2), NULL, 16);
+            char ch = (char) strtol(str.Mid(iFind + 1, 2), ::null(), 16);
 
             if(ch != 0)
             {
@@ -507,7 +507,7 @@ namespace ca
 
       char * psz = str.GetBufferSetLength(iLenUrl + iLenKey + strValue.get_length() + 2);
 
-      if(pszQuery == NULL)
+      if(pszQuery == ::null())
       {
          strcpy(psz, pszUrl);
          psz[iLenUrl] = '?';
@@ -558,7 +558,7 @@ namespace ca
                   psz[iFinalLen] = '&';
                   iFinalLen++;
                }
-               if(pszQueryEnd == NULL)
+               if(pszQueryEnd == ::null())
                {
                   strncpy(&psz[iFinalLen], pszQuery, iLenUrl - (pszQuery - pszUrl));
                   iFinalLen += iLenUrl - (pszQuery - pszUrl);
@@ -573,7 +573,7 @@ namespace ca
                }
             }
             pszQuery = pszQueryEnd;
-            if(pszQuery == NULL)
+            if(pszQuery == ::null())
                break;
             pszQuery++;
          }
@@ -1317,7 +1317,7 @@ namespace ca
       }
       if(*psz != '\0' && *psz != '/')
          return false;
-      if(ppszRequest != NULL)
+      if(ppszRequest != ::null())
       {
          *ppszRequest = psz;
       }

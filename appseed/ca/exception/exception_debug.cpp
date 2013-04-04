@@ -141,7 +141,7 @@ bool EnforceFilter( bool bEnforce )
 
    HMODULE hLib = GetModuleHandle( "kernel32.dll" );
 
-   if( hLib == NULL )
+   if( hLib == ::null() )
    {
       ErrCode = GetLastError();
       _ASSERTE( !"GetModuleHandle(kernel32.dll) failed." );

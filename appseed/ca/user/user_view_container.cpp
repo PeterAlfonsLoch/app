@@ -13,7 +13,7 @@ namespace user
 
    ::user::interaction * view_container::get_view()
    {
-      return NULL;
+      return ::null();
    }
 
    id view_container::get_view_id()

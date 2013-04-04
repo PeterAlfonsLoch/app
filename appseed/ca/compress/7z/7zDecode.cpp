@@ -93,7 +93,7 @@ namespace n7z
 
    HRESULT CDecoder::Decode(
       ::libcompress::codecs_info_interface * codecsInfo,
-      const base_array < ::libcompress::codec_info_ex > * externalCodecs,
+      const array < ::libcompress::codec_info_ex > * externalCodecs,
       ::ca::byte_input_stream *inStream,
       file_position startPos,
       const file_size * packSizes,
@@ -108,7 +108,7 @@ namespace n7z
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
-      ::collection::smart_pointer_array < ::ca::reader > inStreams;
+      smart_pointer_array < ::ca::reader > inStreams;
 
       ::ca::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
@@ -126,7 +126,7 @@ namespace n7z
          inStreams.add((::ca::reader *) streamSpec);
       }
 
-      count numCoders = folderInfo.Coders.get_count();
+      ::count numCoders = folderInfo.Coders.get_count();
 
       CBindInfoEx bindInfo;
       ConvertFolderItemInfoToBindInfo(folderInfo, bindInfo);
@@ -280,8 +280,8 @@ namespace n7z
 
          uint32_t numInStreams = (uint32_t)coderInfo.NumInStreams;
          uint32_t numOutStreams = (uint32_t)coderInfo.NumOutStreams;
-         base_array<const file_size *> packSizesPointers;
-         base_array<const file_size *> unpackSizesPointers;
+         array<const file_size *> packSizesPointers;
+         array<const file_size *> unpackSizesPointers;
          packSizesPointers.set_size(0, numInStreams);
          unpackSizesPointers.set_size(0, numOutStreams);
          uint32_t j;
@@ -325,7 +325,7 @@ namespace n7z
          inStreamPointers.add(inStreams(i));
       spa(::ca::writer) outStreamPointers;
       outStreamPointers.add(outStream);
-      return _mixerCoder->Code(inStreamPointers, NULL, outStreamPointers, NULL, compressProgress);
+      return _mixerCoder->Code(inStreamPointers, ::null(), outStreamPointers, ::null(), compressProgress);
    }
 
 } // namespace n7z

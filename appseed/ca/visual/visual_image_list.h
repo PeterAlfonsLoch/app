@@ -45,7 +45,7 @@ public:
    int32_t add_icon_os_data(void * pvoid);
    int32_t add_matter_icon(const char * lpcszMatter);
    int32_t add_file(const char * lpcsz);
-   int32_t add_matter(const char * lpcsz, ::ca::application * papp = NULL);
+   int32_t add_matter(const char * lpcsz, ::ca::application * papp = ::null());
    int32_t add_std_matter(const char * lpcsz);
 
    bool draw(::ca::graphics * pdc, int32_t iImage, point pt, int32_t iFlag);

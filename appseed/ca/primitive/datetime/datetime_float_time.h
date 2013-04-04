@@ -51,7 +51,7 @@ namespace datetime
 
    inline WINBOOL convert_system_time_to_float_time(const SYSTEMTIME & systimeSrc, double * pVarDtTm)
    {
-	   ENSURE(pVarDtTm!=NULL);
+	   ENSURE(pVarDtTm!=::null());
 	   //Convert using ::SystemTimeToVariantTime and store the result in pVarDtTm then
 	   //convert variant time back to system time and compare to original system time.
 	   WINBOOL ok = ::SystemTimeToFloatTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
@@ -518,11 +518,11 @@ namespace datetime
 
 #ifdef WINDOWS
 
-      return float_time(::_time64(NULL));
+      return float_time(::_time64(::null()));
 
 #else
 
-      return float_time(::time(NULL));
+      return float_time(::time(::null()));
 
 #endif
 
@@ -948,7 +948,7 @@ valid : invalid;
    inline bool float_time::ParseDateTime(const char * lpszDate, uint32_t dwFlags, LCID lcid) RELEASENOTHROW
    {
 
-      const char * pszDate = ( lpszDate == NULL ) ? "" : lpszDate;
+      const char * pszDate = ( lpszDate == ::null() ) ? "" : lpszDate;
 
       HRESULT hr;
 
@@ -1031,7 +1031,7 @@ valid : invalid;
 
    inline string float_time::Format(LPCTSTR pFormat) const
    {
-      ATLENSURE_THROW(pFormat != NULL, E_INVALIDARG);
+      ATLENSURE_THROW(pFormat != ::null(), E_INVALIDARG);
 
       // If null, return empty string
       if(GetStatus() == null)

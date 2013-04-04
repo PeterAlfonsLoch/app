@@ -31,7 +31,7 @@ namespace http
       if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
       {
          ::ca::parse pa(content_type,";=");
-         char *tempcmp = NULL;
+         char *tempcmp = ::null();
          size_t tc = 0;
          strsize iBoundaryLength = 0;
          string str = pa.getword();
@@ -210,7 +210,7 @@ namespace http
                }
             } 
          }
-         if(tempcmp != NULL)
+         if(tempcmp != ::null())
          {
             delete[] tempcmp;
          }

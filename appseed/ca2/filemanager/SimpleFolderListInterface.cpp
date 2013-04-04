@@ -304,7 +304,7 @@ namespace filemanager
       return GetFileManager()->get_item();
    }
 
-   count SimpleFolderListInterface::_001GetItemCount()
+   ::count SimpleFolderListInterface::_001GetItemCount()
    {
       return m_foldera.GetFolderCount();
    }

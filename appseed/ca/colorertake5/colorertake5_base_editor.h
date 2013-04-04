@@ -24,9 +24,9 @@ namespace colorertake5
       * Initial constructor.
       * Creates uninitialized base editor functionality support.
       * @param pf ParserFactory, used as source of all created
-      *        parsers (HRC, HRD, Text parser). Can't be NULL.
+      *        parsers (HRC, HRD, Text parser). Can't be ::null().
       * @param lineSource Object, that provides parser with
-      *        text data in line-separated form. Can't be NULL.
+      *        text data in line-separated form. Can't be ::null().
       */
 
       base_editor(::ca::application * papp);
@@ -50,7 +50,7 @@ namespace colorertake5
       /**
       * Installs specified RegionMapper, which
       * maps HRC Regions into color data.
-      * @param rm RegionMapper object to ::collection::map region values into colors.
+      * @param rm RegionMapper object to map region values into colors.
       */
       void setRegionMapper(RegionMapper *rm);
 
@@ -160,7 +160,7 @@ namespace colorertake5
       * size of reparsed text is choosed according to information
       * about visible text range and modification events.
       * @todo If number of lines, to be reparsed is more, than backParse parameter,
-      * then method will return NULL, until validate() method is called.
+      * then method will return ::null(), until validate() method is called.
       */
       LineRegion *getLineRegions(index lno);
 
@@ -213,13 +213,13 @@ namespace colorertake5
       * @param wSize  Number of currently visible text lines.
       *               This number must includes all partially visible lines.
       */
-      void visibleTextEvent(index wStart, count wSize);
+      void visibleTextEvent(index wStart, ::count wSize);
 
       /**
-      * Informs about total lines count change.
+      * Informs about total lines ::count change.
       * This must include initial lines number setting.
       */
-      void lineCountEvent(count newLineCount);
+      void lineCountEvent(::count newLineCount);
 
       /** Basic HRC region - default text (background color) */
       class region *def_Text;
@@ -257,11 +257,11 @@ namespace colorertake5
       int32_t backParse;
       // ::ca::window area
       index wStart;
-      count wSize;
+      ::count wSize;
       // line count
-      count lineCount;
+      ::count lineCount;
       // this->get_size of line regions
-      count lrSize;
+      ::count lrSize;
       // position of last validLine
       index invalidLine;
       // no lines structure changes, just single line change

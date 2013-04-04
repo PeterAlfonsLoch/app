@@ -62,9 +62,9 @@ namespace uinteraction
 
          ::ca::type_info                                             m_typeinfoControlBoxButton;
 
-         ::collection::map < e_button, e_button, id, id >            m_mapButtonId;
-         ::collection::map < id, id, e_button, e_button >            m_mapIdButton;
-         ::collection::map < e_button, e_button, bool, bool >        m_buttonmapPresent;
+         map < e_button, e_button, id, id >            m_mapButtonId;
+         map < id, id, e_button, e_button >            m_mapIdButton;
+         map < e_button, e_button, bool, bool >        m_buttonmapPresent;
 
 
          WorkSet *                                                   m_pworkset;

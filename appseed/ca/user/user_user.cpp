@@ -7,9 +7,9 @@ namespace user
 
    user::user()
    {
-      m_pkeyboardfocus  = NULL;
-      m_pshellimageset  = NULL;
-      m_pkeyboard       = NULL;
+      m_pkeyboardfocus  = ::null();
+      m_pshellimageset  = ::null();
+      m_pkeyboard       = ::null();
    }
 
    user::~user()
@@ -31,7 +31,7 @@ namespace user
 
       m_pkeyboard = new ::user::keyboard(m_papp);
 
-      if(m_pkeyboard == NULL)
+      if(m_pkeyboard == ::null())
          return false;
 
 
@@ -75,11 +75,11 @@ namespace user
       string strStyleUser;
       if(docUser.load(strUser))
       {
-         if(docUser.get_child("lang") != NULL)
+         if(docUser.get_child("lang") != ::null())
          {
             strLangUser = docUser.get_child("lang")->get_value();
          }
-         if(docUser.get_child("style") != NULL)
+         if(docUser.get_child("style") != ::null())
          {
             strStyleUser = docUser.get_child("style")->get_value();
          }
@@ -104,7 +104,7 @@ namespace user
          && strLicense.has_char())
       {
 
-         if(&ApplicationUser == NULL)
+         if(&ApplicationUser == ::null())
          {
             return false;
          }
@@ -155,7 +155,7 @@ retry_license:
    int32_t user::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      if(m_papp->m_psession != NULL && m_papp->m_psession->m_pbergedgeInterface != NULL)
+      if(m_papp->m_psession != ::null() && m_papp->m_psession->m_pbergedgeInterface != ::null())
       {
          return m_papp->m_psession->m_pbergedgeInterface->simple_message_box(pwndOwner, pszMessage, fuStyle);
       }
@@ -180,14 +180,14 @@ retry_license:
          {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == ::null() ? ::null() : pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
          }*/
       }
       catch(...)
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? ::ca::null() : pwndOwner->get_handle(), strMessage, Application.m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == ::null() ? ::ca::null() : pwndOwner->get_handle(), strMessage, Application.m_strAppName, fuStyle);
       }
       if(box.m_strResponse == "ok")
       {
@@ -313,7 +313,7 @@ retry_license:
    bool user::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == NULL)
+      if(pcentral == ::null())
          return false;
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
@@ -336,32 +336,32 @@ retry_license:
       if(Application.is_session() || Application.is_bergedge())
       {
          ::user::interaction * puieFocus = Application.get_focus_guie();
-         if(m_pkeyboardfocus != NULL && puieFocus != NULL)
+         if(m_pkeyboardfocus != ::null() && puieFocus != ::null())
          {
             if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
-               return NULL;
+               return ::null();
             return m_pkeyboardfocus;
          }
          else
          {
-            return NULL;
+            return ::null();
          }
       }
       else if(Application.is_system() || Application.is_cube())
       {
          return m_pkeyboardfocus;
       }
-      else if(Application.m_psession != NULL)
+      else if(Application.m_psession != ::null())
       {
          return Sess(get_app()).user()->get_keyboard_focus();
       }
-      else if(Application.m_psystem != NULL)
+      else if(Application.m_psystem != ::null())
       {
          return Sys(get_app()).user()->get_keyboard_focus();
       }
       else
       {
-         return NULL;
+         return ::null();
       }
    }
 
@@ -369,27 +369,27 @@ retry_license:
    {
       if(Application.is_session() || Application.is_bergedge())
       {
-         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
+         if(pkeyboardfocus == ::null() || pkeyboardfocus->keyboard_focus_OnSetFocus())
          {
             m_pkeyboardfocus = pkeyboardfocus;
          }
-         if(Application.m_psystem != NULL)
+         if(Application.m_psystem != ::null())
          {
             return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
          }
       }
       else if(Application.is_system() || Application.is_cube())
       {
-         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
+         if(pkeyboardfocus == ::null() || pkeyboardfocus->keyboard_focus_OnSetFocus())
          {
             m_pkeyboardfocus = pkeyboardfocus;
          }
       }
-      else if(Application.m_psession != NULL)
+      else if(Application.m_psession != ::null())
       {
          return Sess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
-      else if(Application.m_psystem != NULL)
+      else if(Application.m_psystem != ::null())
       {
          return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
@@ -419,13 +419,13 @@ retry_license:
    bool user::set_keyboard_layout(const char * pszPath, bool bUser)
    {
 
-      if(pszPath == NULL)
+      if(pszPath == ::null())
       {
 
-         if(&keyboard().layout() != NULL)
+         if(&keyboard().layout() != ::null())
          {
 
-            if(Application.fontopus().m_puser != NULL
+            if(Application.fontopus().m_puser != ::null()
                && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
             {
 
@@ -442,7 +442,7 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
             return false;
 
-         if(Application.fontopus().m_puser != NULL
+         if(Application.fontopus().m_puser != ::null()
             && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
          {
 
@@ -505,7 +505,7 @@ retry_license:
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {
          ::user::interaction * pwnd = wnda.element_at(i);
-         if(pwnd != NULL && pwnd->IsWindow())
+         if(pwnd != ::null() && pwnd->IsWindow())
          {
             pwnd->send_message(message, wparam, lparam);
             pwnd->SendMessageToDescendants(message, wparam, lparam);

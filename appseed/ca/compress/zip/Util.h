@@ -14,8 +14,8 @@ namespace zip
       virtual ~Util();
 
 
-      void ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < int64_t, int64_t > * piaSize = NULL, e_extract eextract = extract_first);
-      void ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+      void ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath = ::null(), stringa * pstraTitle = ::null(), stringa * pstraRelative = ::null(), array < bool, bool > * pbaIsDir = ::null(), array < int64_t, int64_t > * piaSize = ::null(), e_extract eextract = extract_first);
+      void ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = ::null(), stringa * pstraTitle = ::null());
       bool extract(::ca::application * papp, const char * lpszFileName, const char * lpszExtractFileName);
       bool extract_all(const char * pszDir, ::ca::file * pfile);
       bool exists(::ca::application * papp, const char * pszPath);

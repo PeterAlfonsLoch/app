@@ -59,7 +59,7 @@ public:
 
    virtual void SetServiceStatus();
 
-   virtual bool is_stopping();
+   virtual bool get_run();
 
    virtual void call_server();
 
@@ -67,7 +67,7 @@ public:
 
    static void serve(service_base& service);
 
-#ifdef WINDOWSX
+#ifdef WINDOWSEX
 
    static void WINAPI ServiceMain(DWORD argumentCount, PWSTR* arguments);
 

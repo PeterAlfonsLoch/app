@@ -60,7 +60,7 @@ namespace user
    void combo_list::_001OnDrawVerisimple(::ca::graphics * pdc)
    {
 
-      count c = m_pcombo->_001GetListCount();
+      ::count c = m_pcombo->_001GetListCount();
       
       string strItem;
 
@@ -143,7 +143,7 @@ namespace user
    void combo_list::_001OnDrawSimply(::ca::graphics * pdc)
    {
 
-      count c = m_pcombo->_001GetListCount();
+      ::count c = m_pcombo->_001GetListCount();
       
       string strItem;
 
@@ -470,7 +470,7 @@ namespace user
    index combo_list::hit_test(point pt, e_element & eelement)
    {
 
-      count c = m_pcombo->_001GetListCount();
+      ::count c = m_pcombo->_001GetListCount();
 
       rect rectClient;
 

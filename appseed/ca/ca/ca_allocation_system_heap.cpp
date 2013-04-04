@@ -40,8 +40,8 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
 #endif
 //#endif
 
-   if(p == NULL)
-      return NULL;
+   if(p == ::null())
+      return ::null();
 
    ((uint32_t *)p)[0] = 0;
 
@@ -63,20 +63,20 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
    int32_t iSize = sizeof(size_t);
    int32_t iMod = pOld[- 1 - iSize];
    if(iMod < 1 || iMod > 4)
-      return NULL;
+      return ::null();
    size_t sizeOld = *((size_t *)&((uint32_t *) (pOld - iMod - sizeof(size_t)))[1]);
 #ifdef WINDOWSEX
    byte * p = (byte *) ::HeapReAlloc(g_system_heap(), 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
 #else
    byte * p = (byte *) ::realloc(pOld - iMod- sizeof(size_t), ((size + 4 +  sizeof(size_t) + 3) & ~3));
 #endif
-   if(p == NULL)
+   if(p == ::null())
    {
       byte * pNew = (byte *) system_heap_alloc(size);
-      if(pNew == NULL)
+      if(pNew == ::null())
       {
          system_heap_free(pvoidOld);
-         return NULL;
+         return ::null();
       }
       memcpy(pNew, pvoidOld, min(size, sizeOld));
 //#if ZEROED_ALLOC

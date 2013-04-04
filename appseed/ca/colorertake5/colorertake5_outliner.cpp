@@ -33,7 +33,7 @@ namespace colorertake5
    }
 
 
-   count Outliner::itemCount()
+   ::count Outliner::itemCount()
    {
       return outline.get_size();
    }

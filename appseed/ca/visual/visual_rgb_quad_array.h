@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca rgb_quad_array : 
-   public base_array < RGBQUAD, RGBQUAD >
+   public array < RGBQUAD, RGBQUAD >
 {
 public:
    rgb_quad_array();

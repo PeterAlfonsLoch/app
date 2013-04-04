@@ -22,7 +22,7 @@ public:
 
 
    int32_t                  m_iHover;
-/* ::collection::smart_pointer_array < SimpleMenuBarButton , SimpleMenuBarButton &>
+/* smart_pointer_array < SimpleMenuBarButton , SimpleMenuBarButton &>
                         m_buttona;*/
 
    image_list *         m_pimagelist;

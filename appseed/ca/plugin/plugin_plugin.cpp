@@ -37,27 +37,27 @@ namespace plugin
    plugin::plugin()
    {
 
-      m_papp                  = NULL;
-      m_puiHost               = NULL;
+      m_papp                  = ::null();
+      m_puiHost               = ::null();
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
-      m_pbReady               = NULL;
-      m_psystem               = NULL;
+      m_pbReady               = ::null();
+      m_psystem               = ::null();
       m_bMainReady            = false;
 
-      m_pbitmap               = NULL;
-      m_pgraphics             = NULL;
+      m_pbitmap               = ::null();
+      m_pgraphics             = ::null();
 
 #ifdef WINDOWS
       m_hfileBitmap           = INVALID_HANDLE_VALUE;
-      m_hfilemapBitmap        = NULL;
-      m_pcolorref             = NULL;
+      m_hfilemapBitmap        = ::null();
+      m_pcolorref             = ::null();
 #else
       m_hfileBitmap           = -1;
       m_pcolorref             = (uint32_t *) MAP_FAILED;
 #endif
-      m_pmutexBitmap          = NULL;
+      m_pmutexBitmap          = ::null();
 
    }
 
@@ -94,7 +94,7 @@ namespace plugin
 
       mutex_lock mlSystem(m_phost->m_mutexSystem, true);
 
-      if(m_phost->get_system() == NULL)
+      if(m_phost->get_system() == ::null())
       {
 
 #ifdef WINDOWS
@@ -133,7 +133,7 @@ namespace plugin
          if(!psystem->process_initialize())
             return 0;
 
-         psystem->start_application(true, NULL);
+         psystem->start_application(true, ::null());
 
 
 
@@ -141,7 +141,7 @@ namespace plugin
 
       mlSystem.unlock();
 
-      if(m_psystem == NULL)
+      if(m_psystem == ::null())
       {
 
          m_bAppStarted = false;
@@ -179,7 +179,7 @@ namespace plugin
       m_puiHost->m_pplugin = this;
       m_puiHost->install_message_handling(m_puiHost->m_pimpl);
 
-      if(m_puiHost != NULL)
+      if(m_puiHost != ::null())
       {
          m_psystem->oprop("top_parent") = m_puiHost;
 /*         m_puiHost->m_bRectOk = true;
@@ -197,14 +197,14 @@ namespace plugin
       m_psystem->add_frame(m_puiHost);
       m_puiHost->layout();
 
-      if(m_pbReady == NULL)
+      if(m_pbReady == ::null())
          m_pbReady = (bool *) ca2_alloc(sizeof(bool));
 
 
 #ifdef WINDOWS
       // Create Message Queue
       MESSAGE msg;
-	   PeekMessage(&msg, NULL, 0, 0xffffffffu, FALSE);
+	   PeekMessage(&msg, ::null(), 0, 0xffffffffu, FALSE);
 #endif
 
 
@@ -239,7 +239,7 @@ namespace plugin
 
          ensure_bitmap_data(lprect->right - lprect->left, lprect->bottom - lprect->top, true);
 
-         if(m_puiHost == NULL)
+         if(m_puiHost == ::null())
             return;
 
          if(m_dib.is_null())
@@ -254,7 +254,7 @@ namespace plugin
 
 //         ::ca::graphics_sp dc(get_app());
 
-         //dc->CreateCompatibleDC(NULL);
+         //dc->CreateCompatibleDC(::null());
 
          //m_dib->defer_realize(dc);
 
@@ -376,11 +376,11 @@ namespace plugin
 
       ::ca::property_set setLogin(get_app());
 
-      ::fontopus::user * puser = NULL;
+      ::fontopus::user * puser = ::null();
 
       //Sleep(15 * 1000);
 
-      while(puser == NULL)
+      while(puser == ::null())
       {
          puser = Application.m_pfontopus->login(setLogin);
       }
@@ -453,7 +453,7 @@ namespace plugin
 
       xxdebug_box("ca plugin plugin", "ready_on_main_thread", 0);
 
-      count iCount = get_memory_length();
+      ::count iCount = get_memory_length();
 
       if(iCount > 0)
       {
@@ -494,7 +494,7 @@ namespace plugin
                ::ca::property_set headers(get_app());
                ::ca::property_set set(get_app());
 
-               Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
+               Application.http().get(strUrl, strPluginData, post, headers, set, ::null(), ::null(), ::null(), &estatus);
 
                if(estatus == ::ca::http::status_ok)
                   break;
@@ -570,7 +570,7 @@ namespace plugin
          else
          {
             LPSTR lpszStart = lpszAlloc;
-            LPSTR lpszEnd = NULL;
+            LPSTR lpszEnd = ::null();
             int32_t i = 0;
             for(; i < iCount; i++)
             {
@@ -631,7 +631,7 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(::null(), strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
                {
 /*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -671,7 +671,7 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(::null(), strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
                {
                   /*
                   Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
@@ -738,7 +738,7 @@ namespace plugin
                      if(strType.is_empty())
                         strType = "application";
 
-                     if(strId.has_char() && !m_psystem->install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
+                     if(strId.has_char() && !m_psystem->install().is(::null(), strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -802,7 +802,7 @@ namespace plugin
                         m_bMainReady = false;
 
                         return;
-                        //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
+                        //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, ::null());
 
                      }
                      else
@@ -875,14 +875,14 @@ namespace plugin
 
          if(pthread->get_run())
          {
-            if(m_pbReady != NULL)
+            if(m_pbReady != ::null())
             {
                *m_pbReady = false;
             }
             pthread->m_pbReady = m_pbReady;
             pthread->m_bRun = false;
             int32_t iRepeat = 0;
-            while((m_pbReady != NULL || !*m_pbReady) && iRepeat < 49)
+            while((m_pbReady != ::null() || !*m_pbReady) && iRepeat < 49)
             {
                Sleep(284);
                iRepeat++;
@@ -941,7 +941,7 @@ namespace plugin
    LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
 
-      if(m_puiHost != NULL)
+      if(m_puiHost != ::null())
       {
 
          if(uiMessage >= WM_MOUSEFIRST && uiMessage <= WM_MOUSELAST)
@@ -977,7 +977,7 @@ namespace plugin
 
             ::ca::smart_pointer < ::ca::message::base > spbase;
 
-            spbase(m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam));
+            spbase = m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam);
 
             m_puiHost->message_handler(spbase);
 
@@ -1033,7 +1033,7 @@ namespace plugin
 
       m_rect = *lpcrect;
 
-      if(m_puiHost != NULL)
+      if(m_puiHost != ::null())
       {
 
          m_puiHost->m_bRectOk = true;

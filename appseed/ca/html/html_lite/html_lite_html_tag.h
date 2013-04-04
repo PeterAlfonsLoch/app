@@ -43,7 +43,7 @@ class CLASS_DECL_ca lite_html_tag
 // Construction/Destruction
 public:
    lite_html_tag()
-      : m_pcollAttr(NULL)
+      : m_pcollAttr(::null())
    { }
 
    /**

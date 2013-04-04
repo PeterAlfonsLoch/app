@@ -191,7 +191,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       m_dwAlive = ::get_tick_count();
 
-      m_splicense(new class ::fontopus::license(this));
+      m_splicense = new class ::fontopus::license(this);
 
 
       if(!is_system())
@@ -604,7 +604,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    }
 #endif
 
-   count application::get_monitor_count()
+   ::count application::get_monitor_count()
    {
 #ifdef WINDOWSEX
       return m_monitorinfoa.get_size();
@@ -656,7 +656,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    }
 
 
-   count application::get_desk_monitor_count()
+   ::count application::get_desk_monitor_count()
    {
 #ifdef WINDOWSEX
       return m_monitorinfoaDesk.get_size();

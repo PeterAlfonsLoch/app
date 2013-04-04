@@ -209,8 +209,8 @@ public:
     CScriptVarLink *findChild(const string &childName); ///< Tries to find a child with the given name, may return 0
     CScriptVarLink *findChildOrCreate(const string &childName, int32_t varFlags=SCRIPTVAR_UNDEFINED); ///< Tries to find a child with the given name, or will create it with the given flags
     CScriptVarLink *findChildOrCreateByPath(const string &path); ///< Tries to find a child with the given path (separated by dots)
-    CScriptVarLink *addChild(const string &childName, CScriptVar *child=NULL);
-    CScriptVarLink *addChildNoDup(const string &childName, CScriptVar *child=NULL); ///< add a child overwriting any with the same name
+    CScriptVarLink *addChild(const string &childName, CScriptVar *child=::null());
+    CScriptVarLink *addChildNoDup(const string &childName, CScriptVar *child=::null()); ///< add a child overwriting any with the same name
     void removeChild(CScriptVar *child);
     void removeLink(CScriptVarLink *link); ///< Remove a specific link (this is faster than finding via a child)
     void removeAllChildren();
@@ -324,7 +324,7 @@ public:
     CScriptVar *root;   /// root of symbol table
 private:
     CScriptLex *l;             /// current lexer
-    base_array<CScriptVar*> scopes; /// stack of scopes when parsing
+    array<CScriptVar*> scopes; /// stack of scopes when parsing
 #ifdef TINYJS_CALL_STACK
     stringa call_stack; /// Names of places called so we can show when erroring
 #endif

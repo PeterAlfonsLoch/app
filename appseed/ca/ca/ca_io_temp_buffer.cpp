@@ -110,11 +110,11 @@ namespace ca
    {
       if (!_buf->write(data, size))
       {
-         if (processed != NULL)
+         if (processed != ::null())
             *processed = 0;
          throw E_FAIL;
       }
-      if (processed != NULL)
+      if (processed != ::null())
          *processed = size;
    }
 

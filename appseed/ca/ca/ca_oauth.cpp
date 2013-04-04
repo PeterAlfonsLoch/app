@@ -359,10 +359,10 @@ bool CSHA1::HashFile(char *szFileName)
    UINT_8 uData[SHA1_MAX_FILE_BUFFER];
    FILE *fIn;
 
-   if(szFileName == NULL) return false;
+   if(szFileName == ::null()) return false;
 
    fIn = fopen(szFileName, "rb");
-   if(fIn == NULL) return false;
+   if(fIn == ::null()) return false;
 
    fseek(fIn, 0, SEEK_END);
    ulFileSize = (unsigned long)ftell(fIn);
@@ -391,7 +391,7 @@ bool CSHA1::HashFile(char *szFileName)
       Update((UINT_8 *)uData, ulRest);
    }
 
-   fclose(fIn); fIn = NULL;
+   fclose(fIn); fIn = ::null();
    return true;
 }
 #endif
@@ -435,7 +435,7 @@ void CSHA1::ReportHash(char *szReport, unsigned char uReportType)
    unsigned char i;
    char szTemp[16];
 
-   if(szReport == NULL) return;
+   if(szReport == ::null()) return;
 
    if(uReportType == REPORT_HEX)
    {
@@ -570,7 +570,7 @@ namespace ca
    {
 
       string escaped;
-      count max = c.get_length();
+      ::count max = c.get_length();
       for(int32_t i=0; i<max; i++)
       {
          if ( (48 <= c[i] && c[i] <= 57) ||//0-9
@@ -824,14 +824,14 @@ namespace ca
       char szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       memset( szTime, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
-      srand((UINT) time( NULL ) );
+      srand((UINT) time( ::null() ) );
       sprintf( szRand, "%x", rand()%1000 );
 #ifdef WINDOWS
-      sprintf( szTime, "%ld", (int32_t) time( NULL ) );
+      sprintf( szTime, "%ld", (int32_t) time( ::null() ) );
 #elif defined __LP64
-      sprintf( szTime, "%ld", (int64_t) time( NULL ) );
+      sprintf( szTime, "%ld", (int64_t) time( ::null() ) );
 #else
-      sprintf( szTime, "%d", (int32_t) time( NULL ) );
+      sprintf( szTime, "%d", (int32_t) time( ::null() ) );
 #endif
 
       m_nonce = szTime;
@@ -1126,7 +1126,7 @@ namespace ca
          /* Sort key-value pairs based on key name */
          if( strSeparator == "&" )
          {
-            keyValueList.QuickSort();
+            keyValueList.quick_sort();
 
             for(int32_t i = 0; i < keyValueList.get_count(); i++)
             {

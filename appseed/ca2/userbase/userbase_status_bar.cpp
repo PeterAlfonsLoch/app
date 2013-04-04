@@ -93,12 +93,12 @@ namespace userbase
    //      __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
       ASSERT(IsWindow());
 
-      // first allocate base_array for panes and copy initial data
+      // first allocate array for panes and copy initial data
    //   if (!AllocElements(nIDCount, sizeof(__STATUSPANE)))
    //      return FALSE;
    //   ASSERT(nIDCount == m_panea.get_count());
 
-      // copy initial data from indicator base_array
+      // copy initial data from indicator array
       bool bResult = TRUE;
       //if (lpIDArray != NULL)
       //{

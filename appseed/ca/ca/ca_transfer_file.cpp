@@ -9,7 +9,7 @@ namespace ca
       ca(papp)
    {
 
-      if(pmutex == NULL)
+      if(pmutex == ::null())
          m_spmutex = new mutex(papp);
       else
          m_spmutex = pmutex;

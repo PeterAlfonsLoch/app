@@ -647,7 +647,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       for(int32_t i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
 
-         ::cube::application * pappChild = &App(Sys(papp).m_appptra[i]);
+         ::cube::application * pappChild = &App(Sys(papp).m_appptra(i).m_p);
 
          if(!pappChild->_001CloseApplicationByUser(this))
             return;

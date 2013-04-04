@@ -139,7 +139,7 @@ namespace sockets
          }
 
          // only fields, no files, add urlencoding
-         /*for (std::collection::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
+         /*for (stdmap<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
          {
             string name = (*it).first;
             list<string>& ref = (*it).second;
@@ -211,7 +211,7 @@ namespace sockets
       // files
       {
          POSITION pos = m_mapFiles.get_start_position();
-         for(; pos != NULL; )
+         for(; pos != ::null(); )
          {
             string name;
             string filename;
@@ -265,7 +265,7 @@ namespace sockets
       // send files
       {
          POSITION pos = m_mapFiles.get_start_position();
-         for(; pos != NULL;)
+         for(; pos != ::null();)
          {
             string name;
             string filename;

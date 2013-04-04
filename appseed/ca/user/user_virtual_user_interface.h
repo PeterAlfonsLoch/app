@@ -49,7 +49,7 @@ public:
    void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
-   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = ::null());
 
 
    virtual bool DestroyWindow();
@@ -93,12 +93,12 @@ public:
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
-      ::ca::create_context* pContext = NULL);
+      ::ca::create_context* pContext = ::null());
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
-      LPVOID lpParam = NULL);
+      LPVOID lpParam = ::null());
 
 
    virtual ::frame_window * EnsureParentFrame();

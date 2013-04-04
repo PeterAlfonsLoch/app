@@ -55,7 +55,7 @@ index simple_combo_box::_001FindListText(const string & str) const
 }
 
 
-count simple_combo_box::_001GetListCount() const
+::count simple_combo_box::_001GetListCount() const
 {
 
    return m_straList.get_count();

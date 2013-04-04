@@ -668,7 +668,7 @@ namespace filemanager
          {
             UNREFERENCED_PARAMETER(iItem);
             index iTopIndex = m_iTopIndex;
-            count iDisplayItemCount = m_nDisplayCount;
+            ::count iDisplayItemCount = m_nDisplayCount;
 
             if(m_bKickActive &&
                m_buildhelper.m_iTopIndex == iTopIndex &&
@@ -819,7 +819,7 @@ namespace filemanager
             xml::node * pnodeFolder = doc.get_root()->get_child("folder");
 
 
-            xml::node::base_array childs(get_app());
+            xml::node::array childs(get_app());
 
             string wstrType;
             Item item;
@@ -923,7 +923,7 @@ namespace filemanager
             perasebkgnd->set_result(TRUE);
          }
 
-         count list_view::_001GetItemCount()
+         ::count list_view::_001GetItemCount()
          {
             /*if(get_document() != NULL)
             {

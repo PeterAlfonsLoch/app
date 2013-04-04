@@ -178,8 +178,8 @@ namespace libcompress
          byte *_vmData;
          byte *_vmCode;
          vm::vm _vm;
-         base_array<filter *> _filters;
-         base_array<temp_filter *>  _tempFilters;
+         array<filter *> _filters;
+         array<temp_filter *>  _tempFilters;
          uint32_t _lastFilter;
 
          bool m_IsSolid;

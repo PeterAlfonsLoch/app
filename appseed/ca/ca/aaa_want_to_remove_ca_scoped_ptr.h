@@ -6,7 +6,7 @@ namespace ca
 
 
    template < class T >
-   class scoped_ptr
+   class aaa_scoped_ptr
    {
    public:
 
@@ -14,24 +14,24 @@ namespace ca
       T * m_p;
 
 
-      scoped_ptr()
+      aaa_scoped_ptr()
       {
-         m_p = NULL;
+         m_p = ::null();
       }
 
-      scoped_ptr(int_ptr i) 
+      aaa_scoped_ptr(int_ptr i) 
       {
          operator = ((T *) i);
       }
 
-      scoped_ptr(T * p) 
+      aaa_scoped_ptr(T * p) 
       {
          operator = (p);
       }
 
-      ~scoped_ptr()
+      ~aaa_scoped_ptr()
       {
-         if(m_p != NULL)
+         if(m_p != ::null())
          {
             delete m_p;
          }
@@ -52,7 +52,7 @@ namespace ca
          return m_p;
       }
 
-      scoped_ptr & operator = (T * p)
+      aaa_scoped_ptr & operator = (T * p)
       {
          m_p = p;
          return *this;
@@ -62,7 +62,7 @@ namespace ca
       T * detach()
       {
          T * p = m_p;
-         m_p = NULL;
+         m_p = ::null();
          return p;
       }
 

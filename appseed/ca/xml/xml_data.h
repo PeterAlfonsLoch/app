@@ -12,7 +12,7 @@ namespace ca
    public:
 
 
-      xml_data(::ca::application * papp, ::xml::parse_info * pparseinfo = NULL);
+      xml_data(::ca::application * papp, ::xml::parse_info * pparseinfo = ::null());
       virtual ~xml_data();
 
 

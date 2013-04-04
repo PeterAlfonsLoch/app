@@ -15,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize, e_extract eextract)
+   void Util::ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
@@ -56,7 +56,7 @@ namespace zip
       }
 
       unz_file_info fi;
-      if(pf != NULL)
+      if(pf != ::null())
       {
          while(true)
          {
@@ -71,9 +71,9 @@ namespace zip
                &fi,
                szTitle,
                _MAX_PATH,
-               NULL, // extra Field
+               ::null(), // extra Field
                0,
-               NULL, // comment
+               ::null(), // comment
                0);
             string strTitle(szTitle);
             if(strRemain != strTitle && ((strRemain.is_empty() &&
@@ -82,25 +82,25 @@ namespace zip
             {
                if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
-                  if(pstraPath != NULL)
+                  if(pstraPath != ::null())
                   {
                      pstraPath->add(strLastZip + ":" + strRemain + strTitle);
                   }
-                  if(pstraTitle != NULL)
+                  if(pstraTitle != ::null())
                   {
                      pstraTitle->add(strTitle);
                   }
-                  if(pstraRelative != NULL)
+                  if(pstraRelative != ::null())
                   {
                      pstraRelative->add(strRemain + strTitle);
                   }
-                  if(pbaIsDir != NULL)
+                  if(pbaIsDir != ::null())
                   {
                      pbaIsDir->add(::ca::str::ends(szTitle, "/")
                                 || ::ca::str::ends(szTitle, "\\")
                                 || ::ca::str::ends(szTitle, ".zip"));
                   }
-                  if(piaSize != NULL)
+                  if(piaSize != ::null())
                   {
                      piaSize->add(fi.uncompressed_size);
                   }
@@ -118,8 +118,8 @@ namespace zip
    {
       stringa straPath;
       stringa straTitle;
-      base_array < bool, bool > baIsDir;
-      ls(papp, lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
+      array < bool, bool > baIsDir;
+      ls(papp, lpcsz, false, &straPath, &straTitle, ::null(), &baIsDir);
 
       string strPath;
 
@@ -128,7 +128,7 @@ namespace zip
          if(baIsDir[i])
          {
             strPath = straPath[i];
-            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
+            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != ::null())
             {
                pstraTitle->add(straTitle[i]);
             }
@@ -136,7 +136,7 @@ namespace zip
          else
          {
             strPath = Sys(papp).dir().name(straPath[i]);
-            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
+            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != ::null())
             {
                pstraTitle->add(Sys(papp).dir().name(straTitle[i]));
             }
@@ -175,7 +175,7 @@ namespace zip
 
 
       //string wstrFileName(lpszFileName);
-//      ::collection::smart_pointer_array < File, File & > filea;
+//      smart_pointer_array < File, File & > filea;
 
       /*int32_t iStart = 0;
       int32_t iFind;
@@ -197,8 +197,8 @@ namespace zip
       stringa wstraPrefix;
       string str;
       int32_t i;
-      ::collection::smart_pointer_array < InFile, InFile & > izfilea;
-   //   ::collection::smart_pointer_array < buffered_file, buffered_file & > bzfilea;
+      smart_pointer_array < InFile, InFile & > izfilea;
+   //   smart_pointer_array < buffered_file, buffered_file & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
       {
          izfilea.add(new InFile(get_app()));
@@ -223,7 +223,7 @@ namespace zip
       string wstrFolder;
       stringa wstraFolder;
       string wstrZip;
-      if(pf != NULL)
+      if(pf != ::null())
       {
          while(true)
          {
@@ -239,12 +239,12 @@ namespace zip
 
                unzGetCurrentFileInfo(
                   pf,
-                  NULL,
+                  ::null(),
                   szTitle,
                   _MAX_PATH,
-                  NULL, // extra Field
+                  ::null(), // extra Field
                   0,
-                  NULL, // comment
+                  ::null(), // comment
                   0);
 
                str = szTitle;
@@ -273,7 +273,7 @@ namespace zip
 
    bool Util::exists(::ca::application * papp, const char * pszPath)
    {
-      return extract(papp, pszPath, NULL);
+      return extract(papp, pszPath, ::null());
    }
 
    bool Util::extract(::ca::application * papp, const char * lpszFileName, const char * lpszExtractFileName)
@@ -286,7 +286,7 @@ namespace zip
          return false;
       }
 
-      if(lpszExtractFileName == NULL)
+      if(lpszExtractFileName == ::null())
          return true;
 
       ::ca::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::defer_create_directory);
@@ -319,7 +319,7 @@ namespace zip
 
 
       unz_file_info fi;
-      if(pf != NULL)
+      if(pf != ::null())
       {
          while(true)
          {
@@ -331,9 +331,9 @@ namespace zip
                &fi,
                szTitle,
                _MAX_PATH,
-               NULL, // extra Field
+               ::null(), // extra Field
                0,
-               NULL, // comment
+               ::null(), // comment
                0);
             string strTitle(szTitle);
             if(::ca::str::ends(szTitle, "/") || ::ca::str::ends(szTitle, "\\"))

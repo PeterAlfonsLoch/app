@@ -30,43 +30,43 @@ namespace ca
          virtual ~application();
 
 
-         ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = ::null(), ::fontopus::user * puser = ::null(), const char * pszVersion = ::null(), e_status * pestatus = ::null());
 
          
          DECL_GEN_SIGNAL(get);
 
 
-         bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool get(const char * pszUrl, primitive::memory_base & memory, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-         bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
-         bool get(const char * pszUrl, string & str, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = ::null());
+         bool get(const char * pszUrl, primitive::memory_base & memory, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = ::null(), ::fontopus::user * puser = ::null(), const char * pszVersion = ::null(), e_status * pestatus = ::null());
+         bool get(const char * pszUrl, string & str, ::fontopus::user * puser = ::null());
+         bool get(const char * pszUrl, string & str, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = ::null(), ::fontopus::user * puser = ::null(), const char * pszVersion = ::null(), e_status * pestatus = ::null());
          
-         bool exists(const char * pszUrl, ::fontopus::user * puser = NULL);
+         bool exists(const char * pszUrl, ::fontopus::user * puser = ::null());
          
-         bool exists(const char * pszUrl, var * pvarQuery, ::fontopus::user * puser = NULL);
+         bool exists(const char * pszUrl, var * pvarQuery, ::fontopus::user * puser = ::null());
 
-         string get(const char * pszUrl, ::fontopus::user * puser = NULL);
+         string get(const char * pszUrl, ::fontopus::user * puser = ::null());
 
 
-         bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool request(const char * pszRequest, const char * pszUrl, string & str, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-         bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
+         bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = ::null());
+         bool request(const char * pszRequest, const char * pszUrl, string & str, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = ::null(), ::fontopus::user * puser = ::null(), const char * pszVersion = ::null(), e_status * pestatus = ::null());
+         bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = ::null());
 
 
          using ::ca::signalizable::request;
-         string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = NULL);
+         string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = ::null());
 
       
-         bool download(const char * pszUrl, const char * pszFile, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = NULL,  ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-         bool download(const char * pszUrl, const char * pszFile, const char * pszPost, ::ca::property_set & headers, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-         bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = NULL);
+         bool download(const char * pszUrl, const char * pszFile, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = ::null(),  ::fontopus::user * puser = ::null(), const char * pszVersion = "HTTP/1.1");
+         bool download(const char * pszUrl, const char * pszFile, const char * pszPost, ::ca::property_set & headers, ::http::cookies * pcookies = ::null(), ::fontopus::user * puser = ::null(), const char * pszVersion = "HTTP/1.1");
+         bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = ::null());
 
 
-         bool put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-         bool put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser = NULL);
+         bool put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = ::null());
+         bool put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser = ::null());
 
-         bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-         bool put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser = NULL);
+         bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = ::null());
+         bool put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser = ::null());
 
       };
 

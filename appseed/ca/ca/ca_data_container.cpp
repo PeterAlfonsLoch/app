@@ -64,7 +64,7 @@ namespace ca
    bool data_container_base::remove_data(::ca::data * pdata)
    {
 
-      count cRemove = 0;
+      ::count cRemove = 0;
 
       for(index i = 0; i < m_spadata.get_count();)
       {
@@ -92,7 +92,7 @@ namespace ca
 
    }
 
-   count data_container_base::get_count() const
+   ::count data_container_base::get_count() const
    {
 
       return m_spadata.get_count();

@@ -11,10 +11,10 @@ namespace dynamic_source
    public:
 
 
-      int32_t                                    m_iCa2FetchMode;
+      int32_t                                      m_iCa2FetchMode;
 
-      string                                 m_strLocale;
-      dynamic_source::script_instance *      m_pinstanceCurrent;
+      string                                       m_strLocale;
+      sp(dynamic_source::script_instance)          m_pinstanceCurrent;
 
 
       httpd_socket(::sockets::socket_handler_base& );

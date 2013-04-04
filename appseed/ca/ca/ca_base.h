@@ -82,13 +82,13 @@ struct _OBJMAP_ENTRY20
    }
    HRESULT WINAPI RegisterClassObject(uint32_t dwClsContext, uint32_t dwFlags)
    {
-      IUnknown* p = NULL;
-      if (pfnGetClassObject == NULL)
+      IUnknown* p = ::null();
+      if (pfnGetClassObject == ::null())
          return S_OK;
       HRESULT hRes = pfnGetClassObject(pfnCreateInstance, __uuidof(IUnknown), (LPVOID*) &p);
       if (SUCCEEDED(hRes))
          hRes = CoRegisterClassObject(*pclsid, p, dwClsContext, dwFlags, &dwRegister);
-      if (p != NULL)
+      if (p != ::null())
          p->Release();
       return hRes;
    }
@@ -101,8 +101,8 @@ typedef _OBJMAP_ENTRY30 _OBJMAP_ENTRY;*/
 // Auto Object Map
 /*extern "C"
 {
-__declspec(selectany) _OBJMAP_ENTRY* __pobjMapEntryFirst = NULL;
-__declspec(selectany) _OBJMAP_ENTRY* __pobjMapEntryLast = NULL;
+__declspec(selectany) _OBJMAP_ENTRY* __pobjMapEntryFirst = ::null();
+__declspec(selectany) _OBJMAP_ENTRY* __pobjMapEntryLast = ::null();
 }
 
 
@@ -123,8 +123,8 @@ struct _gen_CreateWndData
 // perfmon registration/unregistration function definitions
 typedef HRESULT (*_PERFREGFUNC)(HINSTANCE hDllInstance);
 typedef HRESULT (*_PERFUNREGFUNC)();
-__declspec(selectany) _PERFREGFUNC _pPerfRegFunc = NULL;
-__declspec(selectany) _PERFUNREGFUNC _pPerfUnRegFunc = NULL;
+__declspec(selectany) _PERFREGFUNC _pPerfRegFunc = ::null();
+__declspec(selectany) _PERFUNREGFUNC _pPerfUnRegFunc = ::null();
 */
 /////////////////////////////////////////////////////////////////////////////
 // Threading Model Support
@@ -279,7 +279,7 @@ struct _INTMAP_ENTRY
 {
    const IID* piid;       // the interface id (IID)
    uint_ptr dw;
-   _CREATORARGFUNC* pFunc; //NULL:end, 1:offset, n:ptr
+   _CREATORARGFUNC* pFunc; //::null():end, 1:offset, n:ptr
 };*/
 
 /////////////////////////////////////////////////////////////////////////////
@@ -321,13 +321,13 @@ API gen_Unadvise(IUnknown* pUnkCP, const IID& iid, uint32_t dw);
 
 //API gen_ComModuleGetClassObject(_COM_MODULE* pComModule, REFCLSID rclsid, REFIID riid, LPVOID* ppv);
 
-//API gen_ComModuleRegisterServer(_COM_MODULE* pComModule, bool bRegTypeLib, const CLSID* pCLSID = NULL);
-//API gen_ComModuleUnregisterServer(_COM_MODULE* pComModule, bool bUnRegTypeLib, const CLSID* pCLSID = NULL);
+//API gen_ComModuleRegisterServer(_COM_MODULE* pComModule, bool bRegTypeLib, const CLSID* pCLSID = ::null());
+//API gen_ComModuleUnregisterServer(_COM_MODULE* pComModule, bool bUnRegTypeLib, const CLSID* pCLSID = ::null());
 
 //API gen_RegisterClassCategoriesHelper( REFCLSID clsid, const struct _CATMAP_ENTRY* pCatMap, bool bRegister );
 
 /*API gen_UpdateRegistryFromResourceD(HINSTANCE hInst, LPCOLESTR lpszRes,
-   bool bRegister, struct _REGMAP_ENTRY* pMapEntries, IRegistrar* pReg = NULL);*/
+   bool bRegister, struct _REGMAP_ENTRY* pMapEntries, IRegistrar* pReg = ::null());*/
 
 /*API gen_RegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
 API gen_UnRegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
@@ -374,7 +374,7 @@ const char * gen_DebugGetClassName(T*)
    const _INTMAP_ENTRY* pEntries = T::_GetEntries();
    return (const char *)pEntries[-1].dw;
 //#else
-//   return NULL;
+//   return ::null();
 //#endif
 }*/
 
@@ -382,10 +382,10 @@ const char * gen_DebugGetClassName(T*)
 // Used in QI and CreateInstance
 /*#define _VALIDATE_OUT_POINTER(x)\
    do {               \
-   ASSERT(x != NULL);   \
-   if (x == NULL)         \
+   ASSERT(x != ::null());   \
+   if (x == ::null())         \
       return E_POINTER;   \
-   *x = NULL;            \
+   *x = ::null();            \
    } while(0)*/
 
    /////////////////////////////////////////////////////////////////////////////
@@ -437,13 +437,13 @@ public:
    template < class T2 >
    inline static bool bases(T2 * p) 
    {
-      return dynamic_cast < T * > (p) != NULL; 
+      return dynamic_cast < T * > (p) != ::null(); 
    }
 
    template < class T2 >
    inline static bool bases(const ::ca::smart_pointer < T2 > & sp) 
    {
-      return dynamic_cast < T * > ((T2 *) sp.m_p) != NULL; 
+      return dynamic_cast < T * > ((T2 *) sp.m_p) != ::null(); 
    }
 
 };

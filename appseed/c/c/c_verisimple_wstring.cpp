@@ -61,7 +61,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
    else
    {
 
-      count iLen         = wcslen_dup(pwsz);
+      ::count iLen         = wcslen_dup(pwsz);
 
       m_pwsz = (wchar_t *) wstring_data::alloc(iLen + 1);
 
@@ -92,7 +92,7 @@ verisimple_wstring::~verisimple_wstring()
 
 }
 
-wchar_t * verisimple_wstring::alloc(count iCount)
+wchar_t * verisimple_wstring::alloc(::count iCount)
 {
 
    if(m_pwsz != NULL && iCount < get_data()->m_iAllocation)
@@ -142,7 +142,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
    if(m_pwsz != pwsz)
    {
 
-      count iLen = wcslen_dup(pwsz);
+      ::count iLen = wcslen_dup(pwsz);
 
       if(storage_size() >= (iLen + 1))
       {
@@ -169,7 +169,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 {
 
-   count iLen = utf16_len(psz);
+   ::count iLen = utf16_len(psz);
 
    alloc(iLen + 1);
 
@@ -186,9 +186,9 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2)
 {
 
-   count iLen1 = wstr1.length();
+   ::count iLen1 = wstr1.length();
 
-   count iLen2 = wstr2.length();
+   ::count iLen2 = wstr2.length();
 
    verisimple_wstring wstrRet;
 
@@ -221,7 +221,7 @@ CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 
    wstring wstr;
 
-   count iLen = utf16_len(psz);
+   ::count iLen = utf16_len(psz);
 
    if(iLen < 0)
       return wstr;

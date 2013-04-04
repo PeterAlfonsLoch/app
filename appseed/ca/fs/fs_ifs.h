@@ -13,8 +13,8 @@ public:
    bool           m_bInitialized;
 
 
-   ::collection::string_map < uint32_t >   m_mapdirTimeout;
-   ::collection::string_map < uint32_t >   m_mapfileTimeout;
+   string_map < uint32_t >   m_mapdirTimeout;
+   string_map < uint32_t >   m_mapfileTimeout;
 
 
    ifs(::ca::application * papp, const char * pszRoot);

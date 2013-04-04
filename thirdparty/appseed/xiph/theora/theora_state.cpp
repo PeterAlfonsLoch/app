@@ -293,7 +293,7 @@ static void oc_state_border_init(oc_theora_state *_state){
         /*First check to see if this fragment is completely outside the
            displayable region.*/
         /*Note the special checks for an empty cropping rectangle.
-          This guarantees that if we count a fragment as straddling the
+          This guarantees that if we ::count a fragment as straddling the
            border below, at least one pixel in the fragment will be inside
            the displayable region.*/
         if(x+8<=crop_x0||crop_xf<=x||y+8<=crop_y0||crop_yf<=y||

@@ -2,7 +2,7 @@
 
 /*
 class CLASS_DECL_ca id_array :
-   virtual protected ::raw_array < id >
+   virtual protected ::array < id >
 {
 public:
 

@@ -16,7 +16,7 @@ public:
 
 
 		uint_ptr   m_dwModule;
-		count       m_nCategories;
+		::count m_nCategories;
 		index       m_iFirstCategory;
 
 
@@ -26,7 +26,7 @@ public:
 public:
 
 
-   raw_array < CModuleInfo >  m_aModules;
+   array < CModuleInfo >  m_aModules;
    count_array                m_adwCategories;
 
 
@@ -55,9 +55,9 @@ public:
 
 	allocator() :
 		m_dwPageSize(0), 
-		m_hMap(NULL),
+		m_hMap(::null()),
 		m_bValid(false),
-		m_pProcess(NULL),
+		m_pProcess(::null()),
 		m_bSnapshot(false)
 	{
 	}
@@ -87,8 +87,8 @@ public:
 	bool SaveSettings(const CHAR *pszFileName);
 	bool SaveSettings(const WCHAR *pszFileName);
 
-	count GetModuleCount() const;
-	count GetCategoryCount(index iModule) const;
+	::count GetModuleCount() const;
+	::count GetCategoryCount(index iModule) const;
 	int32_t GetCategoryCount(const trace_module& Module) const;
 
 	bool FindModule(const WCHAR *pszModuleName, uint32_t *pnModule) const;

@@ -920,7 +920,7 @@ namespace user
       m_iImageCollapse = m_pimagelist->add_icon_os_data(hicon);
    }
 
-   count tree::_001GetVisibleItemCount()
+   ::count tree::_001GetVisibleItemCount()
    {
       if(_001GetItemHeight() == 0)
          return 0;
@@ -936,7 +936,7 @@ namespace user
       rect rectClient;
       GetClientRect(rectClient);
 
-      count iCount = _001GetVisibleItemCount();
+      ::count iCount = _001GetVisibleItemCount();
       int32_t iMaxWidth = rectClient.width();
       int32_t iWidth;
       index iLevel = m_iFirstVisibleItemLevel;

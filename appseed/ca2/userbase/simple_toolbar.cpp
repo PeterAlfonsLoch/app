@@ -855,7 +855,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
    if(!doc.load(lpszXml))
       return FALSE;
 
-   xml::node::base_array childs(get_app());
+   xml::node::array childs(get_app());
 
    childs = doc.get_root()->children();
 

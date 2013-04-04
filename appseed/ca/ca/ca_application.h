@@ -158,6 +158,16 @@ namespace ca
    {
    public:
 
+      // Running args (can be changed in initialize_instance)
+      // Human-redable name of the application. Normally set in
+      // constructor or retreived from __IDS_APP_TITLE.
+      string                        m_strAppName;
+      string                        m_strAppId;
+      string                        m_strLibraryName;
+      ::plane::application *        m_pappThis;
+      ::cube::application *         m_pappCube;
+
+
       virtual void construct() = 0;
 
 
@@ -201,7 +211,12 @@ namespace ca
 
       virtual bool set_main_init_data(main_init_data * pdata) = 0;
 
+      virtual bool is_session() = 0;
+      virtual bool is_bergedge() = 0;
       virtual bool is_system() = 0;
+      virtual bool is_cube() = 0;
+
+      virtual bool is_serviceable() = 0;
 
       virtual bool _001OnDDECommand(const char * lpcsz) = 0;
       virtual void _001EnableShellOpen() = 0;
@@ -287,7 +302,7 @@ namespace ca
       const string TWIT_FRIENDSIDS_URL;
       const string TWIT_FOLLOWERSIDS_URL;
 
-      /* Account URLs */
+      /* Ac::count URLs */
       const string TWIT_ACCOUNTRATELIMIT_URL;
 
       /* Favorites URLs */
@@ -318,15 +333,15 @@ namespace ca
       ::colorertake5::colorertake5                                                            * m_pcolorertake5;
 
 
-      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
-      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
+      string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
+      string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
       manual_reset_event *                                                                      m_peventReady;
 
 
       //string                                                                                  m_strLicense;
       bool                                                                                      m_bLicense;
       string                                                                                    m_strBaseSupportId;
-      collection::map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
+      map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
 
 
       string                                                                                    m_strRoot;
@@ -342,8 +357,6 @@ namespace ca
       bool                          m_bInitializeProDevianMode;
       main_init_data *              m_pinitmaindata;
       bool                          m_bService;
-      ::plane::application *        m_pappThis;
-      ::cube::application *         m_pappCube;
       bool                          m_bZipIsDir;
       ::plane::system *             m_psystem;
       ::plane::session *            m_psession;
@@ -403,12 +416,6 @@ namespace ca
       int32_t                           m_nCmdShow;
 
       file_manager_interface *      m_pfilemanager;
-      // Running args (can be changed in initialize_instance)
-      // Human-redable name of the application. Normally set in
-      // constructor or retreived from __IDS_APP_TITLE.
-      string                        m_strAppName;
-      string                        m_strAppId;
-      string                        m_strLibraryName;
 
       // Name of registry key for this application. See
       // SetRegistryKey() member function.
@@ -452,12 +459,12 @@ namespace ca
       string                           m_strId;
 
       //mutex                            m_mutexObjectLock;
-      //::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
+      //map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
       //mutex                            m_mutexObjectEvent;
-      //::collection::map < ::ca::object *, ::ca::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
+      //map < ::ca::object *, ::ca::object *, map < int32_t, int32_t, event *, event * > *, map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
 
-      //typedef ::collection::map < ::ca::object *, ::ca::object *, ::ca::property_set, ::ca::property_set > oset;
+      //typedef map < ::ca::object *, ::ca::object *, ::ca::property_set, ::ca::property_set > oset;
       //oset                             m_mapObjectSet;
 
       class ::user::str_context *      m_puserstrcontext;
@@ -471,7 +478,7 @@ namespace ca
 
       int32_t                              m_iResourceId;
 
-      ::collection::string_to_ptr         m_appmap;
+      string_to_ptr         m_appmap;
 
       //BaseIdSpaceIntegerMap      m_imapResource;
       //BaseIdSpaceStringKeyMap    m_strmapResource;
@@ -532,8 +539,8 @@ namespace ca
       template < class APP >
       APP & cast_app()
       {
-         if(this == NULL)
-            return (*(APP *) NULL);
+         if(this == ::null())
+            return (*(APP *) ::null());
          void * papp;
          #ifdef WINDOWS
          if(!app_map_lookup(typeid(APP).name(), papp))
@@ -753,7 +760,7 @@ namespace ca
 
          string str;
 
-         string_format format(&str, &::string::FormatPrinter, NULL);
+         string_format format(&str, &::string::FormatPrinter, ::null());
 
          format.printf(pszFormat, value, args...);
 
@@ -810,7 +817,7 @@ namespace ca
 
       // Retrieve a string value from INI file or registry.
       string GetProfileString(const char * lpszSection, const char * lpszEntry,
-               const char * lpszDefault = NULL);
+               const char * lpszDefault = ::null());
 
       // Sets a string value to INI file or registry.
       bool WriteProfileString(const char * lpszSection, const char * lpszEntry,
@@ -884,14 +891,14 @@ namespace ca
 #endif
 
    // Command Handlers
-      // ::collection::map to the following for file new/open
+      // map to the following for file new/open
       void _001OnFileNew();
       void on_file_open();
 
-      // ::collection::map to the following to enable print setup
+      // map to the following to enable print setup
       void OnFilePrintSetup();
 
-      // ::collection::map to the following to enable help
+      // map to the following to enable help
       void OnContextHelp();   // shift-F1
       void OnHelp();          // F1 (uses current context)
       void OnHelpIndex();     // ID_HELP_INDEX
@@ -984,12 +991,12 @@ namespace ca
       int32_t GetResourceId(const id_space & pspace, const char * lpcszKey);*/
 
 
-      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = ::null());
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
       virtual string file_as_string(const char * pszPath);
-      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
+      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = ::null());
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
@@ -1013,9 +1020,9 @@ namespace ca
 
       virtual void on_delete(::ca::ca * pobject);
 
-//      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
+//      virtual bool open_link(const char * pszLink, const char * pszTarget = ::null());
 
-      // Temporary ::collection::map management (locks temp ::collection::map on current thread)
+      // Temporary map management (locks temp map on current thread)
       virtual void LockTempMaps();
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
@@ -1104,12 +1111,12 @@ template < class APP >
 {
 
    if(!contains_app(pszAppId))
-      return NULL;
+      return ::null();
 
    ::ca::application * papp = new APP();
 
-   if(papp == NULL)
-      return NULL;
+   if(papp == ::null())
+      return ::null();
 
    try
    {
@@ -1124,7 +1131,7 @@ template < class APP >
       catch(...)
       {
       }
-      return NULL;
+      return ::null();
    }
 
    return papp;

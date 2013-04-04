@@ -31,7 +31,7 @@ nsEscCharSetProber::nsEscCharSetProber()
   mCodingSM[3] = new nsCodingStateMachine(&ISO2022KRSMModel);
   mActiveSM = NUM_OF_ESC_CHARSETS;
   mState = eDetecting;
-  mDetectedCharset = NULL;
+  mDetectedCharset = ::null();
 };
 
 nsEscCharSetProber::~nsEscCharSetProber()
@@ -46,7 +46,7 @@ void nsEscCharSetProber::Reset()
   for (uint32_t i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     mCodingSM[i]->Reset();
   mActiveSM = NUM_OF_ESC_CHARSETS;
-  mDetectedCharset = NULL;
+  mDetectedCharset = ::null();
 }
 
 nsProbingState nsEscCharSetProber::HandleData(const char* aBuf, uint32_t aLen)

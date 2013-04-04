@@ -114,11 +114,11 @@ namespace ca
          return (p->*lpfnOuput)(get(pszOutput, papp), istream);
       }
 
-      string time(::ca::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_square(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time(::ca::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
+      string time_square(::ca::application * papp, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
       string time_log(::ca::application * papp, const char * pszId);
 
-      virtual ::ca::filesp time_square_file(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::ca::filesp time_square_file(::ca::application * papp, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
       virtual ::ca::filesp get(const char * name, ::ca::application * papp);
 
       template < class T >
@@ -139,7 +139,7 @@ namespace ca
       void as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp);
       void lines(stringa & stra, var varFile, ::ca::application * papp);
 
-      bool put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp);
+      bool put_contents(var varFile, const void * pvoidContents, ::count count, ::ca::application * papp);
       bool put_contents(var varFile, const char * lpcszContents, ::ca::application * papp);
       bool put_contents(var varFile, ::ca::file & file, ::ca::application * papp);
       bool put_contents(var varFile, primitive::memory & mem, ::ca::application * papp);

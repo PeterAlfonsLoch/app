@@ -17,8 +17,8 @@ namespace ca
       m_bClientOnly                       = false;
       m_bOuterPopupAlertLike              = false;
       m_bHold                             = true;
-      m_pviewAlloc                        = NULL;
-      m_puiParent                         = NULL;
+      m_pviewAlloc                        = ::null();
+      m_puiParent                         = ::null();
       m_pthreadParent                     = &Application.creation();
 
    }
@@ -36,8 +36,8 @@ namespace ca
       m_bClientOnly                       = false;
       m_bOuterPopupAlertLike              = false;
       m_bHold                             = true;
-      m_pviewAlloc                        = NULL;
-      m_puiParent                         = NULL;
+      m_pviewAlloc                        = ::null();
+      m_puiParent                         = ::null();
       common_construct();
 
    }
@@ -50,8 +50,8 @@ namespace ca
       m_pthreadParent(pthreadParent)
    {
 
-      m_pviewAlloc                        = NULL;
-      m_puiParent                         = NULL;
+      m_pviewAlloc                        = ::null();
+      m_puiParent                         = ::null();
       m_spCommandLine->m_varFile          = varFile;
       m_bMakeVisible                      = bMakeVisible;
       m_bTransparentBackground            = true;
@@ -68,8 +68,8 @@ namespace ca
       m_spApplicationBias(createcontext.get_app()),
       m_spCommandLine(createcontext.get_app())
    {
-      m_pviewAlloc                        = NULL;
-      m_puiParent                         = NULL;
+      m_pviewAlloc                        = ::null();
+      m_puiParent                         = ::null();
       m_bHold                             = true;
       operator = (createcontext);
    }
@@ -110,7 +110,7 @@ namespace ca
       ca(pthreadParent->get_app())
    {
 
-      m_p = NULL;
+      m_p = ::null();
       sp(create_context)::operator = (new ::ca::create_context(pthreadParent));
 
    }
@@ -119,7 +119,7 @@ namespace ca
       ca(pthreadParent->get_app())
    {
 
-      m_p = NULL;
+      m_p = ::null();
       sp(create_context)::operator = (new ::ca::create_context(pthreadParent, varFile, bMakeVisible, puiParent));
 
    }

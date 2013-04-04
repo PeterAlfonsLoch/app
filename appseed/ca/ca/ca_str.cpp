@@ -57,9 +57,9 @@ namespace ca
 
    bool str::begins(const char * lpcsz, const char * lpcszPrefix)
    {
-      if(lpcsz == NULL || *lpcsz == '\0')
+      if(lpcsz == ::null() || *lpcsz == '\0')
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == '\0')
          {
             return true;
          }
@@ -96,7 +96,7 @@ namespace ca
    {
       if(str.is_empty())
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == '\0')
          {
             return true;
          }
@@ -132,9 +132,9 @@ namespace ca
 
    bool str::begins_ci(const char * lpcsz, const char * lpcszPrefix)
    {
-      if(lpcsz == NULL || *lpcsz == '\0')
+      if(lpcsz == ::null() || *lpcsz == '\0')
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == '\0')
          {
             return true;
          }
@@ -165,9 +165,9 @@ namespace ca
    // case insensitive, ignore white space - only in searched string
    bool str::begins_ci_iws(const char * lpcsz, const char * lpcszPrefix)
    {
-      if(lpcsz == NULL || *lpcsz == '\0')
+      if(lpcsz == ::null() || *lpcsz == '\0')
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == '\0')
          {
             return true;
          }
@@ -225,7 +225,7 @@ namespace ca
    bool str::begins_eat_ci(string & str, const char * lpcszPrefix)
    {
 
-      if(lpcszPrefix == NULL)
+      if(lpcszPrefix == ::null())
          return true;
 
       string strPrefix(lpcszPrefix);
@@ -257,14 +257,14 @@ namespace ca
 
    bool str::ends(const char * lpcsz, const char * lpcszSuffix)
    {
-      if(lpcsz == NULL || *lpcsz == '\0')
+      if(lpcsz == ::null() || *lpcsz == '\0')
       {
-         if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+         if(lpcszSuffix == ::null() || *lpcszSuffix == '\0')
             return true;
          else
             return false;
       }
-      else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+      else if(lpcszSuffix == ::null() || *lpcszSuffix == '\0')
       {
          return true;
       }
@@ -297,14 +297,14 @@ namespace ca
 
    bool str::ends_ci(const char * lpcsz, const char * lpcszSuffix)
    {
-      if(lpcsz == NULL || *lpcsz == '\0')
+      if(lpcsz == ::null() || *lpcsz == '\0')
       {
-         if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+         if(lpcszSuffix == ::null() || *lpcszSuffix == '\0')
             return true;
          else
             return false;
       }
-      else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+      else if(lpcszSuffix == ::null() || *lpcszSuffix == '\0')
       {
          return true;
       }
@@ -333,12 +333,12 @@ namespace ca
    {
       if(str.is_empty())
       {
-         if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+         if(lpcszSuffix == ::null() || *lpcszSuffix == '\0')
             return true;
          else
             return false;
       }
-      else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+      else if(lpcszSuffix == ::null() || *lpcszSuffix == '\0')
       {
          return true;
       }
@@ -486,9 +486,9 @@ namespace ca
 
       string str(psz);
 
-      count iReplaceLen = -1;
+      ::count iReplaceLen = -1;
 
-      count iFindLen = -1;
+      ::count iFindLen = -1;
 
       while(true)
       {
@@ -540,9 +540,9 @@ namespace ca
    index str::find_ci(const string & strFind, const char * psz, index iStart)
    {
 
-      count iFindLen = strFind.get_length();
+      ::count iFindLen = strFind.get_length();
 
-      count iLen = strlen(&psz[iStart]);
+      ::count iLen = strlen(&psz[iStart]);
 
       if(iFindLen > iLen)
          return -1;
@@ -567,7 +567,7 @@ namespace ca
 
             const char * pszFind = strstr(sz, szFind);
 
-            if(pszFind == NULL)
+            if(pszFind == ::null())
                return -1;
 
             return iStart + (pszFind - sz);
@@ -584,7 +584,7 @@ namespace ca
 
             const char * pszFind = strstr(psz, szFind);
 
-            if(pszFind == NULL)
+            if(pszFind == ::null())
                return -1;
 
             return iStart + (pszFind - psz);
@@ -618,7 +618,7 @@ namespace ca
    index str::find_ci(const char * pszFind, const string & str, index iStart)
    {
 
-      count iFindLen = strlen(pszFind);
+      ::count iFindLen = strlen(pszFind);
 
       index iLen = str.get_length() - iStart;
 
@@ -645,7 +645,7 @@ namespace ca
 
             pszFind = strstr(sz, szFind);
 
-            if(pszFind == NULL)
+            if(pszFind == ::null())
                return -1;
 
             return iStart + (pszFind - sz);
@@ -662,7 +662,7 @@ namespace ca
 
             pszFind = strstr(psz, szFind);
 
-            if(pszFind == NULL)
+            if(pszFind == ::null())
                return -1;
 
             return iStart + (pszFind - psz);
@@ -719,7 +719,7 @@ namespace ca
 
             pszFind = strstr(sz, szFind);
 
-            if(pszFind == NULL)
+            if(pszFind == ::null())
                return -1;
 
             return iStart + (pszFind - sz);
@@ -735,7 +735,7 @@ namespace ca
 
             pszFind = strstr(psz, szFind);
 
-            if(pszFind == NULL)
+            if(pszFind == ::null())
                return -1;
 
             return iStart + (pszFind - psz);
@@ -796,12 +796,12 @@ namespace ca
    index str::find_ww(const char * pszFind, const char * psz, index iStart)
    {
 
-      if(psz == NULL)
+      if(psz == ::null())
          return -1;
 
       const char * pszIter = &psz[iStart];
 
-      if(pszIter == NULL)
+      if(pszIter == ::null())
          return -1;
 
       string strFind(pszFind);
@@ -860,12 +860,12 @@ namespace ca
    index str::find_aww(const char * pszFind, const char * psz, index iStart)
    {
 
-      if(psz == NULL)
+      if(psz == ::null())
          return -1;
 
       const char * pszIter = &psz[iStart];
 
-      if(pszIter == NULL)
+      if(pszIter == ::null())
          return -1;
 
       string strFind(pszFind);
@@ -932,13 +932,13 @@ namespace ca
 
       string str;
 
-      if(pszIfHasChar == NULL)
+      if(pszIfHasChar == ::null())
          return str;
 
       if(strlen(pszIfHasChar) == 0)
          return str;
 
-      if(pszBefore != NULL)
+      if(pszBefore != ::null())
       {
 
          str = pszBefore;
@@ -947,7 +947,7 @@ namespace ca
 
       str += pszIfHasChar;
 
-      if(pszAfter != NULL)
+      if(pszAfter != ::null())
       {
 
          str += pszAfter;
@@ -1067,7 +1067,7 @@ namespace ca
    string str::if_null(const char * psz, const char * pszIfNull)
    {
 
-      if(psz == NULL)
+      if(psz == ::null())
          return pszIfNull;
       else
          return psz;
@@ -1079,7 +1079,7 @@ namespace ca
 
       string str;
 
-      if (oswindow != NULL)
+      if (oswindow != ::null())
       {
 
 #ifdef WINDOWSEX
@@ -1109,10 +1109,10 @@ namespace ca
       bool bEndIsSeparator)
    {
 
-      if(psz == NULL)
+      if(psz == ::null())
          return "";
 
-      if(pszSeparator == NULL)
+      if(pszSeparator == ::null())
       {
 
          if(bEndIsSeparator)
@@ -1480,13 +1480,13 @@ namespace ca
    {
       if(psz <= pszBeg)
       {
-         return NULL;
+         return ::null();
       }
       if((*(psz - 1) & 0x80) == 0x00)
       {
          if((psz - 1) < pszBeg)
          {
-            return NULL;
+            return ::null();
          }
          return psz - 1;
       }
@@ -1494,7 +1494,7 @@ namespace ca
       {
          if((psz - 2) < pszBeg)
          {
-            return NULL;
+            return ::null();
          }
          return psz - 2;
       }
@@ -1502,7 +1502,7 @@ namespace ca
       {
          if((psz - 3) < pszBeg)
          {
-            return NULL;
+            return ::null();
          }
          return psz - 3;
       }
@@ -1510,7 +1510,7 @@ namespace ca
       {
          if((psz - 4) < pszBeg)
          {
-            return NULL;
+            return ::null();
          }
          return psz - 4;
       }
@@ -1518,7 +1518,7 @@ namespace ca
       {
          if((psz - 5) < pszBeg)
          {
-            return NULL;
+            return ::null();
          }
          return psz - 5;
       }
@@ -1526,13 +1526,13 @@ namespace ca
       {
          if((psz - 6) < pszBeg)
          {
-            return NULL;
+            return ::null();
          }
          return psz - 6;
       }
       if((psz - 1) < pszBeg)
       {
-         return NULL;
+         return ::null();
       }
       return psz - 1;
    }
@@ -1542,14 +1542,14 @@ namespace ca
       if(psz <= pszBeg)
       {
          pchar->m_chLen = -1;
-         return NULL;
+         return ::null();
       }
       if((*(psz - 1) & 0x80) == 0x00)
       {
          if((psz - 1) < pszBeg)
          {
             pchar->m_chLen = -1;
-            return NULL;
+            return ::null();
          }
          pchar->m_sz[0] = psz[-1];
          pchar->m_sz[1] = '\0';
@@ -1561,7 +1561,7 @@ namespace ca
          if((psz - 2) < pszBeg)
          {
             pchar->m_chLen = -1;
-            return NULL;
+            return ::null();
          }
          pchar->m_sz[0] = psz[-2];
          pchar->m_sz[1] = psz[-1];
@@ -1574,7 +1574,7 @@ namespace ca
          if((psz - 3) < pszBeg)
          {
             pchar->m_chLen = -1;
-            return NULL;
+            return ::null();
          }
          pchar->m_sz[0] = psz[-3];
          pchar->m_sz[1] = psz[-2];
@@ -1588,7 +1588,7 @@ namespace ca
          if((psz - 4) < pszBeg)
          {
             pchar->m_chLen = -1;
-            return NULL;
+            return ::null();
          }
          pchar->m_sz[0] = psz[-4];
          pchar->m_sz[1] = psz[-3];
@@ -1603,7 +1603,7 @@ namespace ca
          if((psz - 5) < pszBeg)
          {
             pchar->m_chLen = -1;
-            return NULL;
+            return ::null();
          }
          pchar->m_sz[0] = psz[-5];
          pchar->m_sz[1] = psz[-4];
@@ -1619,7 +1619,7 @@ namespace ca
          if((psz - 6) < pszBeg)
          {
             pchar->m_chLen = -1;
-            return NULL;
+            return ::null();
          }
          pchar->m_sz[0] = psz[-6];
          pchar->m_sz[1] = psz[-5];
@@ -1634,7 +1634,7 @@ namespace ca
       if((psz - 1) < pszBeg)
       {
          pchar->m_chLen = -1;
-         return NULL;
+         return ::null();
       }
       pchar->m_sz[0] = psz[-1];
       pchar->m_sz[1] = '\0';
@@ -1693,7 +1693,7 @@ namespace ca
          while(i != 0)
          {
             psz = utf8_dec(pszBeg, psz);
-            if(psz == NULL)
+            if(psz == ::null())
             {
                return "";
             }
@@ -1762,7 +1762,7 @@ namespace ca
    {
       if (psz[0] != '{') return false;
       const char * pszChar;
-      for(pszChar = utf8_inc(psz); pszChar != NULL; pszChar = utf8_inc(pszChar))
+      for(pszChar = utf8_inc(psz); pszChar != ::null(); pszChar = utf8_inc(pszChar))
       {
          if (*pszChar == '}')
             break;
@@ -1841,7 +1841,7 @@ namespace ca
       pszXml += len;
    }
 
-   void str::consume_spaces(const char * & pszXml, count iMinimumCount)
+   void str::consume_spaces(const char * & pszXml, ::count iMinimumCount)
    {
       const char * psz = pszXml;
       int32_t i = 0;
@@ -1891,7 +1891,7 @@ namespace ca
 
    }
 
-   void str::consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd)
+   void str::consume_spaces(const char * & pszXml, ::count iMinimumCount, const char * pszEnd)
    {
       const char * psz = pszXml;
       int32_t i = 0;
@@ -2109,11 +2109,11 @@ namespace ca
       return str;
    }
 
-   string str::pad(const char * psz, count iLen, const char * pszPattern, str::e_pad epad)
+   string str::pad(const char * psz, ::count iLen, const char * pszPattern, str::e_pad epad)
    {
       string str;
       str = psz;
-      if(pszPattern == NULL || strlen(pszPattern) == 0)
+      if(pszPattern == ::null() || strlen(pszPattern) == 0)
          return str;
       int32_t i = 0;
       if(epad == pad_left)
@@ -2141,9 +2141,9 @@ namespace ca
 
    var str::ends_get(const char * pszSuffix, const char * psz)
    {
-      if(pszSuffix == NULL)
+      if(pszSuffix == ::null())
          return psz;
-      if(psz == NULL)
+      if(psz == ::null())
          return "";
       string str(psz);
       strsize iLen = strlen(psz);
@@ -2157,9 +2157,9 @@ namespace ca
 
    var str::ends_get_ci(const char * pszSuffix, const char * psz)
    {
-      if(pszSuffix == NULL)
+      if(pszSuffix == ::null())
          return psz;
-      if(psz == NULL)
+      if(psz == ::null())
          return "";
       string str(psz);
       strsize iLen = strlen(psz);
@@ -2359,7 +2359,7 @@ namespace ca
       int32_t i = 0;
       for(i = 0; i < str.get_length(); i++)
       {
-         if(strchr(lpcszChars, str[i]) == NULL)
+         if(strchr(lpcszChars, str[i]) == ::null())
             break;
       }
       str = str.Mid(i);
@@ -2371,7 +2371,7 @@ namespace ca
       int32_t i = 0;
       for(i = 0; i < str.get_length(); i++)
       {
-         if(strchr(lpcszChars, tolower(str[i])) == NULL)
+         if(strchr(lpcszChars, tolower(str[i])) == ::null())
             break;
       }
       str = str.Mid(i);
@@ -2402,9 +2402,9 @@ namespace ca
 
    bool str::begins(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
    {
-      if(lpcsz == NULL || *lpcsz == L'\0')
+      if(lpcsz == ::null() || *lpcsz == L'\0')
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == L'\0')
          {
             return true;
          }
@@ -2441,7 +2441,7 @@ namespace ca
    {
       if(str.is_empty())
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == L'\0')
          {
             return true;
          }
@@ -2480,9 +2480,9 @@ namespace ca
    // case insensitive, ignore white space - only in searched string
    bool str::begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
    {
-      if(lpcsz == NULL || *lpcsz == L'\0')
+      if(lpcsz == ::null() || *lpcsz == L'\0')
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == L'\0')
          {
             return true;
          }
@@ -2518,9 +2518,9 @@ namespace ca
    // case insensitive, ignore white space - only in searched string
    bool str::begins_ci_iws(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
    {
-      if(lpcsz == NULL || *lpcsz == L'\0')
+      if(lpcsz == ::null() || *lpcsz == L'\0')
       {
-         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         if(lpcszPrefix == ::null() || *lpcszPrefix == L'\0')
          {
             return true;
          }

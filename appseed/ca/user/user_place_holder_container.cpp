@@ -23,11 +23,11 @@ namespace user
    {
       m_holdera.add(new place_holder(get_app()));
       if(m_holdera.last_element().is_null())
-         return NULL;
+         return ::null();
       if(!m_holdera.last_element()->create(this, m_holdera.get_upper_bound()))
       {
          m_holdera.remove_last();
-         return NULL;
+         return ::null();
       }
       return m_holdera.last_element();
    }
@@ -44,7 +44,7 @@ namespace user
       if(!on_hold(pui, pholder))
       {
          remove_place_holder(pholder);
-         return NULL;
+         return ::null();
       }
       return pholder;
    }
@@ -87,7 +87,7 @@ namespace user
 
    bool place_holder_container::create(::user::interaction * puiParent, id id)
    {
-      return ::database::user::interaction::create(NULL, NULL, 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
+      return ::database::user::interaction::create(::null(), ::null(), 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
    }
 
    place_holder_ptra place_holder_container_ptra::hold(::user::interaction * pui)
@@ -97,7 +97,7 @@ namespace user
       for(int32_t i = 0; i < this->get_count(); i++)
       {
          pholder = this->element_at(i)->hold(pui);
-         if(pholder != NULL)
+         if(pholder != ::null())
          {
             holderptra.add(pholder);
          }

@@ -606,8 +606,8 @@ namespace datetime
    scanner::scanner(::ca::application * papp, ::user::str_context * pcontext)
    {
       m_pstrcontext     = pcontext;
-      m_ptoken          = NULL;
-      input             = NULL;
+      m_ptoken          = ::null();
+      input             = ::null();
    }
 
    scanner::~scanner()
@@ -625,7 +625,7 @@ namespace datetime
    void scanner::peek()
    {
       const char *beginning;
-      if(input != next_input && next_input != NULL)
+      if(input != next_input && next_input != ::null())
          return;
       beginning = input;
       m_ptoken = look_ahead();
@@ -642,7 +642,7 @@ namespace datetime
    {
       token * token;
       token = new class token;
-      if(token == NULL)
+      if(token == ::null())
          throw memory_exception(get_app());
       while(isspace_dup(*input))
          input++;

@@ -15,8 +15,8 @@ SMatch *SMatchHash::getItem(string name)
 
 SRegInfo::SRegInfo()
 {
-  next = prev = parent = NULL;
-  un.param = NULL;
+  next = prev = parent = ::null();
+  un.param = ::null();
   op = ReEmpty;
   param0 = param1 = 0;
 };
@@ -90,7 +90,7 @@ EError cregexp::setRELow(const char * expr)
   if (!len) return EERROR;
 
   if (tree_root) delete tree_root;
-  tree_root = NULL;
+  tree_root = ::null();
 
   cMatch = 0;
   endChange = startChange = false;
@@ -477,7 +477,7 @@ SRegInfo *next, *temp;
     {
       strsize endPos;
       ::ca::ch_class *cc = ::ca::ch_class::createCharClass(expr, i, &endPos);
-      if (cc == NULL) return EENUM;
+      if (cc == ::null()) return EENUM;
 //      next->op = (exprn[i] == ReEnumS) ? ReEnum : ReNEnum;
       next->op = ReEnum;
       next->un.charclass = cc;
@@ -512,7 +512,7 @@ SRegInfo *next, *temp;
         wcword.set_at_grow(idx, *resymb->un.symbol);
         SRegInfo *retmp = resymb;
         resymb = resymb->next;
-        retmp->next = NULL;
+        retmp->next = ::null();
         if (idx > 0) delete retmp;
       }
       reword->op = ReWord;

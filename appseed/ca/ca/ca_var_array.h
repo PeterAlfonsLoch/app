@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_ca var_array : 
-   public ::ca::byte_serializable_array < base_array < var > >
+   public ::ca::byte_serializable_array < array < var > >
 {
 public:
 

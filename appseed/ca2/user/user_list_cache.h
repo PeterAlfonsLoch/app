@@ -14,7 +14,7 @@ namespace user
       bool                                                              m_bCaching;
       int32_t                                                               m_iCacheNextIndex;
       string2a                                                          m_cacheArray;
-      ::collection::map < int_ptr, int_ptr, stringa *, stringa *>       m_cacheMap;
+      map < int_ptr, int_ptr, stringa *, stringa *>       m_cacheMap;
 
 
    public:

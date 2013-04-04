@@ -97,7 +97,7 @@ namespace n7z
 
       ::libcompress::copy_coder *copyCoderSpec = new ::libcompress::copy_coder;
       ::ca::smart_pointer < ::libcompress::coder_interface > copyCoder = copyCoderSpec;
-      RINOK(copyCoder->Code(inStreamLimited, outStream, NULL, NULL, progress));
+      RINOK(copyCoder->Code(inStreamLimited, outStream, ::null(), ::null(), progress));
       return (copyCoderSpec->TotalSize == size ? S_OK : E_FAIL);
    }
 
@@ -156,9 +156,9 @@ namespace n7z
    static int32_t CompareFolders(const CFolder &f1, const CFolder &f2)
    {
 
-      count s1 = f1.Coders.get_count();
+      ::count s1 = f1.Coders.get_count();
 
-      count s2 = f2.Coders.get_count();
+      ::count s2 = f2.Coders.get_count();
 
       RINOZ_COMP(s1, s2);
 
@@ -220,7 +220,7 @@ namespace n7z
 
    static int32_t CompareEmptyItems(const int32_t *p1, const int32_t *p2, void *param)
    {
-      const ::collection::smart_pointer_array<CUpdateItem> &updateItems = *(const ::collection::smart_pointer_array<CUpdateItem> *)param;
+      const smart_pointer_array<CUpdateItem> &updateItems = *(const smart_pointer_array<CUpdateItem> *)param;
       const CUpdateItem &u1 = updateItems[*p1];
       const CUpdateItem &u2 = updateItems[*p2];
       if (u1.IsDir != u2.IsDir)
@@ -387,7 +387,7 @@ namespace n7z
    struct CSolidGroup : 
       virtual ::ca::ca
    {
-      base_array<uint32_t> Indices;
+      array<uint32_t> Indices;
    };
 
    static const char *g_ExeExts[] =
@@ -540,7 +540,7 @@ namespace n7z
 
    void CFolderOutStream2::OpenFile()
    {
-      _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream.m_p : NULL);
+      _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream.m_p : ::null());
       _crcStreamSpec->Init(true);
       _fileIsOpen = true;
       _rem = _db->Files[_startIndex + _currentIndex].get_count;
@@ -573,7 +573,7 @@ namespace n7z
    void CFolderOutStream2::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
    {
       HRESULT hr;
-      if (processedSize != NULL)
+      if (processedSize != ::null())
          *processedSize = 0;
       while (size != 0)
       {
@@ -586,7 +586,7 @@ namespace n7z
             data = (const byte *)data + cur;
             size -= cur;
             _rem -= cur;
-            if (processedSize != NULL)
+            if (processedSize != ::null())
                *processedSize += cur;
             if (_rem == 0)
             {
@@ -629,7 +629,7 @@ namespace n7z
 
       ///DECL_EXTERNAL_CODECS_VARS
       ::libcompress::codecs_info_interface * _codecsInfo;
-      base_array < ::libcompress::codec_info_ex > _externalCodecs;
+      array < ::libcompress::codec_info_ex > _externalCodecs;
          CDecoder Decoder;
 
 #ifndef _7ZIP_ST
@@ -667,7 +667,7 @@ namespace n7z
             PackSizes,
             *Folder,
             Fos,
-            NULL
+            ::null()
 #ifndef _NO_CRYPTO
             , GetTextPassword, passwordIsDefined
 #endif
@@ -727,10 +727,10 @@ namespace n7z
 
    HRESULT Update(
       ::libcompress::codecs_info_interface * codecsInfo,
-      const base_array < ::libcompress::codec_info_ex > * externalCodecs,
+      const array < ::libcompress::codec_info_ex > * externalCodecs,
       ::ca::byte_input_stream * inStream,
       const CArchiveDatabaseEx * db,
-      const ::collection::smart_pointer_array < CUpdateItem > & updateItems,
+      const smart_pointer_array < CUpdateItem > & updateItems,
       COutArchive & archive,
       CArchiveDatabase & newDatabase,
       ::ca::writer * seqOutStream,
@@ -754,11 +754,11 @@ namespace n7z
       uint64_t startBlockSize = db != 0 ? db->ArchiveInfo.StartPosition: 0;
       if (startBlockSize > 0 && !options.RemoveSfxBlock)
       {
-         RINOK(WriteRange(inStream, seqOutStream, 0, startBlockSize, NULL));
+         RINOK(WriteRange(inStream, seqOutStream, 0, startBlockSize, ::null()));
       }
 
-      base_array<int32_t> fileIndexToUpdateIndexMap;
-      base_array<CFolderRepack> folderRefs;
+      array<int32_t> fileIndexToUpdateIndexMap;
+      array<CFolderRepack> folderRefs;
       uint64_t complexity = 0;
       uint64_t inSizeForReduce2 = 0;
       bool needEncryptedRepack = false;
@@ -861,7 +861,7 @@ namespace n7z
          //RINOK(threadDecoder.Create());
       }
 
-      ::collection::smart_pointer_array<CSolidGroup> groups;
+      smart_pointer_array<CSolidGroup> groups;
       for (i = 0; i < kNumGroupsMax; i++)
          groups.add(CSolidGroup());
 
@@ -903,7 +903,7 @@ namespace n7z
 
 #ifndef _NO_CRYPTO
 
-      CCryptoGetTextPassword *getPasswordSpec = NULL;
+      CCryptoGetTextPassword *getPasswordSpec = ::null();
       if (needEncryptedRepack)
       {
          getPasswordSpec = new CCryptoGetTextPassword;
@@ -1021,13 +1021,13 @@ namespace n7z
 
                threadDecoder.begin();
 
-               count startPackIndex = newDatabase.PackSizes.get_count();
+               ::count startPackIndex = newDatabase.PackSizes.get_count();
 
                CFolder newFolder;
 
                RINOK(encoder.Encode(
                   codecsInfo, externalCodecs,
-                  sbInStream, NULL, &inSizeForReduce, newFolder,
+                  sbInStream, ::null(), &inSizeForReduce, newFolder,
                   archive.SeqStream, newDatabase.PackSizes, progress));
 
                throw "should implement below";
@@ -1077,10 +1077,10 @@ namespace n7z
             }
          }
 
-         count numFiles = group.Indices.get_count();
+         ::count numFiles = group.Indices.get_count();
          if (numFiles == 0)
             continue;
-         ::collection::smart_pointer_array<CRefItem> refItems;
+         smart_pointer_array<CRefItem> refItems;
          //refItems.set_size(0, numFiles);
          bool sortByType = (numSolidFiles > 1);
          for (i = 0; i < numFiles; i++)
@@ -1088,7 +1088,7 @@ namespace n7z
          throw "should implement below";
          //refItems.Sort(CompareUpdateItems, (void *)&sortByType);
 
-         base_array<uint32_t> indices;
+         array<uint32_t> indices;
          indices.set_size(0, numFiles);
 
          for (i = 0; i < numFiles; i++)
@@ -1139,10 +1139,10 @@ namespace n7z
 
             CFolder folderItem;
 
-            count startPackIndex = newDatabase.PackSizes.get_count();
+            ::count startPackIndex = newDatabase.PackSizes.get_count();
             RINOK(encoder.Encode(
                codecsInfo, externalCodecs,
-               solidInStream, NULL, &inSizeForReduce, folderItem,
+               solidInStream, ::null(), &inSizeForReduce, folderItem,
                archive.SeqStream, newDatabase.PackSizes, progress));
 
             for (; startPackIndex < newDatabase.PackSizes.get_count(); startPackIndex++)
@@ -1212,7 +1212,7 @@ namespace n7z
       {
          // ---------- Write Folders & Empty Files ----------
 
-         base_array<int32_t> emptyRefs;
+         array<int32_t> emptyRefs;
          for (i = 0; i < updateItems.get_count(); i++)
          {
             const CUpdateItem &ui = updateItems[i];

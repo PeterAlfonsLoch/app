@@ -24,7 +24,7 @@ public:
    string           m_strValue;
 
 
-   LiteHTMLElemAttr(const char * lpszAttribName = NULL, const char * lpszAttribValue = NULL)
+   LiteHTMLElemAttr(const char * lpszAttribName = ::null(), const char * lpszAttribValue = ::null())
    {
       Init();
       m_strName = lpszAttribName;
@@ -195,7 +195,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    operator double() const
-      { return (::strtod(m_strValue, NULL)); }
+      { return (::strtod(m_strValue, ::null())); }
 
    /**
     * Converts attribute value to signed int16_t
@@ -249,7 +249,7 @@ class LiteHTMLAttributes
 // Construction/Destruction
 public:
    LiteHTMLAttributes()
-      : m_parrAttrib(NULL)
+      : m_parrAttrib(::null())
    { }
 
    /**
@@ -261,28 +261,28 @@ public:
     * @author Gurmeet S. Kochar
     */
    LiteHTMLAttributes(LiteHTMLAttributes &rSource, bool bCopy = false)
-      : m_parrAttrib(NULL)
+      : m_parrAttrib(::null())
    {
       if (!bCopy)
       {
          m_parrAttrib = rSource.m_parrAttrib;
-         rSource.m_parrAttrib = NULL;
+         rSource.m_parrAttrib = ::null();
       }
       else
       {
-         const count nElemCount = rSource.getCount();
+         const ::count nElemCount = rSource.getCount();
          if (nElemCount)
          {
-            if ((m_parrAttrib = new CElemAttrArray) == NULL)
+            if ((m_parrAttrib = new CElemAttrArray) == ::null())
                throw memory_exception(::ca::get_thread_app());
 
-            LiteHTMLElemAttr   *pItem = NULL;
+            LiteHTMLElemAttr   *pItem = ::null();
             m_parrAttrib->set_size(nElemCount);
 
             /** DEEP COPY BEGIN */
             for (int32_t iElem = 0; iElem < nElemCount; iElem++)
             {
-               if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == NULL)
+               if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == ::null())
                {
                   removeAll();
                   throw memory_exception(::ca::get_thread_app());
@@ -290,7 +290,7 @@ public:
                }
 
                (*m_parrAttrib)[iElem] = pItem;
-               pItem = NULL;
+               pItem = ::null();
             }
             /** DEEP COPY END */
          }
@@ -308,14 +308,14 @@ public:
 // Attributes
 public:
    /**
-    * Returns the count of LiteHTMLElemAttr items in this collection
+    * Returns the ::count of LiteHTMLElemAttr items in this collection
     * @return number of items
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   count getCount() const
+   ::count getCount() const
    {
-      if (m_parrAttrib != NULL)
+      if (m_parrAttrib != ::null())
          return (m_parrAttrib->get_upper_bound() + 1);
       return (0);
    }
@@ -334,10 +334,10 @@ public:
    int32_t getIndexFromName(const char * lpszAttributeName) const
    {
       ASSERT(__is_valid_string(lpszAttributeName));
-      LiteHTMLElemAttr   *pItem = NULL;
+      LiteHTMLElemAttr   *pItem = ::null();
       for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
-         if ((pItem = (*m_parrAttrib)[iElem]) == NULL)   // just in case
+         if ((pItem = (*m_parrAttrib)[iElem]) == ::null())   // just in case
             continue;
 
          // perform a CASE-INSENSITIVE search
@@ -461,8 +461,8 @@ public:
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
-      LiteHTMLElemAttr   *pItem = NULL;
-      VERIFY(((*m_parrAttrib)[nIndex]) != NULL);
+      LiteHTMLElemAttr   *pItem = ::null();
+      VERIFY(((*m_parrAttrib)[nIndex]) != ::null());
       SAFE_DELETE_POINTER(pItem);
       return (true);
    }
@@ -475,10 +475,10 @@ public:
     */
    bool removeAll()
    {
-      LiteHTMLElemAttr   *pItem = NULL;
+      LiteHTMLElemAttr   *pItem = ::null();
       for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
-         VERIFY((pItem = (*m_parrAttrib)[iElem]) != NULL);
+         VERIFY((pItem = (*m_parrAttrib)[iElem]) != ::null());
          SAFE_DELETE_POINTER(pItem);
       }
       SAFE_DELETE_POINTER(m_parrAttrib);
@@ -488,5 +488,5 @@ public:
 // Data Members
 private:
    typedef primitive_array < LiteHTMLElemAttr * >   CElemAttrArray;
-   CElemAttrArray   *m_parrAttrib;   // base_array of attributes/value pairs
+   CElemAttrArray   *m_parrAttrib;   // array of attributes/value pairs
 };

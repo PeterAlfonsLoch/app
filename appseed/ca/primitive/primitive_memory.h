@@ -20,7 +20,7 @@ namespace primitive
       memory(const memory & memory);
       memory(const simple_memory & memory);
       memory(const char * psz);
-      memory(primitive::memory_container * pmsc = NULL, memory_size dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
+      memory(primitive::memory_container * pmsc = ::null(), memory_size dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
       memory(primitive::memory_container * pmsc, void * pMemory, memory_size dwSize);
       virtual ~memory();
 

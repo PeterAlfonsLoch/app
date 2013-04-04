@@ -40,7 +40,7 @@ namespace html
       inline void printf(const char *pszFmt) const
       {
 
-         string_format format(this, &::html::file::trace, NULL);
+         string_format format(this, &::html::file::trace, ::null());
 
          format.printf(pszFmt);
 
@@ -50,7 +50,7 @@ namespace html
       inline void printf(const char * pszFmt, const T & value, Args... args) const
       {
 
-         string_format format(this, &::html::file::trace, NULL);
+         string_format format(this, &::html::file::trace, ::null());
 
          format.printf(pszFmt, value, args...);
 

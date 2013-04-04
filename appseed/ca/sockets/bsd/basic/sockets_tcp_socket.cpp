@@ -80,13 +80,13 @@ void ssl_sigpipe_handle( int x );
    #ifdef SOCKETS_DYNAMIC_TEMP
    ,m_buf(new char[TCP_BUFSIZE_READ + 1])
    #endif
-   ,m_obuf_top(NULL)
+   ,m_obuf_top(::null())
    ,m_transfer_limit(0)
    ,m_output_length(0)
    #ifdef HAVE_OPENSSL
-   ,m_ssl_ctx(NULL)
-   ,m_ssl(NULL)
-   ,m_sbio(NULL)
+   ,m_ssl_ctx(::null())
+   ,m_ssl(::null())
+   ,m_sbio(::null())
    #endif
    ,m_socks4_state(0)
    ,m_resolver_id(0)
@@ -114,13 +114,13 @@ void ssl_sigpipe_handle( int x );
    #ifdef SOCKETS_DYNAMIC_TEMP
    ,m_buf(new char[TCP_BUFSIZE_READ + 1])
    #endif
-   ,m_obuf_top(NULL)
+   ,m_obuf_top(::null())
    ,m_transfer_limit(0)
    ,m_output_length(0)
    #ifdef HAVE_OPENSSL
-   ,m_ssl_ctx(NULL)
-   ,m_ssl(NULL)
-   ,m_sbio(NULL)
+   ,m_ssl_ctx(::null())
+   ,m_ssl(::null())
+   ,m_sbio(::null())
    #endif
    ,m_socks4_state(0)
    ,m_resolver_id(0)
@@ -142,7 +142,7 @@ void ssl_sigpipe_handle( int x );
    #endif
       // %! is_empty m_obuf
       POSITION pos = m_obuf.get_head_position();
-      while(pos != NULL)
+      while(pos != ::null())
       {
          OUTPUT * p = m_obuf.get_next(pos);
          delete p;
@@ -598,7 +598,7 @@ void ssl_sigpipe_handle( int x );
       do
       {
          POSITION pos = m_obuf.get_head_position();
-         if(pos == NULL)
+         if(pos == ::null())
             return;
          OUTPUT * p = m_obuf.get_at(pos);
          repeat = false;
@@ -613,7 +613,7 @@ void ssl_sigpipe_handle( int x );
                m_obuf.remove_at(pos);
                if (!m_obuf.get_size())
                {
-                  m_obuf_top = NULL;
+                  m_obuf_top = ::null();
                   OnWriteComplete();
                }
                else
@@ -659,7 +659,7 @@ void ssl_sigpipe_handle( int x );
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               const char *errbuf = ERR_error_string(errnr, NULL);
+               const char *errbuf = ERR_error_string(errnr, ::null());
                Handler().LogError(this, "OnWrite/SSL_write", errnr, errbuf, ::ca::log::level_fatal);
             }
             return 0;
@@ -672,7 +672,7 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             int32_t errnr = SSL_get_error(m_ssl, (int32_t) n);
-            const char *errbuf = ERR_error_string(errnr, NULL);
+            const char *errbuf = ERR_error_string(errnr, ::null());
             TRACE("SSL_write() returns 0: %d : %s\n",errnr, errbuf);
          }
       }
@@ -967,7 +967,7 @@ void ssl_sigpipe_handle( int x );
          m_ssl = SSL_new(m_ssl_ctx);
          if (!m_ssl)
          {
-   TRACE(" m_ssl is NULL\n");
+   TRACE(" m_ssl is ::null()\n");
             SetCloseAndDelete(true);
             return;
          }
@@ -975,7 +975,7 @@ void ssl_sigpipe_handle( int x );
          m_sbio = BIO_new_socket((int32_t)GetSocket(), BIO_NOCLOSE);
          if (!m_sbio)
          {
-   TRACE(" m_sbio is NULL\n");
+   TRACE(" m_sbio is ::null()\n");
             SetCloseAndDelete(true);
             return;
          }
@@ -1010,7 +1010,7 @@ void ssl_sigpipe_handle( int x );
          m_ssl = SSL_new(m_ssl_ctx);
          if (!m_ssl)
          {
-   TRACE(" m_ssl is NULL\n");
+   TRACE(" m_ssl is ::null()\n");
             SetCloseAndDelete(true);
             return;
          }
@@ -1018,7 +1018,7 @@ void ssl_sigpipe_handle( int x );
          m_sbio = BIO_new_socket((int32_t)GetSocket(), BIO_NOCLOSE);
          if (!m_sbio)
          {
-   TRACE(" m_sbio is NULL\n");
+   TRACE(" m_sbio is ::null()\n");
             SetCloseAndDelete(true);
             return;
          }
@@ -1035,7 +1035,7 @@ void ssl_sigpipe_handle( int x );
    {
       if(!IsSSLServer()) // client
       {
-         if(m_spsslclientcontext->m_psession != NULL)
+         if(m_spsslclientcontext->m_psession != ::null())
          {
             SSL_set_session(m_ssl, m_spsslclientcontext->m_psession);
          }
@@ -1075,7 +1075,7 @@ void ssl_sigpipe_handle( int x );
                OnConnect();
             }
             Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection established", ::ca::log::level_info);
-            if(m_spsslclientcontext->m_psession == NULL)
+            if(m_spsslclientcontext->m_psession == ::null())
             {
                m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
             }
@@ -1083,7 +1083,7 @@ void ssl_sigpipe_handle( int x );
          }
          else if(!r)
          {
-            if(m_spsslclientcontext->m_psession != NULL)
+            if(m_spsslclientcontext->m_psession != ::null())
             {
 
                if(m_spsslclientcontext->m_iRetry == 0)
@@ -1091,7 +1091,7 @@ void ssl_sigpipe_handle( int x );
                   m_spsslclientcontext->m_iRetry = 1;
                   SSL_clear(m_ssl);
                   SSL_SESSION_free(m_spsslclientcontext->m_psession);
-                  m_spsslclientcontext->m_psession = NULL;
+                  m_spsslclientcontext->m_psession = ::null();
                   goto skip;
                }
                else
@@ -1183,10 +1183,10 @@ void ssl_sigpipe_handle( int x );
       /* create our context*/
       if(m_spsslclientcontext.is_null())
       {
-         ::collection::string_map < sp(ssl_client_context) > & clientcontextmap = System.sockets().m_clientcontextmap;
-         if(clientcontextmap.PLookup(context) == NULL)
+         string_map < sp(ssl_client_context) > & clientcontextmap = System.sockets().m_clientcontextmap;
+         if(clientcontextmap.PLookup(context) == ::null())
          {
-            m_spsslclientcontext(new ssl_client_context(get_app(), pmethod));
+            m_spsslclientcontext = new ssl_client_context(get_app(), pmethod);
             if(context.has_char())
             {
                clientcontextmap[context] = m_spsslclientcontext;
@@ -1194,7 +1194,7 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_value;
+            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_element2;
          }
       }
       if(m_spsslclientcontext.is_set())
@@ -1207,10 +1207,10 @@ void ssl_sigpipe_handle( int x );
    void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
-      static ::collection::string_map < SSL_CTX * > server_contexts;
-      if(server_contexts.PLookup(context) == NULL)
+      static string_map < SSL_CTX * > server_contexts;
+      if(server_contexts.PLookup(context) == ::null())
       {
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+         const SSL_METHOD *meth = meth_in != ::null() ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
@@ -1246,10 +1246,10 @@ void ssl_sigpipe_handle( int x );
    void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
-      static ::collection::string_map < SSL_CTX * > server_contexts;
-      if(server_contexts.PLookup(context) == NULL)
+      static string_map < SSL_CTX * > server_contexts;
+      if(server_contexts.PLookup(context) == ::null())
       {
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+         const SSL_METHOD *meth = meth_in != ::null() ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
@@ -1345,7 +1345,7 @@ void ssl_sigpipe_handle( int x );
            sigset_t set;
            sigemptyset(&set);
            sigaddset(&set, SIGPIPE);
-           pthread_sigmask(SIG_BLOCK, &set, NULL);
+           pthread_sigmask(SIG_BLOCK, &set, ::null());
 #endif
          if(SSL_get_shutdown(m_ssl) == 0)
             SSL_shutdown(m_ssl);
@@ -1354,7 +1354,7 @@ void ssl_sigpipe_handle( int x );
       if (m_ssl)
       {
          SSL_free(m_ssl);
-         m_ssl = NULL;
+         m_ssl = ::null();
       }
    #endif
       return socket::close();
@@ -1365,14 +1365,14 @@ void ssl_sigpipe_handle( int x );
    SSL_CTX *tcp_socket::GetSslContext()
    {
       if (!m_ssl_ctx)
-         Handler().LogError(this, "GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::ca::log::level_warning);
+         Handler().LogError(this, "GetSslContext", 0, "SSL Context is ::null(); check InitSSLServer/InitSSLClient", ::ca::log::level_warning);
       return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()
    {
       if (!m_ssl)
-         Handler().LogError(this, "GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::ca::log::level_warning);
+         Handler().LogError(this, "GetSsl", 0, "SSL is ::null(); check InitSSLServer/InitSSLClient", ::ca::log::level_warning);
       return m_ssl;
    }
    #endif
@@ -1599,15 +1599,15 @@ void ssl_sigpipe_handle( int x );
          return X509_V_OK;
       }
 
-      ::X509 *cert = NULL;
-      ::X509_name_st *subject = NULL;
+      ::X509 *cert = ::null();
+      ::X509_name_st *subject = ::null();
 
       cert = SSL_get_peer_certificate(m_ssl);
       bool ok = false;
-      if (cert != NULL && strlen(common_name) > 0)
+      if (cert != ::null() && strlen(common_name) > 0)
       {
          char data[256];
-         if ((subject = X509_get_subject_name(cert)) != NULL && OPENSSL_X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
+         if ((subject = X509_get_subject_name(cert)) != ::null() && OPENSSL_X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
          {
             data[255] = 0;
             if (strnicmp_dup(data, common_name, 255) == 0)

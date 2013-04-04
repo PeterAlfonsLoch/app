@@ -98,7 +98,7 @@ namespace user
 
          virtual pane * get_pane_by_id(id id);
 
-         count get_visible_tab_count();
+         ::count get_visible_tab_count();
 
       };
 

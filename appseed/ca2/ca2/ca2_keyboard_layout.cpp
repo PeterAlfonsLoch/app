@@ -58,7 +58,7 @@ namespace ca2 // ca8 + cube
          }
       }
 
-      m_layoutida.QuickSort(true);
+      m_layoutida.quick_sort(true);
       if(&System.user()->keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
@@ -179,7 +179,7 @@ namespace ca2 // ca8 + cube
       pitem->m_bOk = true;
    }
 
-   count keyboard_layout::_001GetItemCount()
+   ::count keyboard_layout::_001GetItemCount()
    {
 
       return m_layoutida.get_size();

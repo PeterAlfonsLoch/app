@@ -13,23 +13,7 @@ namespace dynamic_source
 
    script_cache::~script_cache()
    {
-      POSITION pos = m_map.get_start_position();
-      string strKey;
-      script * pscript = NULL;
-      while(pos != NULL)
-      {
-         m_map.get_next_assoc(pos, strKey, (void * &) pscript);
-         try
-         {
-            if(pscript != NULL)
-            {
-               delete pscript;
-            }
-         }
-         catch(...)
-         {
-         }
-      }
+
    }
 
 
@@ -44,12 +28,12 @@ namespace dynamic_source
 
       single_lock sl(&m_cs, TRUE);
 
-      map_string_to_ptr::pair * ppair = m_map.PLookup(strName);
+      strsp(script)::pair * ppair = m_map.PLookup(strName);
 
-      if(ppair != NULL)
-         return (script *) ppair->m_value;
+      if(ppair != ::null())
+         return (script *) ppair->m_element2;
 
-      script * pscript = new ds_script(get_app());
+      sp(script) pscript = new ds_script(get_app());
 
       pscript->m_pmanager = m_pmanager;
 
@@ -72,19 +56,12 @@ namespace dynamic_source
 
       single_lock sl(&m_cs, TRUE);
 
-      map_string_to_ptr::pair * ppair = m_map.PLookup(strName);
+      strsp(script)::pair * ppair = m_map.PLookup(strName);
 
-      if(ppair != NULL)
+      if(ppair != ::null())
       {
-         try
-         {
-            delete (script *) ppair->m_value;
-         }
-         catch(...)
-         {
-         }
 
-         ppair->m_value = pscript;
+         ppair->m_element2 = pscript;
 
          return pscript;
 
@@ -135,15 +112,15 @@ namespace dynamic_source
    void script_cache::set_all_out_of_date()
    {
       single_lock sl(&m_cs, TRUE);
-      script * pscript = NULL;
+      sp(script) pscript;
       string strName;
       POSITION pos = m_map.get_start_position();
-      while(pos != NULL)
+      while(pos != ::null())
       {
-         m_map.get_next_assoc(pos, strName, (void * &) pscript);
+         m_map.get_next_assoc(pos, strName, pscript);
 
-         ds_script * pdsscript = dynamic_cast < ds_script * > (pscript);
-         if(pdsscript != NULL)
+         ds_script * pdsscript = dynamic_cast < ds_script * > (pscript.m_p);
+         if(pdsscript != ::null())
          {
             pdsscript->m_bShouldBuild = true;
          }

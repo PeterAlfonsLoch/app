@@ -17,7 +17,7 @@ namespace fontopus
          bool        m_bLicensed;
       };
 
-      collection::string_map < info >  m_mapInfo;
+      string_map < info >  m_mapInfo;
 
       license(::ca::application * papp);
       virtual ~license();
@@ -25,7 +25,7 @@ namespace fontopus
       bool has(const char * pszId, bool bInteractive = true);
       bool check(const char * pszId, bool bInteractive = true);
 
-      count clear_all_cache();
+      ::count clear_all_cache();
       bool clear_cache(const char * pszId);
 
 

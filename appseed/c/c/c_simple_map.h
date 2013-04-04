@@ -11,9 +11,9 @@ public:
    class pair
    {
    public:
-      const KEY m_key;
-      VALUE m_value;
-      pair(const KEY & key) : m_key(key) {}
+      const KEY m_element1;
+      VALUE m_element2;
+      pair(const KEY & key) : m_element1(key) {}
    };
 
    class assoc : public pair
@@ -25,12 +25,12 @@ public:
       assoc(const KEY & key) : pair(key) {}
    };
 
-   void construct(count nBlockSize = 10);
-   simple_map(count nBlockSize = 10);
+   void construct(::count nBlockSize = 10);
+   simple_map(::count nBlockSize = 10);
    //template < pair pairs[]>
    simple_map(pair pairs[]);
 
-   count get_count() const;
+   ::count get_count() const;
 
    // Lookup
    bool Lookup(KEY & key, VALUE& rValue) const;
@@ -59,8 +59,8 @@ public:
 
    void get_next_assoc(POSITION& rNextPosition, KEY& rKey, VALUE& rValue) const;
 
-   const pair *PGetNextAssoc(const pair *pAssocRet) const;
-   pair *PGetNextAssoc(const pair *pAssocRet);
+   const pair *PGetNextAssoc(const pair *passocRet) const;
+   pair *PGetNextAssoc(const pair *passocRet);
 
    // advanced features for derived classes
    UINT GetHashTableSize() const;
@@ -76,9 +76,9 @@ public:
 protected:
    assoc** m_pHashTable;
    UINT m_nHashTableSize;
-   count m_nCount;
+   ::count m_nCount;
    assoc* m_pFreeList;
-   count m_nBlockSize;
+   ::count m_nBlockSize;
 
    assoc* NewAssoc(KEY & key);
    void FreeAssoc(assoc*);
@@ -91,7 +91,7 @@ public:
 
 
 template<class KEY,  class VALUE>
-inline count simple_map< KEY,  VALUE >::get_count() const
+inline ::count simple_map< KEY,  VALUE >::get_count() const
    { return m_nCount; }
 
 
@@ -108,14 +108,14 @@ const typename simple_map< KEY,  VALUE >::pair* simple_map< KEY,  VALUE >::PGetF
 {
    if(m_nCount == 0) return NULL;
 
-   assoc* pAssocRet = (assoc*)BEFORE_START_POSITION;
+   assoc* passocRet = (assoc*)BEFORE_START_POSITION;
 
    // find the first association
    for (UINT nBucket = 0; nBucket < m_nHashTableSize; nBucket++)
-      if ((pAssocRet = m_pHashTable[nBucket]) != NULL)
+      if ((passocRet = m_pHashTable[nBucket]) != NULL)
          break;
 
-   return pAssocRet;
+   return passocRet;
 }
 
 template<class KEY,  class VALUE>
@@ -123,13 +123,13 @@ typename simple_map< KEY,  VALUE >::pair* simple_map< KEY,  VALUE >::PGetFirstAs
 {
    if(m_nCount == 0) return NULL;
 
-   assoc* pAssocRet = (assoc*)BEFORE_START_POSITION;
+   assoc* passocRet = (assoc*)BEFORE_START_POSITION;
 
    // find the first association
    for (UINT nBucket = 0; nBucket < m_nHashTableSize; nBucket++)
-      if ((pAssocRet = m_pHashTable[nBucket]) != NULL)
+      if ((passocRet = m_pHashTable[nBucket]) != NULL)
          break;
-   return pAssocRet;
+   return passocRet;
 }
 
 template<class KEY,  class VALUE>
@@ -139,7 +139,7 @@ inline UINT simple_map< KEY,  VALUE >::GetHashTableSize() const
 /////////////////////////////////////////////////////////////////////////////
 // simple_map< KEY,  VALUE > out-of-line functions
 template<class KEY,  class VALUE>
-void simple_map< KEY,  VALUE >::construct(count nBlockSize)
+void simple_map< KEY,  VALUE >::construct(::count nBlockSize)
 {
    m_pHashTable = NULL;
    m_nHashTableSize = 17;  // default size
@@ -149,7 +149,7 @@ void simple_map< KEY,  VALUE >::construct(count nBlockSize)
 }
 
 template<class KEY,  class VALUE>
-simple_map< KEY,  VALUE >::simple_map(count nBlockSize)
+simple_map< KEY,  VALUE >::simple_map(::count nBlockSize)
 {
    construct(nBlockSize);
 }
@@ -161,7 +161,7 @@ simple_map< KEY,  VALUE >::simple_map(pair pairs[])
    int32_t iCount = sizeof(pairs) / sizeof(pair);
    for(int32_t i = 0; i < iCount; i++)
    {
-      set_at(pairs[i].m_key, pairs[i].m_value);
+      set_at(pairs[i].m_element1, pairs[i].m_element2);
    }
 }
 
@@ -203,13 +203,13 @@ void simple_map< KEY,  VALUE >::remove_all()
       // destroy elements (values and keys)
       for (UINT nHash = 0; nHash < m_nHashTableSize; nHash++)
       {
-         assoc* pAssoc;
-         for (pAssoc = m_pHashTable[nHash]; pAssoc != NULL;
-            pAssoc = pAssoc->pNext)
+         assoc* passoc;
+         for (passoc = m_pHashTable[nHash]; passoc != NULL;
+            passoc = passoc->pNext)
          {
-            pAssoc->assoc::~assoc();
-            //DestructElements<VALUE>(&pAssoc->value, 1);
-            //DestructElements<KEY>((KEY*)&pAssoc->key, 1);
+            passoc->assoc::~assoc();
+            //DestructElements<VALUE>(&passoc->value, 1);
+            //DestructElements<KEY>((KEY*)&passoc->key, 1);
          }
       }
    }
@@ -235,35 +235,35 @@ simple_map< KEY,  VALUE >::NewAssoc(KEY & key)
    if (m_pFreeList == NULL)
    {
       // chain them into free list
-      typename simple_map::assoc* pAssoc = (typename simple_map::assoc *) _ca_alloc(m_nBlockSize * sizeof(simple_map::assoc));
+      typename simple_map::assoc* passoc = (typename simple_map::assoc *) _ca_alloc(m_nBlockSize * sizeof(simple_map::assoc));
       // free in reverse order to make it easier to debug
-      pAssoc += m_nBlockSize - 1;
-      for (index i = m_nBlockSize-1; i >= 0; i--, pAssoc--)
+      passoc += m_nBlockSize - 1;
+      for (index i = m_nBlockSize-1; i >= 0; i--, passoc--)
       {
-         pAssoc->pNext = m_pFreeList;
-         m_pFreeList = pAssoc;
+         passoc->pNext = m_pFreeList;
+         m_pFreeList = passoc;
       }
    }
 
-   typename simple_map::assoc* pAssoc = m_pFreeList;
+   typename simple_map::assoc* passoc = m_pFreeList;
 
    // zero the primitive::memory
-   typename simple_map::assoc* pTemp = pAssoc->pNext;
-   memset_dup( pAssoc, 0, sizeof(simple_map::assoc) );
-   pAssoc->pNext = pTemp;
+   typename simple_map::assoc* pTemp = passoc->pNext;
+   memset_dup( passoc, 0, sizeof(simple_map::assoc) );
+   passoc->pNext = pTemp;
 
    m_pFreeList = m_pFreeList->pNext;
    m_nCount++;
-   ::new(pAssoc) assoc(key);
-   return pAssoc;
+   ::new(passoc) assoc(key);
+   return passoc;
 }
 
 template<class KEY,  class VALUE>
-void simple_map< KEY,  VALUE >::FreeAssoc(assoc* pAssoc)
+void simple_map< KEY,  VALUE >::FreeAssoc(assoc* passoc)
 {
-   pAssoc->assoc::~assoc();
-   pAssoc->pNext = m_pFreeList;
-   m_pFreeList = pAssoc;
+   passoc->assoc::~assoc();
+   passoc->pNext = m_pFreeList;
+   m_pFreeList = passoc;
    m_nCount--;
 
    // if no more elements, cleanup completely
@@ -283,11 +283,11 @@ simple_map< KEY,  VALUE >::GetAssocAt(KEY & key, UINT& nHashBucket, UINT& nHashV
       return NULL;
 
    // see if it exists
-   assoc* pAssoc;
-   for (pAssoc = m_pHashTable[nHashBucket]; pAssoc != NULL; pAssoc = pAssoc->pNext)
+   assoc* passoc;
+   for (passoc = m_pHashTable[nHashBucket]; passoc != NULL; passoc = passoc->pNext)
    {
-      if (pAssoc->nHashValue == nHashValue && simple_CompareElements(&pAssoc->m_key, &key))
-         return pAssoc;
+      if (passoc->nHashValue == nHashValue && simple_CompareElements(&passoc->m_element1, &key))
+         return passoc;
    }
    return NULL;
 }
@@ -296,11 +296,11 @@ template<class KEY,  class VALUE>
 bool simple_map< KEY,  VALUE >::Lookup(KEY & key, VALUE& rValue) const
 {
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
-   if (pAssoc == NULL)
+   assoc* passoc = GetAssocAt(key, nHashBucket, nHashValue);
+   if (passoc == NULL)
       return FALSE;  // not in simple_map
 
-   rValue = pAssoc->m_value;
+   rValue = passoc->m_element2;
    return TRUE;
 }
 
@@ -310,16 +310,16 @@ const typename simple_map< KEY,  VALUE >::pair* simple_map< KEY,  VALUE >::PLook
 
 
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
-   return pAssoc;
+   assoc* passoc = GetAssocAt(key, nHashBucket, nHashValue);
+   return passoc;
 }
 
 template<class KEY,  class VALUE>
 typename simple_map< KEY,  VALUE >::pair* simple_map< KEY,  VALUE >::PLookup(KEY & key)
 {
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
-   return pAssoc;
+   assoc* passoc = GetAssocAt(key, nHashBucket, nHashValue);
+   return passoc;
 }
 
 template<class KEY,  class VALUE>
@@ -327,7 +327,7 @@ VALUE * simple_map< KEY,  VALUE >::pget(KEY & key)
 {
    pair * p = PLookup(key);
    if(p)
-      return &p->m_value;
+      return &p->m_element2;
    else
       return NULL;
 }
@@ -337,22 +337,22 @@ VALUE& simple_map< KEY,  VALUE >::operator[](KEY & key)
 {
 
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc;
-   if ((pAssoc = GetAssocAt(key, nHashBucket, nHashValue)) == NULL)
+   assoc* passoc;
+   if ((passoc = GetAssocAt(key, nHashBucket, nHashValue)) == NULL)
    {
       if (m_pHashTable == NULL)
          InitHashTable(m_nHashTableSize);
 
       // it doesn't exist, add a new Association
-      pAssoc = NewAssoc(key);
-      pAssoc->nHashValue = nHashValue;
-      //'pAssoc->value' is a constructed object, nothing more
+      passoc = NewAssoc(key);
+      passoc->nHashValue = nHashValue;
+      //'passoc->value' is a constructed object, nothing more
 
       // put into hash table
-      pAssoc->pNext = m_pHashTable[nHashBucket];
-      m_pHashTable[nHashBucket] = pAssoc;
+      passoc->pNext = m_pHashTable[nHashBucket];
+      m_pHashTable[nHashBucket] = passoc;
    }
-   return pAssoc->m_value;  // return new reference
+   return passoc->m_element2;  // return new reference
 }
 
 template<class KEY,  class VALUE>
@@ -367,17 +367,17 @@ bool simple_map< KEY,  VALUE >::remove_key(KEY key)
    nHashValue = simple_HashKey<KEY>(key);
    ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
-   assoc* pAssoc;
-   for (pAssoc = *ppAssocPrev; pAssoc != NULL; pAssoc = pAssoc->pNext)
+   assoc* passoc;
+   for (passoc = *ppAssocPrev; passoc != NULL; passoc = passoc->pNext)
    {
-      if ((pAssoc->nHashValue == nHashValue) && simple_CompareElements(&pAssoc->m_key, &key))
+      if ((passoc->nHashValue == nHashValue) && simple_CompareElements(&passoc->m_element1, &key))
       {
          // remove it
-         *ppAssocPrev = pAssoc->pNext;  // remove from list
-         FreeAssoc(pAssoc);
+         *ppAssocPrev = passoc->pNext;  // remove from list
+         FreeAssoc(passoc);
          return TRUE;
       }
-      ppAssocPrev = &pAssoc->pNext;
+      ppAssocPrev = &passoc->pNext;
    }
    return FALSE;  // not found
 }
@@ -387,84 +387,84 @@ void simple_map< KEY,  VALUE >::get_next_assoc(POSITION& rNextPosition,
    KEY& rKey, VALUE& rValue) const
 {
 
-   assoc* pAssocRet = (assoc*)rNextPosition;
+   assoc* passocRet = (assoc*)rNextPosition;
 
-   if (pAssocRet == (assoc*) BEFORE_START_POSITION)
+   if (passocRet == (assoc*) BEFORE_START_POSITION)
    {
       // find the first association
       for (UINT nBucket = 0; nBucket < m_nHashTableSize; nBucket++)
       {
-         if ((pAssocRet = m_pHashTable[nBucket]) != NULL)
+         if ((passocRet = m_pHashTable[nBucket]) != NULL)
          {
             break;
          }
       }
-      if(pAssocRet == NULL)
+      if(passocRet == NULL)
       {
          rNextPosition = NULL;
          return;
       }
    }
 
-   assoc* pAssocNext;
-   if ((pAssocNext = pAssocRet->pNext) == NULL)
+   assoc* passocNext;
+   if ((passocNext = passocRet->pNext) == NULL)
    {
       // go to next bucket
-      for (UINT nBucket = (pAssocRet->nHashValue % m_nHashTableSize) + 1;
+      for (UINT nBucket = (passocRet->nHashValue % m_nHashTableSize) + 1;
          nBucket < m_nHashTableSize; nBucket++)
-         if ((pAssocNext = m_pHashTable[nBucket]) != NULL)
+         if ((passocNext = m_pHashTable[nBucket]) != NULL)
             break;
    }
 
-   rNextPosition = (POSITION) pAssocNext;
+   rNextPosition = (POSITION) passocNext;
 
    // fill in return data
-   rKey = pAssocRet->m_key;
-   rValue = pAssocRet->m_value;
+   rKey = passocRet->m_element1;
+   rValue = passocRet->m_element2;
 }
 
 template<class KEY,  class VALUE>
 const typename simple_map< KEY,  VALUE >::pair*
 simple_map< KEY,  VALUE >::PGetNextAssoc(const typename simple_map< KEY,  VALUE >::pair* pPairRet) const
 {
-   assoc* pAssocRet = (assoc*)pPairRet;
+   assoc* passocRet = (assoc*)pPairRet;
 
-   if(m_pHashTable == NULL || pAssocRet == NULL)
+   if(m_pHashTable == NULL || passocRet == NULL)
       return NULL;
 
-   assoc* pAssocNext;
-   if ((pAssocNext = pAssocRet->pNext) == NULL)
+   assoc* passocNext;
+   if ((passocNext = passocRet->pNext) == NULL)
    {
       // go to next bucket
-      for (UINT nBucket = (pAssocRet->nHashValue % m_nHashTableSize) + 1;
+      for (UINT nBucket = (passocRet->nHashValue % m_nHashTableSize) + 1;
          nBucket < m_nHashTableSize; nBucket++)
-         if ((pAssocNext = m_pHashTable[nBucket]) != NULL)
+         if ((passocNext = m_pHashTable[nBucket]) != NULL)
             break;
    }
 
-   return pAssocNext;
+   return passocNext;
 }
 
 template<class KEY,  class VALUE>
 typename simple_map< KEY,  VALUE >::pair*
 simple_map< KEY,  VALUE >::PGetNextAssoc(const typename simple_map< KEY,  VALUE >::pair* pPairRet)
 {
-   assoc* pAssocRet = (assoc*)pPairRet;
+   assoc* passocRet = (assoc*)pPairRet;
 
-   if(m_pHashTable == NULL || pAssocRet == NULL)
+   if(m_pHashTable == NULL || passocRet == NULL)
       return NULL;
 
-   assoc* pAssocNext;
-   if ((pAssocNext = pAssocRet->pNext) == NULL)
+   assoc* passocNext;
+   if ((passocNext = passocRet->pNext) == NULL)
    {
       // go to next bucket
-      for (UINT nBucket = (pAssocRet->nHashValue % m_nHashTableSize) + 1;
+      for (UINT nBucket = (passocRet->nHashValue % m_nHashTableSize) + 1;
          nBucket < m_nHashTableSize; nBucket++)
-         if ((pAssocNext = m_pHashTable[nBucket]) != NULL)
+         if ((passocNext = m_pHashTable[nBucket]) != NULL)
             break;
    }
 
-   return pAssocNext;
+   return passocNext;
 }
 
    template < class KEY, class VALUE >
@@ -475,7 +475,7 @@ simple_map< KEY,  VALUE >::PGetNextAssoc(const typename simple_map< KEY,  VALUE 
       if(ppair == NULL)
          return valueDefault;
       else
-         return ppair->m_value;
+         return ppair->m_element2;
    }
 
 /*
@@ -492,9 +492,9 @@ void simple_map< KEY,  VALUE >::Serialize(CArchive& ar)
 
       for (UINT nHash = 0; nHash < m_nHashTableSize; nHash++)
       {
-         assoc* pAssoc;
-         for (pAssoc = m_pHashTable[nHash]; pAssoc != NULL;
-            pAssoc = pAssoc->pNext)
+         assoc* passoc;
+         for (passoc = m_pHashTable[nHash]; passoc != NULL;
+            passoc = passoc->pNext)
          {
             KEY* pKey;
             VALUE* pValue;
@@ -503,8 +503,8 @@ void simple_map< KEY,  VALUE >::Serialize(CArchive& ar)
             // obtain the address of a given object.  We then use the following trick to
             // get the address
             //
-            pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int32_t& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
-            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( pAssoc->value ) ) );
+            pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int32_t& >( const_cast< KEY& > ( static_cast< const KEY& >( passoc->key ) ) ) );
+            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( passoc->value ) ) );
             SerializeElements<KEY>(ar, pKey, 1);
             SerializeElements<VALUE>(ar, pValue, 1);
          }
@@ -567,7 +567,7 @@ public:
    {
    public:
       const vsstring m_vsstring;
-      VALUE m_value;
+      VALUE m_element2;
       pair(const vsstring & str) : m_vsstring(str) {}
    };
 
@@ -579,12 +579,12 @@ public:
       assoc(const vsstring &  str) : pair(str) {}
    };
 
-   void construct(count nBlockSize = 10);
-   simple_string_map(count nBlockSize = 10);
+   void construct(::count nBlockSize = 10);
+   simple_string_map(::count nBlockSize = 10);
    //template < pair pairs[]>
    simple_string_map(pair pairs[]);
 
-   count get_count() const;
+   ::count get_count() const;
 
    // Lookup
    bool Lookup(vsstring &  str, VALUE& rValue) const;
@@ -614,8 +614,8 @@ public:
 
    void get_next_assoc(POSITION& rNextPosition, vsstring& rvsstring, VALUE& rValue) const;
 
-   const pair *PGetNextAssoc(const pair *pAssocRet) const;
-   pair *PGetNextAssoc(const pair *pAssocRet);
+   const pair *PGetNextAssoc(const pair *passocRet) const;
+   pair *PGetNextAssoc(const pair *passocRet);
 
    // advanced features for derived classes
    UINT GetHashTableSize() const;
@@ -628,9 +628,9 @@ public:
 protected:
    assoc** m_pHashTable;
    UINT m_nHashTableSize;
-   count m_nCount;
+   ::count m_nCount;
    assoc* m_pFreeList;
-   count m_nBlockSize;
+   ::count m_nBlockSize;
 
    assoc* NewAssoc(vsstring & str);
    void FreeAssoc(assoc*);
@@ -643,7 +643,7 @@ public:
 
 
 template < class VALUE>
-inline count simple_string_map < VALUE >::get_count() const
+inline ::count simple_string_map < VALUE >::get_count() const
    { return m_nCount; }
 
 
@@ -660,14 +660,14 @@ const typename simple_string_map < VALUE >::pair* simple_string_map < VALUE >::P
 {
    if(m_nCount == 0) return NULL;
 
-   assoc* pAssocRet = (assoc*)BEFORE_START_POSITION;
+   assoc* passocRet = (assoc*)BEFORE_START_POSITION;
 
    // find the first association
    for (UINT nBucket = 0; nBucket < m_nHashTableSize; nBucket++)
-      if ((pAssocRet = m_pHashTable[nBucket]) != NULL)
+      if ((passocRet = m_pHashTable[nBucket]) != NULL)
          break;
 
-   return pAssocRet;
+   return passocRet;
 }
 
 template < class VALUE>
@@ -675,13 +675,13 @@ typename simple_string_map < VALUE >::pair* simple_string_map < VALUE >::PGetFir
 {
    if(m_nCount == 0) return NULL;
 
-   assoc* pAssocRet = (assoc*)BEFORE_START_POSITION;
+   assoc* passocRet = (assoc*)BEFORE_START_POSITION;
 
    // find the first association
    for (UINT nBucket = 0; nBucket < m_nHashTableSize; nBucket++)
-      if ((pAssocRet = m_pHashTable[nBucket]) != NULL)
+      if ((passocRet = m_pHashTable[nBucket]) != NULL)
          break;
-   return pAssocRet;
+   return passocRet;
 }
 
 template < class VALUE>
@@ -691,7 +691,7 @@ inline UINT simple_string_map < VALUE >::GetHashTableSize() const
 /////////////////////////////////////////////////////////////////////////////
 // simple_string_map < VALUE > out-of-line functions
 template < class VALUE>
-void simple_string_map < VALUE >::construct(count nBlockSize)
+void simple_string_map < VALUE >::construct(::count nBlockSize)
 {
    m_pHashTable = NULL;
    m_nHashTableSize = 17;  // default size
@@ -701,7 +701,7 @@ void simple_string_map < VALUE >::construct(count nBlockSize)
 }
 
 template < class VALUE>
-simple_string_map < VALUE >::simple_string_map(count nBlockSize)
+simple_string_map < VALUE >::simple_string_map(::count nBlockSize)
 {
    construct(nBlockSize);
 }
@@ -713,7 +713,7 @@ simple_string_map < VALUE >::simple_string_map(pair pairs[])
    int32_t iCount = sizeof(pairs) / sizeof(pair);
    for(int32_t i = 0; i < iCount; i++)
    {
-      set_at(pairs[i].m_vsstring, pairs[i].m_value);
+      set_at(pairs[i].m_vsstring, pairs[i].m_element2);
    }
 }
 
@@ -748,13 +748,13 @@ void simple_string_map < VALUE >::remove_all()
       // destroy elements (values and vsstrings)
       for (UINT nHash = 0; nHash < m_nHashTableSize; nHash++)
       {
-         assoc* pAssoc;
-         for (pAssoc = m_pHashTable[nHash]; pAssoc != NULL;
-            pAssoc = pAssoc->pNext)
+         assoc* passoc;
+         for (passoc = m_pHashTable[nHash]; passoc != NULL;
+            passoc = passoc->pNext)
          {
-            pAssoc->assoc::~assoc();
-            //DestructElements<VALUE>(&pAssoc->value, 1);
-            //DestructElements<vsstring>((vsstring*)&pAssoc->vsstring, 1);
+            passoc->assoc::~assoc();
+            //DestructElements<VALUE>(&passoc->value, 1);
+            //DestructElements<vsstring>((vsstring*)&passoc->vsstring, 1);
          }
       }
    }
@@ -780,35 +780,35 @@ simple_string_map < VALUE >::NewAssoc(vsstring & vsstring)
    if (m_pFreeList == NULL)
    {
       // chain them into free list
-      typename simple_string_map::assoc* pAssoc = (typename simple_string_map::assoc *) _ca_alloc(m_nBlockSize * sizeof(typename simple_string_map::assoc));
+      typename simple_string_map::assoc* passoc = (typename simple_string_map::assoc *) _ca_alloc(m_nBlockSize * sizeof(typename simple_string_map::assoc));
       // free in reverse order to make it easier to debug
-      pAssoc += m_nBlockSize - 1;
-      for (index i = m_nBlockSize-1; i >= 0; i--, pAssoc--)
+      passoc += m_nBlockSize - 1;
+      for (index i = m_nBlockSize-1; i >= 0; i--, passoc--)
       {
-         pAssoc->pNext = m_pFreeList;
-         m_pFreeList = pAssoc;
+         passoc->pNext = m_pFreeList;
+         m_pFreeList = passoc;
       }
    }
 
-   typename simple_string_map::assoc* pAssoc = m_pFreeList;
+   typename simple_string_map::assoc* passoc = m_pFreeList;
 
    // zero the primitive::memory
-   typename simple_string_map::assoc* pTemp = pAssoc->pNext;
-   memset_dup( pAssoc, 0, sizeof(typename simple_string_map::assoc) );
-   pAssoc->pNext = pTemp;
+   typename simple_string_map::assoc* pTemp = passoc->pNext;
+   memset_dup( passoc, 0, sizeof(typename simple_string_map::assoc) );
+   passoc->pNext = pTemp;
 
    m_pFreeList = m_pFreeList->pNext;
    m_nCount++;
-   ::new(pAssoc) assoc(vsstring);
-   return pAssoc;
+   ::new(passoc) assoc(vsstring);
+   return passoc;
 }
 
 template < class VALUE>
-void simple_string_map < VALUE >::FreeAssoc(assoc* pAssoc)
+void simple_string_map < VALUE >::FreeAssoc(assoc* passoc)
 {
-   pAssoc->assoc::~assoc();
-   pAssoc->pNext = m_pFreeList;
-   m_pFreeList = pAssoc;
+   passoc->assoc::~assoc();
+   passoc->pNext = m_pFreeList;
+   m_pFreeList = passoc;
    m_nCount--;
 
    // if no more elements, cleanup completely
@@ -828,11 +828,11 @@ simple_string_map < VALUE >::GetAssocAt(vsstring & str, UINT& nHashBucket, UINT&
       return NULL;
 
    // see if it exists
-   assoc* pAssoc;
-   for (pAssoc = m_pHashTable[nHashBucket]; pAssoc != NULL; pAssoc = pAssoc->pNext)
+   assoc* passoc;
+   for (passoc = m_pHashTable[nHashBucket]; passoc != NULL; passoc = passoc->pNext)
    {
-      if (pAssoc->nHashValue == nHashValue && simple_CompareElements(&pAssoc->m_vsstring, &str))
-         return pAssoc;
+      if (passoc->nHashValue == nHashValue && simple_CompareElements(&passoc->m_vsstring, &str))
+         return passoc;
    }
    return NULL;
 }
@@ -841,11 +841,11 @@ template < class VALUE>
 bool simple_string_map < VALUE >::Lookup(vsstring & str, VALUE& rValue) const
 {
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc = GetAssocAt(str, nHashBucket, nHashValue);
-   if (pAssoc == NULL)
+   assoc* passoc = GetAssocAt(str, nHashBucket, nHashValue);
+   if (passoc == NULL)
       return FALSE;  // not in simple_string_map
 
-   rValue = pAssoc->m_value;
+   rValue = passoc->m_element2;
    return TRUE;
 }
 
@@ -855,16 +855,16 @@ const typename simple_string_map < VALUE >::pair* simple_string_map < VALUE >::P
 
 
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc = GetAssocAt(str, nHashBucket, nHashValue);
-   return pAssoc;
+   assoc* passoc = GetAssocAt(str, nHashBucket, nHashValue);
+   return passoc;
 }
 
 template < class VALUE>
 typename simple_string_map < VALUE >::pair* simple_string_map < VALUE >::PLookup(vsstring & str)
 {
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc = GetAssocAt(str, nHashBucket, nHashValue);
-   return pAssoc;
+   assoc* passoc = GetAssocAt(str, nHashBucket, nHashValue);
+   return passoc;
 }
 
 template < class VALUE>
@@ -872,7 +872,7 @@ VALUE * simple_string_map < VALUE >::pget(vsstring & str)
 {
    pair * p = PLookup(str);
    if(p)
-      return &p->m_value;
+      return &p->m_element2;
    else
       return NULL;
 }
@@ -882,22 +882,22 @@ VALUE& simple_string_map < VALUE >::operator[](vsstring & str)
 {
 
    UINT nHashBucket, nHashValue;
-   assoc* pAssoc;
-   if ((pAssoc = GetAssocAt(str, nHashBucket, nHashValue)) == NULL)
+   assoc* passoc;
+   if ((passoc = GetAssocAt(str, nHashBucket, nHashValue)) == NULL)
    {
       if (m_pHashTable == NULL)
          InitHashTable(m_nHashTableSize);
 
       // it doesn't exist, add a new Association
-      pAssoc = NewAssoc(str);
-      pAssoc->nHashValue = nHashValue;
-      //'pAssoc->value' is a constructed object, nothing more
+      passoc = NewAssoc(str);
+      passoc->nHashValue = nHashValue;
+      //'passoc->value' is a constructed object, nothing more
 
       // put into hash table
-      pAssoc->pNext = m_pHashTable[nHashBucket];
-      m_pHashTable[nHashBucket] = pAssoc;
+      passoc->pNext = m_pHashTable[nHashBucket];
+      m_pHashTable[nHashBucket] = passoc;
    }
-   return pAssoc->m_value;  // return new reference
+   return passoc->m_element2;  // return new reference
 }
 
 template < class VALUE>
@@ -919,17 +919,17 @@ bool simple_string_map < VALUE >::remove_vsstring(vsstring str)
    nHashValue = simple_HashKey <> (str);
    ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
-   assoc* pAssoc;
-   for (pAssoc = *ppAssocPrev; pAssoc != NULL; pAssoc = pAssoc->pNext)
+   assoc* passoc;
+   for (passoc = *ppAssocPrev; passoc != NULL; passoc = passoc->pNext)
    {
-      if ((pAssoc->nHashValue == nHashValue) && simple_CompareElements(&pAssoc->m_vsstring, &str))
+      if ((passoc->nHashValue == nHashValue) && simple_CompareElements(&passoc->m_vsstring, &str))
       {
          // remove it
-         *ppAssocPrev = pAssoc->pNext;  // remove from list
-         FreeAssoc(pAssoc);
+         *ppAssocPrev = passoc->pNext;  // remove from list
+         FreeAssoc(passoc);
          return TRUE;
       }
-      ppAssocPrev = &pAssoc->pNext;
+      ppAssocPrev = &passoc->pNext;
    }
    return FALSE;  // not found
 }
@@ -938,84 +938,84 @@ template < class VALUE>
 void simple_string_map < VALUE >::get_next_assoc(POSITION& rNextPosition, vsstring & rStr, VALUE& rValue) const
 {
 
-   assoc* pAssocRet = (assoc*)rNextPosition;
+   assoc* passocRet = (assoc*)rNextPosition;
 
-   if (pAssocRet == (assoc*) BEFORE_START_POSITION)
+   if (passocRet == (assoc*) BEFORE_START_POSITION)
    {
       // find the first association
       for (UINT nBucket = 0; nBucket < m_nHashTableSize; nBucket++)
       {
-         if ((pAssocRet = m_pHashTable[nBucket]) != NULL)
+         if ((passocRet = m_pHashTable[nBucket]) != NULL)
          {
             break;
          }
       }
-      if(pAssocRet == NULL)
+      if(passocRet == NULL)
       {
          rNextPosition = NULL;
          return;
       }
    }
 
-   assoc* pAssocNext;
-   if ((pAssocNext = pAssocRet->pNext) == NULL)
+   assoc* passocNext;
+   if ((passocNext = passocRet->pNext) == NULL)
    {
       // go to next bucket
-      for (UINT nBucket = (pAssocRet->nHashValue % m_nHashTableSize) + 1;
+      for (UINT nBucket = (passocRet->nHashValue % m_nHashTableSize) + 1;
          nBucket < m_nHashTableSize; nBucket++)
-         if ((pAssocNext = m_pHashTable[nBucket]) != NULL)
+         if ((passocNext = m_pHashTable[nBucket]) != NULL)
             break;
    }
 
-   rNextPosition = (POSITION) pAssocNext;
+   rNextPosition = (POSITION) passocNext;
 
    // fill in return data
-   rStr= pAssocRet->m_vsstring;
-   rValue = pAssocRet->m_value;
+   rStr= passocRet->m_vsstring;
+   rValue = passocRet->m_element2;
 }
 
 template < class VALUE>
 const typename simple_string_map < VALUE >::pair*
 simple_string_map < VALUE >::PGetNextAssoc(const typename simple_string_map < VALUE >::pair* pPairRet) const
 {
-   assoc* pAssocRet = (assoc*)pPairRet;
+   assoc* passocRet = (assoc*)pPairRet;
 
-   if(m_pHashTable == NULL || pAssocRet == NULL)
+   if(m_pHashTable == NULL || passocRet == NULL)
       return NULL;
 
-   assoc* pAssocNext;
-   if ((pAssocNext = pAssocRet->pNext) == NULL)
+   assoc* passocNext;
+   if ((passocNext = passocRet->pNext) == NULL)
    {
       // go to next bucket
-      for (UINT nBucket = (pAssocRet->nHashValue % m_nHashTableSize) + 1;
+      for (UINT nBucket = (passocRet->nHashValue % m_nHashTableSize) + 1;
          nBucket < m_nHashTableSize; nBucket++)
-         if ((pAssocNext = m_pHashTable[nBucket]) != NULL)
+         if ((passocNext = m_pHashTable[nBucket]) != NULL)
             break;
    }
 
-   return pAssocNext;
+   return passocNext;
 }
 
 template < class VALUE>
 typename simple_string_map < VALUE >::pair*
 simple_string_map < VALUE >::PGetNextAssoc(const typename simple_string_map < VALUE >::pair* pPairRet)
 {
-   assoc* pAssocRet = (assoc*)pPairRet;
+   assoc* passocRet = (assoc*)pPairRet;
 
-   if(m_pHashTable == NULL || pAssocRet == NULL)
+   if(m_pHashTable == NULL || passocRet == NULL)
       return NULL;
 
-   assoc* pAssocNext;
-   if ((pAssocNext = pAssocRet->pNext) == NULL)
+   assoc* passocNext;
+   if ((passocNext = passocRet->pNext) == NULL)
    {
       // go to next bucket
-      for (UINT nBucket = (pAssocRet->nHashValue % m_nHashTableSize) + 1;
+      for (UINT nBucket = (passocRet->nHashValue % m_nHashTableSize) + 1;
          nBucket < m_nHashTableSize; nBucket++)
-         if ((pAssocNext = m_pHashTable[nBucket]) != NULL)
+         if ((passocNext = m_pHashTable[nBucket]) != NULL)
             break;
    }
 
-   return pAssocNext;
+   return passocNext;
 }
 
    template < class VALUE >
@@ -1025,7 +1025,7 @@ simple_string_map < VALUE >::PGetNextAssoc(const typename simple_string_map < VA
       if(ppair == NULL)
          return valueDefault;
       else
-         return ppair->m_value;
+         return ppair->m_element2;
    }
 
 /*
@@ -1042,9 +1042,9 @@ void simple_string_map < VALUE >::Serialize(CArchive& ar)
 
       for (UINT nHash = 0; nHash < m_nHashTableSize; nHash++)
       {
-         assoc* pAssoc;
-         for (pAssoc = m_pHashTable[nHash]; pAssoc != NULL;
-            pAssoc = pAssoc->pNext)
+         assoc* passoc;
+         for (passoc = m_pHashTable[nHash]; passoc != NULL;
+            passoc = passoc->pNext)
          {
             vsstring* pvsstring;
             VALUE* pValue;
@@ -1053,8 +1053,8 @@ void simple_string_map < VALUE >::Serialize(CArchive& ar)
             // obtain the address of a given object.  We then use the following trick to
             // get the address
             //
-            pvsstring = reinterpret_cast< vsstring* >( &reinterpret_cast< int32_t& >( const_cast< vsstring& > ( static_cast< const vsstring& >( pAssoc->vsstring ) ) ) );
-            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( pAssoc->value ) ) );
+            pvsstring = reinterpret_cast< vsstring* >( &reinterpret_cast< int32_t& >( const_cast< vsstring& > ( static_cast< const vsstring& >( passoc->vsstring ) ) ) );
+            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( passoc->value ) ) );
             SerializeElements<vsstring>(ar, pvsstring, 1);
             SerializeElements<VALUE>(ar, pValue, 1);
          }
@@ -1108,7 +1108,7 @@ simple_string_attrib_map < VALUE > & simple_string_attrib_map < VALUE >::operato
       const typename simple_string_map < VALUE > ::pair * ppair = attribmap.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         set_at(ppair->m_key, ppair->m_value);
+         set_at(ppair->m_element1, ppair->m_element2);
          ppair  = attribmap.PGetNextAssoc(ppair);
       }
    }
@@ -1191,7 +1191,7 @@ simple_attrib_map< KEY,  VALUE > & simple_attrib_map< KEY,  VALUE >::operator = 
       const typename simple_map < KEY, VALUE > ::pair * ppair = attribmap.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         set_at(ppair->m_key, ppair->m_value);
+         set_at(ppair->m_element1, ppair->m_element2);
          ppair  = attribmap.PGetNextAssoc(ppair);
       }
    }

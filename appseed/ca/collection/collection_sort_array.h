@@ -1,256 +1,309 @@
 #pragma once
 
-template <class ARG_TYPE>
-inline index BaseSortCompare(ARG_TYPE t1, ARG_TYPE t2)
-{
-   return t1 - t2;
-}
+#undef new
 
-template <>
-inline index BaseSortCompare(float f1, float f2)
+template < class T >
+inline index BaseSortCompare(T * p1, T * p2)
 {
-   if(f1 > f2)
+   if(*p1 > *p2)
       return 1;
-   else if(f1 < f2)
+   else if(*p1 < *p2)
       return -1;
    else
       return 0;
 }
 
-template <>
-inline index BaseSortCompare(double d1, double d2)
+template < class T >
+inline index BaseNullCompare(T * p1, T * p2)
 {
-   if(d1 > d2)
-      return 1;
-   else if(d1 < d2)
-      return -1;
-   else
-      return 0;
+   return 0;
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY = comparable_array < TYPE, ARG_TYPE > >
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = array < TYPE, ARG_TYPE >, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) = &BaseNullCompare < TYPE > >
 class sort_array :
-   public BASE_ARRAY
+   protected BASE_ARRAY
 {
 public:
 
-
-   bool BaseSortFind(ARG_TYPE t, int_ptr & iIndex) const;
-   bool BaseSortFind(ARG_TYPE t, int_ptr & iIndex, int_ptr iStart, int_ptr iEnd) const;
-
-
-   index BaseSortInsert(ARG_TYPE t);
-   index BaseSortInsert(ARG_TYPE t, int_ptr iStart, int_ptr iEnd);
-
-   //void AddCoupledSwapInterface(CBaseSwapInterface * pswap);
-
-   void QuickSort();
-
-   void QuickSort(int_ptr i1, int_ptr i2);
-
-   //virtual void OnAfterSwap(index i1, index i2);
-
-   void Paste(base_array <TYPE, ARG_TYPE> & base_array);
+   class sort_index :
+      virtual public ::ca::object
+   {
+   public:
 
 
-protected:
+      bool           m_bUpdated;
+      index_array    m_indexa;
 
 
-   //DispatchPtrArray < CBaseSwapInterface, CBaseSwapInterface *>
-     //    m_swapptra;
+      sort_index()
+      {
+         m_bUpdated = false;
+      }
+
+   };
+
+   class sort_index_map :
+      virtual public mapsp(index ( * ) (TYPE *, TYPE *), index ( * ) (TYPE *, TYPE *), sort_index)
+   {
+   public:
+
+      inline void mark_dirty()
+      {
+         
+         sort_index_map::assoc * passoc = sort_index_map::PGetFirstAssoc();
+
+         while(passoc != NULL)
+         {
+            passoc->m_element2->m_bUpdated = false;
+            passoc = passoc->m_pnext;
+         }
+
+      }
+
+   };
+
+
+   sort_index_map    m_indexmap;
+         
+   index_array & defer_update(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   index add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   ::count add(const array <TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   ::count remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   bool find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
+
+   bool contains(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
+
+   bool add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   void quick_sort(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   void set_size(::count c);
+
+   const TYPE & element_at (::index i, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
+
+   TYPE & element_at (::index i, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+
+   const TYPE & operator [] (::index i) const;
+
+   TYPE & operator [] (::index i);
+
+   bool operator == (const sort_array & a) const;
+
+   bool operator != (const sort_array & a) const;
+
+   using BASE_ARRAY::remove_all;
+
+   using BASE_ARRAY::clear;
+
+   using BASE_ARRAY::quick_sort;
+
+   using BASE_ARRAY::operator new;
+
+   using BASE_ARRAY::operator delete;
+
+   using BASE_ARRAY::set_app;
+
+   using BASE_ARRAY::get_size;
+
+
 
 };
 
-
-
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-bool
-sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-BaseSortFind(ARG_TYPE t, index & iIndex) const
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+index_array & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+defer_update(index ( * fCompare ) (TYPE *, TYPE *))
 {
-   return BaseSortFind(t, iIndex, 0, this->get_size() - 1);
+   
+   sp(sort_index) & sortindex = m_indexmap[fCompare];
+
+   if(sortindex.is_null())
+      sortindex = new sort_index;
+
+   if(!sortindex->m_bUpdated)
+   {
+      sortindex->m_indexa.ensure_sequence(0, get_upper_bound());
+      quick_sort(fCompare, sortindex->m_indexa);
+      sortindex->m_bUpdated = true;
+   }
+
+   return sortindex->m_indexa;
+
 }
 
-
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-bool
-sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
+
    if(this->get_size() == 0)
    {
       return false;
    }
-   index iLowerBound = iStart;
-   index iMaxBound = iEnd;
-   index iUpperBound = iMaxBound;
-   index iCompare;
-   // do binary search
-   iIndex = (iUpperBound + iLowerBound) / 2;
-   while(iUpperBound - iLowerBound >= 8)
-   {
-      iCompare = BaseSortCompare((ARG_TYPE) this->m_pData[iIndex], (ARG_TYPE) t);
-      if(iCompare == 0)
-      {
-         return true;
-      }
-      else if(iCompare > 0)
-      {
-         iUpperBound = iIndex - 1;
-         if(iUpperBound < 0)
-         {
-            iIndex = 0;
-            break;
-         }
-      }
-      else
-      {
-         iLowerBound = iIndex + 1;
-         if(iLowerBound > iMaxBound)
-         {
-            iIndex = iMaxBound + 1;
-            break;
-         }
-      }
-      iIndex = (iUpperBound + iLowerBound) / 2;
-   }
-   // do sequential search
-   while(iIndex < this->get_count())
-   {
-      iCompare = BaseSortCompare((ARG_TYPE) this->m_pData[iIndex], (ARG_TYPE) t);
-      if(iCompare == 0)
-         return true;
-      else if(iCompare < 0)
-         iIndex++;
-      else
-         break;
-   }
-   if(iIndex >= this->get_count())
-      return false;
-   while(iIndex >= 0)
-   {
-      iCompare = BaseSortCompare((ARG_TYPE) this->m_pData[iIndex], (ARG_TYPE) t);
-      if(iCompare == 0)
-         return true;
-      else if(iCompare > 0)
-         iIndex--;
-      else
-         break;
-   }
-   iIndex++;
-   return false;
+
+   return binary_search(t, iIndex, fCompare, ((sort_array *) this)->defer_update(fCompare));
+
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-index
-sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-BaseSortInsert(ARG_TYPE t)
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+contains(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
    index iIndex = 0;
-   BaseSortFind(t, iIndex);
-   this->insert_at(iIndex, t);
-   return iIndex;
+   return find(t, iIndex, fCompare);
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-index
-sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-BaseSortInsert(ARG_TYPE t, index iStart, index iEnd)
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
-   index iIndex = BaseSortFind(t, iIndex);
-   insert_at(iIndex, t);
-   return iIndex;
+   if(contains(t, fCompare))
+      return false;
+   add(t, fCompare);
+   return true;
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-void sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-Paste(base_array <TYPE, ARG_TYPE> & a)
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+::index sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
-   a.set_size(this->get_size());
-   for(index i = 0; i < this->get_size(); i++)
+
+   ::index i = sort_add(t, fCompare, defer_update(fCompare));
+
+   m_indexmap.mark_dirty();
+
+   return i;
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+::count sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *))
+{
+
+   ::count c = sort_add(a, fCompare, defer_update(fCompare));
+
+   m_indexmap.mark_dirty();
+
+   return c;
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+::count sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
+{
+
+   ::count c = sort_remove(t, fCompare, defer_update(fCompare));
+
+   m_indexmap.mark_dirty();
+
+   return c;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+quick_sort(index ( * fCompare ) (TYPE *, TYPE *))
+{
+
+   defer_update(fCompare);
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+set_size(::count n)
+{
+
+   BASE_ARRAY::set_size(n);
+
+   m_indexmap.mark_dirty();
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *))
+{
+
+   return BASE_ARRAY::element_at(defer_update(fCompare)[i]);
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *)) const
+{
+
+   return ((sort_array *) this)->element_at(i, fCompare);
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+operator [](::index i)
+{
+
+   return this->element_at(i);
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+operator [](::index i) const
+{
+
+   return ((sort_array *) this)->operator [](i);
+
+}
+
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+operator == (const sort_array & a) const
+{
+
+   if(&a == this)
+      return true;
+
+   if(get_size() != a.get_size())
+      return false;
+
+   index_array & ia1 = ((sort_array *) this)->defer_update();
+
+   index_array & ia2 = ((sort_array *) &a)->defer_update();
+
+   for(index i = 0; i < get_size(); i++)
    {
-      a.set_at(i, this->element_at(i));
+      if(DEFAULT_COMPARE(&((sort_array *) this)->BASE_ARRAY::element_at(ia1[i]), &((sort_array *) &a)->BASE_ARRAY::element_at(ia2[i])) != 0)
+         return false;
    }
+
+   return true;
+
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-void
-sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-QuickSort()
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+operator != (const sort_array & a) const
 {
-   QuickSort(0, this->get_size() - 1);
+
+   return !this->operator == (a);
+
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
-void
-sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-QuickSort(index i1, index i2)
-{
-   index_array stackLowerBound;
-   index_array stackUpperBound;
-   index iLowerBound;
-   index iUpperBound;
-   index iLPos, iUPos, iMPos;
-   //   TYPE t;
 
-   if(this->get_size() >= 2)
-   {
-      stackLowerBound.push(i1);
-      stackUpperBound.push(i2);
-      while(true)
-      {
-         iLowerBound = stackLowerBound.pop();
-         iUpperBound = stackUpperBound.pop();
-         iLPos = iLowerBound;
-         iMPos = iLowerBound;
-         iUPos = iUpperBound;
-         while(true)
-         {
-            while(true)
-            {
-               if(iMPos == iUPos)
-                  break;
-               if(BaseSortCompare(this->element_at(iMPos), this->element_at(iUPos)) <= 0)
-                  iUPos--;
-               else
-               {
-                  this->swap(iMPos, iUPos);
-                  break;
-               }
-            }
-            if(iMPos == iUPos)
-               break;
-            iMPos = iUPos;
-            while(true)
-            {
-               if(iMPos == iLPos)
-                  break;
-               if(BaseSortCompare(this->element_at(iLPos), this->element_at(iMPos)) <= 0)
-                  iLPos++;
-               else
-               {
-                  this->swap(iLPos, iMPos);
-                  break;
-               }
-            }
-            if(iMPos == iLPos)
-               break;
-            iMPos = iLPos;
-         }
-         if(iLowerBound < iMPos - 1)
-         {
-            stackLowerBound.push(iLowerBound);
-            stackUpperBound.push(iMPos - 1);
-         }
-         if(iMPos + 1 < iUpperBound)
-         {
-            stackLowerBound.push(iMPos + 1);
-            stackUpperBound.push(iUpperBound);
-         }
-         if(stackLowerBound.get_size() == 0)
-            break;
-      }
-   }
-}
 
+#define new DEBUG_NEW
+
+
+// smart_pointer_sort_array
+#define spsa(T) sort_array < sp(T), const sp(T) &, spa(T) >

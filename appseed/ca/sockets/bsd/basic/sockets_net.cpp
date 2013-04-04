@@ -162,7 +162,7 @@ namespace sockets
       uint32_t dwTimeProfile1 = get_tick_count();
 
       single_lock sl(&m_mutexCache, true);
-      dns_cache_item * pitem = NULL;
+      dns_cache_item * pitem = ::null();
       if(m_mapCache.Lookup(str, pitem) && ((::get_tick_count() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
       {
          l = pitem->m_ipaddr;
@@ -175,7 +175,7 @@ namespace sockets
          (dwTimeProfile2 - dwTimeProfile1));*/
          return pitem->r;
       }
-      if(pitem == NULL)
+      if(pitem == ::null())
          pitem = new dns_cache_item;
       struct sockaddr_in sa;
       memset(&sa, 0, sizeof(sa));
@@ -209,7 +209,7 @@ namespace sockets
       memcpy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
 #else
       struct hostent he;
-      struct hostent *result = NULL;
+      struct hostent *result = ::null();
       int32_t myerrno = 0;
       char buf[2000];
       int32_t n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
@@ -240,7 +240,7 @@ namespace sockets
       struct addrinfo *res;
       if (net::isipv4(str))
          hints.ai_flags |= AI_NUMERICHOST;
-      int32_t n = getaddrinfo(str, NULL, &hints, &res);
+      int32_t n = getaddrinfo(str, ::null(), &hints, &res);
       if (n)
       {
          string error = "Error: ";
@@ -528,7 +528,7 @@ namespace sockets
       memcpy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
 #else
       struct hostent he;
-      struct hostent *result = NULL;
+      struct hostent *result = ::null();
       int32_t myerrno = 0;
       char buf[2000];
       int32_t n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
@@ -559,7 +559,7 @@ namespace sockets
       struct addrinfo *res;
       if (net::isipv4(host))
          hints.ai_flags |= AI_NUMERICHOST;
-      int32_t n = getaddrinfo(host, NULL, &hints, &res);
+      int32_t n = getaddrinfo(host, ::null(), &hints, &res);
       if (!n)
       {
          comparable_array < addrinfo * > vec;
@@ -673,7 +673,7 @@ namespace sockets
       struct addrinfo *res;
       if (net::isipv6(host))
          hints.ai_flags |= AI_NUMERICHOST;
-      int32_t n = getaddrinfo(host, NULL, &hints, &res);
+      int32_t n = getaddrinfo(host, ::null(), &hints, &res);
       if (!n)
       {
          comparable_array < addrinfo * > vec;
@@ -862,7 +862,7 @@ namespace sockets
       hints.ai_socktype = 0;
       hints.ai_protocol = 0;
       struct addrinfo *res;
-      int32_t n = getaddrinfo(NULL, name, &hints, &res);
+      int32_t n = getaddrinfo(::null(), name, &hints, &res);
       if (!n)
       {
          service = res -> ai_protocol;

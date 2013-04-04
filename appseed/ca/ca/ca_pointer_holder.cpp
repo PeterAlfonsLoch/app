@@ -5,7 +5,7 @@ raw_pointer::raw_pointer(::ca::application * papp) :
    ::ca::ca(papp)
 {
 
-   m_pca = NULL;
+   m_pca = ::null();
 
 }
 
@@ -18,7 +18,7 @@ raw_pointer::raw_pointer(const raw_pointer & holder) :
 }
 
 raw_pointer::raw_pointer(::ca::ca * pca) :
-   ::ca::ca(pca != NULL ? pca->get_app() : NULL)
+   ::ca::ca(pca != ::null() ? pca->get_app() : ::null())
 {
 
    m_pca = pca;

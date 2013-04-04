@@ -179,7 +179,7 @@ namespace sockets
 
       SendResponse();
 
-      if(m_obuf_top == NULL)
+      if(m_obuf_top == ::null())
       {
          OnWriteComplete();
       }

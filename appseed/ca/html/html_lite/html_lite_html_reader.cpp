@@ -245,7 +245,7 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
    uint_ptr   nRetVal;
 
    // determine file size
-   strsize dwBufLen = ::GetFileSize(hFile, NULL);
+   strsize dwBufLen = ::GetFileSize(hFile, ::null());
    if (dwBufLen == INVALID_FILE_SIZE)
    {
       TRACE1("(Error) lite_html_reader::read:"
@@ -256,11 +256,11 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
 
 #ifdef WINDOWSEX
    // create a file-mapping object for the file
-   hFileMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0L, 0L, NULL);
+   hFileMap = ::CreateFileMapping(hFile, ::null(), PAGE_READONLY, 0L, 0L, ::null());
 #else
-   hFileMap = ::CreateFileMappingFromApp(hFile, NULL, PAGE_READONLY, dwBufLen, NULL);
+   hFileMap = ::CreateFileMappingFromApp(hFile, ::null(), PAGE_READONLY, dwBufLen, ::null());
 #endif
-   if (hFileMap == NULL)
+   if (hFileMap == ::null())
    {
       TRACE1("(Error) lite_html_reader::read:"
          " CreateFileMapping() failed;"
@@ -269,12 +269,12 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
    }
 
 #ifdef WINDOWSEX
-   // ::collection::map the entire file into the address-space of the application
+   // map the entire file into the address-space of the application
    lpsz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
 #else
    lpsz = (const char *) ::MapViewOfFileFromApp(hFileMap, FILE_MAP_READ, 0, 0);
 #endif
-   if (lpsz == NULL)
+   if (lpsz == ::null())
    {
       TRACE1("(Error) lite_html_reader::read:"
          " MapViewOfFile() failed;"
@@ -290,7 +290,7 @@ LError:
    nRetVal = 0U;
 
 LCleanExit:
-   if (lpsz != NULL)
+   if (lpsz != ::null())
       VERIFY(::UnmapViewOfFile(lpsz));
    if (hFileMap)
       VERIFY(::CloseHandle(hFileMap));
@@ -316,12 +316,12 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    //ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
 
-   HANDLE         hFileMap    = NULL;
-   const char *   lpsz        = NULL;
+   HANDLE         hFileMap    = ::null();
+   const char *   lpsz        = ::null();
    uint_ptr      nRetVal     = 0;
 
    // determine file size
-   strsize dwBufLen = ::GetFileSize(hFile, NULL);
+   strsize dwBufLen = ::GetFileSize(hFile, ::null());
    if (dwBufLen == INVALID_FILE_SIZE)
    {
       TRACE1("(Error) lite_html_reader::read:"
@@ -334,15 +334,15 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
 #ifdef METROWIN
          hFileMap = CreateFileMappingFromApp(
             hFile,
-            NULL,
+            ::null(),
             PAGE_READWRITE,
             dwBufLen,
-            NULL);
+            ::null());
 
 #else
-   hFileMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0L, 0L, NULL);
+   hFileMap = ::CreateFileMapping(hFile, ::null(), PAGE_READONLY, 0L, 0L, ::null());
 #endif
-   if (hFileMap == NULL)
+   if (hFileMap == ::null())
    {
       TRACE1("(Error) lite_html_reader::read:"
          " CreateFileMapping() failed;"
@@ -357,10 +357,10 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
          0,
          0);
 #else
-   // ::collection::map the entire file into the address-space of the application
+   // map the entire file into the address-space of the application
    lpsz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
 #endif
-   if (lpsz == NULL)
+   if (lpsz == ::null())
    {
       TRACE1("(Error) lite_html_reader::read:"
          " MapViewOfFile() failed;"
@@ -376,7 +376,7 @@ LError:
    nRetVal = 0U;
 
 LCleanExit:
-   if (lpsz != NULL)
+   if (lpsz != ::null())
       VERIFY(::UnmapViewOfFile(lpsz));
    if (hFileMap)
       VERIFY(::CloseHandle(hFileMap));
@@ -425,7 +425,7 @@ uint_ptr lite_html_reader::ReadFile(int32_t fd)
       return 0;
    }
 
-   lpsz = (char *) mmap(NULL, dwBufLen, PROT_READ, MAP_PRIVATE, fd, 0);
+   lpsz = (char *) mmap(::null(), dwBufLen, PROT_READ, MAP_PRIVATE, fd, 0);
 
    if(lpsz == MAP_FAILED)
    {
@@ -499,7 +499,7 @@ bool lite_html_reader::getEventNotify(uint32_t dwEvent) const
       dwEvent == notifyTagEnd     ||
       dwEvent == notifyCharacters ||
       dwEvent == notifyComment);
-   if (m_pEventHandler == NULL)
+   if (m_pEventHandler == ::null())
       return (false);
    return ((m_eventMask & dwEvent) == dwEvent);
 }
@@ -623,7 +623,7 @@ bool lite_html_reader::parseComment(string &rComment)
    const char *   lpszEnd = ::strstr(lpszBegin, "--");
 
    // comment ending delimeter could not be found?
-   if (lpszEnd == NULL)
+   if (lpszEnd == ::null())
       // consider everything after current buffer position a comment
    {
       rComment = lpszBegin;

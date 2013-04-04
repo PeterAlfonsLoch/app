@@ -14,7 +14,7 @@ namespace plugin
    
    bool history::hist(const char * pszUrl)
    {
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          m_pplugin->open_url(pszUrl);
          return true;

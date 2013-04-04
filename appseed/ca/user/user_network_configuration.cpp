@@ -6,8 +6,8 @@ namespace user
    network_configuration::network_configuration(::ca::application * papp) :
       ca(papp)
    {
-//      m_pdoc   = NULL;
-  //    m_pview  = NULL;
+//      m_pdoc   = ::null();
+  //    m_pview  = ::null();
    }
 
    network_configuration::~network_configuration()
@@ -17,7 +17,7 @@ namespace user
    bool network_configuration::initialize(::user::interaction * puiParent)
    {
       /*m_pdoc = Cube.userex().create_form(this, puiParent);
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
          m_pview->m_pcallback = this;
@@ -30,7 +30,7 @@ namespace user
    {
       /*
       m_pdoc = Cube.userex().create_child_form(this, puiParent);
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
          m_pview->m_pcallback = this;

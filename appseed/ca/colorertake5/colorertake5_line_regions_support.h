@@ -13,8 +13,8 @@ namespace colorertake5
    protected:
 
 
-      base_array<LineRegion *> lineRegions;
-      base_array<LineRegion *> schemeStack;
+      array<LineRegion *> lineRegions;
+      array<LineRegion *> schemeStack;
 
       RegionMapper *regionMapper;
       LineRegion *flowBackground;
@@ -22,7 +22,7 @@ namespace colorertake5
 
       LineRegion background;
       index firstLineNo;
-      count lineCount;
+      ::count lineCount;
 
 
    public:
@@ -34,12 +34,12 @@ namespace colorertake5
       /**
       * Resizes structures to mantain regions for @c lineCount lines.
       */
-      void resize(count lineCount);
+      void resize(::count lineCount);
 
       /**
       * Return current this->get_size of this line regions structure
       */
-      count get_size();
+      ::count get_size();
 
       /**
       * Drops all internal structures
@@ -60,7 +60,7 @@ namespace colorertake5
 
       /**
       * Background region define, which is used to
-      * fill transparent regions. If background is @c NULL,
+      * fill transparent regions. If background is @c ::null(),
       * then regions with transparent fields would leave these fields unfilled
       */
       void setBackground(RegionDefine* back);

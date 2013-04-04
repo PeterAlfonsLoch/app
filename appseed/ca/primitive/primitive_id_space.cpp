@@ -15,7 +15,7 @@ id_space::~id_space()
 
    /*try
    {
-      if(m_pmutex != NULL)
+      if(m_pmutex != ::null())
       {
          delete m_pmutex;
       }
@@ -114,8 +114,8 @@ void id_space::sort()
    stackUpperBound.set_size(0, 1024);
 
    register char chCompare;
-   register id * pid1 = NULL;
-   register id * pid2 = NULL;
+   register id * pid1 = ::null();
+   register id * pid2 = ::null();
    register bool bSwap;
    register bool bText;
    register char ch;
@@ -333,7 +333,7 @@ strid_array::~strid_array()
 
    /*try
    {
-      if(m_pmutex != NULL)
+      if(m_pmutex != ::null())
       {
          delete m_pmutex;
       }

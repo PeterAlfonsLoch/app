@@ -7,7 +7,7 @@ void itemswap(void * pswaparg, index i1, index i2);
 
 void itemswap(void * pswaparg, index i1, index i2)
 {
-   base_array < factory_item_base * > * pitemptra = (base_array < factory_item_base * > *) pswaparg;
+   array < factory_item_base * > * pitemptra = (array < factory_item_base * > *) pswaparg;
    pitemptra->swap(i1, i2);
 }
 
@@ -87,7 +87,7 @@ void factory::discard(::ca::ca * pobject)
    single_lock sl(m_pmutex, TRUE);
    factory_allocator * pallocator = get_allocator(typeid(*pobject).name());
    sl.unlock();
-   if(pallocator == NULL)
+   if(pallocator == ::null())
    {
       if(::is_debugger_attached())
          __debug_break();
@@ -121,7 +121,7 @@ void factory::enable_simple_factory_request(bool bEnable)
             try
             {
 
-               pitem->m_pallocator = NULL;
+               pitem->m_pallocator = ::null();
 
             }
             catch(...)
@@ -181,13 +181,13 @@ factory_allocator * factory::get_allocator(const char * pszType)
    }
    catch(...)
    {
-      return NULL;
+      return ::null();
    }
 
    index iFind;
 
    if(!m_pstridaAllocator->find(id, iFind))
-      return NULL;
+      return ::null();
 
    return m_itemptraAllocator[iFind];
 
@@ -203,7 +203,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
    }
    single_lock slInfo(info.m_spmutex, TRUE);
 
-   if(info.m_pfactoryitem != NULL)
+   if(info.m_pfactoryitem != ::null())
    {
 
       if(m_bSimpleFactoryRequest)
@@ -217,7 +217,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
    index iFind;
 
    if(!m_pstrida->find(info.m_id, iFind))
-      return NULL;
+      return ::null();
 
    factory_item_base * pitem = m_itemptra.element_at(iFind);
 
@@ -238,13 +238,13 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
    single_lock sl(m_pmutex, TRUE);
 
-   if(pobject == NULL)
-      return NULL;
+   if(pobject == ::null())
+      return ::null();
 
    index iFind;
 
    if(!m_pstrida->find((id) typeid(*pobject).name(), iFind))
-      return NULL;
+      return ::null();
 
    factory_item_base * pitem = m_itemptra.element_at(iFind);
 

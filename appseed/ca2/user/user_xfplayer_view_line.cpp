@@ -438,7 +438,7 @@ bool XfplayerViewLine::to(
    if(!IsVisible())
    {
       class rect rect(m_rectInvalidate);
-      if(!IsRefNull(rectaModified))
+      if(!is_null(rectaModified))
       {
          class rect baserect(rect);
          rectaModified.add(baserect);

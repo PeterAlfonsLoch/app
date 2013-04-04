@@ -11,7 +11,7 @@ html_form::html_form(::ca::application * papp) :
    ::userbase::form_view(papp)
 {
 
-   m_sphtmldata(new html::data(papp));
+   m_sphtmldata = new html::data(papp);
 
 }
 
@@ -318,7 +318,7 @@ void html_form::_001SetText(const char * psz)
 
    sp(::html::data) sphtmldata;
 
-   sphtmldata(new ::html::data(get_app()));
+   sphtmldata = new ::html::data(get_app());
 
    sphtmldata->m_pform = this;
 

@@ -30,14 +30,15 @@ namespace plane
       };
 
 
-      class run_start_installer
+      class run_start_installer :
+         virtual public ::ca::object
       {
       public:
          virtual void run_start_install(const char * pszInstall) = 0;
       };
 
       class CLASS_DECL_ca map :
-         virtual public ::collection::map < index, index, ::plane::session *, ::plane::session * >
+         virtual public ::map < index, index, ::plane::session *, ::plane::session * >
       {
       };
 
@@ -51,7 +52,7 @@ namespace plane
       bool                                                  m_bShowPlatform;
 
       ::ca::application *                                   m_pappCurrent;
-      ::collection::string_map < ::ca::application *  >     m_mapApplication;
+      string_map < ::ca::application *  >     m_mapApplication;
 
 
       var                                                   m_varTopicFile;
@@ -133,9 +134,9 @@ namespace plane
 
       void on_request(::ca::create_context * pcreatecontext);
 
-      ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
+      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = ::null());
 
       virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
 

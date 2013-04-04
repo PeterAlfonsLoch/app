@@ -208,7 +208,7 @@ namespace ca
 
    property::property()
    {
-      m_pset = NULL;
+      m_pset = ::null();
    }
 
    property::property(const property & prop)
@@ -385,12 +385,12 @@ namespace ca
       istream >> get_value();
    }
 
-   count property::get_count() const
+   ::count property::get_count() const
    {
       return get_value().get_count();
    }
 
-   count property::array_get_count() const
+   ::count property::array_get_count() const
    {
       return get_value().array_get_count();
    }
@@ -1370,7 +1370,7 @@ namespace ca
    property * property_set::add(const char * pszName)
    {
       string strName;
-      if(pszName == NULL)
+      if(pszName == ::null())
       {
          index iMax = -1;
          index idx;
@@ -1440,7 +1440,7 @@ namespace ca
    property * property_set::add(const char * pszName, var var)
    {
       string strName;
-      if(pszName == NULL)
+      if(pszName == ::null())
       {
          index iMax = -1;
          index idx;
@@ -1487,13 +1487,13 @@ namespace ca
    property & property_set::operator[](const char * pszName)
    {
       property * pproperty = find(pszName);
-      if(pproperty != NULL)
+      if(pproperty != ::null())
          return *pproperty;
       if(m_bAutoAdd)
       {
          add(pszName);
          property * pproperty = find(pszName);
-         if(pproperty != NULL)
+         if(pproperty != ::null())
             return *pproperty;
       }
       throw simple_exception(get_app(), "property with specified name - and specified case sensitivity - does not exist and Auto add Flag is not set");
@@ -1502,24 +1502,24 @@ namespace ca
    property & property_set::lowprop(const string & strName)
    {
       property * pproperty = lowfind(strName);
-      if(pproperty != NULL)
+      if(pproperty != ::null())
          return *pproperty;
       if(m_bAutoAdd)
       {
          pproperty = lowadd(strName);
-         if(pproperty != NULL)
+         if(pproperty != ::null())
             return *pproperty;
       }
       throw simple_exception(get_app(), "property with specified name - and specified case sensitivity - does not exist and Auto add Flag is not set");
    }
 
 
-   bool property_set::is_set_empty(count countMinimum) const
+   bool property_set::is_set_empty(::count countMinimum) const
    {
       return get_count() < countMinimum;
    }
 
-   bool property_set::has_properties(count countMinimum) const
+   bool property_set::has_properties(::count countMinimum) const
    {
       return get_count() >= countMinimum;
    }
@@ -1556,23 +1556,23 @@ namespace ca
       return find_var(var);
    }
 
-   bool property_set::contains_var_ci(const var & var, count countMin, count countMax) const
+   bool property_set::contains_var_ci(const var & var, ::count countMin, ::count countMax) const
    {
-      count count = 0;
+      ::count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find_var_ci(var)) >= 0)
          count++;
       return count >= countMin && conditional(countMax >= 0, count <= countMax);
    }
 
-   bool property_set::contains_value_ci(var var, count countMin, count countMax) const
+   bool property_set::contains_value_ci(var var, ::count countMin, ::count countMax) const
    {
       return contains_var_ci(var, countMin, countMax);
    }
 
-   bool property_set::contains_value_ci(const char * psz, count countMin, count countMax) const
+   bool property_set::contains_value_ci(const char * psz, ::count countMin, ::count countMax) const
    {
-      count count = 0;
+      ::count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find_value_ci(psz)) >= 0)
          count++;
@@ -1580,23 +1580,23 @@ namespace ca
    }
 
 
-   bool property_set::contains_var(const var & var, count countMin, count countMax) const
+   bool property_set::contains_var(const var & var, ::count countMin, ::count countMax) const
    {
-      count count = 0;
+      ::count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find_var(var)) >= 0)
          count++;
       return count >= countMin && conditional(countMax >= 0, count <= countMax);
    }
 
-   bool property_set::contains_value(var var, count countMin, count countMax) const
+   bool property_set::contains_value(var var, ::count countMin, ::count countMax) const
    {
       return contains_var(var, countMin, countMax);
    }
 
-   bool property_set::contains_value(const char * psz, count countMin, count countMax) const
+   bool property_set::contains_value(const char * psz, ::count countMin, ::count countMax) const
    {
-      count count = 0;
+      ::count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find_value(psz)) >= 0)
          count++;
@@ -1646,9 +1646,9 @@ namespace ca
    }
 
 
-   count property_set::remove_var_ci(const var & var, count countMin, count countMax)
+   ::count property_set::remove_var_ci(const var & var, ::count countMin, ::count countMax)
    {
-      count count = 0;
+      ::count count = 0;
       if(contains_var_ci(var, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
             && (remove_first_var_ci(var)) >= 0)
@@ -1656,14 +1656,14 @@ namespace ca
       return count;
    }
 
-   count property_set::remove_value_ci(var var, count countMin, count countMax)
+   ::count property_set::remove_value_ci(var var, ::count countMin, ::count countMax)
    {
       return remove_var_ci(var, countMin, countMax);
    }
 
-   count property_set::remove_value_ci(const char * psz, count countMin, count countMax)
+   ::count property_set::remove_value_ci(const char * psz, ::count countMin, ::count countMax)
    {
-      count count = 0;
+      ::count count = 0;
       if(contains_value_ci(psz, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
             && (remove_first_value_ci(psz)) >= 0)
@@ -1671,9 +1671,9 @@ namespace ca
       return count;
    }
 
-   count property_set::remove_var(const var & var, count countMin, count countMax)
+   ::count property_set::remove_var(const var & var, ::count countMin, ::count countMax)
    {
-      count count = 0;
+      ::count count = 0;
       if(contains_var(var, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
             && (remove_first_var(var)) >= 0)
@@ -1681,14 +1681,14 @@ namespace ca
       return count;
    }
 
-   count property_set::remove_value(var var, count countMin, count countMax)
+   ::count property_set::remove_value(var var, ::count countMin, ::count countMax)
    {
       return remove_var(var, countMin, countMax);
    }
 
-   count property_set::remove_value(const char * psz, count countMin, count countMax)
+   ::count property_set::remove_value(const char * psz, ::count countMin, ::count countMax)
    {
-      count count = 0;
+      ::count count = 0;
       if(contains_value(psz, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
             && (remove_first_value(psz)) >= 0)
@@ -1699,25 +1699,25 @@ namespace ca
 
 
 
-   count property_set::unset(const char * pszName)
+   ::count property_set::unset(const char * pszName)
    {
       if(m_bKeyCaseInsensitive)
       {
          string strName(pszName);
          strName.make_lower();
          ::ca::property_map::pair * ppair = m_map.PLookup(strName);
-         if(ppair == NULL)
+         if(ppair == ::null())
             return 0;
-         m_propertya.remove_at(ppair->m_value);
+         m_propertya.remove_at(ppair->m_element2);
          m_map.remove_key(strName);
          return 1;
       }
       else
       {
          ::ca::property_map::pair * ppair = m_map.PLookup(pszName);
-         if(ppair == NULL)
+         if(ppair == ::null())
             return 0;
-         m_propertya.remove_at(ppair->m_value);
+         m_propertya.remove_at(ppair->m_element2);
          m_map.remove_key(pszName);
          return 1;
       }
@@ -1730,16 +1730,16 @@ namespace ca
          string strName(pszName);
          strName.make_lower();
          ::ca::property_map::pair * ppair = m_map.PLookup(strName);
-         if(ppair == NULL)
+         if(ppair == ::null())
             return -1;
-         return ppair->m_value;
+         return ppair->m_element2;
       }
       else
       {
          ::ca::property_map::pair * ppair = m_map.PLookup(pszName);
-         if(ppair == NULL)
+         if(ppair == ::null())
             return -1;
-         return ppair->m_value;
+         return ppair->m_element2;
       }
    }
 
@@ -1766,7 +1766,7 @@ namespace ca
       index i = find_index(pszName);
 
       if(i < 0)
-         return NULL;
+         return ::null();
 
       return &m_propertya[i];
 
@@ -1802,7 +1802,7 @@ namespace ca
    bool property_set::is_new(const char * pszName) const
    {
       const property * pproperty = find(pszName);
-      if(pproperty == NULL)
+      if(pproperty == ::null())
          return true;
       return pproperty->is_new();
    }
@@ -1815,7 +1815,7 @@ namespace ca
    bool property_set::is_null(const char * pszName) const
    {
       const property * pproperty = find(pszName);
-      if(pproperty == NULL)
+      if(pproperty == ::null())
          return true;
       return pproperty->is_null();
    }
@@ -1828,7 +1828,7 @@ namespace ca
    bool property_set::is_new_or_null(const char * pszName) const
    {
       const property * pproperty = find(pszName);
-      if(pproperty == NULL)
+      if(pproperty == ::null())
          return true;
       return pproperty->is_new_or_null();
    }
@@ -1842,7 +1842,7 @@ namespace ca
    bool property_set::is_empty(const char * pszName) const
    {
       const property * pproperty = find(pszName);
-      if(pproperty == NULL)
+      if(pproperty == ::null())
          return true;
       return pproperty->is_empty();
    }
@@ -1850,7 +1850,7 @@ namespace ca
    bool property_set::is_empty(string_interface & str) const
    {
       const property * pproperty = find((const char *) string(str));
-      if(pproperty == NULL)
+      if(pproperty == ::null())
          return true;
       return pproperty->is_empty();
    }
@@ -1921,7 +1921,7 @@ namespace ca
 
       const char * pszCmdLine =  pszCmdLineParam;
 
-      if(pszCmdLine == NULL)
+      if(pszCmdLine == ::null())
          return;
 
       string str;
@@ -2115,10 +2115,10 @@ namespace ca
 
    void property_set::parse_url_query(const char * pszUrl)
    {
-      if(pszUrl == NULL)
+      if(pszUrl == ::null())
          return;
       const char * pszUrlQuery = strchr(pszUrl, '?');
-      if(pszUrlQuery == NULL)
+      if(pszUrlQuery == ::null())
          return _parse_url_query(pszUrl);
       else
          return _parse_url_query(pszUrlQuery + 1);
@@ -2126,7 +2126,7 @@ namespace ca
 
    void property_set::_parse_url_query(const char * pszUrlQuery)
    {
-      if(pszUrlQuery == NULL)
+      if(pszUrlQuery == ::null())
          return;
       const char * pszParam = pszUrlQuery;
       const char * pszParamEnd;
@@ -2136,9 +2136,9 @@ namespace ca
       {
          pszParamEnd = strchr(pszParam, '&');
          pszKeyEnd   = strchr(pszParam, '=');
-         if(pszParamEnd == NULL)
+         if(pszParamEnd == ::null())
          {
-            if(pszKeyEnd == NULL)
+            if(pszKeyEnd == ::null())
             {
                strKey = System.url().url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
                _008Add(strKey, "");
@@ -2153,7 +2153,7 @@ namespace ca
          }
          else
          {
-            if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
+            if(pszKeyEnd == ::null() || pszKeyEnd > pszParamEnd)
             {
                strKey = System.url().url_decode(pszParam, pszParamEnd - pszParam);
                _008Add(strKey, "");
@@ -2192,14 +2192,14 @@ namespace ca
    }
 
 
-   count property_set::remove_by_name(const char * pszName)
+   ::count property_set::remove_by_name(const char * pszName)
    {
       return unset(pszName);
    }
 
-   count property_set::remove_by_name(stringa & stra)
+   ::count property_set::remove_by_name(stringa & stra)
    {
-      count count = 0;
+      ::count count = 0;
       for(int32_t i = 0; i < stra.get_count(); i++)
       {
          count += remove(stra[i]);
@@ -2339,7 +2339,7 @@ namespace ca
    string property_set::gen_eval(const char * psz)
    {
       string str;
-      ASSERT(psz != NULL);
+      ASSERT(psz != ::null());
       ASSERT(psz[0] == '$'); // until now accepts only one var
       ASSERT(strlen(psz) >= 2);
       str = operator [](&psz[1]);

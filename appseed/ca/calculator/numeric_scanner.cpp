@@ -25,8 +25,8 @@ namespace calculator
    scanner::scanner(::ca::application * papp) :
       ca(papp)
    {
-      m_ptoken    = NULL;
-      input       = NULL;
+      m_ptoken    = ::null();
+      input       = ::null();
    }
 
    scanner::~scanner()
@@ -44,7 +44,7 @@ namespace calculator
    void scanner::peek()
    {
       const char *beginning;
-      if(input != next_input && next_input != NULL)
+      if(input != next_input && next_input != ::null())
          return;
       beginning = input;
       m_ptoken = look_ahead();
@@ -61,7 +61,7 @@ namespace calculator
    {
       token * token;
       token = new class token;
-      if(token == NULL)
+      if(token == ::null())
          throw memory_exception(get_app());
       while(::ca::ch::is_space_char(input))
          input = ::ca::str::utf8_inc(input);

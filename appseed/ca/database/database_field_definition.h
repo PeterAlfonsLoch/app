@@ -33,7 +33,7 @@ namespace database
 
 
    class CLASS_DECL_ca field_definition : 
-      virtual public base_array < field_definition_item >
+      virtual public array < field_definition_item >
    {
    public:
       

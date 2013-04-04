@@ -39,17 +39,17 @@ namespace ca
          if(spcommand.is_null())
             continue;
 
-         pcreatecontext = NULL;
+         pcreatecontext = ::null();
          try
          {
             pcreatecontext = dynamic_cast < ::ca::create_context * > (spcommand.m_p);
          }
          catch(...)
          {
-            pcreatecontext = NULL;
+            pcreatecontext = ::null();
          }
 
-         if(pcreatecontext != NULL)
+         if(pcreatecontext != ::null())
          {
             try
             {
@@ -100,7 +100,7 @@ namespace ca
       try
       {
          ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
-         if(papp != NULL)
+         if(papp != ::null())
          {
             papp->request(pline);
          }
@@ -142,7 +142,7 @@ namespace ca
    void command_thread::consolidate(::ca::command_thread * pthread)
    {
 
-      if(pthread == NULL || pthread == this)
+      if(pthread == ::null() || pthread == this)
          return;
 
       if(!pthread->m_varTopicFile.is_empty())

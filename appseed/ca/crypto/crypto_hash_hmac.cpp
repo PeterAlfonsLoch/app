@@ -73,7 +73,7 @@ hmac_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
 
   /* allocate primitive::memory for auth and hmac_ctx_t structures */
   pointer = (uint8_t*)crypto_alloc(sizeof(hmac_ctx_t) + sizeof(auth_t));
-  if (pointer == NULL)
+  if (pointer == ::null())
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -84,7 +84,7 @@ hmac_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
   (*a)->key_len = key_len;
   (*a)->prefix_len = 0;
 
-  /* increment global count of all hmac uses */
+  /* increment global ::count of all hmac uses */
   hmac.ref_count++;
 
   return err_status_ok;
@@ -101,7 +101,7 @@ hmac_dealloc(auth_t *a) {
   /* free primitive::memory */
   crypto_free(a);
   
-  /* decrement global count of all hmac uses */
+  /* decrement global ::count of all hmac uses */
   hmac.ref_count--;
 
   return err_status_ok;
@@ -254,7 +254,7 @@ hmac_test_case_0 = {
   hmac_test_case_0_data,     /* data                     */
   20,                        /* octets in tag            */
   hmac_test_case_0_tag,      /* tag                      */
-  NULL                       /* pointer to next testcase */
+  ::null()                       /* pointer to next testcase */
 };
 
 /* end test case 0 */

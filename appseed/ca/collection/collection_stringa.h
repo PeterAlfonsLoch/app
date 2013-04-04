@@ -10,16 +10,16 @@ class CLASS_DECL_ca stringa :
 public:
 
 
-   stringa(::ca::application * papp = NULL);
+   stringa(::ca::application * papp = ::null());
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);
-   stringa(const stringa & base_array);
+   stringa(const stringa & array);
    virtual ~stringa();
 
 
    primitive::memory GetFormatV004();
-   count remove_empty();
+   ::count remove_empty();
    index add_normal(const char * lpcsz);
    void trim_right(const char * pszChars);
    void trim_left(const char * pszChars);
@@ -28,9 +28,9 @@ public:
    void trim_left();
    void trim();
    index add_unique(const char * lpcsz);
-   count add_unique(const string_array & stra);
+   ::count add_unique(const string_array & stra);
    index add_unique_ci(const char * lpcsz);
-   count add_unique_ci(const string_array & stra);
+   ::count add_unique_ci(const string_array & stra);
 
    void make_lower();
    void make_upper();
@@ -44,10 +44,10 @@ public:
    string pop_random_element();
 
    string pop(index i = 0);
-   void slice(stringa & stra, index index, count c = -1);
-   void remove(index index, count count);
-   void splice(const stringa & stra, index index, count c = -1);
-   void splice(const stringa & stra, index index, stringa & straRemoved, count c = -1);
+   void slice(stringa & stra, index index, ::count c = -1);
+   void remove(index index, ::count count);
+   void splice(const stringa & stra, index index, ::count c = -1);
+   void splice(const stringa & stra, index index, stringa & straRemoved, ::count c = -1);
 
 
    // if string is found, move it to specified position
@@ -55,7 +55,7 @@ public:
 
    // move preferred in order
    bool preferred(const char * lpcsz);
-   count preferred(stringa & stra);
+   ::count preferred(stringa & stra);
 
    index find_first_ci(const char * lpcsz, index find = 0, index last = -1) const;
    index find_first(const char * lpcsz, index find = 0, index last = -1) const;
@@ -66,34 +66,34 @@ public:
    index str_find_first_begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
    index str_find_first_begins(const char * lpcsz, index find = 0, index last = -1) const;
 
-   bool contains_ci(const char * lpcsz, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
-   bool contains(const char * lpcsz, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
+   bool contains_ci(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
 
-   count get_begins_ci(stringa & stra, const char * lpcsz, index first = 0, index last = -1);
+   ::count get_begins_ci(stringa & stra, const char * lpcsz, index first = 0, index last = -1);
 
-   count filter_begins_ci(const char * lpcsz, index first = 0, index last = -1);
+   ::count filter_begins_ci(const char * lpcsz, index first = 0, index last = -1);
 
-   count remove_first_ci(const char * lpcsz, index find = 0, index last = -1);
-   count remove_first(const char * lpcsz, index find = 0, index last = -1);
+   ::count remove_first_ci(const char * lpcsz, index find = 0, index last = -1);
+   ::count remove_first(const char * lpcsz, index find = 0, index last = -1);
 
-   count remove_ci(const char * lpcsz, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
-   count remove(const char * lpcsz, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
+   ::count remove_ci(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count remove(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
 
-   count remove_ci(const string_array & stra);
-   count remove(const string_array & stra);
+   ::count remove_ci(const string_array & stra);
+   ::count remove(const string_array & stra);
 
    stringa & explode(const string & strSeparator, const string & str);
 
    // csstidy: Same as explode, but not within a string
    stringa & csstidy_explode_ws(char sep, const char * psz);
 
-   void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
-   string implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
-   void reverse_implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
-   string reverse_implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
+   void implode(string & rwstr, const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
+   string implode(const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
+   void reverse_implode(string & rwstr, const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
+   string reverse_implode(const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
 
-   void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, count iCount = -1);
-   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, count iCount = -1);
+   void surround(const char * pszPrefix = ::null(), const char * pszSuffix = ::null(), index iStart = 0, ::count iCount = -1);
+   string surround_and_implode(const char * lpcszSeparator = ::null(), const char * pszPrefix = ::null(), const char * pszSuffix = ::null(), index iStart = 0, ::count iCount = -1);
 
    comparable_array < id > get_comparable_ida() const;
 
@@ -126,8 +126,8 @@ public:
    void add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator = FALSE);
 
 
-   bool is_empty(count countMinimum = 1);
-   bool has_elements(count countMinimum = 1);
+   bool is_empty(::count countMinimum = 1);
+   bool has_elements(::count countMinimum = 1);
 
 };
 

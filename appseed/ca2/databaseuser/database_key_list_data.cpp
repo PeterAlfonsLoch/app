@@ -42,7 +42,7 @@ namespace databaseuser
       }
    }
 
-   count data_key_list_data::_001GetItemCount()
+   ::count data_key_list_data::_001GetItemCount()
    {
       stringa straTotal;
       if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straTotal))

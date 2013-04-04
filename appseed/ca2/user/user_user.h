@@ -57,7 +57,7 @@ namespace ca
       // Running Operations - to be done on a running user
          // Dealing with document templates
          void add_document_template(document_template * ptemplate);
-         count get_template_count() const;
+         ::count get_template_count() const;
          document_template * get_template(index index) const;
 
 

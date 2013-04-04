@@ -67,7 +67,7 @@ public:
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
    virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);*/
 
-   virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = NULL);
+   virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = ::null());
 
    //virtual void OnInitialUpdate(); // called first time after construct
    DECL_GEN_VSIGNAL(_001OnInitialUpdate) // called first time after construct
@@ -85,18 +85,18 @@ public:
 
 
 
-    ::user::interaction * create_view(::ca::type_info info, user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
-   static ::user::interaction * s_create_view(::ca::type_info info, user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
+    ::user::interaction * create_view(::ca::type_info info, user::document_interface * pdoc = ::null(), ::user::interaction * pwndParent = ::null(), ::id id = ::id(), ::user::interaction * pviewLast = ::null());
+   static ::user::interaction * s_create_view(::ca::type_info info, user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = ::null());
    static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
 
    template < class VIEW >
-   VIEW * create_view(user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
+   VIEW * create_view(user::document_interface * pdoc = ::null(), ::user::interaction * pwndParent = ::null(), ::id id = ::id(), ::user::interaction * pviewLast = ::null());
 
    template < class VIEW >
-   VIEW * create_view(::user::interaction * pwndParent, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
+   VIEW * create_view(::user::interaction * pwndParent, ::id id = ::id(), ::user::interaction * pviewLast = ::null());
 
    template < class VIEW >
-   VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
+   VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = ::null());
 
 
    static user::document_interface * get_document(::user::interaction * pguie);

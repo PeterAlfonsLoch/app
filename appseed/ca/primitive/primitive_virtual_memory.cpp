@@ -8,14 +8,14 @@ namespace primitive
    virtual_memory::virtual_memory(::ca::application * papp) :
       ca(papp)
    {
-      m_pbStorage = NULL;
-      m_pbComputed = NULL;
+      m_pbStorage = ::null();
+      m_pbComputed = ::null();
    }
 
    virtual_memory::virtual_memory(const void * pdata, memory_size iCount)
    {
-      m_pbStorage = NULL;
-      m_pbComputed = NULL;
+      m_pbStorage = ::null();
+      m_pbComputed = ::null();
       allocate(iCount);
       ASSERT(__is_valid_address(pdata, iCount, FALSE));
       memcpy(m_pbStorage, pdata, iCount);
@@ -23,8 +23,8 @@ namespace primitive
 
    virtual_memory::virtual_memory(const memory_base & s)
    {
-      m_pbStorage = NULL;
-      m_pbComputed = NULL;
+      m_pbStorage = ::null();
+      m_pbComputed = ::null();
       memory_base::operator = (s);
    }
 
@@ -36,8 +36,8 @@ namespace primitive
    virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size dwSize) :
       ca(pcontainer->get_app())
    {
-      m_pbStorage          = NULL;
-      m_pbComputed = NULL;
+      m_pbStorage          = ::null();
+      m_pbComputed = ::null();
       allocate(dwSize);
       ASSERT(__is_valid_address(pmemory, (uint_ptr) dwSize, FALSE));
       memcpy(m_pbStorage, pmemory, (size_t) dwSize);
@@ -47,8 +47,8 @@ namespace primitive
    virtual_memory::virtual_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
    {
       UNREFERENCED_PARAMETER(nAllocFlags);
-      m_pbStorage          = NULL;
-      m_pbComputed = NULL;
+      m_pbStorage          = ::null();
+      m_pbComputed = ::null();
       m_pcontainer         = pcontainer;
       m_dwAllocationAddUp  = dwAllocationAddUp;
    }
@@ -73,7 +73,7 @@ namespace primitive
 
       LPBYTE p          = m_pbStorage;
 
-      m_pbStorage       = NULL;
+      m_pbStorage       = ::null();
       m_cbStorage       = 0;
       m_dwAllocation    = 0;
 
@@ -97,20 +97,20 @@ namespace primitive
 
       remove_offset();
 
-      if(m_pbStorage == NULL)
+      if(m_pbStorage == ::null())
       {
          m_iOffset = 0;
          memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
          m_pbStorage = (LPBYTE) ::MidAlloc((size_t) dwAllocation);
-         if(m_pbStorage == NULL)
+         if(m_pbStorage == ::null())
          {
-            m_pbComputed = NULL;
+            m_pbComputed = ::null();
             return false;
          }
          else
          {
             m_dwAllocation = dwAllocation;
-            if(m_pcontainer != NULL)
+            if(m_pcontainer != ::null())
             {
                m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
             }
@@ -125,7 +125,7 @@ namespace primitive
             m_iOffset = 0;
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ::MidAlloc(dwAllocation);
-            if(lpVoid == NULL)
+            if(lpVoid == ::null())
             {
                return false;
             }
@@ -133,7 +133,7 @@ namespace primitive
             {
                memcpy(lpVoid, m_pbComputed, m_cbStorage);
                memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
+               if(m_pcontainer != ::null())
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
@@ -149,14 +149,14 @@ namespace primitive
          {
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ::MidRealloc(m_pbStorage, m_dwAllocation, (size_t) dwAllocation);
-            if(lpVoid == NULL)
+            if(lpVoid == ::null())
             {
                return false;
             }
             else
             {
                memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
+               if(m_pcontainer != ::null())
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
@@ -178,7 +178,7 @@ namespace primitive
 
    void virtual_memory::free_data()
    {
-      if(m_pbStorage != NULL)
+      if(m_pbStorage != ::null())
       {
          m_cbStorage = 0;
          m_dwAllocation =  0;
@@ -189,7 +189,7 @@ namespace primitive
          catch(...)
          {
          }
-         m_pbStorage = NULL;
+         m_pbStorage = ::null();
       }
    }
 

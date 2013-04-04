@@ -8,9 +8,9 @@ namespace sqlite
       ca(papp),
       ::database::set()
    {
-      errmsg      = NULL;
+      errmsg      = ::null();
       haveError   = false;
-      db          = NULL;
+      db          = ::null();
    }
 
 
@@ -18,14 +18,14 @@ namespace sqlite
       ca(newDb->get_app()),
       ::database::set(newDb)
    {
-      errmsg      = NULL;
+      errmsg      = ::null();
       haveError = false;
       db = newDb;
    }
 
    set::~set()
    {
-      //  if(errmsg != NULL)
+      //  if(errmsg != ::null())
       //  {
       //      sqlite_free_table(&errmsg);
       // }
@@ -37,12 +37,12 @@ namespace sqlite
 
    void * set::handle()
    {
-      if (db != NULL)
+      if (db != ::null())
       {
          base* psqdb = dynamic_cast<base*>(db);
          return psqdb->getHandle();
       }
-      else return NULL;
+      else return ::null();
    }
 
    void set::make_query(stringa &_sql)
@@ -55,7 +55,7 @@ namespace sqlite
          if(autocommit)
             db->start_transaction();
 
-         if(db == NULL)
+         if(db == ::null())
             throw database::DbErrors("No base Connection");
 
          //close();
@@ -63,10 +63,10 @@ namespace sqlite
          for (int32_t i = 0; i <_sql.get_size(); i++)
          {
             query = _sql.element_at(i);
-            char* err=NULL;
+            char* err=::null();
             set::parse_sql(query);
             //cout << "Executing: "<<query<<"\n\n";
-            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
+            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,::null(),::null(),&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
                throw database::DbErrors(db->getErrorMsg());
@@ -111,7 +111,7 @@ namespace sqlite
    void set::fill_fields()
    {
       //cout <<"rr "<<result.records.size()<<"|" << frecno <<"\n";
-      if ((db == NULL)
+      if ((db == ::null())
       || (result.record_header.get_size() == 0)
       || (result.records.get_size() < frecno))
          return;
@@ -185,21 +185,21 @@ namespace sqlite
 
    bool set::query(const char *query)
    {
-      if(db == NULL)
+      if(db == ::null())
       {
          TRACE("set::query: base is not Defined");
          m_strQueryErrorMessage = "base is not defined";
          m_strDatabaseErrorMessage = "base is not defined";
          return false;
       }
-      if(dynamic_cast<base*>(db) == NULL)
+      if(dynamic_cast<base*>(db) == ::null())
       {
          TRACE("set::query: base is not valid");
          m_strQueryErrorMessage = "base is not valid";
          m_strDatabaseErrorMessage = "base is not valid";
          return false;
       }
-      if(dynamic_cast<base*>(db)->getHandle() == NULL)
+      if(dynamic_cast<base*>(db)->getHandle() == ::null())
       {
          TRACE("set::query: No base connection");
          m_strQueryErrorMessage = "No base Connection";
@@ -280,7 +280,7 @@ namespace sqlite
    }
 
 
-   count set::num_rows()
+   ::count set::num_rows()
    {
       return result.records.get_size();
    }
@@ -459,7 +459,7 @@ namespace sqlite
                break;
             }
             if (iFound < 0) throw database::DbErrors("Field not found: %s",fieldname);
-            count iNumRows = num_rows();
+            ::count iNumRows = num_rows();
             for(i=0; i < iNumRows; i++)
                if(result.records[i][iFound] == value)
                {
@@ -518,16 +518,16 @@ namespace sqlite
    int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols){
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-      count sz = r->records.get_size();
+      ::count sz = r->records.get_size();
 
-      //if (reslt == NULL ) cout << "EMPTY!!!\n";
+      //if (reslt == ::null() ) cout << "EMPTY!!!\n";
       if (r->record_header.get_size() <= 0)
       {
          r->record_header.set_size(ncol, 32);
          for (index i=0; i < ncol; i++)
          {
             r->record_header[i].name = cols[i];
-            if(cols[i + ncol] != NULL)
+            if(cols[i + ncol] != ::null())
             {
                string str(cols[i + ncol]);
                str.make_lower();
@@ -551,11 +551,11 @@ namespace sqlite
       database::record rec;
       var v;
 
-      if (reslt != NULL)
+      if (reslt != ::null())
       {
          for (int32_t i=0; i<ncol; i++)
          {
-            if (reslt[i] == NULL)
+            if (reslt[i] == ::null())
             {
                v = "";
                v.set_type(var::type_null);
@@ -564,7 +564,7 @@ namespace sqlite
             {
                //if(r->record_header[i].type == vmssqlite::DataTypeDouble)
                //{
-               // v.SetDouble(strtod(reslt[i], NULL));
+               // v.SetDouble(strtod(reslt[i], ::null()));
                //}
                //if(r->record_header[i].type == vmssqlite::DataTypeLong)
                //{

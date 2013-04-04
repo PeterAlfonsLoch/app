@@ -68,7 +68,7 @@ null_auth_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
 
   /* allocate primitive::memory for auth and null_auth_ctx_t structures */
   pointer = (uint8_t*)crypto_alloc(sizeof(null_auth_ctx_t) + sizeof(auth_t));
-  if (pointer == NULL)
+  if (pointer == ::null())
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -79,7 +79,7 @@ null_auth_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
   (*a)->prefix_len = out_len;
   (*a)->key_len = key_len;
 
-  /* increment global count of all null_auth uses */
+  /* increment global ::count of all null_auth uses */
   null_auth.ref_count++;
 
   return err_status_ok;
@@ -96,7 +96,7 @@ null_auth_dealloc(auth_t *a) {
   /* free primitive::memory */
   crypto_free(a);
   
-  /* decrement global count of all null_auth uses */
+  /* decrement global ::count of all null_auth uses */
   null_auth.ref_count--;
 
   return err_status_ok;
@@ -139,12 +139,12 @@ null_auth_start(null_auth_ctx_t *state) {
 auth_test_case_t
 null_auth_test_case_0 = {
   0,                                       /* octets in key            */
-  NULL,                                    /* key                      */
+  ::null(),                                    /* key                      */
   0,                                       /* octets in data           */ 
-  NULL,                                    /* data                     */
+  ::null(),                                    /* data                     */
   0,                                       /* octets in tag            */
-  NULL,                                    /* tag                      */
-  NULL                                     /* pointer to next testcase */
+  ::null(),                                    /* tag                      */
+  ::null()                                     /* pointer to next testcase */
 };
 
 /* end test case 0 */

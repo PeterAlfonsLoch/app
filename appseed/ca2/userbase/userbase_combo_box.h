@@ -17,14 +17,14 @@ namespace userbase
 
       virtual bool create(::user::interaction* puiParent, id id);
 
-      //count get_count();
+      //::count get_count();
       //index get_cur_sel();
       //index set_cur_sel(index nSelect);
       LCID GetLocale();
       LCID SetLocale(LCID nNewLocale);
       index GetTopIndex();
       index SetTopIndex(index nIndex);
-      index InitStorage(count nItems, UINT nBytes);
+      index InitStorage(::count nItems, UINT nBytes);
       void SetHorizontalExtent(UINT nExtent);
       UINT GetHorizontalExtent();
       int32_t SetDroppedWidth(UINT nWidth);

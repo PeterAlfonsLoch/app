@@ -8,7 +8,7 @@ namespace visual
    icon::icon()
    {
 
-      m_picon        = NULL;
+      m_picon        = ::null();
       m_bAutoDelete  = true;
 
    }
@@ -39,7 +39,7 @@ namespace visual
       if(m_bAutoDelete)
       {
 
-         if(m_picon != NULL)
+         if(m_picon != ::null())
          {
 
 #ifdef WINDOWSEX

@@ -119,7 +119,7 @@ bool cregexp_util::find(const char * lpsz, const char * lpszExp, index iSubStrin
 
    pre = CompileExpression(lpszExp, false);
 
-   if(pre == NULL)
+   if(pre == ::null())
       return false;
 
    bool bOk = find(lpsz, pre, iSubString, iStart, iEnd);
@@ -151,8 +151,8 @@ bool cregexp_util::add_tokens(string_array & stra, const char * lpszSubject, con
 
    pre = CompileExpression(lpszExpression, false);
 
-   ASSERT(pre != NULL);
-   if(pre == NULL)
+   ASSERT(pre != ::null());
+   if(pre == ::null())
       return false;
 
    pre->setPositionMoves(true);

@@ -15,7 +15,7 @@ namespace dynamic_source
       
       m_iCa2FetchMode      = 0;
 
-      m_pinstanceCurrent   = NULL;
+      m_pinstanceCurrent   = ::null();
 
    }
 

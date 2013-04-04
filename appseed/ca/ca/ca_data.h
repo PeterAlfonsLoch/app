@@ -78,7 +78,7 @@ namespace ca
       template < class EDIT >
       EDIT * validate_edit(::ca::base_edit * pedit);
 
-      inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
+      inline mutex * data_mutex() { if(m_pmutex != ::null()) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
 
    };
 

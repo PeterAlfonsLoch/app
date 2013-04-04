@@ -187,7 +187,7 @@ v32_dot_product(v32_t a, v32_t b) {
 }
 
 /**
- * _bit_string returns a NULL-terminated character string suitable for
+ * _bit_string returns a ::null()-terminated character string suitable for
  * printing
  */
 
@@ -205,7 +205,7 @@ octet_bit_string(uint8_t x) {
     else
       bit_string[index++] = '1';
 
-  bit_string[index++] = 0;  /** NULL terminate string */
+  bit_string[index++] = 0;  /** ::null() terminate string */
 
   return bit_string;
 }
@@ -221,7 +221,7 @@ v16_bit_string(v16_t x) {
       else
 	bit_string[index++] = '1';
   }
-  bit_string[index++] = 0;  /** NULL terminate string */
+  bit_string[index++] = 0;  /** ::null() terminate string */
   return bit_string;
 }
 
@@ -236,7 +236,7 @@ v32_bit_string(v32_t x) {
       else
 	bit_string[index++] = '1';
   }
-  bit_string[index++] = 0;  /** NULL terminate string */
+  bit_string[index++] = 0;  /** ::null() terminate string */
   return bit_string;
 }
 
@@ -251,7 +251,7 @@ v64_bit_string(const v64_t *x) {
       else
 	bit_string[index++] = '1';
   }
-  bit_string[index++] = 0;  /** NULL terminate string */
+  bit_string[index++] = 0;  /** ::null() terminate string */
   return bit_string;
 }
 

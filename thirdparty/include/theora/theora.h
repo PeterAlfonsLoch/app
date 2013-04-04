@@ -619,8 +619,8 @@ extern int32_t theora_packet_iskeyframe(ogg_packet *op);
  *
  * When embedded in Ogg, Theora uses a two-part granulepos, 
  * splitting the 64-bit field into two pieces. The more-significant
- * section represents the frame count at the last keyframe,
- * and the less-significant section represents the count of
+ * section represents the frame ::count at the last keyframe,
+ * and the less-significant section represents the ::count of
  * frames since the last keyframe. In this way the overall
  * field is still non-decreasing with time, but usefully encodes
  * a pointer to the last keyframe, which is necessary for
@@ -736,14 +736,14 @@ extern void theora_comment_add_tag(theora_comment *tc,
  * Look up a comment value by tag.
  * \param tc Tn initialized theora_comment structure
  * \param tag The tag to look up
- * \param count The instance of the tag. The same tag can appear multiple
+ * \param ::count The instance of the tag. The same tag can appear multiple
  *              times, each with a distinct and ordered value, so an index
  *              is required to retrieve them all.
  * \returns A pointer to the queried tag's value
  * \retval NULL No matching tag is found
  *
  * \note Use theora_comment_query_count() to get the legal range for the
- * count parameter.
+ * ::count parameter.
  **/
 
 extern char *theora_comment_query(theora_comment *tc, char *tag, int32_t count);

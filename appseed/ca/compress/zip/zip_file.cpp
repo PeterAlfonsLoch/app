@@ -16,19 +16,19 @@ namespace zip
       m_filefuncdef.zseek_file   = seek_file_func;
       m_filefuncdef.zclose_file  = close_file_func;
       m_filefuncdef.zerror_file  = testerror_file_func;
-      m_pfUnzip = NULL;
-      m_pfZip = NULL;
+      m_pfUnzip = ::null();
+      m_pfZip = ::null();
    }
 
    File::~File()
    {
-      if(m_pfUnzip != NULL)
+      if(m_pfUnzip != ::null())
       {
          unzClose(m_pfUnzip);
       }
-      if(m_pfZip != NULL)
+      if(m_pfZip != ::null())
       {
-         zipClose(m_pfZip, NULL);
+         zipClose(m_pfZip, ::null());
       }
    }
 
@@ -94,8 +94,8 @@ namespace zip
 
    bool File::zip_open(::ca::filesp pfile)
    {
-      m_pbuffile1(new ::ca::buffered_file(get_app(), pfile, 1024 * 256));
-      m_pbuffile2(new ::ca::buffered_file(get_app(), m_pbuffile1, 1024 * 256));
+      m_pbuffile1 = new ::ca::buffered_file(get_app(), pfile, 1024 * 256);
+      m_pbuffile2 = new ::ca::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;

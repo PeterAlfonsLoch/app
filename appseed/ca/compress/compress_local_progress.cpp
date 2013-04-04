@@ -14,7 +14,7 @@ namespace libcompress
 
    void local_progress::Init(::ca::progress_interface *progress, bool inSizeIsMain)
    {
-     _ratioProgress = NULL;
+     _ratioProgress = ::null();
      _progress = progress;
      _ratioProgress = dynamic_cast < ::libcompress::progress_info_interface * > (progress);
      _inSizeIsMain = inSizeIsMain;
@@ -40,7 +40,7 @@ namespace libcompress
 
    HRESULT local_progress::SetCur()
    {
-     return SetRatioInfo(NULL, NULL);
+     return SetRatioInfo(::null(), ::null());
    }
 
 } // namespace libcompress

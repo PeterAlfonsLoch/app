@@ -9,17 +9,17 @@ db_server::db_server(::ca::application * papp) :
    ca(papp),
    ::ca::window_sp(papp)
 {
-   m_pdb                = NULL;
-   m_pSongsDirsSet      = NULL;
-   m_pLongsSet          = NULL;
-   m_pStringSet         = NULL;
+   m_pdb                = ::null();
+   m_pSongsDirsSet      = ::null();
+   m_pLongsSet          = ::null();
+   m_pStringSet         = ::null();
    m_bWorking           = false;
-   m_pimpost            = NULL;
-   m_pveievpost         = NULL;
-   m_pfilesystemsizeset = NULL;
-   m_pdatabaseImpl      = NULL;
+   m_pimpost            = ::null();
+   m_pveievpost         = ::null();
+   m_pfilesystemsizeset = ::null();
+   m_pdatabaseImpl      = ::null();
    m_bRemote            = true;
-   m_pmysqldbUser       = NULL;
+   m_pmysqldbUser       = ::null();
 }
 
 db_server::~db_server()
@@ -29,7 +29,7 @@ db_server::~db_server()
 
 string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex)
 {
-   if(pclient != NULL)
+   if(pclient != ::null())
    {
       return pclient->calc_key(idSection, id, idIndex);
    }
@@ -48,7 +48,7 @@ string db_server::calc_key(::database::client * pclient, ::database::id & idSect
 bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * pszUser)
 {
 
-   if(pmysqldbUser == NULL)
+   if(pmysqldbUser == ::null())
       return false;
 
    m_bRemote         = false;
@@ -123,9 +123,9 @@ bool db_server::initialize()
 
 #if !defined(METROWIN) && !defined(MACOS)
 //   m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
-      m_pfilesystemsizeset =NULL;
+      m_pfilesystemsizeset =::null();
 #else
-   m_pfilesystemsizeset = NULL;
+   m_pfilesystemsizeset = ::null();
 #endif
 
    //var varChange;
@@ -152,40 +152,40 @@ bool db_server::finalize()
 
    destroy_message_window();
 
-   if(m_pfilesystemsizeset != NULL)
+   if(m_pfilesystemsizeset != ::null())
    {
       delete m_pfilesystemsizeset;
-      m_pfilesystemsizeset = NULL;
+      m_pfilesystemsizeset = ::null();
    }
 
 
-   if(m_pStringSet != NULL)
+   if(m_pStringSet != ::null())
    {
       delete m_pStringSet;
-      m_pStringSet = NULL;
+      m_pStringSet = ::null();
    }
 
 
-   if(m_pLongsSet != NULL)
+   if(m_pLongsSet != ::null())
    {
       delete m_pLongsSet;
-      m_pLongsSet = NULL;
+      m_pLongsSet = ::null();
    }
 
 
-   if(m_pdatabaseImpl != NULL)
+   if(m_pdatabaseImpl != ::null())
    {
       m_pdatabaseImpl->disconnect();
       delete m_pdatabaseImpl;
-      m_pdatabaseImpl = NULL;
+      m_pdatabaseImpl = ::null();
    }
 
 
-   if(m_pdb != NULL)
+   if(m_pdb != ::null())
    {
       m_pdb->disconnect();
       delete m_pdb;
-      m_pdb = NULL;
+      m_pdb = ::null();
    }
 
 
@@ -204,7 +204,7 @@ bool db_server::create_message_window()
          return false;
       }
 
-      m_p->SetTimer(1258477, 484, NULL);
+      m_p->SetTimer(1258477, 484, ::null());
 
       IGUI_WIN_MSG_LINK(WM_TIMER, m_p, this, &db_server::_001OnTimer);
 
@@ -217,7 +217,7 @@ bool db_server::create_message_window()
 
 bool db_server::destroy_message_window()
 {
-   if(m_p != NULL && m_p->IsWindow())
+   if(m_p != ::null() && m_p->IsWindow())
    {
       return m_p->DestroyWindow() != FALSE;
    }
@@ -240,7 +240,7 @@ void db_server::_001OnTimer(::ca::signal_object * pobj)
             {
                try
                {
-                  data_pulse_change(var.stra()[0], var.stra()[1], var.stra()[2], NULL);
+                  data_pulse_change(var.stra()[0], var.stra()[1], var.stra()[2], ::null());
                }
                catch(...)
                {
@@ -256,20 +256,20 @@ void db_server::_001OnTimer(::ca::signal_object * pobj)
 
 void db_server::close()
 {
-   if(m_pSongsDirsSet != NULL)
+   if(m_pSongsDirsSet != ::null())
    {
       delete m_pSongsDirsSet;
-      m_pSongsDirsSet = NULL;
+      m_pSongsDirsSet = ::null();
    }
-   if(m_pStringSet != NULL)
+   if(m_pStringSet != ::null())
    {
       delete m_pStringSet;
-      m_pStringSet = NULL;
+      m_pStringSet = ::null();
    }
-   if(m_pLongsSet != NULL)
+   if(m_pLongsSet != ::null())
    {
       delete m_pLongsSet;
-      m_pLongsSet = NULL;
+      m_pLongsSet = ::null();
    }
     m_bWorking = false;
 }
@@ -328,7 +328,7 @@ end_write_change:;
 bool db_server::load(const char * lpcszKey, string & str)
 {
    //single_lock sl(&m_csImplDatabase, TRUE);
-   if(get_db_str_set() == NULL)
+   if(get_db_str_set() == ::null())
       return false;
    return get_db_str_set()->load(lpcszKey, str);
 }
@@ -350,7 +350,7 @@ bool db_server::load(const char * lpKey, ::ca::writable &  writable)
 bool db_server::save(const char * lpcszKey, const char * lpcsz)
 {
    single_lock sl(&m_csImplDatabase, TRUE);
-   if(get_db_str_set() == NULL)
+   if(get_db_str_set() == ::null())
       return false;
    return get_db_str_set()->save(lpcszKey, lpcsz);
 }
@@ -428,7 +428,7 @@ void db_server::dump(dump_context &) const
 
 im_post & db_server::im_post()
 {
-   if(m_pimpost == NULL)
+   if(m_pimpost == ::null())
    {
       m_pimpost = new class im_post(this);
    }
@@ -437,7 +437,7 @@ im_post & db_server::im_post()
 
 veiev_post & db_server::veiev_post()
 {
-   if(m_pveievpost == NULL)
+   if(m_pveievpost == ::null())
    {
       m_pveievpost = new class veiev_post(this);
    }

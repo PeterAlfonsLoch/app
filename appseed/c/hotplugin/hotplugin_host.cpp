@@ -121,7 +121,7 @@ namespace hotplugin
 
 
 
-   void host::set_memory(void * puchMemory, count c)
+   void host::set_memory(void * puchMemory, ::count c)
    {
       free_memory();
       m_puchMemory = (byte *) _ca_alloc(c);
@@ -129,7 +129,7 @@ namespace hotplugin
       m_countMemory = c;
    }
 
-   void host::append_memory(void * puchMemory, count c)
+   void host::append_memory(void * puchMemory, ::count c)
    {
       if(c <= 0)
          return;
@@ -146,12 +146,12 @@ namespace hotplugin
       }
    }
 
-   count host::get_memory_length()
+   ::count host::get_memory_length()
    {
       return m_countMemory;
    }
 
-   count host::read_memory(void * puchMemory, count c)
+   ::count host::read_memory(void * puchMemory, ::count c)
    {
       if(c > m_countMemory)
          c = m_countMemory;

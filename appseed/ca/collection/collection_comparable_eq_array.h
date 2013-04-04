@@ -1,13 +1,13 @@
 #pragma once
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = base_array < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array :
    virtual public ARRAY_TYPE
 {
 public:
    comparable_eq_array();
-   comparable_eq_array(const comparable_eq_array & base_array);
+   comparable_eq_array(const comparable_eq_array & array);
 
    index find_first(ARG_TYPE t, index find = 0, index last = -1) const;
    ::count get_count() const;
@@ -116,7 +116,7 @@ bool comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(ARG_TYPE t)
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-count comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(const ARRAY_TYPE & a)
+::count comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(const ARRAY_TYPE & a)
 {
       
    ::count c = 0;

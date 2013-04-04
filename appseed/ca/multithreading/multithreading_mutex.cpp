@@ -7,18 +7,18 @@
 #endif
 
 
-mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = ::null() */) :
    sync_object(pstrName)
 {
 
 #ifdef _WIN32
 
-   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) ::ca::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == ::null() ? ::null() : (const wchar_t *) ::ca::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
 
-   if(m_object == NULL)
+   if(m_object == ::null())
    {
 
-      if(pstrName == NULL)
+      if(pstrName == ::null())
       {
 
          throw resource_exception(papp);
@@ -29,7 +29,7 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
          m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, ::ca::international::utf8_to_unicode(pstrName));
 
-         if(m_object == NULL)
+         if(m_object == ::null())
          {
 
             throw resource_exception(papp);
@@ -42,7 +42,7 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
 #else
 
-   if(pstrName != NULL && *pstrName != '\0')
+   if(pstrName != ::null() && *pstrName != '\0')
    {
 
       m_strName = pstrName;
@@ -188,7 +188,7 @@ wait_result mutex::wait(const duration & duration)
             if (ret == EPERM )
             {
                /* sleep for delay time */
-               nanosleep(&delay, NULL);
+               nanosleep(&delay, ::null());
             }
             else
             {
@@ -228,7 +228,7 @@ wait_result mutex::wait(const duration & duration)
             if (irc == EPERM )
             {
                // Yes, Resource already in use so sleep
-               nanosleep(&delay, NULL);
+               nanosleep(&delay, ::null());
             }
             else
             {
@@ -312,8 +312,8 @@ mutex * mutex::open_mutex(::ca::application * papp,  const char * pstrName)
 
    HANDLE h = ::OpenMutexW(SYNCHRONIZE, FALSE, ::ca::international::utf8_to_unicode(pstrName));
 
-   if(h == NULL || h == INVALID_HANDLE_VALUE)
-      return NULL;
+   if(h == ::null() || h == INVALID_HANDLE_VALUE)
+      return ::null();
 
    mutex * pmutex = new mutex(papp, pstrName, h);
 
@@ -321,8 +321,8 @@ mutex * mutex::open_mutex(::ca::application * papp,  const char * pstrName)
 
 #else
 
-   if(pstrName == NULL || *pstrName == '\0')
-      return NULL;
+   if(pstrName == ::null() || *pstrName == '\0')
+      return ::null();
 
    string strName = pstrName;
 
@@ -336,7 +336,7 @@ mutex * mutex::open_mutex(::ca::application * papp,  const char * pstrName)
                   );
    if(semid < 0)
    {
-      return NULL;
+      return ::null();
    }
 
    mutex * pmutex = new mutex(strName, key, semid);

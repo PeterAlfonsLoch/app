@@ -116,12 +116,12 @@ namespace ca
          void TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFmt, va_list args) const;
 
 
-         /*bool LoadSettings(const char * pszFileName = NULL) const
+         /*bool LoadSettings(const char * pszFileName = ::null()) const
          { return 0 != gen_TraceLoadSettings(pszFileName);}
-         void SaveSettings(const char * pszFileName = NULL) const
+         void SaveSettings(const char * pszFileName = ::null()) const
          { gen_TraceSaveSettings(pszFileName);}*/
 
-         collection::map < uint_ptr, uint_ptr, category, category > m_map;
+         map < uint_ptr, uint_ptr, category, category > m_map;
       };
 
 
@@ -132,7 +132,7 @@ namespace ca
       public:
          CNoUIAssertHook()
          {
-            ASSERT( s_pfnPrevHook == NULL );
+            ASSERT( s_pfnPrevHook == ::null() );
 #ifdef VC6
             //s_pfnPrevHook = _CrtGetReportHook();
             _CrtSetReportHook(CrtHookProc);
@@ -143,7 +143,7 @@ namespace ca
          ~CNoUIAssertHook()
          {
             _CrtSetReportHook(s_pfnPrevHook);
-            s_pfnPrevHook = NULL;
+            s_pfnPrevHook = ::null();
          }
 
       private:
@@ -155,14 +155,14 @@ namespace ca
                ::OutputDebugStringA( "ASSERTION FAILED\n" );
                ::OutputDebugStringA( pszMessage );
                //If caller doesn't want retVal, so be it.
-               if (pnRetVal != NULL)
+               if (pnRetVal != ::null())
                {
                   *pnRetVal = 1;
                }
                return TRUE;
             }
 
-            if (s_pfnPrevHook != NULL)
+            if (s_pfnPrevHook != ::null())
             {
                return s_pfnPrevHook(eReportType, pszMessage, pnRetVal);
             }
@@ -178,7 +178,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-      __declspec( selectany ) _CRT_REPORT_HOOK CNoUIAssertHook::s_pfnPrevHook = NULL;
+      __declspec( selectany ) _CRT_REPORT_HOOK CNoUIAssertHook::s_pfnPrevHook = ::null();
 
 #endif
 

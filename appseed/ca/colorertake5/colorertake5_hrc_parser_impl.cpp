@@ -11,8 +11,8 @@ namespace colorertake5
    {
       regionNamesVector.set_size(0, 200);
       fileTypeVector.set_size(0, 200);
-      parseType = NULL;
-      errorHandler = NULL;
+      parseType = ::null();
+      errorHandler = ::null();
       updateStarted = false;
    }
 
@@ -44,7 +44,7 @@ void HRCParserImpl::loadSource(const char * pszSourceLocation, const char * pszS
 
 void HRCParserImpl::loadFileType(file_type *filetype)
 {
-   if (filetype == NULL) return;
+   if (filetype == ::null()) return;
 
    file_type_impl *thisType = (file_type_impl*)filetype;
 
@@ -61,23 +61,23 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    }
    catch(::ca::file_exception &e)
    {
-      if (errorHandler != NULL)
+      if (errorHandler != ::null())
       {
          errorHandler->fatalError("Can't open source stream: " +e.get_message());
       }
       thisType->loadBroken = true;
    }catch(HRCParserException &e){
-      if (errorHandler != NULL){
+      if (errorHandler != ::null()){
          errorHandler->fatalError(string(e.getMessage())+" ["+thisType->m_strSourceLocation+"]");
       }
       thisType->loadBroken = true;
    }catch(exception &e){
-      if (errorHandler != NULL){
+      if (errorHandler != ::null()){
          errorHandler->fatalError(string(e.getMessage())+" ["+thisType->m_strSourceLocation+"]");
       }
       thisType->loadBroken = true;
    }catch(...){
-      if (errorHandler != NULL){
+      if (errorHandler != ::null()){
          errorHandler->fatalError(string("Unknown exception while loading ")+thisType->m_strSourceLocation);
       }
       thisType->loadBroken = true;
@@ -86,7 +86,7 @@ void HRCParserImpl::loadFileType(file_type *filetype)
 
 file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *firstLine, int32_t typeNo)
 {
-   file_type_impl *best = NULL;
+   file_type_impl *best = ::null();
    double max_prior = 0;
    const double DELTA = 1e-6;
    for(strsize idx = 0; idx < fileTypeVector.get_size(); idx++){
@@ -106,12 +106,12 @@ file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *first
          best = ret;
          typeNo--;
       }
-      if (prior-max_prior > DELTA || best == NULL){
+      if (prior-max_prior > DELTA || best == ::null()){
          best = ret;
          max_prior = prior;
       }
    }
-   if (typeNo > 0) return NULL;
+   if (typeNo > 0) return ::null();
    return best;
 }
 
@@ -120,28 +120,28 @@ file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *first
 
 
 file_type *HRCParserImpl::getFileType(const char *name) {
-   if (name == NULL) return NULL;
+   if (name == ::null()) return ::null();
    return fileTypeHash[name];
 }
 
 file_type *HRCParserImpl::enumerateFileTypes(int32_t index) {
    if (index < fileTypeVector.get_size()) return fileTypeVector.element_at(index);
-   return NULL;
+   return ::null();
 }
 
-count HRCParserImpl::getRegionCount() {
+::count HRCParserImpl::getRegionCount() {
    return regionNamesVector.get_size();
 }
 
 class region *HRCParserImpl::getRegion(int32_t id) {
    if (id < 0 || id >= regionNamesVector.get_size()){
-      return NULL;
+      return ::null();
    }
    return regionNamesVector.element_at(id);
 }
 
 class region* HRCParserImpl::getRegion(const char *name) {
-   if (name == NULL) return NULL;
+   if (name == ::null()) return ::null();
    return getNCRegion(name, false); // regionNamesHash.get(name);
 }
 
@@ -158,7 +158,7 @@ void HRCParserImpl::parseHRC(const char * psz)
    xml::document doc(get_app());
    doc.m_pparseinfo->m_chEscapeValue = '\0';
    doc.load(psz);
-   if(doc.get_root() == NULL)
+   if(doc.get_root() == ::null())
    {
       throw HRCParserException(get_app(), string("main '<hrc>' block not found"));
    }
@@ -211,7 +211,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
    if (typeName.is_empty())
    {
 
-      if (errorHandler != NULL)
+      if (errorHandler != ::null())
          errorHandler->error(string("unnamed prototype "));
 
       return;
@@ -222,10 +222,10 @@ void HRCParserImpl::addPrototype(xml::node *elem)
       typeDescription = typeName;
    }
 
-   if (fileTypeHash[typeName] != NULL)
+   if (fileTypeHash[typeName] != ::null())
    {
 
-      if (errorHandler != NULL)
+      if (errorHandler != ::null())
       {
 
          errorHandler->error(string("Duplicate prototype '")+typeName+"'");
@@ -256,7 +256,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
          string locationLink = (content)->attr("link");
          if (locationLink.is_empty())
          {
-            if (errorHandler != NULL){
+            if (errorHandler != ::null()){
                errorHandler->error(string("Bad 'location' link attribute in prototype '")+typeName+"'");
             }
             continue;
@@ -274,7 +274,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
       {
          if (content->get_children_count() > 0)
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
                errorHandler->warning(string("Bad '")+content->get_name()+"' element in prototype '"+typeName+"'");
                continue;
          }
@@ -283,7 +283,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
          matchRE->setPositionMoves(true);
          if (!matchRE->isOk())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->warning(string("Fault compiling chooser RE '")+match+"' in prototype '"+typeName+"'");
             }
@@ -292,7 +292,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
          };
          int32_t ctype = content->get_name() == "filename" ? 0 : 1;
          double prior = content->get_name() == "filename" ? 2 : 1;
-         if(content->find_attr("weight") != NULL)
+         if(content->find_attr("weight") != ::null())
          {
             prior = atof((content)->attr("weight"));
          }
@@ -311,7 +311,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
                string descr   = (param)->attr("description");
                if(name.is_empty() || value.is_empty())
                {
-                  if (errorHandler != NULL)
+                  if (errorHandler != ::null())
                   {
                      errorHandler->warning(string("Bad parameter in prototype '")+typeName+"'");
                   }
@@ -341,21 +341,21 @@ void HRCParserImpl::addType(xml::node *elem)
    string typeName = elem->attr("name");
 
    if (typeName.is_empty()){
-      if (errorHandler != NULL){
+      if (errorHandler != ::null()){
          errorHandler->error(string("Unnamed type found"));
       }
       return;
    };
    file_type_impl *type_ref = fileTypeHash[typeName];
-   if (type_ref == NULL){
-      if (errorHandler != NULL){
+   if (type_ref == ::null()){
+      if (errorHandler != ::null()){
          errorHandler->error(string("type '")+typeName+"' without prototype");
       }
       return;
    };
    file_type_impl *type = type_ref;
    if (type->typeLoaded){
-      if (errorHandler != NULL) errorHandler->warning(string("type '")+typeName+"' is already loaded");
+      if (errorHandler != ::null()) errorHandler->warning(string("type '")+typeName+"' is already loaded");
       return;
    };
    type->typeLoaded = true;
@@ -373,7 +373,7 @@ void HRCParserImpl::addType(xml::node *elem)
          string regionDescr   = (xmlpar)->attr("description");
          if (regionName.is_empty())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->error(string("No 'name' attribute in <region> element"));
             }
@@ -387,9 +387,9 @@ void HRCParserImpl::addType(xml::node *elem)
 
          string qname2 = qualifyForeignName(regionParent, QNT_DEFINE, true);
 
-         if (regionNamesHash[qname1] != NULL)
+         if (regionNamesHash[qname1] != ::null())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->warning(string("Duplicate region '") + qname1 + "' definition in type '"+parseType->getName()+"'");
             }
@@ -406,7 +406,7 @@ void HRCParserImpl::addType(xml::node *elem)
          string entityValue = (xmlpar)->attr("value");
          if (entityName.is_empty() || entityValue.is_empty())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->error(string("Bad entity attributes"));
             }
@@ -421,8 +421,8 @@ void HRCParserImpl::addType(xml::node *elem)
       };
       if (xmlpar->get_name() == "import"){
          string typeParam = (xmlpar)->attr("type");
-         if (typeParam.is_empty() || fileTypeHash[typeParam] == NULL){
-            if (errorHandler != NULL){
+         if (typeParam.is_empty() || fileTypeHash[typeParam] == ::null()){
+            if (errorHandler != ::null()){
                errorHandler->error(string("Import with bad '")+typeParam+"' attribute in type '"+typeName+"'");
             }
             continue;
@@ -435,13 +435,13 @@ void HRCParserImpl::addType(xml::node *elem)
       };
    };
    string baseSchemeName = qualifyOwnName(type->name);
-   if(baseSchemeName.has_char() && schemeHash.PLookup(baseSchemeName) != NULL)
+   if(baseSchemeName.has_char() && schemeHash.PLookup(baseSchemeName) != ::null())
    {
       type->baseScheme = schemeHash[baseSchemeName];
    }
-   if (type->baseScheme == NULL && !type->isPackage)
+   if (type->baseScheme == ::null() && !type->isPackage)
    {
-      if (errorHandler != NULL)
+      if (errorHandler != ::null())
       {
          errorHandler->warning(string("type '")+typeName+"' has no default scheme");
       }
@@ -455,12 +455,12 @@ void HRCParserImpl::addScheme(xml::node *elem)
    string schemeName = elem->attr("name");
    string qSchemeName = qualifyOwnName(schemeName);
    if (qSchemeName.is_empty()){
-      if (errorHandler != NULL) errorHandler->error(string("bad scheme name in type '")+parseType->getName()+"'");
+      if (errorHandler != ::null()) errorHandler->error(string("bad scheme name in type '")+parseType->getName()+"'");
       return;
    }
-   if (schemeHash.PLookup(qSchemeName) != NULL ||
+   if (schemeHash.PLookup(qSchemeName) != ::null() ||
       disabledSchemes[qSchemeName] != 0){
-         if (errorHandler != NULL) errorHandler->error(string("duplicate scheme name '")+qSchemeName+"'");
+         if (errorHandler != ::null()) errorHandler->error(string("duplicate scheme name '")+qSchemeName+"'");
          return;
    }
 
@@ -482,18 +482,18 @@ void HRCParserImpl::addScheme(xml::node *elem)
 
 void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 {
-   ::ca::scoped_ptr < SchemeNode > next;
+   ::ca::smart_pointer < SchemeNode > next;
    for(xml::node *tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
       if (tmpel->get_name().is_empty()) continue;
 
-      if (next == NULL){
+      if (next == ::null()){
          next = new SchemeNode();
       }
 
       if (tmpel->get_name() == "inherit"){
          string nqSchemeName = tmpel->attr("scheme");
          if (nqSchemeName.is_empty() || nqSchemeName.get_length() == 0){
-            if (errorHandler != NULL){
+            if (errorHandler != ::null()){
                errorHandler->error(string("is_empty scheme name in inheritance operator in scheme '")+scheme->schemeName+"'");
             }
             continue;
@@ -503,27 +503,27 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string schemeName = qualifyForeignName(nqSchemeName, QNT_SCHEME, false);
          if (schemeName.is_empty())
          {
-            //        if (errorHandler != NULL) errorHandler->warning(string("forward inheritance of '")+nqSchemeName+"'. possible inherit loop with '"+scheme->schemeName+"'");
+            //        if (errorHandler != ::null()) errorHandler->warning(string("forward inheritance of '")+nqSchemeName+"'. possible inherit loop with '"+scheme->schemeName+"'");
             delete next.detach();
                     continue;
          }
          else
          {
-            ::collection::string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(schemeName);
-            if(ppair == NULL)
+            string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(schemeName);
+            if(ppair == ::null())
             {
-               next->scheme = NULL;
+               next->scheme = ::null();
             }
             else
             {
-               next->scheme = ppair->m_value;
+               next->scheme = ppair->m_element2;
             }
          }
          if (schemeName.has_char()){
             next->schemeName = schemeName;
          };
 
-         if (tmpel->first_child() != NULL){
+         if (tmpel->first_child() != ::null()){
             for(xml::node *vel = tmpel->first_child(); vel; vel = vel->get_next_sibling()){
                if (vel->get_name() != "virtual"){
                   continue;
@@ -532,7 +532,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
                string substName = (vel)->attr("subst-scheme");
                if (schemeName.is_empty() || substName.is_empty())
                {
-                  if (errorHandler != NULL)
+                  if (errorHandler != ::null())
                   {
                      errorHandler->error(string("bad virtualize attributes in scheme '")+scheme->schemeName+"'");
                   }
@@ -553,7 +553,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          }
          if (matchParam.is_empty())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->error(string("no 'match' in regexp in scheme ")+scheme->schemeName);
             }
@@ -566,7 +566,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          next->start = new cregexp(entMatchParam);
          next->start->setPositionMoves(false);
          if (!next->start || !next->start->isOk())
-            if (errorHandler != NULL) errorHandler->error(string("fault compiling regexp '")+entMatchParam+"' in scheme '"+scheme->schemeName+"'");
+            if (errorHandler != ::null()) errorHandler->error(string("fault compiling regexp '")+entMatchParam+"' in scheme '"+scheme->schemeName+"'");
          next->end = 0;
 
          loadRegions(next, tmpel, true);
@@ -575,7 +575,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          }
 
          scheme->nodes.add(next.detach());
-         next = NULL;
+         next = ::null();
          continue;
       };
 
@@ -585,7 +585,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string sParam = tmpel->attr("start");
          string eParam = tmpel->attr("end");
 
-         xml::node *eStart = NULL, *eEnd = NULL;
+         xml::node *eStart = ::null(), *eEnd = ::null();
 
          for(xml::node *blkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
          {
@@ -613,7 +613,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string endParam;
          if ((startParam = useEntities(sParam)).is_empty())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->error(string("'start' block attribute not found in scheme '")+scheme->schemeName+"'");
             }
@@ -621,7 +621,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          };
          if ((endParam = useEntities(eParam)).is_empty())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->error(string("'end' block attribute not found in scheme '")+scheme->schemeName+"'");
             }
@@ -630,7 +630,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string schemeName = tmpel->attr("scheme");
          if (schemeName.is_empty())
          {
-            if (errorHandler != NULL)
+            if (errorHandler != ::null())
             {
                errorHandler->error(string("block with bad scheme attribute in scheme '")+scheme->getName()+"'");
             }
@@ -644,7 +644,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          next->start = new cregexp(startParam);
          next->start->setPositionMoves(false);
          if (!next->start->isOk()){
-            if (errorHandler != NULL){
+            if (errorHandler != ::null()){
                errorHandler->error(string("fault compiling regexp '")+startParam+"' in scheme '"+scheme->schemeName+"'");
             }
          }
@@ -653,7 +653,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          next->end->setBackRE(next->start);
          next->end->setRE(endParam);
          if (!next->end->isOk()){
-            if (errorHandler != NULL){
+            if (errorHandler != ::null()){
                errorHandler->error(string("fault compiling regexp '")+endParam+"' in scheme '"+scheme->schemeName+"'");
             }
          }
@@ -670,19 +670,19 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          bool isCase = tmpel->attr("ignorecase") ? false : true;
          next->lowPriority = tmpel->attr("priority") != "normal";
          class region *brgn = getNCRegion(tmpel, "region");
-         if (brgn == NULL){
+         if (brgn == ::null()){
             continue;
          }
          string worddiv = tmpel->attr("worddiv");
 
-         next->worddiv = NULL;
+         next->worddiv = ::null();
          if(worddiv.has_char())
          {
             string entWordDiv = useEntities(worddiv);
-            next->worddiv = ::ca::ch_class::createCharClass(entWordDiv, 0, NULL);
-            if(next->worddiv == NULL)
+            next->worddiv = ::ca::ch_class::createCharClass(entWordDiv, 0, ::null());
+            if(next->worddiv == ::null())
             {
-               if (errorHandler != NULL) errorHandler->warning(string("fault compiling worddiv regexp '")+entWordDiv+"' in scheme '"+scheme->schemeName+"'");
+               if (errorHandler != ::null()) errorHandler->warning(string("fault compiling worddiv regexp '")+entWordDiv+"' in scheme '"+scheme->schemeName+"'");
             }
             //delete entWordDiv;
          };
@@ -742,7 +742,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
       };
    };
    // drop last unused node
-   if (next != NULL)
+   if (next != ::null())
       delete next.detach();
 };
 
@@ -753,7 +753,7 @@ void HRCParserImpl::loadRegions(SchemeNode *node, xml::node *el, bool st)
 
    if(el)
    {
-      if (node->region == NULL){
+      if (node->region == ::null()){
          node->region = getNCRegion(el, string("region"));
       }
 
@@ -800,33 +800,33 @@ void HRCParserImpl::updateLinks()
 {
    while(structureChanged){
       structureChanged = false;
-      for(::collection::string_map<scheme_impl *>::pair * scheme = schemeHash.PGetFirstAssoc(); scheme != NULL; scheme = schemeHash.PGetNextAssoc(scheme))
+      for(string_map<scheme_impl *>::pair * scheme = schemeHash.PGetFirstAssoc(); scheme != ::null(); scheme = schemeHash.PGetNextAssoc(scheme))
       {
 
-         if (!scheme->m_value->fileType->loadDone) continue;
+         if (!scheme->m_element2->fileType->loadDone) continue;
          file_type_impl *old_parseType = parseType;
-         parseType = scheme->m_value->fileType;
-         for (strsize sni = 0; sni < scheme->m_value->nodes.get_size(); sni++){
-            SchemeNode *snode = scheme->m_value->nodes.element_at(sni);
-            if (snode->schemeName.has_char() && (snode->type == SNT_SCHEME || snode->type == SNT_INHERIT) && snode->scheme == NULL){
+         parseType = scheme->m_element2->fileType;
+         for (strsize sni = 0; sni < scheme->m_element2->nodes.get_size(); sni++){
+            SchemeNode *snode = scheme->m_element2->nodes.element_at(sni);
+            if (snode->schemeName.has_char() && (snode->type == SNT_SCHEME || snode->type == SNT_INHERIT) && snode->scheme == ::null()){
                string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
                if (schemeName.has_char())
                {
-                  ::collection::string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(schemeName);
-                  if(ppair == NULL)
+                  string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(schemeName);
+                  if(ppair == ::null())
                   {
-                     snode->scheme = NULL;
+                     snode->scheme = ::null();
                   }
                   else
                   {
-                     snode->scheme = ppair->m_value;
+                     snode->scheme = ppair->m_element2;
                   }
                }
                else
                {
-                  if (errorHandler != NULL)
+                  if (errorHandler != ::null())
                   {
-                     errorHandler->error(string("cannot resolve scheme name '")+snode->schemeName+"' in scheme '"+scheme->m_value->schemeName+"'");
+                     errorHandler->error(string("cannot resolve scheme name '")+snode->schemeName+"' in scheme '"+scheme->m_element2->schemeName+"'");
                   }
                }
 //               delete schemeName;
@@ -836,45 +836,45 @@ void HRCParserImpl::updateLinks()
             if (snode->type == SNT_INHERIT){
                for(strsize vti = 0; vti < snode->virtualEntryVector.get_size(); vti++){
                   VirtualEntry *vt = snode->virtualEntryVector.element_at(vti);
-                  if (vt->virtScheme == NULL && vt->virtSchemeName.has_char()){
+                  if (vt->virtScheme == ::null() && vt->virtSchemeName.has_char()){
                      string vsn = qualifyForeignName(vt->virtSchemeName, QNT_SCHEME, true);
                      if (vsn.has_char())
                      {
-                        ::collection::string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(vsn);
-                        if(ppair == NULL)
+                        string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(vsn);
+                        if(ppair == ::null())
                         {
-                           vt->virtScheme = NULL;
+                           vt->virtScheme = ::null();
                         }
                         else
                         {
-                           vt->virtScheme = ppair->m_value;
+                           vt->virtScheme = ppair->m_element2;
                         }
                      }
 
                      if (vsn.is_empty())
                      {
-                        if (errorHandler != NULL)
+                        if (errorHandler != ::null())
                         {
-                           errorHandler->error(string("cannot virtualize scheme '")+vt->virtSchemeName+"' in scheme '"+scheme->m_value->schemeName+"'");
+                           errorHandler->error(string("cannot virtualize scheme '")+vt->virtSchemeName+"' in scheme '"+scheme->m_element2->schemeName+"'");
                         }
                      }
                      vt->virtSchemeName.Empty();
                   };
-                  if (vt->substScheme == NULL && vt->substSchemeName.has_char()){
+                  if (vt->substScheme == ::null() && vt->substSchemeName.has_char()){
                      string vsn = qualifyForeignName(vt->substSchemeName, QNT_SCHEME, true);
                      if (vsn.has_char())
                      {
-                        ::collection::string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(vsn);
-                        if(ppair == NULL)
+                        string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(vsn);
+                        if(ppair == ::null())
                         {
-                           vt->substScheme = NULL;
+                           vt->substScheme = ::null();
                         }
                         else
                         {
-                           vt->substScheme = ppair->m_value;
+                           vt->substScheme = ppair->m_element2;
                         }
                      }
-                     else if (errorHandler != NULL) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->m_value->schemeName+"'");
+                     else if (errorHandler != ::null()) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->m_element2->schemeName+"'");
                      vt->substSchemeName.Empty();
                   };
                };
@@ -889,15 +889,15 @@ void HRCParserImpl::updateLinks()
 
 
 string HRCParserImpl::qualifyOwnName(const char * name) {
-   if (name == NULL) return "";
+   if (name == ::null()) return "";
    strsize colon = string(name).find(':');
    if (colon != -1){
       if (parseType && string(name, colon) != parseType->name){
-         if (errorHandler != NULL) errorHandler->error(string("type name qualifer in '")+name+"' doesn't match type '"+parseType->name+"'");
+         if (errorHandler != ::null()) errorHandler->error(string("type name qualifer in '")+name+"' doesn't match type '"+parseType->name+"'");
          return "";
       }else return (name);
    }else{
-      if (parseType == NULL) return "";
+      if (parseType == ::null()) return "";
       string sbuf = (parseType->name);
       sbuf += ":" + string(name);
       return sbuf;
@@ -908,11 +908,11 @@ string HRCParserImpl::qualifyOwnName(const char * name) {
 
 bool HRCParserImpl::checkNameExist(const char * name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
 {
-   if (qntype == QNT_DEFINE && regionNamesHash[name] == NULL)
+   if (qntype == QNT_DEFINE && regionNamesHash[name] == ::null())
    {
       if (logErrors)
       {
-         if (errorHandler != NULL)
+         if (errorHandler != ::null())
          {
             errorHandler->error(string("region '")+name+"', referenced in type '"+parseType->name+"', is not defined");
          }
@@ -924,18 +924,18 @@ bool HRCParserImpl::checkNameExist(const char * name, file_type_impl *parseType,
    {
       if (logErrors)
       {
-         if (errorHandler != NULL)
+         if (errorHandler != ::null())
          {
             errorHandler->error(string("entity '")+name+"', referenced in type '"+parseType->name+"', is not defined");
          }
       }
       return false;
    }
-   else if (qntype == QNT_SCHEME && schemeHash.PLookup(name) == NULL)
+   else if (qntype == QNT_SCHEME && schemeHash.PLookup(name) == ::null())
    {
       if (logErrors)
       {
-         if (errorHandler != NULL)
+         if (errorHandler != ::null())
          {
             errorHandler->error(string("scheme '")+name+"', referenced in type '"+parseType->name+"', is not defined");
          }
@@ -949,21 +949,21 @@ bool HRCParserImpl::checkNameExist(const char * name, file_type_impl *parseType,
 
 
 string HRCParserImpl::qualifyForeignName(const char * name, QualifyNameType qntype, bool logErrors){
-   if (name == NULL) return "";
+   if (name == ::null()) return "";
    strsize colon = string(name).find(':');
    if (colon != -1){ // qualified name
       string prefix(name, colon);
       file_type_impl *prefType = fileTypeHash[prefix];
 
-      if (prefType == NULL){
-         if (logErrors && errorHandler != NULL) errorHandler->error(string("type name qualifer in '")+name+"' doesn't match any type");
+      if (prefType == ::null()){
+         if (logErrors && errorHandler != ::null()) errorHandler->error(string("type name qualifer in '")+name+"' doesn't match any type");
          return "";
       }else
          if (!prefType->typeLoaded) loadFileType(prefType);
       if (prefType == parseType || prefType->typeLoaded)
-         return checkNameExist(name, prefType, qntype, logErrors)?((name)):NULL;
+         return checkNameExist(name, prefType, qntype, logErrors)?((name)): ::null();
    }else{ // unqualified name
-      for(strsize idx = -1; parseType != NULL && idx < parseType->importVector.get_size(); idx++){
+      for(strsize idx = -1; parseType != ::null() && idx < parseType->importVector.get_size(); idx++){
          string tname = parseType->name;
          if (idx > -1) tname = parseType->importVector.element_at(idx);
          file_type_impl *importer = fileTypeHash[tname];
@@ -973,7 +973,7 @@ string HRCParserImpl::qualifyForeignName(const char * name, QualifyNameType qnty
          qname += ":" + string(name);
          if (checkNameExist(qname, importer, qntype, false)) return qname;
       };
-      if (logErrors && errorHandler != NULL){
+      if (logErrors && errorHandler != ::null()){
          errorHandler->error(string("unqualified name '")+name+"' doesn't belong to any imported type ["+m_strCurrentSourceLocation+"]");
       }
    };
@@ -1027,18 +1027,18 @@ string HRCParserImpl::useEntities(const char * name)
 
 class region* HRCParserImpl::getNCRegion(const char * name, bool logErrors)
 {
-   if (name == NULL) return NULL;
-   class region *reg = NULL;
+   if (name == ::null()) return ::null();
+   class region *reg = ::null();
    string qname = qualifyForeignName(name, QNT_DEFINE, logErrors);
-   if (qname.is_empty()) return NULL;
+   if (qname.is_empty()) return ::null();
    reg = regionNamesHash[qname];
    /** Check for 'default' region request.
    Regions with this name are always transparent
    */
-   if (reg != NULL){
+   if (reg != ::null()){
       string name = reg->getName();
       strsize idx = string(name).find(":default");
-      if (idx != -1  && idx+8 == string(name).get_length()) return NULL;
+      if (idx != -1  && idx+8 == string(name).get_length()) return ::null();
    };
    return reg;
 };
@@ -1046,7 +1046,7 @@ class region* HRCParserImpl::getNCRegion(const char * name, bool logErrors)
 class region* HRCParserImpl::getNCRegion(xml::node *el, const char * tag)
 {
    string par = el->attr(tag);
-   if (par.is_empty()) return NULL;
+   if (par.is_empty()) return ::null();
    return getNCRegion(par, true);
 };
 

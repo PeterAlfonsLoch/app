@@ -1,12 +1,12 @@
 #pragma once
 
-template < class T, class T_to_T = ::collection::attrib_map < ::collection::map < T, T, T, T > > >
+template < class T, class T_to_T = attrib_map < map < T, T, T, T > > >
 class  biunique :
    public ::ca::object,
    public ::ca::byte_serializable
 {
 public:
-   biunique(::ca::application * papp = NULL);
+   biunique(::ca::application * papp = ::null());
 
    bool has_a(T a) const;
    bool has_b(T b) const;
@@ -342,26 +342,26 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_write(::ca::byte_output_stream & ostream, ::collection::map < t1, t2, t3, t4 > & m)
+void serialize_write(::ca::byte_output_stream & ostream, map < t1, t2, t3, t4 > & m)
 {
-   count count = m.get_count();
-   typename ::collection::map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
+   ::count count = m.get_count();
+   typename map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
    ostream << count;
-   while(ppair != NULL)
+   while(ppair != ::null())
    {
-      ostream << ppair->m_key;
-      ostream << ppair->m_value;
+      ostream << ppair->m_element1;
+      ostream << ppair->m_element2;
       ppair = m.PGetNextAssoc(ppair);
    }
 }
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_read(::ca::byte_input_stream & istream, ::collection::map < t1, t2, t3, t4 > & m)
+void serialize_read(::ca::byte_input_stream & istream, map < t1, t2, t3, t4 > & m)
 {
    try
    {
       t1 iCount;
-//      class ::collection::map < t1, t2, t3, t4 >::pair * ppair =
+//      class map < t1, t2, t3, t4 >::pair * ppair =
   //       m.PGetFirstAssoc();
       istream >> iCount;
       t1 key;
@@ -415,9 +415,9 @@ void biunique < T, T_to_T > ::read(::ca::byte_input_stream & istream)
          T_to_T ab;
          serialize_read(istream, ab);
          typename T_to_T::pair * ppair = ab.PGetFirstAssoc();
-         while(ppair != NULL)
+         while(ppair != ::null())
          {
-            set(ppair->m_key, ppair->m_value);
+            set(ppair->m_element1, ppair->m_element2);
             ppair = ab.PGetNextAssoc(ppair);
          }
       }
@@ -446,10 +446,10 @@ T biunique < T, T_to_T > ::calc_max_a()
    typename T_to_T::pair * ppair =
       m_ab.PGetFirstAssoc();
    T iMaxA = -1;
-   while(ppair != NULL)
+   while(ppair != ::null())
    {
-      if(ppair->m_key > iMaxA)
-         iMaxA = ppair->m_key;
+      if(ppair->m_element1 > iMaxA)
+         iMaxA = ppair->m_element1;
       ppair = m_ab.PGetNextAssoc(ppair);
    }
    return iMaxA;
@@ -461,10 +461,10 @@ T biunique < T, T_to_T > ::calc_max_b()
    typename T_to_T::pair * ppair =
       m_ba.PGetFirstAssoc();
    T iMaxB = -1;
-   while(ppair != NULL)
+   while(ppair != ::null())
    {
-      if(ppair->m_key > iMaxB)
-         iMaxB = ppair->m_key;
+      if(ppair->m_element1 > iMaxB)
+         iMaxB = ppair->m_element1;
       ppair = m_ba.PGetNextAssoc(ppair);
    }
    return iMaxB;
@@ -476,14 +476,14 @@ class CLASS_DECL_ca index_biunique :
    public biunique < index >
 {
 public:
-   index_biunique(::ca::application * papp = NULL);
+   index_biunique(::ca::application * papp = ::null());
 };
 
 class CLASS_DECL_ca int_biunique :
-   public biunique < int32_t, ::collection::int_to_int >
+   public biunique < int32_t, int_to_int >
 {
 public:
-   int_biunique(::ca::application * papp = NULL);
+   int_biunique(::ca::application * papp = ::null());
 
 };
 

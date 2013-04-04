@@ -349,7 +349,7 @@ namespace n7z
 
    void COutArchive::WriteHashDigests(
       const bool_array &digestsDefined,
-      const base_array<uint32_t> &digests)
+      const array<uint32_t> &digests)
    {
       int32_t numDefined = 0;
       int32_t i;
@@ -374,9 +374,9 @@ namespace n7z
 
    void COutArchive::WritePackInfo(
       uint64_t dataOffset,
-      const base_array<file_size> &packSizes,
+      const array<file_size> &packSizes,
       const bool_array &packCRCsDefined,
-      const base_array<uint32_t> &packCRCs)
+      const array<uint32_t> &packCRCs)
    {
       if (packSizes.is_empty())
          return;
@@ -392,7 +392,7 @@ namespace n7z
       WriteByte(NID::kEnd);
    }
 
-   void COutArchive::WriteUnpackInfo(const ::collection::smart_pointer_array<CFolder> &folders)
+   void COutArchive::WriteUnpackInfo(const smart_pointer_array<CFolder> &folders)
    {
       if (folders.is_empty())
          return;
@@ -417,7 +417,7 @@ namespace n7z
       }
 
       bool_array unpackCRCsDefined;
-      base_array<uint32_t> unpackCRCs;
+      array<uint32_t> unpackCRCs;
       for (i = 0; i < folders.get_count(); i++)
       {
          const CFolder &folder = folders[i];
@@ -430,11 +430,11 @@ namespace n7z
    }
 
    void COutArchive::WriteSubStreamsInfo(
-      const ::collection::smart_pointer_array<CFolder> &folders,
-      const base_array<CNum> &numUnpackStreamsInFolders,
-      const base_array<file_size> &unpackSizes,
+      const smart_pointer_array<CFolder> &folders,
+      const array<CNum> &numUnpackStreamsInFolders,
+      const array<file_size> &unpackSizes,
       const bool_array &digestsDefined,
-      const base_array<uint32_t> &digests)
+      const array<uint32_t> &digests)
    {
       WriteByte(NID::kSubStreamsInfo);
 
@@ -467,7 +467,7 @@ namespace n7z
          }
 
          bool_array digestsDefined2;
-         base_array<uint32_t> digests2;
+         array<uint32_t> digests2;
 
          int32_t digestIndex = 0;
          for (i = 0; i < folders.get_count(); i++)
@@ -552,11 +552,11 @@ namespace n7z
 
    HRESULT COutArchive::EncodeStream(
       ::libcompress::codecs_info_interface * codecsInfo,
-      const base_array < ::libcompress::codec_info_ex > * externalCodecs,
+      const array < ::libcompress::codec_info_ex > * externalCodecs,
       CEncoder & encoder,
       const ::ca::byte_buffer & data,
-      base_array < file_size > & packSizes,
-      ::collection::smart_pointer_array < CFolder > & folders)
+      array < file_size > & packSizes,
+      smart_pointer_array < CFolder > & folders)
    {
       UNREFERENCED_PARAMETER(codecsInfo);
       UNREFERENCED_PARAMETER(externalCodecs);
@@ -573,7 +573,7 @@ namespace n7z
       throw "uncomment below if implement above";
       /*  RINOK(encoder.Encode(
       codecsInfo, externalCodecs,
-      stream, NULL, &dataSize64, folderItem, SeqStream, packSizes, NULL))*/
+      stream, ::null(), &dataSize64, folderItem, SeqStream, packSizes, ::null()))*/
       //folders.add(folderItem);
       return S_OK;
    }
@@ -604,9 +604,9 @@ namespace n7z
 
          WriteUnpackInfo(db.Folders);
 
-         base_array<file_size> unpackSizes;
+         array<file_size> unpackSizes;
          bool_array digestsDefined;
-         base_array<uint32_t> digests;
+         array<uint32_t> digests;
          for (i = 0; i < db.Files.get_count(); i++)
          {
             const CFileItem &file = db.Files[i];
@@ -759,7 +759,7 @@ namespace n7z
 
    HRESULT COutArchive::WriteDatabase(
       ::libcompress::codecs_info_interface *codecsInfo,
-      const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+      const array < ::libcompress::codec_info_ex > *externalCodecs,
       const CArchiveDatabase & db,
       const CCompressionMethodMode * options,
       const CHeaderOptions & headerOptions)
@@ -811,8 +811,8 @@ namespace n7z
             encryptOptions.PasswordIsDefined = options->PasswordIsDefined;
             encryptOptions.Password = options->Password;
             CEncoder encoder(get_app(), headerOptions.CompressMainHeader ? *options : encryptOptions);
-            base_array<file_size> packSizes;
-            ::collection::smart_pointer_array<CFolder> folders;
+            array<file_size> packSizes;
+            smart_pointer_array<CFolder> folders;
             RINOK(EncodeStream(
                codecsInfo, externalCodecs,
                encoder, buf,
@@ -825,7 +825,7 @@ namespace n7z
 
             WriteID(NID::kEncodedHeader);
             WritePackInfo(headerOffset, packSizes,
-               bool_array(), base_array<uint32_t>());
+               bool_array(), array<uint32_t>());
             WriteUnpackInfo(folders);
             WriteByte(NID::kEnd);
             for (int32_t i = 0; i < packSizes.get_count(); i++)
@@ -876,7 +876,7 @@ namespace n7z
    void CArchiveDatabase::AddFile(const CFileItem &file, const CFileItem2 &file2)
    {
 
-      count index = Files.get_count();
+      ::count index = Files.get_count();
 
       CTime.SetItem(index, file2.CTimeDefined, file2.CTime);
       ATime.SetItem(index, file2.ATimeDefined, file2.ATime);

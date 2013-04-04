@@ -20,8 +20,6 @@ namespace ca
 
       file();
 
-      operator HFILE() const;
-
       virtual file_position get_position() const;
       virtual bool GetStatus(file_status& rStatus) const;
       virtual string GetFileName() const;
@@ -78,7 +76,7 @@ namespace ca
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
       enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
-      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = ::null(), void ** ppBufMax = ::null());
    public:
 
 
@@ -98,9 +96,6 @@ namespace ca
 
    typedef ::ca::smart_pointer < file > filesp;
 
-   // ::ca::filesp
-   inline file::operator HFILE() const
-      { return NULL; }
    inline void file::SetFilePath(const char * lpszNewName)
    {
       UNREFERENCED_PARAMETER(lpszNewName);

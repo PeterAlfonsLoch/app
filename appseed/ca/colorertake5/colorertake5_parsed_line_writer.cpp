@@ -21,7 +21,7 @@ namespace colorertake5
          UNREFERENCED_PARAMETER(docLinkHash);
          index pos = 0;
          for(LineRegion *l1 = lineRegions; l1; l1 = l1->next){
-            if (l1->special || l1->region == NULL) continue;
+            if (l1->special || l1->region == ::null()) continue;
             if (l1->start == l1->end) continue;
             index end = l1->end;
             if (end == -1) end = strlen(line);
@@ -32,12 +32,12 @@ namespace colorertake5
             markupWriter << "<span class='";
 
             class region *region = l1->region;
-            while(region != NULL){
+            while(region != ::null()){
                string token0 = ::ca::str::replace(":", "-", region->getName());
                string token = ::ca::str::replace(".", "-", token0);
                markupWriter << token;
                region = region->getParent();
-               if (region != NULL){
+               if (region != ::null()){
                   markupWriter << " ";
                }
             }
@@ -73,7 +73,7 @@ namespace colorertake5
          for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
          {
 
-            if(l1->special || l1->rdef == NULL)
+            if(l1->special || l1->rdef == ::null())
                continue;
 
             if(l1->start == l1->end)
@@ -132,7 +132,7 @@ namespace colorertake5
          for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
          {
 
-            if (l1->special || l1->rdef == NULL)
+            if (l1->special || l1->rdef == ::null())
                continue;
 
             if (l1->start == l1->end)
@@ -195,7 +195,7 @@ namespace colorertake5
 
       void ParsedLineWriter::writeHref(::ca::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start){
          string url;
-         if (scheme != NULL){
+         if (scheme != ::null()){
             url = docLinkHash->operator [](token + "--" + scheme->getName());
          }
          if (url.is_empty()){

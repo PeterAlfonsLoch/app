@@ -32,7 +32,7 @@ namespace bergedge
       bool                                                           m_bShowPlatform;
 
       ::ca::application *                                            m_pappCurrent;
-      ::collection::string_map < ::ca::application * >               m_mapApplication;
+      string_map < ::ca::application * >               m_mapApplication;
 
 
       ::userbase::single_document_template *                         m_ptemplate_bergedge;
@@ -50,7 +50,7 @@ namespace bergedge
 
       bool                                                           m_bDrawCursor;
 
-      ::collection::string_map < ::uinteraction::interaction * >     m_mapUinteraction;
+      string_map < ::uinteraction::interaction * >     m_mapUinteraction;
 
 
       bergedge();

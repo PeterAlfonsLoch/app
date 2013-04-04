@@ -56,7 +56,7 @@ ctr_prng_init(rand_source_func_t random_source) {
   uint8_t tmp_key[32];
   err_status_t status;
 
-  /* initialize output count to zero */
+  /* initialize output ::count to zero */
   ctr_prng.octet_count = 0;
 
   /* set random source */

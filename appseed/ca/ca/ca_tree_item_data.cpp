@@ -37,8 +37,8 @@ namespace ca
 
    image_list * tree_item_data::get_image_list(tree * ptree)
    {
-      if(ptree == NULL)
-         return NULL;
+      if(ptree == ::null())
+         return ::null();
       return ptree->get_image_list();
    }
 

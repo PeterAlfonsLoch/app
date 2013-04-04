@@ -144,7 +144,7 @@ namespace dynamic_source
       strItem = System.dir().ca2("stage\\" + m_strPlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
 #ifdef WINDOWSEX
-      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      uint32_t dwSize = GetEnvironmentVariable("PATH", ::null(), 0);
       LPTSTR lpsz = new char[dwSize + 1];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       str += lpsz;
@@ -532,13 +532,13 @@ namespace dynamic_source
       pscript->m_bShouldBuild =false;
 #ifdef WINDOWSEX
 
-      HANDLE h = create_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE h = create_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
 
       try
       {
          memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
          memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-         ::GetFileTime(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
+         ::GetFileTime(h, &pscript->m_ftCreation, ::null(), &pscript->m_ftModified);
       }
       catch(...)
       {
@@ -548,12 +548,12 @@ namespace dynamic_source
 
 #elif defined(METROWIN)
 
-      ::Windows::Storage::StorageFile ^ h = get_os_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      ::Windows::Storage::StorageFile ^ h = get_os_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
       try
       {
          memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
          memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-         ::get_file_time(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
+         ::get_file_time(h, &pscript->m_ftCreation, ::null(), &pscript->m_ftModified);
       }
       catch(...)
       {
@@ -561,7 +561,7 @@ namespace dynamic_source
 
 
 #else
-//      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+//      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
 
       memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
       memset(&pscript->m_ftAccess, 0, sizeof(__time_t));
@@ -795,7 +795,7 @@ namespace dynamic_source
       strFolder = System.dir().ca2();
       m_straLibSourcePath.remove_all();
       m_straLibSourceRelPath.remove_all();
-      Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
+      Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false),  &m_straLibSourcePath, ::null(), &m_straLibSourceRelPath);
       for(int32_t i = 0; i < m_straLibSourcePath.get_size(); )
       {
          if(System.file().extension(m_straLibSourcePath[i]) != "ds")
@@ -818,7 +818,7 @@ namespace dynamic_source
       }
       m_straLibIncludePath.remove_all();
       m_straLibIncludeRelPath.remove_all();
-      Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false),  &m_straLibIncludePath, NULL, &m_straLibIncludeRelPath);
+      Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false),  &m_straLibIncludePath, ::null(), &m_straLibIncludeRelPath);
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); )
       {
          if(System.file().extension(m_straLibIncludePath[i]) != "ds"
@@ -1171,7 +1171,7 @@ namespace dynamic_source
             }
             else if(ch == '=')
             {
-               strResult += ".propset().add(NULL, ";
+               strResult += ".propset().add(::null(), ";
                bInSpec2 = false;
                bInSpec2Close = true;
                i++;
@@ -1704,12 +1704,12 @@ namespace dynamic_source
       ::ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
       ::ca::str::ends_eat_ci(strInclude, ".ds");
       script_instance * pinstance = m_pmanager->get(strInclude);
-      if(pinstance != NULL)
+      if(pinstance != ::null())
       {
          string strError;
-         pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
-         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
-         if(pdsscript != NULL)
+         pinstance->initialize(pinstance, ::null(), ::null(), m_pmanager);
+         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
+         if(pdsscript != ::null())
          {
             try
             {
@@ -1745,12 +1745,12 @@ namespace dynamic_source
          ::ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
          ::ca::str::ends_eat_ci(strInclude, ".ds");
          script_instance * pinstance = m_pmanager->get(strInclude);
-         if(pinstance != NULL)
+         if(pinstance != ::null())
          {
             string strError;
-            pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
-            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
-            if(pdsscript != NULL)
+            pinstance->initialize(pinstance, ::null(), ::null(), m_pmanager);
+            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
+            if(pdsscript != ::null())
             {
                try
                {
@@ -1796,7 +1796,7 @@ namespace dynamic_source
          //memset(&ftCreation, 0, sizeof(FILETIME));
          //memset(&ftAccess, 0, sizeof(FILETIME));
          //memset(&ftModified, 0, sizeof(FILETIME));
-         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
          //GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
          //::CloseHandle(h);
 
@@ -1844,7 +1844,7 @@ namespace dynamic_source
          m_ftaLibAccess[i]    = st.st_atime;
          m_ftaLibModified[i]  = st.st_mtime;
 
-         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
          //memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
          //memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
          //memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));

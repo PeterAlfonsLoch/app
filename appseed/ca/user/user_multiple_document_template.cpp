@@ -27,7 +27,7 @@ multiple_document_template::~multiple_document_template()
 #endif
 }
 
-count multiple_document_template::get_document_count() const
+::count multiple_document_template::get_document_count() const
 {
    return m_docptra.get_count();
 }
@@ -35,7 +35,7 @@ count multiple_document_template::get_document_count() const
 user::document_interface * multiple_document_template::get_document(index index) const
 {
    if(index < 0 || index >= m_docptra.get_count())
-      return NULL;
+      return ::null();
    return m_docptra.element_at(index);
 }
 
@@ -60,27 +60,27 @@ void multiple_document_template::remove_document(user::document_interface * pdoc
 void multiple_document_template::request(::ca::create_context * pcreatecontext)
 {
 
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) ::null();
    bool bMakeVisible = pcreatecontext->m_bMakeVisible;
 //   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
    user::document_interface * pdocument = create_new_document();
-   if (pdocument == NULL)
+   if (pdocument == ::null())
    {
-      TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
+      TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned ::null().\n");
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "failed to create user::document_interface");
+      System.simple_message_box(::null(), "failed to create user::document_interface");
       return;
    }
 
    bool bAutoDelete = pdocument->m_bAutoDelete;
    pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
-   frame_window* pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
+   frame_window* pFrame = create_new_frame(pdocument, ::null(), pcreatecontext);
    pdocument->m_bAutoDelete = bAutoDelete;
-   if (pFrame == NULL)
+   if (pFrame == ::null())
    {
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "Failed to create user::document_interface");
+      System.simple_message_box(::null(), "Failed to create user::document_interface");
       delete pdocument;       // explicit delete on error
       return;
    }
@@ -131,7 +131,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
 
    view_update_hint uh(get_app());
    uh.m_etype = view_update_hint::TypeOpenDocument;
-   pdocument->update_all_views(NULL, 0, &uh);
+   pdocument->update_all_views(::null(), 0, &uh);
 
    ::ca::add_ref(pdocument);
 
@@ -169,7 +169,7 @@ void multiple_document_template::dump(dump_context & dumpcontext) const
 
    dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
    dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       user::document_interface * pdocument = get_document(index);
@@ -183,7 +183,7 @@ void multiple_document_template::assert_valid() const
 {
    document_template::assert_valid();
 
-   count count = get_document_count();
+   ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
       user::document_interface * pdocument = get_document(index);

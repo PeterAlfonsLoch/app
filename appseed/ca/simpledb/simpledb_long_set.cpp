@@ -9,9 +9,9 @@ db_long_set::db_long_set(db_server * pserver) :
    m_mutex(pserver->get_app())
 {
 
-   m_phttpsession    = NULL;
+   m_phttpsession    = ::null();
 
-   m_pqueue          = NULL;
+   m_pqueue          = ::null();
 
    m_pmysqldbUser    = pserver->m_pmysqldbUser;
    m_strUser         = pserver->m_strUser;
@@ -55,7 +55,7 @@ db_long_set::sync_queue::sync_queue(::ca::application * papp) :
    m_handler(papp),
    m_mutex(papp)
 {
-   m_phttpsession = NULL;
+   m_phttpsession = ::null();
 
 
 }
@@ -113,9 +113,9 @@ repeat:;
           sl.unlock();
 
 
-          m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+          m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, ::null(), &ApplicationUser, ::null(), &estatus);
 
-          if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
+          if(m_phttpsession == ::null() || estatus != ::ca::http::status_ok)
           {
              Sleep(1984);
              goto repeat;
@@ -174,10 +174,10 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       strUrl = "https://api.ca2.cc/account/long_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
-      //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, NULL, NULL, &estatus);
+      //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, ::null(), &ApplicationUser, ::null(), &estatus);
+      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, ::null(), ::null(), ::null(), &estatus);
 
-      if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
+      if(m_phttpsession == ::null() || estatus != ::ca::http::status_ok)
       {
          return false;
       }
@@ -192,7 +192,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
    }
 #ifndef METROWIN
-   else if(m_pmysqldbUser != NULL)
+   else if(m_pmysqldbUser != ::null())
    {
 
       try
@@ -255,7 +255,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
    if(m_pdataserver->m_bRemote)
    {
 
-      if(m_pqueue == NULL)
+      if(m_pqueue == ::null())
       {
 
          m_pqueue = new sync_queue(get_app());
@@ -277,14 +277,14 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
    }
 #ifndef METROWIN
-   else if(m_pmysqldbUser != NULL)
+   else if(m_pmysqldbUser != ::null())
    {
 
       string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + ::ca::str::from(lValue) + ")";
 
       TRACE(strSql);
 
-      return m_pmysqldbUser->query(strSql) != NULL;
+      return m_pmysqldbUser->query(strSql) != ::null();
 
    }
 #endif
@@ -387,7 +387,7 @@ bool db_long_set::find(const char * lpKey)
    return FALSE;
    HROW* phRow = &m_hRow;
    ULONG ulRowsFetched = 0;
-   hr = m_spRowset->GetNextRows(NULL, 0, 1, &ulRowsFetched, &phRow);
+   hr = m_spRowset->GetNextRows(::null(), 0, 1, &ulRowsFetched, &phRow);
    if (hr != S_OK)
    return FALSE;
    hr = get_data();
@@ -513,9 +513,9 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
 {
 CSession   session;
 //      HRESULT      hr;
-/*       if(m_spRowset != NULL)
+/*       if(m_spRowset != ::null())
 close();
-if(m_spRowsetIndex != NULL)
+if(m_spRowsetIndex != ::null())
 m_spRowsetIndex.Release();
 m_bIndexed = false;
 
@@ -547,9 +547,9 @@ return MoveNext(); */
 {
 //    HRESULT hr;
 CSession session;
-/*       if(m_spRowset != NULL)
+/*       if(m_spRowset != ::null())
 close();
-if(m_spRowsetIndex != NULL)
+if(m_spRowsetIndex != ::null())
 m_spRowsetIndex.Release();
 try
 {
@@ -595,7 +595,7 @@ try
 {
 
 hr = session.m_spOpenRowset->OpenRowset(
-NULL,
+::null(),
 &dbIdTable,
 &dbIdIndex,
 IID_IRowset,
@@ -618,9 +618,9 @@ return hr;
 hr = spRowsetIndex->SetRange(
 m_pAccessor->GetHAccessor(0),
 0,
-NULL,
+::null(),
 0,
-NULL,
+::null(),
 0);
 if(FAILED(hr))
 return hr;

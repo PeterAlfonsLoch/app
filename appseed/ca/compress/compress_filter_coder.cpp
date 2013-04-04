@@ -71,7 +71,7 @@ namespace libcompress
             return WriteWithLimit(outStream, endPos);
          }
          RINOK(WriteWithLimit(outStream, bufferPos));
-         if (progress != NULL)
+         if (progress != ::null())
          {
             RINOK(progress->SetRatioInfo(&_nowPos64, &_nowPos64));
          }
@@ -99,14 +99,14 @@ namespace libcompress
 
    void filter_coder::write(const void * data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
-      if (processedSize != NULL)
+      if (processedSize != ::null())
          *processedSize = 0;
       while (size > 0)
       {
          ::primitive::memory_size sizeTemp = min(size, kBufferSize - _bufferPos);
          memcpy(_buffer + _bufferPos, data, sizeTemp);
          size -= sizeTemp;
-         if (processedSize != NULL)
+         if (processedSize != ::null())
             *processedSize += sizeTemp;
          data = (const byte *)data + sizeTemp;
          uint32_t endPos = (uint32_t) (_bufferPos + sizeTemp);

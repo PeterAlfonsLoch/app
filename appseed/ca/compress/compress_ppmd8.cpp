@@ -211,7 +211,7 @@ static void *AllocUnitsRare(CPpmd8 *p, uint32_t indx)
     {
       uint32_t numBytes = U2B(I2U(indx));
       p->GlueCount--;
-      return ((uint32_t)(p->UnitsStart - p->Text) > numBytes) ? (p->UnitsStart -= numBytes) : (NULL);
+      return ((uint32_t)(p->UnitsStart - p->Text) > numBytes) ? (p->UnitsStart -= numBytes) : (::null());
     }
   }
   while (p->FreeList[i] == 0);
@@ -620,7 +620,7 @@ static CTX_PTR CreateSuccessors(CPpmd8 *p, bool skip, CPpmd_State *s1, CTX_PTR c
     if (s1)
     {
       s = s1;
-      s1 = NULL;
+      s1 = ::null();
     }
     else if (c->NumStats != 0)
     {
@@ -675,7 +675,7 @@ static CTX_PTR CreateSuccessors(CPpmd8 *p, bool skip, CPpmd_State *s1, CTX_PTR c
     {
       c1 = (CTX_PTR)AllocUnitsRare(p, 0);
       if (!c1)
-        return NULL;
+        return ::null();
     }
     c1->NumStats = 0;
     c1->Flags = flags;
@@ -691,7 +691,7 @@ static CTX_PTR CreateSuccessors(CPpmd8 *p, bool skip, CPpmd_State *s1, CTX_PTR c
 
 static CTX_PTR ReduceOrder(CPpmd8 *p, CPpmd_State *s1, CTX_PTR c)
 {
-  CPpmd_State *s = NULL;
+  CPpmd_State *s = ::null();
   CTX_PTR c1 = c;
   CPpmd_Void_Ref upBranch = REF(p->Text);
   
@@ -711,7 +711,7 @@ static CTX_PTR ReduceOrder(CPpmd8 *p, CPpmd_State *s1, CTX_PTR c)
     {
       c = SUFFIX(c);
       s = s1;
-      s1 = NULL;
+      s1 = ::null();
     }
     else
     {
@@ -770,8 +770,8 @@ static CTX_PTR ReduceOrder(CPpmd8 *p, CPpmd_State *s1, CTX_PTR c)
     CPpmd_State *s1 = p->FoundState;
     p->FoundState = s;
 
-    successor = CreateSuccessors(p, false, NULL, c);
-    if (successor == NULL)
+    successor = CreateSuccessors(p, false, ::null(), c);
+    if (successor == ::null())
       SetSuccessor(s, 0);
     else
       SetSuccessor(s, REF(successor));
@@ -784,7 +784,7 @@ static CTX_PTR ReduceOrder(CPpmd8 *p, CPpmd_State *s1, CTX_PTR c)
     p->Text--;
   }
   if (SUCCESSOR(s) == 0)
-    return NULL;
+    return ::null();
   return CTX(SUCCESSOR(s));
 }
 
@@ -794,7 +794,7 @@ static void UpdateModel(CPpmd8 *p)
   CTX_PTR c;
   uint32_t s0, ns, fFreq = p->FoundState->Freq;
   byte flag, fSymbol = p->FoundState->Symbol;
-  CPpmd_State *s = NULL;
+  CPpmd_State *s = ::null();
   
   if (p->FoundState->Freq < MAX_FREQ / 4 && p->MinContext->Suffix != 0)
   {
@@ -854,7 +854,7 @@ static void UpdateModel(CPpmd8 *p)
   if (!fSuccessor)
   {
     CTX_PTR cs = ReduceOrder(p, s, p->MinContext);
-    if (cs == NULL)
+    if (cs == ::null())
     {
       RESTORE_MODEL(c, 0);
       return;
@@ -864,7 +864,7 @@ static void UpdateModel(CPpmd8 *p)
   else if ((byte *)Ppmd8_GetPtr(p, fSuccessor) < p->UnitsStart)
   {
     CTX_PTR cs = CreateSuccessors(p, false, s, p->MinContext);
-    if (cs == NULL)
+    if (cs == ::null())
     {
       RESTORE_MODEL(c, 0);
       return;

@@ -7,10 +7,10 @@ index_array::index_array(::ca::application * papp) :
 {
 }
 
-index_array::index_array(const index_array & base_array) :
-   numeric_array < index >(base_array)
+index_array::index_array(const index_array & array) :
+   numeric_array < index >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 index_array::~index_array()
@@ -39,10 +39,10 @@ count_array::count_array(::ca::application * papp) :
 {
 }
 
-count_array::count_array(const count_array & base_array) :
-   numeric_array < count >(base_array)
+count_array::count_array(const count_array & array) :
+   numeric_array < ::count >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 count_array::~count_array()
@@ -69,10 +69,10 @@ int_array::int_array(::ca::application * papp) :
 {
 }
 
-int_array::int_array(const int_array & base_array) :
-   numeric_array < int32_t >(base_array)
+int_array::int_array(const int_array & array) :
+   numeric_array < int32_t >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 int_array::~int_array()
@@ -105,10 +105,10 @@ int64_array::int64_array(::ca::application * papp) :
 {
 }
 
-int64_array::int64_array(const int64_array & base_array) :
-   numeric_array < int64_t >(base_array)
+int64_array::int64_array(const int64_array & array) :
+   numeric_array < int64_t >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 int64_array::~int64_array()
@@ -160,10 +160,10 @@ uint64_array::uint64_array(::ca::application * papp) :
 {
 }
 
-uint64_array::uint64_array(const uint64_array & base_array) :
-   numeric_array < uint64_t >(base_array)
+uint64_array::uint64_array(const uint64_array & array) :
+   numeric_array < uint64_t >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 uint64_array::~uint64_array()
@@ -231,10 +231,10 @@ unique_int_sort_array::unique_int_sort_array(::ca::application * papp) :
 {
 }
 
-unique_int_sort_array::unique_int_sort_array(const unique_int_sort_array & base_array) :
-   ::ca::ca(base_array.get_app())
+unique_int_sort_array::unique_int_sort_array(const unique_int_sort_array & array) :
+   ::ca::ca(array.get_app())
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 unique_int_sort_array::~unique_int_sort_array()
@@ -311,10 +311,10 @@ unique_index_sort_array::unique_index_sort_array(::ca::application * papp) :
 {
 }
 
-unique_index_sort_array::unique_index_sort_array(const unique_index_sort_array & base_array) :
-   ::ca::ca(base_array.get_app())
+unique_index_sort_array::unique_index_sort_array(const unique_index_sort_array & array) :
+   ::ca::ca(array.get_app())
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 unique_index_sort_array::~unique_index_sort_array()
@@ -405,10 +405,10 @@ float_array::float_array()
 {
 }
 
-float_array::float_array(const float_array & base_array) :
-   numeric_array < float >(base_array)
+float_array::float_array(const float_array & array) :
+   numeric_array < float >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 
@@ -425,10 +425,10 @@ double_array::~double_array()
 {
 }
 
-double_array::double_array(const double_array & base_array) :
-   numeric_array < double >(base_array)
+double_array::double_array(const double_array & array) :
+   numeric_array < double >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 
@@ -452,10 +452,10 @@ uint32_array::uint32_array()
 {
 }
 
-uint32_array::uint32_array(const uint32_array & base_array) :
-   numeric_array < dword >(base_array)
+uint32_array::uint32_array(const uint32_array & array) :
+   numeric_array < dword >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 
@@ -474,10 +474,10 @@ uint_ptr_array::uint_ptr_array()
 {
 }
 
-uint_ptr_array::uint_ptr_array(const uint_ptr_array & base_array) :
-   numeric_array < uint_ptr >(base_array)
+uint_ptr_array::uint_ptr_array(const uint_ptr_array & array) :
+   numeric_array < uint_ptr >(array)
 {
-   operator = (base_array);
+   operator = (array);
 }
 
 
@@ -495,8 +495,8 @@ uint_array::uint_array()
 {
 }
 
-uint_array::uint_array(const uint_array & base_array) :
-   numeric_array < uint32_t > (base_array)
+uint_array::uint_array(const uint_array & array) :
+   numeric_array < uint32_t > (array)
 {
 }
 

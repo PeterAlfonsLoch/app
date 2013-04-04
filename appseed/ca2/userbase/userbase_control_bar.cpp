@@ -166,7 +166,7 @@ namespace userbase
       m_pDockContext = NULL;
       delete pDockContext;*/
 
-      // free base_array
+      // free array
    /*
       if (m_pData != NULL)
       {

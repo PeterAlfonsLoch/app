@@ -64,7 +64,7 @@ public:
    };
 
 public:
-   base_array < XfplayerViewLineSelectionItem, XfplayerViewLineSelectionItem> m_itema;
+   array < XfplayerViewLineSelectionItem, XfplayerViewLineSelectionItem> m_itema;
 
    XfplayerViewLineSelectionItem m_item;
       

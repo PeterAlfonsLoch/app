@@ -10,7 +10,7 @@ public:
    vsstring m_strTip;
 
 
-   temporary_exception(::ca::application * papp, const char * pszTip = NULL);
+   temporary_exception(::ca::application * papp, const char * pszTip = ::null());
    temporary_exception(const temporary_exception & e);
    virtual ~temporary_exception();
 

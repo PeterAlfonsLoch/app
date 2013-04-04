@@ -95,10 +95,10 @@ public:
 
    virtual bool create(const char * lpClassName, const char * lpWindowName,
       uint32_t dwStyle, const RECT& rect,
-      virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
+      virtual_user_interface* pParentWnd = ::null(), UINT nID = 0);
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName,
       uint32_t dwStyle, const RECT& rect,
-      virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
+      virtual_user_interface* pParentWnd = ::null(), UINT nID = 0);
 
 
    bool OnNcActivate(bool bActive);
@@ -137,16 +137,22 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca message
+   class CLASS_DECL_ca message :
+      virtual public ::ca::object
    {
    public:
-      ::user::interaction *  m_pguie;
-      UINT              m_uiMessage;
-      WPARAM            m_wparam;
-      LPARAM            m_lparam;
+      
+      
+      sp(::user::interaction)    m_pguie;
+      UINT                       m_uiMessage;
+      WPARAM                     m_wparam;
+      LPARAM                     m_lparam;
+
+
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal);
+      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::get_thread_priority_normal());
+
    };
 
 

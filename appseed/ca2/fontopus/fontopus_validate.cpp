@@ -373,7 +373,7 @@ namespace ca
                straHash.add(System.file().md5(strModule));
             }
          }
-         straHash.QuickSort();
+         straHash.quick_sort();
          delete pmodulea;*/
       }
 

@@ -9,18 +9,18 @@ namespace plane
    {
 
       m_bDrawCursor              = true;
-      m_pbergedge                = NULL;
-/*      m_pnaturedocument          = NULL;
-      m_pplatformdocument        = NULL;
-      m_pbergedgedocument        = NULL;*/
+      m_pbergedge                = ::null();
+/*      m_pnaturedocument          = ::null();
+      m_pplatformdocument        = ::null();
+      m_pbergedgedocument        = ::null();*/
       m_bShowPlatform            = false;
-      m_pappCurrent              = NULL;
+      m_pappCurrent              = ::null();
       m_psession                 = this;
-      m_pbergedgeInterface       = NULL;
+      m_pbergedgeInterface       = ::null();
 
       ::fs::set * pset = new class ::fs::set(this);
       pset->m_spafsdata.add(new ::fs::native(this));
-      m_spfsdata(pset);
+      m_spfsdata = pset;
 
 
       m_pifs                     = new ifs(this, "");
@@ -38,17 +38,17 @@ namespace plane
    session::~session()
    {
 
-/*      if(m_pnaturedocument != NULL)
+/*      if(m_pnaturedocument != ::null())
       {
          m_pnaturedocument->on_close_document();
       }
 
-      if(m_pplatformdocument != NULL)
+      if(m_pplatformdocument != ::null())
       {
          m_pplatformdocument->on_close_document();
       }
 
-      if(m_pbergedgedocument != NULL)
+      if(m_pbergedgedocument != ::null())
       {
          m_pbergedgedocument->on_close_document();
       }
@@ -59,11 +59,11 @@ namespace plane
 
       POSITION pos = m_mapApplication.get_start_position();
 
-      while(pos != NULL)
+      while(pos != ::null())
       {
 
          strId.Empty();
-         pcaapp = NULL;
+         pcaapp = ::null();
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
@@ -117,7 +117,7 @@ namespace plane
 
       if(!InitializeLocalDataCentral())
       {
-         simple_message_box(NULL, "Could not initialize Local data central");
+         simple_message_box(::null(), "Could not initialize Local data central");
          return false;
       }
 
@@ -249,14 +249,14 @@ namespace plane
          System.type_info < nature::document > (),
          System.type_info < nature::frame > (),
          System.type_info < nature::view > ());
-      m_pnaturedocument = NULL;*/
+      m_pnaturedocument = ::null();*/
    }
 
    bool session::create_bergedge(::ca::create_context * pcreatecontext)
    {
 
 
-      //if(m_pbergedgeInterface != NULL)
+      //if(m_pbergedgeInterface != ::null())
       {
 
 //         m_pbergedgeInterface->create_bergedge(pcreatecontext);
@@ -284,7 +284,7 @@ namespace plane
 
       ::bergedge_interface * papp = dynamic_cast < ::bergedge_interface * > (pcaapp);
 
-      if(papp == NULL)
+      if(papp == ::null())
       {
 
          try
@@ -344,7 +344,7 @@ namespace plane
          return;
       }
 
-      if(m_pbergedgeInterface != NULL)
+      if(m_pbergedgeInterface != ::null())
       {
 
          m_pbergedgeInterface->on_request(pcreatecontext);
@@ -374,7 +374,7 @@ namespace plane
          {
             if(!open_by_file_extension(pcreatecontext))
             {
-               if(m_pappCurrent != NULL)
+               if(m_pappCurrent != ::null())
                {
                   App(m_pappCurrent).request(pcreatecontext->m_spCommandLine);
                }
@@ -387,10 +387,10 @@ namespace plane
             strType = "application";
 //            create_bergedge(pcreatecontext);
   //          throw not_implemented(get_app());
-            /*if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
+            /*if(get_document() != ::null() && get_document()->get_typed_view < ::session::view >() != ::null())
             {
                ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
-               if(pframe != NULL)
+               if(pframe != ::null())
                {
                   pframe->ShowWindow(SW_SHOW);
                   pframe->InitialFramePosition();
@@ -471,14 +471,14 @@ namespace plane
       string strApp(pszAppId);
 
       ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
-      if(papp == NULL)
-         return NULL;
+      if(papp == ::null())
+         return ::null();
 
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
       || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
          System.appptra().remove(papp);
-         return NULL;
+         return ::null();
       }
 
       pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
@@ -493,7 +493,7 @@ namespace plane
 
             m_pbergedgeInterface    = dynamic_cast < ::bergedge_interface * > (papp);
 
-            if(m_pbergedgeInterface == NULL)
+            if(m_pbergedgeInterface == ::null())
             {
 
                try
@@ -506,7 +506,7 @@ namespace plane
                {
                }
 
-               return NULL;
+               return ::null();
 
             }
 
@@ -534,7 +534,7 @@ namespace plane
             catch(...)
             {
             }
-            return NULL;
+            return ::null();
          }
 
       }
@@ -551,8 +551,8 @@ namespace plane
 
    ::session::view * session::get_view()
    {
-      if(get_document() == NULL)
-         return NULL;
+      if(get_document() == ::null())
+         return ::null();
       return get_document()->get_bergedge_view();
    }
 
@@ -575,7 +575,7 @@ namespace plane
 
       cc->m_spCommandLine->m_varFile = pszPathName;
 
-      if(pbiasCreate != NULL)
+      if(pbiasCreate != ::null())
       {
          cc->m_spApplicationBias->operator=(*pbiasCreate);
       }
@@ -648,7 +648,7 @@ namespace plane
 
       ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias));
 
-      if(papp == NULL)
+      if(papp == ::null())
          return false;
 
       papp->::ca::request_interface::create(pcreatecontext);
@@ -662,7 +662,7 @@ namespace plane
 
 /*      m_pdatabase = new nature::database(this);
 
-      if(m_pdatabase == NULL)
+      if(m_pdatabase == ::null())
       {
          TRACE("VmpLightApp::initialize_instance failed to instatiate LightDB\n");
          return false;
@@ -680,8 +680,8 @@ namespace plane
 
    session::run_application::run_application()
    {
-      m_papp = NULL;
-      m_puiParent = NULL;
+      m_papp = ::null();
+      m_puiParent = ::null();
    }
 
    void session::on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive)
@@ -696,9 +696,9 @@ namespace plane
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::session::");
+         oswindow oswindow = ::FindWindowA(::null(), "::ca::fontopus::message_wnd::session::");
 
-         ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
+         ::SendMessage(oswindow, WM_COPYDATA, ::null(), (LPARAM) &data);*/
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
 
@@ -725,7 +725,7 @@ namespace plane
    void session::request(::ca::create_context * pcreatecontext)
    {
 
-      if(m_pbergedgeInterface != NULL)
+      if(m_pbergedgeInterface != ::null())
       {
 
          m_pbergedgeInterface->request(pcreatecontext);
@@ -752,13 +752,13 @@ namespace plane
             on_request(pcreatecontext);
          }
       }
-      else if(m_pappCurrent != NULL && m_pappCurrent != this
+      else if(m_pappCurrent != ::null() && m_pappCurrent != this
          && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
 
 
-/*         if(get_document() != NULL && get_document()->get_typed_view < ::session::pane_view >() != NULL)
+/*         if(get_document() != ::null() && get_document()->get_typed_view < ::session::pane_view >() != ::null())
          {
             get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }*/
@@ -797,7 +797,7 @@ namespace plane
 
    ::ca::application * session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::application * papp = NULL;
+      ::ca::application * papp = ::null();
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -805,9 +805,9 @@ namespace plane
       {
 
          if(!bCreate)
-            return NULL;
+            return ::null();
 
-         papp = NULL;
+         papp = ::null();
 
          try
          {
@@ -831,12 +831,12 @@ namespace plane
          catch(...)
          {
 
-            papp = NULL;
+            papp = ::null();
 
          }
 
-         if(papp == NULL)
-            return NULL;
+         if(papp == ::null())
+            return ::null();
 
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
@@ -874,33 +874,33 @@ namespace plane
    {
 
 
-      ::user::interaction * puiParent = NULL;
+      ::user::interaction * puiParent = ::null();
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != ::null())
          puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
 
-      if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
+      if(puiParent == ::null() && pcreatecontext->m_puiParent != ::null())
       {
          puiParent = pcreatecontext->m_puiParent;
       }
 
-      if(puiParent == NULL && pcreatecontext->m_spCommandLine->m_pbiasCreate != NULL)
+      if(puiParent == ::null() && pcreatecontext->m_spCommandLine->m_pbiasCreate != ::null())
       {
          puiParent = pcreatecontext->m_spCommandLine->m_pbiasCreate->m_puiParent;
       }
 
-      if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      if(puiParent == ::null() && pcreatecontext->m_spApplicationBias.is_set())
       {
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
 
-/*      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
+/*      if(pui == ::null() && m_puiInitialPlaceHolderContainer != ::null())
       {
          pui = m_puiInitialPlaceHolderContainer;
       }*/
 
-/*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
+/*      if(pui == ::null() && m_bShowPlatform && m_pbergedge->get_document() != ::null())
       {
          pui = Bergedge.get_document()->get_bergedge_view();
       }
@@ -918,7 +918,7 @@ namespace plane
 
       /*if(!create_bergedge(pcreatecontext))
       {
-         return NULL;
+         return ::null();
       }*/
 
 
@@ -931,10 +931,10 @@ namespace plane
       if(strAppName != "session")
       {
 
-         if(get_document() != NULL)
+         if(get_document() != ::null())
          {
 
-            if(get_document()->get_typed_view < ::session::pane_view >() != NULL)
+            if(get_document()->get_typed_view < ::session::pane_view >() != ::null())
             {
 
                get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
@@ -969,7 +969,7 @@ namespace plane
 
       string strAppName = app.m_strAppName;
 
-      if(get_document()->get_typed_view < ::session::pane_view >() != NULL)
+      if(get_document()->get_typed_view < ::session::pane_view >() != ::null())
       {
 
          get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
@@ -1002,7 +1002,7 @@ namespace plane
    void session::get_screen_rect(LPRECT lprect)
    {
 
-      if(m_pbergedgeInterface != NULL)
+      if(m_pbergedgeInterface != ::null())
       {
 
          m_pbergedgeInterface->get_screen_rect(lprect);
@@ -1012,7 +1012,7 @@ namespace plane
       }
 
 
-/*      if(get_document() != NULL && get_view() != NULL)
+/*      if(get_document() != ::null() && get_view() != ::null())
       {
          get_view()->GetWindowRect(lprect);
       }
@@ -1045,21 +1045,21 @@ namespace plane
    void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      ::ca::application * papp = NULL;
+      ::ca::application * papp = ::null();
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {
 
 /*         ::session::pane_view * ppaneview = get_document()->get_typed_view < ::session::pane_view >();
 
-         if(ppaneview != NULL)
+         if(ppaneview != ::null())
          {
 
             string strAppName(pszAppId);
 
             ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
 
-            if(ppane != NULL)
+            if(ppane != ::null())
             {
 
                ppane->m_strTitleEx = pszTitle;
@@ -1081,24 +1081,24 @@ namespace plane
    ::bergedge::view * session::get_view()
    {
 
-      if(m_pbergedgeInterface != NULL)
+      if(m_pbergedgeInterface != ::null())
       {
          return m_pbergedgeInterface->get_view();
       }
 
-      return NULL;
+      return ::null();
 
    }
 
    ::bergedge::document * session::get_document()
    {
 
-      if(m_pbergedgeInterface != NULL)
+      if(m_pbergedgeInterface != ::null())
       {
          return m_pbergedgeInterface->get_document();
       }
 
-      return NULL;
+      return ::null();
 
    }
 
@@ -1106,7 +1106,7 @@ namespace plane
    {
 
 
-      return System.os().is_remote_session() || (m_pbergedgeInterface != NULL && m_pbergedgeInterface->is_remote_session());
+      return System.os().is_remote_session() || (m_pbergedgeInterface != ::null() && m_pbergedgeInterface->is_remote_session());
 
 
    }
@@ -1164,7 +1164,7 @@ namespace plane
    ::visual::cursor * session::get_cursor()
    {
       if(m_ecursor == ::visual::cursor_none)
-         return NULL;
+         return ::null();
       else if(m_ecursor == ::visual::cursor_default)
          return System.visual().get_cursor(m_ecursorDefault);
       else

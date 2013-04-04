@@ -12,8 +12,8 @@ namespace xml
    {
 
       m_pdoc         = this;
-      m_pparseinfo   = pparseinfo != NULL ? pparseinfo : System.xml().m_pparseinfoDefault;
-      m_pedit        = NULL;
+      m_pparseinfo   = pparseinfo != ::null() ? pparseinfo : System.xml().m_pparseinfoDefault;
+      m_pedit        = ::null();
 
       entitiesHash.set_at("lt", "<");
       entitiesHash.set_at("gt", ">");
@@ -68,7 +68,7 @@ namespace xml
    // Desc   : load xml plain text for xml document
    // Param  : pszXml - plain xml text
    //          pparseinfo = parser information
-   // Return : advanced string pointer  (error return NULL)
+   // Return : advanced string pointer  (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -86,7 +86,7 @@ namespace xml
       pnodeRoot->m_pdoc = this;
       char * end;
 
-      if((end = pnodeRoot->load( pszXml, m_pparseinfo )) == NULL)
+      if((end = pnodeRoot->load( pszXml, m_pparseinfo )) == ::null())
       {
          delete pnodeRoot;
          return false;
@@ -98,10 +98,10 @@ namespace xml
       char * ret;
       bool bRet = false;
       ret = pnodeRoot->LoadOtherNodes(&bRet, end, m_pparseinfo);
-      if( ret != NULL )
+      if( ret != ::null() )
          end = ret;
 
-      return end != NULL;
+      return end != ::null();
 
    }
 
@@ -166,7 +166,7 @@ namespace xml
       return "";
    }
 
-   // the additional parameter must end with , NULL
+   // the additional parameter must end with , ::null()
    // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
    char * document::patch_entity_ref(const char * & pszXml, bool useExtEnt, ...)
    {
@@ -210,7 +210,7 @@ namespace xml
       ::xml::edit * pedit = validate_edit(pbaseedit);
 
 
-      if(pedit == NULL)
+      if(pedit == ::null())
          throw simple_exception(get_app(), "edit exception");
 
 

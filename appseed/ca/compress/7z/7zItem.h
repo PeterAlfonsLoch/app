@@ -33,9 +33,9 @@ namespace n7z
       virtual public ::ca::ca
    {
       spa(CCoderInfo) Coders;
-      base_array<CBindPair> BindPairs;
-      base_array<CNum> PackStreams;
-      base_array<file_size> UnpackSizes;
+      array<CBindPair> BindPairs;
+      array<CNum> PackStreams;
+      array<file_size> UnpackSizes;
       uint32_t UnpackCRC;
       bool UnpackCRCDefined;
 
@@ -132,7 +132,7 @@ namespace n7z
          Values[index] = value;
       }
 
-      bool CheckSize(count size) const
+      bool CheckSize(::count size) const
       {
          return Defined.get_count() == size || Defined.get_count() == 0;
       }
@@ -181,11 +181,11 @@ namespace n7z
 
    struct CArchiveDatabase
    {
-      base_array<file_size> PackSizes;
+      array<file_size> PackSizes;
       bool_array PackCRCsDefined;
-      base_array<uint32_t> PackCRCs;
+      array<uint32_t> PackCRCs;
       spa(CFolder) Folders;
-      base_array<CNum> NumUnpackStreamsVector;
+      array<CNum> NumUnpackStreamsVector;
       spa(CFileItem) Files;
 
       CUInt64DefVector CTime;
@@ -234,7 +234,7 @@ namespace n7z
 
       bool CheckNumFiles() const
       {
-         count size = Files.get_count();
+         ::count size = Files.get_count();
          return (
             CTime.CheckSize((int32_t) size) &&
             ATime.CheckSize((int32_t) size) &&

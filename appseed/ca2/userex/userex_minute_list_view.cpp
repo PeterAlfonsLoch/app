@@ -58,7 +58,7 @@ namespace userex
       pitem->m_bOk = true;
    }
 
-   count minute_list_view::_001GetItemCount()
+   ::count minute_list_view::_001GetItemCount()
    {
       return 60;
    }

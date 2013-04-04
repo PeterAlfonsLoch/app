@@ -20,16 +20,16 @@ namespace rar
    public:
 
 
-      base_array<CRefItem>    _refItems;
-      base_array<CItemEx>     _items;
-      base_array<input_file>  _archives;
+      array<CRefItem>    _refItems;
+      array<CItemEx>     _items;
+      array<input_file>  _archives;
       input_file_info         _archiveInfo;
       string                  _errorMessage;
 
 
       ///DECL_EXTERNAL_CODECS_VARS
       ::libcompress::codecs_info_interface * _codecsInfo;
-      base_array < ::libcompress::codec_info_ex > _externalCodecs;
+      array < ::libcompress::codec_info_ex > _externalCodecs;
 
 
 

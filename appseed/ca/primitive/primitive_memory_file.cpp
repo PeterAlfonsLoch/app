@@ -225,7 +225,7 @@ namespace primitive
 
       }
 
-      if(lpBuf != NULL)
+      if(lpBuf != ::null())
       {
 
          memcpy(lpBuf, get_data(), (size_t) uiCount);

@@ -30,7 +30,7 @@ bool document::set_data(::ca::data * pdata)
 
    ::ca::data_container::set_data(pdata);
 
-   if(pdata != NULL)
+   if(pdata != ::null())
    {
 
       add_data(pdata);

@@ -6,7 +6,7 @@ class PointerManager :
    public spa(MANAGED)
 {
 public:
-   PointerManager(MANAGED * pmanaged = NULL, bool bAutoDelete = false);
+   PointerManager(MANAGED * pmanaged = ::null(), bool bAutoDelete = false);
    virtual ~PointerManager();
    
    virtual void on_delete(MANAGED * p);
@@ -32,7 +32,7 @@ protected:
 template < class MANAGED > 
 PointerManager < MANAGED >::PointerManager(MANAGED * pmanaged, bool bAutoDelete)
 {
-   m_pmanaged = NULL;
+   m_pmanaged = ::null();
    m_bAutoDelete = false;
    Attrib(pmanaged, bAutoDelete);
 }
@@ -49,7 +49,7 @@ void PointerManager < MANAGED >::OnPointerClear(MANAGED * p)
 {
    if(p == m_pmanaged)
    {
-      m_pmanaged = NULL;
+      m_pmanaged = ::null();
    }
 }
 
@@ -62,7 +62,7 @@ MANAGED * PointerManager < MANAGED >::operator ->() const
 template < class MANAGED > 
 void PointerManager < MANAGED >::_DeferDelete()
 {
-   if(m_pmanaged != NULL)
+   if(m_pmanaged != ::null())
    {
       m_pmanaged->remove_listener(this);
       if(m_bAutoDelete)
@@ -70,7 +70,7 @@ void PointerManager < MANAGED >::_DeferDelete()
          delete m_pmanaged;
       }
    }
-   m_pmanaged = NULL;
+   m_pmanaged = ::null();
 }
 
 template < class MANAGED > 
@@ -86,7 +86,7 @@ void PointerManager < MANAGED >::Attrib(MANAGED * pmanaged, bool bAutoDelete)
    _DeferDelete();
    m_pmanaged = dynamic_cast < pointer < MANAGED > * > (pmanaged);
    m_bAutoDelete = bAutoDelete;
-   if(pmanaged != NULL)
+   if(pmanaged != ::null())
       pmanaged->add_listener(this);
 }
 

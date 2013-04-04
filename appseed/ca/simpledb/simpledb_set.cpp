@@ -4,7 +4,7 @@ db_set::db_set(db_server * pserver, const char * pszTable)
 {
    m_pdataserver = pserver;
    ::sqlite::base * pdb   = db()->GetImplDatabase();
-   if(pdb != NULL) {
+   if(pdb != ::null()) {
    m_pdataset = (::sqlite::set *) pdb->CreateDataset();
    m_strTable = pszTable;}
    

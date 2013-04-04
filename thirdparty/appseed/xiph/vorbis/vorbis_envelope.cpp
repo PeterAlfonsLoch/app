@@ -258,7 +258,7 @@ long _ve_envelope_search(vorbis_dsp_state *v){
 
     j=ve->cursor;
 
-    while(j<ve->current-(ve->searchstep)){/* account for postecho
+    while(j<ve->current-(ve->searchstep)){/* ac::count for postecho
                                              working back one window */
       if(j>=testW)return(1);
 

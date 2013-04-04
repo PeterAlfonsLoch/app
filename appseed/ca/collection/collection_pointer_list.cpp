@@ -5,8 +5,8 @@ pointer_list::pointer_list(int_ptr nBlockSize)
    ASSERT(nBlockSize > 0);
 
    m_nCount = 0;
-   m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
-   m_pBlocks = NULL;
+   m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
+   m_pBlocks = ::null();
    m_nBlockSize = nBlockSize;
 }
 
@@ -18,9 +18,9 @@ void pointer_list::remove_all()
 
 
    m_nCount = 0;
-   m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
+   m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
    m_pBlocks->FreeDataChain();
-   m_pBlocks = NULL;
+   m_pBlocks = ::null();
 }
 
 pointer_list::~pointer_list()
@@ -47,7 +47,7 @@ pointer_list::~pointer_list()
 pointer_list::node*
 pointer_list::NewNode(pointer_list::node* pPrev, pointer_list::node* pNext)
 {
-   if (m_pnodeFree == NULL)
+   if (m_pnodeFree == ::null())
    {
       // add another block
       plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize,
@@ -63,7 +63,7 @@ pointer_list::NewNode(pointer_list::node* pPrev, pointer_list::node* pNext)
          m_pnodeFree = pNode;
       }
    }
-   ASSERT(m_pnodeFree != NULL);  // we must have something
+   ASSERT(m_pnodeFree != ::null());  // we must have something
 
    pointer_list::node* pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
@@ -82,7 +82,7 @@ pointer_list::NewNode(pointer_list::node* pPrev, pointer_list::node* pNext)
 
 void pointer_list::FreeNode(pointer_list::node* pNode)
 {
-   if (pNode == NULL)
+   if (pNode == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -104,9 +104,9 @@ POSITION pointer_list::add_head(void * newElement)
 
    ASSERT_VALID(this);
 
-   node* pNewNode = NewNode(NULL, m_pnodeHead);
+   node* pNewNode = NewNode(::null(), m_pnodeHead);
    pNewNode->data = newElement;
-   if (m_pnodeHead != NULL)
+   if (m_pnodeHead != ::null())
       m_pnodeHead->pPrev = pNewNode;
    else
       m_pnodeTail = pNewNode;
@@ -122,9 +122,9 @@ POSITION pointer_list::add_tail(void * newElement)
 
    ASSERT_VALID(this);
 
-   node* pNewNode = NewNode(m_pnodeTail, NULL);
+   node* pNewNode = NewNode(m_pnodeTail, ::null());
    pNewNode->data = newElement;
-   if (m_pnodeTail != NULL)
+   if (m_pnodeTail != ::null())
       m_pnodeTail->pNext = pNewNode;
    else
       m_pnodeHead = pNewNode;
@@ -139,7 +139,7 @@ void pointer_list::add_head(pointer_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT_VALID(pNewList);
-   if (pNewList == NULL)
+   if (pNewList == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -147,7 +147,7 @@ void pointer_list::add_head(pointer_list* pNewList)
 
    // add a list of same elements to head (maintain order)
    POSITION pos = pNewList->get_tail_position();
-   while (pos != NULL)
+   while (pos != ::null())
       add_head(pNewList->get_previous(pos));
 }
 
@@ -155,7 +155,7 @@ void pointer_list::add_tail(pointer_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT_VALID(pNewList);
-   if (pNewList == NULL)
+   if (pNewList == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -163,24 +163,24 @@ void pointer_list::add_tail(pointer_list* pNewList)
    
    // add a list of same elements
    POSITION pos = pNewList->get_head_position();
-   while (pos != NULL)
+   while (pos != ::null())
       add_tail(pNewList->get_next(pos));
 }
 
 void * pointer_list::remove_head()
 {
    ENSURE_VALID(this);
-   ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
+   ENSURE(m_pnodeHead != ::null());  // throws if called on is_empty list
    ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
    node* pOldNode = m_pnodeHead;
    void * returnValue = pOldNode->data;
 
    m_pnodeHead = pOldNode->pNext;
-   if (m_pnodeHead != NULL)
-      m_pnodeHead->pPrev = NULL;
+   if (m_pnodeHead != ::null())
+      m_pnodeHead->pPrev = ::null();
    else
-      m_pnodeTail = NULL;
+      m_pnodeTail = ::null();
    FreeNode(pOldNode);
    return returnValue;
 }
@@ -188,17 +188,17 @@ void * pointer_list::remove_head()
 void * pointer_list::remove_tail()
 {
    ASSERT_VALID(this);
-   ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
+   ASSERT(m_pnodeTail != ::null());  // don't call on is_empty list !!!
    ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
    void * returnValue = pOldNode->data;
 
    m_pnodeTail = pOldNode->pPrev;
-   if (m_pnodeTail != NULL)
-      m_pnodeTail->pNext = NULL;
+   if (m_pnodeTail != ::null())
+      m_pnodeTail->pNext = ::null();
    else
-      m_pnodeHead = NULL;
+      m_pnodeHead = ::null();
    FreeNode(pOldNode);
    return returnValue;
 }
@@ -208,7 +208,7 @@ POSITION pointer_list::insert_before(POSITION position, void * newElement)
 
    ASSERT_VALID(this);
 
-   if (position == NULL)
+   if (position == ::null())
       return add_head(newElement); // insert before nothing -> head of the list
 
    // Insert it before position
@@ -216,7 +216,7 @@ POSITION pointer_list::insert_before(POSITION position, void * newElement)
    node* pNewNode = NewNode(pOldNode->pPrev, pOldNode);
    pNewNode->data = newElement;
 
-   if (pOldNode->pPrev != NULL)
+   if (pOldNode->pPrev != ::null())
    {
       ASSERT(__is_valid_address(pOldNode->pPrev, sizeof(node)));
       pOldNode->pPrev->pNext = pNewNode;
@@ -238,7 +238,7 @@ POSITION pointer_list::insert_after(POSITION position, void * newElement)
 
    ASSERT_VALID(this);
 
-   if (position == NULL)
+   if (position == ::null())
       return add_tail(newElement); // insert after nothing -> tail of the list
 
    // Insert it before position
@@ -247,7 +247,7 @@ POSITION pointer_list::insert_after(POSITION position, void * newElement)
    node* pNewNode = NewNode(pOldNode, pOldNode->pNext);
    pNewNode->data = newElement;
 
-   if (pOldNode->pNext != NULL)
+   if (pOldNode->pNext != ::null())
    {
       ASSERT(__is_valid_address(pOldNode->pNext, sizeof(node)));
       pOldNode->pNext->pPrev = pNewNode;
@@ -271,7 +271,7 @@ void pointer_list::remove_at(POSITION position)
    node* pOldNode = (node*) position;
    ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
-   if (pOldNode == NULL)
+   if (pOldNode == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -307,7 +307,7 @@ POSITION pointer_list::find_index(int_ptr nIndex) const
    ASSERT_VALID(this);
 
    if (nIndex >= m_nCount || nIndex < 0)
-      return NULL;  // went too far
+      return ::null();  // went too far
 
    node* pNode = m_pnodeHead;
    while (nIndex--)
@@ -323,7 +323,7 @@ POSITION pointer_list::find(void * searchValue, POSITION startAfter) const
    ASSERT_VALID(this);
 
    node* pNode = (node*) startAfter;
-   if (pNode == NULL)
+   if (pNode == ::null())
    {
       pNode = m_pnodeHead;  // start at head
    }
@@ -333,10 +333,10 @@ POSITION pointer_list::find(void * searchValue, POSITION startAfter) const
       pNode = pNode->pNext;  // start after the one specified
    }
 
-   for (; pNode != NULL; pNode = pNode->pNext)
+   for (; pNode != ::null(); pNode = pNode->pNext)
       if (pNode->data == searchValue)
          return (POSITION) pNode;
-   return NULL;
+   return ::null();
 }
 
 
@@ -348,7 +348,7 @@ void pointer_list::dump(dump_context & dumpcontext) const
    if (dumpcontext.GetDepth() > 0)
    {
       POSITION pos = get_head_position();
-      while (pos != NULL)
+      while (pos != ::null())
          dumpcontext << "\n\t" << get_next(pos);
    }
 
@@ -362,8 +362,8 @@ void pointer_list::assert_valid() const
    if (m_nCount == 0)
    {
       // is_empty list
-      ASSERT(m_pnodeHead == NULL);
-      ASSERT(m_pnodeTail == NULL);
+      ASSERT(m_pnodeHead == ::null());
+      ASSERT(m_pnodeTail == ::null());
    }
    else
    {

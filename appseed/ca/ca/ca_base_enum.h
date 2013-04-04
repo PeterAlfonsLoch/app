@@ -3,11 +3,11 @@
 
 template <class TYPE>
 class base_enum_names :
-   public ::collection::map < TYPE, TYPE, string, string >
+   public map < TYPE, TYPE, string, string >
 {
 public:
 
-   typedef typename ::collection::map < TYPE, TYPE, string, string >::pair BASE_ENUM_PAIR;
+   typedef typename map < TYPE, TYPE, string, string >::pair BASE_ENUM_PAIR;
 
    base_enum_names(BASE_ENUM_PAIR pairs[]);
 };
@@ -15,7 +15,7 @@ public:
 
 template <class TYPE>
 base_enum_names < TYPE > ::base_enum_names(BASE_ENUM_PAIR pairs[]) :
-::collection::map < TYPE, TYPE, string, string >(pairs)
+map < TYPE, TYPE, string, string >(pairs)
 {
 }
 

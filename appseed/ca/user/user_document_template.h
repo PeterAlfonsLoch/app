@@ -52,7 +52,7 @@ public:
    bool                    m_bQueueDocumentOpening;
    ::ca::property_set       m_set;
    bool                    m_bAutoDelete;
-   // back pointer to OLE or other server (NULL if none or disabled)
+   // back pointer to OLE or other server (::null() if none or disabled)
    ::ca::object *       m_pAttachedFactory;
 
    // menu & accelerator resources for in-place container
@@ -86,7 +86,7 @@ public:
 
    virtual void load_template();
 
-   virtual count get_document_count() const = 0;
+   virtual ::count get_document_count() const = 0;
    virtual ::user::document_interface * get_document(index index = 0) const = 0;
 
    virtual void add_document(::user::document_interface * pDoc);      // must override
@@ -106,7 +106,7 @@ public:
    virtual void close_all_documents(bool bEndSession);
    virtual void request(::ca::create_context * pcreatecontext) = 0;
                // open named file
-               // if lpszPathName == NULL => create new file with this type
+               // if lpszPathName == ::null() => create new file with this type
    virtual void set_default_title(::user::document_interface * pdocument) = 0;
 
    virtual ~document_template() = 0;

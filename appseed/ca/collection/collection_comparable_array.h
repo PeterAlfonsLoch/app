@@ -8,9 +8,9 @@ class comparable_array :
 {
 public:
    comparable_array();
-   comparable_array(const comparable_array & base_array);
+   comparable_array(const comparable_array & array);
 
-   void QuickSort(bool bAsc = true);
+   void quick_sort(bool bAsc = true);
 
 
 
@@ -34,3 +34,6 @@ class CLASS_DECL_ca const_char_ptra :
    public comparable_array < const char * >
 {
 };
+
+
+#define pointera(T) ::comparable_array < T * , T * >

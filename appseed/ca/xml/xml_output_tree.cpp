@@ -7,16 +7,16 @@ namespace xml
       ca(papp),
       tree_base(papp)
    {
-      m_pdocument = NULL;
-      m_pnode = NULL;
+      m_pdocument = ::null();
+      m_pnode = ::null();
    }
 
    output_tree::output_tree(::ca::application * papp, tree_schema * pschema) :
       ca(papp),
       tree_base(papp, pschema)
    {
-      m_pdocument = NULL;
-      m_pnode = NULL;
+      m_pdocument = ::null();
+      m_pnode = ::null();
    }
 
    output_tree::~output_tree()
@@ -25,9 +25,9 @@ namespace xml
 
    node * output_tree::export_node(const char * lpcszName, exportable & exportable)
    {
-      if(m_pnode == NULL)
+      if(m_pnode == ::null())
       {
-         if(m_pdocument == NULL)
+         if(m_pdocument == ::null())
          {
             throw "Cannot output to a null document";
          }

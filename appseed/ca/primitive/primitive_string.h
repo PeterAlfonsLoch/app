@@ -37,7 +37,7 @@ inline UINT _gen_GetConversionACP()
 /////////////////////////////////////////////////////////////////////////////
 
 
-#define IMPLEMENT_CONST_STRING_PTR(stringype, value, name) const const_fixed_string<stringype, sizeof(value)/sizeof(stringype::char)> _init##name ={    {NULL,      sizeof(value)/sizeof(stringype::char)-1,    sizeof(value)/sizeof(stringype::char)-1,    -1},         value   };   const stringype::char* const _value##name = _init##name.m_achData;   extern const stringype* const name = CONST_STRING_PTR(stringype, name);
+#define IMPLEMENT_CONST_STRING_PTR(stringype, value, name) const const_fixed_string<stringype, sizeof(value)/sizeof(stringype::char)> _init##name ={    {::null(),      sizeof(value)/sizeof(stringype::char)-1,    sizeof(value)/sizeof(stringype::char)-1,    -1},         value   };   const stringype::char* const _value##name = _init##name.m_achData;   extern const stringype* const name = CONST_STRING_PTR(stringype, name);
 #define DECLARE_CONST_STRING_PTR(stringype, name) extern const stringype* const name;
 #define CONST_STRING_PTR(stringype, name) reinterpret_cast<const stringype* const>(&_value##name)
 
@@ -544,7 +544,7 @@ public:
    void Format(const char * s)
    {
 
-      string_format format(this, &string::FormatPrinter, NULL);
+      string_format format(this, &string::FormatPrinter, ::null());
 
       format.printf(s);
 
@@ -554,7 +554,7 @@ public:
    void Format(const char *s, const T & value, Args... args)
    {
 
-      string_format format(this, &string::FormatPrinter, NULL);
+      string_format format(this, &string::FormatPrinter, ::null());
 
       format.printf(s, value, args...);
 
@@ -601,7 +601,7 @@ public:
    /*    bool load_string(HINSTANCE hInstance,strsize nID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
-   if( pImage == NULL )
+   if( pImage == ::null() )
    {
    return( FALSE );
    }
@@ -618,7 +618,7 @@ public:
    /*bool load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
-   if( pImage == NULL )
+   if( pImage == ::null() )
    {
    return( FALSE );
    }
@@ -856,7 +856,7 @@ inline strsize string::utf8_length() const
 
 inline strsize string_composite::get_length() const
 {
-   if(m_pstring != NULL)
+   if(m_pstring != ::null())
       return m_pstring->get_length();
    else
       return m_pinterface->get_length();
@@ -864,7 +864,7 @@ inline strsize string_composite::get_length() const
 
 inline void string_composite::get_string(char * psz) const
 {
-   if(m_pstring != NULL)
+   if(m_pstring != ::null())
       m_pstring->get_string(psz);
    else
       m_pinterface->get_string(psz);
@@ -872,7 +872,7 @@ inline void string_composite::get_string(char * psz) const
 
 inline void string_composite::set_string(const char * psz)
 {
-   if(m_pstring != NULL)
+   if(m_pstring != ::null())
       m_pstring->set_string(psz);
    else
       m_pinterface->set_string(psz);
@@ -1010,7 +1010,7 @@ inline string & string::operator = (const id & id)
 
 inline id::operator const char *() const
 {
-   return m_pstr == NULL ? NULL : (const char *) *m_pstr;
+   return m_pstr == ::null() ? ::null() : (const char *) *m_pstr;
 }
 
 inline string id::to_string() const
@@ -1025,7 +1025,7 @@ inline string id::to_string() const
    }
    else if(m_chType == IDTYPE_TYPE_TEXT)
    {
-      if(m_pstr == NULL)
+      if(m_pstr == ::null())
          throw "id string is null! Cannot convert to_string()";
       return *m_pstr;
    }
@@ -1063,7 +1063,7 @@ inline string id::to_string() const
 
 inline bool id::is_empty() const
 {
-   return is_null() || (is_text() && (m_pstr == NULL || m_pstr->is_empty()));
+   return is_null() || (is_text() && (m_pstr == ::null() || m_pstr->is_empty()));
 }
 
 inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str)
@@ -1115,7 +1115,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
 {
    if(pid->is_null())
    {
-      if(psz == NULL ||*psz == '\0')
+      if(psz == ::null() ||*psz == '\0')
       {
          return 0;
       }
@@ -1126,7 +1126,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
    }
    else if(pid->is_text())
    {
-      if(psz == NULL ||*psz == '\0')
+      if(psz == ::null() ||*psz == '\0')
       {
          return 1;
       }
@@ -1141,7 +1141,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
    }
    else // if(pid->is_number())
    {
-      if(psz == NULL ||*psz == '\0')
+      if(psz == ::null() ||*psz == '\0')
       {
          return 1;
       }
@@ -1168,7 +1168,7 @@ inline CLASS_DECL_ca int_ptr id_strcmp(const id * pid1, const id * pid2)
 
 inline void id::raw_set(const string * pstr)
 {
-   if(pstr == NULL)
+   if(pstr == ::null())
    {
       m_chType = IDTYPE_TYPE_NULL;
       m_i = 0;

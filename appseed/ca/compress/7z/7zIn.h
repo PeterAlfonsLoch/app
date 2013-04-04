@@ -12,7 +12,7 @@ namespace n7z
       file_position StartPositionAfterHeader;
       file_position DataStartPosition;
       file_position DataStartPosition2;
-      base_array<uint64_t> FileInfoPopIDs;
+      array<uint64_t> FileInfoPopIDs;
       void clear()
       {
          FileInfoPopIDs.remove_all();
@@ -22,10 +22,10 @@ namespace n7z
    struct CArchiveDatabaseEx: public CArchiveDatabase
    {
       CInArchiveInfo ArchiveInfo;
-      base_array<file_position> PackStreamStartPositions;
-      base_array<CNum> FolderStartPackStreamIndex;
-      base_array<CNum> FolderStartFileIndex;
-      base_array<CNum> FileIndexToFolderIndexMap;
+      array<file_position> PackStreamStartPositions;
+      array<CNum> FolderStartPackStreamIndex;
+      array<CNum> FolderStartFileIndex;
+      array<CNum> FileIndexToFolderIndexMap;
 
       file_size HeadersSize;
       file_size PhySize;
@@ -159,54 +159,54 @@ namespace n7z
       void ReadArchiveProperties(CInArchiveInfo &archiveInfo);
       void GetNextFolderItem(CFolder &itemInfo);
       void ReadHashDigests(int32_t numItems,
-         bool_array &digestsDefined, base_array<uint32_t> &digests);
+         bool_array &digestsDefined, array<uint32_t> &digests);
 
       void ReadPackInfo(
          file_position &dataOffset,
-         base_array<file_size> &packSizes,
+         array<file_size> &packSizes,
          bool_array &packCRCsDefined,
-         base_array<uint32_t> &packCRCs);
+         array<uint32_t> &packCRCs);
 
       void ReadUnpackInfo(
-         const ::collection::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
-         ::collection::smart_pointer_array < CFolder > &folders);
+         const smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         smart_pointer_array < CFolder > &folders);
 
       void ReadSubStreamsInfo(
-         const ::collection::smart_pointer_array<CFolder> &folders,
-         base_array<CNum> &numUnpackStreamsInFolders,
-         base_array<file_size> &unpackSizes,
+         const smart_pointer_array<CFolder> &folders,
+         array<CNum> &numUnpackStreamsInFolders,
+         array<file_size> &unpackSizes,
          bool_array &digestsDefined,
-         base_array<uint32_t> &digests);
+         array<uint32_t> &digests);
 
       void ReadStreamsInfo(
-         const ::collection::smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         const smart_pointer_array < ::ca::byte_buffer >  *dataVector,
          file_position &dataOffset,
-         base_array<file_size> &packSizes,
+         array<file_size> &packSizes,
          bool_array &packCRCsDefined,
-         base_array<uint32_t> &packCRCs,
-         ::collection::smart_pointer_array<CFolder> &folders,
-         base_array<CNum> &numUnpackStreamsInFolders,
-         base_array<file_size> &unpackSizes,
+         array<uint32_t> &packCRCs,
+         smart_pointer_array<CFolder> &folders,
+         array<CNum> &numUnpackStreamsInFolders,
+         array<file_size> &unpackSizes,
          bool_array &digestsDefined,
-         base_array<uint32_t> &digests);
+         array<uint32_t> &digests);
 
 
       void ReadBoolVector(int32_t numItems, bool_array &v);
       void ReadBoolVector2(int32_t numItems, bool_array &v);
-      void ReadUInt64DefVector(const ::collection::smart_pointer_array < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
+      void ReadUInt64DefVector(const smart_pointer_array < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
-         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,
-         ::collection::smart_pointer_array < ::ca::byte_buffer > &dataVector,
+         smart_pointer_array < ::ca::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadHeader(
-         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          CArchiveDatabaseEx &db,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadDatabase2(
-         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          CArchiveDatabaseEx &db,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
@@ -219,7 +219,7 @@ namespace n7z
       void Close();
 
       HRESULT ReadDatabase(
-         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          CArchiveDatabaseEx &db,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );

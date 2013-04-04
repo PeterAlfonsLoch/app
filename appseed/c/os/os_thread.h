@@ -80,14 +80,24 @@ public:
    static simple_array < os_thread * > *  s_pptra;
 
 
-   os_thread(uint32_t (* pfn)(void *), void * pv);
+   os_thread(uint32_t ( * pfn)(void *), void * pv);
    virtual ~os_thread();
 
-   static void * thread_proc(void * pparam);
 
-   void * run();
+#ifdef LINUX
+
+   static uint32_t thread_proc(void * pparam);
+
+#else
+
+   static DWORD WINAPI thread_proc(LPVOID pparam);
+
+#endif
+
+   uint32_t run();
 
    static os_thread * get();
+   static void set(os_thread * posthread);
 
    static bool get_run();
 

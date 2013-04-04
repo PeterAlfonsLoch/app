@@ -178,7 +178,7 @@ namespace userbase
          {
             rect rectPopupArrow(rect);
             rectPopupArrow.left = rectPopupArrow.right - 5;
-            base_array < point, point & > pta;
+            array < point, point & > pta;
             pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
             pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
             pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));
@@ -259,7 +259,7 @@ namespace userbase
          {
             rect rectPopupArrow(rect);
             rectPopupArrow.left = rectPopupArrow.right - 5;
-            base_array < point, point & > pta;
+            array < point, point & > pta;
             pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
             pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
             pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));

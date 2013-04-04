@@ -97,7 +97,7 @@ namespace user
    };
 
    class CLASS_DECL_ca2 list_column_array :
-      public ::collection::smart_pointer_array < ::user::list_column >
+      public smart_pointer_array < ::user::list_column >
    {
    public:
 
@@ -340,7 +340,7 @@ namespace user
       public:
 
 
-         base_array < item_range > m_itemrangea;
+         array < item_range > m_itemrangea;
 
 
          range(const range & range);
@@ -442,7 +442,7 @@ namespace user
       class CSortInfo
       {
       public:
-         base_array < CSortInfoItem, CSortInfoItem & > m_itema;
+         array < CSortInfoItem, CSortInfoItem & > m_itema;
       };
 
       CSortInfo   m_sortinfo;
@@ -519,9 +519,9 @@ namespace user
 
       index                         m_iTopIndex;
       index                         m_iTopGroup;
-      count                         m_nDisplayCount;
-      count                         m_nItemCount;
-      count                         m_nGroupCount;
+      ::count m_nDisplayCount;
+      ::count m_nItemCount;
+      ::count m_nGroupCount;
 
 
       image_list *                  m_pilGroup;
@@ -593,7 +593,7 @@ namespace user
       int32_t _001GetGroupHeight(index iGroup);
 
 
-      void FilterInclude(int_array & base_array);
+      void FilterInclude(int_array & array);
       void FilterInclude(index iItem);
       void FilterExcludeAll();
       void FilterClose();

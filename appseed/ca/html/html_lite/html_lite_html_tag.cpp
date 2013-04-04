@@ -2,15 +2,15 @@
 
 
 lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
-   :m_pcollAttr(NULL)
+   :m_pcollAttr(::null())
 {
    m_strTagName = rSource.m_strTagName;
    if (!bCopy)
    {
       m_pcollAttr = rSource.m_pcollAttr;
-      rSource.m_pcollAttr = NULL;
+      rSource.m_pcollAttr = ::null();
    }
-   else if (rSource.m_pcollAttr != NULL)
+   else if (rSource.m_pcollAttr != ::null())
    {
       /** DEEP COPY BEGIN */
       try
@@ -55,12 +55,12 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
 
    bool            bClosingTag = false;
    bool            bOpeningTag = false;
-   LiteHTMLAttributes   *pcollAttr = NULL;
+   LiteHTMLAttributes   *pcollAttr = ::null();
    string            strTagName;
    UINT            nRetVal = 0U,
                   nTemp = 0U;
    const char *            lpszBegin = &strString[iPos];
-   const char *            lpszEnd = NULL;
+   const char *            lpszEnd = ::null();
 
    // skip leading white-space characters
    while (::isspace(*lpszBegin))
@@ -77,7 +77,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    if (*lpszBegin == '>')
    {
       ASSERT(strTagName.is_empty());
-      ASSERT(pcollAttr == NULL);
+      ASSERT(pcollAttr == ::null());
       ASSERT(!bClosingTag);
       nRetVal = (UINT) (lpszBegin - &strString[iPos]);
       goto LUpdateAndExit;
@@ -140,7 +140,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       lpszEnd++;
 
       ASSERT(strTagName.get_length());
-      ASSERT(pcollAttr == NULL);
+      ASSERT(pcollAttr == ::null());
       nRetVal = (UINT) (lpszEnd - &strString[iPos]);
       goto LUpdateAndExit;
    }
@@ -149,7 +149,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    if (*lpszEnd != '>')
    {
       lpszBegin = lpszEnd;
-      lpszEnd = NULL;
+      lpszEnd = ::null();
 
       // skip white-space characters after tag name
       while (::isspace(*lpszBegin))
@@ -158,9 +158,9 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       nTemp = 0U;
       if (bParseAttrib)   // parse attribute/value pairs?
       {
-         ASSERT(pcollAttr == NULL);
+         ASSERT(pcollAttr == ::null());
          // instantiate collection ...
-         if ((pcollAttr = new LiteHTMLAttributes) == NULL)
+         if ((pcollAttr = new LiteHTMLAttributes) == ::null())
          {
 //            TRACE0("(Error) lite_html_tag::parseFromStr: Out of primitive::memory.\n");
             throw memory_exception(::ca::get_thread_app());
@@ -176,9 +176,9 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
                   // attribute/value pairs could not be parsed?
       {
          SAFE_DELETE_POINTER(pcollAttr);
-         if ((lpszEnd = ::strstr(lpszBegin, "/>")) == NULL)
+         if ((lpszEnd = ::strstr(lpszBegin, "/>")) == ::null())
          {
-            if ((lpszEnd = ::strchr(lpszBegin, '>')) == NULL)
+            if ((lpszEnd = ::strchr(lpszBegin, '>')) == ::null())
                return (0U);
          }
       }
@@ -234,7 +234,7 @@ LUpdateAndExit:
    m_strTagName.trim_left();   m_strTagName.trim_right();   // just-in-case!
    SAFE_DELETE_POINTER(m_pcollAttr);
    m_pcollAttr = pcollAttr;
-   pcollAttr = NULL;
+   pcollAttr = ::null();
 
    return (nRetVal);
 }

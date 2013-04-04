@@ -14,7 +14,7 @@ public:
    misc_exception(::ca::application * papp, const char * pszMessage);
    virtual ~misc_exception();
 
-   virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
+   virtual bool get_error_message(string & str, PUINT pnHelpContext = ::null());
 
    
 };

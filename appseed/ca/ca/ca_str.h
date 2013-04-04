@@ -40,8 +40,8 @@ namespace ca
       int32_t  CLASS_DECL_ca compare_ci(const char * psz1, const char * psz2);
       bool CLASS_DECL_ca equals(const char * psz1, const char * psz2);
       bool CLASS_DECL_ca equals_ci(const char * psz1, const char * psz2);
-      string CLASS_DECL_ca equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
-      string CLASS_DECL_ca equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
+      string CLASS_DECL_ca equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = ::null());
+      string CLASS_DECL_ca equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = ::null());
 
 
 
@@ -109,7 +109,7 @@ namespace ca
       strsize CLASS_DECL_ca find_wwci(const char * pszFind, const char * psz, strsize iStart = 0);
       strsize CLASS_DECL_ca find_aww(const char * pszFind, const char * psz, strsize iStart = 0);
       strsize CLASS_DECL_ca find_awwci(const char * pszFind, const char * psz, strsize iStart = 0);
-      string CLASS_DECL_ca has_char(const char * pszIfHasChar, const char * pszBefore = NULL, const char * pszAfter = NULL);
+      string CLASS_DECL_ca has_char(const char * pszIfHasChar, const char * pszBefore = ::null(), const char * pszAfter = ::null());
       bool CLASS_DECL_ca has_upper(const char * psz);
       bool CLASS_DECL_ca has_lower(const char * psz);
       bool CLASS_DECL_ca has_digit(const char * psz);
@@ -117,7 +117,7 @@ namespace ca
       bool CLASS_DECL_ca has_one_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
       bool CLASS_DECL_ca has_all_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
       bool CLASS_DECL_ca has_all_v1(const char * psz);
-      string CLASS_DECL_ca if_null(const char * psz, const char * pszIfNull = NULL);
+      string CLASS_DECL_ca if_null(const char * psz, const char * pszIfNull = ::null());
 
 
       FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(uchar) *psz]; }
@@ -223,11 +223,11 @@ namespace ca
 
       CLASS_DECL_ca void consume(const char * & pszXml, const char * psz);
       CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, const char * pszEnd);
-      CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, count iLen, const char * pszEnd);
-      CLASS_DECL_ca void consume_spaces(const char * & pszXml, count iMinimumCount = 1);
+      CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, ::count iLen, const char * pszEnd);
+      CLASS_DECL_ca void consume_spaces(const char * & pszXml, ::count iMinimumCount = 1);
       CLASS_DECL_ca uint64_t consume_natural(const char * & pszXml, uint64_t uiMax = ((uint64_t) -1), uint64_t uiMin = 0);
       CLASS_DECL_ca string consume_hex(const char * & pszXml);
-      CLASS_DECL_ca void consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd);
+      CLASS_DECL_ca void consume_spaces(const char * & pszXml, ::count iMinimumCount, const char * pszEnd);
       CLASS_DECL_ca string consume_nc_name(const char * & pszXml);
       CLASS_DECL_ca string consume_quoted_value(const char * & pszXml);
       CLASS_DECL_ca string consume_quoted_value(const char * & pszXml, const char * pszEnd);
@@ -238,9 +238,9 @@ namespace ca
 
       CLASS_DECL_ca string consume_c_quoted_value(const char * & pszXml);
 
-      CLASS_DECL_ca string pad(const char * psz, count iLen, const char * pszPattern, e_pad epad);
+      CLASS_DECL_ca string pad(const char * psz, ::count iLen, const char * pszPattern, e_pad epad);
 
-      __inline count ilen(const char * psz) { return (count) strlen(psz); }
+      __inline ::count ilen(const char * psz) { return (count) strlen(psz); }
       __inline int64_t len(const char * psz) { return (int64_t) strlen(psz); }
 
 

@@ -342,7 +342,7 @@ namespace sockets
       if(n != -1 && msg.msg_controllen >= sizeof(struct cmsghdr) && !(msg.msg_flags & MSG_CTRUNC))
       {
          tv = 0;
-         for (cmsg = CMSG_FIRSTHDR(&msg); cmsg != NULL; cmsg = CMSG_NXTHDR(&msg, cmsg))
+         for (cmsg = CMSG_FIRSTHDR(&msg); cmsg != ::null(); cmsg = CMSG_NXTHDR(&msg, cmsg))
          {
             if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == SCM_TIMESTAMP)
             {

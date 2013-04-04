@@ -13,7 +13,7 @@ namespace xml
       m_pentities       = &Sys(papp).xml().m_entities; 
       
       m_bErrorOccur     = false;
-      m_pszErrorPointer = NULL;
+      m_pszErrorPointer = ::null();
       m_eparseerror     = parse_error_welformed;
       m_chEscapeValue   = '\\';
    }

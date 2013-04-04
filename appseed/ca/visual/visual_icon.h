@@ -33,7 +33,7 @@ namespace visual
 
 
    class CLASS_DECL_ca icon_int_map :
-      virtual public ::collection::int_map < icon * >
+      virtual public int_map < icon * >
    {
    public:
 

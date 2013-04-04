@@ -24,7 +24,7 @@ namespace colorertake5
      file_type *enumerateFileTypes(int32_t index);
      file_type *chooseFileType(const char *fileName, const char *firstLine, int32_t typeNo = 0);
 
-     count getRegionCount();
+     ::count getRegionCount();
      class region *getRegion(int32_t id);
      class region* getRegion(const char *name);
 
@@ -36,15 +36,15 @@ namespace colorertake5
      enum QualifyNameType { QNT_DEFINE, QNT_SCHEME, QNT_ENTITY };
 
      // types and packages
-     ::collection::string_map<file_type_impl *>       fileTypeHash;
+     string_map<file_type_impl *>       fileTypeHash;
      // types, not packages
-     base_array<file_type_impl *>       fileTypeVector;
+     array<file_type_impl *>       fileTypeVector;
 
-     ::collection::string_map<scheme_impl *>          schemeHash;
-     ::collection::string_map<int32_t>                   disabledSchemes;
+     string_map<scheme_impl *>          schemeHash;
+     string_map<int32_t>                   disabledSchemes;
 
-     base_array<region *>   regionNamesVector;
-     ::collection::string_map<region *>   regionNamesHash;
+     array<region *>   regionNamesVector;
+     string_map<region *>   regionNamesHash;
      string_to_string_map              schemeEntitiesHash;
 
      string versionName;

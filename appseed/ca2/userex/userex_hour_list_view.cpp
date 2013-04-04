@@ -56,7 +56,7 @@ namespace userex
       pitem->m_strText.Format("%d", pitem->m_iItem);
       pitem->m_bOk = true;
    }
-   count hour_list_view::_001GetItemCount()
+   ::count hour_list_view::_001GetItemCount()
    {
       return 24;
    }

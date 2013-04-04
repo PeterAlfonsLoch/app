@@ -63,10 +63,10 @@ public:
    * All <code>fileContent</code> RE's are tested only if priority of previously
    * computed <code>fileName</code> RE's is more, than zero.
    * @param fileName string representation of file name (without path).
-   *        If NULL, method skips filename matching, and starts directly
+   *        If ::null(), method skips filename matching, and starts directly
    *        with fileContent matching.
    * @param fileContent Some part of file's starting content (first line,
-   *        for example). If NULL, skipped.
+   *        for example). If ::null(), skipped.
    * @return Computed total filetype priority.
    */
   double getPriority(const char * fileName, const char * fileContent) const{
@@ -74,9 +74,9 @@ public:
     double cur_prior = 0;
     for(int32_t idx = 0; idx < chooserVector.get_size(); idx++){
       FileTypeChooser *ftc = chooserVector.element_at(idx);
-      if (fileName != NULL && ftc->isFileName() && ftc->getRE()->parse(fileName, &match))
+      if (fileName != ::null() && ftc->isFileName() && ftc->getRE()->parse(fileName, &match))
         cur_prior += ftc->getPrior();
-      if (fileContent != NULL && ftc->isFileContent() && ftc->getRE()->parse(fileContent, &match))
+      if (fileContent != ::null() && ftc->isFileContent() && ftc->getRE()->parse(fileContent, &match))
         cur_prior += ftc->getPrior();
     }
     return cur_prior;
@@ -98,7 +98,7 @@ protected:
   HRCParserImpl *hrcParser;
   scheme_impl *baseScheme;
 
-  base_array< FileTypeChooser *> chooserVector;
+  array< FileTypeChooser *> chooserVector;
   string_to_string_map paramDefaultHash;
   string_to_string_map paramHash;
   string_to_string_map paramDescriptionHash;
@@ -112,7 +112,7 @@ public:
     this->hrcParser = hrcParser;
     protoLoaded = typeLoaded = loadDone = loadBroken = inputSourceLoading = false;
     isPackage = false;
-    baseScheme = NULL;
+    baseScheme = ::null();
   }
 
   ~file_type_impl()

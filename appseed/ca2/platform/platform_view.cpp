@@ -461,7 +461,7 @@ namespace platform
    {
       try
       {
-         Bergedge.user().open_document_file(pcreatecontext);
+         Bergedge.user()->open_document_file(pcreatecontext);
       }
       catch(...)
       {
@@ -683,8 +683,8 @@ namespace platform
       if(m_iArea != iHitArea)
       {
       m_areaa[m_iArea].m_taska.remove_at(m_iDragTask - m_iTaskOffset);
-      count count1 = m_areaa[m_iArea].m_oswindowa.remove;
-      count count2 = m_areaa[m_iArea].m_oswindowaHidden.remove;
+      ::count count1 = m_areaa[m_iArea].m_oswindowa.remove;
+      ::count count2 = m_areaa[m_iArea].m_oswindowaHidden.remove;
       m_areaa[iHitArea].m_taska.add(area::task);
       if(count1 > 0)
       {

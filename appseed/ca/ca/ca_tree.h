@@ -39,19 +39,19 @@ namespace ca
       virtual bool   hover(tree_item * pitem);
       virtual bool   hover(tree_item_data * pitem, index i = 0);
 
-      virtual count  add_selection(tree_item_ptr_array & itemptra);
+      virtual ::count add_selection(tree_item_ptr_array & itemptra);
       virtual bool   add_selection(tree_item * pitem);
       virtual bool   add_selection(tree_item_data * pitem, index i = 0);
 
-      virtual count  set_selection(tree_item_ptr_array & itemptra);
+      virtual ::count set_selection(tree_item_ptr_array & itemptra);
       virtual bool   set_selection(tree_item * pitem);
       virtual bool   set_selection(tree_item_data * pitem, index i = 0);
 
-      virtual count  remove_selection(tree_item_ptr_array & itemptra);
+      virtual ::count remove_selection(tree_item_ptr_array & itemptra);
       virtual bool   remove_selection(tree_item * pitem);
       virtual bool   remove_selection(tree_item_data * pitem, index i = 0);
 
-      virtual count  clear_selection();
+      virtual ::count clear_selection();
 
       virtual bool   is_selected(tree_item * pitem);
       virtual bool   is_selected(tree_item_data * pitem);
@@ -62,7 +62,7 @@ namespace ca
 
       virtual tree_item * get_proper_item(index iIndex, index * piLevel);
       virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel);
-      virtual count get_proper_item_count();
+      virtual ::count get_proper_item_count();
 
 
 

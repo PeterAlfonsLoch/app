@@ -47,12 +47,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(::ca::application * papp, StdLog *log = NULL);
+         socket_handler(::ca::application * papp, StdLog *log = ::null());
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(::ca::application * papp, mutex & mutex,StdLog *log = NULL);
+         socket_handler(::ca::application * papp, mutex & mutex,StdLog *log = ::null());
 
          ~socket_handler();
 
@@ -66,7 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Log error to log class for print out / storage. */
          void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::ca::log::e_level elevel = ::ca_get_level_warning());
 
-         /** add socket instance to socket ::collection::map. Removal is always automatic. */
+         /** add socket instance to socket map. Removal is always automatic. */
          void add(socket *);
 
          /** get status of read/write/exception file descriptor set for a socket. */
@@ -174,17 +174,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void CheckSanity();
 
       public:
-         socket_map     m_sockets; ///< Active sockets ::collection::map
-         socket_map     m_add; ///< Sockets to be added to sockets ::collection::map
+         socket_map     m_sockets; ///< Active sockets map
+         socket_map     m_add; ///< Sockets to be added to sockets map
          socket_list    m_delete; ///< Sockets to be deleted (failed when add)
       protected:
-         StdLog *m_stdlog; ///< Registered log class, or NULL
+         StdLog *m_stdlog; ///< Registered log class, or ::null()
          mutex * m_pmutex; ///< Thread safety mutex
          bool m_b_use_mutex; ///< mutex correctly initialized
 
       private:
          void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-         /** remove socket from socket ::collection::map, used by socket class. */
+         /** remove socket from socket map, used by socket class. */
          void remove(socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
          fd_set m_rfds; ///< file descriptor set monitored for read events
@@ -209,11 +209,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int32_t m_resolv_id; ///< Resolver id counter
          resolv_server *m_resolver; ///< Resolver thread pointer
          port_t m_resolver_port; ///< Resolver listen port
-         ::collection::map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
+         map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
          bool m_b_enable_pool; ///< Connection pool enabled if true
          int32_t m_next_trigger_id; ///< Unique trigger id counter
-         ::collection::map<int32_t, int32_t, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
-         ::collection::map<int32_t, int32_t, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
+         map<int32_t, int32_t, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
+         map<int32_t, int32_t, map<socket *, socket *, bool, bool>, map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
          bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
       };
 

@@ -18,7 +18,7 @@ public:
    
    
    void get_data(stringa & stra);
-   count set_data(stringa & stra);
+   ::count set_data(stringa & stra);
 
 };
 

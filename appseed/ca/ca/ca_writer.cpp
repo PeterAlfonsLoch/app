@@ -37,7 +37,7 @@ namespace ca
                throw "written 0 bytes";
             lpBuf = (const void *)((const byte *)lpBuf + dwWritten);
             if(dwWritten > nCount)
-               throw "written more than requested count of bytes";
+               throw "written more than requested ::count of bytes";
             nCount -= dwWritten;
  
          }
@@ -70,7 +70,7 @@ namespace ca
       ::primitive::memory_size uiSize = 0;
 
       char * buf = (char *) malloc(uiBufSize);
-      if(buf == NULL)
+      if(buf == ::null())
          throw "no primitive::memory";
       try
       {

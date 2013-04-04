@@ -29,7 +29,7 @@ namespace colorertake5
       void setLineSource(line_source *lh);
       void setRegionHandler(RegionHandler *rh);
 
-      index  parse(index from, count num, TextParseMode mode);
+      index  parse(index from, ::count num, TextParseMode mode);
       void breakParse();
       void clearCache();
 

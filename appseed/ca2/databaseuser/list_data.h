@@ -12,7 +12,7 @@ namespace databaseuser
    public:
       
       
-      count m_iItemCount;
+      ::count m_iItemCount;
 
 
       list_data(::ca::application * papp);

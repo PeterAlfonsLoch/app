@@ -43,14 +43,14 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 
    virtual void add_document_template(document_template * ptemplate);
-   virtual count get_template_count() const;
+   virtual ::count get_template_count() const;
    virtual document_template * get_template(index index) const;
    virtual void RegisterShellFileTypes(bool bCompat);
    void UnregisterShellFileTypes();
    virtual void request(::ca::create_context * pcreatecontext); // open named file
    virtual bool save_all_modified(); // save before exit
    virtual void close_all_documents(bool bEndSession); // close documents before exiting
-   virtual count get_open_document_count();
+   virtual ::count get_open_document_count();
 
    virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
 
@@ -58,7 +58,7 @@ public:
    virtual void _001OnFileNew();
    virtual void on_file_open();
 
-   count get_document_count(); // helper to count number of total documents
+   ::count get_document_count(); // helper to ::count number of total documents
 
 
 

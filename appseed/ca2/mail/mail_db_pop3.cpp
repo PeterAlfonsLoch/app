@@ -108,7 +108,7 @@ namespace mail
 
       index iFind = -1;
 
-      base_array < bool, bool > baAlpha;
+      array < bool, bool > baAlpha;
       stringa straDate;
       stringa straDateSeparator;
 

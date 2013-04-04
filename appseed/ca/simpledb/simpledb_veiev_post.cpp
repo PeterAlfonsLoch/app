@@ -60,7 +60,7 @@ bool veiev_post::write(var rec)
 
 var veiev_post::last()
 {
-   if(m_pdataserver == NULL)
+   if(m_pdataserver == ::null())
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());
@@ -103,7 +103,7 @@ var veiev_post::current()
 
 var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 {
-   if(m_pdataserver == NULL)
+   if(m_pdataserver == ::null())
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());
@@ -129,7 +129,7 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
    }
 
 
-   count iNumRows = m_pdataset->num_rows();
+   ::count iNumRows = m_pdataset->num_rows();
    if(iNumRows <= 0)
       return false;
 
@@ -145,7 +145,7 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 
 int64_t veiev_post::get_count()
 {
-   if(m_pdataserver == NULL)
+   if(m_pdataserver == ::null())
       return 0;
 
    single_lock slDatabase(db()->GetImplCriticalSection());
@@ -155,7 +155,7 @@ int64_t veiev_post::get_count()
 //   ::sqlite::base * pdb = db()->GetImplDatabase();
 
    string strSql;
-   strSql = "select COUNT(*) as count FROM veiev_post";
+   strSql = "select COUNT(*) as ::count FROM veiev_post";
 
    slDatabase.lock();
    try

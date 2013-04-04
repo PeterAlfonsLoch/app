@@ -67,8 +67,8 @@ int32_t ZCALLBACK ferror_file_func OF((
 
 voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t mode)
 {
-    FILE* file = NULL;
-    const char* mode_fopen = NULL;
+    FILE* file = ::null();
+    const char* mode_fopen = ::null();
     errno_t err = 0;
     if ((mode & ZLIB_FILEFUNC_MODE_READWRITEFILTER)==ZLIB_FILEFUNC_MODE_READ)
         mode_fopen = "rb";
@@ -80,18 +80,18 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t 
         mode_fopen = "wb";
 
 
-    if ((filename!=NULL) && (mode_fopen != NULL))
+    if ((filename!=::null()) && (mode_fopen != ::null()))
 #ifdef MACOS
     {
        file = fopen(filename, mode_fopen);
-       if(file == NULL)
+       if(file == ::null())
           err = errno;
     }
 #else
      err = fopen_s(&file, filename, mode_fopen);
 #endif
     if(err != 0)
-       return NULL;
+       return ::null();
     else
       return file;
 }
@@ -173,5 +173,5 @@ void fill_fopen_filefunc (zlib_filefunc_def * pzlib_filefunc_def)
     pzlib_filefunc_def->zseek_file = fseek_file_func;
     pzlib_filefunc_def->zclose_file = fclose_file_func;
     pzlib_filefunc_def->zerror_file = ferror_file_func;
-    pzlib_filefunc_def->opaque = NULL;
+    pzlib_filefunc_def->opaque = ::null();
 }

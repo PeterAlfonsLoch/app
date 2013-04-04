@@ -32,9 +32,9 @@ stringa::stringa(const var & var)
 
 }
 
-stringa::stringa(const stringa &base_array)
+stringa::stringa(const stringa &array)
 {
-   operator =(base_array);
+   operator =(array);
 }
 
 stringa::~stringa()
@@ -139,9 +139,9 @@ index stringa::add_unique(const char * lpcsz)
    return string_array::add(lpcsz);
 }
 
-count stringa::add_unique(const string_array & stra)
+::count stringa::add_unique(const string_array & stra)
 {
-   count count = 0;
+   ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
    {
       if(add_unique(stra[i]) >= 0)
@@ -158,9 +158,9 @@ index stringa::add_unique_ci(const char * lpcsz)
    return string_array::add(lpcsz);
 }
 
-count stringa::add_unique_ci(const string_array & stra)
+::count stringa::add_unique_ci(const string_array & stra)
 {
-   count count = 0;
+   ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
    {
       if(add_unique_ci(stra[i]) >= 0)
@@ -254,18 +254,18 @@ index stringa::str_find_first_begins(const char * lpcsz, index find, index last)
 }
 
 
-bool stringa::contains_ci(const char * lpcsz, index find, index last, count countMin, count countMax) const
+bool stringa::contains_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first_ci(lpcsz, find, last)) >= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-bool stringa::contains(const char * lpcsz, index find, index last, count countMin, count countMax) const
+bool stringa::contains(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first(lpcsz, find, last)) >= 0)
       count++;
@@ -287,9 +287,9 @@ index stringa::remove_first(const char * lpcsz, index find, index last)
    return find;
 }
 
-count stringa::remove_ci(const char * lpcsz, index find, index last, count countMin, count countMax)
+::count stringa::remove_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
 {
-   count count = 0;
+   ::count count = 0;
    if(contains_ci(lpcsz, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
          && (find = remove_first_ci(lpcsz, find, last)) >= 0)
@@ -297,9 +297,9 @@ count stringa::remove_ci(const char * lpcsz, index find, index last, count count
    return count;
 }
 
-count stringa::remove(const char * lpcsz, index find, index last, count countMin, count countMax)
+::count stringa::remove(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
 {
-   count count = 0;
+   ::count count = 0;
    if(contains(lpcsz, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
          && (find = remove_first(lpcsz, find, last)) >= 0)
@@ -307,9 +307,9 @@ count stringa::remove(const char * lpcsz, index find, index last, count countMin
    return count;
 }
 
-count stringa::remove_ci(const string_array & stra)
+::count stringa::remove_ci(const string_array & stra)
 {
-   count count = 0;
+   ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
    {
       count += remove_ci(stra[i]);
@@ -317,9 +317,9 @@ count stringa::remove_ci(const string_array & stra)
    return count;
 }
 
-count stringa::remove(const string_array & stra)
+::count stringa::remove(const string_array & stra)
 {
-   count count = 0;
+   ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
    {
       count += remove(stra[i]);
@@ -381,9 +381,9 @@ index stringa::add_normal(const char * lpcsz)
    return string_array::add(lpcsz);
 }
 
-count stringa::remove_empty()
+::count stringa::remove_empty()
 {
-   count count = 0;
+   ::count count = 0;
    for(index i = 0; i < this->get_size();)
    {
       if(this->element_at(i).is_empty())
@@ -494,7 +494,7 @@ stringa & stringa::operator =(const int64_array & ia)
 /*int32_t stringa::CountPrefixNoCase(const char * lpcszPrefix)
 {
 string str;
-if(lpcszPrefix != NULL)
+if(lpcszPrefix != ::null())
 str = lpcszPrefix;
 if(str.is_empty())
 {
@@ -528,7 +528,7 @@ int32_t iMinLength)
 ASSERT(iLength >= iMinLength);
 remove_all();
 string str;
-if(lpcsz != NULL)
+if(lpcsz != ::null())
 str = lpcsz;
 if(str.is_empty())
 {
@@ -590,7 +590,7 @@ void stringa::write(::ca::byte_output_stream & ostream)
 
 void stringa::read(::ca::byte_input_stream & istream)
 {
-   count iSize;
+   ::count iSize;
    istream.read_arbitrary(iSize);
 
    set_size(iSize);
@@ -704,7 +704,7 @@ __STATIC UINT __read_string_length(::ca::byte_input_stream & ar)
 }
 
 
-void stringa::implode(string & str, const char * lpcszSeparator, index start, count count) const
+void stringa::implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    str.Empty();
    string strSeparator(lpcszSeparator);
@@ -739,7 +739,7 @@ string stringa::implode(const char * lpcszSeparator, index iStart, index iEnd) c
 }
 
 
-void stringa::reverse_implode(string & str, const char * lpcszSeparator, index start, count count) const
+void stringa::reverse_implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    str.Empty();
    string strSeparator(lpcszSeparator);
@@ -844,7 +844,7 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 }
 
 
-void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
+void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
 {
 
    string strPrefix(pszPrefix);
@@ -870,7 +870,7 @@ void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iSt
 
 }
 
-string stringa::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
+string stringa::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
 {
    string str;
    string strSeparator(pszSeparator);
@@ -969,9 +969,9 @@ bool stringa::preferred(const char * lpcsz)
    return move_ci(lpcsz, 0);
 }
 
-count stringa::preferred(stringa & stra)
+::count stringa::preferred(stringa & stra)
 {
-   count count = 0;
+   ::count count = 0;
    for(index i = stra.get_upper_bound(); i >= 0; i--)
    {
       if(preferred(stra[i]))
@@ -989,7 +989,7 @@ string stringa::pop(index i)
    return strRet;
 }
 
-void stringa::slice(stringa & stra, index iOffset, count count)
+void stringa::slice(stringa & stra, index iOffset, ::count count)
 {
 
    index iEnd;
@@ -1006,7 +1006,7 @@ void stringa::slice(stringa & stra, index iOffset, count count)
 
 }
 
-void stringa::remove(index iOffset, count count)
+void stringa::remove(index iOffset, ::count count)
 {
    for(index i = iOffset + count - 1; i >= iOffset; i--)
    {
@@ -1015,7 +1015,7 @@ void stringa::remove(index iOffset, count count)
 }
 
 
-void stringa::splice(const stringa & stra, index iOffset, count count)
+void stringa::splice(const stringa & stra, index iOffset, ::count count)
 {
 
    remove(iOffset, count);
@@ -1037,18 +1037,18 @@ void stringa::splice(const stringa & stra, index iOffset, stringa & straRemoved,
 }
 
 
-bool stringa::is_empty(count countMinimum)
+bool stringa::is_empty(::count countMinimum)
 {
    return this->get_size() < countMinimum;
 }
 
-bool stringa::has_elements(count countMinimum)
+bool stringa::has_elements(::count countMinimum)
 {
    return this->get_count() >= countMinimum;
 }
 
 
-count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, index last)
+::count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, index last)
 {
    if(last < 0)
       last = this->get_size() + last;
@@ -1058,7 +1058,7 @@ count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, in
       first = 0;
    index i = first;
    index iFind;
-   count count = 0;
+   ::count count = 0;
    while(true)
    {
       iFind = find_first_begins_ci(lpcsz, i, last);
@@ -1070,7 +1070,7 @@ count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, in
    }
 }
 
-count stringa::filter_begins_ci(const char * lpcsz, index first, index last)
+::count stringa::filter_begins_ci(const char * lpcsz, index first, index last)
 {
    if(last < 0)
       last = this->get_size() + last;
@@ -1080,7 +1080,7 @@ count stringa::filter_begins_ci(const char * lpcsz, index first, index last)
       first = 0;
    index i = first;
    index iFind;
-   count count = 0;
+   ::count count = 0;
    while(true)
    {
       iFind = find_first_begins_ci(lpcsz, i, last);

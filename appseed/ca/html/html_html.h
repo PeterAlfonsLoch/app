@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef ::collection::string_map < COLORREF > string_to_colorref;
+typedef string_map < COLORREF > string_to_colorref;
 
 
 namespace html

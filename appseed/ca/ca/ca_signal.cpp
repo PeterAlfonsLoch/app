@@ -8,10 +8,10 @@ namespace ca
       ca(papp)
    {
       m_iParam    = 0;
-      m_psignal   = NULL;
+      m_psignal   = ::null();
       m_bRet      = false;
       m_iIndex    = 0;
-      m_pset      = NULL;
+      m_pset      = ::null();
    }
 
 
@@ -21,12 +21,12 @@ namespace ca
       m_psignal   = psignal;
       m_bRet      = false;
       m_iIndex    = 0;
-      m_pset      = NULL;
+      m_pset      = ::null();
    }
 
    signal_object::~signal_object()
    {
-      if(m_pset != NULL)
+      if(m_pset != ::null())
       {
          delete m_pset;
       }
@@ -35,7 +35,7 @@ namespace ca
 
    ::ca::property_set & signal_object::operator()()
    {
-      if(m_pset == NULL)
+      if(m_pset == ::null())
       {
          m_pset = new ::ca::property_set(get_app());
       }
@@ -151,11 +151,11 @@ namespace ca
 
    void signal::emit(signal_object * pobj)
    {
-      if(pobj == NULL)
+      if(pobj == ::null())
       {
          for(index i = m_delegatea.get_size() - 1; i >= 0 ; i++)
          {
-            m_delegatea[i].emit(NULL);
+            m_delegatea[i].emit(::null());
          }
       }
       else

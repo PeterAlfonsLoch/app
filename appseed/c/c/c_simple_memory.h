@@ -9,10 +9,10 @@ public:
 
    
    char *            m_psz;
-   ::count           m_iAlloc;
-   ::count           m_iSize;
+   ::count m_iAlloc;
+   ::count m_iSize;
 
-   ::count           m_iPos;
+   ::count m_iPos;
    bool              m_bAttach;
 
 

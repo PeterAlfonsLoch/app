@@ -10,7 +10,7 @@ namespace xml
       ::ca::property_set(papp)
    {
 
-      m_pnodeParent = NULL;
+      m_pnodeParent = ::null();
 
    }
 

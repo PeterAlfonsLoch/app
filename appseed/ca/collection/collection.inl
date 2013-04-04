@@ -21,7 +21,7 @@ namespace gen
    namespace win
    {
       template < class TYPE, class ARG_TYPE >
-      bool CreateSafeArray(base_array < TYPE, ARG_TYPE > & ar, VARIANT * pvar, VARTYPE vt)
+      bool CreateSafeArray(array < TYPE, ARG_TYPE > & ar, VARIANT * pvar, VARTYPE vt)
       {
           pvar->vt = VT_ARRAY | vt;
           SAFEARRAYBOUND rgsabound[1];
@@ -37,7 +37,7 @@ namespace gen
       }
 
       template < class TYPE, class ARG_TYPE >
-      bool CopySafeArray(base_array < TYPE, ARG_TYPE > & ar, VARIANT * var)
+      bool CopySafeArray(array < TYPE, ARG_TYPE > & ar, VARIANT * var)
       {
       //    AFX_MANAGE_STATE(AfxGetStaticModuleState())
           ASSERT(pvar->vt == (VT_ARRAY | VT_I4));

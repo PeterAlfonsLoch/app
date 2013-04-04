@@ -6,10 +6,10 @@ namespace ca
 
    graphics::graphics()
    {
-      m_puistrcontext         = NULL;
-      m_pdrawcontext          = NULL;
-      m_pdibAlphaBlend        = NULL;
-      m_pjob                  = NULL;
+      m_puistrcontext         = ::null();
+      m_pdrawcontext          = ::null();
+      m_pdibAlphaBlend        = ::null();
+      m_pjob                  = ::null();
       m_crColor               = RGB(0, 0, 0);
       m_dFontFactor           = 1.0;
    }
@@ -147,7 +147,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-/*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
+/*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for ::null() handles
    {
       UNREFERENCED_PARAMETER(hObject);
       throw interface_only_exception(get_app());
@@ -2461,7 +2461,7 @@ namespace ca
    memory_graphics::memory_graphics(::ca::application * papp) :
       ::ca::graphics_sp(papp)
    {
-      ::ca::graphics_sp::m_p->CreateCompatibleDC(NULL);
+      ::ca::graphics_sp::m_p->CreateCompatibleDC(::null());
    }
 
    memory_graphics::~memory_graphics()

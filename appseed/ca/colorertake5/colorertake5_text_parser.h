@@ -48,7 +48,7 @@ public:
   /**
    * Sets root scheme (filetype) of the text to parse.
    * @param type file_type, which contains reference to
-   * it's baseScheme. If parameter is NULL, there will
+   * it's baseScheme. If parameter is ::null(), there will
    * be no any kind of parse over the text.
    */
   virtual void setFileType(file_type *type) = 0;
@@ -73,7 +73,7 @@ public:
    * @param num   Number of lines to parse
    * @param mode  Parsing mode.
    */
-  virtual index parse(index from, count num, TextParseMode mode) = 0;
+  virtual index parse(index from, ::count num, TextParseMode mode) = 0;
 
   /**
    * Performs break of parsing process from external thread.

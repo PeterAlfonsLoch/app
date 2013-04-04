@@ -46,7 +46,7 @@ public:
 
    //bool              m_bFullScreen;
 
-// Generated message ::collection::map functions
+// Generated message map functions
 protected:
 
 

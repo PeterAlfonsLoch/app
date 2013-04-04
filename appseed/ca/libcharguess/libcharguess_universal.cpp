@@ -33,17 +33,17 @@ nsUniversalDetector::nsUniversalDetector()
   mDone = false;
   mBestGuess = -1;   //illegal value as signal
   mInTag = false;
-  mEscCharSetProber = NULL;
+  mEscCharSetProber = ::null();
 
   mStart = true;
-  mDetectedCharset = NULL;
+  mDetectedCharset = ::null();
   mGotData = false;
   mInputState = ePureAscii;
   mLastChar = '\0';
 
   uint32_t i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
-    mCharSetProbers[i] = NULL;
+    mCharSetProbers[i] = ::null();
 }
 
 nsUniversalDetector::~nsUniversalDetector() 
@@ -62,7 +62,7 @@ void nsUniversalDetector::Reset()
   mInTag = false;
 
   mStart = true;
-  mDetectedCharset = NULL;
+  mDetectedCharset = ::null();
   mGotData = false;
   mInputState = ePureAscii;
   mLastChar = '\0';
@@ -148,15 +148,15 @@ void nsUniversalDetector::HandleData(const char* aBuf, uint32_t aLen)
         //kill mEscCharSetProber if it is active
         if (mEscCharSetProber) {
           delete mEscCharSetProber;
-          mEscCharSetProber = NULL;
+          mEscCharSetProber = ::null();
         }
 
         //start multibyte and singlebyte charset prober
-        if (NULL == mCharSetProbers[0])
+        if (::null() == mCharSetProbers[0])
           mCharSetProbers[0] = new nsMBCSGroupProber;
-        if (NULL == mCharSetProbers[1])
+        if (::null() == mCharSetProbers[1])
           mCharSetProbers[1] = new nsSBCSGroupProber;
-        if (NULL == mCharSetProbers[2])
+        if (::null() == mCharSetProbers[2])
           mCharSetProbers[2] = new nsLatin1Prober; 
       }
     }
@@ -177,7 +177,7 @@ void nsUniversalDetector::HandleData(const char* aBuf, uint32_t aLen)
   switch (mInputState)
   {
   case eEscAscii:
-    if (NULL == mEscCharSetProber)
+    if (::null() == mEscCharSetProber)
       mEscCharSetProber = new nsEscCharSetProber;
     st = mEscCharSetProber->HandleData(aBuf, aLen);
     if (st == eFoundIt)
@@ -272,5 +272,5 @@ const char* nsUniversalDetector::GetCharset()
    if (mDone == true)
       return (mDetectedCharset);
    else
-      return NULL;
+      return ::null();
 }

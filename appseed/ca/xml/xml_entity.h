@@ -18,7 +18,7 @@ namespace xml
    };
 
    class CLASS_DECL_ca entities : 
-      public base_array < entity >
+      public array < entity >
    {
    public:
       

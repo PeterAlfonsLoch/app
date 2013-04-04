@@ -37,7 +37,7 @@ namespace ca
       onretry.m_dwTimeout     = dwTimeout;
       onretry.m_dwStartTime   = ::get_tick_count();
 
-      const char * pszEnd = NULL;
+      const char * pszEnd = ::null();
 
       vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
@@ -49,7 +49,7 @@ namespace ca
 
 #else
 
-      uint32_t dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process_section::s_on_retry, (uint_ptr) &onretry);
+      uint32_t dwExitCode = call_sync(strBin, pszEnd, ::null(), iShow, -1, 484, &process_section::s_on_retry, (uint_ptr) &onretry);
 
       return dwExitCode;
 
@@ -78,13 +78,13 @@ namespace ca
    bool process_section::launch(const char * pszCmdLine, int32_t iShow)
    {
 
-      const char * pszEnd = NULL;
+      const char * pszEnd = ::null();
 
       vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
 #ifndef METROWIN
 
-      int32_t iOk = call_async(strBin, pszEnd, NULL, iShow);
+      int32_t iOk = call_async(strBin, pszEnd, ::null(), iShow);
 
       return iOk != 0;
 

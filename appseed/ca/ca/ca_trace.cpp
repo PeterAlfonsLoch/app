@@ -42,7 +42,7 @@ namespace ca
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
          /*      const category *pCategory;
-         trace_module * pmodule = NULL;
+         trace_module * pmodule = ::null();
          static const int32_t nCount = 1024;
          CHAR szBuf[nCount] = {'\0'};
          int32_t nLen = 0;*/
@@ -87,8 +87,8 @@ namespace ca
 
          ::OutputDebugStringW(::ca::international::utf8_to_unicode(str));
 
-         /*if(pmodule != NULL)
-         pmodule->DebugReport(_CRT_WARN, NULL, 0, NULL, pszFormat, ptr);
+         /*if(pmodule != ::null())
+         pmodule->DebugReport(_CRT_WARN, ::null(), 0, ::null(), pszFormat, ptr);
          else
          OutputDebugStringA(szBuf);*/
       }

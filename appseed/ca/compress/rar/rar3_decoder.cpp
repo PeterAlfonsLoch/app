@@ -159,7 +159,7 @@ namespace libcompress
          for (int32_t i = 0; i < _tempFilters.get_size(); i++)
          {
             temp_filter *filter = _tempFilters[i];
-            if (filter == NULL)
+            if (filter == ::null())
                continue;
             if (filter->NextWindow)
             {
@@ -192,7 +192,7 @@ namespace libcompress
                   while (i + 1 < _tempFilters.get_size())
                   {
                      temp_filter *nextFilter = _tempFilters[i + 1];
-                     if (nextFilter == NULL || nextFilter->BlockStart != blockStart ||
+                     if (nextFilter == ::null() || nextFilter->BlockStart != blockStart ||
                         nextFilter->BlockSize != outBlockRef.Size || nextFilter->NextWindow)
                         break;
                      _vm.SetMemory(0, _vm.GetDataPointer(outBlockRef.offset), outBlockRef.Size);
@@ -208,7 +208,7 @@ namespace libcompress
                   for (int32_t j = i; j < _tempFilters.get_size(); j++)
                   {
                      temp_filter *filter = _tempFilters[j];
-                     if (filter != NULL && filter->NextWindow)
+                     if (filter != ::null() && filter->NextWindow)
                         filter->NextWindow = false;
                   }
                   _wrPtr = writtenBorder;
@@ -274,14 +274,14 @@ namespace libcompress
          for (i = 0; i < _tempFilters.get_size(); i++)
          {
             _tempFilters[i - numEmptyItems] = _tempFilters[i];
-            if (_tempFilters[i] == NULL)
+            if (_tempFilters[i] == ::null())
                numEmptyItems++;
             if (numEmptyItems > 0)
-               _tempFilters[i] = NULL;
+               _tempFilters[i] = ::null();
          }
          if (numEmptyItems == 0)
          {
-            _tempFilters.add(NULL);
+            _tempFilters.add(::null());
             numEmptyItems = 1;
          }
          temp_filter *tempFilter = new temp_filter;
@@ -852,7 +852,7 @@ namespace libcompress
       {
          try
          {
-            if (inSize == NULL || outSize == NULL)
+            if (inSize == ::null() || outSize == ::null())
                return E_INVALIDARG;
 
             if (_vmData == 0)

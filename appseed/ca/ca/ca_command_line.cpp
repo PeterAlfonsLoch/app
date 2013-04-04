@@ -19,8 +19,8 @@ namespace ca
       m_bRunAutomated   = FALSE;
       m_ecommand        = command_file_new;
       m_iEdge           = 0;
-      m_puiParent       = NULL;
-      m_pbiasCreate     = NULL;
+      m_puiParent       = ::null();
+      m_pbiasCreate     = ::null();
    }
 
    command_line::~command_line()

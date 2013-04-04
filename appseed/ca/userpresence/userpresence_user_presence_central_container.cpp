@@ -7,7 +7,7 @@ namespace userpresence
 
    presence_central_container::presence_central_container()
    {
-      m_pcentral = NULL;
+      m_pcentral = ::null();
       m_bUserPresenceFeatureRequired = false;
    }
       
@@ -31,14 +31,14 @@ namespace userpresence
 
       m_pcentral = new presence_central(get_app());
 
-      if(m_pcentral == NULL)
+      if(m_pcentral == ::null())
          throw memory_exception(get_app());
 
 
       if(!m_pcentral->initialize())
       {
          delete m_pcentral;
-         m_pcentral = NULL;
+         m_pcentral = ::null();
          return false;
       }
 
@@ -48,7 +48,7 @@ namespace userpresence
    bool presence_central_container::is_initialized()
    {
 
-      if(m_pcentral == NULL)
+      if(m_pcentral == ::null())
          return false;
 
       return m_pcentral->is_initialized();
@@ -63,14 +63,14 @@ namespace userpresence
          return true;
       }
 
-      if(m_pcentral == NULL)
+      if(m_pcentral == ::null())
          return true;
 
       m_pcentral->finalize();
 
       delete m_pcentral;
 
-      m_pcentral = NULL;
+      m_pcentral = ::null();
 
       return true;
    }

@@ -7,7 +7,7 @@ namespace html
 
    file::file()
    {
-      m_puistrcontext = NULL;
+      m_puistrcontext = ::null();
    }
 
    ::user::str_context * file::str_context()

@@ -93,7 +93,7 @@ namespace userbase
       rString.ReleaseBuffer();
    }
 
-   //count combo_box::get_count()
+   //::count combo_box::get_count()
      // { ASSERT(IsWindow()); return (count)send_message( CB_GETCOUNT, 0, 0); }
    //index combo_box::get_cur_sel()
      // { ASSERT(IsWindow()); return (index)send_message( CB_GETCURSEL, 0, 0); }
@@ -423,7 +423,7 @@ namespace userbase
 
    }
 
-   count combo_box::InitStorage(count nItems, UINT nBytes)
+   ::count combo_box::InitStorage(::count nItems, UINT nBytes)
    {
 
       //ASSERT(IsWindow());

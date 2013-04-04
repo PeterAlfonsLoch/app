@@ -1313,7 +1313,7 @@ void tinyjs::trace() {
 
 void tinyjs::execute(const string &code) {
     CScriptLex *oldLex = l;
-    base_array<CScriptVar*> oldScopes = scopes;
+    array<CScriptVar*> oldScopes = scopes;
     l = new CScriptLex(code);
 #ifdef TINYJS_CALL_STACK
     call_stack.clear();
@@ -1343,7 +1343,7 @@ void tinyjs::execute(const string &code) {
 
 CScriptVarLink tinyjs::evaluateComplex(const string &code) {
     CScriptLex *oldLex = l;
-    base_array<CScriptVar*> oldScopes = scopes;
+    array<CScriptVar*> oldScopes = scopes;
 
     l = new CScriptLex(code);
 #ifdef TINYJS_CALL_STACK
@@ -1481,7 +1481,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
     }
     l->match(')');
     // setup a return variable
-    CScriptVarLink *returnVar = NULL;
+    CScriptVarLink *returnVar = ::null();
     // execute function!
     // add the function's execute space to the symbol table so we can recurse
     CScriptVarLink *returnVarLink = functionRoot->addChild(TINYJS_RETURN_VAR);
@@ -2194,7 +2194,7 @@ CScriptVarLink *tinyjs::findInScopes(const string &childName) {
       CScriptVarLink *v = scopes[s]->findChild(childName);
       if (v) return v;
     }
-    return NULL;
+    return ::null();
 
 }
 

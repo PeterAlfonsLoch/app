@@ -36,19 +36,19 @@ namespace visual
 
    visual::visual()
    {
-      m_pimaging        = NULL;
-      m_pfontcentral    = NULL;
-      m_pvisualapi      = NULL;
+      m_pimaging        = ::null();
+      m_pfontcentral    = ::null();
+      m_pvisualapi      = ::null();
    }
 
    visual::~visual()
    {
-      if(m_pimaging != NULL)
+      if(m_pimaging != ::null())
       {
          delete m_pimaging;
       }
 
-      if(m_pvisualapi != NULL)
+      if(m_pvisualapi != ::null())
       {
          delete m_pvisualapi;
       }
@@ -88,7 +88,7 @@ namespace visual
 
       m_pfontcentral = new class font_central(get_app());
 
-      if(m_pfontcentral == NULL)
+      if(m_pfontcentral == ::null())
          return false;
 
       if(!m_pfontcentral->Initialize())
@@ -96,7 +96,7 @@ namespace visual
 
       m_pimaging = new class imaging(get_app());
 
-      if(m_pimaging == NULL)
+      if(m_pimaging == ::null())
          throw memory_exception(get_app());
       
       return true;
@@ -181,7 +181,7 @@ namespace visual
       }
       else
       {
-         return NULL;
+         return ::null();
       }
    }
 
@@ -194,7 +194,7 @@ namespace visual
       }
       else
       {
-         return NULL;
+         return ::null();
       }
    }
 
@@ -202,7 +202,7 @@ namespace visual
    cursor * visual::get_cursor(e_cursor ecursor)
    {
 
-      cursor * pcursor = NULL;
+      cursor * pcursor = ::null();
 
       if(m_cursormap.Lookup(ecursor, pcursor))
       {
@@ -227,7 +227,7 @@ namespace visual
 
 
 
-   count visual::set_cursor_set_from_matter(const char * pszMatter)
+   ::count visual::set_cursor_set_from_matter(const char * pszMatter)
    {
       return set_cursor_set_from_dir(
          System.dir().name(
@@ -235,9 +235,9 @@ namespace visual
                System.dir().path(pszMatter, "arrow.png"))));
    }
 
-   count visual::set_cursor_set_from_dir(const char * pszDir)
+   ::count visual::set_cursor_set_from_dir(const char * pszDir)
    {
-      count count = 0;
+      ::count count = 0;
       if(set_cursor_file(::visual::cursor_arrow, System.dir().path(pszDir, "arrow.png")))
       {
          count++;

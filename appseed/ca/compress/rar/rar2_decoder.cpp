@@ -308,7 +308,7 @@ namespace libcompress
       HRESULT decoder::CodeReal(::ca::reader *inStream, ::ca::writer *outStream,
          const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
-         if (inSize == NULL || outSize == NULL)
+         if (inSize == ::null() || outSize == ::null())
             return E_INVALIDARG;
 
          if (!m_OutWindowStream.create(kHistorySize))

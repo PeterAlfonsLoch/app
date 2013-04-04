@@ -7,8 +7,8 @@ namespace fontopus
 
    fontopus::fontopus()
    {
-      m_puser                    = NULL;
-      m_pthreadCreatingUser      = NULL;
+      m_puser                    = ::null();
+      m_pthreadCreatingUser      = ::null();
    }  
 
 
@@ -38,14 +38,14 @@ namespace fontopus
    user * fontopus::create_current_user()
    {
       ::ca::property_set set(get_app());
-      if(m_puser == NULL)
+      if(m_puser == ::null())
       {
          int32_t iRetry = 3;
-         ::fontopus::user * puser = NULL;
+         ::fontopus::user * puser = ::null();
          while(iRetry > 0)
          {
             puser = login(set);
-            if(puser != NULL)
+            if(puser != ::null())
                break;
             //bool bOk = false;
             //string strSection;
@@ -56,17 +56,17 @@ namespace fontopus
             //::DeleteFile(System.dir().path(strDir, "00002"));
             iRetry--;
          }
-         if(puser == NULL)
+         if(puser == ::null())
          {
-            //System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
+            //System.simple_message_box(::null(), "<h1>You have not logged in!</h1><h2>Exiting</h2>");
             TRACE("<error>You have not logged in! Exiting!</error>");
             throw string("You have not logged in! Exiting!");
-            return NULL;
+            return ::null();
          }
          m_puser = create_user(puser);
          System.userset().add(m_puser);
 
-         if(m_puser != NULL && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
+         if(m_puser != ::null() && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
             && !::ca::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
             && !m_papp->m_pappThis->is_serviceable())
          {
@@ -84,11 +84,11 @@ namespace fontopus
    user * fontopus::login(::ca::property_set & set)
    {
       /*::ca::fontopus * papp;
-      if(m_puiInitialPlaceHolderContainer != NULL)
+      if(m_puiInitialPlaceHolderContainer != ::null())
       {
          papp = m_puiInitialPlaceHolderContainer->m_papp;
       }
-      else if(System.m_puiInitialPlaceHolderContainer != NULL)
+      else if(System.m_puiInitialPlaceHolderContainer != ::null())
       {
          papp = System.m_puiInitialPlaceHolderContainer->m_papp;
       }
@@ -98,9 +98,9 @@ namespace fontopus
       }*/
       //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
 
-      user * puser = NULL;
+      user * puser = ::null();
 
-      if(m_papp->m_pappThis->m_psession != NULL && m_papp->m_pappThis->m_psession->m_pbergedge != NULL)
+      if(m_papp->m_pappThis->m_psession != ::null() && m_papp->m_pappThis->m_psession->m_pbergedge != ::null())
       {
        
          puser = m_papp->m_pappThis->m_psession->m_pbergedgeInterface->m_pfontopus->login(set);
@@ -123,11 +123,11 @@ namespace fontopus
    bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
       /*::ca::fontopus * papp;
-      if(m_puiInitialPlaceHolderContainer != NULL)
+      if(m_puiInitialPlaceHolderContainer != ::null())
       {
          papp = m_puiInitialPlaceHolderContainer->m_papp;
       }
-      else if(System.m_puiInitialPlaceHolderContainer != NULL)
+      else if(System.m_puiInitialPlaceHolderContainer != ::null())
       {
          papp = System.m_puiInitialPlaceHolderContainer->m_papp;
       }
@@ -138,7 +138,7 @@ namespace fontopus
       //class validate authuser(papp, psz);
       class validate authuser(m_papp->m_pappThis, psz);
       validate::auth * pauth = authuser.get_auth();
-      if(pauth == NULL)
+      if(pauth == ::null())
          return false;
       else
       {
@@ -151,7 +151,7 @@ namespace fontopus
 
    void fontopus::logout()
    {
-      if(m_puser != NULL)
+      if(m_puser != ::null())
       {
          try
          {
@@ -169,7 +169,7 @@ namespace fontopus
          }
          delete m_puser;
       }
-      m_puser = NULL;
+      m_puser = ::null();
    }
 
 
@@ -205,12 +205,12 @@ namespace fontopus
       
       user * puserNew = create_user(m_puser);
 
-      if(puserNew == NULL)
+      if(puserNew == ::null())
       {
          
          delete m_puser;
 
-         m_puser = NULL;
+         m_puser = ::null();
 
       }
 
@@ -224,42 +224,42 @@ namespace fontopus
    {
       if(m_papp->m_pappThis->is_session())
       {
-         if(m_puser == NULL)
+         if(m_puser == ::null())
          {
             if(m_pthreadCreatingUser == ::ca::get_thread())
-               return NULL;
-            if(m_pthreadCreatingUser != NULL)
+               return ::null();
+            if(m_pthreadCreatingUser != ::null())
             {
-               while(m_pthreadCreatingUser != NULL)
+               while(m_pthreadCreatingUser != ::null())
                {
                   Sleep(84);
                }
-               if(m_puser != NULL)
+               if(m_puser != ::null())
                   return m_puser;
-               return NULL;
+               return ::null();
             }
-            keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), NULL, true);
+            keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), ::null(), true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {
                delete puser;
-               m_puser = NULL;
-               return NULL;
+               m_puser = ::null();
+               return ::null();
             }
             m_puser = puser;
          }
-         if(m_puser != NULL)
+         if(m_puser != ::null())
          {
-            if(m_puser->m_pifs == NULL)
+            if(m_puser->m_pifs == ::null())
             {
                m_puser->create_ifs();
             }
          }
          return m_puser;
       }
-      else if(m_papp == NULL || m_papp->m_psession == NULL)
+      else if(m_papp == ::null() || m_papp->m_psession == ::null())
       {
-         return NULL;
+         return ::null();
       }
       else
       {
@@ -299,9 +299,9 @@ namespace fontopus
 
          ::ca::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
-         if(papp == NULL)
+         if(papp == ::null())
          {
-            Application.simple_message_box(NULL, "deepfish subsystem - responsible for running background applications - could not be started");
+            Application.simple_message_box(::null(), "deepfish subsystem - responsible for running background applications - could not be started");
          }
 
       }

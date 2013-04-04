@@ -53,7 +53,7 @@
 //	    prefix		prefix to identify film roll
 // 				range: 0 - 999999
 //
-//	    count		count, increments once every perfsPerCount
+//	    count count, increments once every perfsPerCount
 // 				perforations (see below)
 // 				range: 0 - 9999
 //

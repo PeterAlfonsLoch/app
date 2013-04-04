@@ -82,7 +82,7 @@ namespace fs
       string strUrl;
 
 
-      if(m_varFile["xmledit"].ca < ::primitive::memory_file > () != NULL)
+      if(m_varFile["xmledit"].ca < ::primitive::memory_file > () != ::null())
       {
 
          strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))

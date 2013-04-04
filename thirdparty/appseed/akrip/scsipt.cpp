@@ -66,7 +66,7 @@ static bool bUsingSCSIPT = FALSE;
 
 /*
  * Initialization of SCSI Pass Through Interface code.  Responsible for
- * setting up the base_array of SCSI devices.  This code will be a little
+ * setting up the array of SCSI devices.  This code will be a little
  * different from the normal code -- it will query each drive letter from
  * C: through Z: to see if it is  a CD.  When we identify a CD, we then 
  * send CDB with the INQUIRY command to it -- NT will automagically fill in
@@ -399,7 +399,7 @@ uint32_t SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb )
 
 
 /*
- * Scans through the drive base_array and returns DTYPE_CDROM type for all items
+ * Scans through the drive array and returns DTYPE_CDROM type for all items
  * found, and DTYPE_UNKNOWN for all others.
  */
 uint32_t SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb )
@@ -422,7 +422,7 @@ uint32_t SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb )
 
 
 /*
- * Looks up the index in the drive base_array for a given ha:tgt:lun triple
+ * Looks up the index in the drive array for a given ha:tgt:lun triple
  */
 BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun )
 {

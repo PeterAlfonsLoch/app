@@ -36,7 +36,7 @@ index var_array::add(var var)
 {
    if(var.get_type() != var::type_empty_argument)
    {
-      return base_array < class var >::add(var);
+      return array < class var >::add(var);
    }
    return -1;
 }

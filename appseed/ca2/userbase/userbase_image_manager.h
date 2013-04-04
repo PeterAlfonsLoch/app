@@ -22,7 +22,7 @@ namespace userbase
       image_list * m_pimagelist;
       image_list * m_pimagelistDisable;
       ///CBaseNumericDiscreteRelation < UINT, UINT, UINT, UINT > m_rel;
-      ::collection::map < id, id, UINT, UINT > m_rel;
+      map < id, id, UINT, UINT > m_rel;
 
    };
 

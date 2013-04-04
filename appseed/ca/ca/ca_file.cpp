@@ -47,7 +47,7 @@ namespace ca
 
    file* file::Duplicate() const
    {
-      return NULL;
+      return ::null();
    }
 
    bool file::open(const char * lpszFileName, UINT nOpenFlags)
@@ -169,7 +169,7 @@ namespace ca
 
 
    /*void vfxThrowFileException(int32_t cause, LONG lOsError,
-   //   const char * lpszFileName /* == NULL */
+   //   const char * lpszFileName /* == ::null() */
    /*{
    #ifdef DEBUG
       const char * lpsz;
@@ -178,7 +178,7 @@ namespace ca
       else
          lpsz = szUnknown;
       TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
-         lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
+         lpsz, (lpszFileName == ::null()) ? L"Unknown" : lpszFileName, lOsError);
    #endif
       THROW(new file_exception(cause, lOsError, lpszFileName));
    }*/

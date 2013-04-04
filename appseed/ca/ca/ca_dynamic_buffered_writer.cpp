@@ -7,7 +7,7 @@ namespace ca
    {
       addSize += _size;
       if (addSize < _size)
-         return NULL;
+         return ::null();
       _buffer.EnsureCapacity(addSize);
       return (byte *)_buffer + _size;
    }

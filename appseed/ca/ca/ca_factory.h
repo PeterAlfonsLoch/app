@@ -67,7 +67,7 @@ public:
    virtual void discard(::ca::ca * pca)
    {
       TYPE * ptype = (TYPE *) pca->m_pthis;
-      if(ptype == NULL)
+      if(ptype == ::null())
          return;
       try
       {
@@ -114,8 +114,8 @@ public:
    virtual ::ca::ca * create(::ca::application * papp)
    {
 
-      if(m_pallocator == NULL)
-         return NULL;
+      if(m_pallocator == ::null())
+         return ::null();
 
       void * pv = m_pallocator->alloc();
 #undef new
@@ -170,7 +170,7 @@ public:
 
 
    bool                             m_bSimpleFactoryRequest;
-   raw_array < ::ca::type_info * >  m_typeinfoptraSimpleFactoryRequest;
+   array < ::ca::type_info * >  m_typeinfoptraSimpleFactoryRequest;
 
 
 
@@ -272,9 +272,9 @@ public:
 private:
    mutex *                                                     m_pmutex;
    strid_array *                                               m_pstrida;
-   base_array < factory_item_base *, factory_item_base * >     m_itemptra;
+   array < factory_item_base *, factory_item_base * >     m_itemptra;
    strid_array *                                               m_pstridaAllocator;
-   base_array < factory_allocator *, factory_allocator * >     m_itemptraAllocator;
+   array < factory_allocator *, factory_allocator * >     m_itemptraAllocator;
 };
 
 

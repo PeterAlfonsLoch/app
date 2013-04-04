@@ -132,7 +132,7 @@ namespace ca
 
    }
 
-   void byte_input_stream::read_arbitrary(void * p, count nMax)
+   void byte_input_stream::read_arbitrary(void * p, ::count nMax)
    {
 
       byte b;

@@ -1,10 +1,10 @@
 #pragma once
 
 class CLASS_DECL_ca rect_array :
-   public raw_array < rect >
+   public array < rect >
 {
 public:
-   using raw_array < rect >::add;
+   using array < rect >::add;
    void add(LPCRECT lpcrect);
    void intersect(LPCRECT lpcrect);
    void get_box(LPRECT lprect);

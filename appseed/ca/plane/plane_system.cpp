@@ -19,17 +19,17 @@ namespace plane
 
 #ifdef METROWIN
       m_window                                  = nullptr;
-      m_pmutexDc                                = NULL;
-      m_pdc                                     = NULL;
+      m_pmutexDc                                = ::null();
+      m_pdc                                     = ::null();
 #endif
       m_psystem                                 = this;
       set_app(this);
 
 
-      if(papp == NULL)
+      if(papp == ::null())
       {
 
-         oprop("parent_system") = (::ca::ca *) NULL;
+         oprop("parent_system") = (::ca::ca *) ::null();
 
       }
       else
@@ -64,7 +64,7 @@ namespace plane
 
 
 /*
-      if(psystemParent == NULL)
+      if(psystemParent == ::null())
       {
 
          m_peengine                                = new ::exception::engine(this);
@@ -79,7 +79,7 @@ namespace plane
 */
 
 
-      if(::get_heap_mutex() == NULL)
+      if(::get_heap_mutex() == ::null())
       {
 
          ::set_heap_mutex(new mutex(this));
@@ -116,8 +116,8 @@ namespace plane
       m_compress.set_app(this);
       m_file.set_app(this);
 
-      m_pmachineeventcentral     = NULL;
-      //m_pfactory                 = NULL;
+      m_pmachineeventcentral     = ::null();
+      //m_pfactory                 = ::null();
 
 
 
@@ -132,11 +132,11 @@ namespace plane
       m_bProcessInitializeResult = false;
 
       m_bLibCharGuess            = false;
-      m_puserstr                 = NULL;
+      m_puserstr                 = ::null();
 
-      m_pcube                    = NULL;
+      m_pcube                    = ::null();
 
-      m_pparserfactory           = NULL;
+      m_pparserfactory           = ::null();
 
       m_bLicense                 = false;
 
@@ -227,7 +227,7 @@ namespace plane
          return false;
       }
 
-      if(m_pmachineeventcentral == NULL)
+      if(m_pmachineeventcentral == ::null())
       {
 
          m_pmachineeventcentral = new ::machine_event_central(this);
@@ -240,7 +240,7 @@ namespace plane
 
 #ifndef MACOS
 
-      if(m_pparserfactory == NULL)
+      if(m_pparserfactory == ::null())
       {
 
 
@@ -268,7 +268,7 @@ namespace plane
 
 
 
-      m_spfilehandler(new ::filehandler::handler(this));
+      m_spfilehandler = new ::filehandler::handler(this);
 
 
       //m_spfilesystem.create(this);
@@ -284,7 +284,7 @@ namespace plane
          return false;
 
 
-      if(fontopus().create_system_user("system") == NULL)
+      if(fontopus().create_system_user("system") == ::null())
          return false;
 
       System.factory().cloneable_large < ::ca::font_sp >();
@@ -297,7 +297,7 @@ namespace plane
 //      System.factory().creatable < ::ca::log >(System.type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
-      if(m_puserstr == NULL)
+      if(m_puserstr == ::null())
          return false;
 
       if(!str().initialize())
@@ -357,7 +357,7 @@ namespace plane
    colorertake5::ParserFactory & system::parser_factory()
    {
 
-      if(m_pparserfactory == NULL)
+      if(m_pparserfactory == ::null())
       {
 
          m_pparserfactory = new colorertake5::ParserFactory(this);
@@ -372,7 +372,7 @@ namespace plane
    ::exception::engine & system::eengine()
    {
 
-      static ::exception::engine s_eengine(NULL);
+      static ::exception::engine s_eengine(::null());
 
       return s_eengine;
 
@@ -388,7 +388,7 @@ namespace plane
       string strLibraryId;
       stringa straTitle;
 
-      Application.dir().ls_pattern(System.dir().ca2module(), "*.*", NULL,& straTitle);
+      Application.dir().ls_pattern(System.dir().ca2module(), "*.*", ::null(),& straTitle);
 
       for(int32_t i = 0; i < straTitle.get_count(); i++)
       {
@@ -434,7 +434,7 @@ namespace plane
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::ca::library library(NULL);
+      ::ca::library library(::null());
 
       if(!library.open(this, pszLibrary))
          return false;
@@ -509,7 +509,7 @@ namespace plane
       if(!::planebase::application::initialize3())
          return false;
 
-      if(m_phistory == NULL)
+      if(m_phistory == ::null())
       {
          m_phistory = new os_history(this);
       }
@@ -572,12 +572,12 @@ namespace plane
          {
             try
             {
-               if(appptra[i]->is_bergedge() || appptra[i]->is_session() || appptra[i]->is_system() || appptra[i]->is_cube())
+               if(appptra[i].is_bergedge() || appptra[i].is_session() || appptra[i].is_system() || appptra[i].is_cube())
                {
                   appptra.remove_at(i);
                   continue;
                }
-               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix().m_varTopicQuery["app"].get_string())
+               else if(appptra[i].is_serviceable() && appptra[i].m_strAppId != directrix().m_varTopicQuery["app"].get_string())
                {
                   appptra.remove_at(i);
                   continue;
@@ -608,11 +608,11 @@ namespace plane
 
       try
       {
-         if(m_ptwf != NULL)
+         if(m_ptwf != ::null())
          {
 
             m_ptwf->m_bRun = false;
-            if(m_ptwf->m_p != NULL)
+            if(m_ptwf->m_p != ::null())
             {
                m_ptwf->m_p->m_bRun = false;
             }
@@ -627,7 +627,7 @@ namespace plane
       {
          try
          {
-            m_serviceptra[i]->Stop(0);
+            m_serviceptra(i)->Stop(0);
          }
          catch(...)
          {
@@ -636,10 +636,10 @@ namespace plane
 
       try
       {
-         if(m_ptwf != NULL)
+         if(m_ptwf != ::null())
          {
             m_ptwf->twf_stop();
-            m_ptwf = NULL;
+            m_ptwf = ::null();
          }
       }
       catch(...)
@@ -650,7 +650,7 @@ namespace plane
       {
          try
          {
-            m_serviceptra[i]->Stop((1984 + 1977) * 2);
+            m_serviceptra(i)->Stop((1984 + 1977) * 2);
          }
          catch(...)
          {
@@ -661,7 +661,7 @@ namespace plane
 
       try
       {
-         if(m_pfactory != NULL)
+         if(m_pfactory != ::null())
          {
 
             m_pfactory->enable_simple_factory_request(false);
@@ -696,11 +696,11 @@ namespace plane
 
 /*      try
       {
-         if(m_ptwf != NULL)
+         if(m_ptwf != ::null())
          {
             m_ptwf->twf_stop();
             ::ca::del(m_ptwf);
-            m_ptwf = NULL;
+            m_ptwf = ::null();
          }
       }
       catch(...)
@@ -743,7 +743,7 @@ namespace plane
 
       try
       {
-         if(m_pmachineeventcentral != NULL)
+         if(m_pmachineeventcentral != ::null())
          {
             m_pmachineeventcentral->set_run(false);
          }
@@ -771,16 +771,16 @@ namespace plane
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
       ::ca::ca * pobj = Sys(papp).factory().create(papp, info);
-      if(pobj != NULL)
+      if(pobj != ::null())
          return pobj;
       on_allocation_error(papp, info);
-      return NULL;
+      return ::null();
    }
 
    ::ca::ca * system::clone()
    {
       // by the time, it is not possible to clone a system
-      return NULL;
+      return ::null();
    }
 
    ::ca::ca * system::clone(::ca::ca * pobj)
@@ -791,12 +791,12 @@ namespace plane
 
    plane::session * system::query_session(index iEdge)
    {
-      plane::session * pbergedge = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
+      plane::session * pbergedge = ::null();
+      if(m_pbergedgemap == ::null())
+         return ::null();
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
       {
-         return NULL;
+         return ::null();
       }
       return pbergedge;
    }
@@ -804,14 +804,14 @@ namespace plane
 
    plane::session * system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      plane::session * pbergedge = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
+      plane::session * pbergedge = ::null();
+      if(m_pbergedgemap == ::null())
+         return ::null();
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
       {
          pbergedge = dynamic_cast < ::plane::session * > (create_application("application", "session", true, pbiasCreation));
-         if(pbergedge == NULL)
-            return NULL;
+         if(pbergedge == ::null())
+            return ::null();
          pbergedge->m_iEdge = iEdge;
          m_pbergedgemap->set_at(iEdge, pbergedge);
       }
@@ -962,7 +962,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()[i]);
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()(i).m_p);
          papp->load_string_table();
       }
 
@@ -975,7 +975,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()[i]);
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()(i).m_p);
          papp->set_locale(pszLocale, bUser);
       }
 
@@ -988,7 +988,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()[i]);
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (appptra()(i).m_p);
          papp->set_schema(pszStyle, bUser);
       }
 
@@ -1007,7 +1007,7 @@ namespace plane
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
          ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
-         if(pmutex == NULL)
+         if(pmutex == ::null())
          {
 
             string strApp = pszAppName;
@@ -1018,7 +1018,7 @@ namespace plane
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
 
-            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), ::null(), dir().path(get_module_folder(), strApp), strParameters, ::null(), SW_SHOW);
 
             launcher.execute();
 
@@ -1040,7 +1040,7 @@ namespace plane
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
          ::mutex * pmutex = mutex::open_mutex(this, get_global_mutex_name(pszAppName));
-         if(pmutex == NULL)
+         if(pmutex == ::null())
          {
             string strApp = pszAppName;
             strApp += "app.exe";
@@ -1051,7 +1051,7 @@ namespace plane
 
 #else
 
-            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), ::null(), dir().path(get_module_folder(), strApp), ::null(), ::null(), SW_SHOW);
 
             launcher.execute();
 
@@ -1076,7 +1076,7 @@ namespace plane
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
          ::mutex * pmutex = mutex::open_mutex(this, get_local_id_mutex_name(pszAppName, strId));
-         if(pmutex == NULL)
+         if(pmutex == ::null())
          {
             string strApp;
             strApp = "app.exe";
@@ -1089,7 +1089,7 @@ namespace plane
 
 #else
 
-            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), ::null(), dir().path(get_ca2_module_folder(), strApp), strParameters, ::null(), SW_SHOW);
 
             launcher.execute();
 
@@ -1108,7 +1108,7 @@ namespace plane
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
          ::mutex * pmutex = mutex::open_mutex(this, get_local_mutex_name(pszAppName));
-         if(pmutex == NULL)
+         if(pmutex == ::null())
          {
             string strApp;
             strApp = "app.exe";
@@ -1121,7 +1121,7 @@ namespace plane
 
 #else
 
-            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), ::null(), dir().path(get_ca2_module_folder(), strApp), strParameters, ::null(), SW_SHOW);
 
             launcher.execute();
 
@@ -1140,7 +1140,7 @@ namespace plane
 
    bool system::initialize_log(const char * pszId)
    {
-      if(m_plog != NULL)
+      if(m_plog != ::null())
          return true;
       m_plog = new ::ca::log(this);
       m_plog->set_extended_log();
@@ -1267,9 +1267,9 @@ namespace plane
    {
       if(plistened == plistener)
          return;
-      if(plistened == NULL)
+      if(plistened == ::null())
          return;
-      if(plistener == NULL)
+      if(plistener == ::null())
          return;
       plistener->listenedptra().add(plistened);
       plistened->listenerptra().add(plistener);
@@ -1279,9 +1279,9 @@ namespace plane
    {
       if(plistened == plistener)
          return;
-      if(plistened == NULL)
+      if(plistened == ::null())
          return;
-      if(plistener == NULL)
+      if(plistener == ::null())
          return;
       plistener->listenedptra().remove(plistened);
       plistened->listenerptra().remove(plistener);
@@ -1299,26 +1299,26 @@ namespace plane
       const char * pszModuleName,
       const char * pszFormat, va_list list)
    {
-      if(m_plog == NULL || !m_plog->m_bExtendedLog)
+      if(m_plog == ::null() || !m_plog->m_bExtendedLog)
       {
          return ::ca::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
       }
 
       string str;
-      if(pszFileName != NULL || pszModuleName != NULL)
+      if(pszFileName != ::null() || pszModuleName != ::null())
       {
          stringa stra;
-         if(pszFileName != NULL)
+         if(pszFileName != ::null())
             stra.add(pszFileName);
-         if(pszModuleName != NULL)
+         if(pszModuleName != ::null())
             stra.add(pszFileName);
          str += stra.implode(", ");
          str += ": ";
       }
       string str2;
-      if(pszFormat != NULL)
+      if(pszFormat != ::null())
       {
-         if(list != NULL)
+         if(list != ::null())
          {
             str2.FormatV(pszFormat, list);
          }
@@ -1331,7 +1331,7 @@ namespace plane
       str = str + str2;
       string strPrint(str);
       strPrint.replace("%", "%%");
-      if(m_plog != NULL)
+      if(m_plog != ::null())
       {
          m_plog->print(strPrint);
       }
@@ -1366,15 +1366,15 @@ namespace plane
       // won't display
 #ifdef WINDOWSEX
       MESSAGE msg;
-      bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
-      va_list list = NULL;
+      bool bQuit = PeekMessage(&msg, ::null(), WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
+      va_list list = ::null();
 #elif defined(METROWIN)
-      va_list list = NULL;
+      va_list list = ::null();
       //throw todo(get_app());
 #else
       va_list list = {};
 #endif
-      bool bResult = __ca2_logging_report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
+      bool bResult = __ca2_logging_report(_CRT_ASSERT, lpszFileName, iLine, ::null(), ::null(), list) != 0;
 #ifdef WINDOWSEX
       if (bQuit)
          PostQuitMessage((int32_t)msg.wParam);
@@ -1393,7 +1393,7 @@ namespace plane
    void system::on_allocation_error(::ca::application * papp, ::ca::type_info & info)
    {
       UNREFERENCED_PARAMETER(papp);
-      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.friendly_name());
+      simple_message_box(::null(), MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.friendly_name());
    }
 
 
@@ -1402,11 +1402,11 @@ namespace plane
    {
       if(dwTimeOut > 1984)
          dwTimeOut = 1984;
-      if(m_ptwf != NULL && m_ptwf->m_bProDevianMode)
+      if(m_ptwf != ::null() && m_ptwf->m_bProDevianMode)
       {
          return m_ptwf->m_eventFree.wait(millis(dwTimeOut)).signaled();
       }
-      /*else if(m_puiInitialPlaceHolderContainer != NULL)
+      /*else if(m_puiInitialPlaceHolderContainer != ::null())
       {
       #define InitialPlaceHolderContainer_TWF_FREE_EVENT 2010
       return App(this).event_lock(m_puiInitialPlaceHolderContainer, InitialPlaceHolderContainer_TWF_FREE_EVENT, dwTimeOut);
@@ -1482,7 +1482,7 @@ namespace plane
       socket_handler h;
       string strFilename;
       SpaHttpGet s(h, lpszUrl, "");
-      if(pcookies != NULL)
+      if(pcookies != ::null())
       {
       string strCookie;
       for(int32_t i = 0; i < pcookies->get_size(); i++)
@@ -1584,7 +1584,7 @@ namespace plane
       {
          iNewEdge++;
       }
-      if(get_session(iNewEdge, pbiasCreation) == NULL)
+      if(get_session(iNewEdge, pbiasCreation) == ::null())
          return -1;
       m_iNewEdge = iNewEdge + 1;
       return iNewEdge;
@@ -1593,7 +1593,7 @@ namespace plane
 
    bool system::create_twf()
    {
-      if(m_ptwf != NULL)
+      if(m_ptwf != ::null())
          return true;
       m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.type_info < ::ca::window_draw > ()));
       m_ptwf->twf_start();
@@ -1618,7 +1618,7 @@ namespace plane
    void system::discard_to_factory(::ca::ca * pca)
    {
 
-      if(m_pfactory == NULL)
+      if(m_pfactory == ::null())
          return;
 
       m_pfactory->discard(pca);
@@ -1668,35 +1668,35 @@ namespace plane
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char()
-         && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
+         && !install().is(::null(), strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
-         throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
+         throw not_installed(get_app(), ::null(), strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
 
       }
 
 #endif
 
-      ::ca::library library(NULL);
+      ::ca::library library(::null());
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
       if(strLibrary.is_empty())
       {
 
-         throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
+         throw not_installed(get_app(), ::null(), strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
 
       }
 
-      ::ca::application * papp = NULL;
+      ::ca::application * papp = ::null();
 
       if(!library.open(pappNewApplicationParent, strLibrary, false))
-         return NULL;
+         return ::null();
 
       papp = library.get_new_app(pszAppId);
 
-      if(papp == NULL)
-         return NULL;
+      if(papp == ::null())
+         return ::null();
 
       ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
 
@@ -1710,7 +1710,7 @@ namespace plane
    bool system::set_main_init_data(::ca::main_init_data * pdata)
    {
 
-      if(pdata == NULL)
+      if(pdata == ::null())
       {
          if(!::plane::application::set_main_init_data(pdata))
             return false;
@@ -1784,20 +1784,20 @@ namespace plane
    {
 
 
-      if(m_pcubeInterface != NULL)
+      if(m_pcubeInterface != ::null())
       {
          return m_pcubeInterface->hold(pui);
       }
 
-      return NULL;
+      return ::null();
 
    }
 
 
-   count system::get_monitor_count()
+   ::count system::get_monitor_count()
    {
 
-      if(m_pcubeInterface != NULL)
+      if(m_pcubeInterface != ::null())
       {
          return m_pcubeInterface->get_monitor_count();
       }
@@ -1809,7 +1809,7 @@ namespace plane
    bool system::get_monitor_rect(index i, LPRECT lprect)
    {
 
-      if(m_pcubeInterface != NULL)
+      if(m_pcubeInterface != ::null())
       {
          return m_pcubeInterface->get_monitor_rect(i, lprect);
       }
@@ -1824,7 +1824,7 @@ namespace plane
 
 #elif defined(LINUX)
 
-      Display * d=XOpenDisplay(NULL);
+      Display * d=XOpenDisplay(::null());
 
 
       //throw todo(get_app());
@@ -1888,10 +1888,10 @@ namespace plane
    }
 
 
-   count system::get_desk_monitor_count()
+   ::count system::get_desk_monitor_count()
    {
 
-      if(m_pcubeInterface != NULL)
+      if(m_pcubeInterface != ::null())
       {
          return m_pcubeInterface->get_desk_monitor_count();
       }
@@ -1903,7 +1903,7 @@ namespace plane
    bool system::get_desk_monitor_rect(index i, LPRECT lprect)
    {
 
-      if(m_pcubeInterface != NULL)
+      if(m_pcubeInterface != ::null())
       {
          return m_pcubeInterface->get_desk_monitor_rect(i, lprect);
       }
@@ -1980,7 +1980,7 @@ retry:
          ::ca::property_set set;
          set["disable_ca2_sessid"] = true;
          set["app"] = papp;
-         Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, NULL, NULL, NULL, NULL);
+         Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, ::null(), ::null(), ::null(), ::null());
       }
       catch(...)
       {
@@ -2023,7 +2023,7 @@ retry:
 
       m_libraryptra.add(plibrary);
 
-      ::raw_array < ::id > ida;
+      ::array < ::id > ida;
 
       plibrary->get_create_view_id_list(ida);
 

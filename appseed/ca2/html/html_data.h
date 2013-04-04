@@ -51,8 +51,8 @@ namespace html
          bool     m_bHasChar;
 
 
-         //base_array < impl::table *, impl::table *> m_tableptraStack;
-         //base_array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+         //array < impl::table *, impl::table *> m_tableptraStack;
+         //array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
 
 
          void reset();
@@ -67,13 +67,13 @@ namespace html
       string                     m_strTitle;
       layout_state               m_layoutstate;
 
-      base_array < impl::table *, impl::table * >
+      array < impl::table *, impl::table * >
                                  m_tableptra;
 
-      ::collection::smart_pointer_array < image>
+      smart_pointer_array < image>
                                  m_imagea;
 
-      ::collection::smart_pointer_array < font >
+      smart_pointer_array < font >
                                  m_fonta;
 
       comparable_array < ::user::interaction *, ::user::interaction * >

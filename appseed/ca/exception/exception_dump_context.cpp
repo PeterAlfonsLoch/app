@@ -48,16 +48,16 @@ void dump_context::SetDepth(int32_t nNewDepth)
 
 void dump_context::output_string(const char * lpsz)
 {
-   // use C-runtime/OutputDebugString when m_pfile is NULL
-   if (m_pfile == NULL)
+   // use C-runtime/OutputDebugString when m_pfile is ::null()
+   if (m_pfile == ::null())
    {
       ::OutputDebugStringW(::ca::international::utf8_to_unicode(lpsz));
       //     TRACE(::ca::trace::category_dumpContext, 0, "%s", lpsz);
       return;
    }
 
-   ASSERT( lpsz != NULL );
-   if( lpsz == NULL )
+   ASSERT( lpsz != ::null() );
+   if( lpsz == ::null() )
       throw user_exception(get_app());
    // otherwise, write the string to the file
 #ifdef WINDOWSEX
@@ -84,17 +84,17 @@ void dump_context::flush()
 
 dump_context & dump_context::operator<<(const char * lpsz)
 {
-   if (lpsz == NULL)
+   if (lpsz == ::null())
    {
-      output_string("NULL");
+      output_string("::null()");
       return *this;
    }
 
-   ASSERT( lpsz != NULL );
-   if( lpsz == NULL )
+   ASSERT( lpsz != ::null() );
+   if( lpsz == ::null() )
       throw user_exception(get_app());
 
-   if (m_pfile == NULL)
+   if (m_pfile == ::null())
    {
       char szBuffer[512];
       LPSTR lpBuf = szBuffer;
@@ -329,8 +329,8 @@ dump_context & dump_context::hex_dump(uint64_t ui)
 dump_context & dump_context::operator<<(const ::ca::object* pOb)
 {
 
-   if (pOb == NULL)
-      *this << "NULL";
+   if (pOb == ::null())
+      *this << "::null()";
    else
       pOb->dump(*this);
 
@@ -409,10 +409,10 @@ void dump_context::hex_dump(const char * lpszLine, BYTE* pby, int32_t nBytes, in
    if( nWidth <= 0 )
       throw invalid_argument_exception(get_app());
    ASSERT(__is_valid_string(lpszLine));
-   if( lpszLine == NULL )
+   if( lpszLine == ::null() )
       throw invalid_argument_exception(get_app());
    ASSERT(__is_valid_address(pby, nBytes, FALSE));
-   if( pby == NULL )
+   if( pby == ::null() )
       throw invalid_argument_exception(get_app());
 
    int32_t nRow = 0;
@@ -446,9 +446,9 @@ void dump_context::hex_dump(const char * lpszLine, BYTE* pby, int32_t nBytes, in
 dump_context & dump_context::operator<<(const wchar_t * lpsz)
 {
 
-   if (lpsz == NULL)
+   if (lpsz == ::null())
    {
-      output_string("(NULL)");
+      output_string("(::null())");
       return *this;
    }
 

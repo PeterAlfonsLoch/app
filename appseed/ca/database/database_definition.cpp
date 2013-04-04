@@ -84,7 +84,7 @@ namespace database
       return this->get_size() <= 0;
    }
 
-   count parameter_list::get_size()
+   ::count parameter_list::get_size()
    {
       return m_stra.get_size();
    }

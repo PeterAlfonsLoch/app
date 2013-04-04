@@ -32,15 +32,15 @@ LPTOP_LEVEL_EXCEPTION_FILTER WINAPI MyDummySetUnhandledExceptionFilter(
    LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter)
 {
    UNREFERENCED_PARAMETER(lpTopLevelExceptionFilter);
-   return NULL;
+   return ::null();
 }
 
 bool PreventSetUnhandledExceptionFilter()
 {
    /*HMODULE hKernel32 = LoadLibrary("kernel32.dll");
-   if (hKernel32 == NULL) return FALSE;
+   if (hKernel32 == ::null()) return FALSE;
    void *pOrgEntry = GetProcAddress(hKernel32, "SetUnhandledExceptionFilter");
-   if(pOrgEntry ==  NULL) return FALSE;
+   if(pOrgEntry ==  ::null()) return FALSE;
    uchar newJump[ 100 ];
    uint32_t dwOrgEntryAddr = (uint32_t) pOrgEntry;
    dwOrgEntryAddr += 5; // add 5 for 5 op-codes for jmp far
@@ -165,8 +165,8 @@ namespace exception
 #ifdef WINDOWS
          _set_se_translator(m_pfn);
 #else
-         sigaction(SIGSEGV, &m_saSegOld, NULL);
-         sigaction(SIGFPE, &m_saFpeOld, NULL);
+         sigaction(SIGSEGV, &m_saSegOld, ::null());
+         sigaction(SIGFPE, &m_saFpeOld, ::null());
 #endif
          m_bSet = false;
          return true;
@@ -352,9 +352,9 @@ namespace exception
       sigset_t set;
       sigemptyset(&set);
       sigaddset(&set, SIGSEGV);
-      sigprocmask(SIG_UNBLOCK, &set, NULL);
+      sigprocmask(SIG_UNBLOCK, &set, ::null());
 
-      throw standard_access_violation(NULL, signal, psiginfo, pc);
+      throw standard_access_violation(::null(), signal, psiginfo, pc);
 
    }
 
@@ -364,9 +364,9 @@ namespace exception
       sigset_t set;
       sigemptyset(&set);
       sigaddset(&set, SIGSEGV);
-      sigprocmask(SIG_UNBLOCK, &set, NULL);
+      sigprocmask(SIG_UNBLOCK, &set, ::null());
 
-      throw standard_sigfpe(NULL, signal, psiginfo, pc);
+      throw standard_sigfpe(::null(), signal, psiginfo, pc);
 
    }
 
@@ -377,9 +377,9 @@ namespace exception
       sigset_t set;
       sigemptyset(&set);
       sigaddset(&set, SIGSEGV);
-      sigprocmask(SIG_UNBLOCK, &set, NULL);
+      sigprocmask(SIG_UNBLOCK, &set, ::null());
 
-      //throw standard_sigfpe(NULL, signal, psiginfo, pc);
+      //throw standard_sigfpe(::null(), signal, psiginfo, pc);
 
    }
 

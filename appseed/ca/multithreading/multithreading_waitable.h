@@ -58,7 +58,7 @@ public:
    virtual void lock();
    virtual bool lock(const duration & durationTimeout);
    virtual bool unlock();
-   virtual bool unlock(LONG lCount, LPLONG lpPrevCount = NULL);
+   virtual bool unlock(LONG lCount, LPLONG lpPrevCount = ::null());
 
 
 	///  \brief		abstract function to initialize a waiting action without a timeout

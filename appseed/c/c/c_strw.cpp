@@ -7,7 +7,7 @@
 
 
 
-count wcslen_dup(const wchar_t * str)
+::count wcslen_dup(const wchar_t * str)
 {
 
    if(str == NULL)
@@ -169,7 +169,7 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
         *numchars = 0;
         *numargs = 1;                   /* the program name at least */
 
-        /* first scan the program name, copy it, and count the bytes */
+        /* first scan the program name, copy it, and ::count the bytes */
         p = cmdstart;
         if (argv)
             *argv++ = args;
@@ -279,7 +279,7 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
                N backslashes ==> N backslashes */
             numslash = 0;
             while (*p == SLASHWCHAR) {
-                /* count number of backslashes for use below */
+                /* ::count number of backslashes for use below */
                 ++p;
                 ++numslash;
             }
@@ -453,13 +453,13 @@ void itow_dup(wchar_t * sz, int32_t i, int32_t iBase)
 void wcs_reverse(wchar_t * sz)
 {
 
-   count iLen = wcslen_dup(sz);
+   ::count iLen = wcslen_dup(sz);
 
-   count iMid = iLen / 2;
+   ::count iMid = iLen / 2;
 
-   count iL = 0;
+   ::count iL = 0;
 
-   count iR = iLen - 1;
+   ::count iR = iLen - 1;
 
    wchar_t ch;
 
@@ -472,19 +472,19 @@ void wcs_reverse(wchar_t * sz)
 
 }
 
-void w_zero_pad(wchar_t * sz, count iPad)
+void w_zero_pad(wchar_t * sz, ::count iPad)
 {
 
-   count iLen = wcslen_dup(sz);
+   ::count iLen = wcslen_dup(sz);
 
-   count iZeroCount = iPad - iLen;
+   ::count iZeroCount = iPad - iLen;
 
    if(iZeroCount > 0)
    {
 
-      count iEnd = iLen - 1;
+      ::count iEnd = iLen - 1;
 
-      count iFinalEnd = iEnd + iZeroCount;
+      ::count iFinalEnd = iEnd + iZeroCount;
 
       sz[iFinalEnd + 1] = L'\0';
 

@@ -94,17 +94,17 @@ namespace libcompress
          OutSizePointers.set_size(0, NumOutStreams);
       }
 
-      static void SetSizes(const file_size **srcSizes, base_array<file_size> &sizes,
-         base_array<const file_size *> &sizePointers, uint32_t numItems)
+      static void SetSizes(const file_size **srcSizes, array<file_size> &sizes,
+         array<const file_size *> &sizePointers, uint32_t numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
          for(uint32_t i = 0; i < numItems; i++)
          {
-            if (srcSizes == 0 || srcSizes[i] == NULL)
+            if (srcSizes == 0 || srcSizes[i] == ::null())
             {
                sizes.add((file_size) 0);
-               sizePointers.add(NULL);
+               sizePointers.add(::null());
             }
             else
             {

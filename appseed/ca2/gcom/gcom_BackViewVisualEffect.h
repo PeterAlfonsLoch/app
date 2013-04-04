@@ -68,9 +68,9 @@ namespace gcom
 
          double m_z;
 
-         base_array < DoublePoint, DoublePoint & > m_pointaM;
+         array < DoublePoint, DoublePoint & > m_pointaM;
 
-         base_array < DoublePoint, DoublePoint & > m_pointa;
+         array < DoublePoint, DoublePoint & > m_pointa;
 
 
          PixelExplosion();
@@ -184,14 +184,14 @@ namespace gcom
          double         m_dAngleOffset;
          double         m_dAngleOffsetAddUp;
 
-         base_array < ColorTrack1, ColorTrack1 & >
+         array < ColorTrack1, ColorTrack1 & >
                         m_colortrack1a;
 
          Tool001        tool1;
 
-         base_array < point, point & > m_pointa;
-         base_array < point, point & > m_pointa1;
-         base_array < point, point & > m_pointa2;
+         array < point, point & > m_pointa;
+         array < point, point & > m_pointa1;
+         array < point, point & > m_pointa2;
 
          PixelExplosion m_explosion;
 

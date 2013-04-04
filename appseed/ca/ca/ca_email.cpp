@@ -41,7 +41,7 @@ namespace ca
       index iFind = strCandidate.find("@");
       if(iFind <= 0)
          return false;
-      count iLen = strCandidate.get_length();
+      ::count iLen = strCandidate.get_length();
       if(iFind == iLen - 1)
          return false;
       return true;

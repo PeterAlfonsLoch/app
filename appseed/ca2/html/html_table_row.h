@@ -14,10 +14,10 @@ namespace html
       public:
 
 
-         index                         m_iRow;
-         int32_t                           m_cyMin;
-         int32_t                           m_cyMax;
-         base_array < cell::holder >   m_cellholdera;
+         index                               m_iRow;
+         int32_t                             m_cyMin;
+         int32_t                             m_cyMax;
+         array < cell::holder >              m_cellholdera;
 
 
          table_row();

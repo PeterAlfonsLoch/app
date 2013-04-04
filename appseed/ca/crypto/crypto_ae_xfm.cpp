@@ -85,15 +85,15 @@ aes_128_cbc_hmac_sha1_96_func(void *key,
    err_status_t status;
 
   /* check if we're doing authentication only */
-  if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
+  if ((iv == ::null()) && (opaque == ::null()) && (opaque_len == ::null())) {
       
       /* perform authentication only */
 
-  } else if ((iv == NULL) || (opaque == NULL) || (opaque_len == NULL)) {
+  } else if ((iv == ::null()) || (opaque == ::null()) || (opaque_len == ::null())) {
     
     /*
-     * bad parameter - we expect either all three pointers to be NULL,
-     * or none of those pointers to be NULL 
+     * bad parameter - we expect either all three pointers to be ::null(),
+     * or none of those pointers to be ::null() 
      */
     return err_status_fail;
 
@@ -165,15 +165,15 @@ aes_128_cbc_hmac_sha1_96_inv(void *key,
    int32_t i;
   
   /* check if we're doing authentication only */
-  if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
+  if ((iv == ::null()) && (opaque == ::null()) && (opaque_len == ::null())) {
       
       /* perform authentication only */
 
-  } else if ((iv == NULL) || (opaque == NULL) || (opaque_len == NULL)) {
+  } else if ((iv == ::null()) || (opaque == ::null()) || (opaque_len == ::null())) {
     
     /*
-     * bad parameter - we expect either all three pointers to be NULL,
-     * or none of those pointers to be NULL 
+     * bad parameter - we expect either all three pointers to be ::null(),
+     * or none of those pointers to be ::null() 
      */
     return err_status_fail;
 
@@ -250,15 +250,15 @@ aes_128_cbc_hmac_sha1_96_enc(void *key,
    err_status_t status;
 
   /* check if we're doing authentication only */
-  if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
+  if ((iv == ::null()) && (opaque == ::null()) && (opaque_len == ::null())) {
       
       /* perform authentication only */
 
-  } else if ((iv == NULL) || (opaque == NULL) || (opaque_len == NULL)) {
+  } else if ((iv == ::null()) || (opaque == ::null()) || (opaque_len == ::null())) {
     
     /*
-     * bad parameter - we expect either all three pointers to be NULL,
-     * or none of those pointers to be NULL 
+     * bad parameter - we expect either all three pointers to be ::null(),
+     * or none of those pointers to be ::null() 
      */
     return err_status_fail;
 
@@ -368,15 +368,15 @@ aes_128_cbc_hmac_sha1_96_dec(void *key,
    int32_t i;
   
   /* check if we're doing authentication only */
-  if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
+  if ((iv == ::null()) && (opaque == ::null()) && (opaque_len == ::null())) {
       
       /* perform authentication only */
 
-  } else if ((iv == NULL) || (opaque == NULL) || (opaque_len == NULL)) {
+  } else if ((iv == ::null()) || (opaque == ::null()) || (opaque_len == ::null())) {
     
     /*
-     * bad parameter - we expect either all three pointers to be NULL,
-     * or none of those pointers to be NULL 
+     * bad parameter - we expect either all three pointers to be ::null(),
+     * or none of those pointers to be ::null() 
      */
     return err_status_fail;
 
@@ -512,22 +512,22 @@ null_enc(void *key,
    uchar *init_vec = (byte *) iv;
 
   /* check if we're doing authentication only */
-  if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
+  if ((iv == ::null()) && (opaque == ::null()) && (opaque_len == ::null())) {
       
       /* perform authentication only */
 
-  } else if ((iv == NULL) || (opaque == NULL) || (opaque_len == NULL)) {
+  } else if ((iv == ::null()) || (opaque == ::null()) || (opaque_len == ::null())) {
     
     /*
-     * bad parameter - we expect either all three pointers to be NULL,
-     * or none of those pointers to be NULL 
+     * bad parameter - we expect either all three pointers to be ::null(),
+     * or none of those pointers to be ::null() 
      */
     return err_status_fail;
 
   } else {
 
 #ifdef DEBUG
-    printf("NULL ENC using key %s\n", octet_string_hex_string(key, KEY_LEN));
+    printf("::null() ENC using key %s\n", octet_string_hex_string(key, KEY_LEN));
     printf("NULL_TAG_LEN:  %d\n", NULL_TAG_LEN);
     printf("plaintext len:  %d\n", *opaque_len);
 #endif
@@ -569,22 +569,22 @@ null_dec(void *key,
    uchar *auth_tag;
   
   /* check if we're doing authentication only */
-  if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
+  if ((iv == ::null()) && (opaque == ::null()) && (opaque_len == ::null())) {
       
       /* perform authentication only */
 
-  } else if ((iv == NULL) || (opaque == NULL) || (opaque_len == NULL)) {
+  } else if ((iv == ::null()) || (opaque == ::null()) || (opaque_len == ::null())) {
     
     /*
-     * bad parameter - we expect either all three pointers to be NULL,
-     * or none of those pointers to be NULL 
+     * bad parameter - we expect either all three pointers to be ::null(),
+     * or none of those pointers to be ::null() 
      */
     return err_status_fail;
 
   } else {
 
 #ifdef DEBUG
-    printf("NULL DEC using key %s\n", octet_string_hex_string(key, KEY_LEN));
+    printf("::null() DEC using key %s\n", octet_string_hex_string(key, KEY_LEN));
 
     printf("protected data len: %d\n", *opaque_len);
     printf("protected data:    %s\n", 

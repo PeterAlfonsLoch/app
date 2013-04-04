@@ -35,7 +35,7 @@ namespace ca
       if (!hdlServ)
          Ret = ::GetLastError();
 
-      ::StartService(hdlServ, 0, NULL);
+      ::StartService(hdlServ, 0, ::null());
       CloseServiceHandle(hdlServ);
 
       return Ret;

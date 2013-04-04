@@ -8,7 +8,7 @@ public:
    
    
    not_supported_exception(const not_supported_exception & e);
-   not_supported_exception(::ca::application * papp, const char * pszTip = NULL);
+   not_supported_exception(::ca::application * papp, const char * pszTip = ::null());
    virtual ~not_supported_exception();
 
 

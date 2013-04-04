@@ -4,7 +4,7 @@
 
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB,
-   class ARRAYA = base_array < TYPEA, ARG_TYPEA >, class ARRAYB = base_array < TYPEB, ARG_TYPEB > >
+   class ARRAYA = array < TYPEA, ARG_TYPEA >, class ARRAYB = array < TYPEB, ARG_TYPEB > >
 class spreadset
 {
 public:
@@ -16,10 +16,10 @@ public:
    void spread(ARG_TYPEA a, ARG_TYPEB b);
    ARRAYB & b(ARG_TYPEA a);
    ARRAYA & a(ARG_TYPEB b);
-   count get_a_item_count();
-   count get_b_item_count();
-   count get_a_pack_count();
-   count get_b_pack_count();
+   ::count get_a_item_count();
+   ::count get_b_item_count();
+   ::count get_a_pack_count();
+   ::count get_b_pack_count();
 
 
 };
@@ -48,28 +48,28 @@ a(ARG_TYPEB b)
 }
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB, class ARRAYA, class ARRAYB >
-count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
+::count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
 get_a_item_count()
 {
    return m_packsetBA.get_item_count();
 }
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB, class ARRAYA, class ARRAYB >
-count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
+::count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
 get_b_item_count()
 {
    return m_packsetAB.get_item_count();
 }
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB, class ARRAYA, class ARRAYB >
-count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
+::count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
 get_a_pack_count()
 {
    return m_packsetAB.get_pack_count();
 }
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB, class ARRAYA, class ARRAYB >
-count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
+::count spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::
 get_b_pack_count()
 {
    return m_packsetBA.get_pack_count();

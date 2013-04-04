@@ -85,7 +85,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    //_001Layout();
 
    {
-//      ::collection::smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
+//      smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
    }
 
    return true;
@@ -157,7 +157,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     tpm.rcExclude.bottom = rect.bottom;
     tpm.rcExclude.right  = rect.right;
 #endif
-//    ::collection::smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
+//    smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
 
 
 

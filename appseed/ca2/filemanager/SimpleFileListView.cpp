@@ -826,7 +826,7 @@ namespace filemanager
             System.os().file_extension_get_open_with_list_keys(stra, strExt);
 
             m_straOpenWith = stra;
-            count iCount = stra.get_size();
+            ::count iCount = stra.get_size();
 
             ::userbase::menu_item menuitem(get_app());
             string str;

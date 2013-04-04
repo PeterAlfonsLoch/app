@@ -78,7 +78,7 @@ namespace visual
 
    void api::DrawAndFillBeziers(
       ::ca::graphics                     *pdc,
-      base_array<point_array, point_array &> *
+      array<point_array, point_array &> *
                             lpglyph,
       double               dRateX,
       LPPOINT               lppointOffset)
@@ -120,18 +120,18 @@ namespace visual
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
    //      ::ca::font * pfont = pdc->GetCurrentFont();
-   //      ASSERT(pfont != NULL);
+   //      ASSERT(pfont != ::null());
    //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
 
    //      VERIFY(::OffsetViewportOrgEx(
    //         pdc->m_hDC,
    //         lpcrect->left,
    //         lpcrect->top,
-   //         NULL));
+   //         ::null()));
    //      VERIFY(::SetMapMode(pdc->m_hDC, MM_ANISOTROPIC));
    //      if(floatRateX == 0.0)
    //         floatRateX = 1.0;
-   //      VERIFY(::ScaleViewportExtEx(pdc->m_hDC, floatRateX * 30000.0, 10000, 1, 1, NULL));
+   //      VERIFY(::ScaleViewportExtEx(pdc->m_hDC, floatRateX * 30000.0, 10000, 1, 1, ::null()));
 
    //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
 
@@ -147,7 +147,7 @@ namespace visual
    //         pdc->m_hDC,
    //         viewportOrg.x,
    //         viewportOrg.y,
-   //         NULL));
+   //         ::null()));
    }
 
 
@@ -166,18 +166,18 @@ namespace visual
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
    //      ::ca::font * pfont = pdc->GetCurrentFont();
-   //      ASSERT(pfont != NULL);
+   //      ASSERT(pfont != ::null());
    //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
 
    //      VERIFY(::OffsetViewportOrgEx(
    //         pdc->m_hDC,
    //         lpcrect->left,
    //         lpcrect->top,
-   //         NULL));
+   //         ::null()));
    //      VERIFY(::SetMapMode(pdc->m_hDC, MM_ANISOTROPIC));
    //      if(floatRateX == 0.0)
    //         floatRateX = 1.0;
-   //      VERIFY(::ScaleViewportExtEx(pdc->m_hDC, floatRateX * 30000.0, 10000, 1, 1, NULL));
+   //      VERIFY(::ScaleViewportExtEx(pdc->m_hDC, floatRateX * 30000.0, 10000, 1, 1, ::null()));
 
    //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
 
@@ -208,7 +208,7 @@ namespace visual
    //         pdc->m_hDC,
    //         viewportOrg.x,
    //         viewportOrg.y,
-   //         NULL));
+   //         ::null()));
    }
 
    void api::SimpleTextOut(

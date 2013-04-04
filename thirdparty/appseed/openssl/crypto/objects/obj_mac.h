@@ -2868,7 +2868,7 @@
 
 #define SN_account		"account"
 #define NID_account		446
-#define OBJ_account		OBJ_pilotObjectClass,5L
+#define OBJ_account OBJ_pilotObjectClass,5L
 
 #define SN_document		"document"
 #define NID_document		447

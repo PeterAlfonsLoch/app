@@ -67,7 +67,7 @@ namespace filemanager
       stringa                 m_straMissingUpdate;
       bool                    m_bDelayedListUpdate;
 #ifdef WINDOWSEX
-      ::collection::map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
+      map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
 #endif
       ::ca::tree_item *        m_pdataitemCreateImageListStep;
       string                  m_strPath;

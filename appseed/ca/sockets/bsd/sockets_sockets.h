@@ -15,7 +15,7 @@
 #endif
          AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
 
-         count                                        m_countHttpPostBoundary;
+         ::count m_countHttpPostBoundary;
          mutex                                        m_mutexHttpPostBoundary;
 
          resolv_socket::cache_t                       m_resolvcache;

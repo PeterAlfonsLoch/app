@@ -50,7 +50,7 @@ namespace ca
       string prev_char;
 
       if(ccs[pos] != '[')
-         return NULL;
+         return ::null();
       pos++;
       if(ccs[pos] == '^')
       {
@@ -61,7 +61,7 @@ namespace ca
       {
          if(ccs[pos] == ']')
          {
-            if(retPos != NULL)
+            if(retPos != ::null())
                *retPos = pos;
             if(inverse)
             {
@@ -156,11 +156,11 @@ namespace ca
             strsize retEnd;
             ch_class * scc = createCharClass(ccs, pos+1, &retEnd);
             if(natural(retEnd) == strlen(ccs))
-               return NULL;
-            if(scc == NULL)
+               return ::null();
+            if(scc == ::null())
             {
                delete cc;
-               return NULL;
+               return ::null();
             }
             cc->clear_class(*scc);
             delete scc;
@@ -174,11 +174,11 @@ namespace ca
             strsize retEnd;
             ch_class *scc = createCharClass(ccs, pos+2, &retEnd);
             if(natural(retEnd) == strlen(ccs))
-               return NULL;
-            if(scc == NULL)
+               return ::null();
+            if(scc == ::null())
             {
                delete cc;
-               return NULL;
+               return ::null();
             }
             cc->intersect_class(*scc);
             delete scc;
@@ -191,10 +191,10 @@ namespace ca
          {
             strsize retEnd;
             ch_class *scc = createCharClass(ccs, pos, &retEnd);
-            if(scc == NULL)
+            if(scc == ::null())
             {
                delete cc;
-               return NULL;
+               return ::null();
             }
             cc->add_class(*scc);
             delete scc;
@@ -227,7 +227,7 @@ namespace ca
 
       }
       delete cc;
-      return NULL;
+      return ::null();
    }
 
    void ch_class::add_char(const char * pszUtf8Char)
@@ -289,7 +289,7 @@ namespace ca
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];
-         if(tablePos == NULL)
+         if(tablePos == ::null())
          {
             tablePos = new bit_array();
             infoIndex[i] = tablePos;
@@ -342,7 +342,7 @@ namespace ca
    {
       for(int32_t p = 0; p < 256; p++)
       {
-         if (infoIndex[p] == NULL)
+         if (infoIndex[p] == ::null())
             infoIndex[p] = new bit_array();
          infoIndex[p]->add_bit_array(*cclass.infoIndex[p]);
       }
@@ -352,7 +352,7 @@ namespace ca
    {
       for(int32_t p = 0; p < 256; p++)
       {
-         if (infoIndex[p] != NULL)
+         if (infoIndex[p] != ::null())
          {
             infoIndex[p]->intersect_bit_array(*cclass.infoIndex[p]);
          }
@@ -363,7 +363,7 @@ namespace ca
    {
       for(int32_t p = 0; p < 256; p++)
       {
-         if(infoIndex[p] != NULL)
+         if(infoIndex[p] != ::null())
          {
             infoIndex[p]->clear_bit_array(*cclass.infoIndex[p]);
          }
@@ -374,10 +374,10 @@ namespace ca
    {
       for(int32_t i = 0; i < 256; i++)
       {
-         if(infoIndex[i] != NULL)
+         if(infoIndex[i] != ::null())
          {
             delete infoIndex[i];
-            infoIndex[i] = NULL;
+            infoIndex[i] = ::null();
          }
       }
    }
@@ -386,7 +386,7 @@ namespace ca
    {
       for(int32_t i = 0; i < 256; i++)
       {
-         if(infoIndex[i] == NULL)
+         if(infoIndex[i] == ::null())
             infoIndex[i] = new bit_array();
          infoIndex[i]->add_range(0, 0xFF);
       }
@@ -398,7 +398,7 @@ namespace ca
       if(!is_legal_uni_index(c))
          return false;
       bit_array * tablePos = infoIndex[c>>8];
-      if(tablePos == NULL)
+      if(tablePos == ::null())
          return false;
       return tablePos->get_bit(c & 0xFF);
    }

@@ -33,9 +33,9 @@ void stra_dup::remove_empty()
    }
 }
 
-count  stra_dup::remove(const char * psz)
+::count stra_dup::remove(const char * psz)
 {
-   count iCount = 0;
+   ::count iCount = 0;
    for(index ui = 0; ui < this->get_count();)
    {
       if(this->element_at(ui) == psz)
@@ -92,7 +92,7 @@ void stra_dup::add_tokens(const char * psz, const char * pszSeparator)
 
 	const char * pszPosEnd;
 
-	count iLenSeparator = strlen_dup(pszSeparator);
+	::count iLenSeparator = strlen_dup(pszSeparator);
 
 	vsstring str;
 

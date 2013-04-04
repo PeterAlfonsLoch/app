@@ -24,7 +24,7 @@ public:
 
 	void*& this->element_at(int32_t nIndex);
 
-	// Direct Access to the element data (may return NULL)
+	// Direct Access to the element data (may return ::null())
 	const void** get_data() const;
 	void** get_data();
 

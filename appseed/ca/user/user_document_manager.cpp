@@ -32,13 +32,13 @@ bool __delete_reg_key(const char * lpszKey)
    // copy the string
    LPTSTR lpszKeyCopy = _tcsdup(lpszKey);
 
-   if(lpszKeyCopy == NULL)
+   if(lpszKeyCopy == ::null())
       return FALSE;
 
    LPTSTR lpszLast = lpszKeyCopy + lstrlen(lpszKeyCopy);
 
    // work until the end of the string
-   while (lpszLast != NULL)
+   while (lpszLast != ::null())
    {
       *lpszLast = '\0';
       lpszLast = _tcsdec(lpszKeyCopy, lpszLast);
@@ -74,7 +74,7 @@ bool __delete_reg_key(const char * lpszKey)
 __STATIC bool _API
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
 {
-   if (lpszValueName == NULL)
+   if (lpszValueName == ::null())
    {
       if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
            lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
@@ -116,7 +116,7 @@ void document_manager::UnregisterShellFileTypes()
    __get_module_short_file_name(System.m_hInstance, strPathName);
 
    POSITION pos = m_templateptra.get_head_position();
-   for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
+   for (int32_t nTemplateIndex = 1; pos != ::null(); nTemplateIndex++)
    {
       document_template * ptemplate = (document_template *)m_templateptra.get_next(pos);
 
@@ -206,7 +206,7 @@ void document_manager::RegisterShellFileTypes(bool bCompat)
    __get_module_short_file_name(System.m_hInstance, strPathName);
 
    POSITION pos = m_templateptra.get_head_position();
-   for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
+   for (int32_t nTemplateIndex = 1; pos != ::null(); nTemplateIndex++)
    {
       document_template * ptemplate = (document_template *)m_templateptra.get_next(pos);
 
@@ -219,7 +219,7 @@ void document_manager::RegisterShellFileTypes(bool bCompat)
       {
          string strIconIndex;
          HICON hIcon = ::ExtractIcon(System.m_hInstance, strPathName, nTemplateIndex);
-         if (hIcon != NULL)
+         if (hIcon != ::null())
          {
             strIconIndex.Format(gen_IconIndexFmt, nTemplateIndex);
             DestroyIcon(hIcon);
@@ -365,7 +365,7 @@ __STATIC void _::ca::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
       ptemplate->GetDocString(strFilterName, document_template::filterName) &&
       !strFilterName.is_empty())
    {
-      if (pstrDefaultExt != NULL)
+      if (pstrDefaultExt != ::null())
          pstrDefaultExt->Empty();
 
       // add to filter
@@ -392,7 +392,7 @@ __STATIC void _::ca::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
             // Example:
             //    .jpg;.jpeg
             ASSERT(strExtension[0] == '.');
-            if ((pstrDefaultExt != NULL) && pstrDefaultExt->is_empty())
+            if ((pstrDefaultExt != ::null()) && pstrDefaultExt->is_empty())
             {
                // set the default extension
                *pstrDefaultExt = strExtension.Mid( 1 );  // skip the '.'
@@ -421,7 +421,7 @@ void document_manager::add_document_template(document_template * ptemplate)
    }
 }
 
-count document_manager::get_template_count() const
+::count document_manager::get_template_count() const
 {
    return m_templateptra.get_count();
 }
@@ -429,13 +429,13 @@ count document_manager::get_template_count() const
 document_template * document_manager::get_template(index index) const
 {
    if(index < 0 || index >= m_templateptra.get_count())
-      return NULL;
+      return ::null();
    return m_templateptra.element_at(index);
 }
 
 bool document_manager::save_all_modified()
 {
-   count count = m_templateptra.get_count();
+   ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
       document_template * ptemplate = m_templateptra[index];
@@ -448,7 +448,7 @@ bool document_manager::save_all_modified()
 
 void document_manager::close_all_documents(bool bEndSession)
 {
-   count count = m_templateptra.get_count();
+   ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
       document_template * ptemplate = m_templateptra[index];
@@ -462,11 +462,11 @@ bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32
    return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }
 
-count document_manager::get_document_count()
+::count document_manager::get_document_count()
 {
-   // count all documents
-   count nCount = 0;
-   count count = m_templateptra.get_count();
+   // ::count all documents
+   ::count nCount = 0;
+   ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
       document_template * ptemplate = m_templateptra[index];
@@ -479,7 +479,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
 {
    UNREFERENCED_PARAMETER(lpszCommand);
    /*string strCommand = lpszCommand;
-   document * pDoc = NULL;
+   document * pDoc = ::null();
 
    // open format is "[open("%s")]" - no whitespace allowed, one per line
    // print format is "[print("%s")]" - no whitespace allowed, one per line
@@ -512,7 +512,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    cmdInfo.m_varFile = strCommand.Left(i);
    strCommand = strCommand.Right(strCommand.get_length() - i);
 
-   //::ca::command_line* pOldInfo = NULL;
+   //::ca::command_line* pOldInfo = ::null();
    bool bRetVal = TRUE;
 
    // // If we were started up for DDE retrieve the Show state
@@ -609,14 +609,14 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
       }
    }
 
-   // get document count before opening it
+   // get document ::count before opening it
    int32_t nOldCount; nOldCount = get_document_count();
 
    // open the document, then print it.
    pDoc = System.open_document_file(cmdInfo.m_varFile);
    //System.m_pCmdInfo = &cmdInfo;
    System.GetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
-   //System.m_pCmdInfo = NULL;
+   //System.m_pCmdInfo = ::null();
 
    // close the document if it wasn't open previously (based on doc count)
    if (get_document_count() > nOldCount)
@@ -638,7 +638,7 @@ void document_manager::_001OnFileNew()
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "Failed to create document");
+      System.simple_message_box(::null(), "Failed to create document");
       return;
    }
 
@@ -650,11 +650,11 @@ void document_manager::_001OnFileNew()
          return;     // none - cancel operation
    }
 
-   ASSERT(ptemplate != NULL);
+   ASSERT(ptemplate != ::null());
    ASSERT_KINDOF(document_template, ptemplate);
 
-   ptemplate->open_document_file(NULL, TRUE, System.m_puiInitialPlaceHolderContainer);
-      // if returns NULL, the ::fontopus::user has already been alerted*/
+   ptemplate->open_document_file(::null(), TRUE, System.m_puiInitialPlaceHolderContainer);
+      // if returns ::null(), the ::fontopus::user has already been alerted*/
 //   return TRUE;
 //}
 
@@ -666,11 +666,11 @@ void document_manager::on_file_open()
 
    ::ca::create_context_sp createcontext(get_app());
 
-   if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
+   if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, ::null(), ::null()))
       return; // open cancelled
 
    System.user()->open_document_file(createcontext);
-      // if returns NULL, the ::fontopus::user has already been alerted
+      // if returns ::null(), the ::fontopus::user has already been alerted
 }
 
 
@@ -678,7 +678,7 @@ void document_manager::assert_valid() const
 {
    ::ca::object::assert_valid();
 
-   count count = m_templateptra.get_count();
+   ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
       document_template * ptemplate = (document_template *) m_templateptra[index];
@@ -693,7 +693,7 @@ void document_manager::dump(dump_context & dumpcontext) const
    if (dumpcontext.GetDepth() != 0)
    {
       dumpcontext << "\nm_templateList[] = {";
-      count count = m_templateptra.get_count();
+      ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
          document_template * ptemplate = m_templateptra[index];
@@ -716,10 +716,10 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    }
 
    // find the highest confidence
-   count count = m_templateptra.get_count();
+   ::count count = m_templateptra.get_count();
    document_template::Confidence bestMatch = document_template::noAttempt;
-   document_template * pBestTemplate = NULL;
-   ::user::document_interface * pOpenDocument = NULL;
+   document_template * pBestTemplate = ::null();
+   ::user::document_interface * pOpenDocument = ::null();
 
    /*char szPath[_MAX_PATH];
    ASSERT(lstrlen(varFileName) < _countof(szPath));
@@ -728,13 +728,13 @@ void document_manager::request(::ca::create_context * pcreatecontext)
       ++lpszFileName;
    ::ca::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
    LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
-   if (lpszLast != NULL)
+   if (lpszLast != ::null())
       *lpszLast = 0;*/
 
    //if( ::ca::FullPath(szPath, szTemp) == FALSE )
    //{
    //   ASSERT(FALSE);
-   //   return NULL; // We won't open the file. ca API requires paths with
+   //   return ::null(); // We won't open the file. ca API requires paths with
                    // length < _MAX_PATH
    //}
 
@@ -749,7 +749,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
       ASSERT_KINDOF(document_template, ptemplate);
 
       document_template::Confidence match;
-      ASSERT(pOpenDocument == NULL);
+      ASSERT(pOpenDocument == ::null());
       match = ptemplate->MatchDocType(pcreatecontext->m_spCommandLine->m_varFile, pOpenDocument);
       if (match > bestMatch)
       {
@@ -760,21 +760,21 @@ void document_manager::request(::ca::create_context * pcreatecontext)
          break;      // stop here
    }
 
-   if (pOpenDocument != NULL)
+   if (pOpenDocument != ::null())
    {
       ::view * pview = pOpenDocument->get_view(0); // get first one
-      if(pview != NULL)
+      if(pview != ::null())
       {
          ASSERT_VALID(pview);
          frame_window* pFrame = pview->GetParentFrame();
 
-         if (pFrame == NULL)
+         if (pFrame == ::null())
             TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
          else
          {
             pFrame->ActivateFrame();
 
-            if (pFrame->get_parent() != NULL)
+            if (pFrame->get_parent() != ::null())
             {
                frame_window* pAppFrame;
                if (pFrame != (pAppFrame = dynamic_cast < frame_window * > (System.GetMainWnd())))
@@ -791,20 +791,20 @@ void document_manager::request(::ca::create_context * pcreatecontext)
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
    }
 
-   if (pBestTemplate == NULL)
+   if (pBestTemplate == ::null())
    {
       // linux System.simple_message_box(__IDP_FAILED_TO_OPEN_DOC);
-      System.simple_message_box(NULL, "failed to open document");
+      System.simple_message_box(::null(), "failed to open document");
       return;
    }
 
    pBestTemplate->request(pcreatecontext);
 }
 
-count document_manager::get_open_document_count()
+::count document_manager::get_open_document_count()
 {
-   count nOpen = 0;
-   count count = m_templateptra.get_count();
+   ::count nOpen = 0;
+   ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
       document_template * ptemplate = m_templateptra[index];
@@ -817,7 +817,7 @@ count document_manager::get_open_document_count()
 document_manager::~document_manager()
 {
    // for cleanup - delete all document templates
-   count count = m_templateptra.get_count();
+   ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
       document_template * ptemplate = m_templateptra[index];

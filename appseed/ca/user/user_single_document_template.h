@@ -14,7 +14,7 @@ public:
    virtual ~single_document_template();
    virtual void add_document(::user::document_interface * pDoc);
    virtual void remove_document(::user::document_interface * pDoc);
-   virtual count get_document_count() const;
+   virtual ::count get_document_count() const;
    virtual ::user::document_interface * get_document(index index = 0) const;
    virtual void request(::ca::create_context * pcreatecontext);
    virtual void set_default_title(::user::document_interface * pdocument);

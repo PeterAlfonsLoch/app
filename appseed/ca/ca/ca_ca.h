@@ -75,7 +75,7 @@ namespace ca
    template < class ca_derived >
    inline int64_t add_ref(ca_derived * pca)
    {
-      if(pca == NULL)
+      if(pca == ::null())
          return -1;
       return pca->add_ref();
    }
@@ -83,17 +83,17 @@ namespace ca
    template < class ca_derived >
    inline int64_t release(ca_derived * & pca)
    {
-      if(pca == NULL)
+      if(pca == ::null())
          return -1;
       int64_t count = pca->release();
-      pca = NULL;
+      pca = ::null();
       return count;
    }
 
    template < class ca_derived >
    inline int64_t ref_count(ca_derived * pca)
    {
-      if(pca == NULL)
+      if(pca == ::null())
          return -1;
       return pca->get_ref_count();
    }
@@ -118,10 +118,10 @@ namespace ca
    template <class t>
    inline void delptr(t *& p)
    {
-      if(p != NULL)
+      if(p != ::null())
       {
          delete p;
-         p = NULL;
+         p = ::null();
       }
    }
 

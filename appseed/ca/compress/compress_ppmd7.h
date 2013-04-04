@@ -59,7 +59,7 @@ void Ppmd7_Construct(CPpmd7 *p);
 bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ca::ISzAlloc *alloc);
 void Ppmd7_Free(CPpmd7 *p, ::ca::ISzAlloc *alloc);
 void Ppmd7_Init(CPpmd7 *p, uint32_t maxOrder);
-#define Ppmd7_WasAllocated(p) ((p)->Base != NULL)
+#define Ppmd7_WasAllocated(p) ((p)->Base != ::null())
 
 
 /* ---------- Internal Functions ---------- */

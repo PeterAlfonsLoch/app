@@ -45,19 +45,19 @@
 
 /*static inline void ConstructElement(string* pNewData)
 {
-   ENSURE_ARG(pNewData!=NULL);
+   ENSURE_ARG(pNewData!=::null());
    new( pNewData ) string;
 }
 
 static inline void DestructElement(string* pOldData)
 {
-   ENSURE_ARG(pOldData!=NULL);
+   ENSURE_ARG(pOldData!=::null());
    pOldData->~string();
 }
 */
 static inline void CopyElement(string* pSrc, string* pDest)
 {
-   ENSURE_ARG(pSrc!=NULL && pDest!=NULL);
+   ENSURE_ARG(pSrc!=::null() && pDest!=::null());
    *pSrc = *pDest;
 }
 

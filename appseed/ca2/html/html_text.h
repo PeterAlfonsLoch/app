@@ -16,7 +16,7 @@ namespace html
       public:
 
 
-         base_array < size >           m_sizea;
+         array < size >           m_sizea;
          stringa                       m_straLines;
          stringa                       m_straWordSpace;
          bool                          m_bLink;

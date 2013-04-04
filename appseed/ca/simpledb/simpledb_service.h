@@ -15,7 +15,7 @@ namespace simpledb
 
 
       manager *            m_pmanager;
-      base_array < socket_thread *, socket_thread * > m_threadptra;
+      array < socket_thread *, socket_thread * > m_threadptra;
 
 
       service(::ca::application * papp);

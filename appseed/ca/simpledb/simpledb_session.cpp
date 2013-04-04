@@ -7,7 +7,7 @@ namespace simpledb
    session::session(::ca::application * papp) :
       ::ca::ca(papp)
    {
-      m_pserver = NULL;
+      m_pserver = ::null();
    }
 
    session::~session()
@@ -16,10 +16,10 @@ namespace simpledb
 
    bool session::open(const char * pszDatabase)
    {
-      if(m_pserver != NULL)
+      if(m_pserver != ::null())
          close();
       server * pserver = new server(get_app());
-      if(pserver == NULL)
+      if(pserver == ::null())
          return false;
       if(!pserver->open(pszDatabase))
       {
@@ -32,10 +32,10 @@ namespace simpledb
 
    bool session::close()
    {
-      if(m_pserver == NULL)
+      if(m_pserver == ::null())
          return true;
       delete m_pserver;
-      m_pserver = NULL;
+      m_pserver = ::null();
       return true;
    }
 

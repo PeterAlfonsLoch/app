@@ -59,7 +59,7 @@ public:
   string virtSchemeName, substSchemeName;
 
   VirtualEntry(const char *scheme, const char *subst){
-    virtScheme = substScheme = NULL;
+    virtScheme = substScheme = ::null();
     virtSchemeName = (scheme);
     substSchemeName = (subst);
   };
@@ -75,12 +75,13 @@ public:
 enum SchemeNodeType { SNT_EMPTY, SNT_RE, SNT_SCHEME, SNT_KEYWORDS, SNT_INHERIT };
 extern const char * schemeNodeTypeNames[];
 
-typedef base_array<VirtualEntry*> VirtualEntryVector;
+typedef array<VirtualEntry*> VirtualEntryVector;
 
 /** scheme node.
     @ingroup colorer_parsers
 */
-class SchemeNode
+class SchemeNode :
+   virtual public ::ca::object
 {
 public:
   SchemeNodeType type;
@@ -126,12 +127,12 @@ public:
 
 protected:
   string schemeName;
-  base_array < SchemeNode * > nodes;
+  array < SchemeNode * > nodes;
   file_type_impl *fileType;
 public:
   scheme_impl(const char *sn){
     schemeName = string(sn);
-    fileType = NULL;
+    fileType = ::null();
   };
   ~scheme_impl(){
     for (int32_t idx = 0; idx < nodes.get_size(); idx++)

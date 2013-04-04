@@ -158,11 +158,11 @@ void * mem_reverse(void * p, size_t iLen)
 
    char * sz = (char *) p;
 
-   count iMid = iLen / 2;
+   ::count iMid = iLen / 2;
 
-   count iL = 0;
+   ::count iL = 0;
 
-   count iR = iLen - 1;
+   ::count iR = iLen - 1;
 
    char ch;
 

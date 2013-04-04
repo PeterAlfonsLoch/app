@@ -29,7 +29,7 @@ void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
    UNREFERENCED_PARAMETER(pdc);
 }
 
-count file_manager_operation_list_view::_001GetItemCount()
+::count file_manager_operation_list_view::_001GetItemCount()
 {
    if(get_document() == NULL)
       return 0;

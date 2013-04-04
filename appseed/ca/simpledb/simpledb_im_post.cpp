@@ -88,7 +88,7 @@ var im_post::get_since(var rec)
    }
 
 
-   count iNumRows = m_pdataset->num_rows();
+   ::count iNumRows = m_pdataset->num_rows();
    if(iNumRows <= 0)
       return false;
    class var var;
@@ -104,7 +104,7 @@ var im_post::get_since(var rec)
 
 var im_post::last(var user1, var user2)
 {
-   if(m_pdataserver == NULL)
+   if(m_pdataserver == ::null())
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());

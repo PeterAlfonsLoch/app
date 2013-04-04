@@ -11,21 +11,21 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
    m_objecta.set_size(m_syncobjectptra.get_count());
    m_baLocked.set_size(m_syncobjectptra.get_count());
 
-   // get list of handles from base_array of objects passed
+   // get list of handles from array of objects passed
    for (index i = 0; i < m_syncobjectptra.get_count(); i++)
    {
       //ASSERT_VALID(dynamic_cast < ::ca::request_interface * > (m_syncobjectptra[i]));
-      if(m_syncobjectptra[i] == NULL)
+      if(m_syncobjectptra(i).is_null())
          throw invalid_argument_exception(get_app());
 
-      ASSERT(base < waitable >::bases (m_syncobjectptra[i]));
+      ASSERT(base < waitable >::bases (m_syncobjectptra(i)));
 
       // can't wait for critical sections
 
-      ASSERT(!base < critical_section >::bases (m_syncobjectptra[i]));
+      ASSERT(!base < critical_section >::bases (m_syncobjectptra(i)));
 
 #ifdef WINDOWS
-      m_objecta[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
+      m_objecta[i] = (HANDLE) m_syncobjectptra(i)->get_os_data();
 #else
       m_objecta[i] = m_syncobjectptra[i];
 #endif
@@ -94,23 +94,23 @@ bool multi_lock::unlock()
    for (index i=0; i < m_objecta.get_count(); i++)
    {
       if (m_baLocked[i])
-         m_baLocked[i] = !m_syncobjectptra[i]->unlock();
+         m_baLocked[i] = !m_syncobjectptra(i)->unlock();
    }
    return TRUE;
 }
 
-bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
+bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =::null() */)
 {
    bool bGotOne = false;
    for (index i=0; i < m_objecta.get_count(); i++)
    {
       if (m_baLocked[i])
       {
-         semaphore* pSemaphore = STATIC_DOWNCAST(semaphore, m_syncobjectptra[i]);
-         if (pSemaphore != NULL)
+         semaphore* pSemaphore = dynamic_cast < semaphore * > (m_syncobjectptra(i).m_p);
+         if (pSemaphore != ::null())
          {
             bGotOne = true;
-            m_baLocked[i] = !m_syncobjectptra[i]->unlock(lCount, lpPrevCount);
+            m_baLocked[i] = !m_syncobjectptra(i)->unlock(lCount, lpPrevCount);
          }
       }
    }

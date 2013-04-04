@@ -31,7 +31,7 @@ public:
     if (order != -1 && mLastCharOrder != -1)
     {
       mTotalRel++;
-      //count this sequence to its category counter
+      //::count this sequence to its category counter
       mRelSample[jp2CharContext[mLastCharOrder][order]]++;
     }
     mLastCharOrder = order;

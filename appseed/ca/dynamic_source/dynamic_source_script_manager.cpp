@@ -103,15 +103,15 @@ namespace dynamic_source
 
    script_manager::~script_manager()
    {
-      if(m_pcache != NULL)
+      if(m_pcache != ::null())
       {
          delete m_pcache;
-         m_pcache  = NULL;
+         m_pcache  = ::null();
       }
-      if(m_pcompiler != NULL)
+      if(m_pcompiler != ::null())
       {
          delete m_pcompiler;
-         m_pcompiler = NULL;
+         m_pcompiler = ::null();
       }
    }
 
@@ -164,11 +164,11 @@ namespace dynamic_source
       string strHead;
       script_instance * pinstance = get(m_strSeed);
       pnetnodesocket->m_pinstanceCurrent = pinstance;
-      if(pinstance != NULL)
+      if(pinstance != ::null())
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
          pinstance->m_strDebugThisScript = m_strSeed;
-         pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
+         pinstance->initialize(pinstance, ::null(), pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
          {
@@ -178,7 +178,7 @@ namespace dynamic_source
             }
          }
       }
-      if(pinstance != NULL)
+      if(pinstance != ::null())
       {
          pinstance->main_initialize();
          try
@@ -244,7 +244,7 @@ namespace dynamic_source
       string strName = ::ca::str::get_word(strNameParam, "?");
       if(strName.is_empty())
       {
-         if(pinstanceParent != NULL)
+         if(pinstanceParent != ::null())
          {
             if(pinstanceParent->main_instance()->m_iDebug > 0)
             {
@@ -254,10 +254,10 @@ namespace dynamic_source
                }
             }
          }
-         return NULL;
+         return ::null();
       }
       script_instance * pinstance = get(strName);
-      if(pinstance != NULL)
+      if(pinstance != ::null())
       {
          pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
          pinstance->dinit();
@@ -265,8 +265,8 @@ namespace dynamic_source
          {
             pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
             pinstance->m_strDebugThisScript = strName;
-            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
-            if(pdsscript != NULL)
+            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
+            if(pdsscript != ::null())
             {
                try
                {
@@ -282,7 +282,7 @@ namespace dynamic_source
 
          }
       }
-      if(pinstance != NULL)
+      if(pinstance != ::null())
       {
          pinstance->run();
       }
@@ -292,7 +292,7 @@ namespace dynamic_source
    void script_manager::LoadEnv()
    {
       /*char * buf;
-      uint32_t dwSize = GetDllDirectory(NULL, NULL);
+      uint32_t dwSize = GetDllDirectory(::null(), ::null());
       buf = new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
@@ -315,7 +315,7 @@ namespace dynamic_source
 
       string strNew;
 #ifdef WINDOWSEX
-      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      uint32_t dwSize = GetEnvironmentVariable("PATH", ::null(), 0);
       LPTSTR lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
@@ -342,7 +342,7 @@ namespace dynamic_source
       // just verifying
 
 #ifdef WINDOWSEX
-      dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      dwSize = GetEnvironmentVariable("PATH", ::null(), 0);
       lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
       TRACE(lpsz);
@@ -363,7 +363,7 @@ namespace dynamic_source
    {
       http::memory_file memfile(get_app());
       script_instance * pinstance = get(lpcszName);
-      if(pinstance != NULL)
+      if(pinstance != ::null())
       {
          pinstance->m_pscript->run(pinstance);
       }
@@ -375,7 +375,7 @@ namespace dynamic_source
    {
       http::memory_file memfile(get_app());
       POSITION pos = m_pcompiler->m_mapLib.get_start_position();
-      while(pos != NULL)
+      while(pos != ::null())
       {
          library_class * plib;
          string strClass;
@@ -431,9 +431,9 @@ namespace dynamic_source
    bool script_manager::include_matches_file_exists(const string & strPath)
    {
       single_lock sl(&m_mutexIncludeMatches, TRUE);
-      ::collection::string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.PLookup(strPath);
-      if(ppair != NULL)
-         return ppair->m_value;
+      string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.PLookup(strPath);
+      if(ppair != ::null())
+         return ppair->m_element2;
       else
       {
          bool bFileExists = Application.file().exists(strPath);
@@ -454,9 +454,9 @@ namespace dynamic_source
    bool script_manager::include_matches_is_dir(const string & strPath)
    {
       single_lock sl(&m_mutexIncludeMatches, TRUE);
-      ::collection::string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.PLookup(strPath);
-      if(ppair != NULL)
-         return ppair->m_value;
+      string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.PLookup(strPath);
+      if(ppair != ::null())
+         return ppair->m_element2;
       else
       {
          bool bIsDir = Application.dir().is(strPath);
@@ -472,9 +472,9 @@ namespace dynamic_source
          return false;
 
       single_lock sl(&m_mutexIncludeHasScript, TRUE);
-      ::collection::string_map < bool >::pair * ppair = m_mapIncludeHasScript.PLookup(strPath);
-      if(ppair != NULL)
-         return ppair->m_value;
+      string_map < bool >::pair * ppair = m_mapIncludeHasScript.PLookup(strPath);
+      if(ppair != ::null())
+         return ppair->m_element2;
       else
       {
 
@@ -601,22 +601,22 @@ namespace dynamic_source
 
 #ifdef MACOS
 
-      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(::null(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
 
       CFDictionaryAddValue(parameters, kSecAttrKeySizeInBits, (CFTypeRef) 1024);
 
-      SecKeyRef prsa = SecKeyGenerateSymmetric(parameters, NULL);
+      SecKeyRef prsa = SecKeyGenerateSymmetric(parameters, ::null());
 
-      if(prsa == NULL)
+      if(prsa == ::null())
          return;
 
       CFRelease(parameters);
 
 #elif defined(BSD_STYLE_SOCKETS)
 
-      RSA * prsa = RSA_generate_key(1024, 65537, NULL, NULL);
+      RSA * prsa = RSA_generate_key(1024, 65537, ::null(), ::null());
 
 #else
 
@@ -679,7 +679,7 @@ namespace dynamic_source
       while(true)
       {
 
-         if(has_link_out_link(pszServer, pinsocket, NULL))
+         if(has_link_out_link(pszServer, pinsocket, ::null()))
             break;
 
          Sleep(84);
@@ -691,25 +691,25 @@ namespace dynamic_source
    bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
    {
 
-      ::collection::string_map < ::sockets::link_out_socket * >::pair * ppair;
+      strsp(::sockets::link_out_socket)::pair * ppair;
 
       single_lock sl(&m_mutexOutLink, TRUE);
 
       ppair = m_mapOutLink.PLookup(pszServer);
 
-      ::sockets::link_out_socket * psocket = NULL;
+      ::sockets::link_out_socket * psocket = ::null();
 
-      if(ppair != NULL)
+      if(ppair != ::null())
       {
 
-         psocket = ppair->m_value;
+         psocket = ppair->m_element2;
 
-         if(psocket != NULL)
+         if(psocket != ::null())
          {
 
             single_lock sl2(&m_mutexInLink, TRUE);
 
-            if(phttpdsocket != NULL)
+            if(phttpdsocket != ::null())
             {
 
                pinsocket->m_in = phttpdsocket;
@@ -730,7 +730,7 @@ namespace dynamic_source
 
       }
 
-      if(psocket == NULL)
+      if(psocket == ::null())
          return false;
 
       return true;
@@ -742,7 +742,7 @@ namespace dynamic_source
 
       single_lock sl2(&m_mutexInLink, TRUE);
 
-      ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
+      map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
          m_mapInLink.PLookup(poutsocket);
 
       {
@@ -758,10 +758,10 @@ namespace dynamic_source
 
       }
 
-      if(ppair == NULL)
-         return NULL;
+      if(ppair == ::null())
+         return ::null();
 
-      ::sockets::link_in_socket * pinsocket = ppair->m_value;
+      ::sockets::link_in_socket * pinsocket = ppair->m_element2;
 
       m_mapInLink.remove_key(poutsocket);
 
@@ -775,12 +775,12 @@ namespace dynamic_source
 
       single_lock sl(&m_mutexTunnel, TRUE);
 
-      ::collection::string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.PLookup(pszServer);
+      string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.PLookup(pszServer);
 
-      if(ppair == NULL)
+      if(ppair == ::null())
          return false;
 
-      if(::get_tick_count() - ppair->m_value.m_dwLast > (60 * 1000))
+      if(::get_tick_count() - ppair->m_element2.m_dwLast > (60 * 1000))
          return false;
 
       return true;

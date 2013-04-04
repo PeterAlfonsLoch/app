@@ -27,7 +27,7 @@ namespace ca
          virtual ~form();
 
 
-         //base_array < CTransparentStatic *, CTransparentStatic * > m_staticpa;
+         //array < CTransparentStatic *, CTransparentStatic * > m_staticpa;
 
          virtual string get_path();
          virtual bool open_document(var varFile);

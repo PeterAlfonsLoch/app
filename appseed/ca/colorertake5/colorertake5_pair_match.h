@@ -44,7 +44,7 @@ namespace colorertake5
       */
       PairMatch(LineRegion *startRef, index lineNo, bool topPosition)
       {
-         start = end = NULL;
+         start = end = ::null();
          this->startRef = startRef;
          sline = lineNo;
          pairBalance = -1;
@@ -71,10 +71,10 @@ namespace colorertake5
       * pair match properties consistent between parse stages
       */
       void setStart(LineRegion *pair){
-         if (start != NULL){
+         if (start != ::null()){
             delete start;
          }
-         if (pair != NULL){
+         if (pair != ::null()){
             start = new LineRegion(*pair);
          }
       }
@@ -84,10 +84,10 @@ namespace colorertake5
       * pair match properties consistent between parse stages
       */
       void setEnd(LineRegion *pair){
-         if (end != NULL){
+         if (end != ::null()){
             delete end;
          }
-         if (pair != NULL){
+         if (pair != ::null()){
             end = new LineRegion(*pair);
          }
       }

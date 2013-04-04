@@ -26,7 +26,7 @@ namespace sockets
       /** Constructor.
       \param h socket_handler_base reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket(socket_handler_base& h,bool use_creator = true) : ::ca::ca(h.get_app()), socket(h), m_depth(0), m_creator(NULL)
+      listen_socket(socket_handler_base& h,bool use_creator = true) : ::ca::ca(h.get_app()), socket(h), m_depth(0), m_creator(::null())
          ,m_bHasCreate(false), m_bDetach(false)
       {
          if (use_creator)

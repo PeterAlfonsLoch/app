@@ -24,7 +24,7 @@ namespace visual
          rect.height(),
          1,
          32,
-         NULL,
+         ::null(),
          rect.width() * sizeof(COLORREF));
    /*#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((uint32_t)(BYTE)(b))<<16)|((uint32_t)(BYTE)(a))<<24)))
       SelectObject(m_bitmapBlend);

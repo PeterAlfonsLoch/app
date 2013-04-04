@@ -9,8 +9,8 @@ namespace ca
          
       signal::signal()
       {
-         m_pcookies     = NULL;
-         m_puser        = NULL;
+         m_pcookies     = ::null();
+         m_puser        = ::null();
          m_estatusRet   = status_unchanged;
       }
 

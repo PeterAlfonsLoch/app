@@ -15,25 +15,21 @@ namespace dynamic_source
    class CLASS_DECL_ca script_interface :
       virtual public ::html::file
    {
-      
-      script_interface *                  m_pinstanceMain;
-      script_interface *                  m_pinstanceParent;
-      httpd_socket *                      m_pnetnodesocket;
-      script_manager *                    m_pmanager;
-
-
    public:
+
+
+      
+      sp(script_interface)                m_pinstanceMain;
+      sp(script_interface)                m_pinstanceParent;
+      sp(httpd_socket)                    m_pnetnodesocket;
+      sp(script_manager)                  m_pmanager;
 
 
       sp(::http::memory_file)             m_spmemoryfileFallback;
 
-      script *                            m_pscript;
+      sp(script)                          m_pscript;
 
-      
-
-
-
-      int32_t                                 m_iDebug;
+      int32_t                             m_iDebug;
       
       script_interface();
       virtual ~script_interface();

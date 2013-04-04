@@ -28,7 +28,7 @@ namespace ca
    UINT application::APPM_LANGUAGE = WM_APP + 117;
    WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
-   HMODULE g_hmoduleOs = NULL;
+   HMODULE g_hmoduleOs = ::null();
 
    const char application::gen_FileSection[] = "Recent File List";
    const char application::gen_FileEntry[] = "File%d";
@@ -40,7 +40,7 @@ namespace ca
 
    application::application() :
       m_mutex(this),
-      ::ca::thread(NULL),
+      ::ca::thread(::null()),
       m_mutexMatterLocator(this),
       OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
       OAUTHLIB_CALLBACK_KEY         ("oauth_callback"),
@@ -107,7 +107,7 @@ namespace ca
       TWIT_FRIENDSIDS_URL ( "http://twitter.com/friends/ids.xml"),
       TWIT_FOLLOWERSIDS_URL ( "http://twitter.com/followers/ids.xml"),
 
-      /* Account URLs */
+      /* Ac::count URLs */
       TWIT_ACCOUNTRATELIMIT_URL ( "http://twitter.com/account/rate_limit_status.xml"),
 
       /* Favorites URLs */
@@ -147,67 +147,67 @@ namespace ca
 //      uint32_t dw = ::_getmbcp();
       srand(::get_tick_count());
 
-      m_pinitmaindata      = NULL;
+      m_pinitmaindata      = ::null();
       m_bService           = false;
 
       m_bZipIsDir          = true;
 
-      m_psession           = NULL;
-      m_psystem            = NULL;
+      m_psession           = ::null();
+      m_psystem            = ::null();
 
 
-      m_pappCube           = NULL;
+      m_pappCube           = ::null();
 
 
-      m_plemonarray              = new lemon::array(this);
+      m_plemonarray              = new ::lemon::array(this);
          m_base64.set_app(this);
          m_pmath                    = new math::math(this);
          m_pgeometry                = new geometry::geometry(this);
-         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
+         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", ::null());
          m_iResourceId              = 8001;
          m_psavings                 = new class savings(this);
          m_pcommandthread           = new ::ca::command_thread(this);
 
       ::ca::profiler::initialize();
 
-      m_pszRegistryKey              = NULL;
-      m_pszHelpFilePath             = NULL;
-      m_pszProfileName              = NULL;
-      m_pframea                     = NULL;
+      m_pszRegistryKey              = ::null();
+      m_pszHelpFilePath             = ::null();
+      m_pszProfileName              = ::null();
+      m_pframea                     = ::null();
 
 
       m_nSafetyPoolSize             = 512;        // default size
 
-      m_pwndMain                    = NULL;
-      m_puserstrcontext             = NULL;
+      m_pwndMain                    = ::null();
+      m_puserstrcontext             = ::null();
       m_bShouldInitializeGTwf       = true;
       m_bSessionSynchronizedCursor  = true;
       m_bSessionSynchronizedScreen  = true;
 
-      m_pdocmanager                 = NULL;
+      m_pdocmanager                 = ::null();
 
       m_nCmdShow                    = -1;
 
       m_strInstallType              = "application";
 
-      m_pinitmaindata = NULL;
+      m_pinitmaindata = ::null();
 
       m_psignal->connect(this, &::ca::application::on_application_signal);
 
       m_eexclusiveinstance       = ::ca::ExclusiveInstanceNone;
-      m_peventReady              = NULL;
-      m_pmapKeyPressed           = NULL;
+      m_peventReady              = ::null();
+      m_pmapKeyPressed           = ::null();
       m_bLicense                 = true;
       m_strLocale                = "_std";
       m_strSchema                = "_std";
 
-      m_pcalculator              = NULL;
-      m_pcolorertake5            = NULL;
-      m_psockets                 = NULL;
+      m_pcalculator              = ::null();
+      m_pcolorertake5            = ::null();
+      m_psockets                 = ::null();
 
       // initialize wait cursor state
       m_iWaitCursorCount = 0;
-      m_hcurWaitCursorRestore = NULL;
+      m_hcurWaitCursorRestore = ::null();
 
 
    }
@@ -318,7 +318,7 @@ namespace ca
 
          {
             char lpszModuleFilePath[MAX_PATH + 1];
-            GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
+            GetModuleFileName(::null(), lpszModuleFilePath, MAX_PATH + 1);
             m_strModulePath = lpszModuleFilePath;
             char lpszModuleFolder[MAX_PATH + 1];
             LPTSTR lpszModuleFileName;
@@ -385,12 +385,12 @@ namespace ca
 
          {
 
-            if(!br_init_lib(NULL))
+            if(!br_init_lib(::null()))
                return false;
 
-            char * lpszModuleFolder = br_find_exe_dir(NULL);
+            char * lpszModuleFolder = br_find_exe_dir(::null());
 
-            if(lpszModuleFolder == NULL)
+            if(lpszModuleFolder == ::null())
                return false;
 
             m_strModuleFolder = lpszModuleFolder;
@@ -408,7 +408,7 @@ namespace ca
 
             void * handle = dlopen("libca2ca.so", RTLD_NOW);
 
-            if(handle == NULL)
+            if(handle == ::null())
                return false;
 
             link_map * plm;
@@ -426,7 +426,7 @@ namespace ca
 
          {
 
-            char * pszCurDir = getcwd(NULL, 0);
+            char * pszCurDir = getcwd(::null(), 0);
 
             string strCurDir = pszCurDir;
 
@@ -488,7 +488,7 @@ finishedCa2ModuleFolder:;
       }
 
       ::ca::thread::s_bAllocReady = true;
-      if(::ca::thread_sp::m_p == NULL)
+      if(::ca::thread_sp::m_p == ::null())
       {
          ::ca::thread_sp::create(this);
          ::ca::smart_pointer < application_base >::create(this);
@@ -509,7 +509,7 @@ finishedCa2ModuleFolder:;
          //smart_pointer < application_base >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
          //::ca::add_ref(::ca::thread_sp::m_p);
       }
-      if(::ca::get_thread() == NULL)
+      if(::ca::get_thread() == ::null())
       {
          set_thread(dynamic_cast < ::ca::thread * > (this));
       }
@@ -543,7 +543,7 @@ finishedCa2ModuleFolder:;
 
 
       m_puserstrcontext = new ::user::str_context(this);
-      if(m_puserstrcontext == NULL)
+      if(m_puserstrcontext == ::null())
          return false;
 
 
@@ -566,14 +566,14 @@ finishedCa2ModuleFolder:;
          if(docSystem.load(strSystem))
          {
 
-            if(docSystem.get_child("lang") != NULL)
+            if(docSystem.get_child("lang") != ::null())
             {
 
                strLocaleSystem = docSystem.get_child("lang")->get_value();
 
             }
 
-            if(docSystem.get_child("style") != NULL)
+            if(docSystem.get_child("style") != ::null())
             {
 
                strSchemaSystem = docSystem.get_child("style")->get_value();
@@ -713,11 +713,11 @@ finishedCa2ModuleFolder:;
    ::fontopus::user * application::get_safe_user()
    {
 
-      if(m_psession == NULL)
-         return NULL;
+      if(m_psession == ::null())
+         return ::null();
 
-      if(m_psession->m_pfontopus == NULL)
-         return NULL;
+      if(m_psession->m_pfontopus == ::null())
+         return ::null();
 
       return m_psession->m_pfontopus->m_puser;
 
@@ -775,7 +775,7 @@ finishedCa2ModuleFolder:;
    }
 
 
-   ::ca::lemon::array & application::lemon_array()
+   ::lemon::array & application::lemon_array()
    {
 
       return *m_plemonarray;
@@ -876,7 +876,7 @@ finishedCa2ModuleFolder:;
 
       try
       {
-         if(m_plemonarray != NULL)
+         if(m_plemonarray != ::null())
          {
             delete m_plemonarray;
          }
@@ -884,13 +884,13 @@ finishedCa2ModuleFolder:;
       catch(...)
       {
       }
-      m_plemonarray = NULL;
+      m_plemonarray = ::null();
 
 
 
       try
       {
-         if(m_pmath != NULL)
+         if(m_pmath != ::null())
          {
             delete m_pmath;
          }
@@ -898,13 +898,13 @@ finishedCa2ModuleFolder:;
       catch(...)
       {
       }
-      m_pmath = NULL;
+      m_pmath = ::null();
 
 
 
       try
       {
-         if(m_pgeometry != NULL)
+         if(m_pgeometry != ::null())
          {
             delete m_pgeometry;
          }
@@ -912,13 +912,13 @@ finishedCa2ModuleFolder:;
       catch(...)
       {
       }
-      m_pgeometry = NULL;
+      m_pgeometry = ::null();
 
 
 
       try
       {
-         if(m_psavings != NULL)
+         if(m_psavings != ::null())
          {
             delete m_psavings;
          }
@@ -926,13 +926,13 @@ finishedCa2ModuleFolder:;
       catch(...)
       {
       }
-      m_psavings = NULL;
+      m_psavings = ::null();
 
 
 
       try
       {
-         if(m_pcommandthread != NULL)
+         if(m_pcommandthread != ::null())
          {
             delete m_pcommandthread;
          }
@@ -940,7 +940,7 @@ finishedCa2ModuleFolder:;
       catch(...)
       {
       }
-      m_pcommandthread = NULL;
+      m_pcommandthread = ::null();
 
 
       release_exclusive();
@@ -984,7 +984,7 @@ finishedCa2ModuleFolder:;
 
 //         try
   //       {
-    //        if(m_spfilesystem.m_p != NULL)
+    //        if(m_spfilesystem.m_p != ::null())
       //      {
         //       ::ca::del(m_spfilesystem.m_p);
           //  }
@@ -1001,7 +1001,7 @@ finishedCa2ModuleFolder:;
 
          ::ca::thread         * pthread      = ::ca::thread_sp::detach();
 
-         if(pthread != NULL)
+         if(pthread != ::null())
          {
 
             try
@@ -1012,7 +1012,7 @@ finishedCa2ModuleFolder:;
                // letting thread function terminate
                pthread->m_bAutoDelete = false;
 
-               pthread->set_os_data(NULL);
+               pthread->set_os_data(::null());
 
                pthread->set_run(false);
 
@@ -1035,7 +1035,7 @@ finishedCa2ModuleFolder:;
 
          ::ca::application_base   * papp         = ::ca::smart_pointer < ::ca::application_base >::detach();
 
-         if(papp != NULL && papp != this && !papp->is_system())
+         if(papp != ::null() && papp != this && !papp->is_system())
          {
 
             try
@@ -1085,20 +1085,20 @@ finishedCa2ModuleFolder:;
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(lpcszFilePath);
 /*      HINSTANCE hinst = ::ca::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
-      if(hinst == NULL)
+      if(hinst == ::null())
          return false;
       HRSRC hrsrc = ::FindResource(
          hinst,
          MAKEINTRESOURCE(nID),
          lpcszType);
-      if(hrsrc == NULL)
+      if(hrsrc == ::null())
          return false;
        HGLOBAL hres = ::LoadResource(hinst, hrsrc);
-      if(hres == NULL)
+      if(hres == ::null())
          return false;
        uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
-      if(hres != NULL)
+      if(hres != ::null())
        {
          UINT FAR* lpnRes = (UINT FAR*)::LockResource(hres);
            try
@@ -1195,7 +1195,7 @@ finishedCa2ModuleFolder:;
 
          void * handle = dlopen("ca.so", 0);
 
-         if(handle == NULL)
+         if(handle == ::null())
             return false;
 
          link_map * plm;
@@ -1214,7 +1214,7 @@ finishedCa2ModuleFolder:;
 
       {
 
-         char * pszCurDir = getcwd(NULL, 0);
+         char * pszCurDir = getcwd(::null(), 0);
 
          string strCurDir = pszCurDir;
 
@@ -1260,7 +1260,7 @@ finishedCa2ModuleFolder:;
 
       char lpszModuleFilePath[MAX_PATH + 1];
 
-      GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
+      GetModuleFileName(::null(), lpszModuleFilePath, MAX_PATH + 1);
 
       string strModuleFileName(lpszModuleFilePath);
 
@@ -1274,7 +1274,7 @@ finishedCa2ModuleFolder:;
 
       char * lpszModuleFilePath = br_find_exe_dir("app");
 
-      if(lpszModuleFilePath == NULL)
+      if(lpszModuleFilePath == ::null())
          return "";
 
       string strModuleFileName(lpszModuleFilePath);
@@ -1292,7 +1292,7 @@ finishedCa2ModuleFolder:;
    {
       UNREFERENCED_PARAMETER(pcmdui);
       /*TRACE("\nCVmsGenApp::OnUpdateRecentFileMenu");
-      if(m_pRecentFileList == NULL)
+      if(m_pRecentFileList == ::null())
       {
          pcmdui->Enable(FALSE);
          //string str;
@@ -1303,10 +1303,10 @@ finishedCa2ModuleFolder:;
          return;
       }
 
-      ASSERT(m_pRecentFileList->m_arrNames != NULL);
+      ASSERT(m_pRecentFileList->m_arrNames != ::null());
 
       ::userbase::menu* pMenu = pcmdui->m_pMenu;
-      if (m_pRecentFileList->m_strOriginal.is_empty() && pMenu != NULL)
+      if (m_pRecentFileList->m_strOriginal.is_empty() && pMenu != ::null())
          pMenu->GetMenuString(pcmdui->m_nID, m_pRecentFileList->m_strOriginal, MF_BYCOMMAND);
 
       if (m_pRecentFileList->m_arrNames[0].is_empty())
@@ -1318,12 +1318,12 @@ finishedCa2ModuleFolder:;
          return;
       }
 
-      if (pcmdui->m_pMenu == NULL)
+      if (pcmdui->m_pMenu == ::null())
          return;
 
       ::userbase::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
 
-      //if(pmenu == NULL)
+      //if(pmenu == ::null())
       //{
         // pmenu = pcmdui->m_pMenu;
       //}
@@ -1406,7 +1406,7 @@ finishedCa2ModuleFolder:;
       UNREFERENCED_PARAMETER(storage);
 /*      HINSTANCE hinst = ::ca::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
 
-      if(hinst == NULL)
+      if(hinst == ::null())
          return false;
 
       HRSRC hrsrc = ::FindResource(
@@ -1414,16 +1414,16 @@ finishedCa2ModuleFolder:;
          MAKEINTRESOURCE(nID),
          lpcszType);
 
-      if(hrsrc == NULL)
+      if(hrsrc == ::null())
          return false;
 
       HGLOBAL hres = ::LoadResource(hinst, hrsrc);
-      if(hres == NULL)
+      if(hres == ::null())
          return false;
 
       uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
-      if(hres != NULL)
+      if(hres != ::null())
       {
          UINT FAR* lpnRes = (UINT FAR*)::LockResource(hres);
          try
@@ -1455,7 +1455,7 @@ finishedCa2ModuleFolder:;
       primitive::memory storage;
       if(!GetResourceData(uiResource, "EnhMetaFile", storage))
       {
-         return NULL;
+         return ::null();
       }
       return SetEnhMetaFileBits((UINT) storage.get_size(), storage.get_data());
    }
@@ -1472,17 +1472,17 @@ finishedCa2ModuleFolder:;
       UNUSED(bEnable);
    #endif
 
-      // no-op if main ::ca::window is NULL or not a frame_window_interface
+      // no-op if main ::ca::window is ::null() or not a frame_window_interface
 /*      ::user::interaction* pMainWnd = System.GetMainWnd();
-      if (pMainWnd == NULL || !pMainWnd->IsFrameWnd())
+      if (pMainWnd == ::null() || !pMainWnd->IsFrameWnd())
          return;*/
 
    #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
    /*   ::ca::frame_window_interface* pFrameWnd =
          dynamic_cast < ::ca::frame_window_interface * > (pMainWnd);
-      ASSERT(pFrameWnd != NULL);
-      if (pFrameWnd->GetNotifyHook() != NULL)
+      ASSERT(pFrameWnd != ::null());
+      if (pFrameWnd->GetNotifyHook() != ::null())
          pFrameWnd->GetNotifyHook()->OnEnableModeless(bEnable);*/
    #endif
    }
@@ -1512,10 +1512,10 @@ finishedCa2ModuleFolder:;
    // Main running routine until application exits
    int32_t application::run()
    {
-   /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca::window
+   /*   if (GetMainWnd() == ::null()) // may be a service or console application ::ca::window
       {
          // Not launched /Embedding or /Automation, but has no main ::ca::window!
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "Warning: GetMainWnd() is ::null() in application::run - quitting application.\n");
          __post_quit_message(0);
       }*/
 //      return ::ca::application::run();
@@ -1532,8 +1532,8 @@ finishedCa2ModuleFolder:;
          thread::on_idle(lCount);
 
          // call doc-template idle hook
-         count count = 0;
-         if (m_pdocmanager != NULL)
+         ::count count = 0;
+         if (m_pdocmanager != ::null())
             count = m_pdocmanager->get_template_count();
 
          for(index index = 0; index < count; index++)
@@ -1556,8 +1556,8 @@ finishedCa2ModuleFolder:;
 
    void application::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
    {
-      ENSURE_ARG(e != NULL);
-      ENSURE_ARG(pobj != NULL);
+      ENSURE_ARG(e != ::null());
+      ENSURE_ARG(pobj != ::null());
       SCAST_PTR(::ca::message::base, pbase, pobj);
       // handle certain messages in thread
       switch (pbase->m_uiMessage)
@@ -1774,7 +1774,7 @@ protected :
    HANDLE m_hCtxt;
    uint_ptr m_uCookie;
 
-   // If pointers are NULL then we are on a platform that does not support WinSXS.
+   // If pointers are ::null() then we are on a platform that does not support WinSXS.
    typedef HANDLE (WINAPI * PFNCreateActCtx)(PCACTCTX);
    static PFNCreateActCtx s_pfnCreateActCtx;
 
@@ -1797,7 +1797,7 @@ public:
       if (!s_bPFNInitialized)
       {
          HMODULE hKernel = GetModuleHandle("KERNEL32");
-         ENSURE (hKernel != NULL);
+         ENSURE (hKernel != ::null());
 #ifdef _UNICODE
          s_pfnCreateActCtx = (PFNCreateActCtx) GetProcAddress(hKernel, "CreateActCtxW");
 #else
@@ -1806,19 +1806,19 @@ public:
          s_pfnReleaseActCtx = (PFNReleaseActCtx) GetProcAddress(hKernel, "ReleaseActCtx");
          s_pfnActivateActCtx = (PFNActivateActCtx) GetProcAddress(hKernel, "ActivateActCtx");
          s_pfnDeactivateActCtx = (PFNDeactivateActCtx) GetProcAddress(hKernel, "DeactivateActCtx");
-         if (s_pfnCreateActCtx != NULL)
+         if (s_pfnCreateActCtx != ::null())
          {
             // If one of the functions is present then all the functions have to be present.
-            ENSURE( s_pfnReleaseActCtx != NULL &&
-               s_pfnActivateActCtx != NULL &&
-               s_pfnDeactivateActCtx != NULL);
+            ENSURE( s_pfnReleaseActCtx != ::null() &&
+               s_pfnActivateActCtx != ::null() &&
+               s_pfnDeactivateActCtx != ::null());
          }
          else
          {
             // If one of the functions is not present then all the functions should not be present.
-            ENSURE( s_pfnReleaseActCtx == NULL &&
-               s_pfnActivateActCtx == NULL &&
-               s_pfnDeactivateActCtx == NULL);
+            ENSURE( s_pfnReleaseActCtx == ::null() &&
+               s_pfnActivateActCtx == ::null() &&
+               s_pfnDeactivateActCtx == ::null());
          }
          s_bPFNInitialized = true;
       }
@@ -1831,14 +1831,14 @@ public:
 
    bool create( PCACTCTX pactctx )
    {
-      // NULL on a platform that do not support WinSXS
-      if (s_pfnCreateActCtx == NULL)
+      // ::null() on a platform that do not support WinSXS
+      if (s_pfnCreateActCtx == ::null())
       {
          return true;
       }
 
-      ASSERT( pactctx != NULL );
-      if ( pactctx == NULL )
+      ASSERT( pactctx != ::null() );
+      if ( pactctx == ::null() )
       {
          return false;
       }
@@ -1854,8 +1854,8 @@ public:
 
    void Release()
    {
-      // NULL on a platform that do not support WinSXS
-      if (s_pfnReleaseActCtx == NULL)
+      // ::null() on a platform that do not support WinSXS
+      if (s_pfnReleaseActCtx == ::null())
       {
          return;
       }
@@ -1869,8 +1869,8 @@ public:
 
    bool Activate()
    {
-      // NULL on a platform that do not support WinSXS
-      if (s_pfnActivateActCtx == NULL)
+      // ::null() on a platform that do not support WinSXS
+      if (s_pfnActivateActCtx == ::null())
       {
          return true;
       }
@@ -1892,8 +1892,8 @@ public:
 
    bool Deactivate()
    {
-      // NULL on a platform that do not support WinSXS
-      if (s_pfnDeactivateActCtx == NULL)
+      // ::null() on a platform that do not support WinSXS
+      if (s_pfnDeactivateActCtx == ::null())
       {
          return true;
       }
@@ -1909,10 +1909,10 @@ public:
 };
 
 
-CActivationContext::PFNCreateActCtx CActivationContext::s_pfnCreateActCtx = NULL;
-CActivationContext::PFNReleaseActCtx CActivationContext::s_pfnReleaseActCtx = NULL;
-CActivationContext::PFNActivateActCtx CActivationContext::s_pfnActivateActCtx = NULL;
-CActivationContext::PFNDeactivateActCtx CActivationContext::s_pfnDeactivateActCtx = NULL;
+CActivationContext::PFNCreateActCtx CActivationContext::s_pfnCreateActCtx = ::null();
+CActivationContext::PFNReleaseActCtx CActivationContext::s_pfnReleaseActCtx = ::null();
+CActivationContext::PFNActivateActCtx CActivationContext::s_pfnActivateActCtx = ::null();
+CActivationContext::PFNDeactivateActCtx CActivationContext::s_pfnDeactivateActCtx = ::null();
 bool CActivationContext::s_bPFNInitialized = false;
 
 
@@ -1937,7 +1937,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-      HKEY hkPolicy = NULL;
+      HKEY hkPolicy = ::null();
       DWORD dwValue = 0;
       DWORD dwDataLen = sizeof(dwValue);
       DWORD dwType = 0;
@@ -1953,13 +1953,13 @@ namespace ca
          {"NoNetConnectDisconnect", ___SYSPOLICY_NONETCONNECTDISCONNECTD},
          {"NoRecentDocsHistory", ___SYSPOLICY_NORECENTDOCHISTORY},
          {"NoClose", ___SYSPOLICY_NOCLOSE},
-         {NULL, NULL}
+         {::null(), 0}
       };
 
       static __system_policy_data rgNetworkData[] =
       {
          {"NoEntireNetwork", ___SYSPOLICY_NOENTIRENETWORK},
-         {NULL, NULL}
+         {::null(), 0}
       };
 
       static __system_policy_data rgComDlgData[] =
@@ -1967,7 +1967,7 @@ namespace ca
          {"NoPlacesBar", ___SYSPOLICY_NOPLACESBAR},
          {"NoBackButton", ___SYSPOLICY_NOBACKBUTTON},
          {"NoFileMru", ___SYSPOLICY_NOFILEMRU},
-         {NULL, NULL}
+         {::null(), 0}
       };
 
       static __system_policies rgPolicies[] =
@@ -1978,19 +1978,19 @@ namespace ca
             rgNetworkData},
          {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
             rgComDlgData},
-         {NULL, NULL}
+         {::null(), 0}
       };
 
       __system_policies *pPolicies = rgPolicies;
-      __system_policy_data *pData = NULL;
+      __system_policy_data *pData = ::null();
 
-      while (pPolicies->szPolicyKey != NULL)
+      while (pPolicies->szPolicyKey != ::null())
       {
 
          if (ERROR_SUCCESS == ::RegOpenKeyEx(
                   HKEY_CURRENT_USER,
                   pPolicies->szPolicyKey,
-                  NULL,
+                  0,
                   KEY_QUERY_VALUE,
                   &hkPolicy
                   ))
@@ -2001,7 +2001,7 @@ namespace ca
                if (ERROR_SUCCESS == ::RegQueryValueEx(
                                hkPolicy,
                                pData->szPolicyName,
-                               NULL,
+                               ::null(),
                                &dwType,
                                (BYTE*)&dwValue,
                                &dwDataLen))
@@ -2020,7 +2020,7 @@ namespace ca
                pData++;
             }
             ::RegCloseKey(hkPolicy);
-            hkPolicy = NULL;
+            hkPolicy = ::null();
          }
          pPolicies++;
       };
@@ -2042,13 +2042,13 @@ namespace ca
 
    bool application::InitApplication()
    {
-      /*if(::get_app() == NULL)
+      /*if(::get_app() == ::null())
       {
          ::set_app(get_system());
          system::application * pApp = dynamic_cast < system::application * > (::get_app());
          thread * pThread = ::get_app();
          // App global initializations (rare)
-         if (pApp != NULL && !pApp->InitApplication())
+         if (pApp != ::null() && !pApp->InitApplication())
             goto InitFailure;
 
          pThread->translator::attach();
@@ -2060,9 +2060,9 @@ namespace ca
             {
                if(!pApp->process_initialize())
                {
-                  if (pThread->GetMainWnd() != NULL)
+                  if (pThread->GetMainWnd() != ::null())
                   {
-                     TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                     TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
                      pThread->GetMainWnd()->DestroyWindow();
                   }
                   goto InitFailure;
@@ -2070,10 +2070,10 @@ namespace ca
             }
             catch(const ::ca::exception &)
             {
-               if (pThread->GetMainWnd() != NULL)
+               if (pThread->GetMainWnd() != ::null())
                {
                   pThread->GetMainWnd()->DestroyWindow();
-                  pThread->SetMainWnd(NULL);
+                  pThread->SetMainWnd(::null());
                }
                goto InitFailure;
             }
@@ -2081,9 +2081,9 @@ namespace ca
             {
                if(!pThread->initialize_instance())
                {
-                  if (pThread->GetMainWnd() != NULL)
+                  if (pThread->GetMainWnd() != ::null())
                   {
-                     TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                     TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
                      pThread->GetMainWnd()->DestroyWindow();
                   }
                   pThread->exit_instance();
@@ -2094,9 +2094,9 @@ namespace ca
             {
                if(pThread->on_run_exception((::ca::exception &) e))
                   goto run;
-               if (pThread->GetMainWnd() != NULL)
+               if (pThread->GetMainWnd() != ::null())
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
                   try
                   {
                      pThread->GetMainWnd()->DestroyWindow();
@@ -2104,13 +2104,13 @@ namespace ca
                   catch(::ca::exception &)
                   {
                   }
-                  pThread->SetMainWnd(NULL);
+                  pThread->SetMainWnd(::null());
                }
                if(pApp->final_handle_exception((::ca::exception &) e))
                   goto run;
-               if (pThread->GetMainWnd() != NULL)
+               if (pThread->GetMainWnd() != ::null())
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
                   try
                   {
                      pThread->GetMainWnd()->DestroyWindow();
@@ -2118,7 +2118,7 @@ namespace ca
                   catch(::ca::exception &)
                   {
                   }
-                  pThread->SetMainWnd(NULL);
+                  pThread->SetMainWnd(::null());
                }
                pThread->exit_instance();
                goto InitFailure;
@@ -2364,7 +2364,7 @@ namespace ca
       UNREFERENCED_PARAMETER(lpDeviceName);
 
       #ifdef WINDOWS
-      if (m_hDevNames == NULL)
+      if (m_hDevNames == ::null())
          return;
 
          #endif
@@ -2408,7 +2408,7 @@ namespace ca
          else
          {
 
-            hotplugin::host::starter_start_sync(": app=session session_start=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema, NULL);
+            hotplugin::host::starter_start_sync(": app=session session_start=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema, ::null());
 
          }
 
@@ -2429,11 +2429,11 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-      return ::LoadCursor(NULL, lpszCursorName);
+      return ::LoadCursor(::null(), lpszCursorName);
 
 #else
 
-      return NULL;
+      return ::null();
 
 #endif
 
@@ -2515,7 +2515,7 @@ namespace ca
 
       bool bSetOk;
 
-      LPSECURITY_ATTRIBUTES lpsa = NULL;
+      LPSECURITY_ATTRIBUTES lpsa = ::null();
 
       bool bResourceException = false;
 
@@ -2533,10 +2533,10 @@ namespace ca
       if ( bInitOk )
       {
          // give the security descriptor a Null Dacl
-         // done using the  "TRUE, (PACL)NULL" here
+         // done using the  "TRUE, (PACL)::null()" here
          bSetOk = SetSecurityDescriptorDacl( &SD,
                                                TRUE,
-                                               (PACL)NULL,
+                                               (PACL)::null(),
                                                FALSE ) != FALSE;
       }
 
@@ -2658,7 +2658,7 @@ namespace ca
             {
                // Should in some way activate the other instance
                //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account with the same id.<br><br>Exiting this new instance.");
+               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
                on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
                return false;
             }
@@ -2734,7 +2734,7 @@ namespace ca
          }
          else
          {
-            SetMainWnd(NULL);
+            SetMainWnd(::null());
          }
       }
    }
@@ -2758,25 +2758,25 @@ namespace ca
 
    void application::_001OnFileNew()
    {
-/*      if (m_pdocmanager != NULL)
+/*      if (m_pdocmanager != ::null())
          m_pdocmanager->_001OnFileNew();*/
    }
 
    void application::on_file_open()
    {
-      ENSURE(m_pdocmanager != NULL);
+      ENSURE(m_pdocmanager != ::null());
       //m_pdocmanager->on_file_open();
    }
 
    // prompt for file name - used for open and save as
    bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
-         // if ptemplate==NULL => all document templates
+         // if ptemplate==::null() => all document templates
    {
-      if(m_pfilemanager != NULL)
+      if(m_pfilemanager != ::null())
       {
          return m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
       }
-      ENSURE(m_pdocmanager != NULL);
+      ENSURE(m_pdocmanager != ::null());
 /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
                                  bOpenFileDialog, ptemplate);*/
       return FALSE;
@@ -2907,11 +2907,11 @@ namespace ca
 
    /*bool application::GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg)
    {
-      UpdatePrinterSelection(m_hDevNames == NULL); //force default if no current
-      if (m_hDevNames == NULL)
+      UpdatePrinterSelection(m_hDevNames == ::null()); //force default if no current
+      if (m_hDevNames == ::null())
          return FALSE;               // no printer defaults
 
-      ENSURE_ARG(pPrintDlg != NULL);
+      ENSURE_ARG(pPrintDlg != ::null());
       pPrintDlg->hDevNames = m_hDevNames;
       pPrintDlg->hDevMode = m_hDevMode;
 
@@ -2938,13 +2938,13 @@ namespace ca
       throw not_implemented(get_app());
       /*if (m_hDevNames != hDevNames)
       {
-         if (m_hDevNames != NULL && bFreeOld)
+         if (m_hDevNames != ::null() && bFreeOld)
             __global_free(m_hDevNames);
          m_hDevNames = hDevNames;
       }
       if (m_hDevMode != hDevMode)
       {
-         if (m_hDevMode != NULL && bFreeOld)
+         if (m_hDevMode != ::null() && bFreeOld)
             __global_free(m_hDevMode);
          m_hDevMode = hDevMode;
       }*/
@@ -2956,7 +2956,7 @@ namespace ca
       throw not_implemented(get_app());
       /*
       HDC hDC = ::ca::CreateDC(m_hDevNames, m_hDevMode);
-      if (hDC != NULL)
+      if (hDC != ::null())
       {
          spgraphics->DeleteDC();
          bool bRet = spgraphics->attach(hDC);
@@ -2989,7 +2989,7 @@ namespace ca
 
       // same as double-clicking on main ::ca::window close box
 
-      ASSERT(GetMainWnd() != NULL);
+      ASSERT(GetMainWnd() != ::null());
 
       GetMainWnd()->send_message(WM_CLOSE);
 
@@ -3000,7 +3000,7 @@ namespace ca
    {
       try
       {
-         if(GetMainWnd() == NULL)
+         if(GetMainWnd() == ::null())
             return;
 
          // hide the application's windows before closing all the documents
@@ -3068,7 +3068,7 @@ namespace ca
    void application::ShowWaitCursor(bool bShow)
    {
 
-      if(::ca::smart_pointer < ::ca::application_base >::m_p == NULL)
+      if(::ca::smart_pointer < ::ca::application_base >::m_p == ::null())
          return;
 
       ::ca::smart_pointer < ::ca::application_base >::m_p->ShowWaitCursor(bShow);
@@ -3079,21 +3079,21 @@ namespace ca
 
    bool application::save_all_modified()
    {
-/*      if (m_pdocmanager != NULL)
+/*      if (m_pdocmanager != ::null())
          return m_pdocmanager->save_all_modified();*/
       return TRUE;
    }
 
    void application::close_all_documents(bool bEndSession)
    {
-      /*if (m_pdocmanager != NULL)
+      /*if (m_pdocmanager != ::null())
          m_pdocmanager->close_all_documents(bEndSession);*/
    }
 
 
    bool application::OnDDECommand(LPTSTR lpszCommand)
    {
-/*      if (m_pdocmanager != NULL)
+/*      if (m_pdocmanager != ::null())
          return m_pdocmanager->OnDDECommand(lpszCommand);
       else*/
          return FALSE;
@@ -3113,9 +3113,9 @@ namespace ca
       UNUSED(bEnable);
    #endif
 
-      // no-op if main ::ca::window is NULL or not a frame_window
+      // no-op if main ::ca::window is ::null() or not a frame_window
    /*   ::user::interaction* pMainWnd = System.GetMainWnd();
-      if (pMainWnd == NULL || !pMainWnd->IsFrameWnd())
+      if (pMainWnd == ::null() || !pMainWnd->IsFrameWnd())
          return;*/
 
    #ifndef ___NO_OLE_SUPPORT
@@ -3123,7 +3123,7 @@ namespace ca
    /*xxx
       ASSERT_KINDOF(frame_window, pMainWnd);
       frame_window* pFrameWnd = (frame_window*)pMainWnd;
-      if (pFrameWnd->m_pNotifyHook != NULL)
+      if (pFrameWnd->m_pNotifyHook != ::null())
          pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
    */
    #endif
@@ -3145,12 +3145,12 @@ namespace ca
 
 #if defined(WINDOWSEX)
 
-      return MessageBoxW((puiOwner == NULL ? ::ca::null() : (puiOwner->get_wnd() == NULL ? ::ca::null() : puiOwner->get_handle())),
+      return MessageBoxW((puiOwner == ::null() ? ::ca::null() : (puiOwner->get_wnd() == ::null() ? ::ca::null() : puiOwner->get_handle())),
          wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
 #elif  defined(LINUX) || defined(MACOS)
 
-      return MessageBox((puiOwner == NULL ? ::ca::null() : (puiOwner->get_wnd() == NULL ? ::ca::null() : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+      return MessageBox((puiOwner == ::null() ? ::ca::null() : (puiOwner->get_wnd() == ::null() ? ::ca::null() : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
 #else
 
@@ -3185,7 +3185,7 @@ namespace ca
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
       ::oswindow oswindow_Top;
-      ::oswindow oswindow = ::ca::window::get_safe_owner(NULL, &oswindow_Top);
+      ::oswindow oswindow = ::ca::window::get_safe_owner(::null(), &oswindow_Top);
 
       // re-enable the parent ::ca::window, so that focus is restored
       // correctly when the dialog is dismissed.
@@ -3193,7 +3193,7 @@ namespace ca
          EnableWindow(oswindow, TRUE);
 
       // set help context if possible
-      uint32_t* pdwContext = NULL;
+      uint32_t* pdwContext = ::null();
 
 #ifdef WINDOWS
 
@@ -3202,7 +3202,7 @@ namespace ca
          uint32_t dwWndPid=0;
          GetWindowThreadProcessId(oswindow, &dwWndPid);
 
-         if (oswindow != NULL && dwWndPid==GetCurrentProcessId() )
+         if (oswindow != ::null() && dwWndPid==GetCurrentProcessId() )
          {
             // use cast-level context or frame level context
             LRESULT lResult = ::SendMessage(oswindow, WM_HELPPROMPTADDR, 0, 0);
@@ -3214,11 +3214,11 @@ namespace ca
 
 #endif
       // for backward compatibility use cast context if possible
-      if (pdwContext == NULL && pApp != NULL)
+      if (pdwContext == ::null() && pApp != ::null())
          pdwContext = &pApp->m_dwPromptContext;
 
       uint32_t dwOldPromptContext = 0;
-      if (pdwContext != NULL)
+      if (pdwContext != ::null())
       {
          // save old prompt context for restoration later
          dwOldPromptContext = *pdwContext;
@@ -3257,14 +3257,14 @@ namespace ca
       char szAppName[_MAX_PATH];
       szAppName[0] = '\0';
       const char * pszAppName;
-      if (pApp != NULL)
+      if (pApp != ::null())
          pszAppName = pApp->m_strAppName;
       else
       {
 
 #ifdef WINDOWS
          pszAppName = szAppName;
-         uint32_t dwLen = GetModuleFileName(NULL, szAppName, _MAX_PATH);
+         uint32_t dwLen = GetModuleFileName(::null(), szAppName, _MAX_PATH);
          if (dwLen == _MAX_PATH)
             szAppName[_MAX_PATH - 1] = '\0';
 #else
@@ -3275,7 +3275,7 @@ namespace ca
       }
 
       int32_t nResult;
-      if(pApp == NULL)
+      if(pApp == ::null())
       {
          nResult = ::MessageBox(oswindow, lpszPrompt, pszAppName, nType);
       }
@@ -3285,11 +3285,11 @@ namespace ca
       }
 
       // restore prompt context if possible
-      if (pdwContext != NULL)
+      if (pdwContext != ::null())
          *pdwContext = dwOldPromptContext;
 
       // re-enable windows
-      if (oswindow_Top != NULL)
+      if (oswindow_Top != ::null())
          ::EnableWindow(oswindow_Top, TRUE);
 
       DoEnableModeless(TRUE);
@@ -3302,13 +3302,13 @@ namespace ca
    /* int32_t ::ca::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {
       application* papp = &System;
-      if (papp != NULL)
+      if (papp != ::null())
       {
          return papp->DoMessageBox(lpszText, nType, nIDHelp);
       }
       else
       {
-         return application::ShowAppMessageBox(NULL, lpszText, nType, nIDHelp);
+         return application::ShowAppMessageBox(::null(), lpszText, nType, nIDHelp);
       }
    }
    */
@@ -3342,7 +3342,7 @@ namespace ca
 #else
 
       if(frames().get_size() <= 0)
-         return NULL;
+         return ::null();
 
       return frames()[0];
 
@@ -3361,7 +3361,7 @@ namespace ca
 #elif defined(WINDOWSEX) || defined(LINUX)
 
       ::ca::window * pwnd = System.window_from_os_data_permanent(::GetFocus());
-      if(pwnd != NULL)
+      if(pwnd != ::null())
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
          || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
@@ -3370,11 +3370,11 @@ namespace ca
          }
          else
          {
-            return NULL;
+            return ::null();
          }
       }
       pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
+      if(pwnd != ::null())
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
          || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
@@ -3383,10 +3383,10 @@ namespace ca
          }
          else
          {
-            return NULL;
+            return ::null();
          }
       }
-      return NULL;
+      return ::null();
 
 #else
 
@@ -3408,7 +3408,7 @@ namespace ca
       case CCommandLineInfo::FileNew:
          if (!System._001SendCommand("file::new"))
             _001OnFileNew();
-         if (GetMainWnd() == NULL)
+         if (GetMainWnd() == ::null())
             bResult = FALSE;
          break;
 
@@ -3425,13 +3425,13 @@ namespace ca
       case CCommandLineInfo::FilePrintTo:
       case CCommandLineInfo::FilePrint:
          m_nCmdShow = SW_HIDE;
-         ASSERT(m_pCmdInfo == NULL);
+         ASSERT(m_pCmdInfo == ::null());
          if(open_document_file(rCmdInfo.m_strFileName))
          {
             m_pCmdInfo = &rCmdInfo;
             ENSURE_VALID(GetMainWnd());
             GetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
-            m_pCmdInfo = NULL;
+            m_pCmdInfo = ::null();
          }
          bResult = FALSE;
          break;
@@ -3455,7 +3455,7 @@ namespace ca
             // on the way out. This new object gets deleted by the
             // cast object destructor.
 
-            if (m_pCmdInfo == NULL)
+            if (m_pCmdInfo == ::null())
             {
                m_pCmdInfo = new CCommandLineInfo;
                m_pCmdInfo->m_nShellCommand = CCommandLineInfo::AppUnregister;
@@ -3493,7 +3493,7 @@ namespace ca
             // on the way out. This new object gets deleted by the
             // cast object destructor.
 
-            if (m_pCmdInfo == NULL)
+            if (m_pCmdInfo == ::null())
             {
                m_pCmdInfo = new CCommandLineInfo;
                m_pCmdInfo->m_nShellCommand = CCommandLineInfo::AppUnregister;
@@ -3521,11 +3521,11 @@ namespace ca
       bool    bRet = TRUE;
 
       /*xxx POSITION pos = get_template_count();
-      while (pos != NULL)
+      while (pos != ::null())
       {
          document_template * pTempl = get_template(pos);
-         if (pTempl != NULL)
-            pTempl->_001OnCommand(0, CN_OLE_UNREGISTER, NULL, NULL);
+         if (pTempl != ::null())
+            pTempl->_001OnCommand(0, CN_OLE_UNREGISTER, ::null(), ::null());
       }*/
 
       // remove profile information -- the registry entries exist if
@@ -3533,7 +3533,7 @@ namespace ca
 
   /*    if (m_pszRegistryKey)
       {
-         ENSURE(m_pszProfileName != NULL);
+         ENSURE(m_pszProfileName != ::null());
 
          string strKey = "Software\\";
          strKey += m_pszRegistryKey;
@@ -3608,8 +3608,8 @@ namespace ca
 
    //void application::EnableShellOpen()
    //{
-   /*   ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
-      if (m_atomApp != NULL || m_atomSystemTopic != NULL)
+   /*   ASSERT(m_atomApp == ::null() && m_atomSystemTopic == ::null()); // do once
+      if (m_atomApp != ::null() || m_atomSystemTopic != ::null())
       {
          return;
       }
@@ -3632,20 +3632,20 @@ namespace ca
 
    void application::RegisterShellFileTypes(bool bCompat)
    {
-      ENSURE(m_pdocmanager != NULL);
+      ENSURE(m_pdocmanager != ::null());
 //      m_pdocmanager->RegisterShellFileTypes(bCompat);
    }
 
    void application::UnregisterShellFileTypes()
    {
-      ENSURE(m_pdocmanager != NULL);
+      ENSURE(m_pdocmanager != ::null());
   //    m_pdocmanager->UnregisterShellFileTypes();
    }
 
 
    int32_t application::get_open_document_count()
    {
-      ENSURE(m_pdocmanager != NULL);
+      ENSURE(m_pdocmanager != ::null());
     //  return m_pdocmanager->get_open_document_count();
       return 0;
    }
@@ -3667,8 +3667,8 @@ namespace ca
 
    void application::SetRegistryKey(const char * lpszRegistryKey)
    {
-      ASSERT(m_pszRegistryKey == NULL);
-      ASSERT(lpszRegistryKey != NULL);
+      ASSERT(m_pszRegistryKey == ::null());
+      ASSERT(lpszRegistryKey != ::null());
       ASSERT(m_strAppName.has_char());
 
       //bool bEnable = __enable_memory_tracking(FALSE);
@@ -3682,7 +3682,7 @@ namespace ca
    void application::SetRegistryKey(UINT nIDRegistryKey)
    {
       UNREFERENCED_PARAMETER(nIDRegistryKey);
-      ASSERT(m_pszRegistryKey == NULL);
+      ASSERT(m_pszRegistryKey == ::null());
     throw not_implemented(get_app());
       /*char szRegistryKey[256];
       VERIFY(::ca::LoadString(nIDRegistryKey, szRegistryKey));
@@ -3697,28 +3697,28 @@ namespace ca
    // responsibility of the caller to call RegCloseKey() on the returned HKEY
    HKEY application::GetAppRegistryKey()
    {
-      ASSERT(m_pszRegistryKey != NULL);
-      ASSERT(m_pszProfileName != NULL);
+      ASSERT(m_pszRegistryKey != ::null());
+      ASSERT(m_pszProfileName != ::null());
 
-      HKEY hAppKey = NULL;
-      HKEY hSoftKey = NULL;
-      HKEY hCompanyKey = NULL;
+      HKEY hAppKey = ::null();
+      HKEY hSoftKey = ::null();
+      HKEY hCompanyKey = ::null();
       if (RegOpenKeyEx(HKEY_CURRENT_USER, "software", 0, KEY_WRITE|KEY_READ,
          &hSoftKey) == ERROR_SUCCESS)
       {
          DWORD dw;
          if (RegCreateKeyEx(hSoftKey, m_pszRegistryKey, 0, REG_NONE,
-            REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
+            REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, ::null(),
             &hCompanyKey, &dw) == ERROR_SUCCESS)
          {
             RegCreateKeyEx(hCompanyKey, m_pszProfileName, 0, REG_NONE,
-               REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
+               REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, ::null(),
                &hAppKey, &dw);
          }
       }
-      if (hSoftKey != NULL)
+      if (hSoftKey != ::null())
          RegCloseKey(hSoftKey);
-      if (hCompanyKey != NULL)
+      if (hCompanyKey != ::null())
          RegCloseKey(hCompanyKey);
 
       return hAppKey;
@@ -3730,15 +3730,15 @@ namespace ca
    // responsibility of the caller to call RegCloseKey() on the returned HKEY
    HKEY application::GetSectionKey(const char * lpszSection)
    {
-      ASSERT(lpszSection != NULL);
+      ASSERT(lpszSection != ::null());
 
-      HKEY hSectionKey = NULL;
+      HKEY hSectionKey = ::null();
       HKEY hAppKey = GetAppRegistryKey();
-      if (hAppKey == NULL)
-         return NULL;
+      if (hAppKey == ::null())
+         return ::null();
 
       DWORD dw;
-      RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL, &hSectionKey, &dw);
+      RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, ::null(), &hSectionKey, &dw);
       RegCloseKey(hAppKey);
       return hSectionKey;
    }
@@ -3748,17 +3748,17 @@ namespace ca
 /*   UINT application::GetProfileInt(const char * lpszSection, const char * lpszEntry,
       int32_t nDefault)
    {
-      ASSERT(lpszSection != NULL);
-      ASSERT(lpszEntry != NULL);
-      if (m_pszRegistryKey != NULL) // use registry
+      ASSERT(lpszSection != ::null());
+      ASSERT(lpszEntry != ::null());
+      if (m_pszRegistryKey != ::null()) // use registry
       {
          HKEY hSecKey = GetSectionKey(lpszSection);
-         if (hSecKey == NULL)
+         if (hSecKey == ::null())
             return nDefault;
          uint32_t dwValue;
          uint32_t dwType;
          uint32_t dwCount = sizeof(uint32_t);
-         LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType,
+         LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, ::null(), &dwType,
             (LPBYTE)&dwValue, &dwCount);
          RegCloseKey(hSecKey);
          if (lResult == ERROR_SUCCESS)
@@ -3771,7 +3771,7 @@ namespace ca
       }
       else
       {
-         ASSERT(m_pszProfileName != NULL);
+         ASSERT(m_pszProfileName != ::null());
          return ::GetPrivateProfileInt(lpszSection, lpszEntry, nDefault,
             m_pszProfileName);
       }
@@ -3780,22 +3780,22 @@ namespace ca
    string application::GetProfileString(const char * lpszSection, const char * lpszEntry,
       const char * lpszDefault)
    {
-      ASSERT(lpszSection != NULL);
-      ASSERT(lpszEntry != NULL);
-      if (m_pszRegistryKey != NULL)
+      ASSERT(lpszSection != ::null());
+      ASSERT(lpszEntry != ::null());
+      if (m_pszRegistryKey != ::null())
       {
          HKEY hSecKey = GetSectionKey(lpszSection);
-         if (hSecKey == NULL)
+         if (hSecKey == ::null())
             return lpszDefault;
          string strValue;
          uint32_t dwType=REG_NONE;
          uint32_t dwCount=0;
-         LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType,
-            NULL, &dwCount);
+         LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, ::null(), &dwType,
+            ::null(), &dwCount);
          if (lResult == ERROR_SUCCESS)
          {
             ASSERT(dwType == REG_SZ);
-            lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType,
+            lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, ::null(), &dwType,
                (LPBYTE)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
             strValue.ReleaseBuffer();
          }
@@ -3809,10 +3809,10 @@ namespace ca
       }
       else
       {
-         ASSERT(m_pszProfileName != NULL);
+         ASSERT(m_pszProfileName != ::null());
 
-         if (lpszDefault == NULL)
-            lpszDefault = "";   // don't pass in NULL
+         if (lpszDefault == ::null())
+            lpszDefault = "";   // don't pass in ::null()
          char szT[4096];
          uint32_t dw = ::GetPrivateProfileString(lpszSection, lpszEntry,
             lpszDefault, szT, _countof(szT), m_pszProfileName);
@@ -3824,16 +3824,16 @@ namespace ca
    bool application::GetProfileBinary(const char * lpszSection, const char * lpszEntry,
       BYTE** ppData, UINT* pBytes)
    {
-      ASSERT(lpszSection != NULL);
-      ASSERT(lpszEntry != NULL);
-      ASSERT(ppData != NULL);
-      ASSERT(pBytes != NULL);
-      *ppData = NULL;
+      ASSERT(lpszSection != ::null());
+      ASSERT(lpszEntry != ::null());
+      ASSERT(ppData != ::null());
+      ASSERT(pBytes != ::null());
+      *ppData = ::null();
       *pBytes = 0;
-      if (m_pszRegistryKey != NULL)
+      if (m_pszRegistryKey != ::null())
       {
          HKEY hSecKey = GetSectionKey(lpszSection);
-         if (hSecKey == NULL)
+         if (hSecKey == ::null())
          {
             return FALSE;
          }
@@ -3844,13 +3844,13 @@ namespace ca
 
          uint32_t dwType=0;
          uint32_t dwCount=0;
-         LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType, NULL, &dwCount);
+         LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, ::null(), &dwType, ::null(), &dwCount);
          *pBytes = dwCount;
          if (lResult == ERROR_SUCCESS)
          {
             ASSERT(dwType == REG_BINARY);
             *ppData = new BYTE[*pBytes];
-            lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType,
+            lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, ::null(), &dwType,
                *ppData, &dwCount);
          }
          if (lResult == ERROR_SUCCESS)
@@ -3861,15 +3861,15 @@ namespace ca
          else
          {
             delete [] *ppData;
-            *ppData = NULL;
+            *ppData = ::null();
          }
          return FALSE;
       }
       else
       {
-         ASSERT(m_pszProfileName != NULL);
+         ASSERT(m_pszProfileName != ::null());
 
-         string str = GetProfileString(lpszSection, lpszEntry, NULL);
+         string str = GetProfileString(lpszSection, lpszEntry, ::null());
          if (str.is_empty())
             return FALSE;
          ASSERT(str.get_length()%2 == 0);
@@ -3889,21 +3889,21 @@ namespace ca
    bool application::WriteProfileInt(const char * lpszSection, const char * lpszEntry,
       int32_t nValue)
    {
-      ASSERT(lpszSection != NULL);
-      ASSERT(lpszEntry != NULL);
-      if (m_pszRegistryKey != NULL)
+      ASSERT(lpszSection != ::null());
+      ASSERT(lpszEntry != ::null());
+      if (m_pszRegistryKey != ::null())
       {
          HKEY hSecKey = GetSectionKey(lpszSection);
-         if (hSecKey == NULL)
+         if (hSecKey == ::null())
             return FALSE;
-         LONG lResult = RegSetValueEx(hSecKey, lpszEntry, NULL, REG_DWORD,
+         LONG lResult = RegSetValueEx(hSecKey, lpszEntry, ::null(), REG_DWORD,
             (LPBYTE)&nValue, sizeof(nValue));
          RegCloseKey(hSecKey);
          return lResult == ERROR_SUCCESS;
       }
       else
       {
-         ASSERT(m_pszProfileName != NULL);
+         ASSERT(m_pszProfileName != ::null());
 
          char szT[16];
          _stprintf_s(szT, _countof(szT), "%d", nValue);
@@ -3915,22 +3915,22 @@ namespace ca
    bool application::WriteProfileString(const char * lpszSection, const char * lpszEntry,
             const char * lpszValue)
    {
-      ASSERT(lpszSection != NULL);
-      if (m_pszRegistryKey != NULL)
+      ASSERT(lpszSection != ::null());
+      if (m_pszRegistryKey != ::null())
       {
          LONG lResult;
-         if (lpszEntry == NULL) //delete whole section
+         if (lpszEntry == ::null()) //delete whole section
          {
             HKEY hAppKey = GetAppRegistryKey();
-            if (hAppKey == NULL)
+            if (hAppKey == ::null())
                return FALSE;
             lResult = ::RegDeleteKey(hAppKey, lpszSection);
             RegCloseKey(hAppKey);
          }
-         else if (lpszValue == NULL)
+         else if (lpszValue == ::null())
          {
             HKEY hSecKey = GetSectionKey(lpszSection);
-            if (hSecKey == NULL)
+            if (hSecKey == ::null())
                return FALSE;
             // necessary to cast away const below
             lResult = ::RegDeleteValue(hSecKey, (LPTSTR)lpszEntry);
@@ -3939,9 +3939,9 @@ namespace ca
          else
          {
             HKEY hSecKey = GetSectionKey(lpszSection);
-            if (hSecKey == NULL)
+            if (hSecKey == ::null())
                return FALSE;
-            lResult = RegSetValueEx(hSecKey, lpszEntry, NULL, REG_SZ,
+            lResult = RegSetValueEx(hSecKey, lpszEntry, ::null(), REG_SZ,
                (LPBYTE)lpszValue, (lstrlen(lpszValue)+1)*sizeof(char));
             RegCloseKey(hSecKey);
          }
@@ -3949,7 +3949,7 @@ namespace ca
       }
       else
       {
-         ASSERT(m_pszProfileName != NULL);
+         ASSERT(m_pszProfileName != ::null());
          ASSERT(lstrlen(m_pszProfileName) < 4095); // can't read in bigger
          return ::WritePrivateProfileString(lpszSection, lpszEntry, lpszValue,
             m_pszProfileName);
@@ -3959,14 +3959,14 @@ namespace ca
    bool application::WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
       LPBYTE pData, UINT nBytes)
    {
-      ASSERT(lpszSection != NULL);
-      if (m_pszRegistryKey != NULL)
+      ASSERT(lpszSection != ::null());
+      if (m_pszRegistryKey != ::null())
       {
          LONG lResult;
          HKEY hSecKey = GetSectionKey(lpszSection);
-         if (hSecKey == NULL)
+         if (hSecKey == ::null())
             return FALSE;
-         lResult = RegSetValueEx(hSecKey, lpszEntry, NULL, REG_BINARY,
+         lResult = RegSetValueEx(hSecKey, lpszEntry, ::null(), REG_BINARY,
             pData, nBytes);
          RegCloseKey(hSecKey);
          return lResult == ERROR_SUCCESS;
@@ -3982,7 +3982,7 @@ namespace ca
       }
       lpsz[i*2] = 0;
 
-      ASSERT(m_pszProfileName != NULL);
+      ASSERT(m_pszProfileName != ::null());
 
       bool bResult = WriteProfileString(lpszSection, lpszEntry, lpsz);
       delete[] lpsz;
@@ -4004,8 +4004,8 @@ namespace ca
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       auto p = m_mapObjectSet.PLookup(pobject);
-      if(p == NULL)
-         return NULL;
+      if(p == ::null())
+         return ::null();
       return &p->m_value;
    }*/
 
@@ -4018,7 +4018,7 @@ namespace ca
 
    bool application::activate_app()
    {
-      if(GetMainWnd() != NULL)
+      if(GetMainWnd() != ::null())
       {
          GetMainWnd()->ShowWindow(SW_SHOWNORMAL);
       }
@@ -4150,15 +4150,15 @@ namespace ca
 #if defined(LINUX)
 
       oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
+      if(oswindowCapture == ::null())
+         return ::null();
       return oswindowCapture.get_user_interaction()->release_capture();
 
 #elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
+      if(oswindowCapture == ::null())
+         return ::null();
       return System.window_from_os_data(oswindowCapture)->release_capture();
 
 #else
@@ -4178,8 +4178,8 @@ namespace ca
 #elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
+      if(oswindowCapture == ::null())
+         return ::null();
       return System.window_from_os_data(oswindowCapture)->get_capture();
 
 #else
@@ -4187,8 +4187,8 @@ namespace ca
 //      throw not_implemented(get_app());
 
       oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
+      if(oswindowCapture == ::null())
+         return ::null();
 
       return dynamic_cast < ::ca::window * > (::GetCapture().get_user_interaction()->m_pimpl.m_p)->get_capture();
 
@@ -4206,10 +4206,10 @@ namespace ca
 /*      try
       {
          waitable * pobj = dynamic_cast < waitable * >(pobject);
-         if(pobj != NULL)
+         if(pobj != ::null())
          {
             mutex * pmutex = get_mutex(pobj);
-            if(pmutex != NULL)
+            if(pmutex != ::null())
             {
                single_lock sl(&m_mutexObjectLock, TRUE);
                delete pmutex;
@@ -4239,7 +4239,7 @@ namespace ca
 
       mutex * pmutex = get_mutex(pobject);
 
-      if(pmutex == NULL)
+      if(pmutex == ::null())
          throw resource_exception(this);
 
       pmutex->wait();
@@ -4251,7 +4251,7 @@ namespace ca
 
       mutex * pmutex = get_mutex(pobject);
 
-      if(pmutex == NULL)
+      if(pmutex == ::null())
          return wait_result(wait_result::Failure);
 
       return pmutex->wait(duration);
@@ -4261,7 +4261,7 @@ namespace ca
    void application::lock(waitable * pobject)
    {
       mutex * pmutex = get_mutex(pobject);
-      if(pmutex == NULL)
+      if(pmutex == ::null())
          throw "could not get generic mutex for object";
       pmutex->lock();
    }
@@ -4270,7 +4270,7 @@ namespace ca
    bool application::lock(waitable * pobject, duration duration)
    {
       mutex * pmutex = get_mutex(pobject);
-      if(pmutex == NULL)
+      if(pmutex == ::null())
          return false;
       return pmutex->lock(duration) != FALSE;
    }
@@ -4279,7 +4279,7 @@ namespace ca
    bool application::unlock(waitable * pobject)
    {
       mutex * pmutex = get_mutex(pobject);
-      if(pmutex == NULL)
+      if(pmutex == ::null())
          return false;
       return pmutex->unlock() != FALSE;
    }*/
@@ -4287,10 +4287,10 @@ namespace ca
    /*event * application::get_event(::ca::object * pobject, int32_t iEvent)
    {
       single_lock sl(&m_mutexObjectEvent, TRUE);
-      ::collection::map < int32_t, int32_t, event *, event * > * peventmap;
+      map < int32_t, int32_t, event *, event * > * peventmap;
       if(!m_mapObjectEvent.Lookup(pobject, peventmap))
       {
-         peventmap = new ::collection::map < int32_t, int32_t, event *, event * >();
+         peventmap = new map < int32_t, int32_t, event *, event * >();
          m_mapObjectEvent.set_at(pobject, peventmap);
       }
       event * pevent;
@@ -4305,7 +4305,7 @@ namespace ca
    bool application::event_lock(::ca::object * pobject, int32_t iEvent, duration duration)
    {
       event * pevent = get_event(pobject, iEvent);
-      if(pevent == NULL)
+      if(pevent == ::null())
          return false;
       return pevent->wait(duration).signaled();
    }
@@ -4313,7 +4313,7 @@ namespace ca
    bool application::event_unlock(::ca::object * pobject, int32_t iEvent)
    {
       event * pevent = get_event(pobject, iEvent);
-      if(pevent == NULL)
+      if(pevent == ::null())
          return false;
       return true;
    }*/
@@ -4325,7 +4325,7 @@ namespace ca
          {
             ::GetCursorPos(&m_ptCursor);
          }
-         if(lppoint != NULL)
+         if(lppoint != ::null())
          {
             *lppoint = m_ptCursor;
          }
@@ -4336,7 +4336,7 @@ namespace ca
          {
             System.get_cursor_pos(&m_ptCursor);
          }
-         if(lppoint != NULL)
+         if(lppoint != ::null())
          {
             *lppoint = m_ptCursor;
          }
@@ -4368,7 +4368,7 @@ namespace ca
          ::GetWindowRect(oswindowDesktop, &m_rectScreen);
       }
 #endif
-      if(lprect != NULL)
+      if(lprect != ::null())
       {
          *lprect = m_rectScreen;
       }
@@ -4382,7 +4382,7 @@ namespace ca
 
 
 
-   // Temporary ::collection::map management (locks temp ::collection::map on current thread)
+   // Temporary map management (locks temp map on current thread)
    void application::LockTempMaps()
    {
       ::ca::smart_pointer < application_base >::m_p->LockTempMaps();
@@ -4401,7 +4401,7 @@ namespace ca
 /*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
-      return NULL;
+      return ::null();
    }*/
 
 #ifdef METROWIN
@@ -4418,8 +4418,8 @@ namespace ca
    ::ca::window * application::window_from_os_data(void * pdata)
    {
 
-      if(::ca::smart_pointer < application_base >::m_p == NULL)
-         return NULL;
+      if(::ca::smart_pointer < application_base >::m_p == ::null())
+         return ::null();
 
       return ::ca::smart_pointer < application_base >::m_p->window_from_os_data(pdata);
 
@@ -4551,31 +4551,31 @@ namespace ca
 
 /*   ::user::interaction * application::get_place_holder_container()
    {
-      if(m_puiInitialPlaceHolderContainer != NULL)
+      if(m_puiInitialPlaceHolderContainer != ::null())
          return m_puiInitialPlaceHolderContainer;
-      if(m_psession != NULL)
+      if(m_psession != ::null())
       {
          try
          {
-            if(m_psession->m_puiInitialPlaceHolderContainer != NULL)
+            if(m_psession->m_puiInitialPlaceHolderContainer != ::null())
                return m_psession->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
          }
       }
-      if(m_psystem != NULL)
+      if(m_psystem != ::null())
       {
          try
          {
-            if(m_psystem->m_puiInitialPlaceHolderContainer != NULL)
+            if(m_psystem->m_puiInitialPlaceHolderContainer != ::null())
                return m_psystem->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
          }
       }
-      return NULL;
+      return ::null();
    }
    */
 
@@ -4583,24 +4583,24 @@ namespace ca
    ::user::interaction * application::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
    {
 
-      ::user::interaction * puiParent = NULL;
+      ::user::interaction * puiParent = ::null();
 
-/*      if(puiParent == NULL && dynamic_cast < ::userbase::main_frame * > (pinteraction) != NULL)
+/*      if(puiParent == ::null() && dynamic_cast < ::userbase::main_frame * > (pinteraction) != ::null())
       {
          puiParent = get_request_parent_ui(dynamic_cast < ::userbase::main_frame * > (pinteraction), pcreatecontext);
       }*/
 
-      if(puiParent == NULL)
+      if(puiParent == ::null())
       {
          puiParent = pcreatecontext->m_puiParent;
       }
 
-      if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      if(puiParent == ::null() && pcreatecontext->m_spApplicationBias.is_set())
       {
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
-      if(puiParent == NULL && m_psession != NULL && !pcreatecontext->m_bClientOnly
+      if(puiParent == ::null() && m_psession != ::null() && !pcreatecontext->m_bClientOnly
          && !pcreatecontext->m_bOuterPopupAlertLike && m_psession != this)
       {
          puiParent = Sess(this).get_request_parent_ui(pinteraction, pcreatecontext);
@@ -4613,12 +4613,12 @@ namespace ca
    ::user::interaction * application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
-      if(m_psession != NULL)
+      if(m_psession != ::null())
       {
          return Sess(this).get_request_parent_ui(pmainframe, pcreatecontext);
       }
 
-      return NULL;
+      return ::null();
 
    }
 
@@ -4698,8 +4698,8 @@ namespace ca
    ::ca::thread * application::GetThread()
    {
 
-      if(::ca::smart_pointer < application_base >::m_p == NULL)
-         return NULL;
+      if(::ca::smart_pointer < application_base >::m_p == ::null())
+         return ::null();
 
       return ::ca::smart_pointer < application_base >::m_p->GetThread();
 
@@ -4726,7 +4726,7 @@ namespace ca
 
       mutex_lock sl(user_mutex(), true);
 
-      Display * pdisplay = XOpenDisplay(NULL);
+      Display * pdisplay = XOpenDisplay(::null());
 
       oswindow window(pdisplay, DefaultRootWindow(pdisplay));
 
@@ -4784,7 +4784,7 @@ namespace ca
       ASSERT(System.GetThread() == this);
       //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
-/*      if (m_pdocmanager != NULL)
+/*      if (m_pdocmanager != ::null())
          ASSERT_VALID(m_pdocmanager);*/
    }
 
@@ -4813,7 +4813,7 @@ namespace ca
 //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 
 
-/*      if (m_pdocmanager != NULL)
+/*      if (m_pdocmanager != ::null())
          m_pdocmanager->dump(dumpcontext);*/
 
       dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
@@ -4982,12 +4982,12 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    /*::fontopus::user * application::create_user(const string & pszLogin)
    {
-      return NULL;
+      return ::null();
    }*/
 
    ::fontopus::user * application::create_current_user()
    {
-      return NULL;
+      return ::null();
    /*   string str = get_current_user_login();
       return create_user(str);*/
    }
@@ -5154,7 +5154,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    void application::pre_translate_message(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
-      if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
+      if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == ::null())
       {
    /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
          delete (flags < machine_event::e_flag> *) pmsg->lParam;*/
@@ -5192,7 +5192,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          {
          }
          bergedge_interface * pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca < bergedge_interface >();
-         if(pbergedge != NULL)
+         if(pbergedge != ::null())
          {
             pbergedge->on_app_request_bergedge_callback(this);
          }
@@ -5306,7 +5306,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       string strId(*id.m_pstr);
       string strTable;
       string strString;
-      string_to_string_map * pmap = NULL;
+      string_to_string_map * pmap = ::null();
       index iFind = 0;
       if((iFind = strId.find(':')) <= 0)
       {
@@ -5382,7 +5382,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       {
          try
          {
-            if(m_stringtablemap[pszId] != NULL)
+            if(m_stringtablemap[pszId] != ::null())
                delete m_stringtablemap[pszId];
          }
          catch(...)
@@ -5404,9 +5404,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       string_to_string_map * pmapOld = m_stringtablemap[strTableId];
 
-      m_stringtablemap[strTableId] = NULL;
+      m_stringtablemap[strTableId] = ::null();
 
-      if(pmapOld != NULL)
+      if(pmapOld != ::null())
       {
 
          try
@@ -5433,7 +5433,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       if(is_system())
       {
 #ifdef WINDOWSEX
-         ::ShellExecuteA(NULL, "open", strLink, NULL, NULL, SW_SHOW);
+         ::ShellExecuteA(::null(), "open", strLink, ::null(), ::null(), SW_SHOW);
          return true;
 #elif defined METROWIN
 #pragma push_macro("System")
@@ -5469,10 +5469,10 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       {
          ::user::interaction * puieWindow = wnda.find_first(oswindowa[i]);
          ::user::interaction * puie = puieWindow->_001FromPoint(pt);
-         if(puie != NULL)
+         if(puie != ::null())
             return puie;
       }
-      return NULL;
+      return ::null();
    }
 
    void application::message_window_message_handler(::ca::signal_object * pobj)
@@ -5542,9 +5542,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       if(is_session())
       {
-         if(m_pmapKeyPressed  == NULL)
+         if(m_pmapKeyPressed  == ::null())
          {
-            m_pmapKeyPressed = new ::collection::map < ::user::e_key, ::user::e_key, bool, bool >;
+            m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
          }
          bool bPressed = false;
          if(ekey == ::user::key_shift)
@@ -5590,11 +5590,11 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 ret:
          return bPressed;
       }
-      else if(m_psession != NULL)
+      else if(m_psession != ::null())
       {
          return Sess(this).is_key_pressed(ekey);
       }
-      else if(m_psystem != NULL)
+      else if(m_psystem != ::null())
       {
          return Sys(this).is_key_pressed(ekey);
       }
@@ -5609,17 +5609,17 @@ ret:
    {
       if(is_session())
       {
-         if(m_pmapKeyPressed  == NULL)
+         if(m_pmapKeyPressed  == ::null())
          {
-            m_pmapKeyPressed = new ::collection::map < ::user::e_key, ::user::e_key, bool, bool >;
+            m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
          }
          (*m_pmapKeyPressed)[ekey] = bPressed;
       }
-      else if(m_psession != NULL)
+      else if(m_psession != ::null())
       {
          return Sess(this).set_key_pressed(ekey, bPressed);
       }
-      else if(m_psystem != NULL)
+      else if(m_psystem != ::null())
       {
          return Sys(this).set_key_pressed(ekey, bPressed);
       }
@@ -5633,7 +5633,7 @@ ret:
    {
 /*      try
       {
-         if(pbias != NULL)
+         if(pbias != ::null())
          {
             papp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
          }
@@ -5643,9 +5643,9 @@ ret:
       }*/
       try
       {
-         if(pbias != NULL)
+         if(pbias != ::null())
          {
-            if(pbias->m_pcallback != NULL)
+            if(pbias->m_pcallback != ::null())
             {
                pbias->m_pcallback->connect_to(this);
             }
@@ -5655,7 +5655,7 @@ ret:
       {
       }
 
-      manual_reset_event * peventReady = NULL;
+      manual_reset_event * peventReady = ::null();
 
       if(bSynch)
       {
@@ -5667,7 +5667,7 @@ ret:
       ::ca::thread_sp::create(this);
       //dynamic_cast < ::ca::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
       dynamic_cast < ::ca::thread * > (::ca::thread_sp::m_p)->m_p = this;
-      if(pbias != NULL)
+      if(pbias != ::null())
       {
          m_biasCalling = *pbias;
       }

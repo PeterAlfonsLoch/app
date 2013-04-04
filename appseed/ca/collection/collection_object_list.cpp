@@ -22,8 +22,8 @@ object_list::object_list(int_ptr nBlockSize)
    ASSERT(nBlockSize > 0);
 
    m_nCount = 0;
-   m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
-   m_pBlocks = NULL;
+   m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
+   m_pBlocks = ::null();
    m_nBlockSize = nBlockSize;
 }
 
@@ -35,9 +35,9 @@ void object_list::remove_all()
 
 
    m_nCount = 0;
-   m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
+   m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
    m_pBlocks->FreeDataChain();
-   m_pBlocks = NULL;
+   m_pBlocks = ::null();
 }
 
 object_list::~object_list()
@@ -64,7 +64,7 @@ object_list::~object_list()
 object_list::node*
 object_list::NewNode(object_list::node* m_pprevious, object_list::node* m_pnext)
 {
-   if (m_pnodeFree == NULL)
+   if (m_pnodeFree == ::null())
    {
       // add another block
       plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize,
@@ -80,7 +80,7 @@ object_list::NewNode(object_list::node* m_pprevious, object_list::node* m_pnext)
          m_pnodeFree = pNode;
       }
    }
-   ASSERT(m_pnodeFree != NULL);  // we must have something
+   ASSERT(m_pnodeFree != ::null());  // we must have something
 
    object_list::node* pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->m_pnext;
@@ -99,7 +99,7 @@ object_list::NewNode(object_list::node* m_pprevious, object_list::node* m_pnext)
 
 void object_list::FreeNode(object_list::node* pNode)
 {
-   if (pNode == NULL)
+   if (pNode == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -120,9 +120,9 @@ POSITION object_list::add_head(::ca::object* newElement)
 
    ASSERT_VALID(this);
 
-   node* pNewNode = NewNode(NULL, m_pnodeHead);
+   node* pNewNode = NewNode(::null(), m_pnodeHead);
    pNewNode->m_pdata = newElement;
-   if (m_pnodeHead != NULL)
+   if (m_pnodeHead != ::null())
       m_pnodeHead->m_pprevious = pNewNode;
    else
       m_pnodeTail = pNewNode;
@@ -138,9 +138,9 @@ POSITION object_list::add_tail(::ca::object* newElement)
 
    ASSERT_VALID(this);
 
-   node* pNewNode = NewNode(m_pnodeTail, NULL);
+   node* pNewNode = NewNode(m_pnodeTail, ::null());
    pNewNode->m_pdata = newElement;
-   if (m_pnodeTail != NULL)
+   if (m_pnodeTail != ::null())
       m_pnodeTail->m_pnext = pNewNode;
    else
       m_pnodeHead = pNewNode;
@@ -155,7 +155,7 @@ void object_list::add_head(object_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT_VALID(pNewList);
-   if (pNewList == NULL)
+   if (pNewList == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -163,7 +163,7 @@ void object_list::add_head(object_list* pNewList)
 
    // add a list of same elements to head (maintain order)
    POSITION pos = pNewList->get_tail_position();
-   while (pos != NULL)
+   while (pos != ::null())
       add_head(pNewList->get_previous(pos));
 }
 
@@ -171,7 +171,7 @@ void object_list::add_tail(object_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT_VALID(pNewList);
-   if (pNewList == NULL)
+   if (pNewList == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -179,14 +179,14 @@ void object_list::add_tail(object_list* pNewList)
 
    // add a list of same elements
    POSITION pos = pNewList->get_head_position();
-   while (pos != NULL)
+   while (pos != ::null())
       add_tail(pNewList->get_next(pos));
 }
 
 ::ca::object* object_list::remove_head()
 {
    ENSURE_VALID(this);
-   ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
+   ENSURE(m_pnodeHead != ::null());  // throws if called on is_empty list
 
    ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
@@ -194,10 +194,10 @@ void object_list::add_tail(object_list* pNewList)
    ::ca::object* returnValue = pOldNode->m_pdata;
 
    m_pnodeHead = pOldNode->m_pnext;
-   if (m_pnodeHead != NULL)
-      m_pnodeHead->m_pprevious = NULL;
+   if (m_pnodeHead != ::null())
+      m_pnodeHead->m_pprevious = ::null();
    else
-      m_pnodeTail = NULL;
+      m_pnodeTail = ::null();
    FreeNode(pOldNode);
    return returnValue;
 }
@@ -205,17 +205,17 @@ void object_list::add_tail(object_list* pNewList)
 ::ca::object* object_list::remove_tail()
 {
    ASSERT_VALID(this);
-   ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
+   ASSERT(m_pnodeTail != ::null());  // don't call on is_empty list !!!
    ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
    ::ca::object* returnValue = pOldNode->m_pdata;
 
    m_pnodeTail = pOldNode->m_pprevious;
-   if (m_pnodeTail != NULL)
-      m_pnodeTail->m_pnext = NULL;
+   if (m_pnodeTail != ::null())
+      m_pnodeTail->m_pnext = ::null();
    else
-      m_pnodeHead = NULL;
+      m_pnodeHead = ::null();
    FreeNode(pOldNode);
    return returnValue;
 }
@@ -225,7 +225,7 @@ POSITION object_list::insert_before(POSITION position, ::ca::object* newElement)
 
    ASSERT_VALID(this);
 
-   if (position == NULL)
+   if (position == ::null())
       return add_head(newElement); // insert before nothing -> head of the list
 
    // Insert it before position
@@ -233,7 +233,7 @@ POSITION object_list::insert_before(POSITION position, ::ca::object* newElement)
    node* pNewNode = NewNode(pOldNode->m_pprevious, pOldNode);
    pNewNode->m_pdata = newElement;
 
-   if (pOldNode->m_pprevious != NULL)
+   if (pOldNode->m_pprevious != ::null())
    {
       ASSERT(__is_valid_address(pOldNode->m_pprevious, sizeof(node)));
       pOldNode->m_pprevious->m_pnext = pNewNode;
@@ -255,7 +255,7 @@ POSITION object_list::insert_after(POSITION position, ::ca::object* newElement)
 
    ASSERT_VALID(this);
 
-   if (position == NULL)
+   if (position == ::null())
       return add_tail(newElement); // insert after nothing -> tail of the list
 
    // Insert it before position
@@ -264,7 +264,7 @@ POSITION object_list::insert_after(POSITION position, ::ca::object* newElement)
    node* pNewNode = NewNode(pOldNode, pOldNode->m_pnext);
    pNewNode->m_pdata = newElement;
 
-   if (pOldNode->m_pnext != NULL)
+   if (pOldNode->m_pnext != ::null())
    {
       ASSERT(__is_valid_address(pOldNode->m_pnext, sizeof(node)));
       pOldNode->m_pnext->m_pprevious = pNewNode;
@@ -288,7 +288,7 @@ void object_list::remove_at(POSITION position)
    node* pOldNode = (node*) position;
    ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
-   if (pOldNode == NULL)
+   if (pOldNode == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -324,7 +324,7 @@ POSITION object_list::find_index(int_ptr nIndex) const
    ASSERT_VALID(this);
 
    if (nIndex >= m_nCount || nIndex < 0)
-      return NULL;  // went too far
+      return ::null();  // went too far
 
    node* pNode = m_pnodeHead;
    while (nIndex--)
@@ -340,7 +340,7 @@ POSITION object_list::find(::ca::object* searchValue, POSITION startAfter) const
    ASSERT_VALID(this);
 
    node* pNode = (node*) startAfter;
-   if (pNode == NULL)
+   if (pNode == ::null())
    {
       pNode = m_pnodeHead;  // start at head
    }
@@ -350,10 +350,10 @@ POSITION object_list::find(::ca::object* searchValue, POSITION startAfter) const
       pNode = pNode->m_pnext;  // start after the one specified
    }
 
-   for (; pNode != NULL; pNode = pNode->m_pnext)
+   for (; pNode != ::null(); pNode = pNode->m_pnext)
       if (pNode->m_pdata == searchValue)
          return (POSITION) pNode;
-   return NULL;
+   return ::null();
 }
 
 
@@ -369,7 +369,7 @@ void object_list::Serialize(CArchive& ar)
    if (ar.IsStoring())
    {
       ar.WriteCount(m_nCount);
-      for (node* pNode = m_pnodeHead; pNode != NULL; pNode = pNode->m_pnext)
+      for (node* pNode = m_pnodeHead; pNode != ::null(); pNode = pNode->m_pnext)
       {
          ASSERT(__is_valid_address(pNode, sizeof(node)));
          ar << pNode->m_pdata;
@@ -398,7 +398,7 @@ void object_list::dump(dump_context & dumpcontext) const
    if (dumpcontext.GetDepth() > 0)
    {
       POSITION pos = get_head_position();
-      while (pos != NULL)
+      while (pos != ::null())
          dumpcontext << "\n\t" << get_next(pos);
    }
 
@@ -412,8 +412,8 @@ void object_list::assert_valid() const
    if (m_nCount == 0)
    {
       // is_empty list
-      ASSERT(m_pnodeHead == NULL);
-      ASSERT(m_pnodeTail == NULL);
+      ASSERT(m_pnodeHead == ::null());
+      ASSERT(m_pnodeTail == ::null());
    }
    else
    {

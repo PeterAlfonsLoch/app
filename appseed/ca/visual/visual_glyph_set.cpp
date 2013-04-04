@@ -18,7 +18,7 @@ namespace visual
       if(i >= 0)
          return &this->element_at(i);
       else
-         return NULL;
+         return ::null();
    }
 
    index glyph_set::find_first(UINT user)
@@ -68,7 +68,7 @@ namespace visual
       return iLastIndex;
    }
 
-   void glyph_set::QuickSort()
+   void glyph_set::quick_sort()
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -145,8 +145,8 @@ namespace visual
 
    int_ptr glyph_set::add(class glyph &glyph)
    {
-      int_ptr i = base_array < class glyph , class glyph & >::add(glyph);
-      QuickSort();
+      int_ptr i = array < class glyph , class glyph & >::add(glyph);
+      quick_sort();
       return i;
    }
 

@@ -97,11 +97,11 @@ auth_type_self_test(const auth_type_t *at) {
    * check to make sure that we have at least one test case, and
    * return an error if we don't - we need to be paranoid here
    */
-  if (test_case == NULL)
+  if (test_case == ::null())
     return err_status_cant_check;
 
   /* loop over all test cases */  
-  while (test_case != NULL) {
+  while (test_case != ::null()) {
 
     /* check test case parameters */
     if (test_case->tag_length_octets > SELF_TEST_TAG_BUF_OCTETS)
@@ -161,7 +161,7 @@ auth_type_self_test(const auth_type_t *at) {
     
     /* 
      * the auth function passed the test case, so move on to the next test
-     * case in the list; if NULL, we'll quit and return an OK
+     * case in the list; if ::null(), we'll quit and return an OK
      */   
     test_case = test_case->next_test_case;
     ++case_num;

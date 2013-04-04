@@ -88,11 +88,11 @@ namespace filemanager
 
 
          void add_item(Item & item);
-         count get_item_count();
+         ::count get_item_count();
          void clear(LPITEMIDLIST lpiidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
          Item & get_item(index i);
          void SetItemAt(index i, Item & item);
-         void SetItemCount(count iCount);
+         void SetItemCount(::count iCount);
          index find_item_by_path(const char * pszPath);
 
          void SoftSwap(index i1, index i2);
@@ -107,7 +107,7 @@ namespace filemanager
       bool                    m_bPendingSize;
       uint32_t                   m_dwLastFileSizeGet;
 
-      ::collection::map < icon_key, const icon_key &, icon, icon & > m_iconmap;
+      map < icon_key, const icon_key &, icon, icon & > m_iconmap;
 
       mutex            m_mutex;
 #ifdef WINDOWSEX
@@ -188,7 +188,7 @@ namespace filemanager
       ::fs::item & GetFileManagerItem();
       DECL_GEN_SIGNAL(_001OnMainPostMessage)
       void _017UpdateList();
-      void GetSelectedFilePath(stringa & base_array);
+      void GetSelectedFilePath(stringa & array);
       virtual bool TwiHasTranslucency();
       void _001CreateImageList();
       bool _001CreateImageListStep();

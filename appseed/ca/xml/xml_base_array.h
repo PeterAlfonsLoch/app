@@ -5,8 +5,8 @@ namespace xml
 {
 
 
-   template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = ::collection::smart_pointer_array < TYPE > >
-   class base_array :
+   template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = smart_pointer_array < TYPE > >
+   class array :
       public ARRAY,
       public exportable,
       public importable
@@ -14,8 +14,8 @@ namespace xml
    public:
 
 
-      base_array();
-      base_array(const base_array & xmla);
+      array();
+      array(const array & xmla);
 
 
       virtual void xml_export(output_tree & xmlof);
@@ -26,14 +26,14 @@ namespace xml
 
 
    template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
-   base_array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
-      base_array()
+   array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
+      array()
    {
    }
 
    template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
-   base_array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
-      base_array(const base_array & xmla) :
+   array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
+      array(const array & xmla) :
       ARRAY (xmla)
    {
    }
@@ -42,7 +42,7 @@ namespace xml
 
    template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
    void
-      base_array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
+      array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
       xml_export(output_tree & xmlof)
    {
       xmlof.set_attr("count", this->get_size());
@@ -56,7 +56,7 @@ namespace xml
 
    template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
    void
-      base_array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
+      array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
       xml_import(input_tree & xmlif)
    {
       int32_t iSize;

@@ -8,23 +8,23 @@ namespace simpledb
    set::set() :
       ::database::set()
    {
-      //errmsg      = NULL;
+      //errmsg      = ::null();
       haveError   = false;
-      db          = NULL;
+      db          = ::null();
    }
 
 
    set::set(base *newDb) :
       ::database::set(newDb)
    {
-      //errmsg      = NULL;
+      //errmsg      = ::null();
       haveError = false;
       db = newDb;
    }
 
    set::~set()
    {
-      //  if(errmsg != NULL)
+      //  if(errmsg != ::null())
       //  {
       //      sqlite_free_table(&errmsg);
       // }
@@ -61,14 +61,14 @@ namespace simpledb
    database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
    int32_t sz = r->records.get_size();
 
-   //if (reslt == NULL ) cout << "EMPTY!!!\n";
+   //if (reslt == ::null() ) cout << "EMPTY!!!\n";
    if (r->record_header.get_size() <= 0)
    {
       r->record_header.set_size(ncol, 32);
       for (int32_t i=0; i < ncol; i++)
       {
          r->record_header[i].name = cols[i];
-         if(cols[i + ncol] != NULL)
+         if(cols[i + ncol] != ::null())
          {
             string str(cols[i + ncol]);
             str.make_lower();
@@ -92,11 +92,11 @@ namespace simpledb
    database::SqlRecord rec;
    var v;
 
-   if (reslt != NULL)
+   if (reslt != ::null())
    {
       for (int32_t i=0; i<ncol; i++)
       {
-         if (reslt[i] == NULL)
+         if (reslt[i] == ::null())
          {
             v = "";
             v.set_type(var::type_null);
@@ -105,7 +105,7 @@ namespace simpledb
          {
             //if(r->record_header[i].type == vmssqlite::DataTypeDouble)
             //{
-              // v.SetDouble(strtod(reslt[i], NULL));
+              // v.SetDouble(strtod(reslt[i], ::null()));
             //}
             //if(r->record_header[i].type == vmssqlite::DataTypeLong)
             //{
@@ -144,14 +144,14 @@ namespace simpledb
    database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
    int32_t sz = r->records.get_size();
 
-   //if (reslt == NULL ) cout << "EMPTY!!!\n";
+   //if (reslt == ::null() ) cout << "EMPTY!!!\n";
    if (r->record_header.get_size() <= 0)
    {
       r->record_header.set_size(ncol, 32);
       for (int32_t i=0; i < ncol; i++)
       {
          r->record_header[i].name = cols[i];
-         if(cols[i + ncol] != NULL)
+         if(cols[i + ncol] != ::null())
          {
             string str(cols[i + ncol]);
             str.make_lower();
@@ -175,11 +175,11 @@ namespace simpledb
    database::SqlRecord rec;
    var v;
 
-   if (reslt != NULL)
+   if (reslt != ::null())
    {
       for (int32_t i=0; i<ncol; i++)
       {
-         if (reslt[i] == NULL)
+         if (reslt[i] == ::null())
          {
             v = "";
             v.set_type(var::type_null);
@@ -188,7 +188,7 @@ namespace simpledb
          {
             //if(r->record_header[i].type == vmssqlite::DataTypeDouble)
             //{
-              // v.SetDouble(strtod(reslt[i], NULL));
+              // v.SetDouble(strtod(reslt[i], ::null()));
             //}
             //if(r->record_header[i].type == vmssqlite::DataTypeLong)
             //{
@@ -499,7 +499,7 @@ namespace simpledb
          if(autocommit)
             db->start_transaction();
 
-         if(db == NULL)
+         if(db == ::null())
             throw database::DbErrors("No base Connection");
 
          //close();
@@ -507,10 +507,10 @@ namespace simpledb
          for (int32_t i = 0; i <_sql.get_size(); i++)
          {
             query = _sql.element_at(i);
-//            char* err=NULL;
+//            char* err=::null();
             set::parse_sql(query);
             //cout << "Executing: "<<query<<"\n\n";
-/*            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
+/*            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,::null(),::null(),&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
                throw database::DbErrors(db->getErrorMsg());
@@ -555,7 +555,7 @@ namespace simpledb
    void set::fill_fields()
    {
       //cout <<"rr "<<m_resultset.records.size()<<"|" << frecno <<"\n";
-      /*if ((db == NULL)
+      /*if ((db == ::null())
       || (m_resultset.record_header.get_size() == 0)
       || (m_resultset.records.get_size() < frecno))
          return;
@@ -605,21 +605,21 @@ namespace simpledb
    bool set::query(const char *query)
    {
       UNREFERENCED_PARAMETER(query);
-      if(db == NULL)
+      if(db == ::null())
       {
          TRACE("set::query: base is not Defined");
          m_strQueryErrorMessage = "base is not defined";
          m_strDatabaseErrorMessage = "base is not defined";
          return false;
       }
-      if(dynamic_cast<base*>(db) == NULL)
+      if(dynamic_cast<base*>(db) == ::null())
       {
          TRACE("set::query: base is not valid");
          m_strQueryErrorMessage = "base is not valid";
          m_strDatabaseErrorMessage = "base is not valid";
          return false;
       }
-/*      if(dynamic_cast<base*>(db)->getHandle() == NULL)
+/*      if(dynamic_cast<base*>(db)->getHandle() == ::null())
       {
          TRACE("set::query: No base connection");
          m_strQueryErrorMessage = "No base Connection";
@@ -701,7 +701,7 @@ namespace simpledb
    }
 
 
-   count set::num_rows()
+   ::count set::num_rows()
    {
       return m_resultset.records.get_size();
    }
@@ -881,7 +881,7 @@ namespace simpledb
                break;
             }
             if (iFound < 0) throw database::DbErrors("Field not found: %s",fieldname);
-            count iNumRows = num_rows();
+            ::count iNumRows = num_rows();
             for(i=0; i < iNumRows; i++)
                if(m_resultset.records[i][iFound] == value)
                {
@@ -941,16 +941,16 @@ namespace simpledb
    {
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-      count sz = r->records.get_size();
+      ::count sz = r->records.get_size();
 
-      //if (reslt == NULL ) cout << "EMPTY!!!\n";
+      //if (reslt == ::null() ) cout << "EMPTY!!!\n";
       if (r->record_header.get_size() <= 0)
       {
          r->record_header.set_size(ncol, 32);
          for (index i=0; i < ncol; i++)
          {
             r->record_header[i].name = cols[i];
-            if(cols[i + ncol] != NULL)
+            if(cols[i + ncol] != ::null())
             {
                string str(cols[i + ncol]);
                str.make_lower();
@@ -974,11 +974,11 @@ namespace simpledb
       database::record rec;
       var v;
 
-      if (reslt != NULL)
+      if (reslt != ::null())
       {
          for (int32_t i=0; i<ncol; i++)
          {
-            if (reslt[i] == NULL)
+            if (reslt[i] == ::null())
             {
                v = "";
                v.set_type(var::type_null);
@@ -987,7 +987,7 @@ namespace simpledb
             {
                //if(r->record_header[i].type == vmssqlite::DataTypeDouble)
                //{
-               // v.SetDouble(strtod(reslt[i], NULL));
+               // v.SetDouble(strtod(reslt[i], ::null()));
                //}
                //if(r->record_header[i].type == vmssqlite::DataTypeLong)
                //{

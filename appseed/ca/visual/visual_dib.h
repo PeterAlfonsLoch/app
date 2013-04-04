@@ -48,8 +48,8 @@ namespace visual
       virtual bool read_from_file(::ca::file * pfile);
       
 
-      virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
-      virtual bool write_to_file(::ca::file * pfile, save_image * psaveimage = NULL);
+      virtual bool save_to_file(var varFile, save_image * psaveimage = ::null());
+      virtual bool write_to_file(::ca::file * pfile, save_image * psaveimage = ::null());
 
 
    };

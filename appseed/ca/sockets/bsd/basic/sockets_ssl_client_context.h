@@ -24,7 +24,7 @@ typedef struct ssl_session_st SSL_SESSION;
          int32_t               m_iRetry;
 
 
-         ssl_client_context(::ca::application * papp, const SSL_METHOD * pmethod = NULL);
+         ssl_client_context(::ca::application * papp, const SSL_METHOD * pmethod = ::null());
          virtual ~ssl_client_context();
 
 

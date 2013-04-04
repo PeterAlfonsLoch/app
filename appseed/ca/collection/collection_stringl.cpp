@@ -10,7 +10,7 @@ stringl::~stringl()
 {
 }
 
-void stringl::implode(string & str, const char * lpcszSeparator, index start, count count) const
+void stringl::implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    str.Empty();
    string strSeparator(lpcszSeparator);
@@ -56,7 +56,7 @@ string stringl::implode(const char * lpcszSeparator, index iStart, index iEnd) c
 }
 
 
-void stringl::reverse_implode(string & str, const char * lpcszSeparator, index start, count count) const
+void stringl::reverse_implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    str.Empty();
    string strSeparator(lpcszSeparator);

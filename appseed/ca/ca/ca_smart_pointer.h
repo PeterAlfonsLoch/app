@@ -23,7 +23,12 @@ namespace ca
       T * m_p;
 
 
+
       smart_pointer();
+      smart_pointer(int32_t i) { m_p = (T *) (uint_ptr) i; }
+      smart_pointer(uint32_t ui) { m_p = (T *) (uint_ptr) ui; }
+      smart_pointer(int64_t i) { m_p = (T *) (uint_ptr) i; }
+      smart_pointer(uint64_t ui) { m_p = (T *) (uint_ptr) ui; }
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(T * p);
       smart_pointer(const T & t);
@@ -44,10 +49,14 @@ namespace ca
       inline bool is_null() const;
       inline bool is_set() const;
 
+      inline smart_pointer & operator = (int32_t i) { return operator = ((T *) (uint_ptr) i); }
+      inline smart_pointer & operator = (uint32_t ui) { return operator = ((T *) (uint_ptr) ui); }
+      inline smart_pointer & operator = (int64_t i) { return operator = ((T *) (uint_ptr) i); }
+      inline smart_pointer & operator = (uint64_t ui) { return operator = ((T *) (uint_ptr) ui); }
+
       inline smart_pointer & operator = (T * p);
       inline smart_pointer & operator = (const smart_pointer < T > & t);
-      inline smart_pointer & operator = (uint_ptr dw);
-      inline smart_pointer & operator = (int32_t i);
+      inline smart_pointer & operator = (const ::ca::null &);
 
       void oattrib(const T * p);
 
@@ -66,7 +75,7 @@ namespace ca
    template < class T >
    smart_pointer < T > ::smart_pointer()
    {
-      m_p = NULL;
+      m_p = ::null();
    }
 
 
@@ -74,39 +83,39 @@ namespace ca
    smart_pointer < T > ::smart_pointer(const smart_pointer < T > & t) :
       ca(t.get_app())
    {
-      m_p = NULL;
+      m_p = ::null();
       operator = (t);
    }
 
    template < class T >
    smart_pointer < T > ::smart_pointer(const T & t) :
-      ca(&t != NULL ? t.get_app() : NULL)
+      ca(&t != ::null() ? t.get_app() : ::null())
    {
-      m_p = NULL;
+      m_p = ::null();
       operator = (System.factory().clone(&t));
    }
 
    template < class T >
    smart_pointer < T > ::smart_pointer(const ::ca::null &)
    {
-      m_p = NULL;
+      m_p = ::null();
    }
 
 
    template < class T >
    smart_pointer < T > ::smart_pointer(T * p) :
-      ca(p != NULL ? p->get_app() : NULL)
+      ca(p != ::null() ? p->get_app() : ::null())
    {
-      m_p = NULL;
+      m_p = ::null();
       operator = (p);
    }
 
    template < class T >
    smart_pointer < T > ::smart_pointer(::ca::application * papp)
    {
-      if(get_app() == NULL)
+      if(get_app() == ::null())
          set_app(papp);
-      m_p = NULL;
+      m_p = ::null();
       create(papp);
    }
 
@@ -167,13 +176,13 @@ namespace ca
    template < class T >
    inline bool smart_pointer < T > ::is_null() const
    {
-      return m_p == NULL;
+      return m_p == ::null();
    }
 
    template < class T >
    inline bool smart_pointer < T > ::is_set() const
    {
-      return m_p != NULL;
+      return m_p != ::null();
    }
 
    template < class T >
@@ -182,12 +191,12 @@ namespace ca
       if(m_p != p)
       {
          T * pOld = m_p;
-         if(p != NULL)
+         if(p != ::null())
          {
             ::ca::add_ref(p);
          }
          m_p = p;
-         if(pOld != NULL)
+         if(pOld != ::null())
          {
             ::ca::release(pOld);
          }
@@ -202,44 +211,31 @@ namespace ca
    }
 
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (uint_ptr dw)
-   {
-      return operator = ((T *) dw);
-   }
-
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (int32_t i)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (const ::ca::null & )
    {
 
-      if(i == 0)
-      {
-
-         return operator = ((T *) NULL);
-
-      }
-      else
-      {
-
-         throw simple_exception(get_app(), "cannot assign directly from non-null integer");
-
-      }
+      if(is_set())
+         release();
+      
+      return * this;
 
    }
+
 
    template < class T >
    inline T * smart_pointer < T > ::detach()
    {
       T * p = m_p;
-      m_p = NULL;
+      m_p = ::null();
       return p;
    }
 
    template < class T >
    void smart_pointer < T > ::oattrib(const T * p)
    {
-      if(p == NULL)
+      if(p == ::null())
       {
-         operator = ((T *) NULL);
+         operator = ((T *) ::null());
          return;
       }
       if(is_null())

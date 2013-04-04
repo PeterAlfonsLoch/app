@@ -51,9 +51,9 @@ namespace user
    public:
 
 
-//      ::collection::int_to_string         m_mapChar;
-  //    ::collection::int_to_string         m_mapKey;
-      ::collection::int_to_string         m_mapCode;
+//      int_to_string         m_mapChar;
+  //    int_to_string         m_mapKey;
+      int_to_string         m_mapCode;
 
       string                              m_strEscape;
       ::ca::property_set                   m_setEscape;

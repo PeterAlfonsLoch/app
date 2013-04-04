@@ -29,8 +29,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h, 32000, 32000),
-      m_in(NULL),
-      m_out(NULL),
+      m_in(::null()),
+      m_out(::null()),
       m_eventFinished(h.get_app())
    {
    }
@@ -63,7 +63,7 @@ namespace sockets
       POSITION pos = h.m_sockets.get_start_position();
       ::sockets::socket * psocket2;
       SOCKET key;
-      while(pos != NULL)
+      while(pos != ::null())
       {
          h.m_sockets.get_next_assoc(pos, key, psocket2);
          if(psocket2 == psocket)

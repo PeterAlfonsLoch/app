@@ -8,20 +8,20 @@ single_document_template::single_document_template(
    ca(papp),
    document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
 {
-   m_pdocument = NULL;
+   m_pdocument = ::null();
 }
 
 single_document_template::~single_document_template()
 {
 #ifdef DEBUG
-   if (m_pdocument != NULL)
+   if (m_pdocument != ::null())
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif
 }
 
-count single_document_template::get_document_count() const
+::count single_document_template::get_document_count() const
 {
-   return (m_pdocument == NULL) ? 0 : 1;
+   return (m_pdocument == ::null()) ? 0 : 1;
 }
 
 ::user::document_interface * single_document_template::get_document(index index) const
@@ -29,12 +29,12 @@ count single_document_template::get_document_count() const
    if(index == 0)
       return m_pdocument;
    else
-      return NULL;
+      return ::null();
 }
 
 void single_document_template::add_document(::user::document_interface * pdocument)
 {
-   if(m_pdocument == NULL)
+   if(m_pdocument == ::null())
    {
       m_pdocument = pdocument;
       document_template::add_document(pdocument);
@@ -46,7 +46,7 @@ void single_document_template::remove_document(::user::document_interface * pdoc
    if(m_pdocument == pdocument)
    {
       document_template::remove_document(pdocument);
-      m_pdocument = NULL;
+      m_pdocument = ::null();
    }
 }
 
@@ -54,19 +54,19 @@ void single_document_template::remove_document(::user::document_interface * pdoc
 // single_document_template commands
 
 void single_document_template::request(::ca::create_context * pcreatecontext)
-   // if lpszPathName == NULL => create new file of this type
+   // if lpszPathName == ::null() => create new file of this type
 {
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) ::null();
    bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
 //   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
 
-   ::user::document_interface * pdocument = NULL;
-   frame_window* pFrame = NULL;
+   ::user::document_interface * pdocument = ::null();
+   frame_window* pFrame = ::null();
    bool bCreated = FALSE;      // => doc and frame created
    bool bWasModified = FALSE;
 
-   if (m_pdocument != NULL)
+   if (m_pdocument != ::null())
    {
       // already have a ::user::document_interface - reinit it
       pdocument = m_pdocument;
@@ -74,7 +74,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
          return;        // leave the original one
 
       pFrame = dynamic_cast < frame_window * > (pdocument->get_view()->GetParentFrame());
-      ASSERT(pFrame != NULL);
+      ASSERT(pFrame != ::null());
       ASSERT_KINDOF(frame_window, pFrame);
       ASSERT_VALID(pFrame);
    }
@@ -82,19 +82,19 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    {
       // create a new ::user::document_interface
       pdocument = create_new_document();
-      ASSERT(pFrame == NULL);     // will be created below
+      ASSERT(pFrame == ::null());     // will be created below
       bCreated = TRUE;
    }
 
-   if (pdocument == NULL)
+   if (pdocument == ::null())
    {
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "Failed to create document");
+      System.simple_message_box(::null(), "Failed to create document");
       return;
    }
    ASSERT(pdocument == m_pdocument);
 
-   if (pFrame == NULL)
+   if (pFrame == ::null())
    {
       ASSERT(bCreated);
 
@@ -102,12 +102,12 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       bool bAutoDelete = pdocument->m_bAutoDelete;
       pdocument->m_bAutoDelete = FALSE;
                // don't destroy if something goes wrong
-      pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
+      pFrame = create_new_frame(pdocument, ::null(), pcreatecontext);
       pdocument->m_bAutoDelete = bAutoDelete;
-      if (pFrame == NULL)
+      if (pFrame == ::null())
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "Failed to create ::user::document_interface");
+         System.simple_message_box(::null(), "Failed to create ::user::document_interface");
          delete pdocument;       // explicit delete on error
          return;
       }
@@ -173,12 +173,12 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    ASSERT(pThread);
    if(bCreated)
    {
-      if(pThread->GetMainWnd() == NULL)
+      if(pThread->GetMainWnd() == ::null())
       {
          // set as main frame (InitialUpdateFrame will show the ::ca::window)
          pThread->SetMainWnd(pFrame);
       }
-      if(Application.m_puiMain == NULL)
+      if(Application.m_puiMain == ::null())
       {
          Application.m_puiMain = pFrame;
       }
@@ -193,7 +193,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 
    view_update_hint uh(get_app());
    uh.m_etype = view_update_hint::TypeOpenDocument;
-   pdocument->update_all_views(NULL, 0, &uh);
+   pdocument->update_all_views(::null(), 0, &uh);
    
    ::ca::add_ref(pdocument);
 

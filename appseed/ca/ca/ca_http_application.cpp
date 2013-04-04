@@ -28,7 +28,7 @@ namespace ca
          const char * pszVersion, 
          http::e_status * pestatus)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
             set["app"] = get_app();
@@ -48,7 +48,7 @@ namespace ca
                return;
             }
          }
-         else if(psignal->m_puser == NULL)
+         else if(psignal->m_puser == ::null())
          {
             psignal->m_puser = &ApplicationUser;
             psignal->m_set["app"] = get_app();
@@ -59,7 +59,7 @@ namespace ca
 
       bool application::get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -77,11 +77,11 @@ namespace ca
          const char * pszVersion,
          e_status * pestatus)
       {
-         if(puser == NULL && !(bool)set["disable_ca2_sessid"])
+         if(puser == ::null() && !(bool)set["disable_ca2_sessid"])
          {
             if((bool)set["optional_ca2_sessid"])
             {
-               if(Application.fontopus().m_puser != NULL)
+               if(Application.fontopus().m_puser != ::null())
                   puser = &ApplicationUser;
             }
             else
@@ -105,7 +105,7 @@ namespace ca
          const char * pszVersion,
          e_status * pestatus)
       {
-         if(puser == NULL && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])
+         if(puser == ::null() && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])
          {
             puser = &ApplicationUser;
          }
@@ -115,7 +115,7 @@ namespace ca
 
       bool application::get(const char * pszUrl, string & str, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -125,9 +125,9 @@ namespace ca
 
       string application::get(const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL && ::ca::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::ca::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
+         if(puser == ::null() && ::ca::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::ca::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
          {
-            if(::ca::get_thread() != NULL)
+            if(::ca::get_thread() != ::null())
             {
                keeper < string > keepWorkUrl(&::ca::get_thread()->m_strWorkUrl, pszUrl, ::ca::get_thread()->m_strWorkUrl, true);
                puser = &ApplicationUser;
@@ -143,7 +143,7 @@ namespace ca
       bool application::exists(const char * pszUrl, ::fontopus::user * puser)
       {
 
-         return exists(pszUrl, NULL, puser);
+         return exists(pszUrl, ::null(), puser);
 
       }
 
@@ -169,9 +169,9 @@ namespace ca
             }
          }
 
-         if(puser == NULL && !get_app()->is_system() 
-         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_pfontopus->m_puser != NULL) 
-         && (pvarQuery == NULL || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
+         if(puser == ::null() && !get_app()->is_system() 
+         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_pfontopus->m_puser != ::null()) 
+         && (pvarQuery == ::null() || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
          {
             puser = &ApplicationUser;
          }
@@ -200,7 +200,7 @@ namespace ca
          const char * pszVersion,
          e_status * pestatus)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
             set["app"] = get_app();
@@ -211,7 +211,7 @@ namespace ca
 
       bool application::request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -220,7 +220,7 @@ namespace ca
 
       string application::request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -229,7 +229,7 @@ namespace ca
 
       bool application::request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -246,7 +246,7 @@ namespace ca
          ::fontopus::user * puser, 
          const char * pszVersion)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -262,7 +262,7 @@ namespace ca
          ::fontopus::user * puser,
          const char * pszVersion)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -272,7 +272,7 @@ namespace ca
 
       bool application::download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -281,7 +281,7 @@ namespace ca
 
       bool application::put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -290,7 +290,7 @@ namespace ca
 
       bool application::put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -300,7 +300,7 @@ namespace ca
 
       bool application::put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -309,7 +309,7 @@ namespace ca
 
       bool application::put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }

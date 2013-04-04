@@ -12,8 +12,8 @@ namespace sockets
    ssl_client_context::ssl_client_context(::ca::application * papp, const SSL_METHOD * pmethod) :
       ca(papp)
    {
-      m_psession = NULL;
-      if(pmethod == NULL)
+      m_psession = ::null();
+      if(pmethod == ::null())
          pmethod = SSLv23_method();
       InitializeContext(pmethod);
       m_iRetry = 0;
@@ -21,11 +21,11 @@ namespace sockets
       
    ssl_client_context::~ssl_client_context()
    {
-      if(m_psession != NULL)
+      if(m_psession != ::null())
       {
          SSL_SESSION_free(m_psession);
       }
-      if(m_pcontext != NULL)
+      if(m_pcontext != ::null())
       {
          SSL_CTX_free(m_pcontext);
       }
@@ -45,7 +45,7 @@ namespace sockets
    void ssl_client_context::InitializeContext(const SSL_METHOD *meth_in)
    {
       ERR_load_ERR_strings();
-      const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+      const SSL_METHOD *meth = meth_in != ::null() ? meth_in : SSLv3_method();
       m_pcontext = SSL_CTX_new(meth);
       char buf[255];
       unsigned long err = ERR_get_error();

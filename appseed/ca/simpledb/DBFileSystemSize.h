@@ -144,7 +144,7 @@ public:
 
 
    class size_map :
-      public ::collection::string_map < file_size_table::get_fs_size, file_size_table::get_fs_size >
+      public string_map < file_size_table::get_fs_size, file_size_table::get_fs_size >
    {
    public:
    };
@@ -155,7 +155,7 @@ public:
    file_size_table::get_fs_size     m_size;
    bool                             m_bRet;
    critical_section                 m_cs;
-   base_array < file_size_table::get_fs_size, file_size_table::get_fs_size & > m_sizea;
+   array < file_size_table::get_fs_size, file_size_table::get_fs_size & > m_sizea;
 
    size_map                         m_map;
 

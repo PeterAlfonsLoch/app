@@ -54,7 +54,7 @@ namespace fs
       virtual void StartAnimation();
       virtual void _001OnDraw(::ca::graphics * pdc);
       void _017UpdateList();
-      void GetSelectedFilePath(stringa & base_array);
+      void GetSelectedFilePath(stringa & array);
       virtual void _001CreateImageList();
       bool _001CreateImageListStep();
       virtual void _001GetItemImage(::user::list_item * pitem);

@@ -12,7 +12,7 @@ namespace user
 
       m_bOnEditUpdate         = false;
       m_bOnLanguageChange     = false;
-      m_pcallback             = NULL;
+      m_pcallback             = ::null();
       m_bInitialized          = false;
    }
 
@@ -42,7 +42,7 @@ namespace user
          case control::type_static:
             {
    /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::ca::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
-               if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
+               if(pstatic == ::null() || !base < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
                   VERIFY(pstatic->subclass_window(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_()));
@@ -59,7 +59,7 @@ namespace user
       if(pdescriptor->m_typeinfo)
       {
 
-         if(pdescriptor->m_bCreated && pdescriptor->m_pcontrol != NULL)
+         if(pdescriptor->m_bCreated && pdescriptor->m_pcontrol != ::null())
          {
 
             pdescriptor->m_bCreated = false;
@@ -70,13 +70,13 @@ namespace user
 
          }
 
-         if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol.m_p) != NULL)
+         if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol.m_p) != ::null())
          {
             //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeoswindow_();
-            //if(wndidTemp != NULL)
+            //if(wndidTemp != ::null())
             {
                /*xxx ::user::window_interface * pwnd = dynamic_cast < ::user::window_interface * > (pcontrol->m_typeinfo->CreateObject());
-               if(pwnd != NULL)
+               if(pwnd != ::null())
                {
                   if(pwnd->subclass_window(wndidTemp))
                   {
@@ -109,7 +109,7 @@ namespace user
       else if(create_control(pdescriptor))
       {
       }
-      if(pdescriptor->m_pcontrol != NULL)
+      if(pdescriptor->m_pcontrol != ::null())
       {
          ::ca::type_info ti = typeid(pdescriptor->m_pcontrol);
 /*         if(ti == System.type_info < ::user::list > ())
@@ -145,7 +145,7 @@ namespace user
 
       control * pcontrol = m_controldescriptorset.get_control_by_id(uiId);
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       switch(pcontrol->descriptor().get_type())
@@ -176,9 +176,9 @@ namespace user
 
       UNREFERENCED_PARAMETER(lparam);
 
-      ASSERT(pcontrol != NULL);
+      ASSERT(pcontrol != ::null());
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_button);
@@ -211,9 +211,9 @@ namespace user
 
       UNREFERENCED_PARAMETER(lparam);
 
-      ASSERT(pcontrol != NULL);
+      ASSERT(pcontrol != ::null());
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
@@ -245,9 +245,9 @@ namespace user
 
       UNREFERENCED_PARAMETER(lparam);
 
-      ASSERT(pcontrol != NULL);
+      ASSERT(pcontrol != ::null());
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
@@ -287,9 +287,9 @@ namespace user
 
       UNREFERENCED_PARAMETER(lparam);
 
-      ASSERT(pcontrol != NULL);
+      ASSERT(pcontrol != ::null());
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_edit);
@@ -324,7 +324,7 @@ namespace user
    bool form::_001SaveEdit(control * pcontrol)
    {
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_edit || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
@@ -333,12 +333,12 @@ namespace user
 
       string str;
 
-      if(pedit == NULL)
+      if(pedit == ::null())
       {
 
          text_interface * ptext = dynamic_cast < text_interface * > (pcontrol);
 
-         if(ptext == NULL)
+         if(ptext == ::null())
             return false;
 
          ptext->_001GetText(str);
@@ -390,7 +390,7 @@ namespace user
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
          control * pcontrol = m_controldescriptorset[i].m_pcontrol;
-         if(pcontrol == NULL)
+         if(pcontrol == ::null())
             continue;
          _001Update(pcontrol);
       }
@@ -398,8 +398,8 @@ namespace user
 
    void form::_001Update(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
       switch(pcontrol->descriptor().get_type())
       {
@@ -423,8 +423,8 @@ namespace user
 
    void form::_001UpdateDbFlags(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
       switch(pcontrol->descriptor().get_type())
       {
@@ -448,8 +448,8 @@ namespace user
 
    void form::_001UpdateDbFlagsCheckBox(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       ASSERT(pcontrol->descriptor().m_eddx == control::ddx_dbflags);
@@ -462,7 +462,7 @@ namespace user
          dynamic_cast < ::ca::byte_serializable & > (ia)))
       {
 /*         check_box * pcheck = dynamic_cast < check_box * > (pcontrol);
-         if(pcheck != NULL)
+         if(pcheck != ::null())
          {
             index i = 0;
             if(ia.BaseSortFind(pcontrol->descriptor().m_ddx.m_pdbflags->m_value, i))
@@ -480,8 +480,8 @@ namespace user
 
    void form::_001UpdateCheckBox(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       int32_t i;
@@ -494,8 +494,8 @@ namespace user
 
    void form::_001UpdateComboBox(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
    /* linux   ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
       int32_t i;
@@ -512,8 +512,8 @@ namespace user
 
    void form::_001UpdateEdit(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
 
       if(m_bOnEditUpdate)
@@ -531,16 +531,16 @@ namespace user
          if(selection.get_item_count() > 0)
          {
             ::database::selection_item & item = selection.get_item(0);
-            text_interface * ptext = NULL;
-            if(get_child_by_id(pcontrol->m_id) != NULL)
+            text_interface * ptext = ::null();
+            if(get_child_by_id(pcontrol->m_id) != ::null())
             {
                ptext = dynamic_cast < text_interface * > (get_child_by_id(pcontrol->m_id));
             }
-            if(ptext == NULL && pcontrol != NULL)
+            if(ptext == ::null() && pcontrol != ::null())
             {
                ptext = dynamic_cast < text_interface * > (pcontrol);
             }
-            if(ptext == NULL)
+            if(ptext == ::null())
                return;
             if(data_get(pcontrol->descriptor().m_dataid, item.m_idIndex, var))
             {
@@ -571,8 +571,8 @@ namespace user
 
    void form::_001UpdateSimpleList(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_simple_list);
@@ -584,7 +584,7 @@ namespace user
          ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
          stringa stra;
          data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, stra);
-         ASSERT(plist != NULL);
+         ASSERT(plist != ::null());
          pdata->set_data(plist, stra);
       }*/
    }
@@ -597,13 +597,13 @@ namespace user
 
    void form::_001InitializeFormPreData()
    {
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
          m_pcallback->_001InitializeFormPreData(this);
       }
 
    /*
-      if(get_owner() != NULL)
+      if(get_owner() != ::null())
       {
          get_owner()->SendMessage(
             WM_USER + 723,
@@ -618,7 +618,7 @@ namespace user
    bool form::_001GetData(id uiId, bool &bData)
    {
       control * pcontrol = m_controldescriptorset.get_control_by_id(uiId);
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       int32_t i;
@@ -634,7 +634,7 @@ namespace user
    bool form::_001SetData(id uiId, bool bData)
    {
       control * pcontrol = m_controldescriptorset.get_control_by_id(uiId);
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       int32_t i = bData ? 1 : 0;
@@ -654,7 +654,7 @@ namespace user
          for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
             control * pcontrol = m_controldescriptorset[i].m_pcontrol;
-            if(pcontrol == NULL)
+            if(pcontrol == ::null())
                continue;
             _001Update(pcontrol);
          }
@@ -760,7 +760,7 @@ namespace user
 
       SCAST_PTR(::database::change_event, pchange, pobj);
 
-      if(pchange->m_puh != NULL)
+      if(pchange->m_puh != ::null())
       {
 
          if(pchange->m_puh->has_self(this))
@@ -777,7 +777,7 @@ namespace user
 
          control * pcontrol = m_controldescriptorset[iControl].m_pcontrol;
 
-         if(pcontrol == NULL)
+         if(pcontrol == ::null())
             continue;
 
          if(m_controldescriptorset[iControl].m_eddx == control::ddx_dbflags)
@@ -892,10 +892,10 @@ namespace user
    void form::_001FillCombo(control * pcontrol)
    {
 
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
-   /* linux  if(pcontrol->GetComboBox() != NULL)
+   /* linux  if(pcontrol->GetComboBox() != ::null())
       {
          if(!pcontrol->GetComboBox()->m_datakeyFill.IsNull())
          {
@@ -930,26 +930,26 @@ namespace user
          class control::descriptor & descriptor = m_controldescriptorset[i];
          if(descriptor.m_typeinfo)
          {
-            if(descriptor.m_bCreated && descriptor.m_pcontrol != NULL)
+            if(descriptor.m_bCreated && descriptor.m_pcontrol != ::null())
             {
             }
-            else if(descriptor.m_bSubclassed && descriptor.m_pcontrol != NULL)
+            else if(descriptor.m_bSubclassed && descriptor.m_pcontrol != ::null())
             {
    //            if(::IsWindow(pcontrol->m_pwnd->GetSafeoswindow_()))
                {
                   //xxx pcontrol->m_pwnd->unsubclass_window();
                }
    //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::ca::window > ()));
-               if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol.m_p) != NULL)
+               if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol.m_p) != ::null())
                {
                   //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
-                  //if(wndidTemp != NULL)
+                  //if(wndidTemp != ::null())
                   {
              //xxx        VERIFY(pcontrol->m_pwnd->subclass_window(wndidTemp));
                   }
                }
             }
-            if(descriptor.m_pcontrol != NULL)
+            if(descriptor.m_pcontrol != ::null())
             {
                ::ca::type_info ti = typeid(descriptor.m_pcontrol);
 /*               if(ti == System.type_info < ::user::list > ())
@@ -983,13 +983,13 @@ namespace user
          return false;
       }
       ::ca::ca * pca = System.alloc(pdescriptor->m_typeinfo);
-      if(pca == NULL)
+      if(pca == ::null())
       {
          TRACE("form::create_control: failed to create control, allocation error");
          return false;
       }
       class control * pcontrol = dynamic_cast < control * > (pca);
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
       {
          delete pca;
          TRACE("form::create_control: failed to create control, object is not derived from user::control::descriptor");
@@ -1031,7 +1031,7 @@ namespace user
       if(pevent->m_eevent == ::user::event_tab_key)
       {
          ::user::keyboard_focus * pfocus = pevent->m_puie->keyboard_get_next_focusable();
-         if(pfocus != NULL)
+         if(pfocus != ::null())
          {
             Application.user()->set_keyboard_focus(pfocus);
          }
@@ -1039,11 +1039,11 @@ namespace user
       else if(pevent->m_eevent == ::user::event_button_clicked)
       {
          class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
-         if(pdescriptor == NULL)
+         if(pdescriptor == ::null())
             return false;
          if(pdescriptor->has_function(control::function_action))
          {
-            if(pdescriptor->m_pcontrol != NULL)
+            if(pdescriptor->m_pcontrol != ::null())
             {
                _001OnButtonAction(pdescriptor->m_pcontrol);
                return true;
@@ -1058,7 +1058,7 @@ namespace user
          && pevent->m_bUser)
       {
          class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
-         if(pdescriptor == NULL)
+         if(pdescriptor == ::null())
             return false;
          if(pdescriptor->m_eddx == control::ddx_dbflags)
          {
@@ -1072,19 +1072,11 @@ namespace user
             check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie);
             if(pcheck->_001GetCheck() == check::checked)
             {
-               index i = 0;
-               if(!ia.BaseSortFind(pdescriptor->m_ddx.m_pdbflags->m_value, i))
-               {
-                  ia.add(pdescriptor->m_ddx.m_pdbflags->m_value);
-               }
+               ia.add_unique(pdescriptor->m_ddx.m_pdbflags->m_value);
             }
             else
             {
-               index i = 0;
-               while(ia.BaseSortFind(pdescriptor->m_ddx.m_pdbflags->m_value, i))
-               {
-                  ia.remove_at(i);
-               }
+               ia.remove(pdescriptor->m_ddx.m_pdbflags->m_value);
             }
             m_pdataserver->data_server_save(
                pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient,
@@ -1104,11 +1096,11 @@ namespace user
          return true;
       _001InitializeFormPreData();
    /*   ::view * pview = dynamic_cast <::view *>(get_guie());
-      if(pview != NULL)
+      if(pview != ::null())
       {
-         if(pview->get_document() != NULL)
+         if(pview->get_document() != ::null())
          {
-            pview->get_document()->update_all_views(NULL);
+            pview->get_document()->update_all_views(::null());
          }
       }*/
       _001UpdateFunctionStatic();
@@ -1117,7 +1109,7 @@ namespace user
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
          control * pcontrol = m_controldescriptorset[i].m_pcontrol;
-         if(pcontrol == NULL)
+         if(pcontrol == ::null())
             continue;
          _001Update(pcontrol);
       }
@@ -1132,7 +1124,7 @@ namespace user
    bool form::_001IsPointInside(control * pcontrol, point64 point)
    {
 
-      if(pcontrol == NULL)
+      if(pcontrol == ::null())
          return false;
 
       return pcontrol->_001IsPointInside(point);

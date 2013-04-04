@@ -22,7 +22,7 @@ public:
    const char *   m_pszName;
    strsize        m_iLenName;
 
-   count          m_iCount;
+   ::count m_iCount;
    bool           m_bHasWww;
 
 

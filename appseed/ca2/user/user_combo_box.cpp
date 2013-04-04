@@ -386,7 +386,7 @@ namespace user
    index combo_box::_001FindListText(const string & str) const
    {
 
-      count c = _001GetListCount();
+      ::count c = _001GetListCount();
 
       string strItem;
 

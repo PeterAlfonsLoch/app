@@ -39,7 +39,7 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    mmf.pfn = pfn;
    bool bResult = TRUE; // default is ok
 
-   if (pHandlerInfo != NULL)
+   if (pHandlerInfo != ::null())
    {
       // just fill in the information, don't do it
       pHandlerInfo->pTarget = pTarget;
@@ -57,36 +57,36 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    case ::ca::SigCmd_v:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       (pTarget->*mmf.pfnCmd_v_v)();
       break;
 
    case ::ca::SigCmd_b:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       bResult = (pTarget->*mmf.pfnCmd_b_v)();
       break;
 
    case ::ca::SigCmd_RANGE:
       // normal command or control notification in a range
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       (pTarget->*mmf.pfnCmd_v_u)(nID);
       break;
 
    case ::ca::SigCmd_EX:
       // extended command (passed ID, returns bContinue)
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       bResult = (pTarget->*mmf.pfnCmd_b_u)(nID);
       break;
 
    case ::ca::SigNotify_v:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          (pTarget->*mmf.pfnNotify_v_NMHDR_pl)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
@@ -94,9 +94,9 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    case ::ca::SigNotify_b:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          bResult = (pTarget->*mmf.pfnNotify_b_NMHDR_pl)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
@@ -104,9 +104,9 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    case ::ca::SigNotify_RANGE:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          (pTarget->*mmf.pfnNotify_v_u_NMHDR_pl)(nID, pNotify->pNMHDR,
             pNotify->pResult);
       }
@@ -115,9 +115,9 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    case ::ca::SigNotify_EX:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          bResult = (pTarget->*mmf.pfnNotify_b_u_NMHDR_pl)(nID, pNotify->pNMHDR,
             pNotify->pResult);
       }
@@ -128,7 +128,7 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
          // ON_UPDATE_COMMAND_UI or ON_UPDATE_COMMAND_UI_REFLECT case
          ASSERT(CN_UPDATE_COMMAND_UI == (UINT)-1);
          ASSERT(nCode == CN_UPDATE_COMMAND_UI || nCode == 0xFFFF);
-         ENSURE_ARG(pExtra != NULL);
+         ENSURE_ARG(pExtra != ::null());
          cmd_ui* pCmdUI = (cmd_ui*)pExtra;
          ASSERT(!pCmdUI->m_bContinueRouting);    // idle - not set
          (pTarget->*mmf.pfnCmdUI_v_C)(pCmdUI);
@@ -141,7 +141,7 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
       {
          // ON_UPDATE_COMMAND_UI case
          ASSERT(nCode == CN_UPDATE_COMMAND_UI);
-         ENSURE_ARG(pExtra != NULL);
+         ENSURE_ARG(pExtra != ::null());
          cmd_ui* pCmdUI = (cmd_ui*)pExtra;
          ASSERT(pCmdUI->m_nID == nID);           // sanity assert
          ASSERT(!pCmdUI->m_bContinueRouting);    // idle - not set
@@ -162,54 +162,54 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    case ::ca::Sig_vv:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       (pTarget->*mmf.pfn_COMMAND)();
       break;
 
    case ::ca::Sig_bv:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       bResult = (pTarget->*mmf.pfn_bCOMMAND)();
       break;
 
    case ::ca::Sig_vw:
       // normal command or control notification in a range
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       (pTarget->*mmf.pfn_COMMAND_RANGE)(nID);
       break;
 
    case ::ca::Sig_bw:
       // extended command (passed ID, returns bContinue)
-      ASSERT(pExtra == NULL);
+      ASSERT(pExtra == ::null());
       bResult = (pTarget->*mmf.pfn_COMMAND_EX)(nID);
       break;
 
    case ::ca::Sig_vNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          (pTarget->*mmf.pfn_NOTIFY)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
    case ::ca::Sig_bNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          bResult = (pTarget->*mmf.pfn_bNOTIFY)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
    case ::ca::Sig_vwNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          (pTarget->*mmf.pfn_NOTIFY_RANGE)(nID, pNotify->pNMHDR,
             pNotify->pResult);
       }
@@ -217,9 +217,9 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
    case ::ca::Sig_bwNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-         ENSURE(pNotify != NULL);
-         ASSERT(pNotify->pResult != NULL);
-         ASSERT(pNotify->pNMHDR != NULL);
+         ENSURE(pNotify != ::null());
+         ASSERT(pNotify->pResult != ::null());
+         ASSERT(pNotify->pNMHDR != ::null());
          bResult = (pTarget->*mmf.pfn_NOTIFY_EX)(nID, pNotify->pNMHDR,
             pNotify->pResult);
       }
@@ -229,7 +229,7 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
          // ON_UPDATE_COMMAND_UI or ON_UPDATE_COMMAND_UI_REFLECT case
          ASSERT(CN_UPDATE_COMMAND_UI == (UINT)-1);
          ASSERT(nCode == CN_UPDATE_COMMAND_UI || nCode == 0xFFFF);
-         ENSURE_ARG(pExtra != NULL);
+         ENSURE_ARG(pExtra != ::null());
          cmd_ui* pCmdUI = (cmd_ui*)pExtra;
          ASSERT(!pCmdUI->m_bContinueRouting);    // idle - not set
          (pTarget->*mmf.pfn_UPDATE_COMMAND_UI)(pCmdUI);
@@ -242,7 +242,7 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
       {
          // ON_UPDATE_COMMAND_UI case
          ASSERT(nCode == CN_UPDATE_COMMAND_UI);
-         ENSURE_ARG(pExtra != NULL);
+         ENSURE_ARG(pExtra != ::null());
          cmd_ui* pCmdUI = (cmd_ui*)pExtra;
          ASSERT(pCmdUI->m_nID == nID);           // sanity assert
          ASSERT(!pCmdUI->m_bContinueRouting);    // idle - not set
@@ -266,12 +266,12 @@ __STATIC bool _::ca::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t n
 }
 */
 
-// compare two pointers to GUIDs -- TRUE if both pointers are NULL
+// compare two pointers to GUIDs -- TRUE if both pointers are ::null()
 // or both pointers point to same GUID; FALSE otherwise
 
 #define IsEqualNULLGuid(pGuid1, pGuid2) \
-   (((pGuid1) == NULL && (pGuid2) == NULL) || \
-    ((pGuid1) != NULL && (pGuid2) != NULL && \
+   (((pGuid1) == ::null() && (pGuid2) == ::null()) || \
+    ((pGuid1) != ::null() && (pGuid2) != ::null() && \
       IsEqualGUID(*(pGuid1), *(pGuid2))))
 
 /*
@@ -295,15 +295,15 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (nMsg == 0)
       nMsg = WM_COMMAND;
 
-   // look through message ::collection::map to see if it applies to us
+   // look through message map to see if it applies to us
 
-   for (pMessageMap = GetMessageMap(); pMessageMap->pfnGetBaseMap != NULL;
+   for (pMessageMap = GetMessageMap(); pMessageMap->pfnGetBaseMap != ::null();
      pMessageMap = (*pMessageMap->pfnGetBaseMap)())
    {
       // Note: catches  // BEGIN_MESSAGE_MAP(CMyClass, CMyClass)!
       ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
       lpEntry = ::ca::FindMessageEntry(pMessageMap->lpEntries, nMsg, nCode, nID);
-      if (lpEntry != NULL)
+      if (lpEntry != ::null())
       {
          // found it
 #ifdef DEBUG
@@ -350,7 +350,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
    };
    static const __MSGMAP messageMap =
    {
-      NULL,
+      ::null(),
       &_messageEntries[0]
    };
    return &messageMap;
@@ -370,10 +370,10 @@ cmd_ui::cmd_ui(::ca::application * papp)  :
 
    m_iIndex                      = 0;
    m_iCount                      = 0;
-   m_pMenu                       = NULL;
-   m_pSubMenu                    = NULL;
-   m_pParentMenu                 = NULL;
-   m_pOther                      = NULL;
+   m_pMenu                       = ::null();
+   m_pSubMenu                    = ::null();
+   m_pParentMenu                 = ::null();
+   m_pOther                      = ::null();
    m_bEnableChanged              = FALSE;
    m_bContinueRouting            = FALSE;
    m_bEnableIfHasCommandHandler  = true;
@@ -385,10 +385,10 @@ cmd_ui::cmd_ui(::ca::application * papp)  :
 void cmd_ui::Enable(bool bOn)
 {
 
-   if (m_pMenu != NULL)
+   if (m_pMenu != ::null())
    {
 
-      if (m_pSubMenu != NULL)
+      if (m_pSubMenu != ::null())
          return; // don't change popup menus indirectly
 
       ENSURE(m_iIndex < m_iCount);
@@ -398,7 +398,7 @@ void cmd_ui::Enable(bool bOn)
    {
 
       // enable/disable a control (i.e. child ::ca::window)
-      ENSURE(m_pOther != NULL);
+      ENSURE(m_pOther != ::null());
 
       // if control has the focus, move the focus before disabling
       if (!bOn && (System.get_focus_guie() == m_pOther))
@@ -416,9 +416,9 @@ void cmd_ui::Enable(bool bOn)
 
 void cmd_ui::_001SetCheck(check::e_check nCheck)
 {
-   if (m_pMenu != NULL)
+   if (m_pMenu != ::null())
    {
-      if (m_pSubMenu != NULL)
+      if (m_pSubMenu != ::null())
          return; // don't change popup menus indirectly
 
       // place checkmark next to menu item
@@ -430,7 +430,7 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
 #ifdef WINDOWS
 
       // we can only check buttons or controls acting like buttons
-      ENSURE(m_pOther != NULL);
+      ENSURE(m_pOther != ::null());
       if (m_pOther->send_message(WM_GETDLGCODE) & DLGC_BUTTON)
          m_pOther->send_message(BM_SETCHECK, nCheck);
       // otherwise ignore it
@@ -445,15 +445,15 @@ __STATIC void __load_dot_bitmap(); // for swap tuning
 void cmd_ui::SetRadio(bool bOn)
 {
    _001SetCheck(bOn != FALSE); // this default works for most things as well
-   if (m_pMenu != NULL)
+   if (m_pMenu != ::null())
    {
-      if (m_pSubMenu != NULL)
+      if (m_pSubMenu != ::null())
          return; // don't change popup menus indirectly
 
       // for menu item - use dot instead of checkmark
       ENSURE(m_iIndex < m_iCount);
 
-/*      if (afxData.hbmMenuDot == NULL)
+/*      if (afxData.hbmMenuDot == ::null())
          __load_dot_bitmap();    // in INIT segment
          */
    }
@@ -461,11 +461,11 @@ void cmd_ui::SetRadio(bool bOn)
 
 void cmd_ui::SetText(const char * lpszText)
 {
-   ENSURE_ARG(lpszText != NULL);
+   ENSURE_ARG(lpszText != ::null());
    ASSERT(__is_valid_string(lpszText));
 
    {
-      ENSURE(m_pOther != NULL);
+      ENSURE(m_pOther != ::null());
       m_pOther->SetWindowText(lpszText);
    }
 }
@@ -497,7 +497,7 @@ static const BYTE gen_Dot[] = { 0x6, 0xF, 0xF, 0xF, 0x6 }; // simple byte bitmap
 /*
 __STATIC void __load_dot_bitmap()
 {
-   ASSERT(afxData.hbmMenuDot == NULL);
+   ASSERT(afxData.hbmMenuDot == ::null());
    // attempt to load special bitmap, else default to arrow
    size size = ::GetMenuCheckMarkDimensions();
    ENSURE(size.cx > 4 && size.cy > 5); // not too small please
@@ -530,11 +530,11 @@ __STATIC void __load_dot_bitmap()
 
    afxData.hbmMenuDot = ::CreateBitmap(size.cx, size.cy, 1, 1,
          (LPVOID)rgbBitmap);
-   if (afxData.hbmMenuDot == NULL)
+   if (afxData.hbmMenuDot == ::null())
    {
 //      TRACE(::ca::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
       #define OBM_MNARROW         32739
-      afxData.hbmMenuDot = ::LoadBitmap(NULL, MAKEINTRESOURCE(OBM_MNARROW));
+      afxData.hbmMenuDot = ::LoadBitmap(::null(), MAKEINTRESOURCE(OBM_MNARROW));
    }
 }
 

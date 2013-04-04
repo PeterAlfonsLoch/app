@@ -29,7 +29,7 @@ bool WINAPI RawDllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
          
          // make sure we have enough primitive::memory to attempt to start (8kb)
          void * pMinHeap = LocalAlloc(NONZEROLPTR, 0x2000);
-         if (pMinHeap == NULL)
+         if (pMinHeap == ::null())
             return FALSE;   // fail if primitive::memory alloc fails
          LocalFree(pMinHeap);
 

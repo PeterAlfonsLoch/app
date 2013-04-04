@@ -13,13 +13,13 @@ namespace dynamic_source
 
 
       critical_section     m_cs;
-      map_string_to_ptr    m_map;
+      strsp(script)        m_map;
+      sp(script_manager)   m_pmanager;
 
 
       script_cache(::ca::application * papp);
       ~script_cache();
 
-      script_manager * m_pmanager;
       script_instance * create_instance(const char * lpcszName);
 
       void set_all_out_of_date();

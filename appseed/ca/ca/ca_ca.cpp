@@ -10,12 +10,12 @@ namespace ca
    ca::ca()
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
-      m_papp               = 0; // NULL
+      m_papp               = 0; // ::null()
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
-      m_pptraListener      = NULL;
-      m_pptraListened      = NULL;
-      m_pfactoryitembase   = NULL;
+      m_pptraListener      = ::null();
+      m_pptraListened      = ::null();
+      m_pfactoryitembase   = ::null();
    }
 
    ca::ca(const ca & o)
@@ -24,9 +24,9 @@ namespace ca
       m_papp               = o.m_papp;
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
-      m_pptraListener      = NULL;
-      m_pptraListened      = NULL;
-      m_pfactoryitembase   = NULL;
+      m_pptraListener      = ::null();
+      m_pptraListened      = ::null();
+      m_pfactoryitembase   = ::null();
    }
 
    ca::ca(::ca::application * papp)
@@ -34,14 +34,14 @@ namespace ca
       m_ulFlags            = (uint32_t) flag_auto_clean;
       m_papp               = papp;
       m_countReference     = 1; // avoid creating a "perambulator" phantom
-      m_pptraListener      = NULL;
-      m_pptraListened      = NULL;
-      m_pfactoryitembase   = NULL;
+      m_pptraListener      = ::null();
+      m_pptraListened      = ::null();
+      m_pfactoryitembase   = ::null();
    }
 
    ca::~ca()
    {
-/*      if(m_papp != NULL)
+/*      if(m_papp != ::null())
       {
          try
          {
@@ -52,7 +52,7 @@ namespace ca
          }
          try
          {
-            if(m_papp->m_psystem != NULL)
+            if(m_papp->m_psystem != ::null())
             {
                   m_papp->m_psystem->on_delete(this);
             }
@@ -62,12 +62,12 @@ namespace ca
          }
       }
 
-      if(m_pptraListener != NULL)
+      if(m_pptraListener != ::null())
       {
          for(int32_t i = 0; i < m_pptraListener->get_size(); i++)
          {
             ::ca::ca * plistener = m_pptraListener->element_at(i);
-            if(plistener != NULL)
+            if(plistener != ::null())
             {
                try
                {
@@ -78,7 +78,7 @@ namespace ca
                }
                try
                {
-                  if(plistener->m_pptraListened != NULL)
+                  if(plistener->m_pptraListened != ::null())
                   {
                      plistener->m_pptraListened->remove(this);
                   }
@@ -95,18 +95,18 @@ namespace ca
          catch(...)
          {
          }
-         m_pptraListener = NULL;
+         m_pptraListener = ::null();
       }
-      if(m_pptraListened != NULL)
+      if(m_pptraListened != ::null())
       {
          for(int32_t i = 0; i < m_pptraListened->get_size(); i++)
          {
             ::ca::ca * plistened = m_pptraListened->element_at(i);
-            if(plistened != NULL)
+            if(plistened != ::null())
             {
                try
                {
-                  if(plistened->m_pptraListener != NULL)
+                  if(plistened->m_pptraListener != ::null())
                   {
                      plistened->m_pptraListener->remove(this);
                   }
@@ -123,7 +123,7 @@ namespace ca
          catch(...)
          {
          }
-         m_pptraListened = NULL;
+         m_pptraListened = ::null();
       }
 
 */
@@ -162,7 +162,7 @@ namespace ca
 
    ptra & ca::listenerptra()
    {
-      if(m_pptraListener == NULL)
+      if(m_pptraListener == ::null())
       {
          m_pptraListener = new_ptra();
       }
@@ -171,7 +171,7 @@ namespace ca
 
    ptra & ca::listenedptra()
    {
-      if(m_pptraListened == NULL)
+      if(m_pptraListened == ::null())
       {
          m_pptraListened = new_ptra();
       }
@@ -190,7 +190,7 @@ namespace ca
 
    void ca::delete_this()
    {
-      if(m_pfactoryitembase != NULL && m_pfactoryitembase->m_pallocator)
+      if(m_pfactoryitembase != ::null() && m_pfactoryitembase->m_pallocator)
       {
 
          m_pfactoryitembase->m_pallocator->discard(this);
@@ -208,7 +208,7 @@ namespace ca
 
    ::ca::ca * ca::clone()
    {
-      if(m_pfactoryitembase != NULL)
+      if(m_pfactoryitembase != ::null())
          return m_pfactoryitembase->clone(this);
       else
          return m_papp->m_psystem->clone(this);
@@ -217,7 +217,7 @@ namespace ca
 
    ptra * ca::new_ptra()
    {
-      return new ptra();
+      return new ::ca::ptra();
    }
 
 

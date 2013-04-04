@@ -6,7 +6,7 @@ namespace html
 {
 
    class CLASS_DECL_ca2 style_sheet_array :
-      public ::collection::smart_pointer_array < style_sheet >
+      public smart_pointer_array < style_sheet >
    {
    public:
 

@@ -27,9 +27,9 @@ namespace n7z
       void AddDigest();
 
    public:
-      base_array<bool> Processed;
-      base_array<uint32_t> CRCs;
-      base_array<uint64_t> Sizes;
+      array<bool> Processed;
+      array<uint32_t> CRCs;
+      array<uint64_t> Sizes;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       virtual ::ca::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);

@@ -10,7 +10,7 @@
 //template <class TYPE, class ARG_TYPE>
 //C2DArray <TYPE, ARG_TYPE>
 //::C2DArray<TYPE, ARG_TYPE>()
-//:::base_array<TYPE, ARG_TYPE>()
+//:::array<TYPE, ARG_TYPE>()
 //{
 
 //}

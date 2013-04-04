@@ -11,13 +11,13 @@ namespace plugin
    instance::instance()
    {
 
-      m_pfile           = NULL;
+      m_pfile           = ::null();
 
-      m_lpbMemory       = NULL;
+      m_lpbMemory       = ::null();
 
       m_iMemory         = -1;
 
-      m_puiHost         = NULL;
+      m_puiHost         = ::null();
 
       m_oswindow        = ::ca::null();
 
@@ -27,7 +27,7 @@ namespace plugin
 
    instance::~instance()
    {
-      if(m_puiHost != NULL)
+      if(m_puiHost != ::null())
       {
          delete m_puiHost;
       }
@@ -40,7 +40,7 @@ namespace plugin
 
       m_oswindow = m_phost->get_host_window();
 
-      if(m_oswindow == NULL)
+      if(m_oswindow == ::null())
          return FALSE;
 
       m_bInitialized = true;
@@ -57,7 +57,7 @@ namespace plugin
    void instance::shut()
    {
 
-      //::KillTimer(NULL, (uint_ptr) this);
+      //::KillTimer(::null(), (uint_ptr) this);
 
       plugin::finalize();
 

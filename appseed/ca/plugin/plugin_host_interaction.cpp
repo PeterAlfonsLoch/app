@@ -15,12 +15,12 @@ namespace plugin
    host_interaction::host_interaction(::ca::application * papp) :
       ::ca::ca(papp)
    {
-      m_pframe = NULL;
+      m_pframe = ::null();
    }
 
    host_interaction::~host_interaction()
    {
-      if(m_papp != NULL)
+      if(m_papp != ::null())
       {
          try
          {
@@ -121,12 +121,12 @@ namespace plugin
       _001DrawChildren(pdc);
 
       //pdc->SetViewportOrg(ptPreviousViewportOrg);
-      //pdc->SelectClipRgn(NULL);
+      //pdc->SelectClipRgn(::null());
       point ptCursor;
       Session.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
       ::visual::cursor * pcursor = Session.get_cursor();
-      if(pcursor != NULL)
+      if(pcursor != ::null())
       {
          pcursor->to(pdc, ptCursor);
       }
@@ -146,7 +146,7 @@ namespace plugin
 
    void host_interaction::layout()
    {
-      if(m_pframe != NULL)
+      if(m_pframe != ::null())
       {
          class rect rect;
          GetClientRect(rect);
@@ -155,7 +155,7 @@ namespace plugin
       else
       {
          user::interaction * pui = get_top_child();
-         if(pui != NULL)
+         if(pui != ::null())
          {
             class rect rectClient;
             GetClientRect(rectClient);
@@ -230,13 +230,13 @@ namespace plugin
 
    void host_interaction::_000OnMouse(::ca::message::mouse * pmouse)
    {
-      if(&Session != NULL)
+      if(&Session != ::null())
       {
          Session.m_ptCursor = pmouse->m_pt;
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_papp != NULL && m_uiptraChild[0].m_papp->m_psession != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_papp != ::null() && m_uiptraChild[0].m_papp->m_psession != ::null())
          {
             set_app(m_uiptraChild[0].m_papp);
          }

@@ -8,7 +8,7 @@ namespace n7z
 
    struct CBindInfoEx: public ::libcompress::coder_mixer::CBindInfo
    {
-      base_array < ::libcompress::method_id > CoderMethodIDs;
+      array < ::libcompress::method_id > CoderMethodIDs;
       void remove_all()
       {
          CBindInfo::remove_all();
@@ -27,13 +27,13 @@ namespace n7z
       ::libcompress::coder_mixer::CCoderMixer2 *_mixerCoderCommon;
 
       ::ca::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
-      base_array < ::ca::smart_pointer < ::ca::ca > > _decoders;
-      // ::collection::smart_pointer_array<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
+      array < ::ca::smart_pointer < ::ca::ca > > _decoders;
+      // smart_pointer_array<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
    public:
       CDecoder(::ca::application * papp,  bool multiThread);
       virtual ~CDecoder();
       HRESULT Decode(
-         ::libcompress::codecs_info_interface * codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface * codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          ::ca::byte_input_stream *inStream,
          file_position startPos,
          const file_size * packSizes,

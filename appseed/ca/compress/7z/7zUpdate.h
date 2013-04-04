@@ -71,10 +71,10 @@ namespace n7z
    };
 
    HRESULT Update(
-      ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
       ::ca::byte_input_stream *inStream,
       const CArchiveDatabaseEx *db,
-      const ::collection::smart_pointer_array<CUpdateItem> &updateItems,
+      const smart_pointer_array<CUpdateItem> &updateItems,
       COutArchive &archive,
       CArchiveDatabase &newDatabase,
       ::ca::writer *seqOutStream,

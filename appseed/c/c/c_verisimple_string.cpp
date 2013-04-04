@@ -69,19 +69,19 @@ char * verisimple_string::alloc(::count iCount)
    return m_psz;
 }
 
-count verisimple_string::get_length() const
+::count verisimple_string::get_length() const
 {
    if(m_psz == NULL)
       return 0;
    return strlen_dup(m_psz);
 }
 
-count verisimple_string::size() const
+::count verisimple_string::size() const
 {
    return get_length();
 }
 
-count verisimple_string::length() const
+::count verisimple_string::length() const
 {
    return get_length();
 }
@@ -189,7 +189,7 @@ void verisimple_string::trim()
 }
 
 
-verisimple_string verisimple_string::substr(index offset, count count) const
+verisimple_string verisimple_string::substr(index offset, ::count count) const
 {
    if(count < 0)
       count += length() + 1;
@@ -216,9 +216,9 @@ verisimple_string & verisimple_string::operator += (const verisimple_string & st
 verisimple_string operator + (const verisimple_string & str1, const verisimple_string & str2)
 {
 
-   count iLen1 = str1.length();
+   ::count iLen1 = str1.length();
 
-   count iLen2 = str2.length();
+   ::count iLen2 = str2.length();
 
    verisimple_string strRet;
 

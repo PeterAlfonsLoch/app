@@ -543,16 +543,16 @@ step2:
 
       }
 
-      ::collection::map < ::id, const ::id &, ::id, const ::id & > g_mapRTL;
+      ::map < ::id, const ::id &, ::id, const ::id & > g_mapRTL;
 
       inline id rl_id(const ::id & id)
       {
 
 
-         ::collection::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_mapRTL.PLookup(id);
+         ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_mapRTL.PLookup(id);
 
-         if(ppair != NULL)
-            return ppair->m_value;
+         if(ppair != ::null())
+            return ppair->m_element2;
 
          string str;
 

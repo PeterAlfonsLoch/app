@@ -26,7 +26,7 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 
 string_array::string_array()
 {
-   m_pData = NULL;
+   m_pData = ::null();
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
@@ -39,7 +39,7 @@ string_array::~string_array()
    delete[] (BYTE*)m_pData;
 }
 
-void string_array::set_size(count nNewSize, count nGrowBy)
+void string_array::set_size(::count nNewSize, ::count nGrowBy)
 {
    ASSERT_VALID(this);
    ASSERT(nNewSize >= 0);
@@ -53,10 +53,10 @@ void string_array::set_size(count nNewSize, count nGrowBy)
 
       _DestructElements(m_pData, m_nSize);
       delete[] (BYTE*)m_pData;
-      m_pData = NULL;
+      m_pData = ::null();
       m_nSize = m_nMaxSize = 0;
    }
-   else if (m_pData == NULL)
+   else if (m_pData == ::null())
    {
       // create one with exact size
 #ifdef SIZE_T_MAX
@@ -89,7 +89,7 @@ void string_array::set_size(count nNewSize, count nGrowBy)
    }
    else
    {
-      // otherwise, grow base_array
+      // otherwise, grow array
       nGrowBy = m_nGrowBy;
       if (nGrowBy == 0)
       {
@@ -97,7 +97,7 @@ void string_array::set_size(count nNewSize, count nGrowBy)
          //  (this avoids heap fragmentation in many situations)
          nGrowBy = min(1024, max(4, m_nSize / 8));
       }
-      count nNewMax;
+      ::count nNewMax;
       if (nNewSize < m_nMaxSize + nGrowBy)
          nNewMax = m_nMaxSize + nGrowBy;  // granularity
       else
@@ -126,7 +126,7 @@ void string_array::set_size(count nNewSize, count nGrowBy)
    }
 }
 
-count string_array::add(const string_array& src)
+::count string_array::add(const string_array& src)
 {
    if(this == &src)
    {
@@ -136,7 +136,7 @@ count string_array::add(const string_array& src)
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
 
-   count nOldSize = m_nSize;
+   ::count nOldSize = m_nSize;
    set_size(m_nSize + src.m_nSize);
 
    CopyElements(m_pData + nOldSize, src.m_pData, src.m_nSize);
@@ -182,7 +182,7 @@ void string_array::free_extra()
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX/sizeof(string)); // no overflow
 #endif
-      string* pNewData = NULL;
+      string* pNewData = ::null();
       if (m_nSize != 0)
       {
          pNewData = (string*) new BYTE[m_nSize * sizeof(string)];
@@ -222,7 +222,7 @@ void string_array::set_at_grow(index nIndex, const string & newElement)
 
 
 
-void string_array::InsertEmpty(index nIndex, count nCount)
+void string_array::InsertEmpty(index nIndex, ::count nCount)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -230,13 +230,13 @@ void string_array::InsertEmpty(index nIndex, count nCount)
 
    if (nIndex >= m_nSize)
    {
-      // adding after the end of the base_array
+      // adding after the end of the array
       set_size(nIndex + nCount);  // grow so nIndex is valid
    }
    else
    {
-      // inserting in the middle of the base_array
-      count nOldSize = m_nSize;
+      // inserting in the middle of the array
+      ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount);  // grow it to new size
       // shift old data up to fill gap
       memmove(&m_pData[nIndex+nCount], &m_pData[nIndex],
@@ -253,7 +253,7 @@ void string_array::InsertEmpty(index nIndex, count nCount)
 }
 
 
-void string_array::insert_at(index nIndex, const char * newElement, count nCount)
+void string_array::insert_at(index nIndex, const char * newElement, ::count nCount)
 {
 
    // make room for new elements
@@ -269,7 +269,7 @@ void string_array::insert_at(index nIndex, const char * newElement, count nCount
 }
 
 
-void string_array::insert_at(index nIndex, const string & newElement, count nCount)
+void string_array::insert_at(index nIndex, const string & newElement, ::count nCount)
 {
    // make room for new elements
    InsertEmpty(nIndex, nCount);
@@ -280,7 +280,7 @@ void string_array::insert_at(index nIndex, const string & newElement, count nCou
 }
 
 
-void string_array::remove_at(index nIndex, count nCount)
+void string_array::remove_at(index nIndex, ::count nCount)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
@@ -288,7 +288,7 @@ void string_array::remove_at(index nIndex, count nCount)
    ASSERT(nIndex + nCount <= m_nSize);
 
    // just remov a range
-   count nMoveCount = m_nSize - (nIndex + nCount);
+   ::count nMoveCount = m_nSize - (nIndex + nCount);
 
    _DestructElements(&m_pData[nIndex], nCount);
 
@@ -301,7 +301,7 @@ void string_array::remove_at(index nIndex, count nCount)
 void string_array::insert_at(index nStartIndex, const string_array & NewArray)
 {
    ASSERT_VALID(this);
-   ASSERT(&NewArray != NULL);
+   ASSERT(&NewArray != ::null());
 //   ASSERT_KINDOF(string_array, &NewArray);
    ASSERT_VALID(&NewArray);
    ASSERT(nStartIndex >= 0);
@@ -360,7 +360,7 @@ void string_array::assert_valid() const
 {
    ::ca::object::assert_valid();
 
-   if (m_pData == NULL)
+   if (m_pData == ::null())
    {
       ASSERT(m_nSize == 0);
       ASSERT(m_nMaxSize == 0);
@@ -375,7 +375,7 @@ void string_array::assert_valid() const
 }
 
 
-void string_array::QuickSort(
+void string_array::quick_sort(
       void swap(void * lpVoidSwapArg, const index, const index),
       void * lpvoidSwapArg,
       bool bNoCase)
@@ -412,7 +412,7 @@ void string_array::QuickSort(
                   t = get_at(iMPos);
                   set_at(iMPos, get_at(iUPos));
                   set_at(iUPos, t);
-                  if(swap != NULL)
+                  if(swap != ::null())
                   {
                      swap(lpvoidSwapArg, iUPos, iMPos);
                   }
@@ -435,7 +435,7 @@ void string_array::QuickSort(
                   t = get_at(iLPos);
                   set_at(iLPos, get_at(iMPos));
                   set_at(iMPos, t);
-                  if(swap != NULL)
+                  if(swap != ::null())
                   {
                      swap(lpvoidSwapArg, iLPos, iMPos);
                   }
@@ -539,7 +539,7 @@ void string_array::get_quick_sort_ci(index_array & ia)
 
 }
 
-string_array string_array::slice(index start, count count)
+string_array string_array::slice(index start, ::count count)
 {
    string_array stra;
    if(start < 0)
@@ -588,7 +588,7 @@ index string_array::add_new(const char * psz, index i)
 
 string & string_array::new_element(index i)
 {
-   add_new(NULL, i);
+   add_new(::null(), i);
    if(i == -1)
    {
       return last_element();
@@ -662,7 +662,7 @@ void string_array::add(const var & var)
    {
       add(var.stra());
    }
-   else if(var.ca < string_array >() != NULL)
+   else if(var.ca < string_array >() != ::null())
    {
       add(*var.ca < string_array >());
    }

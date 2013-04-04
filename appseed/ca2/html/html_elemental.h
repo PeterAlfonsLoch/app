@@ -59,7 +59,7 @@ namespace html
          flags < e_flag >  m_flags;
          float             m_cxMax;
          float             m_cxMin;
-         ::collection::string_map < int32_t, int32_t > m_mapFont;
+         string_map < int32_t, int32_t > m_mapFont;
          bool              m_bHoverEvaluated;
          bool              m_bHasHover;
          bool              m_bHover;
@@ -166,7 +166,7 @@ namespace html
 
 
       style                m_style;
-      base_array < elemental *, elemental * > m_elementalptra;
+      array < elemental *, elemental * > m_elementalptra;
 
 
       elemental * get_element_by_name(id id);

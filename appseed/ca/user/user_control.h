@@ -157,7 +157,7 @@ namespace user
       };
 
       class CLASS_DECL_ca descriptor_set :
-         public ::collection::smart_pointer_array < descriptor >
+         public smart_pointer_array < descriptor >
       {
       public:
 
@@ -256,7 +256,7 @@ namespace user
       control_cmd_ui(::ca::signal * psignal);
 
 
-      ::collection::map < id, id, id, id > m_mapControlCommand;
+      map < id, id, id, id > m_mapControlCommand;
       virtual void Enable(bool bOn);
       virtual void SetCheck(int32_t nCheck);
       virtual void SetText(const char * lpszText);
@@ -276,7 +276,7 @@ namespace user
 
       control_cmd_ui  m_cmdui; // cmd_ui derived class used to update
                                     // base_controlex derived controls
-      ::collection::list<oswindow, oswindow> m_listwndptrBlackList;
+      list<oswindow, oswindow> m_listwndptrBlackList;
    };
 
 

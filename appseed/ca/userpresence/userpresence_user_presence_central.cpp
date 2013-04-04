@@ -19,9 +19,9 @@ namespace userpresence
       if(!initialize_message_window("ca5::user::presence_central::message_window"))
          return false;
 
-      m_spuiMessage->SetTimer(1984, 1000, NULL);
+      m_spuiMessage->SetTimer(1984, 1000, ::null());
 
-      if(ApplicationUser.m_ppresence == NULL)
+      if(ApplicationUser.m_ppresence == ::null())
       {
          presence * ppresence = new presence(get_app());
          ppresence->report_activity();
@@ -40,10 +40,10 @@ namespace userpresence
 
       finalize_message_window();
 
-      if(ApplicationUser.m_ppresence != NULL)
+      if(ApplicationUser.m_ppresence != ::null())
       {
          delete ApplicationUser.m_ppresence;
-         ApplicationUser.m_ppresence = NULL;
+         ApplicationUser.m_ppresence = ::null();
       }
 
       return true;
@@ -66,10 +66,10 @@ namespace userpresence
       if(pbase->m_uiMessage == WM_TIMER)
       {
          SCAST_PTR(::ca::message::timer, ptimer, pobj);
-         if(&ApplicationUser != NULL)
+         if(&ApplicationUser != ::null())
          {
             presence * ppresence = ApplicationUser.m_ppresence;
-            if(ptimer->m_nIDEvent == 1984 && ppresence != NULL)
+            if(ptimer->m_nIDEvent == 1984 && ppresence != ::null())
             {
                ppresence->defer_pulse_user_presence();
             }

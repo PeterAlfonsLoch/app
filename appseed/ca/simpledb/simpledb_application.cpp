@@ -11,7 +11,7 @@ namespace simpledb
    simpledb::simpledb()
    {
 
-      m_pserver      = NULL;
+      m_pserver      = ::null();
 
    }
 
@@ -23,7 +23,7 @@ namespace simpledb
       {
 #ifndef METROWIN
          /* initialize client library */
-         if (mysql_library_init (0, NULL, NULL))
+         if (mysql_library_init (0, ::null(), ::null()))
          {
             TRACE("mysql_library_init() failed\n");
             return false;
@@ -38,7 +38,7 @@ namespace simpledb
 
       if(!m_pserver->initialize())
       {
-         Application.m_puser->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+         Application.user()->simple_message_box(::null(), "Could not initialize simpledb.", MB_OK);
          return false;
       }
 
@@ -85,7 +85,7 @@ namespace simpledb
       if(m_papp->is_system())
       {
 
-         m_pserver = NULL;
+         m_pserver = ::null();
 #ifndef METROWIN
          try
          {
@@ -115,12 +115,12 @@ namespace simpledb
          m_papp->m_pappThis->set_schema(str, false);
       }
 
-//      if(&AppUser(this) == NULL)
+//      if(&AppUser(this) == ::null())
   //       return false;
 
       if(!InitializeDataCentral())  
       {
-         m_papp->m_pappThis->simple_message_box(NULL, "Could not initialize data central"); 
+         m_papp->m_pappThis->simple_message_box(::null(), "Could not initialize data central"); 
          return false; 
       }
 
@@ -191,7 +191,7 @@ namespace simpledb
 
    bool simpledb::set_keyboard_layout(const char * pszPath, bool bUser)
    {
-      return Application.user().set_keyboard_layout(pszPath, bUser);
+      return Application.user()->set_keyboard_layout(pszPath, bUser);
       
    }
 
@@ -201,7 +201,7 @@ namespace simpledb
       if(bUser)
       {
       
-         if(App(m_papp).get_safe_user() != NULL)
+         if(App(m_papp).get_safe_user() != ::null())
          {
             
             data_set("keyboard_layout", pszPath);

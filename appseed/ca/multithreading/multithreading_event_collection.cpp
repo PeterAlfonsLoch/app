@@ -29,7 +29,7 @@ void	event_collection::clear()
 { m_objecta.clear(); m_waitableelementa.clear(); callback_cnt=0;	}
 
 size_t event_collection::size() const
-{ return m_objecta.size(); }
+{ return m_objecta.get_size(); }
 
 ///  \brief		checks if collection is empty
 ///  \return	true : collection empty
@@ -86,7 +86,7 @@ bool event_collection::add(event_base& waitableItem, waitable_callback *waitCall
 ///  			false : failure
 bool event_collection::merge(const event_collection& collection)
 {
-   if ( m_objecta.size() + collection.m_objecta.size() >= MAXIMUM_WAIT_OBJECTS )
+   if ( m_objecta.size() + collection.m_objecta.get_size() >= MAXIMUM_WAIT_OBJECTS )
       return false;
    m_objecta.add(collection.m_objecta);
    m_waitableelementa.add(collection.m_waitableelementa);
@@ -244,12 +244,12 @@ wait_result event_collection::find_next( const wait_result& result ) const
       throw range_error(get_app(), "no element signaled");
 
    index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
-   for ( ++position; position<m_objecta.size(); ++position ) {
+   for ( ++position; position<m_objecta.get_size(); ++position ) {
       if(!m_waitableelementa[position].callback) {
          int32_t res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
          if ( res == WAIT_TIMEOUT )
             continue;
-         return wait_result( static_cast<int32_t>(position), m_objecta.size() );
+         return wait_result( static_cast<int32_t>(position), m_objecta.get_size() );
       }
    }
    return wait_result( wait_result::Failure );

@@ -140,7 +140,7 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
 
-   count dwWrite;
+   ::count dwWrite;
 
    if(len < 0)
       dwWrite = strlen_dup(contents);

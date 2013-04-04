@@ -22,9 +22,9 @@ void plex::FreeDataChain()     // free this one and links
 {
    try
    {
-      plex* pPrevious = NULL;
+      plex* pPrevious = ::null();
       plex* p = this;
-      while (p != NULL)
+      while (p != ::null())
       {
          BYTE* bytes = (BYTE*) p;
          plex* pNext = p->pNext;

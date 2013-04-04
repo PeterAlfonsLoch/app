@@ -9,7 +9,7 @@ namespace colorertake5
    // parser's cache structures
    parse_cache::parse_cache()
    {
-      children = next = parent = NULL;
+      children = next = parent = ::null();
       vcache = 0;
    }
 
@@ -26,7 +26,7 @@ namespace colorertake5
    {
 
       parse_cache *r1, *r2, *tmp = this;
-      *cache = NULL;
+      *cache = ::null();
       while(tmp)
       {
 
@@ -51,7 +51,7 @@ namespace colorertake5
 
       }
 
-      return NULL;
+      return ::null();
 
    }
 
@@ -59,10 +59,10 @@ namespace colorertake5
    // Virtual tables list
    VTList::VTList()
    {
-      vlist = NULL;
-      prev = next = NULL;
+      vlist = ::null();
+      prev = next = ::null();
       last = this;
-      shadowlast = NULL;
+      shadowlast = ::null();
       nodesnum = 0;
    }
 
@@ -219,7 +219,7 @@ namespace colorertake5
       //  nodesnum = store[0].shadowlast;
       prevpos = last = 0;
 
-      for(index i = 0; store[i] != NULL; i++)
+      for(index i = 0; store[i] != ::null(); i++)
       {
 
          pos->next = new VTList;

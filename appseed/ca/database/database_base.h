@@ -61,8 +61,8 @@ namespace database
       virtual const char *getErrorMsg() { return error; }
 
       virtual int32_t connect() { return DB_COMMAND_OK; }
-      virtual int32_t connectFull( const char *newDb, const char *newHost=NULL,
-         const char *newLogin=NULL, const char *newPasswd=NULL,const char *newPort=NULL);
+      virtual int32_t connectFull( const char *newDb, const char *newHost=::null(),
+         const char *newLogin=::null(), const char *newPasswd=::null(),const char *newPort=::null());
       virtual void disconnect() { active = false; }
       virtual int32_t reset() { return DB_COMMAND_OK; }
       using ::ca::request_interface::create;

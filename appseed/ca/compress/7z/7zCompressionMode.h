@@ -24,8 +24,8 @@ namespace n7z
 
    struct CCompressionMethodMode
    {
-      ::collection::smart_pointer_array <CMethodFull> Methods;
-      base_array<CBind> Binds;
+      smart_pointer_array <CMethodFull> Methods;
+      array<CBind> Binds;
       uint32_t NumThreads;
       bool PasswordIsDefined;
       string Password;

@@ -762,7 +762,7 @@ MNG_EXT mng_retcode MNG_DECL mng_setcb_refresh       (mng_handle        hHandle,
 /* settimer is called to inform the application that it should set a timer;
    when the timer is triggered the app must call mng_display_resume */
 MNG_EXT mng_retcode MNG_DECL mng_setcb_gettickcount  (mng_handle        hHandle,
-                                                      mng_gettickcount  fProc);
+                                                      mng_gettickcount fProc);
 MNG_EXT mng_retcode MNG_DECL mng_setcb_settimer      (mng_handle        hHandle,
                                                       mng_settimer      fProc);
 
@@ -854,7 +854,7 @@ MNG_EXT mng_getalphaline  MNG_DECL mng_getcb_getalphaline  (mng_handle hHandle);
 MNG_EXT mng_refresh       MNG_DECL mng_getcb_refresh       (mng_handle hHandle);
 
 /* see _setcb_ */
-MNG_EXT mng_gettickcount  MNG_DECL mng_getcb_gettickcount  (mng_handle hHandle);
+MNG_EXT mng_gettickcount MNG_DECL mng_getcb_gettickcount  (mng_handle hHandle);
 MNG_EXT mng_settimer      MNG_DECL mng_getcb_settimer      (mng_handle hHandle);
 
 /* see _setcb_ */

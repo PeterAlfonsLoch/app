@@ -58,7 +58,7 @@ namespace fs
 
    }
 
-   count list_data::_001GetItemCount()
+   ::count list_data::_001GetItemCount()
    {
       return m_itema.get_count();
    }

@@ -55,7 +55,7 @@ namespace ca
          }
 #else
          timeval t;
-         gettimeofday(&t, NULL);
+         gettimeofday(&t, ::null());
          return t.tv_sec * 1000 * 1000 + t.tv_usec;
 #endif
 

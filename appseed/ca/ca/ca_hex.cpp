@@ -8,7 +8,7 @@ namespace ca
    int64_t hex::to_int64(const char * lpcsz)
    {
       int64_t r = 0, num = 0;
-      if(lpcsz == NULL)
+      if(lpcsz == ::null())
          return -1;
       for(int64_t i = strlen(lpcsz)-1; i >= 0; i--)
       {

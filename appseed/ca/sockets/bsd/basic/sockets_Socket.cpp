@@ -62,15 +62,15 @@ namespace sockets
    ,m_socket( INVALID_SOCKET )
    ,m_bDelete(false)
    ,m_bClose(false)
-   ,m_timeCreate(time(NULL))
-   ,m_psocketParent(NULL)
+   ,m_timeCreate(time(::null()))
+   ,m_psocketParent(::null())
    ,m_bDisableRead(false)
    ,m_bConnected(false)
    ,m_bErasedByHandler(false)
    ,m_timeClose(0)
    ,m_addressRemoteClient(h.get_app())
    ,m_addressRemote(h.get_app())
-   ,m_pfileTrafficMonitor(NULL)
+   ,m_pfileTrafficMonitor(::null())
    ,m_bLost(false)
    ,m_bEnableSsl(false)
    ,m_bSsl(false)
@@ -85,8 +85,8 @@ namespace sockets
    ,m_socks4_userid(h.GetSocks4Userid())
    ,m_detach(false)
    ,m_detached(false)
-   ,m_pThread(NULL)
-   ,m_slave_handler(NULL)
+   ,m_pThread(::null())
+   ,m_slave_handler(::null())
    // Line protocol
    ,m_bLineProtocol(false)
    ,m_skip_c(false),
@@ -95,7 +95,7 @@ namespace sockets
 
       m_iBindPort    = -1;
       m_dwStart      = ::get_tick_count();
-      m_pcallback    = NULL;
+      m_pcallback    = ::null();
 
    }
 
@@ -178,7 +178,7 @@ namespace sockets
 
    SOCKET socket::CreateSocket(int32_t af,int32_t iType, const string & strProtocol)
    {
-      struct protoent *p = NULL;
+      struct protoent *p = ::null();
       SOCKET s;
 
       m_iSocketType = iType;
@@ -243,7 +243,7 @@ namespace sockets
          m_bClose = x;
          if (x)
          {
-            m_timeClose = time(NULL);
+            m_timeClose = time(::null());
          }
       }
    }
@@ -288,7 +288,7 @@ namespace sockets
       {
          Handler().LogError(this, "GetRemoteIP4", 0, "get ipv4 address for ipv6 socket", ::ca::log::level_warning);
       }
-      if(m_addressRemote.m_p != NULL)
+      if(m_addressRemote.m_p != ::null())
       {
          struct sockaddr *p = *m_addressRemote;
          struct sockaddr_in *sa = (struct sockaddr_in *)p;
@@ -305,7 +305,7 @@ namespace sockets
          Handler().LogError(this, "GetRemoteIP6", 0, "get ipv6 address for ipv4 socket", ::ca::log::level_warning);
       }
       struct sockaddr_in6 fail;
-      if (m_addressRemote.m_p != NULL)
+      if (m_addressRemote.m_p != ::null())
       {
          struct sockaddr *p = *m_addressRemote;
          memcpy(&fail, p, sizeof(struct sockaddr_in6));
@@ -320,7 +320,7 @@ namespace sockets
 
    port_t socket::GetRemotePort()
    {
-/*      if(m_addressRemote.m_p == NULL)
+/*      if(m_addressRemote.m_p == ::null())
       {
          return 0;
       }*/
@@ -461,7 +461,7 @@ namespace sockets
 
    time_t socket::Uptime()
    {
-      return time(NULL) - m_timeCreate;
+      return time(::null()) - m_timeCreate;
    }
 
 
@@ -541,7 +541,7 @@ namespace sockets
 
    time_t socket::TimeSinceClose()
    {
-      return time(NULL) - m_timeClose;
+      return time(::null()) - m_timeClose;
    }
 
 
@@ -1719,7 +1719,7 @@ namespace sockets
          return;
       }
       Handler().AddList(m_socket, LIST_TIMEOUT, true);
-      m_timeTimeoutStart = time(NULL);
+      m_timeTimeoutStart = time(::null());
       m_timeTimeoutLimit = secs;
    }
 
@@ -1853,7 +1853,7 @@ namespace sockets
 
    void socket::OnRawData(char * buf, size_t len)
    {
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
          m_pcallback->OnRawData(this, buf, len);
       }

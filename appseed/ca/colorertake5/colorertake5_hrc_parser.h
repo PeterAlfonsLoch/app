@@ -46,7 +46,7 @@ namespace colorertake5
    {
    public:
       /** Error Handler, used to inform application about different error conditions
-      @param eh ErrorHandler instance, or NULL to drop error handling.
+      @param eh ErrorHandler instance, or ::null() to drop error handling.
       */
       virtual void setErrorHandler(ErrorHandler *eh) = 0;
       /** Loads HRC from specified input_source stream.
@@ -59,12 +59,12 @@ namespace colorertake5
 
       /** Enumerates sequentially all prototypes
       @param index index of type.
-      @return Requested type, or NULL, if #index is too big
+      @return Requested type, or ::null(), if #index is too big
       */
       virtual file_type *enumerateFileTypes(int32_t index) = 0;
 
       /** @param name Requested type name.
-      @return File type, or NULL, there are no type with specified name.
+      @return File type, or ::null(), there are no type with specified name.
       */
       virtual file_type *getFileType(const char * name) = 0;
 
@@ -72,7 +72,7 @@ namespace colorertake5
       This method uses fileName and firstLine parameters
       to perform selection of the best HRC type from database.
       @param fileName Name of file
-      @param firstLine First line of this file, could be NULL
+      @param firstLine First line of this file, could be ::null()
       @param typeNo Sequential number of type, if more than one type
       satisfy these input parameters.
       */
@@ -80,7 +80,7 @@ namespace colorertake5
 
       /** Total number of declared regions
       */
-      virtual count getRegionCount() = 0;
+      virtual ::count getRegionCount() = 0;
       /** Returns region by internal id
       */
       virtual class region *getRegion(int32_t id) = 0;

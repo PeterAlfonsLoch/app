@@ -16,10 +16,10 @@ class simple_array :
 public:
    simple_array();
 
-   count get_count() const;
-   count set_size(index nNewSize, count nGrowBy = -1);
+   ::count get_count() const;
+   ::count set_size(index nNewSize, ::count nGrowBy = -1);
 
-   count remove_all();
+   ::count remove_all();
 
 
 
@@ -38,8 +38,8 @@ public:
    // Potentially growing the simple_array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
    index add(ARG_TYPE newElement);
-   count add(const simple_array& src);
-   count copy(const simple_array& src);
+   ::count add(const simple_array& src);
+   ::count copy(const simple_array& src);
 
 
 
@@ -48,8 +48,8 @@ public:
    TYPE& operator[](index nIndex);
 
    // Operations that move elements around
-   void insert_at(index nIndex, ARG_TYPE newElement, count nCount = 1);
-   index remove_at(index nIndex, count nCount = 1);
+   void insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+   index remove_at(index nIndex, ::count nCount = 1);
    void insert_at(index nStartIndex, simple_array* pNewArray);
    void swap(index index1, index index2);
 
@@ -58,9 +58,9 @@ public:
 // Implementation
 protected:
    TYPE *   m_pData;    // the actual simple_array of data
-   count    m_nSize;    // # of elements (upperBound - 1)
-   count    m_nMaxSize; // max allocated
-   count    m_nGrowBy;  // grow amount
+   ::count m_nSize;    // # of elements (upperBound - 1)
+   ::count m_nMaxSize; // max allocated
+   ::count m_nGrowBy;  // grow amount
 
 public:
    virtual ~simple_array();
@@ -72,14 +72,14 @@ public:
 
 
 template<class TYPE, class ARG_TYPE>
-inline count simple_array<TYPE, ARG_TYPE>::get_count() const
+inline ::count simple_array<TYPE, ARG_TYPE>::get_count() const
 {
    return m_nSize;
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline count simple_array<TYPE, ARG_TYPE>::remove_all()
+inline ::count simple_array<TYPE, ARG_TYPE>::remove_all()
 {
    return set_size(0, -1);
 }
@@ -131,7 +131,7 @@ inline index simple_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline count simple_array<TYPE, ARG_TYPE>::add(const simple_array & a)
+inline ::count simple_array<TYPE, ARG_TYPE>::add(const simple_array & a)
 {
    for(int32_t i = 0; i < a.get_count(); i++)
    {
@@ -141,7 +141,7 @@ inline count simple_array<TYPE, ARG_TYPE>::add(const simple_array & a)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline count simple_array<TYPE, ARG_TYPE>::copy(const simple_array & a)
+inline ::count simple_array<TYPE, ARG_TYPE>::copy(const simple_array & a)
 {
    remove_all();
    return add(a);
@@ -197,7 +197,7 @@ simple_array<TYPE, ARG_TYPE>::~simple_array()
 
 
 template<class TYPE, class ARG_TYPE>
-count simple_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
+::count simple_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
 {
 
    if (nGrowBy >= 0)
@@ -217,7 +217,7 @@ count simple_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
-      count nAllocSize = max(nNewSize, m_nGrowBy);
+      ::count nAllocSize = max(nNewSize, m_nGrowBy);
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       memset_dup((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
       m_nSize = nNewSize;
@@ -244,7 +244,7 @@ count simple_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
          nGrowBy = m_nSize / 8;
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
       }
-      count nNewMax;
+      ::count nNewMax;
       if (nNewSize < m_nMaxSize + nGrowBy)
          nNewMax = m_nMaxSize + nGrowBy;  // granularity
       else
@@ -278,7 +278,7 @@ void simple_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement
 }
 
 template<class TYPE, class ARG_TYPE>
-void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, count nCount /*=1*/)
+void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
    if (nIndex >= m_nSize)
@@ -289,7 +289,7 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, 
    else
    {
       // inserting in the middle of the simple_array
-      count nOldSize = m_nSize;
+      ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
@@ -308,12 +308,12 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, 
 }
 
 template<class TYPE, class ARG_TYPE>
-index simple_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
+index simple_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 {
    index nUpperBound = nIndex + nCount;
 
    // just remove a range
-   count nMoveCount = m_nSize - (nUpperBound);
+   ::count nMoveCount = m_nSize - (nUpperBound);
    if (nMoveCount)
    {
       memmov_dup(m_pData + nIndex, m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));

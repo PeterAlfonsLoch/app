@@ -50,7 +50,7 @@ namespace libcompress
             outStream->write(_buffer, size);
          }
          TotalSize += size;
-         if (progress != NULL)
+         if (progress != ::null())
          {
             RINOK(progress->SetRatioInfo(&TotalSize, &TotalSize));
          }
@@ -68,7 +68,7 @@ namespace libcompress
    {
       sp(coder_interface) copyCoder;
       copyCoder = new copy_coder;
-      return copyCoder->Code(inStream, outStream, NULL, NULL, progress);
+      return copyCoder->Code(inStream, outStream, ::null(), ::null(), progress);
    }
 
 } // namespace libcompress

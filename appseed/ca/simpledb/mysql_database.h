@@ -42,7 +42,7 @@ namespace mysql
          const char * pszPassword,
          const char * pszDatabase,
          int32_t iPort = 0,
-         const char * pszSocketName = NULL,
+         const char * pszSocketName = ::null(),
          uint32_t uiFlags = 0);
 
       bool close();
@@ -60,17 +60,17 @@ namespace mysql
 
          result * presult = query(pszSql);
 
-         if(presult == NULL)
+         if(presult == ::null())
             return 0;
 
          MYSQL_ROW row;
 
          ::count c = 0;
 
-         while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
+         while((row = (MYSQL_ROW) presult->fetch_row()) != ::null())
          {
 
-            if(row[0] == NULL)
+            if(row[0] == ::null())
             {
                a1.add(t1null);
             }
@@ -79,7 +79,7 @@ namespace mysql
                a1.add(::ca::str::from_string < TYPE1 > (row[0]));
             }
 
-            if(row[1] == NULL)
+            if(row[1] == ::null())
             {
                a2.add(t2null);
             }
@@ -88,7 +88,7 @@ namespace mysql
                a2.add(::ca::str::from_string < TYPE2 > (row[1]));
             }
 
-            if(row[2] == NULL)
+            if(row[2] == ::null())
             {
                a3.add(t3null);
             }
@@ -114,8 +114,8 @@ namespace mysql
 
       var get_insert_id();
 
-      string error1(const char * pszPrefix = NULL);
-      void trace_error1(const char * pszPrefix = NULL);
+      string error1(const char * pszPrefix = ::null());
+      void trace_error1(const char * pszPrefix = ::null());
 
    };
 

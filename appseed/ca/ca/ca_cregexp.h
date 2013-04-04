@@ -34,7 +34,7 @@ class SMatchHash
 public:
 
 
-   ::collection::string_map<SMatch> m_map;
+   string_map<SMatch> m_map;
 
 
    SMatch *setItem(string name, SMatch &smatch);
@@ -122,7 +122,7 @@ struct SMatches
 {
   strsize s[MATCHES_NUM];
   strsize e[MATCHES_NUM];
-  count cMatch;
+  ::count cMatch;
 };
 
 /** Regular expressions internal tree node.
@@ -239,7 +239,7 @@ public:
   */
   bool setPositionMoves(bool moves);
   /**
-    Returns count of named brackets.
+    Returns ::count of named brackets.
   */
 
 #ifdef COLORERMODE
@@ -260,10 +260,10 @@ public:
   bool setRE(string re);
   /** Runs RE parser against input string @c str
   */
-  bool parse(string str, SMatches *mtch, SMatchHash *nmtch = NULL);
+  bool parse(string str, SMatches *mtch, SMatchHash *nmtch = ::null());
   /** Runs RE parser against input string @c str
   */
-  bool parse(string str, strsize pos, strsize eol, SMatches *mtch, SMatchHash *nmtch = NULL, int32_t soscheme = 0, int32_t moves = -1);
+  bool parse(string str, strsize pos, strsize eol, SMatches *mtch, SMatchHash *nmtch = ::null(), int32_t soscheme = 0, int32_t moves = -1);
 
 private:
   bool ignoreCase, extend, positionMoves, singleLine, multiLine;

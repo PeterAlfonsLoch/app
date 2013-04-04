@@ -22,7 +22,7 @@ namespace fs
       list_item(::ca::application * papp);
       list_item(const list_item & item);
 
-      static index CompareArrangeByName(list_item & pitema, list_item & itemb);
+      static index CompareArrangeByName(sp(list_item) * pitema, sp(list_item) * pitemb);
       index CompareArrangeByName(const list_item & item) const;
       index GetIndex() const;
       bool IsFolder() const;

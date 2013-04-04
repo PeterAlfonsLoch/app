@@ -670,7 +670,7 @@ long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
     headerbytes=page[26]+27;
     if(bytes<headerbytes)return(0); /* not enough for header + seg table */
 
-    /* count up body length in the segment table */
+    /* ::count up body length in the segment table */
 
     for(i=0;i<page[26];i++)
       oy->bodybytes+=page[27+i];

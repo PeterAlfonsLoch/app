@@ -1,9 +1,9 @@
 #pragma once
 
 template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE,
-   class ARRAY = base_array < ITEM_TYPE, ARG_ITEM_TYPE > >
+   class ARRAY = array < ITEM_TYPE, ARG_ITEM_TYPE > >
 class packset :
-   virtual public ::collection::map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >
+   virtual public map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >
 {
 public:
    packset();
@@ -28,21 +28,21 @@ pack(ARG_ID_TYPE id, ARG_ITEM_TYPE item)
 
 
 template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE, class ARRAY >
-count packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
+::count packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
 get_pack_count()
 {
    return this->get_size();
 }
 
 template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE, class ARRAY >
-count packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
+::count packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
 get_item_count()
 {
    ::count count = 0;
-   typename ::collection::map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >::pair * p = this->PGetFirstAssoc();
-   while(p != NULL)
+   typename map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >::pair * p = this->PGetFirstAssoc();
+   while(p != ::null())
    {
-      count += p->m_value.get_count();
+      count += p->m_element2.get_count();
       this->PGetNextAssoc(p);
    }
    return count;

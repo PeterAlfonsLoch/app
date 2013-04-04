@@ -53,7 +53,7 @@ void ssl_sigpipe_handle( int x ) {
 
    RAND_METHOD rand_meth;
 
-   ::plane::system * g_psystem = NULL;
+   ::plane::system * g_psystem = ::null();
 
    void rand_seed(const void * buf, int32_t num)
    {
@@ -98,7 +98,7 @@ void ssl_sigpipe_handle( int x ) {
 
       TRACE("SSLInitializer()\n");
 
-      bio_err = NULL;
+      bio_err = ::null();
       m_rand_size = 1024;
 
       g_psystem = &Sys(papp->m_psystem);
@@ -212,7 +212,7 @@ void ssl_sigpipe_handle( int x ) {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(line);
 
-      static ::collection::map < int32_t, int32_t, mutex *, mutex *> mmap;
+      static map < int32_t, int32_t, mutex *, mutex *> mmap;
       mutex * pmutex;
       if(!mmap.Lookup(n, pmutex))
       {

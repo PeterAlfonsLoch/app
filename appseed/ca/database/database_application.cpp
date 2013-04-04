@@ -30,7 +30,7 @@ namespace database
 
    ::database::server * database::get_data_server()
    {
-      return NULL;
+      return ::null();
    }
 
    // should not call base class implementation because database::database is inside a n-furcation of user::database

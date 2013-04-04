@@ -37,10 +37,10 @@ namespace sockets
          Initializer();
          virtual ~Initializer() {}
 
-         ::collection::int_to_string Method;
-         ::collection::int_to_string header;
-         ::collection::int_to_string Attribute;
-         ::collection::string_map < int32_t > ResponseHeader;
+         int_to_string Method;
+         int_to_string header;
+         int_to_string Attribute;
+         string_map < int32_t > ResponseHeader;
 
       };
 

@@ -8,9 +8,9 @@ namespace primitive
       ca(papp)
    {
 
-      m_pbStorage          = NULL;
-      m_pbComputed         = NULL;
-      m_pcontainer         = NULL;
+      m_pbStorage          = ::null();
+      m_pbComputed         = ::null();
+      m_pcontainer         = ::null();
       m_iOffset            = 0;
       m_dwAllocation       = 0;
       m_cbStorage          = 0;
@@ -38,20 +38,20 @@ namespace primitive
 
       remove_offset();
 
-      if(m_pbStorage == NULL)
+      if(m_pbStorage == ::null())
       {
          m_iOffset = 0;
          memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
          m_pbStorage = (LPBYTE) ca2_alloc((size_t) dwAllocation);
-         if(m_pbStorage == NULL)
+         if(m_pbStorage == ::null())
          {
-            m_pbComputed = NULL;
+            m_pbComputed = ::null();
             return false;
          }
          else
          {
             m_dwAllocation = dwAllocation;
-            if(m_pcontainer != NULL)
+            if(m_pcontainer != ::null())
             {
                m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
             }
@@ -66,7 +66,7 @@ namespace primitive
             m_iOffset = 0;
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ca2_alloc((size_t) dwAllocation);
-            if(lpVoid == NULL)
+            if(lpVoid == ::null())
             {
                return false;
             }
@@ -74,7 +74,7 @@ namespace primitive
             {
                memcpy(lpVoid, m_pbComputed, m_cbStorage);
                primitive::memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
+               if(m_pcontainer != ::null())
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
@@ -90,14 +90,14 @@ namespace primitive
          {
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ca2_realloc(m_pbStorage, (size_t) dwAllocation);
-            if(lpVoid == NULL)
+            if(lpVoid == ::null())
             {
                return false;
             }
             else
             {
                primitive::memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
+               if(m_pcontainer != ::null())
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
@@ -132,9 +132,9 @@ namespace primitive
 
       }
 
-      m_pbStorage       = NULL;
+      m_pbStorage       = ::null();
 
-      m_pbComputed      = NULL;
+      m_pbComputed      = ::null();
 
       m_cbStorage       = 0;
 
@@ -149,7 +149,7 @@ namespace primitive
    void memory::free_data()
    {
 
-      if(m_pbStorage != NULL)
+      if(m_pbStorage != ::null())
       {
          m_dwAllocation    = 0;
          m_cbStorage       = 0;
@@ -160,8 +160,8 @@ namespace primitive
          catch(...)
          {
          }
-         m_pbStorage       = NULL;
-         m_pbComputed      = NULL;
+         m_pbStorage       = ::null();
+         m_pbComputed      = ::null();
          m_iOffset         = 0;
       }
 
@@ -169,8 +169,8 @@ namespace primitive
 
    memory::memory(const void * pdata, memory_size iCount)
    {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
+      m_pbStorage    = ::null();
+      m_pbComputed   = ::null();
       m_iOffset      = 0;
       allocate(iCount);
       ASSERT(__is_valid_address(pdata, iCount, FALSE));
@@ -179,8 +179,8 @@ namespace primitive
 
    memory::memory(const memory_base & s)
    {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
+      m_pbStorage    = ::null();
+      m_pbComputed   = ::null();
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
@@ -189,8 +189,8 @@ namespace primitive
 
    memory::memory(const memory & s)
    {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
+      m_pbStorage    = ::null();
+      m_pbComputed   = ::null();
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
@@ -199,8 +199,8 @@ namespace primitive
 
    memory::memory(const simple_memory & s)
    {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
+      m_pbStorage    = ::null();
+      m_pbComputed   = ::null();
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
@@ -209,8 +209,8 @@ namespace primitive
 
    memory::memory(const char * psz)
    {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
+      m_pbStorage    = ::null();
+      m_pbComputed   = ::null();
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
@@ -220,8 +220,8 @@ namespace primitive
    memory::memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
    {
       UNREFERENCED_PARAMETER(nAllocFlags);
-      m_pbStorage          = NULL;
-      m_pbComputed         = NULL;
+      m_pbStorage          = ::null();
+      m_pbComputed         = ::null();
       m_pcontainer         = pcontainer;
       m_dwAllocationAddUp  = dwAllocationAddUp;
       m_iOffset            = 0;
@@ -231,8 +231,8 @@ namespace primitive
 
    memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
    {
-      m_pbStorage          = NULL;
-      m_pbComputed         = NULL;
+      m_pbStorage          = ::null();
+      m_pbComputed         = ::null();
       m_pcontainer         = pcontainer;
       m_iOffset            = 0;
       m_dwAllocation       = 0;

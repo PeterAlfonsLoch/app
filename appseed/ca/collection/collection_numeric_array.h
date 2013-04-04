@@ -1,7 +1,17 @@
 #pragma once
 
 
-
+template < typename T >
+index numeric_compare(T * p1, T * p2)
+{
+   T t = *p1 - *p2;
+   if(t > ::numeric_info::get_null_value < T > ())
+      return 1;
+   else if(t < ::numeric_info::get_null_value < T > ())
+      return -1;
+   else
+      return 0;
+}
 
 namespace ca
 {
@@ -29,14 +39,28 @@ class numeric_array :
 {
 public:
    numeric_array();
-   numeric_array(const numeric_array & base_array);
+   numeric_array(const numeric_array & array);
 
    index find_first_maximum_value();
    TYPE & get_maximum_value();
 
-   void append_sequence(TYPE start, TYPE end, TYPE increment = 1);
+   ::count append_sequence(TYPE start, TYPE end, TYPE increment = 1);
+   ::count set_sequence(TYPE start, TYPE end, TYPE increment = 1);
+   ::count ensure_sequence(TYPE start, TYPE end, TYPE increment = 1);
+   
+   ::count remove_greater_than(TYPE hi);
+   ::count remove_greater_than_or_equal(TYPE hi);
+   ::count remove_lesser_than(TYPE lo);
+   ::count remove_lesser_than_or_equal(TYPE lo);
 
-   void CopySorted(const numeric_array < TYPE > & base_array, TYPE & tOffset, TYPE & tMin);
+   ::count remove_lesser_than_or_greater_than(TYPE lo, TYPE hi);
+   ::count remove_lesser_than_or_greater_than_or_equal(TYPE lo, TYPE hi);
+   ::count remove_lesser_than_or_equal_or_greater_than(TYPE lo, TYPE hi);
+   ::count remove_lesser_than_or_equal_or_greater_than_or_equal(TYPE lo, TYPE hi);
+
+
+
+   void CopySorted(const numeric_array < TYPE > & array, TYPE & tOffset, TYPE & tMin);
 
    void Diff(
       const numeric_array  < TYPE > & array1,
@@ -59,7 +83,7 @@ public:
    void unique();
 
 
-   void QuickSort(bool bAsc = true);
+   void quick_sort(bool bAsc = true);
 
    bool sort_type(TYPE t, index & iIndex, index iStart, index iEnd) const
    {
@@ -128,11 +152,11 @@ public:
 
    }
 
-   void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
-   string implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
+   void implode(string & rwstr, const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
+   string implode(const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
 
 
-   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, count iCount = -1);
+   string surround_and_implode(const char * lpcszSeparator = ::null(), const char * pszPrefix = ::null(), const char * pszSuffix = ::null(), index iStart = 0, ::count iCount = -1);
 
 
 };
@@ -142,8 +166,8 @@ class unique_number_sort_array :
    public numeric_array < TYPE >
 {
 public:
-   unique_number_sort_array(::ca::application * papp = NULL);
-   unique_number_sort_array(const unique_number_sort_array & base_array);
+   unique_number_sort_array(::ca::application * papp = ::null());
+   unique_number_sort_array(const unique_number_sort_array & array);
 
    index add(const TYPE & newElement)
    {
@@ -199,7 +223,7 @@ public:
    TYPE & get_maximum_value();
 
    void CopySorted(
-   const numeric_array  < TYPE > & base_array, // this base_array is sorted
+   const numeric_array  < TYPE > & array, // this array is sorted
    TYPE & tOffset,
    TYPE & tMin);
 
@@ -220,7 +244,7 @@ public:
    //int32_t Cmp(const numeric_array  < TYPE > & array1);
 
 
-   /*virtual void QuickSort(bool bAsc = true)
+   /*virtual void quick_sort(bool bAsc = true)
    {
    if(bAsc)
    {
@@ -249,7 +273,7 @@ numeric_array < TYPE >::
 
 
 template < class TYPE >
-void numeric_array < TYPE >::implode(string & str, const char * lpcszSeparator, index start, count count) const
+void numeric_array < TYPE >::implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    if(start < 0)
    {
@@ -291,7 +315,7 @@ string numeric_array < TYPE >::implode(const char * lpcszSeparator, index iStart
 
 
 template < class TYPE >
-string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
+string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
 {
    string str;
    string strSeparator(pszSeparator);
@@ -350,28 +374,42 @@ void numeric_array < TYPE >::unique()
 
 
 template < class TYPE >
-void numeric_array < TYPE >::
-   append_sequence(TYPE iterator, TYPE end, TYPE increment)
+::count numeric_array < TYPE >::append_sequence(TYPE iterator, TYPE end, TYPE increment)
 {
    if(increment == 0)
    {
       this->add(iterator);
       this->add(end);
+      return 2;
    }
    else if(increment > 0)
    {
+      ::count c = 0;
       for(; iterator <= end; iterator +=increment)
       {
          this->add(iterator);
+         c++;
       }
+      return c;
    }
    else
    {
+      ::count c = 0;
       for(; iterator >= end; iterator +=increment)
       {
          this->add(iterator);
+         c++;
       }
+      return c;
    }
+}
+
+template < class TYPE >
+::count numeric_array < TYPE >::
+   set_sequence(TYPE start, TYPE end, TYPE increment)
+{
+   remove_all();
+   return append_sequence(start, end, increment);
 }
 
 
@@ -379,7 +417,7 @@ template < class TYPE >
 index numeric_array < TYPE >::
    Cmp(const numeric_array  < TYPE > & array1)
 {
-   count iMinSize = min(array1.get_size(), this->get_size());
+   ::count iMinSize = min(array1.get_size(), this->get_size());
    index i = 0;
    while(true)
    {
@@ -511,14 +549,14 @@ void numeric_array < TYPE >::divide(TYPE div)
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(::ca::application * papp) :
-::ca::ca(papp)
+   ::ca::ca(papp)
 {
 }
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(const unique_number_sort_array < TYPE > & a) :
-::ca::ca(a.get_app())
+   ::ca::ca(a.get_app())
 {
    numeric_array < TYPE > ::operator = (a);
 }
@@ -528,8 +566,8 @@ class CLASS_DECL_ca index_array :
    virtual public numeric_array < index >
 {
 public:
-   index_array(::ca::application * papp = NULL);
-   index_array(const index_array & base_array);
+   index_array(::ca::application * papp = ::null());
+   index_array(const index_array & array);
    virtual ~index_array();
 
    index_array operator - (const index_array & inta) const;
@@ -541,8 +579,8 @@ class CLASS_DECL_ca count_array :
    virtual public numeric_array < count >
 {
 public:
-   count_array(::ca::application * papp = NULL);
-   count_array(const count_array & base_array);
+   count_array(::ca::application * papp = ::null());
+   count_array(const count_array & array);
    virtual ~count_array();
 
    count_array operator - (const count_array & inta) const;
@@ -554,8 +592,8 @@ class CLASS_DECL_ca int_array :
    virtual public numeric_array < int32_t >
 {
 public:
-   int_array(::ca::application * papp = NULL);
-   int_array(const int_array & base_array);
+   int_array(::ca::application * papp = ::null());
+   int_array(const int_array & array);
    virtual ~int_array();
 
    int_array operator - (const int_array & inta) const;
@@ -567,8 +605,8 @@ class CLASS_DECL_ca int64_array :
    virtual public numeric_array < int64_t >
 {
 public:
-   int64_array(::ca::application * papp = NULL);
-   int64_array(const int64_array & base_array);
+   int64_array(::ca::application * papp = ::null());
+   int64_array(const int64_array & array);
    virtual ~int64_array();
 
    int64_array operator - (const int64_array & inta) const;
@@ -579,8 +617,8 @@ class CLASS_DECL_ca uint64_array :
    virtual public numeric_array < uint64_t >
 {
 public:
-   uint64_array(::ca::application * papp = NULL);
-   uint64_array(const uint64_array & base_array);
+   uint64_array(::ca::application * papp = ::null());
+   uint64_array(const uint64_array & array);
    virtual ~uint64_array();
 
    uint64_array operator - (const uint64_array & inta) const;
@@ -591,8 +629,8 @@ class CLASS_DECL_ca unique_int_sort_array :
    virtual public unique_number_sort_array < int32_t >
 {
 public:
-   unique_int_sort_array(::ca::application * papp = NULL);
-   unique_int_sort_array(const unique_int_sort_array & base_array);
+   unique_int_sort_array(::ca::application * papp = ::null());
+   unique_int_sort_array(const unique_int_sort_array & array);
    virtual ~unique_int_sort_array();
 
    unique_int_sort_array operator - (const unique_int_sort_array & inta) const;
@@ -604,8 +642,8 @@ class CLASS_DECL_ca unique_index_sort_array :
    virtual public unique_number_sort_array < index >
 {
 public:
-   unique_index_sort_array(::ca::application * papp = NULL);
-   unique_index_sort_array(const unique_index_sort_array & base_array);
+   unique_index_sort_array(::ca::application * papp = ::null());
+   unique_index_sort_array(const unique_index_sort_array & array);
    virtual ~unique_index_sort_array();
 
    unique_index_sort_array operator - (const unique_index_sort_array & inta) const;
@@ -616,7 +654,7 @@ class CLASS_DECL_ca float_array :
 {
 public:
    float_array();
-   float_array(const float_array & base_array);
+   float_array(const float_array & array);
    virtual ~float_array();
 };
 
@@ -625,7 +663,7 @@ class CLASS_DECL_ca double_array :
 {
 public:
    double_array();
-   double_array(const double_array & base_array);
+   double_array(const double_array & array);
    virtual ~double_array();
 };
 
@@ -652,7 +690,7 @@ class CLASS_DECL_ca uint32_array :
 public:
 
    uint32_array();
-   uint32_array(const uint32_array & base_array);
+   uint32_array(const uint32_array & array);
    virtual ~uint32_array();
 
 };
@@ -665,7 +703,7 @@ class CLASS_DECL_ca uint_ptr_array :
 public:
 
    uint_ptr_array();
-   uint_ptr_array(const uint_ptr_array & base_array);
+   uint_ptr_array(const uint_ptr_array & array);
    virtual ~uint_ptr_array();
 
 };
@@ -677,30 +715,30 @@ class CLASS_DECL_ca uint_array :
 {
 public:
    uint_array();
-   uint_array(const uint_array & base_array);
+   uint_array(const uint_array & array);
    virtual ~uint_array();
 };
 
 
 
 
-// take in account that _001RemoveIndexes change
+// take in ac::count that _001RemoveIndexes change
 // the index array by sorting it and returning
 // only the indexes that could be removed 
 // without indexes duplicates
 template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
+inline void array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
 {
 
    // sort
-   ia.QuickSort(true);
+   ia.quick_sort(true);
 
    index i = ia.get_upper_bound();
 
    // filter out of upper bound indexes
    while(i >= 0 && ia[i] >= get_size())
    {
-      
+
       ia.remove_at(i);
 
       i--;
@@ -710,7 +748,7 @@ inline void raw_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_
    // filter out of lower bound indexes
    while(ia.get_size() > 0 && ia[0] < 0)
    {
-      
+
       ia.remove_at(0);
 
    }
@@ -729,13 +767,13 @@ inline void raw_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_
    }
 
    remove_indexes(ia);
-   
+
 }
 
 
 
 template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
+inline void array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
 {
 
 
@@ -746,12 +784,12 @@ inline void raw_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
       remove_at(ia[i]);
 
    }
-   
+
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
+inline void array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
 {
 
    for(index i = 0; i < ia.get_count(); i++)
@@ -760,88 +798,222 @@ inline void raw_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_arr
       remove_at(ia[i]);
 
    }
-   
+
 }
 
 
 
 
 
-// take in account that _001RemoveIndexes change
-// the index array by sorting it and returning
-// only the indexes that could be removed 
-// without indexes duplicates
-template<class TYPE, class ARG_TYPE>
-inline void base_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
+
+template < class TYPE >
+::count numeric_array < TYPE >::remove_greater_than(TYPE hi)
 {
 
-   // sort
-   ia.QuickSort(true);
+   ::count c = 0;
 
-   index i = ia.get_upper_bound();
-
-   // filter out of upper bound indexes
-   while(i >= 0 && ia[i] >= get_size())
+   for(int i = get_upper_bound(); i >= 0; i--)
    {
-      
-      ia.remove_at(i);
-
-      i--;
-
+      if(element_at(i) > hi)
+      {
+         remove_at(i);
+         c++;
+      }
    }
 
-   // filter out of lower bound indexes
-   while(ia.get_size() > 0 && ia[0] < 0)
-   {
-      
-      ia.remove_at(0);
+   return c;
 
-   }
-
-   i = ia.get_upper_bound();
-
-   // filter out duplicates
-   while(i > 0 && ia[i] >= get_size())
-   {
-
-      if(ia[i] == ia[i - 1])
-         ia.remove_at(i);
-
-      i--;
-
-   }
-
-   remove_indexes(ia);
-   
 }
 
 
-
-template<class TYPE, class ARG_TYPE>
-inline void base_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
+template < class TYPE >
+::count numeric_array < TYPE >::remove_greater_than_or_equal(TYPE hi)
 {
 
+   ::count c = 0;
 
-   // remove indexes
-   for(index i = ia.get_upper_bound(); i >= 0; i--)
+   for(int i = get_upper_bound(); i >= 0; i--)
    {
-
-      remove_at(ia[i]);
-
+      if(element_at(i) >= hi)
+      {
+         remove_at(i);
+         c++;
+      }
    }
-   
+
+   return c;
+
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline void base_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
+template < class TYPE >
+::count numeric_array < TYPE >::remove_lesser_than(TYPE lo)
 {
 
-   for(index i = 0; i < ia.get_count(); i++)
+   ::count c = 0;
+
+   for(int i = get_upper_bound(); i >= 0; i--)
    {
-
-      remove_at(ia[i]);
-
+      if(element_at(i) < lo)
+      {
+         remove_at(i);
+         c++;
+      }
    }
+
+   return c;
+
+}
+
+
+template < class TYPE >
+::count numeric_array < TYPE >::remove_lesser_than_or_equal(TYPE lo)
+{
+
+   ::count c = 0;
+
+   for(int i = get_upper_bound(); i >= 0; i--)
+   {
+      if(element_at(i) <= lo)
+      {
+         remove_at(i);
+         c++;
+      }
+   }
+
+   return c;
+
+}
+
+
+template < class TYPE >
+::count numeric_array < TYPE >::remove_lesser_than_or_greater_than(TYPE lo, TYPE hi)
+{
+
+   ::count c = 0;
+
+   for(int i = get_upper_bound(); i >= 0; i--)
+   {
+      if(element_at(i) < lo)
+      {
+         remove_at(i);
+         c++;
+      }
+      else if(element_at(i) > hi)
+      {
+         remove_at(i);
+         c++;
+      }
+   }
+
+   return c;
+
+}
+
+
+template < class TYPE >
+::count numeric_array < TYPE >::remove_lesser_than_or_greater_than_or_equal(TYPE lo, TYPE hi)
+{
+
+   ::count c = 0;
+
+   for(int i = get_upper_bound(); i >= 0; i--)
+   {
+      if(element_at(i) < lo)
+      {
+         remove_at(i);
+         c++;
+      }
+      else if(element_at(i) >= hi)
+      {
+         remove_at(i);
+         c++;
+      }
+   }
+
+   return c;
+
+}
+
+
+template < class TYPE >
+::count numeric_array < TYPE >::remove_lesser_than_or_equal_or_greater_than(TYPE lo, TYPE hi)
+{
+
+   ::count c = 0;
+
+   for(int i = get_upper_bound(); i >= 0; i--)
+   {
+      if(element_at(i) <= lo)
+      {
+         remove_at(i);
+         c++;
+      }
+      else if(element_at(i) > hi)
+      {
+         remove_at(i);
+         c++;
+      }
+   }
+
+   return c;
+
+}
+
+
+template < class TYPE >
+::count numeric_array < TYPE >::remove_lesser_than_or_equal_or_greater_than_or_equal(TYPE lo, TYPE hi)
+{
+
+   ::count c = 0;
+
+   for(int i = get_upper_bound(); i >= 0; i--)
+   {
+      if(element_at(i) <= lo)
+      {
+         remove_at(i);
+         c++;
+      }
+      else if(element_at(i) >= hi)
+      {
+         remove_at(i);
+         c++;
+      }
+   }
+
+   return c;
+
+}
+
+template < class TYPE >
+::count numeric_array < TYPE >::ensure_sequence(TYPE start, TYPE end, TYPE increment)
+{
    
+   ::count c = 0;
+
+   numeric_array < TYPE > a;
+
+   a.set_sequence(start, end, increment);
+
+   c += remove_lesser_than_or_greater_than(start, end);
+
+   for(int i = get_upper_bound(); i >= 0; i--)
+   {
+      index iFind = 0;
+      if(a.binary_search(element_at(i), iFind, &::numeric_compare < TYPE >))
+      {
+         a.remove_at(iFind);
+         c++;
+      }
+      else
+      {
+         remove_at(i);
+         c++;
+      }
+   }
+
+   c += add(a);
+
+   return c;
+
 }

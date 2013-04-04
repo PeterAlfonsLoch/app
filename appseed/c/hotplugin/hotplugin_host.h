@@ -13,7 +13,7 @@ namespace hotplugin
 
       plugin *                      m_pplugin;
       byte *                        m_puchMemory;
-      count                         m_countMemory;
+      ::count m_countMemory;
       double                        m_dProgressRate;
       bool                          m_bShowProgress;
       vsstring                      m_strHostPluginLocation;
@@ -60,10 +60,10 @@ namespace hotplugin
       virtual void   set_window_rect(LPCRECT lpcrect);
 
       // implemented here
-      virtual void   set_memory(void * puchMemory, count c);
-      virtual void   append_memory(void * puchMemory, count c);
-      virtual count  get_memory_length();
-      virtual count  read_memory(void * puchMemory, count c);
+      virtual void   set_memory(void * puchMemory, ::count c);
+      virtual void   append_memory(void * puchMemory, ::count c);
+      virtual ::count get_memory_length();
+      virtual ::count read_memory(void * puchMemory, ::count c);
       virtual void   free_memory();
       static  void   free_memory(byte ** ppuchMemory);
 

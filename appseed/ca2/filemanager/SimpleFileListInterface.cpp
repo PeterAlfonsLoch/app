@@ -239,14 +239,14 @@ namespace filemanager
 
       //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 
-      base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
+      array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;
 
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
-      base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
+      array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       int32_t iStart = 0;
       int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
@@ -654,7 +654,7 @@ namespace filemanager
    }
 
 
-   void SimpleFileListInterface::GetSelectedFilePath(stringa & base_array)
+   void SimpleFileListInterface::GetSelectedFilePath(stringa & array)
    {
       range range;
 
@@ -679,7 +679,7 @@ namespace filemanager
             ::fs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
             if(!item.IsFolder())
             {
-               base_array.add(item.m_strPath);
+               array.add(item.m_strPath);
             }
          }
       }
@@ -698,8 +698,6 @@ namespace filemanager
          stringa stra;
 
          GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
-
-         get_fs_list_data()->m_itema.SetItemCount(stra.get_size());
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -722,7 +720,7 @@ namespace filemanager
             item.m_strPath = strPath;
             item.m_strName = strName;
 
-            get_fs_list_data()->m_itema.SetItemAt(i, item);
+            get_fs_list_data()->m_itema.add_item(item);
 
          }
 
@@ -1092,7 +1090,7 @@ namespace filemanager
       pobj->m_bRet = false;
    }
 
-   count SimpleFileListInterface::_001GetItemCount()
+   ::count SimpleFileListInterface::_001GetItemCount()
    {
       return get_fs_list_data()->m_itema.get_count();
    }

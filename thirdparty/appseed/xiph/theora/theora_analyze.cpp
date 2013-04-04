@@ -128,7 +128,7 @@ static int32_t oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
     }
     else{
       int32_t ri;
-      /*For scheme 0, incrementing the mode count could potentially change the
+      /*For scheme 0, incrementing the mode ::count could potentially change the
          mode's rank.
         Find the index where the mode would be moved to in the optimal list,
          and use its bit cost instead of the one for the mode's current
@@ -486,7 +486,7 @@ struct oc_enc_pipeline_state{
   uint32_t            sbi_end[3];
   /*The number of tokens for zzi=1 for each color plane.*/
   int32_t                 ndct_tokens1[3];
-  /*The outstanding eob_run count for zzi=1 for each color plane.*/
+  /*The outstanding eob_run ::count for zzi=1 for each color plane.*/
   int32_t                 eob_run1[3];
   /*Whether or not the loop filter is enabled.*/
   int32_t                 loop_filter;
@@ -2201,7 +2201,7 @@ int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _r
   if(_allow_keyframe){
     if(interbits>intrabits)return 1;
     /*Technically the chroma plane counts are over-estimations, because they
-       don't account for continuing runs from the luma planes, but the
+       don't ac::count for continuing runs from the luma planes, but the
        inaccuracy is small.*/
     for(pli=0;pli<3;pli++)interbits+=pipe.fr[pli].bits<<OC_BIT_SCALE;
     interbits+=OC_MINI(_enc->mv_bits[0],_enc->mv_bits[1])<<OC_BIT_SCALE;

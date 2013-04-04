@@ -15,8 +15,8 @@ namespace filemanager
 
       static index  GetCSIDLSort(index iCsidl);
       static index  GetCSIDL(LPITEMIDLIST lpiidl);
-      static void GetAscendants(LPITEMIDLIST lpiidl, base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
-      static void Free(base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
+      static void GetAscendants(LPITEMIDLIST lpiidl, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
+      static void Free(array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
 
 
    };
@@ -81,7 +81,7 @@ namespace filemanager
          image_list *            m_pil16;
          image_list *            m_pil48;
          image_list *            m_pil48Hover;
-         ::collection::map < ImageKey, const ImageKey &, int32_t, int32_t > m_imagemap;
+         map < ImageKey, const ImageKey &, int32_t, int32_t > m_imagemap;
 
 
       public:

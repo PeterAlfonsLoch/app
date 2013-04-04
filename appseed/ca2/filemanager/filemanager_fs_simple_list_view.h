@@ -92,7 +92,7 @@ namespace filemanager
             public:
                BuildHelper();
                ::index      m_iTopIndex;
-               ::count      m_iDisplayItemCount;
+               ::count m_iDisplayItemCount;
                ::index      m_iStep;
                bool     m_bActive;
             };

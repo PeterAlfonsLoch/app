@@ -27,6 +27,6 @@ namespace xml
       parse_info(::ca::application * papp);
    };
 
-   CLASS_DECL_ca char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
+   CLASS_DECL_ca char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = ::null());
 
 } // namespace xml

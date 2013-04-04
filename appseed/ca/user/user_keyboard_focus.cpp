@@ -5,11 +5,11 @@ namespace user
 
    keyboard_focus::~keyboard_focus()
    {
-      if(m_papp != NULL && &System != NULL && System.user().is_set())
+      if(m_papp != ::null() && &System != ::null() && System.user().is_set())
       {
          if(System.user()->m_pkeyboardfocus == this)
          {
-            Application.user()->set_keyboard_focus(NULL);
+            Application.user()->set_keyboard_focus(::null());
          }
       }
    }
@@ -67,24 +67,24 @@ namespace user
    keyboard_focus * keyboard_focus::keyboard_get_next_focusable()
    {
       interaction * puiThis = dynamic_cast < interaction * > (this);
-      if(puiThis == NULL)
-         return NULL;
+      if(puiThis == ::null())
+         return ::null();
       single_lock (&puiThis->m_pthread->m_pthread->m_mutex, TRUE);
       interaction * pui = puiThis->above_sibling();
-      while(pui != NULL)
+      while(pui != ::null())
       {
          if(pui->keyboard_focus_is_focusable())
             return pui;
          pui = pui->above_sibling();
       }
       pui = puiThis->get_parent()->get_bottom_child();
-      while(pui != NULL && pui != puiThis)
+      while(pui != ::null() && pui != puiThis)
       {
          if(pui->keyboard_focus_is_focusable())
             return pui;
          pui = pui->above_sibling();
       }
-      return NULL;
+      return ::null();
    }
 
    bool keyboard_focus::keyboard_set_focus()

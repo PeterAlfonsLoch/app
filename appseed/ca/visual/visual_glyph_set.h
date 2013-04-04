@@ -6,7 +6,7 @@ namespace visual
 
 
    class glyph_set : 
-      public base_array<glyph , glyph &>
+      public array<glyph , glyph &>
    {
    public:
 
@@ -18,7 +18,7 @@ namespace visual
 
       virtual index add(glyph & glyph);
 
-      void QuickSort();
+      void quick_sort();
       
       index find_first(UINT user);
       

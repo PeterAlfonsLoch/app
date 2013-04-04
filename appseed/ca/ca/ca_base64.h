@@ -24,7 +24,7 @@ namespace ca
 
       void encode(::ca::plain_text_output_stream & ostreamBase64, ::ca::byte_input_stream & istreamBinary);
       string encode(primitive::memory_base & storageBinary);
-      string encode(byte * p, count c);
+      string encode(byte * p, ::count c);
       string encode(const char * psz);
       string serialize(::ca::byte_serializable & serializable);
 

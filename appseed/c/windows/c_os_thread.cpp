@@ -2,32 +2,134 @@
 #include <gdiplus.h>
 
 
-os_thread::os_thread(uint32_t (* pfn)(void *), LPVOID pv)
+
+simple_mutex * os_thread::s_pmutex = new simple_mutex();
+simple_array < os_thread * > * os_thread::s_pptra = new simple_array < os_thread * > ();
+__declspec(thread) os_thread * t_posthread = NULL;
+
+os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
 {
-   m_pfn = pfn;
-   m_pv = pv;
+
+   m_pfn    = pfn;
+   m_pv     = pv;
+   m_bRun   = true;
+
+
+   mutex_lock ml(*s_pmutex);
+
+   s_pptra->add(this);
+
 }
 
 
-DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
+os_thread::~os_thread()
+{
+
+   mutex_lock ml(*s_pmutex);
+
+   for(int i = s_pptra->get_count() - 1; i >= 0; i--)
+   {
+
+      if(s_pptra->element_at(i) == this)
+      {
+
+         s_pptra->remove_at(i);
+
+      }
+
+   }
+
+}
+
+
+os_thread * os_thread::get()
+{
+
+   return t_posthread;
+
+}
+
+void os_thread::set(os_thread * posthread)
+{
+
+   t_posthread = posthread;
+
+}
+
+bool os_thread::get_run()
+{
+
+   return get()->m_bRun;
+
+}
+
+void os_thread::stop_all(uint32_t millisMaxWait)
+{
+
+   millisMaxWait = millisMaxWait;
+
+   uint32_t start = get_tick_count();
+
+   while(get_tick_count() - start < millisMaxWait)
+   {
+
+      {
+
+         mutex_lock ml(*s_pmutex);
+
+         for(int i = 0; i < s_pptra->get_count(); i++ )
+         {
+
+            s_pptra->element_at(i)->m_bRun = false;
+
+         }
+
+         if(s_pptra->get_count() <= 0)
+         {
+
+            break;
+
+         }
+
+      }
+
+      Sleep(184);
+
+   }
+
+
+}
+
+DWORD WINAPI os_thread::thread_proc(LPVOID lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
+
+   t_posthread = posthread;
+
+   uint32_t uiRet = posthread->run();
+
+   t_posthread = NULL;
+
+   delete posthread;
+
+   return uiRet;
+
+}
+
+
+uint32_t os_thread::run()
+{
 
    Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
    Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
    DWORD_PTR gdiplusToken                                      = NULL;
    DWORD_PTR gdiplusHookToken                                  = NULL;
 
-   //pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
-
-   // Initialize GDI+.
    Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken, pgdiplusStartupInput, pgdiplusStartupOutput);
 
    if(statusStartup != Gdiplus::Ok)
    {
-
-      delete posthread;
 
       return -1;
 
@@ -35,37 +137,19 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 
    attach_thread_input_to_main_thread();
 
-   /*statusStartup = pgdiplusStartupOutput->NotificationHook(&gdiplusHookToken);
-
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-
-      Gdiplus::GdiplusShutdown(gdiplusToken);
-
-      delete posthread;
-
-      return -1;
-
-   }*/
-
    uint32_t dwRet = 0xffffffff;
 
    try
    {
 
-      dwRet = posthread->m_pfn(posthread->m_pv);
+      dwRet = m_pfn(m_pv);
 
    }
    catch(...)
    {
    }
 
-   //pgdiplusStartupOutput->NotificationUnhook(gdiplusHookToken);
-
    Gdiplus::GdiplusShutdown(gdiplusToken);
-
-   delete posthread;
 
    return dwRet;
 
@@ -84,7 +168,7 @@ HANDLE start_thread(uint32_t (* pfn)(void *), void * pv, int32_t iPriority)
 HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (* pfn)(void *), void * pv, uint32_t f, uint32_t * lpui)
 {
 
-   return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, (LPDWORD) lpui);
+   return ::CreateThread(lpsa, cbStack, &::os_thread::thread_proc, (LPVOID) new os_thread(pfn, pv), f, (LPDWORD) lpui);
 
 }
 

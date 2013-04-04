@@ -16,15 +16,15 @@ namespace ca
    pipe::pipe(bool bInherit)
    {
 
-      m_pchBuf = NULL;
+      m_pchBuf = ::null();
 
 #ifdef WINDOWS
 
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
-      m_sa.lpSecurityDescriptor = NULL;
-      m_hRead = NULL;
-      m_hWrite = NULL;
+      m_sa.lpSecurityDescriptor = ::null();
+      m_hRead = ::null();
+      m_hWrite = ::null();
 
 #else
 
@@ -39,7 +39,7 @@ namespace ca
    pipe::~pipe()
    {
 
-      if(m_pchBuf != NULL)
+      if(m_pchBuf != ::null())
       {
          free(m_pchBuf);
       }
@@ -79,8 +79,8 @@ namespace ca
       {
 
          DWORD dwMode = PIPE_NOWAIT;
-         VERIFY(SetNamedPipeHandleState(m_hRead   , &dwMode, NULL, NULL));
-         VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, NULL, NULL));
+         VERIFY(SetNamedPipeHandleState(m_hRead   , &dwMode, ::null(), ::null()));
+         VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, ::null(), ::null()));
 
       }
 
@@ -150,7 +150,7 @@ namespace ca
       bool bSuccess = FALSE;
 #ifdef WINDOWS
       DWORD dwWritten;
-      bSuccess = WriteFile(m_hWrite, (const char *) psz, dwLen, &dwWritten, NULL) != FALSE;
+      bSuccess = WriteFile(m_hWrite, (const char *) psz, dwLen, &dwWritten, ::null()) != FALSE;
 #else
       size_t dwWritten;
       dwWritten = ::write(m_fd[1], (const char *) psz, dwLen);
@@ -176,7 +176,7 @@ namespace ca
          try
          {
 #ifdef WINDOWS
-            bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL) != FALSE;
+            bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, ::null()) != FALSE;
 #else
             dwRead =::read(m_fd[0], chBuf, BUFSIZE);
             bSuccess = TRUE;
@@ -216,7 +216,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-         bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL) != FALSE;
+         bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, ::null()) != FALSE;
 
 #else
 
@@ -243,10 +243,10 @@ namespace ca
 
    void pipe::readex()
    {
-      if(m_pchBuf == NULL)
+      if(m_pchBuf == ::null())
       {
          m_pchBuf = (char *) malloc(1025);
-         if(m_pchBuf == NULL)
+         if(m_pchBuf == ::null())
             throw memory_exception(::ca::get_thread_app());
       }
       memset(&m_overlapped, 0, sizeof(m_overlapped));
@@ -261,7 +261,7 @@ namespace ca
          )
    {
       UNREFERENCED_PARAMETER(dwErrorCode);
-      overlapped * plap = NULL;
+      overlapped * plap = ::null();
       plap = plap->from(lpOverlapped);
       int32_t iLimit = min(dwNumberOfBytesTransfered, 1024);
       plap->m_ppipe->m_pchBuf[iLimit] = '\0';

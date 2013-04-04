@@ -8,7 +8,7 @@ class index_array;
 
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-class base_array :
+class aaa_base_array :
    virtual public ::ca::object
 {
 public:
@@ -19,15 +19,15 @@ public:
 
 
       index            m_i;
-      base_array *     m_parray;
+      aaa_base_array *     m_parray;
 
       iterator()
       {
          m_i = 0;
-         m_parray = NULL;
+         m_parray = ::null();
       }
 
-      iterator(index i, base_array * parray)
+      iterator(index i, aaa_base_array * parray)
       {
          m_i = i;
          m_parray = parray;
@@ -109,15 +109,15 @@ public:
 
 
       index            m_i;
-      const base_array *     m_parray;
+      const aaa_base_array *     m_parray;
 
       const_iterator()
       {
          m_i = 0;
-         m_parray = NULL;
+         m_parray = ::null();
       }
 
-      const_iterator(index i, const base_array * parray)
+      const_iterator(index i, const aaa_base_array * parray)
       {
          m_i = i;
          m_parray = parray;
@@ -203,12 +203,12 @@ public:
    };
 
 
-   base_array(::ca::application * papp = NULL);
-   base_array(const base_array <TYPE, ARG_TYPE> & a);
-   base_array(::count n, const TYPE & t = TYPE());
-   base_array(TYPE * ptypea, ::count n)
+   aaa_base_array(::ca::application * papp = ::null());
+   aaa_base_array(const aaa_base_array <TYPE, ARG_TYPE> & a);
+   aaa_base_array(::count n, const TYPE & t = TYPE());
+   aaa_base_array(TYPE * ptypea, ::count n)
    {
-      m_pData = NULL;
+      m_pData = ::null();
       m_nSize = m_nMaxSize = m_nGrowBy = 0;
       while(n > 0)
       {
@@ -217,7 +217,7 @@ public:
          n--;
       }
    }
-   virtual ~base_array();
+   virtual ~aaa_base_array();
 
 // Attributes
    ::count get_size() const;
@@ -241,20 +241,21 @@ public:
    const TYPE& element_at(index nIndex) const;
    TYPE& element_at(index nIndex);
 
-   // Direct Access to the element data (may return NULL)
+   // Direct Access to the element data (may return ::null())
    const TYPE* get_data() const;
    TYPE* get_data();
 
-   // Potentially growing the base_array
+   // Potentially growing the aaa_base_array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
    TYPE & element_at_grow(index nIndex);
    TYPE get_at_grow(index nIndex);
    virtual index add_new(::count count);
    virtual index add(ARG_TYPE newElement);
+   virtual index add_new(::count count);
    virtual TYPE & add_new();
-   virtual ::count add(const base_array& src); // for disambiguation
-   virtual ::count add_array(const base_array& src);
-   void copy(const base_array& src);
+   virtual ::count add(const aaa_base_array& src); // for disambiguation
+   virtual ::count add_array(const aaa_base_array& src);
+   void copy(const aaa_base_array& src);
 
    virtual index insert_new(::count count = 1);
    virtual index insert(ARG_TYPE newElement);
@@ -274,8 +275,8 @@ public:
 
    iterator erase(iterator pos);
    iterator erase(iterator first, iterator last);
-   index insert_at(index nStartIndex, base_array* pNewArray);
-   index insert_array_at(index nStartIndex, base_array* pNewArray); // for disambiguation
+   index insert_at(index nStartIndex, aaa_base_array* pNewArray);
+   index insert_array_at(index nStartIndex, aaa_base_array* pNewArray); // for disambiguation
    index remove_last(index n = -1);
 
 
@@ -349,7 +350,7 @@ public:
 
    void swap(index i1, index i2);
 
-   base_array <TYPE, ARG_TYPE> & operator = (const base_array <TYPE, ARG_TYPE> & a);
+   aaa_base_array <TYPE, ARG_TYPE> & operator = (const aaa_base_array <TYPE, ARG_TYPE> & a);
 
    TYPE pop(index n = -1);
    index push(ARG_TYPE t, index n = 0);
@@ -361,10 +362,10 @@ public:
 
 // Implementation
 protected:
-   TYPE *   m_pData;   // the actual base_array of data
-   ::count    m_nSize;     // # of elements (upperBound - 1)
-   ::count    m_nMaxSize;  // max allocated
-   ::count    m_nGrowBy;   // grow amount
+   TYPE *   m_pData;   // the actual aaa_base_array of data
+   ::count m_nSize;     // # of elements (upperBound - 1)
+   ::count m_nMaxSize;  // max allocated
+   ::count m_nGrowBy;   // grow amount
 
 public:
 //   void Serialize(CArchive&);
@@ -373,17 +374,17 @@ public:
 };
 
 template<class TYPE, class ARG_TYPE>
-base_array<TYPE, ARG_TYPE>::base_array(const base_array<TYPE, ARG_TYPE> & a)
+aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(const aaa_base_array<TYPE, ARG_TYPE> & a)
 {
-   m_pData = NULL;
+   m_pData = ::null();
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
    operator =(a);
 }
 
 template<class TYPE, class ARG_TYPE>
-base_array<TYPE, ARG_TYPE>::base_array(::count n, const TYPE & t)
+aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(::count n, const TYPE & t)
 {
-   m_pData = NULL;
+   m_pData = ::null();
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
    while(n > 0)
    {
@@ -392,61 +393,61 @@ base_array<TYPE, ARG_TYPE>::base_array(::count n, const TYPE & t)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void base_array<TYPE, ARG_TYPE>::increment_size(::count iAddUp)
+inline void aaa_base_array<TYPE, ARG_TYPE>::increment_size(::count iAddUp)
 {
     set_size(this->get_size() + iAddUp);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & base_array<TYPE, ARG_TYPE>::last_element(index n)
+inline TYPE & aaa_base_array<TYPE, ARG_TYPE>::last_element(index n)
 {
     return this->element_at(get_upper_bound(n));
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & base_array<TYPE, ARG_TYPE>::last_element(index n) const
+inline const TYPE & aaa_base_array<TYPE, ARG_TYPE>::last_element(index n) const
 {
     return this->element_at(get_upper_bound(n));
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & base_array<TYPE, ARG_TYPE>::back(index n)
+inline TYPE & aaa_base_array<TYPE, ARG_TYPE>::back(index n)
 {
     return last_element(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & base_array<TYPE, ARG_TYPE>::back(index n) const
+inline const TYPE & aaa_base_array<TYPE, ARG_TYPE>::back(index n) const
 {
     return last_element(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & base_array<TYPE, ARG_TYPE>::first_element(index n)
+inline TYPE & aaa_base_array<TYPE, ARG_TYPE>::first_element(index n)
 {
     return this->element_at(get_lower_bound(n));
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & base_array<TYPE, ARG_TYPE>::first_element(index n) const
+inline const TYPE & aaa_base_array<TYPE, ARG_TYPE>::first_element(index n) const
 {
     return element_at(get_lower_bound(n));
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & base_array<TYPE, ARG_TYPE>::front(index n)
+inline TYPE & aaa_base_array<TYPE, ARG_TYPE>::front(index n)
 {
    return first_element(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & base_array<TYPE, ARG_TYPE>::front(index n) const
+inline const TYPE & aaa_base_array<TYPE, ARG_TYPE>::front(index n) const
 {
     return first_element(n);
 }
 
 template <class TYPE, class ARG_TYPE>
-::count base_array<TYPE, ARG_TYPE>::
+::count aaa_base_array<TYPE, ARG_TYPE>::
 remove_all(bool bResize)
 {
    ::count countOld = this->get_count();
@@ -463,14 +464,14 @@ remove_all(bool bResize)
 
 
 template <class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::
+void aaa_base_array<TYPE, ARG_TYPE>::
 clear()
 {
    remove_all();
 }
 
 template <class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::swap(index i1, index i2)
+void aaa_base_array<TYPE, ARG_TYPE>::swap(index i1, index i2)
 {
     TYPE t;
     t = this->element_at(i1);
@@ -479,7 +480,7 @@ void base_array<TYPE, ARG_TYPE>::swap(index i1, index i2)
 }
 
 template <class TYPE, class ARG_TYPE>
-index base_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
+index aaa_base_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -493,7 +494,7 @@ index base_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index las
    return -1;
 }
 template <class TYPE, class ARG_TYPE>
-index base_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
+index aaa_base_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -510,9 +511,9 @@ index base_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )
 
 
 template <class TYPE, class ARG_TYPE>
-base_array <TYPE, ARG_TYPE> &
-base_array<TYPE, ARG_TYPE>::
-operator = (const base_array <TYPE, ARG_TYPE> & a)
+aaa_base_array <TYPE, ARG_TYPE> &
+aaa_base_array<TYPE, ARG_TYPE>::
+operator = (const aaa_base_array <TYPE, ARG_TYPE> & a)
 {
    if(&a == this)
       return *this;
@@ -521,7 +522,7 @@ operator = (const base_array <TYPE, ARG_TYPE> & a)
 }
 
 template <class TYPE, class ARG_TYPE>
-inline TYPE base_array <TYPE, ARG_TYPE>::pop(index n)
+inline TYPE aaa_base_array <TYPE, ARG_TYPE>::pop(index n)
 {
 
    index i = get_upper_bound(n);
@@ -535,75 +536,75 @@ inline TYPE base_array <TYPE, ARG_TYPE>::pop(index n)
 }
 
 template <class TYPE, class ARG_TYPE>
-inline index base_array <TYPE, ARG_TYPE>::push(ARG_TYPE t, index n)
+inline index aaa_base_array <TYPE, ARG_TYPE>::push(ARG_TYPE t, index n)
 {
    return insert_at(get_upper_bound(n), t);
 }
 
 template <class TYPE, class ARG_TYPE>
-inline void base_array <TYPE, ARG_TYPE>::pop_back(index n)
+inline void aaa_base_array <TYPE, ARG_TYPE>::pop_back(index n)
 {
    remove_at(get_upper_bound(n));
 }
 
 template <class TYPE, class ARG_TYPE>
-inline void base_array <TYPE, ARG_TYPE>::push_back(ARG_TYPE t, index n)
+inline void aaa_base_array <TYPE, ARG_TYPE>::push_back(ARG_TYPE t, index n)
 {
    insert_at(get_upper_bound(n), t);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::count base_array<TYPE, ARG_TYPE>::get_size() const
+inline ::count aaa_base_array<TYPE, ARG_TYPE>::get_size() const
 {
    return m_nSize;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count base_array<TYPE, ARG_TYPE>::get_count() const
+inline ::count aaa_base_array<TYPE, ARG_TYPE>::get_count() const
 {
    return m_nSize;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count base_array<TYPE, ARG_TYPE>::size() const
+inline ::count aaa_base_array<TYPE, ARG_TYPE>::size() const
 {
    return m_nSize;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count base_array<TYPE, ARG_TYPE>::count() const
+inline ::count aaa_base_array<TYPE, ARG_TYPE>::count() const
 {
    return m_nSize;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool base_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
+inline bool aaa_base_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
 {
    return m_nSize < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool base_array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
+inline bool aaa_base_array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
 {
    return m_nSize >= countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::get_lower_bound(index n) const
+inline index aaa_base_array<TYPE, ARG_TYPE>::get_lower_bound(index n) const
 {
    return n;
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::get_upper_bound(index n) const
+inline index aaa_base_array<TYPE, ARG_TYPE>::get_upper_bound(index n) const
 {
    return m_nSize + n;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
+inline TYPE& aaa_base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
  //  ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex < 0 || nIndex >= m_nSize)
@@ -611,7 +612,7 @@ inline TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
    return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
+inline const TYPE& aaa_base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
 //   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex < 0 || nIndex >= m_nSize)
@@ -619,7 +620,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
    return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
-inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
+inline void aaa_base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 {
 //   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex < 0 || nIndex >= m_nSize)
@@ -627,7 +628,7 @@ inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement
    m_pData[nIndex] = newElement;
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
+inline const TYPE& aaa_base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
    //ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex < 0 || nIndex >= m_nSize)
@@ -637,7 +638,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
   // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
+inline TYPE& aaa_base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
 //   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex < 0 || nIndex >= m_nSize)
@@ -648,25 +649,25 @@ inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE* base_array<TYPE, ARG_TYPE>::get_data() const
+inline const TYPE* aaa_base_array<TYPE, ARG_TYPE>::get_data() const
 {
    return (const TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::remove_last(index n)
+inline index aaa_base_array<TYPE, ARG_TYPE>::remove_last(index n)
 {
    return remove_at(get_upper_bound(n));
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE* base_array<TYPE, ARG_TYPE>::get_data()
+inline TYPE* aaa_base_array<TYPE, ARG_TYPE>::get_data()
 {
    return (TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+inline index aaa_base_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 { 
    index nIndex = m_nSize;
    set_at_grow(nIndex, newElement);
@@ -674,60 +675,60 @@ inline index base_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::insert(ARG_TYPE newElement)
+inline index aaa_base_array<TYPE, ARG_TYPE>::insert(ARG_TYPE newElement)
 {
    return add(newElement);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::add_new(::count count)
+inline index aaa_base_array<TYPE, ARG_TYPE>::add_new(::count count)
 {
    set_size(m_nSize + count);
    return get_upper_bound(); 
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & base_array<TYPE, ARG_TYPE>::add_new()
+inline TYPE & aaa_base_array<TYPE, ARG_TYPE>::add_new()
 {
    set_size(m_nSize + 1);
    return last_element(); 
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index base_array<TYPE, ARG_TYPE>::insert_new(::count count)
+inline index aaa_base_array<TYPE, ARG_TYPE>::insert_new(::count count)
 {
    return add_new(count);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
+inline const TYPE& aaa_base_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 {
    return get_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
+inline TYPE& aaa_base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 { 
    return element_at(nIndex); 
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// base_array<TYPE, ARG_TYPE> out-of-line functions
+// aaa_base_array<TYPE, ARG_TYPE> out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-base_array<TYPE, ARG_TYPE>::base_array(::ca::application * papp) :
+aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(::ca::application * papp) :
    ca(papp)
 {
-   m_pData = NULL;
+   m_pData = ::null();
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
 template<class TYPE, class ARG_TYPE>
-base_array<TYPE, ARG_TYPE>::~base_array()
+aaa_base_array<TYPE, ARG_TYPE>::~aaa_base_array()
 {
    ASSERT_VALID(this);
 
-   if (m_pData != NULL)
+   if (m_pData != ::null())
    {
       for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
@@ -736,7 +737,7 @@ base_array<TYPE, ARG_TYPE>::~base_array()
 }
 
 template<class TYPE, class ARG_TYPE>
-::count base_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
+::count aaa_base_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -751,16 +752,16 @@ template<class TYPE, class ARG_TYPE>
    if (nNewSize == 0)
    {
       // shrink to nothing
-      if (m_pData != NULL)
+      if (m_pData != ::null())
       {
          for( int32_t i = 0; i < m_nSize; i++ )
             (m_pData + i)->~TYPE();
          delete[] (BYTE*)m_pData;
-         m_pData = NULL;
+         m_pData = ::null();
       }
       m_nSize = m_nMaxSize = 0;
    }
-   else if (m_pData == NULL)
+   else if (m_pData == ::null())
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
@@ -801,7 +802,7 @@ template<class TYPE, class ARG_TYPE>
    }
    else
    {
-      // otherwise, grow base_array
+      // otherwise, grow aaa_base_array
       nGrowBy = m_nGrowBy;
       if (nGrowBy == 0)
       {
@@ -849,15 +850,15 @@ template<class TYPE, class ARG_TYPE>
 }
 
 template<class TYPE, class ARG_TYPE>
-::count base_array<TYPE, ARG_TYPE>::
-add(const base_array& src)
+::count aaa_base_array<TYPE, ARG_TYPE>::
+add(const aaa_base_array& src)
 {
    return add_array(src);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::free_extra()
+void aaa_base_array<TYPE, ARG_TYPE>::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -867,7 +868,7 @@ void base_array<TYPE, ARG_TYPE>::free_extra()
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 #endif
-      TYPE* pNewData = NULL;
+      TYPE* pNewData = ::null();
       if (m_nSize != 0)
       {
 #undef new
@@ -886,7 +887,7 @@ void base_array<TYPE, ARG_TYPE>::free_extra()
 }
 
 template<class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
+void aaa_base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 //   ASSERT(nIndex >= 0);
@@ -900,14 +901,14 @@ void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-TYPE base_array<TYPE, ARG_TYPE>::get_at_grow(index nIndex)
+TYPE aaa_base_array<TYPE, ARG_TYPE>::get_at_grow(index nIndex)
 {
    return element_at_grow(nIndex);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-TYPE & base_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
+TYPE & aaa_base_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
@@ -921,7 +922,7 @@ TYPE & base_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 }
 
 template<class TYPE, class ARG_TYPE>
-index base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+index aaa_base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -932,12 +933,12 @@ index base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, :
 
    if (nIndex >= m_nSize)
    {
-      // adding after the end of the base_array
+      // adding after the end of the aaa_base_array
       set_size(nIndex + nCount, -1);   // grow so nIndex is valid
    }
    else
    {
-      // inserting in the middle of the base_array
+      // inserting in the middle of the aaa_base_array
       ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
@@ -967,7 +968,7 @@ index base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, :
 }
 
 template<class TYPE, class ARG_TYPE>
-index base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
+index aaa_base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 {
 //   ASSERT_VALID(this);
 //   ASSERT(nIndex >= 0);
@@ -993,7 +994,7 @@ index base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
 
 template<class TYPE, class ARG_TYPE>
-typename base_array<TYPE, ARG_TYPE>::iterator base_array<TYPE, ARG_TYPE>::erase(iterator pos)
+typename aaa_base_array<TYPE, ARG_TYPE>::iterator aaa_base_array<TYPE, ARG_TYPE>::erase(iterator pos)
 {
    if(pos.m_parray == this)
    {
@@ -1007,7 +1008,7 @@ typename base_array<TYPE, ARG_TYPE>::iterator base_array<TYPE, ARG_TYPE>::erase(
 }
 
 template<class TYPE, class ARG_TYPE>
-typename  base_array<TYPE, ARG_TYPE>::iterator base_array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
+typename  aaa_base_array<TYPE, ARG_TYPE>::iterator aaa_base_array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
 {
    if(begin.m_parray == this && last.m_parray == this)
    {
@@ -1037,27 +1038,27 @@ typename  base_array<TYPE, ARG_TYPE>::iterator base_array<TYPE, ARG_TYPE>::erase
 
 
 template<class TYPE, class ARG_TYPE>
-index base_array<TYPE, ARG_TYPE>::
-insert_at(index nStartIndex, base_array* pNewArray)
+index aaa_base_array<TYPE, ARG_TYPE>::
+insert_at(index nStartIndex, aaa_base_array* pNewArray)
 {
    return insert_array_at(nStartIndex, pNewArray);
 }
 
 template<class TYPE, class ARG_TYPE>
-index base_array<TYPE, ARG_TYPE>::
-insert_array_at(index nStartIndex, base_array* pNewArray)
+index aaa_base_array<TYPE, ARG_TYPE>::
+insert_array_at(index nStartIndex, aaa_base_array* pNewArray)
 {
    if(this == pNewArray)
    {
-      base_array<TYPE, ARG_TYPE> arrayCopy(*this);
+      aaa_base_array<TYPE, ARG_TYPE> arrayCopy(*this);
       return insert_array_at(nStartIndex, &arrayCopy);
    }
    ASSERT_VALID(this);
-   ASSERT(pNewArray != NULL);
+   ASSERT(pNewArray != ::null());
    ASSERT_VALID(pNewArray);
    ASSERT(nStartIndex >= 0);
 
-   if(pNewArray == NULL || nStartIndex < 0)
+   if(pNewArray == ::null() || nStartIndex < 0)
       throw invalid_argument_exception(get_app());
 
    if (pNewArray->get_size() > 0)
@@ -1072,7 +1073,7 @@ insert_array_at(index nStartIndex, base_array* pNewArray)
 }
 /*
 template<class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
+void aaa_base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
@@ -1091,11 +1092,11 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 */
 
 template<class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::assert_valid() const
+void aaa_base_array<TYPE, ARG_TYPE>::assert_valid() const
 {
    ::ca::object::assert_valid();
 
-   if (m_pData == NULL)
+   if (m_pData == ::null())
    {
       ASSERT(m_nSize == 0);
       ASSERT(m_nMaxSize == 0);
@@ -1115,12 +1116,12 @@ void base_array<TYPE, ARG_TYPE>::assert_valid() const
 
 
 template<class TYPE, class ARG_TYPE>
-::count base_array<TYPE, ARG_TYPE>::
-add_array(const base_array& src)
+::count aaa_base_array<TYPE, ARG_TYPE>::
+add_array(const aaa_base_array& src)
 {
    if(this == &src)
    {
-      base_array<TYPE, ARG_TYPE> arrayCopy(*this);
+      aaa_base_array<TYPE, ARG_TYPE> arrayCopy(*this);
       return add_array(arrayCopy);
    }
    ASSERT_VALID(this);
@@ -1132,7 +1133,7 @@ add_array(const base_array& src)
 }
 
 template<class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::copy(const base_array& src)
+void aaa_base_array<TYPE, ARG_TYPE>::copy(const aaa_base_array& src)
 {
    ASSERT_VALID(this);
    if(this != &src)
@@ -1144,7 +1145,7 @@ void base_array<TYPE, ARG_TYPE>::copy(const base_array& src)
 
 
 template<class TYPE, class ARG_TYPE>
-void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
+void aaa_base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
    ::ca::object::dump(dumpcontext);
 
@@ -1162,7 +1163,6 @@ void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 #define new DEBUG_NEW
 
 
-typedef base_array < waitable * > sync_object_ptra;
 
 
 

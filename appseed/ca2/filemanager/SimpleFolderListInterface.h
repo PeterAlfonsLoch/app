@@ -29,7 +29,7 @@ namespace filemanager
          int32_t          m_iImage;
       };
       class FolderArray :
-         protected base_array < Folder, Folder & >
+         protected array < Folder, Folder & >
       {
 
       public:
@@ -45,7 +45,7 @@ namespace filemanager
       virtual void _017Synchronize();
 
       FolderArray         m_foldera;
-      ::collection::map < HICON, HICON, int32_t, int32_t > m_iconmap;
+      map < HICON, HICON, int32_t, int32_t > m_iconmap;
 
       ::fs::item & GetFileManagerItem();
 

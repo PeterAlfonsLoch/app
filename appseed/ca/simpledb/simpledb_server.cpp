@@ -7,7 +7,7 @@ namespace simpledb
    server::server(::ca::application * papp) :
       ::ca::ca(papp)
    {
-      m_pbase = NULL;
+      m_pbase = ::null();
    }
 
    server::~server()
@@ -16,10 +16,10 @@ namespace simpledb
 
    bool server::open(const char * pszDatabase)
    {
-      if(m_pbase != NULL)
+      if(m_pbase != ::null())
          close();
       class base * pbase = new class base(get_app());
-      if(pbase == NULL)
+      if(pbase == ::null())
          return false;
       pbase->setDatabase(pszDatabase);
       if(pbase->connect())
@@ -33,17 +33,17 @@ namespace simpledb
 
    bool server::close()
    {
-      if(m_pbase == NULL)
+      if(m_pbase == ::null())
          return true;
       m_pbase->disconnect();
       delete m_pbase;
-      m_pbase = NULL;
+      m_pbase = ::null();
       return true;
    }
 
    bool server::sql(const char * pszQuery, var & var)
    {
-      if(m_pbase == NULL)
+      if(m_pbase == ::null())
          return false;
       class ::simpledb::set * pset     = m_pbase->create_dataset();
       pset->exec(pszQuery);

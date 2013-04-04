@@ -8,8 +8,8 @@ namespace xml
    xml::xml()
    {
       
-      m_poptionDefault     = NULL;
-      m_pparseinfoDefault  = NULL;
+      m_poptionDefault     = ::null();
+      m_pparseinfoDefault  = ::null();
 
 
    }

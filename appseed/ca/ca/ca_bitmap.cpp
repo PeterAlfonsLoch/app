@@ -95,7 +95,7 @@ namespace ca
    void * bitmap::detach()
    {
       throw interface_only_exception(get_app());
-      return NULL;
+      return ::null();
    }
 
    class size bitmap::set_size(class size size)

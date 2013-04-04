@@ -15,7 +15,7 @@ namespace ca
    data_listener::~data_listener()
    {
 
-      listen(NULL, false);
+      listen(::null(), false);
 
    }
 
@@ -26,7 +26,7 @@ namespace ca
       if(bListen)
       {
 
-         if(pdata == NULL)
+         if(pdata == ::null())
             return false;
 
          pdata->m_listenerptra.add_unique(this);
@@ -39,7 +39,7 @@ namespace ca
       else
       {
 
-         if(pdata == NULL)
+         if(pdata == ::null())
          {
 
             for(int32_t i = 0; i < m_dataptra.get_count(); i++)

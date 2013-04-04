@@ -66,16 +66,7 @@ flags < ENUM > ::~flags()
 template < class ENUM >
 bool flags < ENUM > ::signalize(ENUM eenum)
 {
-   index i = 0;
-   if(!BaseSortFind((int_ptr &) eenum, i))
-   {
-      BaseSortInsert((int_ptr) eenum);
-      return true;
-   }
-   else
-   {
-      return false;
-   }
+   return add_unique((int_ptr) eenum);
 }
 
 template < class ENUM >
@@ -93,21 +84,13 @@ int32_t flags < ENUM > ::signalize(flags < ENUM > & f)
 template < class ENUM >
 bool flags < ENUM > ::is_signalized(ENUM eenum) const
 {
-   index i = 0;
-   return BaseSortFind((uint32_t) eenum, i);
+   return contains((int_ptr) eenum);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::unsignalize(ENUM eenum)
 {
-   index i = 0;
-   bool bRemove = false;
-   while(BaseSortFind((int_ptr) eenum, i))
-   {
-      remove_at(i);
-      bRemove = true;
-   }
-   return bRemove;
+   return remove((int_ptr) eenum) > 0;
 }
 
 template < class ENUM >

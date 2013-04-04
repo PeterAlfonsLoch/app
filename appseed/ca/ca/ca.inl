@@ -26,13 +26,13 @@ _AFX_INLINE invalid_argument_exception::invalid_argument_exception(WINBOOL bAuto
 _AFX_INLINE invalid_argument_exception::~invalid_argument_exception(get_app())
    { }
 /*_AFX_INLINE CArchiveException::CArchiveException(int32_t cause,
-   LPCTSTR lpszFileName /* = NULL *//*)
+   LPCTSTR lpszFileName /* = ::null() *//*)
    { m_cause = cause; m_strFileName = lpszFileName; }
 
 _AFX_INLINE CArchiveException::~CArchiveException()
    { }*/
 /*_AFX_INLINE ::ca::file_exception_sp::ca::file_exception_sp(int32_t cause, LONG lOsError,
-   LPCTSTR pstrFileName /* = NULL *///)
+   LPCTSTR pstrFileName /* = ::null() *///)
    /*{ m_cause = cause; m_lOsError = lOsError; m_strFileName = pstrFileName; }
 _AFX_INLINE ::ca::file_exception_sp::~::ca::file_exception_sp()
    { }
@@ -48,7 +48,7 @@ _AFX_INLINE void ::ca::filesp::SetFilePath(LPCTSTR lpszNewName)
 {
    ASSERT_VALID(this);
    ASSERT(AfxIsValidString(lpszNewName));
-   if(lpszNewName != NULL)
+   if(lpszNewName != ::null())
       m_strFileName = lpszNewName;
    else
       throw invalid_argument_exception(get_app());
@@ -90,14 +90,14 @@ _AFX_INLINE void CArchive::SetObjectSchema(UINT nSchema)
 _AFX_INLINE void CArchive::SetStoreParams(UINT nHashSize, UINT nBlockSize)
 {
    ASSERT(IsStoring());
-   ASSERT(m_pStoreMap == NULL);    // must be before first object written
+   ASSERT(m_pStoreMap == ::null());    // must be before first object written
    m_nHashSize = nHashSize;
    m_nGrowSize = nBlockSize;
 }
 _AFX_INLINE void CArchive::SetLoadParams(UINT nGrowBy)
 {
    ASSERT(IsLoading());
-   ASSERT(m_pLoadArray == NULL);   // must be before first object read
+   ASSERT(m_pLoadArray == ::null());   // must be before first object read
    m_nGrowSize = nGrowBy;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(int32_t i)
@@ -258,9 +258,9 @@ _AFX_INLINE CArchive& CArchive::operator>>(LONG& l)
 /*   { }
 CLASS_DECL_ca2api00000001 CArchive& operator<<(CArchive& ar, const ::ca::object* pOb);
 _AFX_INLINE CArchive& operator>>(CArchive& ar, ::ca::object*& pOb)
-   { pOb = ar.ReadObject(NULL); return ar; }
+   { pOb = ar.ReadObject(::null()); return ar; }
 _AFX_INLINE CArchive& operator>>(CArchive& ar, const ::ca::object*& pOb)
-   { pOb = ar.ReadObject(NULL); return ar; }
+   { pOb = ar.ReadObject(::null()); return ar; }
 
 _AFX_INLINE void CArchive::EnsureRead(void *lpBuf, UINT nCount)
 {

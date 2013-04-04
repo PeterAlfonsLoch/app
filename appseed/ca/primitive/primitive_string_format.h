@@ -153,7 +153,7 @@ public:
    inline void append(const char * psz)
    {
 
-      if(psz == NULL)
+      if(psz == ::null())
          return;
 
       try

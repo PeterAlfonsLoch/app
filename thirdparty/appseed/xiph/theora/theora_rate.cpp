@@ -479,7 +479,7 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
     default:{
       uint32_t next_key_frame;
       /*Single pass mode: assume only forced keyframes and attempt to estimate
-         the drop count for VFR content.*/
+         the drop ::count for VFR content.*/
       next_key_frame= (uint32_t) (_qti?_enc->keyframe_frequency_force - (_enc->state.curframe_num-_enc->state.keyframe_num):0);
       nframes[0]=(_enc->rc.buf_delay-OC_MINI(next_key_frame,natural(_enc->rc.buf_delay))
        +_enc->keyframe_frequency_force-1)/_enc->keyframe_frequency_force;
@@ -823,13 +823,13 @@ int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
         /*Update a low-pass filter to estimate the "real" frame rate taking
            drops and duplicates into account.
           This is only done if the frame is coded, as it needs the final
-           count of dropped frames.*/
+           ::count of dropped frames.*/
         drop_count=_enc->rc.prev_drop_count+1;
         if(drop_count>0x7F)drop_count=0x7FFFFFFF;
         else drop_count<<=24;
         _enc->rc.log_drop_scale=oc_blog64(oc_iir_filter_update(
          &_enc->rc.vfrfilter,drop_count))-OC_Q57(24);
-        /*Initialize the drop count for this frame to the user-requested dup
+        /*Initialize the drop ::count for this frame to the user-requested dup
            count.
           It will be increased if we drop more frames.*/
         _enc->rc.prev_drop_count=_enc->dup_count;
@@ -986,7 +986,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
       scale_sum[1]=oc_rc_unbuffer_val(&_enc->rc,8);
       /*Make sure the file claims to have at least one frame.
         Otherwise we probably got the placeholder data from an aborted pass 1.
-        Also make sure the total frame count doesn't overflow an integer.*/
+        Also make sure the total frame ::count doesn't overflow an integer.*/
       buf_delay=_enc->rc.frames_total[0]+_enc->rc.frames_total[1]
        +_enc->rc.frames_total[2];
       if(_enc->rc.frames_total[0]==0||buf_delay<0||
@@ -1056,7 +1056,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
           _enc->rc.cur_metrics.dup_count=dup_count&0x7FFFFFFF;
           _enc->rc.cur_metrics.frame_type=qti;
           _enc->rc.twopass_force_kf=qti==OC_INTRA_FRAME;
-          /*"Helpfully" set the dup count back to what it was in pass 1.*/
+          /*"Helpfully" set the dup ::count back to what it was in pass 1.*/
           arg=_enc->rc.cur_metrics.dup_count;
           th_encode_ctl(_enc,TH_ENCCTL_SET_DUP_COUNT,&arg,sizeof(arg));
           /*Clear the buffer for the next frame.*/
@@ -1120,7 +1120,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
            *(_enc->rc.frame_metrics+_enc->rc.frame_metrics_head);
           _enc->rc.twopass_force_kf=
            _enc->rc.cur_metrics.frame_type==OC_INTRA_FRAME;
-          /*"Helpfully" set the dup count back to what it was in pass 1.*/
+          /*"Helpfully" set the dup ::count back to what it was in pass 1.*/
           arg=_enc->rc.cur_metrics.dup_count;
           th_encode_ctl(_enc,TH_ENCCTL_SET_DUP_COUNT,&arg,sizeof(arg));
           /*Mark us ready for the next frame.*/

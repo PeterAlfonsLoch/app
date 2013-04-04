@@ -23,7 +23,7 @@ void use_base_ca2_allocator()
 void * base_ca2_alloc(size_t size)
 {
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
-   if(p == NULL)
+   if(p == ::null())
    {
       throw memory_exception(::ca::get_thread_app());
    }
@@ -40,7 +40,7 @@ void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileNa
    //TODO: to do the dbg version
    //byte * p = (byte *) _malloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
    byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
-   if(p == NULL)
+   if(p == ::null())
    {
       throw memory_exception(::ca::get_thread_app());
    }
@@ -52,12 +52,12 @@ void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileNa
 void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    byte * p = (byte *) pvoid;
-   if(p == NULL)
+   if(p == ::null())
       return ca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
    p -= (4 + 16);
    try
    {
-      if(p == NULL)
+      if(p == ::null())
       {
          return ca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
       }
@@ -83,7 +83,7 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
          throw memory_exception(::ca::get_thread_app());
       }
    }
-   if(p == NULL)
+   if(p == ::null())
    {
       throw memory_exception(::ca::get_thread_app());
    }
@@ -94,7 +94,7 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
 void base_ca2_free(void * pvoid, int32_t iBlockType)
 {
    byte * p = (byte *) pvoid;
-   if(p == NULL)
+   if(p == ::null())
       return;
    p -= (4 + 16);
    try
@@ -126,7 +126,7 @@ size_t base_ca2_msize(void * pvoid, int32_t iBlockType)
 
    byte * p = (byte *) pvoid;
 
-   if(p == NULL)
+   if(p == ::null())
       return 0;
 
    p -= (4 + 16);
@@ -193,7 +193,7 @@ bool __default_alloc_hook(size_t, bool, LONG)
 
 __STATIC_DATA __ALLOC_HOOK pfnAllocHook = __default_alloc_hook;
 
-__STATIC_DATA _CRT_ALLOC_HOOK pfnCrtAllocHook = NULL;
+__STATIC_DATA _CRT_ALLOC_HOOK pfnCrtAllocHook = ::null();
 #if _MSC_VER >= 1200
 int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize,
    int32_t nBlockUse, long lRequest, const uchar * szFilename, int32_t nLine)
@@ -222,7 +222,7 @@ int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSi
 
 __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook)
 {
-   if (pfnCrtAllocHook == NULL)
+   if (pfnCrtAllocHook == ::null())
       pfnCrtAllocHook = _CrtSetAllocHook(__alloc_alloc_hook);
 
    __ALLOC_HOOK pfnOldHook = pfnAllocHook;
@@ -318,7 +318,7 @@ __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext)
 void _API
 __do_for_all_objects(void (c_cdecl *pfn)(::ca::object*, void *), void * pContext)
 {
-   if (pfn == NULL)
+   if (pfn == ::null())
    {
       throw invalid_argument_exception(get_app());
    }

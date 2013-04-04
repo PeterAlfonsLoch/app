@@ -54,9 +54,9 @@ namespace ca
       {
       }
 
-      file_exception(::ca::application * papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      file_exception(::ca::application * papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = ::null());
 
-      virtual void Construct(int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      virtual void Construct(int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = ::null());
 
       virtual ~file_exception();
 
@@ -74,7 +74,7 @@ namespace ca
 
       virtual void dump(dump_context &) const;
 
-      virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
+      virtual bool get_error_message(string & str, PUINT pnHelpContext = ::null());
 
 
    };

@@ -11,19 +11,19 @@ void strcpy_dup(char * dest, const char * cpy)
    //*dest = '\0';
 }
 
-void strncpy_dup(char * dest, const char * cpy, count iLen)
+void strncpy_dup(char * dest, const char * cpy, ::count iLen)
 {
    while(*cpy != 0 && iLen-- > 0)
       *dest++ = *cpy++;
 }
 
-void wcsncpy_dup(wchar_t * dest, const wchar_t * cpy, count iLen)
+void wcsncpy_dup(wchar_t * dest, const wchar_t * cpy, ::count iLen)
 {
    while(*cpy != 0 && iLen-- > 0)
       *dest++ = *cpy++;
 }
 
-count  strlen_dup(const char * str)
+::count strlen_dup(const char * str)
 {
    if(str == NULL)
       return 0;
@@ -37,7 +37,7 @@ count  strlen_dup(const char * str)
 char * strdup_dup(const char * src)
 {
 
-   count iLen = strlen_dup(src);
+   ::count iLen = strlen_dup(src);
 
    char * dup = (char *) _ca_alloc(iLen + 1);
 
@@ -47,7 +47,7 @@ char * strdup_dup(const char * src)
 
 }
 
-char * strndup_dup(const char * src, count iLen)
+char * strndup_dup(const char * src, ::count iLen)
 {
    char * dup = (char *) _ca_alloc(iLen + 1);
    strncpy_dup(dup, src, iLen);

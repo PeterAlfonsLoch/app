@@ -51,18 +51,18 @@ namespace user
    // Operations
       void add_view(::view * pview);
       void remove_view(::view * pview);
-      virtual count get_view_count() const;
+      virtual ::count get_view_count() const;
       virtual ::view * get_view(index index = 0) const;
 
 
       template < class T >
       T * get_typed_view_count() const
       {
-         count count = 0;
+         ::count count = 0;
          for(index index = 0; index < m_viewptra.get_count(); index++)
          {
             T * pt = dynamic_cast < T * > (m_viewptra[index]);
-            if(pt != NULL)
+            if(pt != ::null())
                count++;
          }
          return count;
@@ -72,12 +72,12 @@ namespace user
       T * get_typed_view(index indexFind = 0) const
       {
          if(indexFind < 0 || indexFind >= m_viewptra.get_count())
-            return NULL;
-         count count = 0;
+            return ::null();
+         ::count count = 0;
          for(index index = 0; index < m_viewptra.get_count(); index++)
          {
             T * pt = dynamic_cast < T * > (m_viewptra[index]);
-            if(pt != NULL)
+            if(pt != ::null())
             {
                if(indexFind == count)
                   return pt;
@@ -85,7 +85,7 @@ namespace user
                   count++;
             }
          }
-         return NULL;
+         return ::null();
       }
 
       virtual ::view * get_view(const ::ca::type_info & info, index indexFind = 0);
@@ -103,21 +103,21 @@ namespace user
 
       // Update Views (simple update - DAG only)
       void update_all_views(::view * pSender, LPARAM lHint = 0L,
-         ::ca::object* pHint = NULL);
+         ::ca::object* pHint = ::null());
 
       void send_update(::view * pSender, LPARAM lHint = 0L,
-         ::ca::object* pHint = NULL);
+         ::ca::object* pHint = ::null());
 
    // Overridables
       // Special notifications
-      virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::view
+      virtual void on_changed_view_list(single_lock * psl = ::null()); // after add or remove ::view
       virtual void delete_contents(); // delete doc items etc
 
       // File helpers
       virtual bool on_new_document();
       virtual bool on_open_document(var varFile);
       virtual bool on_save_document(var varFile);
-      virtual void on_close_document(single_lock * psl = NULL);
+      virtual void on_close_document(single_lock * psl = ::null());
       virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
@@ -132,7 +132,7 @@ namespace user
       // implementation helpers
       virtual bool do_save(var varFile, bool bReplace = true);
       virtual bool do_file_save();
-      virtual void update_frame_counts(single_lock * psl = NULL);
+      virtual void update_frame_counts(single_lock * psl = ::null());
       virtual void disconnect_views();
       virtual void send_initial_update();
 

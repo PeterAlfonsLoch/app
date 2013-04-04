@@ -9,7 +9,7 @@ namespace userbase
       ca(papp),
       m_button(papp)
    {
-      m_spitema(new menu_item_ptra(this));
+      m_spitema = new menu_item_ptra(this);
       m_iLevel       = 0;
       m_bPopup       = false;
    }

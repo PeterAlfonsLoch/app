@@ -11,8 +11,8 @@ namespace ca
 
    void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString)
    {
-      ENSURE_ARG(lpszFormat != NULL);
-      ENSURE_ARG(rglpsz != NULL);
+      ENSURE_ARG(lpszFormat != ::null());
+      ENSURE_ARG(rglpsz != ::null());
       // determine length of destination string, not including null terminator
       strsize nTotalLen = 0;
       const char * pchSrc = lpszFormat;
@@ -32,7 +32,7 @@ namespace ca
             pchSrc += 2;
             if (i >= nString)
                ++nTotalLen;
-            else if (rglpsz[i] != NULL)
+            else if (rglpsz[i] != ::null())
                nTotalLen += strlen(rglpsz[i]);
          }
          else
@@ -62,7 +62,7 @@ namespace ca
                *pchDest++ = '?';
                nTotalLen--;
             }
-            else if (rglpsz[i] != NULL)
+            else if (rglpsz[i] != ::null())
             {
                size_t nLen = strlen(rglpsz[i]);
                ::ca::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
@@ -84,13 +84,13 @@ namespace ca
 
    bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep)
    {
-      if (lpszFullString == NULL)
+      if (lpszFullString == ::null())
          return FALSE;
 
       while (iSubString--)
       {
          lpszFullString = strchr(lpszFullString, chSep);
-         if (lpszFullString == NULL)
+         if (lpszFullString == ::null())
          {
             rString.Empty();        // return is_empty string as well
             return FALSE;
@@ -100,7 +100,7 @@ namespace ca
 
       const char * lpchEnd = strchr(lpszFullString, chSep);
 
-      strsize nLen = (lpchEnd == NULL) ? strlen(lpszFullString) : (int32_t)(lpchEnd - lpszFullString);
+      strsize nLen = (lpchEnd == ::null()) ? strlen(lpszFullString) : (int32_t)(lpchEnd - lpszFullString);
 
       ASSERT(nLen >= 0);
 

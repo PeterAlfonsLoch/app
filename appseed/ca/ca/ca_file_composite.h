@@ -19,8 +19,6 @@ namespace ca
       file_composite(::ca::file * pfile);
       virtual ~file_composite();
 
-      operator HFILE() const;
-
       virtual file_position get_position() const;
       virtual bool GetStatus(file_status& rStatus) const;
       virtual string GetFileName() const;
@@ -72,7 +70,7 @@ namespace ca
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = ::null(), void ** ppBufMax = ::null());
 
 
 

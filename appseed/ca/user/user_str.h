@@ -27,7 +27,7 @@ namespace user
 
 
    class CLASS_DECL_ca str_schema : 
-      public ::collection::map < id, const ::id &, string, const string & >
+      public map < id, const ::id &, string, const string & >
    {
    public:
 
@@ -41,7 +41,7 @@ namespace user
    };
 
    class CLASS_DECL_ca str_locale : 
-      public ::collection::map < id, const ::id &, str_schema, const str_schema & >
+      public map < id, const ::id &, str_schema, const str_schema & >
    {
    public:
       
@@ -50,10 +50,10 @@ namespace user
 
       inline str_schema * get_schema(const ::id & idSchema)
       {
-         ::collection::map < id, const ::id &, str_schema, const str_schema & >::pair * ppair = PLookup(idSchema);
-         if(ppair == NULL)
-            return NULL;
-         return &ppair->m_value;
+         map < id, const ::id &, str_schema, const str_schema & >::pair * ppair = PLookup(idSchema);
+         if(ppair == ::null())
+            return ::null();
+         return &ppair->m_element2;
       }
 
 
@@ -64,7 +64,7 @@ namespace user
 
 
    class CLASS_DECL_ca str : 
-      public ::collection::map < id, const ::id &, str_locale, const str_locale & >
+      public map < id, const ::id &, str_locale, const str_locale & >
    {
    public:
 
@@ -79,10 +79,10 @@ namespace user
 
       inline str_locale * get_locale(const ::id & idLocale)
       {
-         ::collection::map < id, const ::id &, str_locale, const str_locale & >::pair * ppair = PLookup(idLocale);
-         if(ppair == NULL)
-            return NULL;
-         return &ppair->m_value;
+         map < id, const ::id &, str_locale, const str_locale & >::pair * ppair = PLookup(idLocale);
+         if(ppair == ::null())
+            return ::null();
+         return &ppair->m_element2;
       }
 
 

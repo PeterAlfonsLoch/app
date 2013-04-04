@@ -40,7 +40,7 @@ namespace colorertake5
             if(name.is_empty())
              continue;
 
-            if (regionDefines[name] != NULL)
+            if (regionDefines[name] != ::null())
             {
                const TextRegion *rd = TextRegion::cast(regionDefines[name]);
 //               delete rd->stext; delete rd->etext;
@@ -79,10 +79,10 @@ namespace colorertake5
       /*  for(string *key = regionDefines.enumerateKey(); key; key=regionDefines.nextkey()){
       const TextRegion *rdef = TextRegion::cast(regionDefines.get(key));
       writer->write(string("  <define name='")+key+"'");
-      if (rdef->stext != NULL) writer->write(string(" stext='")+rdef->stext+"'");
-      if (rdef->etext != NULL) writer->write(string(" etext='")+rdef->etext+"'");
-      if (rdef->sback != NULL) writer->write(string(" sback='")+rdef->sback+"'");
-      if (rdef->eback != NULL) writer->write(string(" eback='")+rdef->eback+"'");
+      if (rdef->stext != ::null()) writer->write(string(" stext='")+rdef->stext+"'");
+      if (rdef->etext != ::null()) writer->write(string(" etext='")+rdef->etext+"'");
+      if (rdef->sback != ::null()) writer->write(string(" sback='")+rdef->sback+"'");
+      if (rdef->eback != ::null()) writer->write(string(" eback='")+rdef->eback+"'");
       writer->write(string("/>\n"));
       };*/
       //  writer->write(string("\n</hrd>\n"));
@@ -102,7 +102,7 @@ namespace colorertake5
       if (rd_new->eback .has_char()) eback = (rd_new->eback);
 
       RegionDefine *rd_old = regionDefines[name];
-      if (rd_old != NULL){
+      if (rd_old != ::null()){
          const TextRegion *rdef = TextRegion::cast(rd_old);
 //         delete rdef->stext; delete rdef->etext;
   //       delete rdef->sback; delete rdef->eback;

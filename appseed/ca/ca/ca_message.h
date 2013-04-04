@@ -166,7 +166,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca HandlerItemArray :
-            public base_array < HandlerItemBase *, HandlerItemBase *>
+            public array < HandlerItemBase *, HandlerItemBase *>
          {
          public:
             virtual ~HandlerItemArray();
@@ -182,7 +182,7 @@ namespace ca
             UINT                 m_uiCode;
             UINT                 m_uiIdStart;
             UINT                 m_uiIdEnd;
-            ::ca::signal *        m_psignal;
+            ::ca::signal *       m_psignal;
 
             HandlerItemArray     m_handlera;
 
@@ -191,7 +191,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca SignalPtrArray :
-            public base_array < Signal * , Signal * >
+            public array < Signal * , Signal * >
          {
          };
 
@@ -209,17 +209,17 @@ namespace ca
 
          virtual ::ca::application * calc_app();
 
-         virtual base * peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-         virtual base * get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
-         virtual base * peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-         virtual base * get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+         virtual sp(base) peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+         virtual sp(base) get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+         virtual sp(base) peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+         virtual sp(base) get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
-         virtual base * get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
-         virtual base * get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd = NULL);
+         virtual sp(base) get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
+         virtual sp(base) get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd = ::null());
 
 #ifdef LINUX
 
-         virtual base * get_base(XEvent * pevent, ::user::interaction * pwnd = NULL);
+         virtual sp(base) get_base(XEvent * pevent, ::user::interaction * pwnd = ::null());
 
 #endif
 
@@ -239,7 +239,7 @@ namespace ca
          {
             Signal * psignal = m_signala.GetSignalByMessage(message, uiCode, uiIdStart, uiIdEnd);
             // If not found a existing Signal, create one
-            if(psignal == NULL)
+            if(psignal == ::null())
             {
                psignal                    = new Signal;
                psignal->m_uiMessage       = message;
@@ -295,8 +295,8 @@ namespace ca
          virtual bool OnWndMsgPosCreate();
 
 
-         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != NULL) return m_pevOk; m_pevOk = new manual_reset_event(NULL); return m_pevOk; }
-         inline mutex * dispatch_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(NULL); return m_pmutex; }
+         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != ::null()) return m_pevOk; m_pevOk = new manual_reset_event(::null()); return m_pevOk; }
+         inline mutex * dispatch_mutex() { if(m_pmutex != ::null()) return m_pmutex; m_pmutex = new ::mutex(::null()); return m_pmutex; }
       };
 
 #undef new
@@ -313,7 +313,7 @@ namespace ca
             LPARAM                  m_lparam;
             bool                    m_bConditional;
 
-            base(::ca::application * papp, ::ca::signal * psignal = NULL);
+            base(::ca::application * papp, ::ca::signal * psignal = ::null());
             base(::ca::application * papp, ::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
@@ -800,7 +800,7 @@ namespace ca
                return &signal;
             }
          }
-         return NULL;
+         return ::null();
       }
 
 

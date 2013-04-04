@@ -30,18 +30,18 @@ namespace dynamic_source
    public:
 
 
-      http::memory_file m_memfileError;
-      string m_strName;
-      stringa m_straSourcePath;
-      stringa m_straCppPath;
-      string m_strLibraryPath;
-      ::c::library m_library;
+      http::memory_file                      m_memfileError;
+      string                                 m_strName;
+      stringa                                m_straSourcePath;
+      stringa                                m_straCppPath;
+      string                                 m_strLibraryPath;
+      ::c::library                           m_library;
 
-      base_array < __time_t, __time_t & > m_ftaCreation;
-      base_array < __time_t, __time_t & > m_ftaAccess;
-      base_array < __time_t, __time_t & > m_ftaModified;
+      array < __time_t, __time_t & >    m_ftaCreation;
+      array < __time_t, __time_t & >    m_ftaAccess;
+      array < __time_t, __time_t & >    m_ftaModified;
 
-      script_manager * m_pmanager;
+      sp(script_manager)                     m_pmanager;
 
 
 

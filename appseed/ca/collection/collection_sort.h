@@ -22,8 +22,8 @@ namespace sort
 
    static void BubbleSort(LPINT lpInt, index size);
 
-   static void QuickSort(
-      base_array<uint32_t, uint32_t> & a,
+   static void quick_sort(
+      array<uint32_t, uint32_t> & a,
       index (*fCompare)(const index, const index),
       void (*swap)(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg);
@@ -54,7 +54,7 @@ namespace sort
 
    template <class TYPE, class ARG_TYPE>
    void SwapArray(
-      base_array<TYPE, ARG_TYPE> & a,
+      array<TYPE, ARG_TYPE> & a,
       index   iA,
       index iB)
    {
@@ -64,8 +64,8 @@ namespace sort
       a.set_at(iB, t);
    };
    /*template <class TYPE, class ARG_TYPE>
-   void QuickSort(
-   base_array<TYPE, ARG_TYPE> & base_array,
+   void quick_sort(
+   array<TYPE, ARG_TYPE> & array,
    index (* fCompare)(const TYPE *, const TYPE *),
    void (* fSwap)(TYPE *, TYPE *));*/
 
@@ -99,82 +99,9 @@ namespace sort
       return *pA - *pB;
    };
 
-   template <class TYPE, class ARG_TYPE>
-   void QuickSort(
-      base_array<TYPE, ARG_TYPE> & a,
-      index (* fCompare)(TYPE *, TYPE *),
-      void (* fSwap)(TYPE *, TYPE *))
-   {
-      index_array stackLowerBound;
-      index_array stackUpperBound;
-      index iLowerBound;
-      index iUpperBound;
-      index iLPos, iUPos, iMPos;
-      //   uint32_t t;
-
-      if(a.get_size() >= 2)
-      {
-         stackLowerBound.push(0);
-         stackUpperBound.push(a.get_size() - 1);
-         while(true)
-         {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
-            while(true)
-            {
-               while(true)
-               {
-                  if(iMPos == iUPos)
-                     break;
-                  if(fCompare(&a.element_at(iMPos), &a.element_at(iUPos)) <= 0)
-                     iUPos--;
-                  else
-                  {
-                     fSwap(&a.element_at(iMPos), &a.element_at(iUPos));
-                     break;
-                  }
-               }
-               if(iMPos == iUPos)
-                  break;
-               iMPos = iUPos;
-               while(true)
-               {
-                  if(iMPos == iLPos)
-                     break;
-                  if(fCompare(&a.element_at(iLPos), &a.element_at(iMPos)) <= 0)
-                     iLPos++;
-                  else
-                  {
-                     fSwap(&a.element_at(iLPos), &a.element_at(iMPos));
-                     break;
-                  }
-               }
-               if(iMPos == iLPos)
-                  break;
-               iMPos = iLPos;
-            }
-            if(iLowerBound < iMPos - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if(iMPos + 1 < iUpperBound)
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if(stackLowerBound.get_size() == 0)
-               break;
-         }
-      }
-
-   };
    template < class TYPE, class ARG_TYPE, class FIRST>
-   void QuickSort(
-      base_array < TYPE, ARG_TYPE > & a)
+   void quick_sort(
+      array < TYPE, ARG_TYPE > & a)
    {
       TYPE t;
       index_array stackLowerBound;
@@ -249,8 +176,8 @@ namespace sort
 
    };
    template <class TYPE, class ARG_TYPE>
-   void QuickSort(
-      base_array<TYPE, ARG_TYPE> & a,
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
       index fCompare(const ARG_TYPE, const ARG_TYPE),
       void swap(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg)
@@ -328,18 +255,18 @@ namespace sort
    typedef int32_t (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg,  index,  index);
 
 
-   void CLASS_DECL_ca QuickSort(
+   void CLASS_DECL_ca quick_sort(
       index iSize,
-      base_array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
-      base_array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
-      base_array < void *, void * > & comparearga,
-      base_array < void *, void * > & swaparga);
+      array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
+      array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
+      array < void *, void * > & comparearga,
+      array < void *, void * > & swaparga);
 
 
 
    template <class TYPE, class ARG_TYPE>
-   void QuickSort(
-      base_array<TYPE, ARG_TYPE> & a,
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
       int32_t (* fCompare)(const ARG_TYPE, const ARG_TYPE))
    {
       index_array stackLowerBound;
@@ -416,8 +343,8 @@ namespace sort
    }
 
    template <class TYPE, class ARG_TYPE>
-   void QuickSort(
-      base_array<TYPE, ARG_TYPE> & a,
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
       index (* fCompare)(const TYPE &, const TYPE &))
    {
       index_array stackLowerBound;
@@ -771,7 +698,7 @@ namespace sort
 
    template <class KEY, class TYPE, class ARG_TYPE>
    void QuickSortByKey(
-      base_array<TYPE, ARG_TYPE> & a,
+      array<TYPE, ARG_TYPE> & a,
       KEY (TYPE::* fKey)())
    {
       index_array stackLowerBound;
@@ -855,7 +782,7 @@ namespace sort
 
 
    template <class TYPE, class ARG_TYPE>
-   bool SortFind(base_array < TYPE, ARG_TYPE > & a, ARG_TYPE t, index & iIndex, index iStart, index iEnd)
+   bool SortFind(array < TYPE, ARG_TYPE > & a, ARG_TYPE t, index & iIndex, index iStart, index iEnd)
    {
       if(a.get_size() == 0)
       {
@@ -898,16 +825,16 @@ namespace sort
    }
 
    template < class TYPE, class ARG_TYPE >
-   bool SortFind(base_array < TYPE, ARG_TYPE > & a, ARG_TYPE t, index & iIndex)
+   bool SortFind(array < TYPE, ARG_TYPE > & a, ARG_TYPE t, index & iIndex)
    {
       return SortFind(a, t, iIndex, 0, a.get_size() - 1);
    }
 
    template < class TYPE, class ARG_TYPE >
-   void BubbleSortByLPGetSize(base_array < TYPE, ARG_TYPE > & a, bool bAsc = true);
+   void BubbleSortByLPGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
 
    template < class TYPE, class ARG_TYPE >
-   void BubbleSortByGetSize(base_array < TYPE, ARG_TYPE > & a, bool bAsc = true);
+   void BubbleSortByGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
 
    template < class TYPE >
    void BubbleSortByPtrAtGetSize(
@@ -915,15 +842,15 @@ namespace sort
       bool bAsc = true);
 
    template <class TYPE, class ARG_TYPE>
-   void QuickSort(
-      base_array < TYPE, ARG_TYPE > & a,
+   void quick_sort(
+      array < TYPE, ARG_TYPE > & a,
       index (* lpfnCompare)(ARG_TYPE, ARG_TYPE));
 
 
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByLPGetSize(
-      base_array < TYPE, ARG_TYPE > & a,
+      array < TYPE, ARG_TYPE > & a,
       bool bAsc)
    {
       TYPE * t;
@@ -961,7 +888,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByGetSize(
-      base_array < TYPE, ARG_TYPE > & a,
+      array < TYPE, ARG_TYPE > & a,
       bool bAsc)
    {
       TYPE t;
@@ -1030,7 +957,7 @@ namespace sort
       return;
    }
 
-   namespace array // hyper generic base_array template sort
+   namespace array // hyper generic array template sort
       ////////////////////////////////////////////////////
    {
       template <class ARRAY_TYPE, class ARG_TYPE>
@@ -1173,12 +1100,12 @@ namespace sort
       typedef index (compare_interface::*_FUNCTION_Compare)(index, index);
    };
 
-   // Sort "base_array" according to "fCompare" function
+   // Sort "array" according to "fCompare" function
    // of "pCompare" interface
 
 
    template < class NUMERIC_ARRAY >
-   void QuickSort(
+   void quick_sort(
                   NUMERIC_ARRAY & ar,
                   void * pCompare,
                   compare_interface::_FUNCTION_Compare fCompare)
@@ -1255,8 +1182,8 @@ namespace sort
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
    void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
-      base_array < POSITION > stackLowerBound;
-      base_array < POSITION > stackUpperBound;
+      ::array < POSITION > stackLowerBound;
+      ::array < POSITION > stackUpperBound;
       POSITION iLowerBound;
       POSITION iUpperBound;
       POSITION iLPos, iUPos, iMPos;
@@ -1324,8 +1251,8 @@ namespace sort
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
    void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
-      base_array < POSITION > stackLowerBound;
-      base_array < POSITION > stackUpperBound;
+      ::array < POSITION > stackLowerBound;
+      ::array < POSITION > stackUpperBound;
       POSITION iLowerBound;
       POSITION iUpperBound;
       POSITION iLPos, iUPos, iMPos;
@@ -1401,7 +1328,7 @@ namespace sort
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::QuickSort(bool bAsc)
+void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::quick_sort(bool bAsc)
 {
    if(bAsc)
    {
@@ -1418,7 +1345,7 @@ void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::QuickSort(bool bAsc)
 
 template < class TYPE >
 void numeric_array < TYPE >::
-QuickSort(bool bAsc)
+quick_sort(bool bAsc)
 {
    if(bAsc)
    {
@@ -1434,7 +1361,7 @@ QuickSort(bool bAsc)
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-QuickSort(bool bAsc)
+quick_sort(bool bAsc)
 {
    if(bAsc)
    {

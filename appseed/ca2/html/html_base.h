@@ -45,7 +45,7 @@ namespace html
    };
 
 
-   class base_ptr_array : public base_array < base * , base * >
+   class base_ptr_array : public array < base * , base * >
    {
    public:
 

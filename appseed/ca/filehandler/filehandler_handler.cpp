@@ -9,7 +9,7 @@ namespace filehandler
       ca(papp)
    {
 
-      m_sptree(new tree_interface(papp));
+      m_sptree = new tree_interface(papp);
 
       m_sptree->initialize();
 
@@ -23,14 +23,14 @@ namespace filehandler
    {
 
       menu_library * pmenulibrary = dynamic_cast < menu_library * > (plibrary);
-      if(pmenulibrary != NULL)
+      if(pmenulibrary != ::null())
       {
          add_menu_library(pmenulibrary);
       }
       else
       {
          library * phandlerlibrary = dynamic_cast < library * > (plibrary);
-         if(phandlerlibrary != NULL)
+         if(phandlerlibrary != ::null())
          {
             add_library(phandlerlibrary);
          }
@@ -48,7 +48,7 @@ namespace filehandler
       for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
          ::ca::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
-         if(pitem == NULL)
+         if(pitem == ::null())
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
          plibrary->get_extension_app(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp, straExtension[i]);
@@ -61,7 +61,7 @@ namespace filehandler
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
          ::ca::tree_item * pitem = get_extension_tree_item(straMimeType[i], true);
-         if(pitem == NULL)
+         if(pitem == ::null())
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
          plibrary->get_mime_type_app(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp, straMimeType[i]);
@@ -79,7 +79,7 @@ namespace filehandler
       for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
          ::ca::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
-         if(pitem == NULL)
+         if(pitem == ::null())
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straMenuLibrary.add(plibrary->m_strCa2Name);
          plibrary->get_extension_app(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp, straExtension[i]);
@@ -92,7 +92,7 @@ namespace filehandler
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
          ::ca::tree_item * pitem = get_mime_type_tree_item(straMimeType[i], true);
-         if(pitem == NULL)
+         if(pitem == ::null())
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straMenuLibrary.add(plibrary->m_strCa2Name);
          plibrary->get_mime_type_app(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp, straMimeType[i]);
@@ -108,7 +108,7 @@ namespace filehandler
       if(strcmp(pszExtension, "*") == 0)
       {
 
-         while(pitem != NULL)
+         while(pitem != ::null())
          {
             if(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype == tree_item::topic_type_root)
                return pitem;
@@ -116,7 +116,7 @@ namespace filehandler
          }
 
          if(!bCreate)
-            return NULL;
+            return ::null();
 
          pitem = m_sptree->create_item(m_sptree->get_base_item(), ::ca::RelativeLastChild);
 
@@ -126,7 +126,7 @@ namespace filehandler
       else
       {
 
-         while(pitem != NULL)
+         while(pitem != ::null())
          {
             if(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype == tree_item::topic_type_extension
             && dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic.CompareNoCase(pszExtension) == 0)
@@ -135,7 +135,7 @@ namespace filehandler
          }
 
          if(!bCreate)
-            return NULL;
+            return ::null();
 
          pitem = m_sptree->create_item(m_sptree->get_base_item(), ::ca::RelativeLastChild);
 
@@ -154,7 +154,7 @@ namespace filehandler
 
       ::ca::tree_item * pitem = m_sptree->get_base_item()->get_next();
 
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          if(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype == tree_item::topic_type_mime_type
          && dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic.CompareNoCase(pszMimeType) == 0)
@@ -163,7 +163,7 @@ namespace filehandler
       }
 
       if(!bCreate)
-         return NULL;
+         return ::null();
 
       pitem = m_sptree->create_item(m_sptree->get_base_item(), ::ca::RelativeLastChild);
 
@@ -179,7 +179,7 @@ namespace filehandler
    {
 
       ::ca::tree_item * pitem = get_extension_tree_item(pszExtension, false);
-      if(pitem == NULL)
+      if(pitem == ::null())
          return;
       straAppId.add(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp);
 
@@ -189,7 +189,7 @@ namespace filehandler
    {
 
       ::ca::tree_item * pitem = get_mime_type_tree_item(pszMimeType, false);
-      if(pitem == NULL)
+      if(pitem == ::null())
          return;
       straAppId.add(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp);
 
@@ -204,7 +204,7 @@ namespace filehandler
       while(true)
       {
          pitem = pitem->get_next(true, true, &iLevel);
-         if(pitem == NULL)
+         if(pitem == ::null())
             break;
          ostream << (int32_t) iLevel;
          ostream << (int32_t) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;

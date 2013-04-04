@@ -9,7 +9,7 @@ namespace userbase
       ca(papp)
    {
 
-      m_pitem(new menu_item(papp));
+      m_pitem = new menu_item(papp);
 
    }
 
@@ -20,7 +20,7 @@ namespace userbase
    void menu_base::clear()
    {
 
-      m_pitem(new menu_item(get_app()));
+      m_pitem = new menu_item(get_app());
 
    }
 

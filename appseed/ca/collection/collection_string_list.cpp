@@ -6,8 +6,8 @@ string_list::string_list(int_ptr nBlockSize)
    ASSERT(nBlockSize > 0);
 
    m_nCount = 0;
-   m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
-   m_pplex = NULL;
+   m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
+   m_pplex = ::null();
    m_nBlockSize = nBlockSize;
 }
 
@@ -18,14 +18,14 @@ void string_list::remove_all()
    // destroy elements
 
    node* pNode;
-   for (pNode = m_pnodeHead; pNode != NULL; pNode = pNode->m_pnodeNext)
+   for (pNode = m_pnodeHead; pNode != ::null(); pNode = pNode->m_pnodeNext)
       DestructElement(&pNode->data);
 
 
    m_nCount = 0;
-   m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
+   m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
    m_pplex->FreeDataChain();
-   m_pplex = NULL;
+   m_pplex = ::null();
 }
 
 string_list::~string_list()
@@ -52,7 +52,7 @@ string_list::~string_list()
 string_list::node*
 string_list::NewNode(string_list::node* m_pnodePrevious, string_list::node* m_pnodeNext)
 {
-   if (m_pnodeFree == NULL)
+   if (m_pnodeFree == ::null())
    {
       // add another block
       plex* pNewBlock = plex::create(m_pplex, m_nBlockSize,
@@ -68,7 +68,7 @@ string_list::NewNode(string_list::node* m_pnodePrevious, string_list::node* m_pn
          m_pnodeFree = pNode;
       }
    }
-   ASSERT(m_pnodeFree != NULL);  // we must have something
+   ASSERT(m_pnodeFree != ::null());  // we must have something
 
    string_list::node* pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->m_pnodeNext;
@@ -87,7 +87,7 @@ string_list::NewNode(string_list::node* m_pnodePrevious, string_list::node* m_pn
 
 void string_list::FreeNode(string_list::node* pNode)
 {
-   if (pNode == NULL)
+   if (pNode == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -118,9 +118,9 @@ POSITION string_list::add_head(const string & newElement)
 {
    ASSERT_VALID(this);
 
-   node* pNewNode = NewNode(NULL, m_pnodeHead);
+   node* pNewNode = NewNode(::null(), m_pnodeHead);
    pNewNode->data = newElement;
-   if (m_pnodeHead != NULL)
+   if (m_pnodeHead != ::null())
       m_pnodeHead->m_pnodePrevious = pNewNode;
    else
       m_pnodeTail = pNewNode;
@@ -141,9 +141,9 @@ POSITION string_list::add_tail(const string & newElement)
 {
    ASSERT_VALID(this);
 
-   node* pNewNode = NewNode(m_pnodeTail, NULL);
+   node* pNewNode = NewNode(m_pnodeTail, ::null());
    pNewNode->data = newElement;
-   if (m_pnodeTail != NULL)
+   if (m_pnodeTail != ::null())
       m_pnodeTail->m_pnodeNext = pNewNode;
    else
       m_pnodeHead = pNewNode;
@@ -156,7 +156,7 @@ void string_list::add_head(string_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT_VALID(pNewList);
-   if (pNewList == NULL)
+   if (pNewList == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -164,7 +164,7 @@ void string_list::add_head(string_list* pNewList)
 
    // add a list of same elements to head (maintain order)
    POSITION pos = pNewList->get_tail_position();
-   while (pos != NULL)
+   while (pos != ::null())
       add_head(pNewList->get_previous(pos));
 }
 
@@ -172,7 +172,7 @@ void string_list::add_tail(string_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT_VALID(pNewList);
-   if (pNewList == NULL)
+   if (pNewList == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -180,24 +180,24 @@ void string_list::add_tail(string_list* pNewList)
 
    // add a list of same elements
    POSITION pos = pNewList->get_head_position();
-   while (pos != NULL)
+   while (pos != ::null())
       add_tail(pNewList->get_next(pos));
 }
 
 string string_list::remove_head()
 {
    ENSURE_VALID(this);
-   ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
+   ENSURE(m_pnodeHead != ::null());  // throws if called on is_empty list
    ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
    node* pOldNode = m_pnodeHead;
    string returnValue = pOldNode->data;
 
    m_pnodeHead = pOldNode->m_pnodeNext;
-   if (m_pnodeHead != NULL)
-      m_pnodeHead->m_pnodePrevious = NULL;
+   if (m_pnodeHead != ::null())
+      m_pnodeHead->m_pnodePrevious = ::null();
    else
-      m_pnodeTail = NULL;
+      m_pnodeTail = ::null();
    FreeNode(pOldNode);
    return returnValue;
 }
@@ -205,17 +205,17 @@ string string_list::remove_head()
 string string_list::remove_tail()
 {
    ASSERT_VALID(this);
-   ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
+   ASSERT(m_pnodeTail != ::null());  // don't call on is_empty list !!!
    ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
    string returnValue = pOldNode->data;
 
    m_pnodeTail = pOldNode->m_pnodePrevious;
-   if (m_pnodeTail != NULL)
-      m_pnodeTail->m_pnodeNext = NULL;
+   if (m_pnodeTail != ::null())
+      m_pnodeTail->m_pnodeNext = ::null();
    else
-      m_pnodeHead = NULL;
+      m_pnodeHead = ::null();
    FreeNode(pOldNode);
    return returnValue;
 }
@@ -232,7 +232,7 @@ POSITION string_list::insert_before(POSITION position, const string & newElement
 {
    ASSERT_VALID(this);
 
-   if (position == NULL)
+   if (position == ::null())
       return add_head(newElement); // insert before nothing -> head of the list
 
    // Insert it before position
@@ -240,7 +240,7 @@ POSITION string_list::insert_before(POSITION position, const string & newElement
    node* pNewNode = NewNode(pOldNode->m_pnodePrevious, pOldNode);
    pNewNode->data = newElement;
 
-   if (pOldNode->m_pnodePrevious != NULL)
+   if (pOldNode->m_pnodePrevious != ::null())
    {
       ASSERT(__is_valid_address(pOldNode->m_pnodePrevious, sizeof(node)));
       pOldNode->m_pnodePrevious->m_pnodeNext = pNewNode;
@@ -267,7 +267,7 @@ POSITION string_list::insert_after(POSITION position, const string & newElement)
 {
    ASSERT_VALID(this);
 
-   if (position == NULL)
+   if (position == ::null())
       return add_tail(newElement); // insert after nothing -> tail of the list
 
    // Insert it before position
@@ -276,7 +276,7 @@ POSITION string_list::insert_after(POSITION position, const string & newElement)
    node* pNewNode = NewNode(pOldNode, pOldNode->m_pnodeNext);
    pNewNode->data = newElement;
 
-   if (pOldNode->m_pnodeNext != NULL)
+   if (pOldNode->m_pnodeNext != ::null())
    {
       ASSERT(__is_valid_address(pOldNode->m_pnodeNext, sizeof(node)));
       pOldNode->m_pnodeNext->m_pnodePrevious = pNewNode;
@@ -298,7 +298,7 @@ void string_list::remove_at(POSITION position)
    node* pOldNode = (node*) position;
    ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
-   if (pOldNode == NULL)
+   if (pOldNode == ::null())
    {
       throw invalid_argument_exception(get_app());
    }
@@ -337,7 +337,7 @@ POSITION string_list::find_index(int_ptr nIndex) const
       return (POSITION) m_pnodeHead;
 
    if (nIndex >= m_nCount || nIndex < 0)
-      return NULL;  // went too far
+      return ::null();  // went too far
 
    node* pNode = m_pnodeHead;
    while(nIndex-- > 0)
@@ -358,7 +358,7 @@ POSITION string_list::reverse_find_index(int_ptr nIndex) const
       return (POSITION) m_pnodeTail;
 
    if (nIndex >= m_nCount || nIndex < 0)
-      return NULL;  // went too far
+      return ::null();  // went too far
 
 
    node* pNode = m_pnodeTail;
@@ -375,7 +375,7 @@ POSITION string_list::find(const char * searchValue, POSITION startAfter) const
    ASSERT_VALID(this);
 
    node* pNode = (node*) startAfter;
-   if (pNode == NULL)
+   if (pNode == ::null())
    {
       pNode = m_pnodeHead;  // start at head
    }
@@ -385,10 +385,10 @@ POSITION string_list::find(const char * searchValue, POSITION startAfter) const
       pNode = pNode->m_pnodeNext;  // start after the one specified
    }
 
-   for (; pNode != NULL; pNode = pNode->m_pnodeNext)
+   for (; pNode != ::null(); pNode = pNode->m_pnodeNext)
       if (pNode->data == searchValue)
          return (POSITION) pNode;
-   return NULL;
+   return ::null();
 }
 
 
@@ -404,7 +404,7 @@ void string_list::Serialize(CArchive& ar)
    if (ar.IsStoring())
    {
       ar.WriteCount(m_nCount);
-      for (node* pNode = m_pnodeHead; pNode != NULL; pNode = pNode->m_pnodeNext)
+      for (node* pNode = m_pnodeHead; pNode != ::null(); pNode = pNode->m_pnodeNext)
       {
          ASSERT(__is_valid_address(pNode, sizeof(node)));
          ar << pNode->data;
@@ -431,7 +431,7 @@ void string_list::dump(dump_context & dumpcontext) const
    if (dumpcontext.GetDepth() > 0)
    {
       POSITION pos = get_head_position();
-      while (pos != NULL)
+      while (pos != ::null())
          dumpcontext << "\n\t" << get_next(pos);
    }
 
@@ -445,8 +445,8 @@ void string_list::assert_valid() const
    if (m_nCount == 0)
    {
       // is_empty list
-      ASSERT(m_pnodeHead == NULL);
-      ASSERT(m_pnodeTail == NULL);
+      ASSERT(m_pnodeHead == ::null());
+      ASSERT(m_pnodeTail == ::null());
    }
    else
    {

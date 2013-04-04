@@ -28,13 +28,13 @@ public:
          dwProcessId ? dwProcessId : GetCurrentProcessId());
       if(m_hProcess)
       {
-         m_lpData = VirtualAllocEx(m_hProcess, NULL, sizeof T,
+         m_lpData = VirtualAllocEx(m_hProcess, ::null(), sizeof T,
             flAllocationType, flProtect);
          ASSERT(m_lpData);
       }
       else
       {
-//         TRACE("process_data::m_hProcess == NULL");
+//         TRACE("process_data::m_hProcess == ::null()");
       }
    }
 
@@ -44,7 +44,7 @@ public:
       {
          if(m_lpData)
          {
-            VirtualFreeEx(m_hProcess, m_lpData, NULL, MEM_RELEASE);
+            VirtualFreeEx(m_hProcess, m_lpData, 0, MEM_RELEASE);
          }
          CloseHandle(m_hProcess);
       }
@@ -54,26 +54,26 @@ public:
    bool WriteData(const T& data)
    {
       return (m_hProcess && m_lpData) ? WriteProcessMemory(m_hProcess, m_lpData,
-         (LPCVOID)&data, sizeof T, NULL) : FALSE;
+         (LPCVOID)&data, sizeof T, ::null()) : FALSE;
    }
 
    //ReadData reads back data from primitive::memory in the foreign process
    bool ReadData(T* data)
    {
-      return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData, (LPVOID)data, sizeof T, NULL) != FALSE : false;
+      return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData, (LPVOID)data, sizeof T, ::null()) != FALSE : false;
    }
 
    //Templated ReadData that's used to read a specific data type from
    //a primitive::memory address located in the foreign process
    template<typename TSUBTYPE> bool ReadData(TSUBTYPE* data, LPCVOID lpData)
    {
-      return m_hProcess ? ReadProcessMemory(m_hProcess, lpData, (LPVOID)data, sizeof TSUBTYPE, NULL) != FALSE : false;
+      return m_hProcess ? ReadProcessMemory(m_hProcess, lpData, (LPVOID)data, sizeof TSUBTYPE, ::null()) != FALSE : false;
    }
 
    //Gets the address of the allocated primitive::memory in the foreign process
    const T* get_data()
    {
-      return (m_hProcess && m_lpData) ? (T*)m_lpData : NULL;
+      return (m_hProcess && m_lpData) ? (T*)m_lpData : ::null();
    }
 private:
    HANDLE m_hProcess;

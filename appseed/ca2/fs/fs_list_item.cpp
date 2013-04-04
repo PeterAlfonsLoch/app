@@ -58,9 +58,9 @@ namespace fs
       }
    }
 
-   index list_item::CompareArrangeByName(list_item & itema, list_item & itemb)
+   index list_item::CompareArrangeByName(sp(list_item) * pitema, sp(list_item) * pitemb)
    {
-      return itema.CompareArrangeByName(itemb);
+      return (*pitema)->CompareArrangeByName(*pitemb);
    }
 
    index list_item::GetIndex() const

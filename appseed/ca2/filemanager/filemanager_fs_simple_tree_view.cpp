@@ -73,7 +73,7 @@ namespace filemanager
                pdataitemParent = get_base_item();
             }
 
-            xml::node::base_array childs(get_app());
+            xml::node::array childs(get_app());
 
             string wstrType;
             Folder folder;
@@ -83,7 +83,7 @@ namespace filemanager
             xml::node * pnodeFolder = doc.get_root()->get_child("folder");
 
 
-   //         xml::node::base_array childs(get_app());
+   //         xml::node::array childs(get_app());
 
    //         string wstrType;
             // method 3: Selected Childs with GetChilds()

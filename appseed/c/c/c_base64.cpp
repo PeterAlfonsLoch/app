@@ -192,7 +192,7 @@ vsstring base64::encode(const char * psz)
 
 }
 
-vsstring base64::encode(const byte * p, count c)
+vsstring base64::encode(const byte * p, ::count c)
 {
 
    simple_memory storage;

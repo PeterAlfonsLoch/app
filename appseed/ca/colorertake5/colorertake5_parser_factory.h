@@ -46,7 +46,7 @@ public:
 
   /**
    * ParserFactory Constructor with explicit catalog path.
-   * @param catalogPath Path to catalog.xml spfile-> If NULL,
+   * @param catalogPath Path to catalog.xml spfile-> If ::null(),
    *        standard search method is used.
    * @throw ParserFactoryException If can't load specified catalog.
    */
@@ -104,7 +104,7 @@ public:
 
   /**
    * Returns currently used global error handler.
-   * If no error handler were installed, returns NULL.
+   * If no error handler were installed, returns ::null().
    */
   ErrorHandler *getErrorHandler(){
     return fileErrorHandler;
@@ -118,7 +118,7 @@ private:
   ::ca::byte_input_stream * catalogFIS;
   ErrorHandler *fileErrorHandler;
   stringa hrcLocations;
-  ::collection::string_map < ::collection::string_map < stringa >, const ::collection::string_map < stringa > & > hrdLocations;
+  string_map < string_map < stringa >, const string_map < stringa > & > hrdLocations;
   string_to_string_map hrdDescriptions;
   HRCParser  *hrcParser;
   xml::node *catalog;

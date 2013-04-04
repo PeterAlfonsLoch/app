@@ -32,8 +32,8 @@ public:
   RegionDefine *getRegionDefine(class region *region);
   RegionDefine *getRegionDefine(const char * name);
 
-  ::collection::string_map< RegionDefine *> regionDefines;
-  base_array< RegionDefine *> regionDefinesVector;
+  string_map< RegionDefine *> regionDefines;
+  array< RegionDefine *> regionDefinesVector;
 
   RegionMapperImpl(const RegionMapperImpl&);
   void operator=(const RegionMapperImpl&);

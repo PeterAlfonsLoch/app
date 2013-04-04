@@ -82,12 +82,12 @@ IMP_IInArchive_ArcProps_NO
 
 stat_prop_stg kArcProps[] =
 {
-  { NULL, ::libcompress::kpidMethod, var::type_string},
-  { NULL, ::libcompress::kpidSolid, var::type_bool},
-  { NULL, ::libcompress::kpidNumBlocks, var::type_uint32},
-  { NULL, ::libcompress::kpidPhySize, var::type_uint64},
-  { NULL, ::libcompress::kpidHeadersSize, var::type_uint64},
-  { NULL, ::libcompress::kpidOffset, var::type_uint64}
+  { ::null(), ::libcompress::kpidMethod, var::type_string},
+  { ::null(), ::libcompress::kpidSolid, var::type_bool},
+  { ::null(), ::libcompress::kpidNumBlocks, var::type_uint32},
+  { ::null(), ::libcompress::kpidPhySize, var::type_uint64},
+  { ::null(), ::libcompress::kpidHeadersSize, var::type_uint64},
+  { ::null(), ::libcompress::kpidOffset, var::type_uint64}
 };
 
 ::ca::HRes handler::GetArchiveProperty(int32_t propID, var *value)
@@ -106,7 +106,7 @@ stat_prop_stg kArcProps[] =
         for (index j = f.Coders.get_count() - 1; j >= 0; j--)
            ids.add_unique(f.Coders[j].MethodID);
       }
-      ids.QuickSort(true);
+      ids.quick_sort(true);
 
       for (i = 0; i < ids.get_count(); i++)
       {

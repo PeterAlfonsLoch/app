@@ -613,7 +613,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hThread)
 
 
 
-os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
+os_thread::os_thread(uint32_t (* pfn)(void *), void * pv)
 {
 
    m_pfn    = pfn;
@@ -699,7 +699,7 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
 }
 
-void * WINAPI os_thread::thread_proc(LPVOID lpparameter)
+void * s_thread::thread_proc(LPVOID lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-wait_result::wait_result(uint32_t value, count objectCount)
+wait_result::wait_result(uint32_t value, ::count objectCount)
 {
 	switch ( value )
    {

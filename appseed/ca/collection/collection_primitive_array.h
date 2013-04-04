@@ -10,7 +10,7 @@
 
 template < class TYPE >
 class primitive_array : 
-   public raw_array < TYPE, TYPE >
+   public array < TYPE, TYPE >
 {
 public:
 };

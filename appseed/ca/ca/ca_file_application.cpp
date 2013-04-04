@@ -114,7 +114,7 @@ namespace ca
       return m_papp->m_psystem->m_spfile->lines(stra, varFile, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, const void * pvoidContents, count count)
+   bool file_application::put_contents(var varFile, const void * pvoidContents, ::count count)
    {
       return m_papp->m_psystem->m_spfile->put_contents(varFile, pvoidContents, count, m_papp);
    }
@@ -186,7 +186,7 @@ namespace ca
 
       }
 
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca < ::ca::file >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca < ::ca::file >() != ::null())
       {
 
          spfile = varFile.propset()["file"].ca < ::ca::file >();
@@ -197,7 +197,7 @@ namespace ca
 
          zip::InFile * pinfile = new zip::InFile(get_app());
 
-         if(pinfile != NULL)
+         if(pinfile != ::null())
          {
 
             if(!pinfile->unzip_open(strPath, 0))
@@ -205,7 +205,7 @@ namespace ca
 
                delete pinfile;
 
-               pinfile = NULL;
+               pinfile = ::null();
 
             }
 
@@ -322,7 +322,7 @@ namespace ca
       else if(::ca::str::begins(strPath, "ifs://") || ::ca::str::begins(strPath, "uifs://"))
       {
 
-         if(&AppUser(m_papp) == NULL)
+         if(&AppUser(m_papp) == ::null())
          {
 
             spfile = ::ca::null();
@@ -339,7 +339,7 @@ namespace ca
       else if(::ca::str::begins(strPath, "fs://"))
       {
 
-         if(&Session == NULL)
+         if(&Session == ::null())
          {
 
             spfile = ::ca::null();
@@ -356,7 +356,7 @@ namespace ca
       else if(::ca::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         ::ca::application * papp = NULL;
+         ::ca::application * papp = ::null();
 
          if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
          {
@@ -373,7 +373,7 @@ namespace ca
             }
 
          }
-         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_papp).m_strAppName.has_char())
+         else if(&Session != ::null() && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_papp).m_strAppName.has_char())
          {
 
             spfile = App(papp).file().get_file("matter://" + strPath, nOpenFlags);

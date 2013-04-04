@@ -7,9 +7,9 @@ namespace user
    ::user::document_interface * document_request_interface::open_document_file(::ca::create_context * pcreatecontext)
    {
 
-      ::ca::create_context_sp cc(&Application.creation(), var(var::type_empty), true, NULL);
+      ::ca::create_context_sp cc(&Application.creation(), var(var::type_empty), true, ::null());
 
-      if(pcreatecontext == NULL)
+      if(pcreatecontext == ::null())
       {
          pcreatecontext = cc;
       }

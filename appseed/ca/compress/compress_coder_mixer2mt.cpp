@@ -19,7 +19,7 @@ namespace libcompress
          OutStreamPointers.set_size(0, NumOutStreams);
       }
 
-      int32_t CCoder2::run() { Code(NULL); return 0;}
+      int32_t CCoder2::run() { Code(::null()); return 0;}
 
       void CCoder2::Code(::libcompress::progress_info_interface *progress)
       {
@@ -27,13 +27,13 @@ namespace libcompress
          OutStreamPointers.remove_all();
          for(uint32_t i = 0; i < NumInStreams; i++)
          {
-            if (InSizePointers[i] != NULL)
+            if (InSizePointers[i] != ::null())
                InSizePointers[i] = &InSizes[i];
             InStreamPointers.add(InStreams(i));
          }
          for(uint32_t i = 0; i < NumOutStreams; i++)
          {
-            if (OutSizePointers[i] != NULL)
+            if (OutSizePointers[i] != ::null())
                OutSizePointers[i] = &OutSizes[i];
             OutStreamPointers.add(OutStreams(i));
          }
@@ -47,17 +47,17 @@ namespace libcompress
          }
       }
 
-      static void SetSizes(const file_size **srcSizes, base_array<file_size> &sizes,
-         base_array<const file_size *> &sizePointers, uint32_t numItems)
+      static void SetSizes(const file_size **srcSizes, array<file_size> &sizes,
+         array<const file_size *> &sizePointers, uint32_t numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
          for (uint32_t i = 0; i < numItems; i++)
          {
-            if (srcSizes == 0 || srcSizes[i] == NULL)
+            if (srcSizes == 0 || srcSizes[i] == ::null())
             {
                sizes.add((file_size) 0);
-               sizePointers.add(NULL);
+               sizePointers.add(::null());
             }
             else
             {

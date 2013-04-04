@@ -121,7 +121,7 @@ namespace ca
 
       };
 
-      class ItemPtrArray : public base_array < Item *, Item * >
+      class ItemPtrArray : public array < Item *, Item * >
       {
       public:
       };
@@ -205,7 +205,7 @@ namespace ca
       void Insert(InsertItem * pitem);
       bool CanUndo();
       bool CanRedo();
-      count GetRedoBranchCount();
+      ::count GetRedoBranchCount();
       bool Undo();
       bool Redo();
       void MacroBegin();
@@ -230,8 +230,8 @@ namespace ca
 
 
       edit_file(const edit_file & ) :
-         ::ca::tree(NULL),
-         ::ca::tree_data(NULL)
+         ::ca::tree(::null()),
+         ::ca::tree_data(::null())
       {
       }
 

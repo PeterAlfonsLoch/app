@@ -6,7 +6,7 @@ template<class TYPE> static void freePointer(TYPE * * pointer);
 template<class TYPE> void freePointer(TYPE * * pointer)
 {
    free((void *) *pointer);
-   *pointer = NULL;
+   *pointer = ::null();
 }
 
 CLASS_DECL_ca ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID, UINT nData);

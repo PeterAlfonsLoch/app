@@ -539,7 +539,7 @@ static uint32_t oc_dec_partial_sb_flags_unpack(oc_dec_ctx *_dec){
     }
     else flag=!flag;
   }
-  /*TODO: run_count should be 0 here.
+  /*TODO: run_::count should be 0 here.
     If it's not, we should issue a warning of some kind.*/
   return npartial;
 }
@@ -578,7 +578,7 @@ static void oc_dec_coded_sb_flags_unpack(oc_dec_ctx *_dec){
     else flag=!flag;
   }
   while(sbi<nsbs);
-  /*TODO: run_count should be 0 here.
+  /*TODO: run_::count should be 0 here.
     If it's not, we should issue a warning of some kind.*/
 }
 
@@ -644,7 +644,7 @@ static void oc_dec_coded_flags_unpack(oc_dec_ctx *_dec){
     prev_ncoded_fragis=ncoded_fragis;
   }
   _dec->state.ntotal_coded_fragis=ncoded_fragis;
-  /*TODO: run_count should be 0 here.
+  /*TODO: run_::count should be 0 here.
     If it's not, we should issue a warning of some kind.*/
 }
 
@@ -917,7 +917,7 @@ static void oc_dec_block_qis_unpack(oc_dec_ctx *_dec){
       }
       else flag=!flag;
     }
-    /*TODO: run_count should be 0 here.
+    /*TODO: run_::count should be 0 here.
       If it's not, we should issue a warning of some kind.*/
     /*If we have 3 different qi's for this frame, and there was at least one
        fragment with a non-zero qi, make the second pass.*/
@@ -943,7 +943,7 @@ static void oc_dec_block_qis_unpack(oc_dec_ctx *_dec){
         else flag=!flag;
       }
       while(fragii<ncoded_fragis);
-      /*TODO: run_count should be 0 here.
+      /*TODO: run_::count should be 0 here.
         If it's not, we should issue a warning of some kind.*/
     }
   }
@@ -1023,7 +1023,7 @@ static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
         frags[coded_fragis[fragii++]].dc=coeff;
       }
     }
-    /*Add the total EOB count to the longest run length.*/
+    /*Add the total EOB ::count to the longest run length.*/
     run_counts[63]+=eob_count;
     /*And convert the run_counts array to a moment table.*/
     for(rli=63;rli-->0;)run_counts[rli]+=run_counts[rli+1];
@@ -1095,7 +1095,7 @@ static int32_t oc_dec_ac_coeff_unpack(oc_dec_ctx *_dec,int32_t _zzi,int32_t _huf
     eob_count+=ntoks_left-ntoks;
     /*And remove it from the remaining EOB count.*/
     _eobs-=ntoks_left-ntoks;
-    /*Add the total EOB count to the longest run length.*/
+    /*Add the total EOB ::count to the longest run length.*/
     run_counts[63]+=eob_count;
     /*And convert the run_counts array to a moment table.*/
     for(rli=63;rli-->0;)run_counts[rli]+=run_counts[rli+1];

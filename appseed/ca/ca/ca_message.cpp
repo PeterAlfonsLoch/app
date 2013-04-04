@@ -31,7 +31,7 @@ namespace ca
 
 
       /*
-      base_array < Handler *, Handler * > theMessageHandlerArray;
+      array < Handler *, Handler * > theMessageHandlerArray;
 
       void HookMessageHandler(Handler * phandler)
       {
@@ -75,38 +75,38 @@ namespace ca
          return true;
       }
 
-      base * dispatch::peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+      sp(base) dispatch::peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
          if(!::PeekMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
-            return NULL;
+            return ::null();
          return get_base(lpmsg, pwnd);
       }
 
-      base * dispatch::get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+      sp(base) dispatch::get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
          if(!::GetMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
-            return NULL;
+            return ::null();
          return get_base(lpmsg, pwnd);
       }
 
-      base * dispatch::peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+      sp(base) dispatch::peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
          MESSAGE msg;
          return peek_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
       }
 
 
-      base * dispatch::get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+      sp(base) dispatch::get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
          MESSAGE msg;
          return get_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax);
       }
 
-      base * dispatch::get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+      sp(base) dispatch::get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
       {
-         base * pbase;
+         sp(base) pbase;
          e_prototype eprototype = PrototypeNone;
-         //if(oswindow != NULL)
+         //if(oswindow != ::null())
          {
             eprototype = dispatch::GetMessagePrototype(uiMessage, 0);
          }
@@ -210,20 +210,20 @@ namespace ca
             }
             break;
          }
-         if(pbase == NULL)
-            return NULL;
+         if(pbase == ::null())
+            return ::null();
          pbase->set(pwnd, uiMessage, wparam, lparam);
          return pbase;
       }
 
-      base * dispatch::get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd)
+      sp(base) dispatch::get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd)
       {
 #if defined(METROWIN)
-         if(pwnd == NULL && lpmsg->oswindow != NULL)
+         if(pwnd == ::null() && lpmsg->oswindow != ::null())
          {
             ::user::interaction * pwindow = lpmsg->oswindow.window();
 #else
-         if(pwnd == NULL && lpmsg->hwnd != NULL)
+         if(pwnd == ::null() && lpmsg->hwnd != ::null())
          {
             if(lpmsg->message == 126)
             {
@@ -232,7 +232,7 @@ namespace ca
             }
             ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
 #endif
-            if(pwindow != NULL)
+            if(pwindow != ::null())
             {
                try
                {
@@ -240,12 +240,12 @@ namespace ca
                }
                catch(...)
                {
-                  pwnd = NULL;
+                  pwnd = ::null();
                }
             }
 
-            if(pwnd == NULL)
-               return NULL;
+            if(pwnd == ::null())
+               return ::null();
 
          }
 
@@ -256,7 +256,7 @@ namespace ca
 
 #ifdef LINUX
 
-      base * dispatch::get_base(XEvent * pevent, ::user::interaction * pwnd)
+      sp(base) dispatch::get_base(XEvent * pevent, ::user::interaction * pwnd)
       {
 
          throw todo(get_app());
@@ -267,8 +267,8 @@ namespace ca
 #endif
 
       dispatch::dispatch() :
-         m_pevOk(NULL),
-         m_pmutex(NULL)
+         m_pevOk(::null()),
+         m_pmutex(::null())
       {
          m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
       }
@@ -282,7 +282,7 @@ namespace ca
          SCAST_PTR(::ca::message::base, pbase, pobj);
          if(pbase->m_uiMessage == (WM_APP + 2014))
          {
-            base * pbase2 = (base *) pbase->m_lparam;
+            sp(base) pbase2 = pbase->m_lparam;
             _user_message_handler(pbase2);
             if(pbase2->m_wparam != 0)
             {
@@ -341,9 +341,9 @@ namespace ca
                   {
 
                      __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-                     ASSERT(pNotify != NULL);
-                     ASSERT(pNotify->pResult != NULL);
-                     ASSERT(pNotify->pNMHDR != NULL);
+                     ASSERT(pNotify != ::null());
+                     ASSERT(pNotify->pResult != ::null());
+                     ASSERT(pNotify->pNMHDR != ::null());
                      notify notify;
                      notify.m_lparam = (LPARAM) pNotify->pNMHDR;
                      signal.m_psignal->emit(&notify);
@@ -353,11 +353,11 @@ namespace ca
                   break;*/
                /*case PrototypeCommand:
                   {
-                     if (pHandlerInfo != NULL)
+                     if (pHandlerInfo != ::null())
                      {
                         // just fill in the information, don't do it
                         //pHandlerInfo->pTarget = (command_target *) 1;
-                        //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)()) NULL;
+                        //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)()) ::null();
                         b = TRUE;
                         return true;
                      }
@@ -398,7 +398,7 @@ namespace ca
             }
          }
    /*      HandlerMap::pair * ppair = m_handlerset.m_map.PGetFirstAssoc();
-         while(ppair != NULL)
+         while(ppair != ::null())
          {
             ppair = m_handlerset.m_map.PGetNextAssoc(ppair);
          }*/
@@ -677,7 +677,7 @@ namespace ca
       {
          try
          {
-            if(m_ecursor != ::visual::cursor_unmodified && m_papp != NULL && m_papp->m_psession != NULL)
+            if(m_ecursor != ::visual::cursor_unmodified && m_papp != ::null() && m_papp->m_psession != ::null())
             {
                Session.set_cursor(m_ecursor);
             }
@@ -712,7 +712,7 @@ namespace ca
       ::user::interaction * mouse_activate::GetDesktopWindow()
       {
          throw not_implemented(get_app());
-         return NULL;
+         return ::null();
 //            return ::ca::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
@@ -729,7 +729,7 @@ namespace ca
       ::ca::window * context_menu::GetWindow()
       {
          throw not_implemented(get_app());
-         return NULL;
+         return ::null();
 //            return ::ca::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
@@ -758,7 +758,7 @@ namespace ca
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow>(wparam));
-         m_pwnd = NULL;
+         m_pwnd = ::null();
       }
 
       void window_pos::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
@@ -838,15 +838,15 @@ namespace ca
 
       dispatch::Signal::Signal()
       {
-         m_psignal = NULL;
+         m_psignal = ::null();
       }
 
       dispatch::Signal::~Signal()
       {
-         if(m_psignal != NULL)
+         if(m_psignal != ::null())
          {
             delete m_psignal;
-            m_psignal = NULL;
+            m_psignal = ::null();
          }
       }
 
@@ -878,7 +878,7 @@ namespace ca
          single_lock sl(dispatch_mutex(), true);
          _on_start_user_message_handler();
          install_message_handling(this);
-         if(get_app() == NULL)
+         if(get_app() == ::null())
          {
             set_app(calc_app());
          }
@@ -899,7 +899,7 @@ namespace ca
 
       ::ca::application * dispatch::calc_app()
       {
-         return NULL;
+         return ::null();
       }
 
       void dispatch::_001ClearMessageHandling()
@@ -1148,7 +1148,7 @@ namespace ca
                   UINT nCtlType = pCtl->nCtlType;
                   // if not coming from a permanent ::ca::window, use stack temporary
    //               ::ca::window* pWnd = ::ca::window::FromHandlePermanent(wndTemp.get_handle());
-   //               if (pWnd == NULL)
+   //               if (pWnd == ::null())
                {
 
    //               pWnd = &wndTemp;
@@ -1158,11 +1158,11 @@ namespace ca
    //            ctlcolor.m_pdc       = &dcTemp;
    //            ctlcolor.m_pwnd      = pWnd;
                ctlcolor.m_nCtlType  = nCtlType;
-               ctlcolor.m_hbrush    = NULL;
+               ctlcolor.m_hbrush    = ::null();
                psignal->emit(&ctlcolor);
                // fast detach of temporary objects
-   //            dcTemp.set_handle1(NULL);
-   //            wndTemp.set_handle(NULL);
+   //            dcTemp.set_handle1(::null());
+   //            wndTemp.set_handle(::null());
                lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
                if(ctlcolor.m_bRet)
                   return true;
@@ -1180,12 +1180,12 @@ namespace ca
                   ctl_color ctlcolor(get_app());
                   ctlcolor.m_psignal   = psignal;
    //               ctlcolor.m_pdc       = &dcTemp;
-                  ctlcolor.m_pwnd      = NULL;
+                  ctlcolor.m_pwnd      = ::null();
                   ctlcolor.m_nCtlType  = nCtlType;
-                  ctlcolor.m_hbrush    = NULL;
+                  ctlcolor.m_hbrush    = ::null();
                   psignal->emit(&ctlcolor);
                   // fast detach of temporary objects
-   //               dcTemp.set_handle1(NULL);
+   //               dcTemp.set_handle1(::null());
                   lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
                   if(ctlcolor.m_bRet)
                      return true;

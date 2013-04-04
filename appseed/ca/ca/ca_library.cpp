@@ -12,9 +12,9 @@ namespace ca
    library::library(const char * pszRoot)
    {
 
-      m_pca2library     = NULL;
+      m_pca2library     = ::null();
 
-      if(pszRoot != NULL)
+      if(pszRoot != ::null())
       {
 
          m_strRoot = pszRoot;
@@ -57,7 +57,7 @@ namespace ca
 
       ::plane::system::eengine().reset();
 
-      PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
+      PFN_GET_NEW_LIBRARY pfn_get_new_library = ::null();
 
       try
       {
@@ -74,7 +74,7 @@ namespace ca
 
       }
 
-      if(pfn_get_new_library == NULL)
+      if(pfn_get_new_library == ::null())
       {
 
          close();
@@ -85,7 +85,7 @@ namespace ca
 
       m_pca2library = pfn_get_new_library();
 
-      if(m_pca2library == NULL)
+      if(m_pca2library == ::null())
       {
 
          close();
@@ -109,7 +109,7 @@ namespace ca
    string library::get_library_name()
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
 
          return m_pca2library->get_library_name();
@@ -151,12 +151,12 @@ namespace ca
          try
          {
 
-            if(m_pca2library != NULL)
+            if(m_pca2library != ::null())
             {
 
                delete m_pca2library;
 
-               m_pca2library = NULL;
+               m_pca2library = ::null();
 
             }
 
@@ -164,7 +164,7 @@ namespace ca
          catch(...)
          {
 
-            m_pca2library = NULL;
+            m_pca2library = ::null();
 
             bOk = false;
 
@@ -180,7 +180,7 @@ namespace ca
          catch(...)
          {
 
-            m_plibrary = NULL;
+            m_plibrary = ::null();
 
             bOk = false;
 
@@ -312,22 +312,22 @@ namespace ca
       try
       {
 
-         if(m_pca2library != NULL)
+         if(m_pca2library != ::null())
          {
 
             string strAppName = get_app_name(pszAppId);
 
             if(strAppName.is_empty())
-               return NULL;
+               return ::null();
 
             ::ca::application * papp = m_pca2library->get_new_app(strAppName);
 
-            if(papp == NULL)
-               return NULL;
+            if(papp == ::null())
+               return ::null();
 
             ::ca::application  * pgenapp = dynamic_cast < ::ca::application * > (papp);
 
-            if(pgenapp != NULL)
+            if(pgenapp != ::null())
             {
                pgenapp->m_strLibraryName   = m_strCa2Name;
             }
@@ -336,11 +336,11 @@ namespace ca
 
          }
 
-         return NULL;
+         return ::null();
       }
       catch(...)
       {
-         return NULL;
+         return ::null();
       }
 
    }
@@ -348,7 +348,7 @@ namespace ca
    void library::get_app_list(stringa & stra)
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
          try
          {
@@ -394,7 +394,7 @@ namespace ca
    ::uinteraction::interaction * library::get_new_uinteraction()
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
 
          try
@@ -406,7 +406,7 @@ namespace ca
          catch(...)
          {
 
-            return NULL;
+            return ::null();
 
          }
 
@@ -414,7 +414,7 @@ namespace ca
       else
       {
 
-         return NULL;
+         return ::null();
 
       }
 
@@ -425,7 +425,7 @@ namespace ca
    bool library::is_uinteraction_library()
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
 
          try
@@ -474,7 +474,7 @@ namespace ca
    string library::get_root()
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
 
          return m_pca2library->m_strRoot;
@@ -485,7 +485,7 @@ namespace ca
 
    }
 
-   void library::get_create_view_id_list(::raw_array < id > & ida)
+   void library::get_create_view_id_list(::array < id > & ida)
    {
 
       UNREFERENCED_PARAMETER(ida);
@@ -496,12 +496,12 @@ namespace ca
    ::dynamic_source::script_manager * library::create_script_manager(::ca::application * papp)
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
          return m_pca2library->create_script_manager(papp);
       }
 
-      return NULL;
+      return ::null();
 
    }
 
@@ -509,7 +509,7 @@ namespace ca
    void library::get_script_list(stringa & stra)
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
          return m_pca2library->get_script_list(stra);
       }
@@ -519,12 +519,12 @@ namespace ca
    ::dynamic_source::script * library::create_script(::ca::application * papp, const char * pszScript)
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
          return m_pca2library->create_script(papp, pszScript);
       }
 
-      return NULL;
+      return ::null();
 
 
    }
@@ -532,7 +532,7 @@ namespace ca
    void library::do_default_script_registration(::dynamic_source::script_manager * pmanager)
    {
 
-      if(m_pca2library != NULL)
+      if(m_pca2library != ::null())
       {
          return m_pca2library->do_default_script_registration(pmanager);
       }

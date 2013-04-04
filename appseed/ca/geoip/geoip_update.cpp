@@ -90,7 +90,7 @@ int32_t GeoIP_fprintf(int32_t (*f)(FILE *, char *),FILE *fp, const char *str, ..
   char * f_str;
   int32_t silence;
 
-  if ( f == NULL )
+  if ( f == ::null() )
     return 0;
   va_start(ap, str);
 #if defined(HAVE_VASPRINTF)
@@ -105,7 +105,7 @@ int32_t GeoIP_fprintf(int32_t (*f)(FILE *, char *),FILE *fp, const char *str, ..
     silence = vsprintf(f_str, str, ap);
 #endif
   va_end(ap);
-  if (  f_str == NULL )
+  if (  f_str == ::null() )
     return -1;
   rc = (*f)(fp, f_str);
   free(f_str);
@@ -116,7 +116,7 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
   va_list params;
   char * f_str;
   int32_t silence;
-  if (f == NULL)
+  if (f == ::null())
     return;
   va_start(params, str);
 #if defined(HAVE_VASPRINTF)
@@ -131,7 +131,7 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
     silence = vsprintf(f_str, str, params);
 #endif
   va_end(params);
-  if ( f_str == NULL )
+  if ( f_str == ::null() )
     return;
   (*f)(f_str);
   free(f_str);
@@ -176,7 +176,7 @@ int16_t parse_http_proxy(char **proxy_host, int32_t *port) {
       if (! strncmp("http://", http_proxy, 7)) http_proxy += 7;
 
       *proxy_host = _strdup(http_proxy);
-      if ( *proxy_host == NULL )
+      if ( *proxy_host == ::null() )
          return 0; /* let the other functions deal with the primitive::memory error */
 
       if ((port_value = strchr(*proxy_host, ':'))) {
@@ -253,7 +253,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    _GeoIP_setup_dbfilename();
 
    /* get MD5 of current GeoIP database file */
-   if ((cur_db_fh = fopen (GeoIPDBFileName[GEOIP_COUNTRY_EDITION], "rb")) == NULL) {
+   if ((cur_db_fh = fopen (GeoIPDBFileName[GEOIP_COUNTRY_EDITION], "rb")) == ::null()) {
     GeoIP_printf(f,"%s%s",  NoCurrentDB, GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    } else {
 
@@ -279,7 +279,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    hostlist = GeoIP_get_host_or_proxy();
 
 
-   if (hostlist == NULL)
+   if (hostlist == ::null())
       return GEOIP_DNS_ERR;
 
    if (hostlist->h_addrtype != AF_INET)
@@ -304,14 +304,14 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
       return GEOIP_CONNECTION_ERR;
 
    request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequest)+36));
-   if (request_uri == NULL)
+   if (request_uri == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
    sprintf(request_uri,GeoIPHTTPRequest,GeoIPProxyHTTP,GeoIPProxiedHost,license_key, hex_digest);
    send(sock, request_uri, (int32_t) strlen(request_uri),0);
    free(request_uri);
 
    buf = (char *) malloc(sizeof(char) * block_size);
-   if (buf == NULL)
+   if (buf == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
 
    if (verbose == 1)
@@ -328,22 +328,22 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
       }
       offset += amt;
       buf = (char *) realloc(buf, offset+block_size);
-      if (buf == NULL)
+      if (buf == ::null())
          return GEOIP_OUT_OF_MEMORY_ERR;
    }
 
    compr = strstr(buf, "\r\n\r\n") + 4;
    comprLen = (uint32_t) (offset + buf - compr);
 
-   if (strstr(compr, "License Key Invalid") != NULL) {
+   if (strstr(compr, "License Key Invalid") != ::null()) {
       if (verbose == 1)
          GeoIP_printf(f,"Failed\n");
       free(buf);
       return GEOIP_LICENSE_KEY_INVALID_ERR;
-   } else if (strstr(compr, "Invalid product ID or subscription expired") != NULL){
+   } else if (strstr(compr, "Invalid product ID or subscription expired") != ::null()){
       free(buf);
       return GEOIP_PRODUCT_ID_INVALID_ERR;
-   } else if (strstr(compr, "No new updates available") != NULL) {
+   } else if (strstr(compr, "No new updates available") != ::null()) {
       free(buf);
       return GEOIP_NO_NEW_UPDATES;
    }
@@ -353,7 +353,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
 
    /* save gzip file */
    file_path_gz = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 4));
-   if (file_path_gz == NULL)
+   if (file_path_gz == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
    strcpy(file_path_gz,GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    strcat(file_path_gz,".gz");
@@ -362,7 +362,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    }
    comp_fh = fopen(file_path_gz, "wb");
 
-   if(comp_fh == NULL) {
+   if(comp_fh == ::null()) {
       free(file_path_gz);
       free(buf);
       return GEOIP_GZIP_IO_ERR;
@@ -384,13 +384,13 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    /* uncompress gzip file */
    gz_fh = gzopen(file_path_gz, "rb");
    file_path_test = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
-   if (file_path_test == NULL)
+   if (file_path_test == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
    strcpy(file_path_test,GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    strcat(file_path_test,".test");
    gi_fh = fopen(file_path_test, "wb");
 
-   if(gi_fh == NULL) {
+   if(gi_fh == ::null()) {
       free(file_path_test);
       return GEOIP_TEST_IO_ERR;
    }
@@ -432,7 +432,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    if (verbose == 1)
       GeoIP_printf(f,"Performing santity checks ... ");
 
-   if (gi == NULL) {
+   if (gi == ::null()) {
       GeoIP_printf(f,"Error opening sanity check database\n");
       return GEOIP_SANITY_OPEN_ERR;
    }
@@ -442,13 +442,13 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    if (verbose == 1)
       GeoIP_printf(f,"database_info  ");
    db_info = GeoIP_database_info(gi);
-   if (db_info == NULL) {
+   if (db_info == ::null()) {
       GeoIP_delete(gi);
       if (verbose == 1)
          GeoIP_printf(f,"FAIL\n");
       return GEOIP_SANITY_INFO_FAIL;
    }
-   if (strstr(db_info, "MaxMind") == NULL) {
+   if (strstr(db_info, "MaxMind") == ::null()) {
       free(db_info);
       GeoIP_delete(gi);
       if (verbose == 1)
@@ -530,7 +530,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
 
    hostlist = GeoIP_get_host_or_proxy();
 
-   if (hostlist == NULL)
+   if (hostlist == ::null())
       return GEOIP_DNS_ERR;
 
    if (hostlist->h_addrtype != AF_INET)
@@ -552,7 +552,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
       return GEOIP_CONNECTION_ERR;
    request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
-   if (request_uri == NULL)
+   if (request_uri == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
 
    /* get the file name from a web page using the product id */
@@ -563,7 +563,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    send(sock, request_uri, (int32_t) strlen(request_uri),0); /* send the request */
    free(request_uri);
    buf = (char *) malloc(sizeof(char) * (block_size+4));
-   if (buf == NULL)
+   if (buf == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
    offset = 0;
    for (;;){
@@ -581,7 +581,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    buf[offset] = 0;
    offset = 0;
    tmpstr = strstr(buf, "\r\n\r\n") + 4;
-   if (tmpstr[0] == '.' || strchr(tmpstr, '/') != NULL) {
+   if (tmpstr[0] == '.' || strchr(tmpstr, '/') != ::null()) {
       free(buf);
       return GEOIP_INVALID_SERVER_RESPONSE;
    }
@@ -595,7 +595,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    _GeoIP_setup_dbfilename();
 
    /* get MD5 of current GeoIP database file */
-   if ((cur_db_fh = fopen (geoipfilename, "rb")) == NULL) {
+   if ((cur_db_fh = fopen (geoipfilename, "rb")) == ::null()) {
     GeoIP_printf(f, NoCurrentDB, geoipfilename);
    } else {
       ::crypto::md5::context ctx(papp);
@@ -615,7 +615,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    if (verbose == 1) {
       GeoIP_printf(f,"MD5 sum of database %s is %s \n",geoipfilename,hex_digest);
    }
-   if (client_ipaddr[0] == NULL) {
+   if (client_ipaddr[0] == ::null()) {
       /* We haven't gotten our IP address yet, so let's request it */
       if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
          free(geoipfilename);
@@ -636,7 +636,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
          return GEOIP_CONNECTION_ERR;
       }
       request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
-      if (request_uri == NULL) {
+      if (request_uri == ::null()) {
          free(geoipfilename);
          return GEOIP_OUT_OF_MEMORY_ERR;
       }
@@ -649,7 +649,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
       }
       free(request_uri);
       buf = (char *) malloc(sizeof(char) * (block_size+1));
-      if (buf == NULL) {
+      if (buf == ::null()) {
          free(geoipfilename);
          return GEOIP_OUT_OF_MEMORY_ERR;
       }
@@ -726,7 +726,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
 
    offset = 0;
    buf = (char *) malloc(sizeof(char) * block_size);
-   if (buf == NULL)
+   if (buf == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
 
    if (verbose == 1)
@@ -744,26 +744,26 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
       }
       offset += amt;
       buf = (char *) realloc(buf, offset+block_size);
-      if (buf == NULL)
+      if (buf == ::null())
          return GEOIP_OUT_OF_MEMORY_ERR;
    }
 
    compr = strstr(buf, "\r\n\r\n") + 4;
    comprLen = (uint32_t) (offset + buf - compr);
 
-   if (strstr(compr, "License Key Invalid") != NULL) {
+   if (strstr(compr, "License Key Invalid") != ::null()) {
       if (verbose == 1)
          GeoIP_printf(f,"Failed\n");
       free(buf);
       return GEOIP_LICENSE_KEY_INVALID_ERR;
-   } else if (strstr(compr, "No new updates available") != NULL) {
+   } else if (strstr(compr, "No new updates available") != ::null()) {
       free(buf);
       GeoIP_printf(f, "%s is up to date, no updates required\n", geoipfilename);
       return GEOIP_NO_NEW_UPDATES;
-   } else if (strstr(compr, "Invalid UserId") != NULL){
+   } else if (strstr(compr, "Invalid UserId") != ::null()){
       free(buf);
       return GEOIP_USER_ID_INVALID_ERR;
-   } else if (strstr(compr, "Invalid product ID or subscription expired") != NULL){
+   } else if (strstr(compr, "Invalid product ID or subscription expired") != ::null()){
       free(buf);
       return GEOIP_PRODUCT_ID_INVALID_ERR;
    }
@@ -776,7 +776,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    /* save gzip file */
    file_path_gz =(char *) malloc(sizeof(char) * (strlen(geoipfilename) + 4));
 
-   if (file_path_gz == NULL)
+   if (file_path_gz == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
    strcpy(file_path_gz,geoipfilename);
    strcat(file_path_gz,".gz");
@@ -785,7 +785,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    }
    comp_fh = fopen(file_path_gz, "wb");
 
-   if(comp_fh == NULL) {
+   if(comp_fh == ::null()) {
       free(file_path_gz);
       free(buf);
       return GEOIP_GZIP_IO_ERR;
@@ -805,14 +805,14 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    }
 
    file_path_test = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
-   if (file_path_test == NULL) {
+   if (file_path_test == ::null()) {
       free(file_path_gz);
       return GEOIP_OUT_OF_MEMORY_ERR;
    }
    strcpy(file_path_test,GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    strcat(file_path_test,".test");
    gi_fh = fopen(file_path_test, "wb");
-   if(gi_fh == NULL) {
+   if(gi_fh == ::null()) {
       free(file_path_test);
       free(file_path_gz);
       return GEOIP_TEST_IO_ERR;
@@ -858,7 +858,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    if (verbose == 1)
       GeoIP_printf(f,"Performing santity checks ... ");
 
-   if (gi == NULL) {
+   if (gi == ::null()) {
       GeoIP_printf(f,"Error opening sanity check database\n");
       return GEOIP_SANITY_OPEN_ERR;
    }
@@ -878,13 +878,13 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
       if (verbose == 1)
          GeoIP_printf(f,"database_info  ");
       db_info = GeoIP_database_info(gi);
-      if (db_info == NULL) {
+      if (db_info == ::null()) {
          GeoIP_delete(gi);
          if (verbose == 1)
             GeoIP_printf(f,"FAIL null\n");
          return GEOIP_SANITY_INFO_FAIL;
       }
-      if (strstr(db_info, "MaxMind") == NULL) {
+      if (strstr(db_info, "MaxMind") == ::null()) {
          free(db_info);
          GeoIP_delete(gi);
          if (verbose == 1)
@@ -922,7 +922,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
        * named GeoIP_region_by_addr */
       GeoIPRegion *r = GeoIP_region_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
-      if (r != NULL) {
+      if (r != ::null()) {
          lookupresult = 1;
          free(r);
       }
@@ -935,7 +935,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
        * named GeoIP_record_by_addr */
       GeoIPRecord *r = GeoIP_record_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
-      if (r != NULL) {
+      if (r != ::null()) {
          lookupresult = 1;
          free(r);
       }
@@ -949,7 +949,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
        * named GeoIP_org_by_addr */
       GeoIPRecord *r = (GeoIPRecord*)GeoIP_org_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
-      if (r != NULL) {
+      if (r != ::null()) {
          lookupresult = 1;
          free(r);
       }

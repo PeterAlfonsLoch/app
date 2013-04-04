@@ -54,7 +54,7 @@ namespace uinteraction
             ::ca::brush_sp      m_brushBody;
 
             point_array m_pointsetBody;
-            base_array < CColorBezier, CColorBezier & > m_colorbezieraOutsideBorder;
+            array < CColorBezier, CColorBezier & > m_colorbezieraOutsideBorder;
          };
 
          CWorkSetDownUpInterface   *   m_pwndframeworkdownupinterface;

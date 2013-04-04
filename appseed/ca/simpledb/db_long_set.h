@@ -54,7 +54,7 @@ public:
       sockets::socket_handler                      m_handler;
       sockets::http_session *                      m_phttpsession;
 
-      ::collection::smart_pointer_array < queue_item >                     m_itema;
+      smart_pointer_array < queue_item >                     m_itema;
 
 
 
@@ -77,7 +77,7 @@ public:
    sockets::http_session *                      m_phttpsession;
 
 
-   ::collection::string_map < item >            m_map;
+   string_map < item >            m_map;
    bool                                         m_bIndexed;
 
    sync_queue *                                 m_pqueue;

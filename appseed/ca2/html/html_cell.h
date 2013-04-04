@@ -67,8 +67,8 @@ namespace html
          
          float m_fWidth;
 
-         count m_iRowSpan;
-         count m_iColSpan;
+         ::count m_iRowSpan;
+         ::count m_iColSpan;
 
 
          table * get_table();

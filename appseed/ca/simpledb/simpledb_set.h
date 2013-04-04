@@ -70,7 +70,7 @@ namespace simpledb
       /* sequence numbers */
       virtual long nextid(const char *seq_name);
       /* sequence numbers */
-      virtual count num_rows();
+      virtual ::count num_rows();
 
       virtual bool bof();
       virtual bool eof();

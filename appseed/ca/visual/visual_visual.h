@@ -37,7 +37,7 @@ namespace visual
 
 
       class imaging * m_pimaging;
-      ::collection::map < e_cursor, e_cursor, cursor *, cursor * > m_cursormap;
+      map < e_cursor, e_cursor, cursor *, cursor * > m_cursormap;
             class ::visual::api *                        m_pvisualapi;
 
 
@@ -65,8 +65,8 @@ namespace visual
       class font_central * m_pfontcentral;
       cursor * set_cursor_file(e_cursor ecursor, const char * psz);
       cursor * set_cursor_matter(e_cursor ecursor, const char * pszMatter);
-      count set_cursor_set_from_matter(const char * pszMatter);
-      count set_cursor_set_from_dir(const char * pszDir);
+      ::count set_cursor_set_from_matter(const char * pszMatter);
+      ::count set_cursor_set_from_dir(const char * pszDir);
       cursor * get_cursor(e_cursor ecursor);
 
 

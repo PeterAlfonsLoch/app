@@ -57,7 +57,7 @@ void point_array::get_bounding_rect(LPRECT lprect) const
 
 }
 
-void point_array::get_bounding_rect(LPRECT lprect, const POINT * lppoint, count count)
+void point_array::get_bounding_rect(LPRECT lprect, const POINT * lppoint, ::count count)
 {
 
    if(count <= 0)
@@ -138,7 +138,7 @@ void pointd_array::get_bounding_rect(LPRECTD lprect) const
 
 }
 
-void pointd_array::get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, count count)
+void pointd_array::get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, ::count count)
 {
 
    if(count <= 0)

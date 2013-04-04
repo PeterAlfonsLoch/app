@@ -62,7 +62,7 @@ namespace user
 
 
       class CLASS_DECL_ca view_map :
-         public ::collection::map < id, id, ::user::view_creator_data *, ::user::view_creator_data * >
+         public map < id, id, ::user::view_creator_data *, ::user::view_creator_data * >
       {
       public:
       };
@@ -76,7 +76,7 @@ namespace user
       virtual ~view_creator();
 
 
-      virtual count get_view_count();
+      virtual ::count get_view_count();
 
       virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
@@ -106,19 +106,19 @@ namespace user
          ::user::view_creator_data * pcreatordata;
          id key;
          POSITION pos = m_viewmap.get_start_position();
-         while(pos != NULL)
+         while(pos != ::null())
          {
             m_viewmap.get_next_assoc(pos, key, pcreatordata);
-            if(pcreatordata->m_pdoc != NULL)
+            if(pcreatordata->m_pdoc != ::null())
             {
                pdoc = dynamic_cast < T * > (pcreatordata->m_pdoc);
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   return pdoc;
                }
             }
          }
-         return NULL;
+         return ::null();
       }
 
 

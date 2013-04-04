@@ -16,7 +16,7 @@ protected:
 
 public:
 
-   count get_size();
+   ::count get_size();
 
    void SetCompareFunction(int32_t fCompare(const char *, const char *));
    void Sort();
@@ -35,12 +35,12 @@ public:
    index add(const char * newElement);
    index add(const string & newElement);
    void push(const string & newElement);
-   count add(const string_array& src);
+   ::count add(const string_array& src);
 
    void copy(const string_array& src);
    string & operator[](index nIndex);
-   void insert_at(index nIndex, const char * newElement, count nCount = 1);
-   void insert_at(index nIndex, const string & newElement, count nCount = 1);
+   void insert_at(index nIndex, const char * newElement, ::count nCount = 1);
+   void insert_at(index nIndex, const string & newElement, ::count nCount = 1);
    void insert_at(index nStartIndex, const string_array & NewArray);
 
    // stringa overrides
@@ -53,7 +53,7 @@ public:
 
 };
 
-inline count str_sort_array::get_size()
+inline ::count str_sort_array::get_size()
 {
    return m_stra.get_size();
 }
@@ -112,7 +112,7 @@ inline void str_sort_array::push(const string & newElement)
    return m_stra.push_back(newElement);
 }
 
-inline count str_sort_array::add(const string_array& src)
+inline ::count str_sort_array::add(const string_array& src)
 {
    m_bSorted = false;
    return m_stra.add(src);
@@ -130,13 +130,13 @@ inline string & str_sort_array::operator[](index nIndex)
    return m_stra.operator[](nIndex);
 }
 
-inline void str_sort_array::insert_at(index nIndex, const char * newElement, count nCount)
+inline void str_sort_array::insert_at(index nIndex, const char * newElement, ::count nCount)
 {
    m_bSorted = false;
    m_stra.insert_at(nIndex, newElement, nCount);
 }
 
-inline void str_sort_array::insert_at(index nIndex, const string & newElement, count nCount)
+inline void str_sort_array::insert_at(index nIndex, const string & newElement, ::count nCount)
 {
    m_bSorted = false;
    m_stra.insert_at(nIndex, newElement, nCount);

@@ -29,7 +29,7 @@ namespace user
       pitem->m_bOk = false;
    }
 
-   count list_data::_001GetGroupCount()
+   ::count list_data::_001GetGroupCount()
    {
       return -1;
    }

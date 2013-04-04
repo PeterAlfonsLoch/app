@@ -54,7 +54,7 @@ namespace userex
       pitem->m_strText.Format("%02d", pitem->m_iItem);
       pitem->m_bOk = true;
    }
-   count second_list_view::_001GetItemCount()
+   ::count second_list_view::_001GetItemCount()
    {
       return 60;
    }

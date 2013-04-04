@@ -33,10 +33,10 @@ public:
 
 public:
 //#if defined(WIN32) || defined(WIN64)
-	///  \brief		constructor with result value and object count passed (Windows only)
+	///  \brief		constructor with result value and object ::count passed (Windows only)
 	///  \param		value waiting result value as passed by Windows API function
 	///  \param		objectCount number of items in event_collection
-	explicit wait_result(uint32_t value, count objectCount = 1);
+	explicit wait_result(uint32_t value, ::count objectCount = 1);
 //#endif
 	///  \brief		constructor with result value passed
 	///  \param		value waiting result value as passed by Windows API function

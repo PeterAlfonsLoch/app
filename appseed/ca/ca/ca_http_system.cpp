@@ -146,13 +146,13 @@ namespace ca
 
          single_lock sl(&m_mutexPac, true);
 
-         ::collection::string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
+         string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 
-         if(ppair == NULL || (::get_tick_count() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
+         if(ppair == ::null() || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
          {
-            if(ppair != NULL)
+            if(ppair != ::null())
             {
-               delete ppair->m_value;
+               delete ppair->m_element2;
                m_mapPac.remove_key(pszUrl);
             }
 
@@ -174,7 +174,7 @@ namespace ca
 
             if(ppac->m_strAutoConfigScript.is_empty())
             {
-               return NULL;
+               return ::null();
             }
 
             registerFunctions(&ppac->m_js);
@@ -183,14 +183,14 @@ namespace ca
 
             ppair = m_mapPac.PLookup(pszUrl);
 
-            if(ppair == NULL)
-               return NULL;
+            if(ppair == ::null())
+               return ::null();
          }
 
-         if(ppair->m_value->m_strAutoConfigScript.is_empty())
-            return NULL;
+         if(ppair->m_element2->m_strAutoConfigScript.is_empty())
+            return ::null();
 
-         return ppair->m_value;
+         return ppair->m_element2;
 
       }
 
@@ -207,13 +207,13 @@ namespace ca
 
          single_lock sl(&m_mutexProxy, true);
 
-         ::collection::string_map < ::ca::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+         string_map < ::ca::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
-         if(ppair == NULL || (::get_tick_count() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
+         if(ppair == ::null() || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
          {
-            if(ppair != NULL)
+            if(ppair != ::null())
             {
-               delete ppair->m_value;
+               delete ppair->m_element2;
                m_mapPac.remove_key(pszUrl);
             }
 
@@ -231,7 +231,7 @@ namespace ca
 
          }
 
-         return ppair->m_value;
+         return ppair->m_element2;
 
       }
 
@@ -253,7 +253,7 @@ namespace ca
 
          class pac * ppac = get_pac(pszScriptUrl);
 
-         if(ppac == NULL)
+         if(ppac == ::null())
             return false;
 
          string strHost;
@@ -313,7 +313,7 @@ namespace ca
 
          ::ca::http::system::proxy * pproxy = get_proxy(pszUrl);
 
-         if(pproxy == NULL)
+         if(pproxy == ::null())
             return;
 
          if(pproxy->m_bDirect)
@@ -470,7 +470,7 @@ namespace ca
             iPort = 80;
          }
 
-         if(pszVersion == NULL || pszVersion[0] == '\0')
+         if(pszVersion == ::null() || pszVersion[0] == '\0')
          {
             pszVersion = "HTTP/1.1";
          }
@@ -498,7 +498,7 @@ namespace ca
             {
 
 
-               if(papp != NULL)
+               if(papp != ::null())
                {
 
                   string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
@@ -510,7 +510,7 @@ namespace ca
                   if(domainFontopus.m_strRadix == "ca2")
                   {
                      puser = &AppUser(papp);
-                     if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                     if(puser != ::null() && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
                         System.url().string_set(strUrl, "sessid", strSessId);
@@ -520,7 +520,7 @@ namespace ca
                }
 
             }
-            if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+            if(puser != ::null() && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
                System.url().string_set(strUrl, "sessid", strSessId);
@@ -543,7 +543,7 @@ namespace ca
          {
 #ifndef METROWIN
             ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca < ::sockets::ssl_client_context > ();
-            if(pcontext != NULL)
+            if(pcontext != ::null())
             {
                psession->m_spsslclientcontext = pcontext;
             }
@@ -561,14 +561,14 @@ namespace ca
          bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
          if(!psession->open(bConfigProxy))
          {
-/*            if(pestatus != NULL)
+/*            if(pestatus != ::null())
             {
                *pestatus = status_failed;
             }*/
             delete psession;
             uint32_t dwTimeProfile2 = get_tick_count();
             TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
-            return NULL;
+            return ::null();
          }
          uint32_t dw2 = ::get_tick_count();
          TRACE("system::get open time %d\n", dw2 - dw1);
@@ -648,7 +648,7 @@ retry:
          try
          {
 
-            if(psession == NULL || !psession->is_valid())
+            if(psession == ::null() || !psession->is_valid())
             {
 
                bSeemsOk = false;
@@ -669,12 +669,12 @@ retry:
             {
                psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest),
                   set, puser, pszVersion);
-               if(psession == NULL)
-                  return NULL;
+               if(psession == ::null())
+                  return ::null();
             }
             catch(...)
             {
-               return NULL;
+               return ::null();
             }
          }
 
@@ -720,7 +720,7 @@ retry:
             {
 
 
-               if(papp != NULL)
+               if(papp != ::null())
                {
 
                   string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
@@ -732,7 +732,7 @@ retry:
                   if(domainFontopus.m_strRadix == "ca2")
                   {
                      puser = &AppUser(papp);
-                     if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                     if(puser != ::null() && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
                         System.url().string_set(strUrl, "sessid", strSessId);
@@ -742,7 +742,7 @@ retry:
                }
 
             }
-            if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+            if(puser != ::null() && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
                System.url().string_set(strUrl, "sessid", strSessId);
@@ -773,11 +773,11 @@ retry:
             {
                psession->m_pfile = set["file"].ca < ::ca::file >();
             }
-            if(pcookies != NULL && pcookies->get_size() > 0)
+            if(pcookies != ::null() && pcookies->get_size() > 0)
             {
                psession->request().header("Cookie") = pcookies->get_cookie_header();
             }
-            if(puser != NULL && puser->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
+            if(puser != ::null() && puser->m_phttpcookies != ::null() && !(bool)set["disable_ca2_user_cookies"])
             {
                psession->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
             }
@@ -788,7 +788,7 @@ retry:
 
             bool bPost;
             bool bPut;
-            if(set["put"].ca < ::ca::file >() != NULL || set["http_request"] == "PUT")
+            if(set["put"].ca < ::ca::file >() != ::null() || set["http_request"] == "PUT")
             {
                bPost = false;
                bPut = true;
@@ -814,7 +814,7 @@ retry:
             int32_t iIteration = 0;
             ::ca::live_signal keeplive;
 
-            if(papp != NULL)
+            if(papp != ::null())
             {
                keeplive.keep(papp);
                keeplive.keep(&Sess(papp));
@@ -835,7 +835,7 @@ retry:
                {
                   break;
                }
-               if(set["file_out"].ca < ::ca::timeout_file >() != NULL)
+               if(set["file_out"].ca < ::ca::timeout_file >() != ::null())
                {
                   if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
                   {
@@ -847,7 +847,7 @@ retry:
                iIteration++;
             }
 
-            if(set["file_out"].ca < ::ca::timeout_file >() != NULL)
+            if(set["file_out"].ca < ::ca::timeout_file >() != ::null())
             {
                if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
                {
@@ -890,7 +890,7 @@ retry:
                }
             }
 
-            if(pestatus != NULL)
+            if(pestatus != ::null())
             {
                if(iStatusCode == 0)
                {
@@ -919,7 +919,7 @@ retry:
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
-                     return NULL;
+                     return ::null();
                   }
                }
                else
@@ -935,7 +935,7 @@ retry:
          catch(...)
          {
             if(iTry > 8)
-               return NULL;
+               return ::null();
             goto retry;
          }
 
@@ -957,10 +957,10 @@ retry:
 
          ::ca::property_set set(get_app());
 
-         psession = request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
+         psession = request(handler, psession, pszRequest, post, headers, set, ::null(), puser, ::null(), ::null());
 
-         if(psession == NULL)
-            return NULL;
+         if(psession == ::null())
+            return ::null();
 
          memory.allocate(psession->GetDataLength());
 
@@ -1104,7 +1104,7 @@ retry:
             iPort = 80;
          }
 
-         if(pszVersion == NULL || pszVersion[0] == '\0')
+         if(pszVersion == ::null() || pszVersion[0] == '\0')
          {
             pszVersion = "HTTP/1.1";
          }
@@ -1132,7 +1132,7 @@ retry:
             {
 
 
-               if(papp != NULL)
+               if(papp != ::null())
                {
 
                   string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp, 8);
@@ -1144,7 +1144,7 @@ retry:
                   if(domainFontopus.m_strRadix == "ca")
                   {
                      puser = &AppUser(papp);
-                     if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                     if(puser != ::null() && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
                         System.url().string_set(strUrl, "sessid", strSessId);
@@ -1154,7 +1154,7 @@ retry:
                }
 
             }
-            if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+            if(puser != ::null() && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
                System.url().string_set(strUrl, "sessid", strSessId);
@@ -1172,7 +1172,7 @@ retry:
 
          bool bPost;
          bool bPut;
-         if(set["put"].ca < ::ca::file >() != NULL || set["http_request"] == "PUT")
+         if(set["put"].ca < ::ca::file >() != ::null() || set["http_request"] == "PUT")
          {
             bPost = false;
             bPut = true;
@@ -1209,11 +1209,11 @@ retry:
          {
             psocket->m_pfile = set["file"].ca < ::ca::file >();
          }
-         if(pcookies != NULL && pcookies->get_size() > 0)
+         if(pcookies != ::null() && pcookies->get_size() > 0)
          {
             psocket->request().header("Cookie") = pcookies->get_cookie_header();
          }
-         if(puser != NULL && puser->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
+         if(puser != ::null() && puser->m_phttpcookies != ::null() && !(bool)set["disable_ca2_user_cookies"])
          {
             psocket->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
          }
@@ -1229,7 +1229,7 @@ retry:
          {
 #ifdef BSD_STYLE_SOCKETS
             ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca < ::sockets::ssl_client_context > ();
-            if(pcontext != NULL)
+            if(pcontext != ::null())
             {
                psocket->m_spsslclientcontext = pcontext;
             }
@@ -1256,14 +1256,14 @@ retry:
 
          if(!psocket->open(bConfigProxy))
          {
-            if(pestatus != NULL)
+            if(pestatus != ::null())
             {
                *pestatus = status_failed;
             }
             delete psocket;
             uint32_t dwTimeProfile2 = get_tick_count();
             TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
-            return NULL;
+            return ::null();
          }
          uint32_t dw2 = ::get_tick_count();
          TRACE("system::get open time %d\n", dw2 - dw1);
@@ -1275,7 +1275,7 @@ retry:
          if((bool)set["noloop"])
             return psocket;
 
-         if(papp != NULL)
+         if(papp != ::null())
          {
             keeplive.keep(papp);
             keeplive.keep(&Sess(papp));
@@ -1290,7 +1290,7 @@ retry:
             {
                break;
             }
-            if(set["file_out"].ca < ::ca::timeout_file >() != NULL)
+            if(set["file_out"].ca < ::ca::timeout_file >() != ::null())
             {
                if(psocket->m_content_length != ((size_t) -1) && set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize != psocket->m_content_length)
                {
@@ -1319,7 +1319,7 @@ retry:
          string strCookie = psocket->response().cookies().get_cookie_header();
          set["Cookie"] = strCookie;
 
-         if(pestatus != NULL)
+         if(pestatus != ::null())
          {
             int32_t iStatusCode = psocket->outattr("http_status_code");
 #ifdef BSD_STYLE_SOCKETS
@@ -1349,7 +1349,7 @@ retry:
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
-                  return NULL;
+                  return ::null();
                }
             }
             else
@@ -1388,18 +1388,18 @@ retry:
       void system::get(::ca::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
-         if(psignal == NULL)
+         if(psignal == ::null())
          {
             return;
          }
          ::sockets::socket_handler handler(get_app());
          sp(::sockets::http_client_socket) psocket = get(handler, psignal->m_strUrl, psignal->m_setPost, psignal->m_setHeaders, psignal->m_set, psignal->m_pcookies, psignal->m_puser, psignal->m_strVersion, &psignal->m_estatusRet);
-         if(psocket == NULL)
+         if(psocket == ::null())
          {
             psignal->m_bRet = false;
             return;
          }
-         if(psocket->GetDataPtr() != NULL && psocket->GetContentLength() > 0)
+         if(psocket->GetDataPtr() != ::null() && psocket->GetContentLength() > 0)
          {
             psignal->m_memoryRet.set_data((void *) psocket->GetDataPtr(), psocket->GetContentLength());
          }
@@ -1425,7 +1425,7 @@ retry:
       {
          ::sockets::socket_handler handler(get_app());
          sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion);
-         if(psocket == NULL)
+         if(psocket == ::null())
             return false;
 
          ::ca::filesp spfile(get_app());
@@ -1462,7 +1462,7 @@ retry:
          ::ca::property_set headers;
          ::ca::property_set set;
 
-         if(puser == NULL)
+         if(puser == ::null())
          {
             if(!download(pszUrl, pszFile, post, headers, set))
                return false;
@@ -1488,7 +1488,7 @@ retry:
       {
          ::sockets::socket_handler handler(get_app());
          sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
-         if(psocket == NULL)
+         if(psocket == ::null())
             return false;
          memory.allocate(psocket->GetContentLength());
          memcpy(memory.get_data(), psocket->GetDataPtr(), memory.get_size());
@@ -1509,7 +1509,7 @@ retry:
       {
          ::sockets::socket_handler handler(get_app());
          sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
-         if(psocket == NULL)
+         if(psocket == ::null())
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetDataLength());
          headers = psocket->outheaders();
@@ -1532,7 +1532,7 @@ retry:
          ::ca::property_set setPost;
          ::ca::property_set setHeaders;
          ::ca::property_set set;
-         return get(pszUrl, str, setPost, setHeaders, set, NULL, puser);
+         return get(pszUrl, str, setPost, setHeaders, set, ::null(), puser);
       }
 
       string system::get(const char * pszUrl, ::fontopus::user * puser)
@@ -1550,8 +1550,8 @@ retry:
          ::ca::property_set headers;
          ::ca::property_set set;
          set["only_headers"] = true;
-         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
-         if(psocket == NULL)
+         sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, ::null(), puser);
+         if(psocket == ::null())
             return false;
          int32_t iStatusCode = psocket->outattr("http_status_code");
          return iStatusCode == 200;
@@ -1573,7 +1573,7 @@ retry:
          ::sockets::socket_handler handler(get_app());
          set["http_request"] = pszRequest;
          sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
-         if(psocket == NULL)
+         if(psocket == ::null())
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
@@ -1597,7 +1597,7 @@ retry:
          ::ca::property_set setPost;
          ::ca::property_set setHeaders;
          ::ca::property_set set;
-         return request(pszRequest, pszUrl, str, setPost, setHeaders, set, NULL, puser);
+         return request(pszRequest, pszUrl, str, setPost, setHeaders, set, ::null(), puser);
       }
 
       string system::request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser)
@@ -1612,7 +1612,7 @@ retry:
       string system::gmdate(time_t t)
       {
          if(t == 0)
-            t = time(NULL);
+            t = time(::null());
 
          //time_t t = time((time_t *)&iExpire);
          struct tm tp;
@@ -1650,12 +1650,12 @@ retry:
          strUserNameFile = System.dir().appdata(strSection + "_1");
          strPasswordFile = System.dir().appdata(strSection + "_2");
          bool bOk = true;
-         if(!System.crypt().file_get(strUserNameFile, strUserName, NULL, get_app())
+         if(!System.crypt().file_get(strUserNameFile, strUserName, ::null(), get_app())
          || strUserName.is_empty())
          {
             bOk = false;
          }
-         if(!System.crypt().file_get(strPasswordFile, strPassword, NULL, get_app())
+         if(!System.crypt().file_get(strPasswordFile, strPassword, ::null(), get_app())
          || strPassword.is_empty())
          {
             bOk = false;
@@ -1670,8 +1670,8 @@ retry:
             //SPECIFY AUTHENTICATION USERNAME
             if(System.get_auth("system\\::fontopus::user\\proxy_authenticate.xhtml", strUserName, strPassword))
             {
-               System.crypt().file_set(strUserNameFile, strUserName, NULL, get_app());
-               System.crypt().file_set(strPasswordFile, strPassword, NULL, get_app());
+               System.crypt().file_set(strUserNameFile, strUserName, ::null(), get_app());
+               System.crypt().file_set(strPasswordFile, strPassword, ::null(), get_app());
                psocket->m_strUserNameFile = strUserNameFile;
                psocket->m_strPasswordFile = strPasswordFile;
             }
@@ -1694,7 +1694,7 @@ retry:
 
       bool system::put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -1704,7 +1704,7 @@ retry:
          ::ca::property_set set;
          set["put"] = pfile;
          set["noclose"] = false;
-         return System.http().get(pszUrl, str, post, headers, set, NULL, puser);
+         return System.http().get(pszUrl, str, post, headers, set, ::null(), puser);
       }
 
 
@@ -1721,7 +1721,7 @@ retry:
       bool system::put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
       {
 
-         if(puser == NULL)
+         if(puser == ::null())
          {
             puser = &ApplicationUser;
          }
@@ -1731,7 +1731,7 @@ retry:
          ::ca::property_set set;
          set["put"] = pfile;
 
-         return get(pszUrl, strResponse, post, headers, set, NULL, puser);
+         return get(pszUrl, strResponse, post, headers, set, ::null(), puser);
 
       }
 

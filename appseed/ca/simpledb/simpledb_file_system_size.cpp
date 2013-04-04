@@ -28,9 +28,9 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 file_size_table::file_size_table(::ca::application * papp) :
    ca(papp)
 {
-   m_hmap = NULL;
-   m_item.m_pitemParent = NULL;
-   m_pwndServer = NULL;
+   m_hmap = ::null();
+   m_item.m_pitemParent = ::null();
+   m_pwndServer = ::null();
    m_oswindowServer = ::ca::null();
 
 /*   SECURITY_ATTRIBUTES MutexAttributes;
@@ -46,10 +46,10 @@ file_size_table::file_size_table(::ca::application * papp) :
    if ( bInitOk )
    {
       // give the security descriptor a Null Dacl
-      // done using the  "TRUE, (PACL)NULL" here
+      // done using the  "TRUE, (PACL)::null()" here
       bool bSetOk = SetSecurityDescriptorDacl( &SD,
                                             TRUE,
-                                            (PACL)NULL,
+                                            (PACL)::null(),
                                             FALSE );
       if ( bSetOk )
       {
@@ -85,7 +85,7 @@ file_size_table::item::item()
    m_iStep = 0;
    m_bPending = false;
    m_bPendingLs = true;
-   m_pitemParent = NULL;
+   m_pitemParent = ::null();
 }
 
 void file_size_table::item::ls(::ca::application * papp, index & iIteration)
@@ -93,8 +93,8 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
    if(m_bDir)
    {
       stringa               straName;
-      base_array < int64_t, int64_t > iaSize;
-      base_array < bool, bool > baIsDir;
+      array < int64_t, int64_t > iaSize;
+      array < bool, bool > baIsDir;
       if(path().is_empty())
       {
          App(papp).dir().root_ones(straName);
@@ -113,7 +113,7 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
       }
       else
       {
-         App(papp).dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
+         App(papp).dir().ls(path(), ::null(), &straName, &baIsDir, &iaSize);
          for(int32_t i = 0; i < straName.get_size(); i++)
          {
             item item;
@@ -142,9 +142,9 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
 
 string file_size_table::item::path()
 {
-   if(m_pitemParent == NULL)
+   if(m_pitemParent == ::null())
       return m_strName;
-   else if(m_pitemParent->m_pitemParent == NULL)
+   else if(m_pitemParent->m_pitemParent == ::null())
       return m_strName;
    else
       return m_pitemParent->path() + "\\" + m_strName;
@@ -164,14 +164,14 @@ file_size_table::item * file_size_table::item::FindItem(::ca::application * papp
    {
       iFindName = FindName(papp, strPath, iIteration);
       if(iFindName < 0)
-         return NULL;
+         return ::null();
       return m_itema(iFindName);
    }
    else
    {
       iFindName = FindName(papp, strPath.Left(iFind), iIteration);
       if(iFindName < 0)
-         return NULL;
+         return ::null();
       return m_itema[iFindName].FindItem(papp, strPath.Mid(iFind + 1), iIteration);
 
    }
@@ -206,7 +206,7 @@ void file_size_table::item::update_size(::ca::application * papp, index & iItera
          if(m_itema[i].m_bPending || m_itema[i].m_bPendingLs)
             m_bPending = true;
       }
-      if(m_pitemParent != NULL && m_bPending)
+      if(m_pitemParent != ::null() && m_bPending)
          m_pitemParent->m_bPending = true;
    }
 
@@ -254,10 +254,10 @@ bool DBFileSystemSizeSet::get_cache_fs_size(int64_t & i64Size, const char * pszP
    m_table.m_pwnd->get_fs_size(i64Size, pszPath, bPending);
    file_size_table::get_fs_size size;
    FileSystemSizeWnd::size_map::pair * ppair = m_table.m_pwnd->m_map.PLookup(pszPath);
-   if(ppair != NULL)
+   if(ppair != ::null())
    {
-      i64Size     = ppair->m_value.m_iSize;
-      bPending    = ppair->m_value.m_bPending;
+      i64Size     = ppair->m_element2.m_iSize;
+      bPending    = ppair->m_element2.m_bPending;
       return true;
    }
    return  false;
@@ -308,7 +308,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
    }
    string strTitle = System.file().name_(pszPath);
    file_size_table::item * pitem = m_table.m_item.FindItem(get_app(), pszPath, iIteration);
-   if(pitem != NULL)
+   if(pitem != ::null())
    {
       bPending = pitem->m_bPending;
       i64Size = pitem->m_iSize;
@@ -347,9 +347,9 @@ bool FileSystemSizeWnd::CreateClient()
 
    m_bServer = false;
    return m_p->create_message_window("::ca::fontopus::FileSystemSizeWnd::Client");
-/*  ::user::interaction * puiMessage = NULL;
+/*  ::user::interaction * puiMessage = ::null();
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
-   return m_p->create(NULL, "::ca::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
+   return m_p->create(::null(), "::ca::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
 //#else
 
@@ -365,10 +365,10 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create(NULL, "Local\\::ca::fontopus::FileSystemSizeWnd::Server", 0,
+   if(!m_p->create(::null(), "Local\\::ca::fontopus::FileSystemSizeWnd::Server", 0,
       rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), id()))
       return false;
-   m_p->SetTimer(100, 100, NULL);
+   m_p->SetTimer(100, 100, ::null());
    return true;
 
 #else
@@ -386,9 +386,9 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 
    db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
    oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
-   if(oswindow == NULL || ! ::IsWindow(oswindow))
+   if(oswindow == ::null() || ! ::IsWindow(oswindow))
    {
-      if(pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer == NULL)
+      if(pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer == ::null())
       {
          ClientStartServer();
       }
@@ -537,14 +537,14 @@ void FileSystemSizeWnd::ClientStartServer()
    {
       m_dwLastStartTime = get_tick_count();
 
-      simple_shell_launcher launcher(NULL, NULL, System.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), NULL, NULL, SW_HIDE);
+      simple_shell_launcher launcher(::null(), ::null(), System.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), ::null(), ::null(), SW_HIDE);
 
       launcher.execute();
 
 
    }
 
-   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\::ca::fontopus::FileSystemSizeWnd::Server");
+   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, ::null(), ::null(), "Local\\::ca::fontopus::FileSystemSizeWnd::Server");
 
 #else
 

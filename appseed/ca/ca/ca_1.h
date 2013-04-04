@@ -67,7 +67,7 @@ class CDockContext;                     // for dragging control bars
 
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
-                           // lParam = lpszOther (or NULL)
+                           // lParam = lpszOther (or ::null())
 #define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
 #define WM_COMMANDHELP      0x0365  // lResult = TRUE/FALSE,

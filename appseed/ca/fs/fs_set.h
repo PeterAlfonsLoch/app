@@ -11,14 +11,14 @@ namespace fs
    public:
 
       spa(data)                                 m_spafsdata;
-      ::collection::string_map < data * >       m_fsdatamap;
+      string_map < data * >       m_fsdatamap;
 
 
       set(::ca::application * papp);
       virtual ~set();
 
    
-      ::collection::string_map < data * > &     fsmap();
+      string_map < data * > &     fsmap();
       spa(data) &                               fsa();
       
 

@@ -188,7 +188,7 @@ namespace user
       {
          point ptViewportOrg = pdc->GetViewportOrg();
          pdc->set_color(m_crText);
-         base_array < size > sizea;
+         array < size > sizea;
          m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
          index x = 0;
          index right = (index) rectClient.right;
@@ -689,7 +689,7 @@ namespace user
    }
 
 
-   count list::_001GetColumnCount()
+   ::count list::_001GetColumnCount()
    {
       return m_columna.VisibleGetCount();
    }
@@ -1237,7 +1237,7 @@ namespace user
    }
 
 
-   count list::_001GetItemCount()
+   ::count list::_001GetItemCount()
    {
       if(m_pdata != NULL)
       {
@@ -1248,7 +1248,7 @@ namespace user
    }
 
 
-   count list::_001GetGroupCount()
+   ::count list::_001GetGroupCount()
    {
       if(m_pdata != NULL)
       {
@@ -1289,7 +1289,7 @@ namespace user
       }
    }
 
-   count list::_001CalcDisplayItemCount()
+   ::count list::_001CalcDisplayItemCount()
    {
       if(m_eview == ViewIcon)
       {
@@ -2675,7 +2675,7 @@ namespace user
    return m_iItemStart + iItemIndex;
    }*/
 
-   count list::range::get_item_count() const
+   ::count list::range::get_item_count() const
    {
       return m_itemrangea.get_size();
       /*   index iCount = 0;
@@ -2694,7 +2694,7 @@ namespace user
       return m_itemrangea.element_at(iItem);
    }
 
-   count list::_001GetSelectedItemCount()
+   ::count list::_001GetSelectedItemCount()
    {
       return m_rangeSelection.get_item_count();
    }
@@ -2954,7 +2954,7 @@ namespace user
       column.m_iOrder = this->get_size();
       column.m_pcontainer = this;
 
-      index index = ::collection::smart_pointer_array < list_column >::add(new list_column(column));
+      index index = smart_pointer_array < list_column >::add(new list_column(column));
 
       OnChange();
 
@@ -2965,11 +2965,11 @@ namespace user
 
    void list_column_array::remove_all()
    {
-      ::collection::smart_pointer_array < list_column >::remove_all(),
+      smart_pointer_array < list_column >::remove_all(),
          OnChange();
    }
 
-   count list_column_array::get_count()
+   ::count list_column_array::get_count()
    {
       return this->get_size();
    }
@@ -3032,7 +3032,7 @@ namespace user
       OnChange();
    }
 
-   count list_column_array::VisibleGetCount()
+   ::count list_column_array::VisibleGetCount()
    {
       index iCount = 0;
       for(index i = 0; i < this->get_size(); i++)
@@ -3044,7 +3044,7 @@ namespace user
       return iCount;
    }
 
-   count list_column_array::NonVisibleGetCount()
+   ::count list_column_array::NonVisibleGetCount()
    {
       index iCount = 0;
       for(index i = 0; i < this->get_size(); i++)
@@ -3804,7 +3804,7 @@ namespace user
       ::ca::font * pfont = _001GetFont();
       ::ca::memory_graphics pdc(get_app());
       pdc->SelectObject(pfont);
-      base_array < size > sizea;
+      array < size > sizea;
       m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
       rect rectClient;
       GetClientRect(rectClient);
@@ -4408,12 +4408,12 @@ namespace user
       }
    }
 
-   void list::FilterInclude(int_array & base_array)
+   void list::FilterInclude(int_array & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
-      for(index i = 0; i < base_array.get_size() ; i++)
+      for(index i = 0; i < array.get_size() ; i++)
       {
-         FilterInclude(base_array[i]);
+         FilterInclude(array[i]);
       }
    }
 
@@ -4549,7 +4549,7 @@ namespace user
          return;
       if(m_eview != ViewIcon)
       {
-         ::sort::QuickSort(m_listlayout.m_iaDisplayToStrict, this, (::sort::compare_interface::_FUNCTION_Compare) &::user::list::_001Compare);
+         ::sort::quick_sort(m_listlayout.m_iaDisplayToStrict, this, (::sort::compare_interface::_FUNCTION_Compare) &::user::list::_001Compare);
       }
       else
       {

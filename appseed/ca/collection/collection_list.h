@@ -1,7 +1,5 @@
 #pragma once
 
-namespace collection
-{
 
    template<class TYPE, class ARG_TYPE = const TYPE&>
    class list :
@@ -28,7 +26,7 @@ namespace collection
          iterator()
          {
             m_pos = 0;
-            m_plist = NULL;
+            m_plist = ::null();
          }
 
          iterator(POSITION i, list * plist)
@@ -79,7 +77,7 @@ namespace collection
          iterator & operator ++()
          {
          
-            if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+            if(m_pos == ::null() || m_pos == m_plist->get_tail_position())
                return * this;
 
             m_plist->get_next(m_pos);
@@ -91,7 +89,7 @@ namespace collection
          iterator & operator +(int32_t i)
          {
 
-            while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+            while(m_pos != ::null() && m_pos != m_plist->get_tail_position() && i > 0)
             {
 
                i--;
@@ -106,7 +104,7 @@ namespace collection
          iterator & operator --()
          {
 
-            if(m_pos == NULL || m_pos == m_plist->get_head_position())
+            if(m_pos == ::null() || m_pos == m_plist->get_head_position())
                return * this;
 
             m_plist->get_previous(m_pos);
@@ -118,7 +116,7 @@ namespace collection
          iterator & operator -(int32_t i)
          {
 
-            while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+            while(m_pos != ::null() && m_pos != m_plist->get_head_position() && i > 0)
             {
                i--;
                m_plist->get_previous(m_pos);
@@ -142,7 +140,7 @@ namespace collection
          const_iterator()
          {
             m_pos = 0;
-            m_plist = NULL;
+            m_plist = ::null();
          }
 
          const_iterator(POSITION i, const list * plist)
@@ -193,7 +191,7 @@ namespace collection
          const_iterator & operator ++()
          {
          
-            if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+            if(m_pos == ::null() || m_pos == m_plist->get_tail_position())
                return * this;
 
             m_plist->get_next(m_pos);
@@ -205,7 +203,7 @@ namespace collection
          const_iterator & operator +(int32_t i)
          {
 
-            while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+            while(m_pos != ::null() && m_pos != m_plist->get_tail_position() && i > 0)
             {
 
                i--;
@@ -220,7 +218,7 @@ namespace collection
          const_iterator & operator --()
          {
 
-            if(m_pos == NULL || m_pos == m_plist->get_head_position())
+            if(m_pos == ::null() || m_pos == m_plist->get_head_position())
                return * this;
 
             m_plist->get_previous(m_pos);
@@ -232,7 +230,7 @@ namespace collection
          const_iterator & operator -(int32_t i)
          {
 
-            while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+            while(m_pos != ::null() && m_pos != m_plist->get_head_position() && i > 0)
             {
                i--;
                m_plist->get_previous(m_pos);
@@ -253,7 +251,7 @@ namespace collection
 
       iterator end()
       {
-         return iterator(NULL, this);
+         return iterator(::null(), this);
       }
 
       const_iterator begin() const
@@ -264,20 +262,20 @@ namespace collection
 
       const_iterator end() const
       {
-         return const_iterator(NULL, this);
+         return const_iterator(::null(), this);
       }
 
 
-      list(count nBlockSize = 10);
+      list(::count nBlockSize = 10);
       list(const class list & l);
 
    // Attributes (head and tail)
-      // count of elements
-      count get_count() const;
-      count get_size() const;
-      count size() const;
-      bool is_empty(count countMinimum = 1) const;
-      bool has_elements(count countMinimum = 1) const;
+      // ::count of elements
+      ::count get_count() const;
+      ::count get_size() const;
+      ::count size() const;
+      bool is_empty(::count countMinimum = 1) const;
+      bool has_elements(::count countMinimum = 1) const;
 
       // peek at head or tail
       TYPE& get_head();
@@ -329,10 +327,10 @@ namespace collection
       void swap(POSITION position1, POSITION position2);
 
       // helper functions (note: O(n) speed)
-      POSITION find(ARG_TYPE searchValue, POSITION startAfter = NULL) const;
-         // defaults to starting at the HEAD, return NULL if not found
+      POSITION find(ARG_TYPE searchValue, POSITION startAfter = ::null()) const;
+         // defaults to starting at the HEAD, return ::null() if not found
       POSITION find_index(index nIndex) const;
-         // get the 'nIndex'th element (may return NULL)
+         // get the 'nIndex'th element (may return ::null())
       index position_index(POSITION pos) const;
          // get the 'nIndex' of the position (may return -1)
 
@@ -342,10 +340,10 @@ namespace collection
    protected:
       node* m_pnodeHead;
       node* m_pnodeTail;
-      count m_nCount;
+      ::count m_nCount;
       node* m_pnodeFree;
       struct plex* m_pBlocks;
-      count m_nBlockSize;
+      ::count m_nBlockSize;
 
       node* NewNode(node*, node*);
       void FreeNode(node*);
@@ -361,50 +359,50 @@ namespace collection
    // list<TYPE, ARG_TYPE> inline functions
 
 template<class TYPE, class ARG_TYPE>
-inline count list<TYPE, ARG_TYPE>::get_count() const
+inline ::count list<TYPE, ARG_TYPE>::get_count() const
 {
    return m_nCount;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline count list<TYPE, ARG_TYPE>::get_size() const
+inline ::count list<TYPE, ARG_TYPE>::get_size() const
 {
    return m_nCount;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline count list<TYPE, ARG_TYPE>::size() const
+inline ::count list<TYPE, ARG_TYPE>::size() const
 {
    return m_nCount;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::is_empty(count countMinimum) const
+inline bool list<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
 {
    return m_nCount < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
+inline bool list<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
 {
    return m_nCount >= countMinimum;
 }
 
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_head()
-      { ASSERT(m_pnodeHead != NULL);
+      { ASSERT(m_pnodeHead != ::null());
          return m_pnodeHead->data; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_head() const
-      { ASSERT(m_pnodeHead != NULL);
+      { ASSERT(m_pnodeHead != ::null());
          return m_pnodeHead->data; }
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_tail()
-      { ASSERT(m_pnodeTail != NULL);
+      { ASSERT(m_pnodeTail != ::null());
          return m_pnodeTail->data; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_tail() const
-      { ASSERT(m_pnodeTail != NULL);
+      { ASSERT(m_pnodeTail != ::null());
          return m_pnodeTail->data; }
    template<class TYPE, class ARG_TYPE>
    inline POSITION list<TYPE, ARG_TYPE>::get_head_position() const
@@ -473,15 +471,15 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          pNode->data = newElement; }
 
    template<class TYPE, class ARG_TYPE>
-   list<TYPE, ARG_TYPE>::list(count nBlockSize)
+   list<TYPE, ARG_TYPE>::list(::count nBlockSize)
    {
       ASSERT(nBlockSize > 0);
 
       m_nCount          = 0;
-      m_pnodeHead       = NULL;
-      m_pnodeTail       = NULL;
-      m_pnodeFree       = NULL;
-      m_pBlocks         = NULL;
+      m_pnodeHead       = ::null();
+      m_pnodeTail       = ::null();
+      m_pnodeFree       = ::null();
+      m_pBlocks         = ::null();
       m_nBlockSize      = nBlockSize;
    }
 
@@ -490,15 +488,15 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       
       m_nCount          = 0;
-      m_pnodeHead       = NULL;
-      m_pnodeTail       = NULL;
-      m_pnodeFree       = NULL;
-      m_pBlocks         = NULL;
+      m_pnodeHead       = ::null();
+      m_pnodeTail       = ::null();
+      m_pnodeFree       = ::null();
+      m_pBlocks         = ::null();
       m_nBlockSize      = l.m_nBlockSize;
 
       POSITION pos      = l.get_head_position();
 
-      while(pos != NULL)
+      while(pos != ::null())
       {
          add_tail(const_cast < TYPE & > (l.get_next(pos)));
       }
@@ -512,13 +510,13 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
 
       // destroy elements
       node* pNode;
-      for (pNode = m_pnodeHead; pNode != NULL; pNode = pNode->pNext)
+      for (pNode = m_pnodeHead; pNode != ::null(); pNode = pNode->pNext)
          pNode->data.~TYPE();
 
       m_nCount = 0;
-      m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
+      m_pnodeHead = m_pnodeTail = m_pnodeFree = ::null();
       m_pBlocks->FreeDataChain();
-      m_pBlocks = NULL;
+      m_pBlocks = ::null();
    }
 
    template<class TYPE, class ARG_TYPE>
@@ -555,7 +553,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    typename list<TYPE, ARG_TYPE>::node *
    list<TYPE, ARG_TYPE>::NewNode(node* pPrev, node* pNext)
    {
-      if (m_pnodeFree == NULL)
+      if (m_pnodeFree == ::null())
       {
          // add another block
          plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize, sizeof(node));
@@ -570,7 +568,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
             m_pnodeFree = pNode;
          }
       }
-      ENSURE(m_pnodeFree != NULL);  // we must have something
+      ENSURE(m_pnodeFree != ::null());  // we must have something
 
       list::node* pNode = m_pnodeFree;
       m_pnodeFree = m_pnodeFree->pNext;
@@ -604,9 +602,9 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      node* pNewNode = NewNode(NULL, m_pnodeHead);
+      node* pNewNode = NewNode(::null(), m_pnodeHead);
       pNewNode->data = newElement;
-      if (m_pnodeHead != NULL)
+      if (m_pnodeHead != ::null())
          m_pnodeHead->pPrev = pNewNode;
       else
          m_pnodeTail = pNewNode;
@@ -619,9 +617,9 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      node* pNewNode = NewNode(m_pnodeTail, NULL);
+      node* pNewNode = NewNode(m_pnodeTail, ::null());
       pNewNode->data = newElement;
-      if (m_pnodeTail != NULL)
+      if (m_pnodeTail != ::null())
          m_pnodeTail->pNext = pNewNode;
       else
          m_pnodeHead = pNewNode;
@@ -640,12 +638,12 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      ENSURE(pNewList != NULL);
+      ENSURE(pNewList != ::null());
       ASSERT_VALID(pNewList);
 
       // add a list of same elements to head (maintain order)
       POSITION pos = pNewList->get_tail_position();
-      while (pos != NULL)
+      while (pos != ::null())
          add_head(pNewList->get_previous(pos));
    }
 
@@ -653,12 +651,12 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    void list<TYPE, ARG_TYPE>::add_tail(list* pNewList)
    {
       ASSERT_VALID(this);
-      ENSURE(pNewList != NULL);
+      ENSURE(pNewList != ::null());
       ASSERT_VALID(pNewList);
 
       // add a list of same elements
       POSITION pos = pNewList->get_head_position();
-      while (pos != NULL)
+      while (pos != ::null())
          add_tail(pNewList->get_next(pos));
    }
 
@@ -666,17 +664,17 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    TYPE list<TYPE, ARG_TYPE>::remove_head()
    {
       ASSERT_VALID(this);
-      ASSERT(m_pnodeHead != NULL);  // don't call on is_empty list !!!
+      ASSERT(m_pnodeHead != ::null());  // don't call on is_empty list !!!
       ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
       node* pOldNode = m_pnodeHead;
       TYPE returnValue = pOldNode->data;
 
       m_pnodeHead = pOldNode->pNext;
-      if (m_pnodeHead != NULL)
-         m_pnodeHead->pPrev = NULL;
+      if (m_pnodeHead != ::null())
+         m_pnodeHead->pPrev = ::null();
       else
-         m_pnodeTail = NULL;
+         m_pnodeTail = ::null();
       FreeNode(pOldNode);
       return returnValue;
    }
@@ -685,17 +683,17 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    TYPE list<TYPE, ARG_TYPE>::remove_tail()
    {
       ASSERT_VALID(this);
-      ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
+      ASSERT(m_pnodeTail != ::null());  // don't call on is_empty list !!!
       ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
       node* pOldNode = m_pnodeTail;
       TYPE returnValue = pOldNode->data;
 
       m_pnodeTail = pOldNode->pPrev;
-      if (m_pnodeTail != NULL)
-         m_pnodeTail->pNext = NULL;
+      if (m_pnodeTail != ::null())
+         m_pnodeTail->pNext = ::null();
       else
-         m_pnodeHead = NULL;
+         m_pnodeHead = ::null();
       FreeNode(pOldNode);
       return returnValue;
    }
@@ -705,7 +703,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      if (position == NULL)
+      if (position == ::null())
          return add_head(newElement); // insert before nothing -> head of the list
 
       // Insert it before position
@@ -713,7 +711,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       node* pNewNode = NewNode(pOldNode->pPrev, pOldNode);
       pNewNode->data = newElement;
 
-      if (pOldNode->pPrev != NULL)
+      if (pOldNode->pPrev != ::null())
       {
          ASSERT(__is_valid_address(pOldNode->pPrev, sizeof(node)));
          pOldNode->pPrev->pNext = pNewNode;
@@ -732,7 +730,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      if (position == NULL)
+      if (position == ::null())
          return add_tail(newElement); // insert after nothing -> tail of the list
 
       // Insert it before position
@@ -741,7 +739,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       node* pNewNode = NewNode(pOldNode, pOldNode->pNext);
       pNewNode->data = newElement;
 
-      if (pOldNode->pNext != NULL)
+      if (pOldNode->pNext != ::null())
       {
          ASSERT(__is_valid_address(pOldNode->pNext, sizeof(node)));
          pOldNode->pNext->pPrev = pNewNode;
@@ -760,9 +758,9 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      if(position1 == NULL)
+      if(position1 == ::null())
       {
-         if(position2 == NULL)
+         if(position2 == ::null())
          {
             return;
          }
@@ -775,21 +773,21 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
                {
                   m_pnodeTail = pnode->pPrev;
                }
-               if(pnode->pPrev != NULL)
+               if(pnode->pPrev != ::null())
                {
                   pnode->pPrev->pNext = pnode->pNext;
                }
-               if(pnode->pNext != NULL)
+               if(pnode->pNext != ::null())
                {
                   pnode->pNext->pPrev = pnode->pPrev;
                }
-               pnode->pPrev = NULL;
+               pnode->pPrev = ::null();
                pnode->pNext = m_pnodeHead;
                m_pnodeHead = pnode;
             }
          }
       }
-      else if(position2 == NULL)
+      else if(position2 == ::null())
       {
          node * pnode = (node *) position1;
          if(pnode != m_pnodeTail)
@@ -798,15 +796,15 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
             {
                m_pnodeHead = pnode->pNext;
             }
-            if(pnode->pNext != NULL)
+            if(pnode->pNext != ::null())
             {
                pnode->pPrev->pPrev = pnode->pPrev;
             }
-            if(pnode->pNext != NULL)
+            if(pnode->pNext != ::null())
             {
                pnode->pPrev->pNext = pnode->pNext;
             }
-            pnode->pNext = NULL;
+            pnode->pNext = ::null();
             pnode->pPrev = m_pnodeTail;
             m_pnodeTail = pnode;
          }
@@ -817,19 +815,19 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          node * pnode2 = (node *) position2;
          node * pnodeSwapPrev = pnode1->pPrev;
          node * pnodeSwapNext = pnode1->pNext;
-         if(pnode1->pPrev != NULL)
+         if(pnode1->pPrev != ::null())
          {
             pnode1->pPrev->pNext = pnode2;
          }
-         if(pnode1->pNext != NULL)
+         if(pnode1->pNext != ::null())
          {
             pnode1->pNext->pPrev = pnode2;
          }
-         if(pnode2->pPrev != NULL)
+         if(pnode2->pPrev != ::null())
          {
             pnode2->pPrev->pNext = pnode1;
          }
-         if(pnode2->pNext != NULL)
+         if(pnode2->pNext != ::null())
          {
             pnode2->pNext->pPrev = pnode1;
          }
@@ -894,7 +892,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       ASSERT_VALID(this);
 
       if (nIndex >= m_nCount || nIndex < 0)
-         return NULL;  // went too far
+         return ::null();  // went too far
 
       node* pNode = m_pnodeHead;
       while (nIndex--)
@@ -912,7 +910,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
 
       node* pnode = m_pnodeHead;
       index i = 0;
-      while(pnode != NULL)
+      while(pnode != ::null())
       {
          if((node *) pos == pnode)
             return i;
@@ -929,7 +927,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       ASSERT_VALID(this);
 
       node* pNode = (node*) startAfter;
-      if (pNode == NULL)
+      if (pNode == ::null())
       {
          pNode = m_pnodeHead;  // start at head
       }
@@ -939,10 +937,10 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          pNode = pNode->pNext;  // start after the one specified
       }
 
-      for (; pNode != NULL; pNode = pNode->pNext)
+      for (; pNode != ::null(); pNode = pNode->pNext)
          if (::ca::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
             return (POSITION)pNode;
-      return NULL;
+      return ::null();
    }
    /*
 
@@ -956,7 +954,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       if (ar.IsStoring())
       {
          ar.WriteCount(m_nCount);
-         for (node* pNode = m_pnodeHead; pNode != NULL; pNode = pNode->pNext)
+         for (node* pNode = m_pnodeHead; pNode != ::null(); pNode = pNode->pNext)
          {
             ASSERT(__is_valid_address(pNode, sizeof(node)));
             TYPE* pData;
@@ -989,7 +987,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       if (dumpcontext.GetDepth() > 0)
       {
          POSITION pos = get_head_position();
-         while (pos != NULL)
+         while (pos != ::null())
          {
             TYPE temp[1];
             temp[0] = ((list*)this)->get_next(pos);
@@ -1009,8 +1007,8 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       if (m_nCount == 0)
       {
          // is_empty list
-         ASSERT(m_pnodeHead == NULL);
-         ASSERT(m_pnodeTail == NULL);
+         ASSERT(m_pnodeHead == ::null());
+         ASSERT(m_pnodeTail == ::null());
       }
       else
       {
@@ -1029,12 +1027,10 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          remove_all();
          m_nBlockSize = l.m_nBlockSize;
          POSITION pos = l.get_head_position();
-         while(pos != NULL)
+         while(pos != ::null())
          {
             add_tail(const_cast < TYPE & > (l.get_next(pos)));
          }
       }
       return *this;
    }
-
-} // namespace collection

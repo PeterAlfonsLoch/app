@@ -7,7 +7,7 @@ namespace ca
       ca(papp),
       data_container(papp)
    {
-      m_pitem = NULL;
+      m_pitem = ::null();
    }
 
    tree::~tree()
@@ -23,13 +23,13 @@ namespace ca
    tree_item * tree::find(tree_item_data * pitemdata, index i)
    {
       if(i < 0)
-         return NULL;
-      if(pitemdata == NULL)
-         return NULL;
+         return ::null();
+      if(pitemdata == ::null())
+         return ::null();
       if(pitemdata->get_tree_data() != get_data())
-         return NULL;
+         return ::null();
       ::ca::tree_item * pitem = m_pitem;
-      for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
+      for(; pitem != ::null(); pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem->m_pitemdata == pitemdata)
          {
@@ -38,18 +38,18 @@ namespace ca
                return pitem;
          }
       }
-      return NULL;
+      return ::null();
    }
 
    bool tree::contains(tree_item_data * pitemdata)
    {
-      return find(pitemdata) != NULL;
+      return find(pitemdata) != ::null();
    }
 
    bool tree::contains(tree_item * pitemParam)
    {
       ::ca::tree_item * pitem = m_pitem;
-      for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
+      for(; pitem != ::null(); pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem == pitemParam)
             return true;
@@ -65,14 +65,14 @@ namespace ca
    bool tree::add_selection(tree_item_data * pitemdata, index i)
    {
       tree_item * pitem = find(pitemdata, i);
-      if(pitem == NULL)
+      if(pitem == ::null())
          return false;
       return add_selection(pitem);
    }
 
-   count tree::add_selection(tree_item_ptr_array & itemptra)
+   ::count tree::add_selection(tree_item_ptr_array & itemptra)
    {
-      count count = 0;
+      ::count count = 0;
       for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
          if(add_selection(itemptra[i]))
@@ -91,14 +91,14 @@ namespace ca
    bool tree::set_selection(tree_item_data * pitemdata, index i)
    {
       tree_item * pitem = find(pitemdata, i);
-      if(pitem == NULL)
+      if(pitem == ::null())
          return false;
       return set_selection(pitem);
    }
 
-   count tree::set_selection(tree_item_ptr_array & itemptra)
+   ::count tree::set_selection(tree_item_ptr_array & itemptra)
    {
-      count count = 0;
+      ::count count = 0;
       for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
          if(contains(itemptra[i]) && m_itemptraSelected.add_unique(itemptra[i]))
@@ -120,14 +120,14 @@ namespace ca
    bool tree::remove_selection(tree_item_data * pitemdata, index i)
    {
       tree_item * pitem = find(pitemdata, i);
-      if(pitem == NULL)
+      if(pitem == ::null())
          return false;
       return remove_selection(pitem);
    }
 
-   count tree::remove_selection(tree_item_ptr_array & itemptra)
+   ::count tree::remove_selection(tree_item_ptr_array & itemptra)
    {
-      count count = 0;
+      ::count count = 0;
       for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
          if(m_itemptraSelected.remove(itemptra[i]))
@@ -141,7 +141,7 @@ namespace ca
       return m_itemptraSelected.remove(pitem) >= 0;
    }
 
-   count tree::clear_selection()
+   ::count tree::clear_selection()
    {
       return m_itemptraSelected.remove_all();
    }
@@ -154,9 +154,9 @@ namespace ca
 
    bool tree::hover(tree_item * pitem)
    {
-      if(pitem == NULL)
+      if(pitem == ::null())
       {
-         m_pitemHover = NULL;
+         m_pitemHover = ::null();
          return true;
       }
       if(!contains(pitem))
@@ -171,8 +171,8 @@ namespace ca
 
    bool tree::is_selected(tree_item_data * pitemdata)
    {
-      if(pitemdata == NULL)
-         return NULL;
+      if(pitemdata == ::null())
+         return false;
       if(pitemdata->get_tree_data() != get_data())
          return false;
       for(int32_t i = 0; i < m_itemptraSelected.get_count(); i++)
@@ -185,16 +185,16 @@ namespace ca
 
    bool tree::is_hover(tree_item * pitem)
    {
-      return pitem != NULL && m_pitemHover == pitem;
+      return pitem != ::null() && m_pitemHover == pitem;
    }
 
    bool tree::is_hover(tree_item_data * pitemdata)
    {
-      if(pitemdata == NULL)
-         return NULL;
+      if(pitemdata == ::null())
+         return false;
       if(pitemdata->get_tree_data() != get_data())
          return false;
-      if(m_pitemHover == NULL)
+      if(m_pitemHover == ::null())
          return false;
       if(m_pitemHover->m_pitemdata != pitemdata)
          return false;
@@ -205,7 +205,7 @@ namespace ca
    {
       if(*piLevel) *piLevel = 0;
       ::ca::tree_item * pitem = get_base_item();
-      while(pitem != NULL && iIndex >= 0)
+      while(pitem != ::null() && iIndex >= 0)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
          iIndex--;
@@ -217,9 +217,9 @@ namespace ca
    index tree::get_proper_item_index(::ca::tree_item * pitemParam, index * piLevel)
    {
       int32_t iIndex = 0;
-      if(piLevel != NULL) *piLevel = 0;
+      if(piLevel != ::null()) *piLevel = 0;
       ::ca::tree_item * pitem = get_base_item();
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
          if(pitem == pitemParam)
@@ -229,7 +229,7 @@ namespace ca
       return -1;
    }
 
-   count tree::get_proper_item_count()
+   ::count tree::get_proper_item_count()
    {
       return get_base_item()->get_proper_item_count();
    }
@@ -238,10 +238,10 @@ namespace ca
 
    bool tree::initialize()
    {
-      if(m_pitem != NULL)
+      if(m_pitem != ::null())
          return true;
       m_pitem = allocate_item();
-      if(m_pitem == NULL)
+      if(m_pitem == ::null())
          return false;
       m_pitem->m_dwState |= ::ca::tree_item_state_expandable;
       m_pitem->m_dwState |= ::ca::tree_item_state_expanded;
@@ -253,10 +253,10 @@ namespace ca
 
    bool tree::finalize()
    {
-      if(m_pitem != NULL)
+      if(m_pitem != ::null())
       {
          delete_item(m_pitem);
-         m_pitem = NULL;
+         m_pitem = ::null();
       }
       return true;
    }
@@ -270,14 +270,14 @@ namespace ca
    ::ca::tree_item * tree::insert_item(::ca::tree_item_data * pitemdataNew, ERelative erelativeNewItem, ::ca::tree_item * pitemRelative)
    {
       if(erelativeNewItem == RelativeReplace)
-         return NULL;
+         return ::null();
       ::ca::tree_item * pitemNew = allocate_item();
-      if(pitemNew == NULL)
-         return NULL;
+      if(pitemNew == ::null())
+         return ::null();
       if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
       {
          delete_item(pitemNew);
-         return NULL;
+         return ::null();
       }
       pitemNew->m_pitemdata = pitemdataNew;
       return pitemNew;
@@ -286,16 +286,16 @@ namespace ca
    ::ca::tree_item * tree::create_item(::ca::tree_item * pitemRelative, ERelative erelativeNewItem)
    {
       if(erelativeNewItem == RelativeReplace)
-         return NULL;
+         return ::null();
       ::ca::tree_item * pitemNew = allocate_item();
-      if(pitemNew == NULL)
-         return NULL;
+      if(pitemNew == ::null())
+         return ::null();
       if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
       {
          delete_item(pitemNew);
-         return NULL;
+         return ::null();
       }
-      if(get_data() != NULL)
+      if(get_data() != ::null())
       {
          pitemNew->m_pitemdata = get_data()->_allocate_item();
       }
@@ -305,7 +305,7 @@ namespace ca
 
    bool tree::insert_item(::ca::tree_item * pitemNew, ERelative erelativeNewItem, ::ca::tree_item * pitemRelative)
    {
-      if(pitemNew == NULL)
+      if(pitemNew == ::null())
          return false;
       if(!contains(pitemRelative))
          return false;
@@ -324,7 +324,7 @@ namespace ca
       {
       case RelativeFirstChild:
          {
-            if(pitemRelative->m_pchild == NULL)
+            if(pitemRelative->m_pchild == ::null())
             {
                pitemRelative->m_pchild      = pitemNew;
 
@@ -345,7 +345,7 @@ namespace ca
          break;
       case RelativeLastChild:
          {
-            if(pitemRelative->m_pchild == NULL)
+            if(pitemRelative->m_pchild == ::null())
             {
                pitemRelative->m_pchild         = pitemNew;
 
@@ -365,7 +365,7 @@ namespace ca
       case RelativePreviousSibling:
          {
             // all tree items that have siblings have a parent (at least the base item)
-            ASSERT(pitemRelative->m_pparent != NULL);
+            ASSERT(pitemRelative->m_pparent != ::null());
             // Is pitemRelative a first child ?
             if(pitemRelative->get_item(RelativeFirstSibling) == pitemRelative)
             {
@@ -383,7 +383,7 @@ namespace ca
       case RelativeNextSibling:
          {
             // all tree items that have siblings have a parent (at least the base item)
-            ASSERT(pitemRelative->m_pparent != NULL);
+            ASSERT(pitemRelative->m_pparent != ::null());
             // Is pitemRelative a last child ?
             if(pitemRelative->get_item(RelativeLastSibling) == pitemRelative)
             {
@@ -400,15 +400,15 @@ namespace ca
          break;
       case RelativeLastSibling:
          {
-            while(pitemRelative->m_pnext != NULL)
+            while(pitemRelative->m_pnext != ::null())
                pitemRelative = pitemRelative->m_pnext;
-            if(pitemRelative->m_pnext == NULL)
+            if(pitemRelative->m_pnext == ::null())
             {
                pitemRelative->m_pnext          = pitemNew;
 
                pitemNew->m_pparent     = pitemRelative->m_pparent;
                pitemNew->m_pprevious   = pitemRelative;
-               pitemNew->m_pnext       = NULL;
+               pitemNew->m_pnext       = ::null();
             }
          }
          break;
@@ -457,7 +457,7 @@ namespace ca
    void tree::sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *))
    {
       tree_item * pitem = get_base_item();
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
          pitem->sort_children(lpfnCompare, get_data());
          pitem = (tree_item *) pitem->get_next();
@@ -468,7 +468,7 @@ namespace ca
 
    image_list * tree::get_image_list()
    {
-      return NULL;
+      return ::null();
    }
 
 } // namespace ca

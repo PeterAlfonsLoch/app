@@ -4,25 +4,25 @@
 inline var::var()
 {
    m_etype = type_new;
-   m_pca2 = NULL;
+   m_pca2 = ::null();
 }
 
 
 inline var::var(const ::ca::null & null)
 {
    m_etype = type_null;
-   m_pca2 = NULL;
+   m_pca2 = ::null();
 }
 
 
 inline var::var(e_type etype)
 {
    m_etype = etype;
-   m_pca2 = NULL;
+   m_pca2 = ::null();
 }
 
 
-inline count var::get_count() const
+inline ::count var::get_count() const
 {
    switch(m_etype)
    {
@@ -42,14 +42,14 @@ inline count var::get_count() const
 }
 
 
-inline count var::array_get_count() const
+inline ::count var::array_get_count() const
 {
    if(m_etype == type_new
    || m_etype == type_null
    || m_etype == type_empty
    || m_etype == type_empty_argument)
    {
-      return -1; // indicates that this var is not an base_array
+      return -1; // indicates that this var is not an array
    }
    else if(is_array())
       return this->get_count();
@@ -66,7 +66,7 @@ inline index var::array_get_upper_bound() const
    || m_etype == type_empty
    || m_etype == type_empty_argument)
    {
-      return -1; // indicates that this var is not an base_array
+      return -1; // indicates that this var is not an array
    }
    else if(is_array())
       return this->get_count() - 1;

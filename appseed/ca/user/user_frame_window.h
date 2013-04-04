@@ -67,7 +67,7 @@ public:
    frame_window* m_pNextFrameWnd; // next frame_window in cast global list
    rect m_rectBorder;         // for OLE border space negotiation
 
-   pointer_list m_listControlBars; // base_array of all control bars that have this
+   pointer_list m_listControlBars; // array of all control bars that have this
                         // ::ca::window as their dock site
    int32_t m_nShowDelay;           // SW_ command for delay show/hide
 
@@ -81,7 +81,7 @@ public:
    bool (CALLBACK* m_lpfnCloseProc)(frame_window* pFrameWnd);
    UINT m_cModalStack;         // BeginModalState depth
    comparable_array < ::user::interaction *, ::user::interaction * > m_uiptraDisable;       // windows disabled because of BeginModalState
-   HMENU m_hMenuAlt;           // menu to update to (NULL means default)
+   HMENU m_hMenuAlt;           // menu to update to (::null() means default)
    string m_strTitle;         // default title (original)
    bool m_bInRecalcLayout;     // avoid recursion in layout
    ::ca::type_info m_pFloatingFrameClass;
@@ -98,16 +98,16 @@ public:
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
                        const RECT & rect = ::rect(0, 0, 0, 0),
-            ::user::interaction* pParentWnd = NULL,        // != NULL for popups
-            const char * lpszMenuName = NULL,
+            ::user::interaction* pParentWnd = ::null(),        // != ::null() for popups
+            const char * lpszMenuName = ::null(),
             uint32_t dwExStyle = 0,
-            ::ca::create_context* pContext = NULL);
+            ::ca::create_context* pContext = ::null());
 
    // dynamic creation - load frame and associated resources
    virtual bool LoadFrame(const char * pszMatter,
             uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-            ::user::interaction* pParentWnd = NULL,
-            ::ca::create_context* pContext = NULL);
+            ::user::interaction* pParentWnd = ::null(),
+            ::ca::create_context* pContext = ::null());
 
    virtual bool ShowWindow(int32_t nCmdShow);
 
@@ -116,9 +116,9 @@ public:
    virtual ::user::document_interface * GetActiveDocument();
 
    // Active child ::view maintenance
-   ::view * GetActiveView() const;           // active ::view or NULL
+   ::view * GetActiveView() const;           // active ::view or ::null()
    void SetActiveView(::view * pViewNew, bool bNotify = TRUE);
-      // active ::view or NULL, bNotify == FALSE if focus should not be set
+      // active ::view or ::null(), bNotify == FALSE if focus should not be set
 
    // Active frame (for frames within frames -- MDI)
    virtual frame_window* GetActiveFrame();

@@ -367,7 +367,7 @@ struct oc_theora_state{
   int64_t         granpos;
   /*The type of the current frame.*/
   uchar       frame_type;
-  /*The bias to add to the frame count when computing granule positions.*/
+  /*The bias to add to the frame ::count when computing granule positions.*/
   uchar       granpos_bias;
   /*The number of quality indices used in the current frame.*/
   uchar       nqis;

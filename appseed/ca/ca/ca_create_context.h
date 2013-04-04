@@ -5,7 +5,7 @@
 #include "ca/user/user_create_context.h"
 
 
-template < class TYPE, class BASE_ARRAY = base_array < TYPE > >
+template < class TYPE, class BASE_ARRAY = array < TYPE > >
 class stack :
    virtual public BASE_ARRAY
 {
@@ -110,7 +110,7 @@ namespace ca
 
       create_context(::ca::application * papp);
       create_context(::ca::command_thread * pthreadParent);
-      create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = ::null());
       create_context(const create_context & createcontext);
       virtual ~create_context();
 
@@ -129,7 +129,7 @@ namespace ca
       create_context_sp();
       create_context_sp(::ca::application * papp);
       create_context_sp(::ca::command_thread * pthreadParent);
-      create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = ::null());
       virtual ~create_context_sp();
 
 

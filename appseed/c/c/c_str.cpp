@@ -80,7 +80,7 @@ int32_t strcmp_dup(const char * sz1, const char * sz2)
    return *sz1 - *sz2;
 }
 
-int32_t strnicmp_dup(const char * sz1, const char * sz2, count iLen)
+int32_t strnicmp_dup(const char * sz1, const char * sz2, ::count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -108,7 +108,7 @@ int32_t strnicmp_dup(const char * sz1, const char * sz2, count iLen)
    return iCmp;
 }
 
-int32_t strncmp_dup(const char * sz1, const char * sz2, count iLen)
+int32_t strncmp_dup(const char * sz1, const char * sz2, ::count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -395,19 +395,19 @@ void str_reverse(char * sz)
 
 }
 
-void zero_pad(char * sz, count iPad)
+void zero_pad(char * sz, ::count iPad)
 {
 
-   count iLen = strlen_dup(sz);
+   ::count iLen = strlen_dup(sz);
 
-   count iZeroCount = iPad - iLen;
+   ::count iZeroCount = iPad - iLen;
 
    if(iZeroCount > 0)
    {
 
-      count iEnd = iLen - 1;
+      ::count iEnd = iLen - 1;
 
-      count iFinalEnd = iEnd + iZeroCount;
+      ::count iFinalEnd = iEnd + iZeroCount;
 
       sz[iFinalEnd + 1] = '\0';
 
@@ -480,9 +480,9 @@ int32_t str_begins_ci_dup(const char * sz1, const char * prefix)
 int32_t str_ends_dup(const char * psz, const char * pszSuffix)
 {
 
-   count iLen = strlen_dup(psz);
+   ::count iLen = strlen_dup(psz);
 
-   count iLenSuffix = strlen_dup(pszSuffix);
+   ::count iLenSuffix = strlen_dup(pszSuffix);
 
    if(iLen < iLenSuffix)
       return false;
@@ -495,9 +495,9 @@ int32_t str_ends_dup(const char * psz, const char * pszSuffix)
 int32_t str_ends_ci_dup(const char * psz, const char * pszSuffix)
 {
 
-   count iLen = strlen_dup(psz);
+   ::count iLen = strlen_dup(psz);
 
-   count iLenSuffix = strlen_dup(pszSuffix);
+   ::count iLenSuffix = strlen_dup(pszSuffix);
 
    if(iLen < iLenSuffix)
       return false;
@@ -540,7 +540,7 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
         *numchars = 0;
         *numargs = 1;                   /* the program name at least */
 
-        /* first scan the program name, copy it, and count the bytes */
+        /* first scan the program name, copy it, and ::count the bytes */
         p = cmdstart;
         if (argv)
             *argv++ = args;
@@ -650,7 +650,7 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
                N backslashes ==> N backslashes */
             numslash = 0;
             while (*p == SLASHCHAR) {
-                /* count number of backslashes for use below */
+                /* ::count number of backslashes for use below */
                 ++p;
                 ++numslash;
             }
@@ -937,7 +937,7 @@ CLASS_DECL_c char * strupr(char * pszParam)
 
 
 
-CLASS_DECL_c void zero_pad(vsstring & str, count iPad)
+CLASS_DECL_c void zero_pad(vsstring & str, ::count iPad)
 {
 
    while(str.length() < iPad)

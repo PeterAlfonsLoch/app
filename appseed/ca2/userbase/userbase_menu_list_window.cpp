@@ -15,7 +15,7 @@ namespace userbase
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
       m_pwndNotify         = NULL;
-      m_pitem(new menu_item(papp));
+      m_pitem = new menu_item(papp);
       m_etranslucency      = TranslucencyPresent;
       m_pschema            = NULL;
       m_bAutoClose         = true;

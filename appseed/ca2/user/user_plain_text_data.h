@@ -57,7 +57,7 @@ namespace user
 
 
       class GroupCommand : public Command,
-         public base_array < Command *, Command * >
+         public array < Command *, Command * >
       {
       public:
          GroupCommand();

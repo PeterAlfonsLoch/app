@@ -17,7 +17,7 @@ namespace filehandler
    {
       if(!::ca::tree::initialize())
          return false;
-      ::ca::data_container::m_spdata(new tree_data(get_app()));
+      ::ca::data_container::m_spdata = new tree_data(get_app());
       return true;
    }
 

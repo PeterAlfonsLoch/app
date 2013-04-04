@@ -99,7 +99,7 @@ namespace libcompress
 
          struct CProgram
          {
-            base_array<CCommand> Commands;
+            array<CCommand> Commands;
 #ifdef RARVM_STANDARD_FILTERS
             int32_t StandardFilterIndex;
 #endif

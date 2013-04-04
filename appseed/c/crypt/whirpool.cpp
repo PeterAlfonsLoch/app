@@ -1183,7 +1183,7 @@ static void processBuffer(struct NESSIEstruct * const structpointer) {
 #endif /* ?TRACE_INTERMEDIATE_VALUES */
 
     /*
-     * ::collection::map the buffer to a block:
+     * map the buffer to a block:
      */
     for (i = 0; i < 8; i++, buffer += 8) {
         block[i] =

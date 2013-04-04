@@ -34,7 +34,7 @@ namespace colorertake5
       region(const char *_name, const char * _description, class region *_parent, index _id)
       {
          name = (_name);
-         if (_description != NULL) 
+         if (_description != ::null()) 
             description = (_description);
          parent = _parent;
          id = _id;
@@ -59,7 +59,7 @@ namespace colorertake5
       */
       bool hasParent(class region *region) {
          class region *elem = this;
-         while(elem != NULL){
+         while(elem != ::null()){
             if (region == elem) return true;
             elem = elem->getParent();
          };

@@ -196,7 +196,7 @@ namespace ca
 
 
    class CLASS_DECL_ca dibmap :
-      virtual public ::collection::map < size, size, ::ca::dib_sp, ::ca::dib_sp >
+      virtual public map < size, size, ::ca::dib_sp, ::ca::dib_sp >
    {
    public:
 
@@ -208,7 +208,7 @@ namespace ca
 
       inline ::ca::dib_sp & operator[](class size key)
       {
-         ::ca::dib_sp & dib = ::collection::map < class size, class size, ::ca::dib_sp, ::ca::dib_sp >::operator [](key);
+         ::ca::dib_sp & dib = map < class size, class size, ::ca::dib_sp, ::ca::dib_sp >::operator [](key);
          if(dib.is_null())
             dib.create(get_app());
          return dib;

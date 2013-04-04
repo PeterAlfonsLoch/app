@@ -148,8 +148,8 @@ namespace ca
       typename type_map::pair * p = this->PGetFirstAssoc();
       for(index index = 0; index < count; index++)
       {
-         ostream << p->m_key;
-         ostream << p->m_value;
+         ostream << p->m_element1;
+         ostream << p->m_element2;
          p = this->PGetNextAssoc(p);
       }
    }

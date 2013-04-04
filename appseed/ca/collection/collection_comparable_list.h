@@ -7,9 +7,9 @@ class comparable_list :
 {
 public:
    comparable_list();
-   comparable_list(const comparable_list & base_array);
+   comparable_list(const comparable_list & array);
 
-   void QuickSort(bool bAsc = true);
+   void quick_sort(bool bAsc = true);
 
    TYPE maximum(TYPE minimum);
 
@@ -36,7 +36,7 @@ TYPE comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 maximum(TYPE maximum)
 {
    POSITION pos = this->get_head_position();
-   while(pos != NULL)
+   while(pos != ::null())
    {
       TYPE value = this->get_next(pos);
       if(value > maximum)

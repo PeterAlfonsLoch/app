@@ -949,7 +949,7 @@ static float noise_normalize(vorbis_look_psy *p, int32_t limit, float *r, float 
   for(;j<n;j++){
     if(!flags || !flags[j]){ /* can't noise norm elements that have
                                 already been loslessly coupled; we can
-                                only account for their energy error */
+                                only ac::count for their energy error */
       float ve = q[j]/f[j];
       /* Despite all the new, more capable coupling code, for now we
          implement noise norm as it has been up to this point. Only

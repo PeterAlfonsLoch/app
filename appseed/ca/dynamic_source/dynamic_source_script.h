@@ -17,12 +17,12 @@ namespace dynamic_source
    public:
 
 
-      script_manager *        m_pmanager;
-      string                  m_strName;
-      mutex                   m_mutex;
-      http::memory_file       m_memfileError;
+      sp(script_manager)                        m_pmanager;
+      string                                    m_strName;
+      mutex                                     m_mutex;
+      http::memory_file                         m_memfileError;
 
-      comparable_array < script_instance * > m_scriptinstanceptra;
+      spa(script_instance)                      m_scriptinstanceptra;
 
 
       script(::ca::application * papp);
@@ -42,28 +42,30 @@ namespace dynamic_source
    public:
 
 
-      ::c::library           m_library;
+      ::c::library                     m_library;
+
+
 #ifdef WINDOWS
-      FILETIME                m_ftCreation;
-      FILETIME                m_ftModified;
+      FILETIME                         m_ftCreation;
+      FILETIME                         m_ftModified;
 #else
-      __time_t                m_ftCreation;
-      __time_t                m_ftAccess;
-      __time_t                m_ftModified;
+      __time_t                         m_ftCreation;
+      __time_t                         m_ftAccess;
+      __time_t                         m_ftModified;
 #endif
       
-      bool                    m_bLastVersionCheck;
-      uint32_t                   m_dwLastVersionCheck;
-      string                  m_strSourcePath;
-      string                  m_strSourceDir;
-      string                  m_strCppPath;
-      string                  m_strScriptPath;
-      string                  m_strBuildBat;
-      manual_reset_event      m_evCreationEnabled;
-      uint32_t                   m_dwLastBuildTime;
-      bool                    m_bShouldBuild;
-      bool                    m_bCalcHasTempError;
-      bool                    m_bHasTempError;
+      bool                             m_bLastVersionCheck;
+      uint32_t                         m_dwLastVersionCheck;
+      string                           m_strSourcePath;
+      string                           m_strSourceDir;
+      string                           m_strCppPath;
+      string                           m_strScriptPath;
+      string                           m_strBuildBat;
+      manual_reset_event               m_evCreationEnabled;
+      uint32_t                         m_dwLastBuildTime;
+      bool                             m_bShouldBuild;
+      bool                             m_bCalcHasTempError;
+      bool                             m_bHasTempError;
 
       
 

@@ -4,13 +4,13 @@
 // consult cpluplus.com
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class CONTAINER = base_array < TYPE, ARG_TYPE >, class FIRST = ::ca::less < TYPE > > 
+template < class TYPE, class ARG_TYPE = const TYPE &, class CONTAINER = array < TYPE, ARG_TYPE >, class FIRST = ::ca::less < TYPE > > 
 class priority_queue
 {
 public:
 
    inline bool is_empty() const;
-   inline count size() const;
+   inline ::count size() const;
 
    inline TYPE & top();
    inline const TYPE & top() const;
@@ -31,7 +31,7 @@ inline bool priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::is_empty() con
 }
 
 template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
-inline count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::size() const
+inline ::count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::size() const
 {
 
    return this->CONTAINER::size();
@@ -61,7 +61,7 @@ inline void priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::push(const TYP
 
    this->priority_queue::push_back(t);
 
-   ::sort::QuickSort < FIRST > ((CONTAINER *) this);
+   ::sort::quick_sort < FIRST > ((CONTAINER *) this);
 
 }
 

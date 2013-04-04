@@ -115,7 +115,7 @@ aes_icm_alloc_ismacryp(cipher_t **c, int32_t key_len, int32_t forIsmacryp) {
   /* allocate primitive::memory a cipher of type aes_icm */
   tmp = (sizeof(aes_icm_ctx_t) + sizeof(cipher_t));
   pointer = (uint8_t*)crypto_alloc(tmp);
-  if (pointer == NULL) 
+  if (pointer == ::null()) 
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -491,7 +491,7 @@ cipher_test_case_t aes_icm_test_case_0 = {
   aes_icm_test_case_0_plaintext,         /* plaintext                */
   32,                                    /* octets in ciphertext     */
   aes_icm_test_case_0_ciphertext,        /* ciphertext               */
-  NULL                                   /* pointer to next testcase */
+  ::null()                                   /* pointer to next testcase */
 };
 
 

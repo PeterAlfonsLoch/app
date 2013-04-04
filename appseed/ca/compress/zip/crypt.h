@@ -110,7 +110,7 @@ static int32_t crypthead(
      */
     if (++calls == 1)
     {
-        srand((uint32_t)(time(NULL) ^ ZCR_SEED2));
+        srand((uint32_t)(time(::null()) ^ ZCR_SEED2));
     }
     init_keys(passwd, pkeys, pcrc_32_tab);
     for (n = 0; n < RAND_HEAD_LEN-2; n++)

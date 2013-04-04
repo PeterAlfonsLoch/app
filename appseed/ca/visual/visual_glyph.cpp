@@ -74,7 +74,7 @@ namespace visual
    *               spline representation of the line in pPts.
    *
    *
-   *  RETURNS    : number of Bezier points placed into the pPts POINT base_array.
+   *  RETURNS    : number of Bezier points placed into the pPts POINT array.
    ****************************************************************************/
    UINT MakeBezierFromLine( POINT *pPts, POINT startpt, POINT endpt )
    {
@@ -108,7 +108,7 @@ namespace visual
    *               spline in pPts.
    *
    *
-   *  RETURNS    : number of Bezier points placed into the pPts POINT base_array.
+   *  RETURNS    : number of Bezier points placed into the pPts POINT array.
    ****************************************************************************/
    UINT MakeBezierFromQBSpline( POINT *pPts, POINTFX *pSpline )
    {
@@ -155,10 +155,10 @@ namespace visual
    *  PURPOSE    : Converts line segments into their Bezier point
    *               representation and appends them to a list of Bezier points.
    *
-   *               WARNING - The base_array must have at least one valid
+   *               WARNING - The array must have at least one valid
    *               start point prior to the address of the element passed.
    *
-   *  RETURNS    : number of Bezier points added to the POINT base_array.
+   *  RETURNS    : number of Bezier points added to the POINT array.
    ****************************************************************************/
    //UINT AppendPolyLineToBezier( LPPOINT pt, POINTFX start, LPTTPOLYCURVE lpCurve )
    UINT AppendPolyLineToBezier(
@@ -209,10 +209,10 @@ namespace visual
    *  PURPOSE    : Converts Quadratic spline segments into their Bezier point
    *               representation and appends them to a list of Bezier points.
    *
-   *               WARNING - The base_array must have at least one valid
+   *               WARNING - The array must have at least one valid
    *               start point prior to the address of the element passed.
    *
-   *  RETURNS    : number of Bezier points added to the POINT base_array.
+   *  RETURNS    : number of Bezier points added to the POINT array.
    ****************************************************************************/
    //UINT AppendQuadBSplineToBezier( LPPOINT pt, POINTFX start, LPTTPOLYCURVE lpCurve )
    UINT AppendQuadBSplineToBezier(
@@ -283,7 +283,7 @@ namespace visual
    *  PURPOSE    : Adds a bezier line to close the circuit defined in pt.
    *
    *
-   *  RETURNS    : number of points aded to the pt POINT base_array.
+   *  RETURNS    : number of points aded to the pt POINT array.
    ****************************************************************************/
    //UINT CloseContour( LPPOINT pt, UINT cTotal )
    UINT CloseContour(
@@ -356,7 +356,7 @@ namespace visual
       // Loop until we have processed the entire buffer of contours.
       // The buffer may contain one or more contours that begin with
       // a TTPOLYGONHEADER. We have them all when we the end of the buffer.
-      //while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size) && pt != NULL)
+      //while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size) && pt != ::null())
       while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size))
       {
          if (lpHeader->dwType == TT_POLYGON_TYPE)
@@ -473,8 +473,8 @@ namespace visual
    void glyph::clear()
    {
 
-      //   m_lpBodyData = NULL;
-      //   m_lpOutlineData  = NULL;
+      //   m_lpBodyData = ::null();
+      //   m_lpOutlineData  = ::null();
 
 #ifdef WINDOWSEX
 

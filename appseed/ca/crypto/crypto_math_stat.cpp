@@ -52,8 +52,8 @@ stat_test_poker(uint8_t *data) {
   };
   
   while (data < data_end) {
-    f[*data & 0x0f]++;    /* increment freq. count for low nibble  */
-    f[(*data) >> 4]++;    /* increment freq. count for high nibble */
+    f[*data & 0x0f]++;    /* increment freq. ::count for low nibble  */
+    f[(*data) >> 4]++;    /* increment freq. ::count for high nibble */
     data++;
   }
 
@@ -167,7 +167,7 @@ stat_test_runs(uint8_t *data) {
   }
 
   if (mod_stat.on) {
-    debug_print(mod_stat, "runs test", NULL);
+    debug_print(mod_stat, "runs test", ::null());
     for (i=0; i < 6; i++)
       debug_print(mod_stat, "  runs[]: %d", runs[i]);
     for (i=0; i < 6; i++)
@@ -237,8 +237,8 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
       ones_count += octet_get_weight(*data);
 
       /* update poker test counters */
-      f[*data & 0x0f]++;    /* increment freq. count for low nibble  */
-      f[(*data) >> 4]++;    /* increment freq. count for high nibble */
+      f[*data & 0x0f]++;    /* increment freq. ::count for low nibble  */
+      f[(*data) >> 4]++;    /* increment freq. ::count for high nibble */
 
       /* update runs test counters */
       /* loop over the bits of this byte */
@@ -335,7 +335,7 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
   debug_print(mod_stat, "stat: poker test: %f", poker);
     
   if ((poker < 2.16) || (poker > 46.17)) {
-    debug_print(mod_stat, "stat: failed poker test", NULL);
+    debug_print(mod_stat, "stat: failed poker test", ::null());
     return err_status_algo_fail;
   }
 
@@ -343,11 +343,11 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
   for (i=0; i < 6; i++) 
     if ((runs[i] < lo_value[i] ) || (runs[i] > hi_value[i])
     || (gaps[i] < lo_value[i] ) || (gaps[i] > hi_value[i])) {
-      debug_print(mod_stat, "stat: failed run/gap test", NULL);
+      debug_print(mod_stat, "stat: failed run/gap test", ::null());
       return err_status_algo_fail; 
     }
 
-  debug_print(mod_stat, "passed random stat test", NULL);
+  debug_print(mod_stat, "passed random stat test", ::null());
   return err_status_ok;
 }
 

@@ -38,7 +38,7 @@ namespace ca
 
       system::~system()
       {
-         if(m_pziputil != NULL)
+         if(m_pziputil != ::null())
          {
             delete m_pziputil;
          }
@@ -68,7 +68,7 @@ namespace ca
       string system::path(const string & strFolder, const string & strRelative)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::ca::is_url(strFolder));
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), ::null(), 0, ::ca::is_url(strFolder));
 
       }
 
@@ -82,7 +82,7 @@ namespace ca
 
       string system::path(const string & strFolder, const string & strRelative, const char * psz2)
       {
-         if(psz2 == NULL)
+         if(psz2 == ::null())
          {
             return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::ca::is_url(strFolder));
          }
@@ -96,7 +96,7 @@ namespace ca
       string system::path(const string & strFolder, const string & strRelative, bool bUrl)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, bUrl);
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), ::null(), 0, bUrl);
 
       }
 
@@ -375,14 +375,14 @@ namespace ca
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::rls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize, e_extract eextract)
+      void system::rls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
          if(eextract != extract_none && papp->m_bZipIsDir && (::ca::str::ends_ci(lpcsz, ".zip") || ::ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, ::null(), pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return;
          }
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
@@ -390,13 +390,13 @@ namespace ca
       }
 
 
-      void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
+      void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
          if(::ca::str::begins_ci(lpcsz, "http://") || ::ca::str::begins_ci(lpcsz, "https://"))
          {
             string str = App(papp).http().get(lpcsz);
-            if(pstraPath != NULL)
+            if(pstraPath != ::null())
             {
                pstraPath->add_tokens(str, "\n", false);
             }
@@ -404,14 +404,14 @@ namespace ca
          }
          if(papp->m_bZipIsDir && (::ca::str::ends_ci(lpcsz, ".zip") || ::ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, ::null(), pbaIsDir, piaSize);
             return;
          }
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
 
-      void system::ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
+      void system::ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -425,7 +425,7 @@ namespace ca
       {
          if(eextract != extract_none && papp->m_bZipIsDir && (::ca::str::ends_ci(lpcsz, ".zip") || ::ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, ::null(), ::null(), eextract == extract_all ? extract_all : extract_none);
             return;
          }
          else
@@ -554,7 +554,7 @@ namespace ca
 
 
       system::is_dir_map::is_dir_map(::ca::application * papp) :
-         ::collection::string_map < is_dir >(256), // block size
+         string_map < is_dir >(256), // block size
          m_mutex(papp)
       {
          InitHashTable(16384, TRUE);
@@ -589,19 +589,19 @@ namespace ca
 
          single_lock sl(&m_mutex, TRUE);
 
-         ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+         string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
 
-         if(ppair == NULL)
+         if(ppair == ::null())
             return false;
 
-         if(::get_tick_count() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
 
-         bIsDir = ppair->m_value.m_bIsDir;
+         bIsDir = ppair->m_element2.m_bIsDir;
 
-         dwLastError = ppair->m_value.m_dwError;
+         dwLastError = ppair->m_element2.m_dwError;
 
          return true;
 
@@ -620,19 +620,19 @@ namespace ca
 
          single_lock sl(&m_mutex, TRUE);
 
-         ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+         string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
 
-         if(ppair == NULL)
+         if(ppair == ::null())
             return false;
 
-         if(::get_tick_count() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
 
-         bIsDir = ppair->m_value.m_bIsDir;
+         bIsDir = ppair->m_element2.m_bIsDir;
 
-         dwLastError = ppair->m_value.m_dwError;
+         dwLastError = ppair->m_element2.m_dwError;
 
          return true;
 
@@ -1005,7 +1005,7 @@ namespace ca
          }
 
 
-         if(papp->m_psession != NULL && papp->m_psession != papp &&
+         if(papp->m_psession != ::null() && papp->m_psession != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp)
          {
             strPath = matter(papp->m_psession, stra, bDir);
@@ -1021,7 +1021,7 @@ namespace ca
             }
          }
 
-         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+         if(papp->m_psystem != ::null() && papp->m_psystem != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, stra, bDir);
@@ -1195,7 +1195,7 @@ ret:
             }
 
 
-            if(papp->m_psession != NULL && papp->m_psession != papp &&
+            if(papp->m_psession != ::null() && papp->m_psession != papp &&
                (::ca::application *) papp->m_psystem != (::ca::application *) papp)
             {
                strPath = matter(papp->m_psession, str, str2);
@@ -1216,7 +1216,7 @@ ret:
 #endif
 
 
-         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+         if(papp->m_psystem != ::null() && papp->m_psystem != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);
@@ -1279,14 +1279,14 @@ ret:
          strPath = path(locale_schema_matter(papp, "se", "se"), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         if(papp->m_psession != NULL && papp->m_psession != papp &&
+         if(papp->m_psession != ::null() && papp->m_psession != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp)
          {
             strPath = matter(papp->m_psession, str, str2);
             if(System.file().exists(strPath, papp))
                return strPath;
          }
-         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+         if(papp->m_psystem != ::null() && papp->m_psystem != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);

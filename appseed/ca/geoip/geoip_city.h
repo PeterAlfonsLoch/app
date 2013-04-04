@@ -35,6 +35,6 @@ GEOIP_API int32_t GeoIP_next_record (GeoIP* gi, GeoIPRecord **gir, int32_t *reco
 
 GEOIP_API void GeoIPRecord_delete (GeoIPRecord *gir);
 
-/* NULL on failure otherwise a malloced string in utf8 */
+/* ::null() on failure otherwise a malloced string in utf8 */
 GEOIP_API char * _iso_8859_1__utf8(const char *);
 

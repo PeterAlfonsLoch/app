@@ -11,7 +11,7 @@ condition::condition(::ca::application * papp) :
    ca(papp)
 {
 
-   if(papp == NULL)
+   if(papp == ::null())
       throw invalid_argument_exception(::ca::get_thread_app());
 
 #ifdef WINDOWS
@@ -25,7 +25,7 @@ condition::condition(::ca::application * papp) :
 #else
 
 /*
-   if(pstrName != NULL && *pstrName != '\0')
+   if(pstrName != ::null() && *pstrName != '\0')
    {
 
       string strPath = "/ca2/time/ftok/condition/" + string(pstrName);
@@ -161,7 +161,7 @@ wait_result condition::wait (const duration & duration)
       {
          if(ret == EPERM)
          {
-            nanosleep(&delay, NULL);
+            nanosleep(&delay, ::null());
          }
          else
          {
@@ -249,7 +249,7 @@ bool condition::lock(const duration & durationTimeout)
       {
          if(ret == EPERM)
          {
-            nanosleep(&delay, NULL);
+            nanosleep(&delay, ::null());
          }
          else
          {

@@ -19,7 +19,7 @@ namespace userbase
       size m_sizeImage;  // current image size
       size m_sizeButton; // current button size
       bool m_bSimpleLayout;
-      ::collection::string_to_ptr * m_pStringMap;  // used as CMapStringToUInt
+      string_to_ptr * m_pStringMap;  // used as CMapStringToUInt
 
 
       tool_bar();

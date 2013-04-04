@@ -275,14 +275,14 @@ namespace datetime
    template < class tstring >
    inline tstring time::Format(tstring & str, const char * pszFormat) const
    {
-      if(pszFormat == NULL)
+      if(pszFormat == ::null())
       {
          return pszFormat;
       }
       char szBuffer[maxTimeBufferSize];
 #if defined(LINUX)
       struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == ::null() || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }
@@ -291,7 +291,7 @@ namespace datetime
 #pragma error "error: long should 8-byte on MACOS"
 #endif
       struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == ::null() || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }
@@ -304,7 +304,7 @@ namespace datetime
       }
 #else
       struct tm* ptmTemp = _localtime64(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == ::null() || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }
@@ -316,7 +316,7 @@ namespace datetime
    template < class tstring >
    inline tstring time::FormatGmt(tstring & str, const char * pszFormat) const
    {
-      if(pszFormat == NULL)
+      if(pszFormat == ::null())
       {
          return pszFormat;
       }
@@ -325,7 +325,7 @@ namespace datetime
 
 #if defined(LINUX) || defined(MACOS)
       struct tm* ptmTemp = gmtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == ::null() || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }
@@ -338,7 +338,7 @@ namespace datetime
       }
 #else
       struct tm* ptmTemp = _gmtime64(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == ::null() || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }

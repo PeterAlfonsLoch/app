@@ -47,7 +47,7 @@ namespace sockets
    private:
 
 
-      ::collection::list<Event *>   m_events;
+      list<Event *>   m_events;
       bool                          m_quit;
       tcp_socket *                  m_socket;
       port_t                        m_port;
@@ -60,8 +60,8 @@ namespace sockets
    public:
 
 
-      EventHandler(::ca::application * papp, StdLog * = NULL);
-      EventHandler(::ca::application * papp, mutex &,StdLog * = NULL);
+      EventHandler(::ca::application * papp, StdLog * = ::null());
+      EventHandler(::ca::application * papp, mutex &,StdLog * = ::null());
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

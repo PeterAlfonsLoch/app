@@ -590,7 +590,7 @@ namespace libcompress
       if (number < minNumber)
          return E_INVALIDARG;
       number -= minNumber;
-      for(count j = _methods.get_size(); j <= (int32_t)number; j++)
+      for(::count j = _methods.get_size(); j <= (int32_t)number; j++)
       {
          COneMethodInfo oneMethodInfo;
          _methods.add(oneMethodInfo);

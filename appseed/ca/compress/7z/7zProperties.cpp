@@ -22,9 +22,9 @@ namespace n7z
 
    CPropMap kPropMap[] =
    {
-   { NID::kName, { NULL, ::libcompress::kpidPath, var::type_string } },
-   { NID::kSize, { NULL, ::libcompress::kpidSize, var::type_uint64 } },
-   { NID::kPackInfo, { NULL,::libcompress:: kpidPackSize, var::type_uint64 } },
+   { NID::kName, { ::null(), ::libcompress::kpidPath, var::type_string } },
+   { NID::kSize, { ::null(), ::libcompress::kpidSize, var::type_uint64 } },
+   { NID::kPackInfo, { ::null(),::libcompress:: kpidPackSize, var::type_uint64 } },
 
    #ifdef _MULTI_PACK
    { 100, { L"Pack0", kpidPackedSize0, var::type_uint64 } },
@@ -34,21 +34,21 @@ namespace n7z
    { 104, { L"Pack4", kpidPackedSize4, var::type_uint64 } },
    #endif
 
-   { NID::kCTime, { NULL, ::libcompress::kpidCTime, var::type_filetime } },
-   { NID::kMTime, { NULL, ::libcompress::kpidMTime, var::type_filetime } },
-   { NID::kATime, { NULL, ::libcompress::kpidATime, var::type_filetime } },
-   { NID::kWinAttributes, { NULL, ::libcompress::kpidAttrib, var::type_uint32 } },
-   { NID::kStartPos, { NULL, ::libcompress::kpidPosition, var::type_uint32 } },
+   { NID::kCTime, { ::null(), ::libcompress::kpidCTime, var::type_filetime } },
+   { NID::kMTime, { ::null(), ::libcompress::kpidMTime, var::type_filetime } },
+   { NID::kATime, { ::null(), ::libcompress::kpidATime, var::type_filetime } },
+   { NID::kWinAttributes, { ::null(), ::libcompress::kpidAttrib, var::type_uint32 } },
+   { NID::kStartPos, { ::null(), ::libcompress::kpidPosition, var::type_uint32 } },
 
-   { NID::kCRC, { NULL, ::libcompress::kpidCRC, var::type_uint32 } },
+   { NID::kCRC, { ::null(), ::libcompress::kpidCRC, var::type_uint32 } },
 
-   { NID::kAnti, { NULL, ::libcompress::kpidIsAnti, var::type_bool } }
+   { NID::kAnti, { ::null(), ::libcompress::kpidIsAnti, var::type_bool } }
 
    #ifndef _SFX
    ,
-   { 97, { NULL,::libcompress::kpidEncrypted, var::type_bool } },
-   { 98, { NULL,::libcompress::kpidMethod, var::type_string } },
-   { 99, { NULL,::libcompress::kpidBlock, var::type_uint32 } }
+   { 97, { ::null(),::libcompress::kpidEncrypted, var::type_bool } },
+   { 98, { ::null(),::libcompress::kpidMethod, var::type_string } },
+   { 99, { ::null(),::libcompress::kpidBlock, var::type_uint32 } }
    #endif
    };
 
@@ -62,8 +62,8 @@ namespace n7z
       return -1;
    }
 
-   static void CopyOneItem(base_array<uint64_t> &src,
-      base_array<uint64_t> &dest, uint32_t item)
+   static void CopyOneItem(array<uint64_t> &src,
+      array<uint64_t> &dest, uint32_t item)
    {
       for (int32_t i = 0; i < src.get_count(); i++)
          if (src[i] == item)
@@ -74,7 +74,7 @@ namespace n7z
          }
    }
 
-   static void RemoveOneItem(base_array<uint64_t> &src, uint32_t item)
+   static void RemoveOneItem(array<uint64_t> &src, uint32_t item)
    {
       for (int32_t i = 0; i < src.get_count(); i++)
          if (src[i] == item)
@@ -84,7 +84,7 @@ namespace n7z
          }
    }
 
-   static void InsertToHead(base_array<uint64_t> &dest, uint32_t item)
+   static void InsertToHead(array<uint64_t> &dest, uint32_t item)
    {
       for (int32_t i = 0; i < dest.get_count(); i++)
          if (dest[i] == item)
@@ -106,7 +106,7 @@ namespace n7z
       const CArchiveDatabaseEx &_db = volume.Database;
 #endif
 
-      base_array<uint64_t> fileInfoPopIDs = _db.ArchiveInfo.FileInfoPopIDs;
+      array<uint64_t> fileInfoPopIDs = _db.ArchiveInfo.FileInfoPopIDs;
 
       RemoveOneItem(fileInfoPopIDs, NID::kEmptyStream);
       RemoveOneItem(fileInfoPopIDs, NID::kEmptyFile);

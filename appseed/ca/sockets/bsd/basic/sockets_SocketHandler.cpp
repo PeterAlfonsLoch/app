@@ -44,7 +44,7 @@ namespace sockets
    socket_handler::socket_handler(::ca::application * papp, StdLog *p) :
    ca(papp),
    m_stdlog(p),
-   m_pmutex(NULL),
+   m_pmutex(::null()),
    m_b_use_mutex(false)
    ,m_maxsock(0)
    ,m_preverror(-1)
@@ -53,7 +53,7 @@ namespace sockets
    ,m_socks4_port(0)
    ,m_bTryDirect(false)
    ,m_resolv_id(0)
-   ,m_resolver(NULL)
+   ,m_resolver(::null())
    ,m_b_enable_pool(false)
    ,m_next_trigger_id(0)
    ,m_slave(false)
@@ -77,7 +77,7 @@ namespace sockets
    ,m_socks4_port(0)
    ,m_bTryDirect(false)
    ,m_resolv_id(0)
-   ,m_resolver(NULL)
+   ,m_resolver(::null())
    ,m_b_enable_pool(false)
    ,m_next_trigger_id(0)
    ,m_slave(false)
@@ -99,9 +99,9 @@ namespace sockets
       {
          POSITION pos = m_sockets.get_start_position();
          SOCKET s;
-         while(pos != NULL)
+         while(pos != ::null())
          {
-            socket * p = NULL;
+            socket * p = ::null();
             m_sockets.get_next_assoc(pos, s, p);
             if(p)
             {
@@ -270,7 +270,7 @@ namespace sockets
       {
          return Select(0, 200000);
       }
-      return Select(NULL);
+      return Select(::null());
    }
 
 
@@ -282,7 +282,7 @@ namespace sockets
       {
          if (m_sockets.get_size() >= FD_SETSIZE)
          {
-            LogError(NULL, "Select", (int32_t)m_sockets.get_size(), "FD_SETSIZE reached", ::ca::log::level_warning);
+            LogError(::null(), "Select", (int32_t)m_sockets.get_size(), "FD_SETSIZE reached", ::ca::log::level_warning);
             break;
          }
          POSITION pos = m_add.get_start_position();
@@ -369,26 +369,26 @@ namespace sockets
       if(n == 0)
       {
          socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
-         while(ppair != NULL)
+         while(ppair != ::null())
          {
-            if(ppair->m_value != NULL)
+            if(ppair->m_element2 != ::null())
             {
-               //TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
+               //TRACE("tmout sckt(%d):\"%s\"", ppair->m_element1, ppair->m_element2->oprop("meta_info").get_string());
 
-               SOCKET s = ppair->m_key;
+               SOCKET s = ppair->m_element1;
 
-               class socket * psocket = ppair->m_value;
+               class socket * psocket = ppair->m_element2;
 
                TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number());
 //               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
                TRACE("tmout sckt(%d):short_desc=\"%s\""              , s, psocket->get_short_description());
 
-               time_t tnow = time(NULL);
+               time_t tnow = time(::null());
 
                if(psocket->Timeout(tnow))
                {
                   stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
-                  if(pstreamsocket != NULL && pstreamsocket->Connecting())
+                  if(pstreamsocket != ::null() && pstreamsocket->Connecting())
                      psocket->OnConnectTimeout();
                   else
                      psocket->OnTimeout();
@@ -413,7 +413,7 @@ namespace sockets
          */
          if (Errno != m_preverror || m_errcnt++ % 10000 == 0)
          {
-            LogError(NULL, "select", Errno, StrError(Errno));
+            LogError(::null(), "select", Errno, StrError(Errno));
             int32_t iError = Errno;
 #ifdef LINUX
             TRACE("m_maxsock: %d\n", m_maxsock);
@@ -479,7 +479,7 @@ namespace sockets
             SOCKET s;
             socket * psocket;
             POSITION pos = m_sockets.get_start_position();
-            while(pos != NULL)
+            while(pos != ::null())
             {
 
                m_sockets.get_next_assoc(pos, s, psocket);
@@ -495,7 +495,7 @@ namespace sockets
 				         struct timeval tv;
 				         tv.tv_sec = 0;
 				         tv.tv_usec = 0;
-				         int32_t n = select((int32_t) (s + 1), &fds, NULL, NULL, &tv);
+				         int32_t n = select((int32_t) (s + 1), &fds, ::null(), ::null(), &tv);
 				         if (n == -1)
 				         {
 					         // %! bad fd, remove
@@ -557,12 +557,12 @@ namespace sockets
       if (n > 0)
       {
          POSITION pos = m_fds.get_head_position();
-         for(; pos != NULL && n;)
+         for(; pos != ::null() && n;)
          {
             SOCKET socket = m_fds.get_next(pos);;
             if (FD_ISSET(socket, &rfds))
             {
-               class socket * psocket = NULL;
+               class socket * psocket = ::null();
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -577,13 +577,13 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/1", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+                  LogError(::null(), "GetSocket/handler/1", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
                }
                n--;
             }
             if (FD_ISSET(socket, &wfds))
             {
-               class socket * psocket = NULL;
+               class socket * psocket = ::null();
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -598,20 +598,20 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/2", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+                  LogError(::null(), "GetSocket/handler/2", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
                }
                n--;
             }
             if(FD_ISSET(socket, &efds))
             {
-               class socket * psocket = NULL;
+               class socket * psocket = ::null();
                if(m_sockets.Lookup(socket, psocket)) // found
                {
-                  time_t tnow = time(NULL);
+                  time_t tnow = time(::null());
                     if(psocket->Timeout(tnow))
                   {
                      stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
-                     if(pstreamsocket != NULL && pstreamsocket->Connecting())
+                     if(pstreamsocket != ::null() && pstreamsocket->Connecting())
                         psocket->OnConnectTimeout();
                      else
                         psocket->OnTimeout();
@@ -624,7 +624,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/3", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+                  LogError(::null(), "GetSocket/handler/3", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
                }
                n--;
             }
@@ -637,18 +637,18 @@ namespace sockets
       {
          socket_id_list tmp = m_fds_callonconnect;
          POSITION pos = tmp.get_head_position();
-         for(; pos != NULL; )
+         for(; pos != ::null(); )
          {
             SOCKET socket = tmp.get_next(pos);
-            class socket * psocket = NULL;
+            class socket * psocket = ::null();
             if(!m_sockets.Lookup(socket, psocket)) // not found
             {
-               LogError(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+               LogError(::null(), "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
             }
-            if(psocket != NULL)
+            if(psocket != ::null())
             {
                tcp_socket *tcp = dynamic_cast<tcp_socket *>(psocket);
-               if(tcp != NULL)
+               if(tcp != ::null())
                {
                   if (tcp -> CallOnConnect() && psocket -> Ready() )
                   {
@@ -689,13 +689,13 @@ namespace sockets
       {
          // %! why not using tmp list here??!?
          POSITION pos = m_fds_detach.get_head_position();
-         for(; pos != NULL; )
+         for(; pos != ::null(); )
          {
-            socket *p = NULL;
+            socket *p = ::null();
             SOCKET socket = m_fds_detach.get_next(pos);
             if(!m_sockets.Lookup(socket, p)) // found
             {
-               LogError(NULL, "GetSocket/handler/5", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+               LogError(::null(), "GetSocket/handler/5", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
             }
             if (p)
             {
@@ -720,21 +720,21 @@ namespace sockets
       // check Connecting - connection timeout - conditional event
       if (m_fds_timeout.get_size())
       {
-         time_t tnow = time(NULL);
+         time_t tnow = time(::null());
          if (tnow != m_tlast)
          {
             socket_id_list tmp = m_fds_timeout;
             //TRACE("Checking %d socket(s) for timeout\n", tmp.get_size());
             POSITION pos = tmp.get_head_position();
-            for(; pos != NULL;)
+            for(; pos != ::null();)
             {
-               socket *p = NULL;
+               socket *p = ::null();
                SOCKET socket = tmp.get_next(pos);
                if (!m_sockets.Lookup(socket, p)) // not found
                {
                   if(!m_add.Lookup(socket, p))
                   {
-                     LogError(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+                     LogError(::null(), "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
                   }
                }
                if (p)
@@ -758,18 +758,18 @@ namespace sockets
       {
          socket_id_list tmp = m_fds_retry;
          POSITION pos = tmp.get_head_position();
-         for(; pos != NULL;)
+         for(; pos != ::null();)
          {
             SOCKET socket = tmp.get_next(pos);
-            class socket *p = NULL;
+            class socket *p = ::null();
             if(m_sockets.Lookup(socket, p))
             {
-               LogError(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+               LogError(::null(), "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
             }
             if (p)
             {
                tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
-               if(tcp != NULL)
+               if(tcp != ::null())
                {
                   if(tcp -> RetryClientConnect())
                   {
@@ -800,15 +800,15 @@ namespace sockets
          socket_id_list tmp = m_fds_close;
          //TRACE("m_fds_close.size() == %d\n", (int32_t)m_fds_close.get_size());
          POSITION pos = tmp.get_head_position();
-         while(pos != NULL)
+         while(pos != ::null())
          {
             SOCKET socket = tmp.get_next(pos);
-            class socket * p = NULL;
+            class socket * p = ::null();
             if(!m_sockets.Lookup(socket, p)) // not found
             {
                if(!m_add.Lookup(socket, p))
                {
-                     LogError(NULL, "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
+                     LogError(::null(), "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
                }
             }
             if (p)
@@ -900,12 +900,12 @@ namespace sockets
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
-         ::sockets::socket * psocket = NULL;
+         ::sockets::socket * psocket = ::null();
          if(m_sockets.Lookup(socket, psocket))
          {
             if(m_slave)
             {
-               if(psocket != NULL)
+               if(psocket != ::null())
                {
                   try
                   {
@@ -941,17 +941,17 @@ namespace sockets
             {
                again = false;
                POSITION posSrc = m_trigger_src.get_start_position();
-               while(posSrc != NULL)
+               while(posSrc != ::null())
                {
                   int32_t id = 0;
-                  class socket *src = NULL;
+                  class socket *src = ::null();
                   m_trigger_src.get_next_assoc(posSrc, id, src);
                   if (src == p)
                   {
                      POSITION posDst = m_trigger_dst[id].get_start_position();
-                     while(posDst != NULL)
+                     while(posDst != ::null())
                      {
-                        socket * dst = NULL;
+                        socket * dst = ::null();
                         bool b = false;
                         m_trigger_dst[id].get_next_assoc(posDst, dst, b);
                         if (Valid(dst))
@@ -975,16 +975,16 @@ namespace sockets
 
    bool socket_handler::Resolving(socket *p0)
    {
-      return m_resolve_q.PLookup(p0) != NULL;
+      return m_resolve_q.PLookup(p0) != ::null();
    }
 
 
    bool socket_handler::Valid(socket *p0)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
-      while(ppair != NULL)
+      while(ppair != ::null())
       {
-         if (p0 == ppair->m_value)
+         if (p0 == ppair->m_element2)
             return true;
          ppair = m_sockets.PGetNextAssoc(ppair);
       }
@@ -1164,9 +1164,9 @@ namespace sockets
    socket_handler_base::PoolSocket *socket_handler::FindConnection(int32_t type,const string & protocol,::sockets::address & ad)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
-      while(ppair != NULL)
+      while(ppair != ::null())
       {
-         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_value);
+         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_element2);
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
@@ -1174,14 +1174,14 @@ namespace sockets
    // %!             pools -> GetClientRemoteAddress() &&
                 pools -> GetClientRemoteAddress() == ad)
             {
-               m_sockets.remove_key(ppair->m_key);
+               m_sockets.remove_key(ppair->m_element1);
                pools -> SetRetain(); // avoid close in socket destructor
                return pools; // Caller is responsible that this socket is deleted
             }
          }
          ppair = m_sockets.PGetNextAssoc(ppair);
       }
-      return NULL;
+      return ::null();
    }
 
 
@@ -1207,23 +1207,23 @@ namespace sockets
          return;
       }
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
-      while(ppair != NULL)
+      while(ppair != ::null())
       {
-         if(ppair->m_value == p)
+         if(ppair->m_element2 == p)
          {
             LogError(p, "remove", -1, "socket destructor called while still in use", ::ca::log::level_warning);
-            m_sockets.remove_key(ppair->m_key);
+            m_sockets.remove_key(ppair->m_element1);
             return;
          }
          ppair = m_sockets.PGetNextAssoc(ppair);
       }
       socket_map::pair * ppair2 = m_add.PGetFirstAssoc();
-      while(ppair2 != NULL)
+      while(ppair2 != ::null())
       {
-         if (ppair2->m_value == p)
+         if (ppair2->m_element2 == p)
          {
             LogError(p, "remove", -2, "socket destructor called while still in use", ::ca::log::level_warning);
-            m_add.remove_key(ppair2->m_key);
+            m_add.remove_key(ppair2->m_element1);
             return;
          }
          ppair2 = m_add.PGetNextAssoc(ppair2);
@@ -1251,16 +1251,16 @@ namespace sockets
    void socket_handler::CheckList(socket_id_list& ref,const string & listname)
    {
       POSITION pos = ref.get_head_position();
-      while(pos != NULL)
+      while(pos != ::null())
       {
          SOCKET s = ref.get_next(pos);
-         if(m_sockets.PLookup(s) != NULL)
+         if(m_sockets.PLookup(s) != ::null())
             continue;
-         if(m_add.PLookup(s) != NULL)
+         if(m_add.PLookup(s) != ::null())
             continue;
          bool found = false;
          POSITION pos = m_delete.get_head_position();
-         while(pos != NULL)
+         while(pos != ::null())
          {
             socket * p = m_delete.get_next(pos);
             if(p->GetSocket() == s)
@@ -1320,9 +1320,9 @@ namespace sockets
 
    bool socket_handler::Subscribe(int32_t id, socket *dst)
    {
-      if(m_trigger_src.PLookup(id) != NULL)
+      if(m_trigger_src.PLookup(id) != ::null())
       {
-         if(m_trigger_dst[id].PLookup(dst) != NULL)
+         if(m_trigger_dst[id].PLookup(dst) != ::null())
          {
             m_trigger_dst[id][dst] = true;
             return true;
@@ -1337,9 +1337,9 @@ namespace sockets
 
    bool socket_handler::Unsubscribe(int32_t id, socket *dst)
    {
-      if (m_trigger_src.PLookup(id) != NULL)
+      if (m_trigger_src.PLookup(id) != ::null())
       {
-         if(m_trigger_dst[id].PLookup(dst) != NULL)
+         if(m_trigger_dst[id].PLookup(dst) != ::null())
          {
             m_trigger_dst[id].remove_key(dst);
             return true;
@@ -1354,13 +1354,13 @@ namespace sockets
 
    void socket_handler::Trigger(int32_t id, socket::TriggerData& data, bool erase)
    {
-      if(m_trigger_src.PLookup(id) != NULL)
+      if(m_trigger_src.PLookup(id) != ::null())
       {
          data.SetSource( m_trigger_src[id]);
-         ::collection::map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
-         while(ppair != NULL);
+         map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
+         while(ppair != ::null());
          {
-            socket * dst = ppair->m_key;
+            socket * dst = ppair->m_element1;
             if (Valid(dst))
             {
                dst->OnTrigger(id, data);
@@ -1375,7 +1375,7 @@ namespace sockets
       }
       else
       {
-         LogError(NULL, "Trigger", id, "Trigger id not found", ::ca::log::level_info);
+         LogError(::null(), "Trigger", id, "Trigger id not found", ::ca::log::level_info);
       }
    }
 

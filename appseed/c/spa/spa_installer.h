@@ -143,7 +143,7 @@ namespace spa
 
 
       void set_progress(double dProgress);
-      count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
+      ::count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
 
       static uint32_t thread_proc_run(void * lpParam);
 
@@ -176,9 +176,9 @@ namespace spa
 
       int32_t GetLocalFileList(stra_dup & stra_dup, LPCSTR lpcszUrl);
 
-      count UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
+      ::count UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
 
-      count CopyFileList(stra_dup & stra_dup, simple_string_to_intptr & mapFlag);
+      ::count CopyFileList(stra_dup & stra_dup, simple_string_to_intptr & mapFlag);
 
       void ParseSpaIndex(XNode & node);
 

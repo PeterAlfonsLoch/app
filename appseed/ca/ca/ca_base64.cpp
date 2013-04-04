@@ -232,7 +232,7 @@ namespace ca
 
    }
 
-   string base64::encode(byte * p, count c)
+   string base64::encode(byte * p, ::count c)
    {
 
       primitive::memory storage;

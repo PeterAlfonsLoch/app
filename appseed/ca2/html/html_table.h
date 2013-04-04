@@ -31,9 +31,9 @@ namespace html
          float                                           m_iCellSpacing;
          float                                           m_iCellPadding;
 
-         base_array < base_array < cell::holder > >      m_cellholdera;
+         array < array < cell::holder > >      m_cellholdera;
          comparable_array < table_row * >                m_rowptra;
-         base_array < column >                           m_columna;
+         array < column >                           m_columna;
 
          
          table();

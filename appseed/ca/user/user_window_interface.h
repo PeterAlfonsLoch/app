@@ -132,8 +132,8 @@ namespace user
       void ValidateRgn(::ca::region* prgn);
       bool ShowWindow(int32_t iCmdShow);
       bool IsWindowVisible() const;
-      bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca::region* prgnUpdate = NULL,
+      bool RedrawWindow(LPCRECT lpRectUpdate = ::null(),
+         ::ca::region* prgnUpdate = ::null(),
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
       bool KillTimer(int32_t nIDEvent);
@@ -142,7 +142,7 @@ namespace user
 
 
       bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
-      void RedrawOptimize(rect_array & base_array);
+      void RedrawOptimize(rect_array & array);
       bool _001IsBackgroundBypass();
       bool _001IsTransparent();
       bool _001IsTranslucent();
@@ -214,7 +214,7 @@ namespace user
       void TwfGetWndArray(::user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);
-      virtual bool Redraw(LPCRECT lprect = NULL, ::ca::region * prgn = NULL);
+      virtual bool Redraw(LPCRECT lprect = ::null(), ::ca::region * prgn = ::null());
       virtual bool Redraw(::ca::graphics * pdc);
 
       void _001BaseWndInterfaceMap();

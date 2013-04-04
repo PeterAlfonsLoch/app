@@ -228,7 +228,7 @@ int32_t _tcsenicmp( LPCSTR psz, LPCSTR str, ::count len, int32_t escape )
 // Coder    Date                      Desc
 // bro      2002-10-29
 //========================================================
-LPSTR _tcsenistr( LPCSTR psz, LPCSTR str, count len, int32_t escape )
+LPSTR _tcsenistr( LPCSTR psz, LPCSTR str, ::count len, int32_t escape )
 {
 	LPSTR pch = (LPSTR)psz;
 	LPSTR prev_escape = NULL;
@@ -1859,7 +1859,7 @@ vsstring _tagXMLEntitys::Ref2Entity( LPCSTR estr )
 	if( estr )
 	{
       
-      count len = strlen_dup(estr);
+      ::count len = strlen_dup(estr);
 
 		LPSTR esbuf = (LPSTR) _ca_alloc(len+1);
 
@@ -1884,12 +1884,12 @@ vsstring _tagXMLEntitys::Entity2Ref( LPCSTR str )
 	if( str )
 	{
 		
-      count nEntityCount = GetEntityCount(str);
+      ::count nEntityCount = GetEntityCount(str);
 
 		if( nEntityCount == 0 )
 			return vsstring(str);
 
-		count len = strlen_dup(str) + nEntityCount*10 ;
+		::count len = strlen_dup(str) + nEntityCount*10 ;
 
 		LPSTR sbuf = (LPSTR) _ca_alloc(len+1 );
 

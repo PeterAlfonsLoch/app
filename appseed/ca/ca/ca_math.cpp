@@ -41,15 +41,15 @@ namespace ca
 
          if(!CryptAcquireContext(
             &hCryptProv,
-            NULL,
-            NULL,
+            ::null(),
+            ::null(),
             PROV_RSA_FULL,
             0))
          {
             if(CryptAcquireContext(
                &hCryptProv,
-               NULL,
-               NULL,
+               ::null(),
+               ::null(),
                PROV_RSA_FULL,
                CRYPT_NEWKEYSET))
             {
@@ -86,7 +86,7 @@ namespace ca
 
          if (CryptDuplicateKey(
               hOriginalKey,
-              NULL,
+              ::null(),
               0,
               &hDuplicateKey))
          {
@@ -239,13 +239,13 @@ namespace ca
   //          memset(&fta, 0, sizeof(fta));
     //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
       //      int64_t v1 = tick.QuadPart;
-        //    int64_t v2 = time(NULL);
+        //    int64_t v2 = time(::null());
           //  int64_t v3 = ::ca::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
             //int64_t v4 = ::ca::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
             int32_t v1 = (int32_t) timer.getTimeInMicroSec();
 
-            int32_t v2 = (int32_t) time(NULL);
+            int32_t v2 = (int32_t) time(::null());
 
             int32_t v3 = (int32_t) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const byte *) &d1, sizeof(double));
 
@@ -448,7 +448,7 @@ namespace ca
 
       int32_t CLASS_DECL_ca time_seed()
       {
-         return (time(NULL) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;
+         return (time(::null()) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;
       }
 
 

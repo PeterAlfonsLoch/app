@@ -18,7 +18,7 @@ namespace xml
    static const CHAR szXMLCDATAOpen[] = "<![CDATA[";
    static const CHAR szXMLCDATAClose[] = "]]>";
 
-   node::base_array::base_array(::ca::application * papp) :
+   node::array::array(::ca::application * papp) :
       ca(papp)
    {
    }
@@ -32,8 +32,8 @@ namespace xml
    {
 
       m_attra.m_pnodeParent   = this;
-      m_pnodeParent           = NULL;
-      m_pdoc                  = NULL;
+      m_pnodeParent           = ::null();
+      m_pdoc                  = ::null();
       m_etype                 = node_document;
 
    }
@@ -121,10 +121,10 @@ namespace xml
 
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, var);
 
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
 
-         if(m_pdoc->m_pedit != NULL)
+         if(m_pdoc->m_pedit != ::null())
          {
 
             m_pdoc->m_pedit->add_attr(this, pattr);
@@ -142,10 +142,10 @@ namespace xml
 
       ::xml::attr * pattr = &(m_attra[lpcszName] = var);
 
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
 
-         if(m_pdoc->m_pedit != NULL)
+         if(m_pdoc->m_pedit != ::null())
          {
 
             m_pdoc->m_pedit->set_attr(this, pattr);
@@ -176,7 +176,7 @@ namespace xml
          if(m_nodea[i].m_strName == lpcszName && m_nodea[i].attr(pszAttr) == value)
             return m_nodea.element_at(i);
       }
-      return NULL;
+      return ::null();
    }
 
 
@@ -208,21 +208,21 @@ namespace xml
 
       node * node::get_next_sibling()
       {
-         if(m_pnodeParent == NULL)
-            return NULL;
+         if(m_pnodeParent == ::null())
+            return ::null();
          index i = m_pnodeParent->find(this);
          if(i < 0)
             throw "strange: this is not child of this->parent";
          i++;
          if(i >= m_pnodeParent->get_children_count())
-            return NULL;
+            return ::null();
          return m_pnodeParent->child_at(i);
       }
 
       node * node::first_child()
       {
          if(m_nodea.get_count() <= 0)
-            return NULL;
+            return ::null();
          return child_at(0);
       }
 
@@ -230,7 +230,7 @@ namespace xml
 
    char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
       if(pszXml[0] != '<' || pszXml[1] != '!')
          return (char *) pszXml;
@@ -319,14 +319,14 @@ namespace xml
    // Desc   : loading attr plain xml text
    // Param  : pszAttrs - xml of attributes
    //          pparseinfo = parser information
-   // Return : advanced string pointer. (error return NULL)
+   // Return : advanced string pointer. (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
    char * node::LoadAttributes( const char * pszAttrs , parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       char * xml = (char *)pszAttrs;
@@ -342,7 +342,7 @@ namespace xml
 
             // XML Attr Name
             CHAR* pEnd = strpbrk( xml, " =" );
-            if( pEnd == NULL )
+            if( pEnd == ::null() )
             {
                // error
                if( pparseinfo->m_bErrorOccur == false )
@@ -352,7 +352,7 @@ namespace xml
                   pparseinfo->m_eparseerror = parse_error_attr_no_value;
                   pparseinfo->m_strError.Format( "<%s> attr has error ", m_strName );
                }
-               return NULL;
+               return ::null();
             }
 
 
@@ -418,7 +418,7 @@ namespace xml
       }
 
       // not wel-formed tag
-      return NULL;
+      return ::null();
    }
 
 
@@ -429,26 +429,26 @@ namespace xml
    // Desc   : loading processing instruction
    // Param  : pszXml - PI string
    //          pparseinfo - parser information
-   // Return : advanced string pointer. (error return NULL)
+   // Return : advanced string pointer. (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
    char * node::LoadProcessingInstruction( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of pparseinfo
       char * end = _tcsenistr( pszXml, szXMLPIClose, sizeof(szXMLPIClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if(end == NULL)
-         return NULL;
+      if(end == ::null())
+         return ::null();
 
       while(*end != '\0' && isspace(*end))
          end++;
 
       if(*end == '\0')
-         return NULL;
+         return ::null();
 
       // process pparseinfo
       if( m_pdoc )
@@ -482,14 +482,14 @@ namespace xml
    // Param  : pszAttrs - xml of attributes
    //          pszEnd - last string
    //          pparseinfo = parser information
-   // Return : advanced string pointer. (error return NULL)
+   // Return : advanced string pointer. (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
    char * node::LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       char * xml = (char *)pszAttrs;
@@ -505,7 +505,7 @@ namespace xml
 
             // XML Attr Name
             CHAR* pEnd = strpbrk( xml, " =" );
-            if( pEnd == NULL )
+            if( pEnd == ::null() )
             {
                // error
                if( pparseinfo->m_bErrorOccur == false )
@@ -515,7 +515,7 @@ namespace xml
                   pparseinfo->m_eparseerror = parse_error_attr_no_value;
                   pparseinfo->m_strError.Format( "<%s> attr has error ", m_strName );
                }
-               return NULL;
+               return ::null();
             }
 
             string strName;
@@ -566,7 +566,7 @@ namespace xml
       }
 
       // not wel-formed tag
-      return NULL;
+      return ::null();
    }
 
    // <!-- comment -->
@@ -576,24 +576,24 @@ namespace xml
    // Desc   : loading comment
    // Param  : pszXml - comment string
    //          pparseinfo - parser information
-   // Return : advanced string pointer. (error return NULL)
+   // Return : advanced string pointer. (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
    char * node::LoadComment( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of comment
       char * end = _tcsenistr( pszXml, szXMLCommentClose, sizeof(szXMLCommentClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if( end == NULL )
-         return NULL;
+      if( end == ::null() )
+         return ::null();
 
       // process comment
       node * par = m_pnodeParent;
-      if( m_pnodeParent == NULL && m_pdoc )
+      if( m_pnodeParent == ::null() && m_pdoc )
          par = (node *)&m_pdoc;
       if( par )
       {
@@ -621,24 +621,24 @@ namespace xml
    // Desc   : loading CDATA
    // Param  : pszXml - CDATA string
    //          pparseinfo - parser information
-   // Return : advanced string pointer. (error return NULL)
+   // Return : advanced string pointer. (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
    char * node::LoadCDATA( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of CDATA
       char * end = _tcsenistr( pszXml, szXMLCDATAClose, sizeof(szXMLCDATAClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if( end == NULL )
-         return NULL;
+      if( end == ::null() )
+         return ::null();
 
       // process CDATA
       node * pnodeParent = m_pnodeParent;
-      if( m_pnodeParent == NULL && m_pdoc )
+      if( m_pnodeParent == ::null() && m_pdoc )
          pnodeParent = (node *)&m_pdoc;
       if( pnodeParent )
       {
@@ -668,14 +668,14 @@ namespace xml
    //          pbRet - error occur
    //          pszXml - CDATA string
    //          pparseinfo - parser information
-   // Return : advanced string pointer. (error return NULL)
+   // Return : advanced string pointer. (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
    char * node::LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       char * xml = (char *)pszXml;
@@ -694,8 +694,8 @@ namespace xml
             // processing instrunction parse
             // return pointer is next node of pparseinfo
             xml = LoadProcessingInstruction( xml, pparseinfo );
-            //if( xml == NULL )
-            //   return NULL;
+            //if( xml == ::null() )
+            //   return ::null();
             // restart xml parse
          }
 
@@ -704,7 +704,7 @@ namespace xml
          xml = _tcsskip( xml );
          prev = xml;
 
-         if(m_pnodeParent != NULL && m_pnodeParent->m_etype == node_document)
+         if(m_pnodeParent != ::null() && m_pnodeParent->m_etype == node_document)
          {
             // is DOCTYPE
             if(::ca::str::begins(xml, szXMLDOCTYPEOpen))
@@ -712,8 +712,8 @@ namespace xml
                // processing instrunction parse
                // return pointer is next node of pparseinfo
                xml = LoadDocType( xml, pparseinfo );
-               //if( xml == NULL )
-               //   return NULL;
+               //if( xml == ::null() )
+               //   return ::null();
                // restart xml parse
             }
 
@@ -730,7 +730,7 @@ namespace xml
             // return pointer is next node of comment
             xml = LoadComment( xml, pparseinfo );
             // comment node is terminal node
-            if(m_pnodeParent != NULL && m_pnodeParent->m_etype != node_document
+            if(m_pnodeParent != ::null() && m_pnodeParent->m_etype != node_document
                && xml != prev )
             {
                *pbRet = true;
@@ -778,14 +778,14 @@ namespace xml
    // Desc   : load xml plain text
    // Param  : pszXml - plain xml text
    //          pparseinfo = parser information
-   // Return : advanced string pointer  (error return NULL)
+   // Return : advanced string pointer  (error return ::null())
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
    char * node::load( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == NULL)
+      if(pparseinfo == ::null())
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // close it
@@ -794,8 +794,8 @@ namespace xml
       char * xml = (char *)pszXml;
 
       xml = strchr( xml, chXMLTagOpen );
-      if( xml == NULL )
-         return NULL;
+      if( xml == ::null() )
+         return ::null();
 
       // close Tag
       if( *(xml+1) == chXMLTagPre ) // </close
@@ -803,9 +803,9 @@ namespace xml
 
       // Load Other Node before <Tag>(pparseinfo, comment, CDATA etc)
       bool bRet = false;
-      char * ret = NULL;
+      char * ret = ::null();
       ret = LoadOtherNodes(&bRet, xml, pparseinfo );
-      if( ret != NULL )
+      if( ret != ::null() )
          xml = ret;
       if( bRet )
          return xml;
@@ -836,7 +836,7 @@ namespace xml
                   pparseinfo->m_strError = "Element must be closed.";
                }
                // not wel-formed tag
-               return NULL;
+               return ::null();
             }
          }
          else if(*xml)
@@ -849,7 +849,7 @@ namespace xml
             {
                // Text Value
                CHAR* pEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
-               if( pEnd == NULL )
+               if( pEnd == ::null() )
                {
                   if( pparseinfo->m_bErrorOccur == false )
                   {
@@ -859,7 +859,7 @@ namespace xml
                      pparseinfo->m_strError.Format("%s must be closed with </%s>", m_strName );
                   }
                   // error cos not exist CloseTag </TAG>
-                  return NULL;
+                  return ::null();
                }
 
                bool trim = pparseinfo->m_bTrimValue;
@@ -870,7 +870,7 @@ namespace xml
                {
                   if(pEnd[0] == '&' && pEnd[1] != '#')
                   {
-                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, NULL);
+                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, ::null());
                   }
                   else
                   {
@@ -902,7 +902,7 @@ namespace xml
                else
                {
                   delete pnode;
-                  pnode = NULL;
+                  pnode = ::null();
                }
 
                // open/close tag <TAG ..> ... </TAG>
@@ -917,7 +917,7 @@ namespace xml
                   {
                      string closename;
                      CHAR* pEnd = strpbrk( xml, " >" );
-                     if( pEnd == NULL )
+                     if( pEnd == ::null() )
                      {
                         if( pparseinfo->m_bErrorOccur == false )
                         {
@@ -927,7 +927,7 @@ namespace xml
                            pparseinfo->m_strError.Format("it must be closed with </%s>", m_strName );
                         }
                         // error
-                        return NULL;
+                        return ::null();
                      }
                      _SetString( xml, pEnd, &closename );
                      if( closename == this->m_strName )
@@ -952,7 +952,7 @@ namespace xml
                               pparseinfo->m_eparseerror = parse_error_not_nested;
                               pparseinfo->m_strError.Format("'<%s> ... </%s>' is not wel-formed.", m_strName, closename );
                            }
-                           return NULL;
+                           return ::null();
                         }
                      }
                   }
@@ -966,7 +966,7 @@ namespace xml
                   {
                      // Text Value
                      CHAR* pEnd = _tcsechr( xml, chXMLTagOpen, chXMLEscape );
-                     if( pEnd == NULL )
+                     if( pEnd == ::null() )
                      {
                         // error cos not exist CloseTag </TAG>
                         if( pparseinfo->m_bErrorOccur == false )
@@ -976,7 +976,7 @@ namespace xml
                            pparseinfo->m_eparseerror = parse_error_not_closed;
                            pparseinfo->m_strError.Format("it must be closed with </%s>", m_strName );
                         }
-                        return NULL;
+                        return ::null();
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
@@ -987,7 +987,7 @@ namespace xml
                {
                   if(pEnd[0] == '&' && pEnd[1] != '#')
                   {
-                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, NULL);
+                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, ::null());
                   }
                   else
                   {
@@ -1033,7 +1033,7 @@ namespace xml
    {
       string ostring;
 
-      if(opt == NULL)
+      if(opt == ::null())
       {
          opt = System.xml().m_poptionDefault;
       }
@@ -1220,13 +1220,13 @@ namespace xml
       /*for( int32_t i = 0 ; i < m_attra.m_propertya.get_size(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertya[i];
-         if(attr != NULL)
+         if(attr != ::null())
          {
             if(attr->name() == attrname)
                return attr;
          }
       }
-      return NULL;*/
+      return ::null();*/
    }
 
    //========================================================
@@ -1246,7 +1246,7 @@ namespace xml
       for( int32_t i = 0 ; i < m_attra.m_propertya.get_count(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertya[i];
-         if(attr != NULL)
+         if(attr != ::null())
          {
             if(attr->name() == pszName)
                attra.m_propertya.add(*attr);
@@ -1269,13 +1269,13 @@ namespace xml
    /*bool node::get_attr_value( const char * attrname, string & strValue )
    {
       attr * attr = get_attr( attrname );
-      if(attr == NULL)
+      if(attr == ::null())
          return false;
       strValue = attr->m_strValue;
       return true;
    }*/
 
-   node::base_array & node::children()
+   node::array & node::children()
    {
       return m_nodea;
    }
@@ -1289,9 +1289,9 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node::base_array node::children( const char * pszName )
+   node::array node::children( const char * pszName )
    {
-      node::base_array nodea(get_app());
+      node::array nodea(get_app());
       for( int32_t i = 0 ; i < m_nodea.get_size(); i++ )
       {
          node * node = m_nodea(i);
@@ -1308,7 +1308,7 @@ namespace xml
    // Name   : get_child
    // Desc   : get child node with index
    // Param  :
-   // Return : NULL return if no child.
+   // Return : ::null() return if no child.
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -1317,7 +1317,7 @@ namespace xml
    {
       if( i >= 0 && i < m_nodea.get_size() )
          return m_nodea(i);
-      return NULL;
+      return ::null();
    }
 
    //========================================================
@@ -1329,15 +1329,15 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-12-26
    //========================================================
-   count node::get_children_count(const char * pszName )
+   ::count node::get_children_count(const char * pszName )
    {
-      if(pszName == NULL || *pszName == '\0')
+      if(pszName == ::null() || *pszName == '\0')
       {
          return get_children_count();
       }
       else
       {
-         count count = 0;
+         ::count count = 0;
          for(int32_t i = 0; i < m_nodea.get_count(); i++)
          {
             if(m_nodea[i].m_strName == pszName)
@@ -1346,19 +1346,19 @@ namespace xml
          return count;
       }
    }
-   count node::get_children_count()
+   ::count node::get_children_count()
    {
       return m_nodea.get_count();
    }
 
-   count node::get_children_count(const char * pszName, index iDepth)
+   ::count node::get_children_count(const char * pszName, index iDepth)
    {
       if(iDepth == 0)
          return 0;
-      count count = 0;
+      ::count count = 0;
       for(index i = 0; i < m_nodea.get_count(); i++)
       {
-         if(pszName == NULL || *pszName == '\0')
+         if(pszName == ::null() || *pszName == '\0')
          {
             count++;
          }
@@ -1379,7 +1379,7 @@ namespace xml
    // Name   : get_child
    // Desc   : find child with m_strName and return child
    // Param  :
-   // Return : NULL return if no child.
+   // Return : ::null() return if no child.
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -1400,8 +1400,8 @@ namespace xml
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          pnode = pnode->get_child_with_attr(pszName, pszAttr, stra[i]);
-         if(pnode == NULL)
-            return NULL;
+         if(pnode == ::null())
+            return ::null();
       }
       return pnode;
    }
@@ -1409,12 +1409,12 @@ namespace xml
    string                  node::get_child_simple_attr_path(node * pnode, const char * pszAttr)
    {
       string str;
-      while(pnode != NULL && pnode != this)
+      while(pnode != ::null() && pnode != this)
       {
          str = pnode->attr(pszAttr).get_string() + ::ca::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent;
       }
-      if(pnode == NULL)
+      if(pnode == ::null())
          return "";
       else if(pnode != this)
          return "";
@@ -1433,8 +1433,8 @@ namespace xml
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          pnode = pnode->get_child(stra[i]);
-         if(pnode == NULL)
-            return NULL;
+         if(pnode == ::null())
+            return ::null();
       }
       return pnode;
    }
@@ -1444,8 +1444,8 @@ namespace xml
 
       node * pnode = this;
 
-      if(pnode == NULL)
-         return NULL;
+      if(pnode == ::null())
+         return ::null();
 
       for(index iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
       {
@@ -1453,15 +1453,15 @@ namespace xml
          index iIndex = iaPath[iLevel];
 
          if(iIndex < 0)
-            return NULL;
+            return ::null();
 
          if(iIndex >= pnode->get_children_count())
-            return NULL;
+            return ::null();
 
          pnode = pnode->child_at(iIndex);
 
-         if(pnode == NULL)
-            return NULL;
+         if(pnode == ::null())
+            return ::null();
 
       }
 
@@ -1471,12 +1471,12 @@ namespace xml
    string node::get_child_simple_path(const node * pnode) const
    {
       string str;
-      while(pnode != NULL && pnode != this)
+      while(pnode != ::null() && pnode != this)
       {
          str = pnode->m_strName + ::ca::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent;
       }
-      if(pnode == NULL)
+      if(pnode == ::null())
          return "";
       else if(pnode != this)
          return "";
@@ -1487,7 +1487,7 @@ namespace xml
    {
 
       iaPath.remove_all();
-      while(pnode != NULL && pnode != this)
+      while(pnode != ::null() && pnode != this)
       {
          iaPath.insert_at(0, pnode->get_index());
          pnode = pnode->m_pnodeParent;
@@ -1511,7 +1511,7 @@ namespace xml
          if(m_nodea[i].m_strName.compare(pszName) == 0)
             return m_nodea(i);
       }
-      return NULL;
+      return ::null();
    }
 
 
@@ -1519,7 +1519,7 @@ namespace xml
    // Name   : GetChildValue
    // Desc   : find child with m_strName and return child's m_strValue
    // Param  :
-   // Return : NULL return if no child.
+   // Return : ::null() return if no child.
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -1527,19 +1527,19 @@ namespace xml
    string   node::get_child_value( const char * pszName )
    {
       node * node = get_child( pszName );
-      return (node != NULL)? (const char *)node->m_strValue : NULL;
+      return (node != ::null())? (const char *)node->m_strValue : ::null();
    }
 
    string   node::get_child_text( const char * pszName, disp_option * opt /*= &optDefault*/ )
    {
       node * node = get_child( pszName );
-      return (node != NULL)? node->get_text(opt) : "";
+      return (node != ::null())? node->get_text(opt) : "";
    }
 
    attr * node::GetChildAttr( const char * pszName, const char * attrname )
    {
       node * node = get_child(pszName);
-      return node ? node->find_attr(attrname) : NULL;
+      return node ? node->find_attr(attrname) : ::null();
    }
 
    string node::GetChildAttrValue( const char * pszName, const char * attrname )
@@ -1552,7 +1552,7 @@ namespace xml
    // Name   : find
    // Desc   : find node with tag pszName from it's all m_nodea
    // Param  :
-   // Return : NULL return if no found node.
+   // Return : ::null() return if no found node.
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -1566,7 +1566,7 @@ namespace xml
             return m_nodea(i);
       }
       if(iDepth == 0)
-         return NULL;
+         return ::null();
       if(iDepth > 0)
       {
          iDepth--;
@@ -1576,10 +1576,10 @@ namespace xml
       {
          node * lpnodeChild = m_nodea(i);
          lpnodeChild = lpnodeChild->rfind(pszName, iDepth);
-         if(lpnodeChild != NULL)
+         if(lpnodeChild != ::null())
             return lpnodeChild;
       }
-      return NULL;
+      return ::null();
    }
 
 
@@ -1592,7 +1592,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::add_child( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
+   node * node::add_child( const char * pszName /*= ::null()*/, const char * pszValue /*= ::null()*/ )
    {
       node * pnode = new node(this);
       pnode->m_strName = pszName;
@@ -1698,15 +1698,15 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
- // /*   attr * node::add_attr( const char * pszName /*= NULL*/, /*const char * pszValue /*= NULL*/ /*)
+ // /*   attr * node::add_attr( const char * pszName /*= ::null()*/, /*const char * pszValue /*= ::null()*/ /*)
   /* {
 
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, pszValue);
 
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
 
-         if(m_pdoc->m_pedit != NULL)
+         if(m_pdoc->m_pedit != ::null())
          {
 
             m_pdoc->m_pedit->add_attr(this, pattr);
@@ -1736,7 +1736,7 @@ namespace xml
          m_nodea.remove_at(find);
          return node;
       }
-      return NULL;
+      return ::null();
    }
 
    //========================================================
@@ -1757,7 +1757,7 @@ namespace xml
          m_attra.m_propertya.remove_at(find);
          return attr;
       }
-      return NULL;
+      return ::null();
    }*/
 
    //========================================================
@@ -1850,7 +1850,7 @@ namespace xml
          return 0;
 
       if(iIndex < 0)
-         return NULL;
+         return ::null();
 
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
@@ -1865,7 +1865,7 @@ namespace xml
          else if(iDepth < 0)
             m_nodea[i].get_child_at(pszName, iIndex, -1);
       }
-      return NULL;
+      return ::null();
 
    }
 
@@ -1874,14 +1874,14 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   count node::get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, index iDepth)
+   ::count node::get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, index iDepth)
    {
 
       if(iDepth == 0)
          return 0;
 
       string strValue;
-      count count = 0;
+      ::count count = 0;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
          if(m_nodea[i].m_strName == pszName)
@@ -1905,16 +1905,16 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   count node::remove_child_with_attr(const char * pszName, const char * pszAttrName, index iIndex, count iCount, index iDepth)
+   ::count node::remove_child_with_attr(const char * pszName, const char * pszAttrName, index iIndex, ::count iCount, index iDepth)
    {
 
-      count nRemoveCount;
+      ::count nRemoveCount;
 
       if(iDepth == 0)
          return 0;
 
       string strValue;
-      count count = 0;
+      ::count count = 0;
       for(index i = 0; i < m_nodea.get_size(); )
       {
          if(m_nodea[i].m_strName == pszName)
@@ -1974,7 +1974,7 @@ namespace xml
             }
          }
       }
-      return NULL;
+      return ::null();
    }
 
    node * node::GetChildByAnyAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
@@ -1993,7 +1993,7 @@ namespace xml
             }
          }
       }
-      return NULL;
+      return ::null();
    }
 
    node * node::GetChildByAllAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
@@ -2019,7 +2019,7 @@ namespace xml
             }
          }
       }
-      return NULL;
+      return ::null();
    }
 
    void node::close()
@@ -2039,9 +2039,9 @@ namespace xml
       }
       else
       {
-         count iColCount = str2a.get_count();
+         ::count iColCount = str2a.get_count();
          add_attr("column_count", iColCount);
-         count iRowCount;
+         ::count iRowCount;
 
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
@@ -2123,10 +2123,10 @@ namespace xml
 
       m_strName = strName;
 
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
 
-         if(m_pdoc->m_pedit != NULL)
+         if(m_pdoc->m_pedit != ::null())
          {
 
             m_pdoc->m_pedit->set_name(this);
@@ -2142,10 +2142,10 @@ namespace xml
 
       m_strValue = strValue;
 
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
 
-         if(m_pdoc->m_pedit != NULL)
+         if(m_pdoc->m_pedit != ::null())
          {
 
             m_pdoc->m_pedit->set_value(this);
@@ -2180,7 +2180,7 @@ namespace xml
    index node::get_index() const
    {
 
-      if(m_pnodeParent == NULL)
+      if(m_pnodeParent == ::null())
          return -1;
 
 

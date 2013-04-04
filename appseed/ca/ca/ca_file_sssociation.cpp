@@ -7,7 +7,7 @@ namespace ca
    file_association::file_association(::ca::application * papp) :
       ca(papp)
    {
-      m_hkeyClassesRoot = NULL;
+      m_hkeyClassesRoot = ::null();
    }
 
    file_association::~file_association()
@@ -28,7 +28,7 @@ namespace ca
       if(ERROR_SUCCESS !=
          RegOpenKey(
             HKEY_CLASSES_ROOT,
-            NULL,
+            ::null(),
             &m_hkeyClassesRoot))
       return false;
 

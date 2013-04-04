@@ -216,7 +216,7 @@ namespace html
 
    string html::entities(const char * psz)
    {
-      if(psz == NULL)
+      if(psz == ::null())
          return "";
       string str;
       string strChar;

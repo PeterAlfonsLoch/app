@@ -13,7 +13,7 @@ vsstringtow::~vsstringtow()
    if(m_pwstring != NULL)
    {
 
-      count iLen = utf16_len(m_psz);
+      ::count iLen = utf16_len(m_psz);
 
       m_pwstring->alloc(iLen + 1);
 

@@ -8,7 +8,7 @@ namespace user
    frame_window_interface::frame_window_interface()
    {
 
-      m_pdocumenttemplate = NULL;
+      m_pdocumenttemplate = ::null();
 
    }
 
@@ -36,7 +36,7 @@ namespace user
 
    OleFrameHook * frame_window_interface::GetNotifyHook()
    {
-      return NULL;
+      return ::null();
    }
 
    void frame_window_interface::NotifyFloatingWindows(uint32_t dwFlags)
@@ -47,7 +47,7 @@ namespace user
    string frame_window_interface::get_window_default_matter()
    {
 
-      if(m_pdocumenttemplate == NULL)
+      if(m_pdocumenttemplate == ::null())
       {
          return "frame";
       }

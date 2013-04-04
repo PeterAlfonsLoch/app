@@ -1913,9 +1913,6 @@
     <ClInclude Include=".\collection\collection_primitive_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include=".\collection\collection_raw_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include=".\collection\collection_rect_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -1976,19 +1973,10 @@
     <ClInclude Include=".\collection\collection_unique_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include=".\collection\collection_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_base_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include=".\collection\collection_bit_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include=".\collection\collection_bitset.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_class_sort_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include=".\collection\collection_comparable_array.h">
@@ -2010,9 +1998,6 @@
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include=".\collection\collection_elements.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include=".\collection\collection_gen_lemon_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include=".\collection\collection_id_array.h">
@@ -2795,9 +2780,6 @@
     <ClInclude Include="ca\ca_savings.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_scoped_ptr.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_service.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -3166,6 +3148,36 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_string_composite.h">
       <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\aaa_want_to_remove_xxx_collection_base_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\aaa_want_to_remove_ca_scoped_ptr.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_lemon_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_pair.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_map_association.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_string_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_int_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_strid_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_attrib_map.h">
+      <Filter>Header Files\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

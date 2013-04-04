@@ -21,7 +21,7 @@ namespace ca
 
 
 
-      property_set(::ca::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false, bool bKeyCaseInsensitive = true);
+      property_set(::ca::application * papp = ::null(), bool bAutoAdd = true, bool bMultiValue = false, bool bKeyCaseInsensitive = true);
       property_set(const property_set & set);
       property_set(const pair_set_interface & set);
       property_set(const str_str_interface & set);
@@ -39,8 +39,8 @@ namespace ca
       property * add(const char * pszName, var var);
       property * set(const char * pszName, var var);
       property * lowset(const string & strName, const var & var);
-      count remove_by_name(const char * pszName);
-      count remove_by_name(stringa & straName);
+      ::count remove_by_name(const char * pszName);
+      ::count remove_by_name(stringa & straName);
       property & operator[](const char * pszName);
       property operator[](const char * pszName) const;
       property & lowprop(const string & strName);
@@ -69,13 +69,13 @@ namespace ca
 
       index str_find(const property & property, index find = 0) const;
 
-      bool contains_var_ci(const var & var, count countMin = 1, count countMax = -1) const;
-      bool contains_value_ci(var var, count countMin = 1, count countMax = -1) const;
-      bool contains_value_ci(const char * psz, count countMin = 1, count countMax = -1) const;
+      bool contains_var_ci(const var & var, ::count countMin = 1, ::count countMax = -1) const;
+      bool contains_value_ci(var var, ::count countMin = 1, ::count countMax = -1) const;
+      bool contains_value_ci(const char * psz, ::count countMin = 1, ::count countMax = -1) const;
 
-      bool contains_var(const var & var, count countMin = 1, count countMax = -1) const;
-      bool contains_value(var var, count countMin = 1, count countMax = -1) const;
-      bool contains_value(const char * psz, count countMin = 1, count countMax = -1) const;
+      bool contains_var(const var & var, ::count countMin = 1, ::count countMax = -1) const;
+      bool contains_value(var var, ::count countMin = 1, ::count countMax = -1) const;
+      bool contains_value(const char * psz, ::count countMin = 1, ::count countMax = -1) const;
 
       bool str_contains(const property_set & set) const;
 
@@ -87,13 +87,13 @@ namespace ca
       index remove_first_value(var var);
       index remove_first_value(const char * psz);
 
-      count remove_var_ci(const var & var, count countMin = 0, count countMax = -1);
-      count remove_value_ci(var var, count countMin = 0, count countMax = -1);
-      count remove_value_ci(const char * psz, count countMin = 0, count countMax = -1);
+      ::count remove_var_ci(const var & var, ::count countMin = 0, ::count countMax = -1);
+      ::count remove_value_ci(var var, ::count countMin = 0, ::count countMax = -1);
+      ::count remove_value_ci(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
-      count remove_var(const var & var, count countMin = 0, count countMax = -1);
-      count remove_value(var var, count countMin = 0, count countMax = -1);
-      count remove_value(const char * psz, count countMin = 0, count countMax = -1);
+      ::count remove_var(const var & var, ::count countMin = 0, ::count countMax = -1);
+      ::count remove_value(var var, ::count countMin = 0, ::count countMax = -1);
+      ::count remove_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
       bool has_property(const char * pszName) const;
       bool has_property(const string & pszName) const;
@@ -103,8 +103,8 @@ namespace ca
       bool low_has_property(const string & pszName) const;
       bool low_has_property(string_interface & str) const;
 
-      bool is_set_empty(count countMinimum = 1) const;
-      bool has_properties(count countMinimum = 1) const;
+      bool is_set_empty(::count countMinimum = 1) const;
+      bool has_properties(::count countMinimum = 1) const;
 
       const property * lowfind(const char * pszName) const;
       const property * lowfind(const string & strName) const;
@@ -126,7 +126,7 @@ namespace ca
       index find_index(const char * pszName) const;
       index find_index(string_interface & str) const;
 
-      count unset(const char * pszName);
+      ::count unset(const char * pszName);
 
       bool is_new(const char * pszName) const;
       bool is_new(string_interface & str) const;
@@ -167,7 +167,7 @@ namespace ca
       virtual void read(::ca::byte_input_stream & ostream);
 
       virtual string implode(const char * pszGlue) const;
-      count get_count() const;
+      ::count get_count() const;
 
 
       property_set & operator = (const property_set & set);
@@ -189,7 +189,7 @@ namespace ca
    public:
 
 
-      relation_set(::ca::application * papp = NULL);
+      relation_set(::ca::application * papp = ::null());
       virtual ~relation_set();
 
 
@@ -221,7 +221,7 @@ namespace ca
 
 
 
-   inline count property_set::get_count() const
+   inline ::count property_set::get_count() const
    {
       return m_map.get_count();
    }
@@ -251,17 +251,17 @@ namespace ca
       property_pair(property_set & set) :
          m_set(set)
       {
-         m_ppair = NULL;
+         m_ppair = ::null();
       }
 
       ::ca::property * operator ->()
       {
-         return &m_set.m_propertya[m_ppair->m_value];
+         return &m_set.m_propertya[m_ppair->m_element2];
       }
 
       const ::ca::property * operator ->() const
       {
-         return &m_set.m_propertya[m_ppair->m_value];
+         return &m_set.m_propertya[m_ppair->m_element2];
       }
 
       operator property_map::pair * ()
@@ -276,7 +276,7 @@ namespace ca
 
       bool operator ()()
       {
-         return m_set.m_map.next(m_ppair) != NULL;
+         return m_set.m_map.next(m_ppair) != ::null();
       }
 
 
@@ -296,17 +296,17 @@ namespace ca
          m_set(set)
 
       {
-         m_ppair = NULL;
+         m_ppair = ::null();
       }
 
       const ::ca::property * operator ->()
       {
-         return &m_set.m_propertya[m_ppair->m_value];
+         return &m_set.m_propertya[m_ppair->m_element2];
       }
 
       const ::ca::property * operator ->() const
       {
-         return &m_set.m_propertya[m_ppair->m_value];
+         return &m_set.m_propertya[m_ppair->m_element2];
       }
 
       operator const property_map::pair * () const
@@ -317,7 +317,7 @@ namespace ca
 
       bool operator ()()
       {
-         return m_set.m_map.next(m_ppair) != NULL;
+         return m_set.m_map.next(m_ppair) != ::null();
       }
 
    };
@@ -325,7 +325,7 @@ namespace ca
    inline bool property_set::has_property(const string & strName) const
    {
       const property * pproperty = find(strName);
-      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
+      return pproperty != ::null() && pproperty->m_var.m_etype != var::type_new;
    }
 
    inline bool property_set::has_property(const char * pszName) const
@@ -341,7 +341,7 @@ namespace ca
    inline bool property_set::low_has_property(const string & strName) const
    {
       const property * pproperty = find(strName);
-      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
+      return pproperty != ::null() && pproperty->m_var.m_etype != var::type_new;
    }
 
    inline bool property_set::low_has_property(const char * pszName) const
@@ -357,9 +357,9 @@ namespace ca
    inline property * property_set::lowfind(const string & strName)
    {
       ::ca::property_map::pair * ppair = m_map.PLookup(strName);
-      if(ppair == NULL)
-         return NULL;
-      return &m_propertya[ppair->m_value];
+      if(ppair == ::null())
+         return ::null();
+      return &m_propertya[ppair->m_element2];
    }
 
    inline property * property_set::lowfind(const char * pszName)
@@ -375,7 +375,7 @@ namespace ca
    inline property * property_set::set(const char * pszName, var var)
    {
       property * p = find(pszName);
-      if(p != NULL)
+      if(p != ::null())
       {
          p->get_value() = var;
          return p;
@@ -390,7 +390,7 @@ namespace ca
    inline property * property_set::lowset(const string & strName, const var & var)
    {
       property * p = lowfind(strName);
-      if(p != NULL)
+      if(p != ::null())
       {
          p->get_value() = var;
          return p;

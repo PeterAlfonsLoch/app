@@ -8,9 +8,9 @@ namespace webserver
 
 
    class simage_accepta;
-   typedef base_array < simage_accepta * > simage_accepta_ptr_array;
+   typedef spa(simage_accepta) simage_accepta_ptr_array;
    class match_host;
-   typedef ::collection::smart_pointer_array < match_host > match_host_array;
+   typedef spa(match_host) match_host_array;
    class ui_redir;
    class fontopus_database;
    class way_database;
@@ -38,7 +38,7 @@ namespace dynamic_source
       public:
 
          
-         script_manager *              m_pmanager;
+         sp(script_manager)   m_pmanager;
          
          
          virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction);
@@ -95,27 +95,24 @@ namespace dynamic_source
       spa(plugin_map_item)                      m_pluginmapitema;
 
       mutex                                     m_mutexIncludeMatches;
-      ::collection::string_map < bool >         m_mapIncludeMatchesFileExists;
-      ::collection::string_map < bool >         m_mapIncludeMatchesIsDir;
+      string_map < bool >         m_mapIncludeMatchesFileExists;
+      string_map < bool >         m_mapIncludeMatchesIsDir;
       mutex                                     m_mutexIncludeHasScript;
-      ::collection::string_map < bool >         m_mapIncludeHasScript;
+      string_map < bool >         m_mapIncludeHasScript;
       mutex                                     m_mutexIncludeExpandMd5;
       string_to_string_map                      m_mapIncludeExpandMd5;
 
 
-      int32_t                                       m_iTunnelPluginCount;
+      int32_t                                   m_iTunnelPluginCount;
       mutex                                     m_mutexOutLink;
-      ::collection::string_map < ::sockets::link_out_socket * > 
-                                                m_mapOutLink;
+      strsp(::sockets::link_out_socket)         m_mapOutLink;
       mutex                                     m_mutexInLink;
-      ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * > 
-                                                m_mapInLink;
+      ::sockets::in_link_map                    m_mapInLink;
       mutex                                     m_mutexTunnel;
-      ::collection::string_map < tunnel_map_item > 
-                                                m_mapTunnel;
+      strmap(tunnel_map_item)                   m_mapTunnel;
 
       mutex                                     m_mutexImageSize;
-      ::collection::string_map < ::size >         m_mapImageSize;
+      string_map < ::size >       m_mapImageSize;
 
 
 
@@ -132,32 +129,32 @@ namespace dynamic_source
       
 #ifdef MACOS
       
-      raw_array < SecKeyRef >                   m_rsaptra;
+      array < SecKeyRef >                   m_rsaptra;
 
 #elif defined(BSD_STYLE_SOCKETS)
 
-      raw_array < RSA * >                       m_rsaptra;
+      pointera(RSA)                                  m_rsaptra;
 
 #else
 
-      raw_array < ::Windows::Security::Cryptography::Core::CryptographicKey ^ > m_rsaptra;
+      array < ::Windows::Security::Cryptography::Core::CryptographicKey ^ > m_rsaptra;
 
 #endif
 
-      uint32_t                                     m_dwLastRsa;
+      uint32_t                                  m_dwLastRsa;
 
 
 
       int64_t                                   m_iDatabaseWaitTimeOut;
 
       mutex                                     m_mutexSession;
-      ::collection::string_map < session >      m_mapSession;
+      string_map < session >      m_mapSession;
       mutex                                     m_mutexMusicDbPool;
       mutex                                     m_mutexWayDbPool;
       script_cache *                            m_pcache;
       script_compiler *                         m_pcompiler;
-      uint32_t                                     m_dwBuildTimeWindow;
-      uint32_t                                     m_dwBuildTimeRandomWindow;
+      uint32_t                                  m_dwBuildTimeWindow;
+      uint32_t                                  m_dwBuildTimeRandomWindow;
 
       string_to_string_map                      m_strmapFunUserKey;
 

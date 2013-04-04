@@ -48,5 +48,5 @@ void rect_array::intersect(LPCRECT lpcrect)
 
 void rect_array::add(LPCRECT lpcrect)
 {
-   raw_array < rect >::add(rect(*lpcrect));
+   array < rect >::add(rect(*lpcrect));
 }

@@ -34,7 +34,7 @@ namespace user
       return m_panea.get_by_id(id);
    }
 
-   count tab::data::get_visible_tab_count()
+   ::count tab::data::get_visible_tab_count()
    {
       return m_panea.get_visible_count();
    }
@@ -1464,7 +1464,7 @@ namespace user
       return NULL;
    }
 
-   count tab::pane_array::get_visible_count()
+   ::count tab::pane_array::get_visible_count()
    {
 
       ::count count = 0;

@@ -35,7 +35,7 @@ bool ifs::has_subdir(const char * pszPath)
 
    xml::node * pnode = doc.get_child("folder");
 
-   if(pnode == NULL)
+   if(pnode == ::null())
       return false;
 
    if(pnode->get_children_count("folder") <= 0)
@@ -89,7 +89,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    xml::node * pnode = doc.get_root()->get_child("folder");
 
-   if(pnode != NULL)
+   if(pnode != ::null())
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
@@ -99,11 +99,11 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strPath = dir_path(pszDir, strName);
          m_mapdirTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapfileTimeout.remove_key(strPath);
-         if(pstraPath != NULL)
+         if(pstraPath != ::null())
          {
             pstraPath->add(strPath);
          }
-         if(pstraTitle != NULL)
+         if(pstraTitle != ::null())
          {
             pstraTitle->add(strName);
          }
@@ -112,7 +112,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    pnode = doc.get_root()->get_child("file");
 
-   if(pnode != NULL)
+   if(pnode != ::null())
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
@@ -123,11 +123,11 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strPath = dir_path(pszDir, strName);
          m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);
-         if(pstraPath != NULL)
+         if(pstraPath != ::null())
          {
             pstraPath->add(strPath);
          }
-         if(pstraTitle != NULL)
+         if(pstraTitle != ::null())
          {
             pstraTitle->add(strName);
          }
@@ -143,7 +143,7 @@ bool ifs::is_dir(const char * pszPath)
 
    //xml::node node(get_app());
 
-   if(pszPath == NULL || strlen(pszPath) == 0)
+   if(pszPath == ::null() || strlen(pszPath) == 0)
    {
       return true;
    }
@@ -227,7 +227,7 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
    
    ::ca::filesp spfile;
 
-   spfile(new ifs_file(get_app(), varFile));
+   spfile = new ifs_file(get_app(), varFile);
 
    string strUrl;
 

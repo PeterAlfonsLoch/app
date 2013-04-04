@@ -25,7 +25,7 @@ namespace ca
 
 
 
-      signal_object(::ca::application * papp = NULL);
+      signal_object(::ca::application * papp = ::null());
       signal_object(signal * psignal);
       virtual ~signal_object();
 
@@ -123,7 +123,7 @@ namespace ca
          {
          };
          virtual void emit(signal_object * pobject) = 0;
-         virtual signalizable * get_signalizable() { return NULL;}
+         virtual signalizable * get_signalizable() { return ::null();}
       };
       template < class T >
       class signal_delegate_instance : public signal_delegate
@@ -151,7 +151,7 @@ namespace ca
       virtual ~signal();
 
       bool has_handler();
-      void emit(signal_object * pobject = NULL);
+      void emit(signal_object * pobject = ::null());
       void emit_previous(signal_object * pobject);
       void emit_all_previous(signal_object * pobject);
       template < class T >
@@ -168,7 +168,7 @@ namespace ca
          for(int32_t i = 0; i < m_delegatea.get_size(); i++)
          {
             signal_delegate_instance < T > * pdelegate = m_delegatea.typed_ptr_at < signal_delegate_instance < T > > (i);
-            if(pdelegate != NULL && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
+            if(pdelegate != ::null() && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
                return true;
          }
          return false;
@@ -209,7 +209,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca signalid_array :
-      virtual public base_array < signalid *, signalid * >
+      virtual public array < signalid *, signalid * >
    {
    public:
       virtual ~signalid_array();
@@ -240,7 +240,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca handler_item_array :
-            public base_array < handler_item_base *, handler_item_base *>
+            public array < handler_item_base *, handler_item_base *>
          {
          public:
             bool HasSignalizable(::ca::signalizable * psignalizable);
@@ -261,7 +261,7 @@ namespace ca
          };
 
          class CLASS_DECL_ca signal_ptr_array :
-            public base_array < signal * , signal * >
+            public array < signal * , signal * >
          {
          public:
             bool emit(signal_object * pobj);
@@ -288,7 +288,7 @@ namespace ca
          {
             signal * psignal = m_signala.GetSignalById(pid);
             // If not found a existing Signal, create one
-            if(psignal == NULL)
+            if(psignal == ::null())
             {
                psignal                    = new signal;
                psignal->m_pid             = pid->copy();
@@ -348,7 +348,7 @@ namespace ca
             return &signal;
          }
       }
-      return NULL;
+      return ::null();
    }
 
 

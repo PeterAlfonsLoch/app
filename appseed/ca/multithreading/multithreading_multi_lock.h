@@ -10,9 +10,9 @@ public:
 
    sync_object_ptra           m_syncobjectptra;
 #ifdef WINDOWS
-   base_array < HANDLE >      m_objecta;
+   array < HANDLE >      m_objecta;
 #else
-   base_array < waitable * >  m_objecta;
+   array < waitable * >  m_objecta;
 #endif
    bool_array                 m_baLocked;
 
@@ -24,7 +24,7 @@ public:
 
    wait_result lock(const duration & dwTimeOut = duration::infinite(), bool bWaitForAll = TRUE, uint32_t dwWakeMask = 0);
    bool unlock();
-   bool unlock(LONG lCount, LPLONG lPrevCount = NULL);
+   bool unlock(LONG lCount, LPLONG lPrevCount = ::null());
    bool IsLocked(index dwItem);
 
 };

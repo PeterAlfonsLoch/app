@@ -51,7 +51,7 @@ namespace fs
       return ::user::list::_001OnUpdateItemCount(dwFlags);
    }
 
-   void list_interface::GetSelectedFilePath(stringa & base_array)
+   void list_interface::GetSelectedFilePath(stringa & array)
    {
       range range;
 
@@ -77,7 +77,7 @@ namespace fs
             list_item & item = pdata->m_itema.get_item(iStrict);
             if(!item.IsFolder())
             {
-               base_array.add(item.m_strPath);
+               array.add(item.m_strPath);
             }
          }
       }
@@ -127,7 +127,7 @@ namespace fs
       int32_t iSize;
       iSize = 0;
 
-      get_fs_list_data()->m_itema.SetItemCount(iMaxSize);
+//      get_fs_list_data()->m_itema.SetItemCount(iMaxSize);
 
       m_straStrictOrder.remove_all();
 
@@ -158,15 +158,14 @@ namespace fs
          item.m_strName = straTitle[i];
          m_straStrictOrder.add(straPath[i]);
 
-         get_fs_list_data()->m_itema.SetItemAt(iSize, item);
+         get_fs_list_data()->m_itema.add_item(item);
+
          iSize++;
          if(iSize >= iMaxSize)
          {
             iMaxSize += 1000;
-            get_fs_list_data()->m_itema.SetItemCount(iMaxSize);
          }
       }
-      get_fs_list_data()->m_itema.SetItemCount(iSize);
 
 
 
@@ -559,7 +558,7 @@ namespace fs
       pobj->m_bRet = false;
    }
 
-   count list_interface::_001GetItemCount()
+   ::count list_interface::_001GetItemCount()
    {
       return get_fs_list_data()->m_itema.get_count();
    }

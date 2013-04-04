@@ -9,16 +9,16 @@ namespace xml
       ca(papp),
       tree_base(papp)
    {
-      m_pdocument = NULL;
-      m_pnode = NULL;
+      m_pdocument = ::null();
+      m_pnode = ::null();
    }
 
    input_tree::input_tree(::ca::application * papp, tree_schema * pschema) :
       ca(papp),
       tree_base(papp, pschema)
    {
-      m_pdocument = NULL;
-      m_pnode = NULL;
+      m_pdocument = ::null();
+      m_pnode = ::null();
    }
 
    input_tree::~input_tree()
@@ -29,14 +29,14 @@ namespace xml
    node * input_tree::import_node(const char * lpcszName, importable & importable)
    {
       node * pnodePrev = m_pnode;
-      if(m_pnode == NULL)
+      if(m_pnode == ::null())
       {
          m_pnode = m_pdocument->get_root();
          string strName;
          strName = m_pnode->get_name();
          if(strName != lpcszName)
          {
-            m_pnode = NULL;
+            m_pnode = ::null();
             throw "Node not found";
          }
          importable.xml_import(*this);
@@ -56,17 +56,17 @@ namespace xml
    node * input_tree::import_node(const char * lpcszName, attr_array & attributea, importable & importable)
    {
       node * pnodePrev = m_pnode;
-      if(m_pnode == NULL)
+      if(m_pnode == ::null())
       {
          m_pnode = m_pdocument->get_root();
          if(m_pnode->get_name() != lpcszName)
          {
             ASSERT(FALSE);
-            m_pnode = NULL;
+            m_pnode = ::null();
             throw "Node not found";
          }
          if(!m_pnode->contains(attributea))
-            return ((node *) NULL);
+            return ((node *) ::null());
          importable.xml_import(*this);
          return m_pdocument->get_root();
       }

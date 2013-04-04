@@ -63,7 +63,7 @@ namespace ca
       byte_input_stream & operator >> (var & var);
 
       // read until MSB is not set ignoring this MSB when writing to target
-      void read_arbitrary(void * p, count nMax);
+      void read_arbitrary(void * p, ::count nMax);
 
       virtual string get_location() const;
 

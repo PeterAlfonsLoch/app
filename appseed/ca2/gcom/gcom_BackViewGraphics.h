@@ -36,7 +36,7 @@ namespace gcom
          ::ca::graphics_sp               m_dcScreen;
          rect             m_rectFinalPlacement;
 
-         ::collection::map < int32_t, int32_t, ::ca::dib *, ::ca::dib * > m_mapDib;
+         map < int32_t, int32_t, ::ca::dib *, ::ca::dib * > m_mapDib;
 //         ::ca::draw_dib_sp         m_spdrawdib;
 
          mutex   m_mutgenBack;

@@ -171,17 +171,17 @@ public:
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
    string                           to_r_string() const;
-   string                           get_string(const char * pszOnNull = NULL) const;
-   string &                         get_ref_string(const char * pszOnNull = NULL);
+   string                           get_string(const char * pszOnNull = ::null()) const;
+   string &                         get_ref_string(const char * pszOnNull = ::null());
    string                           to_string() const;
-   id                               get_id(const char * pszOnNull = NULL)   const;
-   id &                             get_ref_id(const char * pszOnNull = NULL);
+   id                               get_id(const char * pszOnNull = ::null())   const;
+   id &                             get_ref_id(const char * pszOnNull = ::null());
    class primitive::memory &        memory();
    stringa &                        stra();
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::ca::property_set &              propset(::ca::application * papp = NULL);
+   ::ca::property_set &              propset(::ca::application * papp = ::null());
    ::ca::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
@@ -316,18 +316,18 @@ public:
    template < class T >
    T * ca()
    {
-      if(m_etype == type_pvar && m_pvar != NULL)
+      if(m_etype == type_pvar && m_pvar != ::null())
          return m_pvar->ca < T > ();
-      if(m_etype != type_ca2 || m_pca2 == NULL)
-         return NULL;
+      if(m_etype != type_ca2 || m_pca2 == ::null())
+         return ::null();
       return dynamic_cast < T * > (m_pca2);
    }
 
    template < class T >
    const T * ca() const
    {
-      if(m_etype != type_ca2 || m_pca2 == NULL)
-         return NULL;
+      if(m_etype != type_ca2 || m_pca2 == ::null())
+         return ::null();
       return dynamic_cast < T * > (m_pca2);
    }
 
@@ -407,7 +407,7 @@ public:
 
    var first() const;
    var last() const;
-   inline count get_count() const;
+   inline ::count get_count() const;
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
    const var & operator[] (index iKey) const;
@@ -424,10 +424,10 @@ public:
    inline var at(int32_t i) { return at((index) i); }
    inline var key(int32_t i) const { return key((index) i); }
 #endif
-   inline count array_get_count() const;
+   inline ::count array_get_count() const;
    inline index array_get_upper_bound() const;
-   bool array_contains(const char * psz, index find = 0, count count = -1) const;
-   bool array_contains_ci(const char * psz, index find = 0, count count = -1) const;
+   bool array_contains(const char * psz, index find = 0, ::count count = -1) const;
+   bool array_contains_ci(const char * psz, index find = 0, ::count count = -1) const;
 
    var equals_ci_get(const char * pszCompare, var varOnEqual, var varOnDifferent) const;
    var equals_ci_get(const char * pszCompare, var varOnEqual) const;

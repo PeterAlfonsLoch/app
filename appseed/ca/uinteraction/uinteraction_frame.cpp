@@ -23,7 +23,7 @@ namespace uinteraction
 
          throw interface_only_exception(get_app());
 
-         return NULL;
+         return ::null();
 
       }
 

@@ -17,7 +17,7 @@ public:
    UINT m_nAllocSize;   // size of each block from Alloc
    UINT m_nBlockSize;   // number of blocks to get at a time
    plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
-   node* m_pnodeFree;   // first free node (NULL if no free nodes)
+   node* m_pnodeFree;   // first free node (::null() if no free nodes)
 
 
    fixed_alloc_no_sync(UINT nAllocSize, UINT nBlockSize = 64);
@@ -39,7 +39,7 @@ public:
 
 inline void * fixed_alloc_no_sync::Alloc()
 {
-   if (m_pnodeFree == NULL)
+   if (m_pnodeFree == ::null())
    {
       NewBlock();
    }
@@ -52,7 +52,7 @@ inline void * fixed_alloc_no_sync::Alloc()
 inline void fixed_alloc_no_sync::Free(void * p)
 {
    p = (void *) (((byte *)p) - 16);
-   if (p != NULL)
+   if (p != ::null())
    {
       // simply return the node to the free list
       node* pNode = (node*)p;
@@ -105,7 +105,7 @@ inline void * fixed_alloc_sync::Alloc()
    }
 
 
-   register void * p = NULL;
+   register void * p = ::null();
    m_protectptra.get_data()[i]->lock();
    try
    {
@@ -115,15 +115,15 @@ inline void * fixed_alloc_sync::Alloc()
    {
    }
    m_protectptra.get_data()[i]->unlock();
-   if(p == NULL)
-      return NULL;
+   if(p == ::null())
+      return ::null();
    ((int32_t *) p)[0] = i;
    return &((int32_t *)p)[1];
 }
 
 inline void fixed_alloc_sync::Free(void * p)
 {
-   if (p == NULL)
+   if (p == ::null())
       return;
    register int32_t i = ((int32_t *)p)[-1];
    m_protectptra.get_data()[i]->lock();
@@ -190,7 +190,7 @@ inline void * fixed_alloc::Alloc()
 inline void fixed_alloc::Free(void * p)
 {
 
-   if (p == NULL)
+   if (p == ::null())
       return;
 
    register int32_t i = ((int32_t *)p)[-1];

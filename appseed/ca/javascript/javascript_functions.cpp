@@ -94,7 +94,7 @@ void scIsInNet(CScriptVar *c, void *data)
 
 bool is_only_digits(const char * psz)
 {
-   if(psz == NULL || *psz == '\0')
+   if(psz == ::null() || *psz == '\0')
       return false;
    while(true)
    {

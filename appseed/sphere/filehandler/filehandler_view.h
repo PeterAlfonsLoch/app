@@ -27,7 +27,7 @@ namespace filehandler
       };
 
       class CLASS_DECL_sphere list :
-         public ::collection::smart_pointer_array < item >
+         public smart_pointer_array < item >
       {
       public:
 
@@ -51,7 +51,7 @@ namespace filehandler
       };
 
       class CLASS_DECL_sphere draw_list :
-         public ::collection::smart_pointer_array < draw_item >
+         public smart_pointer_array < draw_item >
       {
       public:
 

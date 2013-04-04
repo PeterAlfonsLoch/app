@@ -32,31 +32,31 @@ namespace database
       DECL_GEN_VSIGNAL(data_on_before_change)
       DECL_GEN_VSIGNAL(data_on_after_change)
 
-      virtual bool data_set(class id, bool b, update_hint * phint = NULL);
-      virtual bool data_set(class id, const char * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, int32_t i, update_hint * puh = NULL);
-      virtual bool data_set(class id, int64_t i, update_hint * puh = NULL);
+      virtual bool data_set(class id, bool b, update_hint * phint = ::null());
+      virtual bool data_set(class id, const char * lpsz, update_hint * puh = ::null());
+      virtual bool data_set(class id, int32_t i, update_hint * puh = ::null());
+      virtual bool data_set(class id, int64_t i, update_hint * puh = ::null());
 
       virtual bool data_get(class id, bool & b);
       virtual bool data_get(class id, string & str);
       virtual bool data_get(class id, int32_t & i);
       virtual bool data_get(class id, int64_t & i);
 
-      virtual bool data_set(class id, class id idIndex, bool b, update_hint * phint = NULL);
-      virtual bool data_set(class id, class id idIndex, var & var, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, int32_t i, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, int64_t i, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, const char * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, const wchar_t * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::ca::readable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::ca::byte_serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::ca::byte_input_stream & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::ca::plain_text_serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::ca::plain_text_input_stream & obj, update_hint * puh = NULL);
-      virtual bool data_set(selection & selection, const char * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(selection & selection, var & var, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, bool b, update_hint * phint = ::null());
+      virtual bool data_set(class id, class id idIndex, var & var, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, int32_t i, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, int64_t i, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, const char * lpsz, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, const wchar_t * lpsz, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, ::ca::readable & obj, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, ::ca::byte_serializable & obj, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, ::ca::byte_input_stream & obj, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, ::ca::plain_text_serializable & obj, update_hint * puh = ::null());
+      virtual bool data_set(class id, class id idIndex, ::ca::plain_text_input_stream & obj, update_hint * puh = ::null());
+      virtual bool data_set(selection & selection, const char * lpsz, update_hint * puh = ::null());
+      virtual bool data_set(selection & selection, var & var, update_hint * puh = ::null());
 
-      virtual bool data_set(class id dataid, class id, class id idIndex, const char * lpsz, update_hint * puh = NULL);
+      virtual bool data_set(class id dataid, class id, class id idIndex, const char * lpsz, update_hint * puh = ::null());
 
       virtual bool data_get(class id, class id idIndex, bool & b);
       virtual bool data_get(class id, class id idIndex, var & var);

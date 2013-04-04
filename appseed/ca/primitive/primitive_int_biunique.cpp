@@ -7,6 +7,6 @@ index_biunique::index_biunique(::ca::application * papp) :
 }
 
 int_biunique::int_biunique(::ca::application * papp) : 
-   biunique < int32_t, ::collection::int_to_int >(papp) 
+   biunique < int32_t, int_to_int >(papp) 
 { 
 }

@@ -21,8 +21,8 @@ namespace rar
    public:
 
 
-     base_array<input_file> *_archives;
-     const base_array<CItemEx> *_items;
+     array<input_file> *_archives;
+     const array<CItemEx> *_items;
      CRefItem _refItem;
      int32_t _curIndex;
      uint32_t _crc;
@@ -34,7 +34,7 @@ namespace rar
 
      HRESULT OpenStream();
      HRESULT CloseStream();
-     void Init(base_array < input_file > * archives, const base_array < CItemEx > * items, const CRefItem & refItem);
+     void Init(array < input_file > * archives, const array < CItemEx > * items, const CRefItem & refItem);
 
    };
   

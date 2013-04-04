@@ -1049,7 +1049,7 @@ throw todo(get_app());
       {
          // initialize map if necessary
          if (m_pStringMap == NULL)
-            m_pStringMap = new ::collection::string_to_ptr;
+            m_pStringMap = new string_to_ptr;
 
          string str;
          str = lpszText;

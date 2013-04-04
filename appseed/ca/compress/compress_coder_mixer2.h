@@ -22,10 +22,10 @@ namespace libcompress
 
       struct CBindInfo
       {
-         base_array<CCoderStreamsInfo> Coders;
-         base_array<CBindPair> BindPairs;
-         base_array<uint32_t> InStreams;
-         base_array<uint32_t> OutStreams;
+         array<CCoderStreamsInfo> Coders;
+         array<CBindPair> BindPairs;
+         array<uint32_t> InStreams;
+         array<uint32_t> OutStreams;
 
          void remove_all()
          {
@@ -126,12 +126,12 @@ namespace libcompress
       {
          uint32_t _numSrcOutStreams;
          ::libcompress::coder_mixer::CBindInfo _srcBindInfo;
-         base_array<uint32_t> _srcInToDestOutMap;
-         base_array<uint32_t> _srcOutToDestInMap;
-         base_array<uint32_t> _destInToSrcOutMap;
+         array<uint32_t> _srcInToDestOutMap;
+         array<uint32_t> _srcOutToDestInMap;
+         array<uint32_t> _destInToSrcOutMap;
       public:
          uint32_t NumSrcInStreams;
-         base_array<uint32_t> DestOutToSrcInMap;
+         array<uint32_t> DestOutToSrcInMap;
 
          CBindReverseConverter(const ::libcompress::coder_mixer::CBindInfo &srcBindInfo);
          void CreateReverseBindInfo(::libcompress::coder_mixer::CBindInfo &destBindInfo);
@@ -144,10 +144,10 @@ namespace libcompress
          uint32_t NumInStreams;
          uint32_t NumOutStreams;
 
-         base_array<file_size> InSizes;
-         base_array<file_size> OutSizes;
-         base_array<const file_size *> InSizePointers;
-         base_array<const file_size *> OutSizePointers;
+         array<file_size> InSizes;
+         array<file_size> OutSizes;
+         array<const file_size *> InSizePointers;
+         array<const file_size *> OutSizePointers;
 
          CCoderInfo2(uint32_t numInStreams, uint32_t numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);

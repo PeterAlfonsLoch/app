@@ -77,7 +77,7 @@ namespace ca
        bool friendsIdsGet( string & userInfo /* in */, bool isUserId = false /* in */ );
        bool followersIdsGet( string & userInfo /* in */, bool isUserId = false /* in */ );
 
-       /* Twitter account APIs */
+       /* Twitter ac::count APIs */
        bool accountRateLimitGet();
 
        /* Twitter favorites APIs */

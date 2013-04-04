@@ -154,7 +154,7 @@ public:
    void SubtractRectMinor(LPCRECT lpcrectMajor, LPCRECT lpcrectMinor);
 
 
-   void get_bounding_rect(const POINT * lppoint, count count);
+   void get_bounding_rect(const POINT * lppoint, ::count count);
    void get_bounding_rect(const point_array & pointa);
 
 };
@@ -546,7 +546,7 @@ public:
    void SubtractRectMinor(LPCRECTD lpcrectMajor, LPCRECTD lpcrectMinor);
 
 
-   void get_bounding_rect(const POINTD * lppoint, count count);
+   void get_bounding_rect(const POINTD * lppoint, ::count count);
    void get_bounding_rect(const pointd_array & pointa);
 
 };

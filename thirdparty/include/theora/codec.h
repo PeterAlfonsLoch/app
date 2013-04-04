@@ -552,13 +552,13 @@ extern void th_comment_add_tag(th_comment *_tc,char *_tag,char *_val);
 /**Look up a comment value by its tag.
  * \param _tc    An initialized #th_comment structure.
  * \param _tag   The tag to look up.
- * \param _count The instance of the tag.
+ * \param _::count The instance of the tag.
  *               The same tag can appear multiple times, each with a distinct
  *                value, so an index is required to retrieve them all.
  *               The order in which these values appear is significant and
  *                should be preserved.
  *               Use th_comment_query_count() to get the legal range for
- *                the \a _count parameter.
+ *                the \a _::count parameter.
  * \return A pointer to the queried tag's value.
  *         This points directly to data in the #th_comment structure.
  *         It should not be modified or freed by the application, and

@@ -19,7 +19,7 @@ namespace colorertake5
       /** Reference to RegionDefine class (it's subclass).
       This reference can contain concrete information about region
       extended properties.
-      Can be NULL, if no region mapping were defined.
+      Can be ::null(), if no region mapping were defined.
       */
       RegionDefine *rdef;
       /** Start and End position of region in line */
@@ -29,7 +29,7 @@ namespace colorertake5
       /** Previous and next links to ranged region in this line.
       First region of each line contains reference to it's last
       region in prev field.
-      If @c next field is NULL, this is a last region in line.
+      If @c next field is ::null(), this is a last region in line.
       */
       LineRegion *next, *prev;
       /** Special meaning marker. Generally this is used to inform
@@ -57,17 +57,17 @@ namespace colorertake5
          scheme = lr.scheme;
          region = lr.region;
          special = lr.special;
-         rdef = NULL;
-         if (lr.rdef != NULL) rdef = lr.rdef->clone();
+         rdef = ::null();
+         if (lr.rdef != ::null()) rdef = lr.rdef->clone();
          return *this;
       };
       /** Clears all fields */
       LineRegion(){
-         next = prev = NULL;
+         next = prev = ::null();
          start = end = 0;
-         scheme = NULL;
-         region = NULL;
-         rdef = NULL;
+         scheme = ::null();
+         region = ::null();
+         rdef = ::null();
          special = false;
       };
       /** copy constructor.

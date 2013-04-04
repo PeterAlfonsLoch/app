@@ -196,14 +196,14 @@ namespace filemanager
 
       //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 
-      /*base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
+      /*array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;
 
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
-      base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
+      array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       int32_t iStart = 0;
       int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)

@@ -234,13 +234,13 @@ namespace sqlite3
    **          finalized by [sqlite3_finalize()], then [sqlite3_close()]
    **          returns [SQLITE_BUSY] and leaves the connection open.
    **
-   ** {F12014} Giving sqlite3_close() a NULL pointer is a harmless no-op.
+   ** {F12014} Giving sqlite3_close() a ::null() pointer is a harmless no-op.
    **
    ** LIMITATIONS:
    **
    ** {U12015} The parameter to [sqlite3_close()] must be an [sqlite3] object
    **          pointer previously obtained from [sqlite3_open()] or the
-   **          equivalent, or NULL.
+   **          equivalent, or ::null().
    **
    ** {U12016} The parameter to [sqlite3_close()] must not have been previously
    **          closed.
@@ -287,7 +287,7 @@ namespace sqlite3
    **          non-zero error code if any SQL statement fails.
    **
    ** {F12107} If one or more of the SQL statements handed to [sqlite3_exec()]
-   **          return results and the 3rd parameter is not NULL, then
+   **          return results and the 3rd parameter is not ::null(), then
    **          the callback function specified by the 3rd parameter is
    **          invoked once for each row of result.
    **
@@ -305,15 +305,15 @@ namespace sqlite3
    **          result.
    **
    ** {F12119} The [sqlite3_exec()] routine sets the 3rd parameter of its
-   **          callback to be an base_array of pointers to strings holding the
+   **          callback to be an array of pointers to strings holding the
    **          values for each column in the current result set row as
    **          obtained from [sqlite3_column_text()].
    **
    ** {F12122} The [sqlite3_exec()] routine sets the 4th parameter of its
-   **          callback to be an base_array of pointers to strings holding the
+   **          callback to be an array of pointers to strings holding the
    **          names of result columns as obtained from [sqlite3_column_name()].
    **
-   ** {F12125} If the 3rd parameter to [sqlite3_exec()] is NULL then
+   ** {F12125} If the 3rd parameter to [sqlite3_exec()] is ::null() then
    **          [sqlite3_exec()] never invokes a callback.  All query
    **          results are silently discarded.
    **
@@ -323,12 +323,12 @@ namespace sqlite3
    **
    ** {F12131} If an error occurs while parsing or evaluating any of the SQL
    **          handed to [sqlite3_exec()] and if the 5th parameter (errmsg)
-   **          to [sqlite3_exec()] is not NULL, then an error message is
+   **          to [sqlite3_exec()] is not ::null(), then an error message is
    **          allocated using the equivalent of [sqlite3_mprintf()] and
    **          *errmsg is made to point to that message.
    **
    ** {F12134} The [sqlite3_exec()] routine does not change the value of
-   **          *errmsg if errmsg is NULL or if there are no errors.
+   **          *errmsg if errmsg is ::null() or if there are no errors.
    **
    ** {F12137} The [sqlite3_exec()] function sets the error code and message
    **          accessible via [sqlite3_errcode()], [sqlite3_errmsg()], and
@@ -916,7 +916,7 @@ namespace sqlite3
    ** caused by an INSERT, DELETE, or UPDATE statement.  Rows that
    ** are changed as side effects of REPLACE constraint resolution,
    ** rollback, ABORT processing, DROP TABLE, or by any other
-   ** mechanisms do not count as direct row changes.
+   ** mechanisms do not ::count as direct row changes.
    **
    ** A "trigger context" is a scope of execution that begins and
    ** ends with the script of a trigger.  Most SQL statements are
@@ -948,7 +948,7 @@ namespace sqlite3
    ** table.)  Because of this optimization, the deletions in
    ** "DELETE FROM table" are not row changes and will not be counted
    ** by the sqlite3_changes() or [sqlite3_total_changes()] functions.
-   ** To get an accurate count of the number of rows deleted, use
+   ** To get an accurate ::count of the number of rows deleted, use
    ** "DELETE FROM table WHERE 1" instead.
    **
    ** INVARIANTS:
@@ -972,8 +972,8 @@ namespace sqlite3
    ***
    ** This function returns the number of row changes caused
    ** by INSERT, UPDATE or DELETE statements since the database handle
-   ** was opened.  The count includes all changes from all trigger
-   ** contexts.  But the count does not include changes used to
+   ** was opened.  The ::count includes all changes from all trigger
+   ** contexts.  But the ::count does not include changes used to
    ** implement REPLACE constraints, do rollbacks or ABORT processing,
    ** or DROP table processing.
    ** The changes
@@ -985,9 +985,9 @@ namespace sqlite3
    ** a WHERE clause by dropping and recreating the table.  (This is much
    ** faster than going
    ** through and deleting individual elements from the table.)  Because of
-   ** this optimization, the change count for "DELETE FROM table" will be
+   ** this optimization, the change ::count for "DELETE FROM table" will be
    ** zero regardless of the number of elements that were originally in the
-   ** table. To get an accurate count of the number of rows deleted, use
+   ** table. To get an accurate ::count of the number of rows deleted, use
    ** "DELETE FROM table WHERE 1" instead.
    **
    ** See also the [sqlite3_changes()] interface.
@@ -1061,7 +1061,7 @@ namespace sqlite3
    ** CREATE TRIGGER statement.  Semicolons that are embedded within
    ** string literals or quoted identifier names or comments are not
    ** independent tokens (they are part of the token in which they are
-   ** embedded) and thus do not count as a statement terminator.
+   ** embedded) and thus do not ::count as a statement terminator.
    **
    ** These routines do not parse the SQL and
    ** so will not detect syntactically incorrect SQL.
@@ -1091,10 +1091,10 @@ namespace sqlite3
    ** This routine identifies a callback function that might be
    ** invoked whenever an attempt is made to open a database table
    ** that another thread or process has locked.
-   ** If the busy callback is NULL, then [SQLITE_BUSY]
+   ** If the busy callback is ::null(), then [SQLITE_BUSY]
    ** or [SQLITE_IOERR_BLOCKED]
    ** is returned immediately upon encountering the lock.
-   ** If the busy callback is not NULL, then the
+   ** If the busy callback is not ::null(), then the
    ** callback will be invoked with two arguments.  The
    ** first argument to the handler is a copy of the void* pointer which
    ** is the third argument to this routine.  The second argument to
@@ -1122,7 +1122,7 @@ namespace sqlite3
    ** will induce the first process to release its read lock and allow
    ** the second process to proceed.
    **
-   ** The default busy callback is NULL.
+   ** The default busy callback is ::null().
    **
    ** The [SQLITE_BUSY] error is converted to [SQLITE_IOERR_BLOCKED]
    ** when SQLite is in the middle of a large transaction where all the
@@ -1151,7 +1151,7 @@ namespace sqlite3
    **          parameter with a new busy handler identified by the 2nd and 3rd
    **          parameters.
    **
-   ** {F12312} The default busy handler for new database connections is NULL.
+   ** {F12312} The default busy handler for new database connections is ::null().
    **
    ** {F12314} When two or more database connection share a common cache,
    **          the busy handler for the database connection currently using
@@ -1163,7 +1163,7 @@ namespace sqlite3
    **
    ** {F12318} SQLite will invokes the busy handler with two argument which
    **          are a copy of the pointer supplied by the 3rd parameter to
-   **          [sqlite3_busy_handler()] and a count of the number of prior
+   **          [sqlite3_busy_handler()] and a ::count of the number of prior
    **          invocations of the busy handler for the same locking event.
    **
    ** LIMITATIONS:
@@ -1221,12 +1221,12 @@ namespace sqlite3
    ** numbers are obtained separately.  Let N be the number of rows
    ** and M be the number of columns.
    **
-   ** A result table is an base_array of pointers to zero-terminated
-   ** UTF-8 strings.  There are (N+1)*M elements in the base_array.
+   ** A result table is an array of pointers to zero-terminated
+   ** UTF-8 strings.  There are (N+1)*M elements in the array.
    ** The first M pointers point to zero-terminated strings that
    ** contain the names of the columns.
-   ** The remaining entries all point to query results.  NULL
-   ** values are give a NULL pointer.  All other values are in
+   ** The remaining entries all point to query results.  ::null()
+   ** values are give a ::null() pointer.  All other values are in
    ** their UTF-8 zero-terminated string representation as returned by
    ** [sqlite3_column_text()].
    **
@@ -1247,7 +1247,7 @@ namespace sqlite3
    **
    ** There are two column (M==2) and three rows (N==3).  Thus the
    ** result table has 8 entries.  Suppose the result table is stored
-   ** in an base_array names azResult.  Then azResult holds this content:
+   ** in an array names azResult.  Then azResult holds this content:
    **
    ** <blockquote><pre>
    **        azResult&#91;0] = "Name";
@@ -1285,14 +1285,14 @@ namespace sqlite3
    ** {F12371} If a [sqlite3_get_table()] fails a primitive::memory allocation, then
    **          it frees the result table under construction, aborts the
    **          query in process, skips any subsequent queries, sets the
-   **          *resultp output pointer to NULL and returns [SQLITE_NOMEM].
+   **          *resultp output pointer to ::null() and returns [SQLITE_NOMEM].
    **
-   ** {F12373} If the ncolumn parameter to [sqlite3_get_table()] is not NULL
+   ** {F12373} If the ncolumn parameter to [sqlite3_get_table()] is not ::null()
    **          then [sqlite3_get_table()] write the number of columns in the
    **          result set of the query into *ncolumn if the query is
    **          successful (if the function returns SQLITE_OK).
    **
-   ** {F12374} If the nrow parameter to [sqlite3_get_table()] is not NULL
+   ** {F12374} If the nrow parameter to [sqlite3_get_table()] is not ::null()
    **          then [sqlite3_get_table()] write the number of rows in the
    **          result set of the query into *nrow if the query is
    **          successful (if the function returns SQLITE_OK).
@@ -1322,7 +1322,7 @@ namespace sqlite3
    ** results into primitive::memory obtained from [sqlite3_malloc()].
    ** The strings returned by these two routines should be
    ** released by [sqlite3_free()].   Both routines return a
-   ** NULL pointer if [sqlite3_malloc()] is unable to allocate enough
+   ** ::null() pointer if [sqlite3_malloc()] is unable to allocate enough
    ** primitive::memory to hold the resulting string.
    **
    ** In sqlite3_snprintf() routine is similar to "snprintf()" from
@@ -1389,7 +1389,7 @@ namespace sqlite3
    **
    ** The %Q option works like %q except it also adds single quotes around
    ** the outside of the total string.  Or if the parameter in the argument
-   ** list is a NULL pointer, %Q substitutes the text "NULL" (without single
+   ** list is a ::null() pointer, %Q substitutes the text "::null()" (without single
    ** quotes) in place of the %Q option. {END}  So, for example, one could say:
    **
    ** <blockquote><pre>
@@ -1399,7 +1399,7 @@ namespace sqlite3
    ** </pre></blockquote>
    **
    ** The code above will render a correct SQL statement in the zSQL
-   ** var even if the zText var is a NULL pointer.
+   ** var even if the zText var is a ::null() pointer.
    **
    ** The "%z" formatting option works exactly like "%s" with the
    ** addition that after the string has been read and copied into
@@ -1409,7 +1409,7 @@ namespace sqlite3
    **
    ** {F17403}  The [sqlite3_mprintf()] and [sqlite3_vmprintf()] interfaces
    **           return either pointers to zero-terminated UTF-8 strings held in
-   **           primitive::memory obtained from [sqlite3_malloc()] or NULL pointers if
+   **           primitive::memory obtained from [sqlite3_malloc()] or ::null() pointers if
    **           a call to [sqlite3_malloc()] fails.
    **
    ** {F17406}  The [sqlite3_snprintf()] interface writes a zero-terminated
@@ -1438,36 +1438,36 @@ namespace sqlite3
    ** The sqlite3_malloc() routine returns a pointer to a block
    ** of primitive::memory at least N bytes in length, where N is the parameter.
    ** If sqlite3_malloc() is unable to obtain sufficient free
-   ** primitive::memory, it returns a NULL pointer.  If the parameter N to
+   ** primitive::memory, it returns a ::null() pointer.  If the parameter N to
    ** sqlite3_malloc() is zero or negative then sqlite3_malloc() returns
-   ** a NULL pointer.
+   ** a ::null() pointer.
    **
    ** Calling sqlite3_free() with a pointer previously returned
    ** by sqlite3_malloc() or sqlite3_realloc() releases that primitive::memory so
    ** that it might be reused.  The sqlite3_free() routine is
-   ** a no-op if is called with a NULL pointer.  Passing a NULL pointer
+   ** a no-op if is called with a ::null() pointer.  Passing a ::null() pointer
    ** to sqlite3_free() is harmless.  After being freed, primitive::memory
    ** should neither be read nor written.  Even reading previously freed
    ** primitive::memory might result in a segmentation fault or other severe error.
    ** Memory corruption, a segmentation fault, or other severe error
-   ** might result if sqlite3_free() is called with a non-NULL pointer that
+   ** might result if sqlite3_free() is called with a non-::null() pointer that
    ** was not obtained from sqlite3_malloc() or sqlite3_free().
    **
    ** The sqlite3_realloc() interface attempts to resize a
    ** prior primitive::memory allocation to be at least N bytes, where N is the
    ** second parameter.  The primitive::memory allocation to be resized is the first
    ** parameter.  If the first parameter to sqlite3_realloc()
-   ** is a NULL pointer then its behavior is identical to calling
+   ** is a ::null() pointer then its behavior is identical to calling
    ** sqlite3_malloc(N) where N is the second parameter to sqlite3_realloc().
    ** If the second parameter to sqlite3_realloc() is zero or
    ** negative then the behavior is exactly the same as calling
    ** sqlite3_free(P) where P is the first parameter to sqlite3_realloc().
    ** Sqlite3_realloc() returns a pointer to a primitive::memory allocation
-   ** of at least N bytes in size or NULL if sufficient primitive::memory is unavailable.
+   ** of at least N bytes in size or ::null() if sufficient primitive::memory is unavailable.
    ** If M is the size of the prior allocation, then min(N,M) bytes
    ** of the prior allocation are copied into the beginning of buffer returned
    ** by sqlite3_realloc() and the prior allocation is freed.
-   ** If sqlite3_realloc() returns NULL, then the prior allocation
+   ** If sqlite3_realloc() returns ::null(), then the prior allocation
    ** is not freed.
    **
    ** The primitive::memory returned by sqlite3_malloc() and sqlite3_realloc()
@@ -1481,7 +1481,7 @@ namespace sqlite3
    ** <blockquote> SQLITE_MEMORY_SIZE=<i>NNN</i> </blockquote>
    **
    ** where <i>NNN</i> is an integer, then SQLite create a static
-   ** base_array of at least <i>NNN</i> bytes in size and use that base_array
+   ** array of at least <i>NNN</i> bytes in size and use that array
    ** for all of its dynamic primitive::memory allocation needs. {END}  Additional
    ** primitive::memory allocator options may be added in future releases.
    **
@@ -1504,16 +1504,16 @@ namespace sqlite3
    ** {F17303}  The [sqlite3_malloc(N)] interface returns either a pointer to
    **           newly checked-out block of at least N bytes of primitive::memory
    **           that is 8-byte aligned,
-   **           or it returns NULL if it is unable to fulfill the request.
+   **           or it returns ::null() if it is unable to fulfill the request.
    **
-   ** {F17304}  The [sqlite3_malloc(N)] interface returns a NULL pointer if
+   ** {F17304}  The [sqlite3_malloc(N)] interface returns a ::null() pointer if
    **           N is less than or equal to zero.
    **
    ** {F17305}  The [sqlite3_free(P)] interface releases primitive::memory previously
    **           returned from [sqlite3_malloc()] or [sqlite3_realloc()],
    **           making it available for reuse.
    **
-   ** {F17306}  A call to [sqlite3_free(NULL)] is a harmless no-op.
+   ** {F17306}  A call to [sqlite3_free(::null())] is a harmless no-op.
    **
    ** {F17310}  A call to [sqlite3_realloc(0,N)] is equivalent to a call
    **           to [sqlite3_malloc(N)].
@@ -1527,22 +1527,22 @@ namespace sqlite3
    **
    ** {F17318}  The [sqlite3_realloc(P,N)] interface returns either a pointer
    **           to a block of checked-out primitive::memory of at least N bytes in size
-   **           that is 8-byte aligned, or a NULL pointer.
+   **           that is 8-byte aligned, or a ::null() pointer.
    **
-   ** {F17321}  When [sqlite3_realloc(P,N)] returns a non-NULL pointer, it first
+   ** {F17321}  When [sqlite3_realloc(P,N)] returns a non-::null() pointer, it first
    **           copies the first K bytes of content from P into the newly allocated
    **           where K is the lessor of N and the size of the buffer P.
    **
-   ** {F17322}  When [sqlite3_realloc(P,N)] returns a non-NULL pointer, it first
+   ** {F17322}  When [sqlite3_realloc(P,N)] returns a non-::null() pointer, it first
    **           releases the buffer P.
    **
-   ** {F17323}  When [sqlite3_realloc(P,N)] returns NULL, the buffer P is
+   ** {F17323}  When [sqlite3_realloc(P,N)] returns ::null(), the buffer P is
    **           not modified or released.
    **
    ** LIMITATIONS:
    **
    ** {U17350}  The pointer arguments to [sqlite3_free()] and [sqlite3_realloc()]
-   **           must be either NULL or else a pointer obtained from a prior
+   **           must be either ::null() or else a pointer obtained from a prior
    **           invocation of [sqlite3_malloc()] or [sqlite3_realloc()] that has
    **           not been released.
    **
@@ -1612,7 +1612,7 @@ namespace sqlite3
    ** authorizer will fail with an error message explaining that
    ** access is denied.  If the authorizer code is [SQLITE_READ]
    ** and the callback returns [SQLITE_IGNORE] then the prepared
-   ** statement is constructed to insert a NULL value in place of
+   ** statement is constructed to insert a ::null() value in place of
    ** the table column that would have
    ** been read if [SQLITE_OK] had been returned.  The [SQLITE_IGNORE]
    ** return can be used to deny an untrusted user access to individual
@@ -1639,7 +1639,7 @@ namespace sqlite3
    **
    ** Only a single authorizer can be in place on a database connection
    ** at a time.  Each call to sqlite3_set_authorizer overrides the
-   ** previous call.  Disable the authorizer by installing a NULL callback.
+   ** previous call.  Disable the authorizer by installing a ::null() callback.
    ** The authorizer is disabled by default.
    **
    ** Note that the authorizer callback is invoked only during
@@ -1672,7 +1672,7 @@ namespace sqlite3
    ** {F12506} If the authorizer code (the 2nd parameter to the authorizer
    **          callback) is [SQLITE_READ] and the authorizer callback returns
    **          [SQLITE_IGNORE] then the prepared statement is constructed to
-   **          insert a NULL value in place of the table column that would have
+   **          insert a ::null() value in place of the table column that would have
    **          been read if [SQLITE_OK] had been returned.
    **
    ** {F12507} If the authorizer code (the 2nd parameter to the authorizer
@@ -1693,10 +1693,10 @@ namespace sqlite3
    ** {F12520} Each call to [sqlite3_set_authorizer()] overrides the
    **          any previously installed authorizer.
    **
-   ** {F12521} A NULL authorizer means that no authorization
+   ** {F12521} A ::null() authorizer means that no authorization
    **          callback is invoked.
    **
-   ** {F12522} The default authorizer is NULL.
+   ** {F12522} The default authorizer is ::null().
    */
    int32_t sqlite3_set_authorizer(
       sqlite3*,
@@ -1727,12 +1727,12 @@ namespace sqlite3
    **
    ** These action code values signify what kind of operation is to be
    ** authorized.  The 3rd and 4th parameters to the authorization
-   ** callback function will be parameters or NULL depending on which of these
+   ** callback function will be parameters or ::null() depending on which of these
    ** codes is used as the second parameter.  The 5th parameter to the
    ** authorizer callback is the name of the database ("main", "temp",
    ** etc.) if applicable.  The 6th parameter to the authorizer callback
    ** is the name of the inner-most trigger or view that is responsible for
-   ** the access attempt or NULL if this access attempt is directly from
+   ** the access attempt or ::null() if this access attempt is directly from
    ** top-level SQL code.
    **
    ** INVARIANTS:
@@ -1744,7 +1744,7 @@ namespace sqlite3
    **
    ** {F12552} The 3rd and 4th parameters to the
    **          [sqlite3_set_authorizer | authorization callback function]
-   **          will be parameters or NULL depending on which
+   **          will be parameters or ::null() depending on which
    **          [SQLITE_COPY | authorizer code] is used as the second parameter.
    **
    ** {F12553} The 5th parameter to the
@@ -1754,41 +1754,41 @@ namespace sqlite3
    ** {F12554} The 6th parameter to the
    **          [sqlite3_set_authorizer | authorizer callback] is the name
    **          of the inner-most trigger or view that is responsible for
-   **          the access attempt or NULL if this access attempt is directly from
+   **          the access attempt or ::null() if this access attempt is directly from
    **          top-level SQL code.
    */
    /******************************************* 3rd ************ 4th ***********/
 #define SQLITE_CREATE_INDEX          1   /* Index Name      Table Name      */
-#define SQLITE_CREATE_TABLE          2   /* Table Name      NULL            */
+#define SQLITE_CREATE_TABLE          2   /* Table Name      ::null()            */
 #define SQLITE_CREATE_TEMP_INDEX     3   /* Index Name      Table Name      */
-#define SQLITE_CREATE_TEMP_TABLE     4   /* Table Name      NULL            */
+#define SQLITE_CREATE_TEMP_TABLE     4   /* Table Name      ::null()            */
 #define SQLITE_CREATE_TEMP_TRIGGER   5   /* Trigger Name    Table Name      */
-#define SQLITE_CREATE_TEMP_VIEW      6   /* view Name       NULL            */
+#define SQLITE_CREATE_TEMP_VIEW      6   /* view Name       ::null()            */
 #define SQLITE_CREATE_TRIGGER        7   /* Trigger Name    Table Name      */
-#define SQLITE_CREATE_VIEW           8   /* view Name       NULL            */
-#define SQLITE_DELETE                9   /* Table Name      NULL            */
+#define SQLITE_CREATE_VIEW           8   /* view Name       ::null()            */
+#define SQLITE_DELETE                9   /* Table Name      ::null()            */
 #define SQLITE_DROP_INDEX           10   /* Index Name      Table Name      */
-#define SQLITE_DROP_TABLE           11   /* Table Name      NULL            */
+#define SQLITE_DROP_TABLE           11   /* Table Name      ::null()            */
 #define SQLITE_DROP_TEMP_INDEX      12   /* Index Name      Table Name      */
-#define SQLITE_DROP_TEMP_TABLE      13   /* Table Name      NULL            */
+#define SQLITE_DROP_TEMP_TABLE      13   /* Table Name      ::null()            */
 #define SQLITE_DROP_TEMP_TRIGGER    14   /* Trigger Name    Table Name      */
-#define SQLITE_DROP_TEMP_VIEW       15   /* view Name       NULL            */
+#define SQLITE_DROP_TEMP_VIEW       15   /* view Name       ::null()            */
 #define SQLITE_DROP_TRIGGER         16   /* Trigger Name    Table Name      */
-#define SQLITE_DROP_VIEW            17   /* view Name       NULL            */
-#define SQLITE_INSERT               18   /* Table Name      NULL            */
-#define SQLITE_PRAGMA               19   /* Pragma Name     1st arg or NULL */
+#define SQLITE_DROP_VIEW            17   /* view Name       ::null()            */
+#define SQLITE_INSERT               18   /* Table Name      ::null()            */
+#define SQLITE_PRAGMA               19   /* Pragma Name     1st arg or ::null() */
 #define SQLITE_READ                 20   /* Table Name      Column Name     */
-#define SQLITE_SELECT               21   /* NULL            NULL            */
-#define SQLITE_TRANSACTION          22   /* NULL            NULL            */
+#define SQLITE_SELECT               21   /* ::null()            ::null()            */
+#define SQLITE_TRANSACTION          22   /* ::null()            ::null()            */
 #define SQLITE_UPDATE               23   /* Table Name      Column Name     */
-#define SQLITE_ATTACH               24   /* Filename        NULL            */
-#define SQLITE_DETACH               25   /* Database Name   NULL            */
+#define SQLITE_ATTACH               24   /* Filename        ::null()            */
+#define SQLITE_DETACH               25   /* Database Name   ::null()            */
 #define SQLITE_ALTER_TABLE          26   /* Database Name   Table Name      */
-#define SQLITE_REINDEX              27   /* Index Name      NULL            */
-#define SQLITE_ANALYZE              28   /* Table Name      NULL            */
+#define SQLITE_REINDEX              27   /* Index Name      ::null()            */
+#define SQLITE_ANALYZE              28   /* Table Name      ::null()            */
 #define SQLITE_CREATE_VTABLE        29   /* Table Name      Module Name     */
 #define SQLITE_DROP_VTABLE          30   /* Table Name      Module Name     */
-#define SQLITE_FUNCTION             31   /* Function Name   NULL            */
+#define SQLITE_FUNCTION             31   /* Function Name   ::null()            */
 #define SQLITE_COPY                  0   /* No longer used */
 
    /*
@@ -1826,7 +1826,7 @@ namespace sqlite3
    ** {F12282} Each call to [sqlite3_trace()] overrides the previously
    **          registered trace callback.
    **
-   ** {F12283} A NULL trace callback disables tracing.
+   ** {F12283} A ::null() trace callback disables tracing.
    **
    ** {F12284} The first argument to the trace callback is a copy of
    **          the pointer which was the 3rd argument to [sqlite3_trace()].
@@ -1894,7 +1894,7 @@ namespace sqlite3
    ** {F12916} Every call to [sqlite3_progress_handler()]
    **          overwrites any previously registere progress handler.
    **
-   ** {F12917} If the progress handler callback is NULL then no progress
+   ** {F12917} If the progress handler callback is ::null() then no progress
    **          handler is invoked.
    **
    ** {F12918} If the progress callback returns a result other than 0, then
@@ -1912,7 +1912,7 @@ namespace sqlite3
    ** in the native byte order for [sqlite3_open16()].
    ** An [sqlite3*] handle is usually returned in *ppDb, even
    ** if an error occurs.  The only exception is if SQLite is unable
-   ** to allocate primitive::memory to hold the [sqlite3] object, a NULL will
+   ** to allocate primitive::memory to hold the [sqlite3] object, a ::null() will
    ** be written into *ppDb instead of a pointer to the [sqlite3] object.
    ** If the database is opened (and/or created)
    ** successfully, then [SQLITE_OK] is returned.  Otherwise an
@@ -1966,7 +1966,7 @@ namespace sqlite3
    ** The fourth parameter to sqlite3_open_v2() is the name of the
    ** [sqlite3_vfs] object that defines the operating system
    ** interface that the new database connection should use.  If the
-   ** fourth parameter is a NULL pointer then the default [sqlite3_vfs]
+   ** fourth parameter is a ::null() pointer then the default [sqlite3_vfs]
    ** object is used.
    **
    ** <b>Note to windows users:</b>  The encoding used for the filename argument
@@ -2028,7 +2028,7 @@ namespace sqlite3
    **          <todo>Is SQLITE_OPEN_CREATE|SQLITE_OPEN_READWRITE required
    **          in sqlite3_open_v2()?</todo>
    **
-   ** {F12719} If the filename is NULL or an is_empty string, then a private,
+   ** {F12719} If the filename is ::null() or an is_empty string, then a private,
    **          ephermeral on-disk database will be created.
    **          <todo>Is SQLITE_OPEN_CREATE|SQLITE_OPEN_READWRITE required
    **          in sqlite3_open_v2()?</todo>
@@ -2036,7 +2036,7 @@ namespace sqlite3
    ** {F12721} The [database connection] created by
    **          [sqlite3_open_v2(F,D,G,V)] will use the
    **          [sqlite3_vfs] object identified by the V parameter, or
-   **          the default [sqlite3_vfs] object is V is a NULL pointer.
+   **          the default [sqlite3_vfs] object is V is a ::null() pointer.
    */
    int32_t sqlite3_open(
       const char *filename,   /* Database filename (UTF-8) */
@@ -2155,8 +2155,8 @@ namespace sqlite3
    **
    ** *ppStmt is left pointing to a compiled [prepared statement] that can be
    ** executed using [sqlite3_step()].  Or if there is an error, *ppStmt is
-   ** set to NULL.  If the input text contains no SQL (if the input
-   ** is and is_empty string or a comment) then *ppStmt is set to NULL.
+   ** set to ::null().  If the input text contains no SQL (if the input
+   ** is and is_empty string or a comment) then *ppStmt is set to ::null().
    ** {U13018} The calling procedure is responsible for deleting the
    ** compiled SQL statement
    ** using [sqlite3_finalize()] after it has finished with it.
@@ -2217,13 +2217,13 @@ namespace sqlite3
    **
    ** {F13015} In [sqlite3_prepare_v2(db,zSql,N,P,pzTail)] and its variants
    **          if the zSql input text contains more than one SQL statement
-   **          and pzTail is not NULL, then *pzTail is made to point to the
+   **          and pzTail is not ::null(), then *pzTail is made to point to the
    **          first byte past the end of the first SQL statement in zSql.
    **          <todo>What does *pzTail point to if there is one statement?</todo>
    **
    ** {F13016} A successful call to [sqlite3_prepare_v2(db,zSql,N,ppStmt,...)]
    **          or one of its variants writes into *ppStmt a pointer to a new
-   **          [prepared statement] or a pointer to NULL
+   **          [prepared statement] or a pointer to ::null()
    **          if zSql contains nothing other than whitespace or comments.
    **
    ** {F13019} The [sqlite3_prepare_v2()] interface and its variants return
@@ -2231,7 +2231,7 @@ namespace sqlite3
    **
    ** {F13021} Before [sqlite3_prepare(db,zSql,nByte,ppStmt,pzTail)] or its
    **          variants returns an error (any value other than [SQLITE_OK])
-   **          it first sets *ppStmt to NULL.
+   **          it first sets *ppStmt to ::null().
    */
    int32_t sqlite3_prepare(
       sqlite3 *db,            /* Database handle */
@@ -2282,7 +2282,7 @@ namespace sqlite3
    **          the an argument to [sqlite3_sql()] was compiled
    **          compiled using either [sqlite3_prepare()] or
    **          [sqlite3_prepare16()],
-   **          then [sqlite3_sql()] function returns a NULL pointer.
+   **          then [sqlite3_sql()] function returns a ::null() pointer.
    **
    ** {F13103} The string returned by [sqlite3_sql(S)] is valid until the
    **          [prepared statement] S is deleted using [sqlite3_finalize(S)].
@@ -2296,7 +2296,7 @@ namespace sqlite3
    ** that are or can be stored in a database table.
    ** SQLite uses dynamic typing for the values it stores.
    ** Values stored in sqlite3_value objects can be
-   ** be integers, floating point values, strings, BLOBs, or NULL.
+   ** be integers, floating point values, strings, BLOBs, or ::null().
    */
    typedef struct Mem sqlite3_value;
 
@@ -2374,7 +2374,7 @@ namespace sqlite3
    ** [sqlite3_prepare_v2()] (and its variants) or [sqlite3_reset()] and
    ** before [sqlite3_step()].
    ** Bindings are not cleared by the [sqlite3_reset()] routine.
-   ** Unbound parameters are interpreted as NULL.
+   ** Unbound parameters are interpreted as ::null().
    **
    ** These routines return [SQLITE_OK] on success or an error code if
    ** anything goes wrong.  [SQLITE_RANGE] is returned if the parameter
@@ -2399,7 +2399,7 @@ namespace sqlite3
    **          alphanumeric characters or "::" optionally followed by
    **          a string containing no spaces and contained within parentheses.
    **
-   ** {F13509} The initial value of an SQL parameter is NULL.
+   ** {F13509} The initial value of an SQL parameter is ::null().
    **
    ** {F13512} The index of an "?" SQL parameter is one larger than the
    **          largest index of SQL parameter to the left, or 1 if
@@ -2510,7 +2510,7 @@ namespace sqlite3
    ** The first host parameter has an index of 1, not 0.
    **
    ** If the value n is out of range or if the n-th parameter is
-   ** nameless, then NULL is returned.  The returned string is
+   ** nameless, then ::null() is returned.  The returned string is
    ** always in the UTF-8 encoding even if the named parameter was
    ** originally specified as UTF-16 in [sqlite3_prepare16()] or
    ** [sqlite3_prepare16_v2()].
@@ -2524,7 +2524,7 @@ namespace sqlite3
    ** {F13621} The [sqlite3_bind_parameter_name(S,N)] interface returns
    **          a UTF-8 rendering of the name of the SQL parameter in
    **          [prepared statement] S having index N, or
-   **          NULL if there is no SQL parameter with index N or if the
+   **          ::null() if there is no SQL parameter with index N or if the
    **          parameter with index N is an anonymous parameter "?" or
    **          a numbered parameter "?NNN".
    */
@@ -2559,13 +2559,13 @@ namespace sqlite3
    ** Contrary to the intuition of many, [sqlite3_reset()] does not
    ** reset the [sqlite3_bind_blob | bindings] on a
    ** [prepared statement].  Use this routine to
-   ** reset all host parameters to NULL.
+   ** reset all host parameters to ::null().
    **
    ** INVARIANTS:
    **
    ** {F13661} The [sqlite3_clear_bindings(S)] interface resets all
    **          SQL parameter bindings in [prepared statement] S
-   **          back to NULL.
+   **          back to ::null().
    */
    int32_t sqlite3_clear_bindings(sqlite3_stmt*);
 
@@ -2605,7 +2605,7 @@ namespace sqlite3
    **
    ** If sqlite3_malloc() fails during the processing of either routine
    ** (for example during a conversion from UTF-8 to UTF-16) then a
-   ** NULL pointer is returned.
+   ** ::null() pointer is returned.
    **
    ** The name of a result column is the value of the "AS" clause for
    ** that column, if there is an AS clause.  If there is no AS clause
@@ -2627,12 +2627,12 @@ namespace sqlite3
    **          zero-terminated UTF-16 string in the native byte order.
    **
    ** {F13724} The [sqlite3_column_name()] and [sqlite3_column_name16()]
-   **          interfaces return a NULL pointer if they are unable to
+   **          interfaces return a ::null() pointer if they are unable to
    **          allocate primitive::memory primitive::memory to hold there normal return strings.
    **
    ** {F13725} If the N parameter to [sqlite3_column_name(S,N)] or
    **          [sqlite3_column_name16(S,N)] is out of range, then the
-   **          interfaces returns a NULL pointer.
+   **          interfaces returns a ::null() pointer.
    **
    ** {F13726} The strings returned by [sqlite3_column_name(S,N)] and
    **          [sqlite3_column_name16(S,N)] are valid until the next
@@ -2669,7 +2669,7 @@ namespace sqlite3
    **
    ** If the Nth column returned by the statement is an expression
    ** or subquery and is not a column value, then all of these functions
-   ** return NULL.  These routine might also return NULL if a primitive::memory
+   ** return ::null().  These routine might also return ::null() if a primitive::memory
    ** allocation error occurs.  Otherwise, they return the
    ** name of the attached database, table and column that query result
    ** column was extracted from.
@@ -2690,7 +2690,7 @@ namespace sqlite3
    ** {F13741} The [sqlite3_column_database_name(S,N)] interface returns either
    **          the UTF-8 zero-terminated name of the database from which the
    **          Nth result column of [prepared statement] S
-   **          is extracted, or NULL if the the Nth column of S is a
+   **          is extracted, or ::null() if the the Nth column of S is a
    **          general expression or if unable to allocate primitive::memory
    **          to store the name.
    **
@@ -2698,14 +2698,14 @@ namespace sqlite3
    **          the UTF-16 native byte order
    **          zero-terminated name of the database from which the
    **          Nth result column of [prepared statement] S
-   **          is extracted, or NULL if the the Nth column of S is a
+   **          is extracted, or ::null() if the the Nth column of S is a
    **          general expression or if unable to allocate primitive::memory
    **          to store the name.
    **
    ** {F13743} The [sqlite3_column_table_name(S,N)] interface returns either
    **          the UTF-8 zero-terminated name of the table from which the
    **          Nth result column of [prepared statement] S
-   **          is extracted, or NULL if the the Nth column of S is a
+   **          is extracted, or ::null() if the the Nth column of S is a
    **          general expression or if unable to allocate primitive::memory
    **          to store the name.
    **
@@ -2713,14 +2713,14 @@ namespace sqlite3
    **          the UTF-16 native byte order
    **          zero-terminated name of the table from which the
    **          Nth result column of [prepared statement] S
-   **          is extracted, or NULL if the the Nth column of S is a
+   **          is extracted, or ::null() if the the Nth column of S is a
    **          general expression or if unable to allocate primitive::memory
    **          to store the name.
    **
    ** {F13745} The [sqlite3_column_origin_name(S,N)] interface returns either
    **          the UTF-8 zero-terminated name of the table column from which the
    **          Nth result column of [prepared statement] S
-   **          is extracted, or NULL if the the Nth column of S is a
+   **          is extracted, or ::null() if the the Nth column of S is a
    **          general expression or if unable to allocate primitive::memory
    **          to store the name.
    **
@@ -2728,7 +2728,7 @@ namespace sqlite3
    **          the UTF-16 native byte order
    **          zero-terminated name of the table column from which the
    **          Nth result column of [prepared statement] S
-   **          is extracted, or NULL if the the Nth column of S is a
+   **          is extracted, or ::null() if the the Nth column of S is a
    **          general expression or if unable to allocate primitive::memory
    **          to store the name.
    **
@@ -2761,7 +2761,7 @@ namespace sqlite3
    ** returned result set of that SELECT is a table column (not an
    ** expression or subquery) then the declared type of the table
    ** column is returned.  If the Nth column of the result set is an
-   ** expression or subquery, then a NULL pointer is returned.
+   ** expression or subquery, then a ::null() pointer is returned.
    ** The returned string is always UTF-8 encoded.  {END}
    ** For example, in the database schema:
    **
@@ -2772,7 +2772,7 @@ namespace sqlite3
    ** SELECT c1 + 1, c1 FROM t1;
    **
    ** Then this routine would return the string "VARIANT" for the second
-   ** result column (i==1), and a NULL pointer for the first result column
+   ** result column (i==1), and a ::null() pointer for the first result column
    ** (i==0).
    **
    ** SQLite uses dynamic run-time typing.  So just because a column
@@ -2802,7 +2802,7 @@ namespace sqlite3
    **           than a table column or if a primitive::memory allocation failure
    **           occurs during encoding conversions, then
    **           calls to [sqlite3_column_decltype(S,N)] or
-   **           [sqlite3_column_decltype16(S,N)] return NULL.
+   **           [sqlite3_column_decltype16(S,N)] return ::null().
    */
    const char *sqlite3_column_decltype(sqlite3_stmt*,int32_t);
    const void *sqlite3_column_decltype16(sqlite3_stmt*,int32_t);
@@ -2938,7 +2938,7 @@ namespace sqlite3
    ** <li> 64-bit IEEE floating point number
    ** <li> string
    ** <li> BLOB
-   ** <li> NULL
+   ** <li> ::null()
    ** </ul> {END}
    **
    ** These constants are codes for each of those types.
@@ -3010,7 +3010,7 @@ namespace sqlite3
    ** Strings returned by sqlite3_column_text() and sqlite3_column_text16(),
    ** even is_empty strings, are always zero terminated.  The return
    ** value from sqlite3_column_blob() for a zero-length blob is an arbitrary
-   ** pointer, possibly even a NULL pointer.
+   ** pointer, possibly even a ::null() pointer.
    **
    ** The sqlite3_column_bytes16() routine is similar to sqlite3_column_bytes()
    ** but leaves the result in UTF-16 in native byte order instead of UTF-8.
@@ -3026,10 +3026,10 @@ namespace sqlite3
    ** <table border="1">
    ** <tr><th> Internal<br>Type <th> Requested<br>Type <th>  Conversion
    **
-   ** <tr><td>  NULL    <td> INTEGER   <td> Result is 0
-   ** <tr><td>  NULL    <td>  FLOAT    <td> Result is 0.0
-   ** <tr><td>  NULL    <td>   TEXT    <td> Result is NULL pointer
-   ** <tr><td>  NULL    <td>   BLOB    <td> Result is NULL pointer
+   ** <tr><td>  ::null()    <td> INTEGER   <td> Result is 0
+   ** <tr><td>  ::null()    <td>  FLOAT    <td> Result is 0.0
+   ** <tr><td>  ::null()    <td>   TEXT    <td> Result is ::null() pointer
+   ** <tr><td>  ::null()    <td>   BLOB    <td> Result is ::null() pointer
    ** <tr><td> INTEGER  <td>  FLOAT    <td> Convert from integer to float
    ** <tr><td> INTEGER  <td>   TEXT    <td> ASCII rendering of the integer
    ** <tr><td> INTEGER  <td>   BLOB    <td> Same as for INTEGER->TEXT
@@ -3102,7 +3102,7 @@ namespace sqlite3
    **
    ** If a primitive::memory allocation error occurs during the evaluation of any
    ** of these routines, a default value is returned.  The default value
-   ** is either the integer 0, the floating point number 0.0, or a NULL
+   ** is either the integer 0, the floating point number 0.0, or a ::null()
    ** pointer.  Subsequent calls to [sqlite3_errcode()] will return
    ** [SQLITE_NOMEM].
    **
@@ -3276,10 +3276,10 @@ namespace sqlite3
    ** The seventh, eighth and ninth parameters, xFunc, xStep and xFinal, are
    ** pointers to C-language functions that implement the SQL
    ** function or aggregate. A scalar SQL function requires an implementation of
-   ** the xFunc callback only, NULL pointers should be passed as the xStep
+   ** the xFunc callback only, ::null() pointers should be passed as the xStep
    ** and xFinal parameters. An aggregate SQL function requires an implementation
-   ** of xStep and xFinal and NULL should be passed for xFunc. To delete an
-   ** existing SQL function or aggregate, pass NULL for all three function
+   ** of xStep and xFinal and ::null() should be passed for xFunc. To delete an
+   ** existing SQL function or aggregate, pass ::null() for all three function
    ** callback.
    **
    ** It is permitted to register multiple implementations of the same
@@ -3310,8 +3310,8 @@ namespace sqlite3
    **          a return code of [SQLITE_ERROR] if the SQL function name X is
    **          longer than 255 bytes exclusive of the zero terminator.
    **
-   ** {F16118} Either F must be NULL and S and L are non-NULL or else F
-   **          is non-NULL and S and L are NULL, otherwise
+   ** {F16118} Either F must be ::null() and S and L are non-::null() or else F
+   **          is non-::null() and S and L are ::null(), otherwise
    **          [sqlite3_create_function(D,X,N,E,P,F,S,L)] returns [SQLITE_ERROR].
    **
    ** {F16121} The [sqlite3_create_function(D,...)] interface fails with an
@@ -3408,7 +3408,7 @@ namespace sqlite3
    ** The xFunc (for scalar functions) or xStep (for aggregates) parameters
    ** to [sqlite3_create_function()] and [sqlite3_create_function16()]
    ** define callbacks that implement the SQL functions and aggregates.
-   ** The 4th parameter to these callbacks is an base_array of pointers to
+   ** The 4th parameter to these callbacks is an array of pointers to
    ** [sqlite3_value] objects.  There is one [sqlite3_value] object for
    ** each parameter to the SQL function.  These routines are used to
    ** extract values from the [sqlite3_value] objects.
@@ -3608,14 +3608,14 @@ namespace sqlite3
    ** If no meta-data has been ever been set for the Nth
    ** argument of the function, or if the cooresponding function parameter
    ** has changed since the meta-data was set, then sqlite3_get_auxdata()
-   ** returns a NULL pointer.
+   ** returns a ::null() pointer.
    **
    ** The sqlite3_set_auxdata() interface saves the meta-data
    ** pointed to by its 3rd parameter as the meta-data for the N-th
    ** argument of the application-defined function.  Subsequent
    ** calls to sqlite3_get_auxdata() might return this data, if it has
    ** not been destroyed.
-   ** If it is not NULL, SQLite will invoke the destructor
+   ** If it is not ::null(), SQLite will invoke the destructor
    ** function given by the 4th parameter to sqlite3_set_auxdata() on
    ** the meta-data when the corresponding function parameter changes
    ** or when the SQL statement completes, whichever comes first.
@@ -3636,7 +3636,7 @@ namespace sqlite3
    **
    ** {F16272} The [sqlite3_get_auxdata(C,N)] interface returns a pointer
    **          to metadata associated with the Nth parameter of the SQL function
-   **          whose context is C, or NULL if there is no metadata associated
+   **          whose context is C, or ::null() if there is no metadata associated
    **          with that parameter.
    **
    ** {F16274} The [sqlite3_set_auxdata(C,N,P,D)] interface assigns a metadata
@@ -3743,7 +3743,7 @@ namespace sqlite3
    ** value given in the 2nd argument.
    **
    ** The sqlite3_result_null() interface sets the return value
-   ** of the application-defined function to be NULL.
+   ** of the application-defined function to be ::null().
    **
    ** The sqlite3_result_text(), sqlite3_result_text16(),
    ** sqlite3_result_text16le(), and sqlite3_result_text16be() interfaces
@@ -3760,7 +3760,7 @@ namespace sqlite3
    ** pointed to by the 2nd parameter are taken as the application-defined
    ** function result.
    ** If the 4th parameter to the sqlite3_result_text* interfaces
-   ** or sqlite3_result_blob is a non-NULL pointer, then SQLite calls that
+   ** or sqlite3_result_blob is a non-::null() pointer, then SQLite calls that
    ** function as the destructor on the text or blob result when it has
    ** finished using that result.
    ** If the 4th parameter to the sqlite3_result_text* interfaces
@@ -3786,7 +3786,7 @@ namespace sqlite3
    **
    ** INVARIANTS:
    **
-   ** {F16403} The default return value from any SQL function is NULL.
+   ** {F16403} The default return value from any SQL function is ::null().
    **
    ** {F16406} The [sqlite3_result_blob(C,V,N,D)] interface changes the
    **          return value of function C to be a blob that is N bytes
@@ -3825,7 +3825,7 @@ namespace sqlite3
    **          return value of function C to be the 64-bit integer value V.
    **
    ** {F16433} The [sqlite3_result_null(C)] interface changes the
-   **          return value of function C to be NULL.
+   **          return value of function C to be ::null().
    **
    ** {F16436} The [sqlite3_result_text(C,V,N,D)] interface changes the
    **          return value of function C to be the UTF8 string
@@ -3916,7 +3916,7 @@ namespace sqlite3
    ** of UTF16 in the native byte order of the host computer.
    **
    ** A pointer to the user supplied routine must be passed as the fifth
-   ** argument.  If it is NULL, this is the same as deleting the collation
+   ** argument.  If it is ::null(), this is the same as deleting the collation
    ** sequence (so that SQLite cannot call it anymore).
    ** Each time the application
    ** supplied function is invoked, it is passed a copy of the void* passed as
@@ -3958,7 +3958,7 @@ namespace sqlite3
    **          of P, F, and D.
    **
    ** {F16609} The destructor D in [sqlite3_create_collation_v2(B,X,E,P,F,D)]
-   **          is not NULL then it is called with argument P when the
+   **          is not ::null() then it is called with argument P when the
    **          collating function is dropped by SQLite.
    **
    ** {F16612} A collating function is dropped when it is overloaded.
@@ -3972,7 +3972,7 @@ namespace sqlite3
    **
    ** {F16621} A call to [sqlite3_create_collation(B,X,E,P,F)] is exactly
    **          the same as a call to [sqlite3_create_collation_v2()] with
-   **          the same parameters and a NULL destructor.
+   **          the same parameters and a ::null() destructor.
    **
    ** {F16624} Following a [sqlite3_create_collation_v2(B,X,E,P,F,D)],
    **          SQLite uses the comparison function F for all text comparison
@@ -4130,7 +4130,7 @@ namespace sqlite3
    ** If this global var is made to point to a string which is
    ** the name of a folder (a.ka. directory), then all temporary files
    ** created by SQLite will be placed in that directory.  If this var
-   ** is NULL pointer, then SQLite does a search for an appropriate temporary
+   ** is ::null() pointer, then SQLite does a search for an appropriate temporary
    ** file directory.
    **
    ** It is not safe to modify this var once a database connection
@@ -4214,9 +4214,9 @@ namespace sqlite3
    ** returns non-zero, then the commit is converted into a rollback.
    **
    ** If another function was previously registered, its
-   ** pArg value is returned.  Otherwise NULL is returned.
+   ** pArg value is returned.  Otherwise ::null() is returned.
    **
-   ** Registering a NULL function disables the callback.
+   ** Registering a ::null() function disables the callback.
    **
    ** For the purposes of this API, a transaction is said to have been
    ** rolled back if an explicit "ROLLBACK" statement is executed, or
@@ -4237,13 +4237,13 @@ namespace sqlite3
    **
    ** {F12952} The [sqlite3_commit_hook(D,F,P)] interface returns the P
    **          argument from the previous call with the same
-   **          [database connection ] D , or NULL on the first call
+   **          [database connection ] D , or ::null() on the first call
    **          for a particular [database connection] D.
    **
    ** {F12953} Each call to [sqlite3_commit_hook()] overwrites the callback
    **          registered by prior calls.
    **
-   ** {F12954} If the F argument to [sqlite3_commit_hook(D,F,P)] is NULL
+   ** {F12954} If the F argument to [sqlite3_commit_hook(D,F,P)] is ::null()
    **          then the commit hook callback is cancelled and no callback
    **          is invoked when a transaction commits.
    **
@@ -4256,13 +4256,13 @@ namespace sqlite3
    **
    ** {F12962} The [sqlite3_rollback_hook(D,F,P)] interface returns the P
    **          argument from the previous call with the same
-   **          [database connection ] D , or NULL on the first call
+   **          [database connection ] D , or ::null() on the first call
    **          for a particular [database connection] D.
    **
    ** {F12963} Each call to [sqlite3_rollback_hook()] overwrites the callback
    **          registered by prior calls.
    **
-   ** {F12964} If the F argument to [sqlite3_rollback_hook(D,F,P)] is NULL
+   ** {F12964} If the F argument to [sqlite3_rollback_hook(D,F,P)] is ::null()
    **          then the rollback hook callback is cancelled and no callback
    **          is invoked when a transaction rolls back.
    */
@@ -4297,7 +4297,7 @@ namespace sqlite3
    ** modified (i.e. sqlite_master and sqlite_sequence).
    **
    ** If another function was previously registered, its pArg value
-   ** is returned.  Otherwise NULL is returned.
+   ** is returned.  Otherwise ::null() is returned.
    **
    ** INVARIANTS:
    **
@@ -4308,10 +4308,10 @@ namespace sqlite3
    **
    ** {F12973} The [sqlite3_update_hook(D,F,P)] interface returns the value
    **          of P for the previous call on the same [database connection] D,
-   **          or NULL for the first call.
+   **          or ::null() for the first call.
    **
    ** {F12975} If the update hook callback F in [sqlite3_update_hook(D,F,P)]
-   **          is NULL then the no update callbacks are made.
+   **          is ::null() then the no update callbacks are made.
    **
    ** {F12977} Each call to [sqlite3_update_hook(D,F,P)] overrides prior calls
    **          to the same interface on the same [database connection] D.
@@ -4478,17 +4478,17 @@ namespace sqlite3
    ** The column is identified by the second, third and fourth parameters to
    ** this function. The second parameter is either the name of the database
    ** (i.e. "main", "temp" or an attached database) containing the specified
-   ** table or NULL. If it is NULL, then all attached databases are searched
+   ** table or ::null(). If it is ::null(), then all attached databases are searched
    ** for the table using the same algorithm as the database engine uses to
    ** resolve unqualified table references.
    **
    ** The third and fourth parameters to this function are the table and column
    ** name of the desired column, respectively. Neither of these parameters
-   ** may be NULL.
+   ** may be ::null().
    **
    ** Meta information is returned by writing to the primitive::memory locations passed as
    ** the 5th and subsequent parameters to this function. Any of these
-   ** arguments may be NULL, in which case the corresponding element of meta
+   ** arguments may be ::null(), in which case the corresponding element of meta
    ** information is ommitted.
    **
    ** <pre>
@@ -4497,7 +4497,7 @@ namespace sqlite3
    **
    **   5th         const char*      Data type
    **   6th         const char*      Name of the default collation sequence
-   **   7th         int32_t              True if the column has a NOT NULL constraint
+   **   7th         int32_t              True if the column has a NOT ::null() constraint
    **   8th         int32_t              True if the column is part of the PRIMARY KEY
    **   9th         int32_t              True if the column is AUTOINCREMENT
    ** </pre>
@@ -4533,12 +4533,12 @@ namespace sqlite3
    */
    int32_t sqlite3_table_column_metadata(
       sqlite3 *db,                /* Connection handle */
-      const char *zDbName,        /* Database name or NULL */
+      const char *zDbName,        /* Database name or ::null() */
       const char *zTableName,     /* Table name */
       const char *zColumnName,    /* Column name */
       char const **pzDataType,    /* OUTPUT: Declared data type */
       char const **pzCollSeq,     /* OUTPUT: Collation sequence name */
-      int32_t *pNotNull,              /* OUTPUT: True if NOT NULL constraint exists */
+      int32_t *pNotNull,              /* OUTPUT: True if NOT ::null() constraint exists */
       int32_t *pPrimaryKey,           /* OUTPUT: True if column part of PK */
       int32_t *pAutoinc               /* OUTPUT: True if column is auto-increment */
       );
@@ -4603,10 +4603,10 @@ namespace sqlite3
    ** {F12642} Duplicate extensions are detected so calling this routine multiple
    ** times with the same extension is harmless.
    **
-   ** {F12643} This routine stores a pointer to the extension in an base_array
+   ** {F12643} This routine stores a pointer to the extension in an array
    ** that is obtained from sqlite_malloc(). {END} If you run a primitive::memory leak
    ** checker on your program and it reports a leak because of this
-   ** base_array, then invoke [sqlite3_reset_auto_extension()] prior
+   ** array, then invoke [sqlite3_reset_auto_extension()] prior
    ** to shutdown to free the primitive::memory.
    **
    ** {F12644} Automatic extensions apply across all threads. {END}
@@ -4701,7 +4701,7 @@ namespace sqlite3
    ** inputs to xBestIndex and are read-only.  xBestIndex inserts its
    ** results into the **Outputs** fields.
    **
-   ** The aConstraint[] base_array records WHERE clause constraints of the
+   ** The aConstraint[] array records WHERE clause constraints of the
    ** form:
    **
    **         column OP expr
@@ -4716,7 +4716,7 @@ namespace sqlite3
    ** The optimizer automatically inverts terms of the form "expr OP column"
    ** and makes other simplifications to the WHERE clause in an attempt to
    ** get as many WHERE clause terms into the form shown above as possible.
-   ** The aConstraint[] base_array only reports WHERE clause terms in the correct
+   ** The aConstraint[] array only reports WHERE clause terms in the correct
    ** form that refer to the particular virtual table being queried.
    **
    ** Information about the ORDER BY clause is stored in aOrderBy[].
@@ -5121,8 +5121,8 @@ namespace sqlite3
    ** The sqlite3_vfs_find() interface returns a pointer to
    ** a VFS given its name.  Names are case sensitive.
    ** Names are zero-terminated UTF-8 strings.
-   ** If there is no match, a NULL
-   ** pointer is returned.  If zVfsName is NULL then the default
+   ** If there is no match, a ::null()
+   ** pointer is returned.  If zVfsName is ::null() then the default
    ** VFS is returned.
    **
    ** New VFSes are registered with sqlite3_vfs_register().
@@ -5131,7 +5131,7 @@ namespace sqlite3
    ** To make an existing VFS into the default VFS, register it again
    ** with the makeDflt flag set.  If two different VFSes with the
    ** same name are registered, the behavior is undefined.  If a
-   ** VFS is registered with a name that is NULL or an is_empty string,
+   ** VFS is registered with a name that is ::null() or an is_empty string,
    ** then the behavior is undefined.
    **
    ** Unregister a VFS with the sqlite3_vfs_unregister() interface.
@@ -5142,12 +5142,12 @@ namespace sqlite3
    **
    ** {F11203} The [sqlite3_vfs_find(N)] interface returns a pointer to the
    **          registered [sqlite3_vfs] object whose name exactly matches
-   **          the zero-terminated UTF-8 string N, or it returns NULL if
+   **          the zero-terminated UTF-8 string N, or it returns ::null() if
    **          there is no match.
    **
-   ** {F11206} If the N parameter to [sqlite3_vfs_find(N)] is NULL then
+   ** {F11206} If the N parameter to [sqlite3_vfs_find(N)] is ::null() then
    **          the function returns a pointer to the default [sqlite3_vfs]
-   **          object if there is one, or NULL if there is no default
+   **          object if there is one, or ::null() if there is no default
    **          [sqlite3_vfs] object.
    **
    ** {F11209} The [sqlite3_vfs_register(P,F)] interface registers the
@@ -5205,7 +5205,7 @@ namespace sqlite3
    ** implementation without having to modify the SQLite core.
    **
    ** {F17011} The sqlite3_mutex_alloc() routine allocates a new
-   ** mutex and returns a pointer to it. {F17012} If it returns NULL
+   ** mutex and returns a pointer to it. {F17012} If it returns ::null()
    ** that means that a mutex could not be allocated. {F17013} SQLite
    ** will unwind its stack and return an error. {F17014} The argument
    ** to sqlite3_mutex_alloc() is one of these integer constants:
@@ -5305,14 +5305,14 @@ namespace sqlite3
    ** that always return true so that one does not get spurious
    ** assertion failures. {END}
    **
-   ** {F17085} If the argument to sqlite3_mutex_held() is a NULL pointer then
+   ** {F17085} If the argument to sqlite3_mutex_held() is a ::null() pointer then
    ** the routine should return 1.  {END} This seems counter-intuitive since
    ** clearly the mutex cannot be held if it does not exist.  But the
    ** the reason the mutex does not exist is because the build is not
    ** using mutexes.  And we do not want the assert() containing the
    ** call to sqlite3_mutex_held() to fail, so a non-zero return is
    ** the appropriate thing to do.  {F17086} The sqlite3_mutex_notheld()
-   ** interface should also return 1 when given a NULL pointer.
+   ** interface should also return 1 when given a ::null() pointer.
    */
    int32_t sqlite3_mutex_held(sqlite3_mutex*);
    int32_t sqlite3_mutex_notheld(sqlite3_mutex*);
@@ -5340,7 +5340,7 @@ namespace sqlite3
    ** name of the database is the name assigned to the database by the
    ** <a href="lang_attach.html">ATTACH</a> SQL command that opened the
    ** database. {F11303} To control the main database file, use the name "main"
-   ** or a NULL pointer. {F11304} The third and fourth parameters to this routine
+   ** or a ::null() pointer. {F11304} The third and fourth parameters to this routine
    ** are passed directly through to the second and third parameters of
    ** the xFileControl method.  {F11305} The return value of the xFileControl
    ** method becomes the return value of this routine.

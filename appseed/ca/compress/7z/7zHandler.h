@@ -76,10 +76,10 @@ namespace n7z
 
 #else
 
-      base_array<CBind> _binds;
+      array<CBind> _binds;
 
       ::ca::HRes SetCompressionMethod(CCompressionMethodMode &method,
-         ::collection::smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
+         smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
          , uint32_t numThreads
          );
 
@@ -92,14 +92,14 @@ namespace n7z
       bool IsEncrypted(uint32_t index1) const;
 //#ifndef _SFX
 
-      base_array<uint64_t> _fileInfoPopIDs;
+      array<uint64_t> _fileInfoPopIDs;
       void FillPopIDs();
 
 //#endif
 
       ///DECL_EXTERNAL_CODECS_VARS
       ::libcompress::codecs_info_interface * _codecsInfo;
-      base_array < ::libcompress::codec_info_ex > _externalCodecs;
+      array < ::libcompress::codec_info_ex > _externalCodecs;
    };
 
 } // namespace n7z

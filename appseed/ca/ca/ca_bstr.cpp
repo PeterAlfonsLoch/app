@@ -5,16 +5,16 @@
 
 void bstr::copy(BSTR &bstrDest, const BSTR bstrSrc)
 {
-   if(bstrSrc == NULL)
+   if(bstrSrc == ::null())
    {
-      if(bstrDest != NULL)
+      if(bstrDest != ::null())
       {
          SysFreeString(bstrDest);
-         bstrDest = NULL;
+         bstrDest = ::null();
       }
    }
    else
-      if(bstrDest == NULL)
+      if(bstrDest == ::null())
       {
          bstrDest = SysAllocString(bstrSrc);
       }
@@ -32,7 +32,7 @@ void bstr::copy(string &strDest, const BSTR bstrSrc)
 
 void bstr::copy( BSTR &bstrDest, const string &strSrc )
 {
-   if(bstrDest != NULL)
+   if(bstrDest != ::null())
       SysFreeString(bstrDest);
    bstrDest = SysAllocString((wchar_t *) ::ca::international::utf8_to_unicode(strSrc));
 }

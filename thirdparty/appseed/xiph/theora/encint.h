@@ -212,7 +212,7 @@ struct oc_rc_state{
   uint32_t           exp[2];
   /*The number of frames to distribute the buffer usage over.*/
   int32_t                buf_delay;
-  /*The total drop count from the previous frame.
+  /*The total drop ::count from the previous frame.
     This includes duplicates explicitly requested via the
      TH_ENCCTL_SET_DUP_COUNT API as well as frames we chose to drop ourselves.*/
   uint32_t       prev_drop_count;
@@ -259,7 +259,7 @@ struct oc_rc_state{
   int32_t                cframe_metrics;
   /*The index of the current frame in the circular metric buffer.*/
   int32_t                frame_metrics_head;
-  /*The frame count of each type (keyframes, delta frames, and dup frames);
+  /*The frame ::count of each type (keyframes, delta frames, and dup frames);
      32 bits limits us to 2.268 years at 60 fps.*/
   uint32_t       frames_total[3];
   /*The number of frames of each type yet to be processed.*/
@@ -270,7 +270,7 @@ struct oc_rc_state{
   int32_t                scale_window0;
   /*The end of the window over which the current scale sums are taken.*/
   int32_t                scale_window_end;
-  /*The frame count of each type in the current 2-pass window; this does not
+  /*The frame ::count of each type in the current 2-pass window; this does not
      include dup frames.*/
   int32_t                nframes[3];
   /*The total accumulated estimation bias.*/
@@ -331,7 +331,7 @@ struct th_enc_ctx{
     The actual Huffman table used for a given coefficient depends not only on
      the choice made here, but also its index in the zig-zag ordering.*/
   uchar            huff_idxs[2][2][2];
-  /*Current count of bits used by each MV coding mode.*/
+  /*Current ::count of bits used by each MV coding mode.*/
   size_t                   mv_bits[2];
   /*The mode scheme chooser for estimating mode coding costs.*/
   oc_mode_scheme_chooser   chooser;
@@ -405,9 +405,9 @@ struct oc_token_checkpoint{
   uchar pli;
   /*The zig-zag index the token was added to.*/
   uchar zzi;
-  /*The outstanding EOB run count before the token was added.*/
+  /*The outstanding EOB run ::count before the token was added.*/
   uint16_t  eob_run;
-  /*The token count before the token was added.*/
+  /*The token ::count before the token was added.*/
   ptrdiff_t     ndct_tokens;
 };
 

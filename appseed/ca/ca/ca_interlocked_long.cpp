@@ -16,7 +16,7 @@ namespace ca
 
    interlocked_long::~interlocked_long()
    {
-      if(m_plong != NULL)
+      if(m_plong != ::null())
       {
 #ifdef WINDOWS
          _aligned_free(m_plong);

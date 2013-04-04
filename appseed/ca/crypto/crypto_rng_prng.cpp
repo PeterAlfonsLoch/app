@@ -56,7 +56,7 @@ x917_prng_init(rand_source_func_t random_source) {
   v128_t tmp_key;
   err_status_t status;
 
-  /* initialize output count to zero */
+  /* initialize output ::count to zero */
   x917_prng.octet_count = 0;
 
   /* set random source */
@@ -98,7 +98,7 @@ x917_prng_get_octet_string(uint8_t *dest, uint32_t len) {
   x917_prng.octet_count += len;
   
   /* find out the time */
-  t = (uint32_t)time(NULL);
+  t = (uint32_t)time(::null());
   
   /* loop until we have output enough data */
   for (i=0; i < len/16; i++) {

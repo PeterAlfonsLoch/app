@@ -16,11 +16,11 @@ namespace ca
 
    file_position edit_file::Item::get_position(bool bForward) {UNREFERENCED_PARAMETER(bForward); return m_dwPosition;};
 
-   BYTE * edit_file::Item::get_data() { return NULL; }
+   BYTE * edit_file::Item::get_data() { return ::null(); }
    edit_file::EItemType edit_file::Item::get_type() { return ItemTypeUndefined; }
    ::primitive::memory_size edit_file::Item::get_extent() { return 0; }
    ::primitive::memory_size edit_file::Item::get_file_extent() { return 0; }
-   BYTE * edit_file::Item::reverse_get_data() { return NULL; }
+   BYTE * edit_file::Item::reverse_get_data() { return ::null(); }
    edit_file::EItemType edit_file::Item::reverse_get_type() { return ItemTypeUndefined; }
    ::primitive::memory_size edit_file::Item::reverse_get_extent() { return 0; }
    ::primitive::memory_size edit_file::Item::reverse_get_file_extent() { return 0; }
@@ -49,7 +49,7 @@ namespace ca
 
    BYTE * edit_file::DeleteItem::get_data()
    {
-      return NULL;
+      return ::null();
    }
 
    edit_file::EItemType edit_file::DeleteItem::reverse_get_type()
@@ -148,7 +148,7 @@ namespace ca
 
    BYTE * edit_file::InsertItem::reverse_get_data()
    {
-      return NULL;
+      return ::null();
    }
 
    ::primitive::memory_offset edit_file::InsertItem::get_delta_length()
@@ -330,7 +330,7 @@ namespace ca
       ::ca::tree(papp)
    {
       m_iBranch = 0;
-      m_pgroupitem = NULL;
+      m_pgroupitem = ::null();
 
       if(!::ca::tree_data::initialize_data())
          throw simple_exception(get_app());
@@ -351,7 +351,7 @@ namespace ca
    void edit_file::SetFile(::ca::file * pfile)
    {
    
-      if(pfile == NULL)
+      if(pfile == ::null())
          throw invalid_argument_exception(get_app());
 
       m_pfile = pfile;
@@ -379,7 +379,7 @@ namespace ca
 //      uint32_t dwUpperLimit = m_dwFileLength;
 //      int32_t iOffset =0;
       ::ca::tree_item * ptreeitem;
-//      GroupItem * pitemgroup = NULL;
+//      GroupItem * pitemgroup = ::null();
       int_array ia;
 
       m_bRootDirection = calc_root_direction();
@@ -390,7 +390,7 @@ namespace ca
 l1:
          ptreeitem = m_ptreeitem;
          m_dwReadPosition = m_dwPosition;
-         while(nCount > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
+         while(nCount > 0 && ptreeitem != ::null() && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
          {
             Item * pitem = (Item * )ptreeitem->m_pitemdata;
             uiReadItem = pitem->read_ch(this);
@@ -427,17 +427,17 @@ l1:
 
    void edit_file::TreeInsert(Item * pitem)
    {
-      if(m_pgroupitem != NULL
+      if(m_pgroupitem != ::null()
         && m_pgroupitem != pitem)
       {
          m_pgroupitem->add(pitem);
          return;
       }
-      ::ca::tree_item * pitemNew = NULL;
-      if(m_ptreeitem != NULL && m_ptreeitem->m_pnext != NULL)
+      ::ca::tree_item * pitemNew = ::null();
+      if(m_ptreeitem != ::null() && m_ptreeitem->m_pnext != ::null())
       {
          pitemNew = insert_item(pitem, RelativeFirstChild, m_ptreeitem);
-         if(pitemNew != NULL)
+         if(pitemNew != ::null())
          {
             m_ptreeitem = pitemNew;
          }
@@ -445,7 +445,7 @@ l1:
       else
       {
          pitemNew = insert_item(pitem, RelativeLastSibling, m_ptreeitem);
-         if(pitemNew != NULL)
+         if(pitemNew != ::null())
          {
             m_ptreeitem = pitemNew;
          }
@@ -635,17 +635,17 @@ l1:
    bool edit_file::CanRedo()
    {
       return m_iBranch < m_ptreeitem->get_expandable_children_count()
-         || m_ptreeitem->get_next(false, false) != NULL;
+         || m_ptreeitem->get_next(false, false) != ::null();
    }
 
-   count edit_file::GetRedoBranchCount()
+   ::count edit_file::GetRedoBranchCount()
    {
-      if(m_ptreeitem == NULL)
+      if(m_ptreeitem == ::null())
          return 1;
       else
          return   m_ptreeitem->get_expandable_children_count()
-           + (m_ptreeitem->m_pnext != NULL ? 1 : 0)
-           + (m_ptreeitem->m_pchild != NULL ? 1 : 0);
+           + (m_ptreeitem->m_pnext != ::null() ? 1 : 0)
+           + (m_ptreeitem->m_pchild != ::null() ? 1 : 0);
    }
 
    bool edit_file::Undo()
@@ -665,7 +665,7 @@ l1:
       {
          return false;
       }
-//      Item * pitem = NULL;
+//      Item * pitem = ::null();
       ::ca::tree_item * ptreeitem;
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
@@ -673,7 +673,7 @@ l1:
       }
       else
          ptreeitem = get_next(m_ptreeitem);
-      if(ptreeitem == NULL)
+      if(ptreeitem == ::null())
          return false;
       m_dwFileLength += (( Item * ) ptreeitem->m_pitemdata)->get_delta_length();
       m_ptreeitem = ptreeitem;
@@ -689,12 +689,12 @@ l1:
 
    void edit_file::MacroEnd()
    {
-      if(m_pgroupitem == NULL)
+      if(m_pgroupitem == ::null())
       {
          ASSERT(FALSE);
          return;
       }
-      if(m_pgroupitem->m_pgroupitem == NULL)
+      if(m_pgroupitem->m_pgroupitem == ::null())
       {
          TreeInsert(m_pgroupitem);
       }
@@ -709,7 +709,7 @@ l1:
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;
-          ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != NULL;
+          ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != ::null();
           ptreeitem  = get_previous(ptreeitem))
       {
       }
@@ -719,7 +719,7 @@ l1:
 
    ::ca::tree_item * edit_file::get_previous(::ca::tree_item * pitem)
    {
-      if(pitem->m_pprevious != NULL)
+      if(pitem->m_pprevious != ::null())
          return pitem->m_pprevious;
       else
          return pitem->m_pparent;
@@ -727,14 +727,14 @@ l1:
 
    ::ca::tree_item * edit_file::get_next(::ca::tree_item * pitem, bool bChild)
    {
-      if(bChild && pitem->m_pchild != NULL)
+      if(bChild && pitem->m_pchild != ::null())
          return pitem->m_pchild;
-      else if(pitem->m_pnext != NULL)
+      else if(pitem->m_pnext != ::null())
          return pitem->m_pnext;
-      else if(pitem->m_pparent != NULL)
+      else if(pitem->m_pparent != ::null())
          return get_next(pitem->m_pparent, false);
       else
-         return NULL;
+         return ::null();
    }
 
 

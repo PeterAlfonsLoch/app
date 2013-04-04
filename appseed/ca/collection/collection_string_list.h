@@ -30,7 +30,7 @@ public:
       iterator()
       {
          m_pos = 0;
-         m_plist = NULL;
+         m_plist = ::null();
       }
 
       iterator(POSITION i, string_list * plist)
@@ -81,7 +81,7 @@ public:
       iterator & operator ++()
       {
          
-         if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+         if(m_pos == ::null() || m_pos == m_plist->get_tail_position())
             return * this;
 
          m_plist->get_next(m_pos);
@@ -93,7 +93,7 @@ public:
       iterator & operator +(int32_t i)
       {
 
-         while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+         while(m_pos != ::null() && m_pos != m_plist->get_tail_position() && i > 0)
          {
 
             i--;
@@ -108,7 +108,7 @@ public:
       iterator & operator --()
       {
 
-         if(m_pos == NULL || m_pos == m_plist->get_head_position())
+         if(m_pos == ::null() || m_pos == m_plist->get_head_position())
             return * this;
 
          m_plist->get_previous(m_pos);
@@ -120,7 +120,7 @@ public:
       iterator & operator -(int32_t i)
       {
 
-         while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+         while(m_pos != ::null() && m_pos != m_plist->get_head_position() && i > 0)
          {
             i--;
             m_plist->get_previous(m_pos);
@@ -144,7 +144,7 @@ public:
       const_iterator()
       {
          m_pos = 0;
-         m_plist = NULL;
+         m_plist = ::null();
       }
 
       const_iterator(POSITION i, const string_list * plist)
@@ -195,7 +195,7 @@ public:
       const_iterator & operator ++()
       {
          
-         if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+         if(m_pos == ::null() || m_pos == m_plist->get_tail_position())
             return * this;
 
          m_plist->get_next(m_pos);
@@ -207,7 +207,7 @@ public:
       const_iterator & operator +(int32_t i)
       {
 
-         while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+         while(m_pos != ::null() && m_pos != m_plist->get_tail_position() && i > 0)
          {
 
             i--;
@@ -222,7 +222,7 @@ public:
       const_iterator & operator --()
       {
 
-         if(m_pos == NULL || m_pos == m_plist->get_head_position())
+         if(m_pos == ::null() || m_pos == m_plist->get_head_position())
             return * this;
 
          m_plist->get_previous(m_pos);
@@ -234,7 +234,7 @@ public:
       const_iterator & operator -(int32_t i)
       {
 
-         while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+         while(m_pos != ::null() && m_pos != m_plist->get_head_position() && i > 0)
          {
             i--;
             m_plist->get_previous(m_pos);
@@ -255,7 +255,7 @@ public:
 
    iterator end()
    {
-      return iterator(NULL, this);
+      return iterator(::null(), this);
    }
 
    const_iterator begin() const
@@ -266,7 +266,7 @@ public:
 
    const_iterator end() const
    {
-      return const_iterator(NULL, this);
+      return const_iterator(::null(), this);
    }
 
 protected:
@@ -274,10 +274,10 @@ protected:
 
    node *   m_pnodeHead;
    node *   m_pnodeTail;
-   count    m_nCount;
+   ::count m_nCount;
    node *   m_pnodeFree;
    plex *   m_pplex;
-   count    m_nBlockSize;
+   ::count m_nBlockSize;
 
 
 public:
@@ -286,10 +286,10 @@ public:
    string_list(int_ptr nBlockSize = 10);
    virtual ~string_list();
 
-   count get_count() const;
-   count get_size() const;
+   ::count get_count() const;
+   ::count get_size() const;
    bool is_empty() const;
-   bool has_elements(count nMinimumCount = 1) const;
+   bool has_elements(::count nMinimumCount = 1) const;
 
    string & get_head();
    const string & get_head() const;
@@ -347,13 +347,13 @@ public:
 
 
    // helper functions (note: O(n) speed)
-   POSITION find(const char * searchValue, POSITION startAfter = NULL) const;
+   POSITION find(const char * searchValue, POSITION startAfter = ::null()) const;
                   // defaults to starting at the HEAD
-                  // return NULL if not found
+                  // return ::null() if not found
    POSITION find_index(index nIndex) const;
-                  // get the 'nIndex'th element (may return NULL)
+                  // get the 'nIndex'th element (may return ::null())
    POSITION reverse_find_index(index nIndex) const;
-                  // get the 'nIndex'th element (may return NULL)
+                  // get the 'nIndex'th element (may return ::null())
 
 
 //   void Serialize(CArchive&);
@@ -367,25 +367,25 @@ protected:
 };
 
 
-inline count string_list::get_count() const
+inline ::count string_list::get_count() const
    { return m_nCount; }
-inline count string_list::get_size() const
+inline ::count string_list::get_size() const
    { return m_nCount; }
 inline bool string_list::is_empty() const
    { return m_nCount == 0; }
 inline bool string_list::has_elements(::count nMinimumCount) const
    { return m_nCount >= nMinimumCount; }
 inline string & string_list::get_head()
-   { ASSERT(m_pnodeHead != NULL);
+   { ASSERT(m_pnodeHead != ::null());
       return m_pnodeHead->data; }
 inline const string & string_list::get_head() const
-   { ASSERT(m_pnodeHead != NULL);
+   { ASSERT(m_pnodeHead != ::null());
       return m_pnodeHead->data; }
 inline string & string_list::get_tail()
-   { ASSERT(m_pnodeTail != NULL);
+   { ASSERT(m_pnodeTail != ::null());
       return m_pnodeTail->data; }
 inline const string & string_list::get_tail() const
-   { ASSERT(m_pnodeTail != NULL);
+   { ASSERT(m_pnodeTail != ::null());
       return m_pnodeTail->data; }
 inline POSITION string_list::get_head_position() const
    { return (POSITION) m_pnodeHead; }
@@ -394,54 +394,54 @@ inline POSITION string_list::get_tail_position() const
 inline string & string_list::get_next(POSITION& rPosition) // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnodeNext;
       return pNode->data; }
 inline const string & string_list::get_next(POSITION& rPosition) const // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnodeNext;
       return pNode->data; }
 inline string & string_list::get_previous(POSITION& rPosition) // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnodePrevious;
       return pNode->data; }
 inline const string & string_list::get_previous(POSITION& rPosition) const // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnodePrevious;
       return pNode->data; }
 inline string & string_list::get_at(POSITION position)
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       return pNode->data; }
 inline const string & string_list::get_at(POSITION position) const
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       return pNode->data; }
 inline void string_list::set_at(POSITION pos, const char * newElement)
    { node* pNode = (node*) pos;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       pNode->data = newElement; }
 
 inline void string_list::set_at(POSITION pos, const string & newElement)
    { node* pNode = (node*) pos;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == NULL )
+      if( pNode == ::null() )
          throw invalid_argument_exception(get_app());
       pNode->data = newElement; }
 

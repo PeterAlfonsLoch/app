@@ -64,7 +64,7 @@ namespace ca
       virtual bool contains_app(const char * pszAppId);
 
 
-      virtual void get_create_view_id_list(::raw_array < id > & ida);
+      virtual void get_create_view_id_list(::array < id > & ida);
 
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
