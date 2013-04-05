@@ -334,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="builds\win32\ftdebug.c" />
+    <ClCompile Include="dll_main.cpp" />
     <ClCompile Include="src\autofit\autofit.c" />
     <ClCompile Include="src\base\ftbase.c" />
     <ClCompile Include="src\base\ftbbox.c" />

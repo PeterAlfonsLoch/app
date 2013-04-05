@@ -119,12 +119,6 @@ namespace ca
 
 
 
-#include "framework.h"
-
-
-#include "framework.h"
-
-
 #ifdef WINDOWS
 
 extern "C" const GUID LIBID_Lib =                 {0x44EC0535,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3}};

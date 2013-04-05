@@ -33,14 +33,16 @@ static const char *s_copyright = "This program uses FreeImage, a free, open sour
 #if defined(_WIN32) && !defined(__MINGW32__)
 #ifndef FREEIMAGE_LIB
 
-BOOL APIENTRY
-DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
-	switch (ul_reason_for_call) {
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+{
+   switch (dwReason) {
 		case DLL_PROCESS_ATTACH :
+         ::OutputDebugStringW(L"::ca2freeimage.dll :: initializing!\n");
 			FreeImage_Initialise(FALSE);
 			break;
 
 		case DLL_PROCESS_DETACH :
+         ::OutputDebugStringW(L"::ca2freeimage.dll :: terminating!\n");
 			FreeImage_DeInitialise();
 			break;
 

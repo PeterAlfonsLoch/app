@@ -129,6 +129,9 @@
     <ClCompile Include="src\smooth\smooth.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dll_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ft2build.h">

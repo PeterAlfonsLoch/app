@@ -3,8 +3,8 @@
 
 
 
-simple_mutex * os_thread::s_pmutex = new simple_mutex();
-simple_array < os_thread * > * os_thread::s_pptra = new simple_array < os_thread * > ();
+simple_mutex * os_thread::s_pmutex = NULL;
+simple_array < os_thread * > * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)

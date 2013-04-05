@@ -42,7 +42,7 @@ namespace ca
    public:
 
 
-      ::ca::property_set *     m_pset;
+      ::ca::property_set *     m_psetObject;
 
 
       object();

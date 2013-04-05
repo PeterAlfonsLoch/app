@@ -59,8 +59,8 @@ bool WINAPI RawDllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
    return TRUE;    // ok
 }
 
-extern "C"
-bool WINAPI DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
+
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
    if (dwReason == DLL_PROCESS_ATTACH)
    {

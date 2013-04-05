@@ -118,7 +118,7 @@ namespace ca
 
    public:
 
-      property_set *    m_pset;
+      //property_set *    m_pset;
       var               m_var;
 
 
@@ -659,7 +659,7 @@ namespace ca
 
 
    class CLASS_DECL_ca property_array :
-      public ::ca::byte_serializable_array < array < property > >
+      public ::ca::byte_serializable_pointer_array < spa(property) >
    {
    public:
 

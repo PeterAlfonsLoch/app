@@ -733,16 +733,16 @@ void OPENSSL_cpuid_setup(void) {}
 /* All we really need to do is remove the 'error' state when a thread
  * detaches */
 
-BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
-	     LPVOID lpvReserved)
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 	{
-	switch(fdwReason)
+	switch(dwReason)
 		{
 	case DLL_PROCESS_ATTACH:
+      OutputDebugStringW(L"::ca2openssl.dll :: initializing!\n");
 		OPENSSL_cpuid_setup();
 #if defined(_WIN32_WINNT)
 		{
-		IMAGE_DOS_HEADER *dos_header = (IMAGE_DOS_HEADER *)hinstDLL;
+		IMAGE_DOS_HEADER *dos_header = (IMAGE_DOS_HEADER *)hInstance;
 		IMAGE_NT_HEADERS *nt_headers;
 
 		if (dos_header->e_magic==IMAGE_DOS_SIGNATURE)
@@ -750,7 +750,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 			nt_headers = (IMAGE_NT_HEADERS *)((char *)dos_header
 						+ dos_header->e_lfanew);
 			if (nt_headers->Signature==IMAGE_NT_SIGNATURE &&
-			    hinstDLL!=(HINSTANCE)(nt_headers->OptionalHeader.ImageBase))
+			    hInstance!=(HINSTANCE)(nt_headers->OptionalHeader.ImageBase))
 				OPENSSL_NONPIC_relocated=1;
 			}
 		}
@@ -761,6 +761,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 	case DLL_THREAD_DETACH:
 		break;
 	case DLL_PROCESS_DETACH:
+      OutputDebugStringW(L"::ca2openssl.dll :: terminating!\n");
 		break;
 		}
 	return(TRUE);

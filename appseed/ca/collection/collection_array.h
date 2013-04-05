@@ -39,16 +39,25 @@ class class_size
 {
 public:
 
-   sp(C) m_p;
+   sp(C)          m_p;
+   ::count        m_c;
 
-   class_size(C * p) : m_p(p) {}
+   class_size(C * p) : m_p(p), m_c(-1) {}
 
-   class_size(const class_size & size) : m_p(size.m_p) {}
+   class_size(C * p, ::count c) : m_p(NULL), m_c(c) {}
+
+   class_size(const class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
 
    operator ::count ()
    {
-      
-      return m_p->get_size();
+      if(m_c >= 0)
+      {
+         return m_c;
+      }
+      else
+      {
+         return m_p->get_size();
+      }
 
    }
 
@@ -69,6 +78,31 @@ public:
       return *this;
 
    }
+
+
+   class class_size operator ++(int)
+   {
+
+      class_size size(m_p, m_p->get_size());
+
+      m_p->set_size(m_p->get_size() + 1);
+
+      return size;
+
+   }
+
+   class class_size operator --(int)
+   {
+
+      class_size size(m_p, m_p->get_size());
+
+      m_p->set_size(m_p->get_size() - 1);
+
+      return size;
+
+   }
+
+
 
    class class_size & operator +=(::count c)
    {
@@ -426,14 +460,14 @@ public:
    inline const TYPE& first_element(index index = 0) const;
    inline TYPE& first_element(index index = 0);
 
-   inline const TYPE& last_element(index index = 0) const;
-   inline TYPE& last_element(index index = 0);
+   inline const TYPE& last_element(index index = -1) const;
+   inline TYPE& last_element(index index = -1);
 
-   TYPE & front(index n = 0);
-   const TYPE & front(index n = 0) const;
+   inline TYPE & front(index n = 0);
+   inline const TYPE & front(index n = 0) const;
 
-   TYPE & back(index n = 0);
-   const TYPE & back(index n = 0) const;
+   inline TYPE & back(index n = -1);
+   inline const TYPE & back(index n = -1) const;
 
 
    // Direct Access to the element data (may return ::null())
@@ -949,8 +983,9 @@ template<class TYPE, class ARG_TYPE>
 template<class TYPE, class ARG_TYPE>
 ::count array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
 {
-   //ASSERT_VALID(this);
-   //ASSERT(nNewSize >= 0);
+   ::count countOld = get_count();
+   ASSERT_VALID(this);
+   ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0 )
       throw invalid_argument_exception(get_app());
@@ -963,6 +998,8 @@ template<class TYPE, class ARG_TYPE>
       // shrink to nothing
       if (m_pData != ::null())
       {
+         for( int32_t i = 0; i < m_nSize; i++ )
+            (m_pData + i)->~TYPE();
          delete[] (BYTE*)m_pData;
          m_pData = ::null();
       }
@@ -970,17 +1007,20 @@ template<class TYPE, class ARG_TYPE>
    }
    else if (m_pData == ::null())
    {
-
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX/sizeof(TYPE)) // no overflow
-         throw invalid_argument_exception(get_app());
+      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
+         throw memory_exception(get_app());
+      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 #endif
-
       ::count nAllocSize = __max(nNewSize, m_nGrowBy);
+#undef new
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
-      memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
+      //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
+      for( int32_t i = 0; i < nNewSize; i++ )
+         ::new( (void *)( m_pData + i ) ) TYPE;
+#define new DEBUG_NEW
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -991,12 +1031,22 @@ template<class TYPE, class ARG_TYPE>
       {
          // initialize the new elements
          memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
+#undef new
+            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
+#define new DEBUG_NEW
+      }
+      else if (m_nSize > nNewSize)
+      {
+         // destroy the old elements
+         for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
+            (m_pData + nNewSize + i)->~TYPE();
       }
       m_nSize = nNewSize;
    }
    else
    {
-      // otherwise, grow array
+      // otherwise, grow aaa_base_array
       nGrowBy = m_nGrowBy;
       if (nGrowBy == 0)
       {
@@ -1011,33 +1061,36 @@ template<class TYPE, class ARG_TYPE>
       else
          nNewMax = nNewSize;  // no slush
 
-      //ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
-      if(nNewMax  < m_nMaxSize) // no wrap around
+      if(nNewMax  < m_nMaxSize)
          throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX/sizeof(TYPE)) // no overflow
-         throw invalid_argument_exception(get_app());
+      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 #endif
-
+#undef new
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
+#define new DEBUG_NEW
 
       // copy new data from old
       ::ca::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
-      //ASSERT(nNewSize > m_nSize);
-      //if(nNewSize  >= m_nSize)
-      // throw invalid_argument_exception(get_app());
+      ASSERT(nNewSize > m_nSize);
       memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
+#undef new
+         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
+#define new DEBUG_NEW
+      // get rid of old stuff (note: no destructors called)
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
    }
-   return m_nSize;
+   return countOld;
 }
 
 template<class TYPE, class ARG_TYPE>

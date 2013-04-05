@@ -35,7 +35,7 @@ namespace ca
    object::object(const object& objectSrc)
    {
 	   
-	   m_pset = ::null();
+	   m_psetObject = ::null();
 
       /*try
       {
@@ -53,7 +53,7 @@ namespace ca
    void object::common_construct()
    {
 
-      m_pset = ::null();
+      m_psetObject = ::null();
 
    }
    
@@ -63,10 +63,10 @@ namespace ca
       try
       {
 
-         if(m_pset != ::null())
+         if(m_psetObject != ::null())
          {
 
-            delete m_pset;
+            delete m_psetObject;
 
          }
 
@@ -83,17 +83,17 @@ namespace ca
    object & object::operator=(const object & objectSrc)
    {
 
-      if(objectSrc.m_pset != ::null())
+      if(objectSrc.m_psetObject != ::null())
       {
 
-         if(m_pset == ::null())
+         if(m_psetObject == ::null())
          {
             
-            m_pset = new ::ca::property_set(get_app());
+            m_psetObject = new ::ca::property_set(get_app());
 
          }
 
-         *m_pset = *objectSrc.m_pset;
+         *m_psetObject = *objectSrc.m_psetObject;
 
       }
 
@@ -178,14 +178,14 @@ namespace ca
    ::ca::property_set & object::propset()
    {
 
-      if(m_pset == ::null())
+      if(m_psetObject == ::null())
       {
 
-         m_pset = new ::ca::property_set(get_app());
+         m_psetObject = new ::ca::property_set(get_app());
 
       }
 
-      return *m_pset;
+      return *m_psetObject;
 
    }
 

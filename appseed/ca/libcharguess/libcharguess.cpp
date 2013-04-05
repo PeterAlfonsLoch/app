@@ -4,29 +4,7 @@
 #include "libcharguess.h"
 #include "charguess.h"
 
-#ifdef WIN32
 
-#include <windows.h>
-
-/*
-extern "C" int32_t APIENTRY
-DllMain( HINSTANCE hModule,
-                       uint32_t  ul_reason_for_call,
-                       LPVOID lpReserved
-                )
-{
-    switch (ul_reason_for_call)
-   {
-      case DLL_PROCESS_ATTACH:
-      case DLL_THREAD_ATTACH:
-      case DLL_THREAD_DETACH:
-      case DLL_PROCESS_DETACH:
-         break;
-    }
-    return TRUE;
-}
-*/
-#endif
 
 // This is an example of an exported var
 LIBCHARGUESS_API int32_t nLibcharguess=0;

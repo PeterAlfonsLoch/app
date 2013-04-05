@@ -208,7 +208,7 @@ namespace ca
 
    property::property()
    {
-      m_pset = ::null();
+//      m_pset = ::null();
    }
 
    property::property(const property & prop)
@@ -1400,41 +1400,54 @@ namespace ca
       {
          string strNameLow = strName;
          strNameLow.make_lower();
-         m_propertya.add(property(strName));
+         m_propertya.add(new property(strName));
          m_map.set_at(strNameLow, m_propertya.get_upper_bound());
-         m_propertya.last_element().m_pset = this;
-         return &m_propertya.last_element();
+//         m_propertya.last_element()->m_pset = this;
+         return m_propertya.last_element();
       }
       else
       {
-         m_propertya.add(property(strName));
+         m_propertya.add(new property(strName));
          m_map.set_at(strName, m_propertya.get_upper_bound());
-         m_propertya.last_element().m_pset = this;
-         return &m_propertya.last_element();
+//         m_propertya.last_element()->m_pset = this;
+         return m_propertya.last_element();
       }
    }
 
    property * property_set::lowadd(const string & strLowName)
    {
-      property p;
-      p.name() = strLowName;
-      p.lowname() = strLowName;
-      m_propertya.add(p);
+
+      sp(property) spproperty(new property());
+
+      spproperty->name()      = strLowName;
+
+      spproperty->lowname()   = strLowName;
+      
+      m_propertya.add(spproperty);
+      
       m_map.set_at(strLowName, m_propertya.get_upper_bound());
-      m_propertya.last_element().m_pset = this;
-      return &m_propertya.last_element();
+
+      return m_propertya.last_element();
+
    }
 
    property * property_set::lowadd(const string & strLowName, const var & var)
    {
-      property p;
-      p.name() = strLowName;
-      p.lowname() = strLowName;
-      p.m_var = var;
-      m_propertya.add(p);
+
+      sp(property) spproperty(new property());
+
+      spproperty->name()      = strLowName;
+
+      spproperty->lowname()   = strLowName;
+
+      spproperty->m_var       = var;
+
+      m_propertya.add(spproperty);
+
       m_map.set_at(strLowName, m_propertya.get_upper_bound());
-      m_propertya.last_element().m_pset = this;
-      return &m_propertya.last_element();
+
+      return m_propertya.last_element();
+
    }
 
    property * property_set::add(const char * pszName, var var)
@@ -1470,17 +1483,17 @@ namespace ca
       {
          string strNameLow = strName;
          strNameLow.make_lower();
-         m_propertya.add(property(strName, var));
+         m_propertya.add(new property(strName, var));
          m_map.set_at(strNameLow, m_propertya.get_upper_bound());
-         m_propertya.last_element().m_pset = this;
-         return &m_propertya.last_element();
+//         m_propertya.last_element()->m_pset = this;
+         return m_propertya.last_element();
       }
       else
       {
-         m_propertya.add(property(strName, var));
+         m_propertya.add(new property(strName, var));
          m_map.set_at(strName, m_propertya.get_upper_bound());
-         m_propertya.last_element().m_pset = this;
-         return &m_propertya.last_element();
+//         m_propertya.last_element()->m_pset = this;
+         return m_propertya.last_element();
       }
    }
 
@@ -2090,8 +2103,8 @@ namespace ca
       while(true)
       {
          m_propertya.set_size(m_propertya.get_size() + 1);
-         m_propertya.last_element().parse_json(pszJson, pszEnd);
-         m_map.set_at(m_propertya.last_element().lowname(), m_propertya.get_upper_bound());
+         m_propertya.last_element()->parse_json(pszJson, pszEnd);
+         m_map.set_at(m_propertya.last_element()->lowname(), m_propertya.get_upper_bound());
          ::ca::str::consume_spaces(pszJson, 0, pszEnd);
          if(*pszJson == ',')
          {
@@ -2218,9 +2231,9 @@ namespace ca
       string strPost;
       for(int32_t i = 0; i < m_propertya.get_size(); i++)
       {
-         strPost += m_propertya.element_at(i).name();
+         strPost += m_propertya.element_at(i)->name();
          strPost += "=";
-         strPost += System.url().url_encode(m_propertya.element_at(i).get_value().get_string());
+         strPost += System.url().url_encode(m_propertya.element_at(i)->get_value().get_string());
          if(i < m_propertya.get_size() - 1)
             strPost += "&";
       }
@@ -2452,18 +2465,10 @@ namespace ca
    {
       if(&set != this)
       {
-         m_propertya.set_size(set.m_propertya.get_size());
-         for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
-         {
-            m_propertya[i] = set.m_propertya[i];
-         }
+         ::lemon::copy(m_propertya, set.m_propertya);
          m_bAutoAdd              = set.m_bAutoAdd;
          m_bMultiValue           = set.m_bMultiValue;
          m_bKeyCaseInsensitive   = set.m_bKeyCaseInsensitive;
-         for(int32_t i = 0; i < m_propertya.get_count(); i++)
-         {
-            m_propertya[i].m_pset = this;
-         }
          m_map                   = set.m_map;
       }
       return *this;
@@ -2520,10 +2525,6 @@ namespace ca
          m_bAutoAdd              = set.get_auto_add();
          //m_bMultiValue           = set.m_bMultiValue;
          m_bKeyCaseInsensitive   = set.get_key_case_insensitive();
-         for(int32_t i = 0; i < m_propertya.get_count(); i++)
-         {
-            m_propertya[i].m_pset = this;
-         }
       }
       return *this;
    }
@@ -2545,17 +2546,17 @@ namespace ca
          {
             string strKey = set.str_str_interface_get_key(i);
             class var var = set.str_str_interface_get_value(i);
-            m_propertya.add(property(strKey, var));
+            m_propertya.add(new property(strKey, var));
          }
          // WOULD ANALYZE each of the following members parameters for
          // auto discovery, calculation or leave as set.
          m_bAutoAdd              = set.get_auto_add();
          //m_bMultiValue           = set.m_bMultiValue;
          m_bKeyCaseInsensitive   = set.get_key_case_insensitive();
-         for(int32_t i = 0; i < m_propertya.get_count(); i++)
-         {
-            m_propertya[i].m_pset = this;
-         }
+  //       for(int32_t i = 0; i < m_propertya.get_count(); i++)
+         //{
+//            m_propertya[i].m_pset = this;
+    //     }
       }
       return *this;
    }

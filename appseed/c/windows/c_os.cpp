@@ -29,6 +29,11 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 bool os_initialize()
 {
 
+
+   ::os_thread::s_pmutex = new simple_mutex();
+
+   ::os_thread::s_pptra = new simple_array < os_thread * > ();
+
    //Sleep(15 * 1000);
 
    if(!initialize_primitive_trace())

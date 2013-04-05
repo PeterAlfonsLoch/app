@@ -39,10 +39,9 @@ int32_t c_dll_main(HINSTANCE hinstance, uint32_t dwReason, LPVOID lpReserved)
 
 */
 
-extern "C"
-BOOL WINAPI DllMain(HINSTANCE hinstance, uint32_t dwReason, LPVOID lpReserved)
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
-   return c_dll_main(hinstance, dwReason, lpReserved);
+   return c_dll_main(hInstance, dwReason, lpReserved);
 }
 
 
