@@ -8,13 +8,13 @@
    class CLASS_DECL_ca message
    {
    public:
-      ::user::interaction *  m_pguie;
+      sp(::user::interaction)  m_pguie;
       UINT              m_uiMessage;
       WPARAM            m_wparam;
       LPARAM            m_lparam;
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t nPriority = 0);
+      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t nPriority = 0);
    };
 
 } // namespace win*/
@@ -206,7 +206,7 @@ namespace ca
          return false;
       }
 
-      /*inline void set_heap_alloc(::ca::ca * pca)
+      /*inline void set_heap_alloc(sp(::ca::ca) pca)
       {
          if(find(pca, true))
          {
@@ -261,7 +261,7 @@ namespace ca
       uint_ptr                            m_dwAlive;
       bool                                m_bReady;
       int32_t                             m_iReturnCode;
-      ::ca::application *                 m_pappDelete;
+      ::ca::applicationsp                 m_pappDelete;
       sp(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       sp(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       bool *                              m_pbReady;
@@ -270,8 +270,8 @@ namespace ca
 
 
       thread();
-      thread(::ca::application * papp);
-      thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+      thread(::ca::applicationsp papp);
+      thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam);
       virtual ~thread();
 
 		///  \brief		starts thread on first call
@@ -310,7 +310,7 @@ namespace ca
       //virtual uint32_t SuspendThread();
 //      virtual uint32_t ResumeThread();
   //    virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-    //  virtual bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
+    //  virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
 //      virtual bool PreInitInstance();
 
@@ -345,29 +345,29 @@ namespace ca
 //      virtual void ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
-//      virtual ::user::interaction * GetMainWnd();
-//      virtual ::user::interaction * SetMainWnd(::user::interaction * pui);
+//      virtual sp(::user::interaction) GetMainWnd();
+//      virtual sp(::user::interaction) SetMainWnd(sp(::user::interaction) pui);
 
       //using spa(::user::interaction)::add;
-//      virtual void add(::user::interaction * pui);
+//      virtual void add(sp(::user::interaction) pui);
 
       //using spa(::user::interaction)::remove;
-//      virtual void remove(::user::interaction * pui);
+//      virtual void remove(sp(::user::interaction) pui);
 
 //      virtual ::count get_ui_count();
-//      virtual ::user::interaction * get_ui(index iIndex);
-//      virtual void set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse);
-//      virtual void unset_timer(::user::interaction * pui, uint_ptr nIDEvent);
+//      virtual sp(::user::interaction) get_ui(index iIndex);
+//      virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
+//      virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
 ////      virtual void set_auto_delete(bool bAutoDelete = true);
 ////      virtual void set_run(bool bRun = true);
 //      virtual event & get_finish_event();
 //      virtual bool get_run();
 //      virtual ::ca::thread * get_app_thread();
-//      virtual ::user::interaction * get_active_ui();
-//      virtual ::user::interaction * set_active_ui(::user::interaction * pui);
+//      virtual sp(::user::interaction) get_active_ui();
+//      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
 //      virtual void step_timer();
 
-      virtual void on_delete(::ca::ca * p);
+      virtual void on_delete(sp(::ca::ca) p);
 
 
       virtual bool verb();
@@ -471,7 +471,7 @@ namespace ca
 //      virtual uint32_t SuspendThread();
       virtual uint32_t ResumeThread();
       virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-      virtual bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
+      virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual bool PreInitInstance();
 
@@ -502,23 +502,23 @@ namespace ca
       virtual void ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
-      virtual ::user::interaction* GetMainWnd();
+      virtual sp(::user::interaction) GetMainWnd();
 
-      virtual ::user::interaction * SetMainWnd(::user::interaction * pui);
+      virtual sp(::user::interaction) SetMainWnd(sp(::user::interaction) pui);
 
-      virtual void add(::user::interaction * pui);
-      virtual void remove(::user::interaction * pui);
+      virtual void add(sp(::user::interaction) pui);
+      virtual void remove(sp(::user::interaction) pui);
       virtual ::count get_ui_count();
-      virtual ::user::interaction * get_ui(index iIndex);
-      virtual void set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse);
-      virtual void unset_timer(::user::interaction * pui, uint_ptr nIDEvent);
+      virtual sp(::user::interaction) get_ui(index iIndex);
+      virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
+      virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
       virtual void set_auto_delete(bool bAutoDelete = true);
       virtual void set_run(bool bRun = true);
       virtual event & get_finish_event();
       virtual bool get_run();
       virtual ::ca::thread * get_app_thread();
-      virtual ::user::interaction * get_active_ui();
-      virtual ::user::interaction * set_active_ui(::user::interaction * pui);
+      virtual sp(::user::interaction) get_active_ui();
+      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
       virtual void step_timer();
 
 

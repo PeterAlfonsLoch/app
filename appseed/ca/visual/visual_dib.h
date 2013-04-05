@@ -36,7 +36,7 @@ namespace visual
    public:
       
       dib_sp();
-      dib_sp(::ca::application * papp);
+      dib_sp(::ca::applicationsp papp);
       virtual ~dib_sp();
 
 

@@ -20,15 +20,15 @@ namespace user
    public:
       // for creating new views
       ::ca::type_info         m_typeinfoNewView; // runtime class of ::view to create or ::null()
-      ::user::document_interface *              m_pCurrentDoc;
-      ::user::interaction *   m_puiNew;
+      sp(::user::document_interface)              m_pCurrentDoc;
+      sp(::user::interaction)   m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
       document_template *     m_pNewDocTemplate;
 
       // for sharing ::view/frame state from the original ::view/frame
-      ::user::interaction *   m_pLastView;
-      ::user::interaction *   m_pCurrentFrame;
+      sp(::user::interaction)   m_pLastView;
+      sp(::user::interaction)   m_pCurrentFrame;
 
    // Implementation
       create_context();

@@ -4,204 +4,167 @@
 var::var(const char * psz)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    set_string(psz);
 }
 
-var::var(::ca::ca * pca2)
+var::var(sp(::ca::ca) pca2)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pca2);
 }
 
 var::var(string str)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    set_string(str);
 }
 
 var::var(string * pstr)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pstr);
 }
 
 var::var(bool b)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (b);
 }
 
 var::var(bool * pb)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pb);
 }
 
 var::var(int32_t i)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (i);
 }
 
 var::var(uint32_t ui )
 {
    m_etype = type_uint32;
-   m_pca2 = ::null();
    operator = (ui);
 }
 
 var::var(int64_t i)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (i);
 }
 
 var::var(uint64_t ui )
 {
    m_etype = type_uint64;
-   m_pca2 = ::null();
    m_ui64 = ui;
 }
 
 var::var(int32_t * pi)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pi);
 }
 
 var::var(uint32_t * pui)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pui);
 }
 
 var::var(int64_t * pi)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pi);
 }
 
 var::var(uint64_t * pui)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pui);
 }
 
 var::var(float f)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (f);
 }
 
 var::var(double d)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (d);
 }
 
 var::var(const stringa & var)
 {
    m_etype  = type_new;
-   m_pca2   = ::null();
    operator = (var);
 }
 
 var::var(const int_array & ia)
 {
    m_etype  = type_new;
-   m_pca2   = ::null();
    operator = (ia);
 }
 
 var::var(const var_array & var)
 {
    m_etype  = type_new;
-   m_pca2   = ::null();
    operator = (var);
 }
 
 var::var(const ::ca::property_set & set)
 {
    m_etype  = type_new;
-   m_pca2   = ::null();
    operator = (set);
 }
 
 var::var(const ::ca::pair_set_interface & set)
 {
    m_etype  = type_new;
-   m_pca2   = ::null();
    operator = (set);
 }
 
 var::var(const ::ca::str_str_interface & set)
 {
    m_etype  = type_new;
-   m_pca2   = ::null();
    operator = (set);
 }
 
 var::var(const class var & var)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (var);
 }
 
 var::var(class var * pvar)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (pvar);
 }
 
 var::var(const ::ca::property & prop)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (prop);
 }
 
 var::var(const string_composite & composite)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (composite);
 }
 
 var::var(const id & id)
 {
    m_etype = type_new;
-   m_pca2 = ::null();
    operator = (id);
 }
 
 var::~var()
 {
-   if(m_pca2 != ::null())
-   {
-      try
-      {
-         ::ca::release(m_pca2);
-      }
-      catch(...)
-      {
-      }
-   }
 }
 
 strsize var::get_length() const
@@ -269,11 +232,7 @@ class var & var::operator ++(int32_t)
 
 void var::set_type(e_type e_type, bool bConvert)
 {
-   if(m_pca2 != ::null())
-   {
-      ::ca::release(m_pca2);
-      m_pca2 = ::null();
-   }
+   m_sp.release();
    if(e_type == m_etype)
       return;
    if(bConvert)
@@ -620,8 +579,7 @@ class var & var::operator = (const class var & var)
          break;
       case type_ca2:
          {
-            m_pca2 = ((class var &)var).m_pca2;
-            ::ca::add_ref(m_pca2);
+            m_sp = ((class var &)var).m_sp;
          }
          break;
       case type_id:
@@ -750,7 +708,7 @@ bool var::is_true(bool bDefault) const
    case type_double:
       return m_d != 0;
    case type_ca2:
-      return m_pca2 != ::null();
+      return m_sp.is_set();
    case type_bool:
       return m_b;
    case type_pvar:
@@ -779,7 +737,7 @@ bool var::is_empty() const
    case type_double:
       return m_d == 0.0;
    case type_ca2:
-      return m_pca2 != ::null();
+      return m_sp.is_set();
    case type_pvar:
       return m_pvar->is_empty();
    case type_id:
@@ -893,19 +851,19 @@ void var::read(::ca::byte_input_stream & is)
       {
          ::ca::type_info info;
          is >> info;
-         m_pca2 = Sys(is.get_app()).alloc(info);
-         if(m_pca2 == ::null())
+         m_sp = Sys(is.get_app()).alloc(info);
+         if(m_sp.is_null())
          {
             throw "object allocation is not implemented";
          }
-         ::ca::byte_serializable * pserializable = dynamic_cast < ::ca::byte_serializable * > (m_pca2);
+         sp(::ca::byte_serializable) pserializable = m_sp;
          if(pserializable != ::null())
          {
             pserializable->read(is);
          }
          else
          {
-            ::ca::plain_text_serializable * pserializable = dynamic_cast < ::ca::plain_text_serializable * > (m_pca2);
+            sp(::ca::plain_text_serializable) pserializable = m_sp;
             if(pserializable != ::null())
             {
                pserializable->read(is.m_spreader);
@@ -968,16 +926,16 @@ void var::write(::ca::byte_output_stream & ostream)
       break;
    case type_ca2:
       {
-         ::ca::type_info info(typeid(*m_pca2));
+         ::ca::type_info info(typeid(*m_sp.m_p));
          ostream << info;
-         ::ca::byte_serializable * pserializable = dynamic_cast < ::ca::byte_serializable * >(m_pca2);
+         sp(::ca::byte_serializable) pserializable = m_sp;
          if(pserializable != ::null())
          {
             pserializable->write(ostream);
          }
          else
          {
-            ::ca::plain_text_serializable * pserializable = dynamic_cast < ::ca::plain_text_serializable * >(m_pca2);
+            sp(::ca::plain_text_serializable) pserializable = m_sp;
             if(pserializable != ::null())
             {
                pserializable->write(ostream.m_spwriter);
@@ -1787,11 +1745,11 @@ class primitive::memory & var::memory()
    {
       set_type(type_memory);
    }
-   if(m_pca2 == ::null())
+   if(m_sp.is_null())
    {
-      m_pca2 = new class primitive::memory();
+      m_sp = new class primitive::memory();
    }
-   return *dynamic_cast < class primitive::memory * > (m_pca2);
+   return *dynamic_cast < class primitive::memory * > (m_sp.m_p);
 }
 
 
@@ -1803,14 +1761,14 @@ stringa & var::stra()
       stringa * pstra = new stringa();
       pstra->add(*this);
       set_type(type_stra, false);
-      ASSERT(m_pca2 == ::null());
-      m_pca2 = pstra;
+      ASSERT(m_sp.is_null());
+      m_sp = pstra;
       m_pstra = pstra;
    }
-   else if(m_pca2 == ::null())
+   else if(m_sp.is_null())
    {
       m_pstra = new stringa();
-      m_pca2 = m_pstra;
+      m_sp = m_pstra;
    }
    return *m_pstra;
 }
@@ -1825,14 +1783,14 @@ int_array & var::inta()
          pia->add((int32_t) at(i));
       }
       set_type(type_inta, false);
-      ASSERT(m_pca2 == ::null());
-      m_pca2 = pia;
+      ASSERT(m_sp.is_null());
+      m_sp = pia;
       m_pia = pia;
    }
-   else if(m_pca2 == ::null())
+   else if(m_sp.is_null())
    {
       m_pia = new int_array();
-      m_pca2 = m_pia;
+      m_sp = m_pia;
    }
    return *m_pia;
 }
@@ -1847,16 +1805,16 @@ int64_array & var::int64a()
          pia->add(at(i).operator int64_t());
       }
       set_type(type_int64a, false);
-      ASSERT(m_pca2 == ::null());
-      m_pca2 = pia;
+      ASSERT(m_sp.is_null());
+      m_sp = pia;
       m_pia64 = pia;
    }
-   else if(m_pca2 == ::null())
+   else if(m_sp.is_null())
    {
       m_pia64 = new int64_array();
-      m_pca2 = m_pia64;
+      m_sp = m_pia64;
    }
-   return *dynamic_cast < int64_array * > (m_pca2);
+   return *dynamic_cast < int64_array * > (m_sp.m_p);
 }
 
 const class primitive::memory & var::memory() const
@@ -1865,7 +1823,7 @@ const class primitive::memory & var::memory() const
    {
       throw 0;
    }
-   return *dynamic_cast < const class primitive::memory * > (m_pca2);
+   return *dynamic_cast < const class primitive::memory * > (m_sp.m_p);
 }
 
 
@@ -1885,16 +1843,6 @@ int64_array var::int64a() const
 {
    var varTime = *this;
    return varTime.int64a();
-}
-
-class var & var::operator = (::ca::ca * pca2)
-{
-   if(m_pca2 == pca2)
-      return *this;
-   set_type(type_ca2, false);
-   m_pca2 = pca2;
-   ::ca::add_ref(m_pca2);
-   return *this;
 }
 
 class var & var::operator = (var * pvar)
@@ -1921,14 +1869,14 @@ var_array & var::vara()
          pvara->add(at(i));
       }
       set_type(type_vara, false);
-      ASSERT(m_pca2 == ::null());
-      m_pca2 = pvara;
+      ASSERT(m_sp.is_null());
+      m_sp = pvara;
       m_pvara = pvara;
    }
-   else if(m_pca2 == ::null())
+   else if(m_sp.is_null())
    {
       m_pvara = new var_array();
-      m_pca2 = m_pvara;
+      m_sp = m_pvara;
    }
    return *m_pvara;
 }
@@ -1947,7 +1895,7 @@ var_array var::vara() const
    return *m_pvara;
 }
 
-::ca::property_set & var::propset(::ca::application * papp)
+::ca::property_set & var::propset(::ca::applicationsp papp)
 {
    ::ca::property_set * pset;
    if(m_etype == type_pvar)
@@ -1962,15 +1910,15 @@ var_array var::vara() const
          ppropset->add(::null(), at(i));
       }
       set_type(type_propset, false);
-      //ASSERT(m_pca2 == ::null());
-      m_pca2 = ppropset;
+      //ASSERT(m_sp.is_null());
+      m_sp = ppropset;
       pset = ppropset;
       m_pset = pset;
    }
-   else if(m_pca2 == ::null())
+   else if(m_sp.is_null())
    {
       pset = new ::ca::property_set();
-      m_pca2 = pset;
+      m_sp = pset;
       m_pset = pset;
    }
    else
@@ -1996,12 +1944,12 @@ var_array var::vara() const
    {
       set_type(type_prop);
    }
-   if(m_pca2 == ::null())
+   if(m_sp.is_null())
    {
       m_pprop = new ::ca::property();
-      m_pca2 = m_pprop;
+      m_sp = m_pprop;
    }
-   return *dynamic_cast < ::ca::property * > (m_pca2);
+   return *dynamic_cast < ::ca::property * > (m_sp.m_p);
 }
 
 ::ca::property var::prop() const
@@ -2011,7 +1959,7 @@ var_array var::vara() const
       var varTime = *this;
       return varTime.prop();
    }
-   return *dynamic_cast < const ::ca::property * > (m_pca2);
+   return *dynamic_cast < const ::ca::property * > (m_sp.m_p);
 }
 
 string var::implode(const char * pszGlue) const
@@ -2063,11 +2011,11 @@ var var::key(index i) const
 
 
 
-void var::on_delete(::ca::ca * pca)
+void var::on_delete(sp(::ca::ca) pca)
 {
-   if(m_pca2 == pca)
+   if(m_sp == pca)
    {
-      m_pca2 = ::null();
+      m_sp = ::null();
       unset();
    }
 }
@@ -3453,7 +3401,7 @@ bool var::has_property(const char * pszName) const
 {
    if(get_type() == type_propset)
    {
-      return dynamic_cast < const ::ca::property_set * > (m_pca2)->has_property(pszName);
+      return dynamic_cast < const ::ca::property_set * > (m_sp.m_p)->has_property(pszName);
    }
    else if(get_type() == type_pvar)
    {

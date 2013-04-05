@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   command_line::command_line(::ca::application * papp) :
+   command_line::command_line(::ca::applicationsp papp) :
       ca(papp),
       m_eventReady(papp)
    {
@@ -291,8 +291,7 @@ namespace ca
    }
 
 
-   command_line_sp::command_line_sp(::ca::application * papp) :
-      ca(papp),
+   command_line_sp::command_line_sp(::ca::applicationsp papp) :
       ::ca::smart_pointer < command_line > (papp)
    {
    }

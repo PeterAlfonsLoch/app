@@ -78,7 +78,7 @@ namespace exception
       if(g_bExiting)
          return;
       UNREFERENCED_PARAMETER(uiCode);
-      ::ca::application * papp = ::ca::get_thread_app();
+      ::ca::applicationsp papp = ::ca::get_thread_app();
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
 #ifdef WINDOWSEX

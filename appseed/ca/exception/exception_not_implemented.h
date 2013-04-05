@@ -10,7 +10,7 @@ public:
    vsstring m_strTip;
 
 
-   not_implemented(::ca::application * papp, const char * pszTip = ::null());
+   not_implemented(::ca::applicationsp papp, const char * pszTip = ::null());
    not_implemented(const not_implemented & e);
    virtual ~not_implemented();
 

@@ -8,7 +8,7 @@ class CLASS_DECL_ca2 file_manager_operation_list_view :
 {
 public:
 
-   file_manager_operation_list_view(::ca::application * papp);
+   file_manager_operation_list_view(::ca::applicationsp papp);
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
@@ -34,6 +34,6 @@ public:
    
 
    void on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint);
-   file_manager_operation_document * get_document();
+   sp(file_manager_operation_document) get_document();
 };
       

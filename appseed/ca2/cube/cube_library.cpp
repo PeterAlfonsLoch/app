@@ -51,7 +51,7 @@ namespace cube
 
    }
 
-   ::ca::application * library::get_new_app(const char * pszAppId)
+   ::ca::applicationsp library::get_new_app(const char * pszAppId)
    {
 
       if(::ca::str::equals_ci(pszAppId, "bergedge"))

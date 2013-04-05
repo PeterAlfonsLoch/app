@@ -7,7 +7,7 @@ namespace user
 
 
 
-   tree::tree(::ca::application * papp) :
+   tree::tree(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::ca::tree(papp),
@@ -88,8 +88,6 @@ namespace user
 
    void tree::_001OnDrawBackground(::ca::graphics *pdc)
    {
-
-      return;
 
       rect rectClient;
       GetClientRect(rectClient);
@@ -323,9 +321,6 @@ namespace user
       bool bSelected    = ptree->is_selected(pitem);
       bool bHover       = ptree->is_hover(pitem);
 
-      if(false)
-      {
-
       if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ca::tree_item_state_expandable)
       {
 
@@ -410,7 +405,6 @@ namespace user
                rect.top_left(),
                0);
          }
-      }
       }
 
 
@@ -591,7 +585,7 @@ namespace user
 
    /*window_id tree::_001GetNotifyWnd()
    {
-      ::ca::window * pwnd = get_guie();
+      sp(::ca::window) pwnd = get_guie();
 
       window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
       if(wndidNotify == NULL)
@@ -1012,17 +1006,17 @@ namespace user
       return m_pimagelist;
    }
 
-   bool tree::can_merge(::user::interaction * pui)
+   bool tree::can_merge(sp(::user::interaction) pui)
    {
-      return base < tree >::bases(pui) && !m_treeptra.contains(dynamic_cast < tree * > (pui));
+      return base < tree >::bases(pui) && !m_treeptra.contains(dynamic_cast < tree * > (pui.m_p));
    }
 
 
-   bool tree::merge(::user::interaction * pui)
+   bool tree::merge(sp(::user::interaction) pui)
    {
 
 
-      tree * ptree = dynamic_cast < tree * > (pui);
+      tree * ptree = dynamic_cast < tree * > (pui.m_p);
 
       if(!insert_item(ptree->get_base_item(), ::ca::RelativeLastChild, get_base_item()))
          return false;

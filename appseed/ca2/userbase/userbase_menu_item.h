@@ -22,7 +22,7 @@ namespace userbase
       menu_base *          m_pbase;
 
 
-      menu_item(::ca::application * papp);
+      menu_item(::ca::applicationsp papp);
       virtual ~menu_item();
 
 

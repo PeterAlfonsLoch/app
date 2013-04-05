@@ -155,7 +155,7 @@ namespace simpledb
                straRange.explode("-", stra[i]);
                if(straRange.get_count() == 2)
                {
-                  rangea.add(int_array());
+                  rangea.add(new int_array());
                   rangea.last_element()->add(atoi(straRange[0]));
                   straRange[1].trim();
                   if(strlen(straRange[1]) == 0)

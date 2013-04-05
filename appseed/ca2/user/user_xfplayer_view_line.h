@@ -46,7 +46,7 @@ public:
    bool                             m_bAutoSizeX;
    bool                             m_bAutoSizeY;
    int32_t                              m_iAlign;
-   ::user::interaction *            m_oswindow;
+   sp(::user::interaction)            m_oswindow;
 
 
 private:
@@ -101,7 +101,7 @@ protected:
 
 public:
 
-   XfplayerViewLine(::ca::application * papp);
+   XfplayerViewLine(::ca::applicationsp papp);
    XfplayerViewLine(const XfplayerViewLine & line);
    XfplayerViewLine(XfplayerViewLines * pContainer);
    virtual ~XfplayerViewLine();
@@ -138,7 +138,7 @@ public:
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics * pdc,
       const char * lpcsz,
       int32_t left,
@@ -150,7 +150,7 @@ public:
       double dBlend);
 
    void EmbossedTextOut(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics * pdc,
       ::ca::dib * pdibCache,
       const char * lpcsz,
@@ -164,7 +164,7 @@ public:
 
    
    void CacheEmboss(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics * pdc, 
       const char * lpcsz, 
       strsize iLen, 
@@ -231,7 +231,7 @@ public:
       visual::font * pFont);
    
    bool to(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics *                  pdc,
       bool                  bDraw,
       LPRECT               lpRect,
@@ -239,7 +239,7 @@ public:
       bool                  bRecalcLayout);
 
    bool to(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics *                  pdcForeground,
       bool                  bDraw,
       LPRECT               lpRect,
@@ -258,7 +258,7 @@ public:
 
    XfplayerViewLineSelection::e_state GetSelectionState();
    XfplayerViewLineSelection & GetSelection();
-   ::user::interaction * get_interaction();
+   sp(::user::interaction) get_interaction();
 
 
 };

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-XfplayerViewLines::XfplayerViewLines(::ca::application * papp) :
+XfplayerViewLines::XfplayerViewLines(::ca::applicationsp papp) :
    ca(papp)
 {
     m_iFirstVisible = -1;
@@ -77,7 +77,7 @@ void XfplayerViewLines::Prepare(XfplayerViewLine *lpViewLine)
     lpViewLine->m_pContainer = this;
 }
 
-void XfplayerViewLines::set_user_interaction(::user::interaction * pinteraction)
+void XfplayerViewLines::set_user_interaction(sp(::user::interaction) pinteraction)
 {
    m_pinteraction = pinteraction;
 }
@@ -90,7 +90,7 @@ void XfplayerViewLines::SetEffect(int32_t iEffect)
     }
 }
 
-void XfplayerViewLines::SetRenderWindow(::ca::window * pWnd)
+void XfplayerViewLines::SetRenderWindow(sp(::ca::window) pWnd)
 {
    UNREFERENCED_PARAMETER(pWnd);
 }

@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   menu_item::menu_item(::ca::application * papp) :
+   menu_item::menu_item(::ca::applicationsp papp) :
       ca(papp),
       m_button(papp)
    {

@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   tree_data::tree_data(::ca::application * papp) :
+   tree_data::tree_data(::ca::applicationsp papp) :
       ca(papp),
       ::ca::tree_data(papp)
    {

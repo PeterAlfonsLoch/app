@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-wait_message_dialog::wait_message_dialog(::ca::application * papp) :
+wait_message_dialog::wait_message_dialog(::ca::applicationsp papp) :
    ca(papp)//,
    //dialog(papp)
 {

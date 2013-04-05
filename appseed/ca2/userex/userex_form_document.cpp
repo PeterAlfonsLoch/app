@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-form_document::form_document(::ca::application * papp) :
+form_document::form_document(::ca::applicationsp papp) :
    ca(papp),
    ::ca::data_container_base(papp),
    html_document(papp)

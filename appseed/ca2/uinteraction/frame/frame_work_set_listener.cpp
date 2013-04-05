@@ -18,7 +18,7 @@ namespace frame
 
    void WorkSetListener::WFLOnSizingGripMove(
       WorkSet *pwf,
-      ::user::interaction *pwnd,
+      sp(::user::interaction)pwnd,
       EGrip egrip)
    {
       UNREFERENCED_PARAMETER(pwf);
@@ -28,7 +28,7 @@ namespace frame
 
    void WorkSetListener::WFLOnDock(
       WorkSet *pwf,
-      ::user::interaction *pwnd)
+      sp(::user::interaction)pwnd)
    {
       UNREFERENCED_PARAMETER(pwf);
       UNREFERENCED_PARAMETER(pwnd);
@@ -36,7 +36,7 @@ namespace frame
 
    void WorkSetListener::WFLOnClose(
       WorkSet *pwf,
-      ::user::interaction *pwnd)
+      sp(::user::interaction)pwnd)
    {
       UNREFERENCED_PARAMETER(pwf);
       UNREFERENCED_PARAMETER(pwnd);
@@ -44,7 +44,7 @@ namespace frame
 
    void WorkSetListener::WFLOnNcLButtonDown(
          WorkSet * pworkset,
-         ::user::interaction * pwnd,
+         sp(::user::interaction) pwnd,
          UINT nHitTest,
          point point)
    {
@@ -60,7 +60,7 @@ namespace frame
       m_listenerpapa.add(plistenerpa);
    }
 
-   void WorkSetListener::on_delete(::ca::ca * p)
+   void WorkSetListener::on_delete(sp(::ca::ca) p)
    {
       UNREFERENCED_PARAMETER(p);
       //m_listenerpapa.remove(p);

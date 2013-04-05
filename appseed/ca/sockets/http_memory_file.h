@@ -12,7 +12,7 @@ namespace http
    public:
 
 
-      memory_file(::ca::application * papp);
+      memory_file(::ca::applicationsp papp);
 
 
       void to_string(string & str);

@@ -5,7 +5,7 @@ namespace bergedge
 {
 
 
-   frame::frame(::ca::application * papp) :
+   frame::frame(::ca::applicationsp papp) :
       ca(papp),
       simple_frame_window(papp),
       ::ca::message_window_simple_callback(papp)

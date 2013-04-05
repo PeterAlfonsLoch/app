@@ -15,7 +15,7 @@ class CLASS_DECL_ca2 FileManagerAView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerAView(::ca::application * papp);
+   FileManagerAView(::ca::applicationsp papp);
 
    void CreateViews();
    
@@ -36,7 +36,7 @@ class CLASS_DECL_ca2 FileManagerView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerView(::ca::application * papp);
+   FileManagerView(::ca::applicationsp papp);
    
    filemanager::SimpleFileListView *         m_pfilelist;
    filemanager::SimplePreview *              m_ppreview;

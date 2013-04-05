@@ -44,7 +44,10 @@ namespace plane
 
 
 #include "ca_enum.h"
+#include "ca_smart_pointer1.h"
+#include "ca_c.h"
 #include "ca_ca.h"
+#include "ca_smart_pointer2.h"
 #include "ca_live_object.h"
 #include "ca_log.h"
 
@@ -293,7 +296,6 @@ class dump_context;
 
 
 
-#include "ca_smart_pointer.h"
 #include "ca_smart_pointer_query.h"
 
 
@@ -629,10 +631,10 @@ CLASS_DECL_ca CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca void __get_gray_bitmap(::ca::application * papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca void __draw_gray_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca void __get_dithered_bitmap(::ca::application * papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca void __get_gray_bitmap(::ca::applicationsp papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca void __draw_gray_bitmap(::ca::applicationsp papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca void __get_dithered_bitmap(::ca::applicationsp papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca void __draw_dithered_bitmap(::ca::applicationsp papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "ca_graphic_classes.h"
@@ -657,13 +659,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::ca::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+CLASS_DECL_ca ::ca::thread* __begin_thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null()); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null())
+THREAD_TYPE * __begin_thread (::ca::applicationsp papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null())
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -842,7 +844,7 @@ namespace windows
    template < class APP >
    inline ::ca::application & cast(APP * papp)
    {
-      return *(dynamic_cast < ::ca::application * > (papp));
+      return *((papp));
    }
 }
 
@@ -1163,7 +1165,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void __reposition_window(__SIZEPARENTPARAMS* lpLayout, ::user::interaction * oswindow, LPCRECT lpRect);
+CLASS_DECL_ca void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user::interaction) oswindow, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR
 #define LAYOUT_LTR                         0x00000000
@@ -1535,7 +1537,7 @@ class document_manager;
 class main_frame;
 
 
-typedef ::ca::application * (* LP_GET_NEW_APP) ();
+typedef ::ca::applicationsp (* LP_GET_NEW_APP) ();
 
 
 namespace ca

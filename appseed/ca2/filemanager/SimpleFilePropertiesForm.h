@@ -12,17 +12,17 @@ namespace filemanager
 
 
       ::userbase::single_document_template *    m_ptemplatePane;
-      form_document *                           m_pdocGeneral;
+      sp(::form_document)                           m_pdocGeneral;
       form_view *                               m_pviewGeneral;
       ::userex::pane_tab_view *                 m_ptabview;
       ::fs::item_array                          m_itema;
 
 
-      SimpleFilePropertiesForm(::ca::application * papp);
+      SimpleFilePropertiesForm(::ca::applicationsp papp);
       virtual ~SimpleFilePropertiesForm();
 
 
-      ::user::interaction * open(::user::interaction * puieParent, ::fs::item_array & itema);
+      sp(::user::interaction) open(sp(::user::interaction) puieParent, ::fs::item_array & itema);
 
       void on_show_view();
       void on_create_view(::user::view_creator_data * pcreatordata);

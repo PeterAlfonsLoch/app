@@ -19,8 +19,8 @@ namespace user
 
 
       virtual id get_view_id();
-      virtual ::user::interaction * get_view();
-      virtual ::user::document_interface * get_view_document();
+      virtual sp(::user::interaction) get_view();
+      virtual sp(::user::document_interface) get_view_document();
 
 
       virtual void on_new_view_creator_data(view_creator_data * pcreatordata);

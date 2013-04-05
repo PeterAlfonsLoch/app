@@ -5,7 +5,7 @@ namespace ca
 
    // uiExpectedSize = (uint64_t) -1 - initially unknown size
    // uiExpectedSize = (uint64_t) -2 - permanent or until end unknown size
-   timeout_file::timeout_file(::ca::application * papp, ::ca::file * pfile, uint64_t uiExpectedSize) :
+   timeout_file::timeout_file(::ca::applicationsp papp, ::ca::file * pfile, uint64_t uiExpectedSize) :
       ca(papp)
    {
       UNREFERENCED_PARAMETER(uiExpectedSize);

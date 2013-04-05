@@ -3,7 +3,7 @@
 namespace user
 {
 
-   network_configuration::network_configuration(::ca::application * papp) :
+   network_configuration::network_configuration(::ca::applicationsp papp) :
       ca(papp)
    {
 //      m_pdoc   = ::null();
@@ -14,7 +14,7 @@ namespace user
    {
    }
 
-   bool network_configuration::initialize(::user::interaction * puiParent)
+   bool network_configuration::initialize(sp(::user::interaction) puiParent)
    {
       /*m_pdoc = Cube.userex().create_form(this, puiParent);
       if(m_pdoc != ::null())
@@ -26,7 +26,7 @@ namespace user
       return false;
    }
 
-   bool network_configuration::initialize_child(::user::interaction * puiParent)
+   bool network_configuration::initialize_child(sp(::user::interaction) puiParent)
    {
       /*
       m_pdoc = Cube.userex().create_child_form(this, puiParent);
@@ -51,11 +51,11 @@ namespace user
       {
          string strProxy = node.attr("server");
          int32_t iProxyPort = node.attr("port");
-         ::user::interaction * pguie = m_pview->get_child_by_name("server");
-         text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+         sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
+         sp(text_interface) ptext =  (pguie);
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
-         ptext = dynamic_cast < text_interface * > (pguie);
+         ptext =  (pguie);
          ptext->_001SetText(::ca::str::from(iProxyPort));
       }*/
    }
@@ -68,8 +68,8 @@ namespace user
       {
          if(pevent->m_puie->m_id == "submit")
          {
-            ::user::interaction * pguie = m_pview->get_child_by_name("server");
-            text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+            sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
+            sp(text_interface) ptext =  (pguie);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
             ptext->_001GetText(strServer);
@@ -83,7 +83,7 @@ namespace user
                node.m_strName = "proxy";
                node.add_attr("server", strServer);
                pguie = m_pview->get_child_by_name("port");
-               ptext = dynamic_cast < text_interface * > (pguie);
+               ptext =  (pguie);
                string strPort;
                ptext->_001GetText(strPort);
                node.add_attr("port", strPort);

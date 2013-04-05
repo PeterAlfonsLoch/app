@@ -11,7 +11,7 @@ namespace fs
    public:
 
 
-      tree_data(::ca::application * papp);
+      tree_data(::ca::applicationsp papp);
 
 
       virtual ::ca::tree_item_data * on_allocate_item();

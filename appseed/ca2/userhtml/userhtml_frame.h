@@ -6,7 +6,7 @@ class CLASS_DECL_ca2 html_frame : public simple_frame_window
 {
    
 public: // create from serialization only
-   html_frame(::ca::application * papp);
+   html_frame(::ca::applicationsp papp);
    // // DECLARE_DYNCREATE(html_frame)
 
 // Attributes

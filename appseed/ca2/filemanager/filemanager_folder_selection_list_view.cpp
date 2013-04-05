@@ -5,7 +5,7 @@
 #include "FileManagerViewUpdateHint.h"
 
 
-folder_selection_list_view::folder_selection_list_view(::ca::application * papp) :
+folder_selection_list_view::folder_selection_list_view(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),

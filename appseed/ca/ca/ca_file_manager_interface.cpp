@@ -13,7 +13,7 @@ namespace ca
    {
    }
 
-   bool file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   bool file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument)
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nIDSTitle);
@@ -23,7 +23,7 @@ namespace ca
       return FALSE;
    }
 
-   bool file_manager_interface::initialize(::ca::application * papp)
+   bool file_manager_interface::initialize(::ca::applicationsp papp)
    {
       UNREFERENCED_PARAMETER(papp);
       //set_app(papp);

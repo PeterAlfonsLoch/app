@@ -4,7 +4,7 @@
 namespace plugin
 {
 
-   history::history(::ca::application * papp, plugin * pplugin) :
+   history::history(::ca::applicationsp papp, plugin * pplugin) :
       ca(papp),
       ::ca::history(papp),
       m_pplugin(pplugin)

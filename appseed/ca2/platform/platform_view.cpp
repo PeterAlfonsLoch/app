@@ -20,13 +20,13 @@ namespace platform
       m_plink = NULL;
    }
 
-   view::link::link(::ca::application * papp) :
+   view::link::link(::ca::applicationsp papp) :
       m_button(papp)
    {
       m_prun = NULL;
    }
 
-   view::view(::ca::application * papp) :
+   view::view(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -155,7 +155,7 @@ namespace platform
 
    }
 
-   ::user::interaction* view::get_guie()
+   sp(::user::interaction) view::get_guie()
    {
       return this;
    }
@@ -170,7 +170,7 @@ namespace platform
       }
    }
 
-   database::user::interaction* view::BackViewGetWnd()
+   sp(::database::user::interaction) view::BackViewGetWnd()
    {
       return this;
    }
@@ -265,9 +265,9 @@ namespace platform
 
    }
 
-   document * view::get_document()
+   sp(document) view::get_document()
    {
-      return dynamic_cast < document * > (form_view::get_document());
+      return  (form_view::get_document());
    }
 
 
@@ -329,7 +329,7 @@ namespace platform
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
-      //      document * pdoc = get_document();
+      //      sp(document) pdoc = get_document();
       class imaging & imaging = System.visual().imaging();
 
 
@@ -385,7 +385,7 @@ namespace platform
          {
             ::ca::dib_sp dib(get_app());
             dib->create(1920, 1080);
-            keeper < bool > keepOnDraw(&dynamic_cast < ::platform::frame * >(GetParentFrame())->m_bOnDraw, true, false, true);
+            keeper < bool > keepOnDraw(&dynamic_cast < ::platform::frame * >(GetParentFrame().m_p)->m_bOnDraw, true, false, true);
             Bergedge.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();

@@ -54,7 +54,7 @@ namespace ca
       {
       }
 
-      file_exception(::ca::application * papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = ::null());
+      file_exception(::ca::applicationsp papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = ::null());
 
       virtual void Construct(int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = ::null());
 

@@ -14,7 +14,7 @@
 
 
 
-typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
+typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
 
 
 
@@ -223,7 +223,7 @@ namespace ca
       UNREFERENCED_PARAMETER(pszId);
    }
 
-   application * application::get_app() const
+   ::ca::applicationsp application::get_app() const
    {
       return (::ca::application *) this;
    }
@@ -865,7 +865,7 @@ finishedCa2ModuleFolder:;
             if(System.m_spcopydesk.is_set())
             {
                System.m_spcopydesk->finalize();
-               System.m_spcopydesk.destroy();
+               System.m_spcopydesk.release();
             }
             System.m_splicense.release();
          }
@@ -1473,8 +1473,8 @@ finishedCa2ModuleFolder:;
    #endif
 
       // no-op if main ::ca::window is ::null() or not a frame_window_interface
-/*      ::user::interaction* pMainWnd = System.GetMainWnd();
-      if (pMainWnd == ::null() || !pMainWnd->IsFrameWnd())
+/*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
+      if (pMainWnd == ::null() || !pMainWnd->is_frame_window())
          return;*/
 
    #ifndef ___NO_OLE_SUPPORT
@@ -2308,7 +2308,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      ::user::interaction* pMainWnd = System.GetMainWnd();
+      sp(::user::interaction) pMainWnd = System.GetMainWnd();
       ENSURE_VALID(pMainWnd);
 
       // return global cast help mode state to FALSE (backward compatibility)
@@ -2325,7 +2325,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      ::user::interaction* pMainWnd = System.GetMainWnd();
+      sp(::user::interaction) pMainWnd = System.GetMainWnd();
       ENSURE_VALID(pMainWnd);
 
       // return global cast help mode state to FALSE (backward compatibility)
@@ -2340,7 +2340,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-   //   ::user::interaction* pMainWnd = System.GetMainWnd();
+   //   sp(::user::interaction) pMainWnd = System.GetMainWnd();
    //   ENSURE_VALID(pMainWnd);
 
       // return global cast help mode state to FALSE (backward compatibility)
@@ -2718,12 +2718,12 @@ namespace ca
       return *m_pframea;
    }
 
-   void application::add_frame(::user::interaction * pwnd)
+   void application::add_frame(sp(::user::interaction) pwnd)
    {
       m_pframea->add_unique(pwnd);
    }
 
-   void application::remove_frame(::user::interaction * pwnd)
+   void application::remove_frame(sp(::user::interaction) pwnd)
    {
       m_pframea->remove(pwnd);
       if(GetMainWnd() == pwnd)
@@ -2769,7 +2769,7 @@ namespace ca
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument)
          // if ptemplate==::null() => all document templates
    {
       if(m_pfilemanager != ::null())
@@ -2826,12 +2826,12 @@ namespace ca
       }
 
       // otherwise, use ::ca::window::OnHelp implementation
-      /* trans ::ca::window* pWnd = System.GetMainWnd();
+      /* trans sp(::ca::window) pWnd = System.GetMainWnd();
       ENSURE_VALID(pWnd);
-      if (!pWnd->IsFrameWnd())
+      if (!pWnd->is_frame_window())
          pWnd->OnHelp();
       else
-         (dynamic_cast < frame_window * > (pWnd))->OnHelp();*/
+         ((pWnd))->OnHelp();*/
    }
 
 
@@ -2878,9 +2878,9 @@ namespace ca
    {
       // just use frame_window::OnContextHelp implementation
    /* trans   m_bHelpMode = HELP_ACTIVE;
-      frame_window* pMainWnd = dynamic_cast < frame_window * > (System.GetMainWnd());
+      sp(frame_window) pMainWnd = (System.GetMainWnd());
       ENSURE_VALID(pMainWnd);
-      ENSURE(pMainWnd->IsFrameWnd());
+      ENSURE(pMainWnd->is_frame_window());
       pMainWnd->OnContextHelp();
       m_bHelpMode = pMainWnd->m_bHelpMode;
       pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update */
@@ -3114,15 +3114,15 @@ namespace ca
    #endif
 
       // no-op if main ::ca::window is ::null() or not a frame_window
-   /*   ::user::interaction* pMainWnd = System.GetMainWnd();
-      if (pMainWnd == ::null() || !pMainWnd->IsFrameWnd())
+   /*   sp(::user::interaction) pMainWnd = System.GetMainWnd();
+      if (pMainWnd == ::null() || !pMainWnd->is_frame_window())
          return;*/
 
    #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
    /*xxx
       ASSERT_KINDOF(frame_window, pMainWnd);
-      frame_window* pFrameWnd = (frame_window*)pMainWnd;
+      sp(frame_window) pFrameWnd = (sp(frame_window))pMainWnd;
       if (pFrameWnd->m_pNotifyHook != ::null())
          pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
    */
@@ -3134,13 +3134,13 @@ namespace ca
        return ShowAppMessageBox(this, lpszPrompt, nType, nIDPrompt);
    }
 
-   int32_t application::simple_message_box_timeout(::user::interaction * pwndOwner, const char * pszMessage, int32_t iTimeOut,  UINT fuStyle)
+   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, int32_t iTimeOut,  UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(iTimeOut);
       return simple_message_box(pwndOwner, pszMessage, fuStyle);
    }
 
-   int32_t application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
+   int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
 #if defined(WINDOWSEX)
@@ -3162,7 +3162,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   int32_t application::simple_message_box(::user::interaction * pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
+   int32_t application::simple_message_box(sp(::user::interaction) pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
    {
       va_list va;
       va_start(va, pszFormat);
@@ -3332,7 +3332,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
 
 
-   ::user::interaction * application::get_active_guie()
+   sp(::user::interaction) application::get_active_guie()
    {
 
 #if defined(WINDOWSEX) || defined(LINUX)
@@ -3351,7 +3351,7 @@ namespace ca
    }
 
 
-   ::user::interaction * application::get_focus_guie()
+   sp(::user::interaction) application::get_focus_guie()
    {
 
 #ifdef METROWIN
@@ -3360,7 +3360,7 @@ namespace ca
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-      ::ca::window * pwnd = System.window_from_os_data_permanent(::GetFocus());
+      sp(::ca::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != ::null())
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
@@ -4144,7 +4144,7 @@ namespace ca
    }
 
 
-   ::user::interaction * application::release_capture_uie()
+   sp(::user::interaction) application::release_capture_uie()
    {
 
 #if defined(LINUX)
@@ -4168,7 +4168,7 @@ namespace ca
 
    }
 
-   ::user::interaction * application::get_capture_uie()
+   sp(::user::interaction) application::get_capture_uie()
    {
 
 #ifdef METROWIN
@@ -4190,7 +4190,7 @@ namespace ca
       if(oswindowCapture == ::null())
          return ::null();
 
-      return dynamic_cast < ::ca::window * > (::GetCapture().get_user_interaction()->m_pimpl.m_p)->get_capture();
+      return (::GetCapture().get_user_interaction()->m_pimpl.m_p)->get_capture();
 
 #endif
 
@@ -4201,7 +4201,7 @@ namespace ca
       return m_puserstrcontext;
    }
 
-   void application::on_delete(::ca::ca * pobject)
+   void application::on_delete(sp(::ca::ca) pobject)
    {
 /*      try
       {
@@ -4405,17 +4405,17 @@ namespace ca
    }*/
 
 #ifdef METROWIN
-   ::user::interaction * application::window_from_os_data(void * pdata)
+   sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
       return ::ca::smart_pointer < application_base >::m_p->window_from_os_data(pdata);
    }
 
-   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
+   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
       return ::ca::smart_pointer < application_base >::m_p->window_from_os_data_permanent(pdata);
    }
 #else
-   ::ca::window * application::window_from_os_data(void * pdata)
+   sp(::ca::window) application::window_from_os_data(void * pdata)
    {
 
       if(::ca::smart_pointer < application_base >::m_p == ::null())
@@ -4425,19 +4425,19 @@ namespace ca
 
    }
 
-   ::ca::window * application::window_from_os_data_permanent(void * pdata)
+   sp(::ca::window) application::window_from_os_data_permanent(void * pdata)
    {
       return ::ca::smart_pointer < application_base >::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
 
-   ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::ca::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
       return ::ca::smart_pointer < application_base >::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
-   ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::ca::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       return ::ca::smart_pointer < application_base >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
@@ -4493,7 +4493,7 @@ namespace ca
    }
 
 
-   application_signal_object::application_signal_object(::ca::application * papp, ::ca::signal * psignal, ::ca::e_application_signal esignal) :
+   application_signal_object::application_signal_object(::ca::applicationsp papp, ::ca::signal * psignal, ::ca::e_application_signal esignal) :
       ca(papp),
       ::ca::signal_object(psignal)
    {
@@ -4504,12 +4504,12 @@ namespace ca
    }
 
 
-   ::ca::ca * application::alloc(::ca::type_info & info)
+   sp(::ca::ca) application::alloc(::ca::type_info & info)
    {
       return System.alloc(this, info);
    }
 
-   ::ca::ca * application::alloc(const  id & idType)
+   sp(::ca::ca) application::alloc(const  id & idType)
    {
       return System.alloc(this, idType);
    }
@@ -4549,7 +4549,7 @@ namespace ca
       m_appmap.set_at(psz, p);
    }
 
-/*   ::user::interaction * application::get_place_holder_container()
+/*   sp(::user::interaction) application::get_place_holder_container()
    {
       if(m_puiInitialPlaceHolderContainer != ::null())
          return m_puiInitialPlaceHolderContainer;
@@ -4580,10 +4580,10 @@ namespace ca
    */
 
 
-   ::user::interaction * application::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcreatecontext)
    {
 
-      ::user::interaction * puiParent = ::null();
+      sp(::user::interaction) puiParent = ::null();
 
 /*      if(puiParent == ::null() && dynamic_cast < ::userbase::main_frame * > (pinteraction) != ::null())
       {
@@ -4610,7 +4610,7 @@ namespace ca
 
    }
 
-   ::user::interaction * application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
       if(m_psession != ::null())
@@ -4647,7 +4647,7 @@ namespace ca
    }
 
 
-   ::user::document_interface * application::_001OpenDocumentFile(var varFile)
+   sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
 
       return ::ca::smart_pointer < application_base >::m_p->_001OpenDocumentFile(varFile);
@@ -4718,7 +4718,7 @@ namespace ca
 
 
 
-   ::ca::window * application::get_desktop_window()
+   sp(::ca::window) application::get_desktop_window()
    {
 #if defined(METROWIN) || defined(MACOS)
       throw todo(this);
@@ -5459,7 +5459,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    }
 
-   ::user::interaction * application::uie_from_point(point pt)
+   sp(::user::interaction) application::uie_from_point(point pt)
    {
       user::interaction_ptr_array wnda = frames();
       user::oswindow_array oswindowa;
@@ -5467,8 +5467,8 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       user::window_util::SortByZOrder(oswindowa);
       for(int32_t i = 0; i < oswindowa.get_count(); i++)
       {
-         ::user::interaction * puieWindow = wnda.find_first(oswindowa[i]);
-         ::user::interaction * puie = puieWindow->_001FromPoint(pt);
+         sp(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
+         sp(::user::interaction) puie = puieWindow->_001FromPoint(pt);
          if(puie != ::null())
             return puie;
       }

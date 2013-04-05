@@ -6,36 +6,38 @@ namespace ca
  
 
    template < class T >
-   void smart_pointer <T>::create(::ca::application * papp)
+   void smart_pointer <T>::create(::ca::applicationsp papp)
    {
-      if(get_app() == ::null())
-         set_app(papp);
-      if(get_app() == ::null())
-         return;
       static class id idType = Sys(papp).type_info < T > ().m_id;
       if(m_p != ::null())
          ::ca::release(m_p);
-      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, idType));
+      sp(::ca::ca) pca = Sys(papp).alloc(papp, idType);
+      if(pca.is_set())
+      {
+         m_p = dynamic_cast < T * >(pca.m_p);
+         if(m_p != ::null())
+         {
+            ::ca::add_ref(m_p);
+         }
+      }
    }
 
    template < class T >
-   T * smart_pointer <T>::clone() const   
+   sp(T) smart_pointer <T>::clone() const   
    {
       if(m_p == ::null())
          return ::null();
       if(m_p->get_app() == ::null())
          return ::null();
-      return dynamic_cast < T * > (Sys(m_p->m_papp).clone(m_p));
+      return Sys(m_p->m_papp).clone(m_p);
    }
 
    template < class T >
-   void smart_pointer <T>::destroy()
+   void raw_smart_pointer <T>::release()
    {
-      if(m_p != ::null())
-      {
-         m_p->delete_this();
-         m_p = ::null();
-      }
+
+      ::ca::release(m_p);
+
    }
 
 

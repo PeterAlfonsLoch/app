@@ -20,9 +20,9 @@ public:
    mutex                            m_mutexStep;
    bool                             m_bStop;
 
-   file_manager_operation_thread(::ca::application * papp);
+   file_manager_operation_thread(::ca::applicationsp papp);
 
-   void queue_copy(stringa & stra, const char * pszDest, const char * pszSrcBase, bool bExpand, ::user::interaction * oswindowCallback = NULL, UINT uiMessage = WM_USER, WPARAM wparam = 0x1000);
+   void queue_copy(stringa & stra, const char * pszDest, const char * pszSrcBase, bool bExpand, sp(::user::interaction) oswindowCallback = NULL, UINT uiMessage = WM_USER, WPARAM wparam = 0x1000);
    void kick();
 
    int32_t get_item_count();

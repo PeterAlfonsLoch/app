@@ -4,7 +4,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(::ca::application *, const char * , stringa &);
+//typedef string ( *SALT)(::ca::applicationsp, const char * , stringa &);
 
 namespace hi5
 {
@@ -15,7 +15,7 @@ namespace hi5
       namespace twitter
       {
 
-         authorization::authorization(::ca::application * papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
+         authorization::authorization(::ca::applicationsp papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
             ca(papp)
          {
             m_strAuthorizationUrl=pszAuthorizationUrl;
@@ -61,7 +61,7 @@ namespace hi5
             createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
             createcontext->m_bOuterPopupAlertLike = true;
             
-            m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
+            m_pdoc = (m_ptemplatePane->open_document_file(createcontext));
             
             if(m_pdoc == NULL)
                return;
@@ -130,7 +130,7 @@ namespace hi5
             int32_t iHeight = rectOpen.height();
             rectOpen.deflate(iWidth / 5, iHeight / 50);
             rectOpen.top = iHeight * 2 / 3;
-            simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pviewAuth->GetTopLevelParent());
+            sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
             if(pframe != NULL)
             {
                pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
@@ -216,8 +216,8 @@ namespace hi5
                if(pevent->m_puie->m_id == "submit" ||
                   pevent->m_eevent == ::user::event_enter_key)
                {
-                  ::user::interaction * pguie = m_pviewAuth->get_child_by_name("pin");
-                  text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+                  sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("pin");
+                  sp(text_interface) ptext =  (pguie.m_p);
                   ptext->_001GetText(m_strPin);
                   m_ptabview->get_wnd()->EndModalLoop(IDOK);
                   m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);

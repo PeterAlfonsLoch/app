@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   place_holder::place_holder(::ca::application * papp) :
+   place_holder::place_holder(::ca::applicationsp papp) :
       ca(papp),
       m_uiptraHold(papp)
    {
@@ -20,7 +20,7 @@ namespace user
       ::user::control::install_message_handling(pdispatch);
    }
 
-   bool place_holder::can_merge(::user::interaction * pui)
+   bool place_holder::can_merge(sp(::user::interaction) pui)
    {
 
       if(m_uiptraHold.contains(pui))
@@ -34,7 +34,7 @@ namespace user
    }
 
 
-   bool place_holder::merge(::user::interaction * pui)
+   bool place_holder::merge(sp(::user::interaction) pui)
    {
 
       if(!can_merge(pui))
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   bool place_holder::is_holding(::user::interaction * pui)
+   bool place_holder::is_holding(sp(::user::interaction) pui)
    {
 
       return m_uiptraHold.contains(pui);
@@ -58,7 +58,7 @@ namespace user
    }
 
 
-   bool place_holder::hold(::user::interaction * pui)
+   bool place_holder::hold(sp(::user::interaction) pui)
    {
 
       if(pui == ::null())
@@ -86,7 +86,7 @@ namespace user
    }
 
 
-   bool place_holder::unhold(::user::interaction * pui)
+   bool place_holder::unhold(sp(::user::interaction) pui)
    {
       if(m_uiptraHold.find_first(pui) == 0)
          return m_uiptraHold.remove_all() > 0;
@@ -99,7 +99,7 @@ namespace user
       if(m_uiptraHold.get_count() <= 0)
          return;
 
-      ::user::interaction * puiHold = m_uiptraHold(0);
+      sp(::user::interaction) puiHold = m_uiptraHold(0);
 
       rect rectClient;
       GetClientRect(rectClient);
@@ -121,19 +121,19 @@ namespace user
 
    }
 
-   bool place_holder::create(place_holder_container * pcontainer, id id)
+   bool place_holder::create(sp(::user::place_holder_container) pcontainer, id id)
    {
       return ::database::user::interaction::create(::null(), ::null(), WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), pcontainer, id) != FALSE;
    }
 
-   interaction * place_holder::get_ui()
+   sp(interaction) place_holder::get_ui()
    {
       if(m_uiptraHold.get_count() <= 0)
          return ::null();
       return m_uiptraHold(0);
    }
 
-   int32_t place_holder_ptra::hold(::user::interaction * pui)
+   int32_t place_holder_ptra::hold(sp(::user::interaction) pui)
    {
 
       int32_t count = 0;
@@ -156,7 +156,7 @@ namespace user
 
    }
 
-   int32_t place_holder_ptra::unhold(::user::interaction * pui)
+   int32_t place_holder_ptra::unhold(sp(::user::interaction) pui)
    {
 
       int32_t count = 0;

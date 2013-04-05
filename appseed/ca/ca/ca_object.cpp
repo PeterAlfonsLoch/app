@@ -125,13 +125,13 @@ namespace ca
       if(bBigIcon)
       {
 
-         oprop("big_icon").operator =((::ca::ca *) picon);
+         oprop("big_icon").operator =((sp(::ca::ca)) picon);
 
       }
       else
       {
 
-         oprop("small_icon").operator =((::ca::ca *) picon);
+         oprop("small_icon").operator =((sp(::ca::ca)) picon);
 
       }
 

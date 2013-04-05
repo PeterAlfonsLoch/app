@@ -10,7 +10,7 @@ namespace nature
       virtual public ::ca::object
    {
    public:
-      database(::ca::application * papp);
+      database(::ca::applicationsp papp);
       virtual ~database();
 
       bool                    m_bInitialized;

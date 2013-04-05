@@ -36,7 +36,7 @@ namespace visual
       LPBYTE         m_lpBitmap;
 
 
-      font(::ca::application * papp);
+      font(::ca::applicationsp papp);
       virtual ~font();
 
       glyph * GetGlyph(WCHAR wchar);

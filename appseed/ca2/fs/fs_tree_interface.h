@@ -25,7 +25,7 @@ namespace fs
       int32_t                     m_iDefaultImageSelected;
 
          
-      tree_interface(::ca::application * papp);
+      tree_interface(::ca::applicationsp papp);
       virtual ~tree_interface();
 
 
@@ -36,7 +36,7 @@ namespace fs
       void _001OnItemExpand(::ca::tree_item * pitem);
       void _017UpdateList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel);
 
-      document * get_document();
+      sp(document) get_document();
       virtual tree_data * get_fs_tree_data();
 
       virtual void _001InsertColumns();
@@ -57,7 +57,7 @@ namespace fs
       virtual void _001OnItemCollapse(::ca::tree_item * pitem);
 
 
-      virtual void _017OpenFolder(const item & item);
+      virtual void _017OpenFolder(sp(::fs::item) item);
       
       virtual COLORREF get_background_color();
 

@@ -522,20 +522,21 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
 
    }
 
-   m_passocFree = m_passocFree->m_pnext;
+   m_passocFree               = m_passocFree->m_pnext;
 
-   passoc->m_pnext = m_passocHead;
 
-   if(m_passocHead = NULL)
+   if(m_passocHead != NULL)
    {
 
-      m_passocHead->m_pprev = passoc;
+      m_passocHead->m_pnext   = passoc;
 
    }
 
-   m_passocHead = passoc;
+   passoc->m_pprev            = m_passocHead;
+   
+   m_passocHead               = passoc;
 
-   m_passocHead->m_pprev = NULL;
+   m_passocHead->m_pnext      = NULL;
 
    m_nCount++;
    
@@ -554,7 +555,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::free_assoc(assoc * pas
    if(m_passocHead == passoc)
    {
 
-      m_passocHead = m_passocHead->m_pnext;
+      m_passocHead = m_passocHead->m_pprev;
 
    }
 

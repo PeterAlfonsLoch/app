@@ -7,7 +7,7 @@ namespace userbase
    const int32_t g_base_menu_indent = 11;
 
 
-   menu_list_window::menu_list_window(::ca::application * papp) :
+   menu_list_window::menu_list_window(::ca::applicationsp papp) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -21,7 +21,7 @@ namespace userbase
       m_bAutoClose         = true;
    }
 
-   menu_list_window::menu_list_window(::ca::application * papp, menu_item * pitem) :
+   menu_list_window::menu_list_window(::ca::applicationsp papp, menu_item * pitem) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -65,14 +65,14 @@ namespace userbase
 
 
 
-   bool menu_list_window::TrackPopupMenu(::user::interaction * pwndParent, ::user::interaction * pwndNotify)
+   bool menu_list_window::TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify)
    {
       ASSERT(pwndParent != NULL);
       //_m_pmenu = new menu_list_window(m_pitem);
       return _TrackPopupMenu(pwndParent, pwndNotify);
    }
 
-   bool menu_list_window::_TrackPopupMenu(::user::interaction * pwndParent, ::user::interaction * pwndNotify)
+   bool menu_list_window::_TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify)
    {
 
       m_pwndNotify = pwndNotify;
@@ -115,7 +115,7 @@ namespace userbase
    }
 
 
-   bool menu_list_window::MenuFill(::user::interaction * pwndFill, ::user::interaction * pwndNotify)
+   bool menu_list_window::MenuFill(sp(::user::interaction) pwndFill, sp(::user::interaction) pwndNotify)
    {
 
       m_pwndNotify = pwndNotify;
@@ -185,7 +185,7 @@ namespace userbase
 
          cmdui.m_iIndex       = i;
          cmdui.m_id           = pitem->m_id;
-         cmdui.m_pOther       = (::user::interaction *) &pitem->m_button;
+         cmdui.m_pOther       = (sp(::user::interaction)) &pitem->m_button;
 
          if(m_pwndNotify->_001OnUpdateCmdUi(&cmdui))
             continue;

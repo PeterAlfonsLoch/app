@@ -19,7 +19,7 @@ namespace gcom
             int32_t            m_iBackgroundUpdateMillis;
             color          m_colorBackground;
 
-            interaction(::ca::application * papp);
+            interaction(::ca::applicationsp papp);
             virtual ~interaction();
 
             virtual void BackViewGetClientRect(LPRECT lprect);

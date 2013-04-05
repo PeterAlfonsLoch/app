@@ -18,17 +18,17 @@ namespace ca
 
          int32_t                                   m_iView;
          ::userbase::single_document_template *    m_ptemplatePane;
-         form_document *                           m_pdoc;
+         sp(::form_document)                           m_pdoc;
          ::userex::pane_tab_view *                 m_ptabview;
-         form_document *                           m_pdocAuth;
-         form_document *                           m_pdocMessage;
+         sp(::form_document)                           m_pdocAuth;
+         sp(::form_document)                           m_pdocMessage;
          form_view *                               m_pviewAuth;
          ::ca2::network_configuration              m_netcfg;
          ::ca2::keyboard_layout *                  m_pkeyboardlayout;
          void *                                    m_pvOldWindow;
          
 
-         validate(::ca::application * papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+         validate(::ca::applicationsp papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
          virtual ~validate();
 
 

@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   InFile::InFile(::ca::application * papp) :
+   InFile::InFile(::ca::applicationsp papp) :
       ca(papp)
    {
       m_bCloseOnDelete = true;

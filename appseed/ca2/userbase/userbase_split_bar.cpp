@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   split_bar::split_bar(::ca::application * papp) :
+   split_bar::split_bar(::ca::applicationsp papp) :
       ca(papp)
    {
 

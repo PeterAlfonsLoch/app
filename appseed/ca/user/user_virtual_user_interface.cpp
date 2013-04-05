@@ -14,7 +14,7 @@ virtual_user_interface::virtual_user_interface()
 }
 
 
-virtual_user_interface::virtual_user_interface(::ca::application * papp) :
+virtual_user_interface::virtual_user_interface(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp)
 {
@@ -43,7 +43,7 @@ bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
    return pdc->DeleteDC();
 }
 
-::user::interaction * virtual_user_interface::get_parent() const
+sp(::user::interaction) virtual_user_interface::get_parent() const
 {
    return m_pparent;
 }
@@ -183,7 +183,7 @@ bool virtual_user_interface::create_message_window()
    return true;
 }
 
-bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pparent, id id, LPVOID lpParam)
+bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, sp(::user::interaction) pparent, id id, LPVOID lpParam)
 {
 
    if(m_bCreate)
@@ -196,7 +196,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       return FALSE;
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
-   m_pthread = dynamic_cast < ::ca::application * > (get_app());
+   m_pthread = get_app();
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -204,13 +204,13 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
-   /*::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
+   /*sp(::ca::window) pwndThis = (this);
    if(pwndThis != ::null())
    {
       pwndThis->set_handle(m_oswindow);
    }*/
 #ifndef METROWIN
-   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie()) == ::null())
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == ::null())
       return false;
 #endif
    //m_pimpl = new ::ca::window(get_app());
@@ -218,8 +218,8 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    //m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
    ASSERT_VALID(this);
 
-   /*interaction * oswindow_Parent = pparent;
-   interaction * oswindow_T = oswindow_Parent;
+   /*sp(interaction) oswindow_Parent = pparent;
+   sp(interaction) oswindow_T = oswindow_Parent;
    do
    {
       if(oswindow_T->m_pwnd != ::null())
@@ -298,7 +298,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 
 
-bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, ::user::interaction*  pparent, id id, ::ca::create_context * pContext)
+bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, ::ca::create_context * pContext)
 {
    if(m_bCreate)
    {
@@ -307,25 +307,25 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    m_bCreate = true;
    if(!create_message_window())
       return FALSE;
-   m_pthread = dynamic_cast < ::ca::application * > (get_app());
+   m_pthread = get_app();
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
-//   ::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
+//   sp(::ca::window) pwndThis = (this);
 /*   if(pwndThis != ::null())
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie()) == ::null())
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == ::null())
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->create(lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, pContext);
-   /*interaction * oswindow_Parent = pparent;
-   interaction * oswindow_T = oswindow_Parent;
+   /*sp(interaction) oswindow_Parent = pparent;
+   sp(interaction) oswindow_T = oswindow_Parent;
    do
    {
       if(oswindow_T->m_pwnd != ::null())
@@ -407,7 +407,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 }
 
 
-bool virtual_user_interface::create(::user::interaction *pparent, id id)
+bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
 {
    if(m_bCreate)
    {
@@ -416,25 +416,25 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    m_bCreate = true;
    if(!create_message_window())
       return false;
-   m_pthread = dynamic_cast < ::ca::application * > (get_app());
+   m_pthread = get_app();
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
    m_bVisible = true;
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
-//   ::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
+//   sp(::ca::window) pwndThis = (this);
 /*   if(pwndThis != ::null())
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie()) == ::null())
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == ::null())
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->create(::null(), ::null(), WS_CHILD | WS_VISIBLE, rect(0, 0, 0, 0), pparent, iId);
-   /*interaction * oswindow_Parent = pparent;
-   interaction * oswindow_T = oswindow_Parent;
+   /*sp(interaction) oswindow_Parent = pparent;
+   sp(interaction) oswindow_T = oswindow_Parent;
    do
    {
       if(oswindow_T->m_pwnd != ::null())
@@ -511,7 +511,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 /*   bool virtual_user_interface::create(const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
-      ::user::interaction* pParentWnd, UINT nID,
+      sp(::user::interaction) pParentWnd, UINT nID,
       create_context* pContext)
    {
       return FALSE;
@@ -529,7 +529,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
-      ::ca::window* pParentWnd, UINT nID,
+      sp(::ca::window) pParentWnd, UINT nID,
       LPVOID lpParam)
    {
       return FALSE;
@@ -573,17 +573,17 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-::frame_window * virtual_user_interface::GetParentFrame()
+sp(::frame_window) virtual_user_interface::GetParentFrame()
 {
 
    ASSERT_VALID(this);
 
-   ::user::interaction* pParentWnd = get_parent();  // start with one parent up
+   sp(::user::interaction) pParentWnd = get_parent();  // start with one parent up
    while (pParentWnd != ::null())
    {
       if (base < ::user::interaction>::bases(pParentWnd))
       {
-         return dynamic_cast < ::frame_window * > (pParentWnd);
+         return pParentWnd;
       }
       pParentWnd = pParentWnd->get_parent();
    }
@@ -602,7 +602,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
 
    try
    {
-      ::user::interaction * pui = m_pguie;
+      sp(::user::interaction) pui = m_pguie;
       while(pui != ::null())
       {
          try
@@ -647,7 +647,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
 
    try
    {
-      ::user::interaction * pui = m_pguie;
+      sp(::user::interaction) pui = m_pguie;
       while(pui != ::null() && pui->get_parent() != ::null())
       {
          try
@@ -683,7 +683,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
 #endif
 
 
-::user::interaction * virtual_user_interface::SetFocus()
+sp(::user::interaction) virtual_user_interface::SetFocus()
 {
    return ::null();
 }
@@ -693,9 +693,9 @@ bool virtual_user_interface::IsWindowEnabled()
    return m_bEnabled && ((m_pguie == ::null() || m_pguie->get_parent() == ::null()) ? true : m_pguie->get_parent()->IsWindowEnabled());
 }
 
-::frame_window * virtual_user_interface::EnsureParentFrame()
+sp(::frame_window) virtual_user_interface::EnsureParentFrame()
 {
-    ::frame_window *pFrameWnd = GetParentFrame();
+    sp(::frame_window)pFrameWnd = GetParentFrame();
     ENSURE_VALID(pFrameWnd);
     return pFrameWnd;
 }
@@ -721,7 +721,7 @@ LRESULT virtual_user_interface::Default()
 
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-::user::interaction * pwnd, LPCRECT lpRect);
+sp(::user::interaction) pwnd, LPCRECT lpRect);
 
 
 void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
@@ -741,7 +741,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
    __SIZEPARENTPARAMS layout;
-   ::user::interaction * oswindow_LeftOver = ::null();
+   sp(::user::interaction) oswindow_LeftOver = ::null();
 
    layout.bStretch = bStretch;
    layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
@@ -765,21 +765,21 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 
    if(m_pguie != this && m_pguie != ::null())
    {
-      for (::user::interaction * oswindow_Child = m_pguie->GetTopWindow(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = m_pguie->GetTopWindow(); oswindow_Child != ::null();
          oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         ::user::interaction * pWnd = oswindow_Child;
+         sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
          else if(pWnd != ::null())
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
-      for (::user::interaction * oswindow_Child = m_pguie->get_top_child(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = m_pguie->get_top_child(); oswindow_Child != ::null();
          oswindow_Child = oswindow_Child->under_sibling())
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         ::user::interaction * pWnd = oswindow_Child;
+         sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
          else if (pWnd != ::null())
@@ -788,21 +788,21 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    }
    else
    {
-      for (::user::interaction * oswindow_Child = GetTopWindow(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != ::null();
          oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         ::user::interaction * pWnd = oswindow_Child;
+         sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
          else if (pWnd != ::null())
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
-      for (::user::interaction * oswindow_Child = m_pguie->get_top_child(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = m_pguie->get_top_child(); oswindow_Child != ::null();
          oswindow_Child = oswindow_Child->under_sibling())
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         ::user::interaction * pWnd = oswindow_Child;
+         sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
          else if (pWnd != ::null())
@@ -828,7 +828,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // the rest is the client size of the left-over pane
    if (nIDLeftOver != 0 && oswindow_LeftOver != ::null())
    {
-      ::user::interaction * pLeftOver = oswindow_LeftOver;
+      sp(::user::interaction) pLeftOver = oswindow_LeftOver;
       // allow extra space as specified by lpRectBorder
       if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
       {
@@ -862,7 +862,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
    __SIZEPARENTPARAMS layout;
-   ::user::interaction * oswindow_LeftOver = ::null();
+   sp(::user::interaction) oswindow_LeftOver = ::null();
 
    layout.bStretch = bStretch;
    layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
@@ -876,11 +876,11 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    else
       layout.hDWP = ::null(); // not actually doing layout
 
-   for (::user::interaction * oswindow_Child = GetTopWindow(); oswindow_Child != ::null();
+   for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != ::null();
       oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
    {
       uint_ptr nIDC = __get_dialog_control_id_(oswindow_Child);
-      ::user::interaction* pWnd = oswindow_Child;
+      sp(::user::interaction) pWnd = oswindow_Child;
       if (nIDC == nIDLeftOver)
          oswindow_LeftOver = oswindow_Child;
       else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != ::null())
@@ -889,9 +889,9 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 
    for (int32_t i = 0; i < m_uiptra.get_count(); i++)
    {
-      ::user::interaction * oswindow_Child = m_uiptra[i];
+      sp(::user::interaction) oswindow_Child = m_uiptra[i];
       uint_ptr nIDC = __get_dialog_control_id_(oswindow_Child);
-      ::user::interaction* pWnd = oswindow_Child;
+      sp(::user::interaction) pWnd = oswindow_Child;
       if (nIDC == nIDLeftOver)
          oswindow_LeftOver = oswindow_Child;
       else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != ::null())
@@ -916,7 +916,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // the rest is the client size of the left-over pane
    if (nIDLeftOver != 0 && oswindow_LeftOver != ::null())
    {
-      ::user::interaction* pLeftOver = oswindow_LeftOver;
+      sp(::user::interaction) pLeftOver = oswindow_LeftOver;
       // allow extra space as specified by lpRectBorder
       if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
       {
@@ -1128,21 +1128,21 @@ bool virtual_user_interface::DestroyWindow()
 }
 
 
-::user::interaction* virtual_user_interface::EnsureTopLevelParent()
+sp(::user::interaction) virtual_user_interface::EnsureTopLevelParent()
 {
-    ::user::interaction *pWnd=GetTopLevelParent();
+    sp(::user::interaction)pWnd=GetTopLevelParent();
     ENSURE_VALID(pWnd);
     return pWnd;
 }
 
 
-::user::interaction * virtual_user_interface::GetTopLevelParent()
+sp(::user::interaction) virtual_user_interface::GetTopLevelParent()
 {
 
    ASSERT_VALID(this);
 
-   ::user::interaction * oswindow_Parent = this;
-   ::user::interaction * oswindow_T;
+   sp(::user::interaction) oswindow_Parent = this;
+   sp(::user::interaction) oswindow_T;
 
    while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != ::null())
       oswindow_Parent = oswindow_T;
@@ -1176,7 +1176,7 @@ void virtual_user_interface::message_handler(::ca::signal_object * pobj)
    (this->*m_pfnDispatchWindowProc)(pobj);
 }
 
-::user::interaction * virtual_user_interface::set_parent(::user::interaction * pguieParent)
+sp(::user::interaction) virtual_user_interface::set_parent(sp(::user::interaction) pguieParent)
 {
    if((pguieParent == this
    || pguieParent == m_pguie
@@ -1185,7 +1185,7 @@ void virtual_user_interface::message_handler(::ca::signal_object * pobj)
    {
       return m_pparent;
    }
-   ::user::interaction * pparentOld = m_pparent;
+   sp(::user::interaction) pparentOld = m_pparent;
    if(m_pparent != ::null())
    {
       if(m_pguie != ::null())
@@ -1305,7 +1305,7 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 }
 
 
-::user::interaction * virtual_user_interface::GetDescendantWindow(id id)
+sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id)
 {
    single_lock sl(&m_pthread->m_pthread->m_mutex, TRUE);
    for(int32_t i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
@@ -1336,21 +1336,21 @@ id virtual_user_interface::GetDlgCtrlId()
 }
 
 
-::frame_window * virtual_user_interface::GetTopLevelFrame()
+sp(::frame_window) virtual_user_interface::GetTopLevelFrame()
 {
    ASSERT_VALID(this);
 
-   ::frame_window * pFrameWnd = ::null();
+   sp(::frame_window) pFrameWnd = ::null();
    if(m_pguie != this)
-      pFrameWnd = dynamic_cast < ::frame_window * > (m_pguie);
+      pFrameWnd = m_pguie;
    else
-      pFrameWnd = dynamic_cast < ::frame_window * > (this);
-   if (pFrameWnd == ::null() || !pFrameWnd->IsFrameWnd())
+      pFrameWnd = this;
+   if (pFrameWnd == ::null() || !pFrameWnd->is_frame_window())
       pFrameWnd = GetParentFrame();
 
    if (pFrameWnd != ::null())
    {
-      ::frame_window * pTemp;
+      sp(::frame_window) pTemp;
       while ((pTemp = pFrameWnd->GetParentFrame()) != ::null())
          pFrameWnd = pTemp;
    }
@@ -1378,7 +1378,7 @@ void virtual_user_interface::_001OnNcDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 
-   ::user::interaction * puie = m_pguie;
+   sp(::user::interaction) puie = m_pguie;
    m_pguie = ::null();
    PostNcDestroy();
    if(puie != ::null())
@@ -1388,7 +1388,7 @@ void virtual_user_interface::_001OnNcDestroy(::ca::signal_object * pobj)
    pobj->m_bRet = true;
 }
 
-void virtual_user_interface::on_delete(::ca::ca * pui)
+void virtual_user_interface::on_delete(sp(::ca::ca) pui)
 {
    ::user::interaction::on_delete(pui);
 }
@@ -1409,7 +1409,7 @@ void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wPa
    // unless we need to call this function recursively
    if(m_pguie == ::null())
       return;
-   ::user::interaction * pui = m_pguie->get_top_child();
+   sp(::user::interaction) pui = m_pguie->get_top_child();
    while(pui != ::null())
    {
       try

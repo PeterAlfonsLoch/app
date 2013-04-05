@@ -8,7 +8,7 @@ class CLASS_DECL_ca2 FileManagerSaveAsView :
 public:
 
 
-   FileManagerSaveAsView(::ca::application * papp);
+   FileManagerSaveAsView(::ca::applicationsp papp);
 
 
    virtual void _001OnAfterChangeText();

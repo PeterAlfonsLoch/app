@@ -25,7 +25,7 @@ namespace ca
 
 
 
-      signal_object(::ca::application * papp = ::null());
+      signal_object(::ca::applicationsp papp = ::null());
       signal_object(signal * psignal);
       virtual ~signal_object();
 

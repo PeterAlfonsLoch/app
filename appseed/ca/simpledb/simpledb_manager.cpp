@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   manager::manager(::ca::application * papp) :
+   manager::manager(::ca::applicationsp papp) :
       ca(papp),
       thread(papp),
       ::ca::message_window_simple_callback(papp),

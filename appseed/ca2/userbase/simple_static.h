@@ -10,7 +10,7 @@ public:
    ::ca::brush_sp       m_brushBkg;
    image_list *         m_pimagelist;
 
-   simple_static(::ca::application * papp);
+   simple_static(::ca::applicationsp papp);
 
    virtual void pre_subclass_window();
    

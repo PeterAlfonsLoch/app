@@ -9,7 +9,7 @@
 #define ITEMCHECKEDPADRIGHT 2
 #define ITEMCHECKEDPADBOTTOM 2
 
-simple_menu_bar::simple_menu_bar(::ca::application * papp) :
+simple_menu_bar::simple_menu_bar(::ca::applicationsp papp) :
    ca(papp),
    simple_toolbar(papp),
    m_menu(papp)
@@ -204,7 +204,7 @@ void simple_menu_bar::_001OnCreate(::ca::signal_object * pobj)
    ASSERT(lpmfmh != NULL);
    lpmfmh->MessageFilterHook(this);*/
 
-   //m_menuhook.Install((::userbase::frame_window *) (::user::interaction*)this);
+   //m_menuhook.Install((sp(::userbase::frame_window)) (sp(::user::interaction))this);
 
    SetFont(System.visual().font_central().GetMenuFont());
 
@@ -348,7 +348,7 @@ void simple_menu_bar::_001OnMenuChar(::ca::signal_object * pobj)
    pobj->previous();
 }
 
-void simple_menu_bar::OnUpdateCmdUI(::userbase::frame_window *pTarget, bool bDisableIfNoHndler)
+void simple_menu_bar::OnUpdateCmdUI(sp(::userbase::frame_window)pTarget, bool bDisableIfNoHndler)
 {
    UNREFERENCED_PARAMETER(pTarget);
    UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -535,13 +535,13 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 }*/
 
 
-bool simple_menu_bar::create(::user::interaction* pParentWnd, uint32_t dwStyle, UINT nID)
+bool simple_menu_bar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, UINT nID)
 {
    return CreateEx(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
+bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
 {
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));

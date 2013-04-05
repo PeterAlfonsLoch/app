@@ -21,7 +21,7 @@ namespace ca
    public:
 
 
-      os(::ca::application * papp);
+      os(::ca::applicationsp papp);
       virtual ~os();
 
 
@@ -71,7 +71,7 @@ namespace ca
       virtual bool stop_service(::planebase::application * papp);
 
 
-      virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = ::null());
+      virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = ::null());
 
       DECLSPEC_NO_RETURN void raise_exception( uint32_t dwExceptionCode, uint32_t dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 

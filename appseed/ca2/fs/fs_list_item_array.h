@@ -25,7 +25,7 @@ namespace fs
    public:
 
 
-      list_item_array(::ca::application * papp);
+      list_item_array(::ca::applicationsp papp);
       virtual ~list_item_array();
 
 

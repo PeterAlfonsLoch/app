@@ -16,7 +16,7 @@ namespace fs
       return this->element_at(i, fCompare);
    }
 
-   list_item_array::list_item_array(::ca::application * papp) :
+   list_item_array::list_item_array(::ca::applicationsp papp) :
       ca(papp)
    {
       m_itema.set_app(papp);
@@ -47,10 +47,15 @@ namespace fs
       return m_itema.get_size() + count;
    }
 
-   void list_item_array::add_item(list_item &item)
+   void list_item_array::add_item(list_item & item)
    {
-      m_itema.add(item);
-      m_itema[this->get_size() - 1]->m_iArrange = this->get_size() - 1;
+      
+      sp(list_item) spitem(new list_item(item));
+      
+      m_itema.add(spitem);
+      
+      spitem->m_iArrange = this->get_size() - 1;
+
    }
 
    index list_item_array::find_item_by_path(const char * pszPath)

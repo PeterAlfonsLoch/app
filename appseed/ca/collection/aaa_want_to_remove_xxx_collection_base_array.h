@@ -203,7 +203,7 @@ public:
    };
 
 
-   aaa_base_array(::ca::application * papp = ::null());
+   aaa_base_array(::ca::applicationsp papp = ::null());
    aaa_base_array(const aaa_base_array <TYPE, ARG_TYPE> & a);
    aaa_base_array(::count n, const TYPE & t = TYPE());
    aaa_base_array(TYPE * ptypea, ::count n)
@@ -716,7 +716,7 @@ inline TYPE& aaa_base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 // aaa_base_array<TYPE, ARG_TYPE> out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(::ca::application * papp) :
+aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(::ca::applicationsp papp) :
    ca(papp)
 {
    m_pData = ::null();

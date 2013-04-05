@@ -14,7 +14,7 @@ namespace user
       int_map < ::user::e_key >         m_mapKey;
       sp(keyboard_layout)                             m_playout;
 
-      keyboard(::ca::application * papp);
+      keyboard(::ca::applicationsp papp);
 
       virtual class keyboard_layout & layout();
 

@@ -30,7 +30,7 @@ namespace ca
       var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
 
 
-      command_thread(::ca::application * papp);
+      command_thread(::ca::applicationsp papp);
       virtual ~command_thread();
 
       virtual var run();

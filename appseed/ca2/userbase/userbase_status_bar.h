@@ -45,11 +45,11 @@ namespace userbase
       virtual ~status_bar();
 
       using ::userbase::control_bar::create;
-      virtual bool create(::user::interaction* pParentWnd,
+      virtual bool create(sp(::user::interaction) pParentWnd,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
       using ::userbase::control_bar::CreateEx;
-      virtual bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+      virtual bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
       bool SetIndicators(stringa & stra);
@@ -92,7 +92,7 @@ namespace userbase
       virtual void dump(dump_context & dumpcontext) const;
       void EnableDocking(uint32_t dwDockStyle);
    #endif
-      virtual void OnUpdateCmdUI(::userbase::frame_window * pTarget, bool bDisableIfNoHndler);
+      virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
       __STATUSPANE* _GetPanePtr(int32_t nIndex);

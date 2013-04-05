@@ -15,7 +15,7 @@ namespace html
       m_strTextDecoration     = font.m_strTextDecoration;
    }
 
-   bool font::create(::ca::application * papp)
+   bool font::create(::ca::applicationsp papp)
    {
       m_font.create(papp);
 

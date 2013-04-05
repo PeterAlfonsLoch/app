@@ -14,7 +14,7 @@ namespace ca
       virtual public system_exception
    {
    public:
-      out_buffer_exception(::ca::application * papp, HRESULT errorCode) : 
+      out_buffer_exception(::ca::applicationsp papp, HRESULT errorCode) : 
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),

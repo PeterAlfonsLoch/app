@@ -23,10 +23,10 @@ namespace userbase
 
 
    public:
-      step_slider(::ca::application * papp);
+      step_slider(::ca::applicationsp papp);
       virtual ~step_slider();
 
-      bool create(::user::interaction * pwndParent, id id);
+      bool create(sp(::user::interaction) pwndParent, id id);
 
       virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 

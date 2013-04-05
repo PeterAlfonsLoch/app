@@ -4,21 +4,18 @@
 inline var::var()
 {
    m_etype = type_new;
-   m_pca2 = ::null();
 }
 
 
 inline var::var(const ::ca::null & null)
 {
    m_etype = type_null;
-   m_pca2 = ::null();
 }
 
 
 inline var::var(e_type etype)
 {
    m_etype = etype;
-   m_pca2 = ::null();
 }
 
 

@@ -4,7 +4,7 @@
 namespace user
 {
 
-   print_job::print_job(::ca::application * papp) :
+   print_job::print_job(::ca::applicationsp papp) :
       ca(papp),
       ::ca::print_job(papp),
       ::ca::job(papp),

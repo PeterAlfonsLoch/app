@@ -11,13 +11,13 @@ namespace xml
    public:
 
       // root xml node - document
-      document * m_pdocument;
+      sp(document) m_pdocument;
       // current xml node
       node * m_pnode;
 
 
-      output_tree(::ca::application * papp, tree_schema * pschema);
-      output_tree(::ca::application * papp);
+      output_tree(::ca::applicationsp papp, tree_schema * pschema);
+      output_tree(::ca::applicationsp papp);
       virtual ~output_tree();
 
 

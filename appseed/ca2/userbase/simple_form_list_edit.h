@@ -21,11 +21,11 @@ public:
    ::user::list * m_plistinterface;
 
 
-   simple_form_list_edit(::ca::application * papp);
+   simple_form_list_edit(::ca::applicationsp papp);
    virtual ~simple_form_list_edit();
 
 
-   ::user::interaction * GetNotifyWnd();
+   sp(::user::interaction) GetNotifyWnd();
    ::user::list * GetBaseListInterface();
 
 
@@ -33,7 +33,7 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate)
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-   int32_t OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
+   int32_t OnMouseActivate(sp(::user::interaction) pDesktopWnd, UINT nHitTest, UINT message);
 
 
 };

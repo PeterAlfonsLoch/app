@@ -14,7 +14,7 @@ namespace ca
 
       int32_t      m_iPrintingPage;
 
-      print_job(::ca::application * papp);
+      print_job(::ca::applicationsp papp);
       virtual ~print_job();
 
 

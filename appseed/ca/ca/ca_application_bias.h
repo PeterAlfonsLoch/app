@@ -28,7 +28,7 @@ namespace ca
       public:
 
 
-         void connect_to(::ca::application * papp);
+         void connect_to(::ca::applicationsp papp);
 
          void on_call_signal(::ca::signal_object * pobj);
 
@@ -37,13 +37,13 @@ namespace ca
       };
 
       
-      ::user::interaction *      m_puiParent;
+      sp(::user::interaction)      m_puiParent;
       callback *                 m_pcallback;
       ::ca::property_set          m_set;
 
       
       application_bias();
-      application_bias(::ca::application * papp);
+      application_bias(::ca::applicationsp papp);
       application_bias(const application_bias & bias);
       application_bias & operator = (const application_bias & bias);
 
@@ -57,7 +57,7 @@ namespace ca
 
 
       application_bias_sp();
-      application_bias_sp(::ca::application * papp);
+      application_bias_sp(::ca::applicationsp papp);
       virtual ~application_bias_sp();
 
 

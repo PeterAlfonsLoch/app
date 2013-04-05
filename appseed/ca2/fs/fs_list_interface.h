@@ -16,14 +16,14 @@ namespace fs
 
 
 
-      list_interface(::ca::application * appp);
+      list_interface(::ca::applicationsp appp);
       virtual ~list_interface();
 
       virtual void _001InsertColumns();
 
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
-      document * get_document();
+      sp(document) get_document();
       virtual list_data * get_fs_list_data();
 
       virtual COLORREF get_background_color();
@@ -38,15 +38,15 @@ namespace fs
 
       void GetSelected(item_array & itema);
 
-      void _001OnInitializeForm(user::control * pcontrol);
-      void _001OnButtonAction(user::control * pcontrol);
+      void _001OnInitializeForm(user::sp(control) pcontrol);
+      void _001OnButtonAction(user::sp(control) pcontrol);
 
       virtual void _017OpenFile(const item_array & itema);
-      virtual void _017OpenFolder(const ::fs::item & item);
+      virtual void _017OpenFolder(sp(::fs::item)  item);
       virtual void _017OpenFolder(const ::fs::list_item & item);
       virtual void _017OpenSelected(bool bOpenFile);
       virtual void _017OpenContextMenuSelected();
-      virtual void _017OpenContextMenuFolder(const item &item);
+      virtual void _017OpenContextMenuFolder(sp(::fs::item)  item);
       virtual void _017OpenContextMenuFile(const item_array &itema);
       virtual void _017OpenContextMenu();
       void _017PreSynchronize();

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   combo_box::combo_box(::ca::application * papp) :
+   combo_box::combo_box(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp)
@@ -688,9 +688,9 @@ namespace user
       if(m_plist == NULL)
       {
 
-         ::ca::ca * pca = Application.alloc(m_typeComboList);
+         sp(::ca::ca) pca = Application.alloc(m_typeComboList);
 
-         m_plist = dynamic_cast < combo_list * > (pca);
+         m_plist =  (pca);
 
          if(m_plist == NULL)
          {

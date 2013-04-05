@@ -424,7 +424,7 @@ namespace n7z
       {
          CMethodFull methodFull;
          GetMethodFull(k_BCJ2, 4, methodFull);
-         exeMethod.Methods.insert_at(0, methodFull);
+         exeMethod.Methods.insert_at(0, new CMethodFull(methodFull));
          GetMethodFull(k_LZMA, 1, methodFull);
          methodFull.Props[NCoderPropID::kAlgorithm] = (int64_t)kAlgorithmForBCJ2_LZMA;
          methodFull.Props[NCoderPropID::kMatchFinder] = (int64_t)kMatchFinderForBCJ2_LZMA;
@@ -432,8 +432,8 @@ namespace n7z
          methodFull.Props[NCoderPropID::kNumFastBytes] = (int64_t)kNumFastBytesForBCJ2_LZMA;
          methodFull.Props[NCoderPropID::kNumThreads] = (int64_t)1;
 
-         exeMethod.Methods.add(methodFull);
-         exeMethod.Methods.add(methodFull);
+         exeMethod.Methods.add(new CMethodFull(methodFull));
+         exeMethod.Methods.add(new CMethodFull(methodFull));
          CBind bind;
 
          bind.OutCoder = 0;
@@ -455,7 +455,7 @@ namespace n7z
       {
          CMethodFull methodFull;
          GetMethodFull(k_BCJ, 1, methodFull);
-         exeMethod.Methods.insert_at(0, methodFull);
+         exeMethod.Methods.insert_at(0, new CMethodFull(methodFull));
          CBind bind;
          bind.OutCoder = 0;
          bind.InStream = 0;
@@ -637,7 +637,7 @@ namespace n7z
       uint32_t NumThreads;
 #endif
 
-      CThreadDecoder(::ca::application * papp):
+      CThreadDecoder(::ca::applicationsp papp):
       ca(papp),
       thread(papp),
       Decoder(papp, true)
@@ -863,7 +863,7 @@ namespace n7z
 
       smart_pointer_array<CSolidGroup> groups;
       for (i = 0; i < kNumGroupsMax; i++)
-         groups.add(CSolidGroup());
+         groups.add(new CSolidGroup());
 
       {
          // ---------- Split files to 2 groups ----------
@@ -984,7 +984,7 @@ namespace n7z
                   // newDatabase.PackCRCsDefined.add(db.PackCRCsDefined[startIndex + j]);
                   // newDatabase.PackCRCs.add(db.PackCRCs[startIndex + j]);
                }
-               newDatabase.Folders.add(folder);
+               newDatabase.Folders.add(new CFolder(folder));
             }
             else
             {
@@ -1039,7 +1039,7 @@ namespace n7z
                   lps->OutSize += newDatabase.PackSizes[startPackIndex];
                lps->InSize += newFolder.GetUnpackSize();
 
-               newDatabase.Folders.add(newFolder);
+               newDatabase.Folders.add(new CFolder(newFolder));
             }
 
             newDatabase.NumUnpackStreamsVector.add(rep.NumCopyFiles);
@@ -1153,7 +1153,7 @@ namespace n7z
             // newDatabase.PackCRCsDefined.add(false);
             // newDatabase.PackCRCs.add(0);
 
-            newDatabase.Folders.add(folderItem);
+            newDatabase.Folders.add(new CFolder(folderItem));
 
             CNum numUnpackStreams = 0;
             for (int32_t subIndex = 0; subIndex < numSubFiles; subIndex++)

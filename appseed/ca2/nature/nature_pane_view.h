@@ -15,7 +15,7 @@ namespace nature
       ::ca2::keyboard_layout *             m_pkeyboardlayout;
 
 
-      pane_view(::ca::application * papp);
+      pane_view(::ca::applicationsp papp);
       virtual ~pane_view();
 
 

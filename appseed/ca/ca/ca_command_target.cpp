@@ -115,7 +115,7 @@ command_target_interface::command_target_interface()
 {
 }
 
-command_target_interface::command_target_interface(::ca::application * papp)
+command_target_interface::command_target_interface(::ca::applicationsp papp)
 : ca(papp)
 {
 }

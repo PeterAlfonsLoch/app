@@ -21,7 +21,7 @@ namespace cube
 
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
-      virtual ::ca::application * get_new_app(const char * pszAppId);
+      virtual ::ca::applicationsp get_new_app(const char * pszAppId);
 
 
    };

@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   tree_interface::tree_interface(::ca::application * papp) :
+   tree_interface::tree_interface(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp)
@@ -630,12 +630,12 @@ namespace fs
 
    void tree_interface::_001OnOpenItem(::ca::tree_item * pitem)
    {
-      ::fs::item item;
-      item.m_strPath         = ((::fs::tree_item *) pitem->m_pitemdata)->m_strPath;
-      _017OpenFolder(item);
+      
+      _017OpenFolder(new ::fs::item(((::fs::tree_item *) pitem->m_pitemdata)->m_strPath));
+
    }
 
-   void tree_interface::_017OpenFolder(const ::fs::item & item)
+   void tree_interface::_017OpenFolder(sp(::fs::item)  item)
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);
@@ -771,9 +771,9 @@ namespace fs
 
    }
 
-   document * tree_interface::get_document()
+   sp(document) tree_interface::get_document()
    {
-      return dynamic_cast < document * > (::user::tree::get_document());
+      return  (::user::tree::get_document());
    }
 
    ::fs::tree_data * tree_interface::get_fs_tree_data()

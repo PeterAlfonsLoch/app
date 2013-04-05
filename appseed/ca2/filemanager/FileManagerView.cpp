@@ -1,13 +1,8 @@
 #include "framework.h"
-#include "FileManagerFrame.h"
-#include "FileManagerViewUpdateHint.h"
-#include "SimpleFileListView.h"
-#include "SimpleFolderListView.h"
-#include "SimpleFolderTreeView.h"
 
 
 
-FileManagerAView::FileManagerAView(::ca::application * papp) :
+FileManagerAView::FileManagerAView(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -53,7 +48,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
+               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;
@@ -61,14 +56,14 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
             {
-               OnActivateFrame(WA_INACTIVE, dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
+               OnActivateFrame(WA_INACTIVE, ( (GetParentFrame())));
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > (GetParentFrame());
+               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > (GetParentFrame());
                if(pframe != NULL)
                {
                   ASSERT(pframe != NULL);
@@ -76,13 +71,13 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
                   pframe->SetActiveView(this);
                   pframe->CreateBars();
                }
-               FileManagerMainFrame * pmainframe =dynamic_cast < FileManagerMainFrame * > (GetTopLevelFrame());
+               sp(FileManagerMainFrame) pmainframe = (GetTopLevelFrame());
                if(pmainframe != NULL)
                {
                   pmainframe->SetActiveView(this);
                   pmainframe->CreateBars();
                }
-               FileManagerChildFrame * pchildframe =dynamic_cast < FileManagerChildFrame * > (GetParentFrame());
+               sp(FileManagerChildFrame) pchildframe = (GetParentFrame());
                if(pchildframe != NULL)
                {
                   ASSERT(pchildframe != NULL);
@@ -138,7 +133,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
                if(strPath.is_empty())
                {
                   string strTitle;
-                  dynamic_cast < FileManagerSaveAsView * >(get_pane_window(0))->_001GetText(strTitle);
+                  dynamic_cast < FileManagerSaveAsView * >(get_pane_window(0).m_p)->_001GetText(strTitle);
                   if(System.dir().name(strTitle).has_char() && System.dir().name_is(strTitle, get_app()))
                   {
                      strPath = strTitle;
@@ -240,7 +235,7 @@ void FileManagerAView::CreateViews()
 
 
 
-FileManagerView::FileManagerView(::ca::application * papp) :
+FileManagerView::FileManagerView(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -297,7 +292,7 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
+               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;
@@ -314,11 +309,11 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
             {
-               OnActivateFrame(WA_INACTIVE, dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
+               OnActivateFrame(WA_INACTIVE, ( (GetParentFrame())));
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
+               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
                if(pframe != NULL)
                {
    //xxx               pframe->WindowDataLoadWindowRect();
@@ -327,7 +322,7 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
+               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   ASSERT(pframe != NULL);
@@ -335,12 +330,12 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
 
                   pframe->CreateBars();
                }
-               FileManagerMainFrame * pmainframe =dynamic_cast < FileManagerMainFrame * > (GetTopLevelFrame());
+               sp(FileManagerMainFrame) pmainframe = (GetTopLevelFrame());
                if(pmainframe != NULL)
                {
                   pmainframe->CreateBars();
                }
-               FileManagerChildFrame * pchildframe =dynamic_cast < FileManagerChildFrame * > ((::ca::window *) GetParentFrame());
+               sp(FileManagerChildFrame) pchildframe = ((sp(::ca::window)) GetParentFrame());
                if(pchildframe != NULL)
                {
                   ASSERT(pchildframe != NULL);
@@ -397,7 +392,7 @@ void FileManagerView::OpenSelectionProperties()
    {
       m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
    }
-   ::user::interaction* puie = m_ppropform->open(this, itema);
+   sp(::user::interaction) puie = m_ppropform->open(this, itema);
    if(puie == NULL)
       return;
    SetPane(1, puie, false);

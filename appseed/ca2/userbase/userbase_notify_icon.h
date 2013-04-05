@@ -28,7 +28,7 @@ namespace userbase
       notify_icon_listener * m_plistener;
 
 
-      notify_icon(::ca::application * papp);
+      notify_icon(::ca::applicationsp papp);
       virtual ~notify_icon();
 
 

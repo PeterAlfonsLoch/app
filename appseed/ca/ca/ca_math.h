@@ -31,7 +31,7 @@ namespace ca
 
       public:
 
-         math(::ca::application * papp);
+         math(::ca::applicationsp papp);
          virtual ~math();
 
 

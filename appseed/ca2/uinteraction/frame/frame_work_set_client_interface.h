@@ -23,7 +23,7 @@ namespace frame
       virtual ~WorkSetClientInterface();
 
 
-      ::user::interaction* WfiGetWindow();
+      sp(::user::interaction) WfiGetWindow();
 
 
       virtual void _001OnDraw(::ca::graphics * pca);

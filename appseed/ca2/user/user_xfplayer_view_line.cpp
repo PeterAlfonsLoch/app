@@ -3,7 +3,7 @@
 const int32_t XfplayerViewLine::AlignLeft = 1;
 const int32_t XfplayerViewLine::AlignRight = 2;
 
-XfplayerViewLine::XfplayerViewLine(::ca::application * papp) :
+XfplayerViewLine::XfplayerViewLine(::ca::applicationsp papp) :
    ca(papp),
    m_dibMain(papp),
    m_dcextension(papp),
@@ -164,7 +164,7 @@ void XfplayerViewLine::GetPlacement(LPRECT lprect)
 }
 
 bool XfplayerViewLine::to(
-   ::ca::application * papp,
+   ::ca::applicationsp papp,
    ::ca::graphics *               pdc,
    bool               bDraw,
    LPRECT            lpRect,
@@ -409,7 +409,7 @@ bool XfplayerViewLine::to(
 }
 
 bool XfplayerViewLine::to(
-   ::ca::application *  papp,
+   ::ca::applicationsp  papp,
    ::ca::graphics *     pdc,
    bool                 bDraw,
    LPRECT               lpRect,
@@ -1094,7 +1094,7 @@ void XfplayerViewLine::SetAnimateIncrement(double dIncrement)
   //  m_iRedrawMode = iMode;
 //}
 
-//void XfplayerViewLine::SetRenderWindow(::ca::window *pWnd)
+//void XfplayerViewLine::SetRenderWindow(sp(::ca::window)pWnd)
 //{
   //  m_pRenderWnd = pWnd;
 //}
@@ -1181,7 +1181,7 @@ bool XfplayerViewLine::IsVisible()
 }
 
 void XfplayerViewLine::EmbossedTextOut(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics * pdc,
       const char * lpcsz,
       int32_t iLeft,
@@ -1404,7 +1404,7 @@ void XfplayerViewLine::EmbossedTextOut(
 }
 
 void XfplayerViewLine::EmbossedTextOut(
-      ::ca::application * papp,
+      ::ca::applicationsp papp,
       ::ca::graphics * pdc,
       ::ca::dib * pdibCache,
       const char * lpcsz,
@@ -1493,7 +1493,7 @@ void XfplayerViewLine::GetLogFont(LOGFONT &lf)
 }
 
 
-void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pdc, const char * lpcsz, strsize iLen, ::ca::dib * pdibCache)
+void XfplayerViewLine::CacheEmboss(::ca::applicationsp papp, ::ca::graphics * pdc, const char * lpcsz, strsize iLen, ::ca::dib * pdibCache)
 {
    UNREFERENCED_PARAMETER(papp);
    if(!m_bEnhancedEmboss)
@@ -1883,7 +1883,7 @@ bool XfplayerViewLine::HasLink()
    return m_iaLinkStart.get_count() > 0;
 }
 
-::user::interaction * XfplayerViewLine::get_interaction()
+sp(::user::interaction) XfplayerViewLine::get_interaction()
 {
    return m_pContainer->m_pinteraction;
 }

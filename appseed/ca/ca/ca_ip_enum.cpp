@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   ip_enum::ip_enum(::ca::application * papp) :
+   ip_enum::ip_enum(::ca::applicationsp papp) :
       ca(papp)
    {
 

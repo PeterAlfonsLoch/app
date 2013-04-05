@@ -44,10 +44,10 @@ namespace userbase
          rect                    m_rect;
          size                    m_sizeFixed;
          bool                    m_bFixedSize;
-         user::place_holder *    m_pholder;
+         sp(::user::place_holder)    m_pholder;
 
 
-         Pane(::ca::application * papp);
+         Pane(::ca::applicationsp papp);
 
 
       };
@@ -65,7 +65,7 @@ namespace userbase
       int32_t                                      m_cyBorder;
 
 
-      split_layout(::ca::application * papp);
+      split_layout(::ca::applicationsp papp);
       virtual ~split_layout();
 
 
@@ -76,8 +76,8 @@ namespace userbase
       e_orientation GetSplitOrientation();
       int32_t GetMaxPos(int32_t iPane);
       int32_t GetMinPos(int32_t iPane);
-      bool InsertPaneAt(int32_t iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
-      bool SetPane(int32_t iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
+      bool InsertPaneAt(int32_t iIndex, sp(::user::interaction)pWnd, bool bFixedSize, id idPane = id());
+      bool SetPane(int32_t iIndex, sp(::user::interaction)pWnd, bool bFixedSize, id idPane = id());
       bool RemovePaneAt(int32_t iIndex);
       void SetPaneFixedSize(int32_t iIndex, SIZE * pSize);
       void SetVisible(bool bNewValue);
@@ -85,8 +85,8 @@ namespace userbase
       void CalcPaneRect(int32_t nMinPos, int32_t nMaxPos, LPRECT lpRect);
       void CalcPaneRect(int32_t iIndex, LPRECT lpRect);
 
-      virtual ::user::interaction  * get_pane_window(int32_t iPane);
-      virtual ::user::place_holder * get_pane_holder(int32_t iPane);
+      virtual sp(::user::interaction) get_pane_window(int32_t iPane);
+      virtual sp(::user::place_holder) get_pane_holder(int32_t iPane);
       virtual id get_pane_id(int32_t iPane);
       virtual int32_t get_pane_by_id(::id id);
 

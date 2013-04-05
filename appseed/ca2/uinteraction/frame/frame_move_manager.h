@@ -43,8 +43,8 @@ namespace frame
       virtual ~MoveManager();
 
 
-      ::user::interaction * GetEventWindow();
-      ::user::interaction * GetMoveWindow();
+      sp(::user::interaction) GetEventWindow();
+      sp(::user::interaction) GetMoveWindow();
 
       bool Relay(::ca::message::mouse * pmouse);
       bool _000OnLButtonDown(::ca::message::mouse * pmouse);
@@ -64,7 +64,7 @@ namespace frame
 
       static const uint32_t s_dwMoveTime;
 
-      void message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj);
+      void message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
    };
 
 } // namespace frame

@@ -25,7 +25,7 @@ class file_operation :
    virtual public ::ca::object
 {
 public:
-   file_operation(::ca::application * papp);
+   file_operation(::ca::applicationsp papp);
    virtual filemanager::eoperation operation();
    
    virtual bool set_copy(stringa & stra, const char * pszDestBase, const char * pszSrcBase, bool bExpand);
@@ -69,7 +69,7 @@ public:
    bool              m_bReplaceAll;
    char *            m_pchBuffer;
    int32_t         m_iBufferSize;
-   ::user::interaction *  m_oswindowCallback;
+   sp(::user::interaction)  m_oswindowCallback;
    UINT              m_uiCallbackMessage;
    WPARAM            m_wparamCallback;
 };

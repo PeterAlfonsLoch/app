@@ -17,7 +17,7 @@ namespace filemanager
          ModeConfigurationItem,
       };
 
-      SimpleFolderListInterface(::ca::application * papp);
+      SimpleFolderListInterface(::ca::applicationsp papp);
       virtual ~SimpleFolderListInterface();
 
    public:

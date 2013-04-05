@@ -9,16 +9,16 @@ namespace ca
    public:
 
 
-      bool ungz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
-      bool gz(::ca::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
+      bool ungz(::ca::applicationsp papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
+      bool gz(::ca::applicationsp papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(::ca::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
       bool gz(::ca::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(::primitive::memory_file & memoryfile);
 
-      bool unbz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
-      bool bz(::ca::application * papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
+      bool unbz(::ca::applicationsp papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
+      bool bz(::ca::applicationsp papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
 
       bool unbz(::ca::writer & ostreamUncompressed, const char * lpcszBzFileCompressed);
       bool bz(::ca::writer & ostreamBzFileCompressed, const char * lpcszUncompressed);
@@ -32,11 +32,11 @@ namespace ca
       bool null(::ca::writer & ostream, ::ca::reader & istream);
 
 
-      void extract_all(const char * pszFile, ::ca::application * papp);
+      void extract_all(const char * pszFile, ::ca::applicationsp papp);
 
 
-      void zip(const char * pszZip, const char * psz, ::ca::application * papp);
-      void zip(const char * psz, ::ca::application * papp);
+      void zip(const char * pszZip, const char * psz, ::ca::applicationsp papp);
+      void zip(const char * psz, ::ca::applicationsp papp);
 
 
       friend class application;

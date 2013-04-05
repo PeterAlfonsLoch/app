@@ -4,7 +4,7 @@ namespace ca
 {
 
    /*
-   file_association::file_association(::ca::application * papp) :
+   file_association::file_association(::ca::applicationsp papp) :
       ca(papp)
    {
       m_hkeyClassesRoot = ::null();

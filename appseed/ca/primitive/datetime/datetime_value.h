@@ -34,13 +34,13 @@ namespace datetime
       ::datetime::time_span GetSpan() const;
       value & operator = (const ::datetime::time & time);
 
-      string to_string(::ca::application * pcaapp, ::user::str_context * pcontext);
+      string to_string(::ca::applicationsp pcaapp, ::user::str_context * pcontext);
 
    };
 
 
-   CLASS_DECL_ca value span_strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz);
-   CLASS_DECL_ca value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount);
+   CLASS_DECL_ca value span_strtotime(::ca::applicationsp pcaapp, ::user::str_context * pcontext, const char * psz);
+   CLASS_DECL_ca value strtotime(::ca::applicationsp pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount);
 
 
 } // namespace datetime

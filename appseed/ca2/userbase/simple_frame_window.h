@@ -51,7 +51,7 @@ public:
    mapsp(id, id, ::user::interaction)    m_toolbarmap;
 
 
-   simple_frame_window(::ca::application * papp);
+   simple_frame_window(::ca::applicationsp papp);
    virtual ~simple_frame_window();
 
 
@@ -60,7 +60,7 @@ public:
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
             const RECT & rectParam = rect(0, 0, 0, 0),
-            ::user::interaction* pParentWnd = NULL,        // != NULL for popups
+            sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
             uint32_t dwExStyle = 0,
             ::ca::create_context* pContext = NULL);
@@ -69,7 +69,7 @@ public:
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
-   virtual void on_set_parent(::user::interaction* pguieParent);
+   virtual void on_set_parent(sp(::user::interaction) pguieParent);
 
    virtual void GetClientRect(LPRECT lprect);
 
@@ -79,7 +79,7 @@ public:
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(LPCRECT lpcrect);
    virtual void GetBorderRect(LPRECT lprect);
-   void ViewOnActivateFrame(::userbase::view * pview, UINT user, ::user::interaction * pframe);
+   void ViewOnActivateFrame(::userbase::view * pview, UINT user, sp(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual bool IsFullScreen();
@@ -91,7 +91,7 @@ public:
 
    virtual ::uinteraction::frame::frame * create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, ::ca::create_context* pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
@@ -109,7 +109,7 @@ public:
 
    virtual void InitialFramePosition(bool bForceRestore = false);
 
-   ::user::interaction* WindowDataGetWnd();
+   sp(::user::interaction) WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
    virtual bool OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);

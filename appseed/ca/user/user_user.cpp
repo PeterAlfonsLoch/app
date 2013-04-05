@@ -152,7 +152,7 @@ retry_license:
    return "";
    }
 
-   int32_t user::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
+   int32_t user::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
       if(m_papp->m_psession != ::null() && m_papp->m_psession->m_pbergedgeInterface != ::null())
@@ -215,7 +215,7 @@ retry_license:
       }
    }
 
-   int32_t user::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
+   int32_t user::simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -263,7 +263,7 @@ retry_license:
       }
    }
 
-   int32_t user::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
+   int32_t user::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);
@@ -331,11 +331,11 @@ retry_license:
    }
 
 
-   ::user::keyboard_focus * user::get_keyboard_focus()
+   sp(::user::keyboard_focus) user::get_keyboard_focus()
    {
       if(Application.is_session() || Application.is_bergedge())
       {
-         ::user::interaction * puieFocus = Application.get_focus_guie();
+         sp(::user::interaction) puieFocus = Application.get_focus_guie();
          if(m_pkeyboardfocus != ::null() && puieFocus != ::null())
          {
             if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
@@ -365,7 +365,7 @@ retry_license:
       }
    }
 
-   void user::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
+   void user::set_keyboard_focus(sp(::user::keyboard_focus) pkeyboardfocus)
    {
       if(Application.is_session() || Application.is_bergedge())
       {
@@ -425,8 +425,8 @@ retry_license:
          if(&keyboard().layout() != ::null())
          {
 
-            if(Application.fontopus().m_puser != ::null()
-               && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
+            if(Application.fontopus()->m_puser != ::null()
+               && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
             {
 
                data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -442,8 +442,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
             return false;
 
-         if(Application.fontopus().m_puser != ::null()
-            && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
+         if(Application.fontopus()->m_puser != ::null()
+            && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
          {
 
             data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -485,7 +485,7 @@ retry_license:
 
    }
 
-   int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
+   int32_t user::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
    {
 
       if(m_papp->m_psession->m_pbergedgeInterface->user() == this)
@@ -504,7 +504,7 @@ retry_license:
       ::user::interaction_ptr_array wnda = Application.frames();
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {
-         ::user::interaction * pwnd = wnda.element_at(i);
+         sp(::user::interaction) pwnd = wnda.element_at(i);
          if(pwnd != ::null() && pwnd->IsWindow())
          {
             pwnd->send_message(message, wparam, lparam);

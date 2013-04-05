@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   virtual_memory::virtual_memory(::ca::application * papp) :
+   virtual_memory::virtual_memory(::ca::applicationsp papp) :
       ca(papp)
    {
       m_pbStorage = ::null();

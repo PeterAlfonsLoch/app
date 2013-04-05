@@ -33,7 +33,7 @@ namespace ca
 
    }
 
-   bool library::open(::ca::application * papp, const char * pszPath, bool bAutoClose)
+   bool library::open(::ca::applicationsp papp, const char * pszPath, bool bAutoClose)
    {
 
       set_app(papp);
@@ -306,7 +306,7 @@ namespace ca
    }
 
 
-   ::ca::application * library::get_new_app(const char * pszAppId)
+   ::ca::applicationsp library::get_new_app(const char * pszAppId)
    {
 
       try
@@ -320,17 +320,12 @@ namespace ca
             if(strAppName.is_empty())
                return ::null();
 
-            ::ca::application * papp = m_pca2library->get_new_app(strAppName);
+            ::ca::applicationsp papp = m_pca2library->get_new_app(strAppName);
 
             if(papp == ::null())
                return ::null();
 
-            ::ca::application  * pgenapp = dynamic_cast < ::ca::application * > (papp);
-
-            if(pgenapp != ::null())
-            {
-               pgenapp->m_strLibraryName   = m_strCa2Name;
-            }
+            papp->m_strLibraryName   = m_strCa2Name;
 
             return papp;
 
@@ -391,7 +386,7 @@ namespace ca
    }
 
 
-   ::uinteraction::interaction * library::get_new_uinteraction()
+   sp(::uinteraction::interaction) library::get_new_uinteraction()
    {
 
       if(m_pca2library != ::null())
@@ -493,7 +488,7 @@ namespace ca
    }
 
 
-   ::dynamic_source::script_manager * library::create_script_manager(::ca::application * papp)
+   ::dynamic_source::script_manager * library::create_script_manager(::ca::applicationsp papp)
    {
 
       if(m_pca2library != ::null())
@@ -516,7 +511,7 @@ namespace ca
 
    }
 
-   ::dynamic_source::script * library::create_script(::ca::application * papp, const char * pszScript)
+   ::dynamic_source::script * library::create_script(::ca::applicationsp papp, const char * pszScript)
    {
 
       if(m_pca2library != ::null())

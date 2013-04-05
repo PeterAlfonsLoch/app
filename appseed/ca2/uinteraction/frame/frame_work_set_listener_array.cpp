@@ -24,7 +24,7 @@ namespace frame
 
    void WorkSetListenerArray::WFLOnSizingGripMove(
       WorkSet * pwf,
-      ::user::interaction * pwnd,
+      sp(::user::interaction) pwnd,
       EGrip egrip)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
@@ -39,7 +39,7 @@ namespace frame
 
    void WorkSetListenerArray::WFLOnDock(
       WorkSet * pwf,
-      ::user::interaction * pwnd)
+      sp(::user::interaction) pwnd)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -52,7 +52,7 @@ namespace frame
 
    void WorkSetListenerArray::WFLOnClose(
       WorkSet * pwf,
-      ::user::interaction * pwnd)
+      sp(::user::interaction) pwnd)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -65,7 +65,7 @@ namespace frame
 
    void WorkSetListenerArray::WFLOnNcLButtonDown(
       WorkSet * pworkset,
-      ::user::interaction * pwnd,
+      sp(::user::interaction) pwnd,
       UINT nHitTest,
       point point)
    {
@@ -92,7 +92,7 @@ namespace frame
       plistener->attach(this);
    }
 
-   void WorkSetListenerArray::on_delete(::ca::ca * p)
+   void WorkSetListenerArray::on_delete(sp(::ca::ca) p)
    {
       UNREFERENCED_PARAMETER(p);
    }

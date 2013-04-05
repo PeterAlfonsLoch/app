@@ -32,12 +32,12 @@ namespace userbase
    {
    public:
 
-      view(::ca::application * papp);
+      view(::ca::applicationsp papp);
 
       virtual void on_select();
 
       // each view can display one or more documents but has only one document interface
-      //::userbase::document* get_document() const;
+      //sp(::userbase::document) get_document() const;
 
       virtual bool IsSelected(const ::ca::object* pDocItem) const; // support for OLE
 
@@ -60,7 +60,7 @@ namespace userbase
 
 
       virtual void OnActivateView(bool bActivate, ::view* pActivateView, ::view* pDeactiveView);
-      virtual void OnActivateFrame(UINT nState, ::frame_window* pFrameWnd);
+      virtual void OnActivateFrame(UINT nState, sp(frame_window) pFrameWnd);
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 

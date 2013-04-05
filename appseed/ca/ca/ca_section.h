@@ -15,7 +15,7 @@ namespace ca
       virtual ~section();
 
 
-      virtual void construct(::ca::application * papp);
+      virtual void construct(::ca::applicationsp papp);
       virtual void connect_to_application_signal();
 
 

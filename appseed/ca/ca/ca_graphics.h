@@ -268,7 +268,7 @@ namespace ca
       virtual int32_t SelectClipRgn(::ca::region* pRgn);
       virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t ExcludeClipRect(LPCRECT lpRect);
-      virtual int32_t ExcludeUpdateRgn(::ca::window* pWnd);
+      virtual int32_t ExcludeUpdateRgn(sp(::ca::window) pWnd);
       virtual int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t IntersectClipRect(LPCRECT lpRect);
       virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
@@ -606,7 +606,7 @@ namespace ca
    {
    public:
 
-      memory_graphics(::ca::application * papp);
+      memory_graphics(::ca::applicationsp papp);
       virtual ~memory_graphics();
 
    };
@@ -616,9 +616,9 @@ namespace ca
    {
    public:
 
-      ::user::interaction * m_pui;
+      sp(::user::interaction) m_pui;
 
-      client_graphics(::user::interaction * pui);
+      client_graphics(sp(::user::interaction) pui);
       virtual ~client_graphics();
 
    };
@@ -628,9 +628,9 @@ namespace ca
    {
    public:
 
-      ::ca::window * m_pwindow;
+      sp(::ca::window) m_pwindow;
 
-      window_graphics(::ca::window * pwindow);
+      window_graphics(sp(::ca::window) pwindow);
       virtual ~window_graphics();
 
    };
@@ -640,12 +640,12 @@ namespace ca
    {
    public:
 
-      ::ca::window *    m_pwindow;
+      sp(::ca::window)    m_pwindow;
 #ifdef WINDOWSEX
       PAINTSTRUCT       m_ps;
 #endif
 
-      paint_graphics(::ca::window * pwindow);
+      paint_graphics(sp(::ca::window) pwindow);
       virtual ~paint_graphics();
 
    };

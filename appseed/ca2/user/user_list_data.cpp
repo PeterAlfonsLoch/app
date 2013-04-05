@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   simple_list_data::simple_list_data(::ca::application * papp) :
+   simple_list_data::simple_list_data(::ca::applicationsp papp) :
       ca(papp),
       ::user::list_data(papp)
    {
@@ -50,7 +50,7 @@ namespace user
 
       while(iSubItem >= m_array.get_size())
       {
-         m_array.add(stringa());
+         m_array.add(new stringa());
       }
 
       m_array[iSubItem].set_at_grow(iItem, lpcsz);
@@ -81,7 +81,7 @@ namespace user
 
    void simple_list_data::set_column_data(list * plist, stringa & stra, int_ptr iColumn)
    {
-      m_array.set_at_grow(iColumn, stra);
+      m_array.set_at_grow(iColumn, new stringa(stra));
       for(int32_t iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
       {
          if(iColumn != iSubItem)

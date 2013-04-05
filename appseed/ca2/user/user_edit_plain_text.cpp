@@ -20,7 +20,7 @@ namespace user
 {
 
 
-   edit_plain_text::edit_plain_text(::ca::application * papp) :
+   edit_plain_text::edit_plain_text(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -244,7 +244,7 @@ namespace user
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
             HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            ::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");*/
+            ::visual::fastblur *( *pfnNew )(::ca::applicationsp) = (::visual::fastblur *(*)(::ca::applicationsp)) ::GetProcAddress(hmodule, "new_fastblur");*/
 /*            m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -558,7 +558,7 @@ namespace user
    /*   ::userbase::menu menu;
       Ex1TextFile file;
 
-      ::ca::application * papp = ::ca::get_app();
+      ::ca::applicationsp papp = ::ca::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
@@ -577,13 +577,13 @@ namespace user
       {
          //::userbase::menu* pPopup = (::userbase::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         ::userbase::frame_window * pframe = (::userbase::frame_window *) (::ca::window *) GetParentFrame();
+         sp(::userbase::frame_window) pframe = (sp(::userbase::frame_window)) (sp(::ca::window)) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
-            //(::ca::window *) pframe);
+            //(sp(::ca::window)) pframe);
          menu.TrackPopupMenu(
             point.x, point.y,
-            (::ca::window *) pframe);
+            (sp(::ca::window)) pframe);
       }*/
    }
 
@@ -2182,7 +2182,7 @@ namespace user
       ::view * pview = dynamic_cast < ::view *> (this);
    if (pview!= NULL)
    {
-      ::user::document_interface * pdoc = pview->get_document();
+      sp(::user::document_interface) pdoc = pview->get_document();
       if(type == NULL)
       {
          string textStart;

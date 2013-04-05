@@ -8,7 +8,7 @@ namespace visual
    void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
 
 
-   graphics_extension::graphics_extension(::ca::application * papp) :
+   graphics_extension::graphics_extension(::ca::applicationsp papp) :
       ca(papp)
    {
 

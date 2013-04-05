@@ -34,7 +34,7 @@ namespace user
          while(iItemCount + 200> m_cacheArray.get_size())
          {
             //pwstra = new stringa();
-            m_cacheArray.add(stringa());
+            m_cacheArray.add(new stringa());
          }
       }
 

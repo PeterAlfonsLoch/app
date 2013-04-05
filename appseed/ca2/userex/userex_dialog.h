@@ -15,13 +15,13 @@ class CLASS_DECL_ca2 dialog :
 public:
 
 
-   form_document *            m_pdocument;
-   simple_frame_window *      m_pframe;
+   sp(::form_document)            m_pdocument;
+   sp(simple_frame_window)      m_pframe;
    string                     m_strMatter;
 
 
-   dialog(::ca::application * papp);
-   dialog(const char * pszMatter, ::user::interaction * puiParent);
+   dialog(::ca::applicationsp papp);
+   dialog(const char * pszMatter, sp(::user::interaction) puiParent);
    virtual ~dialog();
 
    virtual void on_position_parent_frame();

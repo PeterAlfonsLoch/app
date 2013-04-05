@@ -73,16 +73,16 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window array pointers
    // are pointers to permanent objects.
-   /*void window_util::SortByZOrder(Carray < ::ca::window *, ::ca::window * > & wndpa)
+   /*void window_util::SortByZOrder(Carray < sp(::ca::window), sp(::ca::window) > & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
 
-   Carray < ::ca::window *, ::ca::window * > wndpa2;
+   Carray < sp(::ca::window), sp(::ca::window) > wndpa2;
 
-   ::ca::window * pwnd = wndpa[0];
+   sp(::ca::window) pwnd = wndpa[0];
 
-   ::ca::window * pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   sp(::ca::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != ::null()
    && ::IsWindow(pwndChild->GetSafeoswindow_()))
@@ -112,8 +112,8 @@ namespace user
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
    }
 
-   Carray < ::ca::window *, ::ca::window * > wndpa3;
-   Carray < ::ca::window *, ::ca::window * > wndpa4;
+   Carray < sp(::ca::window), sp(::ca::window) > wndpa3;
+   Carray < sp(::ca::window), sp(::ca::window) > wndpa4;
 
    for(int32_t i = 0; i < wndpa2.get_size(); i++)
    {
@@ -365,7 +365,7 @@ namespace user
       for(int32_t i = 0; i < oswindowa.get_size(); i++)
       {
          oswindowtree.m_oswindow = oswindowa[i];
-         add(oswindowtree);
+         add(new oswindow_tree(oswindowtree));
       }
       return * this;
    }
@@ -377,11 +377,11 @@ namespace user
    // to the ::ca::window array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void window_util::EnumChildren(::ca::window * pwnd, interaction_ptr_array & wndpa)
+   /*void window_util::EnumChildren(sp(::ca::window) pwnd, interaction_ptr_array & wndpa)
    {
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
-   ::ca::window * pwndChild = pwnd->GetTopWindow();
+   sp(::ca::window) pwndChild = pwnd->GetTopWindow();
    while(pwndChild != ::null())
    {
    wndpa.add(pwndChild);
@@ -437,9 +437,9 @@ namespace user
 
    interaction_ptr_array wndpa2;
 
-   ::ca::window * pwnd = wndpa[0];
+   sp(::ca::window) pwnd = wndpa[0];
 
-   ::ca::window * pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   sp(::ca::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != ::null())
    {
@@ -603,7 +603,7 @@ namespace user
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
-   ::ca::window* pWnd = ::ca::window::FromHandlePermanent(oswindow_Child);
+   sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(oswindow_Child);
    if (pWnd != ::null())
    {
    // call ::ca::window proc directly since it is a C++ ::ca::window
@@ -879,7 +879,7 @@ namespace user
 #endif
    }
 
-   ::user::interaction * interaction_ptr_array::find_first(::ca::type_info info)
+   sp(::user::interaction) interaction_ptr_array::find_first(::ca::type_info info)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -891,7 +891,7 @@ namespace user
       return ::null();
    }
 
-   ::user::interaction * interaction_ptr_array::find_first(oswindow oswindow)
+   sp(::user::interaction) interaction_ptr_array::find_first(oswindow oswindow)
    {
 
       for(int32_t i = 0; i < this->get_size(); i++)
@@ -908,7 +908,7 @@ namespace user
 
    }
 
-   interaction_ptr_array::interaction_ptr_array(::ca::application * papp) :
+   interaction_ptr_array::interaction_ptr_array(::ca::applicationsp papp) :
       ca(papp)
    {
 

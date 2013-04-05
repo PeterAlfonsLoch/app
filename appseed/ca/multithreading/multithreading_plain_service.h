@@ -7,7 +7,7 @@ class CLASS_DECL_ca plain_service :
 public:
 
 
-   plain_service(::ca::application * papp);
+   plain_service(::ca::applicationsp papp);
    virtual ~plain_service();
 
 

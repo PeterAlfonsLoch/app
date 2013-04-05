@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-html_form::html_form(::ca::application * papp) :
+html_form::html_form(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -58,7 +58,7 @@ void html_form::_001DrawChildren(::ca::graphics *pdc)
    }
    else
    {
-      ::user::interaction * pui = get_bottom_child();
+      sp(::user::interaction) pui = get_bottom_child();
       while(pui != NULL)
       {
          try
@@ -314,7 +314,7 @@ void html_form::_001GetText(string & str)
 void html_form::_001SetText(const char * psz)
 {
 
-   bool bFocus = Application.user()->get_keyboard_focus() == this || is_descendant(dynamic_cast < ::user::interaction * > (Application.user()->get_keyboard_focus()));
+   bool bFocus = Application.user()->get_keyboard_focus() == this || is_descendant(Application.user()->get_keyboard_focus());
 
    sp(::html::data) sphtmldata;
 
@@ -330,7 +330,7 @@ void html_form::_001SetText(const char * psz)
 
    if(bFocus)
    {
-	   ::user::keyboard_focus * pfocus = get_focusable_descendant();
+	   sp(::user::keyboard_focus) pfocus = get_focusable_descendant();
       if(pfocus != NULL)
       {
          Application.user()->set_keyboard_focus(pfocus);

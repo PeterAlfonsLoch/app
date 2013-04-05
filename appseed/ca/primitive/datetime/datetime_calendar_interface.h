@@ -24,7 +24,7 @@ public:
    ::datetime::time    m_timeEnd;
 
 
-   calendar_interface(::ca::application * papp);
+   calendar_interface(::ca::applicationsp papp);
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);

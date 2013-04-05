@@ -7,7 +7,7 @@
 #endif
 
 
-condition::condition(::ca::application * papp) :
+condition::condition(::ca::applicationsp papp) :
    ca(papp)
 {
 

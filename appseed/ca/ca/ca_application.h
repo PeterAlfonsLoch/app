@@ -132,7 +132,7 @@ namespace ca
       bool                             m_bOk;
 
 
-      application_signal_object(::ca::application * papp, ::ca::signal * psignal, ::ca::e_application_signal esignal);
+      application_signal_object(::ca::applicationsp papp, ::ca::signal * psignal, ::ca::e_application_signal esignal);
 
 
    };
@@ -164,7 +164,7 @@ namespace ca
       string                        m_strAppName;
       string                        m_strAppId;
       string                        m_strLibraryName;
-      ::plane::application *        m_pappThis;
+      sp(::plane::application)        m_pappThis;
       ::cube::application *         m_pappCube;
 
 
@@ -185,15 +185,15 @@ namespace ca
 
 
 #ifdef METROWIN
-      virtual ::user::interaction * window_from_os_data(void * pdata) = 0;
-      virtual ::user::interaction * window_from_os_data_permanent(void * pdata) = 0;
+      virtual sp(::user::interaction) window_from_os_data(void * pdata) = 0;
+      virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata) = 0;
 #else
-      virtual ::ca::window * window_from_os_data(void * pdata) = 0;
-      virtual ::ca::window * window_from_os_data_permanent(void * pdata) = 0;
+      virtual sp(::ca::window) window_from_os_data(void * pdata) = 0;
+      virtual sp(::ca::window) window_from_os_data_permanent(void * pdata) = 0;
 #endif
 
-      virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
-      virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
+      virtual sp(::ca::window) FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
+      virtual sp(::ca::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
 
       virtual string get_version() = 0;
 
@@ -220,7 +220,7 @@ namespace ca
 
       virtual bool _001OnDDECommand(const char * lpcsz) = 0;
       virtual void _001EnableShellOpen() = 0;
-      virtual ::user::document_interface * _001OpenDocumentFile(var varFile) = 0;
+      virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile) = 0;
       virtual void _001OnFileNew(::ca::signal_object * pobj) = 0;
 
       virtual void ShowWaitCursor(bool bShow = true) = 0;
@@ -359,7 +359,7 @@ namespace ca
       bool                          m_bService;
       bool                          m_bZipIsDir;
       ::plane::system *             m_psystem;
-      ::plane::session *            m_psession;
+      sp(::plane::session)            m_psession;
 
       class ::ca::base64                 m_base64;
       signal                              m_signalAppLanguageChange;
@@ -376,7 +376,7 @@ namespace ca
 
       string                        m_strInstallType;
       string                        m_strInstallToken;
-      //::user::interaction *         m_puiInitialPlaceHolderContainer;
+      //sp(::user::interaction)         m_puiInitialPlaceHolderContainer;
       ::ca::application_bias        m_biasCalling;
 
 
@@ -473,7 +473,7 @@ namespace ca
       bool                             m_bSessionSynchronizedCursor;
       rect                             m_rectScreen;
       bool                             m_bSessionSynchronizedScreen;
-      ::user::interaction *            m_pwndMain;
+      sp(::user::interaction)            m_pwndMain;
 
 
       int32_t                              m_iResourceId;
@@ -513,7 +513,7 @@ namespace ca
 
       virtual int32_t main();
 
-      virtual application * get_app() const;
+      virtual applicationsp get_app() const;
 
       virtual bool is_system();
       virtual bool is_session();
@@ -615,7 +615,7 @@ namespace ca
 
       virtual void load_string_table();
 
-      virtual ::user::interaction * uie_from_point(point pt);
+      virtual sp(::user::interaction) uie_from_point(point pt);
 
       void process(machine_event_data * pdata);
 
@@ -718,7 +718,7 @@ namespace ca
       ::ca::command_thread & creation();
 
       //virtual void on_allocation_error(const ::ca::type_info & info);
-      //virtual ::ca::ca * on_alloc(const ::ca::type_info & info);
+      //virtual sp(::ca::ca) on_alloc(const ::ca::type_info & info);
 
 
       virtual bool check_exclusive();
@@ -734,28 +734,28 @@ namespace ca
 
    // Initialization Operations - should be done in initialize_instance
 
-      ::user::interaction * get_active_guie();
-      ::user::interaction * get_focus_guie();
-//      virtual ::user::interaction * get_place_holder_container();
+      sp(::user::interaction) get_active_guie();
+      sp(::user::interaction) get_focus_guie();
+//      virtual sp(::user::interaction) get_place_holder_container();
 
 
       ::user::interaction_ptr_array & frames();
-      virtual void add_frame(::user::interaction * pwnd);
-      virtual void remove_frame(::user::interaction * pwnd);
+      virtual void add_frame(sp(::user::interaction) pwnd);
+      virtual void remove_frame(sp(::user::interaction) pwnd);
 
 
-      virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
 
 
 #ifdef WINDOWS
 
-      virtual int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
+      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, UINT fuStyle, const char * pszFormat, ...);
 
 #else
 
       template<typename T, typename... Args>
-      int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
+      int32_t simple_message_box(sp(::user::interaction) puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
       {
 
          string str;
@@ -920,7 +920,7 @@ namespace ca
       int32_t get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -963,8 +963,8 @@ namespace ca
       virtual void get_cursor_pos(LPPOINT lppoint);
       virtual void get_screen_rect(LPRECT lprect);
 
-      virtual ::user::interaction * release_capture_uie();
-      virtual ::user::interaction * get_capture_uie();
+      virtual sp(::user::interaction) release_capture_uie();
+      virtual sp(::user::interaction) get_capture_uie();
 
 
       virtual int32_t get_document_count();
@@ -1018,7 +1018,7 @@ namespace ca
 
       ::user::str_context * str_context();
 
-      virtual void on_delete(::ca::ca * pobject);
+      virtual void on_delete(sp(::ca::ca) pobject);
 
 //      virtual bool open_link(const char * pszLink, const char * pszTarget = ::null());
 
@@ -1030,15 +1030,15 @@ namespace ca
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
 #ifdef METROWIN
-      virtual ::user::interaction * window_from_os_data(void * pdata);
-      virtual ::user::interaction * window_from_os_data_permanent(void * pdata);
+      virtual sp(::user::interaction) window_from_os_data(void * pdata);
+      virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else
-      virtual ::ca::window * window_from_os_data(void * pdata);
-      virtual ::ca::window * window_from_os_data_permanent(void * pdata);
+      virtual sp(::ca::window) window_from_os_data(void * pdata);
+      virtual sp(::ca::window) window_from_os_data_permanent(void * pdata);
 #endif
 
-      virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::ca::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::ca::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual string get_local_mutex_name(const char * pszAppName);
       virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
@@ -1058,13 +1058,13 @@ namespace ca
 
       bool ca_finalize();
 
-      virtual ::ca::ca * alloc(::ca::type_info & info);
-      virtual ::ca::ca * alloc(const id & idType);
+      virtual sp(::ca::ca) alloc(::ca::type_info & info);
+      virtual sp(::ca::ca) alloc(const id & idType);
 
 
 
-      virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
-      virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
 //      ::ca::file_system_sp m_spfilesystem;
 
 
@@ -1073,7 +1073,7 @@ namespace ca
 //      virtual ::ca::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::user::document_interface * _001OpenDocumentFile(var varFile);
+      virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 
@@ -1086,7 +1086,7 @@ namespace ca
       virtual void set_thread(::ca::thread * pthread);
 
 
-      virtual ::ca::window * get_desktop_window();
+      virtual sp(::ca::window) get_desktop_window();
 
 
 
@@ -1097,23 +1097,20 @@ namespace ca
    };
 
 
-   inline application & get(::ca::application * papp)
+   inline application & get(::ca::applicationsp papp)
    {
-      return *dynamic_cast < application * > (papp);
+      return papp;
    }
 
-
-} // namespace ca
-
-// impl
+   // impl
 template < class APP >
- ::ca::application * ::ca::single_application_library < APP > :: get_new_app(const char * pszAppId)
+ ::ca::applicationsp single_application_library < APP > :: get_new_app(const char * pszAppId)
 {
 
    if(!contains_app(pszAppId))
       return ::null();
 
-   ::ca::application * papp = new APP();
+   ::ca::applicationsp papp = new APP();
 
    if(papp == ::null())
       return ::null();
@@ -1137,6 +1134,10 @@ template < class APP >
    return papp;
 
 }
+
+
+} // namespace ca
+
 
 
 #include "ca/ca/ca_font.h"

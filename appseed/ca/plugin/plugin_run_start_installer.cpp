@@ -3,7 +3,7 @@
 namespace plugin
 {
 
-   run_start_installer::run_start_installer(::ca::application * papp, plugin * pplugin) :
+   run_start_installer::run_start_installer(::ca::applicationsp papp, plugin * pplugin) :
       m_pplugin(pplugin)
    {
       UNREFERENCED_PARAMETER(papp);

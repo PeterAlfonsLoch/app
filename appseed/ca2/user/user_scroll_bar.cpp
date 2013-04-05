@@ -36,11 +36,11 @@ namespace user
       {
          pscroll->m_uiMessage = WM_VSCROLL;
       }
-      ::user::interaction * pParentWnd = get_parent();
+      sp(::user::interaction) pParentWnd = get_parent();
       pParentWnd->send_message(pscroll);
    }
 
-   bool scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
+   bool scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, sp(::user::interaction)pParentWnd, UINT nID)
    {
        m_eorientation = eorientation;
        return ::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID);

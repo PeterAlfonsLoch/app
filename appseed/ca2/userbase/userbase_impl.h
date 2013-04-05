@@ -10,7 +10,7 @@ namespace userbase
    public: // re-implementations only
 
 
-      tool_cmd_ui(::ca::application * papp);
+      tool_cmd_ui(::ca::applicationsp papp);
       virtual ~tool_cmd_ui();
 
       virtual void Enable(bool bOn);

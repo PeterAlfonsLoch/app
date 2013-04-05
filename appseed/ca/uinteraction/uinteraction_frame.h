@@ -72,7 +72,7 @@ namespace uinteraction
 
 
 
-         frame(::ca::application * papp);
+         frame(::ca::applicationsp papp);
          virtual ~frame();
 
 
@@ -92,7 +92,7 @@ namespace uinteraction
 
 
 
-         virtual void OnMove(::user::interaction * pwnd);
+         virtual void OnMove(sp(::user::interaction) pwnd);
 
 
          virtual void _001OnDraw(::ca::graphics * pca);

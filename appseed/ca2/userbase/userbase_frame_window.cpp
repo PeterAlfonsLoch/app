@@ -74,7 +74,7 @@ namespace userbase
    // trans   ASSERT(get_handle() != NULL);
 
       // get top level parent frame ::ca::window first unless this is a child ::ca::window
-      frame_window* pParent = (GetStyle() & WS_CHILD) ? this : dynamic_cast < frame_window * > (GetTopLevelFrame());
+      sp(frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame());
       ASSERT(pParent != NULL);
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
@@ -98,7 +98,7 @@ namespace userbase
 
       // then update the state of all floating windows owned by the parent
 #ifdef WINDOWSEX
-      ::user::interaction* oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
+      sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
       while (oswindow != NULL)
       {
          if(::user::is_descendant(pParent, oswindow))
@@ -293,7 +293,7 @@ namespace userbase
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
       dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
       if (m_pViewActive != NULL)
-         dumpcontext << "\nwith active ::view: " << m_pViewActive;
+         dumpcontext << "\nwith active ::view: " << m_pViewActive.m_p;
       else
          dumpcontext << "\nno active ::view";
 
@@ -317,7 +317,7 @@ namespace userbase
 
 
 
-   ::user::interaction* frame_window::WindowDataGetWnd()
+   sp(::user::interaction) frame_window::WindowDataGetWnd()
    {
       return this;
    }
@@ -354,7 +354,7 @@ namespace userbase
       frame_window_interface::_000OnDraw(pdc);
    }
 
-   void frame_window::on_delete(::ca::ca * pca)
+   void frame_window::on_delete(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }

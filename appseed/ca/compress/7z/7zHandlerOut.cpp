@@ -345,7 +345,7 @@ namespace n7z
             if (ui.get_count != 0 && ui.IsAnti)
                return E_INVALIDARG;
          }
-         updateItems.add(ui);
+         updateItems.add(new CUpdateItem(ui));
       }
 
       CCompressionMethodMode methodMode, headerMethod;

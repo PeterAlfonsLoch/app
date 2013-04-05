@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   input_tree::input_tree(::ca::application * papp) :
+   input_tree::input_tree(::ca::applicationsp papp) :
       ca(papp),
       tree_base(papp)
    {
@@ -13,7 +13,7 @@ namespace xml
       m_pnode = ::null();
    }
 
-   input_tree::input_tree(::ca::application * papp, tree_schema * pschema) :
+   input_tree::input_tree(::ca::applicationsp papp, tree_schema * pschema) :
       ca(papp),
       tree_base(papp, pschema)
    {

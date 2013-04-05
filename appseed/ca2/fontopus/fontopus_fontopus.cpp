@@ -18,7 +18,7 @@ namespace ca
       }
 
 
-      void fontopus::construct(::ca::application * papp)
+      void fontopus::construct(::ca::applicationsp papp)
       {
 
          ::fontopus::fontopus::construct(papp);

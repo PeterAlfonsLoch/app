@@ -39,9 +39,9 @@ namespace uinteraction
 
          class point ptCursor = pmouse->m_pt;
 
-         WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow());
+         WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
          if(pinterface == NULL)
-            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow());
+            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
 
 
          if(pinterface->WfiOnBeginMoving(ptCursor))
@@ -90,7 +90,7 @@ namespace uinteraction
          if(!m_bMoving)
             return false;
          pmouse->m_bRet = true;
-         ::user::interaction * puieCapture = System.get_capture_uie();
+         sp(::user::interaction) puieCapture = System.get_capture_uie();
          if(puieCapture == NULL)
          {
 #ifdef LINUX
@@ -100,7 +100,7 @@ namespace uinteraction
             m_bMoving = false;
             return false;
          }
-         ::user::interaction * puieEventWindow = GetEventWindow();
+         sp(::user::interaction) puieEventWindow = GetEventWindow();
          if(puieCapture != puieEventWindow)
          {
             if(puieCapture != NULL
@@ -128,7 +128,7 @@ namespace uinteraction
          rect rectWindow;
          m_pworkset->GetWndDraw()->GetWindowRect(rectWindow);
          bool bMove = true;
-         //      ::user::interaction * pWndParent = m_pworkset->GetWndDraw()->get_parent();
+         //      sp(::user::interaction) pWndParent = m_pworkset->GetWndDraw()->get_parent();
 
          //::ReleaseCapture();
          //::ShowWindow(m_pworkset->GetWndDraw()->get_wnd()->get_os_data(), SW_HIDE);
@@ -176,7 +176,7 @@ namespace uinteraction
             // TODO: should use iMaxMonitor information to set window
             // to a more visible position in the monitor iMaxMonitor with greatest
             // area.
-            simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pworkset->GetWndDraw());
+            sp(simple_frame_window) pframe =  (m_pworkset->GetWndDraw().m_p);
             if(pframe != NULL)
             {
                pframe->InitialFramePosition(true);
@@ -212,9 +212,9 @@ namespace uinteraction
             GetMoveWindow()->SetWindowPos(ZORDER_TOP, ptMove.x, ptMove.y, 0, 0, SWP_NOSIZE);
          }
 
-         WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow());
+         WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
          if(pinterface == NULL)
-            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow());
+            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
 
          pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
          if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
@@ -247,7 +247,7 @@ namespace uinteraction
          m_ptCursorOrigin = ptCursor;
          rect rectWindow;
          GetMoveWindow()->GetWindowRect(rectWindow);
-         ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
+         sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
          if(pWndParent != NULL)
          {
          pWndParent->ScreenToClient(rectWindow);
@@ -260,7 +260,7 @@ namespace uinteraction
          else if(lpMsg->message == WM_MOUSEMOVE ||
          lpMsg->message == WM_LBUTTONUP)
          {
-         ::user::interaction * pWndCapture = uieApplication.get_capture_uie();
+         sp(::user::interaction) pWndCapture = uieApplication.get_capture_uie();
          if(!m_bMoving ||
          pWndCapture == NULL ||
          pWndCapture->get_handle() != GetEventWindow()->get_handle())
@@ -278,7 +278,7 @@ namespace uinteraction
          rect rectWindow;
          GetEventWindow()->GetWindowRect(rectWindow);
          bool bMove = true;
-         ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
+         sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
          if(pWndParent != NULL)
          {
          pWndParent->ScreenToClient(rectWindow);
@@ -350,7 +350,7 @@ namespace uinteraction
          return FALSE;
          else
          return TRUE;*/
-         /*::user::interaction * pwnd = ::user::interaction::from_handle;
+         /*sp(::user::interaction) pwnd = ::user::interaction::from_handle;
          if(pwnd == NULL)
          return TRUE;
          //HICON hicon = pwnd->GetIcon(FALSE);
@@ -390,7 +390,7 @@ namespace uinteraction
          }*/
          m_bPendingMove = false;
          m_dwLastMoveTime = get_tick_count();
-         ::user::interaction * pwnd = System.window_from_os_data(oswindow);
+         sp(::user::interaction) pwnd = System.window_from_os_data(oswindow);
          //            if(base < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
          //          {
          //            m_pWndMoving->GetWindowRect(((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow);
@@ -401,7 +401,7 @@ namespace uinteraction
          //   TRACE("pt.y  : %d,\n ", pt.y);
          //   TRACE("rectClipBox.right : %d, ", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.right);
          //   TRACE("rectClipBox.bottom: %d\n", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.bottom);
-         /*::user::interaction *  pParentWnd  = m_pWndMoving->get_parent();
+         /*sp(::user::interaction)  pParentWnd  = m_pWndMoving->get_parent();
          rect rectWindow;
          if(pParentWnd != NULL)
          {
@@ -411,7 +411,7 @@ namespace uinteraction
          }*/
 
          ASSERT(GetEventWindow() != NULL);
-         ::user::interaction * pwndParent = GetEventWindow()->get_parent();
+         sp(::user::interaction) pwndParent = GetEventWindow()->get_parent();
          if(pwndParent != NULL)
          {
             EDock edock = m_pworkset->GetDockManager()->GetDockState();
@@ -452,7 +452,7 @@ namespace uinteraction
          m_eborderMask = emask;
       }
 
-      void MoveManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
+      void MoveManager::message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj);
          if(m_bPendingMove
@@ -471,7 +471,7 @@ namespace uinteraction
             m_ptCursorOrigin = ptCursor;
             rect rectWindow;
             GetMoveWindow()->GetWindowRect(rectWindow);
-            ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(rectWindow);
@@ -485,7 +485,7 @@ namespace uinteraction
          else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
             pbase->m_uiMessage == WM_LBUTTONUP)
          {
-            ::user::interaction * pWndCapture = System.get_capture_uie();
+            sp(::user::interaction) pWndCapture = System.get_capture_uie();
             TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie());
             if(!m_bMoving ||
                pWndCapture == NULL ||
@@ -515,7 +515,7 @@ namespace uinteraction
             rect rectWindow;
             GetEventWindow()->GetWindowRect(rectWindow);
             bool bMove = true;
-            ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
             if(pWndParent == NULL)
                pWndParent = System.get_desktop_window();
             if(pWndParent != NULL)
@@ -561,12 +561,12 @@ namespace uinteraction
          return false;
       }
 
-      ::user::interaction * MoveManager::GetEventWindow()
+      sp(::user::interaction) MoveManager::GetEventWindow()
       {
          return m_pworkset->GetEventWindow();
       }
 
-      ::user::interaction * MoveManager::GetMoveWindow()
+      sp(::user::interaction) MoveManager::GetMoveWindow()
       {
          return m_pworkset->GetDrawWindow();
       }

@@ -37,7 +37,7 @@ namespace userbase
 
       virtual void _001CloseAllDocuments(bool bEndSession);
       void add_document_template(::userbase::document_template * ptemplate);
-      virtual ::userbase::document* _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
+      virtual sp(::userbase::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -51,8 +51,8 @@ namespace userbase
    };
 
 
-   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(::ca::application * papp);
-   CLASS_DECL_ca2 ::user::front_end * GetUfe(::ca::application * papp);
+   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(::ca::applicationsp papp);
+   CLASS_DECL_ca2 ::user::front_end * GetUfe(::ca::applicationsp papp);
 
 
 

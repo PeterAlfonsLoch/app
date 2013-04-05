@@ -1,6 +1,7 @@
 #include "framework.h"
 
-file_manager_operation_view::file_manager_operation_view(::ca::application * papp) :
+
+file_manager_operation_view::file_manager_operation_view(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -53,9 +54,9 @@ void file_manager_operation_view::install_message_handling(::ca::message::dispat
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &file_manager_operation_view::_001OnDestroy);
 }
 
-file_manager_operation_document * file_manager_operation_view::get_document()
+sp(file_manager_operation_document) file_manager_operation_view::get_document()
 {
-   return dynamic_cast < file_manager_operation_document * > (::view::get_document());
+   return  (::view::get_document());
 }
 
 void file_manager_operation_view::_001OnMainPostMessage(::ca::signal_object * pobj)

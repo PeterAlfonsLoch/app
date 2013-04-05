@@ -14,8 +14,8 @@ class CLASS_DECL_ca base_exception :
 public:
 
 
-   base_exception(::ca::application * papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-   explicit base_exception(::ca::application * papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+   base_exception(::ca::applicationsp papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+   explicit base_exception(::ca::applicationsp papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
    // Implementation (setting m_bAutoDelete to FALSE is advanced)
    virtual ~base_exception();
 

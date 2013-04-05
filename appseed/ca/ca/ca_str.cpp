@@ -449,7 +449,7 @@ namespace ca
 
    }
 
-   string CLASS_DECL_ca str::random_replace(::ca::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   string CLASS_DECL_ca str::random_replace(::ca::applicationsp papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
    {
 
       string str(psz);

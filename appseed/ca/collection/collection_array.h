@@ -415,7 +415,7 @@ public:
 
 
 
-   array(::ca::application * papp = ::null(), ::count nGrowBy = 32);
+   array(::ca::applicationsp papp = ::null(), ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(array <TYPE, ARG_TYPE> && a);
    array(::count n);
@@ -875,7 +875,7 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (array && a)
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(::ca::application * papp, ::count nGrowBy) :
+array<TYPE, ARG_TYPE>::array(::ca::applicationsp papp, ::count nGrowBy) :
 ca(papp)
 {
    m_nGrowBy = max(0, nGrowBy);

@@ -14,7 +14,7 @@ namespace user
       m_pholder            = ::null();
    }
 
-   ::user::interaction *   view_creator_data::get_wnd()
+   sp(::user::interaction)   view_creator_data::get_wnd()
    {
       if(m_pwnd != ::null())
          return m_pwnd;
@@ -160,7 +160,7 @@ namespace user
    {
    }
 
-   ::user::interaction * view_creator::get_view()
+   sp(::user::interaction) view_creator::get_view()
    {
       if(m_pviewcontainer != ::null())
       {
@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void view_creator::on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void view_creator::on_update(sp(::user::document_interface) pdocument, ::view * pSender, LPARAM lHint, ::ca::object* pHint)
    {
       
       POSITION pos = m_viewmap.get_start_position();

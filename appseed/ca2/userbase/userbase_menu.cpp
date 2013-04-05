@@ -7,7 +7,7 @@ namespace userbase
    const int32_t BaseWndMenuCmdUi = 117;
    const int32_t BaseWndMenuTiming = 200;
 
-   menu::menu(::ca::application * papp) :
+   menu::menu(::ca::applicationsp papp) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -25,7 +25,7 @@ namespace userbase
 
    }
 
-   menu::menu(::ca::application * papp, menu_item * pitem) :
+   menu::menu(::ca::applicationsp papp, menu_item * pitem) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -65,7 +65,7 @@ namespace userbase
       return m_pitem->m_spitema->element_at(i);
    }
 
-   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
+   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent)
    {
       ASSERT(oswindowParent != NULL);
       _m_pmenu = new menu(get_app(), m_pitem);
@@ -73,7 +73,7 @@ namespace userbase
       return _m_pmenu->_TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
    }
 
-   bool menu::_TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, menu * pmenuParent)
+   bool menu::_TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent)
    {
 
       UNREFERENCED_PARAMETER(iFlags);
@@ -336,7 +336,7 @@ namespace userbase
                }
                else
                {
-                  ::user::interaction * pwndParent = m_oswindowParent;
+                  sp(::user::interaction) pwndParent = m_oswindowParent;
                   id id = pevent->m_puie->m_id;
                   send_message(WM_CLOSE);
                   // this may be destroyed by WM_CLOSE above
@@ -438,9 +438,9 @@ namespace userbase
 
                cmdui.m_iIndex    = i;
                cmdui.m_id        = m_pitem->m_spitema->element_at(i)->m_id;
-               cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->element_at(i)->m_button;
+               cmdui.m_pOther    = (sp(::user::interaction)) &m_pitem->m_spitema->element_at(i)->m_button;
 
-               ::user::interaction * pwndParent = m_oswindowParent;
+               sp(::user::interaction) pwndParent = m_oswindowParent;
                if(pwndParent != NULL)
                {
                  /* xxx if(pwndParent->_001OnCommand(0,
@@ -494,9 +494,9 @@ namespace userbase
 
             cmdui.m_iIndex    = i;
             cmdui.m_id        = m_pitem->m_spitema->element_at(i)->m_id;
-            cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->element_at(i)->m_button;
+            cmdui.m_pOther    = (sp(::user::interaction)) &m_pitem->m_spitema->element_at(i)->m_button;
 
-            ::user::interaction * pwndParent = m_oswindowParent;
+            sp(::user::interaction) pwndParent = m_oswindowParent;
             if(pwndParent != NULL)
             {
                /*

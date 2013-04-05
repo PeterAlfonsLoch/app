@@ -354,7 +354,7 @@ HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const 
   return S_FALSE;
 }
 
-      CInArchive::CInArchive(::ca::application * papp) :
+      CInArchive::CInArchive(::ca::applicationsp papp) :
          ca(papp)
       {
       }
@@ -398,7 +398,7 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
   CNum i;
   for (i = 0; i < numCoders; i++)
   {
-    folder.Coders.add(CCoderInfo());
+    folder.Coders.add(new CCoderInfo());
     CCoderInfo &coder = folder.Coders.last_element();
 
     {
@@ -833,7 +833,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   for (int32_t i = 0; i < folders.get_count(); i++)
   {
     const CFolder &folder = folders[i];
-    dataVector.add(::ca::byte_buffer());
+    dataVector.add(new ::ca::byte_buffer());
     ::ca::byte_buffer &data = dataVector.last_element();
     uint64_t unpackSize64 = folder.GetUnpackSize();
     size_t unpackSize = (size_t)unpackSize64;
@@ -949,7 +949,7 @@ HRESULT CInArchive::ReadHeader(
 //  db.Files.set_size(0, numFiles);
   CNum i;
   for (i = 0; i < numFiles; i++)
-    db.Files.add(CFileItem());
+    db.Files.add(new CFileItem());
 
   db.ArchiveInfo.FileInfoPopIDs.add(NID::kSize);
   if (!db.PackSizes.is_empty())

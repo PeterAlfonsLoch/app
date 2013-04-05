@@ -9,7 +9,7 @@ class CLASS_DECL_ca document :
 public:
 
 
-   document(::ca::application * papp);
+   document(::ca::applicationsp papp);
    virtual ~document();
 
 

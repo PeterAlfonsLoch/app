@@ -941,9 +941,6 @@
     <ClInclude Include="ca\ca_se_translator.want_to_remove.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_smart_pointer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_system.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -3179,6 +3176,18 @@
     <ClInclude Include="collection\collection_attrib_map.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
+    <ClInclude Include="user\user_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_smart_pointer1.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_smart_pointer2.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_c.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5283,6 +5292,9 @@
     </ClCompile>
     <ClCompile Include="exception\exception_io.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_c.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

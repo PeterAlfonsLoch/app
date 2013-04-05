@@ -3,7 +3,7 @@
 namespace nature
 {
 
-   database::database(::ca::application * papp) :
+   database::database(::ca::applicationsp papp) :
       ca(papp)
    {
       m_bInitialized = false;

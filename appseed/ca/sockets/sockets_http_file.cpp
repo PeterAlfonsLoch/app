@@ -9,7 +9,7 @@ namespace sockets
    {
 
 
-      file::file(::ca::application * papp, mutex * pmutex) :
+      file::file(::ca::applicationsp papp, mutex * pmutex) :
          ca(papp),
          transfer_file(papp, pmutex)
       {
@@ -17,7 +17,7 @@ namespace sockets
 
       // it is not currently designed to call open.
       //
-      file::file(::ca::application * papp, ::primitive::memory_file * pmemoryfileIn) :
+      file::file(::ca::applicationsp papp, ::primitive::memory_file * pmemoryfileIn) :
          ca(papp),
          transfer_file(papp, pmemoryfileIn)
       {
@@ -36,8 +36,8 @@ namespace sockets
 
          ::ca::http::signal * psignal = new ::ca::http::signal;
 
-         psignal->m_set["file"]       = (::ca::ca *) m_pmemoryfileIn;
-         psignal->m_set["file_out"]   = (::ca::ca *) m_ptimeoutfile;
+         psignal->m_set["file"]       = (sp(::ca::ca)) m_pmemoryfileIn;
+         psignal->m_set["file_out"]   = (sp(::ca::ca)) m_ptimeoutfile;
 
          psignal->m_strUrl = lpszFileName; 
          //psignal->m_set["optional_ca2_login"] = true;

@@ -5,7 +5,7 @@ namespace platform
 {
 
 
-   frame::frame(::ca::application * papp) :
+   frame::frame(::ca::applicationsp papp) :
       ca(papp),
       simple_frame_window(papp),
       form_frame(papp)
@@ -257,7 +257,7 @@ namespace platform
       m_dwLastSuperDock = ::get_tick_count();
       rect rectDesktop;
 
-      ::user::interaction * puiParent = GetTypedParent < bergedge::view >();
+      sp(::user::interaction) puiParent = GetTypedParent < bergedge::view >();
       if(puiParent == NULL)
          puiParent = GetTypedParent < ::user::place_holder > ();
       if(puiParent == NULL)

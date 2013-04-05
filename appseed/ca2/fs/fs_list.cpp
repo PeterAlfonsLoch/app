@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   list::list(::ca::application * papp) :
+   list::list(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       m_headerctrl(papp),

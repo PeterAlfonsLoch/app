@@ -24,10 +24,10 @@ namespace hi5
             string                                    m_strAuthorizationUrl;
             int32_t                                       m_iView;
             ::userbase::single_document_template *    m_ptemplatePane;
-            form_document *                           m_pdoc;
+            sp(::form_document)                           m_pdoc;
             ::userex::pane_tab_view *                   m_ptabview;
-            form_document *                           m_pdocAuth;
-            form_document *                           m_pdocMessage;
+            sp(::form_document)                           m_pdocAuth;
+            sp(::form_document)                           m_pdocMessage;
             form_view *                               m_pviewAuth;
             bool                                      m_bAuth;
             string                                    m_strForm;
@@ -35,7 +35,7 @@ namespace hi5
             bool                                      m_bLicense;
             bool                                      m_bInteractive;
 
-            authorization(::ca::application * papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+            authorization(::ca::applicationsp papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
             virtual ~authorization();
 
             void ensure_main_document();

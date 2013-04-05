@@ -13,12 +13,12 @@ public:
    FileManagerViewInterface();
    virtual ~FileManagerViewInterface();
    
-   FileManagerInterface * m_pfilemanagerinterface;
+   sp(FileManagerInterface) m_pfilemanagerinterface;
 
    ::fs::item & GetFileManagerItem();
 
-   virtual FileManagerInterface * GetFileManager();
-   virtual ::filemanager::document * GetFileManagerDoc();
+   virtual sp(FileManagerInterface) GetFileManager();
+   virtual sp(::filemanager::document) GetFileManagerDoc();
 
    void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 };

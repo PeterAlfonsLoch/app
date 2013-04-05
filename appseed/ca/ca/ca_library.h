@@ -57,7 +57,7 @@ namespace ca
       library(const char * pszRoot);
       virtual ~library();
 
-      virtual bool open(::ca::application * papp, const char * pszPath, bool bAutoClose = true);
+      virtual bool open(::ca::applicationsp papp, const char * pszPath, bool bAutoClose = true);
       virtual bool close();
 
 
@@ -73,18 +73,18 @@ namespace ca
 
 
       // impl
-      virtual ::ca::application * get_new_app(const char * pszId);
+      virtual ::ca::applicationsp get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
-      virtual ::uinteraction::interaction * get_new_uinteraction();
+      virtual sp(::uinteraction::interaction) get_new_uinteraction();
       virtual bool is_uinteraction_library();
 
 
-      virtual ::dynamic_source::script_manager * create_script_manager(::ca::application * papp);
+      virtual ::dynamic_source::script_manager * create_script_manager(::ca::applicationsp papp);
 
       virtual void get_script_list(stringa & stra);
-      virtual ::dynamic_source::script * create_script(::ca::application * papp, const char * pszScript);
+      virtual ::dynamic_source::script * create_script(::ca::applicationsp papp, const char * pszScript);
       virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
 
       virtual string get_library_name();
@@ -108,7 +108,7 @@ namespace ca
       single_application_library(const char * pszRoot) : ::ca::library(pszRoot) {}
 
       // impl
-      virtual ::ca::application * get_new_app(const char * pszAppId);
+      virtual ::ca::applicationsp get_new_app(const char * pszAppId);
 
 
    };

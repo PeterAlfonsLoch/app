@@ -28,7 +28,7 @@
    { \
     friend class translator; \
    protected: \
-   name (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : \
+   name (::ca::applicationsp papp, EXCEPTION_POINTERS * ppointers) : \
       ca(papp), \
       ::call_stack(papp), \
       ::base_exception(papp), \
@@ -82,7 +82,7 @@ public:
 
 
 #ifdef WINDOWS
-   standard_exception(::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
+   standard_exception(::ca::applicationsp papp, EXCEPTION_POINTERS * ppointers) :
       ca(papp),
       ::call_stack(papp),
       ::base_exception(papp),
@@ -103,7 +103,7 @@ public:
    }
 
 #else
-   standard_exception(::ca::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+   standard_exception(::ca::applicationsp papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
       ca(papp),
       ::call_stack(papp),
       ::base_exception(papp),
@@ -148,7 +148,7 @@ namespace exception
       friend class translator;
    protected:
    #if defined(LINUX) || defined(MACOS)
-      standard_access_violation (::ca::application * papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (::ca::applicationsp papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -176,7 +176,7 @@ namespace exception
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
    #else
-      standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
+      standard_access_violation (::ca::applicationsp papp, EXCEPTION_POINTERS * ppointers) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
@@ -194,7 +194,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (::ca::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (::ca::applicationsp papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -225,7 +225,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_no_memory (::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
+      standard_no_memory (::ca::applicationsp papp, EXCEPTION_POINTERS * ppointers) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
@@ -291,7 +291,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigsegv (::ca::applicationsp papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -301,7 +301,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigfpe (::ca::applicationsp papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

@@ -132,7 +132,7 @@ namespace cube
 
    bergedge::bergedge * cube::query_bergedge(index iEdge)
    {
-      plane::session * psession = NULL;
+      sp(::plane::session) psession = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, psession))
@@ -145,12 +145,12 @@ namespace cube
 
    bergedge::bergedge * cube::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      plane::session * psession = NULL;
+      sp(::plane::session) psession = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, psession))
       {
-         psession = dynamic_cast < ::plane::session * > (create_application("application", "session", true, pbiasCreation));
+         psession =  (create_application("application", "session", true, pbiasCreation));
          if(psession == NULL)
             return NULL;
          psession->m_iEdge = iEdge;
@@ -160,19 +160,19 @@ namespace cube
    }
 
 
-   platform::document * cube::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::platform::document) cube::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
       return pbergedge->get_platform();
    }
 
-   nature::document * cube::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::nature::document) cube::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
       return pbergedge->get_nature();
    }
 
-   ::ca::application * cube::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::applicationsp cube::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -190,7 +190,7 @@ namespace cube
 
 
 
-   void cube::register_bergedge_application(::ca::application * papp)
+   void cube::register_bergedge_application(::ca::applicationsp papp)
    {
 
 
@@ -199,7 +199,7 @@ namespace cube
 
    }
 
-   void cube::unregister_bergedge_application(::ca::application * papp)
+   void cube::unregister_bergedge_application(::ca::applicationsp papp)
    {
 
       System.unregister_bergedge_application(papp);
@@ -250,7 +250,7 @@ namespace cube
    index cube::get_new_bergedge(::ca::application_bias * pbiasCreation)
    {
       index iNewEdge = m_iNewEdge;
-      plane::session * psession;
+      sp(::plane::session) psession;
       while(m_pbergedgemap->Lookup(iNewEdge, psession))
       {
          iNewEdge++;

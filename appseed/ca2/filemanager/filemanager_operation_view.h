@@ -1,7 +1,9 @@
 #pragma once
 
+
 class file_manager_operation_list_view;
 class file_manager_operation_info_view;
+
 
 class CLASS_DECL_ca2 file_manager_operation_view :
    public ::userbase::split_view
@@ -25,10 +27,10 @@ public:
    ::user::view_creator * m_pviewcreator;
 
 
-   file_manager_operation_view(::ca::application * papp);
+   file_manager_operation_view(::ca::applicationsp papp);
    virtual ~file_manager_operation_view();
 
-   file_manager_operation_document * get_document();
+   sp(file_manager_operation_document) get_document();
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
    

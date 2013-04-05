@@ -12,7 +12,7 @@ namespace ca
 
       comparable_array < data * > m_dataptra;
 
-      data_listener(::ca::application * papp);
+      data_listener(::ca::applicationsp papp);
       virtual ~data_listener();
 
       bool listen(data * pdata, bool bListen = true);

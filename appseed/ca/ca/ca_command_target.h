@@ -93,7 +93,7 @@ public:
    ::ca::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(::ca::application * papp);
+   command_target_interface(::ca::applicationsp papp);
 
 
    template < class T >
@@ -167,7 +167,7 @@ class CLASS_DECL_ca command_target :
 {
 public:
    command_target();
-   command_target(::ca::application * papp);
+   command_target(::ca::applicationsp papp);
 
    void CommonConstruct();
 
@@ -226,7 +226,7 @@ public:
                      // if a popup sub menu - ID is for first in popup
 
    // if from some other ::ca::window
-   ::user::interaction *   m_pOther;         // ::null() if a menu or not a ::ca::window
+   sp(::user::interaction)   m_pOther;         // ::null() if a menu or not a ::ca::window
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;
@@ -238,7 +238,7 @@ public:
                      //  (probably a secondary popup menu)
 
 
-   cmd_ui(::ca::application * papp);
+   cmd_ui(::ca::applicationsp papp);
 
 
 // Operations to do in ON_UPDATE_COMMAND_UI
@@ -267,7 +267,7 @@ inline void cmd_ui::ContinueRouting()
 class CTestCmdUI : public cmd_ui
 {
 public:
-   CTestCmdUI(::ca::application * papp);
+   CTestCmdUI(::ca::applicationsp papp);
 
 public: // re-implementations only
    virtual void Enable(bool bOn);

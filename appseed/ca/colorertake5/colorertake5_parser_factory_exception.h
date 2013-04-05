@@ -16,7 +16,7 @@ namespace colorertake5
    public:
 
 
-      ParserFactoryException(::ca::application * papp) :
+      ParserFactoryException(::ca::applicationsp papp) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
@@ -26,7 +26,7 @@ namespace colorertake5
       }
 
 
-      ParserFactoryException(::ca::application * papp, const char * pszMessage) :
+      ParserFactoryException(::ca::applicationsp papp, const char * pszMessage) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),

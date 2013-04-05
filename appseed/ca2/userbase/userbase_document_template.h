@@ -12,7 +12,7 @@ namespace userbase
       virtual public ::user::document_template_interface
    {
    public:
-      document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & DocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
+      document_template(::ca::applicationsp papp, const char * pszMatter, ::ca::type_info & DocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
 
       virtual ~document_template();
 

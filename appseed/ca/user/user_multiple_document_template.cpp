@@ -1,7 +1,7 @@
 #include "framework.h"
 
 multiple_document_template::multiple_document_template(
-   ::ca::application * papp,
+   ::ca::applicationsp papp,
    const char * pszMatter, ::ca::type_info pDocClass,
    ::ca::type_info pFrameClass, ::ca::type_info pViewClass) :
    ca(papp),
@@ -32,14 +32,14 @@ multiple_document_template::~multiple_document_template()
    return m_docptra.get_count();
 }
 
-user::document_interface * multiple_document_template::get_document(index index) const
+sp(::user::document_interface) multiple_document_template::get_document(index index) const
 {
    if(index < 0 || index >= m_docptra.get_count())
       return ::null();
    return m_docptra.element_at(index);
 }
 
-void multiple_document_template::add_document(user::document_interface * pdocument)
+void multiple_document_template::add_document(sp(::user::document_interface) pdocument)
 {
    if(m_docptra.add_unique(pdocument))
    {
@@ -48,7 +48,7 @@ void multiple_document_template::add_document(user::document_interface * pdocume
 }
 
 
-void multiple_document_template::remove_document(user::document_interface * pdocument)
+void multiple_document_template::remove_document(sp(::user::document_interface) pdocument)
 {
    if(m_docptra.remove(pdocument) > 0)
    {
@@ -60,11 +60,11 @@ void multiple_document_template::remove_document(user::document_interface * pdoc
 void multiple_document_template::request(::ca::create_context * pcreatecontext)
 {
 
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) ::null();
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();
    bool bMakeVisible = pcreatecontext->m_bMakeVisible;
-//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
+//   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
-   user::document_interface * pdocument = create_new_document();
+   sp(::user::document_interface) pdocument = create_new_document();
    if (pdocument == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned ::null().\n");
@@ -75,7 +75,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
 
    bool bAutoDelete = pdocument->m_bAutoDelete;
    pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
-   frame_window* pFrame = create_new_frame(pdocument, ::null(), pcreatecontext);
+   sp(frame_window) pFrame = create_new_frame(pdocument, ::null(), pcreatecontext);
    pdocument->m_bAutoDelete = bAutoDelete;
    if (pFrame == ::null())
    {
@@ -133,12 +133,11 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    uh.m_etype = view_update_hint::TypeOpenDocument;
    pdocument->update_all_views(::null(), 0, &uh);
 
-   ::ca::add_ref(pdocument);
-
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
+
 }
 
-void multiple_document_template::set_default_title(user::document_interface * pdocument)
+void multiple_document_template::set_default_title(sp(::user::document_interface) pdocument)
 {
    string strDocName;
    if (GetDocString(strDocName, document_template::docName) &&
@@ -172,7 +171,7 @@ void multiple_document_template::dump(dump_context & dumpcontext) const
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      user::document_interface * pdocument = get_document(index);
+      sp(::user::document_interface) pdocument = get_document(index);
       dumpcontext << "\nwith user::document_interface " << (void *)pdocument;
    }
 
@@ -186,7 +185,7 @@ void multiple_document_template::assert_valid() const
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      user::document_interface * pdocument = get_document(index);
+      sp(::user::document_interface) pdocument = get_document(index);
       pdocument->assert_valid();
    }
 

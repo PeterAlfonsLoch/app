@@ -17,14 +17,14 @@ public:
    UINT                 m_uiTimer;
 
 
-   simple_scroll_bar(::ca::application * papp);
+   simple_scroll_bar(::ca::applicationsp papp);
    virtual ~simple_scroll_bar();
 
 
 
    virtual void pre_translate_message(::ca::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
+   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
@@ -47,7 +47,7 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true);
 
-   bool create(e_orientation eorientation, uint32_t dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
+   bool create(e_orientation eorientation, uint32_t dwStyle, rect & rect, sp(::user::interaction) pParentWnd, UINT nID);
 
    int32_t SetTrackingPos(point point);
    int32_t GetTrackSize(size & size);

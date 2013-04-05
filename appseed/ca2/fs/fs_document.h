@@ -15,10 +15,10 @@ namespace fs
       ::fs::set                                 m_fsset;
 
 
-      document(::ca::application * papp);
+      document(::ca::applicationsp papp);
       virtual ~document();
 
-      document *                                get_document();
+      sp(document)                                get_document();
 
 
    //#ifdef DEBUG

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   form_list::form_list(::ca::application * papp) :
+   form_list::form_list(::ca::applicationsp papp) :
       ca(papp),
       form(papp),
       ::user::interaction(papp),
@@ -59,7 +59,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
-      control * pcontrol = _001GetControlBySubItem(iSubItem);
+      sp(control) pcontrol = _001GetControlBySubItem(iSubItem);
       if(pcontrol != NULL)
       {
          if(pcontrol->descriptor().has_function(::user::control::function_action))
@@ -108,7 +108,7 @@ namespace user
       }
    }
 
-   control * form_list::_001GetControlBySubItem(index iSubItem)
+   sp(control) form_list::_001GetControlBySubItem(index iSubItem)
    {
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
       if(pcolumn != NULL && pcolumn->m_iControl >= 0)
@@ -117,7 +117,7 @@ namespace user
          return NULL;
    }
 
-   void form_list::_001PlaceControl(control * pcontrol)
+   void form_list::_001PlaceControl(sp(control) pcontrol)
    {
       rect rect;
       draw_list_item item(this);
@@ -142,14 +142,14 @@ namespace user
       }
    }
 
-   void form_list::_001SetEditControl(control * pcontrol)
+   void form_list::_001SetEditControl(sp(control) pcontrol)
    {
 
       if(pcontrol == NULL)
       {
          if(m_pcontrolEdit != NULL)
          {
-            class control * pcontrolEdit = m_pcontrolEdit;
+            sp(class control) pcontrolEdit = m_pcontrolEdit;
             _001HideControl(pcontrolEdit);
             m_pcontrolEdit = NULL;
          }
@@ -160,7 +160,7 @@ namespace user
       }
    }
 
-   control * form_list::_001GetEditControl()
+   sp(control) form_list::_001GetEditControl()
    {
       return m_pcontrolEdit;
    }
@@ -171,7 +171,7 @@ namespace user
       pobj->previous();
 
 
-      control * pcontrol = _001GetEditControl();
+      sp(control) pcontrol = _001GetEditControl();
 
       if(pcontrol != NULL)
       {
@@ -185,7 +185,7 @@ namespace user
       if(pobj->m_bRet)
          return;
 
-      control * pcontrol = _001GetEditControl();
+      sp(control) pcontrol = _001GetEditControl();
 
       if(pcontrol != NULL)
       {
@@ -194,7 +194,7 @@ namespace user
 
    }
 
-   bool form_list::_001OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -220,7 +220,7 @@ namespace user
       /*
       lresult = user::NotifyRetContinue;
 
-      control * pcontrol = m_controldescriptorset.get_control_by_id(wparam);
+      sp(control) pcontrol = m_controldescriptorset.get_control_by_id(wparam);
 
       if(pcontrol == NULL)
          return true;
@@ -257,7 +257,7 @@ namespace user
       list::_001UpdateColumns();
    }
 
-   ::user::interaction * form_list::_GetWnd()
+   sp(::user::interaction) form_list::_GetWnd()
    {
       return dynamic_cast < ::user::interaction * > (this);
    }
@@ -305,7 +305,7 @@ namespace user
    }
 
 
-   void form_list::_001HideControl(control * pcontrol)
+   void form_list::_001HideControl(sp(control) pcontrol)
    {
       pcontrol->ShowWindow(SW_HIDE);
    }
@@ -330,7 +330,7 @@ namespace user
       ::user::list::_001DrawSubItem(pdrawitem);
       if(pdrawitem->m_pcolumn->m_bCustomDraw)
       {
-         control * pcontrol = _001GetControlBySubItem(pdrawitem->m_iSubItem);
+         sp(control) pcontrol = _001GetControlBySubItem(pdrawitem->m_iSubItem);
          if(pcontrol != NULL)
          {
             pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
@@ -346,7 +346,7 @@ namespace user
       return m_pcontrolEdit != NULL;
    }
 
-   bool form_list::_001IsPointInside(control * pcontrol, point64 point)
+   bool form_list::_001IsPointInside(sp(control) pcontrol, point64 point)
    {
       if(pcontrol->m_pdescriptor != NULL)
       {
@@ -465,8 +465,8 @@ namespace user
          }
       }*/
       control_keep controlkeep(this, pt);
-      ::user::interaction * pui = get_top_child();
-      ::user::interaction * puiBefore = NULL;
+      sp(::user::interaction) pui = get_top_child();
+      sp(::user::interaction) puiBefore = NULL;
       bool bError;
       try
       {
@@ -512,7 +512,7 @@ namespace user
 
    }
 
-   void form_list::control_get_client_rect(control * pcontrol, LPRECT lprect)
+   void form_list::control_get_client_rect(sp(control) pcontrol, LPRECT lprect)
    {
       if(pcontrol == NULL)
       {
@@ -532,7 +532,7 @@ namespace user
       *lprect = rect;
    }
 
-   void form_list::control_get_window_rect(control * pcontrol, LPRECT lprect)
+   void form_list::control_get_window_rect(sp(control) pcontrol, LPRECT lprect)
    {
       control_get_client_rect(pcontrol, lprect);
       ClientToScreen(lprect);

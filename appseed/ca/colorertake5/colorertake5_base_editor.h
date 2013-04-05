@@ -29,7 +29,7 @@ namespace colorertake5
       *        text data in line-separated form. Can't be ::null().
       */
 
-      base_editor(::ca::application * papp);
+      base_editor(::ca::applicationsp papp);
       ~base_editor();
 
       void initialize(line_source * plinesource);

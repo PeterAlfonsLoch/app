@@ -75,34 +75,34 @@ namespace ca
          return true;
       }
 
-      sp(base) dispatch::peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+      sp(base) dispatch::peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
          if(!::PeekMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
             return ::null();
          return get_base(lpmsg, pwnd);
       }
 
-      sp(base) dispatch::get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+      sp(base) dispatch::get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
          if(!::GetMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
             return ::null();
          return get_base(lpmsg, pwnd);
       }
 
-      sp(base) dispatch::peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+      sp(base) dispatch::peek_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
          MESSAGE msg;
          return peek_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
       }
 
 
-      sp(base) dispatch::get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+      sp(base) dispatch::get_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
          MESSAGE msg;
          return get_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax);
       }
 
-      sp(base) dispatch::get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+      sp(base) dispatch::get_base(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
       {
          sp(base) pbase;
          e_prototype eprototype = PrototypeNone;
@@ -216,12 +216,12 @@ namespace ca
          return pbase;
       }
 
-      sp(base) dispatch::get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd)
+      sp(base) dispatch::get_base(LPMESSAGE lpmsg, sp(::user::interaction) pwnd)
       {
 #if defined(METROWIN)
          if(pwnd == ::null() && lpmsg->oswindow != ::null())
          {
-            ::user::interaction * pwindow = lpmsg->oswindow.window();
+            sp(::user::interaction) pwindow = lpmsg->oswindow.window();
 #else
          if(pwnd == ::null() && lpmsg->hwnd != ::null())
          {
@@ -230,7 +230,7 @@ namespace ca
 
                TRACE0("WM_DISPLAYCHANGE");
             }
-            ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
+            sp(::user::interaction) pwindow = System.window_from_os_data(lpmsg->hwnd);
 #endif
             if(pwindow != ::null())
             {
@@ -256,7 +256,7 @@ namespace ca
 
 #ifdef LINUX
 
-      sp(base) dispatch::get_base(XEvent * pevent, ::user::interaction * pwnd)
+      sp(base) dispatch::get_base(XEvent * pevent, sp(::user::interaction) pwnd)
       {
 
          throw todo(get_app());
@@ -410,7 +410,7 @@ namespace ca
       }
 
 
-      ::ca::window * dispatch::_GetWnd()
+      sp(::ca::window) dispatch::_GetWnd()
       {
          return dynamic_cast < ::ca::window * > (this);
       }
@@ -526,7 +526,7 @@ namespace ca
          }
       }
 
-      base::base(::ca::application * papp, ::ca::signal * psignal) :
+      base::base(::ca::applicationsp papp, ::ca::signal * psignal) :
          ca(papp),
          signal_object(psignal)
       {
@@ -534,7 +534,7 @@ namespace ca
          m_plresult = &m_lresult;
       }
 
-      base::base(::ca::application * papp, ::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
+      base::base(::ca::applicationsp papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
          ca(papp),
          signal_object(papp)
       {
@@ -542,7 +542,7 @@ namespace ca
          set(pwnd, uiMessage, wparam, lparam, lresult);
       }
 
-      void base::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          m_pwnd         = pwnd;
          m_uiMessage    = uiMessage;
@@ -551,7 +551,7 @@ namespace ca
          m_plresult     = &lresult;
       }
 
-      void base::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+      void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
       {
          set(pwnd, uiMessage, wparam, lparam, m_lresult);
       }
@@ -566,7 +566,7 @@ namespace ca
          return *m_plresult;
       }
 
-      void create::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void create::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_lpcreatestruct = reinterpret_cast<LPCREATESTRUCT>(lparam);
@@ -593,19 +593,19 @@ namespace ca
          System.log().print(lpcszErrorMessage);
       }
 
-      void timer::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void timer::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nIDEvent = static_cast<UINT>(wparam);
       }
 
-      activate::activate(::ca::application * papp) :
+      activate::activate(::ca::applicationsp papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
       }
 
-      void activate::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void activate::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nState = (UINT)(LOWORD(wparam));
@@ -615,7 +615,7 @@ namespace ca
 
 
 
-      erase_bkgnd::erase_bkgnd(::ca::application * papp) :
+      erase_bkgnd::erase_bkgnd(::ca::applicationsp papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
@@ -626,13 +626,13 @@ namespace ca
          set_lresult(bResult);
       }
 
-      key::key(::ca::application * papp) :
+      key::key(::ca::applicationsp papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
       }
 
-      void key::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void key::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
 
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
@@ -647,26 +647,26 @@ namespace ca
 
       }
 
-      nc_activate::nc_activate(::ca::application * papp) :
+      nc_activate::nc_activate(::ca::applicationsp papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
       }
 
-      void nc_activate::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void nc_activate::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_bActive = wparam != FALSE;
       }
 
-      void size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void size::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nType     = static_cast < UINT > (wparam);
          m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
       }
 
-      mouse::mouse(::ca::application * papp) :
+      mouse::mouse(::ca::applicationsp papp) :
          ca(papp),
          base(papp),
          m_ecursor(::visual::cursor_unmodified)
@@ -687,7 +687,7 @@ namespace ca
          }
       }
 
-      void mouse::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void mouse::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nFlags    = wparam;
@@ -701,7 +701,7 @@ namespace ca
 #endif
       }
 
-      void mouse_wheel::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void mouse_wheel::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nFlags    = wparam;
@@ -709,7 +709,7 @@ namespace ca
          m_bTranslated = true;
       }
 
-      ::user::interaction * mouse_activate::GetDesktopWindow()
+      sp(::user::interaction) mouse_activate::GetDesktopWindow()
       {
          throw not_implemented(get_app());
          return ::null();
@@ -726,7 +726,7 @@ namespace ca
          return HIWORD(m_lparam);
       }
 
-      ::ca::window * context_menu::GetWindow()
+      sp(::ca::window) context_menu::GetWindow()
       {
          throw not_implemented(get_app());
          return ::null();
@@ -739,35 +739,35 @@ namespace ca
       }
 
 
-      void scroll::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void scroll::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nSBCode = (int16_t) LOWORD(wparam);
          m_nPos = (int16_t) HIWORD(wparam);
-         m_pScrollBar = (::user::interaction *) lparam;
+         m_pScrollBar = (sp(::user::interaction)) lparam;
       }
 
-      void show_window::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void show_window::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_bShow = wparam != FALSE;
          m_nStatus = static_cast<UINT>(lparam);
       }
 
-      void set_focus::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void set_focus::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow>(wparam));
          m_pwnd = ::null();
       }
 
-      void window_pos::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void window_pos::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
       }
 
-      void nc_calc_size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      void nc_calc_size::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
@@ -897,7 +897,7 @@ namespace ca
          m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
       }
 
-      ::ca::application * dispatch::calc_app()
+      ::ca::applicationsp dispatch::calc_app()
       {
          return ::null();
       }
@@ -1147,7 +1147,7 @@ namespace ca
    //               wndTemp.set_handle(pCtl->oswindow);
                   UINT nCtlType = pCtl->nCtlType;
                   // if not coming from a permanent ::ca::window, use stack temporary
-   //               ::ca::window* pWnd = ::ca::window::FromHandlePermanent(wndTemp.get_handle());
+   //               sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(wndTemp.get_handle());
    //               if (pWnd == ::null())
                {
 

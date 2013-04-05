@@ -17,7 +17,7 @@ public:
 
 
 
-   html_form(::ca::application * papp);
+   html_form(::ca::applicationsp papp);
    virtual ~html_form();
 
    virtual void _001OnDraw(::ca::graphics * pdc);

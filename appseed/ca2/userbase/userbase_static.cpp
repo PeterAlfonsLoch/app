@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   bool base_static::create(::user::interaction* pParentWnd, id id)
+   bool base_static::create(sp(::user::interaction) pParentWnd, id id)
    {
 
       return ::user::control::create(pParentWnd, id);
@@ -54,7 +54,7 @@ namespace userbase
    }
 
 
-   base_static::base_static(::ca::application * papp) :
+   base_static::base_static(::ca::applicationsp papp) :
       ca(papp)
    {
       

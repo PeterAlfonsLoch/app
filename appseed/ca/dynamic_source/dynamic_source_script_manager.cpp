@@ -42,7 +42,7 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager(::ca::application * papp) :
+   script_manager::script_manager(::ca::applicationsp papp) :
       ca(papp),
       thread(papp),
       ::ca::message_window_simple_callback(papp),
@@ -660,7 +660,7 @@ namespace dynamic_source
       item.m_strScript     = pszScript;
       item.m_strPlugin     = pszName;
 
-      m_pluginmapitema.add(item);
+      m_pluginmapitema.add(new plugin_map_item(item));
 
       m_pcache->register_script(pszName, pscript);
 

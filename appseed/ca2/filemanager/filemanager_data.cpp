@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   data::data(::ca::application * papp) :
+   data::data(::ca::applicationsp papp) :
       ca(papp),
       ::fs::tree_data(papp),
       ::fs::list_data(papp)
@@ -28,7 +28,7 @@ namespace filemanager
 
    }
 
-   void data::OnFileManagerOpenContextMenuFolder(const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle)
+   void data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -81,7 +81,7 @@ namespace filemanager
       if(is_saving() && itema.get_count() == 1)
       {
 
-         ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pmanager);
+         sp(::filemanager::document) pdoc =  (m_pmanager);
          FileManagerViewUpdateHint uh;
          uh.m_pmanager = m_pmanager;
          uh.m_strPath = itema[0].m_strPath;
@@ -143,7 +143,7 @@ namespace filemanager
    }
 
 
-   void data::OnFileManagerOpenFolder(const ::fs::item & item)
+   void data::OnFileManagerOpenFolder(sp(::fs::item)  item)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -188,7 +188,7 @@ namespace filemanager
    }
 
 
-   void data::FileManagerBrowse(const ::fs::item & item)
+   void data::FileManagerBrowse(sp(::fs::item)  item)
    {
 
       ASSERT(m_pmanager != NULL);

@@ -7,7 +7,7 @@
 
 
 
-simple_frame_window::simple_frame_window(::ca::application * papp) :
+simple_frame_window::simple_frame_window(::ca::applicationsp papp) :
    ca(papp),
    m_dibBk(papp),
    m_fastblur(papp)
@@ -74,7 +74,7 @@ bool simple_frame_window::IsFullScreen()
    return WfiIsFullScreen();
 }
 
-::user::interaction* simple_frame_window::WindowDataGetWnd()
+sp(::user::interaction) simple_frame_window::WindowDataGetWnd()
 {
    return this;
 }
@@ -142,11 +142,11 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
    if(pobj->previous())
       return;
 
-   ::user::place_holder * pplaceholder = dynamic_cast < ::user::place_holder * > (get_parent());
+   sp(::user::place_holder) pplaceholder = get_parent();
 
    if(pplaceholder != NULL)
    {
-      ::user::place_holder_container * pcontainer = dynamic_cast < ::user::place_holder_container * > (pplaceholder->get_parent());
+      sp(::user::place_holder_container) pcontainer = pplaceholder->get_parent();
       if(pcontainer != NULL)
       {
          pcontainer->on_hold(this, pplaceholder);
@@ -262,7 +262,7 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 uint32_t simple_frame_window_save_window_rect(void * pvoidParam)
 {
 
-   simple_frame_window * pframe = (simple_frame_window *) pvoidParam;
+   sp(simple_frame_window) pframe = (sp(simple_frame_window)) pvoidParam;
 
    pframe->WindowDataSaveWindowRect();
 
@@ -356,13 +356,13 @@ void simple_frame_window::layout()
    }
 }
 
-void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT user, ::user::interaction * pframe)
+void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT user, sp(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
    UNREFERENCED_PARAMETER(pframe);
 //   if(pview != NULL)
-//      pview->OnActivateFrame(WA_INACTIVE, (::userbase::frame_window *) pframe);
+//      pview->OnActivateFrame(WA_INACTIVE, (sp(::userbase::frame_window)) pframe);
 }
 
 void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
@@ -629,7 +629,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
 
    pobj->m_bRet = true;
    // Note: only queries the active document
-   ::user::document_interface * pdocument = GetActiveDocument();
+   sp(::user::document_interface) pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
       // document can't close right now -- don't close it
@@ -717,7 +717,7 @@ void simple_frame_window::_001OnNcActivate(::ca::signal_object * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -940,7 +940,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(0, 184, 184, 170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");
+            //::visual::fastblur *( *pfnNew )(::ca::applicationsp) = (::visual::fastblur *(*)(::ca::applicationsp)) ::GetProcAddress(hmodule, "new_fastblur");
             m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -968,7 +968,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
 }
 
 
-void simple_frame_window::on_set_parent(::user::interaction* pguieParent)
+void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
 {
    ::userbase::frame_window::on_set_parent(pguieParent);
    if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
@@ -1023,11 +1023,11 @@ bool simple_frame_window::is_application_main_window()
 
 void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
 {
-   ::user::interaction * pui = m_toolbarmap[idToolBar];
+   sp(::user::interaction) pui = m_toolbarmap[idToolBar];
    simple_toolbar * ptoolbar;
    if(pui != NULL)
    {
-      ptoolbar = dynamic_cast < simple_toolbar * > (pui);
+      ptoolbar = dynamic_cast < simple_toolbar * > (pui.m_p);
    }
    else
    {
@@ -1087,7 +1087,7 @@ bool simple_frame_window::create(const char * lpszClassName,
          const char * lpszWindowName,
          uint32_t dwStyle,
          const RECT& rect,
-         ::user::interaction* pParentWnd,        // != NULL for popups
+         sp(::user::interaction) pParentWnd,        // != NULL for popups
          const char * lpszMenuName,
          uint32_t dwExStyle,
          ::ca::create_context* pContext)

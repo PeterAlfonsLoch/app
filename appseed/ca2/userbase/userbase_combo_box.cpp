@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   combo_box::combo_box(::ca::application * papp) :
+   combo_box::combo_box(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp),
@@ -22,9 +22,9 @@ namespace userbase
    }
 
 
-   bool combo_box::create(::user::interaction* pParentWnd, id id)
+   bool combo_box::create(sp(::user::interaction) pParentWnd, id id)
    {
-      ::user::interaction* pWnd = this;
+      sp(::user::interaction) pWnd = this;
       return pWnd->create(pParentWnd, id);
    }
 

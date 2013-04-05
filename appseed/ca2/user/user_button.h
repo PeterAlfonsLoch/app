@@ -37,7 +37,7 @@ namespace user
       ::user::front_end_schema::button *  m_pschema;
 
 
-      button(::ca::application * papp);
+      button(::ca::applicationsp papp);
       virtual ~button();
 
       void VirtualOnSize();

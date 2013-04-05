@@ -8,7 +8,7 @@ namespace user
       virtual public ::user::list
    {
    protected:
-      control * m_pcontrolEdit;
+      sp(control) m_pcontrolEdit;
 
       ::count m_iOnClickClickCount;
       index         m_iOnClickClickItem;
@@ -47,7 +47,7 @@ namespace user
       };
 
 
-      form_list(::ca::application * papp);
+      form_list(::ca::applicationsp papp);
       virtual ~form_list();
 
 
@@ -55,24 +55,24 @@ namespace user
 
       void _000OnMouse(::ca::message::mouse * pmouse);
 
-      void control_get_client_rect(control * pcontrol, LPRECT lprect);
-      void control_get_window_rect(control * pcontrol, LPRECT lprect);
+      void control_get_client_rect(sp(control) pcontrol, LPRECT lprect);
+      void control_get_window_rect(sp(control) pcontrol, LPRECT lprect);
       bool control_001DisplayHitTest(POINT pt);
 
       bool _001IsEditing();
 
-      virtual bool _001IsPointInside(control * pcontrol, point64 ptt);
+      virtual bool _001IsPointInside(sp(control) pcontrol, point64 ptt);
 
       void _001HideEditingControls();
-      void _001HideControl(control * pcontrol);
+      void _001HideControl(sp(control) pcontrol);
       virtual void _001OnDraw(::ca::graphics * pdc);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop, LPARAM lparam);
-      virtual ::user::interaction* _GetWnd();
+      virtual sp(::user::interaction) _GetWnd();
       void _001UpdateColumns();
-      control * _001GetEditControl();
-      void _001SetEditControl(control * pcontrol);
-      virtual void _001PlaceControl(control * pcontrol);
-      control * _001GetControlBySubItem(index iSubItem);
+      sp(control) _001GetEditControl();
+      void _001SetEditControl(sp(control) pcontrol);
+      virtual void _001PlaceControl(sp(control) pcontrol);
+      sp(control) _001GetControlBySubItem(index iSubItem);
       virtual void _001OnClick(UINT uiFlags, point point);
       virtual void _001OnClick(UINT uiFlags, point point, index iItem, index iSubItem);
       DECL_GEN_VSIGNAL(_001OnTimer)
@@ -87,7 +87,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll)
       DECL_GEN_SIGNAL(_001OnKeyDown)
 
-      virtual bool _001OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
+      virtual bool _001OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
       virtual void install_message_handling( ::ca::message::dispatch *pinterface);

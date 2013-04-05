@@ -20,7 +20,7 @@ namespace ca
       uint_ptr            ProcessedSize;
 
 
-      stream_binder(::ca::application * papp);
+      stream_binder(::ca::applicationsp papp);
       HRes CreateEvents();
 
       virtual void CreateStreams(sp(::ca::reader) & inStream, sp(::ca::writer) & outStream);

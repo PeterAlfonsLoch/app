@@ -167,7 +167,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_SYNCACTIVE = 0x40 };
 
 CLASS_DECL_ca void ::ca::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
-   ::user::interaction * hWnd, LPCRECT lpRect);
+   sp(::user::interaction) hWnd, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR
 #define LAYOUT_LTR                         0x00000000

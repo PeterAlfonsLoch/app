@@ -11,7 +11,7 @@ namespace ca
    public:
 
 
-      output_file_stream(::ca::application * papp, const char * pszFileName, uint32_t dwFlags);
+      output_file_stream(::ca::applicationsp papp, const char * pszFileName, uint32_t dwFlags);
       virtual ~output_file_stream();
 
 

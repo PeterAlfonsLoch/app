@@ -83,10 +83,10 @@ namespace frame
    {
       if(m_pworkset == NULL)
          return;
-      ::user::interaction * pwndChild = m_pworkset->GetEventWindow();
+      sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
       if(pwndChild == NULL)
          return;
-      ::user::interaction * pwndParent = pwndChild->get_parent();
+      sp(::user::interaction) pwndParent = pwndChild->get_parent();
       if(pwndParent == NULL)
          return;
       rect rectParent;
@@ -121,15 +121,15 @@ namespace frame
       if(cx == 0
          && cy == 0)
          return true;
-      ::user::interaction * pwnd = m_pworkset->GetEventWindow();
-      ::user::interaction * pwndParent = pwnd->get_parent();
+      sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
+      sp(::user::interaction) pwndParent = pwnd->get_parent();
       rect rectPos;
       pwnd->GetWindowRect(rectPos);
       if(pwndParent != NULL)
       {
          pwndParent->ScreenToClient(rectPos);
       }
-      ::user::interaction * ptwi = dynamic_cast < ::user::interaction * >(pwnd);
+      sp(::user::interaction) ptwi = dynamic_cast < ::user::interaction * >(pwnd.m_p);
    //   CTransparentWndContainer * ptwc = dynamic_cast<CTransparentWndContainer *>(pwnd);
        if(ptwi != NULL )
        //if(ptwi != NULL &&
@@ -153,7 +153,7 @@ namespace frame
        }
        /*else
        {
-          ::user::interaction * pwndTopLevel = pwnd->GetTopLevelParent();
+          sp(::user::interaction) pwndTopLevel = pwnd->GetTopLevelParent();
            if(pwndTopLevel != NULL &&
                pwndTopLevel->get_handle() == pwnd->get_handle())
            {
@@ -212,12 +212,12 @@ namespace frame
    bool DockManager::MoveWindow(int32_t x, int32_t y)
    {
       ASSERT(m_pworkset->GetEventWindow() != NULL);
-      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
+      sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
       if(pwndParent == NULL)
          return false;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
-      ::user::interaction * pwndChild = m_pworkset->GetEventWindow();
+      sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
@@ -260,12 +260,12 @@ namespace frame
    EDock DockManager::CalcDock(int32_t x, int32_t y)
    {
       ASSERT(m_pworkset->GetEventWindow() != NULL);
-      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
+      sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
       if(pwndParent == NULL)
          return DockNone;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
-      ::user::interaction * pwndChild = m_pworkset->GetEventWindow();
+      sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
@@ -359,12 +359,12 @@ namespace frame
    {
       if(m_pworkset->GetEventWindow() == NULL)
          return;
-      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
+      sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
       if(pwndParent == NULL)
          return;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
-      ::user::interaction * pwndChild = m_pworkset->GetEventWindow();
+      sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);

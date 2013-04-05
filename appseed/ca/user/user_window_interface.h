@@ -47,7 +47,7 @@ namespace user
          GeneralEventPosCreate5,
       };
 
-      interaction *                       m_pguie;
+      sp(interaction)                       m_pguie;
       // window rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
       // m_rectWindow should be sychronized and recalculated based
@@ -63,7 +63,7 @@ namespace user
 
 
       window_interface();
-      window_interface(::ca::application * papp);
+      window_interface(::ca::applicationsp papp);
       virtual ~window_interface();
 
 
@@ -137,8 +137,8 @@ namespace user
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
       bool KillTimer(int32_t nIDEvent);
-      bool SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      ::ca::window * SetFocus();*/
+      bool SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      sp(::ca::window) SetFocus();*/
 
 
       bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
@@ -149,7 +149,7 @@ namespace user
       bool _001HasTranslucency();
 
       /*
-      virtual void _001SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      virtual void _001SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual void _001SetFocus();
       virtual void _001ShowWindow(int32_t iShow);
       virtual void _001ScreenToClient(LPPOINT lppoint);
@@ -171,11 +171,11 @@ namespace user
 
       virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
 
-      virtual interaction * get_guie() const;
+      virtual sp(interaction) get_guie() const;
 #ifdef METROWIN
-      virtual interaction * get_wnd() const;
+      virtual sp(interaction) get_wnd() const;
 #else
-      virtual ::ca::window * get_wnd() const;
+      virtual sp(::ca::window) get_wnd() const;
 #endif
 
       enum EOptimize

@@ -9,7 +9,7 @@ namespace gcom
    {
 
 
-      Main::Main(::ca::application * papp, Interface * pinterface) :
+      Main::Main(::ca::applicationsp papp, Interface * pinterface) :
          ca(papp),
          m_pinterface(pinterface),
          m_mutexStateMachine(papp)
@@ -163,7 +163,7 @@ namespace gcom
          if(!m_bInitialized)
             return false;
 
-         ::ca::application * papp = &System;
+         ::ca::applicationsp papp = &System;
          if(papp == NULL)
          {
             // if main application is null, there's no reason

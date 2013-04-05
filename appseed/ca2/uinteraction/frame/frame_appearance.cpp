@@ -10,7 +10,7 @@ namespace uinteraction
    {
 
 
-      appearance::CTool001::CTool001(::ca::application * papp) :
+      appearance::CTool001::CTool001(::ca::applicationsp papp) :
          ca(papp)
       {
       }
@@ -32,7 +32,7 @@ namespace uinteraction
 
       }
 
-      ::user::interaction * appearance::GetWnd()
+      sp(::user::interaction) appearance::GetWnd()
       {
          return m_pworkset->GetRegionWindow();
       }
@@ -54,7 +54,7 @@ namespace uinteraction
 
          }
 
-         //      ::user::interaction * pwnd = GetWnd();
+         //      sp(::user::interaction) pwnd = GetWnd();
 
          return true;
       }
@@ -104,7 +104,7 @@ namespace uinteraction
 
       void appearance::SetAppearanceMode()
       {
-         ::user::interaction * pwnd = GetWnd();
+         sp(::user::interaction) pwnd = GetWnd();
 
          if(pwnd == NULL)
             return;
@@ -194,7 +194,7 @@ namespace uinteraction
 
       void appearance::UpdateAppearanceMode(bool bFullScreen)
       {
-         ::user::interaction* pwnd = m_pworkset->GetDrawWindow();
+         sp(::user::interaction) pwnd = m_pworkset->GetDrawWindow();
 
          if(pwnd->IsIconic())
          {
@@ -222,7 +222,7 @@ namespace uinteraction
       bool appearance::IsInAutomaticModeSwitching()
       {
 
-         ::database::user::interaction * pui = dynamic_cast < ::database::user::interaction * > (GetWnd());
+         sp(::database::user::interaction) pui = dynamic_cast < ::database::user::interaction * > (GetWnd().m_p);
 
          if(pui != NULL && !pui->does_display_match())
             return false;
@@ -394,7 +394,7 @@ namespace uinteraction
          m_pointset.remove_all();
       }
 
-      ::user::interaction * appearance::get_guie()
+      sp(::user::interaction) appearance::get_guie()
       {
          return NULL;
       }

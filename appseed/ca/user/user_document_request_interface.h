@@ -10,8 +10,8 @@ namespace user
    public:
 
      
-      virtual ::user::document_interface * open_document_file(::ca::create_context * pcreatecontext);
-      virtual ::user::document_interface * open_document_file(var varFile = ::var(), bool bMakeVisible = true, ::user::interaction * puiParent = ::null());
+      virtual sp(::user::document_interface) open_document_file(::ca::create_context * pcreatecontext);
+      virtual sp(::user::document_interface) open_document_file(var varFile = ::var(), bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
 
 
    };

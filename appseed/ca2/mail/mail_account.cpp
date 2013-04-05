@@ -4,7 +4,7 @@
 namespace mail
 {
 
-   account::account(::ca::application * papp) :
+   account::account(::ca::applicationsp papp) :
       ca(papp),
       m_pop3(papp)
    {

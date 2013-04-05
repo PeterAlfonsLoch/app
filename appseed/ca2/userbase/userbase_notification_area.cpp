@@ -32,7 +32,7 @@ namespace userbase
 #endif
    }
 
-   void notification_area::Initialize(::ca::application * papp)
+   void notification_area::Initialize(::ca::applicationsp papp)
    {
 #ifdef WINDOWSEX
       LOGFONT lf = {0};
@@ -139,7 +139,7 @@ namespace userbase
          //lv.mask = LVIF_IMAGE;
          //lv.iImage = iconindex;
 
-         m_infoa.add(info);
+         m_infoa.add(new TrayItemInfo(info));
          //int32_t index = GetListCtrl().InsertItem(&lv);
          //GetListCtrl().set_item_text(index,1,info.sTip);
          //GetListCtrl().set_item_text(index,2,info.sProcessPath);

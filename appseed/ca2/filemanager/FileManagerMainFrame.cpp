@@ -2,7 +2,7 @@
 #include "FileManagerMainFrame.h"
 
 
-FileManagerMainFrame::FileManagerMainFrame(::ca::application * papp) :
+FileManagerMainFrame::FileManagerMainFrame(::ca::applicationsp papp) :
    ca(papp),
    simple_frame_window(papp),
    m_menubar(papp),
@@ -27,7 +27,7 @@ void FileManagerMainFrame::_001OnCreate(::ca::signal_object * pobj)
 
 bool FileManagerMainFrame::CreateBars()
 {
-   ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetActiveDocument());
+   sp(::filemanager::document) pdoc =  (GetActiveDocument());
    
    ASSERT(pdoc != NULL);
    ASSERT(base < ::filemanager::document >::bases(pdoc));

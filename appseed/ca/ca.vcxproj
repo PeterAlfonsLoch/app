@@ -962,6 +962,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_byte_serializable.h" />
     <ClInclude Include="ca\ca_byte_stream.h" />
     <ClInclude Include="ca\ca_byte_stream_memory_file.h" />
+    <ClInclude Include="ca\ca_c.h" />
     <ClInclude Include="ca\ca_ch.h" />
     <ClInclude Include="ca\ca_ch_class.h" />
     <ClInclude Include="ca\ca_circular_buffer.h" />
@@ -1123,7 +1124,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_simple_tree_data.h" />
     <ClInclude Include="ca\ca_simple_tree_item_data.h" />
     <ClInclude Include="ca\ca_size_count_writer.h" />
-    <ClInclude Include="ca\ca_smart_pointer.h" />
+    <ClInclude Include="ca\ca_smart_pointer1.h" />
+    <ClInclude Include="ca\ca_smart_pointer2.h" />
     <ClInclude Include="ca\ca_smart_pointer_query.h" />
     <ClInclude Include="ca\ca_sockets_address.h" />
     <ClInclude Include="ca\ca_std_pair.h" />
@@ -1793,6 +1795,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user_single_document_template.h" />
     <ClInclude Include="user\user_str.h" />
     <ClInclude Include="user\user_text_interface.h" />
+    <ClInclude Include="user\user_user.h" />
     <ClInclude Include="user\user_view.h" />
     <ClInclude Include="user\user_view_container.h" />
     <ClInclude Include="user\user_view_creator.h" />
@@ -1905,6 +1908,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca\ca_byte_serializable.cpp" />
     <ClCompile Include="ca\ca_byte_stream.cpp" />
     <ClCompile Include="ca\ca_byte_stream_memory_file.cpp" />
+    <ClCompile Include="ca\ca_c.cpp" />
     <ClCompile Include="ca\ca_ch.cpp" />
     <ClCompile Include="ca\ca_checked.cpp" />
     <ClCompile Include="ca\ca_ch_class.cpp" />

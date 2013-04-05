@@ -12,7 +12,7 @@
 namespace plugin
 {
 
-   host_interaction::host_interaction(::ca::application * papp) :
+   host_interaction::host_interaction(::ca::applicationsp papp) :
       ::ca::ca(papp)
    {
       m_pframe = ::null();
@@ -154,7 +154,7 @@ namespace plugin
       }
       else
       {
-         user::interaction * pui = get_top_child();
+         sp(::user::interaction) pui = get_top_child();
          if(pui != ::null())
          {
             class rect rectClient;
@@ -201,7 +201,7 @@ namespace plugin
 
    }
 
-   ::user::interaction * host_interaction::get_os_focus_uie()
+   sp(::user::interaction) host_interaction::get_os_focus_uie()
    {
       return Application.window_from_os_data(m_pplugin->get_host_window());
    }

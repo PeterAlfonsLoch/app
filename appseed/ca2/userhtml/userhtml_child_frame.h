@@ -5,13 +5,13 @@ class CLASS_DECL_ca2 html_child_frame : public simple_child_frame
 {
    // // DECLARE_DYNCREATE(html_child_frame)
 public:
-   html_child_frame(::ca::application * papp);
+   html_child_frame(::ca::applicationsp papp);
    virtual ~html_child_frame();
 
    simple_toolbar        m_toolbar;
 
 
-   html_document * get_document();
+   sp(html_document) get_document();
    html_view * get_view();
 
 };

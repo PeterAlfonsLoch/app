@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   tab_control::tab_control(::ca::application * papp) :
+   tab_control::tab_control(::ca::applicationsp papp) :
       ca(papp),
       ::user::tab(papp),
       place_holder_container(papp)

@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   view::view(::ca::application * papp) :
+   view::view(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -161,7 +161,7 @@ namespace bergedge
 
       SetTimer(198477, 1977, NULL);
 
-      ::bergedge::frame * pframe = GetTypedParent < ::bergedge::frame > ();
+      sp(::bergedge::frame) pframe = GetTypedParent < ::bergedge::frame > ();
 
       pframe->m_pview = this;
       pframe->m_pdocument = get_document();
@@ -204,7 +204,7 @@ namespace bergedge
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.type_info < ::bergedge::pane_view > (), get_document(), this, 102).m_p);
 
       hold(m_ppaneview);
 
@@ -241,9 +241,9 @@ namespace bergedge
       ::userbase::view::pre_translate_message(pobj);
    }
 
-   document * view::get_document()
+   sp(document) view::get_document()
    {
-      return dynamic_cast < document * > (::userbase::scroll_view::get_document());
+      return  (::userbase::scroll_view::get_document());
    }
 
    void view::_001OnTimer(::ca::signal_object * pobj)
@@ -463,7 +463,7 @@ namespace bergedge
       }
       else
       {
-         user::interaction * pui = get_top_child();
+         sp(::user::interaction) pui = get_top_child();
          if(pui != NULL)
          {
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
@@ -486,7 +486,7 @@ namespace bergedge
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      user::interaction * pui = get_top_child();
+      sp(::user::interaction) pui = get_top_child();
       try
       {
          while(pui != NULL)
@@ -500,7 +500,8 @@ namespace bergedge
             {
                papp = NULL;
             }
-            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_papp->m_psession))
+            //if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL && (papp) != (m_papp->m_psession))
+            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL)
             {
                try
                {

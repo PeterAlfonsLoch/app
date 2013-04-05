@@ -323,7 +323,7 @@ namespace ca
    }
 
 
-   edit_file::edit_file(::ca::application * papp) :
+   edit_file::edit_file(::ca::applicationsp papp) :
       ca(papp),
       ::ca::tree_data(papp),
       ::ca::filesp(papp),

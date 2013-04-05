@@ -25,7 +25,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 }
 
 
-file_size_table::file_size_table(::ca::application * papp) :
+file_size_table::file_size_table(::ca::applicationsp papp) :
    ca(papp)
 {
    m_hmap = ::null();
@@ -88,7 +88,7 @@ file_size_table::item::item()
    m_pitemParent = ::null();
 }
 
-void file_size_table::item::ls(::ca::application * papp, index & iIteration)
+void file_size_table::item::ls(::ca::applicationsp papp, index & iIteration)
 {
    if(m_bDir)
    {
@@ -108,7 +108,7 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
             if(item.m_strName.Right(1) == "\\")
                item.m_strName = item.m_strName.Left(item.m_strName.get_length() - 1);
             item.m_iStep = 0;
-            m_itema.add(item);
+            m_itema.add(new file_size_table::item(item));
          }
       }
       else
@@ -131,7 +131,7 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
                item.m_iSize = iaSize[i];
                item.m_iStep = -1;
             }
-            m_itema.add(item);
+            m_itema.add(new file_size_table::item(item));
             iIteration++;
          }
       }
@@ -150,7 +150,7 @@ string file_size_table::item::path()
       return m_pitemParent->path() + "\\" + m_strName;
 }
 
-file_size_table::item * file_size_table::item::FindItem(::ca::application * papp, const char * pszPath, index & iIteration)
+file_size_table::item * file_size_table::item::FindItem(::ca::applicationsp papp, const char * pszPath, index & iIteration)
 {
    string strName;
    string strPath(pszPath);
@@ -178,7 +178,7 @@ file_size_table::item * file_size_table::item::FindItem(::ca::application * papp
 }
 
 
-index file_size_table::item::FindName(::ca::application * papp, const char * pszName, index & iIteration)
+index file_size_table::item::FindName(::ca::applicationsp papp, const char * pszName, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -192,7 +192,7 @@ index file_size_table::item::FindName(::ca::application * papp, const char * psz
    return -1;
 }
 
-void file_size_table::item::update_size(::ca::application * papp, index & iIteration)
+void file_size_table::item::update_size(::ca::applicationsp papp, index & iIteration)
 {
    UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(iIteration);
@@ -212,7 +212,7 @@ void file_size_table::item::update_size(::ca::application * papp, index & iItera
 
 }
 
-void file_size_table::item::update_size_recursive(::ca::application * papp, index & iIteration)
+void file_size_table::item::update_size_recursive(::ca::applicationsp papp, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -229,7 +229,7 @@ void file_size_table::item::update_size_recursive(::ca::application * papp, inde
 
 
 
-DBFileSystemSizeSet::DBFileSystemSizeSet(::ca::application * papp) :
+DBFileSystemSizeSet::DBFileSystemSizeSet(::ca::applicationsp papp) :
    ca(papp), m_table(papp)
 {
    m_iMaxIteration = 230;
@@ -327,7 +327,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
    return true;
 }
 
-FileSystemSizeWnd::FileSystemSizeWnd(::ca::application * papp) :
+FileSystemSizeWnd::FileSystemSizeWnd(::ca::applicationsp papp) :
    ca(papp),
    ::ca::window_sp(papp)
 {
@@ -347,7 +347,7 @@ bool FileSystemSizeWnd::CreateClient()
 
    m_bServer = false;
    return m_p->create_message_window("::ca::fontopus::FileSystemSizeWnd::Client");
-/*  ::user::interaction * puiMessage = ::null();
+/*  sp(::user::interaction) puiMessage = ::null();
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
    return m_p->create(::null(), "::ca::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
@@ -513,7 +513,7 @@ void FileSystemSizeWnd::_001OnTimer(::ca::signal_object * pobj)
 
 }
 
-FileSystemSizeServerThread::FileSystemSizeServerThread(::ca::application * papp) :
+FileSystemSizeServerThread::FileSystemSizeServerThread(::ca::applicationsp papp) :
    ca(papp),
    thread(papp)
 {

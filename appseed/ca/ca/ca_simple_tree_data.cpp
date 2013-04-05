@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   simple_tree_data::simple_tree_data(::ca::application * papp) :
+   simple_tree_data::simple_tree_data(::ca::applicationsp papp) :
       ca(papp),
       ::ca::tree_data(papp)
    {

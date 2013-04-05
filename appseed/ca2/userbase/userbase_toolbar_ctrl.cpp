@@ -8,12 +8,12 @@ namespace userbase
       DestroyWindow();
    }
 
-   bool tool_bar_control::create(uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd,
+   bool tool_bar_control::create(uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd,
       UINT nID)
    {
 
 #ifdef WINDOWSEX
-      ::user::interaction* pWnd = this;
+      sp(::user::interaction) pWnd = this;
       return pWnd->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
 #else
       throw todo(get_app());
@@ -529,12 +529,12 @@ namespace userbase
    }
 
 
-   void tool_bar_control::set_owner(::user::interaction* pWnd)
+   void tool_bar_control::set_owner(sp(::user::interaction) pWnd)
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pWnd, 0L);
+   ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pWnd.m_p, 0L);
 
 #else
 

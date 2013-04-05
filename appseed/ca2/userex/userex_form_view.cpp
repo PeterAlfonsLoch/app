@@ -1,6 +1,6 @@
 #include "framework.h"
 
-form_view::form_view(::ca::application * papp) :
+form_view::form_view(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),

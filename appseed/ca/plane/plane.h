@@ -34,7 +34,6 @@ namespace html
 } // namespace html
 
 
-class form_document;
 class form_view;
 
 

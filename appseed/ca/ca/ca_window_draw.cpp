@@ -5,7 +5,7 @@ namespace ca
 
    bool window_draw::s_bRunning = false;
 
-   window_draw::window_draw(::ca::application * papp) :
+   window_draw::window_draw(::ca::applicationsp papp) :
       ca(papp),
       ::ca::thread(papp),
       m_eventFree(papp, TRUE, TRUE)

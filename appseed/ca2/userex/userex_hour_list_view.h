@@ -11,7 +11,7 @@ namespace userex
    public:
 
 
-      hour_list_view(::ca::application * papp);   
+      hour_list_view(::ca::applicationsp papp);   
       virtual ~hour_list_view();
 
 

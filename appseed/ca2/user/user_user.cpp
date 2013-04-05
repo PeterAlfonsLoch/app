@@ -72,13 +72,13 @@ namespace ca
 
 
 
-      int32_t user::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
+      int32_t user::GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept)
       {
          ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
-              ::user::interaction * pwnd = wnda.element_at(i);
+              sp(::user::interaction) pwnd = wnda.element_at(i);
               if(pwnd != NULL &&
                   pwnd != pwndExcept &&
                   pwnd->IsWindowVisible())
@@ -89,13 +89,13 @@ namespace ca
           return iCount;
       }
 
-      int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
+      int32_t user::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
       {
          ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
-            ::user::interaction * pwnd = wnda.element_at(i);
+            sp(::user::interaction) pwnd = wnda.element_at(i);
             if(pwnd != NULL &&
                pwnd != pwndExcept &&
                pwnd->IsWindow() &&
@@ -114,7 +114,7 @@ namespace ca
          int32_t iCount = 0;
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
-            ::user::interaction * pwnd = wnda.element_at(i);
+            sp(::user::interaction) pwnd = wnda.element_at(i);
             if(pwnd != NULL
                && pwnd->IsWindow()
                && pwnd->IsWindowVisible())

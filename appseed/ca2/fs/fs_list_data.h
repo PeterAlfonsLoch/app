@@ -21,7 +21,7 @@ namespace fs
 
 
 
-      list_data(::ca::application * papp);
+      list_data(::ca::applicationsp papp);
       virtual ~list_data();
 
       void update();

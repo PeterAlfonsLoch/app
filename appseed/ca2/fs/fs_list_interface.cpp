@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   list_interface::list_interface(::ca::application * papp) :
+   list_interface::list_interface(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
@@ -365,14 +365,16 @@ namespace fs
             {
                iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
             }
-            if(pdata->m_itema.get_item(iStrict).IsFolder())
+            list_item & item = pdata->m_itema.get_item(iStrict);
+            sp(::fs::item) pitem(new ::fs::item(item));
+            if(item.IsFolder())
             {
-               _017OpenFolder(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
+               _017OpenFolder(pitem);
                break;
             }
             else
             {
-               itema.add(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
+               itema.add(pitem);
             }
          }
       }
@@ -412,14 +414,15 @@ namespace fs
             {
                iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
             }
+            list_item & item = pdata->m_itema.get_item(iStrict);
             if(pdata->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
+               _017OpenContextMenuFolder(new ::fs::item(item));
                break;
             }
             else
             {
-               itema.add(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
+               itema.add(new ::fs::item(item));
             }
          }
       }
@@ -434,7 +437,7 @@ namespace fs
       _001ClearSelection();
    }
 
-   void list_interface::_017OpenContextMenuFolder(const ::fs::item &item)
+   void list_interface::_017OpenContextMenuFolder(sp(::fs::item) item)
    {
       UNREFERENCED_PARAMETER(item);
    }
@@ -448,7 +451,7 @@ namespace fs
    {
    }
 
-   void list_interface::_017OpenFolder(const ::fs::item &item)
+   void list_interface::_017OpenFolder(sp(::fs::item) item)
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);
@@ -466,7 +469,7 @@ namespace fs
       ASSERT(FALSE);
    }
 
-   void list_interface::_001OnInitializeForm(user::control * pcontrol)
+   void list_interface::_001OnInitializeForm(user::sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -482,7 +485,7 @@ namespace fs
       } */
    }
 
-   void list_interface::_001OnButtonAction(::user::control * pcontrol)
+   void list_interface::_001OnButtonAction(::user::sp(control) pcontrol)
    {
       UNREFERENCED_PARAMETER(pcontrol);
 //      list_data * pdata = get_fs_list_data();
@@ -539,7 +542,7 @@ namespace fs
                      continue;
                   iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
                }
-               itema.add(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
+               itema.add(new ::fs::item(pdata->m_itema.get_item(iStrict)));
             }
          }
       }
@@ -589,7 +592,7 @@ namespace fs
    void list_interface::_001OnFileRename(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      user::control * pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
+      user::sp(control) pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
       range range;
       _001GetSelection(range);
       if(range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
@@ -720,9 +723,9 @@ namespace fs
    }
 
 
-   document * list_interface::get_document()
+   sp(document) list_interface::get_document()
    {
-      return dynamic_cast < document * > (::userbase::form_list::get_document());
+      return  (::userbase::form_list::get_document());
    }
 
    void list_interface::_001GetItemText(::user::list_item * pitem)
@@ -758,7 +761,7 @@ namespace fs
       }*/
    }
 
-/*   list_interface::create_image_list_thread::create_image_list_thread(::ca::application * papp) :
+/*   list_interface::create_image_list_thread::create_image_list_thread(::ca::applicationsp papp) :
       ca(papp),
       thread(papp)
    {

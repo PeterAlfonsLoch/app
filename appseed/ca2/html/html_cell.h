@@ -41,7 +41,7 @@ namespace html
 
          };
 
-         cell(::ca::application * papp);
+         cell(::ca::applicationsp papp);
          virtual ~cell();
          // example 1:
          // -------------------

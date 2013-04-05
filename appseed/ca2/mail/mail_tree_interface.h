@@ -12,7 +12,7 @@ namespace mail
    public:
       
    
-      tree_interface(::ca::application * papp);
+      tree_interface(::ca::applicationsp papp);
       virtual ~tree_interface();
 
 

@@ -95,13 +95,13 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &tool_bar::_001OnSysColorChange);
    }
 
-   bool tool_bar::create(::user::interaction* pParentWnd, uint32_t dwStyle, UINT nID)
+   bool tool_bar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, UINT nID)
    {
       return CreateEx(pParentWnd, 0, dwStyle,
          rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
    }
 
-   bool tool_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
+   bool tool_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
       ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -149,7 +149,7 @@ namespace userbase
       // if the owner was set before the toolbar was created, set it now
 #ifdef WINDOWSEX
       if (m_pguieOwner != NULL)
-         DefWindowProc(TB_SETPARENT, (WPARAM)m_pguieOwner, 0);
+         DefWindowProc(TB_SETPARENT, (WPARAM)m_pguieOwner.m_p, 0);
 
       DefWindowProc(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
 #else
@@ -158,12 +158,12 @@ namespace userbase
 #endif
    }
 
-   void tool_bar::set_owner(::user::interaction* pOwnerWnd)
+   void tool_bar::set_owner(sp(::user::interaction) pOwnerWnd)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
       ASSERT(IsWindow());
-      DefWindowProc(TB_SETPARENT, (WPARAM)pOwnerWnd, 0);
+      DefWindowProc(TB_SETPARENT, (WPARAM)pOwnerWnd.m_p, 0);
 #else
       throw todo(get_app());
 
@@ -941,7 +941,7 @@ namespace userbase
             {
                for (int32_t i = 0; i < nControlCount; i++)
                {
-                  ::user::interaction* pWnd = get_child_by_id(pControl[i].nID);
+                  sp(::user::interaction) pWnd = get_child_by_id(pControl[i].nID);
                   if (pWnd != NULL)
                   {
                      rect rect;
@@ -1323,7 +1323,7 @@ throw todo(get_app());
    void tool_cmd_ui::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
-      tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther);
+      tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
       ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
@@ -1349,7 +1349,7 @@ throw todo(get_app());
    void tool_cmd_ui::SetCheck(int32_t nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
-      tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther);
+      tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
       ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
@@ -1373,7 +1373,7 @@ throw todo(get_app());
    }
 
    /*
-   void tool_bar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler)
+   void tool_bar::OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler)
    {
       tool_cmd_ui state;
       state.m_pOther = this;

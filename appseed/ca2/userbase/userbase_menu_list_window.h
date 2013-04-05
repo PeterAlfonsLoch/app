@@ -19,7 +19,7 @@ namespace userbase
 
       UINT                                m_uiMessage;
       bool                                m_bAutoClose;
-      ::user::interaction *               m_pwndNotify;
+      sp(::user::interaction)               m_pwndNotify;
       bool                                m_bAutoDelete;
       ::user::front_end_schema::menu *    m_pschema;
       bool                                m_bOwnItem;
@@ -28,8 +28,8 @@ namespace userbase
       int32_t                                 m_iItemHeight;
       size                                m_size;
 
-      menu_list_window(::ca::application * papp);
-      menu_list_window(::ca::application * papp, menu_item * pitem);
+      menu_list_window(::ca::applicationsp papp);
+      menu_list_window(::ca::applicationsp papp, menu_item * pitem);
       virtual ~menu_list_window();
 
       void layout();
@@ -39,9 +39,9 @@ namespace userbase
 
       virtual void clear();
 
-      bool TrackPopupMenu(::user::interaction * pwndParent, ::user::interaction * pwndNotify);
+      bool TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify);
 
-      bool MenuFill(::user::interaction * pwndFill, ::user::interaction * pwndNotify);
+      bool MenuFill(sp(::user::interaction) pwndFill, sp(::user::interaction) pwndNotify);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnDestroy)
@@ -52,7 +52,7 @@ namespace userbase
       bool BaseOnControlEvent(::user::control_event * pevent);
 
 
-      bool _TrackPopupMenu(::user::interaction * pwndParent, ::user::interaction * pwndNotify);
+      bool _TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify);
       void _CreateButtons(menu_item * pitem);
       void _UpdateCmdUi(menu_item * pitem);
       void _CalcSize(menu_item * pitem, ::ca::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight);

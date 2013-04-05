@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-html_document::html_document(::ca::application * papp) :
+html_document::html_document(::ca::applicationsp papp) :
    ca(papp),
    ::ca::data_container_base(papp),
    ::userbase::document(papp)
@@ -135,7 +135,7 @@ void html_document::soft_reload()
 
 ::html::data * html_document::get_html_data()
 {
-   ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (this);
+   sp(::userbase::document) pdoc = (this);
    if(pdoc->get_data() == NULL)
    {
       set_data(get_typed_view < html_form > ()->get_html_data());

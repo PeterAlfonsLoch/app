@@ -80,22 +80,22 @@ public:
 
 
 
-   simple_toolbar(::ca::application * papp);
+   simple_toolbar(::ca::applicationsp papp);
    virtual ~simple_toolbar();
 
 
    using ::userbase::control_bar::create;
-   bool create(::user::interaction* pParentWnd,
+   bool create(sp(::user::interaction) pParentWnd,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       id nID = "__IDW_TOOLBAR");
    using ::user::interaction::CreateEx;
 #if defined(WINDOWSEX) || defined(LINUX)
-   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
+   bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       id nID = "__IDW_TOOLBAR");
 #else
-   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+   bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       id nID = "__IDW_TOOLBAR");
@@ -156,7 +156,7 @@ public:
 //   bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
    void SetSizes(SIZE sizeButton, SIZE sizeImage);
 
-   void OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler);
+   void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
    void TransparentEraseNonClient(::ca::graphics * pdc);

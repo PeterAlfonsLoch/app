@@ -1,6 +1,6 @@
 #include "framework.h"
 
-font_central::font_central(::ca::application * papp) :
+font_central::font_central(::ca::applicationsp papp) :
    ca(papp),
    m_fontCaption(papp),
    m_fontMenu(papp),

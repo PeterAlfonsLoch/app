@@ -30,7 +30,7 @@ namespace mail
 
       virtual void set_list_size(int32_t iSize);
 
-      simple_pop3(::ca::application * papp);
+      simple_pop3(::ca::applicationsp papp);
 
       void store();
 

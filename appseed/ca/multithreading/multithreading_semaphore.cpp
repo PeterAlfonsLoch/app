@@ -7,7 +7,7 @@
 #endif
 
 
-semaphore::semaphore(::ca::application * papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
+semaphore::semaphore(::ca::applicationsp papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
    ca(papp),
    sync_object(pstrName)
 {

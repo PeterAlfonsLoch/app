@@ -38,13 +38,13 @@ critical_section::~critical_section()
 
 void critical_section::lock()
 {
-   __try
+   try
    {
       ::EnterCriticalSection(&m_sect);
    }
-   __except(STATUS_NO_MEMORY == GetExceptionCode())
+   catch(...)
    {
-      throw memory_exception(get_app());
+      throw resource_exception(get_app());
    }
 }
 

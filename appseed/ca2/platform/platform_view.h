@@ -23,7 +23,7 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          view *                  m_pview;
-         ::ca::application *     m_papp;
+         ::ca::applicationsp     m_papp;
          bool                    m_bMakeVisible;
       };
 
@@ -31,7 +31,7 @@ namespace platform
          virtual public ::ca::ca
       {
       public:
-         link(::ca::application * papp);
+         link(::ca::applicationsp papp);
          int32_t                     m_iId;
          run *                   m_prun;
          string                  m_strName;
@@ -93,7 +93,7 @@ namespace platform
 
 
       
-      view(::ca::application * papp);
+      view(::ca::applicationsp papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -107,8 +107,8 @@ namespace platform
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
-      virtual database::user::interaction* BackViewGetWnd();
-      virtual ::user::interaction* get_guie();
+      virtual sp(::database::user::interaction) BackViewGetWnd();
+      virtual sp(::user::interaction) get_guie();
 
       virtual void _001OnDraw(::ca::graphics * pdc);
 
@@ -117,7 +117,7 @@ namespace platform
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
-      document * get_document();
+      sp(document) get_document();
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 

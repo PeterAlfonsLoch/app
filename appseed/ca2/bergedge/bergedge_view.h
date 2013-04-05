@@ -48,7 +48,7 @@ namespace bergedge
       mutex m_mutexDraw;
 
 
-      view(::ca::application * papp);
+      view(::ca::applicationsp papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -71,7 +71,7 @@ namespace bergedge
       virtual void OnDraw(::ca::graphics * pgraphics);
       virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
-      document * get_document();
+      sp(document) get_document();
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 

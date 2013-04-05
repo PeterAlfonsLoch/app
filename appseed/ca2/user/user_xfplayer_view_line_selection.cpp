@@ -155,7 +155,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, ::ca::s
          viewline.UpdateHover(pt);
          if(!viewline.IsInHover())
          {
-            ::user::interaction * pwnd = viewline.get_interaction();
+            sp(::user::interaction) pwnd = viewline.get_interaction();
             pwnd->KillTimer(::ca::Timer::ID_HOVER);
          }
       }
@@ -642,7 +642,7 @@ bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
             viewline.GetPlacement(rectPlacement);
             viewline.get_interaction()->_001RedrawWindow();
          }
-         //         ::ca::window * pwnd = viewline.GetWnd();
+         //         sp(::ca::window) pwnd = viewline.GetWnd();
          //         pwnd->KillTimer(::ca::Timer::ID_HOVER);
       }
    }

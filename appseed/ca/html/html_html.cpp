@@ -17,7 +17,7 @@ namespace html
    }
 
 
-   void html::construct(::ca::application * papp)
+   void html::construct(::ca::applicationsp papp)
    {
 
       ::ca::section::construct(papp);

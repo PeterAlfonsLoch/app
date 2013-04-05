@@ -66,7 +66,7 @@ namespace user
       int32_t                           m_iItemHeight;
       
 
-      tree(::ca::application * papp);
+      tree(::ca::applicationsp papp);
       virtual ~tree();
 
       virtual void _001OnDrawBackground(::ca::graphics * pdc);
@@ -120,8 +120,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnVScroll)
       DECL_GEN_SIGNAL(_001OnHScroll)
 
-      virtual bool can_merge(::user::interaction * pui);
-      virtual bool merge(::user::interaction * pui);
+      virtual bool can_merge(sp(::user::interaction) pui);
+      virtual bool merge(sp(::user::interaction) pui);
 
 
    };

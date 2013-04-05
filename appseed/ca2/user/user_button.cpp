@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   button::button(::ca::application * papp) :
+   button::button(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       m_istrButtonText(papp)
@@ -292,7 +292,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::create, pcreate, pobj)
 
-      ::simple_frame_window * pframewindow = GetTypedParent < ::simple_frame_window > ();
+      sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
       if(pframewindow != NULL)
       {
          if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)

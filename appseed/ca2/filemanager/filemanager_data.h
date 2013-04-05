@@ -32,16 +32,16 @@ namespace filemanager
    public:
 
 
-      ::user::document_interface *     m_pdocumentSave;
+      sp(::user::document_interface)     m_pdocumentSave;
       ::ca::file_manager_interface *  m_pfilemanager;
-      FileManagerInterface *           m_pmanager;
-      FileManagerInterface *           m_pmanagerMain;
+      sp(FileManagerInterface)           m_pmanager;
+      sp(FileManagerInterface)           m_pmanagerMain;
       FileManagerCallbackInterface *   m_pcallback;
       FileManagerTemplate *            m_ptemplate;
       bool                             m_bTransparentBackground;
       string                           m_strDISection;
-      ::user::place_holder *           m_pholderFileList;
-      ::user::interaction *            m_ptreeFileTreeMerge;
+      sp(::user::place_holder)           m_pholderFileList;
+      sp(::user::interaction)            m_ptreeFileTreeMerge;
       bool                             m_bSetBergedgeTopicFile;
 
       string                           m_strToolBar;
@@ -64,18 +64,18 @@ namespace filemanager
       bool  m_bIconView;
 
 
-      data(::ca::application * papp);
+      data(::ca::applicationsp papp);
       virtual ~data();
 
       bool is_saving();
 
       void FileManagerBrowse(const char * lpcsz);
-      void FileManagerBrowse(const ::fs::item & item);
-      void OnFileManagerOpenContextMenuFolder(const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle);
+      void FileManagerBrowse(sp(::fs::item)  item);
+      void OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle);
       void OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema);
       void OnFileManagerOpenContextMenu();
       void OnFileManagerOpenFile(const ::fs::item_array & itema);
-      void OnFileManagerOpenFolder(const ::fs::item & str);
+      void OnFileManagerOpenFolder(sp(::fs::item)  str);
 
       void OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema);
       void OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema);

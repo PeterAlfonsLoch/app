@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-todo::todo(::ca::application * papp, const char * pszTip) :
+todo::todo(::ca::applicationsp papp, const char * pszTip) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

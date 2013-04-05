@@ -17,7 +17,7 @@ namespace frame
       friend class WorkSet;
       friend class WorkSetListener;
    public:
-      virtual void on_delete(::ca::ca * poc);
+      virtual void on_delete(sp(::ca::ca) poc);
       void attach(WorkSetListener *plistener);
       //void add(WorkSetListener * plistener);
       WorkSetListenerArray();
@@ -25,20 +25,20 @@ namespace frame
 
       virtual void WFLOnSizingGripMove(
          WorkSet * pwf,
-         ::user::interaction * pwnd,
+         sp(::user::interaction) pwnd,
          EGrip egrip);
 
       virtual void WFLOnDock(
          WorkSet * pwf,
-         ::user::interaction * pwnd);
+         sp(::user::interaction) pwnd);
 
       virtual void WFLOnClose(
          WorkSet * pwf,
-         ::user::interaction * pwnd);
+         sp(::user::interaction) pwnd);
 
       virtual void WFLOnNcLButtonDown(
          WorkSet * pworkset,
-         ::user::interaction * pwnd,
+         sp(::user::interaction) pwnd,
          UINT nHitTest,
          point point);
    };

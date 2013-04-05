@@ -7,7 +7,7 @@ class CLASS_DECL_ca last_error_exception :
 public:
 
    
-   last_error_exception(::ca::application * papp);
+   last_error_exception(::ca::applicationsp papp);
    ~last_error_exception();
 
 

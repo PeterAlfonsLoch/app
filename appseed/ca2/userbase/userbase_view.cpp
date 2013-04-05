@@ -38,7 +38,7 @@
 namespace userbase
 {
 
-   view::view(::ca::application * papp) :
+   view::view(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -104,10 +104,10 @@ namespace userbase
       // first pump through pane
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
          return TRUE;
-      ::user::interaction * pwndex;
+      sp(::user::interaction) pwndex;
       if(base < ::view > ::bases(get_parent()))
       {
-         pwndex = dynamic_cast < ::user::interaction * >(get_parent());
+         pwndex = dynamic_cast < ::user::interaction * >(get_parent().m_p);
          if(pwndex != NULL)
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
@@ -178,7 +178,7 @@ namespace userbase
       }
    }
 
-   void view::OnActivateFrame(UINT /*nState*/, ::frame_window* /*pFrameWnd*/)
+   void view::OnActivateFrame(UINT /*nState*/, sp(frame_window) /*pFrameWnd*/)
    {
    }
 
@@ -195,7 +195,7 @@ namespace userbase
          pmouseactivate->m_bRet = true;
       }
 
-      ::userbase::frame_window* pParentFrame = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
+      sp(::userbase::frame_window) pParentFrame = (GetParentFrame());
       if (pParentFrame != NULL)
       {
          // eat it if this will cause activation
@@ -204,7 +204,7 @@ namespace userbase
 
          // either re-activate the current ::view, or set this ::view to be active
          ::view * pview = pParentFrame->GetActiveView();
-         ::user::interaction* oswindow_Focus = System.get_focus_guie();
+         sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
@@ -223,7 +223,7 @@ namespace userbase
 
    void view::on_select()
    {
-      ::userbase::frame_window* pParentFrame = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
+      sp(::userbase::frame_window) pParentFrame = (GetParentFrame());
       if (pParentFrame != NULL)
       {
          // eat it if this will cause activation
@@ -232,7 +232,7 @@ namespace userbase
 
          // either re-activate the current ::view, or set this ::view to be active
          ::view * pview = pParentFrame->GetActiveView();
-         ::user::interaction* oswindow_Focus = System.get_focus_guie();
+         sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
@@ -368,14 +368,14 @@ namespace userbase
 
 
    /*
-   ::user::interaction* view::CreateView(create_context* pContext, UINT nID)
+   sp(::user::interaction) view::CreateView(create_context* pContext, UINT nID)
    {
       ASSERT(IsWindow());
       ASSERT(pContext != NULL);
       ASSERT(pContext->m_typeinfoNewView != NULL);
 
       // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-      ::user::interaction* pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
+      sp(::user::interaction) pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
       if (pview == NULL)
       {
          TRACE1("Warning: Dynamic create of ::view type %hs failed.\n",
@@ -405,14 +405,14 @@ namespace userbase
    }*/
 
 
-   /*::user::interaction * view::CreateView(create_context* pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*sp(::user::interaction) view::CreateView(create_context* pContext, UINT nID, ::user::interaction  * pwndParent)
    {
       ASSERT(pwndParent->IsWindow());
       ASSERT(pContext != NULL);
       ASSERT(pContext->m_typeinfoNewView != NULL);
 
       // Note: can be a ::ca::window with PostNcDestroy self cleanup
-      ::ca::window* pview = dynamic_cast < ::ca::window * > (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+      sp(::ca::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
       if (pview == NULL)
       {
          TRACE1("Warning: Dynamic create of ::view type %hs failed.\n",

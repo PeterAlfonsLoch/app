@@ -27,9 +27,9 @@ namespace user
       m_pbasetooltiphdl = phandler;
    }
 
-   ::user::interaction * tool_tip_tool::BaseToolTipGetWnd()
+   sp(::user::interaction) tool_tip_tool::BaseToolTipGetWnd()
    {
-      return dynamic_cast < ::ca::window * > (this);
+      return (this);
    }
 
    void tool_tip_tool::BaseToolTipGetRect(LPRECT lprect)

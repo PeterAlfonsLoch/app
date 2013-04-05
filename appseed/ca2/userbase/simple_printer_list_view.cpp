@@ -4,7 +4,7 @@
 #endif
 
 
-simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :
+simple_printer_list_view::simple_printer_list_view(::ca::applicationsp papp) :
    ca(papp),
    userbase::view(papp),
    user::scroll_view(papp),

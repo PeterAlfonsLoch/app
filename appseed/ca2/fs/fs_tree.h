@@ -14,12 +14,12 @@ namespace fs
    public:
 
 
-      tree(::ca::application * papp);
+      tree(::ca::applicationsp papp);
       virtual ~tree();
 
       virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
-      virtual void _017OpenFolder(const item & item);
+      virtual void _017OpenFolder(sp(::fs::item) item);
       void StartAnimation();
       void RenameFile(int32_t iLine, string & str);
 

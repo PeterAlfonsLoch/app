@@ -23,7 +23,7 @@ namespace userbase
 
 
       using ::user::interaction::create;
-      bool create(uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID);
+      bool create(uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID);
 
 
       bool IsButtonEnabled(int32_t nID);
@@ -43,7 +43,7 @@ namespace userbase
       uint32_t GetButtonSize();
       bool SetButtonSize(size size);
       bool SetBitmapSize(size size);
-      void set_owner(::user::interaction* pWnd);
+      void set_owner(sp(::user::interaction) pWnd);
       void SetRows(int32_t nRows, bool bLarger, LPRECT lpRect);
       int32_t GetRows();
       bool SetCmdID(int32_t nIndex, UINT nID);

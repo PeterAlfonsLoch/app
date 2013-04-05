@@ -26,9 +26,7 @@ namespace win
 namespace ca
 {
 
-   class application;
-
-   CLASS_DECL_ca application * get_thread_app();
+   CLASS_DECL_ca applicationsp get_thread_app();
 
 } // namespace ca
 

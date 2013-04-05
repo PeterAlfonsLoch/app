@@ -16,11 +16,11 @@ namespace filemanager
 
 
 
-      document(::ca::application * papp);
+      document(::ca::applicationsp papp);
       virtual ~document();
 
 
-      file_manager_operation_document * get_operation_doc(bool bSwitch);
+      sp(file_manager_operation_document) get_operation_doc(bool bSwitch);
 
 
       virtual bool _001OnCommand(id id);
@@ -57,7 +57,7 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual void FileManagerSaveAs(::user::document_interface * pdocument);
+      virtual void FileManagerSaveAs(sp(::user::document_interface) pdocument);
 
       bool set_filemanager_data(::filemanager::data * pdata);
 

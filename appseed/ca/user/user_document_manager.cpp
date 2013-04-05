@@ -457,7 +457,7 @@ void document_manager::close_all_documents(bool bEndSession)
    }
 }
 
-bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::document) pdocument)
 {
    return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }
@@ -479,7 +479,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
 {
    UNREFERENCED_PARAMETER(lpszCommand);
    /*string strCommand = lpszCommand;
-   document * pDoc = ::null();
+   sp(document) pDoc = ::null();
 
    // open format is "[open("%s")]" - no whitespace allowed, one per line
    // print format is "[print("%s")]" - no whitespace allowed, one per line
@@ -521,7 +521,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    if (cmdInfo.m_nShellCommand == ::ca::command_line::FileOpen)
    {
       // show the application ::ca::window
-      ::user::interaction* pMainWnd = System.GetMainWnd();
+      sp(::user::interaction) pMainWnd = System.GetMainWnd();
       int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
@@ -719,7 +719,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    ::count count = m_templateptra.get_count();
    document_template::Confidence bestMatch = document_template::noAttempt;
    document_template * pBestTemplate = ::null();
-   ::user::document_interface * pOpenDocument = ::null();
+   sp(::user::document_interface) pOpenDocument = ::null();
 
    /*char szPath[_MAX_PATH];
    ASSERT(lstrlen(varFileName) < _countof(szPath));
@@ -766,7 +766,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
       if(pview != ::null())
       {
          ASSERT_VALID(pview);
-         frame_window* pFrame = pview->GetParentFrame();
+         sp(frame_window) pFrame = pview->GetParentFrame();
 
          if (pFrame == ::null())
             TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
@@ -776,8 +776,8 @@ void document_manager::request(::ca::create_context * pcreatecontext)
 
             if (pFrame->get_parent() != ::null())
             {
-               frame_window* pAppFrame;
-               if (pFrame != (pAppFrame = dynamic_cast < frame_window * > (System.GetMainWnd())))
+               sp(frame_window) pAppFrame;
+               if (pFrame != (pAppFrame = System.GetMainWnd()))
                {
                   ASSERT_KINDOF(frame_window, pAppFrame);
                   pAppFrame->ActivateFrame();

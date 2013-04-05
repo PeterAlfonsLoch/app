@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   button::button(::ca::application * papp) :
+   button::button(::ca::applicationsp papp) :
       ::user::interaction(papp),
       ::user::button(papp),
       ca(papp),

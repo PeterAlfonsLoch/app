@@ -97,7 +97,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int32_t graphics::ExcludeUpdateRgn(::ca::window* pWnd)
+   int32_t graphics::ExcludeUpdateRgn(sp(::ca::window) pWnd)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -2458,7 +2458,7 @@ namespace ca
 
    }
 
-   memory_graphics::memory_graphics(::ca::application * papp) :
+   memory_graphics::memory_graphics(::ca::applicationsp papp) :
       ::ca::graphics_sp(papp)
    {
       ::ca::graphics_sp::m_p->CreateCompatibleDC(::null());
@@ -2469,7 +2469,7 @@ namespace ca
 
    }
 
-   client_graphics::client_graphics(::user::interaction * pui)
+   client_graphics::client_graphics(sp(::user::interaction) pui)
    {
       m_pui = pui;
       ::ca::graphics_sp::operator = (pui->GetDC());
@@ -2480,7 +2480,7 @@ namespace ca
       m_pui->ReleaseDC(m_p);
    }
 
-   window_graphics::window_graphics(::ca::window * pwindow)
+   window_graphics::window_graphics(sp(::ca::window) pwindow)
    {
       m_pwindow = pwindow;
       create(pwindow->get_app());
@@ -2492,7 +2492,7 @@ namespace ca
       m_pwindow->ReleaseDC(m_p);
    }
 
-   paint_graphics::paint_graphics(::ca::window * pwindow)
+   paint_graphics::paint_graphics(sp(::ca::window) pwindow)
    {
       m_pwindow = pwindow;
       create(pwindow->get_app());

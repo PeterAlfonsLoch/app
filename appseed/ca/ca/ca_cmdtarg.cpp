@@ -5,7 +5,7 @@ command_target::command_target()
    CommonConstruct();
 }
 
-command_target::command_target(::ca::application * papp)
+command_target::command_target(::ca::applicationsp papp)
 : ca(papp)
 {
    CommonConstruct();
@@ -364,7 +364,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
 //      cmd_ui is an implementation class for menus and general dialog
 //        controls (usually buttons)
 
-cmd_ui::cmd_ui(::ca::application * papp)  :
+cmd_ui::cmd_ui(::ca::applicationsp papp)  :
    ca(papp)
 {
 

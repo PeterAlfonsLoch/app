@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-interface_only_exception::interface_only_exception(::ca::application * papp, const char * pszTip) : 
+interface_only_exception::interface_only_exception(::ca::applicationsp papp, const char * pszTip) : 
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

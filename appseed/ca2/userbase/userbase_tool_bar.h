@@ -27,17 +27,17 @@ namespace userbase
 
 
       using ::userbase::control_bar::create;
-      bool create(::user::interaction* pParentWnd,
+      bool create(sp(::user::interaction) pParentWnd,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
          UINT nID = __IDW_TOOLBAR);
       using ::userbase::control_bar::CreateEx;
 #ifdef WINDOWSEX
-      bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
+      bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
          UINT nID = __IDW_TOOLBAR);
 #else
-      bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+      bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
          UINT nID = __IDW_TOOLBAR);
@@ -76,8 +76,8 @@ namespace userbase
       size CalcSimpleLayout();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
-      //virtual void OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler);
-      void set_owner(::user::interaction* pOwnerWnd);
+      //virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
+      void set_owner(sp(::user::interaction) pOwnerWnd);
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
       virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
 

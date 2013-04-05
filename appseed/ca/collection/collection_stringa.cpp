@@ -5,7 +5,7 @@
 __STATIC UINT __read_string_length(::ca::byte_input_stream & ar);
 
 
-stringa::stringa(::ca::application * papp) :
+stringa::stringa(::ca::applicationsp papp) :
 ca(papp)
 {
 }

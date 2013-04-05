@@ -6,7 +6,7 @@ class  biunique :
    public ::ca::byte_serializable
 {
 public:
-   biunique(::ca::application * papp = ::null());
+   biunique(::ca::applicationsp papp = ::null());
 
    bool has_a(T a) const;
    bool has_b(T b) const;
@@ -73,7 +73,7 @@ protected:
 
 
 template < class T, class T_to_T >
-biunique < T, T_to_T > ::biunique(::ca::application * papp) :
+biunique < T, T_to_T > ::biunique(::ca::applicationsp papp) :
    ca(papp)
 {
    m_bBiunivoca = true;
@@ -476,14 +476,14 @@ class CLASS_DECL_ca index_biunique :
    public biunique < index >
 {
 public:
-   index_biunique(::ca::application * papp = ::null());
+   index_biunique(::ca::applicationsp papp = ::null());
 };
 
 class CLASS_DECL_ca int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:
-   int_biunique(::ca::application * papp = ::null());
+   int_biunique(::ca::applicationsp papp = ::null());
 
 };
 

@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   main_view::main_view(::ca::application * papp) :
+   main_view::main_view(::ca::applicationsp papp) :
       ca(papp),
       ::userbase::split_layout(papp),
       ::userbase::view(papp),
@@ -35,7 +35,7 @@ namespace fs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();
-      ::user::interaction* pwnd = create_view(System.type_info < tree > (), get_document(), this, 100);
+      sp(::user::interaction) pwnd = create_view(System.type_info < tree > (), get_document(), this, 100);
       SetPane(0, pwnd, false);
 //      tree * ptree = dynamic_cast < tree * > (pwnd);
 
@@ -62,9 +62,9 @@ namespace fs
 
    }
 
-   document * main_view::get_document()
+   sp(document) main_view::get_document()
    {
-      return dynamic_cast < document * > (::userbase::split_view::get_document());
+      return  (::userbase::split_view::get_document());
    }
 
 

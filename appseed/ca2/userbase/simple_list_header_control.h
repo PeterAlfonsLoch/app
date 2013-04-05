@@ -11,13 +11,13 @@ public:
 
 
 
-   simple_list_header_control(::ca::application * papp);
+   simple_list_header_control(::ca::applicationsp papp);
    virtual ~simple_list_header_control();
 
 
 
    using ::user::list_header::create;
-   virtual bool create(UINT nStyle, LPCRECT lpcrect, ::user::interaction * pwndParent, UINT nID);
+   virtual bool create(UINT nStyle, LPCRECT lpcrect, sp(::user::interaction) pwndParent, UINT nID);
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 

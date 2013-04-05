@@ -10,7 +10,7 @@ namespace visual
    {
    }
 
-   dib_sp::dib_sp(::ca::application * papp) :
+   dib_sp::dib_sp(::ca::applicationsp papp) :
       ::ca::dib_sp(papp)
    {
    }
@@ -34,13 +34,13 @@ namespace visual
          strFile.replace(":/", "\\_");
          strFile.replace(":\\", "\\_\\");
          strFile.replace("/", "\\");
-         strFile = System.dir().time("cache", strFile);
+         strFile = Sys(m_p->m_papp).dir().time("cache", strFile);
          strFile += ".dib";
-         if(Application.file().exists(strFile))
+         if(App(m_p->m_papp).file().exists(strFile))
          {
             try
             {
-               ::ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
+               ::ca::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -54,7 +54,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(Application.file().get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary)))
+         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary)))
             return false;
 
       }
@@ -71,7 +71,7 @@ namespace visual
       {
          try
          {
-            ::ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::defer_create_directory);
+            ::ca::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -83,15 +83,15 @@ namespace visual
 
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
-      return load_from_file(Application.dir().matter(pszMatter));
+      return load_from_file(App(m_p->m_papp).dir().matter(pszMatter));
    }
 
    bool dib_sp::read_from_file(::ca::file * pfile)
    {
-      FIBITMAP * pfi = System.visual().imaging().LoadImageFile(pfile);
+      FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
       if(pfi == ::null())
          return false;
-      ::ca::graphics_sp spgraphics(get_app());
+      ::ca::graphics_sp spgraphics(m_p->m_papp);
       spgraphics->CreateCompatibleDC(::null());
       if(!m_p->from(spgraphics, pfi, true))
          return false;
@@ -101,7 +101,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
       ::ca::filesp spfile;
-      spfile = Application.file().get_file(varFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary);
+      spfile = App(m_p->m_papp).file().get_file(varFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
@@ -115,7 +115,7 @@ namespace visual
 
 #ifdef METROWIN
 
-      throw todo(get_app());
+      throw todo(m_p->m_papp);
 
 #else
 
@@ -146,7 +146,7 @@ namespace visual
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
-      FIBITMAP * pfi7 = System.visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
+      FIBITMAP * pfi7 = Sys(m_p->m_papp).visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
       FIBITMAP * pfi8 = ::null();
       bool bConv;
       if(b8)

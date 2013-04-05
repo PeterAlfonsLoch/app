@@ -73,7 +73,7 @@ namespace filemanager
       string                  m_strPath;
 
 
-      SimpleFolderTreeInterface(::ca::application * papp);
+      SimpleFolderTreeInterface(::ca::applicationsp papp);
       virtual ~SimpleFolderTreeInterface();
 
 
@@ -100,7 +100,7 @@ namespace filemanager
       virtual void _001OnItemCollapse(::ca::tree_item * pitem);
 
 
-      virtual void _017OpenFolder(const ::fs::item & item);
+      virtual void _017OpenFolder(sp(::fs::item)  item);
 
       virtual COLORREF get_background_color();
 

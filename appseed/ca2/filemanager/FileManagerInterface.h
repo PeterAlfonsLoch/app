@@ -18,7 +18,7 @@ public:
 
 
    ::critical_section      m_csItemIdListAbsolute;
-   ::fs::item              m_item;
+   sp(::fs::item)          m_item;
    string                  m_strTopic;
 
 
@@ -32,7 +32,7 @@ public:
    ::critical_section * GetItemIdListCriticalSection();
    ::fs::item & get_item();
 
-   virtual bool FileManagerBrowse(const ::fs::item & item);
+   virtual bool FileManagerBrowse(sp(::fs::item)  item);
    virtual bool FileManagerBrowse(const char * lpcsz);
 
    virtual void FileManagerOneLevelUp();
@@ -42,7 +42,7 @@ public:
    virtual void GetActiveViewSelection(::fs::item_array & itema);
 
 
-   virtual void FileManagerSaveAs(::user::document_interface * pdocument);
+   virtual void FileManagerSaveAs(sp(::user::document_interface) pdocument);
    virtual void FileManagerSaveOK();
    virtual void FileManagerSaveCancel();
 

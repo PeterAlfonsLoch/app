@@ -13,7 +13,7 @@ public:
   /** Creates ErrorHandler instance.
       @param writer writer, which is used to output error logs.
   */
-   ErrorHandlerWriter(::ca::application * papp);
+   ErrorHandlerWriter(::ca::applicationsp papp);
   ~ErrorHandlerWriter();
 
   void fatalError(const string &msg);

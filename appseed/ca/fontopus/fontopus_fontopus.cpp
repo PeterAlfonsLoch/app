@@ -297,7 +297,7 @@ namespace fontopus
 
          ::ca::create_context_sp spcreatecontext(get_app());
 
-         ::ca::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         ::ca::applicationsp papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == ::null())
          {

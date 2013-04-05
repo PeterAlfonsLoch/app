@@ -77,7 +77,7 @@ static const char gen_ShellNewValue[] = "";
 namespace userbase
 {
 
-   document_manager::document_manager(::ca::application * papp) :
+   document_manager::document_manager(::ca::applicationsp papp) :
       ca(papp)
    {
    }

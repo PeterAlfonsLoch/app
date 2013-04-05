@@ -21,7 +21,7 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
 // // END_MESSAGE_MAP()
 
 
-html_view::html_view(::ca::application * papp) :
+html_view::html_view(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -159,9 +159,9 @@ void html_view::_001OnSetCursor(::ca::signal_object * pobj)
 }
 
 
-html_document * html_view::get_document()
+sp(html_document) html_view::get_document()
 {
-   return dynamic_cast < html_document * > (::userbase::view::get_document());
+   return  (::userbase::view::get_document());
 }
 
 string html_view::GetLocationURL()

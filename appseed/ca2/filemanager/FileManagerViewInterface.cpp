@@ -14,14 +14,14 @@ FileManagerViewInterface::~FileManagerViewInterface()
    return GetFileManager()->get_item();
 }
 
-FileManagerInterface * FileManagerViewInterface::GetFileManager()
+sp(FileManagerInterface) FileManagerViewInterface::GetFileManager()
 { 
    return m_pfilemanagerinterface;
 }
 
-::filemanager::document * FileManagerViewInterface::GetFileManagerDoc()
+sp(::filemanager::document) FileManagerViewInterface::GetFileManagerDoc()
 { 
-   return dynamic_cast < ::filemanager::document * > (m_pfilemanagerinterface);
+   return  (m_pfilemanagerinterface);
 }
 
 void FileManagerViewInterface::on_update(::view * psender, LPARAM lhint, ::ca::object * phint)

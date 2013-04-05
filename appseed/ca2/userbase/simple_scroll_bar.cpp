@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
+simple_scroll_bar::simple_scroll_bar(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    m_penDraw(papp),
@@ -37,12 +37,12 @@ void simple_scroll_bar::install_message_handling(::ca::message::dispatch * pinte
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext)
+bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, ::ca::create_context* pContext)
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
-bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
+bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, sp(::user::interaction)pParentWnd, UINT nID)
 {
    if(!::user::scroll_bar::create(eorientation, dwStyle, rect, pParentWnd, nID))
       return FALSE;
@@ -181,7 +181,7 @@ void simple_scroll_bar::_001OnLButtonUp(::ca::signal_object * pobj)
    ScreenToClient(&pt);
    simple_scroll_bar * pcandidate =
       dynamic_cast < simple_scroll_bar * > (
-      System.get_capture_uie());
+      System.get_capture_uie().m_p);
    KillTimer(100);
    KillTimer(110);
    KillTimer(200);
@@ -197,7 +197,7 @@ void simple_scroll_bar::_001OnLButtonUp(::ca::signal_object * pobj)
       System.release_capture_uie();
       bool bWasTracking = m_bTracking;
       m_bTracking = false;
-//      ::user::interaction * pParentWnd = get_parent();
+//      sp(::user::interaction) pParentWnd = get_parent();
       if(bWasTracking)
          SetTrackingPos(pt);
       send_scroll_message(SB_THUMBPOSITION);
@@ -623,7 +623,7 @@ int32_t simple_scroll_bar::ScrollLineB()
 
 int32_t simple_scroll_bar::ScrollPageA()
 {
-//   ::user::interaction * pParentWnd = get_parent();
+//   sp(::user::interaction) pParentWnd = get_parent();
    int32_t nPos = m_scrollinfo.nPos;
    nPos-=m_scrollinfo.nPage ;
    if(nPos < m_scrollinfo.nMin)
@@ -643,7 +643,7 @@ int32_t simple_scroll_bar::ScrollPageA()
 
 int32_t simple_scroll_bar::ScrollPageB()
 {
-//   ::user::interaction * pParentWnd = get_parent();
+//   sp(::user::interaction) pParentWnd = get_parent();
    int32_t nPos = m_scrollinfo.nPos;
    nPos+=m_scrollinfo.nPage ;
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -668,7 +668,7 @@ int32_t simple_scroll_bar::ScrollPageB()
 return;
 }
 
-::user::interaction * pParentWnd = get_parent();
+sp(::user::interaction) pParentWnd = get_parent();
 int32_t nPos = m_scrollinfo.nPos;
 nPos+=m_scrollinfo.nPage;
 if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)

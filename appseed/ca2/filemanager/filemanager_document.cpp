@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   document::document(::ca::application * papp) :
+   document::document(::ca::applicationsp papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::fs::document(papp)
@@ -393,7 +393,7 @@ namespace filemanager
    }
 
 
-   file_manager_operation_document * document::get_operation_doc(bool bSwitch)
+   sp(file_manager_operation_document) document::get_operation_doc(bool bSwitch)
    {
       FileManagerTabView * ptabview = get_typed_view < FileManagerTabView > ();
       if(ptabview == NULL)
@@ -410,7 +410,7 @@ namespace filemanager
          {
             ptabview->ensure(200000);
          }
-         return dynamic_cast < file_manager_operation_document * >
+         return 
             (ptabview->get(200000)->m_pdoc);
       }
       return NULL;
@@ -425,7 +425,7 @@ namespace filemanager
    }
 
 
-   void document::FileManagerSaveAs(::user::document_interface * pdocument)
+   void document::FileManagerSaveAs(sp(::user::document_interface) pdocument)
    {
       FileManagerInterface::FileManagerSaveAs(pdocument);
       FileManagerViewUpdateHint uh;

@@ -15,7 +15,7 @@ FileManagerFileListCallback::~FileManagerFileListCallback()
 
 bool FileManagerFileListCallback::initialize()
 {
-   ::ca::application * papp = get_app();
+   ::ca::applicationsp papp = get_app();
    m_pimagelistSubItemHover   = new image_list(papp);
    m_pimagelistItemHover      = new image_list(papp);
    m_pimagelistNormal         = new image_list(papp);
@@ -65,7 +65,7 @@ void FileManagerFileListCallback::InitializeActionButton(id id, BaseButtonContro
    }
 }
 
-void FileManagerFileListCallback::OnButtonAction(id i, const ::fs::item & item)
+void FileManagerFileListCallback::OnButtonAction(id i, sp(::fs::item)  item)
 {
    UNREFERENCED_PARAMETER(i);
    UNREFERENCED_PARAMETER(item);

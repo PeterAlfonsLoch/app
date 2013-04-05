@@ -11,7 +11,7 @@ public:
    
 
 
-   simple_combo_box(::ca::application * papp);
+   simple_combo_box(::ca::applicationsp papp);
    virtual ~simple_combo_box();
 
    

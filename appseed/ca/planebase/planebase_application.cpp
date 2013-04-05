@@ -39,17 +39,17 @@ namespace planebase
    }
 
 
-   ::ca::application * application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
+   ::ca::applicationsp application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
    {
 
-      ::ca::application * pcaapp = ::null();
-      ::ca::application * papp = ::null();
+      ::ca::applicationsp pcaapp = ::null();
+      ::ca::applicationsp papp = ::null();
 
       string strId(pszId);
 
       if(strId.CompareNoCase("session") == 0)
       {
-         ::plane::session * psession = new ::plane::session();
+         sp(::plane::session) psession = new ::plane::session();
          pcaapp = psession;
          psession->construct();
          if(m_psystem != ::null() && m_psystem->m_psession == ::null())
@@ -98,7 +98,7 @@ namespace planebase
             m_psystem->m_psession = m_psession;
          }
 
-         ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (pcaapp);
+         sp(application) pgenapp = pcaapp;
 
          if(pgenapp != ::null())
          {
@@ -127,7 +127,7 @@ namespace planebase
       //pcaapp->m_papp                               = this;
       pcaapp->m_psystem                            = m_psystem;
 
-      papp = dynamic_cast < ::ca::application * > (pcaapp);
+      papp = pcaapp;
 
       papp->command_central().consolidate(dynamic_cast < ::ca::command_thread * > (&command_central()));
 
@@ -174,30 +174,21 @@ namespace planebase
    }
 
 
-   ::ca::application * application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias)
+   ::ca::applicationsp application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias)
    {
 
-      ::ca::application * pcaapp = instantiate_application(pszType, pszId, pbias);
+      ::ca::applicationsp papp = instantiate_application(pszType, pszId, pbias);
 
-      if(pcaapp == ::null())
+      if(papp == ::null())
          return ::null();
-
-      ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
 
       if(!papp->start_application(bSynch, pbias))
       {
-         try
-         {
-            delete pcaapp;
-         }
-         catch(...)
-         {
-         }
          return ::null();
       }
 
 
-      return pcaapp;
+      return papp;
 
    }
 
@@ -946,7 +937,7 @@ exit_application:
    }
 
    /*
-      ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
+      ::ca::applicationsp pgenapp = (papp);
       if(pgenapp != ::null())
       {
          try
@@ -1175,12 +1166,12 @@ exit_application:
       }
 
 
-      if(fontopus().m_puser == ::null() &&
+      if(fontopus()->m_puser == ::null() &&
         (Application.directrix().m_varTopicQuery.has_property("install")
       || Application.directrix().m_varTopicQuery.has_property("uninstall")))
       {
 
-         if(fontopus().create_system_user("system") == ::null())
+         if(fontopus()->create_system_user("system") == ::null())
             return false;
 
       }
@@ -1260,7 +1251,7 @@ exit_application:
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/Cube
    //
-   ::document * application::hold(::user::interaction * pui)
+   sp(::document) application::hold(sp(::user::interaction) pui)
    {
 
       return ::null();

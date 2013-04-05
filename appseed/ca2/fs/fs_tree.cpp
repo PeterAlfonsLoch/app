@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   tree::tree(::ca::application * papp) :
+   tree::tree(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::fs::tree_interface(papp)
@@ -187,7 +187,7 @@ namespace fs
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
-            frame_window * pframe = GetTopLevelFrame();
+            sp(::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
 
@@ -216,7 +216,7 @@ namespace fs
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (::ca::window *) pframe);
+               (sp(::ca::window)) pframe);
          }
       }
       else
@@ -226,10 +226,10 @@ namespace fs
          {
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
-            frame_window * pframe = GetTopLevelFrame();
+            sp(::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (::ca::window *) pframe);
+               (sp(::ca::window)) pframe);
          }
       }*/
    }
@@ -281,9 +281,9 @@ namespace fs
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void tree::_017OpenFolder(const ::fs::item &item)
+   void tree::_017OpenFolder(sp(::fs::item) item)
    {
-      get_document()->file_manager_browse(item.m_strPath);
+      get_document()->file_manager_browse(item->m_strPath);
    }
 
    void tree::_001OnCreate(::ca::signal_object * pobj)

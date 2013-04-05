@@ -235,7 +235,7 @@ namespace userbase
 
    bool control_bar::SetStatusText(int32_t nHit)
    {
-      ::user::interaction* pOwner = get_owner();
+      sp(::user::interaction) pOwner = get_owner();
 
    //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
       if (nHit == -1)
@@ -276,7 +276,7 @@ namespace userbase
       if(pobj->m_bRet)
          return;
 
-      ::user::interaction* pOwner = get_owner();
+      sp(::user::interaction) pOwner = get_owner();
 
 #ifdef WINDOWSEX
 
@@ -304,7 +304,7 @@ namespace userbase
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
-      ::userbase::frame_window* pFrameWnd = dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame());
+      sp(::userbase::frame_window) pFrameWnd = (GetTopLevelFrame());
       if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
@@ -402,8 +402,8 @@ namespace userbase
       if(pobj->previous())
          return;
 
-      ::userbase::frame_window *pFrameWnd = dynamic_cast < ::userbase::frame_window * > (get_parent());
-      if (pFrameWnd->IsFrameWnd())
+      sp(::userbase::frame_window)pFrameWnd = (get_parent().m_p);
+      if (pFrameWnd->is_frame_window())
       {
          m_pDockSite = pFrameWnd;
          m_pDockSite->AddControlBar(this);
@@ -609,9 +609,9 @@ namespace userbase
       // the dockbar style must also be visible
       if ((GetStyle() & WS_VISIBLE))
       {
-         ::userbase::frame_window* pTarget = dynamic_cast < ::userbase::frame_window * > (get_owner());
-         if (pTarget == NULL || !pTarget->IsFrameWnd())
-            pTarget = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
+         sp(::userbase::frame_window) pTarget = (get_owner().m_p);
+         if (pTarget == NULL || !pTarget->is_frame_window())
+            pTarget = (GetParentFrame());
          if (pTarget != NULL)
             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
       }
@@ -1041,10 +1041,10 @@ namespace userbase
 
    #endif
 
-   ::userbase::frame_window* control_bar::GetDockingFrame()
+   sp(::userbase::frame_window) control_bar::GetDockingFrame()
    {
 
-      ::userbase::frame_window* pFrameWnd = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
+      sp(::userbase::frame_window) pFrameWnd = (GetParentFrame());
 
       if (pFrameWnd == NULL)
          pFrameWnd = m_pDockSite;
@@ -1053,7 +1053,7 @@ namespace userbase
 
       ASSERT_KINDOF(::userbase::frame_window, pFrameWnd);
 
-      return (::userbase::frame_window*) pFrameWnd;
+      return (sp(::userbase::frame_window)) pFrameWnd;
 
    }
 

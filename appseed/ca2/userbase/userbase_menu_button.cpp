@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   menu_button::menu_button(::ca::application * papp) :
+   menu_button::menu_button(::ca::applicationsp papp) :
       ::user::interaction(papp),
       ::user::button(papp),
       button(papp),
@@ -114,7 +114,7 @@ namespace userbase
       }
    }
 
-   menu_button_cmd_ui::menu_button_cmd_ui(::ca::application * papp) :
+   menu_button_cmd_ui::menu_button_cmd_ui(::ca::applicationsp papp) :
       ca(papp),
       cmd_ui(papp)
    {
@@ -124,7 +124,7 @@ namespace userbase
    void menu_button_cmd_ui::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
-      menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther);
+      menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther.m_p);
       pbutton->_001EnableWindow(bOn != FALSE);
       /*ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(simple_toolbar, pToolBar);
@@ -147,7 +147,7 @@ namespace userbase
    void menu_button_cmd_ui::SetCheck(check::e_check echeck)
    {
       ASSERT(echeck == check::checked || echeck == check::unchecked || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
-      menu_button* pbutton = dynamic_cast < menu_button *  > (m_pOther);
+      menu_button* pbutton = dynamic_cast < menu_button *  > (m_pOther.m_p);
       pbutton->_001SetCheck(echeck, true);
    /*   ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(simple_toolbar, pToolBar);

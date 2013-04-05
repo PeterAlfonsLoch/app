@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   parse_info::parse_info(::ca::application * papp)
+   parse_info::parse_info(::ca::applicationsp papp)
    {
       m_bTrimValue      = false; 
       m_bEntityValue    = true; 

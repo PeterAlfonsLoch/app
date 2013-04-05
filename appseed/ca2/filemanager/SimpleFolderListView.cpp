@@ -7,7 +7,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderListView::SimpleFolderListView(::ca::application * papp) :
+   SimpleFolderListView::SimpleFolderListView(::ca::applicationsp papp) :
       ca(papp),
       m_headerctrl(papp),
       ::userbase::view(papp),
@@ -53,7 +53,7 @@ namespace filemanager
    void SimpleFolderListView::OnDraw(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      //::userbase::document* pDoc = get_document();
+      //sp(::userbase::document) pDoc = get_document();
       // TODO: add draw code here
    }
 

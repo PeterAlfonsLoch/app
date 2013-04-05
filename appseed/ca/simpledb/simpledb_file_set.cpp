@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   file_set::file_set(::ca::application * papp) :
+   file_set::file_set(::ca::applicationsp papp) :
       ca(papp),
       ::ca::file_set_sp(papp)
    {

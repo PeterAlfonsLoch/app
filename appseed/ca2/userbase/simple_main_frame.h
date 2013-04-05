@@ -8,7 +8,7 @@ public:
 
 
 
-   simple_main_frame(::ca::application * papp);
+   simple_main_frame(::ca::applicationsp papp);
    virtual ~simple_main_frame();
 
 

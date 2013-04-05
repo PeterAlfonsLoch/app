@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   data_container::data_container(::ca::application * papp) :
+   data_container::data_container(::ca::applicationsp papp) :
       ca(papp)
    {
    }
@@ -35,7 +35,7 @@ namespace ca
    }
 
 
-   data_container_base::data_container_base(::ca::application * papp)
+   data_container_base::data_container_base(::ca::applicationsp papp)
    {
    }
 

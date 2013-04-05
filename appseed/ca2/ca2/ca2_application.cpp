@@ -27,7 +27,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    {
    }
 
-   ::ca::application * application::get_system()
+   ::ca::applicationsp application::get_system()
    {
       return new application();
    }
@@ -99,12 +99,12 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       return true;
 
 
-      if(fontopus().m_puser == NULL &&
+      if(fontopus()->m_puser == NULL &&
          (App(this).directrix().m_varTopicQuery.has_property("install")
          || App(this).directrix().m_varTopicQuery.has_property("uninstall")))
       {
 
-         if(!fontopus().create_system_user("system"))
+         if(!fontopus()->create_system_user("system"))
             return false;
 
       }
@@ -338,7 +338,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    }
 
 
-   ::user::document_interface * application::_001OpenDocumentFile(var varFile)
+   sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -365,7 +365,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       return box.m_strResponse;
    }
 
-   int32_t application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
+   int32_t application::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
       class message_box box(this);
 
@@ -422,7 +422,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       }
    }
 
-   int32_t application::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
+   int32_t application::simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(puiOwner);
 
@@ -468,7 +468,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       }
    }
 
-   int32_t application::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
+   int32_t application::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);
@@ -697,7 +697,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    }*/
 
    /*
-   ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
+   ::ca::applicationsp pgenapp = (papp);
    if(pgenapp != NULL)
    {
    try
@@ -747,7 +747,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    return ::ca::fontopus::application::allocate_new_service();
    }*/
 
-   bool application::_001CloseApplicationByUser(::user::interaction * pwndExcept)
+   bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
    {
 
       // attempt to save all documents

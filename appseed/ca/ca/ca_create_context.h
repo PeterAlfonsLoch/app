@@ -68,7 +68,7 @@ namespace ca
 
 
       command_line_sp();
-      command_line_sp(::ca::application * papp);
+      command_line_sp(::ca::applicationsp papp);
 
 
       using ::ca::smart_pointer < command_line >::operator =;
@@ -99,7 +99,7 @@ namespace ca
       bool                                m_bClientOnly;
       bool                                m_bOuterPopupAlertLike;
       bool                                m_bHold;
-      ::user::interaction *               m_puiParent;
+      sp(::user::interaction)               m_puiParent;
       ::view *                            m_pviewAlloc;
       application_bias_sp                 m_spApplicationBias;
       ::ca::command_line_sp              m_spCommandLine;
@@ -108,9 +108,9 @@ namespace ca
 
 
 
-      create_context(::ca::application * papp);
+      create_context(::ca::applicationsp papp);
       create_context(::ca::command_thread * pthreadParent);
-      create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = ::null());
+      create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
       create_context(const create_context & createcontext);
       virtual ~create_context();
 
@@ -127,9 +127,9 @@ namespace ca
 
 
       create_context_sp();
-      create_context_sp(::ca::application * papp);
+      create_context_sp(::ca::applicationsp papp);
       create_context_sp(::ca::command_thread * pthreadParent);
-      create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = ::null());
+      create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
       virtual ~create_context_sp();
 
 

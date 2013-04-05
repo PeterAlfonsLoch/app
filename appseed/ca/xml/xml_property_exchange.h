@@ -14,7 +14,7 @@ namespace xml
       ::ca::property_set * m_ppropertyset;
 
 
-      property_set_exchange(::ca::application * papp);
+      property_set_exchange(::ca::applicationsp papp);
       virtual ~property_set_exchange();
 
 

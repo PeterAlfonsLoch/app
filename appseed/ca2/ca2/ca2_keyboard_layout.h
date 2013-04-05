@@ -14,12 +14,12 @@ namespace ca2 // ca8 + cube
 
 
 
-      form_document *               m_pdoc;
+      sp(::form_document)               m_pdoc;
       form_view *                   m_pview;
       simple_list_view *            m_plistview;
       ::user::keyboard_layout_ida   m_layoutida;
 
-      keyboard_layout(::ca::application * papp);
+      keyboard_layout(::ca::applicationsp papp);
       virtual ~keyboard_layout();
 
       bool CreateViews();

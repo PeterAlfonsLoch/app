@@ -10,8 +10,7 @@
 namespace visual
 {
 
-   fastblur::fastblur(::ca::application * papp) :
-      ca(papp),
+   fastblur::fastblur(::ca::applicationsp papp) :
       dib_sp(papp)
    {
       m_iRadius = 0;
@@ -22,8 +21,6 @@ namespace visual
 
    bool fastblur::initialize(int32_t cx, int32_t cy, int32_t radius)
    {
-      if(is_null())
-         create(get_app());
       if(is_null())
          return false;
       if(!m_p->create(cx, cy))

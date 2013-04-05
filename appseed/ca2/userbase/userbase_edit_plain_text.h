@@ -11,7 +11,7 @@ namespace userbase
    public:
       
       
-      edit_plain_text(::ca::application * papp);
+      edit_plain_text(::ca::applicationsp papp);
 
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

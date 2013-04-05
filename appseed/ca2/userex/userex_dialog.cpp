@@ -2,7 +2,7 @@
 
 
 
-dialog::dialog(const char * pszMatter, ::user::interaction * puiParent) :
+dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    ca(puiParent->get_app()),
    userbase::view(puiParent->get_app()),
    user::scroll_view(puiParent->get_app()),
@@ -20,7 +20,7 @@ dialog::dialog(const char * pszMatter, ::user::interaction * puiParent) :
 }
 
 
-dialog::dialog(::ca::application * papp) :
+dialog::dialog(::ca::applicationsp papp) :
    ca(papp),
    userbase::view(papp),
    user::scroll_view(papp),
@@ -81,7 +81,7 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
    
    m_pdocument->on_open_document(Application.dir().matter(m_strMatter));
    
-   m_pframe = dynamic_cast < simple_frame_window * > (m_pdocument->get_view()->GetParentFrame());
+   m_pframe =  (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bWindowFrame         = true;
    m_pframe->m_bblur_Background     = true;
    m_pframe->m_etranslucency        = ::user::interaction::TranslucencyPresent;

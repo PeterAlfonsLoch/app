@@ -17,10 +17,10 @@ namespace colorertake5
      /** Default constructor
          Creates exception with is_empty message
      */
-     exception(::ca::application * papp);
+     exception(::ca::applicationsp papp);
      /** Creates exception with string message
      */
-     exception(::ca::application * papp, const string &msg);
+     exception(::ca::applicationsp papp, const string &msg);
      /** Creates exception with included exception information
      */
      exception(const exception &e);

@@ -16,7 +16,7 @@ namespace userpresence
 
    }
 
-   bool presence_central_container::initialize_central_container(::ca::application * papp)
+   bool presence_central_container::initialize_central_container(::ca::applicationsp papp)
    {
 
       if(!App(papp).is_licensed("user_presence", m_bUserPresenceFeatureRequired))

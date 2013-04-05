@@ -4,7 +4,7 @@
 namespace user
 {
 
-   interaction * interaction::g_pguieMouseMoveCapture = ::null();
+   sp(interaction) interaction::g_pguieMouseMoveCapture = ::null();
 
    interaction::interaction()
    {
@@ -29,7 +29,7 @@ namespace user
 
    }
 
-   interaction::interaction(::ca::application * papp) :
+   interaction::interaction(::ca::applicationsp papp) :
       ca(papp),
       ::user::window_interface(papp)
    {
@@ -85,7 +85,7 @@ namespace user
    /*      if(GetTopLevelParent() != ::null()
          && GetTopLevelParent() != this)
          {
-            ::ca::window * pwnd = GetTopLevelParent()->get_wnd();
+            sp(::ca::window) pwnd = GetTopLevelParent()->get_wnd();
             if(pwnd != ::null())
             {
 
@@ -143,7 +143,7 @@ namespace user
          return m_pimpl->ReleaseDC(pdc);
    }
 
-   bool interaction::IsChild(interaction * pWnd)
+   bool interaction::IsChild(sp(interaction) pWnd)
    {
       if(m_pimpl == ::null())
          return FALSE;
@@ -156,7 +156,7 @@ namespace user
       return get_parent();
    }
 
-   interaction * interaction::get_parent() const
+   sp(interaction) interaction::get_parent() const
    {
       if(m_pimpl == ::null() || m_pimpl == this)
          return ::null();
@@ -172,7 +172,7 @@ namespace user
       }
    }
 
-   interaction * interaction::set_parent(interaction * pguieParent)
+   sp(interaction) interaction::set_parent(sp(interaction) pguieParent)
    {
       if(pguieParent == this
       || pguieParent == m_pguie
@@ -181,8 +181,8 @@ namespace user
       {
          return get_parent();
       }
-      ::user::interaction * pimplOld = m_pimpl;
-      interaction * pparentOld = get_parent();
+      sp(::user::interaction) pimplOld = m_pimpl;
+      sp(interaction) pparentOld = get_parent();
       if(pparentOld != ::null())
       {
          if(pguieParent == ::null())
@@ -190,7 +190,7 @@ namespace user
 
             m_pimpl->set_parent(::null());
 
-            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+            sp(::ca::window) pimplNew = Application.alloc(System.type_info < ::ca::window > ());
 
             pimplNew->m_pguie = this;
 
@@ -538,8 +538,8 @@ namespace user
       {
          bool bVisible;
          bool bFatalError;
-         ::user::interaction * puiBefore = ::null();
-         ::user::interaction * pui = get_bottom_child();
+         sp(::user::interaction) puiBefore = ::null();
+         sp(::user::interaction) pui = get_bottom_child();
          while(pui != ::null())
          {
             bFatalError = false;
@@ -711,7 +711,7 @@ namespace user
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      ::user::interaction * pui = get_top_child();
+      sp(::user::interaction) pui = get_top_child();
 //      int32_t iSize;
       try
       {
@@ -762,7 +762,7 @@ namespace user
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
          // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-         ::user::interaction * pui = get_top_child();
+         sp(::user::interaction) pui = get_top_child();
 //         int32_t iSize;
          try
          {
@@ -825,7 +825,7 @@ namespace user
    void interaction::_001OnMouseLeave(::ca::signal_object * pobj)
    {
 
-      interaction * pui = get_top_child();
+      sp(interaction) pui = get_top_child();
       while(pui != ::null())
       {
          if(pui->m_bCursorInside)
@@ -839,7 +839,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   interaction * interaction::_001FromPoint(point64 pt, bool bTestedIfParentVisible)
+   sp(interaction) interaction::_001FromPoint(point64 pt, bool bTestedIfParentVisible)
    {
       if(bTestedIfParentVisible)
       {
@@ -853,10 +853,10 @@ namespace user
          || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
          return ::null();
       }
-      interaction * pui = get_top_child();
+      sp(interaction) pui = get_top_child();
       while(pui != ::null())
       {
-         interaction * puie = pui->_001FromPoint(pt, true);
+         sp(interaction) puie = pui->_001FromPoint(pt, true);
          if(puie != ::null())
             return puie;
          pui = pui->under_sibling();
@@ -907,14 +907,14 @@ namespace user
    }
 
 
-   void interaction::on_delete(::ca::ca * pca)
+   void interaction::on_delete(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
 
-   interaction * interaction::get_child_by_name(const char * pszName, int32_t iLevel)
+   sp(interaction) interaction::get_child_by_name(const char * pszName, int32_t iLevel)
    {
-      interaction * pui = get_top_child();
+      sp(interaction) pui = get_top_child();
       while(pui != ::null())
       {
          if(pui->m_strName == pszName)
@@ -923,14 +923,14 @@ namespace user
          }
          pui = pui->under_sibling();
       }
-      interaction * pchild;
+      sp(interaction) pchild;
       if(iLevel > 0 || iLevel == -1)
       {
          if(iLevel > 0)
          {
             iLevel--;
          }
-         interaction * pui = get_top_child();
+         sp(interaction) pui = get_top_child();
          while(pui != ::null())
          {
             pchild = pui->get_child_by_name(pszName, iLevel);
@@ -943,9 +943,9 @@ namespace user
    }
 
 
-   interaction * interaction::get_child_by_id(id id, int32_t iLevel)
+   sp(interaction) interaction::get_child_by_id(id id, int32_t iLevel)
    {
-      interaction * pui = get_top_child();
+      sp(interaction) pui = get_top_child();
       while(pui != ::null())
       {
          if(pui->m_id == id)
@@ -954,14 +954,14 @@ namespace user
          }
          pui = pui->under_sibling();
       }
-      interaction * pchild;
+      sp(interaction) pchild;
       if(iLevel > 0 || iLevel == -1)
       {
          if(iLevel > 0)
          {
             iLevel--;
          }
-         interaction * pui = get_top_child();
+         sp(interaction) pui = get_top_child();
          while(pui != ::null())
          {
             pchild = pui->get_child_by_id(id, iLevel);
@@ -974,7 +974,7 @@ namespace user
    }
 
    /*
-   void interaction::_001SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y,
+   void interaction::_001SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y,
                int32_t cx, int32_t cy, UINT nFlags)
    {
       SetWindowPos(pWndInsertAfter, x, y, cx, cy, nFlags);
@@ -1122,12 +1122,12 @@ namespace user
 
    }
 
-   bool interaction::IsFrameWnd()
+   bool interaction::is_frame_window()
    {
       if(m_pimpl == ::null())
          return FALSE;
       else
-         return m_pimpl->IsFrameWnd();
+         return m_pimpl->is_frame_window();
    }
 
    bool interaction::IsWindowEnabled()
@@ -1138,7 +1138,7 @@ namespace user
          return m_pimpl->IsWindowEnabled();
    }
 
-   ::frame_window * interaction::GetTopLevelFrame()
+   sp(::frame_window) interaction::GetTopLevelFrame()
    {
       if(m_pimpl == ::null())
          return FALSE;
@@ -1168,7 +1168,7 @@ namespace user
 
 #ifdef METROWIN
 
-      ::user::interaction * pwnd = ::null();
+      sp(::user::interaction) pwnd = ::null();
 
       try
       {
@@ -1189,7 +1189,7 @@ namespace user
       return ::ca::null();
 
 #else
-      ::ca::window * pwnd = ::null();
+      sp(::ca::window) pwnd = ::null();
 
       try
       {
@@ -1226,11 +1226,11 @@ namespace user
 
       m_signalptra.remove_all();
 
-      interaction * pimplOld = m_pimpl;
+      sp(interaction) pimplOld = m_pimpl;
 
-      ::ca::window * pimplNew = ::null();
+      sp(::ca::window) pimplNew = ::null();
 
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      pimplNew = (Application.alloc(System.type_info < ::ca::window > ()));
 
       pimplNew->m_pguie = this;
 
@@ -1253,7 +1253,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            ::ca::window * pwindowOld = dynamic_cast < ::ca::window * > (pimplOld);
+            sp(::ca::window) pwindowOld = pimplOld;
 
             if(pwindowOld != ::null())
             {
@@ -1287,7 +1287,7 @@ namespace user
    oswindow interaction::unsubclass_window()
    {
 
-      ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl.m_p);
+      sp(::ca::window) pwindow = m_pimpl;
 
       if(pwindow != ::null())
       {
@@ -1306,7 +1306,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
       m_pimpl->m_pguie = this;
       m_pguie = this;
       if(!m_pimpl->initialize(window, pwindow))
@@ -1322,7 +1322,7 @@ namespace user
 #endif
 
 
-   bool interaction::create(interaction *pparent, id id)
+   bool interaction::create(sp(interaction)pparent, id id)
    {
       if(IsWindow())
       {
@@ -1342,7 +1342,7 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, interaction* pParentWnd, id id, ::ca::create_context* pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, ::ca::create_context* pContext)
    {
 
       if(IsWindow())
@@ -1352,11 +1352,11 @@ namespace user
 
       m_signalptra.remove_all();
 
-      interaction * pimplOld = m_pimpl;
+      sp(interaction) pimplOld = m_pimpl;
 
-      interaction * pimplNew = ::null();
+      sp(interaction) pimplNew = ::null();
 
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      pimplNew = (Application.alloc(System.type_info < ::ca::window > ()));
 
       pimplNew->m_pguie = this;
 
@@ -1379,7 +1379,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            ::ca::window * pwindowOld = dynamic_cast < ::ca::window * > (pimplOld);
+            sp(::ca::window) pwindowOld = (pimplOld.m_p);
 
             if(pwindowOld != ::null())
             {
@@ -1409,7 +1409,7 @@ namespace user
    bool interaction::create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
-         interaction* pParentWnd, id id,
+         sp(interaction) pParentWnd, id id,
          ::ca::create_context* pContext)
    {
       //if(IsWindow())
@@ -1417,8 +1417,8 @@ namespace user
         // DestroyWindow();
       //}
       m_signalptra.remove_all();
-      interaction * pimplOld = m_pimpl;
-      interaction * pimplNew = ::null();
+      sp(interaction) pimplOld = m_pimpl;
+      sp(interaction) pimplNew = ::null();
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == ::null() || pParentWnd->get_safe_handle() == (oswindow) HWND_MESSAGE)
@@ -1426,7 +1426,7 @@ namespace user
       if(pParentWnd == ::null())
 #endif
       {
-         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+         pimplNew = (Application.alloc(System.type_info < ::ca::window > ()));
          pimplNew->m_pguie = this;
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
@@ -1452,7 +1452,7 @@ namespace user
          {
             pimplOld->m_pguie = ::null();
             pimplOld->_001ClearMessageHandling();
-            ::ca::window * pwindowOld = dynamic_cast < ::ca::window * > (pimplOld);
+            sp(::ca::window) pwindowOld = (pimplOld.m_p);
             if(pwindowOld != ::null())
             {
                pwindowOld->install_message_handling(pimplOld);
@@ -1479,7 +1479,7 @@ namespace user
    bool interaction::create_window_ex(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
-         interaction* pParentWnd, id id,
+         sp(interaction) pParentWnd, id id,
          LPVOID lpParam)
    {
       if(IsWindow())
@@ -1487,7 +1487,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
@@ -1503,7 +1503,7 @@ namespace user
    bool interaction::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
-         interaction* pParentWnd, id id,
+         sp(interaction) pParentWnd, id id,
          LPVOID lpParam)
    {
       if(IsWindow())
@@ -1514,7 +1514,7 @@ namespace user
 #ifndef METROWIN
       if(pParentWnd == ::null())
       {
-         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+         m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
          m_pimpl->m_pguie = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
@@ -1563,7 +1563,7 @@ namespace user
    {
       try
       {
-         ::user::interaction * pui = dynamic_cast < ::user::interaction * > (this);
+         sp(::user::interaction) pui = dynamic_cast < ::user::interaction * > (this);
          if(pui == ::null())
             return FALSE;
       }
@@ -1605,7 +1605,7 @@ namespace user
    }
 
 
-   interaction * interaction::ChildWindowFromPoint(POINT point)
+   sp(interaction) interaction::ChildWindowFromPoint(POINT point)
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1613,7 +1613,7 @@ namespace user
          return m_pimpl->ChildWindowFromPoint(point);
    }
 
-   interaction * interaction::ChildWindowFromPoint(POINT point, UINT nFlags)
+   sp(interaction) interaction::ChildWindowFromPoint(POINT point, UINT nFlags)
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1621,7 +1621,7 @@ namespace user
          return m_pimpl->ChildWindowFromPoint(point, nFlags);
    }
 
-   interaction * interaction::GetNextWindow(UINT nFlag)
+   sp(interaction) interaction::GetNextWindow(UINT nFlag)
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1629,7 +1629,7 @@ namespace user
          return m_pimpl->GetNextWindow(nFlag);
    }
 
-   interaction * interaction::get_next(bool bIgnoreChildren, int32_t * piLevel)
+   sp(interaction) interaction::get_next(bool bIgnoreChildren, int32_t * piLevel)
    {
       if(!bIgnoreChildren)
       {
@@ -1669,7 +1669,7 @@ namespace user
 
    }
 
-   interaction * interaction::GetTopWindow()
+   sp(interaction) interaction::GetTopWindow()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1677,7 +1677,7 @@ namespace user
          return m_pimpl->GetTopWindow();
    }
 
-   interaction * interaction::GetWindow(UINT nCmd)
+   sp(interaction) interaction::GetWindow(UINT nCmd)
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1693,7 +1693,7 @@ namespace user
          return m_pimpl->SetDlgCtrlId(id);
    }
 
-   interaction * interaction::GetActiveWindow()
+   sp(interaction) interaction::GetActiveWindow()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1701,7 +1701,7 @@ namespace user
          return m_pimpl->GetActiveWindow();
    }
 
-   interaction * interaction::SetFocus()
+   sp(interaction) interaction::SetFocus()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1710,7 +1710,7 @@ namespace user
    }
 
 
-   interaction * interaction::SetActiveWindow()
+   sp(interaction) interaction::SetActiveWindow()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1726,7 +1726,7 @@ namespace user
          return m_pimpl->SetForegroundWindow();
    }
 
-   interaction * interaction::GetLastActivePopup()
+   sp(interaction) interaction::GetLastActivePopup()
    {
       if(m_pimpl == ::null())
          return FALSE;
@@ -1795,7 +1795,7 @@ namespace user
          return m_pimpl->SendChildNotifyLastMsg(pResult);
    }
 
-   interaction * interaction::EnsureTopLevelParent()
+   sp(interaction) interaction::EnsureTopLevelParent()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1803,12 +1803,12 @@ namespace user
          return m_pimpl->EnsureTopLevelParent();
    }
 
-   interaction * interaction::GetTopLevelParent()
+   sp(interaction) interaction::GetTopLevelParent()
    {
       ASSERT_VALID(this);
 
-      interaction * oswindow_Parent = this;
-      interaction * oswindow_T;
+      sp(interaction) oswindow_Parent = this;
+      sp(interaction) oswindow_T;
       while ((oswindow_T = get_parent_owner(oswindow_Parent)) != ::null())
       {
          if(oswindow_T->get_wnd() == ::null())
@@ -1819,7 +1819,7 @@ namespace user
       return oswindow_Parent;
    }
 
-   ::frame_window * interaction::EnsureParentFrame()
+   sp(::frame_window) interaction::EnsureParentFrame()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1868,16 +1868,16 @@ namespace user
 
 
 
-   ::frame_window * interaction::GetParentFrame()
+   sp(::frame_window) interaction::GetParentFrame()
    {
       ASSERT_VALID(this);
 
-      interaction * pParentWnd = get_parent();  // start with one parent up
+      sp(interaction) pParentWnd = get_parent();  // start with one parent up
       while (pParentWnd != ::null())
       {
-         if (pParentWnd->IsFrameWnd())
+         if (pParentWnd->is_frame_window())
          {
-            return dynamic_cast < ::frame_window * > (pParentWnd);
+            return pParentWnd;
          }
          pParentWnd = pParentWnd->get_parent();
       }
@@ -1905,7 +1905,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_owner() const
+   sp(interaction) interaction::get_owner() const
    {
       if(m_pguieOwner != ::null())
       {
@@ -1917,7 +1917,7 @@ namespace user
       }
    }
 
-   void interaction::set_owner(interaction * pguie)
+   void interaction::set_owner(sp(interaction) pguie)
    {
       if(m_pimpl == ::null())
          return;
@@ -1925,7 +1925,7 @@ namespace user
          m_pimpl->set_owner(pguie);
    }
 
-   interaction * interaction::GetDescendantWindow(id iId)
+   sp(interaction) interaction::GetDescendantWindow(id iId)
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -2074,7 +2074,7 @@ namespace user
          return m_pimpl->CheckAutoCenter();
    }
 
-   void interaction::CenterWindow(interaction * pAlternateOwner)
+   void interaction::CenterWindow(sp(interaction) pAlternateOwner)
    {
       if(m_pimpl == ::null())
          return;
@@ -2278,15 +2278,15 @@ namespace user
       //      oswindow oswindow_Parent = ::get_parent(get_handle());
       m_iModal = m_iModalCount;
       int32_t iLevel = m_iModal;
-      ::user::interaction * puieParent = get_parent();
+      sp(::user::interaction) puieParent = get_parent();
       oprop(string("RunModalLoop.thread(") + ::ca::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
-      ::ca::application * pappThis1 = dynamic_cast < ::ca::application * > (m_pthread->m_pthread->m_p);
-      ::ca::application * pappThis2 = dynamic_cast < ::ca::application * > (m_pthread->m_pthread);
+      ::ca::applicationsp pappThis1 = (m_pthread->m_pthread->m_p);
+      ::ca::applicationsp pappThis2 = (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -2533,7 +2533,7 @@ ExitModal:
       return System.get_focus_guie() == this;
    }
 
-   interaction * interaction::set_capture(interaction * pinterface)
+   sp(interaction) interaction::set_capture(sp(interaction) pinterface)
    {
       if(pinterface == ::null())
          pinterface = this;
@@ -2541,7 +2541,7 @@ ExitModal:
    }
 
 
-   interaction * interaction::release_capture()
+   sp(interaction) interaction::release_capture()
    {
       return get_wnd()->release_capture();
    }
@@ -2575,7 +2575,7 @@ ExitModal:
    {
       m_eappearance = appearance_zoomed;
       rect rectDesktop;
-      ::ca::window * pwndDesktop = System.get_desktop_window();
+      sp(::ca::window) pwndDesktop = System.get_desktop_window();
       pwndDesktop->GetWindowRect(rectDesktop);
       SetWindowPos(ZORDER_TOP, 0, 0, rectDesktop.width(),
          rectDesktop.height(), SWP_SHOWWINDOW);
@@ -2629,7 +2629,7 @@ ExitModal:
    }
 
 
-   void interaction::on_set_parent(interaction * pguieParent)
+   void interaction::on_set_parent(sp(interaction) pguieParent)
    {
 
       if(pguieParent != ::null())
@@ -2660,7 +2660,7 @@ ExitModal:
 
       m_signalptra.remove_all();
 
-      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
 
       if(m_pimpl == ::null())
          return false;
@@ -2674,7 +2674,7 @@ ExitModal:
       WalkPreTranslateTree(this, pobj);
    }
 
-   void interaction::WalkPreTranslateTree(::user::interaction * puiStop, ::ca::signal_object * pobj)
+   void interaction::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca::signal_object * pobj)
    {
       ASSERT(puiStop == ::null() || puiStop->IsWindow());
       ASSERT(pobj != ::null());
@@ -2683,7 +2683,7 @@ ExitModal:
       // walk from the target window up to the oswindow_Stop window checking
       //  if any window wants to translate this message
 
-      for (::user::interaction * pui = pbase->m_pwnd; pui != ::null(); pui = pui->get_parent())
+      for (sp(::user::interaction) pui = pbase->m_pwnd; pui != ::null(); pui = pui->get_parent())
       {
 
          pui->pre_translate_message(pobj);
@@ -2735,7 +2735,7 @@ ExitModal:
             // if it fails, most probably the object is damaged.
             bWindow = m_pguie->IsWindow() != FALSE;
             if(bWindow)
-               bWindow = dynamic_cast < ::user::interaction * > (m_pguie) != ::null();
+               bWindow = dynamic_cast < ::user::interaction * > (m_pguie.m_p) != ::null();
          }
          catch(...)
          {
@@ -2767,7 +2767,7 @@ ExitModal:
    }
 
 
-   uint_ptr interaction::timer_array::set(interaction * pguie, uint_ptr uiId, UINT uiElapse)
+   uint_ptr interaction::timer_array::set(sp(interaction) pguie, uint_ptr uiId, UINT uiElapse)
    {
 
 
@@ -2888,19 +2888,19 @@ ExitModal:
    }
 
 
-   interaction::timer_array::timer_array(::ca::application * papp) :
+   interaction::timer_array::timer_array(::ca::applicationsp papp) :
       ca(papp),
       m_mutex(papp)
    {
    }
 
 
-   void interaction::timer_array::on_delete(interaction * pui)
+   void interaction::timer_array::on_delete(sp(interaction) pui)
    {
       unset(pui);
    }
 
-   bool interaction::timer_array::unset(interaction * pguie, uint_ptr uiId)
+   bool interaction::timer_array::unset(sp(interaction) pguie, uint_ptr uiId)
    {
 
 
@@ -2920,7 +2920,7 @@ ExitModal:
       return false;
    }
 
-   void interaction::timer_array::detach(smart_pointer_array < timer_item > & timera, interaction * pguie)
+   void interaction::timer_array::detach(smart_pointer_array < timer_item > & timera, sp(interaction) pguie)
    {
 
 
@@ -2937,14 +2937,14 @@ ExitModal:
          }
          else
          {
-            m_timera.add(timera[i]);
+            m_timera.add(new timer_item(timera[i]));
             timera.remove_at(i);
          }
       }
 
    }
 
-   void interaction::timer_array::transfer(::ca::window * pwindow, interaction * pguie)
+   void interaction::timer_array::transfer(sp(::ca::window) pwindow, sp(interaction) pguie)
    {
 
 
@@ -2956,7 +2956,7 @@ ExitModal:
 
    }
 
-   void interaction::timer_array::unset(interaction * pguie)
+   void interaction::timer_array::unset(sp(interaction) pguie)
    {
 
       retry_single_lock sl(&m_mutex, millis(177), millis(184));
@@ -2975,7 +2975,7 @@ ExitModal:
 
    }
 
-   index interaction::timer_array::find(interaction * pguie, uint_ptr uiId)
+   index interaction::timer_array::find(sp(interaction) pguie, uint_ptr uiId)
    {
 
 
@@ -2994,7 +2994,7 @@ ExitModal:
 
    }
 
-   index interaction::timer_array::find_from(interaction * pguie, index iStart)
+   index interaction::timer_array::find_from(sp(interaction) pguie, index iStart)
    {
 
 
@@ -3023,19 +3023,19 @@ ExitModal:
    }
 
 
-   bool interaction::can_merge(::user::interaction * pui)
+   bool interaction::can_merge(sp(::user::interaction) pui)
    {
       UNREFERENCED_PARAMETER(pui);
       return false;
    }
 
-   bool interaction::merge(::user::interaction * pui)
+   bool interaction::merge(sp(::user::interaction) pui)
    {
       UNREFERENCED_PARAMETER(pui);
       return false;
    }
 
-   interaction * interaction::get_bottom_child()
+   sp(interaction) interaction::get_bottom_child()
    {
       single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
       if(m_uiptraChild.get_count() <= 0)
@@ -3044,7 +3044,7 @@ ExitModal:
          return m_uiptraChild.last_element();
    }
 
-   interaction * interaction::get_top_child()
+   sp(interaction) interaction::get_top_child()
    {
       single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
       if(m_uiptraChild.get_count() <= 0)
@@ -3053,10 +3053,10 @@ ExitModal:
          return m_uiptraChild.first_element();
    }
 
-   interaction * interaction::under_sibling()
+   sp(interaction) interaction::under_sibling()
    {
       single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
-      interaction * pui = ::null();
+      sp(interaction) pui = ::null();
       try
       {
          pui = get_parent();
@@ -3077,7 +3077,7 @@ ExitModal:
          return pui->m_uiptraChild(i);
    }
 
-   interaction * interaction::under_sibling(interaction * pui)
+   sp(interaction) interaction::under_sibling(sp(interaction) pui)
    {
       single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
       index i = m_uiptraChild.find_first(pui);
@@ -3101,10 +3101,10 @@ ExitModal:
       }
    }
 
-   interaction * interaction::above_sibling()
+   sp(interaction) interaction::above_sibling()
    {
       single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
-      interaction * pui = ::null();
+      sp(interaction) pui = ::null();
       try
       {
          pui = get_parent();
@@ -3126,16 +3126,16 @@ ExitModal:
    }
 
 
-   void interaction::mouse_hover_add(::user::interaction* pinterface)
+   void interaction::mouse_hover_add(sp(::user::interaction) pinterface)
    {
    }
 
-   void interaction::mouse_hover_remove(::user::interaction* pinterface)
+   void interaction::mouse_hover_remove(sp(::user::interaction) pinterface)
    {
    }
 
 
-   interaction * interaction::above_sibling(interaction * pui)
+   sp(interaction) interaction::above_sibling(sp(interaction) pui)
    {
       single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
       index i = m_uiptraChild.find_first(pui);
@@ -3174,21 +3174,21 @@ restart:
       }
    }
 
-   ::user::interaction * interaction::get_os_focus_uie()
+   sp(::user::interaction) interaction::get_os_focus_uie()
    {
       return ::null();
    }
 
 
 #ifdef METROWIN
-   ::user::interaction * interaction::get_wnd() const
+   sp(::user::interaction) interaction::get_wnd() const
 #else
-   ::ca::window * interaction::get_wnd() const
+   sp(::ca::window) interaction::get_wnd() const
 #endif
    {
       if(m_pimpl != ::null())
       {
-         ::ca::window * pwnd = dynamic_cast < ::ca::window * > (m_pimpl.m_p);
+         sp(::ca::window) pwnd = (m_pimpl.m_p);
          if(pwnd != ::null())
             return pwnd;
       }
@@ -3198,7 +3198,7 @@ restart:
    }
 
    // returns -1 if not descendant
-   int32_t interaction::get_descendant_level(::user::interaction * pui)
+   int32_t interaction::get_descendant_level(sp(::user::interaction) pui)
    {
       int32_t iLevel = 0;
       while(pui != ::null())
@@ -3211,7 +3211,7 @@ restart:
       return -1;
    }
 
-   bool interaction::is_descendant(::user::interaction * pui, bool bIncludeSelf)
+   bool interaction::is_descendant(sp(::user::interaction) pui, bool bIncludeSelf)
    {
       if(bIncludeSelf)
       {
@@ -3223,7 +3223,7 @@ restart:
       }
    }
 
-   ::user::interaction * interaction::get_focusable_descendant(::user::interaction * pui)
+   sp(::user::interaction) interaction::get_focusable_descendant(sp(::user::interaction) pui)
    {
       int32_t iLevel = 0;
       if(pui == ::null())
@@ -3238,7 +3238,7 @@ restart:
             return ::null();
          }
       }
-      ::user::interaction * puiFocusable = ::null();
+      sp(::user::interaction) puiFocusable = ::null();
       int32_t iPreviousLevel = iLevel;
       while(true)
       {

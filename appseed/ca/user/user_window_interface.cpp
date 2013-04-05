@@ -32,7 +32,7 @@ namespace user
       m_bBackgroundBypass        = false;
    }
 
-   window_interface::window_interface(::ca::application * papp) :
+   window_interface::window_interface(::ca::applicationsp papp) :
       ca(papp),
       command_target_interface(papp),
       m_rectParentClient(0, 0, 0, 0)
@@ -106,7 +106,7 @@ namespace user
             else
                continue;
          }
-         ::ca::window * pwndChild = ::ca::window::from_handle(oswindowChild);
+         sp(::ca::window) pwndChild = ::ca::window::from_handle(oswindowChild);
          oswindow oswindowParent = ::get_parent(oswindowChild);
          ::GetClientRect(oswindowChild, rectChild);
          ::ClientToScreen(oswindowChild, &rectChild.top_left());
@@ -159,7 +159,7 @@ namespace user
       }
 
 
-      ::ca::window * pwnd = ::ca::window::FromHandlePermanent(oswindowParam);
+      sp(::ca::window) pwnd = ::ca::window::FromHandlePermanent(oswindowParam);
 
       if((::GetWindowLong((oswindowParam), GWL_STYLE) & WS_VISIBLE) == 0)
       {
@@ -257,12 +257,12 @@ namespace user
 
    void window_interface::TwfGetWndArray(::user::interaction_ptr_array & wndpa)
    {
-      wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
+      wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app().m_p);
    }
 
    void window_interface::TwfGetWndArray(::user::oswindow_array & oswindowa)
    {
-      ::user::interaction_ptr_array & wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
+      ::user::interaction_ptr_array & wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app().m_p);
       wndpa.get_wnda(oswindowa);
    }
 
@@ -499,18 +499,18 @@ namespace user
    {
    }
 
-   interaction * window_interface::get_guie() const
+   sp(interaction) window_interface::get_guie() const
    {
       return m_pguie;
    }
 
 #ifdef METROWIN
-   ::user::interaction * window_interface::get_wnd() const
+   sp(::user::interaction) window_interface::get_wnd() const
    {
       return ::null();
    }
 #else
-   ::ca::window * window_interface::get_wnd() const
+   sp(::ca::window) window_interface::get_wnd() const
    {
       return ::null();
    }

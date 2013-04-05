@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_form_list_edit::simple_form_list_edit(::ca::application * papp) :
+simple_form_list_edit::simple_form_list_edit(::ca::applicationsp papp) :
     ca(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
@@ -25,11 +25,11 @@ void simple_form_list_edit::_001OnCreate(::ca::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 
 
-   ::user::interaction * pwndParent = ::user::interaction::get_parent();
+   sp(::user::interaction) pwndParent = ::user::interaction::get_parent();
    if(base < simple_form_list_view >::bases(pwndParent))
    {
 
-      simple_form_list_view * pview = dynamic_cast < simple_form_list_view * > (pwndParent);
+      simple_form_list_view * pview = dynamic_cast < simple_form_list_view * > (pwndParent.m_p);
       m_plistinterface = pview;
    }
 
@@ -59,9 +59,9 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
    }
 }
 
-::user::interaction * simple_form_list_edit::GetNotifyWnd()
+sp(::user::interaction) simple_form_list_edit::GetNotifyWnd()
 {
-   ::user::interaction * pwnd = get_owner();
+   sp(::user::interaction) pwnd = get_owner();
    if(pwnd != NULL)
       return pwnd;
    return ::user::interaction::get_parent();
@@ -78,7 +78,7 @@ void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 // trans   ::user::interaction::OnChar(nChar, nRepCnt, nFlags);
 }
 
-int32_t simple_form_list_edit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message)
+int32_t simple_form_list_edit::OnMouseActivate(sp(::user::interaction) pDesktopWnd, UINT nHitTest, UINT message)
 {
    UNREFERENCED_PARAMETER(pDesktopWnd);
    UNREFERENCED_PARAMETER(nHitTest);

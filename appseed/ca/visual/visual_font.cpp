@@ -3,7 +3,7 @@
 namespace visual
 {
 
-   font::font(::ca::application * papp) :
+   font::font(::ca::applicationsp papp) :
       ca(papp),
       m_spfont(papp)
    {
@@ -417,7 +417,7 @@ namespace visual
    void font::OnUpdateFont()
    {
 
-      ::ca::graphics_sp spgraphics(&System);
+      ::ca::graphics_sp spgraphics(get_app());
 
       spgraphics->CreateCompatibleDC(::null());
 

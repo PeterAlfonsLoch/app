@@ -23,13 +23,13 @@ namespace plugin
 
 
 
-      user::interaction *     m_pframe;
+      sp(::user::interaction)     m_pframe;
       plugin *                m_pplugin;
 
 
       
 
-      host_interaction(::ca::application * papp);
+      host_interaction(::ca::applicationsp papp);
       virtual ~host_interaction();
 
       void install_message_handling(::ca::message::dispatch * pmessage);
@@ -49,7 +49,7 @@ namespace plugin
 
       virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags);
 
-      ::user::interaction * get_os_focus_uie();
+      sp(::user::interaction) get_os_focus_uie();
 
       void _on_start_user_message_handler();
       void _user_message_handler(::ca::signal_object * pobj);

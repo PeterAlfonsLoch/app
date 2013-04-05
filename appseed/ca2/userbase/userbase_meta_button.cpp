@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaButton::MetaButton(::ca::application * papp) :
+MetaButton::MetaButton(::ca::applicationsp papp) :
    ca(papp),
    ::user::button(papp),
    ::userbase::button(papp),
@@ -224,7 +224,7 @@ void MetaButton::_001OnTimer(::ca::signal_object * pobj)
       else
       {
 
-         //      ::user::interaction * pwnd = ::user::interaction::get_parent();
+         //      sp(::user::interaction) pwnd = ::user::interaction::get_parent();
 
 
          rect rect;

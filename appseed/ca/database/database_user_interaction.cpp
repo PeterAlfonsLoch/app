@@ -148,7 +148,7 @@ namespace database
       }
 
 
-      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, ::user::interaction * pWnd, bool bForceRestore)
+      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pWnd, bool bForceRestore)
       {
 
          ::ca::byte_stream_memory_file memstream(get_app());
@@ -272,7 +272,7 @@ namespace database
       }
 
 
-      bool interaction::SaveWindowRect_(::database::id key, ::database::id idIndex,  ::user::interaction * pWnd)
+      bool interaction::SaveWindowRect_(::database::id key, ::database::id idIndex,  sp(::user::interaction) pWnd)
       {
          //WINDOWPLACEMENT wp;
          //pWnd->GetWindowPlacement(&wp);

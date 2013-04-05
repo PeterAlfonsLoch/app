@@ -6,7 +6,7 @@ namespace databaseuser
 {
 
 
-   list_data::list_data(::ca::application * papp) :
+   list_data::list_data(::ca::applicationsp papp) :
       ca(papp),
       ::user::list_data(papp)
    {

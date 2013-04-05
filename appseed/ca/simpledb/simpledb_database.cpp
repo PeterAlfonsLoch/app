@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   base::base(::ca::application * papp) :
+   base::base(::ca::applicationsp papp) :
       ca(papp),
       m_spfileMeta(papp),
       m_xmldocumentMeta(papp)

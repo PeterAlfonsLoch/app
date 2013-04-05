@@ -5,7 +5,7 @@ namespace ca2 // ca8 + cube
 {
 
 
-   wait_message_dialog::wait_message_dialog(::ca::application * papp) :
+   wait_message_dialog::wait_message_dialog(::ca::applicationsp papp) :
       ca(papp),
       userbase::view(papp),
       user::scroll_view(papp),

@@ -8,7 +8,7 @@
 namespace user
 {
 
-   tab::data::data(::ca::application * papp) :
+   tab::data::data(::ca::applicationsp papp) :
       ca(papp),
       ::ca::data(papp),
       m_imagelist(papp),
@@ -39,7 +39,7 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(::ca::application * papp) :
+   tab::tab(::ca::applicationsp papp) :
       ca(papp),
       place_holder_container(papp),
       m_dcextension(papp)
@@ -132,7 +132,7 @@ namespace user
          id = get_data()->m_panea.get_size();
 
       ppane->m_id               = id;
-      ppane->m_dib.destroy();
+      ppane->m_dib.release();
       ppane->m_pholder          = NULL;
 
       get_data()->m_panea.add(ppane);
@@ -1010,7 +1010,7 @@ namespace user
    void tab::layout_pane(index iPane)
    {
 
-      place_holder * pholder = get_tab_holder(iPane);
+      sp(place_holder) pholder = get_tab_holder(iPane);
 
       if(pholder != NULL)
       {
@@ -1306,13 +1306,13 @@ namespace user
       return -1;
    }
 
-   ::ca::window * tab::GetNotifyWnd()
+   sp(::ca::window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
       return NULL;
 
 #else
-      ::ca::window * pwnd;
+      sp(::ca::window) pwnd;
    //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
       if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
@@ -1322,7 +1322,7 @@ namespace user
    }
 
    /*
-   bool tab::create(::user::interaction * pinterface, UINT uiId)
+   bool tab::create(sp(::user::interaction) pinterface, UINT uiId)
    {
       if(!m_pguie->create(
          pinterface,
@@ -1396,7 +1396,7 @@ namespace user
    {
    }
 
-   tab::pane::pane(::ca::application * papp) :
+   tab::pane::pane(::ca::applicationsp papp) :
       ca(papp),
       m_istrTitleEx(papp)
    {
@@ -1441,7 +1441,7 @@ namespace user
    }
 
 
-   tab::pane_array::pane_array(::ca::application * papp) :
+   tab::pane_array::pane_array(::ca::applicationsp papp) :
       ca(papp)
    {
    }
@@ -1578,15 +1578,15 @@ namespace user
    }
 
 
-   ::user::interaction * tab::get_tab_window(::index iPane, bool bVisible)
+   sp(::user::interaction) tab::get_tab_window(::index iPane, bool bVisible)
    {
-      place_holder * pholder = get_tab_holder(iPane, bVisible);
+      sp(place_holder) pholder = get_tab_holder(iPane, bVisible);
       if(pholder == NULL)
          return NULL;
       return pholder->get_ui();
    }
 
-   ::user::place_holder * tab::get_tab_holder(::index iPane, bool bVisible)
+   sp(::user::place_holder) tab::get_tab_holder(::index iPane, bool bVisible)
    {
       pane * ppane = get_pane(iPane, bVisible);
       if(ppane == NULL)
@@ -1842,7 +1842,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab::get_view_uie()
+   sp(::user::interaction) tab::get_view_uie()
    {
       return NULL;
    }
@@ -1922,7 +1922,7 @@ namespace user
          {
          }
       }
-      ::user::interaction * pui = get_top_child();
+      sp(::user::interaction) pui = get_top_child();
 //      int32_t iSize;
       try
       {

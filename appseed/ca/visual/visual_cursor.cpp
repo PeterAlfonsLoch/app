@@ -3,7 +3,7 @@
 namespace visual
 {
 
-   cursor::cursor(::ca::application * papp) :
+   cursor::cursor(::ca::applicationsp papp) :
       ca(papp),
       m_dib(papp),
       m_dibWork(papp)

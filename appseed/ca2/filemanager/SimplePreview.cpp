@@ -5,7 +5,7 @@
 namespace filemanager
 {
 
-   SimplePreview::SimplePreview(::ca::application * papp) :
+   SimplePreview::SimplePreview(::ca::applicationsp papp) :
       ca(papp),
       ::userbase::view(papp),
       SimplePreviewInterface(papp)
@@ -84,7 +84,7 @@ namespace filemanager
                {
                   html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_document()->m_document.get_element_by_name("encontrar"));
                   html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
-                  text_interface * ptext = dynamic_cast < text_interface * > (pinput->m_pedit);
+                  sp(text_interface) ptext =  (pinput->m_pedit);
                   range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)

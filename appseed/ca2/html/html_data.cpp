@@ -3,7 +3,7 @@
 namespace html
 {
 
-   data::image::image(::ca::application * papp) :
+   data::image::image(::ca::applicationsp papp) :
       ca(papp),
       m_spdib(papp)
    {
@@ -15,7 +15,7 @@ namespace html
    }
 
 
-   data::data(::ca::application * papp) :
+   data::data(::ca::applicationsp papp) :
       ca(papp),
       ::ca::data(papp),
       m_imagea(papp),
@@ -354,12 +354,12 @@ namespace html
       }
    }
 
-   bool data::contains(::user::interaction * pui)
+   bool data::contains(sp(::user::interaction) pui)
    {
       return m_uiptra.contains(pui);
    }
 
-   bool data::on_create_interaction(::user::interaction * pui)
+   bool data::on_create_interaction(sp(::user::interaction) pui)
    {
       m_uiptra.add_unique(pui);
       return true;
@@ -543,7 +543,7 @@ restart:
       return m_pform;
    }
 
-   ::user::interaction * data::get_frame()
+   sp(::user::interaction) data::get_frame()
    {
       return dynamic_cast < ::user::interaction * > (get_form()->GetParentFrame());
    }

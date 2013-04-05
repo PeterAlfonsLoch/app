@@ -5,7 +5,7 @@
 int32_t g_idbchange;
 
 
-db_server::db_server(::ca::application * papp) :
+db_server::db_server(::ca::applicationsp papp) :
    ca(papp),
    ::ca::window_sp(papp)
 {

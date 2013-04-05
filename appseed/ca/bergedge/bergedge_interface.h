@@ -12,7 +12,7 @@ public:
    //virtual ::uinteraction::frame::frame * get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName);
 
 
-   virtual void on_app_request_bergedge_callback(::ca::application * papp);
+   virtual void on_app_request_bergedge_callback(::ca::applicationsp papp);
 
 
 //   virtual ::fontopus::user * login(::ca::property_set & set) = 0;

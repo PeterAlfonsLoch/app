@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   memory_file::memory_file(::ca::application * papp) :
+   memory_file::memory_file(::ca::applicationsp papp) :
       ::primitive::memory_file(papp),
       ::primitive::memory_container(papp)
    {

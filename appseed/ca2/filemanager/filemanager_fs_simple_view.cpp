@@ -10,7 +10,7 @@ namespace filemanager
       namespace simple
       {
 
-         view::view(::ca::application * papp) :
+         view::view(::ca::applicationsp papp) :
             ca(papp),
             ::userbase::split_layout(papp),
             ::userbase::view(papp),

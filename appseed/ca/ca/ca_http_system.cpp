@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      system::system(::ca::application * papp) :
+      system::system(::ca::applicationsp papp) :
          ca(papp),
          m_mutexPac(papp),
          m_mutexProxy(papp)
@@ -135,7 +135,7 @@ namespace ca
 
       }
 
-      system::pac::pac(::ca::application * papp) :
+      system::pac::pac(::ca::applicationsp papp) :
          ca(papp),
          m_js(papp)
       {
@@ -195,7 +195,7 @@ namespace ca
       }
 
 
-      system::proxy::proxy(::ca::application * papp) :
+      system::proxy::proxy(::ca::applicationsp papp) :
          ca(papp)
       {
       }
@@ -459,7 +459,7 @@ namespace ca
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = pszHost;
          string strProtocol = pszProtocol;
-         ::ca::application * papp = set["app"].ca < ::ca::application >();
+         ::ca::applicationsp papp = set["app"].ca < ::ca::application >();
          int32_t iPort;
          if(strProtocol == "https")
          {
@@ -684,7 +684,7 @@ retry:
 
             uint32_t dwTimeProfile1 = get_tick_count();
 
-            ::ca::application * papp = handler.get_app();
+            ::ca::applicationsp papp = handler.get_app();
 
 
             string strRequest = System.url().get_object(pszRequest);
@@ -1093,7 +1093,7 @@ retry:
          string strServer = System.url().get_root(pszUrl);
          string strProtocol = System.url().get_protocol(pszUrl);
          string strObject = System.url().get_object(pszUrl);
-         ::ca::application * papp = set["app"].ca < ::ca::application >();
+         ::ca::applicationsp papp = set["app"].ca < ::ca::application >();
          int32_t iPort;
          if(strProtocol == "https")
          {

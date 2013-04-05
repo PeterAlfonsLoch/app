@@ -5,7 +5,7 @@ namespace bergedge
 {
 
 
-   document::document(::ca::application * papp) :
+   document::document(::ca::applicationsp papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::userbase::document(papp)
@@ -49,7 +49,7 @@ namespace bergedge
       return get_typed_view < ::bergedge::view > ();
    }
 
-   void document::set_platform(platform::document * pdoc)
+   void document::set_platform(sp(::platform::document) pdoc)
    {
       m_pplatformdocument = pdoc;
       //platform_frame * pframe = pdoc->get_platform_frame();
@@ -59,7 +59,7 @@ namespace bergedge
       //pframe->SetWindowPos(NULL, 0, 0, 200, 200, SWP_SHOWWINDOW);
    }
 
-   void document::set_nature(nature::document * pdoc)
+   void document::set_nature(sp(::nature::document) pdoc)
    {
       m_pnaturedocument = pdoc;
       //nature_frame * pframe = pdoc->get_nature_frame();

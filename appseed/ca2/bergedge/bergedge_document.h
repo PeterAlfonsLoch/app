@@ -15,16 +15,16 @@ namespace bergedge
    public:
 
 
-      platform::document *                m_pplatformdocument;
-      nature::document *                  m_pnaturedocument;
+      sp(::platform::document)                m_pplatformdocument;
+      sp(::nature::document)                  m_pnaturedocument;
       
 
-      document(::ca::application * papp); 
+      document(::ca::applicationsp papp); 
       virtual ~document();
 
 
-      void set_platform(platform::document * pdoc);
-      void set_nature(nature::document * pdoc);
+      void set_platform(sp(::platform::document) pdoc);
+      void set_nature(sp(::nature::document) pdoc);
 
       ::bergedge::bergedge * get_bergedge();
 

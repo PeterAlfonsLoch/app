@@ -2,7 +2,7 @@
 
 const int32_t simple_list_header_control::s_iDividerWidth = 4;
 
-simple_list_header_control::simple_list_header_control(::ca::application * papp) :
+simple_list_header_control::simple_list_header_control(::ca::applicationsp papp) :
    ca(papp),
    ::user::list_header(papp)
 {
@@ -61,7 +61,7 @@ void simple_list_header_control::_001OnEndTrack(::ca::signal_object * pobj)
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
    if(ptwi != NULL)
    {
-      ::user::interaction * plist = dynamic_cast<::user::interaction *>(ptwi);
+      sp(::user::interaction) plist = dynamic_cast<sp(::user::interaction)>(ptwi);
       if(plist != NULL)
       {
          plist->PostMessage(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
@@ -89,7 +89,7 @@ void simple_list_header_control::_001OnTrack(::ca::signal_object * pobj)
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
    if(ptwi != NULL)
    {
-      ::user::interaction * plist = dynamic_cast<::user::interaction *>(ptwi);
+      sp(::user::interaction) plist = dynamic_cast<sp(::user::interaction)>(ptwi);
       if(plist != NULL)
       {
          plist->PostMessage(::user::list::MESSAGE_COLUMNHEADERTRACK);
@@ -130,7 +130,7 @@ void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
    if(ptwi != NULL)
    {
-      ::user::interaction * plist = dynamic_cast<::user::interaction *>(ptwi);
+      sp(::user::interaction) plist = dynamic_cast<sp(::user::interaction)>(ptwi);
       if(plist != NULL)
       {
          plist->PostMessage(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
@@ -208,7 +208,7 @@ void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
    return hditem.lParam;
 }*/
 
-bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, ::user::interaction *pwndParent, UINT nID)
+bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, sp(::user::interaction)pwndParent, UINT nID)
 {
    return ::user::interaction::create(NULL, NULL, nStyle, *lpcrect, pwndParent, nID) != 0;
 }

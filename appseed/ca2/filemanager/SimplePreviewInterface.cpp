@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   SimplePreviewInterface::SimplePreviewInterface(::ca::application * papp) :
+   SimplePreviewInterface::SimplePreviewInterface(::ca::applicationsp papp) :
       ::ca::ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp)

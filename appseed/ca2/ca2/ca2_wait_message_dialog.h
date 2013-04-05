@@ -14,7 +14,7 @@ namespace ca2 // ca8 + cube
       string      m_strResponse;
 
 
-      wait_message_dialog(::ca::application * papp);
+      wait_message_dialog(::ca::applicationsp papp);
       virtual ~wait_message_dialog();
 
       virtual void on_show(const char * pszMatter, ::ca::property_set & propertyset);

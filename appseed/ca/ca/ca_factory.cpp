@@ -17,7 +17,7 @@ namespace ca
 
 bool is_safe_set(void * p);
 
-factory::factory(::ca::application * papp) :
+factory::factory(::ca::applicationsp papp) :
    ca(papp)
 {
    m_pmutex = new mutex(papp);
@@ -82,7 +82,7 @@ void factory::set_at(const char * pszType, factory_allocator * pallocator)
 
 }
 
-void factory::discard(::ca::ca * pobject)
+void factory::discard(sp(::ca::ca) pobject)
 {
    single_lock sl(m_pmutex, TRUE);
    factory_allocator * pallocator = get_allocator(typeid(*pobject).name());
@@ -195,7 +195,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
 
 
-::ca::ca * factory::create(::ca::application * papp, ::ca::type_info & info)
+sp(::ca::ca) factory::create(::ca::applicationsp papp, ::ca::type_info & info)
 {
    if(info.m_spmutex.is_null())
    {
@@ -233,7 +233,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
 
 
-::ca::ca * factory::base_clone(::ca::ca * pobject)
+sp(::ca::ca) factory::base_clone(sp(::ca::ca) pobject)
 {
 
    single_lock sl(m_pmutex, TRUE);

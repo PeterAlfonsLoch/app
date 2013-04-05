@@ -9,7 +9,7 @@
 namespace filemanager
 {
 
-   SimpleFileListView::SimpleFileListView(::ca::application * papp) :
+   SimpleFileListView::SimpleFileListView(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
@@ -226,7 +226,7 @@ namespace filemanager
                {
                   html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_html_data()->get_element_by_name("encontrar"));
                   html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
-                  text_interface * ptext = dynamic_cast < text_interface * > (pinput->m_pedit);
+                  sp(text_interface) ptext =  (pinput->m_pedit);
                   range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)
@@ -347,7 +347,7 @@ namespace filemanager
                ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
                //ASSERT(pPopup != NULL);
-               ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame()));
+               sp(::userbase::frame_window) pframe = ( (GetParentFrame()));
                pframe->SetActiveView(this);
                menuPopup.set_app(get_app());
                menuPopup.TrackPopupMenu(
@@ -360,7 +360,7 @@ namespace filemanager
             ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             //ASSERT(pPopup != NULL);
-            ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame());
+            sp(::userbase::frame_window) pframe = (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
 
@@ -400,7 +400,7 @@ namespace filemanager
          {
             ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //ASSERT(pPopup != NULL);
-            //frame_window * pframe = GetTopLevelFrame();
+            //sp(::frame_window) pframe = GetTopLevelFrame();
 
 
 
@@ -425,7 +425,7 @@ namespace filemanager
             }*/
 
 
-            ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame());
+            sp(::userbase::frame_window) pframe = (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
 
@@ -566,7 +566,7 @@ namespace filemanager
          if(::get_tick_count() - m_dwLastFileSize > 840)
          {
             m_dwLastFileSize = ::get_tick_count();
-            ::user::interaction* pwnd = GetParentFrame();
+            sp(::user::interaction) pwnd = GetParentFrame();
 //            bool b = pwnd->IsWindowVisible();
             if(pwnd->IsWindowVisible() && m_bFileSize)
             {
@@ -645,7 +645,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListView::_017OpenContextMenuFolder(const ::fs::item & item)
+   void SimpleFileListView::_017OpenContextMenuFolder(sp(::fs::item)  item)
    {
       
       stringa straCommand;
@@ -684,7 +684,7 @@ namespace filemanager
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenu();
    }
 
-   void SimpleFileListView::_017OpenFolder(const ::fs::item &item)
+   void SimpleFileListView::_017OpenFolder(sp(::fs::item) item)
    {
       GetFileManager()->FileManagerBrowse(item);
    }

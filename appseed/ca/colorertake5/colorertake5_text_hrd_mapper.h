@@ -20,7 +20,7 @@ namespace colorertake5
    public:
    
       
-      TextHRDMapper(::ca::application * papp);
+      TextHRDMapper(::ca::applicationsp papp);
       ~TextHRDMapper();
 
 

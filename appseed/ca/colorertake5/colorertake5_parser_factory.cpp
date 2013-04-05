@@ -110,7 +110,7 @@ string ParserFactory::searchPath()
    return Application.dir().matter("colorer.zip:catalog.xml");
 };
 
-ParserFactory::ParserFactory(::ca::application * papp) :
+ParserFactory::ParserFactory(::ca::applicationsp papp) :
    ca(papp)
 {
 
@@ -124,7 +124,7 @@ ParserFactory::ParserFactory(::ca::application * papp) :
 
 }
 
-ParserFactory::ParserFactory(::ca::application * papp, string catalogPath) :
+ParserFactory::ParserFactory(::ca::applicationsp papp, string catalogPath) :
    ca(papp)
 {
 

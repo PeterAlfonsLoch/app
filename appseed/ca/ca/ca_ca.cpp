@@ -13,8 +13,8 @@ namespace ca
       m_papp               = 0; // ::null()
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
-      m_pptraListener      = ::null();
-      m_pptraListened      = ::null();
+//      m_pptraListener      = ::null();
+  //    m_pptraListened      = ::null();
       m_pfactoryitembase   = ::null();
    }
 
@@ -24,18 +24,18 @@ namespace ca
       m_papp               = o.m_papp;
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
-      m_pptraListener      = ::null();
-      m_pptraListened      = ::null();
+    //  m_pptraListener      = ::null();
+      //m_pptraListened      = ::null();
       m_pfactoryitembase   = ::null();
    }
 
-   ca::ca(::ca::application * papp)
+   ca::ca(::ca::applicationsp papp)
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
       m_papp               = papp;
       m_countReference     = 1; // avoid creating a "perambulator" phantom
-      m_pptraListener      = ::null();
-      m_pptraListened      = ::null();
+//      m_pptraListener      = ::null();
+  //    m_pptraListened      = ::null();
       m_pfactoryitembase   = ::null();
    }
 
@@ -66,7 +66,7 @@ namespace ca
       {
          for(int32_t i = 0; i < m_pptraListener->get_size(); i++)
          {
-            ::ca::ca * plistener = m_pptraListener->element_at(i);
+            sp(::ca::ca) plistener = m_pptraListener->element_at(i);
             if(plistener != ::null())
             {
                try
@@ -101,7 +101,7 @@ namespace ca
       {
          for(int32_t i = 0; i < m_pptraListened->get_size(); i++)
          {
-            ::ca::ca * plistened = m_pptraListened->element_at(i);
+            sp(::ca::ca) plistened = m_pptraListened->element_at(i);
             if(plistened != ::null())
             {
                try
@@ -131,12 +131,12 @@ namespace ca
 
    }
 
-   ::ca::application * ca::get_app() const
+   ::ca::applicationsp ca::get_app() const
    {
       return m_papp;
    }
 
-   void ca::set_app(::ca::application * papp)
+   void ca::set_app(::ca::applicationsp papp)
    {
       m_papp = papp;
    }
@@ -156,11 +156,11 @@ namespace ca
       return *this;
    }
 
-   void ca::on_delete(::ca::ca * pca)
+   void ca::on_delete(sp(::ca::ca) pca)
    {
    }
 
-   ptra & ca::listenerptra()
+/*   ptra & ca::listenerptra()
    {
       if(m_pptraListener == ::null())
       {
@@ -177,7 +177,7 @@ namespace ca
       }
       return *m_pptraListened;
    }
-
+   */
    ::bergedge::bergedge * ca::get_bergedge()
    {
       return m_papp->m_psession->m_pbergedge;
@@ -206,7 +206,7 @@ namespace ca
       }
    }
 
-   ::ca::ca * ca::clone()
+   sp(::ca::ca) ca::clone()
    {
       if(m_pfactoryitembase != ::null())
          return m_pfactoryitembase->clone(this);
@@ -215,10 +215,10 @@ namespace ca
    }
 
 
-   ptra * ca::new_ptra()
+/*   ptra * ca::new_ptra()
    {
       return new ::ca::ptra();
-   }
+   }*/
 
 
 

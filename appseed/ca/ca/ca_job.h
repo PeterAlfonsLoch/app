@@ -14,7 +14,7 @@ namespace ca
       bool        m_bCancel;
 
 
-      job(::ca::application * papp);
+      job(::ca::applicationsp papp);
       virtual ~job();
 
 

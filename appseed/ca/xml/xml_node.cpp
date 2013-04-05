@@ -18,14 +18,14 @@ namespace xml
    static const CHAR szXMLCDATAOpen[] = "<![CDATA[";
    static const CHAR szXMLCDATAClose[] = "]]>";
 
-   node::array::array(::ca::application * papp) :
+   node::array::array(::ca::applicationsp papp) :
       ca(papp)
    {
    }
 
 
 
-   node::node(::ca::application * papp) :
+   node::node(::ca::applicationsp papp) :
       ca(papp),
       m_nodea(papp),
       m_attra(papp)

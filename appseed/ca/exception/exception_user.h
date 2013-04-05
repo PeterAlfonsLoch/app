@@ -7,7 +7,7 @@ class CLASS_DECL_ca user_exception :
 public:
 
 
-   user_exception(::ca::application * papp);
+   user_exception(::ca::applicationsp papp);
    virtual ~user_exception();
 
 

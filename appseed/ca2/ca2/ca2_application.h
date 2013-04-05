@@ -6,7 +6,7 @@ namespace ca2
 
    CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef ::ca::application * (* LPFN_instantiate_application)(::ca::application * pappParent, const char * pszId);
+   typedef ::ca::applicationsp (* LPFN_instantiate_application)(::ca::applicationsp pappParent, const char * pszId);
 
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -62,9 +62,9 @@ namespace ca2
 
       virtual void on_request(::ca::create_context * pcreatecontext);
 
-      ::user::document_interface * _001OpenDocumentFile(var varFile);
+      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      ::ca::application * get_system();
+      ::ca::applicationsp get_system();
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -100,9 +100,9 @@ namespace ca2
       
       string message_box(const char * pszMatter, ::ca::property_set & propertyset);
       using ::ca::application::simple_message_box;
-      virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
-      virtual int32_t track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);
+      virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+      virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
 
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
       virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
@@ -114,7 +114,7 @@ namespace ca2
       virtual void set_title(const char * pszTitle);
 
 
-      virtual bool _001CloseApplicationByUser(::user::interaction * pwndExcept);
+      virtual bool _001CloseApplicationByUser(sp(::user::interaction) pwndExcept);
 
 
 #ifdef WINDOWSEX

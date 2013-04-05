@@ -4,7 +4,7 @@
 namespace nature
 {
 
-   appearance_view::appearance_view(::ca::application * papp) :
+   appearance_view::appearance_view(::ca::applicationsp papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -111,7 +111,7 @@ namespace nature
          System.type_info < folder_selection_list_view > (),
          get_document(),
          this,
-         pcreatordata->m_id));
+         pcreatordata->m_id).m_p);
       switch(pcreatordata->m_id)
       {
       case view_image_folder:
@@ -127,14 +127,14 @@ namespace nature
 
    void appearance_view::_001OnEditAdd(::ca::signal_object * pobj)
    {
-      folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie());
+      folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie().m_p);
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
    void appearance_view::_001OnEditRemove(::ca::signal_object * pobj)
    {
-      folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie());
+      folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie().m_p);
       pview->FolderRemove();
       pobj->m_bRet = true;
    }

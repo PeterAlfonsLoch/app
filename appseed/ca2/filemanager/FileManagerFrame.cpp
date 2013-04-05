@@ -2,7 +2,7 @@
 #include "FileManagerFrame.h"
 
 
-FileManagerFrame::FileManagerFrame(::ca::application * papp) :
+FileManagerFrame::FileManagerFrame(::ca::applicationsp papp) :
    ca(papp),
    simple_frame_window(papp),
    m_toolbar(papp),
@@ -44,7 +44,7 @@ bool FileManagerFrame::DestroyBars()
 
 bool FileManagerFrame::CreateBars()
 {
-   ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetActiveDocument());
+   sp(::filemanager::document) pdoc =  (GetActiveDocument());
    
    ASSERT(pdoc != NULL);
    ASSERT(base < ::filemanager::document > :: bases(pdoc));

@@ -11,16 +11,10 @@ public:
    {
    }
 
-   smart_pointer_array(::ca::application * papp) :
+   smart_pointer_array(::ca::applicationsp papp) :
       ::ca::ca(papp),
       array < ::ca::smart_pointer < T > >(papp)
    {
-   }
-
-   smart_pointer_array (const T & t) :
-      ::ca::ca(is_null(t) ? ::null() : t.get_app())
-   {
-      add(t);
    }
 
    sp(T) & add_new()
@@ -377,7 +371,7 @@ public:
 
       for(int i = 0; i < pa->get_count(); i++)
       {
-         this->add(pa->operator[](i));
+         this->add(pa->element_at(i));
       }
 
       return *this;
@@ -399,22 +393,6 @@ public:
       return *this;
 
    }
-
-   smart_pointer_array & copy(const smart_pointer_array & a)
-   {
-
-      if(&a == this)
-         return *this;
-
-      for(int i = 0; i < a.get_count(); i++)
-      {
-         this->add(a[i]);
-      }
-
-      return *this;
-
-   }
-
 
    template < class ARRAY >
    smart_pointer_array & copy_ptra(ARRAY * pptra)

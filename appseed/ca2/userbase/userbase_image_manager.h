@@ -15,7 +15,7 @@ namespace userbase
       //void LoadToolbar(simple_tool_bar & toolbar, UINT * user);
       image_list & GetImageList();
       image_list & GetImageListDisable();
-      bool Initialize(::ca::application * papp, UINT uiaMenuV003Map [][2]);
+      bool Initialize(::ca::applicationsp papp, UINT uiaMenuV003Map [][2]);
       image_manager();
       virtual ~image_manager();
 

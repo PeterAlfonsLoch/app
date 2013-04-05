@@ -13,7 +13,7 @@ namespace ca
    public:
 
 
-      ::ca::application *     m_papp;
+      ::ca::applicationsp     m_papp;
       const char * const      m_pszFileName;
       const int32_t               m_nLineNo;
       string                  m_str;
@@ -33,17 +33,17 @@ namespace ca
 
 #endif
 
-      trace_add_file_and_line(::ca::application * papp, const char *pszFileName, int32_t nLineNo)
+      trace_add_file_and_line(::ca::applicationsp papp, const char *pszFileName, int32_t nLineNo)
          : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }
 
-      inline ::ca::application * get_app() const
+      inline ::ca::applicationsp get_app() const
       {
          return m_papp;
       }
 
-      inline ::ca::application * get_app()
+      inline ::ca::applicationsp get_app()
       {
          return m_papp;
       }

@@ -3,7 +3,7 @@
 #include "include/freeimage.h"
 #endif
 
-image_list::image_list(::ca::application * papp) :
+image_list::image_list(::ca::applicationsp papp) :
    ca(papp),
    m_spdib(get_app()),
    m_spdibWork(get_app()),
@@ -252,7 +252,7 @@ int32_t image_list::add_file(const char * lpcsz)
    return iItem;
 }
 
-int32_t image_list::add_matter(const char * lpcsz, ::ca::application * papp)
+int32_t image_list::add_matter(const char * lpcsz, ::ca::applicationsp papp)
 {
    if(papp == ::null())
    {

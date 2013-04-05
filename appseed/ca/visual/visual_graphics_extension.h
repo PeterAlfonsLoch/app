@@ -11,7 +11,7 @@ namespace visual
    public:
       
       
-      graphics_extension(::ca::application * papp);
+      graphics_extension(::ca::applicationsp papp);
       virtual ~graphics_extension();
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, array < size > & sizea);
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, size & size);

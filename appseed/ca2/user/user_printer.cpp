@@ -4,7 +4,7 @@
 namespace user
 {
 
-   printer::printer(::ca::application * papp) :
+   printer::printer(::ca::applicationsp papp) :
       ca(papp)
    {
    }

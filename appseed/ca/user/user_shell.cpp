@@ -339,7 +339,7 @@ namespace filemanager
       lpmalloc->Release();
    }
 
-   bool _017HasSubFolder(::ca::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
+   bool _017HasSubFolder(::ca::applicationsp papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
    {
 
       WCHAR szPath[_MAX_PATH * 10];
@@ -396,12 +396,12 @@ namespace filemanager
 
 #endif
 
-   EFolder GetFolderType(::ca::application * papp, const char * lpcsz)
+   EFolder GetFolderType(::ca::applicationsp papp, const char * lpcsz)
    {
       return GetFolderType(papp, ::ca::international::utf8_to_unicode(lpcsz));
    }
 
-   EFolder GetFolderType(::ca::application * papp, const wchar_t * lpcszPath)
+   EFolder GetFolderType(::ca::applicationsp papp, const wchar_t * lpcszPath)
    {
 
       string strPath;
@@ -499,8 +499,9 @@ namespace filemanager
 
 
 
-   ImageSet::ImageSet(::ca::application * papp) :
-      ca(papp)
+   ImageSet::ImageSet(::ca::applicationsp papp) :
+      ca(papp),
+      m_mutex(papp)
    {
       m_pil16 = new image_list(papp);
       m_pil16->create(16, 16, 0, 10, 10);
@@ -512,23 +513,27 @@ namespace filemanager
 
    ImageSet::~ImageSet()
    {
-      delete m_pil16;
-      delete m_pil48;
-      delete m_pil48Hover;
+
    }
 
    void ImageSet::initialize()
    {
+
+      single_lock sl(&m_mutex, true);
+
       m_pil16->add_matter("filemanager\\check_off_16.png");
       m_pil16->add_matter("filemanager\\check_on_16.png");
       m_pil48->add_matter("filemanager\\check_off_16.png");
       m_pil48->add_matter("filemanager\\check_on_16.png");
       m_pil48Hover->add_matter("filemanager\\check_off_16.png");
       m_pil48Hover->add_matter("filemanager\\check_on_16.png");
+
    }
 
    int32_t ImageSet::GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
    {
+
+      single_lock sl(&m_mutex, true);
 
       int32_t iImage = 0x80000000;
 
@@ -594,6 +599,9 @@ namespace filemanager
       const wchar_t * lpcszExtra,
       EIcon eicon)
    {
+
+      single_lock sl(&m_mutex, true);
+
       if(lpsf == ::null())
          return 0x80000000;
       int32_t iType;
@@ -1018,6 +1026,9 @@ namespace filemanager
 
    int32_t ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
+
+      single_lock sl(&m_mutex, true);
+
       int32_t iImage = 0x80000000;
 
 #ifdef WINDOWSEX
@@ -1153,6 +1164,9 @@ namespace filemanager
       HICON * phicon16,
       HICON * phicon48)
    {
+
+      single_lock sl(&m_mutex, true);
+
       if(lpsf == ::null())
          return false;
       int32_t iType;
@@ -1432,6 +1446,9 @@ namespace filemanager
       EIcon eicon)
    {
 
+
+      single_lock sl(&m_mutex, true);
+
       IShellFolder  * lpsf = _017GetShellFolder(lpiidlAbsolute);
 
 
@@ -1460,6 +1477,9 @@ namespace filemanager
       EIcon eicon,
       bool bFolder)
    {
+
+      single_lock sl(&m_mutex, true);
+
       string strPath(psz);
 
       int32_t iImage = 0x80000000;
@@ -1533,6 +1553,8 @@ namespace filemanager
       HICON * phicon48)
    {
 
+      single_lock sl(&m_mutex, true);
+
 #ifdef WINDOWSEX
 
       LPITEMIDLIST lpiidlAbsolute;
@@ -1560,6 +1582,8 @@ namespace filemanager
       HICON * phicon16,
       HICON * phicon48)
    {
+
+      single_lock sl(&m_mutex, true);
 
       IShellFolder  * lpsf = _017GetShellFolder(lpiidlAbsolute);
 

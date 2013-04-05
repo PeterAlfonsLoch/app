@@ -114,7 +114,7 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
-   var(::ca::ca * pca2);
+   var(sp(::ca::ca) pca2);
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);
@@ -157,7 +157,7 @@ public:
       uchar        m_uch;
       char                 m_ch;
    };
-   ::ca::ca *                       m_pca2;
+   sp(::ca::ca)                     m_sp;
    string                           m_str;
    id                               m_id;
 
@@ -181,7 +181,7 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::ca::property_set &              propset(::ca::application * papp = ::null());
+   ::ca::property_set &              propset(::ca::applicationsp papp = ::null());
    ::ca::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
@@ -205,7 +205,7 @@ public:
 
    var dereference();
 
-   void on_delete(::ca::ca * poc);
+   void on_delete(sp(::ca::ca) poc);
 
 
    variable_strict_compare strict_compare() const;
@@ -275,7 +275,21 @@ public:
 
    strsize get_length() const;
 
-   var & operator = (::ca::ca * pca2);
+   template < class T >
+   var & operator = (sp(T) p)
+   {
+      set_type(type_ca2, false);
+      m_sp = p;
+      return *this;
+   }
+
+   inline var & operator = (::ca::ca * p)
+   {
+      set_type(type_ca2, false);
+      m_sp = p;
+      return *this;
+   }
+
    var & operator = (::ca::para_return & eret);
    var & operator = (bool b);
    var & operator = (bool * pb);
@@ -318,17 +332,17 @@ public:
    {
       if(m_etype == type_pvar && m_pvar != ::null())
          return m_pvar->ca < T > ();
-      if(m_etype != type_ca2 || m_pca2 == ::null())
+      if(m_etype != type_ca2 || m_sp.is_set())
          return ::null();
-      return dynamic_cast < T * > (m_pca2);
+      return m_sp.cast < T >();
    }
 
    template < class T >
    const T * ca() const
    {
-      if(m_etype != type_ca2 || m_pca2 == ::null())
+      if(m_etype != type_ca2 || m_sp.is_set())
          return ::null();
-      return dynamic_cast < T * > (m_pca2);
+      return m_sp.cast < const T >();
    }
 
    bool strict_equal(const var & var) const;

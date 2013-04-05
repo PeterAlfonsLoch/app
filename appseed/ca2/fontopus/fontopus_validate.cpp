@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      validate::validate(::ca::application * papp, const char * pszForm, bool bAuth, bool bInteractive) :
+      validate::validate(::ca::applicationsp papp, const char * pszForm, bool bAuth, bool bInteractive) :
          ca(papp),
          ::fontopus::validate(papp, pszForm, bAuth, bInteractive),
          m_netcfg(papp)
@@ -18,7 +18,7 @@ namespace ca
          m_bAuth          = bAuth;
          m_strForm               = pszForm;
          m_bDeferRegistration    = false;
-         ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
+         ::ca::applicationsp pgenapp = (papp);
          if(pgenapp != NULL)
          {
             try
@@ -95,7 +95,7 @@ namespace ca
          createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
          createcontext->m_bOuterPopupAlertLike = true;
          //Sleep(15 * 1000);
-         m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
+         m_pdoc = m_ptemplatePane->open_document_file(createcontext);
          userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
          pview->set_view_creator(this);
          m_ptabview = pview;
@@ -156,8 +156,8 @@ namespace ca
          if(straMatter.get_count() <= 0)
          {
 
-            ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
-            text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+            sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
+            sp(text_interface) ptext =  (pguie.m_p);
             if(ptext != NULL)
             {
                ptext->_001SetText(m_loginthread.m_strUsername);
@@ -195,7 +195,7 @@ namespace ca
          int32_t iWidth = rectOpen.width();
          int32_t iHeight = rectOpen.height();
          rectOpen.deflate(iWidth / 5, iHeight / 5);
-         simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pviewAuth->GetTopLevelParent());
+         sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
          if(pframe != NULL)
          {
             pframe->m_bblur_Background = true;
@@ -485,12 +485,12 @@ namespace ca
                if(m_bAuth)
                {
                   m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
-                  ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
-                  text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+                  sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
+                  sp(text_interface) ptext =  (pguie.m_p);
                   //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
                   ptext->_001GetText(m_loginthread.m_strUsername);
                   pguie = m_pviewAuth->get_child_by_name("password");
-                  ptext = dynamic_cast < text_interface * > (pguie);
+                  ptext =  (pguie.m_p);
                   ptext->_001GetText(m_loginthread.m_strPassword);
                   m_loginthread.m_pcallback = this;
                   m_loginthread.begin();
@@ -498,17 +498,17 @@ namespace ca
                else
                {
                   m_pauth = new auth;
-                  ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
-                  text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+                  sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
+                  sp(text_interface) ptext =  (pguie.m_p);
                   ptext->_001GetText(m_pauth->m_strUsername);
                   pguie = m_pviewAuth->get_child_by_name("password");
-                  ptext = dynamic_cast < text_interface * > (pguie);
+                  ptext =  (pguie.m_p);
                   ptext->_001GetText(m_pauth->m_strPassword);
                }
                ::oswindow oswindowPrevious = (::oswindow) m_pvOldWindow;
                if(oswindowPrevious != NULL)
                {
-                  ::user::interaction * puiPrevious = System.window_from_os_data(oswindowPrevious);
+                  sp(::user::interaction) puiPrevious = System.window_from_os_data(oswindowPrevious);
                   if(puiPrevious != NULL)
                   {
                      if(puiPrevious->SetForegroundWindow())
@@ -691,7 +691,7 @@ namespace ca
       {
          ::ca::create_context_sp createcontext(get_app());
          createcontext->m_bMakeVisible = true;
-         form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
+         sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
          userex::pane_tab_view * pview = pdoc->get_typed_view < userex::pane_tab_view > ();
          pview->set_view_creator(this);
          rect rectOpen;

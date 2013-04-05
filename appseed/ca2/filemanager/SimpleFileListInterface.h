@@ -34,7 +34,7 @@ namespace filemanager
          SimpleFileListInterface * m_plist;
 
 
-         create_image_list_thread(::ca::application * papp);
+         create_image_list_thread(::ca::applicationsp papp);
 
          virtual int32_t run();
 
@@ -84,7 +84,7 @@ namespace filemanager
       public:
 
 
-         ItemArray(::ca::application * papp);
+         ItemArray(::ca::applicationsp papp);
 
 
          void add_item(Item & item);
@@ -153,7 +153,7 @@ namespace filemanager
          index         m_iImage;
       };*/
 
-      SimpleFileListInterface(::ca::application * papp);
+      SimpleFileListInterface(::ca::applicationsp papp);
       virtual ~SimpleFileListInterface();
       virtual void file_size_add_request(bool bClear);
 
@@ -171,14 +171,14 @@ namespace filemanager
 
       void GetSelected(::fs::item_array & itema);
 
-      void _001OnInitializeForm(user::control * pcontrol);
-      void _001OnButtonAction(user::control * pcontrol);
+      void _001OnInitializeForm(user::sp(control) pcontrol);
+      void _001OnButtonAction(user::sp(control) pcontrol);
 
       virtual void _017OpenFile(const ::fs::item_array & itema);
-      virtual void _017OpenFolder(const ::fs::item & item);
+      virtual void _017OpenFolder(sp(::fs::item)  item);
       virtual void _017OpenSelected(bool bOpenFile);
       virtual void _017OpenContextMenuSelected();
-      virtual void _017OpenContextMenuFolder(const ::fs::item &item);
+      virtual void _017OpenContextMenuFolder(sp(::fs::item) item);
       virtual void _017OpenContextMenuFile(const ::fs::item_array &itema);
       virtual void _017OpenContextMenu();
       void _017PreSynchronize();

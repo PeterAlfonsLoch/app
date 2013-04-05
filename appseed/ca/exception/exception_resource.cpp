@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-resource_exception::resource_exception(::ca::application * papp) :
+resource_exception::resource_exception(::ca::applicationsp papp) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   memory_file::memory_file(::ca::application * papp, ::primitive::memory_size iSize) :
+   memory_file::memory_file(::ca::applicationsp papp, ::primitive::memory_size iSize) :
       ca(papp),
       memory_container (papp)
    {
@@ -20,7 +20,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(::ca::application * papp, void * pMemory, ::primitive::memory_size dwSize) :
+   memory_file::memory_file(::ca::applicationsp papp, void * pMemory, ::primitive::memory_size dwSize) :
       ca(papp),
       memory_container(papp, pMemory, dwSize)
    {
@@ -30,7 +30,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(::ca::application * papp, const memory_file & memoryfile) :
+   memory_file::memory_file(::ca::applicationsp papp, const memory_file & memoryfile) :
       ca(papp),
       memory_container (papp, ((memory_file &) memoryfile).get_memory())
    {
@@ -40,7 +40,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(::ca::application * papp, memory_base * pmemory) :
+   memory_file::memory_file(::ca::applicationsp papp, memory_base * pmemory) :
       ca(papp),
       memory_container (papp, pmemory)
    {

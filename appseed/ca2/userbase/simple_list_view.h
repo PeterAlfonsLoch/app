@@ -8,14 +8,14 @@ public:
 
    simple_list_header_control    m_headerctrl;
    
-   simple_list_view(::ca::application * papp);   
+   simple_list_view(::ca::applicationsp papp);   
    virtual ~simple_list_view();
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    oswindow GetHandle();
-   ::user::interaction* OnDrawInterfaceGetWnd();
-   virtual ::user::interaction* _GetWnd();
+   sp(::user::interaction) OnDrawInterfaceGetWnd();
+   virtual sp(::user::interaction) _GetWnd();
 
    virtual void OnDraw(::ca::graphics * pgraphics);     
    virtual bool pre_create_window(CREATESTRUCT& cs);

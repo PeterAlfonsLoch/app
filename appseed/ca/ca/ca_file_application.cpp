@@ -260,7 +260,7 @@ namespace ca
             try
             {
 
-               spfile.destroy();
+               spfile.release();
 
             }
             catch(...)
@@ -281,7 +281,7 @@ namespace ca
             if(!spfile->open(strPath, nOpenFlags))
             {
 
-               spfile.destroy();
+               spfile.release();
 
             }
             else
@@ -314,7 +314,7 @@ namespace ca
          if(!spfile->open(strPath, nOpenFlags))
          {
 
-            spfile.destroy();
+            spfile.release();
 
          }
 
@@ -356,7 +356,7 @@ namespace ca
       else if(::ca::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         ::ca::application * papp = ::null();
+         ::ca::applicationsp papp = ::null();
 
          if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
          {
@@ -368,7 +368,7 @@ namespace ca
             if(!spfile->open(App(m_papp).dir().matter(strPath), nOpenFlags))
             {
 
-               spfile.destroy();
+               spfile.release();
 
             }
 
@@ -407,7 +407,7 @@ namespace ca
          if(!spfile->open(strPath, nOpenFlags))
          {
 
-            spfile.destroy();
+            spfile.release();
 
          }
 

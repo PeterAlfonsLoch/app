@@ -14,7 +14,7 @@ namespace uinteraction
       ::ca::property_set       m_set;
 
 
-      interaction(::ca::application * papp);
+      interaction(::ca::applicationsp papp);
       virtual ~interaction();
 
       virtual void update();

@@ -16,7 +16,7 @@ namespace user
    public:
 
       mutex                            m_mutex;
-      comparable_array < document * >  m_documentptra;
+      comparable_array < sp(document) >  m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
       document_template *              m_pdocumentemplate;
@@ -34,7 +34,7 @@ namespace user
 
       virtual void update_title();
 
-      virtual void on_alloc(::ca::application * papp);
+      virtual void on_alloc(::ca::applicationsp papp);
 
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);
@@ -121,9 +121,9 @@ namespace user
       virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
-      virtual bool can_close_frame(frame_window* pFrame);
+      virtual bool can_close_frame(sp(frame_window) pFrame);
       virtual bool save_modified(); // return TRUE if ok to continue
-      virtual void pre_close_frame(frame_window* pFrame);
+      virtual void pre_close_frame(sp(frame_window) pFrame);
 
 
       virtual void dump(dump_context &) const;

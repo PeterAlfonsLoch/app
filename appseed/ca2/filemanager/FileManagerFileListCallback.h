@@ -40,7 +40,7 @@ public:
    virtual int32_t GetActionButtonCount();
    virtual image_list * GetActionButtonImageList(id i);
    virtual void InitializeActionButton(id i, BaseButtonControl * pbutton);
-   virtual void OnButtonAction(id i, const ::fs::item & item);
+   virtual void OnButtonAction(id i, sp(::fs::item)  item);
 
    virtual bool GetMenuItemCallback(id iId);
    virtual void OnMenuItemAction(id iId, const ::fs::item_array & itema);

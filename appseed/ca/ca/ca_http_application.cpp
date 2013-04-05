@@ -81,7 +81,7 @@ namespace ca
          {
             if((bool)set["optional_ca2_sessid"])
             {
-               if(Application.fontopus().m_puser != ::null())
+               if(Application.fontopus()->m_puser != ::null())
                   puser = &ApplicationUser;
             }
             else
@@ -170,7 +170,7 @@ namespace ca
          }
 
          if(puser == ::null() && !get_app()->is_system() 
-         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_pfontopus->m_puser != ::null()) 
+         && (!get_app()->is_session() || get_app().cast < ::plane::session > ()->m_pfontopus->m_puser != ::null()) 
          && (pvarQuery == ::null() || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
          {
             puser = &ApplicationUser;

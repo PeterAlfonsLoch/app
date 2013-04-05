@@ -18,8 +18,8 @@ namespace ca
       sp(mutex)                     m_spmutex;
 
 
-      transfer_file(::ca::application * papp, mutex * pmutex = ::null());
-      transfer_file(::ca::application * papp, ::primitive::memory_file * pmemoryfileIn);
+      transfer_file(::ca::applicationsp papp, mutex * pmutex = ::null());
+      transfer_file(::ca::applicationsp papp, ::primitive::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 

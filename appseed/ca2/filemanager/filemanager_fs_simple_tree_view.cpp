@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         tree_view::tree_view(::ca::application * papp) :
+         tree_view::tree_view(::ca::applicationsp papp) :
             ca(papp),
             ::userbase::view(papp),
             ::user::scroll_view(papp),
@@ -130,7 +130,7 @@ namespace filemanager
                   iNewItem = m_foldera.get_size();
                   m_foldera.add_new();
                }
-               m_foldera.element_at(iNewItem) = folder;
+               m_foldera.at(iNewItem) = folder;
 
                pdataitemChild = pdataitemParent->get_child_by_user_data(iNewItem);
 
@@ -153,7 +153,7 @@ namespace filemanager
                //}
 
 
-               m_foldera.add(folder);
+               m_foldera.add(new Folder(folder));
                iNode++;
             }
 

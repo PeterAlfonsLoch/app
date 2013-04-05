@@ -313,7 +313,7 @@ namespace user
 
       SCAST_PTR(::ca::message::activate, pactivate, pobj);
 
-      ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+      sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
 
       if(pactivate->m_nState == WA_INACTIVE)
       {
@@ -332,7 +332,7 @@ namespace user
          }
 
 
-         ::user::interaction * pframe = oprop("deactivate_together").ca < ::user::interaction >();
+         sp(::user::interaction) pframe = oprop("deactivate_together").ca < ::user::interaction >();
 
          if(pActive != pframe)
          {

@@ -43,12 +43,12 @@ namespace userbase
 #endif
    }
 
-   bool status_bar::create(::user::interaction* pParentWnd, uint32_t dwStyle, id strId)
+   bool status_bar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id strId)
    {
       return CreateEx(pParentWnd, 0, dwStyle, strId);
    }
 
-   bool status_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, id strId)
+   bool status_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, id strId)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 
@@ -710,13 +710,13 @@ namespace userbase
    {
    public: // re-implementations only
 
-      CStatusCmdUI(::ca::application *papp);
+      CStatusCmdUI(::ca::applicationsp papp);
       virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
 
-   CStatusCmdUI::CStatusCmdUI(::ca::application *papp) :
+   CStatusCmdUI::CStatusCmdUI(::ca::applicationsp papp) :
    ca(papp),
       cmd_ui(papp)
 
@@ -727,7 +727,7 @@ namespace userbase
    void CStatusCmdUI::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
-      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
+      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
@@ -740,7 +740,7 @@ namespace userbase
 
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
    {
-      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
+      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
@@ -758,7 +758,7 @@ namespace userbase
 
    void CStatusCmdUI::SetText(const char * lpszText)
    {
-      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
+      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
@@ -767,7 +767,7 @@ namespace userbase
    }
 
 
-   void status_bar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler)
+   void status_bar::OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler)
    {
       CStatusCmdUI state(get_app());
       state.m_pOther = this;

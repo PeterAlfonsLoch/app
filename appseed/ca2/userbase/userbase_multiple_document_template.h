@@ -8,7 +8,7 @@ namespace userbase
       virtual public ::multiple_document_template
    {
    public:
-      multiple_document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info pDocClass, ::ca::type_info pFrameClass, ::ca::type_info pViewClass);
+      multiple_document_template(::ca::applicationsp papp, const char * pszMatter, ::ca::type_info pDocClass, ::ca::type_info pFrameClass, ::ca::type_info pViewClass);
       virtual ~multiple_document_template();
 
       void reload_template();

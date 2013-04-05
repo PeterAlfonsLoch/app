@@ -138,7 +138,7 @@ HACCEL frame_window::GetDefaultAccelerator()
    // use ::user::document_interface specific accelerator table over m_hAccelTable
    HACCEL hAccelTable = m_hAccelTable;
    HACCEL hAccel;
-   ::user::document_interface * pDoc = GetActiveDocument();
+   sp(::user::document_interface) pDoc = GetActiveDocument();
    if (pDoc != ::null() && (hAccel = pDoc->GetDefaultAccelerator()) != ::null())
       hAccelTable = hAccel;
 
@@ -175,7 +175,7 @@ void frame_window::PostNcDestroy()
    delete_this();
 }
 
-void frame_window::OnPaletteChanged(::user::interaction* pFocusWnd)
+void frame_window::OnPaletteChanged(sp(::user::interaction) pFocusWnd)
 {
    UNREFERENCED_PARAMETER(pFocusWnd);
    // trans user::frame_window_interface::OnPaletteChanged(pFocusWnd);
@@ -210,19 +210,19 @@ void frame_window::ExitHelpMode()
    if (System.get_capture_uie() == get_handle())
       System.release_capture_uie();
 
-   frame_window* pFrameWnd = GetTopLevelFrame();
+   sp(frame_window) pFrameWnd = GetTopLevelFrame();
    ENSURE_VALID(pFrameWnd);
    pFrameWnd->m_bHelpMode = m_bHelpMode = HELP_INACTIVE;
    PostMessage(WM_KICKIDLE);   // trigger idle update
    */
 }
 
-bool frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT message)
+bool frame_window::OnSetCursor(sp(::user::interaction) pWnd, UINT nHitTest, UINT message)
 {
    UNREFERENCED_PARAMETER(pWnd);
    UNREFERENCED_PARAMETER(nHitTest);
    UNREFERENCED_PARAMETER(message);
-   frame_window* pFrameWnd = GetTopLevelFrame();
+   sp(frame_window) pFrameWnd = GetTopLevelFrame();
    ENSURE_VALID(pFrameWnd);
    if (pFrameWnd->m_bHelpMode)
    {
@@ -266,7 +266,7 @@ bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
 //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
 //   UINT nID = LOWORD(wParam);
 
-   frame_window* pFrameWnd = GetTopLevelFrame();
+   sp(frame_window) pFrameWnd = GetTopLevelFrame();
    ENSURE_VALID(pFrameWnd);
 /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == ::null() &&
       nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
@@ -296,12 +296,12 @@ void frame_window::BeginModalState()
 
    // determine top-level parent, since that is the true parent of any
    //  modeless windows anyway...
-   ::user::interaction * pParent = EnsureTopLevelParent();
+   sp(::user::interaction) pParent = EnsureTopLevelParent();
 
    m_uiptraDisable.remove_all();
 
    // disable all windows connected to this frame (and add them to the list)
-   ::user::interaction * oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
+   sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
 
    while (oswindow != ::null())
    {
@@ -350,7 +350,7 @@ void frame_window::ShowOwnedWindows(bool bShow)
 /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
    while (oswindow != ::null())
    {
-      ::ca::window * pWnd = ::ca::window::FromHandlePermanent(oswindow);
+      sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(oswindow);
       if (pWnd != ::null() && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
          uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
@@ -440,7 +440,7 @@ bool frame_window::pre_create_window(CREATESTRUCT& cs)
 
 }
 
-bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, ::ca::create_context* pContext)
+bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(lpszMenuName);
@@ -461,7 +461,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
 }
 
 /*
-::user::interaction * frame_window::CreateView(create_context* pContext, UINT nID)
+sp(::user::interaction) frame_window::CreateView(create_context* pContext, UINT nID)
 {
 // trans   ASSERT(get_handle() != ::null());
    ASSERT(IsWindow());
@@ -469,7 +469,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
    ENSURE_ARG(pContext->m_typeinfoNewView != ::null());
 
    // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-   ::user::interaction * pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
+   sp(::user::interaction) pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
    if (pview == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::view type %hs failed.\n",
@@ -557,7 +557,7 @@ int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* 
 
 
 bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
-   ::user::interaction * pParentWnd, ::ca::create_context* pContext)
+   sp(::user::interaction) pParentWnd, ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
    UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -604,7 +604,7 @@ void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    if (hMenuAlt == ::null())
    {
       // attempt to get default menu from ::user::document_interface
-      ::user::document_interface * pDoc = GetActiveDocument();
+      sp(::user::document_interface) pDoc = GetActiveDocument();
       if (pDoc != ::null())
          hMenuAlt = pDoc->GetDefaultMenu();
       // use default menu stored in frame if none from ::user::document_interface
@@ -615,16 +615,16 @@ void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    // trans ::SetMenu(get_handle(), hMenuAlt);
 }
 
-void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bMakeVisible)
+void frame_window::InitialUpdateFrame(sp(::user::document_interface) pDoc, bool bMakeVisible)
 {
    // if the frame does not have an active ::view, set to first pane
    ::view * pview = ::null();
    if (GetActiveView() == ::null())
    {
-      ::user::interaction * pWnd = GetDescendantWindow("pane_first");
+      sp(::user::interaction) pWnd = GetDescendantWindow("pane_first");
       if (pWnd != ::null() && base < ::view > ::bases(pWnd))
       {
-         pview = dynamic_cast < ::view * > (pWnd);
+         pview = dynamic_cast < ::view * > (pWnd.m_p);
          SetActiveView(pview, FALSE);
       }
    }
@@ -636,7 +636,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
    if (bMakeVisible)
    {
 
-      if(dynamic_cast < ::user::place_holder * > (get_parent()) == ::null())
+      if(dynamic_cast < ::user::place_holder * > (get_parent().m_p) == ::null())
       {
 
          InitialFramePosition();
@@ -669,7 +669,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
       pDoc->update_frame_counts();
    on_update_frame_title(TRUE);
 
-   ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (get_parent());
+   sp(::user::place_holder) pholder = get_parent();
    if(pholder != ::null())
    {
       if(!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
@@ -738,7 +738,7 @@ void frame_window::OnClose()
       (*m_lpfnCloseProc)(this);
 
    // Note: only queries the active ::user::document_interface
-   ::user::document_interface * pdocument = GetActiveDocument();
+   sp(::user::document_interface) pdocument = GetActiveDocument();
    if (pdocument != ::null() && !pdocument->can_close_frame(this))
    {
       // ::user::document_interface can't close right now -- don't close it
@@ -837,7 +837,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   pview = dynamic_cast < ::view * > (this->get_child_by_id("pane_first"));
+   pview = dynamic_cast < ::view * > (this->get_child_by_id("pane_first").m_p);
    if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -846,16 +846,16 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
       return TRUE;
 
    // then pump through parent
-   ::user::interaction * puiParent = get_parent();
+   sp(::user::interaction) puiParent = get_parent();
    if(puiParent != ::null() && puiParent->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
    // last but not least, pump through cast
-   ::ca::application* pApp = dynamic_cast < ::ca::application * > (get_app());
+   ::ca::application* pApp = get_app();
    if (pApp != ::null() && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   command_target_interface * pcommandtargetinterface= dynamic_cast < command_target_interface * > (Application.user()->get_keyboard_focus());
+   sp(command_target_interface) pcommandtargetinterface = Application.user()->get_keyboard_focus();
 
    if(pcommandtargetinterface != ::null())
    {
@@ -872,7 +872,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 // Delegate scroll messages to active ::view as well
 void frame_window::OnHScroll(UINT, UINT, CScrollBar*)
 {
-   ::user::interaction * pActiveView = GetActiveView();
+   sp(::user::interaction) pActiveView = GetActiveView();
    if (pActiveView != ::null())
    {
       // trans const MESSAGE* pMsg = GetCurrentMessage();
@@ -882,7 +882,7 @@ void frame_window::OnHScroll(UINT, UINT, CScrollBar*)
 
 void frame_window::OnVScroll(UINT, UINT, CScrollBar*)
 {
-   ::user::interaction * pActiveView = GetActiveView();
+   sp(::user::interaction) pActiveView = GetActiveView();
    if (pActiveView != ::null())
    {
 // trans      const MESSAGE* pMsg = GetCurrentMessage();
@@ -922,13 +922,13 @@ void frame_window::_001OnActivate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::activate, pactivate, pobj);
 
-   ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+   sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
 
    pobj->previous();
 
    // get top level frame unless this is a child ::ca::window
    // determine if ::ca::window should be active or not
-   frame_window* pTopLevel = (GetStyle() & WS_CHILD) ? this : dynamic_cast < frame_window * > (GetTopLevelFrame());
+   sp(frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
 
    if(pTopLevel == ::null())
       pTopLevel = this;
@@ -937,7 +937,7 @@ void frame_window::_001OnActivate(::ca::signal_object * pobj)
 
    bool bStayActive =
       (pTopLevel == pActive ||
-      (pActive && pTopLevel == dynamic_cast < frame_window * > (pActive->GetTopLevelFrame()) &&
+      (pActive && pTopLevel == pActive->GetTopLevelFrame() &&
       (pActive == pTopLevel ||
          (pActive && pActive->send_message(WM_FLOATSTATUS, FS_SYNCACTIVE) != 0))));
    pTopLevel->m_nFlags &= ~WF_STAYACTIVE;
@@ -983,7 +983,7 @@ void frame_window::_001OnNcActivate(::ca::signal_object * pobj)
 void frame_window::OnSysCommand(UINT nID, LPARAM lParam)
 {
    UNREFERENCED_PARAMETER(lParam);
-   frame_window* pFrameWnd = GetTopLevelFrame();
+   sp(frame_window) pFrameWnd = GetTopLevelFrame();
    ENSURE_VALID(pFrameWnd);
 
    // set status bar as appropriate
@@ -1233,7 +1233,7 @@ void frame_window::SetActiveView(::view * pViewNew, bool bNotify)
    }
 }
 
-void frame_window::on_delete(::ca::ca * p)
+void frame_window::on_delete(sp(::ca::ca) p)
 {
    ::user::frame_window_interface::on_delete(p);
 }
@@ -1242,7 +1242,7 @@ void frame_window::on_delete(::ca::ca * p)
 /////////////////////////////////////////////////////////////////////////////
 // Special ::view swapping/activation
 
-void frame_window::OnSetFocus(::user::interaction * pOldWnd)
+void frame_window::OnSetFocus(sp(::user::interaction) pOldWnd)
 {
    UNREFERENCED_PARAMETER(pOldWnd);
    if (m_pViewActive != ::null())
@@ -1252,7 +1252,7 @@ void frame_window::OnSetFocus(::user::interaction * pOldWnd)
       */
 }
 
-::user::document_interface * frame_window::GetActiveDocument()
+sp(::user::document_interface) frame_window::GetActiveDocument()
 {
    ASSERT_VALID(this);
    ::view * pview = GetActiveView();
@@ -1300,7 +1300,7 @@ LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
    UINT nIDLast = m_nIDLastMessage;
    m_nFlags &= ~WF_NOPOPMSG;
 
-   ::user::interaction * pMessageBar = GetMessageBar();
+   sp(::user::interaction) pMessageBar = GetMessageBar();
    if (pMessageBar != ::null())
    {
       const char * lpsz = ::null();
@@ -1326,7 +1326,7 @@ LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
       pMessageBar->SetWindowText(lpsz);
 
       // update owner of the bar in terms of last message selected
-      frame_window* pFrameWnd = pMessageBar->GetParentFrame();
+      sp(frame_window) pFrameWnd = pMessageBar->GetParentFrame();
       if (pFrameWnd != ::null())
       {
          pFrameWnd->m_nIDLastMessage = (UINT)wParam;
@@ -1344,12 +1344,12 @@ LRESULT frame_window::OnHelpPromptAddr(WPARAM, LPARAM)
    return (LRESULT)&m_dwPromptContext;
 }
 
-::user::interaction * frame_window::GetMessageBar()
+sp(::user::interaction) frame_window::GetMessageBar()
 {
    return GetDescendantWindow("status_bar");
 }
 
-void frame_window::OnEnterIdle(UINT nWhy, ::user::interaction* pWho)
+void frame_window::OnEnterIdle(UINT nWhy, sp(::user::interaction) pWho)
 {
    UNREFERENCED_PARAMETER(pWho);
    // trans user::frame_window_interface::OnEnterIdle(nWhy, pWho);
@@ -1386,7 +1386,7 @@ void frame_window::on_update_frame_title(bool bAddToTitle)
       return;     // leave it alone!
 
 
-   ::user::document_interface * pdocument = GetActiveDocument();
+   sp(::user::document_interface) pdocument = GetActiveDocument();
    if (bAddToTitle && pdocument != ::null())
       UpdateFrameTitleForDocument(pdocument->get_title());
    else
@@ -1478,10 +1478,10 @@ void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
       m_lpfnCloseProc = ::null();
 
       // shift original "pane_first" back to its rightful ID
-/*      ::user::interaction * oswindow = get_child_by_id(__IDW_PANE_SAVE);
+/*      sp(::user::interaction) oswindow = get_child_by_id(__IDW_PANE_SAVE);
       if (oswindow != ::null())
       {
-         ::user::interaction * oswindow_Temp = get_child_by_id("pane_first");
+         sp(::user::interaction) oswindow_Temp = get_child_by_id("pane_first");
          if (oswindow_Temp != ::null())
             __set_dialog_control_id_(oswindow_Temp, __IDW_PANE_SAVE);
          __set_dialog_control_id_(oswindow, "pane_first");
@@ -1530,7 +1530,7 @@ void frame_window::OnIdleUpdateCmdUI()
    m_nIdleFlags = 0;
 }
 
-frame_window* frame_window::GetActiveFrame()
+sp(frame_window) frame_window::GetActiveFrame()
 {
    // by default, the active frame is the frame itself (MDI is different)
    return this;
@@ -1760,7 +1760,7 @@ void frame_window::dump(dump_context & dumpcontext) const
    dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
    dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
    if (m_pViewActive != ::null())
-      dumpcontext << "\nwith active ::view: " << m_pViewActive;
+      dumpcontext << "\nwith active ::view: " << m_pViewActive.m_p;
    else
       dumpcontext << "\nno active ::view";
 
@@ -1770,7 +1770,7 @@ void frame_window::dump(dump_context & dumpcontext) const
 
 
 
-bool frame_window::IsFrameWnd()
+bool frame_window::is_frame_window()
 {
    return TRUE;
 }

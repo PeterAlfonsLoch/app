@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   form_list::form_list(::ca::application * papp) :
+   form_list::form_list(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp), 
       ::user::form(papp),

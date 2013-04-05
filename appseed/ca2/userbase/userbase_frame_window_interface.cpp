@@ -32,15 +32,15 @@ namespace userbase
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
       if(pfiu != NULL)
       {
-         ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (this);
+         sp(::userbase::frame_window) pframe = (this);
          // if the frame does not have an active ::view, set to first pane
          ::view * pview = NULL;
          if (pframe->GetActiveView() == NULL)
          {
-            ::user::interaction* pWnd = pframe->GetDescendantWindow("pane_first");
+            sp(::user::interaction) pWnd = pframe->GetDescendantWindow("pane_first");
             if (pWnd != NULL && base < ::view >::bases(pWnd))
             {
-               pview = dynamic_cast < ::view * > (pWnd);
+               pview = dynamic_cast < ::view * > (pWnd.m_p);
                pframe->SetActiveView(pview, FALSE);
             }
          }
@@ -78,7 +78,7 @@ namespace userbase
 
          }
 
-         ::userbase::document * pdoc = pfiu->m_pdoc;
+         sp(::userbase::document) pdoc = pfiu->m_pdoc;
          // update frame counts and frame title (may already have been visible)
          if(pdoc != NULL)
             pdoc->update_frame_counts();
@@ -104,7 +104,7 @@ namespace userbase
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent)
       {
-         user::interaction * pui;
+         sp(::user::interaction) pui;
          if(m_pguie != NULL)
             pui = m_pguie->get_bottom_child();
          else
@@ -151,7 +151,7 @@ namespace userbase
       else
       {
          rect rect;
-         ::user::interaction* pwnd = get_guie();
+         sp(::user::interaction) pwnd = get_guie();
          pwnd->GetClientRect(rect);
          pdc->FillSolidRect(rect, ARGB(184 + 49 + 21 + 1, 184 + 49, 184 + 49, 177 + 49));
          //m_workset.OnDraw(pdc);
@@ -242,7 +242,7 @@ namespace userbase
    {
       if(bFullScreen)
       {
-         ::user::interaction* pwndParentFrame = GetParentFrame();
+         sp(::user::interaction) pwndParentFrame = GetParentFrame();
          if(pwndParentFrame == NULL)
          {
             if(!WfiIsFullScreen())
@@ -255,7 +255,7 @@ namespace userbase
                return false;
             }
          }
-         frame_window_interface * pframe = dynamic_cast < frame_window_interface * > (pwndParentFrame);
+         frame_window_interface * pframe = dynamic_cast < frame_window_interface * > (pwndParentFrame.m_p);
          if(pframe == NULL)
          {
             if(!WfiIsFullScreen())
@@ -289,12 +289,12 @@ namespace userbase
             WfiFullScreen(false, bRestore);
             return true;
          }
-         ::user::interaction* pwndParentFrame = GetParentFrame();
+         sp(::user::interaction) pwndParentFrame = GetParentFrame();
          if(pwndParentFrame == NULL)
          {
             return false;
          }
-         frame_window_interface * pframe = dynamic_cast < frame_window_interface * > (pwndParentFrame);
+         frame_window_interface * pframe = dynamic_cast < frame_window_interface * > (pwndParentFrame.m_p);
          if(pframe == NULL)
          {
             return false;
@@ -385,7 +385,7 @@ namespace userbase
       return WfiFullScreen(bFullScreen, bRestore);
    }
 
-   void frame_window_interface::on_set_parent(::user::interaction* pguieParent)
+   void frame_window_interface::on_set_parent(sp(::user::interaction) pguieParent)
    {
       UNREFERENCED_PARAMETER(pguieParent);
       m_workset.m_pwndEvent = m_pimpl->m_pguie;
@@ -414,7 +414,7 @@ namespace userbase
       UNREFERENCED_PARAMETER(dc);
    }
 
-   void frame_window_interface::on_delete(::ca::ca * pca)
+   void frame_window_interface::on_delete(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }

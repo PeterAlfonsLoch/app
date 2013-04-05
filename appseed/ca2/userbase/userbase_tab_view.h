@@ -21,23 +21,23 @@ namespace userbase
       ::user::view_creator *                 m_pviewcreator;
 
 
-      tab_view(::ca::application * papp);
+      tab_view(::ca::applicationsp papp);
       virtual ~tab_view();
 
 
 
       virtual id get_view_id();
 
-      virtual ::user::interaction * get_view_uie();
+      virtual sp(::user::interaction) get_view_uie();
       virtual ::user::view_creator_data * get_view_creator_data();
-      virtual ::user::document_interface * get_view_document();
+      virtual sp(::user::document_interface) get_view_document();
 
 
       void _000OnDraw(::ca::graphics * pdc);
 
       void _001OnDropTab(int32_t iPane, e_position eposition);
       
-      ::user::interaction* _001GetTabWnd(int32_t iTab);
+      sp(::user::interaction) _001GetTabWnd(int32_t iTab);
 
       bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 

@@ -17,7 +17,7 @@ namespace uinteraction
    }
 
 
-   ::uinteraction::interaction * uinteraction::get_new_uinteraction(const char * pszUinteractionLibrary)
+   sp(::uinteraction::interaction) uinteraction::get_new_uinteraction(const char * pszUinteractionLibrary)
    {
 
       string strId(pszUinteractionLibrary);
@@ -77,7 +77,7 @@ namespace uinteraction
       if(strAppId.is_empty()) // trivial validity check
          return NULL;
 
-      ::uinteraction::interaction * pinteraction = library.get_new_uinteraction();
+      sp(::uinteraction::interaction) pinteraction = library.get_new_uinteraction();
       if(pinteraction == NULL)
          return NULL;
 
@@ -85,7 +85,7 @@ namespace uinteraction
 
    }
 
-   ::uinteraction::interaction * uinteraction::get_uinteraction(const char * pszUinteraction)
+   sp(::uinteraction::interaction) uinteraction::get_uinteraction(const char * pszUinteraction)
    {
 
       if(System.get_twf() == NULL)
@@ -95,7 +95,7 @@ namespace uinteraction
 
       }
 
-      ::uinteraction::interaction * pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
+      sp(::uinteraction::interaction) pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
 
       if(Bergedge.m_mapUinteraction[pszUinteraction] == NULL)
       {
@@ -115,7 +115,7 @@ namespace uinteraction
    ::uinteraction::frame::frame * uinteraction::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
    {
 
-      ::uinteraction::interaction * pinteraction = get_uinteraction(pszLibrary);
+      sp(::uinteraction::interaction) pinteraction = get_uinteraction(pszLibrary);
 
       if(pinteraction == NULL)
          return NULL;

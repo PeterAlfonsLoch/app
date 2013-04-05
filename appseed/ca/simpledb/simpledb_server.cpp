@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   server::server(::ca::application * papp) :
+   server::server(::ca::applicationsp papp) :
       ::ca::ca(papp)
    {
       m_pbase = ::null();

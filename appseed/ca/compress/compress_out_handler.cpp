@@ -193,7 +193,7 @@ namespace libcompress
       m.Props[propID] = value;
    }
 
-   out_handler::out_handler(::ca::application * papp) :
+   out_handler::out_handler(::ca::applicationsp papp) :
       ca(papp)
    {
    }
@@ -592,8 +592,7 @@ namespace libcompress
       number -= minNumber;
       for(::count j = _methods.get_size(); j <= (int32_t)number; j++)
       {
-         COneMethodInfo oneMethodInfo;
-         _methods.add(oneMethodInfo);
+         _methods.add(new COneMethodInfo);
       }
 
       COneMethodInfo &oneMethodInfo = _methods[number];

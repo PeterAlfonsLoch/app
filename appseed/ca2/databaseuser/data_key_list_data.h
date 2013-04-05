@@ -12,7 +12,7 @@ namespace databaseuser
    public:
 
 
-      data_key_list_data(::ca::application * papp);
+      data_key_list_data(::ca::applicationsp papp);
       virtual ~data_key_list_data();
 
 

@@ -11,7 +11,7 @@ namespace visual
    public:
 
 
-      api(::ca::application * papp);
+      api(::ca::applicationsp papp);
       virtual ~api();
 
 

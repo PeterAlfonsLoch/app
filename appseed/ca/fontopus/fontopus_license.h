@@ -19,7 +19,7 @@ namespace fontopus
 
       string_map < info >  m_mapInfo;
 
-      license(::ca::application * papp);
+      license(::ca::applicationsp papp);
       virtual ~license();
 
       bool has(const char * pszId, bool bInteractive = true);

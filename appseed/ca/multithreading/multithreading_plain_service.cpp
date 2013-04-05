@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-plain_service::plain_service(::ca::application * papp) :
+plain_service::plain_service(::ca::applicationsp papp) :
    ca(papp),
    service_base(papp)
 {

@@ -25,7 +25,7 @@ namespace n7z
 
       bool _constructed;
    public:
-      CEncoder(::ca::application * papp, const CCompressionMethodMode &options);
+      CEncoder(::ca::applicationsp papp, const CCompressionMethodMode &options);
       virtual ~CEncoder();
       HRESULT EncoderConstr();
       HRESULT Encode(

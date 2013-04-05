@@ -65,7 +65,7 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   void document_interface::on_alloc(::ca::application * papp)
+   void document_interface::on_alloc(::ca::applicationsp papp)
    {
       set_app(papp);
    }
@@ -123,7 +123,7 @@ namespace user
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            frame_window* pFrame = pview->GetParentFrame();
+            sp(frame_window) pFrame = pview->GetParentFrame();
             if (pFrame != ::null())
                pFrame->m_nWindow = -1;     // unknown
          }
@@ -139,7 +139,7 @@ namespace user
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            frame_window* pFrame = pview->GetParentFrame();
+            sp(frame_window) pFrame = pview->GetParentFrame();
             if (pFrame != ::null() && pFrame->m_nWindow == -1)
             {
                ASSERT_VALID(pFrame);
@@ -160,7 +160,7 @@ namespace user
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            frame_window* pFrame = pview->GetParentFrame();
+            sp(frame_window) pFrame = pview->GetParentFrame();
             if (pFrame != ::null() && pFrame->m_nWindow == iFrame)
             {
                ASSERT_VALID(pFrame);
@@ -173,7 +173,7 @@ namespace user
       }
    }
 
-   bool document_interface::can_close_frame(frame_window* pFrameArg)
+   bool document_interface::can_close_frame(sp(frame_window) pFrameArg)
       // permission to close all views using this frame
       //  (at least one of our views must be in this frame)
    {
@@ -186,7 +186,7 @@ namespace user
       {
          ::view * pview = get_view(index);
          ASSERT_VALID(pview);
-         frame_window* pFrame = pview->GetParentFrame();
+         sp(frame_window) pFrame = pview->GetParentFrame();
          // assume frameless views are ok to close
          if (pFrame != ::null())
          {
@@ -201,7 +201,7 @@ namespace user
       return save_modified();
    }
 
-   void document_interface::pre_close_frame(frame_window* /*pFrameArg*/)
+   void document_interface::pre_close_frame(sp(frame_window) /*pFrameArg*/)
    {
       // default does nothing
    }
@@ -710,7 +710,7 @@ namespace user
          // get frame attached to the ::view
          ::view * pview = m_viewptra[index];
          ASSERT_VALID(pview);
-         frame_window* pFrame = pview->GetParentFrame();
+         sp(frame_window) pFrame = pview->GetParentFrame();
 
          if(pFrame != ::null())
          {

@@ -8,7 +8,7 @@ namespace ca
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(::ca::application * papp) :
+   log::log(::ca::applicationsp papp) :
       ca(papp)
    {
 
@@ -89,7 +89,7 @@ namespace ca
    }
 
 
-//   extern ::ca::application * g_papp;
+//   extern ::ca::applicationsp g_papp;
 
    CLASS_DECL_ca int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {

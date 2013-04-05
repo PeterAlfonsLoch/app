@@ -18,13 +18,13 @@ namespace cubebase
    {
    }
 
-   ::ca::application * application::get_system()
+   ::ca::applicationsp application::get_system()
    {
       return new application();
    }
 
 
-typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
+typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
 
    void application::CubeOnFactoryExchange()
    {
@@ -91,14 +91,14 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
       if(m_psystem->m_pcube == NULL && !is_cube())
       {
 
-         ::ca::application * papp            = System.create_application("application", "cube", true, NULL);
+         ::ca::applicationsp papp            = System.create_application("application", "cube", true, NULL);
          if(papp == NULL)
             return false;
 
-         ::cube::cube * pcube                = dynamic_cast < ::cube::cube * > (papp);
+         sp(::cube::cube) pcube                = papp;
          if(pcube == NULL)
          {
-            delete papp;
+            papp.release();
             return NULL;
          }
 
@@ -117,11 +117,11 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
       if(m_psession->m_pbergedge == NULL && !is_cube() && !is_bergedge())
       {
 
-         ::ca::application * papp            = System.create_application("application", "bergedge", true, NULL);
+         ::ca::applicationsp papp            = System.create_application("application", "bergedge", true, NULL);
          if(papp == NULL)
             return false;
 
-         ::bergedge::bergedge * pbergedge    = dynamic_cast < ::bergedge::bergedge * > (papp);
+         ::bergedge::bergedge * pbergedge    = dynamic_cast < ::bergedge::bergedge * > (papp.m_p);
          if(pbergedge == NULL)
          {
             delete papp;

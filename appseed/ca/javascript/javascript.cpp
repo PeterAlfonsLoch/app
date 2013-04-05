@@ -1280,7 +1280,7 @@ int32_t CScriptVar::getRefs() {
 
 // ----------------------------------------------------------------------------------- CSCRIPT
 
-tinyjs::tinyjs(::ca::application * papp) :
+tinyjs::tinyjs(::ca::applicationsp papp) :
    ca(papp)
 {
     l = 0;

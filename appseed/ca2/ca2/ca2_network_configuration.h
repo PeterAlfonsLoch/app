@@ -12,16 +12,16 @@ namespace ca2 // ca8 + cube
    public:
 
 
-      form_document *               m_pdoc;
+      sp(::form_document)               m_pdoc;
       form_view *                   m_pview;
 
 
-      network_configuration(::ca::application * papp);
+      network_configuration(::ca::applicationsp papp);
       virtual ~network_configuration();
 
 
-      bool initialize(::user::interaction * puiParent);
-      bool initialize_child(::user::interaction * puiParent);
+      bool initialize(sp(::user::interaction) puiParent);
+      bool initialize_child(sp(::user::interaction) puiParent);
 
       void on_show();
 

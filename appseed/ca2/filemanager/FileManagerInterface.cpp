@@ -3,7 +3,7 @@
 
 FileManagerInterface::FileManagerInterface()
 {
-   m_item.m_strPath.Empty();
+
 }
 
 FileManagerInterface::~FileManagerInterface()
@@ -11,29 +11,49 @@ FileManagerInterface::~FileManagerInterface()
 
 }
 
-bool FileManagerInterface::FileManagerBrowse(const ::fs::item & item)
+bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
 {
-   string strOldPath = m_item.m_strPath;
+
+   string strOldPath;
+
+
+   if(m_item.is_set())
+   {
+      strOldPath = m_item.m_strPath;
+   }
+
    try
    {
-      if(&item != &m_item)
-      {
-         m_item.m_strPath        = item.m_strPath;
-      }
+
+      m_item = item;
+
+
       OnFileManagerBrowse();
+
+
    }
    catch(string & str)
    {
+   
       if(str == "uifs:// You have not logged in!")
       {
+         
          Application.simple_message_box(NULL, "You have not logged in! Cannot access your User Intelligent File System - uifs://");
+         
          // assume can resume at least from this exception one time
-         m_item.m_strPath = strOldPath;
+         
+         m_item = new ::fs::item(strOldPath_;
+
          OnFileManagerBrowse();
+
       }
+
       return false;
+
    }
+   
    return false;
+
 }
 
 bool FileManagerInterface::FileManagerBrowse(const char * lpcsz)
@@ -80,26 +100,26 @@ critical_section * FileManagerInterface::GetItemIdListCriticalSection()
 void FileManagerInterface::OnFileManagerBrowse()
 {
 
-      if(::ca::str::begins(m_item.m_strPath, "uifs://")
+   if(::ca::str::begins(m_item.m_strPath, "uifs://")
       || ::ca::str::begins(m_item.m_strPath, "fs://"))
-      {
-         data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item.m_strPath);
-      }
-      else
-      {
+   {
+      data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item.m_strPath);
+   }
+   else
+   {
 
-         id idMachine;
+      id idMachine;
 
-         #ifdef LINUX
-            idMachine = "Linux";
-         #elif defined(WINDOWSEX)
-            idMachine = "Windows Desktop";
-         #endif
+#ifdef LINUX
+      idMachine = "Linux";
+#elif defined(WINDOWSEX)
+      idMachine = "Windows Desktop";
+#endif
 
-         data_set("InitialBrowsePath", ::ca::system::idEmpty, "machinefs://");
-         data_set("InitialBrowsePath", idMachine, m_item.m_strPath);
+      data_set("InitialBrowsePath", ::ca::system::idEmpty, "machinefs://");
+      data_set("InitialBrowsePath", idMachine, m_item.m_strPath);
 
-      }
+   }
    //get_filemanager_data()->OnFileManagerOpenFolder(get_item());
 }
 
@@ -107,7 +127,7 @@ void FileManagerInterface::OpenSelectionProperties()
 {
 }
 
-void FileManagerInterface::FileManagerSaveAs(::user::document_interface * pdocument)
+void FileManagerInterface::FileManagerSaveAs(sp(::user::document_interface) pdocument)
 {
    get_filemanager_data()->m_pdocumentSave = pdocument;
 }

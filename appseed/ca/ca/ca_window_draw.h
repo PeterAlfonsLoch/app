@@ -27,7 +27,7 @@ namespace ca
       event                m_eventFree;
 
 
-      window_draw(::ca::application * papp);
+      window_draw(::ca::applicationsp papp);
 
       virtual bool UpdateBuffer();
       virtual bool ScreenOutput();

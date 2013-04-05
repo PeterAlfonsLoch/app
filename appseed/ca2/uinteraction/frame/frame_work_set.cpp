@@ -281,10 +281,10 @@ namespace frame
    };
 
    bool WorkSet::update(
-      ::user::interaction *pwndDraw,
-      ::user::interaction *pwndRegion,
-      ::user::interaction *pwndEvent,
-      ::user::interaction *pwndCommand)
+      sp(::user::interaction)pwndDraw,
+      sp(::user::interaction)pwndRegion,
+      sp(::user::interaction)pwndEvent,
+      sp(::user::interaction)pwndCommand)
    {
 
       if(m_pappearance == NULL)
@@ -378,11 +378,11 @@ namespace frame
    {
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
-          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand);
+          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
           if(pinterface == NULL)
              return false;
           ASSERT(pinterface != NULL);
-          frame::e_button ebutton = m_pframeschema->GetButtonId(dynamic_cast < ::user::interaction * > (pevent->m_puie)->GetDlgCtrlId());
+          frame::e_button ebutton = m_pframeschema->GetButtonId(dynamic_cast < ::user::interaction * > (pevent->m_puie.m_p)->GetDlgCtrlId());
           switch(ebutton)
           {
           case ::uinteraction::frame::frame::button_close:
@@ -419,7 +419,7 @@ namespace frame
       if(pcmdmsg->m_etype == BaseCmdMsg::type_command
       && m_pwndCommand != NULL)
       {
-          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand);
+          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
           ASSERT(pinterface != NULL);
           ::uinteraction::frame::frame::e_button ebutton = m_pframeschema->GetButtonId(pcmdmsg->m_id);
           switch(ebutton)
@@ -505,12 +505,12 @@ namespace frame
    }*/
 
 
-   ::user::interaction * WorkSet::GetWndDraw()
+   sp(::user::interaction) WorkSet::GetWndDraw()
    {
        return m_pwndDraw;
    }
 
-   ::user::interaction * WorkSet::GetWndRegion()
+   sp(::user::interaction) WorkSet::GetWndRegion()
    {
        return m_pwndRegion;
    }
@@ -543,12 +543,12 @@ namespace frame
       return true;
    }
 
-   void WorkSet::FrameWnd(::user::interaction *pwnd)
+   void WorkSet::FrameWnd(sp(::user::interaction)pwnd)
    {
       UNREFERENCED_PARAMETER(pwnd);
    }
 
-   void WorkSet::ChildWnd(::user::interaction *pwnd, ::user::interaction * pwndParent)
+   void WorkSet::ChildWnd(sp(::user::interaction)pwnd, sp(::user::interaction) pwndParent)
    {
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pwndParent);
@@ -574,7 +574,7 @@ namespace frame
             rect rect;
             rgn.create_rect(0, 0, 0, 0);
             int32_t i;
-            for(::user::interaction * pwnd = GetWndRegion()->GetWindow(GW_CHILD) ;
+            for(sp(::user::interaction) pwnd = GetWndRegion()->GetWindow(GW_CHILD) ;
                pwnd ; pwnd = pwnd->GetNextWindow())
             {
                pwnd->GetWindowRect(rectWindow);
@@ -611,7 +611,7 @@ namespace frame
             && IsHoverModeOn())
          {
             rect rectWindow;
-            ::user::interaction * pwnd = GetWndRegion();
+            sp(::user::interaction) pwnd = GetWndRegion();
             pwnd->GetWindowRect(rectWindow);
             point ptCursor;
             System.get_cursor_pos(&ptCursor);
@@ -635,7 +635,7 @@ namespace frame
          /*if(lpmsg->message == WM_MOUSEMOVE)
          {
             rect rectWindow;
-            ::user::interaction * pwnd = GetWndRegion();
+            sp(::user::interaction) pwnd = GetWndRegion();
             pwnd->GetWindowRect(rectWindow);
             point ptCursor = lpmsg->pt;
             if(rectWindow.contains(ptCursor))
@@ -677,13 +677,13 @@ namespace frame
          if(bHoverActive)
          {
             m_pappearance->Enable(true);
-            ::user::interaction * pwnd = GetWndRegion();
+            sp(::user::interaction) pwnd = GetWndRegion();
             pwnd->RedrawWindow();
          }
          else
          {
             m_pappearance->Enable(false);
-            ::user::interaction * pwnd = GetWndRegion();
+            sp(::user::interaction) pwnd = GetWndRegion();
             pwnd->RedrawWindow();
          }
       }
@@ -879,7 +879,7 @@ namespace frame
       m_wfla.remove(plistener);
    }
 
-   void WorkSet::WindowProcHover(::user::interaction * pwnd, ::ca::signal_object * pobj)
+   void WorkSet::WindowProcHover(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
       SCAST_PTR(::ca::message::base, pbase, pobj);
@@ -890,7 +890,7 @@ namespace frame
             && IsHoverModeOn())
          {
             rect rectWindow;
-            ::user::interaction * pwnd = GetWndRegion();
+            sp(::user::interaction) pwnd = GetWndRegion();
             pwnd->GetWindowRect(rectWindow);
             point ptCursor;
             System.get_cursor_pos(&ptCursor);
@@ -910,7 +910,7 @@ namespace frame
    }
 
 
-   void WorkSet::WindowProcBefore(::user::interaction * pwnd, ::ca::signal_object * pobj)
+   void WorkSet::WindowProcBefore(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
    {
 
       WindowProcHover(pwnd, pobj);
@@ -986,7 +986,7 @@ namespace frame
 
       SCAST_PTR(::ca::message::activate, pactivate, pobj);
 
-      ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
+      sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
 
       if(pActive == NULL)
       {
@@ -1054,7 +1054,7 @@ namespace frame
 
    void WorkSet::WindowClose()
    {
-      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand);
+      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
       ASSERT(pinterface != NULL);
       if(pinterface->WfiClose())
       {
@@ -1443,24 +1443,24 @@ namespace frame
 
    }
 
-   ::user::interaction * WorkSet::GetDrawWindow()
+   sp(::user::interaction) WorkSet::GetDrawWindow()
    {
-      return dynamic_cast < ::user::interaction * >(m_pwndDraw);
+      return dynamic_cast < ::user::interaction * >(m_pwndDraw.m_p);
    }
 
-   ::user::interaction * WorkSet::GetEventWindow()
+   sp(::user::interaction) WorkSet::GetEventWindow()
    {
-      return dynamic_cast < ::user::interaction * >(m_pwndEvent);
+      return dynamic_cast < ::user::interaction * >(m_pwndEvent.m_p);
    }
 
-   ::user::interaction * WorkSet::GetRegionWindow()
+   sp(::user::interaction) WorkSet::GetRegionWindow()
    {
-      return dynamic_cast < ::user::interaction * >(m_pwndRegion);
+      return dynamic_cast < ::user::interaction * >(m_pwndRegion.m_p);
    }
 
-   ::user::interaction * WorkSet::GetCommandWindow()
+   sp(::user::interaction) WorkSet::GetCommandWindow()
    {
-      return dynamic_cast < ::user::interaction * >(m_pwndCommand);
+      return dynamic_cast < ::user::interaction * >(m_pwndCommand.m_p);
    }
 
 

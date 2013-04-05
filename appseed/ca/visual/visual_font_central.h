@@ -13,7 +13,7 @@ class CLASS_DECL_ca font_central :
    virtual public ::ca::object
 {
 public:
-   font_central(::ca::application * papp);
+   font_central(::ca::applicationsp papp);
    virtual ~font_central();
 
 protected:

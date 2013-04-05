@@ -17,10 +17,10 @@ public:
    int32_t                     m_iCount;
    int64_t                 m_iAllocCount;
    id                      m_idType;
-   ::ca::application *     m_papp;
+   ::ca::applicationsp     m_papp;
 
 
-   factory_allocator(::ca::application * papp, int32_t iCount, UINT uiAllocSize, id idType) :
+   factory_allocator(::ca::applicationsp papp, int32_t iCount, UINT uiAllocSize, id idType) :
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
       m_idType(idType),
@@ -42,7 +42,7 @@ public:
    }
 
 
-   virtual void discard(::ca::ca * pca) = 0;
+   virtual void discard(sp(::ca::ca) pca) = 0;
 
 };
 
@@ -53,18 +53,18 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(::ca::application * papp, int32_t iCount) :
+   factory_allocator_impl(::ca::applicationsp papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #else
-   factory_allocator_impl(::ca::application * papp, int32_t iCount) :
+   factory_allocator_impl(::ca::applicationsp papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #endif
 
-   virtual void discard(::ca::ca * pca)
+   virtual void discard(sp(::ca::ca) pca)
    {
       TYPE * ptype = (TYPE *) pca->m_pthis;
       if(ptype == ::null())
@@ -96,10 +96,10 @@ public:
 
    factory_allocator * m_pallocator;
 
-   inline factory_item_base(::ca::application * papp, factory_allocator * pallocator) : ca(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(::ca::applicationsp papp, factory_allocator * pallocator) : ca(papp), m_pallocator(pallocator) {}
 
-   virtual ::ca::ca * create(::ca::application * papp) = 0;
-   virtual ::ca::ca * clone(::ca::ca * pobject) = 0;
+   virtual sp(::ca::ca) create(::ca::applicationsp papp) = 0;
+   virtual sp(::ca::ca) clone(sp(::ca::ca) pobject) = 0;
 
 };
 
@@ -109,9 +109,9 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(::ca::application * papp, factory_allocator * pallocator) : ca(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(::ca::applicationsp papp, factory_allocator * pallocator) : ca(papp), factory_item_base(papp, pallocator) {}
 
-   virtual ::ca::ca * create(::ca::application * papp)
+   virtual sp(::ca::ca) create(::ca::applicationsp papp)
    {
 
       if(m_pallocator == ::null())
@@ -124,10 +124,10 @@ public:
       pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
-      return dynamic_cast < ::ca::ca * > (pt);
+      return pt;
    }
 
-   virtual ::ca::ca * clone(::ca::ca * pobject)
+   virtual sp(::ca::ca) clone(sp(::ca::ca) pobject)
    {
       UNREFERENCED_PARAMETER(pobject);
       throw not_implemented(get_app());
@@ -141,11 +141,11 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(::ca::application * papp, factory_allocator * pallocator) : ::ca::ca(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(::ca::applicationsp papp, factory_allocator * pallocator) : ::ca::ca(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
-   virtual ::ca::ca * clone(::ca::ca * pobject)
+   virtual sp(::ca::ca) clone(sp(::ca::ca) pobject)
    {
-      const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject);
+      const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
       void * pv = this->m_pallocator->alloc();
 #undef new
       CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
@@ -153,7 +153,7 @@ public:
       pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
-      return dynamic_cast < ::ca::ca * > (pt);
+      return pt;
    }
 
 };
@@ -174,7 +174,7 @@ public:
 
 
 
-   factory(::ca::application * papp);
+   factory(::ca::applicationsp papp);
    virtual ~factory();
 
    template < class T >
@@ -245,12 +245,12 @@ public:
          set_at(info.name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
-   virtual ::ca::ca * create(::ca::application * papp, ::ca::type_info & info);
-   virtual ::ca::ca * base_clone(::ca::ca * pobject);
+   virtual sp(::ca::ca) create(::ca::applicationsp papp, ::ca::type_info & info);
+   virtual sp(::ca::ca) base_clone(sp(::ca::ca) pobject);
    template < class T >
-   T * clone(const T * pobject)
+   sp(T) clone(sp(T) pobject)
    {
-      return dynamic_cast < T * > (base_clone((::ca::ca *) (T *) pobject));
+      return base_clone(pobject);
    }
 
    template < class T >
@@ -264,7 +264,7 @@ public:
 
    factory_allocator * get_allocator(const char * pszType);
 
-   void discard(::ca::ca * pobject);
+   void discard(sp(::ca::ca) pobject);
 
    void enable_simple_factory_request(bool bEnable = true);
 

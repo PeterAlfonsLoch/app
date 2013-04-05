@@ -20,8 +20,8 @@ namespace datetime
       element *   m_pelement3;
 
 
-      value get_value(::ca::application * pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
-      string get_expression(::ca::application * pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      value get_value(::ca::applicationsp pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      string get_expression(::ca::applicationsp pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
          
 
 

@@ -4,7 +4,7 @@
 namespace xml
 {
 
-   var_exchange::var_exchange(::ca::application * papp) :
+   var_exchange::var_exchange(::ca::applicationsp papp) :
       ca(papp)
    {
       m_pvar = ::null();

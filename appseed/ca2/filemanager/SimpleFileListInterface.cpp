@@ -5,7 +5,7 @@
 namespace filemanager
 {
 
-   SimpleFileListInterface::SimpleFileListInterface(::ca::application * papp) :
+   SimpleFileListInterface::SimpleFileListInterface(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
@@ -348,7 +348,7 @@ namespace filemanager
       }
    }
 
-   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(::ca::application * papp) :
+   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(::ca::applicationsp papp) :
       ca(papp),
       thread(papp)
    {
@@ -976,7 +976,7 @@ namespace filemanager
       _001ClearSelection();
    }
 
-   void SimpleFileListInterface::_017OpenContextMenuFolder(const ::fs::item &item)
+   void SimpleFileListInterface::_017OpenContextMenuFolder(sp(::fs::item) item)
    {
       UNREFERENCED_PARAMETER(item);
    }
@@ -990,7 +990,7 @@ namespace filemanager
    {
    }
 
-   void SimpleFileListInterface::_017OpenFolder(const ::fs::item &item)
+   void SimpleFileListInterface::_017OpenFolder(sp(::fs::item) item)
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);
@@ -1002,7 +1002,7 @@ namespace filemanager
       ASSERT(FALSE);
    }
 
-   void SimpleFileListInterface::_001OnInitializeForm(user::control * pcontrol)
+   void SimpleFileListInterface::_001OnInitializeForm(user::sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -1019,7 +1019,7 @@ namespace filemanager
    }
 
    void SimpleFileListInterface::_001OnButtonAction(
-      user::control * pcontrol)
+      user::sp(control) pcontrol)
    {
       FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
@@ -1056,22 +1056,38 @@ namespace filemanager
              iItem <= itemrange.get_upper_bound();
              iItem++)
          {
-            ::fs::item item;
+            
             if(iItem < get_fs_list_data()->m_itema.get_count() && !iaItem.contains(iItem))
             {
+
                iaItem.add(iItem);
+
                index iStrict;
+
                if(m_eview == ViewIcon)
                {
+
                   iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
+
                }
                else
                {
+
                   if(iItem >= m_listlayout.m_iaDisplayToStrict.get_count())
                      continue;
+
                   iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+
                }
-               itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iStrict)));
+               
+               sp(::fs::item) spitem(new ::fs::item);
+               
+               spitem->m_strPath = get_fs_list_data()->m_itema.get_item(iStrict).m_strPath;
+               
+               spitem->m_flags   = get_fs_list_data()->m_itema.get_item(iStrict).m_flags;
+               
+               itema.add(spitem);
+
             }
          }
       }
@@ -1133,7 +1149,7 @@ namespace filemanager
    void SimpleFileListInterface::_001OnFileRename(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      user::control * pcontrol = _001GetControlBySubItem(m_iNameSubItem);
+      user::sp(control) pcontrol = _001GetControlBySubItem(m_iNameSubItem);
       range range;
       _001GetSelection(range);
       if(range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())

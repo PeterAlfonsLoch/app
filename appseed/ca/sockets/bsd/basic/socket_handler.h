@@ -47,12 +47,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(::ca::application * papp, StdLog *log = ::null());
+         socket_handler(::ca::applicationsp papp, StdLog *log = ::null());
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(::ca::application * papp, mutex & mutex,StdLog *log = ::null());
+         socket_handler(::ca::applicationsp papp, mutex & mutex,StdLog *log = ::null());
 
          ~socket_handler();
 

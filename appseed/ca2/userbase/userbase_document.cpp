@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   document::document(::ca::application * papp) :
+   document::document(::ca::applicationsp papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::document(papp)
@@ -73,7 +73,7 @@ namespace userbase
    #endif //DEBUG
 
 
-   void document::on_alloc(::ca::application * papp)
+   void document::on_alloc(::ca::applicationsp papp)
    {
 
       ::document::on_alloc(papp);

@@ -18,15 +18,15 @@ namespace nature
       ::userbase::button    m_buttonHtmlApp;
 
 
-      view(::ca::application * papp);
+      view(::ca::applicationsp papp);
       virtual ~view();
    #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual ::user::interaction * BackViewGetWnd();
-      virtual ::user::interaction* get_guie();
+      virtual sp(::user::interaction) BackViewGetWnd();
+      virtual sp(::user::interaction) get_guie();
 
       virtual void _001OnDraw(::ca::graphics * pdc);
 
@@ -34,7 +34,7 @@ namespace nature
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
-      document * get_document();
+      sp(document) get_document();
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 

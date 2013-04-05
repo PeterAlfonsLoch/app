@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   elastic_slider::elastic_slider(::ca::application * papp) :
+   elastic_slider::elastic_slider(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp)
    {

@@ -50,7 +50,7 @@ namespace zip
       string                              m_strZipFile;
 
 
-      InFile(::ca::application * papp);
+      InFile(::ca::applicationsp papp);
       virtual ~InFile();
 
 

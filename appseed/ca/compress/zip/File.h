@@ -20,7 +20,7 @@ namespace zip
       zlib_filefunc_def_s        m_filefuncdef;
       bool                       m_bOwnFile;
 
-      File(::ca::application * papp);
+      File(::ca::applicationsp papp);
       virtual ~File();
       static voidpf     open_file_func (voidpf opaque, const char* filename, int32_t mode);
       static uint_ptr      read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size);

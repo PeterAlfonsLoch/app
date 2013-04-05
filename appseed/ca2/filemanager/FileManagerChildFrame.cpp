@@ -3,7 +3,7 @@
 #include "SimpleFileListInterface.h"
 
 
-FileManagerChildFrame::FileManagerChildFrame(::ca::application * papp) :
+FileManagerChildFrame::FileManagerChildFrame(::ca::applicationsp papp) :
    ca(papp),
    simple_child_frame(papp), 
    m_toolbar(papp)
@@ -24,7 +24,7 @@ void FileManagerChildFrame::install_message_handling(::ca::message::dispatch * p
 
 bool FileManagerChildFrame::CreateBars()
 {
-   ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetActiveDocument());
+   sp(::filemanager::document) pdoc =  (GetActiveDocument());
    if(pdoc == NULL)
       return false;
    
@@ -90,7 +90,7 @@ bool FileManagerChildFrame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 void FileManagerChildFrame::OnChangeEditSearch()
 {
 
-   ::user::document_interface * pdoc = GetActiveDocument();
+   sp(::user::document_interface) pdoc = GetActiveDocument();
 
    if(pdoc != NULL)
    {

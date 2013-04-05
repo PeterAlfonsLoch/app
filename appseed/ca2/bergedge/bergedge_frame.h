@@ -19,7 +19,7 @@ namespace bergedge
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
       image_list  *              m_pimagelist;
-      document *                 m_pdocument;
+      sp(document)                 m_pdocument;
       bool                       m_bHoverMouse;
       uint32_t                      m_dwLastHover;
       bool                       m_bTimerOn;
@@ -30,7 +30,7 @@ namespace bergedge
       pane_view *                m_ppaneview;
 
 
-      frame(::ca::application * papp);
+      frame(::ca::applicationsp papp);
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);

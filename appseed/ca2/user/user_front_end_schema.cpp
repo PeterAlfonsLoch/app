@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   front_end_schema::front_end_schema(::ca::application * papp) :
+   front_end_schema::front_end_schema(::ca::applicationsp papp) :
       ca(papp),
       m_menu(papp),
       m_sysmenu(papp),
@@ -100,7 +100,7 @@ namespace user
    {
    }
 
-   front_end_schema::system_menu::system_menu(::ca::application * papp) :
+   front_end_schema::system_menu::system_menu(::ca::applicationsp papp) :
       m_fontMarlett(papp)
    {
       ::ca::graphics_sp spgraphics(papp);
@@ -109,7 +109,7 @@ namespace user
       m_fontMarlett->create_point_font("Marlett", 11.0);
    }
 
-   front_end_schema::menu::menu(::ca::application * papp) :
+   front_end_schema::menu::menu(::ca::applicationsp papp) :
       m_font(papp)
    {
       //m_pschemaSysMenuButton = new button();
@@ -146,7 +146,7 @@ namespace user
 
    }
 
-   front_end_schema::button::button(::ca::application * papp) :
+   front_end_schema::button::button(::ca::applicationsp papp) :
       m_font(papp)
    {
       m_bBorder = true;

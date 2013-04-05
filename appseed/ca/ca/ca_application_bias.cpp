@@ -6,10 +6,10 @@ namespace ca
 {
 
 
-   void application_bias::callback::connect_to(::ca::application * papp)
+   void application_bias::callback::connect_to(::ca::applicationsp papp)
    {
       set_app(papp);
-      (dynamic_cast < ::ca::application * > (m_papp))->m_psignal->connect(this, &callback::on_call_signal);
+      m_papp.cast < application >()->m_psignal->connect(this, &callback::on_call_signal);
    }
 
    void application_bias::callback::on_call_signal(::ca::signal_object * pobj)
@@ -31,7 +31,7 @@ namespace ca
       m_puiParent                            = ::null();
    }
 
-   application_bias::application_bias(::ca::application * papp) :
+   application_bias::application_bias(::ca::applicationsp papp) :
       ca(papp)
    {
       m_set["SessionSynchronizedInput"]      = true;
@@ -62,8 +62,7 @@ namespace ca
    {
    }
 
-   application_bias_sp::application_bias_sp(::ca::application * papp) :
-      ca(papp),
+   application_bias_sp::application_bias_sp(::ca::applicationsp papp) :
       ::ca::smart_pointer < application_bias > (papp)
    {
    }

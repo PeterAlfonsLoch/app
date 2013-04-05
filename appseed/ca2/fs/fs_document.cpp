@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   document::document(::ca::application * papp) :
+   document::document(::ca::applicationsp papp) :
       ::ca::ca(papp),
       ::ca::data_container_base(papp),
       userbase::document(papp),

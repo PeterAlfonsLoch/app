@@ -78,14 +78,14 @@ namespace ca
       {
       }
 
-      pen_sp(::ca::application * papp) :
+      pen_sp(::ca::applicationsp papp) :
          smart_pointer < pen > (papp)
       {
       }
 
       pen_sp(::ca::graphics * pgraphics, double dWidth, COLORREF crColor);
 /*
-      pen_sp(::ca::application * papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
+      pen_sp(::ca::applicationsp papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
          int32_t nStyleCount = 0, const uint32_t* lpStyle = ::null()) :
          smart_pointer < pen > (papp)
       {

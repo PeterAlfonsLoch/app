@@ -23,7 +23,7 @@ namespace html
          string   m_strPath;
          ::visual::dib_sp      m_spdib;
 
-         image(::ca::application * papp);
+         image(::ca::applicationsp papp);
          virtual bool load_image();
       };
 
@@ -61,7 +61,7 @@ namespace html
       };
 
       ::user::form_callback *    m_pcallback;
-      ::user::interaction *      m_pguie;
+      sp(::user::interaction)      m_pguie;
       ::ca::graphics *           m_pdc;
       box                        m_box;
       string                     m_strTitle;
@@ -76,7 +76,7 @@ namespace html
       smart_pointer_array < font >
                                  m_fonta;
 
-      comparable_array < ::user::interaction *, ::user::interaction * >
+      comparable_array < sp(::user::interaction), sp(::user::interaction) >
                                  m_focusptra;
 
       style_sheet_array          m_stylesheeta;
@@ -108,7 +108,7 @@ namespace html
 
 
 
-      data(::ca::application * papp);
+      data(::ca::applicationsp papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);
@@ -117,7 +117,7 @@ namespace html
       virtual void OnBeforeNavigate2(var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel);
 
       virtual ::user::form * get_form();
-      virtual ::user::interaction* get_frame();
+      virtual sp(::user::interaction) get_frame();
 
 
       //virtual bool is_in_use();
@@ -145,9 +145,9 @@ namespace html
       void delete_contents();
       void delete_implementation();
 
-      virtual bool contains(::user::interaction * pui);
+      virtual bool contains(sp(::user::interaction) pui);
 
-      virtual bool on_create_interaction(::user::interaction * pui);
+      virtual bool on_create_interaction(sp(::user::interaction) pui);
 
 
       font * get_font(elemental * pelemental);

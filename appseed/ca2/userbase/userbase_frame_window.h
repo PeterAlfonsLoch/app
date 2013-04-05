@@ -33,14 +33,14 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
 {
    // for creating new views
    ::ca::type_info m_typeinfoNewView; // runtime class of ::view to create or NULL
-   ::userbase::document* m_pCurrentDoc;
+   sp(::userbase::document) m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)
    ::userbase::document_template* m_pNewDocTemplate;
 
    // for sharing ::view/frame state from the original ::view/frame
    ::userbase::view* m_pLastView;
-   frame_window* m_pCurrentFrame;
+   sp(frame_window) m_pCurrentFrame;
 
 // Implementation
    create_context();
@@ -64,7 +64,7 @@ namespace userbase
       void CommonConstruct();
 
 
-      virtual void on_delete(::ca::ca * pca);
+      virtual void on_delete(sp(::ca::ca) pca);
 
 
       virtual void _000OnDraw(::ca::graphics * pdc);
@@ -97,7 +97,7 @@ namespace userbase
 
 
 
-      ::user::interaction* WindowDataGetWnd();
+      sp(::user::interaction) WindowDataGetWnd();
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
 

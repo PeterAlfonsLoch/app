@@ -11,7 +11,7 @@ namespace ca
    public:
 
       
-      copydesk(::ca::application * papp);
+      copydesk(::ca::applicationsp papp);
       virtual ~copydesk();
 
 

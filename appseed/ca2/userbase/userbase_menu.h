@@ -24,8 +24,8 @@ namespace userbase
       };
 
 
-      menu(::ca::application * papp);
-      menu(::ca::application * papp, menu_item * pitem);
+      menu(::ca::applicationsp papp);
+      menu(::ca::applicationsp papp, menu_item * pitem);
       virtual ~menu();
 
 
@@ -33,7 +33,7 @@ namespace userbase
 
       void layout();
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent);
+      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
@@ -52,8 +52,8 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnEnable)
 
 
-      bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, menu * pmenuParent);
-      ::user::interaction *     m_oswindowParent;
+      bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent);
+      sp(::user::interaction)     m_oswindowParent;
       menu *        m_pmenuParent;
       HMENU                m_hmenu;
       menu *        _m_pmenu;

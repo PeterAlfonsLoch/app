@@ -1,6 +1,6 @@
 #include "framework.h"
 
-document_template::document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
+document_template::document_template(::ca::applicationsp papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
    ca(papp)
 {
    
@@ -34,7 +34,7 @@ bool document_template::GetDocString(string & rString, enum DocStringIndex i) co
    return ::ca::extract_sub_string(rString, m_strDocStrings, (int32_t)i);
 }
 
-void document_template::add_document(::user::document_interface * pdocument)
+void document_template::add_document(sp(::user::document_interface) pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == ::null());   // no template attached yet
    Application.defer_add_document_template(this);
@@ -42,14 +42,14 @@ void document_template::add_document(::user::document_interface * pdocument)
    pdocument->install_message_handling(pdocument);
 }
 
-void document_template::remove_document(::user::document_interface * pdocument)
+void document_template::remove_document(sp(::user::document_interface) pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
    pdocument->m_pdocumentemplate = ::null();
 }
 
 document_template::Confidence document_template::MatchDocType(const char * lpszPathName,
-   ::user::document_interface *& rpDocMatch)
+   sp(::user::document_interface)& rpDocMatch)
 {
    ASSERT(lpszPathName != ::null());
    rpDocMatch = ::null();
@@ -58,7 +58,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      ::user::document_interface * pdocument = get_document(index);
+      sp(::user::document_interface) pdocument = get_document(index);
       if(System.file().path().is_equal(pdocument->get_path_name(), lpszPathName))
       {
          // already open
@@ -88,7 +88,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    return yesAttemptForeign;
 }
 
-::user::document_interface * document_template::create_new_document()
+sp(::user::document_interface) document_template::create_new_document()
 {
    // default implementation constructs one from ::ca::type_info
    if(!m_typeinfoDocument)
@@ -97,7 +97,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
       ASSERT(FALSE);
       return ::null();
    }
-   ::user::document_interface * pdocument = dynamic_cast < ::user::document_interface * > (Application.alloc(m_typeinfoDocument));
+   sp(::user::document_interface) pdocument = Application.alloc(m_typeinfoDocument);
    if (pdocument == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
@@ -113,7 +113,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
 /////////////////////////////////////////////////////////////////////////////
 // Default frame creation
 
-frame_window* document_template::create_new_frame(::user::document_interface * pdocument, frame_window* pOther, ::ca::create_context * pcreatecontext)
+sp(frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(frame_window) pOther, ::ca::create_context * pcreatecontext)
 {
 
    // create a frame wired to the specified ::user::document_interface
@@ -138,7 +138,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
       ASSERT(FALSE);
       return ::null();
    }
-   frame_window* pFrame = dynamic_cast < frame_window * > (Application.alloc(m_typeinfoFrame));
+   sp(frame_window) pFrame = Application.alloc(m_typeinfoFrame);
    if (pFrame == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
@@ -166,7 +166,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
 }
 
 /*
-frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user::document_interface * pdocument,
+sp(frame_window) document_template::CreateOleFrame(sp(::ca::window) pParentWnd, sp(::user::document_interface) pdocument,
    bool bCreateView)
 {
    create_context context;
@@ -182,7 +182,7 @@ frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user
    }
 
    ASSERT(!m_strServerMatter.is_empty()); // must have a resource ID to load from
-   frame_window* pFrame = dynamic_cast < frame_window * > (System.alloc(m_pOleFrameClass));
+   sp(frame_window) pFrame = (System.alloc(m_pOleFrameClass));
    if (pFrame == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
@@ -204,7 +204,7 @@ frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user
 }
 */
 
-void document_template::InitialUpdateFrame(frame_window* pFrame, ::user::document_interface * pdocument,
+void document_template::InitialUpdateFrame(sp(frame_window) pFrame, sp(::user::document_interface) pdocument,
    bool bMakeVisible)
 {
    // just delagate to implementation in frame_window
@@ -219,7 +219,7 @@ bool document_template::save_all_modified()
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      ::user::document_interface * pdocument = get_document(index);
+      sp(::user::document_interface) pdocument = get_document(index);
       if (!pdocument->save_modified())
          return FALSE;
    }
@@ -233,7 +233,7 @@ void document_template::close_all_documents(bool)
    {
       try
       {
-         ::user::document_interface * pdocument = get_document(index);
+         sp(::user::document_interface) pdocument = get_document(index);
          pdocument->on_close_document();
          remove_document(pdocument);
          delete pdocument;
@@ -249,7 +249,7 @@ void document_template::on_idle()
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      ::user::document_interface * pdocument = get_document(index);
+      sp(::user::document_interface) pdocument = get_document(index);
       ASSERT_KINDOF(::user::document_interface, pdocument);
       pdocument->on_idle();
    }
@@ -279,8 +279,8 @@ void document_template::dump(dump_context & dumpcontext) const
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         ::user::document_interface * pdocument = get_document(index);
-         dumpcontext << (int_ptr) pdocument;
+         sp(::user::document_interface) pdocument = get_document(index);
+         dumpcontext << (int_ptr) pdocument.m_p;
       }
       dumpcontext << "\n}";
    }
@@ -295,7 +295,7 @@ void document_template::assert_valid() const
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      ::user::document_interface * pdocument = get_document(index);
+      sp(::user::document_interface) pdocument = get_document(index);
       pdocument->assert_valid();
    }
 }
@@ -307,12 +307,12 @@ void document_template::update_all_views(::view * pviewSender, LPARAM lhint, ::c
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      ::user::document_interface * pdoc = get_document(index);
+      sp(::user::document_interface) pdoc = get_document(index);
       pdoc->update_all_views(pviewSender, lhint, puh);
    }
 }
 
-bool document_template::on_open_document(::user::document_interface * pdocument, var varFile)
+bool document_template::on_open_document(sp(::user::document_interface) pdocument, var varFile)
 {
 
    if(m_bQueueDocumentOpening)
@@ -340,7 +340,7 @@ bool document_template::on_open_document(::user::document_interface * pdocument,
 
 }
 
-bool document_template::do_open_document(::user::document_interface * pdocument, var varFile)
+bool document_template::do_open_document(sp(::user::document_interface) pdocument, var varFile)
 {
 
    if(!pdocument->on_open_document(varFile))

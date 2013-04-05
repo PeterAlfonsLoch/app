@@ -9,7 +9,7 @@ namespace uinteraction
    {
 
 
-      frame::frame(::ca::application * papp)
+      frame::frame(::ca::applicationsp papp)
       {
       }
 
@@ -50,7 +50,7 @@ namespace uinteraction
       }
 
 
-      void frame::OnMove(::user::interaction * pwnd)
+      void frame::OnMove(sp(::user::interaction) pwnd)
       {
 
          UNREFERENCED_PARAMETER(pwnd);

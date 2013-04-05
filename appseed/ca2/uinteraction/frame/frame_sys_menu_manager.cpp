@@ -35,7 +35,7 @@ namespace frame
        {
            if(m_enumState == StateMBDown)
            {
-//               ::user::interaction * pwnd = m_pworkset->GetEventWindow();
+//               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
    /*            ::userbase::menu * pmenu = pwnd->GetSystemMenu(FALSE);
             if(pmenu != NULL)
@@ -51,7 +51,7 @@ namespace frame
        }
    }
 
-   void SysMenuManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
+   void SysMenuManager::message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
       SCAST_PTR(::ca::message::base, pbase, pobj);
@@ -82,7 +82,7 @@ namespace frame
        {
            if(m_enumState == StateMBDown)
            {
-//               ::user::interaction * pwnd = m_pworkset->GetEventWindow();
+//               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
    /*            ::userbase::menu * pmenu = pwnd->GetSystemMenu(FALSE);
             if(pmenu != NULL)

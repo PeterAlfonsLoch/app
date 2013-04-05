@@ -7,7 +7,7 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
-void prop_id_debug(::ca::application * papp);
+void prop_id_debug(::ca::applicationsp papp);
 
 
 
@@ -1353,7 +1353,7 @@ namespace ca
    }
 
 
-   property_set::property_set(::ca::application * papp,
+   property_set::property_set(::ca::applicationsp papp,
       bool bAutoAdd, bool bMultiValue, bool bKeyCaseInsensitive) :
    ca(papp)
    {
@@ -2518,7 +2518,7 @@ namespace ca
          {
             string strKey = set.pair_set_interface_get_key(i);
             class var var = set.pair_set_interface_get_value(i);
-            m_propertya.add(property(strKey, var));
+            m_propertya.add(new property(strKey, var));
          }
          // WOULD ANALYZE each of the following members parameters for
          // auto discovery, calculation or leave as set.
@@ -2678,7 +2678,7 @@ namespace ca
 
 
 
-   relation_set::relation_set(::ca::application * papp) :
+   relation_set::relation_set(::ca::applicationsp papp) :
       ca(papp),
       property_set(papp, true, true)
    {
@@ -2695,7 +2695,7 @@ namespace ca
 
 
 
-void prop_id_debug(::ca::application * papp)
+void prop_id_debug(::ca::applicationsp papp)
 {
 
    comparable_array < ::id > idaSchema;

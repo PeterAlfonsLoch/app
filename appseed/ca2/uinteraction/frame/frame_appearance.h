@@ -27,7 +27,7 @@ namespace uinteraction
          {
          public:
 
-            CTool001(::ca::application * papp);
+            CTool001(::ca::applicationsp papp);
 
             void Update(::ca::graphics * pdc, LPCRECT lpcrect,
                COLORREF crHighlight,
@@ -70,8 +70,8 @@ namespace uinteraction
          CTool001 *                    m_ptool001;
 
          bool IsNotifyIconEnabled();
-         virtual ::user::interaction * get_guie();
-         ::user::interaction * GetWnd();
+         virtual sp(::user::interaction) get_guie();
+         sp(::user::interaction) GetWnd();
 
          bool IsInAutomaticModeSwitching();
          void SetAutomaticModeSwitching(bool bSetting);

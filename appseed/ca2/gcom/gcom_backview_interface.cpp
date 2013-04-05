@@ -7,7 +7,7 @@ namespace gcom
    namespace backview
    {
 
-      Interface::Interface(::ca::application * papp) :
+      Interface::Interface(::ca::applicationsp papp) :
          ca(papp)
       {
          m_bTransferVoid   = false;
@@ -345,9 +345,9 @@ namespace gcom
          UNREFERENCED_PARAMETER(psz);
       }
 
-      user::interaction * Interface::BackViewGetInteraction()
+      sp(::user::interaction) Interface::BackViewGetInteraction()
       {
-         return dynamic_cast < user::interaction * > (this);
+         return dynamic_cast < ::user::interaction * > (this);
       }
 
       Main & Interface::GetMain()

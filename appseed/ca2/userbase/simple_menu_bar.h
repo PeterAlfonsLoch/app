@@ -36,22 +36,22 @@ public:
    ::userbase::menu     m_menu;
 
 
-   simple_menu_bar(::ca::application * papp);
+   simple_menu_bar(::ca::applicationsp papp);
    virtual ~simple_menu_bar();
 
 
    using ::simple_toolbar::create;
-   bool create(::user::interaction* pParentWnd,
+   bool create(sp(::user::interaction) pParentWnd,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       UINT nID = __IDW_TOOLBAR);
    using ::simple_toolbar::CreateEx;
 #ifdef WINDOWSEX
-   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
+   bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       UINT nID = __IDW_TOOLBAR);
 #else
-   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+   bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       UINT nID = __IDW_TOOLBAR);
@@ -82,7 +82,7 @@ public:
    //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
    //virtual void _001OnDraw(::ca::graphics * pdc);
    bool ReloadMenuBar();
-   virtual void OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler);
+   virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
 
    bool Initialize(

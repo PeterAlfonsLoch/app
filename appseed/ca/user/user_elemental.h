@@ -12,7 +12,7 @@ namespace user
    {
    public:
 
-      virtual ::user::interaction * get_guie();
+      virtual sp(::user::interaction) get_guie();
       virtual ::ca::graphics * _001GetDC();
       virtual void _001ReleaseDC(::ca::graphics * pdc);
       virtual void _001RedrawWindow();

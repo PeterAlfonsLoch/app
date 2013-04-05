@@ -36,7 +36,7 @@ namespace fontopus
       ifs *                                  m_pifs;
 
 
-      user(::ca::application * papp);
+      user(::ca::applicationsp papp);
       virtual ~user();
 
       virtual void start_veiev_synch();

@@ -101,7 +101,7 @@ void view::_001OnCreate(::ca::signal_object * pobj)
 void view::_001OnDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   frame_window* pFrame = GetParentFrame();
+   sp(frame_window) pFrame = GetParentFrame();
    if (pFrame != ::null() && pFrame->GetActiveView() == this)
       pFrame->SetActiveView(::null());    // deactivate during death
 //   ::user::interaction::OnDestroy();
@@ -169,7 +169,7 @@ bool view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
          return TRUE;
    }
 
-   if(!get_parent()->IsFrameWnd())
+   if(!get_parent()->is_frame_window())
    {
       if(get_parent()->_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -189,9 +189,9 @@ void view::OnPaint()
 //   trans OnDraw(&spgraphics);
 }
 
-::user::document_interface * view::get_document(::user::interaction * pguie)
+sp(::user::document_interface) view::get_document(sp(::user::interaction) pguie)
 {
-   ::view * pview = dynamic_cast < ::view * > (pguie);
+   ::view * pview = dynamic_cast < ::view * > (pguie.m_p);
    if(pview != ::null())
       return ::null();
    return pview->get_document();
@@ -273,18 +273,18 @@ void view::OnActivateView(bool bActivate, ::view * pActivateView, ::view *)
    }
 }
 
-void view::OnActivateFrame(UINT /*nState*/, frame_window* /*pFrameWnd*/)
+void view::OnActivateFrame(UINT /*nState*/, sp(frame_window) /*pFrameWnd*/)
 {
 }
 
 /* trans
-int32_t view::OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message)
+int32_t view::OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message)
 {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
       return nResult;   // frame does not want to activate
 
-   frame_window* pParentFrame = GetParentFrame();
+   sp(frame_window) pParentFrame = GetParentFrame();
    if (pParentFrame != ::null())
    {
       // eat it if this will cause activation
@@ -470,7 +470,7 @@ void view::_001OnView(::ca::signal_object * pobj)
 }
 
 
-::user::interaction* view::create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+sp(::user::interaction) view::create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
 
    ::ca::create_context_sp cacc(get_app());
@@ -507,7 +507,7 @@ void view::_001OnView(::ca::signal_object * pobj)
 }
 
 
-::user::interaction* view::s_create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+sp(::user::interaction) view::s_create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
 
    ::ca::create_context_sp cacc(pdoc->get_app());
@@ -524,7 +524,7 @@ void view::_001OnView(::ca::signal_object * pobj)
 
 }
 
-::user::interaction* view::s_create_view(::ca::create_context* pContext, ::user::interaction * pwndParent, id id)
+sp(::user::interaction) view::s_create_view(::ca::create_context* pContext, sp(::user::interaction) pwndParent, id id)
 {
 
 // trans   ASSERT(pwndParent->get_handle() != ::null());
@@ -535,21 +535,21 @@ void view::_001OnView(::ca::signal_object * pobj)
    ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != ::null());
 
 
-   ::ca::application * papp = pwndParent->get_app();
+   ::ca::applicationsp papp = pwndParent->get_app();
 
-   ::user::interaction * pguie;
+   sp(::user::interaction) pguie;
 
    if(pContext->m_user->m_puiNew != ::null())
    {
 
-      pguie = dynamic_cast < ::user::interaction * > (pContext->m_user->m_puiNew);
+      pguie = dynamic_cast < ::user::interaction * > (pContext->m_user->m_puiNew.m_p);
 
    }
    else
    {
 
       // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-      pguie = dynamic_cast < ::user::interaction * > (App(papp).alloc(pContext->m_user->m_typeinfoNewView));
+      pguie = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
       if (pguie == ::null())
       {
 //         TRACE1("Warning: Dynamic create of ::view type %hs failed.\n", pContext->m_typeinfoNewView.name());
@@ -570,7 +570,7 @@ void view::_001OnView(::ca::signal_object * pobj)
    }
 
 
-   ::view * pview = dynamic_cast < ::view * > (pguie);
+   ::view * pview = dynamic_cast < ::view * > (pguie.m_p);
    if(pview != ::null())
    {
       pview->_001OnInitialUpdate(::null());
@@ -590,7 +590,7 @@ void view::_001OnView(::ca::signal_object * pobj)
       if(pguie->get_parent() != ::null())
       {
 
-         ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (pguie->get_parent());
+         sp(::user::place_holder) pholder = pguie->get_parent();
 
          if(pholder != ::null())
          {
@@ -635,7 +635,7 @@ void view::_001OnMouseMove(::ca::signal_object * pobj)
 }
 
 
-::user::document_interface * view::get_document() const
+sp(::user::document_interface) view::get_document() const
  {
     ASSERT(this != ::null());
     return ((::view *) this)->m_spdocument;
@@ -668,7 +668,7 @@ int32_t view::get_total_page_count(::ca::job * pjob)
 }
 
 
-view_update_hint::view_update_hint(::ca::application * papp) :
+view_update_hint::view_update_hint(::ca::applicationsp papp) :
 ca(papp)
 {
 }

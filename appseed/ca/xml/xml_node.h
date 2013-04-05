@@ -21,7 +21,7 @@ namespace xml
       public:
 
 
-         array(::ca::application * papp);
+         array(::ca::applicationsp papp);
 
 
       };
@@ -42,14 +42,14 @@ namespace xml
       node::array        m_nodea;            // children pointer node array
       attr_array              m_attra;            // attr pointer array
       e_node                  m_etype;            // node type
-      document *              m_pdoc;             // document
+      sp(document)              m_pdoc;             // document
 
 
 
    protected:
 
 
-      node(::ca::application * papp);
+      node(::ca::applicationsp papp);
       node(node * pnodeParent);
 
 
@@ -61,8 +61,8 @@ namespace xml
 
 
 
-      inline document * get_document() { return m_pdoc; }
-      inline const document * get_document() const { return m_pdoc; }
+      inline sp(document) get_document() { return m_pdoc; }
+      inline const sp(document) get_document() const { return m_pdoc; }
 
 
       virtual void set_name(const string & strName);

@@ -20,13 +20,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::mouse_hover_add(::user::interaction* pinterface)
+   void window::mouse_hover_add(sp(::user::interaction) pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
    }
 
-   void window::mouse_hover_remove(::user::interaction* pinterface)
+   void window::mouse_hover_remove(sp(::user::interaction) pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
@@ -56,7 +56,7 @@ namespace ca
 
 #if !defined(LINUX) && !defined(MACOS)
 
-   window* window::GetAncestor(UINT gaFlags) const
+   sp(::ca::window) window::GetAncestor(UINT gaFlags) const
    {
       UNREFERENCED_PARAMETER(gaFlags);
       throw interface_only_exception(get_app());
@@ -128,7 +128,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window * window::from_os_data(void * pdata)
+   sp(::ca::window) window::from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
       throw interface_only_exception(get_app());
@@ -142,7 +142,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window creation
 
-   bool window::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam /* = ::null() */)
+   bool window::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, sp(::user::interaction) pParentWnd, id id, LPVOID lpParam /* = ::null() */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -181,7 +181,7 @@ namespace ca
    bool window::create(const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT & rect,
-      ::user::interaction * pParentWnd, id id,
+      sp(::user::interaction) pParentWnd, id id,
       create_context * pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -400,22 +400,22 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::frame_window * window::GetParentFrame()
+   sp(::frame_window) window::GetParentFrame()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::GetTopLevelParent()
+   sp(::user::interaction) window::GetTopLevelParent()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::GetTopLevelOwner()
+   sp(::user::interaction) window::GetTopLevelOwner()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::GetParentOwner()
+   sp(::user::interaction) window::GetParentOwner()
    {
       throw interface_only_exception(get_app());
    }
@@ -430,7 +430,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::frame_window * window::GetTopLevelFrame()
+   sp(::frame_window) window::GetTopLevelFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -559,7 +559,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(::user::interaction * puiStop, ::ca::signal_object * pobj)
+   void window::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(puiStop);
       UNREFERENCED_PARAMETER(pobj);
@@ -598,7 +598,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSetFocus(window*)
+   void window::OnSetFocus(sp(::ca::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -687,12 +687,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnEnterIdle(UINT /*nWhy*/, window* /*pWho*/)
+   void window::OnEnterIdle(UINT /*nWhy*/, sp(::ca::window) /*pWho*/)
    {
       throw interface_only_exception(get_app());
    }
 
-   HBRUSH window::OnCtlColor(::ca::graphics *, window * pWnd, UINT)
+   HBRUSH window::OnCtlColor(::ca::graphics *, sp(::ca::window) pWnd, UINT)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -711,7 +711,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child window)
 
-   void window::CenterWindow(::user::interaction * pAlternateOwner)
+   void window::CenterWindow(sp(::user::interaction) pAlternateOwner)
    {
       UNREFERENCED_PARAMETER(pAlternateOwner);
       throw interface_only_exception(get_app());
@@ -764,7 +764,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }*/
 
-   bool window::IsFrameWnd()
+   bool window::is_frame_window()
    {
       throw interface_only_exception(get_app());
    }
@@ -779,7 +779,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::SubclassDlgItem(UINT nID, window* pParent)
+   bool window::SubclassDlgItem(UINT nID, sp(::ca::window) pParent)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(pParent);
@@ -791,7 +791,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::IsChild(::user::interaction * pui)
+   bool window::IsChild(sp(::user::interaction) pui)
    {
       UNREFERENCED_PARAMETER(pui);
       throw interface_only_exception(get_app());
@@ -870,7 +870,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::get_parent() const
+   sp(::user::interaction) window::get_parent() const
    {
 
       return ::null();
@@ -890,12 +890,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::release_capture()
+   sp(::user::interaction) window::release_capture()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::get_capture()
+   sp(::user::interaction) window::get_capture()
    {
       throw interface_only_exception(get_app());
    }
@@ -941,7 +941,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::set_owner(::user::interaction * pOwnerWnd)
+   void window::set_owner(sp(::user::interaction) pOwnerWnd)
    {
       UNREFERENCED_PARAMETER(pOwnerWnd);
       throw interface_only_exception(get_app());
@@ -1015,12 +1015,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::frame_window * window::EnsureParentFrame()
+   sp(::frame_window) window::EnsureParentFrame()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction* window::EnsureTopLevelParent()
+   sp(::user::interaction) window::EnsureTopLevelParent()
    {
       throw interface_only_exception(get_app());
    }
@@ -1055,7 +1055,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::MapWindowPoints(window* pwndTo, LPPOINT lpPoint, UINT nCount)
+   void window::MapWindowPoints(sp(::ca::window) pwndTo, LPPOINT lpPoint, UINT nCount)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpPoint);
@@ -1063,7 +1063,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::MapWindowPoints(window* pwndTo, LPRECT lpRect)
+   void window::MapWindowPoints(sp(::ca::window) pwndTo, LPRECT lpRect)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpRect);
@@ -1164,7 +1164,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::GetDescendantWindow(id id)
+   sp(::user::interaction) window::GetDescendantWindow(id id)
    {
       UNREFERENCED_PARAMETER(id);
       throw interface_only_exception(get_app());
@@ -1243,23 +1243,23 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::GetActiveWindow()
+   sp(::user::interaction) window::GetActiveWindow()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction* window::SetActiveWindow()
+   sp(::user::interaction) window::SetActiveWindow()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::set_capture(::user::interaction * pinterface)
+   sp(::user::interaction) window::set_capture(sp(::user::interaction) pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::SetFocus()
+   sp(::user::interaction) window::SetFocus()
    {
       throw interface_only_exception(get_app());
    }
@@ -1329,14 +1329,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* window::GetNextDlgGroupItem(window* pWndCtl, bool bPrevious) const
+   sp(::ca::window) window::GetNextDlgGroupItem(sp(::ca::window) pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
       throw interface_only_exception(get_app());
    }
 
-   window* window::GetNextDlgTabItem(window* pWndCtl, bool bPrevious) const
+   sp(::ca::window) window::GetNextDlgTabItem(sp(::ca::window) pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
@@ -1394,42 +1394,42 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   user::interaction * window::ChildWindowFromPoint(POINT point)
+   sp(::user::interaction) window::ChildWindowFromPoint(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
    }
 
-   user::interaction * window::ChildWindowFromPoint(POINT point, UINT nFlags)
+   sp(::user::interaction) window::ChildWindowFromPoint(POINT point, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(nFlags);
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction* window::GetNextWindow(UINT nFlag)
+   sp(::user::interaction) window::GetNextWindow(UINT nFlag)
    {
       UNREFERENCED_PARAMETER(nFlag);
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction* window::GetTopWindow()
+   sp(::user::interaction) window::GetTopWindow()
    {
       throw interface_only_exception(get_app());
    }
 
-/*   ::user::interaction* window::GetWindow(UINT nCmd)
+/*   sp(::user::interaction) window::GetWindow(UINT nCmd)
    {
       UNREFERENCED_PARAMETER(nCmd);
       throw interface_only_exception(get_app());
    }*/
 
-   ::user::interaction* window::GetLastActivePopup()
+   sp(::user::interaction) window::GetLastActivePopup()
    {
       throw interface_only_exception(get_app());
    }
 
-   window* window::set_parent(window* pWndNewParent)
+   sp(::ca::window) window::set_parent(sp(::ca::window) pWndNewParent)
    {
       UNREFERENCED_PARAMETER(pWndNewParent);
       throw interface_only_exception(get_app());
@@ -1537,7 +1537,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnActivate(UINT, window*, bool)
+   void window::OnActivate(UINT, sp(::ca::window), bool)
    {
       throw interface_only_exception(get_app());
    }
@@ -1557,7 +1557,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnContextMenu(window*, point)
+   void window::OnContextMenu(sp(::ca::window), point)
    {
       throw interface_only_exception(get_app());
    }
@@ -1565,7 +1565,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-   bool window::OnCopyData(window*, COPYDATASTRUCT*)
+   bool window::OnCopyData(sp(::ca::window), COPYDATASTRUCT*)
    {
       throw interface_only_exception(get_app());
    }
@@ -1613,7 +1613,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnKillFocus(window*)
+   void window::OnKillFocus(sp(::ca::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1652,7 +1652,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnSetCursor(window*, UINT, UINT)
+   bool window::OnSetCursor(sp(::ca::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1703,7 +1703,7 @@ namespace ca
 #endif
 
 
-   void window::OnPaletteIsChanging(window*)
+   void window::OnPaletteIsChanging(sp(::ca::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1828,7 +1828,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnPaletteChanged(window*)
+   void window::OnPaletteChanged(sp(::ca::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1893,7 +1893,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int32_t window::OnMouseActivate(window*, UINT, UINT)
+   int32_t window::OnMouseActivate(sp(::ca::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1969,12 +1969,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnHScrollClipboard(window*, UINT, UINT)
+   void window::OnHScrollClipboard(sp(::ca::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnPaintClipboard(window*, HGLOBAL)
+   void window::OnPaintClipboard(sp(::ca::window), HGLOBAL)
    {
       throw interface_only_exception(get_app());
    }
@@ -1989,12 +1989,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSizeClipboard(window*, HGLOBAL)
+   void window::OnSizeClipboard(sp(::ca::window), HGLOBAL)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnVScrollClipboard(window*, UINT, UINT)
+   void window::OnVScrollClipboard(sp(::ca::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -2006,7 +2006,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnMDIActivate(bool, window*, window*)
+   void window::OnMDIActivate(bool, sp(::ca::window), sp(::ca::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -2055,7 +2055,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnCaptureChanged(window*)
+   void window::OnCaptureChanged(sp(::ca::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -2205,7 +2205,7 @@ namespace ca
       oswindow oswindow = hParent;
       if (oswindow == ::null())
       {
-    trans      frame_window* pFrame = command_target::GetRoutingFrame_();
+    trans      sp(frame_window) pFrame = command_target::GetRoutingFrame_();
          if (pFrame != ::null())
             oswindow = pFrame->GetSafeoswindow_();
          else
@@ -2260,7 +2260,7 @@ namespace ca
 } // namespace ca
 
 
-CTestCmdUI::CTestCmdUI(::ca::application * papp) :
+CTestCmdUI::CTestCmdUI(::ca::applicationsp papp) :
 ca(papp),
    cmd_ui(papp)
 {
@@ -2292,7 +2292,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 
-guie_message_wnd::guie_message_wnd(::ca::application * papp) :
+guie_message_wnd::guie_message_wnd(::ca::applicationsp papp) :
 ca(papp)
 {
    m_pguieForward = ::null();
@@ -2312,12 +2312,12 @@ void guie_message_wnd::message_handler(::ca::signal_object * pobj)
 
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-                                ::user::interaction * oswindow, LPCRECT lpRect)
+                                sp(::user::interaction) oswindow, LPCRECT lpRect)
 {
    ASSERT(oswindow != ::null());
    ASSERT(lpRect != ::null());
-   ::user::interaction * oswindow_Parent = oswindow->get_parent();
-   ASSERT(oswindow_Parent != ::null());
+   sp(::user::interaction) puiParent = oswindow->get_parent();
+   ASSERT(puiParent != ::null());
 
    //if (lpLayout != ::null() && lpLayout->hDWP == ::null())
      // return;
@@ -2325,8 +2325,8 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
    // first check if the new rectangle is the same as the current
    rect rectOld;
    oswindow->GetWindowRect(rectOld);
-   oswindow_Parent->ScreenToClient(&rectOld.top_left());
-   oswindow_Parent->ScreenToClient(&rectOld.bottom_right());
+   puiParent->ScreenToClient(&rectOld.top_left());
+   puiParent->ScreenToClient(&rectOld.bottom_right());
    //if (::is_equal(rectOld, lpRect))
    //   return;     // nothing to do
 

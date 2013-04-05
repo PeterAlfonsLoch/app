@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   main_frame::main_frame(::ca::application * papp) :
+   main_frame::main_frame(::ca::applicationsp papp) :
       ca(papp),
       simple_frame_window(papp)
    {

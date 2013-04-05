@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   socket_thread::socket_thread(::ca::application * papp) :
+   socket_thread::socket_thread(::ca::applicationsp papp) :
       ca(papp),
       thread(papp),
       ::sockets::socket_handler(papp),

@@ -71,13 +71,13 @@ namespace ca
       {
       }
 
-      brush_sp(::ca::application * papp) :
+      brush_sp(::ca::applicationsp papp) :
          smart_pointer < brush > (papp)
       {
       }
 
       // create_solid
-      brush_sp(::ca::application * papp, COLORREF crColor) :
+      brush_sp(::ca::applicationsp papp, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
          m_p->create_solid(crColor);
@@ -85,13 +85,13 @@ namespace ca
 
 /*
       // CreateHatchBrush
-      brush_sp(::ca::application * papp, int32_t nIndex, COLORREF crColor) :
+      brush_sp(::ca::applicationsp papp, int32_t nIndex, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
          m_p->construct(nIndex, crColor);
       }
       // CreatePatternBrush
-      brush_sp(::ca::application * papp, bitmap * pbitmap) :
+      brush_sp(::ca::applicationsp papp, bitmap * pbitmap) :
          smart_pointer < brush > (papp)
       {
          m_p->construct(pbitmap);

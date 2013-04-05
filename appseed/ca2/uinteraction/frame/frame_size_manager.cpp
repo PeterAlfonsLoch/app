@@ -53,7 +53,7 @@ namespace frame
       GetEventWindow()->GetWindowRect(rectEvent);
       EHitTest ehittest = hit_test(ptCursor);
 
-      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow());
+      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
 
       if(ehittest != HitTestNone)
       {
@@ -225,7 +225,7 @@ namespace frame
 
    }
 
-   void SizeManager::SizeWindow(::user::interaction *pwnd, point pt, bool bTracking)
+   void SizeManager::SizeWindow(sp(::user::interaction)pwnd, point pt, bool bTracking)
    {
       UNREFERENCED_PARAMETER(pwnd);
       bool bSize = true;
@@ -360,13 +360,13 @@ namespace frame
          bSize = false;
       }
       MoveWindow(GetSizingWindow(), rectWindow);
-      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow());
+      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
       pinterface->WfiOnSize(bTracking);
       NotifyFramework((EHitTest) m_ehittestMode);
    }
 
 
-   void SizeManager::MoveWindow(::user::interaction *pwnd, LPCRECT lpcrect)
+   void SizeManager::MoveWindow(sp(::user::interaction)pwnd, LPCRECT lpcrect)
    {
       m_dwLastSizingTime = get_tick_count();
 
@@ -506,7 +506,7 @@ namespace frame
       UNREFERENCED_PARAMETER(emode);
    }
 
-   void SizeManager::message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj)
+   void SizeManager::message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
 
@@ -555,13 +555,13 @@ namespace frame
          pwnd->ClientToScreen(&ptCursor);
          rect rectEvent;
          GetEventWindow()->GetWindowRect(rectEvent);
-         //::ca::application * pApp = &System;
+         //::ca::applicationsp pApp = &System;
          bool bSize = false;
          rect rectWindow;
          if(m_ehittestMode == HitTestNone)
          {
             bSize = false;
-            ::user::interaction * pWndCapture = System.get_capture_uie();
+            sp(::user::interaction) pWndCapture = System.get_capture_uie();
             if(pWndCapture == NULL ||
                pWndCapture->get_handle() != GetEventWindow()->get_handle())
             {
@@ -589,7 +589,7 @@ namespace frame
          {
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -616,7 +616,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -636,7 +636,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -661,7 +661,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -682,7 +682,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -707,7 +707,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -727,7 +727,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -752,7 +752,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -771,7 +771,7 @@ namespace frame
          if(bSize)
          {
             MoveWindow(GetSizingWindow(), rectWindow);
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow());
+            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
             pinterface->WfiOnSize(pbase->m_uiMessage == WM_MOUSEMOVE);
             NotifyFramework((EHitTest) m_ehittestMode);
          }
@@ -815,12 +815,12 @@ namespace frame
       }
    }
 
-   ::user::interaction* SizeManager::GetSizingWindow()
+   sp(::user::interaction) SizeManager::GetSizingWindow()
    {
       return m_pworkset->GetRegionWindow();
    }
 
-   ::user::interaction* SizeManager::GetEventWindow()
+   sp(::user::interaction) SizeManager::GetEventWindow()
    {
       return m_pworkset->GetEventWindow();
    }

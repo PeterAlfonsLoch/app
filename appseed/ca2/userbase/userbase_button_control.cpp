@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-BaseButtonControl::BaseButtonControl(::ca::application * papp) :
+BaseButtonControl::BaseButtonControl(::ca::applicationsp papp) :
    ca(papp),
    ::user::button(papp),
    ::userbase::button(papp)

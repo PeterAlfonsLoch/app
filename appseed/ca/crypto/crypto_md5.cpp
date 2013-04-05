@@ -9,7 +9,7 @@ namespace crypto
    {
 
 
-      context::context(::ca::application * papp) :
+      context::context(::ca::applicationsp papp) :
          ca(papp),
          m_memoryDigest(papp)
       {

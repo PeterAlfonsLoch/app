@@ -19,7 +19,7 @@ namespace html
 
       ::html::data * m_pdata;
       ::ca::signal_object * m_psignal;
-      ::user::interaction * m_pui;
+      sp(::user::interaction) m_pui;
 
 
       signal(::ca::signal * psignal);

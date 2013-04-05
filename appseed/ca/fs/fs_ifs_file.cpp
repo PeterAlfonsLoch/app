@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-ifs_file::ifs_file(::ca::application * papp, var varFile) :
+ifs_file::ifs_file(::ca::applicationsp papp, var varFile) :
    ca(papp),
    ::sockets::http::batch_file(papp),
    m_httpfile(new ::sockets::http::file(papp)),

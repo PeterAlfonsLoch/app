@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   savings::savings(::ca::application * papp) :
+   savings::savings(::ca::applicationsp papp) :
       ca(papp)
    {
 

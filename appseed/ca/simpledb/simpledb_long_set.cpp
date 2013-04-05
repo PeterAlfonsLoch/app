@@ -48,7 +48,7 @@ db_long_set::queue_item & db_long_set::queue_item::operator = (const queue_item 
    return *this;
 }
 
-db_long_set::sync_queue::sync_queue(::ca::application * papp) :
+db_long_set::sync_queue::sync_queue(::ca::applicationsp papp) :
    ca(papp),
    thread(papp),
    simple_thread(papp),
@@ -139,7 +139,7 @@ void db_long_set::sync_queue::queue(const char * pszKey, int64_t l)
    item.m_strKey = pszKey;
    item.m_l = l;
 
-   m_itema.add(item);
+   m_itema.add(new queue_item(item));
 
 }
 
@@ -483,7 +483,7 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
    return true;
 
 }
-bool db_long_set::MoveWindow_(const char * lpKey, ::ca::window *pWnd)
+bool db_long_set::MoveWindow_(const char * lpKey, sp(::ca::window)pWnd)
 {
    rect rect;
    if(!load(lpKey, &rect))
@@ -492,7 +492,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, ::ca::window *pWnd)
    return true;
 }
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
+bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::ca::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -645,7 +645,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, ::ca::window *pWnd)
+bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::ca::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -682,7 +682,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::ca::window *pWnd)
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, ::ca::window *pWnd)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::ca::window)pWnd)
 {
 
 #ifdef WINDOWSEX

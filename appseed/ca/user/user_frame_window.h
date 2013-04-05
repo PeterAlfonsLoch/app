@@ -64,7 +64,7 @@ public:
    HACCEL m_hAccelTable;       // accelerator table
    uint32_t m_dwPromptContext;    // current help prompt context for message box
    bool m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
-   frame_window* m_pNextFrameWnd; // next frame_window in cast global list
+   sp(frame_window) m_pNextFrameWnd; // next frame_window in cast global list
    rect m_rectBorder;         // for OLE border space negotiation
 
    pointer_list m_listControlBars; // array of all control bars that have this
@@ -78,9 +78,9 @@ public:
    UINT m_nIDTracking;         // tracking command ID or string IDS
    UINT m_nIDLastMessage;      // last displayed message string IDS
    sp(::view) m_pViewActive;       // current active ::view
-   bool (CALLBACK* m_lpfnCloseProc)(frame_window* pFrameWnd);
+   bool (CALLBACK* m_lpfnCloseProc)(sp(frame_window) pFrameWnd);
    UINT m_cModalStack;         // BeginModalState depth
-   comparable_array < ::user::interaction *, ::user::interaction * > m_uiptraDisable;       // windows disabled because of BeginModalState
+   comparable_array < sp(::user::interaction), sp(::user::interaction) > m_uiptraDisable;       // windows disabled because of BeginModalState
    HMENU m_hMenuAlt;           // menu to update to (::null() means default)
    string m_strTitle;         // default title (original)
    bool m_bInRecalcLayout;     // avoid recursion in layout
@@ -98,7 +98,7 @@ public:
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
                        const RECT & rect = ::rect(0, 0, 0, 0),
-            ::user::interaction* pParentWnd = ::null(),        // != ::null() for popups
+            sp(::user::interaction) pParentWnd = ::null(),        // != ::null() for popups
             const char * lpszMenuName = ::null(),
             uint32_t dwExStyle = 0,
             ::ca::create_context* pContext = ::null());
@@ -106,14 +106,14 @@ public:
    // dynamic creation - load frame and associated resources
    virtual bool LoadFrame(const char * pszMatter,
             uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-            ::user::interaction* pParentWnd = ::null(),
+            sp(::user::interaction) pParentWnd = ::null(),
             ::ca::create_context* pContext = ::null());
 
    virtual bool ShowWindow(int32_t nCmdShow);
 
 
 // Attributes
-   virtual ::user::document_interface * GetActiveDocument();
+   virtual sp(::user::document_interface) GetActiveDocument();
 
    // Active child ::view maintenance
    ::view * GetActiveView() const;           // active ::view or ::null()
@@ -121,7 +121,7 @@ public:
       // active ::view or ::null(), bNotify == FALSE if focus should not be set
 
    // Active frame (for frames within frames -- MDI)
-   virtual frame_window* GetActiveFrame();
+   virtual sp(frame_window) GetActiveFrame();
 
    // For customizing the default messages on the status bar
    virtual void GetMessageString(UINT nID, string & rMessage) const;
@@ -134,7 +134,7 @@ public:
 // Operations
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
-   virtual void InitialUpdateFrame(::user::document_interface * pDoc, bool bMakeVisible);
+   virtual void InitialUpdateFrame(sp(::user::document_interface) pDoc, bool bMakeVisible);
    virtual void InitialFramePosition(bool bForceRestore = false);
    void set_title(const char * lpszTitle);
    string get_title() const;
@@ -154,7 +154,7 @@ public:
 
 // Overridables
    virtual void OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState);
-   virtual ::user::interaction * GetMessageBar();
+   virtual sp(::user::interaction) GetMessageBar();
 
    // border space negotiation
    enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
@@ -163,7 +163,7 @@ public:
    void OnContextHelp();   // for Shift+F1 help
    void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
    bool OnBarCheck(UINT nID);
-   virtual void on_delete(::ca::ca * poc);
+   virtual void on_delete(sp(::ca::ca) poc);
 
 #ifdef WINDOWSEX
    virtual void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
@@ -175,7 +175,7 @@ public:
 
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-   virtual bool IsFrameWnd();
+   virtual bool is_frame_window();
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    virtual void on_update_frame_title(bool bAddToTitle);
    virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
@@ -224,13 +224,13 @@ public:
    LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
    LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
    void OnIdleUpdateCmdUI();
-   void OnEnterIdle(UINT nWhy, ::user::interaction* pWho);
-   void OnSetFocus(::user::interaction* pOldWnd);
+   void OnEnterIdle(UINT nWhy, sp(::user::interaction) pWho);
+   void OnSetFocus(sp(::user::interaction) pOldWnd);
    void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
    void OnSize(UINT nType, int32_t cx, int32_t cy);
    bool OnEraseBkgnd(::ca::graphics * pgraphics);
-   //void OnActivate(UINT nState, ::user::interaction* pWndOther, bool bMinimized);
+   //void OnActivate(UINT nState, sp(::user::interaction) pWndOther, bool bMinimized);
    DECL_GEN_SIGNAL(_001OnActivate)
    DECL_GEN_SIGNAL(_001OnNcActivate)
    //bool OnNcActivate(bool bActive);
@@ -240,12 +240,12 @@ public:
 #ifdef WINDOWSEX
    void OnDropFiles(HDROP hDropInfo);
 #endif
-   bool OnSetCursor(::user::interaction* pWnd, UINT nHitTest, UINT message);
+   bool OnSetCursor(sp(::user::interaction) pWnd, UINT nHitTest, UINT message);
    //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
    //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
    LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);
    void OnEnable(bool bEnable);
-   void OnPaletteChanged(::user::interaction* pFocusWnd);
+   void OnPaletteChanged(sp(::user::interaction) pFocusWnd);
    bool OnQueryNewPalette();
    LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
    LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);

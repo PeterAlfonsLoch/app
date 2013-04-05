@@ -10,7 +10,7 @@ namespace libcompress
 
    #define IUnknown ::ca::object
 
-   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca *coder)
+   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca::ca)coder)
    {
       bool tryReduce = false;
       uint32_t reducedDictionarySize = 1 << 10;
@@ -39,7 +39,7 @@ namespace libcompress
       {
          ::count numProps = method.Props.get_count();
          ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
-         setCoderProperties = dynamic_cast < ::libcompress::set_coder_properties_interface * > (coder);
+         setCoderProperties = coder;
          if (setCoderProperties == ::null())
          {
             if (numProps != 0)
@@ -66,7 +66,7 @@ namespace libcompress
                               value = (uint64_t) reducedDictionarySize;
                }
                ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
-               setCoderProperties = dynamic_cast < ::libcompress::set_coder_properties_interface *> (coder);
+               setCoderProperties = coder;
                res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }
             catch(...)

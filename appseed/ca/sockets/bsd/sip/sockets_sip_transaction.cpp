@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   transaction::transaction(::ca::application * papp) :
+   transaction::transaction(::ca::applicationsp papp) :
       ca(papp)
    {
       m_propertysetHeader.m_bKeyCaseInsensitive       = true;

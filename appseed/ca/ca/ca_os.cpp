@@ -5,7 +5,7 @@ namespace ca
 {
 
    
-   os::os(::ca::application * papp) :
+   os::os(::ca::applicationsp papp) :
       ca(papp)
    {
    }
@@ -255,7 +255,7 @@ namespace ca
    }
 
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+   bool os::resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)
    {
 
 

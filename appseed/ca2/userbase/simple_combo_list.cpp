@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_combo_list::simple_combo_list(::ca::application * papp) :
+simple_combo_list::simple_combo_list(::ca::applicationsp papp) :
    ca(papp)
 {
 

@@ -7,7 +7,7 @@ namespace platform
       virtual public ::userex::pane_tab_view
    {
    public:
-      pane_view(::ca::application * papp); 
+      pane_view(::ca::applicationsp papp); 
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 

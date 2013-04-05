@@ -4,7 +4,7 @@
 //   ON_THREAD_MESSAGE(WM_USER, &file_manager_operation_thread::On1)
 // END_MESSAGE_MAP()
 
-file_manager_operation_thread::file_manager_operation_thread(::ca::application * papp) :
+file_manager_operation_thread::file_manager_operation_thread(::ca::applicationsp papp) :
    ca(papp),
    thread(papp),
    simple_thread(papp),
@@ -131,7 +131,7 @@ void file_manager_operation_thread::kick()
 }
 
 void file_manager_operation_thread::queue_copy(stringa & stra, const char * pszDstBase, const char * pszSrcBase, bool bExpand,
-   ::user::interaction * oswindowCallback, UINT uiCallbackMessage, WPARAM wparamCallback)
+   sp(::user::interaction) oswindowCallback, UINT uiCallbackMessage, WPARAM wparamCallback)
 {
    file_operation * poperation = new file_operation(get_app());
    poperation->m_oswindowCallback = oswindowCallback;

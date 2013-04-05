@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_list_view::simple_list_view(::ca::application * papp) :
+simple_list_view::simple_list_view(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
@@ -56,12 +56,12 @@ bool simple_list_view::pre_create_window(CREATESTRUCT& cs)
 }
 
 
-::user::interaction* simple_list_view::OnDrawInterfaceGetWnd()
+sp(::user::interaction) simple_list_view::OnDrawInterfaceGetWnd()
 {
    return this;
 }
 
-::user::interaction* simple_list_view::_GetWnd()
+sp(::user::interaction) simple_list_view::_GetWnd()
 {
    return this;
 }

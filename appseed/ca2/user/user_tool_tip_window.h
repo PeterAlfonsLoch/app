@@ -55,7 +55,7 @@ namespace user
 
       CEnumAlign                 m_ealign;         // current alignment of the tool tip
       CEnumAlign                 m_ealignDefault;  // default alignment of the tool tip
-      ::user::interaction *      m_pwnd;           // ::ca::window associate with this tool tip wnd
+      sp(::user::interaction)      m_pwnd;           // ::ca::window associate with this tool tip wnd
       string                     m_strTip;         // tip string
       int32_t                        m_iEventTool;     // item selected
       int32_t                        m_iTool;          // item where the tip will be showed
@@ -72,17 +72,17 @@ namespace user
       bool GetToolText(int32_t iTool, string &str);
       void AddTool(tool_tip_tool * ptool);
       bool GetToolRect(int32_t iTool, LPRECT lprect);
-      tool_tip_window(::ca::application * papp);
+      tool_tip_window(::ca::applicationsp papp);
       virtual ~tool_tip_window();
       void UpdateDrawingObjects();
       bool ShowTip();
       bool IsTipEnabled();
       void EnableTip(bool bEnable = true);
       bool HideTip();
-      virtual bool create(::user::interaction * pwnd, id id);
+      virtual bool create(sp(::user::interaction) pwnd, id id);
       bool CalcRect(::ca::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
       void ShowTip(int32_t iTool, bool bForce = false);
-      void SetPositionHint(::ca::window * pwnd, e_position eposition);
+      void SetPositionHint(sp(::ca::window) pwnd, e_position eposition);
       void relay_event(tool_tip_tool * pwnd, ::ca::signal_object * pobj);
 
       void OnPaint();

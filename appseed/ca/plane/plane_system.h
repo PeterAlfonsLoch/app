@@ -19,13 +19,13 @@ namespace ca
 
 
    class CLASS_DECL_ca ptra :
-      virtual public ::comparable_array < ::ca::ca * >
+      virtual public ::comparable_array < sp(::ca::ca) >
    {
    public:
    };
 
-   typedef ::map < ::ca::ca *, ::ca::ca *, ::ca::ca *, ::ca::ca * > map;
-   typedef ::map < ::ca::ca *, ::ca::ca *, ptra, ptra > map_many;
+   typedef ::map < sp(::ca::ca), sp(::ca::ca), sp(::ca::ca), sp(::ca::ca) > map;
+   typedef ::map < sp(::ca::ca), sp(::ca::ca), ptra, ptra > map_many;
 
 
 } // namespace ca
@@ -245,7 +245,7 @@ namespace plane
 #endif
       sp(::filehandler::handler)                   m_spfilehandler;
       ::cube::cube *                               m_pcube;
-      ::plane::application *                       m_pcubeInterface;
+      sp(::plane::application)                     m_pcubeInterface;
 
 
       const str_pool                               m_cstrpool;
@@ -338,7 +338,7 @@ namespace plane
             ::visual::visual                    m_visual;
 
 
-      system(::ca::application * papp = ::null());
+      system(::ca::applicationsp papp = ::null());
       virtual ~system();
 
 
@@ -360,20 +360,20 @@ namespace plane
 
       virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = ::null());
 
-      virtual void register_bergedge_application(::ca::application * papp);
-      virtual void unregister_bergedge_application(::ca::application * papp);
+      virtual void register_bergedge_application(::ca::applicationsp papp);
+      virtual void unregister_bergedge_application(::ca::applicationsp papp);
 
       using ::plane::application::alloc;
-      virtual ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
-      virtual ::ca::ca * alloc(::ca::application * papp, const class id & idType);
+      virtual sp(::ca::ca) alloc(::ca::applicationsp papp, ::ca::type_info & info);
+      virtual sp(::ca::ca) alloc(::ca::applicationsp papp, const class id & idType);
 
-      virtual ::ca::ca * on_alloc(::ca::application * papp, ::ca::type_info & info);
-      virtual ::ca::ca * clone();
-      virtual ::ca::ca * clone(::ca::ca * pobj);
+      virtual sp(::ca::ca) on_alloc(::ca::applicationsp papp, ::ca::type_info & info);
+      virtual sp(::ca::ca) clone();
+      virtual sp(::ca::ca) clone(sp(::ca::ca) pobj);
       template < typename T >
       inline T * cast_clone(T * pt)
       {
-         return dynamic_cast < T * > (clone(dynamic_cast < ::ca::ca * > (pt)));
+         return dynamic_cast < T * > (clone(dynamic_cast < sp(::ca::ca) > (pt)));
       }
 
       virtual void appa_load_string_table();
@@ -397,25 +397,24 @@ namespace plane
 
       virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
-      virtual void on_allocation_error(::ca::application * papp, ::ca::type_info & info);
+      virtual void on_allocation_error(::ca::applicationsp papp, ::ca::type_info & info);
 
       // file & dir
-      virtual string matter_as_string(::ca::application * papp, const char * pszMatter, const char * pszMatter2 = ::null());
-      virtual string dir_matter(::ca::application * papp, const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string matter_as_string(::ca::applicationsp papp, const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string dir_matter(::ca::applicationsp papp, const char * pszMatter, const char * pszMatter2 = ::null());
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(::ca::application * papp, const char * pszPath);
+      virtual string file_as_string(::ca::applicationsp papp, const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = ::null());
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      virtual ::ca::window_draw           * _001GetTwf();
       class ::ca::factory                 & factory();
       class ::ca::log                     & log();
 
-      ::ca::window_draw                   * get_twf();
+      sp(::ca::window_draw )              get_twf();
 
       FT_Library                          & ftlibrary();
 
@@ -458,7 +457,7 @@ namespace plane
             inline class ::visual::visual             & visual()     { return m_visual       ; }
 
 
-      virtual void on_delete(::ca::ca * pca);
+      virtual void on_delete(sp(::ca::ca) pca);
 
 
       virtual bool base_support();
@@ -481,18 +480,18 @@ namespace plane
       virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
 
 
-      plane::session * get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
-      plane::session * query_session(index iEdge);
+      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      sp(::plane::session) query_session(index iEdge);
 
 
       void on_request(::ca::create_context * pcreatecontext);
 
-      ::ca::application * application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
+      ::ca::applicationsp application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
       void open_by_file_extension(index iEdge, const char * pszPathName);
 
-      static void register_delete(::ca::ca * plistened, ::ca::ca * plistener);
-      static void unregister_delete(::ca::ca * plistened, ::ca::ca * plistenerOld);
+      //static void register_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistener);
+      //static void unregister_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistenerOld);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
@@ -585,11 +584,11 @@ namespace plane
 
       virtual bool is_system();
 
-      virtual void discard_to_factory(::ca::ca * pca);
+      virtual void discard_to_factory(sp(::ca::ca) pca);
 
       virtual bool verb();
 
-      virtual ::ca::application * get_new_app(::ca::application * pappNewApplicationParent, const char * pszType, const char * pszId);
+      virtual ::ca::applicationsp get_new_app(::ca::applicationsp pappNewApplicationParent, const char * pszType, const char * pszId);
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();
@@ -601,7 +600,7 @@ namespace plane
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/Cube
       //
-      ::document * hold(::user::interaction * pui);
+      sp(::document) hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -614,7 +613,7 @@ namespace plane
 
       virtual bool on_install();
 
-      virtual string get_fontopus_server(const char * pszUrl, ::ca::application * papp, int32_t iRetry = -1);
+      virtual string get_fontopus_server(const char * pszUrl, ::ca::applicationsp papp, int32_t iRetry = -1);
 
       virtual string get_host_location_url();
 
@@ -648,7 +647,7 @@ namespace ca
 
 
 template < class T >
-bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
+bool ::ca::file_system::output(::ca::applicationsp papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -664,7 +663,7 @@ bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput,
 
 
 template < class T >
-bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
+bool ::ca::file_system::output(::ca::applicationsp papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -730,20 +729,20 @@ bool ::ca::file_system::output(::ca::application * papp, const char * pszOutput,
 
 
 template < class VIEW >
-inline VIEW * view::create_view(::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+inline VIEW * view::create_view(sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
-   return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
+   return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast).m_p);
 }
 
 
 template < class VIEW >
-inline VIEW * view::create_view(::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+inline VIEW * view::create_view(sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
    return create_view < VIEW > (::null(), pwndParent, id, pviewLast);
 }
 
 template < class VIEW >
-inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast)
+inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
 {
 
    VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
@@ -782,7 +781,7 @@ DOCUMENT * view::get_typed_document()
 namespace xml
 {
 
-   inline disp_option::disp_option(::ca::application * papp)
+   inline disp_option::disp_option(::ca::applicationsp papp)
    {
       newline = true;
       reference_value = true;

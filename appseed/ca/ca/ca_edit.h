@@ -11,7 +11,7 @@ namespace ca
    public:
 
 
-      base_edit(::ca::application * papp);
+      base_edit(::ca::applicationsp papp);
       virtual ~base_edit();
 
 
@@ -57,7 +57,7 @@ namespace ca
    public:      
 
       
-      edit(::ca::application * papp);
+      edit(::ca::applicationsp papp);
       virtual ~edit();
 
 
@@ -72,7 +72,7 @@ namespace ca
 
 
    template < class DATA >
-   edit < DATA >::edit(::ca::application * papp) :
+   edit < DATA >::edit(::ca::applicationsp papp) :
       ca(papp),
       base_edit(papp)
    {

@@ -32,10 +32,10 @@ namespace frame
       rect                          m_rectPending;
       bool                          m_bEnable;
 
-      ::user::interaction *         m_pwndRegion;
-      ::user::interaction *         m_pwndDraw;
-      ::user::interaction *         m_pwndEvent;
-      ::user::interaction *         m_pwndCommand;
+      sp(::user::interaction)         m_pwndRegion;
+      sp(::user::interaction)         m_pwndDraw;
+      sp(::user::interaction)         m_pwndEvent;
+      sp(::user::interaction)         m_pwndCommand;
 
       bool                          m_bDockEnable;
       bool                          m_bNotifyIconEnable;
@@ -66,10 +66,10 @@ namespace frame
       void Enable(bool bEnable);
       void _000OnBeforeSize(LPCRECT lpcrect);
 
-      ::user::interaction * GetEventWindow();
-      ::user::interaction * GetRegionWindow();
-      ::user::interaction * GetDrawWindow();
-      ::user::interaction * GetCommandWindow();
+      sp(::user::interaction) GetEventWindow();
+      sp(::user::interaction) GetRegionWindow();
+      sp(::user::interaction) GetDrawWindow();
+      sp(::user::interaction) GetCommandWindow();
 
 
       appearance * GetAppearance();
@@ -104,8 +104,8 @@ namespace frame
       void UpdateApperanceMode(bool bFullScreen);
       //void UpdateControlBox();
       void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
-      void WindowProcBefore(::user::interaction * pwnd, ::ca::signal_object * pobj);
-      void WindowProcHover(::user::interaction * pwnd, ::ca::signal_object * pobj);
+      void WindowProcBefore(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
+      void WindowProcHover(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
       DECL_GEN_SIGNAL(_001OnActivate)
          DECL_GEN_SIGNAL(_001OnCommand)
          DECL_GEN_SIGNAL(_001OnNcActivate)
@@ -124,20 +124,20 @@ namespace frame
       void layout();
       bool Hover(bool bHoverActive);
       void hover_relay_event(::ca::signal_object * pobj);
-      void ChildWnd(::user::interaction * pwnd, ::user::interaction * pwndParent);
-      void FrameWnd(::user::interaction * pwnd);
+      void ChildWnd(sp(::user::interaction) pwnd, sp(::user::interaction) pwndParent);
+      void FrameWnd(sp(::user::interaction) pwnd);
       bool Start();
       //void OnDown();
       //void OnUp();
       void AppearanceUpdateControlBox();
-      ::user::interaction * GetWndDraw();
-      ::user::interaction * GetWndRegion();
+      sp(::user::interaction) GetWndDraw();
+      sp(::user::interaction) GetWndRegion();
 
       bool update(
-         ::user::interaction * pwndDraw,
-         ::user::interaction * pwndRegion,
-         ::user::interaction * pwndEvent,
-         ::user::interaction * pwndCommand);
+         sp(::user::interaction) pwndDraw,
+         sp(::user::interaction) pwndRegion,
+         sp(::user::interaction) pwndEvent,
+         sp(::user::interaction) pwndCommand);
 
       void SetAppearanceTransparency(EAppearanceTransparency nTransparency);
       void SetFrameSchemaStyle(int32_t nStyle);
@@ -150,7 +150,7 @@ namespace frame
 
       void GetRegionClientRect(LPRECT lprect);
       void GetDrawClientRect(LPRECT lprect);
-      //void SetWindow(::user::interaction * pwnd);
+      //void SetWindow(sp(::user::interaction) pwnd);
       void relay_event(::ca::signal_object * pobj);
       void message_handler(::ca::signal_object * pobj);
 

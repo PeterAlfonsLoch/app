@@ -1,12 +1,7 @@
 #include "framework.h"
-#include "FileManagerFrame.h"
-#include "FileManagerViewUpdateHint.h"
-#include "SimpleFileListView.h"
-#include "SimpleFolderListView.h"
-#include "SimpleFolderTreeView.h"
 
 
-FileManagerLeftView::FileManagerLeftView(::ca::application * papp) :
+FileManagerLeftView::FileManagerLeftView(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -51,7 +46,7 @@ void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::ca::object
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
+               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;

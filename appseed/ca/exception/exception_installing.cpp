@@ -8,7 +8,7 @@ installing_exception::installing_exception(const installing_exception & e) :
 {
 }
 
-installing_exception::installing_exception(::ca::application * papp, const char * pszTip) : 
+installing_exception::installing_exception(::ca::applicationsp papp, const char * pszTip) : 
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

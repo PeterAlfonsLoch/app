@@ -9,9 +9,9 @@ class CLASS_DECL_ca raw_pointer :
 {
 public:
 
-   raw_pointer(::ca::application * papp);
+   raw_pointer(::ca::applicationsp papp);
    raw_pointer(const raw_pointer & holder);
-   raw_pointer(::ca::ca * pboject);
+   raw_pointer(sp(::ca::ca) pboject);
 
    template < class T >
    T * ca ()
@@ -38,7 +38,7 @@ public:
    }
 
 
-   ::ca::ca * m_pca;
+   sp(::ca::ca) m_pca;
 
 
 };

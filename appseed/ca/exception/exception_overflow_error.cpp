@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-overflow_error::overflow_error(::ca::application * papp, const char * pszError) :
+overflow_error::overflow_error(::ca::applicationsp papp, const char * pszError) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

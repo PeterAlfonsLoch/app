@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   pane_tab_view::pane_tab_view(::ca::application * papp) :
+   pane_tab_view::pane_tab_view(::ca::applicationsp papp) :
       ca(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
@@ -23,7 +23,7 @@ namespace userex
    {
    }
 
-   ::user::interaction * pane_tab_view::get_view_uie()
+   sp(::user::interaction) pane_tab_view::get_view_uie()
    {
       return ::userbase::tab_view::get_view_uie();
    }
@@ -42,8 +42,8 @@ namespace userex
       else if(m_pviewdata->m_iExtendOnParent > 0)
       {
          int32_t i = m_pviewdata->m_iExtendOnParent;
-         ::user::interaction* pguie = m_pviewdata->m_pwnd;
-         ::user::interaction* pguieNext = m_pviewdata->m_pwnd;
+         sp(::user::interaction) pguie = m_pviewdata->m_pwnd;
+         sp(::user::interaction) pguieNext = m_pviewdata->m_pwnd;
          for(; i > 0; i--)
          {
             pguieNext = pguie->get_parent();
@@ -56,14 +56,14 @@ namespace userex
       }
       else if(m_pviewdata->m_iExtendOnParent < 0)
       {
-         ::user::interaction* pguie = m_pviewdata->m_pwnd;
-         ::user::interaction* pguieNext = m_pviewdata->m_pwnd;
+         sp(::user::interaction) pguie = m_pviewdata->m_pwnd;
+         sp(::user::interaction) pguieNext = m_pviewdata->m_pwnd;
          user::interaction_ptr_array wnda(get_app());
          while(true)
          {
             wnda.add(pguie);
             pguieNext = pguie->get_parent();
-            if(pguieNext == NULL || dynamic_cast < ::ca::window * > (pguie->m_pimpl.m_p) != NULL)
+            if(pguieNext == NULL || (pguie->m_pimpl.m_p) != NULL)
                break;
             pguie = pguieNext;
          }
@@ -118,7 +118,7 @@ namespace userex
    }
 
 
-   bool pane_tab_view::on_hold(::user::interaction * pui, ::user::place_holder * pholder)
+   bool pane_tab_view::on_hold(sp(::user::interaction) pui, sp(::user::place_holder) pholder)
    {
       if(!::user::place_holder_container::on_hold(pui, pholder))
          return false;
@@ -177,13 +177,13 @@ namespace userex
             else
                pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
-            ::filemanager::document * pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
+            sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();
                if(pview != NULL)
                {
-                  frame_window * pframe = (frame_window *) pview->GetParentFrame();
+                  sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -199,14 +199,14 @@ namespace userex
             cc->m_bMakeVisible               = true;
             cc->m_puiParent                  = pcreatordata->m_pholder;
 
-            ::filemanager::document * pdoc = Application.filemanager().std().open(cc);
+            sp(::filemanager::document) pdoc = Application.filemanager().std().open(cc);
 
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();
                if(pview != NULL)
                {
-                  frame_window * pframe = (frame_window *) pview->GetParentFrame();
+                  sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -219,14 +219,14 @@ namespace userex
 
    }
 
-   filemanager::document * pane_tab_view::get_filemanager_document()
+   sp(::filemanager::document) pane_tab_view::get_filemanager_document()
    {
-      return dynamic_cast < filemanager::document * > (get_view_creator()->get("file_manager")->m_pdoc);
+      return  (get_view_creator()->get("file_manager")->m_pdoc);
    }
 
-   filemanager::document * pane_tab_view::get_tabbed_filemanager_document()
+   sp(::filemanager::document) pane_tab_view::get_tabbed_filemanager_document()
    {
-      return dynamic_cast < filemanager::document * > (get_view_creator()->get("tabbed_file_manager")->m_pdoc);
+      return  (get_view_creator()->get("tabbed_file_manager")->m_pdoc);
    }
 
    void pane_tab_view::_001OnTabClose(int32_t iTab)

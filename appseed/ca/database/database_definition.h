@@ -144,7 +144,7 @@ namespace database
 
 
       result_set();
-      result_set(::ca::application * papp);
+      result_set(::ca::applicationsp papp);
       result_set(const result_set & set);
 
 

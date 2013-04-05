@@ -10,7 +10,7 @@ namespace zip
 
    {
    public:
-      memory_file(::ca::application * papp);
+      memory_file(::ca::applicationsp papp);
       virtual ~memory_file();
       static voidpf open_file_func (voidpf opaque, const char* filename, int32_t mode);
       static uint_ptr  read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size);

@@ -65,7 +65,7 @@ namespace xml
 
 
 
-   edit::edit(::ca::application * papp) :
+   edit::edit(::ca::applicationsp papp) :
       ca(papp),
       ::ca::edit < ::xml::document > (papp)
    {

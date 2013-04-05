@@ -79,7 +79,7 @@ namespace fontopus
 
 
 
-      login_thread(::ca::application * papp);
+      login_thread(::ca::applicationsp papp);
       virtual ~login_thread();
 
       virtual int32_t run();
@@ -128,7 +128,7 @@ namespace fontopus
       bool                                      m_bDeferRegistration;
 
 
-      validate(::ca::application * papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+      validate(::ca::applicationsp papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
       virtual ~validate();
 
 

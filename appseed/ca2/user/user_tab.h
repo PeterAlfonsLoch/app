@@ -26,13 +26,13 @@ namespace user
          id                   m_id;
          istring              m_istrTitleEx;
          ::visual::dib_sp     m_dib;
-         place_holder *       m_pholder;
+         sp(place_holder)       m_pholder;
          bool                 m_bVisible;
          bool                 m_bPermanent;
 
 
          pane();
-         pane(::ca::application * papp);
+         pane(::ca::applicationsp papp);
          pane(const pane & pane);
          virtual ~pane();
 
@@ -51,7 +51,7 @@ namespace user
       public:
 
 
-         pane_array(::ca::application * papp);
+         pane_array(::ca::applicationsp papp);
          virtual ~pane_array();
 
 
@@ -93,7 +93,7 @@ namespace user
          bool                             m_bEnableCloseAll;
 
 
-         data(::ca::application * papp);
+         data(::ca::applicationsp papp);
          virtual ~data();
 
          virtual pane * get_pane_by_id(id id);
@@ -126,7 +126,7 @@ namespace user
       sp(::ca::create_context)         m_spcreatecontext;
 
 
-      tab(::ca::application * papp);
+      tab(::ca::applicationsp papp);
             virtual ~tab();
 
 
@@ -140,12 +140,12 @@ namespace user
       virtual void _001SelectTab(::index iTab);
       virtual void _001CloseTab(::index iTab);
       virtual pane * get_pane(::index iTab, bool bVisible = true);
-      virtual ::user::interaction * get_tab_window(::index iTab, bool bVisible = true);
-      virtual ::user::place_holder * get_tab_holder(::index iTab, bool bVisible = true);
+      virtual sp(::user::interaction) get_tab_window(::index iTab, bool bVisible = true);
+      virtual sp(::user::place_holder) get_tab_holder(::index iTab, bool bVisible = true);
 
       void _000OnMouse(::ca::message::mouse * pmouse);
 
-      virtual ::user::interaction * get_view_uie();
+      virtual sp(::user::interaction) get_view_uie();
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
@@ -163,7 +163,7 @@ namespace user
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
-      virtual ::ca::window * GetNotifyWnd();
+      virtual sp(::ca::window) GetNotifyWnd();
       virtual index hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);

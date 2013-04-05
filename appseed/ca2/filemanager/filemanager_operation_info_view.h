@@ -8,13 +8,13 @@ public:
 
    double m_dAnime;
 
-   file_manager_operation_info_view(::ca::application * papp);
+   file_manager_operation_info_view(::ca::applicationsp papp);
 
    virtual void OnDraw(::ca::graphics * pdc);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
 
-   file_manager_operation_document * get_document();
+   sp(file_manager_operation_document) get_document();
 
    void OnFileOperationStep(int32_t iOperation, bool bFinal);
 

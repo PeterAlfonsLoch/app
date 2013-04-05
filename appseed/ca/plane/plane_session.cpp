@@ -54,7 +54,7 @@ namespace plane
       }
       */
       string strId;
-      ::ca::application * pcaapp;
+      ::ca::applicationsp papp;
 
 
       POSITION pos = m_mapApplication.get_start_position();
@@ -63,13 +63,11 @@ namespace plane
       {
 
          strId.Empty();
-         pcaapp = ::null();
 
-         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
-
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
+         m_mapApplication.get_next_assoc(pos, strId, papp);
 
          papp->post_thread_message(WM_QUIT, 0, 0);
+
       }
 
    }
@@ -192,7 +190,7 @@ namespace plane
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * session::get_app() const
+   ::ca::applicationsp session::get_app() const
    {
       return ::planebase::application::get_app();
    }
@@ -280,24 +278,17 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      ::ca::application * pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      ::ca::applicationsp pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
-      ::bergedge_interface * papp = dynamic_cast < ::bergedge_interface * > (pcaapp);
+      sp(::bergedge_interface) papp = pcaapp;
 
       if(papp == ::null())
       {
 
-         try
-         {
-
-            delete pcaapp;
-
-         }
-         catch(...)
-         {
-         }
+         pcaapp.release();
 
          return false;
+
       }
 
       m_pbergedge             = papp->get_bergedge();
@@ -389,7 +380,7 @@ namespace plane
   //          throw not_implemented(get_app());
             /*if(get_document() != ::null() && get_document()->get_typed_view < ::session::view >() != ::null())
             {
-               ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
+               sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
                if(pframe != ::null())
                {
                   pframe->ShowWindow(SW_SHOW);
@@ -470,7 +461,7 @@ namespace plane
 
       string strApp(pszAppId);
 
-      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+      sp(::plane::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       if(papp == ::null())
          return ::null();
 
@@ -491,7 +482,7 @@ namespace plane
 
             m_pbergedge             = papp->get_bergedge();
 
-            m_pbergedgeInterface    = dynamic_cast < ::bergedge_interface * > (papp);
+            m_pbergedgeInterface    = papp;
 
             if(m_pbergedgeInterface == ::null())
             {
@@ -544,7 +535,7 @@ namespace plane
    }
 
 
-   /*::session::document * session::get_document()
+   /*::sessionsp(::document) session::get_document()
    {
       return m_pbergedgedocument;
    }
@@ -556,12 +547,12 @@ namespace plane
       return get_document()->get_bergedge_view();
    }
 
-   ::plane::document * session::get_platform()
+   ::planesp(::document) session::get_platform()
    {
       return m_pplatformdocument;
    }
 
-   ::nature::document * session::get_nature()
+   sp(::nature::document) session::get_nature()
    {
       return m_pnaturedocument;
    }
@@ -646,7 +637,7 @@ namespace plane
 
       }
 
-      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias));
+      sp(::plane::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
 
       if(papp == ::null())
          return false;
@@ -795,9 +786,9 @@ namespace plane
 
    }*/
 
-   ::ca::application * session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::applicationsp session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::application * papp = ::null();
+      ::ca::applicationsp papp = ::null();
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -848,7 +839,7 @@ namespace plane
       return true;
    }
 
-   ::ca::application * session::get_current_application()
+   ::ca::applicationsp session::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -863,18 +854,18 @@ namespace plane
       }
    }
 
-   ::user::interaction * session::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
-      return get_request_parent_ui((::user::interaction * ) pmainframe, pcreatecontext);
+      return get_request_parent_ui((::user::interaction *) pmainframe, pcreatecontext);
 
    }
 
-   ::user::interaction * session::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcreatecontext)
    {
 
 
-      ::user::interaction * puiParent = ::null();
+      sp(::user::interaction) puiParent = ::null();
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != ::null())
          puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
@@ -1045,7 +1036,7 @@ namespace plane
    void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      ::ca::application * papp = ::null();
+      ::ca::applicationsp papp = ::null();
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {

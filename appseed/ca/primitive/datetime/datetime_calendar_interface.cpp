@@ -1,6 +1,6 @@
 #include "framework.h"
 
-calendar_interface::calendar_interface(::ca::application * papp) :
+calendar_interface::calendar_interface(::ca::applicationsp papp) :
    ca(papp)
 {
    ::datetime::time time = ::datetime::time::get_current_time();

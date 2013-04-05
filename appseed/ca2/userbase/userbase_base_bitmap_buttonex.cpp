@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   bitmap_button::bitmap_button(::ca::application * papp) :
+   bitmap_button::bitmap_button(::ca::applicationsp papp) :
       ca(papp),
       ::user::button(papp),
       ::userbase::button(papp)

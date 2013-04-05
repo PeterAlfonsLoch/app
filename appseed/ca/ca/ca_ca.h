@@ -69,36 +69,6 @@ namespace cube
 #define Berg(papp) (*Sess(papp).m_pbergedge)
 #define Bergedge (Berg(this->m_papp))
 
-namespace ca
-{
-
-   template < class ca_derived >
-   inline int64_t add_ref(ca_derived * pca)
-   {
-      if(pca == ::null())
-         return -1;
-      return pca->add_ref();
-   }
-
-   template < class ca_derived >
-   inline int64_t release(ca_derived * & pca)
-   {
-      if(pca == ::null())
-         return -1;
-      int64_t count = pca->release();
-      pca = ::null();
-      return count;
-   }
-
-   template < class ca_derived >
-   inline int64_t ref_count(ca_derived * pca)
-   {
-      if(pca == ::null())
-         return -1;
-      return pca->get_ref_count();
-   }
-
-} // namespace ca
 
 class fixed_alloc_no_sync;
 
@@ -109,24 +79,9 @@ namespace ca
    class bergedge;
    class system;
 
-   template < class TYPE >
-   bool is_null(TYPE * p)
-   {
-      return (((int_ptr) p) < sizeof(TYPE));
-   }
-
-   template <class t>
-   inline void delptr(t *& p)
-   {
-      if(p != ::null())
-      {
-         delete p;
-         p = ::null();
-      }
-   }
-
-
-   class CLASS_DECL_ca ca
+   
+   class CLASS_DECL_ca ca :
+      virtual public ::ca::c
    {
    public:
 
@@ -142,31 +97,30 @@ namespace ca
       };
 
       uint32_t                m_ulFlags;
-      ::ca::application *     m_papp;
-      int64_t                 m_countReference;
-      ::ca::ptra *            m_pptraListener;
-      ::ca::ptra *            m_pptraListened;
+      ::ca::applicationsp     m_papp;
+      //::ca::ptra *            m_pptraListener;
+      //::ca::ptra *            m_pptraListened;
       factory_item_base *     m_pfactoryitembase;
       void *                  m_pthis;
 
 
       ca();
       ca(const ca & o);
-      ca(::ca::application * papp);
+      ca(::ca::applicationsp papp);
       virtual ~ca();
 
       virtual void delete_this();
 
 
-      virtual ::ca::ca * clone();
+      virtual sp(::ca::ca) clone();
 
 
       static void system(const char * pszProjectName);
 
 
 
-      virtual ::ca::application * get_app() const;
-      virtual void set_app(::ca::application * papp);
+      virtual ::ca::applicationsp get_app() const;
+      virtual void set_app(::ca::applicationsp papp);
 
       inline bool is_set_ca_flag(::ca::ca::flag eflag)
       {
@@ -186,46 +140,14 @@ namespace ca
 
       ca & operator = (const ca & o);
 
-      virtual void on_delete(::ca::ca * pca);
-
-      inline int64_t get_ref_count()
-      {
-         return m_countReference;
-      }
-
-      inline int64_t add_ref()
-      {
-         return m_countReference++;
-      }
-
-      inline int64_t release()
-      {
-         if(m_countReference > 0)
-         {
-            if(m_countReference == 1)
-            {
-               m_countReference = 0;
-               delete_this();
-               return 0;
-            }
-            else
-            {
-               m_countReference--;
-               return m_countReference;
-            }
-         }
-         else
-         {
-            return 0;
-         }
-
-      }
+      virtual void on_delete(sp(::ca::ca) pca);
 
 
-      ptra & listenerptra();
-      ptra & listenedptra();
 
-      virtual ptra * new_ptra();
+      //ptra & listenerptra();
+      //ptra & listenedptra();
+
+      //virtual ptra * new_ptra();
 
       virtual ::bergedge::bergedge * get_bergedge();
       virtual ::cube::cube * get_cube();

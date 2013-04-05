@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_static::simple_static(::ca::application * papp) :
+simple_static::simple_static(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::base_static(papp),
    m_brushBkg(papp)

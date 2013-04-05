@@ -33,8 +33,8 @@ public:
 
    ::fs::item_array       m_itemaSelected;
    string                     m_wstrFilter;
-   FileManagerInterface *     m_pmanager;
-   FileManagerInterface *     m_pmanagerMain;
+   sp(FileManagerInterface)     m_pmanager;
+   sp(FileManagerInterface)     m_pmanagerMain;
    ::view    *                m_pview;
    UINT                       m_uiId;
    string                     m_strPath;

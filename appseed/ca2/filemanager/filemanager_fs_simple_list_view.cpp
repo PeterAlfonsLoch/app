@@ -10,7 +10,7 @@ namespace filemanager
       namespace simple
       {
 
-         list_view::list_view(::ca::application * papp) :
+         list_view::list_view(::ca::applicationsp papp) :
          ca(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),
@@ -720,9 +720,9 @@ namespace filemanager
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
-            frame_window * pframe = GetParentFrame()->GetParentFrame();
+            sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
-            (::ca::window *) pframe);
+            (sp(::ca::window)) pframe);
             }
             }
             else
@@ -732,10 +732,10 @@ namespace filemanager
             {
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
-            frame_window * pframe = GetParentFrame()->GetParentFrame();
+            sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
-            (::ca::window *) pframe);
+            (sp(::ca::window)) pframe);
             }
             }*/
          }
@@ -752,7 +752,7 @@ namespace filemanager
                for(int32_t j = item.get_lower_bound(); j <= item.get_upper_bound(); j++)
                {
                   GetSongPath(str, j);
-                  mediaplaylist::document * pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
+                  mediaplaylistsp(::document) pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
                   if(pdoc != NULL)
                   {
                      pdoc->AddSong(
@@ -863,7 +863,7 @@ namespace filemanager
                   }
 
                   */
-                  m_itema.add(item);
+                  m_itema.add(new Item(item));
                   iNode++;
                }
             }
@@ -887,7 +887,7 @@ namespace filemanager
                   item.m_iImage = m_iIconSong;
 
 
-                  m_itema.add(item);
+                  m_itema.add(new Item(item));
                   iNode++;
                }
             }

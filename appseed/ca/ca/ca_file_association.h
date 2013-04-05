@@ -9,7 +9,7 @@ namespace ca
       public ::win::registry
    {
    public:
-      file_association(::ca::application * papp);
+      file_association(::ca::applicationsp papp);
       virtual ~file_association();
 
    protected:

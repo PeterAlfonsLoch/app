@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   command_thread::command_thread(::ca::application * papp) :
+   command_thread::command_thread(::ca::applicationsp papp) :
       ca(papp),
       m_mutex(papp)
    {
@@ -99,7 +99,7 @@ namespace ca
    {
       try
       {
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
+         sp(application) papp = get_app().cast < application > ();
          if(papp != ::null())
          {
             papp->request(pline);

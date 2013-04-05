@@ -22,7 +22,7 @@ namespace userbase
 
 
 
-      split_bar(::ca::application * papp);
+      split_bar(::ca::applicationsp papp);
       virtual ~split_bar();
 
 

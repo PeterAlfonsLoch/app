@@ -11,7 +11,7 @@ namespace ca
    public:
 
 
-      simple_tree_data(::ca::application * papp);
+      simple_tree_data(::ca::applicationsp papp);
 
 
       virtual bool initialize_data();

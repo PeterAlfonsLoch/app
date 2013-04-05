@@ -11,13 +11,13 @@ namespace fs
    {
    public:
          
-      main_view(::ca::application * papp);
+      main_view(::ca::applicationsp papp);
       void install_message_handling(::ca::message::dispatch * pinterface);
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
 
 
-      document * get_document();
+      sp(document) get_document();
 
    };
 

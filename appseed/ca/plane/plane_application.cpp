@@ -76,7 +76,7 @@ namespace plane
    {
    }
 
-   ::ca::application * application::get_system()
+   ::ca::applicationsp application::get_system()
    {
       return new application();
    }
@@ -198,7 +198,7 @@ namespace plane
    }
 
 
-   ::user::document_interface * application::_001OpenDocumentFile(var varFile)
+   sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';

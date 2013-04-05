@@ -8,7 +8,7 @@ temporary_exception::temporary_exception(const temporary_exception & e) :
 {
 }
 
-temporary_exception::temporary_exception(::ca::application * papp, const char * pszTip) : 
+temporary_exception::temporary_exception(::ca::applicationsp papp, const char * pszTip) : 
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

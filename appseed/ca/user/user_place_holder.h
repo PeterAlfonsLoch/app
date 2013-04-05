@@ -15,36 +15,36 @@ namespace user
       interaction_ptr_array  m_uiptraHold;
 
 
-      place_holder(::ca::application * papp);
+      place_holder(::ca::applicationsp papp);
       virtual ~place_holder();
 
 
       using ::user::control::create;
-      virtual bool create(place_holder_container * pcontainer, id id);
+      virtual bool create(sp(::user::place_holder_container) pcontainer, id id);
 
       virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
-      virtual bool can_merge(::user::interaction * pui);
-      virtual bool merge(::user::interaction * pui);
-      virtual bool hold(::user::interaction * pui);
-      virtual bool unhold(::user::interaction * pui);
-      virtual bool is_holding(::user::interaction * pui);
+      virtual bool can_merge(sp(::user::interaction) pui);
+      virtual bool merge(sp(::user::interaction) pui);
+      virtual bool hold(sp(::user::interaction) pui);
+      virtual bool unhold(sp(::user::interaction) pui);
+      virtual bool is_holding(sp(::user::interaction) pui);
 
 
       virtual void layout();
 
-      ::user::interaction * get_ui();
+      sp(::user::interaction) get_ui();
 
 
    };
 
    class CLASS_DECL_ca place_holder_ptra :
-      virtual public comparable_array < place_holder * >
+      virtual public spa(place_holder)
    {
    public:
 
-      int32_t hold(::user::interaction * pui);
-      int32_t unhold(::user::interaction * pui);
+      int32_t hold(sp(::user::interaction) pui);
+      int32_t unhold(sp(::user::interaction) pui);
 
    };
 

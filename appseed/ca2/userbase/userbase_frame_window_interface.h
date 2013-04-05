@@ -14,7 +14,7 @@ namespace userbase
 
 
       bool                       m_bMakeVisible;
-      ::userbase::document *     m_pdoc;
+      sp(::userbase::document)     m_pdoc;
 
 
    };
@@ -58,7 +58,7 @@ namespace userbase
       virtual void WfiOnMaximize();
       virtual void WfiOnMinimize();
       virtual void WfiOnRestore();
-      virtual void on_set_parent(::user::interaction* pguieParent);
+      virtual void on_set_parent(sp(::user::interaction) pguieParent);
 
       virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
 
@@ -72,7 +72,7 @@ namespace userbase
       virtual void assert_valid() const;
       virtual void dump(dump_context & dc) const;
 
-      virtual void on_delete(::ca::ca * pca);
+      virtual void on_delete(sp(::ca::ca) pca);
 
       void data_on_after_change(::ca::signal_object * pobj);
 

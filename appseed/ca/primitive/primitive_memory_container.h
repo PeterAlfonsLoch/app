@@ -18,9 +18,9 @@ namespace primitive
 
    public:
 
-      memory_container(::ca::application * papp);
-      memory_container(::ca::application * papp, void * pMemory, memory_size dwSize);
-      memory_container(::ca::application * papp, memory_base * pmemory);
+      memory_container(::ca::applicationsp papp);
+      memory_container(::ca::applicationsp papp, void * pMemory, memory_size dwSize);
+      memory_container(::ca::applicationsp papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
 

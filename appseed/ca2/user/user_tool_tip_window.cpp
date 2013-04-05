@@ -3,7 +3,7 @@
 namespace user
 {
 
-   tool_tip_window::tool_tip_window(::ca::application * papp) :
+   tool_tip_window::tool_tip_window(::ca::applicationsp papp) :
       ca(papp),
       m_font(papp)
    {
@@ -83,7 +83,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      ::user::interaction * pwnd = m_pwnd;
+      sp(::user::interaction) pwnd = m_pwnd;
       ::user::tool_tip_tool * ptool = GetTool(iTool);
       
       bool bVRetry = false;
@@ -317,7 +317,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::create(::user::interaction * pwnd, id id)
+   bool tool_tip_window::create(sp(::user::interaction) pwnd, id id)
    {
       m_pwnd = pwnd;
       if(m_font->get_os_data() != NULL)
@@ -578,7 +578,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(::ca::window * pwnd, e_position eposition)
+   void tool_tip_window::SetPositionHint(sp(::ca::window) pwnd, e_position eposition)
    {
       rect rect;
       pwnd->GetWindowRect(rect);

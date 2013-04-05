@@ -8,7 +8,7 @@ namespace ca
       m_phistory = ::null();
    }
    
-   history::history(::ca::application * papp) :
+   history::history(::ca::applicationsp papp) :
       ca(papp)
    {
       m_phistory = ::null();

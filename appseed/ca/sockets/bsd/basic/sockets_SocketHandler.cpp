@@ -41,7 +41,7 @@ namespace sockets
    #endif
 
 
-   socket_handler::socket_handler(::ca::application * papp, StdLog *p) :
+   socket_handler::socket_handler(::ca::applicationsp papp, StdLog *p) :
    ca(papp),
    m_stdlog(p),
    m_pmutex(::null()),
@@ -65,7 +65,7 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(::ca::application * papp, mutex& mutex, StdLog *p) :
+   socket_handler::socket_handler(::ca::applicationsp papp, mutex& mutex, StdLog *p) :
    ca(papp),
    m_stdlog(p)
    ,m_pmutex(&mutex)

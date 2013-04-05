@@ -24,7 +24,7 @@ namespace html
          bool                          m_bOnAfterChangeText;
 
 
-         text(::ca::application * papp);
+         text(::ca::applicationsp papp);
 
          DECL_GEN_SIGNAL(OnLButtonDown)
          DECL_GEN_SIGNAL(OnMouseMove)

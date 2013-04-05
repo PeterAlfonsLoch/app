@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   data_listener::data_listener(::ca::application * papp) :
+   data_listener::data_listener(::ca::applicationsp papp) :
       ca(papp)
    {
 

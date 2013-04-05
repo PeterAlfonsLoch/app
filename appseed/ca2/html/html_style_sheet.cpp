@@ -31,8 +31,8 @@ namespace html
          {
             psz++;
          }
-         class style style;
-         style.m_strTag = str.Left(psz - pszStart);
+         sp(class style) pstyle(new class style);
+         pstyle->m_strTag = str.Left(psz - pszStart);
          if(*psz == '.')
          {
             str = str.Mid(psz - pszStart + 1);
@@ -50,7 +50,7 @@ namespace html
             {
                psz++;
             }
-            style.m_strName = str.Left(psz - pszStart);
+            pstyle->m_strName = str.Left(psz - pszStart);
             if(*psz == ':')
             {
                str = str.Mid(psz - pszStart + 1);
@@ -59,12 +59,12 @@ namespace html
             {
                str.Empty();
             }
-            style.m_strSubClass = str;
+            pstyle->m_strSubClass = str;
          }
-         psz = style.parse(pdata, pszRestart);
+         psz = pstyle->parse(pdata, pszRestart);
          if(*psz == '}')
             psz++;
-         m_stylea.add(style);
+         m_stylea.add(pstyle);
       }
    }
 

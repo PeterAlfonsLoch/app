@@ -79,7 +79,7 @@ namespace n7z
       return true;
    }
 
-   CDecoder::CDecoder(::ca::application * papp, bool multiThread) :
+   CDecoder::CDecoder(::ca::applicationsp papp, bool multiThread) :
       ca(papp)
    {
       multiThread = true;

@@ -8,7 +8,7 @@ namespace html
    namespace impl
    {
 
-      cell::cell(::ca::application * papp) :
+      cell::cell(::ca::applicationsp papp) :
          ca(papp),
          user::scroll_view(papp),
          user::edit_plain_text(papp),

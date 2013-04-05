@@ -56,7 +56,7 @@ namespace visual
    }
 
 
-   void visual::construct(::ca::application * papp)
+   void visual::construct(::ca::applicationsp papp)
    {
 
       ::ca::section::construct(papp);

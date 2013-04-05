@@ -31,12 +31,12 @@ namespace user
    public:
 
 
-      interaction_ptr_array(::ca::application * papp);
+      interaction_ptr_array(::ca::applicationsp papp);
 
 
       using spa(::user::interaction)::find_first;
-      ::user::interaction * find_first(::ca::type_info info);
-      ::user::interaction * find_first(oswindow oswindow);
+      sp(::user::interaction) find_first(::ca::type_info info);
+      sp(::user::interaction) find_first(oswindow oswindow);
 
       void get_wnda(::user::oswindow_array & oswindowa);
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
@@ -86,7 +86,7 @@ namespace user
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);
-      //static void EnumChildren(::ca::window * pwnd, interaction_ptr_array & wndpa);
+      //static void EnumChildren(sp(::ca::window) pwnd, interaction_ptr_array & wndpa);
       static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
       /*static void ExcludeChild(interaction_ptr_array & wndpa);*/
       /*static void SortByZOrder(interaction_ptr_array & wndpa);*/
@@ -107,7 +107,7 @@ namespace user
 //      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
 //      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
 
-      //static void SortByZOrder(comparable_array < ::ca::window *, ::ca::window * > & wndpa);
+      //static void SortByZOrder(comparable_array < sp(::ca::window), sp(::ca::window) > & wndpa);
       //static void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
       //static void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
 

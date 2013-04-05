@@ -29,7 +29,7 @@ protected:
 
 
 public:
-   imaging(::ca::application * papp);
+   imaging(::ca::applicationsp papp);
     ~imaging();
 
 
@@ -327,14 +327,14 @@ public:
       HRSRC hRsrc,
       bool bMono = false);*/
 
-   virtual bool LoadImageFile(::ca::dib * pdib, var varFile, ::ca::application * papp);
-   virtual bool LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp);
+   virtual bool LoadImageFile(::ca::dib * pdib, var varFile, ::ca::applicationsp papp);
+   virtual bool LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::applicationsp papp);
 
-   virtual FIBITMAP * LoadImageFile(var varFile, ::ca::application * papp);
+   virtual FIBITMAP * LoadImageFile(var varFile, ::ca::applicationsp papp);
    virtual FIBITMAP * LoadImageFile(::ca::file * pfile);
    virtual ::ca::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::ca::bitmap_sp hbitmap);
-   virtual ::ca::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::ca::application * papp);
+   virtual ::ca::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::ca::applicationsp papp);
    virtual void SaveJpeg(const char * lpcszFile, ::ca::bitmap_sp pbitmap);
    virtual void SavePng(const char * lpcszFile, ::ca::bitmap_sp pbitmap);
    virtual void SavePng(const char * lpcszFile, FIBITMAP * pfi, bool bUnload);

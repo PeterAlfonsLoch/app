@@ -8,7 +8,7 @@ namespace ca
    {
    public:
 
-      virtual void on_delete(::ca::ca * pca);
+      virtual void on_delete(sp(::ca::ca) pca);
    };
 
 }// namespace ca

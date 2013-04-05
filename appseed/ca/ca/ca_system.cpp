@@ -39,12 +39,12 @@ namespace ca
       return true;
    }
 
-   void system::discard_to_factory(::ca::ca * pca)
+   void system::discard_to_factory(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
 
-   ::ca::ca * system::clone(::ca::ca * pca)
+   sp(::ca::ca) system::clone(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
       return ::null();
@@ -54,7 +54,7 @@ namespace ca
 
 
 
-   ::ca::ca * system::on_alloc(::ca::application * papp, ::ca::type_info & info)
+   sp(::ca::ca) system::on_alloc(::ca::applicationsp papp, ::ca::type_info & info)
    {
 /*      if(info == System.type_info < class ::ca::log > ())
       {
@@ -67,18 +67,18 @@ namespace ca
       return ::null();
    }
 
-   ::ca::ca * system::alloc(::ca::application * papp, ::ca::type_info & info)
+   sp(::ca::ca) system::alloc(::ca::applicationsp papp, ::ca::type_info & info)
    {
       return on_alloc(papp, info);
    }
 
-   ::ca::ca * system::alloc(::ca::application * papp, const std_type_info & info)
+   sp(::ca::ca) system::alloc(::ca::applicationsp papp, const std_type_info & info)
    {
       ::ca::type_info typeinfo(info);
       return on_alloc(papp, typeinfo);
    }
 
-   void system::on_allocation_error(::ca::application * papp, ::ca::type_info & info)
+   void system::on_allocation_error(::ca::applicationsp papp, ::ca::type_info & info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
@@ -86,7 +86,7 @@ namespace ca
 
 
 
-   void system::on_delete(::ca::ca * pca)
+   void system::on_delete(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }

@@ -200,7 +200,7 @@ namespace ca
    {
    public:
 
-      dibmap(::ca::application * papp) :
+      dibmap(::ca::applicationsp papp) :
          ca(papp)
       {
       }

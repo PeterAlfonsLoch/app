@@ -9,7 +9,7 @@ namespace userpresence
    public:
 
 
-      presence_central(::ca::application * papp);
+      presence_central(::ca::applicationsp papp);
       virtual ~presence_central();
 
 

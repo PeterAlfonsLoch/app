@@ -120,7 +120,7 @@ namespace userbase
       void SetBorders(int32_t cxLeft = 0, int32_t cyTop = 0, int32_t cxRight = 0, int32_t cyBottom = 0);
       rect GetBorders();
 
-      ::userbase::frame_window * GetDockingFrame();
+      sp(::userbase::frame_window) GetDockingFrame();
       bool IsFloating();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
@@ -129,7 +129,7 @@ namespace userbase
       void EnableDocking(uint32_t dwDockStyle);
 
    // Overridables
-      virtual void OnUpdateCmdUI(::userbase::frame_window * pTarget, bool bDisableIfNoHndler) = 0;
+      virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler) = 0;
 
    // Implementation
    public:
@@ -167,7 +167,7 @@ namespace userbase
       // support for docking
       uint32_t m_dwStyle;    // creation style (used for layout)
       uint32_t m_dwDockStyle;// indicates how bar can be docked
-      ::userbase::frame_window * m_pDockSite; // current dock site, if dockable
+      sp(::userbase::frame_window) m_pDockSite; // current dock site, if dockable
       BaseDockBar* m_pDockBar;   // current dock bar, if dockable
       BaseDockContext* m_pDockContext;   // used during dragging
       uint32_t m_dwCtrlStyle;
@@ -189,7 +189,7 @@ namespace userbase
       void EraseNonClient(::ca::graphics * pdc);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
-      void SetBarInfo(BaseControlBarInfo* pInfo, ::userbase::frame_window * pFrameWnd);
+      void SetBarInfo(BaseControlBarInfo* pInfo, sp(::userbase::frame_window) pFrameWnd);
 
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnCreate)

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   command::command(::ca::application * papp) :
+   command::command(::ca::applicationsp papp) :
       ca(papp)
    {
    }

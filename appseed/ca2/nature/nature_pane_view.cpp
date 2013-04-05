@@ -3,7 +3,7 @@
 namespace nature
 {
 
-   pane_view::pane_view(::ca::application * papp) :
+   pane_view::pane_view(::ca::applicationsp papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -80,7 +80,7 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
+            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != NULL)
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
@@ -113,7 +113,7 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < nature::view > ();
 
-            ::user::interaction * pview = dynamic_cast < ::user::interaction * > (view::create_view(System.type_info < nature::view > (), get_document(), this, 101));
+            sp(::user::interaction) pview = dynamic_cast < ::user::interaction * > (view::create_view(System.type_info < nature::view > (), get_document(), this, 101).m_p);
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -123,13 +123,13 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (m_pdoctemplateAppearance->open_document_file(::ca::create_context_sp()));
+            sp(::userbase::document) pdoc = (m_pdoctemplateAppearance->open_document_file(::ca::create_context_sp()));
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();
                if(pview != NULL)
                {
-                  ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                  sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -142,7 +142,7 @@ namespace nature
 
    /*   case PaneViewPlaylist:
          {
-            ::mediaplaylist::document * pdoc = ((MusicalPlayerLightApp *) &System)->GetPlaylistCentral().GetCurrentPlaylist(true, false);
+            ::mediaplaylistsp(::document) pdoc = ((MusicalPlayerLightApp *) &System)->GetPlaylistCentral().GetCurrentPlaylist(true, false);
 
             if(pdoc != NULL)
             {
@@ -157,7 +157,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                     sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata = new ViewData();
@@ -183,7 +183,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                     sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pframe->set_parent(this);
@@ -210,7 +210,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                     sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pframe->set_parent(this);
@@ -237,7 +237,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                     sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pframe->set_parent(this);
@@ -282,8 +282,8 @@ namespace nature
       ::userex::pane_tab_view::on_show_view();
       if(m_pviewdata->m_id == nature::PaneViewIdioma)
       {
-         ::userbase::menu_list_view * pmenuview = dynamic_cast < ::userbase::menu_list_view * > (m_pviewdata->m_pwnd);
-         pmenuview->m_pguieNotify = m_pviewdataOld == NULL ? NULL : dynamic_cast < ::userex::pane_tab_view * > (m_pviewdataOld->m_pwnd);
+         ::userbase::menu_list_view * pmenuview = dynamic_cast < ::userbase::menu_list_view * > (m_pviewdata->m_pwnd.m_p);
+         pmenuview->m_pguieNotify = m_pviewdataOld == NULL ? NULL : dynamic_cast < ::userex::pane_tab_view * > (m_pviewdataOld->m_pwnd.m_p);
          pmenuview->m_uiMessage = WM_USER + 1122;
          pmenuview->TrackPopupMenu(pmenuview, GetParentFrame());
       }

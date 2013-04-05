@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   property_page::property_page(::ca::application * papp) :
+   property_page::property_page(::ca::applicationsp papp) :
       ca(papp),
       ::userbase::view(papp),
       ::user::place_holder_container(papp),

@@ -167,7 +167,7 @@ namespace n7z
       index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         inOutTempBuffers.add(::ca::temp_io_buffer());
+         inOutTempBuffers.add(new ::ca::temp_io_buffer());
          inOutTempBuffers.last_element()->create();
          inOutTempBuffers.last_element()->InitWriting();
       }
@@ -287,7 +287,7 @@ namespace n7z
    }
 
 
-   CEncoder::CEncoder(::ca::application * papp, const CCompressionMethodMode &options):
+   CEncoder::CEncoder(::ca::applicationsp papp, const CCompressionMethodMode &options):
       ca(papp),
       _bindReverseConverter(0),
       _constructed(false)
@@ -319,7 +319,7 @@ namespace n7z
          coderStreamsInfo.NumOutStreams = 1;
          method.Id = k_AES;
 
-         _options.Methods.add(method);
+         _options.Methods.add(new CMethodFull(method));
          _bindInfo.Coders.add(coderStreamsInfo);
 
          _bindInfo.InStreams.add(0);
@@ -431,7 +431,7 @@ namespace n7z
                coderStreamsInfo.NumOutStreams = method.NumInStreams;
                method.Id = k_AES;
 
-               _options.Methods.add(method);
+               _options.Methods.add(new CMethodFull(method));
                _bindInfo.Coders.add(coderStreamsInfo);
                _bindInfo.OutStreams.add(numOutStreams + i);
             }

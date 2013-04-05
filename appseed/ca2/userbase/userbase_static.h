@@ -30,11 +30,11 @@ namespace userbase
       e_type                         m_etype;
 
 
-      base_static(::ca::application * papp);
+      base_static(::ca::applicationsp papp);
       virtual ~base_static();
 
 
-      virtual bool create(::user::interaction* puiParent, id id);
+      virtual bool create(sp(::user::interaction) puiParent, id id);
 
 
       HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);

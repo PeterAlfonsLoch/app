@@ -12,7 +12,7 @@ public:
    string m_strLocationURL;
 
 
-   html_view(::ca::application * papp);
+   html_view(::ca::applicationsp papp);
    virtual ~html_view();
 
 
@@ -35,7 +35,7 @@ public:
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
    virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
-   html_document * get_document();
+   sp(html_document) get_document();
 
 
    DECL_GEN_SIGNAL(_001OnDestroy)

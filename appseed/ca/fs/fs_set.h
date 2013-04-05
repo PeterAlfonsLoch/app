@@ -14,7 +14,7 @@ namespace fs
       string_map < data * >       m_fsdatamap;
 
 
-      set(::ca::application * papp);
+      set(::ca::applicationsp papp);
       virtual ~set();
 
    

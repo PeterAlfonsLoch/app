@@ -18,12 +18,12 @@ namespace filemanager
       simple_list_header_control    m_headerctrl;
 
 
-      SimpleFolderTreeView(::ca::application * papp);
+      SimpleFolderTreeView(::ca::applicationsp papp);
       virtual ~SimpleFolderTreeView();
 
 
 
-      virtual void _017OpenFolder(const ::fs::item & item);
+      virtual void _017OpenFolder(sp(::fs::item)  item);
       void StartAnimation();
       void RenameFile(int32_t iLine, string & str);
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

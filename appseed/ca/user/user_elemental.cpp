@@ -3,7 +3,7 @@
 namespace user
 {
 
-   ::user::interaction * elemental::get_guie()
+   sp(::user::interaction) elemental::get_guie()
    {
       return ::null();
    }

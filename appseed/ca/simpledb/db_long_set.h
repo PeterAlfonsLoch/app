@@ -60,7 +60,7 @@ public:
 
 
       
-      sync_queue(::ca::application * papp);
+      sync_queue(::ca::applicationsp papp);
       virtual ~sync_queue();
 
 
@@ -135,10 +135,10 @@ public:
    bool find(const char * lpKey);
 
 
-   bool MoveWindow_(const char * lpKey, ::ca::window *pWnd);
-   bool SaveWindowRect_(const char * lpKey, ::ca::window *pWnd);
-   bool SetWindowPlacement(const char * lpKey, ::ca::window *pWnd);
-   bool SaveWindowPlacement(const char * lpKey, ::ca::window *pWnd);
+   bool MoveWindow_(const char * lpKey, sp(::ca::window)pWnd);
+   bool SaveWindowRect_(const char * lpKey, sp(::ca::window)pWnd);
+   bool SetWindowPlacement(const char * lpKey, sp(::ca::window)pWnd);
+   bool SaveWindowPlacement(const char * lpKey, sp(::ca::window)pWnd);
 
 };
 

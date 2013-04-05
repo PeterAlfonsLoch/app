@@ -5,12 +5,12 @@ class CLASS_DECL_ca2 simple_list_control :
    virtual public ::user::list
 {
 public:
-   simple_list_control(::ca::application * papp);
+   simple_list_control(::ca::applicationsp papp);
 
    simple_list_header_control       m_headerctrl;
    ::user::simple_list_data         m_listctrldata;
 
-   virtual ::user::interaction* OnDrawInterfaceGetWnd();
+   virtual sp(::user::interaction) OnDrawInterfaceGetWnd();
 
    virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual void pre_subclass_window();

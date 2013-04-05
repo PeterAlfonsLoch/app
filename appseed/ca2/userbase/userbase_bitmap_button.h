@@ -8,7 +8,7 @@ namespace userbase
       public ::user::tool_tip_tool
    {
    public:
-      bitmap_button(::ca::application * papp);
+      bitmap_button(::ca::applicationsp papp);
 
       bool  m_bHover;            // set if cursor is over the button
       bool  m_bCommandEnable;    // set if command is enabled

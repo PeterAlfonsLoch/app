@@ -55,7 +55,7 @@ namespace gcom
 
 
 
-         Interface(::ca::application * papp);
+         Interface(::ca::applicationsp papp);
          virtual ~Interface();
 
          void Shutdown();
@@ -108,7 +108,7 @@ namespace gcom
 
          virtual void OnAfterImageLoaded();
 
-         virtual user::interaction * BackViewGetInteraction();
+         virtual sp(::user::interaction) BackViewGetInteraction();
 
 
          virtual bool RenderBuffer();

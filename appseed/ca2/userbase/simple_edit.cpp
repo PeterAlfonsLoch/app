@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_edit::simple_edit(::ca::application * papp) :
+simple_edit::simple_edit(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

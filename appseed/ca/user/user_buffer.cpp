@@ -3,7 +3,7 @@
 namespace user
 {
 
-   buffer::buffer(::ca::application * papp) :
+   buffer::buffer(::ca::applicationsp papp) :
       ca(papp),
       m_spdib(papp)
    {

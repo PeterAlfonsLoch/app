@@ -13,7 +13,7 @@ namespace gcom
       {
 
 
-         interaction::interaction(::ca::application * papp) :
+         interaction::interaction(::ca::applicationsp papp) :
             ca(papp),
             ::userbase::view(papp),
             Interface(papp)
@@ -110,7 +110,7 @@ namespace gcom
 
          void interaction::initialize_user_interaction()
          {
-            ::simple_frame_window * pframe = GetTypedParent < ::simple_frame_window > ();
+            sp(::simple_frame_window) pframe = GetTypedParent < ::simple_frame_window > ();
             if(pframe != NULL && pframe->m_workset.m_pframeschema != NULL)
             {
                color c;

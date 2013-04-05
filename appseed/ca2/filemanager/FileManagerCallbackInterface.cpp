@@ -10,7 +10,7 @@ FileManagerCallbackInterface::~FileManagerCallbackInterface()
 
 }
 
-void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle)
+void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
 {
    UNREFERENCED_PARAMETER(item);
    UNREFERENCED_PARAMETER(straCommand);
@@ -42,7 +42,7 @@ void FileManagerCallbackInterface::on_request(::ca::create_context * pcreatecont
 
 }
 
-void FileManagerCallbackInterface::OnFileManagerOpenFolder(::filemanager::data * pdata, const ::fs::item & item)
+void FileManagerCallbackInterface::OnFileManagerOpenFolder(::filemanager::data * pdata, sp(::fs::item)  item)
 {
    UNREFERENCED_PARAMETER(pdata);
    UNREFERENCED_PARAMETER(item);

@@ -42,7 +42,7 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
 
 #endif
 
-imaging::imaging(::ca::application * papp) :
+imaging::imaging(::ca::applicationsp papp) :
    ca(papp)
 {
 }
@@ -146,7 +146,7 @@ imaging::~imaging()
 }
 
 
-FIBITMAP * imaging::LoadImageFile(var varFile, ::ca::application * papp)
+FIBITMAP * imaging::LoadImageFile(var varFile, ::ca::applicationsp papp)
 {
    ::primitive::memory_file memfile(get_app());
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
@@ -155,7 +155,7 @@ FIBITMAP * imaging::LoadImageFile(var varFile, ::ca::application * papp)
    return LoadImageFile(&memfile);
 }
 
-bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, ::ca::application * papp)
+bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, ::ca::applicationsp papp)
 {
 
    ::primitive::memory_file memfile(get_app());
@@ -2561,7 +2561,7 @@ return LoadImageSync(str);
 }*/
 
 
-::ca::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, ::ca::application * papp)
+::ca::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, ::ca::applicationsp papp)
 {
 
    FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath, papp);
@@ -2574,7 +2574,7 @@ return LoadImageSync(str);
 }
 
 
-bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp)
+bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::applicationsp papp)
 {
 
    if(!imaging::LoadImageFile(pdib, lpcszImageFilePath, papp))

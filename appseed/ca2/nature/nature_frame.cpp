@@ -31,7 +31,7 @@ namespace nature
    /////////////////////////////////////////////////////////////////////////////
    // frame construction/destruction
 
-   frame::frame(::ca::application * papp) :
+   frame::frame(::ca::applicationsp papp) :
       ca(papp),
       simple_frame_window(papp)
    {

@@ -23,7 +23,7 @@ namespace userex
       smart_pointer_array < menu > m_menua;
 
 
-      pane_view(::ca::application * papp);
+      pane_view(::ca::applicationsp papp);
       virtual ~pane_view();
 
 

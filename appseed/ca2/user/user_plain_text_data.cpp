@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   plain_text_data::plain_text_data(::ca::application * papp) :
+   plain_text_data::plain_text_data(::ca::applicationsp papp) :
       ca(papp),
       ::ca::tree_data(papp),
       m_editfile(papp)

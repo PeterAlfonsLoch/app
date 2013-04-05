@@ -20,7 +20,7 @@ namespace frame
 
    }
 
-   ::user::interaction* WorkSetClientInterface::WfiGetWindow()
+   sp(::user::interaction) WorkSetClientInterface::WfiGetWindow()
    {
       return dynamic_cast < ::user::interaction * > (this);
    }

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-file_manager_form_view::file_manager_form_view(::ca::application * papp) :
+file_manager_form_view::file_manager_form_view(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -17,7 +17,7 @@ file_manager_form_view::file_manager_form_view(::ca::application * papp) :
 void file_manager_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetFileManager());
+   sp(::filemanager::document) pdoc =  (GetFileManager());
    if(pdoc != NULL)
    {
       pdoc->update_all_views(pSender, lHint, phint);
@@ -36,8 +36,8 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager_add_location_lfs.xhtml";
          get_document()->update_all_views(NULL, 0, &uh);
-         ::user::interaction* pguie = get_child_by_name("lfs");
-         text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+         sp(::user::interaction) pguie = get_child_by_name("lfs");
+         sp(text_interface) ptext =  (pguie.m_p);
          ptext->_001SetText(GetFileManagerItem().m_strPath);
       }
       else if(pevent->m_puie->m_id == "ftp")
@@ -53,8 +53,8 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          {
             stringa stra;
             GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
-            ::user::interaction* pguie = get_child_by_name("lfs");
-            text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+            sp(::user::interaction) pguie = get_child_by_name("lfs");
+            sp(text_interface) ptext =  (pguie.m_p);
             string str;
             ptext->_001GetText(str);
             stra.add_unique(str);
@@ -67,13 +67,13 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          else if(m_strPath == "filemanager\\replace_name_in_file_system.xhtml")
          {
             file_manager_form_update_hint uh;
-            ::user::interaction* pguie = get_child_by_name("encontrar");
-            text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+            sp(::user::interaction) pguie = get_child_by_name("encontrar");
+            sp(text_interface) ptext =  (pguie.m_p);
             ptext->_001GetText(uh.m_strFind);
             pguie = get_child_by_name("substituir");
-            ptext = dynamic_cast < text_interface * > (pguie);
+            ptext =  (pguie.m_p);
             ptext->_001GetText(uh.m_strReplace);
-            ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetFileManager());
+            sp(::filemanager::document) pdoc =  (GetFileManager());
             pdoc->update_all_views(NULL, 0, &uh);
          }
       }

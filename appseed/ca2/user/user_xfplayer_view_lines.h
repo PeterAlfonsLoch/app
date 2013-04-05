@@ -9,19 +9,19 @@ public:
 
 
    XfplayerViewLineSelection   m_selection;
-   ::user::interaction *      m_pinteraction;
+   sp(::user::interaction)      m_pinteraction;
    index                        m_iFirstVisible;
    index                        m_iLastVisible;
 
 
-   XfplayerViewLines(::ca::application * papp);
+   XfplayerViewLines(::ca::applicationsp papp);
 
 
    void SetBlend(double dBlend);
    index FindLine(XfplayerViewLine * pline);
-   void SetRenderWindow(::ca::window * pWnd);
+   void SetRenderWindow(sp(::ca::window) pWnd);
    void SetEffect(int32_t iEffect);
-   void set_user_interaction(::user::interaction * pinteraction);
+   void set_user_interaction(sp(::user::interaction) pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);
    void Prepare();
 

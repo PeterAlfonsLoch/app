@@ -192,7 +192,7 @@ public:
 
 // Construction/Destruction
 
-   lite_html_reader(::ca::application * papp)  :
+   lite_html_reader(::ca::applicationsp papp)  :
       ca(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default

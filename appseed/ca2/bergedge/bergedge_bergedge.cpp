@@ -43,7 +43,7 @@ namespace bergedge
       }
 
       string strId;
-      ::ca::application * pcaapp;
+      ::ca::applicationsp pcaapp;
 
       while(pos != NULL)
       {
@@ -53,7 +53,7 @@ namespace bergedge
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
+         ::ca::applicationsp papp = (pcaapp);
 
          papp->post_thread_message(WM_QUIT, 0, 0);
       }
@@ -147,7 +147,7 @@ namespace bergedge
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * bergedge::get_app() const
+   ::ca::applicationsp bergedge::get_app() const
    {
       return platform::application::get_app();
    }
@@ -232,7 +232,7 @@ namespace bergedge
          createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
          createcontextBergedge->m_bMakeVisible = false;
 
-         m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
+         m_pbergedgedocument =  (m_ptemplate_bergedge->open_document_file(createcontextBergedge).m_p);
          m_pbergedgedocument->m_papp->m_psession = m_psession;
 
       }
@@ -247,10 +247,10 @@ namespace bergedge
             createcontextPlatform->m_bMakeVisible = true;
             createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
 
-            m_pplatformdocument  = dynamic_cast < platform::document * > (m_ptemplate_platform->open_document_file(createcontextPlatform));
+            m_pplatformdocument  =  (m_ptemplate_platform->open_document_file(createcontextPlatform).m_p);
             m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
             //m_pnaturedocument    =
-            // dynamic_cast < nature::document * > (
+            // dynamic_cast < sp(::nature::document) > (
             //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
 
             m_pbergedgedocument->set_platform(m_pplatformdocument);
@@ -306,7 +306,7 @@ namespace bergedge
             create_bergedge(pcreatecontext);
             if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
             {
-               ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+               sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->ShowWindow(SW_SHOW);
@@ -363,7 +363,7 @@ namespace bergedge
             if(strType.is_empty())
                strType = "application";
 
-            ::ca::application * papp = dynamic_cast < ::ca::application * > (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+            ::ca::applicationsp papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
             if(papp == NULL)
                return;
 
@@ -407,7 +407,7 @@ namespace bergedge
    }
 
 
-   void bergedge::on_app_request_bergedge_callback(::ca::application * papp)
+   void bergedge::on_app_request_bergedge_callback(::ca::applicationsp papp)
    {
       if(&App(papp) != NULL)
       {
@@ -418,12 +418,12 @@ namespace bergedge
 
       if(m_bShowPlatform)
       {
-         ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie());
+         sp(::simple_frame_window) pframeApp =  (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie().m_p);
          if(pframeApp != NULL)
          {
             pframeApp->WfiFullScreen(true, false);
          }
-         ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame());
+         sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame());
          if(pframe != NULL)
          {
             pframe->ShowWindow(SW_SHOW);
@@ -433,7 +433,7 @@ namespace bergedge
       {
          if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
          {
-            ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
             if(pframe != NULL)
             {
                pframe->ShowWindow(SW_SHOW);
@@ -449,11 +449,11 @@ namespace bergedge
          }
       }
 
-      if(m_pappCurrent != NULL && m_pappCurrent->m_pappThis->fontopus().m_puser != NULL)
+      if(m_pappCurrent != NULL && m_pappCurrent->m_pappThis->fontopus()->m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pappThis->fontopus().m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pappThis->fontopus()->m_puser->m_strLogin);
          }
          catch(...)
          {
@@ -475,12 +475,12 @@ namespace bergedge
       return get_document()->get_bergedge_view();
    }
 
-   ::platform::document * bergedge::get_platform()
+   sp(::platform::document) bergedge::get_platform()
    {
       return m_pplatformdocument;
    }
 
-   ::nature::document * bergedge::get_nature()
+   sp(::nature::document) bergedge::get_nature()
    {
       return m_pnaturedocument;
    }
@@ -620,9 +620,9 @@ alt1:
 
    }*/
 
-   ::ca::application * bergedge::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::applicationsp bergedge::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::application * papp = NULL;
+      ::ca::applicationsp papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -676,7 +676,7 @@ alt1:
       return true;
    }
 
-   ::ca::application * bergedge::get_current_application()
+   ::ca::applicationsp bergedge::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -691,18 +691,18 @@ alt1:
       }
    }
 
-   ::user::interaction * bergedge::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) bergedge::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
-      return get_request_parent_ui((::user::interaction * ) pmainframe, pcreatecontext);
+      return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
 
    }
 
-   ::user::interaction * bergedge::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) bergedge::get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcreatecontext)
    {
 
 
-      ::user::interaction * puiParent = NULL;
+      sp(::user::interaction) puiParent = NULL;
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
          puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
@@ -855,7 +855,7 @@ alt1:
    void bergedge::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      ::ca::application * papp = NULL;
+      ::ca::applicationsp papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {

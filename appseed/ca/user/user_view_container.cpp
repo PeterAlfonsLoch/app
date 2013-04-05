@@ -11,7 +11,7 @@ namespace user
    {
    }
 
-   ::user::interaction * view_container::get_view()
+   sp(::user::interaction) view_container::get_view()
    {
       return ::null();
    }
@@ -21,7 +21,7 @@ namespace user
       return ::ca::system::idEmpty;
    }
 
-   ::user::document_interface * view_container::get_view_document()
+   sp(::user::document_interface) view_container::get_view_document()
    {
       return view::get_document(get_view());
    }

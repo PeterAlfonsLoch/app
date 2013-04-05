@@ -1,7 +1,7 @@
 #include "framework.h"
 
 single_document_template::single_document_template(
-   ::ca::application * papp, 
+   ::ca::applicationsp papp, 
    const char * pszMatter,
    ::ca::type_info pDocClass, ::ca::type_info pFrameClass,
    ::ca::type_info pViewClass) :
@@ -24,7 +24,7 @@ single_document_template::~single_document_template()
    return (m_pdocument == ::null()) ? 0 : 1;
 }
 
-::user::document_interface * single_document_template::get_document(index index) const
+sp(::user::document_interface) single_document_template::get_document(index index) const
 {
    if(index == 0)
       return m_pdocument;
@@ -32,7 +32,7 @@ single_document_template::~single_document_template()
       return ::null();
 }
 
-void single_document_template::add_document(::user::document_interface * pdocument)
+void single_document_template::add_document(sp(::user::document_interface) pdocument)
 {
    if(m_pdocument == ::null())
    {
@@ -41,7 +41,7 @@ void single_document_template::add_document(::user::document_interface * pdocume
    }
 }
 
-void single_document_template::remove_document(::user::document_interface * pdocument)
+void single_document_template::remove_document(sp(::user::document_interface) pdocument)
 {
    if(m_pdocument == pdocument)
    {
@@ -56,13 +56,13 @@ void single_document_template::remove_document(::user::document_interface * pdoc
 void single_document_template::request(::ca::create_context * pcreatecontext)
    // if lpszPathName == ::null() => create new file of this type
 {
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) ::null();
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();
    bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
-//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
+//   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
 
-   ::user::document_interface * pdocument = ::null();
-   frame_window* pFrame = ::null();
+   sp(::user::document_interface) pdocument = ::null();
+   sp(frame_window) pFrame = ::null();
    bool bCreated = FALSE;      // => doc and frame created
    bool bWasModified = FALSE;
 
@@ -73,7 +73,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->save_modified())
          return;        // leave the original one
 
-      pFrame = dynamic_cast < frame_window * > (pdocument->get_view()->GetParentFrame());
+      pFrame = pdocument->get_view()->GetParentFrame();
       ASSERT(pFrame != ::null());
       ASSERT_KINDOF(frame_window, pFrame);
       ASSERT_VALID(pFrame);
@@ -195,12 +195,11 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    uh.m_etype = view_update_hint::TypeOpenDocument;
    pdocument->update_all_views(::null(), 0, &uh);
    
-   ::ca::add_ref(pdocument);
-
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
+
 }
 
-void single_document_template::set_default_title(::user::document_interface * pdocument)
+void single_document_template::set_default_title(sp(::user::document_interface) pdocument)
 {
    string strDocName;
    if (!GetDocString(strDocName, document_template::docName) ||

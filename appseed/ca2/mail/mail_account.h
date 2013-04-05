@@ -7,7 +7,7 @@ namespace mail
       virtual public ::ca::object
    {
    public:
-      account(::ca::application * papp);
+      account(::ca::applicationsp papp);
       string         m_id;
       string         m_strEmail;
       string         m_strServer;

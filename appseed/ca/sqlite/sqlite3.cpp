@@ -79693,7 +79693,7 @@ out:
    static void snippetAppendMatch(
       Snippet *p,               /* Append the entry to this snippet */
       int32_t iCol, int32_t iTerm,      /* The column and query term */
-      int32_t iToken,               /* Matching token in document */
+      int32_t iToken,               /* Matching token in sp(document)/
       int32_t iStart, int32_t nByte     /* offset and size of the match */
       ){
          int32_t i;

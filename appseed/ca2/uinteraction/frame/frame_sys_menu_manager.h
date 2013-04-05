@@ -38,7 +38,7 @@ namespace uinteraction
 
          bool update(WorkSet * pset);
 
-         void message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj);
+         void message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
 
 
       };

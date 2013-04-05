@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   create_context::create_context(::ca::application * papp) :
+   create_context::create_context(::ca::applicationsp papp) :
       ca(papp),
       ::ca::command(papp),
       m_spApplicationBias(papp),
@@ -42,7 +42,7 @@ namespace ca
 
    }
 
-   create_context::create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
+   create_context::create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent) :
       ca(pthreadParent->get_app()),
       ::ca::command(pthreadParent->get_app()),
       m_spApplicationBias(pthreadParent->get_app()),
@@ -106,8 +106,7 @@ namespace ca
    {
    }
 
-   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent) :
-      ca(pthreadParent->get_app())
+   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent) 
    {
 
       m_p = ::null();
@@ -115,8 +114,7 @@ namespace ca
 
    }
 
-   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
-      ca(pthreadParent->get_app())
+   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent)
    {
 
       m_p = ::null();
@@ -126,8 +124,7 @@ namespace ca
 
 
 
-   create_context_sp::create_context_sp(::ca::application * papp) :
-      ca(papp),
+   create_context_sp::create_context_sp(::ca::applicationsp papp) :
       ::ca::smart_pointer < create_context > (papp)
    {
    }

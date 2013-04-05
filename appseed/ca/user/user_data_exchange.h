@@ -20,7 +20,7 @@ namespace user
 
       virtual void Fail();
 
-      ::user::interaction * prepare_control(id id);
+      sp(::user::interaction) prepare_control(id id);
 
    };
 

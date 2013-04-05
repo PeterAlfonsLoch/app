@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeInterface::SimpleFolderTreeInterface(::ca::application * papp) :
+   SimpleFolderTreeInterface::SimpleFolderTreeInterface(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::fs::tree(papp),
@@ -476,7 +476,7 @@ namespace filemanager
 
 
       if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-         && !(dynamic_cast < user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
+         && !(dynamic_cast < user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge.m_p))->m_treeptra.contains(this))
       {
          GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }
@@ -921,7 +921,7 @@ namespace filemanager
       _017OpenFolder(item);
    }
 
-   void SimpleFolderTreeInterface::_017OpenFolder(const ::fs::item & item)
+   void SimpleFolderTreeInterface::_017OpenFolder(sp(::fs::item)  item)
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);

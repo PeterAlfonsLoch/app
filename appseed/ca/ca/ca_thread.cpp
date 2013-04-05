@@ -19,7 +19,7 @@ namespace ca
 
    }
 
-   thread::thread(::ca::application * papp) :
+   thread::thread(::ca::applicationsp papp) :
       ca(papp),
       m_mutex(papp)
    {
@@ -37,7 +37,7 @@ namespace ca
 
    }
 
-   thread::thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+   thread::thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
       ca(papp),
       m_mutex(papp)
    {
@@ -67,7 +67,7 @@ namespace ca
    }
 
 
-   application * get_thread_app()
+   ::ca::applicationsp get_thread_app()
    {
 
       thread * pthread = get_thread();
@@ -166,7 +166,7 @@ namespace ca
    }
 
 
-   void thread::on_delete(::ca::ca * pca)
+   void thread::on_delete(sp(::ca::ca) pca)
    {
 
       UNREFERENCED_PARAMETER(pca);
@@ -295,7 +295,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Access to GetMainWnd() & m_pActiveWnd
 
-/*   ::user::interaction* thread::GetMainWnd()
+/*   sp(::user::interaction) thread::GetMainWnd()
    {
       throw interface_only_exception(get_app());
    }*/
@@ -322,7 +322,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool thread::post_message(::user::interaction * pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       UNREFERENCED_PARAMETER(pguie);
       UNREFERENCED_PARAMETER(uiMessage);
@@ -388,13 +388,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * thread::get_ui(index iIndex)
+   sp(::user::interaction) thread::get_ui(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
       throw interface_only_exception(get_app());
    }*/
 
-/*   void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
+/*   void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
@@ -402,7 +402,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void thread::unset_timer(::user::interaction * pui, uint_ptr nIDEvent)
+   void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
@@ -436,12 +436,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * thread::get_active_ui()
+   sp(::user::interaction) thread::get_active_ui()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * thread::set_active_ui(::user::interaction * pui)
+   sp(::user::interaction) thread::set_active_ui(sp(::user::interaction) pui)
    {
       UNREFERENCED_PARAMETER(pui);
       throw interface_only_exception(get_app());
@@ -452,7 +452,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void thread::on_delete(::ca::ca * pui)
+   void thread::on_delete(sp(::ca::ca) pui)
    {
       UNREFERENCED_PARAMETER(pui);
    }
@@ -553,7 +553,7 @@ namespace ca
       return  m_p->ProcessMessageFilter(code, pobj);
    }
 
-   bool thread::post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam)
    {
       if(m_p != ::null())
       {
@@ -664,7 +664,7 @@ namespace ca
 
 
    // Advanced: access to GetMainWnd()
-   ::user::interaction* thread::GetMainWnd()
+   sp(::user::interaction) thread::GetMainWnd()
    {
 
       if(m_p == ::null())
@@ -675,7 +675,7 @@ namespace ca
    }
 
 
-   ::user::interaction * thread::SetMainWnd(::user::interaction * pui)
+   sp(::user::interaction) thread::SetMainWnd(sp(::user::interaction) pui)
    {
 
       return m_p->SetMainWnd(pui);
@@ -683,12 +683,12 @@ namespace ca
    }
 
 
-   void thread::add(::user::interaction * pui)
+   void thread::add(sp(::user::interaction) pui)
    {
       m_p->add(pui);
    }
 
-   void thread::remove(::user::interaction * pui)
+   void thread::remove(sp(::user::interaction) pui)
    {
 
       try
@@ -770,7 +770,7 @@ namespace ca
    }
 
 
-   ::user::interaction * thread::get_ui(index iIndex)
+   sp(::user::interaction) thread::get_ui(index iIndex)
    {
 
       if(m_p == ::null())
@@ -781,7 +781,7 @@ namespace ca
    }
 
 
-   void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
+   void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
    {
 
       if(m_p == ::null())
@@ -792,7 +792,7 @@ namespace ca
    }
 
 
-   void thread::unset_timer(::user::interaction * pui, uint_ptr nIDEvent)
+   void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
    {
 
       if(m_p == ::null())
@@ -858,7 +858,7 @@ namespace ca
    }
 
 
-   ::user::interaction * thread::get_active_ui()
+   sp(::user::interaction) thread::get_active_ui()
    {
 
       if(m_p == ::null())
@@ -869,7 +869,7 @@ namespace ca
    }
 
 
-   ::user::interaction * thread::set_active_ui(::user::interaction * pui)
+   sp(::user::interaction) thread::set_active_ui(sp(::user::interaction) pui)
    {
 
       if(m_p == ::null())
@@ -911,7 +911,7 @@ namespace ca
    void thread::Delete()
    {
 
-      release();
+      ::ca::c::release();
 
    }
 
@@ -961,7 +961,7 @@ namespace ca
 
 
 
-::ca::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::ca::thread* __begin_thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != ::null());

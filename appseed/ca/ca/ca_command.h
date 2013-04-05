@@ -12,7 +12,7 @@ namespace ca
    public:
 
       
-      command(::ca::application * papp);
+      command(::ca::applicationsp papp);
       virtual ~command();
 
       virtual var run();

@@ -5,7 +5,7 @@ namespace mail
 {
 
 
-   tree_interface::tree_interface(::ca::application * papp) :
+   tree_interface::tree_interface(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp),

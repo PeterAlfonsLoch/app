@@ -135,7 +135,7 @@ namespace user
 
 
 
-   control * control::descriptor_set::get_control_by_id(id id)
+   sp(control) control::descriptor_set::get_control_by_id(id id)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -148,9 +148,9 @@ namespace user
       return ::null();
    }
 
-   class control::descriptor * control::descriptor_set::get(::user::interaction * puie)
+   class control::descriptor * control::descriptor_set::get(sp(::user::interaction) puie)
    {
-      control * pcontrol = dynamic_cast < control * > (puie);
+      sp(control) pcontrol =  (puie.m_p);
       if(pcontrol == ::null())
          return ::null();
       for(int32_t i = 0; i < this->get_size(); i++)
@@ -221,7 +221,7 @@ namespace user
       _003OnCustomDraw(pdc, pdrawcontext);
    }
 
-   bool control::_003CallCustomWindowProc(::user::interaction * pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool control::_003CallCustomWindowProc(sp(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
       m_pwndCustomWindowProc = pwnd;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
@@ -293,20 +293,20 @@ namespace user
    }
 
 
-   bool control::get_data(::user::interaction *pwnd, var &var)
+   bool control::get_data(sp(::user::interaction)pwnd, var &var)
    {
       string str;
 
       if(descriptor().get_type() == type_edit)
       {
-         text_interface * ptext = dynamic_cast < text_interface * > (pwnd);
+         sp(text_interface) ptext = pwnd.m_p;
          if(ptext == ::null())
             return false;
          ptext->_001GetText(str);
       }
       else
       {
-         text_interface * ptext = dynamic_cast < text_interface * > (this);
+         sp(text_interface) ptext = this;
          if(ptext == ::null())
             return false;
          ptext->_001GetText(str);
@@ -484,7 +484,7 @@ namespace user
       ControlExGetWnd()->RedrawWindow();
    }
 
-   ::user::interaction * control::ControlExGetWnd()
+   sp(::user::interaction) control::ControlExGetWnd()
    {
       return dynamic_cast < ::user::interaction * > (this);
    }
@@ -493,13 +493,13 @@ namespace user
    void control_cmd_ui::Enable(bool bOn)
    {
        m_pcmdui->m_bEnableChanged = TRUE;
-       ::user::interaction* pwnd = (::user::interaction*)m_pcmdui->m_pOther;
+       sp(::user::interaction) pwnd = (sp(::user::interaction))m_pcmdui->m_pOther;
        ASSERT(pwnd != ::null());
        ASSERT_KINDOF(::user::interaction, pwnd);
        //ASSERT(m_nIndex < m_nIndexMax);
 
-      ::user::interaction * pcontrol = pwnd->get_child_by_id(m_pcmdui->m_idControl);
-      control * pcontrolex = dynamic_cast < control * > (pcontrol);
+      sp(::user::interaction) pcontrol = pwnd->get_child_by_id(m_pcmdui->m_idControl);
+      sp(control) pcontrolex =  (pcontrol.m_p);
       if(pcontrolex != ::null())
       {
          if(bOn)
@@ -543,7 +543,7 @@ namespace user
    void control_cmd_ui::SetCheck(int32_t nCheck)
    {
        ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
-       /*::user::interaction* pwnd = (::user::interaction*)m_pOther;
+       /*sp(::user::interaction) pwnd = (sp(::user::interaction))m_pOther;
        ASSERT(pToolBar != ::null());
        ASSERT_KINDOF(simple_toolbar, pToolBar);
        ASSERT(m_nIndex < m_nIndexMax);
@@ -577,7 +577,7 @@ namespace user
 
    LRESULT control_view_impl::BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM)
    {
-      ::user::interaction * pview = GetWnd();
+      sp(::user::interaction) pview = GetWnd();
 
        // handle delay hide/show
        bool bVis = (pview->GetStyle() & WS_VISIBLE) != 0;
@@ -585,9 +585,9 @@ namespace user
        // the style must be visible
        if (bVis)
        {
-           ::frame_window* pTarget = dynamic_cast < ::frame_window * > (pview->get_owner());
-           if (pTarget == ::null() || !pTarget->IsFrameWnd())
-               pTarget = dynamic_cast < ::frame_window * > (pview->GetParentFrame());
+           sp(frame_window) pTarget = pview->get_owner();
+           if (pTarget == ::null() || !pTarget->is_frame_window())
+               pTarget = pview->GetParentFrame();
            if (pTarget != ::null())
                BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
        }
@@ -595,16 +595,16 @@ namespace user
    }
 
 
-   void control_view_impl::BaseControlExOnUpdateCmdUI(::frame_window* pTarget, bool bDisableIfNoHndler)
+   void control_view_impl::BaseControlExOnUpdateCmdUI(sp(frame_window) pTarget, bool bDisableIfNoHndler)
    {
-      ::user::interaction * pview = GetWnd();
+      sp(::user::interaction) pview = GetWnd();
 
       cmd_ui & state = *m_cmdui.m_pcmdui;
       state.m_pOther = pview;
 
-      ::user::interaction * pwndIterator = pview->GetTopWindow();
-      ::user::interaction * pwnd;
-      control * pcontrolex;
+      sp(::user::interaction) pwndIterator = pview->GetTopWindow();
+      sp(::user::interaction) pwnd;
+      sp(control) pcontrolex;
        for (; pwndIterator != ::null(); pwndIterator = pwndIterator->GetNextWindow())
        {
          pwnd = pwndIterator->GetTopLevelParent();
@@ -652,7 +652,7 @@ namespace user
    //  UpdateDialogControls(pTarget, bDisableIfNoHndler);
    }
 
-   ::user::interaction * control_view_impl::GetWnd()
+   sp(::user::interaction) control_view_impl::GetWnd()
    {
       return dynamic_cast < ::user::interaction * > (this);
    }
@@ -691,7 +691,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(point);
-      ::user::interaction * pwnd = ControlExGetWnd();
+      sp(::user::interaction) pwnd = ControlExGetWnd();
 
       class point ptCursor;
       System.get_cursor_pos(&ptCursor);
@@ -756,7 +756,7 @@ namespace user
    index control::hit_test(point ptScreen, e_element & eelement)
    {
 
-      ::user::interaction * pwnd = ControlExGetWnd();
+      sp(::user::interaction) pwnd = ControlExGetWnd();
 
       rect rectWindow;
 

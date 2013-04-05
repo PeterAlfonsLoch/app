@@ -26,7 +26,7 @@ namespace user
       virtual ~control_event();
 
       e_event                 m_eevent;
-      ::user::interaction*    m_puie;
+      sp(::user::interaction)    m_puie;
       uint32_t                    m_uiEvent;
       bool                    m_bUser;
       uint32_t                    m_uiVKey;

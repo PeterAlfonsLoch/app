@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   api::api(::ca::application * papp) :
+   api::api(::ca::applicationsp papp) :
       ca(papp)
    {
 

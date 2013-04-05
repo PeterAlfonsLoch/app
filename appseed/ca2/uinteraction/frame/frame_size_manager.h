@@ -51,14 +51,14 @@ namespace frame
       ::visual::e_cursor translate(EHitTest ehittest);
       bool update(WorkSet * pset);
 
-      ::user::interaction* GetSizingWindow();
-      ::user::interaction* GetEventWindow();
+      sp(::user::interaction) GetSizingWindow();
+      sp(::user::interaction) GetEventWindow();
 
 
-      void SizeWindow(::user::interaction * pwnd, point pt, bool bTracking);
-      void MoveWindow(::user::interaction * pwnd, LPCRECT lpcrect);
+      void SizeWindow(sp(::user::interaction) pwnd, point pt, bool bTracking);
+      void MoveWindow(sp(::user::interaction) pwnd, LPCRECT lpcrect);
 
-      void message_handler(::user::interaction * pwnd, ::ca::signal_object * pobj);
+      void message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
    };
 
 } // namespace frame

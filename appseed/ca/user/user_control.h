@@ -166,8 +166,8 @@ namespace user
          virtual ~descriptor_set();
 
 
-         control * get_control_by_id(id id);
-         descriptor * get(::user::interaction * puie);
+         sp(control) get_control_by_id(id id);
+         descriptor * get(sp(::user::interaction) puie);
          descriptor * get_by_sub_item(int32_t iSubItem);
 
 
@@ -179,7 +179,7 @@ namespace user
       index                      m_iHover;
       e_element                  m_eelementHover;
       descriptor *               m_pdescriptor;
-      ::user::interaction *      m_pwndCustomWindowProc;
+      sp(::user::interaction)      m_pwndCustomWindowProc;
       bool                       m_bCustomWindowProc;
       index                      m_iEditItem;
       form *                     m_pform;
@@ -206,7 +206,7 @@ namespace user
       class descriptor & descriptor();
 
       virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
-      virtual bool _003CallCustomWindowProc(::user::interaction * pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+      virtual bool _003CallCustomWindowProc(sp(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
       virtual void _003CustomWindowProc(::ca::signal_object * pobj);
 
@@ -217,13 +217,13 @@ namespace user
       Ex1FormInterfaceComboBox * GetComboBox();
       static control Null();
       bool Validate(string & str);
-      bool get_data(::user::interaction * pwnd, var & var);
+      bool get_data(sp(::user::interaction) pwnd, var & var);
       void SetEditItem(index iItem);
       void SetEditSubItem(index iItem);
       index GetEditSubItem();
       index GetEditItem();
 
-      virtual ::user::interaction * ControlExGetWnd();
+      virtual sp(::user::interaction) ControlExGetWnd();
 
       using ::user::interaction::GetClientRect;
       using ::user::interaction::GetWindowRect;
@@ -270,9 +270,9 @@ namespace user
       control_view_impl();
 
       virtual LRESULT BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM);
-      virtual void BaseControlExOnUpdateCmdUI(::frame_window * pTarget, bool bDisableIfNoHndler);
+      virtual void BaseControlExOnUpdateCmdUI(sp(::frame_window) pTarget, bool bDisableIfNoHndler);
       virtual bool BaseControlExOnCommand(WPARAM wParam, LPARAM lParam) ;
-      virtual ::user::interaction * GetWnd();
+      virtual sp(::user::interaction) GetWnd();
 
       control_cmd_ui  m_cmdui; // cmd_ui derived class used to update
                                     // base_controlex derived controls

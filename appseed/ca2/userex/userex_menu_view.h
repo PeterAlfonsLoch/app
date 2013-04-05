@@ -5,7 +5,7 @@ class CLASS_DECL_ca2 menu_view :
    virtual public form_view
 {
 public:
-   menu_view(::ca::application * papp);
+   menu_view(::ca::applicationsp papp);
 
    void on_update(::view * pSender, LPARAM lHint, ::ca::object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);

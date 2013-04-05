@@ -151,13 +151,13 @@ namespace user
 
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::get_thread_priority_normal());
+      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::get_thread_priority_normal());
 
    };
 
 
-   CLASS_DECL_ca ::user::interaction * get_parent_owner(::user::interaction * pui);
-   CLASS_DECL_ca bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
+   CLASS_DECL_ca sp(::user::interaction) get_parent_owner(sp(::user::interaction) pui);
+   CLASS_DECL_ca bool is_descendant(sp(::user::interaction) puiParent, sp(::user::interaction) puiChild);
 
 
 } // namespace user

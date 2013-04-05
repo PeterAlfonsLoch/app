@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   menu_list_view::menu_list_view(::ca::application * papp) :
+   menu_list_view::menu_list_view(::ca::applicationsp papp) :
       ca(papp),
       menu_base(papp),
       menu_list_window(papp)
@@ -68,7 +68,7 @@ namespace userbase
       return view::_001OnCmdMsg(pcmdmsg);
    }
 
-   bool menu_list_view::LoadMenu(xml::node * pnode, ::user::interaction* pguieNotify, UINT uiCallbackMessage)
+   bool menu_list_view::LoadMenu(xml::node * pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage)
    {
       
       m_uiMessage = uiCallbackMessage;

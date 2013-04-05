@@ -11,11 +11,11 @@ namespace userbase
    public:
 
 
-      combo_box(::ca::application * papp);
+      combo_box(::ca::applicationsp papp);
       virtual ~combo_box();
 
 
-      virtual bool create(::user::interaction* puiParent, id id);
+      virtual bool create(sp(::user::interaction) puiParent, id id);
 
       //::count get_count();
       //index get_cur_sel();

@@ -31,17 +31,17 @@ namespace bergedge
 
       bool                                                           m_bShowPlatform;
 
-      ::ca::application *                                            m_pappCurrent;
-      string_map < ::ca::application * >               m_mapApplication;
+      ::ca::applicationsp                                            m_pappCurrent;
+      string_map < ::ca::applicationsp >               m_mapApplication;
 
 
       ::userbase::single_document_template *                         m_ptemplate_bergedge;
       ::userbase::single_document_template *                         m_ptemplate_platform;
       ::userbase::single_document_template *                         m_ptemplate_nature;
       ::userbase::single_document_template *                         m_ptemplate_html;
-      document *                                                     m_pbergedgedocument;
-      platform::document *                                           m_pplatformdocument;
-      nature::document *                                             m_pnaturedocument;
+      sp(document)                                                     m_pbergedgedocument;
+      sp(::platform::document)                                           m_pplatformdocument;
+      sp(::nature::document)                                             m_pnaturedocument;
       nature::database *                                             m_pdatabase;
 
 
@@ -50,7 +50,7 @@ namespace bergedge
 
       bool                                                           m_bDrawCursor;
 
-      string_map < ::uinteraction::interaction * >     m_mapUinteraction;
+      string_map < sp(::uinteraction::interaction) >     m_mapUinteraction;
 
 
       bergedge();
@@ -68,7 +68,7 @@ namespace bergedge
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ca::applicationsp get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -80,7 +80,7 @@ namespace bergedge
 
       virtual bool create_bergedge(::ca::create_context * pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(::ca::application * papp);
+      virtual void on_app_request_bergedge_callback(::ca::applicationsp papp);
 
       
 
@@ -92,9 +92,9 @@ namespace bergedge
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcontext);
 
-      virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
 
       virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
 
@@ -111,10 +111,10 @@ namespace bergedge
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
-      ::bergedge::document *          get_document();
-      ::bergedge::view *              get_view();
-      platform::document *          get_platform();
-      nature::document *            get_nature();
+      ::bergedge::document *            get_document();
+      ::bergedge::view *                get_view();
+      sp(::platform::document)          get_platform();
+      sp(::nature::document)            get_nature();
 
       virtual bool initialize1();
 
@@ -132,11 +132,11 @@ namespace bergedge
 
       void on_request(::ca::create_context * pcreatecontext);
 
-      ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ca::applicationsp application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
       virtual bool is_bergedge();
 
-      ::ca::application * get_current_application();
+      ::ca::applicationsp get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

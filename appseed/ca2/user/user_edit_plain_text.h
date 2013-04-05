@@ -71,7 +71,7 @@ namespace user
 
 
 
-      edit_plain_text(::ca::application * papp);
+      edit_plain_text(::ca::applicationsp papp);
 
       virtual ~edit_plain_text();
 

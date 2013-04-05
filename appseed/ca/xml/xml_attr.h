@@ -25,7 +25,7 @@ namespace xml
    public:
 
 
-      attr_array(::ca::application * papp);
+      attr_array(::ca::applicationsp papp);
 
 
    };

@@ -13,8 +13,8 @@ public:
    VMSRESULT   m_vmsResult;
 
 
-   vms_exception(::ca::application * papp);
-   vms_exception(::ca::application * papp, VMSRESULT vmsr);
+   vms_exception(::ca::applicationsp papp);
+   vms_exception(::ca::applicationsp papp, VMSRESULT vmsr);
    virtual ~vms_exception();
 
 

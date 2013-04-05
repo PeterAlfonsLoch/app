@@ -7,7 +7,7 @@ class CLASS_DECL_ca2 simple_tab_control :
 public:
 
 
-   simple_tab_control(::ca::application * papp);
+   simple_tab_control(::ca::applicationsp papp);
    virtual ~simple_tab_control();
 
 

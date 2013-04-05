@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   step_slider::step_slider(::ca::application * papp) :
+   step_slider::step_slider(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -15,7 +15,7 @@ namespace userbase
    step_slider::~step_slider()
    {
    }
-   bool step_slider::create(::user::interaction * pwndParent, id id)
+   bool step_slider::create(sp(::user::interaction) pwndParent, id id)
    {
       return ::user::interaction::create(NULL, NULL, WS_CHILD, rect(0, 0, 0, 0), pwndParent, id) != FALSE;
    }

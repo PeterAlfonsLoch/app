@@ -19,8 +19,8 @@ namespace ca
 
       friend class application;
 
-      virtual ::ca::ca * clone(::ca::ca * pobj);
-      virtual void discard_to_factory(::ca::ca * pca);
+      virtual sp(::ca::ca) clone(sp(::ca::ca) pobj);
+      virtual void discard_to_factory(sp(::ca::ca) pca);
 
 
       static id_space                            s_idspace;
@@ -30,11 +30,11 @@ namespace ca
 
 
 
-      virtual void on_allocation_error(::ca::application * papp, ::ca::type_info & info);
-      ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
-      ::ca::ca * alloc(::ca::application * papp, const std_type_info & info);
-      virtual ::ca::ca * on_alloc(::ca::application * papp, ::ca::type_info & info);
-      virtual void on_delete(::ca::ca * pobject);
+      virtual void on_allocation_error(::ca::applicationsp papp, ::ca::type_info & info);
+      sp(::ca::ca) alloc(::ca::applicationsp papp, ::ca::type_info & info);
+      sp(::ca::ca) alloc(::ca::applicationsp papp, const std_type_info & info);
+      virtual sp(::ca::ca) on_alloc(::ca::applicationsp papp, ::ca::type_info & info);
+      virtual void on_delete(sp(::ca::ca) pobject);
 
 
       static inline class id id(const ::std_type_info & info);

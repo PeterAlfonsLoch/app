@@ -10,7 +10,7 @@ class RegionMapperImpl : public RegionMapper,
    virtual public ::ca::object
 {
 public:
-  RegionMapperImpl(::ca::application * papp) : ca(papp){};
+  RegionMapperImpl(::ca::applicationsp papp) : ca(papp){};
   ~RegionMapperImpl(){};
 
   /** Loads region defines from @c is input_source

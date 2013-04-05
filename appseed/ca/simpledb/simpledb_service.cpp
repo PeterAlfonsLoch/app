@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   service::service(::ca::application * papp) :
+   service::service(::ca::applicationsp papp) :
       ca(papp),
       plain_service(papp)
    {
@@ -20,7 +20,7 @@ namespace simpledb
 
    void service::serve()
    {
-      ::ca::application * pcaapp = get_app();
+      ::ca::applicationsp pcaapp = get_app();
 
       Sys(pcaapp).set_thread(&Sys(pcaapp->m_psystem));
 

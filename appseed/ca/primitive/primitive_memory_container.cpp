@@ -5,21 +5,21 @@ namespace primitive
 {
 
 
-   memory_container ::memory_container(::ca::application * papp) :
+   memory_container ::memory_container(::ca::applicationsp papp) :
       ca(papp)
    {
       m_dwAllocationAddUp = 1024;
    }
 
 
-   memory_container ::memory_container(::ca::application * papp, void * pmemory, memory_size dwSize) :
+   memory_container ::memory_container(::ca::applicationsp papp, void * pmemory, memory_size dwSize) :
       ca(papp)
    {
       m_spmemory = new primitive::memory(this, pmemory, dwSize);
    }
 
 
-   memory_container ::memory_container(::ca::application * papp, memory_base * pmemory) :
+   memory_container ::memory_container(::ca::applicationsp papp, memory_base * pmemory) :
       ca(papp)
    {
       m_spmemory = pmemory;
@@ -171,7 +171,7 @@ namespace primitive
    memory_container & memory_container ::operator =(const memory_container &container)
    {
       if(container.m_spmemory.is_null())
-         m_spmemory.destroy();
+         m_spmemory.release();
       else
       {
          m_spmemory = new primitive::memory(this);

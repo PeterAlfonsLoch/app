@@ -18,7 +18,7 @@ namespace visual
       point                m_ptHotspot;
 
 
-      cursor(::ca::application * papp);
+      cursor(::ca::applicationsp papp);
 
       bool load_from_file(const char * psz);
       bool load_from_matter(const char * pszMatter);

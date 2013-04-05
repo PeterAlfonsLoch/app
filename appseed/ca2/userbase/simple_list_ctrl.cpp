@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_list_control::simple_list_control(::ca::application * papp) :
+simple_list_control::simple_list_control(::ca::applicationsp papp) :
    ca(papp),
    m_headerctrl(papp),
    ::user::scroll_view(papp),
@@ -16,7 +16,7 @@ simple_list_control::~simple_list_control()
 {
 }
 
-::user::interaction* simple_list_control::OnDrawInterfaceGetWnd()
+sp(::user::interaction) simple_list_control::OnDrawInterfaceGetWnd()
 {
    return this;
 }

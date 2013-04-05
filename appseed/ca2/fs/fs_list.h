@@ -15,7 +15,7 @@ namespace fs
       simple_list_header_control    m_headerctrl;
 
 
-      list(::ca::application * papp);
+      list(::ca::applicationsp papp);
       virtual ~list();
 
 

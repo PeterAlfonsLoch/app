@@ -19,7 +19,7 @@ namespace ca
 
    public:
 
-      tree(::ca::application * papp);
+      tree(::ca::applicationsp papp);
       virtual ~tree();
 
 

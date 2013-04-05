@@ -19,7 +19,7 @@ namespace ca
          virtual ~fontopus();
 
 
-         virtual void construct(::ca::application * papp);
+         virtual void construct(::ca::applicationsp papp);
 
 
          virtual ::fontopus::user * login(::ca::property_set & set);

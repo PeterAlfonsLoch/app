@@ -3,7 +3,7 @@
 namespace user
 {
 
-   keyboard_layout_cfg::keyboard_layout_cfg(::ca::application * papp) :
+   keyboard_layout_cfg::keyboard_layout_cfg(::ca::applicationsp papp) :
       ca(papp)
 //      ::ca::data(papp)
 //      ::user::list_data(papp),
@@ -111,11 +111,11 @@ namespace user
       {
          string strProxy = node.get_attr("server");
          int32_t iProxyPort = node.get_attr("port");
-         ::user::interaction * pguie = m_pview->get_child_by_name("server");
-         text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+         sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
+         sp(text_interface) ptext =  (pguie);
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
-         ptext = dynamic_cast < text_interface * > (pguie);
+         ptext =  (pguie);
          ptext->_001SetText(::ca::str::from(iProxyPort));
       }*/
    }
@@ -143,8 +143,8 @@ namespace user
       {
          if(pevent->m_puie->m_id == "submit")
          {
-            ::user::interaction * pguie = m_pview->get_child_by_name("server");
-            text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+            sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
+            sp(text_interface) ptext =  (pguie);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
             ptext->_001GetText(strServer);
@@ -158,7 +158,7 @@ namespace user
                node.m_strName = "proxy";
                node.add_attr("server", strServer);
                pguie = m_pview->get_child_by_name("port");
-               ptext = dynamic_cast < text_interface * > (pguie);
+               ptext =  (pguie);
                string strPort;
                ptext->_001GetText(strPort);
                node.add_attr("port", strPort);

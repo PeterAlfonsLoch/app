@@ -9,7 +9,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeView::SimpleFolderTreeView(::ca::application * papp) :
+   SimpleFolderTreeView::SimpleFolderTreeView(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       SimpleFolderTreeInterface(papp),
@@ -183,7 +183,7 @@ namespace filemanager
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
-            frame_window * pframe = GetTopLevelFrame();
+            sp(::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
 
@@ -212,7 +212,7 @@ namespace filemanager
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (::ca::window *) pframe);
+               (sp(::ca::window)) pframe);
          }
       }
       else
@@ -222,10 +222,10 @@ namespace filemanager
          {
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
-            frame_window * pframe = GetTopLevelFrame();
+            sp(::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (::ca::window *) pframe);
+               (sp(::ca::window)) pframe);
          }
       }*/
    }
@@ -279,7 +279,7 @@ namespace filemanager
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
-   void SimpleFolderTreeView::_017OpenFolder(const ::fs::item &item)
+   void SimpleFolderTreeView::_017OpenFolder(sp(::fs::item) item)
    {
       GetFileManager()->FileManagerBrowse(item);
 

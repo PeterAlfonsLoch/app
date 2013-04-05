@@ -18,7 +18,7 @@ namespace user
       return 0;
    }
 
-   void message::post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority)
+   void message::post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority)
    {
       message * pmessage = new message;
       pmessage->m_pguie = puie;

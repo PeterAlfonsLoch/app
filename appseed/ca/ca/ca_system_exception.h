@@ -10,7 +10,7 @@ namespace ca
    {
    public:
       HRESULT ErrorCode;
-      system_exception(::ca::application * papp, HRESULT errorCode) :
+      system_exception(::ca::applicationsp papp, HRESULT errorCode) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),

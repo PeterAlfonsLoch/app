@@ -5,7 +5,7 @@
 namespace mysql
 {
 
-   database::database(::ca::application * papp) :
+   database::database(::ca::applicationsp papp) :
       ca(papp)
    {
       m_pmysql = ::null();

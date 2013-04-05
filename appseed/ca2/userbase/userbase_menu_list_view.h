@@ -13,7 +13,7 @@ namespace userbase
       ::user::interaction   * m_pguieNotify;
 
 
-      menu_list_view(::ca::application * papp);
+      menu_list_view(::ca::applicationsp papp);
       virtual ~menu_list_view();
 
       void install_message_handling(::ca::message::dispatch * pinterface);
@@ -22,7 +22,7 @@ namespace userbase
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      bool LoadMenu(xml::node * pnode, ::user::interaction* pguieNotify, UINT uiCallbackMessage);
+      bool LoadMenu(xml::node * pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage);
          
    #ifdef DEBUG
       virtual void assert_valid() const;

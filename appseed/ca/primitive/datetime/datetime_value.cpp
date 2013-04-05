@@ -4,7 +4,7 @@
 namespace datetime
 {
 
-   value span_strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * pszSpanExpression)
+   value span_strtotime(::ca::applicationsp pcaapp, ::user::str_context * pcontext, const char * pszSpanExpression)
    {
       static id idCalendarDay("calendar:day");
       static id idCalendarDays("calendar:days");
@@ -121,7 +121,7 @@ namespace datetime
    }
 
 
-   value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount)
+   value strtotime(::ca::applicationsp pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount)
    {
       ::datetime::time time;
       string str(psz);
@@ -360,7 +360,7 @@ namespace datetime
       return *this;
    }
 
-   string value::to_string(::ca::application * pcaapp, ::user::str_context * pcontext)
+   string value::to_string(::ca::applicationsp pcaapp, ::user::str_context * pcontext)
    {
       string str;
       if(m_bSpan)

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_view::menu_view(::ca::application * papp) :
+menu_view::menu_view(::ca::applicationsp papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),

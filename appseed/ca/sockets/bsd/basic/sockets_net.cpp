@@ -17,7 +17,7 @@
 namespace sockets
 {
 
-   net::net(::ca::application * papp) :
+   net::net(::ca::applicationsp papp) :
       ca(papp),
       m_mutexCache(papp)
    {

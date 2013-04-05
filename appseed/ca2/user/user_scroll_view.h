@@ -40,7 +40,7 @@ namespace user
 
 
 
-      scroll_view(::ca::application * papp);
+      scroll_view(::ca::applicationsp papp);
       virtual ~scroll_view();
 
 

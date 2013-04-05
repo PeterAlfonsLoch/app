@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   tab_view::tab_view(::ca::application * papp) :
+   tab_view::tab_view(::ca::applicationsp papp) :
       ca(papp),
       view(papp),
       ::user::tab(papp),
@@ -121,9 +121,9 @@ namespace userbase
 
    void tab_view::_001OnDropTab(int32_t iPane, e_position eposition)
    {
-      ::user::interaction * pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
-      ::user::interaction * pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
-      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.type_info < ::userbase::split_view > (), get_document(), this, 100));
+      sp(::user::interaction) pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
+      sp(::user::interaction) pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
+      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.type_info < ::userbase::split_view > (), get_document(), this, 100).m_p);
       if(eposition == position_top || eposition == position_bottom)
       {
          psplitview->SetSplitOrientation(::userbase::split_layout::orientation_horizontal);
@@ -178,7 +178,7 @@ namespace userbase
       get_data()->m_bDrag = false;
    }
 
-   ::user::interaction * tab_view::_001GetTabWnd(int32_t iTab)
+   sp(::user::interaction) tab_view::_001GetTabWnd(int32_t iTab)
    {
       if(m_pviewcreator == NULL)
          return NULL;
@@ -352,7 +352,7 @@ namespace userbase
          m_pviewdata->m_pwnd->SetFocus();
       }
 
-      (dynamic_cast < ::userbase::frame_window * > (GetParentFrame()))->_001RedrawWindow();
+      ((GetParentFrame()))->_001RedrawWindow();
 
       GetParentFrame()->SetActiveView(this);
 
@@ -408,7 +408,7 @@ namespace userbase
       return m_pviewdata;
    }
 
-   ::user::interaction * tab_view::get_view_uie()
+   sp(::user::interaction) tab_view::get_view_uie()
    {
       ::user::view_creator_data * pcreatordata = get_view_creator_data();
       if(pcreatordata == NULL)
@@ -420,7 +420,7 @@ namespace userbase
       return NULL;
    }
 
-   ::user::document_interface * tab_view::get_view_document()
+   sp(::user::document_interface) tab_view::get_view_document()
    {
       if(m_pviewdata == NULL)
          return NULL;

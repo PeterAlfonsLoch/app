@@ -5,7 +5,7 @@ namespace mail
 {
 
 
-   list_interface::data::data(::ca::application * papp) :
+   list_interface::data::data(::ca::applicationsp papp) :
       ca(papp),
       ::user::list_data(papp)
    {
@@ -13,7 +13,7 @@ namespace mail
 
 
 
-   list_interface::list_interface(::ca::application * papp) :
+   list_interface::list_interface(::ca::applicationsp papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::list(papp)

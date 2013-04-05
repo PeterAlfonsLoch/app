@@ -36,17 +36,17 @@ namespace filemanager
 
 
 
-      SimpleFileListView(::ca::application * papp);
+      SimpleFileListView(::ca::applicationsp papp);
 
 
 
       void schedule_file_size(const char * psz);
 
-      virtual void _017OpenContextMenuFolder(const ::fs::item &item);
+      virtual void _017OpenContextMenuFolder(sp(::fs::item) item);
       virtual void _017OpenContextMenuFile(const ::fs::item_array &itema);
       virtual void _017OpenContextMenu();
       virtual void _017OpenFile(const ::fs::item_array & itema);
-      virtual void _017OpenFolder(const ::fs::item & item);
+      virtual void _017OpenFolder(sp(::fs::item)  item);
       void StartAnimation();
       void RenameFile(int32_t iLine, string & str);
       static UINT c_cdecl ThreadProcFileSize(LPVOID lpparam);

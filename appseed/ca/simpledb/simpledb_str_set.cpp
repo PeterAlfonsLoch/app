@@ -71,7 +71,7 @@ db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & 
 }
 
 
-db_str_set::sync_queue::sync_queue(::ca::application * papp) :
+db_str_set::sync_queue::sync_queue(::ca::applicationsp papp) :
    ca(papp),
    thread(papp),
    simple_thread(papp),
@@ -119,7 +119,7 @@ repeat:;
              goto repeat;
           }
 
-          if(Session.fontopus().m_puser == ::null())
+          if(Session.fontopus()->m_puser == ::null())
           {
              sl.unlock();
              Sleep(1984 + 1977);

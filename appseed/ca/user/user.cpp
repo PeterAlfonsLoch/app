@@ -6,12 +6,12 @@
 namespace user
 {
 
-   CLASS_DECL_ca ::user::interaction * create_virtual_window(::ca::application * papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
-                                                             int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam);
+   CLASS_DECL_ca sp(::user::interaction) create_virtual_window(::ca::applicationsp papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
+                                                             int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, sp(::user::interaction) pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam);
    
 
-   CLASS_DECL_ca ::user::interaction * create_virtual_window(::ca::application * papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
-      int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
+   CLASS_DECL_ca sp(::user::interaction) create_virtual_window(::ca::applicationsp papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
+      int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, sp(::user::interaction) pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpClassName);
@@ -23,7 +23,7 @@ namespace user
       UNREFERENCED_PARAMETER(nHeight);
       UNREFERENCED_PARAMETER(hInstance);
       UNREFERENCED_PARAMETER(lpParam);
-      ::user::interaction * pguie = new ::user::interaction(papp);
+      sp(::user::interaction) pguie = new ::user::interaction(papp);
       if(pguie->create(pguieParent, id))
       {
          return pguie;
@@ -41,10 +41,10 @@ namespace user
 
 
 
-   ::user::interaction * get_parent_owner(::user::interaction * oswindow)
+   sp(::user::interaction) get_parent_owner(sp(::user::interaction) oswindow)
    {
       // check for permanent-owned ::ca::window first
-      ::user::interaction* pWnd = oswindow;
+      sp(::user::interaction) pWnd = oswindow;
       if(pWnd == ::null())
          return ::null();
       return pWnd->get_owner();
@@ -66,7 +66,7 @@ namespace user
 
 
 
-      bool is_descendant(::user::interaction * oswindow_Parent, ::user::interaction * oswindow_Child)
+      bool is_descendant(sp(::user::interaction) oswindow_Parent, sp(::user::interaction) oswindow_Child)
       // helper for detecting whether child descendent of parent
       //  (works with owned popups as well)
    {

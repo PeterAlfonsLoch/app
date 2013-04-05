@@ -19,7 +19,7 @@ namespace platform
       bool                       m_bOnDraw;
       uint32_t                      m_dwLastSuperDock;
 
-      frame(::ca::application * papp);
+      frame(::ca::applicationsp papp);
       virtual ~frame();
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

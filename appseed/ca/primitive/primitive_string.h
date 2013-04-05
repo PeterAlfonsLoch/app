@@ -595,7 +595,7 @@ public:
    bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'
-   bool load_string(::ca::application * papp, id id);
+   bool load_string(::ca::applicationsp papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )

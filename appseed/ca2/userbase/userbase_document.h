@@ -16,11 +16,11 @@ namespace userbase
    public:
 
 
-      document(::ca::application * papp);
+      document(::ca::applicationsp papp);
       virtual ~document();
 
 
-      virtual void on_alloc(::ca::application * papp);
+      virtual void on_alloc(::ca::applicationsp papp);
 
    #ifdef DEBUG
       virtual void dump(dump_context &) const;

@@ -11,7 +11,7 @@ namespace userex
    public:
 
 
-      property_sheet(::ca::application * papp);
+      property_sheet(::ca::applicationsp papp);
       virtual ~property_sheet();
 
    };

@@ -69,7 +69,7 @@ namespace filemanager
                SubItemFilePath,
             };
 
-            list_view(::ca::application * papp);
+            list_view(::ca::applicationsp papp);
             ::filemanager::fs::simple::view * m_pserver;
 
             void install_message_handling(::ca::message::dispatch * pinterface);

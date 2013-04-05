@@ -38,7 +38,7 @@ public:
    view();
    virtual ~view() = 0;
 
-   user::document_interface * get_document() const;
+   sp(::user::document_interface) get_document() const;
 
    template < class DOCUMENT >
    ::ca::data * get_data();
@@ -76,7 +76,7 @@ public:
    // Activation
    virtual void OnActivateView(bool bActivate, view * pActivateView,
                view * pDeactiveView);
-   virtual void OnActivateFrame(UINT nState, frame_window* pFrameWnd);
+   virtual void OnActivateFrame(UINT nState, sp(frame_window) pFrameWnd);
 
    // General drawing/updating
    virtual void on_update(view * pSender, LPARAM lHint, ::ca::object* pHint);
@@ -85,21 +85,21 @@ public:
 
 
 
-    ::user::interaction * create_view(::ca::type_info info, user::document_interface * pdoc = ::null(), ::user::interaction * pwndParent = ::null(), ::id id = ::id(), ::user::interaction * pviewLast = ::null());
-   static ::user::interaction * s_create_view(::ca::type_info info, user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = ::null());
-   static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
+    sp(::user::interaction) create_view(::ca::type_info info, sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
+   static sp(::user::interaction) s_create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = ::null());
+   static sp(::user::interaction) s_create_view(::ca::create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
    template < class VIEW >
-   VIEW * create_view(user::document_interface * pdoc = ::null(), ::user::interaction * pwndParent = ::null(), ::id id = ::id(), ::user::interaction * pviewLast = ::null());
+   VIEW * create_view(sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
 
    template < class VIEW >
-   VIEW * create_view(::user::interaction * pwndParent, ::id id = ::id(), ::user::interaction * pviewLast = ::null());
+   VIEW * create_view(sp(::user::interaction) pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
 
    template < class VIEW >
-   VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = ::null());
+   VIEW * create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = ::null());
 
 
-   static user::document_interface * get_document(::user::interaction * pguie);
+   static sp(::user::document_interface) get_document(sp(::user::interaction) pguie);
 
    virtual void dump(dump_context &) const;
    virtual void assert_valid() const;
@@ -138,7 +138,7 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)
    void OnPaint();
-   //int32_t OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
+   //int32_t OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message);
    // commands
    void OnUpdateSplitCmd(cmd_ui* pCmdUI);
    bool OnSplitCmd(UINT nID);
@@ -173,7 +173,7 @@ public:
       TypeOpenDocument,
    };
 public:
-   view_update_hint(::ca::application * papp);
+   view_update_hint(::ca::applicationsp papp);
    etype m_etype;
 };
 

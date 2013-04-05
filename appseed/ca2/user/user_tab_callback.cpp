@@ -39,7 +39,7 @@ namespace user
 
    }
 
-   ::user::interaction * tab_callback::_001GetTabWnd(::index iTab)
+   sp(::user::interaction) tab_callback::_001GetTabWnd(::index iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
       return NULL;

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ca::application * papp) :
+   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ca::applicationsp papp) :
       ca(papp)
    {
       m_ptemplatePane = new ::userbase::single_document_template(
@@ -20,7 +20,7 @@ namespace filemanager
    {
    }
 
-   ::user::interaction * SimpleFilePropertiesForm::open(::user::interaction * puieParent, ::fs::item_array & itema)
+   sp(::user::interaction) SimpleFilePropertiesForm::open(sp(::user::interaction) puieParent, ::fs::item_array & itema)
    {
       m_itema = itema;
       if(itema.get_count() <= 0)
@@ -28,7 +28,7 @@ namespace filemanager
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
-      form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
+      sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
       ::userex::pane_tab_view * pview = pdoc->get_typed_view < ::userex::pane_tab_view > ();
       pview->set_view_creator(this);
       m_ptabview = pview;
@@ -50,8 +50,8 @@ namespace filemanager
       }
       if(m_itema.get_count() <= 0)
          return;
-      ::user::interaction * pguie = m_pviewGeneral->get_child_by_name("name");
-      text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+      sp(::user::interaction) pguie = m_pviewGeneral->get_child_by_name("name");
+      sp(text_interface) ptext =  (pguie.m_p);
       ptext->_001SetText(System.file().name_(m_itema[0].m_strPath));
    }
 

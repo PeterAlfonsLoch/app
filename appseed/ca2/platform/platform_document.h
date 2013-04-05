@@ -27,10 +27,10 @@ namespace platform
    public:
 
 
-      bergedge::document * m_pbergedgedocument;
+      sp(::bergedge::document) m_pbergedgedocument;
 
 
-      document(::ca::application * papp);
+      document(::ca::applicationsp papp);
       virtual ~document();
 
 

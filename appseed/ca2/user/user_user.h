@@ -31,8 +31,8 @@ namespace ca
 
 
          int32_t GetVisibleFrameCount();
-         int32_t GetVisibleFrameCountExcept(::user::interaction * pwndExcept);
-         int32_t GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
+         int32_t GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept);
+         int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
 
          
 
@@ -77,7 +77,7 @@ namespace ca
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual document * open_document_file(var var);
+      virtual sp(document) open_document_file(var var);
 
       // add a string to the recent file list. remove oldest string,
       // if no space left.

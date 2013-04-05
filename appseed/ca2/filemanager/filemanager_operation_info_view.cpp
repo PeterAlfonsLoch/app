@@ -33,7 +33,7 @@ void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_
 }
 
 
-file_manager_operation_info_view::file_manager_operation_info_view(::ca::application * papp) :
+file_manager_operation_info_view::file_manager_operation_info_view(::ca::applicationsp papp) :
    ca(papp),
    ::userbase::view(papp)
 {
@@ -103,9 +103,9 @@ void file_manager_operation_info_view::OnFileOperationStep(int32_t iOperation, b
    UNREFERENCED_PARAMETER(bFinal);
 }
 
-file_manager_operation_document * file_manager_operation_info_view::get_document()
+sp(file_manager_operation_document) file_manager_operation_info_view::get_document()
 {
-   return dynamic_cast < file_manager_operation_document * > (::userbase::view::get_document());
+   return  (::userbase::view::get_document());
 }
 
 void file_manager_operation_info_view::_001OnTimer(::ca::signal_object * pobj)

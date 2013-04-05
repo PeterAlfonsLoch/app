@@ -1,9 +1,8 @@
 #include "framework.h"
 
 
-// IMPLEMENT_DYNCREATE(file_manager_operation_list_view, ::userbase::view)
 
-file_manager_operation_list_view::file_manager_operation_list_view(::ca::application * papp) :
+file_manager_operation_list_view::file_manager_operation_list_view(::ca::applicationsp papp) :
    ca(papp),
    m_headerctrl(papp),
    ::userbase::view(papp),
@@ -36,9 +35,9 @@ void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
    return get_document()->m_thread.get_item_count();
 }
 
-file_manager_operation_document * file_manager_operation_list_view::get_document()
+sp(file_manager_operation_document) file_manager_operation_list_view::get_document()
 {
-   return dynamic_cast < file_manager_operation_document * > (::userbase::view::get_document());
+   return  (::userbase::view::get_document());
 }
 
 void file_manager_operation_list_view::_001GetItemText(::user::list_item * pitem)

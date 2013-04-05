@@ -6,7 +6,7 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 {
 public: // re-implementations only
 
-   SimpleToolCmdUI(::ca::application * papp);
+   SimpleToolCmdUI(::ca::applicationsp papp);
    virtual void Enable(bool bOn);
    virtual void SetCheck(check::e_check echeck = check::checked);
    virtual void SetText(const char * lpszText);
@@ -37,7 +37,7 @@ public: // re-implementations only
 #define ITEMPADBOTTOM   4
 
 
-simple_toolbar::simple_toolbar(::ca::application * papp) :
+simple_toolbar::simple_toolbar(::ca::applicationsp papp) :
 ca(papp),
    m_dibDraft(papp)
 {
@@ -89,13 +89,13 @@ void simple_toolbar::install_message_handling(::ca::message::dispatch * pdispatc
 // IMPLEMENT_DYNAMIC(simple_toolbar, ::userbase::control_bar)
 
 
-bool simple_toolbar::create(::user::interaction* pParentWnd, uint32_t dwStyle, id nID)
+bool simple_toolbar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id nID)
 {
    return CreateEx(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, id nID)
+bool simple_toolbar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, id nID)
 {
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -345,7 +345,7 @@ void simple_toolbar::_001OnCreate(::ca::signal_object * pobj)
 }
 
 
-void simple_toolbar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler)
+void simple_toolbar::OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler)
 {
 
    SimpleToolCmdUI state(get_app());
@@ -859,7 +859,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    childs = doc.get_root()->children();
 
-   //   ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
+   //   ::ca::applicationsp papp = (get_app());
 
 #if defined(WINDOWSEX) || defined(LINUX)
 
@@ -1409,8 +1409,8 @@ void simple_toolbar::_001OnLButtonUp(::ca::signal_object * pobj)
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
-      frame_window* pTarget = dynamic_cast < frame_window * > (get_owner());
-      if (pTarget == NULL || !pTarget->IsFrameWnd())
+      sp(frame_window) pTarget = (get_owner().m_p);
+      if (pTarget == NULL || !pTarget->is_frame_window())
          pTarget = GetParentFrame();
       if (pTarget != NULL)
          pTarget->SendMessageToDescendants(WM_IDLEUPDATECMDUI);
@@ -1485,7 +1485,7 @@ void simple_toolbar::_001OnTimer(::ca::signal_object * pobj)
 
 void simple_toolbar::_001OnClick(int32_t iItem)
 {
-   ::user::interaction * pwnd = get_owner();
+   sp(::user::interaction) pwnd = get_owner();
    pwnd->_001SendCommand(m_itema[iItem].m_id);
 }
 
@@ -1557,7 +1557,7 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through SimpleToolCmdUI class
 
-SimpleToolCmdUI::SimpleToolCmdUI(::ca::application * papp) :
+SimpleToolCmdUI::SimpleToolCmdUI(::ca::applicationsp papp) :
 ca(papp),
    cmd_ui(papp)
 {
@@ -1565,7 +1565,7 @@ ca(papp),
 void SimpleToolCmdUI::Enable(bool bOn)
 {
    m_bEnableChanged = TRUE;
-   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
+   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
    ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
@@ -1592,7 +1592,7 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
    ASSERT(echeck == check::checked
       || echeck == check::unchecked
       || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
-   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
+   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
    ASSERT(pToolBar != NULL);
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
@@ -1984,7 +1984,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
          {
             for (int32_t i = 0; i < nControlCount; i++)
             {
-               /* xxx ::user::interaction* pWnd = get_child_by_id(pControl[i].strId);
+               /* xxx sp(::user::interaction) pWnd = get_child_by_id(pControl[i].strId);
                if (pWnd != NULL)
                {
                rect rect;

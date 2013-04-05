@@ -5,7 +5,7 @@ namespace nature
 {
 
 
-   view::view(::ca::application * papp) :
+   view::view(::ca::applicationsp papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -69,7 +69,7 @@ namespace nature
    }
 
 
-   ::user::interaction* view::get_guie()
+   sp(::user::interaction) view::get_guie()
    {
       return this;
    }
@@ -84,7 +84,7 @@ namespace nature
       }
    }
 
-   ::user::interaction* view::BackViewGetWnd()
+   sp(::user::interaction) view::BackViewGetWnd()
    {
       return this;
    }
@@ -210,9 +210,9 @@ namespace nature
 
 
 
-   document * view::get_document()
+   sp(document) view::get_document()
    {
-      return dynamic_cast < document * > (::userbase::view::get_document());
+      return  (::userbase::view::get_document());
    }
 
 

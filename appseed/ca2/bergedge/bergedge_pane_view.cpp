@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   pane_view::pane_view(::ca::application * papp) :
+   pane_view::pane_view(::ca::applicationsp papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -51,7 +51,7 @@ namespace bergedge
       if(pobj->previous())
          return;
 
-      ::bergedge::frame * pframe = dynamic_cast < ::bergedge::frame * > (GetParentFrame());
+      sp(::bergedge::frame) pframe = (GetParentFrame());
       pframe->m_ppaneview = this;
 
       add_tab("application", "::bergedge::pane_view_application");
@@ -93,7 +93,7 @@ namespace bergedge
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               (dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame()))->SetActiveView(this);
+               (dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame().m_p))->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
@@ -111,13 +111,13 @@ namespace bergedge
          string strId = get_view_id();
          if(::ca::str::begins_eat(strId, "app:"))
          {
-            ::ca::application * pappTab;
+            ::ca::applicationsp pappTab;
             if(Bergedge.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
                Session.m_pappCurrent = pappTab;
                Bergedge.m_pappCurrent = pappTab;
             }
-            ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (m_pviewdata->m_pwnd);
+            sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
             if(pframeApp != NULL)
             {
                pframeApp->WfiFullScreen(true, false);
@@ -128,7 +128,7 @@ namespace bergedge
             string strDirName;
             strDirName.Format("application-%d", 0);
             string strDir = Application.dir().userappdata("bergedge", strDirName);
-            ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pviewdata->m_pdoc);
+            sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
             pdoc->FileManagerBrowse(strDir);
          }
          else if(strId == "file_manager")
@@ -140,12 +140,12 @@ namespace bergedge
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
-         ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * >(pview->get_document());
+         sp(::filemanager::document) pdoc = (pview->get_document());
          pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"));*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
-   /*      ::user::interaction * pui = m_pformOptions->ve_display_bandwidth");
+   /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
          if(System.savings().save().is_signalized(::ca::save_display_bandwidth))
          {
@@ -165,7 +165,7 @@ namespace bergedge
          {
             check_desktop_dir(strDir);
          }
-         ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pviewdata->m_pdoc);
+         sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir);
       }
       else
@@ -191,14 +191,14 @@ namespace bergedge
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      class bergedge * papp = dynamic_cast < class bergedge * > (get_app());
+      sp(class bergedge) papp = get_app();
       if(pcreatordata->m_id.is_text())
       {
          string strId = pcreatordata->m_id;
 
          if(::ca::str::begins_eat(strId, "app:"))
          {
-            ::ca::application * pappTab;
+            ::ca::applicationsp pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
 
@@ -210,7 +210,7 @@ namespace bergedge
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
                string str;
-               str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
+               str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
                //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
                Bergedge.request(createcontext);
 
@@ -232,7 +232,7 @@ namespace bergedge
          else if(strId == "::bergedge::pane_view_application")
          {
             pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-            ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true, this);
+            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true, this);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -263,7 +263,7 @@ namespace bergedge
                pdoc->FileManagerBrowse(strDir);
                if(pview != NULL)
                {
-                  ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                  sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -295,7 +295,7 @@ namespace bergedge
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
                FileManagerTemplate * ptemplate = &papp->filemanager().std();
-               ::filemanager::document * pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
+               sp(::filemanager::document) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -319,7 +319,7 @@ namespace bergedge
                   pdoc->FileManagerBrowse(strDir);
                   if(pview != NULL)
                   {
-                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                     sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_pdoc = pdoc;
@@ -330,7 +330,7 @@ namespace bergedge
             break;
          case PaneViewThreeActionLaunch:
             {
-               ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
+               sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -349,7 +349,7 @@ namespace bergedge
                   pdoc->FileManagerBrowse(strDir);
                   if(pview != NULL)
                   {
-                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
+                     sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_pdoc = pdoc;
@@ -360,7 +360,7 @@ namespace bergedge
             break;
          case PaneViewConfiguration:
          {
-            form_document * pdoc = Cube.userex().create_form(this, this);
+            sp(::form_document) pdoc = Cube.userex().create_form(this, this);
             if(pdoc == NULL)
                return;
             m_pformOptions = pdoc->get_typed_view < form_view > ();
@@ -378,7 +378,7 @@ namespace bergedge
 
 
 
-            pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
+            pcreatordata->m_pwnd = m_pformOptions->GetParentFrame();
             pcreatordata->m_pdoc = pdoc;
          }
          break;

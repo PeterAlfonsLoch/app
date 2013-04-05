@@ -16,10 +16,10 @@ namespace filemanager
       
       
       simple_list_header_control    m_headerctrl;
-      FileManagerInterface *        m_pfilemanager;
+      sp(FileManagerInterface)        m_pfilemanager;
 
       
-      SimpleFolderListView (::ca::application * papp);
+      SimpleFolderListView (::ca::applicationsp papp);
       virtual ~SimpleFolderListView ();
       
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

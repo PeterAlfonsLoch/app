@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   menu_base::menu_base(::ca::application * papp):
+   menu_base::menu_base(::ca::applicationsp papp):
       ca(papp)
    {
 

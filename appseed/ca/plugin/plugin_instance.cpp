@@ -75,7 +75,7 @@ namespace plugin
 
       pinteraction->create_message_window("npca2");
 
-      ::ca::window * pwindow = dynamic_cast < ::ca::window * > (pinteraction->m_pimpl.m_p);
+      sp(::ca::window) pwindow = pinteraction->m_pimpl;
 
       pwindow->m_bTranslateMouseMessageCursor = false;
 

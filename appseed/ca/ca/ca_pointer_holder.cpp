@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-raw_pointer::raw_pointer(::ca::application * papp) :
+raw_pointer::raw_pointer(::ca::applicationsp papp) :
    ::ca::ca(papp)
 {
 
@@ -17,7 +17,7 @@ raw_pointer::raw_pointer(const raw_pointer & holder) :
 
 }
 
-raw_pointer::raw_pointer(::ca::ca * pca) :
+raw_pointer::raw_pointer(sp(::ca::ca) pca) :
    ::ca::ca(pca != ::null() ? pca->get_app() : ::null())
 {
 

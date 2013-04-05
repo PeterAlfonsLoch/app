@@ -15,7 +15,7 @@ namespace ca
       var         m_varQuery;
 
 
-      request_signal(::ca::application * papp, ::ca::signal * psignal = ::null());
+      request_signal(::ca::applicationsp papp, ::ca::signal * psignal = ::null());
 
 
    }; 

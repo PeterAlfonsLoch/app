@@ -20,7 +20,8 @@ namespace fs
 
       item();
       item(const item & item);
-      //item(const list_item & listitem);
+      item(const string & strPath);
+      item(const string & strPath, const flags < e_flag > & flags);
 
 
    };

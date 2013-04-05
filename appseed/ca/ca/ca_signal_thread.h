@@ -17,7 +17,7 @@ namespace ca
       ::ca::signal_object * m_pobj;
       
       
-      signal_thread(::ca::application * papp,
+      signal_thread(::ca::applicationsp papp,
          DST * psignalizableDst, void (DST::* pfnDst)(::ca::signal_object *), 
          SRC * psignalizableSrc, void (SRC::* pfnSrc)(::ca::signal_object *), 
          ::ca::signal_object * pobj) :
@@ -52,7 +52,7 @@ namespace ca
    };
 
    template < class DST, class SRC >
-   void emit(::ca::application * papp,
+   void emit(::ca::applicationsp papp,
       DST * psignalizableDst, void (DST::* pfnDst)(::ca::signal_object *), 
       SRC * psignalizableSrc, void (SRC::* pfnSrc)(::ca::signal_object *), 
       ::ca::signal_object * pobj)

@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      locale_schema::locale_schema(::ca::application * papp) :
+      locale_schema::locale_schema(::ca::applicationsp papp) :
          ca(papp)
       {
 

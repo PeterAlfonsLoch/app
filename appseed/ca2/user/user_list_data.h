@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      list_data(::ca::application * papp);
+      list_data(::ca::applicationsp papp);
       virtual ~list_data();
 
 

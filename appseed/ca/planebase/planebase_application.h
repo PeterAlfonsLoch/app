@@ -67,13 +67,13 @@ namespace planebase
 
 
       inline class ::ca::dir::application       & dir()        { return m_dir          ; }
-      inline class ::ca::file_application      & file()        { return m_file         ; }
-      inline class ::ca::http::application     & http()        { return m_http         ; }
+      inline class ::ca::file_application       & file()       { return m_file         ; }
+      inline class ::ca::http::application      & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
-      inline class ::fs::data                   * fs()         { return m_spfsdata     ; }
+      inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(class ::user::user)             user()         { return m_spuser       ; }
-      inline class ::fontopus::fontopus         & fontopus()   { return *m_pfontopus   ; }
-      inline class ::html::html                 & html()       { return *m_phtml       ; }
+      inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus    ; }
+      inline sp(::html::html)                   html()         { return m_phtml        ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
 
 
@@ -96,13 +96,13 @@ namespace planebase
       virtual bool os_native_bergedge_start();
 
 
-      virtual ::ca::application * instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias);
-      virtual ::ca::application * create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias);
+      virtual ::ca::applicationsp instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias);
+      virtual ::ca::applicationsp create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias);
 
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
-      //virtual ::user::interaction * get_request_parent_ui(::ca::command_line * pline);
+      //virtual sp(::user::interaction) get_request_parent_ui(::ca::command_line * pline);
 
       virtual bool initial_check_directrix();
 
@@ -119,7 +119,7 @@ namespace planebase
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/Cube
       //
-      ::document * hold(::user::interaction * pui);
+      sp(::document) hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -162,7 +162,7 @@ namespace planebase
 
    CLASS_DECL_ca UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef ::ca::application * (* LPFN_instantiate_application)(::ca::application * pappParent, const char * pszId);
+   typedef ::ca::applicationsp (* LPFN_instantiate_application)(::ca::applicationsp pappParent, const char * pszId);
 
    extern CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application;
 

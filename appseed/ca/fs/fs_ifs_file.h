@@ -12,7 +12,7 @@ public:
    var                                          m_varFile;
 
 
-   ifs_file(::ca::application * papp, var varFile);
+   ifs_file(::ca::applicationsp papp, var varFile);
    virtual ~ifs_file();
 
    virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
