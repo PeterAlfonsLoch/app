@@ -8,7 +8,7 @@ namespace userbase
       virtual public ::user::form
    {
    public:
-      form_view(::ca::applicationsp papp);
+      form_view(sp(::ca::application) papp);
       virtual ~form_view();
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

@@ -10,19 +10,20 @@ namespace fs
    {
    public:
 
-      spa(data)                                 m_spafsdata;
-      string_map < data * >       m_fsdatamap;
+
+      spa(data)                     m_spafsdata;
+      strsp(data)                   m_fsdatamap;
 
 
-      set(::ca::applicationsp papp);
+      set(sp(::ca::application) papp);
       virtual ~set();
 
    
-      string_map < data * > &     fsmap();
-      spa(data) &                               fsa();
+      strsp(data) &                 fsmap();
+      spa(data) &                   fsa();
       
 
-      virtual data * path_data(const char * psz);
+      virtual sp(data) path_data(const char * psz);
       virtual void root_ones(stringa & stra);
       virtual bool ls(const char * psz, stringa * pstraPath, stringa * pstraTitle);
       virtual bool is_dir(const char * psz);

@@ -16,7 +16,7 @@ namespace fs
 
 
 
-      list_interface(::ca::applicationsp appp);
+      list_interface(sp(::ca::application) appp);
       virtual ~list_interface();
 
       virtual void _001InsertColumns();
@@ -38,8 +38,8 @@ namespace fs
 
       void GetSelected(item_array & itema);
 
-      void _001OnInitializeForm(user::sp(control) pcontrol);
-      void _001OnButtonAction(user::sp(control) pcontrol);
+      void _001OnInitializeForm(sp(::user::control) pcontrol);
+      void _001OnButtonAction(sp(::user::control) pcontrol);
 
       virtual void _017OpenFile(const item_array & itema);
       virtual void _017OpenFolder(sp(::fs::item)  item);

@@ -10,7 +10,7 @@ public:
    uint32_t          m_dwFinishTimeout;
 
 
-   simple_thread(::ca::applicationsp papp);
+   simple_thread(sp(::ca::application) papp);
    virtual ~simple_thread();
 
 

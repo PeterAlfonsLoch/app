@@ -599,14 +599,33 @@ namespace ca
 
    };
 
-   typedef smart_pointer < graphics > graphics_sp;
+   class CLASS_DECL_ca graphics_sp :
+      public smart_pointer < graphics >
+   {
+   public:
+
+      graphics_sp()
+      {
+      }
+
+      graphics_sp(const smart_pointer < graphics > & p) :
+         smart_pointer < graphics > (p)
+      {
+      }
+
+      graphics_sp(allocer allocer) :
+         smart_pointer < graphics > (allocer)
+      {
+      }
+
+   };
 
    class CLASS_DECL_ca memory_graphics :
       public graphics_sp
    {
    public:
 
-      memory_graphics(::ca::applicationsp papp);
+      memory_graphics(allocer allocer);
       virtual ~memory_graphics();
 
    };

@@ -23,7 +23,7 @@ namespace ca
       primitive::memory          m_storage;
 
 
-      buffered_file(::ca::applicationsp papp, ::ca::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_file(sp(::ca::application) papp, ::ca::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_file();
 
 

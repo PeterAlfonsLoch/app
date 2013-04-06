@@ -4,7 +4,7 @@
 namespace nature
 {
 
-   appearance_view::appearance_view(::ca::applicationsp papp) :
+   appearance_view::appearance_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -58,7 +58,7 @@ namespace nature
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      if(pHint != NULL)
+      if(pHint != ::null())
       {
          if(base <view_update_hint> :: bases(pHint))
          {

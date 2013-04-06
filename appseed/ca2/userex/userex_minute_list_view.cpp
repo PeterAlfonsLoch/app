@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   minute_list_view::minute_list_view(::ca::applicationsp papp) :
+   minute_list_view::minute_list_view(sp(::ca::application) papp) :
       ca(papp),
       userbase::view(papp),
       user::scroll_view(papp),

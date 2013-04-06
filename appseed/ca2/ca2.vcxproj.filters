@@ -1202,6 +1202,9 @@
     <ClInclude Include="cube\cube_library.h">
       <Filter>Header Files\cube</Filter>
     </ClInclude>
+    <ClInclude Include="uinteraction\uinteraction_uinteraction.h">
+      <Filter>Header Files\uinteraction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">

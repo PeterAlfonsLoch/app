@@ -8,7 +8,7 @@ namespace libcompress
    namespace coder_mixer
    {
 
-      CCoder2::CCoder2(::ca::applicationsp papp, uint32_t numInStreams, uint32_t numOutStreams):
+      CCoder2::CCoder2(sp(::ca::application) papp, uint32_t numInStreams, uint32_t numOutStreams):
                ca(papp),
             thread(papp),
          CCoderInfo2(numInStreams, numOutStreams)
@@ -115,7 +115,7 @@ namespace libcompress
             _streamBinders[i].ReInit();
       }
 
-      CCoderMixer2MT::CCoderMixer2MT(::ca::applicationsp papp) :
+      CCoderMixer2MT::CCoderMixer2MT(sp(::ca::application) papp) :
          ca(papp),
          _streamBinders(papp)
       {

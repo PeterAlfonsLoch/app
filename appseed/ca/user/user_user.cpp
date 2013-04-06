@@ -93,7 +93,7 @@ namespace user
       string strLicense = Application.get_license_id();
 
 
-      var & varTopicQuey = System.directrix().m_varTopicQuery;
+      var & varTopicQuey = System.directrix()->m_varTopicQuery;
 
       bool bHasInstall = varTopicQuey.has_property("install");
 

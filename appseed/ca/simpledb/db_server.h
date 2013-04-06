@@ -50,7 +50,7 @@ public:
    mysql::database *       m_pmysqldbUser;
    string                  m_strUser;
 
-   db_server(::ca::applicationsp papp);
+   db_server(sp(::ca::application) papp);
    virtual ~db_server();
 
 

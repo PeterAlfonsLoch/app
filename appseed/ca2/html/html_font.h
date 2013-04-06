@@ -21,7 +21,7 @@ namespace html
       font();
       font(const class font & font);
       
-      bool create(::ca::applicationsp papp);
+      bool create(sp(::ca::application) papp);
 
       bool operator == (const font & font);
    };

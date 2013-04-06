@@ -30,13 +30,13 @@ namespace platform
       sp(::bergedge::document) m_pbergedgedocument;
 
 
-      document(::ca::applicationsp papp);
+      document(sp(::ca::application) papp);
       virtual ~document();
 
 
       view *                  get_platform_view();
       pane_view *             get_platform_pane_view();
-      frame *                 get_platform_frame();
+      sp(frame)                 get_platform_frame();
       bergedge::bergedge *    get_bergedge();
       
       

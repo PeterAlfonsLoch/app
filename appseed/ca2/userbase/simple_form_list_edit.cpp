@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_form_list_edit::simple_form_list_edit(::ca::applicationsp papp) :
+simple_form_list_edit::simple_form_list_edit(sp(::ca::application) papp) :
     ca(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
@@ -62,7 +62,7 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 sp(::user::interaction) simple_form_list_edit::GetNotifyWnd()
 {
    sp(::user::interaction) pwnd = get_owner();
-   if(pwnd != NULL)
+   if(pwnd != ::null())
       return pwnd;
    return ::user::interaction::get_parent();
 }

@@ -82,7 +82,7 @@ public:
       // The ::user::document_interface names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-   document_template(::ca::applicationsp papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
+   document_template(sp(::ca::application) papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
 
    virtual void load_template();
 
@@ -100,11 +100,11 @@ public:
 
    virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
    virtual sp(::user::document_interface) create_new_document();
-   virtual sp(frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(frame_window) pOther, ::ca::create_context * pcreatecontext);
+   virtual sp(frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(frame_window) pOther, sp(::ca::create_context) pcreatecontext);
    virtual void InitialUpdateFrame(sp(frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
    virtual bool save_all_modified();     // for all documents
    virtual void close_all_documents(bool bEndSession);
-   virtual void request(::ca::create_context * pcreatecontext) = 0;
+   virtual void request(sp(::ca::create_context) pcreatecontext) = 0;
                // open named file
                // if lpszPathName == ::null() => create new file with this type
    virtual void set_default_title(sp(::user::document_interface) pdocument) = 0;

@@ -12,7 +12,7 @@ public:
 
 
    assert_exception(const assert_exception & e);
-   assert_exception(::ca::applicationsp papp, const char * pszFile, long lLine);
+   assert_exception(sp(::ca::application) papp, const char * pszFile, long lLine);
    virtual ~assert_exception();
 
 };

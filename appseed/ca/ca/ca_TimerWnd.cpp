@@ -5,7 +5,7 @@ namespace ca
 
 
    TimerWnd::TimerWnd() :
-      m_evFree(FALSE, TRUE)
+      m_evFree(::null(), FALSE, TRUE)
    {
       EnableTimer();
    }

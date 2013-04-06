@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_status_bar::simple_status_bar(::ca::applicationsp papp) :
+simple_status_bar::simple_status_bar(sp(::ca::application) papp) :
    ca(papp)
 {
 

@@ -9,7 +9,7 @@ namespace gcom
    {
 
 
-      Main::Main(::ca::applicationsp papp, Interface * pinterface) :
+      Main::Main(sp(::ca::application) papp, Interface * pinterface) :
          ca(papp),
          m_pinterface(pinterface),
          m_mutexStateMachine(papp)
@@ -47,7 +47,7 @@ namespace gcom
 
       Main::~Main()
       {
-         if(m_ptransitioneffect != NULL)
+         if(m_ptransitioneffect != ::null())
          {
             if(m_ptransitioneffect->m_bRun)
             {
@@ -57,12 +57,12 @@ namespace gcom
             {
                delete m_ptransitioneffect;
             }
-            m_ptransitioneffect = NULL;
+            m_ptransitioneffect = ::null();
          }
-         if(m_pvisualeffect != NULL)
+         if(m_pvisualeffect != ::null())
          {
             delete m_pvisualeffect;
-            m_pvisualeffect = NULL;
+            m_pvisualeffect = ::null();
          }
       }
 
@@ -163,15 +163,15 @@ namespace gcom
          if(!m_bInitialized)
             return false;
 
-         ::ca::applicationsp papp = &System;
-         if(papp == NULL)
+         sp(::ca::application) papp = &System;
+         if(papp == ::null())
          {
             // if main application is null, there's no reason
             // for painting anything...
             return false;
          }
 
-         ASSERT(papp != NULL);
+         ASSERT(papp != ::null());
 
          //         ::ca::savings & savings = System.savings();
 
@@ -410,7 +410,7 @@ namespace gcom
 
       void Main::OnResize()
       {
-         //GetWnd().SetTimer(10001234, 100, NULL);
+         //GetWnd().SetTimer(10001234, 100, ::null());
          GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 4);
 
       }

@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   tree_data::tree_data(::ca::applicationsp papp) :
+   tree_data::tree_data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::tree_data(papp)
    {
@@ -19,7 +19,7 @@ namespace fs
 
    void tree_data::on_delete_item(::ca::tree_item_data * pitem)
    {
-      delete (::fs::tree_item *) pitem;
+      delete dynamic_cast < ::fs::tree_item * > (pitem);
    }
 
 

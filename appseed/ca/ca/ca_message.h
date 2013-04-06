@@ -207,7 +207,7 @@ namespace ca
          dispatch();
          virtual void _on_start_user_message_handler();
 
-         virtual ::ca::applicationsp calc_app();
+         virtual sp(::ca::application) calc_app();
 
          virtual sp(base) peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
          virtual sp(base) get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
@@ -313,8 +313,8 @@ namespace ca
             LPARAM                  m_lparam;
             bool                    m_bConditional;
 
-            base(::ca::applicationsp papp, ::ca::signal * psignal = ::null());
-            base(::ca::applicationsp papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+            base(sp(::ca::application) papp, ::ca::signal * psignal = ::null());
+            base(sp(::ca::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
 
@@ -331,7 +331,7 @@ namespace ca
          {
          public:
 
-            create(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            create(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             LPCREATESTRUCT m_lpcreatestruct;
 
             virtual void set_lresult(LRESULT lresult);
@@ -345,7 +345,7 @@ namespace ca
          public:
 
 
-            timer(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            timer(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             UINT m_nIDEvent;
          };
@@ -360,7 +360,7 @@ namespace ca
             bool  m_bMinimized;
 
 
-            activate(::ca::applicationsp papp);
+            activate(sp(::ca::application) papp);
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -370,7 +370,7 @@ namespace ca
          public:
 
 
-            move(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            move(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             point m_pt;
          };
 
@@ -379,7 +379,7 @@ namespace ca
          public:
 
 
-            size(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            size(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             UINT     m_nType;
             ::size   m_size;
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -391,7 +391,7 @@ namespace ca
          public:
 
 
-            scroll(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            scroll(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             UINT              m_nSBCode;
             int32_t           m_nPos;
             sp(::user::interaction)  m_pScrollBar;
@@ -409,7 +409,7 @@ namespace ca
             ::visual::e_cursor      m_ecursor;
             bool                    m_bTranslated;
 
-            mouse(::ca::applicationsp papp);
+            mouse(sp(::ca::application) papp);
             virtual ~mouse();
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -421,7 +421,7 @@ namespace ca
          public:
 
 
-            mouse_wheel(::ca::applicationsp papp) : ca(papp), mouse(papp) {}
+            mouse_wheel(sp(::ca::application) papp) : ca(papp), mouse(papp) {}
             UINT     GetFlags();
             int16_t    GetDelta();
             point    GetPoint();
@@ -435,7 +435,7 @@ namespace ca
          public:
 
 
-            mouse_activate(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            mouse_activate(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             sp(::user::interaction) GetDesktopWindow();
             UINT GetHitTest();
             UINT GetMessage();
@@ -446,7 +446,7 @@ namespace ca
          public:
 
 
-            context_menu(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            context_menu(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             sp(::ca::window) GetWindow();
             point GetPoint();
          };
@@ -457,7 +457,7 @@ namespace ca
          public:
 
 
-            set_cursor(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            set_cursor(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             sp(::ca::window) m_pWnd;
             UINT m_nHitTest;
             UINT m_message;
@@ -468,7 +468,7 @@ namespace ca
          public:
 
 
-            show_window(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            show_window(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             bool m_bShow;
             UINT  m_nStatus;
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -479,7 +479,7 @@ namespace ca
          public:
 
 
-            on_draw(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            on_draw(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             ::ca::graphics * m_pdc;
          };
 
@@ -491,7 +491,7 @@ namespace ca
             ::ca::graphics * m_pdc;
 
 
-            erase_bkgnd(::ca::applicationsp papp);
+            erase_bkgnd(sp(::ca::application) papp);
 
             void set_result(bool bResult);
 
@@ -505,7 +505,7 @@ namespace ca
          public:
 
 
-            nchittest(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            nchittest(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             point m_pt;
          };
 
@@ -528,7 +528,7 @@ namespace ca
 #endif*/
 
 
-            key(::ca::applicationsp papp);
+            key(sp(::ca::application) papp);
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -541,7 +541,7 @@ namespace ca
             bool m_bActive;
 
 
-            nc_activate(::ca::applicationsp papp);
+            nc_activate(sp(::ca::application) papp);
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -553,7 +553,7 @@ namespace ca
          public:
 
 
-            notify(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            notify(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             LPNMHDR get_lpnmhdr();
             int32_t get_ctrl_id();
          };
@@ -565,7 +565,7 @@ namespace ca
          public:
 
 
-            update_cmd_ui(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            update_cmd_ui(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             cmd_ui *    m_pcmdui;
          };
 
@@ -574,7 +574,7 @@ namespace ca
          public:
 
 
-            command(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            command(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             UINT GetNotifyCode();
             UINT GetId();
             oswindow get_oswindow();
@@ -585,7 +585,7 @@ namespace ca
          public:
 
 
-            ctl_color(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            ctl_color(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             HBRUSH      m_hbrush;
             ::ca::graphics *       m_pdc;
             sp(::ca::window)      m_pwnd;
@@ -597,7 +597,7 @@ namespace ca
          public:
 
 
-            set_focus(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            set_focus(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
@@ -607,7 +607,7 @@ namespace ca
          {
          public:
 
-            window_pos(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            window_pos(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             WINDOWPOS * m_pwindowpos;
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -622,7 +622,7 @@ namespace ca
          public:
 
 
-            measure_item(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            measure_item(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             int32_t m_i;
             LPMEASUREITEMSTRUCT m_lpmis;
          };
@@ -634,7 +634,7 @@ namespace ca
          public:
 
 
-            nc_calc_size(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            nc_calc_size(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             NCCALCSIZE_PARAMS * m_pparams;
             bool GetCalcValidRects();
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -647,7 +647,7 @@ namespace ca
          public:
 
 
-            enable(::ca::applicationsp papp) : ca(papp), ::ca::message::base(papp) {}
+            enable(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
             bool get_enable();
          };
 

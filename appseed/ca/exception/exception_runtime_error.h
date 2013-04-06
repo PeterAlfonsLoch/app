@@ -9,7 +9,7 @@ class CLASS_DECL_ca runtime_error :
 public:
    
    
-   runtime_error(::ca::applicationsp papp, const char * pszError);
+   runtime_error(sp(::ca::application) papp, const char * pszError);
    virtual ~runtime_error();
 
 };

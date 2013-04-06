@@ -16,7 +16,7 @@ namespace userbase
       menu_item *          m_pitemContainer;
 
 
-      menu_button_cmd_ui(::ca::applicationsp papp);
+      menu_button_cmd_ui(sp(::ca::application) papp);
 
 
       virtual void Enable(bool bOn);
@@ -31,7 +31,7 @@ namespace userbase
       public button
    {
    public:
-      menu_button(::ca::applicationsp papp);
+      menu_button(sp(::ca::application) papp);
    public:
       virtual ~menu_button();
 

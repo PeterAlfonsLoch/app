@@ -7,37 +7,37 @@ namespace userbase
    const int32_t BaseWndMenuCmdUi = 117;
    const int32_t BaseWndMenuTiming = 200;
 
-   menu::menu(::ca::applicationsp papp) :
+   menu::menu(sp(::ca::application) papp) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
       m_bAutoDelete        = true;
-      m_pschema            = NULL;
+      m_pschema            = ::null();
       m_etranslucency      = TranslucencyPresent;
-      _m_pmenu             = NULL;
+      _m_pmenu             = ::null();
       m_pitem              = new menu_item(papp);
       m_bOwnItem           = true;
-      m_oswindowParent         = NULL;
-      m_pmenuParent        = NULL;
-      m_psubmenu           = NULL;
+      m_oswindowParent         = ::null();
+      m_pmenuParent        = ::null();
+      m_psubmenu           = ::null();
       m_iHoverSubMenu      = -1;
 
    }
 
-   menu::menu(::ca::applicationsp papp, menu_item * pitem) :
+   menu::menu(sp(::ca::application) papp, menu_item * pitem) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
       m_iHoverSubMenu      = -1;
-      m_oswindowParent         = NULL;
-      m_pmenuParent        = NULL;
-      m_psubmenu           = NULL;
+      m_oswindowParent         = ::null();
+      m_pmenuParent        = ::null();
+      m_psubmenu           = ::null();
       m_bAutoDelete        = true;
       m_etranslucency      = TranslucencyPresent;
-      m_pschema            = NULL;
-      _m_pmenu             = NULL;
+      m_pschema            = ::null();
+      _m_pmenu             = ::null();
       m_pitem              = pitem;
       m_bOwnItem           = false;
    }
@@ -67,10 +67,10 @@ namespace userbase
 
    bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent)
    {
-      ASSERT(oswindowParent != NULL);
+      ASSERT(oswindowParent != ::null());
       _m_pmenu = new menu(get_app(), m_pitem);
       _m_pmenu->set_app(get_app());
-      return _m_pmenu->_TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
+      return _m_pmenu->_TrackPopupMenu(iFlags, x, y, oswindowParent, ::null());
    }
 
    bool menu::_TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent)
@@ -88,10 +88,10 @@ namespace userbase
 
 //      const char * lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
 
-      const char * lpcsz = NULL;
+      const char * lpcsz = ::null();
 
-      LPVOID lpvoid = NULL;
-      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, NULL, NULL, 0, rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
+      LPVOID lpvoid = ::null();
+      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, ::null(), ::null(), 0, rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
          return false;
 
       set_owner(oswindowParent);
@@ -111,7 +111,7 @@ namespace userbase
 
       point pt(x, y);
 
-      if(get_parent() != NULL)
+      if(get_parent() != ::null())
       {
          get_parent()->ScreenToClient(&pt);
       }
@@ -120,7 +120,7 @@ namespace userbase
 
       SetWindowPos(ZORDER_TOPMOST, pt.x, pt.y, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
-      SetTimer(BaseWndMenuCmdUi, 100, NULL);
+      SetTimer(BaseWndMenuCmdUi, 100, ::null());
 
       //set_capture();
 
@@ -276,18 +276,18 @@ namespace userbase
    void menu::_001OnDestroy(::ca::signal_object * pobj)
    {
       System.remove_frame(this);
-      if(m_pmenuParent != NULL)
+      if(m_pmenuParent != ::null())
       {
-         m_pmenuParent->m_psubmenu = NULL;
+         m_pmenuParent->m_psubmenu = ::null();
          m_pmenuParent->m_idSubMenu.is_empty();
       }
-      if(m_psubmenu != NULL)
+      if(m_psubmenu != ::null())
       {
-         m_psubmenu->m_pmenuParent = NULL;
+         m_psubmenu->m_pmenuParent = ::null();
       }
    //   if(userbase::GetUfe()->m_pmenu == this)
      // {
-       //  userbase::GetUfe()->m_pmenu = NULL;
+       //  userbase::GetUfe()->m_pmenu = ::null();
       //}
       pobj->m_bRet = false;
    }
@@ -328,7 +328,7 @@ namespace userbase
          else
          {
             menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
-            if(pitem != NULL && !pitem->m_bPopup)
+            if(pitem != ::null() && !pitem->m_bPopup)
             {
                if(::ca::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
                {
@@ -354,15 +354,15 @@ namespace userbase
          {
             if(pevent->m_puie->m_id != m_idSubMenu)
             {
-               if(m_psubmenu != NULL
+               if(m_psubmenu != ::null()
                && m_idSubMenu.has_char())
                {
                   m_psubmenu->send_message(WM_CLOSE);
-                  m_psubmenu = NULL;
+                  m_psubmenu = ::null();
                   m_idSubMenu = "";
                }
    /*
-                  SetTimer(BaseWndMenuTimer, BaseWndMenuTiming, NULL);
+                  SetTimer(BaseWndMenuTimer, BaseWndMenuTiming, ::null());
                   if(m_pitem->m_pitema->element_at(pevent->m_pcontrol->m_uiId)->m_bPopup)
                   {
                      m_iTimerMenu = pevent->m_pcontrol->m_uiId;
@@ -375,7 +375,7 @@ namespace userbase
                else*/
                {
                   menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
-                  if(pitem != NULL)
+                  if(pitem != ::null())
                   {
                      if(pitem->m_bPopup)
                      {
@@ -412,7 +412,7 @@ namespace userbase
          if(m_idSubMenu.has_char())
          {
             m_psubmenu->send_message(WM_CLOSE);
-            m_psubmenu = NULL;
+            m_psubmenu = ::null();
             m_idSubMenu.is_empty();
          }
          if(m_idTimerMenu.has_char())
@@ -429,7 +429,7 @@ namespace userbase
       }
       else if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
       {
-         if(m_pitem->m_spitema != NULL)
+         if(m_pitem->m_spitema != ::null())
          {
             menu_button_cmd_ui cmdui(get_app());
             cmdui.m_pitema          = m_pitem->m_spitema;
@@ -441,11 +441,11 @@ namespace userbase
                cmdui.m_pOther    = (sp(::user::interaction)) &m_pitem->m_spitema->element_at(i)->m_button;
 
                sp(::user::interaction) pwndParent = m_oswindowParent;
-               if(pwndParent != NULL)
+               if(pwndParent != ::null())
                {
                  /* xxx if(pwndParent->_001OnCommand(0,
                      MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
-                     &cmdui, NULL))
+                     &cmdui, ::null()))
                      continue;*/
 
                   if(pwndParent->_001SendUpdateCmdUi(&cmdui))
@@ -485,7 +485,7 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::base, pbase, pobj)
-      if(m_pitem->m_spitema != NULL)
+      if(m_pitem->m_spitema != ::null())
       {
          menu_button_cmd_ui cmdui(get_app());
          cmdui.m_pitema          = m_pitem->m_spitema;
@@ -497,12 +497,12 @@ namespace userbase
             cmdui.m_pOther    = (sp(::user::interaction)) &m_pitem->m_spitema->element_at(i)->m_button;
 
             sp(::user::interaction) pwndParent = m_oswindowParent;
-            if(pwndParent != NULL)
+            if(pwndParent != ::null())
             {
                /*
                if(pwndParent->_001OnCommand(0,
                   MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
-                  &cmdui, NULL))
+                  &cmdui, ::null()))
                   continue;
                   */
 

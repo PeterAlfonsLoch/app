@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_form_list_view::simple_form_list_view(::ca::applicationsp papp) :
+simple_form_list_view::simple_form_list_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp), 
    ::user::form(papp), 

@@ -19,7 +19,7 @@ namespace filemanager
       sp(FileManagerInterface)        m_pfilemanager;
 
       
-      SimpleFolderListView (::ca::applicationsp papp);
+      SimpleFolderListView (sp(::ca::application) papp);
       virtual ~SimpleFolderListView ();
       
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

@@ -96,7 +96,7 @@ namespace ca
 
    }
 
-   process_section::process_thread::process_thread(::ca::applicationsp papp) :
+   process_section::process_thread::process_thread(sp(::ca::application) papp) :
       ca(papp),
       thread(papp),
       simple_thread(papp),

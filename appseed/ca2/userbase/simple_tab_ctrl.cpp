@@ -2,7 +2,7 @@
 #include "simple_tab_control.h"
 
 
-simple_tab_control::simple_tab_control(::ca::applicationsp papp):
+simple_tab_control::simple_tab_control(sp(::ca::application) papp):
    ca(papp),
    ::user::interaction(papp),
    ::user::tab(papp),

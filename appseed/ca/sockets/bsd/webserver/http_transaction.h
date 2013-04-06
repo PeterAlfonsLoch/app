@@ -9,7 +9,7 @@ namespace http
       virtual public ::ca::object
    {
    public:
-      transaction(::ca::applicationsp papp);
+      transaction(sp(::ca::application) papp);
       transaction(const transaction & src);
       virtual ~transaction();
 

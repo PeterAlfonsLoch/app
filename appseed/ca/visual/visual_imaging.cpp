@@ -42,7 +42,7 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
 
 #endif
 
-imaging::imaging(::ca::applicationsp papp) :
+imaging::imaging(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -84,7 +84,7 @@ imaging::~imaging()
 
 ::ca::bitmap_sp imaging::CreateBitmap(::ca::graphics * pdc, FIBITMAP * pFreeImage)
 {
-   ::ca::dib_sp dib(get_app());
+   ::ca::dib_sp dib(allocer());
 
 #ifdef METROWIN
 
@@ -146,7 +146,7 @@ imaging::~imaging()
 }
 
 
-FIBITMAP * imaging::LoadImageFile(var varFile, ::ca::applicationsp papp)
+FIBITMAP * imaging::LoadImageFile(var varFile, sp(::ca::application) papp)
 {
    ::primitive::memory_file memfile(get_app());
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
@@ -155,7 +155,7 @@ FIBITMAP * imaging::LoadImageFile(var varFile, ::ca::applicationsp papp)
    return LoadImageFile(&memfile);
 }
 
-bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, ::ca::applicationsp papp)
+bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, sp(::ca::application) papp)
 {
 
    ::primitive::memory_file memfile(get_app());
@@ -170,7 +170,7 @@ bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, ::ca::applicationsp p
    if(pfi == ::null())
       return false;
 
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
 
    spgraphics->CreateCompatibleDC(::null());
 
@@ -618,7 +618,7 @@ bool imaging::GrayVRCP(
    bScreenDC = true;
    bitmapLocal.delete_object();
    bitmapLocal.CreateCompatibleBitmap(pdc, cx, cy);
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(pdc);
    ::ca::bitmap * bitmapOld = spgraphics->SelectObject(bitmapLocal);
    spgraphics->BitBlt(0, 0, cx, cy, pdc, x, y, SRCCOPY);
@@ -706,7 +706,7 @@ bool imaging::GrayVRCP(
 
    if(bScreenDC)
    {
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(pdc);
    ::ca::bitmap * bitmapOld = spgraphics->SelectObject(bitmapLocal);
    pdc->BitBlt(x, y, cx, cy, &spgraphics, 0, 0, SRCCOPY);
@@ -749,7 +749,7 @@ bool imaging::GrayVRCP(
 
 pil->create(pilParam);
 
-::ca::graphics_sp spgraphics(get_app());
+::ca::graphics_sp spgraphics(allocer());
 
 spgraphics->CreateCompatibleDC(pdc);
 
@@ -778,7 +778,7 @@ double dCompress)
 if(!pil->create(pilParam))
 return false;
 
-::ca::graphics_sp spgraphics(get_app());
+::ca::graphics_sp spgraphics(allocer());
 
 spgraphics->CreateCompatibleDC(pdc);
 
@@ -812,7 +812,7 @@ bool imaging::CreateHueImageList(::ca::graphics * pdc, image_list * pilGray, ima
    if(!pil->create(pilParam))
       return false;
 
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
 
    spgraphics->CreateCompatibleDC(pdc);
 
@@ -844,7 +844,7 @@ bool imaging::Createcolor_blend_ImageList(
       if(pil->m_spdib->get_graphics()->get_os_data() == ::null())
          return false;
 
-      ::ca::graphics_sp spgraphics(get_app());
+      ::ca::graphics_sp spgraphics(allocer());
 
 #ifdef LINUX
 
@@ -890,7 +890,7 @@ bool imaging::Createcolor_blend_ImageList(
 
 pil->create(pilParam);
 
-::ca::graphics_sp spgraphics(get_app());
+::ca::graphics_sp spgraphics(allocer());
 
 spgraphics->CreateCompatibleDC(pdc);
 
@@ -1469,7 +1469,7 @@ pbitmap->CreateBitmap(cx + 100, cy + 100, 1, 24, ::null());
 }
 }
 
-::ca::graphics_sp graphicsMem(get_app());
+::ca::graphics_sp graphicsMem(allocer());
 graphicsMem->CreateCompatibleDC(pdc);
 ::ca::bitmap * pbmpMemOld = graphicsMem->SelectObject(pbitmap);
 graphicsMem->BitBlt(
@@ -1786,12 +1786,12 @@ byte uchAlphaConstant,
 
 if(pdibA == ::null())
 {
-dibA.create(get_app());
+dibA.create(allocer());
 pdibA = dibA;
 }
 if(pdibB == ::null())
 {
-dibB.create(get_app());
+dibB.create(allocer());
 pdibB = dibB;
 }
 
@@ -2054,7 +2054,7 @@ rect rect(null_point(), size);
 dibPat->create(64, 64);
 dibPat->Fill(255, 0, 0, 0);
 
-::ca::brush_sp brush(get_app());
+::ca::brush_sp brush(allocer());
 brush->CreatePatternBrush(dibPat->get_bitmap());
 
 ::ca::dib_sp spdib(get_app());
@@ -2174,7 +2174,7 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int32_t x, int32_t y, int32_t cx
    }
    }
 
-   ::ca::graphics_sp graphicsMem(get_app());
+   ::ca::graphics_sp graphicsMem(allocer());
    graphicsMem->CreateCompatibleDC(pdc);
    ::ca::bitmap * pbmpMemOld = graphicsMem->SelectObject(bitmapA);
    graphicsMem->BitBlt(
@@ -2508,11 +2508,11 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    // void * pData = FreeImage_GetBits(pfibitmap);
 
 
-   ::ca::dib_sp dib(get_app());
+   ::ca::dib_sp dib(allocer());
 
    //BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
 
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(::null());
 
    dib->from(spgraphics, pfibitmap, false);
@@ -2520,7 +2520,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 
    return dib->detach_bitmap();
 
-   /*::ca::graphics_sp spgraphics(get_app());
+   /*::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(::null());
 
    ::ca::dib_sp dibSource(get_app());
@@ -2561,7 +2561,7 @@ return LoadImageSync(str);
 }*/
 
 
-::ca::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, ::ca::applicationsp papp)
+::ca::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, sp(::ca::application) papp)
 {
 
    FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath, papp);
@@ -2574,7 +2574,7 @@ return LoadImageSync(str);
 }
 
 
-bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::applicationsp papp)
+bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, sp(::ca::application) papp)
 {
 
    if(!imaging::LoadImageFile(pdib, lpcszImageFilePath, papp))
@@ -2839,7 +2839,7 @@ bool imaging::ClipSave(
 
    //   if(!rectUpdate.is_empty())
    //   {
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(pdc);
    spgraphics->SetViewportOrg(pdc->GetViewportOrg());
    if(!CreateBitmap(
@@ -2896,7 +2896,7 @@ bool imaging::ClipSave(
    //   ::ca::region rgnUpdate;
    //   rgnUpdate.create_rect(lpcrect);
    //   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, ::ca::region::combine_exclude);
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(pdc);
    spgraphics->SetViewportOrg(pdc->GetViewportOrg());
 
@@ -2958,11 +2958,11 @@ bool imaging::ClipRestore(
 
    if(!rectUpdate.is_empty())
    {
-      ::ca::graphics_sp spgraphics(get_app());
+      ::ca::graphics_sp spgraphics(allocer());
       spgraphics->CreateCompatibleDC(pdc);
       spgraphics->SetViewportOrg(pdc->GetViewportOrg());
       spgraphics->SelectObject(pbitmap);
-      ::ca::region_sp rgnClip(get_app());
+      ::ca::region_sp rgnClip(allocer());
       //rgnClip->create_rect(0, 0, 0, 0);
 
       int32_t iClip = 0;
@@ -3022,7 +3022,7 @@ bool imaging::ClipRestore(
 
    //rectUpdate.intersect(rectClipBox, lpcrect);
 
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(pdc);
    spgraphics->SetViewportOrg(pdc->GetViewportOrg());
    spgraphics->SelectObject(pbitmap);
@@ -3074,7 +3074,7 @@ bool imaging::ClipSave(
    if(pbitmap == ::null())
       return false;
 
-   ::ca::region_sp rgnClip(get_app());
+   ::ca::region_sp rgnClip(allocer());
 
    rgnClip->create_rect(0, 0, 0, 0);
 
@@ -3114,7 +3114,7 @@ bool imaging::ClipRestore(
    if(pbitmap == ::null())
       return false;
 
-   ::ca::region_sp rgnClip(get_app());
+   ::ca::region_sp rgnClip(allocer());
 
    rgnClip->create_rect(0, 0, 0, 0);
 
@@ -3485,7 +3485,7 @@ bool imaging::blur(::ca::graphics *pdcDst, point ptDst, size size, ::ca::graphic
    if(size.cx <= 0 || size.cy <= 0)
       return true;
 
-   ::ca::dib_sp dibDst(get_app());
+   ::ca::dib_sp dibDst(allocer());
 
    if(!dibDst->create(size))
       return false;
@@ -3493,7 +3493,7 @@ bool imaging::blur(::ca::graphics *pdcDst, point ptDst, size size, ::ca::graphic
    dibDst->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
    dibDst->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, ARGB(0, 0, 0, 0));
    dibDst->get_graphics()->set_alpha_mode(::ca::alpha_mode_blend);
-   /*   ::ca::dib_sp dibSrc(get_app());
+   /*   ::ca::dib_sp dibSrc(allocer());
 
    if(!dibSrc->create(size))
    return false;*/
@@ -3859,7 +3859,7 @@ bool imaging::channel_gray_blur(::ca::graphics *pdcDst, point ptDst, size size, 
    if(size.cx <= 0 || size.cy <= 0)
       return true;
 
-   ::ca::dib_sp dibDst(get_app());
+   ::ca::dib_sp dibDst(allocer());
 
    if(!dibDst.is_set())
       return false;
@@ -3867,7 +3867,7 @@ bool imaging::channel_gray_blur(::ca::graphics *pdcDst, point ptDst, size size, 
    if(!dibDst->create(size))
       return false;
 
-   ::ca::dib_sp dibSrc(get_app());
+   ::ca::dib_sp dibSrc(allocer());
 
    if(!dibSrc.is_set())
       return false;
@@ -3899,7 +3899,7 @@ bool imaging::channel_alpha_gray_blur(::ca::graphics *pdcDst, point ptDst, size 
    if(size.cx <= 0 || size.cy <= 0)
       return true;
 
-   ::ca::dib_sp dibDst(get_app());
+   ::ca::dib_sp dibDst(allocer());
 
    if(!dibDst.is_set())
       return false;
@@ -3907,7 +3907,7 @@ bool imaging::channel_alpha_gray_blur(::ca::graphics *pdcDst, point ptDst, size 
    if(!dibDst->create(size))
       return false;
 
-   ::ca::dib_sp dibSrc(get_app());
+   ::ca::dib_sp dibSrc(allocer());
 
    if(!dibSrc.is_set())
       return false;
@@ -4352,7 +4352,7 @@ class size sizeFilter,
    if(size.cx <= 0 || size.cy <= 0)
       return true;
 
-   ::ca::dib_sp dibDst(get_app());
+   ::ca::dib_sp dibDst(allocer());
 
    if(!dibDst.is_set())
       return false;
@@ -4360,7 +4360,7 @@ class size sizeFilter,
    if(!dibDst->create(size))
       return false;
 
-   ::ca::dib_sp dibSrc(get_app());
+   ::ca::dib_sp dibSrc(allocer());
 
    if(!dibSrc.is_set())
       return false;
@@ -4883,7 +4883,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == ::null())
    {
-      ::ca::graphics_sp graphicsMem(get_app());
+      ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
@@ -5044,7 +5044,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == ::null())
    {
-      ::ca::graphics_sp graphicsMem(get_app());
+      ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
@@ -5548,7 +5548,7 @@ bool imaging::channel_spread_set_color(
    if(size.is_empty())
       return true;
 
-   ::ca::dib_sp dibDst(get_app());
+   ::ca::dib_sp dibDst(allocer());
 
    if(!dibDst.is_set())
       return false;
@@ -5556,7 +5556,7 @@ bool imaging::channel_spread_set_color(
    if(!dibDst->create(size))
       return false;
 
-   ::ca::dib_sp dibSrc(get_app());
+   ::ca::dib_sp dibSrc(allocer());
 
    if(!dibSrc.is_set())
       return false;
@@ -6055,7 +6055,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int32_t xDest, int32_t yDest, int
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == ::null())
    {
-      ::ca::graphics_sp graphicsMem(get_app());
+      ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
@@ -6518,7 +6518,7 @@ bool imaging::alpha_pixelate(
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == ::null())
    {
-      ::ca::graphics_sp graphicsMem(get_app());
+      ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),

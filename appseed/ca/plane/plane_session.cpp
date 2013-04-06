@@ -54,7 +54,7 @@ namespace plane
       }
       */
       string strId;
-      ::ca::applicationsp papp;
+      sp(::ca::application) papp;
 
 
       POSITION pos = m_mapApplication.get_start_position();
@@ -190,7 +190,7 @@ namespace plane
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::applicationsp session::get_app() const
+   sp(::ca::application) session::get_app() const
    {
       return ::planebase::application::get_app();
    }
@@ -250,7 +250,7 @@ namespace plane
       m_pnaturedocument = ::null();*/
    }
 
-   bool session::create_bergedge(::ca::create_context * pcreatecontext)
+   bool session::create_bergedge(sp(::ca::create_context) pcreatecontext)
    {
 
 
@@ -267,9 +267,9 @@ namespace plane
 
       string strApp;
 
-      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
-         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
-         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only")))
+      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
+         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command()->m_varTopicQuery["client_only"])
+         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
       {
          m_bShowPlatform = true;
       }
@@ -278,7 +278,7 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      ::ca::applicationsp pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::ca::application) pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       sp(::bergedge_interface) papp = pcaapp;
 
@@ -296,7 +296,7 @@ namespace plane
 
       UINT uiMessage = WM_APP + 2043;
 
-      papp->post_thread_message(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+      papp->post_thread_message(uiMessage, 2, pcreatecontext);
 
       pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -314,10 +314,10 @@ namespace plane
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void session::on_request(::ca::create_context * pcreatecontext)
+   void session::on_request(sp(::ca::create_context) pcreatecontext)
    {
 
-      TRACE("::plane::session::on_request(::ca::create_context *)");
+      TRACE("::plane::session::on_request(sp(::ca::create_context))");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
@@ -351,9 +351,9 @@ namespace plane
 
 
 
-      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
-         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
-         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only")))
+      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
+         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command()->m_varTopicQuery["client_only"])
+         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
       {
          m_bShowPlatform = true;
       }
@@ -456,7 +456,7 @@ namespace plane
    }
 
 
-   ::planebase::application * session::start_application(const char * pszType, const char * pszAppId, ::ca::create_context * pcreatecontext)
+   ::planebase::application * session::start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);
@@ -506,7 +506,7 @@ namespace plane
 
          UINT uiMessage = WM_APP + 2043;
 
-         papp->post_thread_message(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+         papp->post_thread_message(uiMessage, 2, pcreatecontext);
 
          while(get_run())
          {
@@ -562,7 +562,7 @@ namespace plane
    bool session::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
    {
 
-      ::ca::create_context_sp cc(get_app());
+      sp(::ca::create_context) cc(allocer());
 
       cc->m_spCommandLine->m_varFile = pszPathName;
 
@@ -576,7 +576,7 @@ namespace plane
    }
 
 
-   bool session::open_by_file_extension(::ca::create_context * pcreatecontext)
+   bool session::open_by_file_extension(sp(::ca::create_context) pcreatecontext)
    {
 
       string strId;
@@ -682,7 +682,7 @@ namespace plane
       {
          /*
          ::primitive::memory_file file(get_app());
-         file.from_string(command().m_varTopicFile);
+         file.from_string(command()->m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
@@ -697,7 +697,7 @@ namespace plane
 
          if(channel.open("::ca::fontopus::message_wnd::session::"))
          {
-            channel.send(command().m_varTopicFile, false);
+            channel.send(command()->m_varTopicFile, false);
             channel.close();
          }
 
@@ -713,7 +713,7 @@ namespace plane
    }
 
 
-   void session::request(::ca::create_context * pcreatecontext)
+   void session::request(sp(::ca::create_context) pcreatecontext)
    {
 
       if(m_pbergedgeInterface != ::null())
@@ -733,7 +733,7 @@ namespace plane
             || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
             {
                strCommand.trim();
-               command().add_fork_uri(strCommand);
+               command()->add_fork_uri(strCommand);
                System.m_bDoNotExitIfNoApplications = true;
             }
             return;
@@ -786,9 +786,9 @@ namespace plane
 
    }*/
 
-   ::ca::applicationsp session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::applicationsp papp = ::null();
+      sp(::ca::application) papp = ::null();
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -839,7 +839,7 @@ namespace plane
       return true;
    }
 
-   ::ca::applicationsp session::get_current_application()
+   sp(::ca::application) session::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -854,14 +854,14 @@ namespace plane
       }
    }
 
-   sp(::user::interaction) session::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       return get_request_parent_ui((::user::interaction *) pmainframe, pcreatecontext);
 
    }
 
-   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
    {
 
 
@@ -901,7 +901,7 @@ namespace plane
    }*/
 
       if(pinteraction->get_app()->is_bergedge() || pcreatecontext->m_bClientOnly ||
-         Application.directrix().m_varTopicQuery["client_only"] != 0 ||
+         Application.directrix()->m_varTopicQuery["client_only"] != 0 ||
          pcreatecontext->m_bOuterPopupAlertLike)
       {
          return puiParent;
@@ -948,7 +948,7 @@ namespace plane
 
    }
 
-/*   ::user::place_holder_ptra session::get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+/*   ::user::place_holder_ptra session::get_place_holder(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -980,7 +980,7 @@ namespace plane
    }*/
 
    /*
-   bool session::place(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   bool session::place(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1036,7 +1036,7 @@ namespace plane
    void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      ::ca::applicationsp papp = ::null();
+      sp(::ca::application) papp = ::null();
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {

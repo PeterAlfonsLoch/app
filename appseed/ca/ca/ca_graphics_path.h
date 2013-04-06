@@ -133,6 +133,27 @@ namespace ca
 
    };
 
-   typedef smart_pointer < graphics_path > graphics_path_sp;
+
+   class CLASS_DECL_ca graphics_path_sp :
+      public smart_pointer < graphics_path >
+   {
+   public:
+
+      graphics_path_sp()
+      {
+      }
+
+      graphics_path_sp(const smart_pointer < graphics_path > & p) :
+         smart_pointer < graphics_path > (p)
+      {
+      }
+
+      graphics_path_sp(allocer allocer) :
+         smart_pointer < graphics_path > (allocer)
+      {
+      }
+
+   };
+
 
 } // namespace ca

@@ -7,7 +7,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderListView::SimpleFolderListView(::ca::applicationsp papp) :
+   SimpleFolderListView::SimpleFolderListView(sp(::ca::application) papp) :
       ca(papp),
       m_headerctrl(papp),
       ::userbase::view(papp),
@@ -75,7 +75,7 @@ namespace filemanager
    void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::ca::object * phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);  
-      if(phint != NULL)
+      if(phint != ::null())
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
          {
@@ -109,9 +109,7 @@ namespace filemanager
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
-         ::fs::item item;
-         item.m_strPath         = m_foldera.GetFolder(iItem).m_strPath;
-         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFolder(item);
+         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFolder(new::fs::item(m_foldera.GetFolder(iItem).m_strPath));
       }
    }
 

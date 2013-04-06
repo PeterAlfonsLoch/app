@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   main_view::main_view(::ca::applicationsp papp) :
+   main_view::main_view(sp(::ca::application) papp) :
       ca(papp),
       ::userbase::split_layout(papp),
       ::userbase::view(papp),
@@ -31,7 +31,7 @@ namespace fs
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
       set_position_rate(0, 0.2);
-      ::ca::create_context_sp cc(get_app());
+      sp(::ca::create_context) cc(allocer());
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();
@@ -46,7 +46,7 @@ namespace fs
 //      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
       layout();
-      SetTimer(123, 1000, NULL);
+      SetTimer(123, 1000, ::null());
 
 
    }

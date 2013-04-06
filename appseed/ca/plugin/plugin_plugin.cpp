@@ -169,7 +169,7 @@ namespace plugin
          string strId;
          strId.Format("npca2::%08x", (uint_ptr) m_psystem);
 
-         m_psystem->command().m_varTopicQuery["local_mutex_id"] = strId;
+         m_psystem->command()->m_varTopicQuery["local_mutex_id"] = strId;
 
          set_app(m_psystem);
 
@@ -243,7 +243,7 @@ namespace plugin
             return;
 
          if(m_dib.is_null())
-            m_dib.create(get_app());
+            m_dib.create(allocer());
 
          if(m_dib.is_null())
             return;

@@ -14,7 +14,7 @@ public:
    index                        m_iLastVisible;
 
 
-   XfplayerViewLines(::ca::applicationsp papp);
+   XfplayerViewLines(sp(::ca::application) papp);
 
 
    void SetBlend(double dBlend);

@@ -14,7 +14,7 @@
 
 
 
-typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
+typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
 
 
@@ -42,6 +42,7 @@ namespace ca
       m_mutex(this),
       ::ca::thread(::null()),
       m_mutexMatterLocator(this),
+      m_allocer(this),
       OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
       OAUTHLIB_CALLBACK_KEY         ("oauth_callback"),
       OAUTHLIB_VERSION_KEY          ("oauth_version"),
@@ -134,9 +135,13 @@ namespace ca
 
    {
 
+
       m_psignal = new ::ca::signal();
 
-      set_app(this);
+      if(get_app().is_null())
+      {
+         set_app(this);
+      }
 
       m_bInitializeProDevianMode = true;
 
@@ -223,7 +228,7 @@ namespace ca
       UNREFERENCED_PARAMETER(pszId);
    }
 
-   ::ca::applicationsp application::get_app() const
+   sp(::ca::application) application::get_app() const
    {
       return (::ca::application *) this;
    }
@@ -478,7 +483,6 @@ finishedCa2ModuleFolder:;
       if(is_system())
       {
          System.factory().cloneable_large < int_array > ();
-         System.factory().cloneable_large < raw_pointer > ();
       }
 
 
@@ -490,8 +494,8 @@ finishedCa2ModuleFolder:;
       ::ca::thread::s_bAllocReady = true;
       if(::ca::thread_sp::m_p == ::null())
       {
-         ::ca::thread_sp::create(this);
-         ::ca::smart_pointer < application_base >::create(this);
+         ::ca::thread_sp::create(allocer());
+         ::ca::smart_pointer < application_base >::create(allocer());
          ::ca::smart_pointer < application_base >::m_p->construct();
          ::ca::smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
          ::ca::add_ref(this);
@@ -502,7 +506,7 @@ finishedCa2ModuleFolder:;
       }
       else
       {
-         ::ca::smart_pointer < application_base >::create(this);
+         ::ca::smart_pointer < application_base >::create(allocer());
          ::ca::smart_pointer < application_base >::m_p->construct();
          ::ca::smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
          ::ca::add_ref(this);
@@ -647,17 +651,17 @@ finishedCa2ModuleFolder:;
       if(strSchemaSystem.has_char())
          strSchema = strSchemaSystem;
 
-      if(Sys(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
-         strLocale = Sys(this).directrix().m_varTopicQuery["locale"];
+      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
+         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"];
 
-      if(Sys(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
-         strSchema = Sys(this).directrix().m_varTopicQuery["schema"];
+      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
+         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"];
 
-      if(App(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
-         strLocale = App(this).directrix().m_varTopicQuery["locale"];
+      if(App(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
+         strLocale = App(this).directrix()->m_varTopicQuery["locale"];
 
-      if(App(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
-         strSchema = App(this).directrix().m_varTopicQuery["schema"];
+      if(App(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
+         strSchema = App(this).directrix()->m_varTopicQuery["schema"];
 
 
 
@@ -743,7 +747,7 @@ finishedCa2ModuleFolder:;
    }
 
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void application::on_request(sp(::ca::create_context) pcreatecontext)
    {
 
       ::ca::request_interface::on_request(pcreatecontext);
@@ -929,19 +933,7 @@ finishedCa2ModuleFolder:;
       m_psavings = ::null();
 
 
-
-      try
-      {
-         if(m_pcommandthread != ::null())
-         {
-            delete m_pcommandthread;
-         }
-      }
-      catch(...)
-      {
-      }
-      m_pcommandthread = ::null();
-
+      m_pcommandthread.release();
 
       release_exclusive();
 
@@ -1609,12 +1601,12 @@ finishedCa2ModuleFolder:;
 
    string application::get_local_mutex_id()
    {
-      return command().m_varTopicQuery["local_mutex_id"];
+      return command()->m_varTopicQuery["local_mutex_id"];
    }
 
    string application::get_global_mutex_id()
    {
-      return command().m_varTopicQuery["global_mutex_id"];
+      return command()->m_varTopicQuery["global_mutex_id"];
    }
 
    bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
@@ -1694,40 +1686,40 @@ finishedCa2ModuleFolder:;
       strHex.ReleaseBuffer(count * 2);
    }
 
-   ::ca::command_thread & application::command_central()
+   sp(::ca::command_thread) application::command_central()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
-   ::ca::command_thread & application::command()
+   sp(::ca::command_thread) application::command()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
-   ::ca::command_thread & application::guideline()
+   sp(::ca::command_thread) application::guideline()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
-   ::ca::command_thread & application::directrix()
+   sp(::ca::command_thread) application::directrix()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
-   ::ca::command_thread & application::axiom()
+   sp(::ca::command_thread) application::axiom()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
    bool application::verb()
    {
-      axiom().run();
+      axiom()->run();
       return true;
    }
 
-   ::ca::command_thread & application::creation()
+   sp(::ca::command_thread) application::creation()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
 } // namespace ca
@@ -4493,7 +4485,7 @@ namespace ca
    }
 
 
-   application_signal_object::application_signal_object(::ca::applicationsp papp, ::ca::signal * psignal, ::ca::e_application_signal esignal) :
+   application_signal_object::application_signal_object(sp(::ca::application) papp, ::ca::signal * psignal, ::ca::e_application_signal esignal) :
       ca(papp),
       ::ca::signal_object(psignal)
    {
@@ -4580,7 +4572,7 @@ namespace ca
    */
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
    {
 
       sp(::user::interaction) puiParent = ::null();
@@ -4610,7 +4602,7 @@ namespace ca
 
    }
 
-   sp(::user::interaction) application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       if(m_psession != ::null())
@@ -5069,27 +5061,27 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       if(is_system())
       {
-         if(guideline().m_varTopicQuery.propset().has_property("save_processing"))
+         if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
             System.savings().save(::ca::resource_processing);
          }
-         if(guideline().m_varTopicQuery.propset().has_property("save_blur_back"))
+         if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
             System.savings().save(::ca::resource_blur_background);
          }
-         if(guideline().m_varTopicQuery.propset().has_property("save_transparent_back"))
+         if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
             System.savings().save(::ca::resource_translucent_background);
          }
       }
 
-      if(directrix().m_varTopicQuery.propset().has_property("install"))
+      if(directrix()->m_varTopicQuery.propset().has_property("install"))
       {
          // ca level app install
          if(!Ex2OnAppInstall())
             return false;
       }
-      else if(directrix().m_varTopicQuery.propset().has_property("uninstall"))
+      else if(directrix()->m_varTopicQuery.propset().has_property("uninstall"))
       {
          // ca level app uninstall
          if(!Ex2OnAppUninstall())
@@ -5129,7 +5121,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
 
 
-         System.m_spcopydesk.create(this);
+         System.m_spcopydesk.create(allocer());
 
          if(!System.m_spcopydesk->initialize())
             return false;
@@ -5137,7 +5129,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       }
 
       if(is_system()
-         && command_thread().m_varTopicQuery["app"] != "core_netnodelite")
+         && command_thread()->m_varTopicQuery["app"] != "core_netnodelite")
       {
          System.http().defer_auto_initialize_proxy_configuration();
       }
@@ -5173,7 +5165,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          // that should be treated as ::ca::command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
-         ::ca::create_context * pcreatecontext = (::ca::create_context *) pbase->m_lparam;
+         sp(::ca::create_context) pcreatecontext = (sp(::ca::create_context)) pbase->m_lparam;
          try
          {
             on_request(pcreatecontext);
@@ -5499,7 +5491,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    {
       if(m_strId == "session" || m_strAppName == "session")
       {
-         if(!directrix().m_varTopicQuery.has_property("session_start"))
+         if(!directrix()->m_varTopicQuery.has_property("session_start"))
          {
             System.post_thread_message(WM_QUIT, 0, 0);
          }
@@ -5523,7 +5515,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       if(m_strId == "session")
       {
-         if(!directrix().m_varTopicQuery.has_property("session_start"))
+         if(!directrix()->m_varTopicQuery.has_property("session_start"))
          {
             System.post_thread_message(WM_QUIT, 0, 0);
          }
@@ -5664,7 +5656,7 @@ ret:
          peventReady->ResetEvent();
       }
 
-      ::ca::thread_sp::create(this);
+      ::ca::thread_sp::create(allocer());
       //dynamic_cast < ::ca::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
       dynamic_cast < ::ca::thread * > (::ca::thread_sp::m_p)->m_p = this;
       if(pbias != ::null())

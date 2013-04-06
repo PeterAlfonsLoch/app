@@ -145,7 +145,7 @@ namespace html
    class CLASS_DECL_ca2 elemental : public text_interface
    {
    public:
-      elemental(data * pdoc, elemental * pparent = NULL);
+      elemental(data * pdoc, elemental * pparent = ::null());
       virtual ~elemental();
       // always present property?! "text"
       ::ca::property_set     m_propertyset;

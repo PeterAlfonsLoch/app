@@ -76,7 +76,7 @@ namespace html
          if(style.matches(pszTag, pszClass, pszSubClass, pszName))
             return &style;
       }
-      return NULL;
+      return ::null();
    }
 
    const style * style_sheet::rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const
@@ -92,7 +92,7 @@ namespace html
          if(style.matches_border_width(pszTag, pszClass, pszSubClass, pszName, f))
             return &style;
       }
-      return NULL;
+      return ::null();
    }
 
    const style * style_sheet::rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f) const
@@ -108,7 +108,7 @@ namespace html
          if(style.matches_border_color(pszTag, pszClass, pszSubClass, pszName, cr))
             return &style;
       }
-      return NULL;
+      return ::null();
    }
 
    const style * style_sheet::rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr) const
@@ -118,18 +118,18 @@ namespace html
 
    style * style_sheet::greater(style * pstyle1, style * pstyle2) const
    {
-      if(pstyle1 == NULL)
+      if(pstyle1 == ::null())
       {
-         if(pstyle2 == NULL)
+         if(pstyle2 == ::null())
          {
-            return NULL;
+            return ::null();
          }
          else
          {
             return pstyle2;
          }
       }
-      else if(pstyle2 == NULL)
+      else if(pstyle2 == ::null())
       {
          return pstyle1;
       }
@@ -141,7 +141,7 @@ namespace html
          else if(&style == pstyle2)
             return pstyle2;
       }
-      return NULL;
+      return ::null();
    }
 
    const style * style_sheet::greater(const style * pstyle1, const style * pstyle2) const
@@ -152,9 +152,9 @@ namespace html
 
    bool style_sheet::greater(style * & pstyleRet, index & iRet, var & varRet, style * pstyle1, index i1, const var & var1, style * pstyle2, index i2, const var & var2) const
    {
-      if(pstyle1 == NULL)
+      if(pstyle1 == ::null())
       {
-         if(pstyle2 == NULL)
+         if(pstyle2 == ::null())
          {
             return false;
          }
@@ -166,7 +166,7 @@ namespace html
             return true;
          }
       }
-      else if(pstyle2 == NULL)
+      else if(pstyle2 == ::null())
       {
          pstyleRet   = pstyle1;
          iRet        = i1;

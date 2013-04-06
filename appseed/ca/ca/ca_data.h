@@ -61,7 +61,7 @@ namespace ca
 
       mutex  *           m_pmutex;
 
-      data(::ca::applicationsp papp);
+      data(sp(::ca::application) papp);
       virtual ~data();
 
 

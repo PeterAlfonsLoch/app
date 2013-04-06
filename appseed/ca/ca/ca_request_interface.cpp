@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   void request_interface::create(::ca::create_context * pcreatecontext)
+   void request_interface::create(sp(::ca::create_context) pcreatecontext)
    {
       if(pcreatecontext->m_spCommandLine->m_varQuery["client_only"] != 0)
       {
@@ -16,52 +16,52 @@ namespace ca
 
    void request_interface::add_line(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      ::ca::create_context_sp createcontext(&commandcentral);
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
-      commandcentral.consolidate(createcontext);
-      System.command().consolidate(createcontext);
+      commandcentral->consolidate(createcontext);
+      System.command()->consolidate(createcontext);
       create(createcontext);
    }
 
    void request_interface::add_line_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      ::ca::create_context_sp createcontext(&commandcentral);
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
-      commandcentral.consolidate(createcontext);
-      System.command().consolidate(createcontext);
+      commandcentral->consolidate(createcontext);
+      System.command()->consolidate(createcontext);
       create(createcontext);
    }
 
    void request_interface::add_fork(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      ::ca::create_context_sp createcontext(&commandcentral);
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
-      commandcentral.consolidate(createcontext);
-      System.command().consolidate(createcontext);
+      commandcentral->consolidate(createcontext);
+      System.command()->consolidate(createcontext);
       create(createcontext);
    }
 
    void request_interface::add_fork_uri(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      ::ca::create_context_sp createcontext(&commandcentral);
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
-      commandcentral.consolidate(createcontext);
-      System.command().consolidate(createcontext);
+      commandcentral->consolidate(createcontext);
+      System.command()->consolidate(createcontext);
       create(createcontext);
    }
 
    void request_interface::request(var & varFile)
    {
 
-      ::ca::create_context_sp createcontext(&get_app()->cast_app < ::ca::application > ().command());
+      sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
 
@@ -74,7 +74,7 @@ namespace ca
    void request_interface::request(var & varFile, var & varQuery)
    {
 
-      ::ca::create_context_sp createcontext(&get_app()->cast_app < ::ca::application > ().command());
+      sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
       createcontext->m_spCommandLine->m_varQuery             = varQuery;
@@ -90,10 +90,10 @@ namespace ca
 
    }
 
-   void request_interface::request(::ca::command_line * pcommandline)
+   void request_interface::request(sp(::ca::command_line) pcommandline)
    {
 
-      ::ca::create_context_sp createcontext(get_app());
+      sp(::ca::create_context) createcontext(allocer());
 
       createcontext->m_spCommandLine = pcommandline;
 
@@ -101,12 +101,12 @@ namespace ca
 
    }
 
-   void request_interface::request(::ca::create_context * pcreatecontext)
+   void request_interface::request(sp(::ca::create_context) pcreatecontext)
    {
       on_request(pcreatecontext);
    }
 
-   void request_interface::on_request(::ca::create_context * pcreatecontext)
+   void request_interface::on_request(sp(::ca::create_context) pcreatecontext)
    {
       UNREFERENCED_PARAMETER(pcreatecontext);
    }

@@ -84,7 +84,7 @@ namespace user
       strsize                 m_iSelEnd;
 
 
-      plain_text_data(::ca::applicationsp papp);
+      plain_text_data(sp(::ca::application) papp);
       virtual ~plain_text_data();
 
 
@@ -94,8 +94,8 @@ namespace user
    private:
 
       plain_text_data(const plain_text_data & ) :
-         m_editfile(NULL),
-         ::ca::tree_data(NULL)
+         m_editfile(::null()),
+         ::ca::tree_data(::null())
       {
       }
 

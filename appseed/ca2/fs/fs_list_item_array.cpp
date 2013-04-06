@@ -16,7 +16,7 @@ namespace fs
       return this->element_at(i, fCompare);
    }
 
-   list_item_array::list_item_array(::ca::applicationsp papp) :
+   list_item_array::list_item_array(sp(::ca::application) papp) :
       ca(papp)
    {
       m_itema.set_app(papp);

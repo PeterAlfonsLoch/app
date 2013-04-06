@@ -25,7 +25,7 @@ public:
    };
 
 
-   clock_interface(::ca::applicationsp papp);
+   clock_interface(sp(::ca::application) papp);
 
 
    virtual void GetRect(LPRECT lprect, enum EElement eelement);

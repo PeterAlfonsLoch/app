@@ -36,7 +36,7 @@ public:
    ::userbase::menu     m_menu;
 
 
-   simple_menu_bar(::ca::applicationsp papp);
+   simple_menu_bar(sp(::ca::application) papp);
    virtual ~simple_menu_bar();
 
 

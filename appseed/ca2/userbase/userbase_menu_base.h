@@ -14,7 +14,7 @@ namespace userbase
       sp(menu_item)  m_pitem;
 
 
-      menu_base(::ca::applicationsp papp);
+      menu_base(sp(::ca::application) papp);
       virtual ~menu_base();
 
 

@@ -5,12 +5,12 @@ namespace bergedge
 {
 
 
-   frame::frame(::ca::applicationsp papp) :
+   frame::frame(sp(::ca::application) papp) :
       ca(papp),
       simple_frame_window(papp),
       ::ca::message_window_simple_callback(papp)
    {
-      m_pdocument = NULL;
+      m_pdocument = ::null();
       m_iFrameData = 10;
       m_dataid = "ca2::frame";
       m_iAnimateStep = 0;
@@ -22,7 +22,7 @@ namespace bergedge
       m_bLayered = true;
       m_etranslucency = TranslucencyPresent;
 
-      m_ppaneview = NULL;
+      m_ppaneview = ::null();
 
       m_bMouseOver = false;
 
@@ -36,7 +36,7 @@ namespace bergedge
    {
       SCAST_PTR(::ca::message::create, pcreate, pobj);
 
-      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
+      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == ::null();
 
       if(pobj->previous())
          return;
@@ -139,7 +139,7 @@ namespace bergedge
       }
       else
       {
-         SetTimer(3, 500, NULL);
+         SetTimer(3, 500, ::null());
       }
    }
 
@@ -176,9 +176,9 @@ namespace bergedge
 //      ::cube::application * pappParent = &App(Application.m_papp);
 //      ::cube::application * papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE
-      && m_pdocument != NULL
-      && m_pdocument->m_pplatformdocument != NULL
-      && m_pdocument->m_pplatformdocument->get_platform_frame() != NULL)
+      && m_pdocument != ::null()
+      && m_pdocument->m_pplatformdocument != ::null()
+      && m_pdocument->m_pplatformdocument->get_platform_frame() != ::null())
       {
          rect rectClient;
          GetClientRect(rectClient);
@@ -309,7 +309,7 @@ namespace bergedge
 /*         else if(pbase->m_lparam == 1)
          {
             m_bTimerOn = true;
-            SetTimer(1000, 23, NULL);
+            SetTimer(1000, 23, ::null());
          }
          else if(pbase->m_lparam == 0)
          {

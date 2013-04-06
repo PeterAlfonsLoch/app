@@ -1,6 +1,6 @@
 #include "framework.h"
 
-file_manager_form_view::file_manager_form_view(::ca::applicationsp papp) :
+file_manager_form_view::file_manager_form_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -18,7 +18,7 @@ void file_manager_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::obj
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    sp(::filemanager::document) pdoc =  (GetFileManager());
-   if(pdoc != NULL)
+   if(pdoc != ::null())
    {
       pdoc->update_all_views(pSender, lHint, phint);
    }
@@ -35,7 +35,7 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          file_manager_form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager_add_location_lfs.xhtml";
-         get_document()->update_all_views(NULL, 0, &uh);
+         get_document()->update_all_views(::null(), 0, &uh);
          sp(::user::interaction) pguie = get_child_by_name("lfs");
          sp(text_interface) ptext =  (pguie.m_p);
          ptext->_001SetText(GetFileManagerItem().m_strPath);
@@ -45,7 +45,7 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          file_manager_form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager_add_location_ftp.xhtml";
-         get_document()->update_all_views(NULL, 0, &uh);
+         get_document()->update_all_views(::null(), 0, &uh);
       }
       else if(pevent->m_puie->m_id == "submit")
       {
@@ -74,7 +74,7 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
             ptext =  (pguie.m_p);
             ptext->_001GetText(uh.m_strReplace);
             sp(::filemanager::document) pdoc =  (GetFileManager());
-            pdoc->update_all_views(NULL, 0, &uh);
+            pdoc->update_all_views(::null(), 0, &uh);
          }
       }
    }

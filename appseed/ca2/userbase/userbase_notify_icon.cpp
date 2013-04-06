@@ -4,7 +4,7 @@
 namespace userbase
 {
 
-   notify_icon::notify_icon(::ca::applicationsp papp) :
+   notify_icon::notify_icon(sp(::ca::application) papp) :
       ca(papp)
    {
 #ifdef WINDOWSEX      

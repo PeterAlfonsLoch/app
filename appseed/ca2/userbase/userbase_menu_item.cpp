@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   menu_item::menu_item(::ca::applicationsp papp) :
+   menu_item::menu_item(sp(::ca::application) papp) :
       ca(papp),
       m_button(papp)
    {
@@ -126,7 +126,7 @@ namespace userbase
    menu_item * menu_item::find(id id)
    {
       if(!m_spitema.is_set())
-         return NULL;
+         return ::null();
       return m_spitema->find(id);
    }
 
@@ -147,10 +147,10 @@ namespace userbase
          if(pitem->m_id  == id)
             return pitem;
          pitemFind = pitem->find(id);
-         if(pitemFind != NULL)
+         if(pitemFind != ::null())
             return pitemFind;
       }
-      return NULL;
+      return ::null();
    }
 
 

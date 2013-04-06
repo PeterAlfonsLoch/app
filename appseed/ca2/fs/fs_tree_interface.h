@@ -25,7 +25,7 @@ namespace fs
       int32_t                     m_iDefaultImageSelected;
 
          
-      tree_interface(::ca::applicationsp papp);
+      tree_interface(sp(::ca::application) papp);
       virtual ~tree_interface();
 
 

@@ -18,13 +18,13 @@ namespace cubebase
    {
    }
 
-   ::ca::applicationsp application::get_system()
+   sp(::ca::application) application::get_system()
    {
       return new application();
    }
 
 
-typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
+typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
    void application::CubeOnFactoryExchange()
    {
@@ -51,7 +51,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
 
       throw todo(this);
 
-      //return NULL; // not implemented... yet!! you may start!!
+      //return ::null(); // not implemented... yet!! you may start!!
 
    #endif
 
@@ -69,7 +69,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
 
          CubeOnFactoryExchange();
 
-         ::ca::smart_pointer < ::cubebase::application >::create(this);
+         ::ca::smart_pointer < ::cubebase::application >::create(allocer());
 
          if(::ca::smart_pointer < ::cubebase::application >::is_null())
             return false;
@@ -82,24 +82,24 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
       if(!::plane::application::initialize1())
          return false;
 
-      if(m_psystem == NULL)
+      if(m_psystem == ::null())
          return false;
 
-      if(m_psession == NULL)
+      if(m_psession == ::null())
          return false;
 
-      if(m_psystem->m_pcube == NULL && !is_cube())
+      if(m_psystem->m_pcube == ::null() && !is_cube())
       {
 
-         ::ca::applicationsp papp            = System.create_application("application", "cube", true, NULL);
-         if(papp == NULL)
+         sp(::ca::application) papp            = System.create_application("application", "cube", true, ::null());
+         if(papp == ::null())
             return false;
 
          sp(::cube::cube) pcube                = papp;
-         if(pcube == NULL)
+         if(pcube == ::null())
          {
             papp.release();
-            return NULL;
+            return false;
          }
 
          pcube->m_psystem                    = m_psystem;
@@ -107,25 +107,25 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
          m_psystem->m_pcube                  = pcube;
          m_psystem->m_pcubeInterface         = pcube;
 
-         //pcube->directrix().consolidate(&m_psystem->directrix());
+         //pcube->directrix()->consolidate(&m_psystem->directrix());
 
-         //if(!pcube->start_application(true, NULL))
+         //if(!pcube->start_application(true, ::null()))
          //   return false;
 
       }
 
-      if(m_psession->m_pbergedge == NULL && !is_cube() && !is_bergedge())
+      if(m_psession->m_pbergedge == ::null() && !is_cube() && !is_bergedge())
       {
 
-         ::ca::applicationsp papp            = System.create_application("application", "bergedge", true, NULL);
-         if(papp == NULL)
+         sp(::ca::application) papp            = System.create_application("application", "bergedge", true, ::null());
+         if(papp == ::null())
             return false;
 
          ::bergedge::bergedge * pbergedge    = dynamic_cast < ::bergedge::bergedge * > (papp.m_p);
-         if(pbergedge == NULL)
+         if(pbergedge == ::null())
          {
             delete papp;
-            return NULL;
+            return false;
          }
 
          pbergedge->m_psystem                = m_psystem;
@@ -133,7 +133,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
          m_psession->m_pbergedge             = pbergedge;
          m_psession->m_pbergedgeInterface    = pbergedge;
 
-         //if(!pbergedge->start_application(true, NULL))
+         //if(!pbergedge->start_application(true, ::null()))
          //   return false;
 
       }
@@ -182,7 +182,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::applicationsp papp);
 
          string strMessage = e.get_message();
 
-         App(this).simple_message_box(NULL, strMessage, MB_OK);
+         App(this).simple_message_box(::null(), strMessage, MB_OK);
 
          return ::ca::null();
 

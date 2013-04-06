@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         tree_view::tree_view(::ca::applicationsp papp) :
+         tree_view::tree_view(sp(::ca::application) papp) :
             ca(papp),
             ::userbase::view(papp),
             ::user::scroll_view(papp),
@@ -58,7 +58,7 @@ namespace filemanager
             }
             else
             {
-               System.simple_message_box(NULL, "error"); // simple parsing error check
+               System.simple_message_box(::null(), "error"); // simple parsing error check
                return;
             }
 
@@ -68,7 +68,7 @@ namespace filemanager
             ::ca::tree_item * pdataitemChild;
 
             pdataitemParent = FindTreeItem(m_iParentFolder);
-            if(pdataitemParent == NULL)
+            if(pdataitemParent == ::null())
             {
                pdataitemParent = get_base_item();
             }
@@ -134,12 +134,12 @@ namespace filemanager
 
                pdataitemChild = pdataitemParent->get_child_by_user_data(iNewItem);
 
-               if(pdataitemChild == NULL)
+               if(pdataitemChild == ::null())
                {
                   pdataitemChild = create_item(pdataitemParent, ::ca::RelativeLastChild);
                }
 
-               if(pdataitemChild->m_pitemdata == NULL)
+               if(pdataitemChild->m_pitemdata == ::null())
                {
                   pdataitemChild->m_pitemdata = new ::ca::simple_tree_item_data();
                }
@@ -167,7 +167,7 @@ namespace filemanager
             int32_t iUser;
 
             if(iFolder < 0)
-               return NULL;
+               return ::null();
 
             iUser = m_foldera.FindAbsolute(iFolder);
             if(iUser >= 0)
@@ -175,7 +175,7 @@ namespace filemanager
                return get_base_item()->find_next_by_user_data(iUser);
             }
             else
-               return NULL;
+               return ::null();
          }
 
          int32_t FolderArray::FindAbsolute(int64_t iFolder)

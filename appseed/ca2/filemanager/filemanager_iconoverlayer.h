@@ -8,7 +8,7 @@ namespace filemanager
       virtual public ::ca::object
    {
    public:
-      iconoverlayer(::ca::applicationsp papp);
+      iconoverlayer(sp(::ca::application) papp);
       virtual ~iconoverlayer();
 
       virtual bool initialize() = 0;

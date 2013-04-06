@@ -263,7 +263,8 @@ namespace user
       id GetControlCommand(id id);
    };
 
-   class control_view_impl
+   class control_view_impl :
+      virtual public ::ca::object
    {
    public:
 

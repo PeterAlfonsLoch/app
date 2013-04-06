@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-io_exception::io_exception(::ca::applicationsp papp) :
+io_exception::io_exception(sp(::ca::application) papp) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),
@@ -11,7 +11,7 @@ io_exception::io_exception(::ca::applicationsp papp) :
 }
 
 
-io_exception::io_exception(::ca::applicationsp papp, const char * pszMessage) :
+io_exception::io_exception(sp(::ca::application) papp, const char * pszMessage) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

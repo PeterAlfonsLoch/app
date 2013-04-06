@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-error_exception::error_exception(::ca::applicationsp papp, const char * pszError) :
+error_exception::error_exception(sp(::ca::application) papp, const char * pszError) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp)

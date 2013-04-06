@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   data::data(::ca::applicationsp papp) :
+   data::data(sp(::ca::application) papp) :
       ca(papp),
       ::fs::tree_data(papp),
       ::fs::list_data(papp)
@@ -16,10 +16,10 @@ namespace filemanager
       m_bFileSize                = false;
       m_bPassBk                  = false;
       m_bIconView                = false;
-      m_pholderFileList          = NULL;
-      m_ptreeFileTreeMerge       = NULL;
-      m_pdocumentSave            = NULL;
-      m_ptemplate                = NULL;
+      m_pholderFileList          = ::null();
+      m_ptreeFileTreeMerge       = ::null();
+      m_pdocumentSave            = ::null();
+      m_ptemplate                = ::null();
       m_bSetBergedgeTopicFile    = false;
    }
 
@@ -31,9 +31,9 @@ namespace filemanager
    void data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
 
          m_pcallback->OnFileManagerOpenContextMenuFolder(this, item, straCommand, straCommandTitle);
@@ -46,9 +46,9 @@ namespace filemanager
    void data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema)
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
 
          m_pcallback->OnFileManagerOpenContextMenuFile(this, itema);
@@ -61,9 +61,9 @@ namespace filemanager
    void data::OnFileManagerOpenContextMenu()
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
 
          m_pcallback->OnFileManagerOpenContextMenu(this);
@@ -76,7 +76,7 @@ namespace filemanager
    void data::OnFileManagerOpenFile(const ::fs::item_array & itema)
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
       if(is_saving() && itema.get_count() == 1)
       {
@@ -86,11 +86,11 @@ namespace filemanager
          uh.m_pmanager = m_pmanager;
          uh.m_strPath = itema[0].m_strPath;
          uh.set_type(FileManagerViewUpdateHint::TypeSaveAsOK);
-         pdoc->update_all_views(NULL, 0, &uh);
-         m_pdocumentSave = NULL;
+         pdoc->update_all_views(::null(), 0, &uh);
+         m_pdocumentSave = ::null();
 
       }
-      else if(m_pcallback != NULL)
+      else if(m_pcallback != ::null())
       {
          
          var varFile;
@@ -146,9 +146,9 @@ namespace filemanager
    void data::OnFileManagerOpenFolder(sp(::fs::item)  item)
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
 
          m_pcallback->OnFileManagerOpenFolder(this, item);
@@ -161,9 +161,9 @@ namespace filemanager
    void data::OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema)
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
 
          m_pcallback->OnFileManagerItemUpdate(this, pcmdui, itema);
@@ -176,9 +176,9 @@ namespace filemanager
    void data::OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema)
    {
 
-      ASSERT(m_pcallback != NULL);
+      ASSERT(m_pcallback != ::null());
 
-      if(m_pcallback != NULL)
+      if(m_pcallback != ::null())
       {
 
          m_pcallback->OnFileManagerItemCommand(this, pszId, itema);
@@ -191,9 +191,9 @@ namespace filemanager
    void data::FileManagerBrowse(sp(::fs::item)  item)
    {
 
-      ASSERT(m_pmanager != NULL);
+      ASSERT(m_pmanager != ::null());
 
-      if(m_pmanager != NULL)
+      if(m_pmanager != ::null())
       {
 
          m_pmanager->FileManagerBrowse(item);
@@ -205,9 +205,9 @@ namespace filemanager
    void data::FileManagerBrowse(const char * lpcsz)
    {
       
-      ASSERT(m_pmanager != NULL);
+      ASSERT(m_pmanager != ::null());
       
-      if(m_pmanager != NULL)
+      if(m_pmanager != ::null())
       {
 
          m_pmanager->FileManagerBrowse(lpcsz);
@@ -220,7 +220,7 @@ namespace filemanager
    bool data::is_saving()
    {
 
-      return m_pdocumentSave != NULL;
+      return m_pdocumentSave != ::null();
 
    }
 

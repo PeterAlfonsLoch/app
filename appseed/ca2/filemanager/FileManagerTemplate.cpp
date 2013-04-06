@@ -10,32 +10,32 @@ FileManagerTemplate::FileManagerTemplate(::filemanager::filemanager * pfilemanag
 
    m_iTemplate = -1;
 
-   m_pdialogbar = NULL;
-   m_pfilelistcallback = NULL;
+   m_pdialogbar = ::null();
+   m_pfilelistcallback = ::null();
 
    //m_uiLevelUp       = 0xffffffff;
 //   m_uiMenuBar       = 0xffffffff;
    m_iNextDocument   = 0;
 
-   m_pdoctemplate = NULL;
-   m_pdoctemplateChild = NULL;
-   m_pdoctemplateChildList = NULL;
+   m_pdoctemplate = ::null();
+   m_pdoctemplateChild = ::null();
+   m_pdoctemplateChildList = ::null();
 }
 
 FileManagerTemplate::~FileManagerTemplate()
 {
-   if(m_pdoctemplate != NULL)
+   if(m_pdoctemplate != ::null())
    {
       delete m_pdoctemplate;
    }
 }
 
-sp(::filemanager::document) FileManagerTemplate::open(::ca::create_context * pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
+sp(::filemanager::document) FileManagerTemplate::open(sp(::ca::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
 {
    sp(::filemanager::document) pdoc =  (m_pdoctemplateMain->open_document_file(pcreatecontext));
-   if(pdoc != NULL)
+   if(pdoc != ::null())
    {
-      if(pfilemanagerdata == NULL)
+      if(pfilemanagerdata == ::null())
       {
          pfilemanagerdata = new filemanager::data(get_app());
       }
@@ -46,22 +46,22 @@ sp(::filemanager::document) FileManagerTemplate::open(::ca::create_context * pcr
       pdoc->get_filemanager_data()->m_ptemplate = this;
       pdoc->get_filemanager_data()->m_iTemplate = m_iTemplate;
       pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
-      pdoc->get_filemanager_data()->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
+      pdoc->get_filemanager_data()->m_bTransparentBackground = pcreatecontext == ::null() ? true : pcreatecontext->m_bTransparentBackground;
       string strId;
       strId.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
       pdoc->get_filemanager_data()->m_strDISection = m_strDISection + "." + strId;
       pdoc->get_filemanager_data()->m_bFileSize = true;
-      pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible);
+      pdoc->Initialize(pcreatecontext == ::null() ? true : pcreatecontext->m_bMakeVisible);
       return pdoc;
    }
-   return NULL;
+   return ::null();
 }
 
 sp(::filemanager::document) FileManagerTemplate::create_new_document(
    FileManagerCallbackInterface * pcallback)
 {
    sp(::filemanager::document) pdoc =  (m_pdoctemplate->create_new_document());
-   if(pdoc != NULL)
+   if(pdoc != ::null())
    {
 
       pdoc->get_filemanager_data()->m_pcallback       = pcallback;
@@ -74,19 +74,19 @@ sp(::filemanager::document) FileManagerTemplate::create_new_document(
 
       return pdoc;
    }
-   return NULL;
+   return ::null();
 }
 
 
 sp(::filemanager::document) FileManagerTemplate::OpenChild(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, filemanager::data * pfilemanagerdata)
 {
-   ::ca::create_context_sp createcontext(get_app());
+   sp(::ca::create_context) createcontext(allocer());
    createcontext->m_bMakeVisible = false;
    createcontext->m_puiParent = pwndParent;
    sp(::filemanager::document) pdoc =  (m_pdoctemplateChild->open_document_file(createcontext));
-   if(pdoc != NULL)
+   if(pdoc != ::null())
    {
-      if(pfilemanagerdata == NULL)
+      if(pfilemanagerdata == ::null())
       {
          pfilemanagerdata = new ::filemanager::data(get_app());
       }
@@ -105,22 +105,22 @@ sp(::filemanager::document) FileManagerTemplate::OpenChild(bool bMakeVisible, bo
       pdoc->Initialize(bMakeVisible);
       return pdoc;
    }
-   return NULL;
+   return ::null();
 }
 
 
 sp(::filemanager::document) FileManagerTemplate::open_child_list(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
 {
    UNREFERENCED_PARAMETER(bMakeVisible);
-   ::ca::create_context_sp createcontext(get_app());
+   sp(::ca::create_context) createcontext(allocer());
    createcontext->m_bMakeVisible = false;
    createcontext->m_puiParent = pwndParent;
    sp(::filemanager::document) pdoc =  (m_pdoctemplateChildList->open_document_file(createcontext));
-   if(pdoc != NULL)
+   if(pdoc != ::null())
    {
 //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
 //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
-      if(pfilemanagerdata == NULL)
+      if(pfilemanagerdata == ::null())
       {
          pfilemanagerdata = new filemanager::data(get_app());
       }
@@ -138,7 +138,7 @@ sp(::filemanager::document) FileManagerTemplate::open_child_list(bool bMakeVisib
 
       return pdoc;
    }
-   return NULL;
+   return ::null();
 }
 
 void FileManagerTemplate::Initialize(int32_t iTemplate, const char * pszMatter)

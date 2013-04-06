@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      validate::validate(::ca::applicationsp papp, const char * pszForm, bool bAuth, bool bInteractive) :
+      validate::validate(sp(::ca::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
          ca(papp),
          ::fontopus::validate(papp, pszForm, bAuth, bInteractive),
          m_netcfg(papp)
@@ -18,8 +18,8 @@ namespace ca
          m_bAuth          = bAuth;
          m_strForm               = pszForm;
          m_bDeferRegistration    = false;
-         ::ca::applicationsp pgenapp = (papp);
-         if(pgenapp != NULL)
+         sp(::ca::application) pgenapp = (papp);
+         if(pgenapp != ::null())
          {
             try
             {
@@ -36,12 +36,12 @@ namespace ca
             System.type_info < form_document > (),
             System.type_info < simple_main_frame > (),
             System.type_info < userex::pane_tab_view > ());
-         m_pauth           = NULL;
-         m_pviewAuth       = NULL;
-         m_pdocAuth        = NULL;
-         m_pdoc            = NULL;
-         m_ptabview        = NULL;
-         m_pvOldWindow     = NULL;
+         m_pauth           = ::null();
+         m_pviewAuth       = ::null();
+         m_pdocAuth        = ::null();
+         m_pdoc            = ::null();
+         m_ptabview        = ::null();
+         m_pvOldWindow     = ::null();
       }
 
       validate::~validate()
@@ -56,12 +56,12 @@ namespace ca
       void validate::close_all()
       {
 
-         if(m_ptabview != NULL)
+         if(m_ptabview != ::null())
          {
             m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
          }
 
-         if(m_ptemplatePane != NULL)
+         if(m_ptemplatePane != ::null())
          {
             m_ptemplatePane->close_all_documents(FALSE);
          }
@@ -73,7 +73,7 @@ namespace ca
 
          if(m_loginthread.m_strLicense.is_empty())
          {
-            m_pviewAuth->SetTimer(1984, 484, NULL);
+            m_pviewAuth->SetTimer(1984, 484, ::null());
          }
          ::ca::live_signal livesignal;
          livesignal.keep(get_app());
@@ -87,10 +87,10 @@ namespace ca
       void validate::ensure_main_document()
       {
 
-         if(m_pdoc != NULL)
+         if(m_pdoc != ::null())
             return;
 
-         ::ca::create_context_sp createcontext(get_app());
+         sp(::ca::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
          createcontext->m_bOuterPopupAlertLike = true;
@@ -158,7 +158,7 @@ namespace ca
 
             sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
             sp(text_interface) ptext =  (pguie.m_p);
-            if(ptext != NULL)
+            if(ptext != ::null())
             {
                ptext->_001SetText(m_loginthread.m_strUsername);
                if(m_loginthread.m_strUsername.is_empty())
@@ -178,7 +178,7 @@ namespace ca
       {
 
          rect rectOpen;
-         if(m_ptabview->GetParentFrame()->get_parent() == NULL)
+         if(m_ptabview->GetParentFrame()->get_parent() == ::null())
          {
 
             System.get_screen_rect(rectOpen);
@@ -196,7 +196,7 @@ namespace ca
          int32_t iHeight = rectOpen.height();
          rectOpen.deflate(iWidth / 5, iHeight / 5);
          sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
-         if(pframe != NULL)
+         if(pframe != ::null())
          {
             pframe->m_bblur_Background = true;
          }
@@ -208,7 +208,7 @@ namespace ca
             TRACE("AttachedThreadInput");
          }
 #endif
-   /*      if(System.m_puiInitialPlaceHolderContainer != NULL)
+   /*      if(System.m_puiInitialPlaceHolderContainer != ::null())
          {
             System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
          }
@@ -223,7 +223,7 @@ namespace ca
             rectOpen.left, rectOpen.top,
             rectOpen.width(), rectOpen.height(),
             SWP_SHOWWINDOW);
-/*         if(m_ptabview->GetTopLevelFrame()->get_parent() != NULL)
+/*         if(m_ptabview->GetTopLevelFrame()->get_parent() != ::null())
          {
             try
             {
@@ -279,7 +279,7 @@ namespace ca
          case 1:
             {
                m_pdocAuth = Cube.userex().create_child_form(this, pcreatordata->m_pholder);
-               if(m_pdocAuth != NULL)
+               if(m_pdocAuth != ::null())
                {
                   m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
                   m_pviewAuth->m_pcallback = this;
@@ -308,7 +308,7 @@ namespace ca
             }
             break;
          }
-         if(pcreatordata->m_pwnd != NULL)
+         if(pcreatordata->m_pwnd != ::null())
          {
             pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
          }
@@ -340,17 +340,17 @@ namespace ca
          straHash.remove_all();
          straSource.remove_all();
    /*#if !core_level_1 && !core_level_2
-         SetDllDirectory(NULL);
+         SetDllDirectory(::null());
    #endif
          ::LoadLibraryA("salt.dll");
          uint32_t dwNeeded;
-         if(!EnumProcessModules(::GetCurrentProcess(),  NULL,  0,  &dwNeeded))
+         if(!EnumProcessModules(::GetCurrentProcess(),  ::null(),  0,  &dwNeeded))
          {
             return;
          }
          uint32_t dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
          HMODULE * pmodulea = new HMODULE[dwAlloc / sizeof(HMODULE)];
-         if(pmodulea == NULL)
+         if(pmodulea == ::null())
             return;
          if(!EnumProcessModules(::GetCurrentProcess(),  pmodulea,  dwAlloc,  &dwNeeded))
          {
@@ -478,7 +478,7 @@ namespace ca
             if(pevent->m_puie->m_id == "submit" ||
                pevent->m_eevent == ::user::event_enter_key)
             {
-               if(m_loginthread.get_os_data() != NULL)
+               if(m_loginthread.get_os_data() != ::null())
                   return true;
                m_pviewAuth->KillTimer(1984);
                m_loginthread.oprop("defer_registration") = oprop("defer_registration");
@@ -506,10 +506,10 @@ namespace ca
                   ptext->_001GetText(m_pauth->m_strPassword);
                }
                ::oswindow oswindowPrevious = (::oswindow) m_pvOldWindow;
-               if(oswindowPrevious != NULL)
+               if(oswindowPrevious != ::null())
                {
                   sp(::user::interaction) puiPrevious = System.window_from_os_data(oswindowPrevious);
-                  if(puiPrevious != NULL)
+                  if(puiPrevious != ::null())
                   {
                      if(puiPrevious->SetForegroundWindow())
                      {
@@ -571,12 +571,12 @@ namespace ca
          string strUsername = m_loginthread.m_strUsername;
 
          m_bLicense = false;
-         m_puser = NULL;
+         m_puser = ::null();
 
-         if(m_pdocAuth != NULL)
+         if(m_pdocAuth != ::null())
          {
 
-            m_pdocAuth->get_html_data()->m_puser = NULL;
+            m_pdocAuth->get_html_data()->m_puser = ::null();
 
          }
 
@@ -680,7 +680,7 @@ namespace ca
 
          ::fontopus::validate::authentication_succeeded();
 
-         if(m_ptabview != NULL)
+         if(m_ptabview != ::null())
          {
             m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
          }
@@ -689,7 +689,7 @@ namespace ca
 
       validate::auth * validate::get_auth()
       {
-         ::ca::create_context_sp createcontext(get_app());
+         sp(::ca::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = true;
          sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
          userex::pane_tab_view * pview = pdoc->get_typed_view < userex::pane_tab_view > ();

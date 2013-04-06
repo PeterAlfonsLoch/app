@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   form::form(::ca::applicationsp papp) :
+   form::form(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -70,7 +70,7 @@ namespace user
 
          }
 
-         if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol.m_p) != ::null())
+         if( (pdescriptor->m_pcontrol.m_p) != ::null())
          {
             //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeoswindow_();
             //if(wndidTemp != ::null())

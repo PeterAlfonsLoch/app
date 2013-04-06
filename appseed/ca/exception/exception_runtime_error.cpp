@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-runtime_error::runtime_error(::ca::applicationsp papp, const char * pszError) :
+runtime_error::runtime_error(sp(::ca::application) papp, const char * pszError) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

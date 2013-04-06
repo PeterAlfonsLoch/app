@@ -15,11 +15,11 @@ namespace nature
    public:
 
 
-      document(::ca::applicationsp papp);
+      document(sp(::ca::application) papp);
       virtual ~document();
 
       ::view *     get_nature_view();
-      frame *    get_nature_frame();
+      sp(frame)    get_nature_frame();
       
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);

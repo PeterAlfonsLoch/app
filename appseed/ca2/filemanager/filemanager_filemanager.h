@@ -45,10 +45,10 @@ namespace filemanager
 
       virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument);
 
-      string get_initial_browse_path(const char * pszDefault = NULL);
+      string get_initial_browse_path(const char * pszDefault = ::null());
 
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
 
    };

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 single_document_template::single_document_template(
-   ::ca::applicationsp papp, 
+   sp(::ca::application) papp, 
    const char * pszMatter,
    ::ca::type_info pDocClass, ::ca::type_info pFrameClass,
    ::ca::type_info pViewClass) :
@@ -53,7 +53,7 @@ void single_document_template::remove_document(sp(::user::document_interface) pd
 /////////////////////////////////////////////////////////////////////////////
 // single_document_template commands
 
-void single_document_template::request(::ca::create_context * pcreatecontext)
+void single_document_template::request(sp(::ca::create_context) pcreatecontext)
    // if lpszPathName == ::null() => create new file of this type
 {
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();

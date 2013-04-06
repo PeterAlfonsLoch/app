@@ -77,7 +77,7 @@ namespace ca
       int32_t                     m_iDay;
 
 
-      log(::ca::applicationsp papp);
+      log(sp(::ca::application) papp);
       virtual ~log();
 
       virtual void print(const char * psz, ...);

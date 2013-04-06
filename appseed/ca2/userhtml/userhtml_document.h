@@ -9,7 +9,7 @@ class CLASS_DECL_ca2 html_document :
 public:
 
    
-   html_document(::ca::applicationsp papp);
+   html_document(sp(::ca::application) papp);
    virtual ~html_document();
 
    

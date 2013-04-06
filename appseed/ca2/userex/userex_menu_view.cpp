@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_view::menu_view(::ca::applicationsp papp) :
+menu_view::menu_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -13,7 +13,7 @@ menu_view::menu_view(::ca::applicationsp papp) :
    html_form_view(papp),
    form_view(papp)
 {
-   m_pcallback = NULL;
+   m_pcallback = ::null();
 }
 
 
@@ -25,20 +25,20 @@ void menu_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 
 bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
 {
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       m_pcallback->BaseOnControlEvent(
          this,
          pevent);
    }
-   else if(get_html_data()->m_pform != NULL
-     && get_html_data()->m_pform->m_pcallback != NULL)
+   else if(get_html_data()->m_pform != ::null()
+     && get_html_data()->m_pform->m_pcallback != ::null())
    {
       get_html_data()->m_pform->m_pcallback ->BaseOnControlEvent(
          this,
          pevent);
    }
-   if(get_parent() != NULL)
+   if(get_parent() != ::null())
    {
       return get_parent()->BaseOnControlEvent(pevent);
    }
@@ -67,7 +67,7 @@ void menu_view::_001OnCreate(::ca::signal_object * pobj)
 void menu_view::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj);
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       ::user::control_event ev;
       ev.m_eevent = ::user::event_timer;
@@ -89,7 +89,7 @@ void menu_view::_001OnUser123(::ca::signal_object * pobj)
       GetTopLevelParent()->EndModalLoop(IDOK);
       return;
    }
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       m_pcallback->OnUser123(pbase->m_wparam, pbase->m_lparam);
    }

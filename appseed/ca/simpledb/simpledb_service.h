@@ -18,7 +18,7 @@ namespace simpledb
       array < socket_thread *, socket_thread * > m_threadptra;
 
 
-      service(::ca::applicationsp papp);
+      service(sp(::ca::application) papp);
       virtual ~service();
 
 

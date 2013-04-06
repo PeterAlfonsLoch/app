@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   command_thread::command_thread(::ca::applicationsp papp) :
+   command_thread::command_thread(sp(::ca::application) papp) :
       ca(papp),
       m_mutex(papp)
    {
@@ -20,7 +20,7 @@ namespace ca
    var command_thread::run()
    {
       single_lock sl(&m_mutex);
-      ::ca::create_context * pcreatecontext;
+      sp(::ca::create_context) pcreatecontext;
       sp(command) spcommand;
       while(m_ptra.get_size() > 0)
       {
@@ -42,7 +42,7 @@ namespace ca
          pcreatecontext = ::null();
          try
          {
-            pcreatecontext = dynamic_cast < ::ca::create_context * > (spcommand.m_p);
+            pcreatecontext = spcommand;
          }
          catch(...)
          {
@@ -89,13 +89,13 @@ namespace ca
       return true;
    }
 
-   void command_thread::request(::ca::create_context * pline)
+   void command_thread::request(sp(::ca::create_context) pline)
    {
       single_lock sl(&m_mutex, TRUE);
       m_ptra.add(pline);
    }
 
-   void command_thread::on_request(::ca::create_context * pline)
+   void command_thread::on_request(sp(::ca::create_context) pline)
    {
       try
       {
@@ -123,7 +123,7 @@ namespace ca
       }
    }
 
-   void command_thread::consolidate(const ::ca::create_context * pcreatecontext)
+   void command_thread::consolidate(sp(::ca::create_context) pcreatecontext)
    {
       if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
@@ -139,7 +139,7 @@ namespace ca
       m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
    }
 
-   void command_thread::consolidate(::ca::command_thread * pthread)
+   void command_thread::consolidate(sp(::ca::command_thread) pthread)
    {
 
       if(pthread == ::null() || pthread == this)

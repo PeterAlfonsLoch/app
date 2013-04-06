@@ -29,10 +29,10 @@ class CDockState;           // forward reference (see afxpriv.h)
 class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
 
 /*struct create_context   // Creation information structure
-   // All fields are optional and may be NULL
+   // All fields are optional and may be ::null()
 {
    // for creating new views
-   ::ca::type_info m_typeinfoNewView; // runtime class of ::view to create or NULL
+   ::ca::type_info m_typeinfoNewView; // runtime class of ::view to create or ::null()
    sp(::userbase::document) m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)
@@ -112,11 +112,11 @@ namespace userbase
       friend class userbase;
 
       mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
-      uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext
+      uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = ::null()); // called by CDockContext
       void AddControlBar(::userbase::control_bar *pBar);
       void RemoveControlBar(::userbase::control_bar *pBar);
-      void DockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
-      void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
+      void DockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
+      void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
       virtual void NotifyFloatingWindows(uint32_t dwFlags);
 
    };

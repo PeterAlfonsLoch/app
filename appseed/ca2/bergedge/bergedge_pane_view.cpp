@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   pane_view::pane_view(::ca::applicationsp papp) :
+   pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -14,15 +14,15 @@ namespace bergedge
    {
       m_iNewArea        = 0;
       m_iArea           = -1;
-      m_pviewdataOld    = NULL;
+      m_pviewdataOld    = ::null();
 
       m_etranslucency   = TranslucencyTotal;
 
-      m_pviewdata       = NULL;
-      m_pviewdataOld    = NULL;
+      m_pviewdata       = ::null();
+      m_pviewdataOld    = ::null();
 
       m_iDisplay        = -1;
-      m_ppropform       = NULL;
+      m_ppropform       = ::null();
       m_dataid          = "ca2::bergedge::pane_view";
 
       get_data()->m_matchanyRestore.add(new ::ca::match::prefix("app:"));
@@ -72,7 +72,7 @@ namespace bergedge
       {
          set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
       }
-      if(pHint != NULL)
+      if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -86,7 +86,7 @@ namespace bergedge
             }
          }
       }
-         if(pHint != NULL)
+         if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -105,20 +105,20 @@ namespace bergedge
    void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
-//      frame * pframe = dynamic_cast < frame *> (GetParentFrame());
+//      sp(frame) pframe = dynamic_cast < sp(frame)> (GetParentFrame());
       if(get_view_id().is_text())
       {
          string strId = get_view_id();
          if(::ca::str::begins_eat(strId, "app:"))
          {
-            ::ca::applicationsp pappTab;
+            sp(::ca::application) pappTab;
             if(Bergedge.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
                Session.m_pappCurrent = pappTab;
                Bergedge.m_pappCurrent = pappTab;
             }
             sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
-            if(pframeApp != NULL)
+            if(pframeApp != ::null())
             {
                pframeApp->WfiFullScreen(true, false);
             }
@@ -172,9 +172,9 @@ namespace bergedge
       {
 //         pframe->m_bAutoHideOnOutClick = true;
       }
-      if(m_pviewdataOld != NULL)
+      if(m_pviewdataOld != ::null())
       {
-         if(m_pviewdataOld->m_pwnd != NULL)
+         if(m_pviewdataOld->m_pwnd != ::null())
          {
             m_pviewdataOld->m_pwnd->ShowWindow(SW_HIDE);
          }
@@ -198,20 +198,20 @@ namespace bergedge
 
          if(::ca::str::begins_eat(strId, "app:"))
          {
-            ::ca::applicationsp pappTab;
+            sp(::ca::application) pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
 
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-               ::ca::create_context_sp createcontext(get_app());
+               sp(::ca::create_context) createcontext(allocer());
                createcontext->m_spApplicationBias = pbiasCreate;
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
                string str;
                str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
-               //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
+               //MessageBox(::null(), str, str, MB_ICONEXCLAMATION);
                Bergedge.request(createcontext);
 
             }
@@ -220,7 +220,7 @@ namespace bergedge
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 	   	   if(App(Bergedge.m_pappCurrent).file().exists(strIcon))
             {
-               ppane->m_dib.create(papp);
+               ppane->m_dib.create(papp->allocer());
                ppane->m_dib.load_from_file(strIcon);
             }
             else
@@ -233,7 +233,7 @@ namespace bergedge
          {
             pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
             sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true, this);
-            if(pdoc != NULL)
+            if(pdoc != ::null())
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
                pdoc->get_filemanager_data()->m_bListText = true;
@@ -243,8 +243,8 @@ namespace bergedge
                pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
                pdoc->get_filemanager_data()->m_bPassBk = true;
                pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 1234525);
+               pdoc->update_all_views(::null(), 1234);
+               pdoc->update_all_views(::null(), 1234525);
                ::view * pview = pdoc->get_view();
                string strDirName;
                strDirName.Format("application-%d", 0);
@@ -252,7 +252,7 @@ namespace bergedge
                POSITION pos = System.m_mapAppLibrary.get_start_position();
                string strApp;
                string strLibrary;
-               while(pos != NULL)
+               while(pos != ::null())
                {
                   System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
                   if(::ca::str::begins_eat(strApp, "application:"))
@@ -261,10 +261,10 @@ namespace bergedge
                   }
                }
                pdoc->FileManagerBrowse(strDir);
-               if(pview != NULL)
+               if(pview != ::null())
                {
                   sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
@@ -284,7 +284,7 @@ namespace bergedge
          case PaneViewContextMenu:
             {
    /*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.type_info < bergedge::menu_view > (), get_document(), this, 102));
-               if(pview != NULL)
+               if(pview != ::null())
                {
                   pcreatordata->m_pdoc = get_document();
                   pcreatordata->m_pwnd = pview;
@@ -296,7 +296,7 @@ namespace bergedge
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
                FileManagerTemplate * ptemplate = &papp->filemanager().std();
                sp(::filemanager::document) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
                   pdoc->get_filemanager_data()->m_bListText = true;
@@ -306,8 +306,8 @@ namespace bergedge
                   pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
                   pdoc->get_filemanager_data()->m_bPassBk = false;
                   pdoc->Initialize(true);
-                  pdoc->update_all_views(NULL, 1234);
-                  pdoc->update_all_views(NULL, 1234525);
+                  pdoc->update_all_views(::null(), 1234);
+                  pdoc->update_all_views(::null(), 1234525);
                   ::view * pview = pdoc->get_view();
                   string strDirName;
                   strDirName.Format("desktop-%d", m_iDisplay);
@@ -317,10 +317,10 @@ namespace bergedge
                      check_desktop_dir(strDir);
                   }
                   pdoc->FileManagerBrowse(strDir);
-                  if(pview != NULL)
+                  if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                     if(pframe != NULL)
+                     if(pframe != ::null())
                      {
                         pcreatordata->m_pdoc = pdoc;
                      }
@@ -331,7 +331,7 @@ namespace bergedge
          case PaneViewThreeActionLaunch:
             {
                sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
                   pdoc->get_filemanager_data()->m_bListText = true;
@@ -340,17 +340,17 @@ namespace bergedge
                   pdoc->get_filemanager_data()->m_bIconView = true;
                   pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
                   pdoc->Initialize(true);
-                  pdoc->update_all_views(NULL, 1234);
-                  //pdoc->update_all_views(NULL, 123458);
-                  pdoc->update_all_views(NULL, 1234525);
+                  pdoc->update_all_views(::null(), 1234);
+                  //pdoc->update_all_views(::null(), 123458);
+                  pdoc->update_all_views(::null(), 1234525);
                   ::view * pview = pdoc->get_view();
                   string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
                   check_3click_dir(strDir);
                   pdoc->FileManagerBrowse(strDir);
-                  if(pview != NULL)
+                  if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                     if(pframe != NULL)
+                     if(pframe != ::null())
                      {
                         pcreatordata->m_pdoc = pdoc;
                      }
@@ -361,19 +361,19 @@ namespace bergedge
          case PaneViewConfiguration:
          {
             sp(::form_document) pdoc = Cube.userex().create_form(this, this);
-            if(pdoc == NULL)
+            if(pdoc == ::null())
                return;
             m_pformOptions = pdoc->get_typed_view < form_view > ();
             form_update_hint uh;
             uh.m_etype = form_update_hint::type_browse;
             uh.m_strForm = "bergedge\\options.xhtml";
-            pdoc->update_all_views(NULL, 0, &uh);
+            pdoc->update_all_views(::null(), 0, &uh);
 
             uh.m_etype = form_update_hint::type_get_form_view;
-            pdoc->update_all_views(NULL, 0, &uh);
+            pdoc->update_all_views(::null(), 0, &uh);
 
             uh.m_etype = form_update_hint::type_after_browse;
-            pdoc->update_all_views(NULL, 0, &uh);
+            pdoc->update_all_views(::null(), 0, &uh);
 
 
 
@@ -384,12 +384,12 @@ namespace bergedge
          break;
          case PaneViewFileProperties:
             {
-               if(m_ppropform == NULL)
+               if(m_ppropform == ::null())
                {
                   m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
                }
                pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
-               if(pcreatordata->m_pwnd == NULL)
+               if(pcreatordata->m_pwnd == ::null())
                   return;
                pcreatordata->m_pdoc = m_ppropform->m_ptabview->get_document();
 
@@ -431,9 +431,9 @@ namespace bergedge
       {
          int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
-            NULL,
+            ::null(),
             L"\"" + ::ca::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
-            NULL,
+            ::null(),
             L"\"" + ::ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
@@ -451,7 +451,7 @@ namespace bergedge
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().commonprograms(), &straPath, ::null(), &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -460,7 +460,7 @@ namespace bergedge
       }
       straRelative.remove_all();
       straPath.remove_all();
-      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().userprograms(::null()), &straPath, ::null(), &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -486,7 +486,7 @@ namespace bergedge
       string strApp;
       string strLibrary;
 
-      while(pos != NULL)
+      while(pos != ::null())
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::ca::str::begins_eat(strApp, "application:"))
@@ -499,7 +499,7 @@ namespace bergedge
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
+      System.dir().rls(Application.dir().userquicklaunch(), &straPath, ::null(), &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -516,7 +516,7 @@ namespace bergedge
       char buf[4096];
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
-         NULL,
+         ::null(),
          buf,
          CSIDL_COMMON_DESKTOPDIRECTORY,
          FALSE);
@@ -526,7 +526,7 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, ::null(), &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -537,7 +537,7 @@ namespace bergedge
       }
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
-         NULL,
+         ::null(),
          buf,
          CSIDL_DESKTOPDIRECTORY,
          FALSE);
@@ -547,7 +547,7 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, ::null(), &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -664,7 +664,7 @@ namespace bergedge
 
 #ifndef METROWIN
 
-         simple_shell_launcher launcher(::ca::null(), NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+         simple_shell_launcher launcher(::ca::null(), ::null(), "control.exe", "desk.cpl", ::null(), SW_SHOWNORMAL);
 
          launcher.execute();
 

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ca::applicationsp papp) :
+   SimpleFilePropertiesForm::SimpleFilePropertiesForm(sp(::ca::application) papp) :
       ca(papp)
    {
       m_ptemplatePane = new ::userbase::single_document_template(
@@ -24,8 +24,8 @@ namespace filemanager
    {
       m_itema = itema;
       if(itema.get_count() <= 0)
-         return NULL;
-      ::ca::create_context_sp createcontext(get_app());
+         return ::null();
+      sp(::ca::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
@@ -62,7 +62,7 @@ namespace filemanager
       case 1:
          {
             m_pdocGeneral = Cube.userex().create_form(this, m_ptabview);
-            if(m_pdocGeneral != NULL)
+            if(m_pdocGeneral != ::null())
             {
                m_pviewGeneral = m_pdocGeneral->get_typed_view < form_view > ();
                m_pviewGeneral->m_pcallback = this;
@@ -82,7 +82,7 @@ namespace filemanager
          }
          break;
       }
-      if(pcreatordata->m_pwnd != NULL)
+      if(pcreatordata->m_pwnd != ::null())
       {
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }

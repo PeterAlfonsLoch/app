@@ -132,7 +132,7 @@ namespace ca
       bool                             m_bOk;
 
 
-      application_signal_object(::ca::applicationsp papp, ::ca::signal * psignal, ::ca::e_application_signal esignal);
+      application_signal_object(sp(::ca::application) papp, ::ca::signal * psignal, ::ca::e_application_signal esignal);
 
 
    };
@@ -371,7 +371,7 @@ namespace ca
       string                              m_strModulePath;
       string                              m_strModuleFolder;
       string                              m_strHelpFilePath;
-      ::ca::command_thread *             m_pcommandthread;
+      sp(::ca::command_thread)             m_pcommandthread;
       mutex                               m_mutex;
 
       string                        m_strInstallType;
@@ -391,8 +391,8 @@ namespace ca
 
 
       uint32_t                      m_dwPromptContext;        // help context override for message box
-   // LKG
-   //   uint32_t m_dwPolicies;      // block for storing boolean system policies
+      // LKG
+      //   uint32_t m_dwPolicies;      // block for storing boolean system policies
 
       int32_t                       m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
       HCURSOR                       m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
@@ -442,7 +442,7 @@ namespace ca
       // Default based on this application's name.
       const char *                  m_pszProfileName;
       // help mode used by the cast
-//      __HELP_TYPE m_eHelpType;
+      //      __HELP_TYPE m_eHelpType;
 
       ::user::interaction_ptr_array * m_pframea;
 
@@ -473,7 +473,8 @@ namespace ca
       bool                             m_bSessionSynchronizedCursor;
       rect                             m_rectScreen;
       bool                             m_bSessionSynchronizedScreen;
-      sp(::user::interaction)            m_pwndMain;
+      sp(::user::interaction)          m_pwndMain;
+      ::ca::allocer                    m_allocer;
 
 
       int32_t                              m_iResourceId;
@@ -482,7 +483,7 @@ namespace ca
 
       //BaseIdSpaceIntegerMap      m_imapResource;
       //BaseIdSpaceStringKeyMap    m_strmapResource;
-   //   id_space                   m_idspace;
+      //   id_space                   m_idspace;
 
       application();
       virtual ~application();
@@ -513,7 +514,7 @@ namespace ca
 
       virtual int32_t main();
 
-      virtual applicationsp get_app() const;
+      virtual sp(::ca::application) get_app() const;
 
       virtual bool is_system();
       virtual bool is_session();
@@ -542,18 +543,18 @@ namespace ca
          if(this == ::null())
             return (*(APP *) ::null());
          void * papp;
-         #ifdef WINDOWS
+#ifdef WINDOWS
          if(!app_map_lookup(typeid(APP).name(), papp))
-         #else
+#else
          if(!app_map_lookup(typeid(APP).name(), papp))
-         #endif
+#endif
          {
             papp = dynamic_cast < APP * > (this);
-            #ifdef WINDOWS
+#ifdef WINDOWS
             app_map_set(typeid(APP).name(), papp);
-            #else
+#else
             app_map_set(typeid(APP).name(), papp);
-            #endif
+#endif
          }
          return (*(APP *) papp);
       }
@@ -639,7 +640,7 @@ namespace ca
 
       DECL_GEN_SIGNAL(_001OnApplicationRequest)
 
-      virtual bool is_key_pressed(::user::e_key ekey);
+         virtual bool is_key_pressed(::user::e_key ekey);
       virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
 
 
@@ -652,7 +653,7 @@ namespace ca
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual void on_request(::ca::create_context * pline);
+      virtual void on_request(sp(::ca::create_context) pline);
 
       math::math & math();
       geometry::geometry & geometry();
@@ -698,7 +699,7 @@ namespace ca
       void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
 
       virtual DECL_GEN_SIGNAL(OnAppLanguage)
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+         virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
 
       class ::ca::base64 & base64();
@@ -710,12 +711,12 @@ namespace ca
       virtual void memory_to_hex(string & strHex, primitive::memory & memory);
 
       // Wall-eeeeee aliases
-      ::ca::command_thread & command_central();
-      ::ca::command_thread & command();
-      ::ca::command_thread & guideline();
-      ::ca::command_thread & directrix();
-      ::ca::command_thread & axiom();
-      ::ca::command_thread & creation();
+      sp(::ca::command_thread) command_central();
+      sp(::ca::command_thread) command();
+      sp(::ca::command_thread) guideline();
+      sp(::ca::command_thread) directrix();
+      sp(::ca::command_thread) axiom();
+      sp(::ca::command_thread) creation();
 
       //virtual void on_allocation_error(const ::ca::type_info & info);
       //virtual sp(::ca::ca) on_alloc(const ::ca::type_info & info);
@@ -729,14 +730,14 @@ namespace ca
       void EnableHtmlHelp();
 
       // Sets and initializes usage of HtmlHelp instead of WinHelp.
-//      void SetHelpMode( __HELP_TYPE eHelpType );
-  //    __HELP_TYPE GetHelpMode();
+      //      void SetHelpMode( __HELP_TYPE eHelpType );
+      //    __HELP_TYPE GetHelpMode();
 
-   // Initialization Operations - should be done in initialize_instance
+      // Initialization Operations - should be done in initialize_instance
 
       sp(::user::interaction) get_active_guie();
       sp(::user::interaction) get_focus_guie();
-//      virtual sp(::user::interaction) get_place_holder_container();
+      //      virtual sp(::user::interaction) get_place_holder_container();
 
 
       ::user::interaction_ptr_array & frames();
@@ -817,19 +818,19 @@ namespace ca
 
       // Retrieve a string value from INI file or registry.
       string GetProfileString(const char * lpszSection, const char * lpszEntry,
-               const char * lpszDefault = ::null());
+      const char * lpszDefault = ::null());
 
       // Sets a string value to INI file or registry.
       bool WriteProfileString(const char * lpszSection, const char * lpszEntry,
-               const char * lpszValue);
+      const char * lpszValue);
 
       // Retrieve an arbitrary binary value from INI file or registry.
       bool GetProfileBinary(const char * lpszSection, const char * lpszEntry,
-               LPBYTE* ppData, UINT* pBytes);
+      LPBYTE* ppData, UINT* pBytes);
 
       // Sets an arbitrary binary value to INI file or registry.
       bool WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
-               LPBYTE pData, UINT nBytes);
+      LPBYTE pData, UINT nBytes);
 
       // Override in derived class.
       virtual void InitLibId();
@@ -853,7 +854,7 @@ namespace ca
       ::ca::graphics * CreatePrinterDC();
 
 
-   //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
+      //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
 
       // run this cast as an embedded object.
       bool RunEmbedded();
@@ -862,12 +863,12 @@ namespace ca
       bool RunAutomated();
 
       // Parse the command line for stock options and commands.
-   //   void ParseCommandLine(CCommandLineInfo& rCmdInfo);
+      //   void ParseCommandLine(CCommandLineInfo& rCmdInfo);
 
       // React to a shell-issued command line directive.
-   //   bool ProcessShellCommand(CCommandLineInfo& rCmdInfo);
+      //   bool ProcessShellCommand(CCommandLineInfo& rCmdInfo);
 
-   // Overridables
+      // Overridables
 
 
       // exiting
@@ -890,7 +891,7 @@ namespace ca
       virtual void WinHelpInternal(uint_ptr dwData, UINT nCmd = HELP_CONTEXT);
 #endif
 
-   // Command Handlers
+      // Command Handlers
       // map to the following for file new/open
       void _001OnFileNew();
       void on_file_open();
@@ -905,7 +906,7 @@ namespace ca
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
 
-   // Implementation
+      // Implementation
 
       void UpdatePrinterSelection(bool bForceDefaults);
       void SaveStdProfileSettings();  // save options to .INI file
@@ -925,7 +926,7 @@ namespace ca
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 
-       // Helper for message boxes; can work when no application can be found
+      // Helper for message boxes; can work when no application can be found
       static int32_t ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -981,11 +982,11 @@ namespace ca
       //using ::ca::thread::unlock;
       //bool unlock(::waitable * pobject);
 
-//      event * get_event(::waitable * pobject, int32_t iEvent = 0);
-//      bool event_lock(::waitable * pobject, int32_t iEvent = 0, duration dwTimeout = duration::infinite());
-//      bool event_unlock(::waitable * pobject, int32_t iEvent = 0);
+      //      event * get_event(::waitable * pobject, int32_t iEvent = 0);
+      //      bool event_lock(::waitable * pobject, int32_t iEvent = 0, duration dwTimeout = duration::infinite());
+      //      bool event_unlock(::waitable * pobject, int32_t iEvent = 0);
 
-   /*   int32_t GetResourceId(const id_space * pspace, int32_t iKey);
+      /*   int32_t GetResourceId(const id_space * pspace, int32_t iKey);
       int32_t GetResourceId(const id_space & pspace, int32_t iKey);
       int32_t GetResourceId(const id_space * pspace, const char * lpcszKey);
       int32_t GetResourceId(const id_space & pspace, const char * lpcszKey);*/
@@ -1020,7 +1021,7 @@ namespace ca
 
       virtual void on_delete(sp(::ca::ca) pobject);
 
-//      virtual bool open_link(const char * pszLink, const char * pszTarget = ::null());
+      //      virtual bool open_link(const char * pszLink, const char * pszTarget = ::null());
 
       // Temporary map management (locks temp map on current thread)
       virtual void LockTempMaps();
@@ -1063,14 +1064,14 @@ namespace ca
 
 
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcontext);
-      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
-//      ::ca::file_system_sp m_spfilesystem;
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
+      //      ::ca::file_system_sp m_spfilesystem;
 
 
 
 
-//      virtual ::ca::file_system & file_system();
+      //      virtual ::ca::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
@@ -1097,43 +1098,49 @@ namespace ca
    };
 
 
-   inline application & get(::ca::applicationsp papp)
+   inline application & get(sp(::ca::application) papp)
    {
       return papp;
    }
 
    // impl
-template < class APP >
- ::ca::applicationsp single_application_library < APP > :: get_new_app(const char * pszAppId)
-{
-
-   if(!contains_app(pszAppId))
-      return ::null();
-
-   ::ca::applicationsp papp = new APP();
-
-   if(papp == ::null())
-      return ::null();
-
-   try
+   template < class APP >
+   sp(::ca::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
    {
-      papp->construct(pszAppId);
-   }
-   catch(...)
-   {
+
+      if(!contains_app(pszAppId))
+         return ::null();
+
+      sp(::ca::application) papp = new APP();
+
+      if(papp == ::null())
+         return ::null();
+
       try
       {
-         delete papp;
+         papp->construct(pszAppId);
       }
       catch(...)
       {
+         try
+         {
+            papp.release();
+         }
+         catch(...)
+         {
+         }
+         return ::null();
       }
-      return ::null();
+
+      return papp;
+
    }
 
-   return papp;
 
-}
+   inline allocer ca::allocer()
+   {
+      return m_papp->m_allocer;
+   }
 
 
 } // namespace ca

@@ -14,7 +14,7 @@ namespace uinteraction
       ::ca::property_set       m_set;
 
 
-      interaction(::ca::applicationsp papp);
+      interaction(sp(::ca::application) papp);
       virtual ~interaction();
 
       virtual void update();
@@ -22,7 +22,7 @@ namespace uinteraction
 
       virtual void get_frame_schema_list(stringa & stra);
 
-      virtual frame::frame * get_frame_schema(const char * pszSchema);
+      virtual sp(frame::frame) get_frame_schema(const char * pszSchema);
 
 
    };

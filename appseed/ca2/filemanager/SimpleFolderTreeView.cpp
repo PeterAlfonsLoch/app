@@ -9,7 +9,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeView::SimpleFolderTreeView(::ca::applicationsp papp) :
+   SimpleFolderTreeView::SimpleFolderTreeView(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       SimpleFolderTreeInterface(papp),
@@ -42,7 +42,7 @@ namespace filemanager
    void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
-      if(phint != NULL)
+      if(phint != ::null())
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
          {
@@ -182,7 +182,7 @@ namespace filemanager
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiFilePopup))
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
-            ASSERT(pPopup != NULL);
+            ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
@@ -190,11 +190,11 @@ namespace filemanager
             //IContextMenu * pcontextmenu;
 
             hr = m_spshellfolder->GetUIObjectOf(
-               NULL,
+               ::null(),
                1,
                (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
                IID_IContextMenu,
-               NULL,
+               ::null(),
                (void **) &m_contextmenu.m_pcontextmenu);
 
 
@@ -221,7 +221,7 @@ namespace filemanager
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiPopup))
          {
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
-            ASSERT(pPopup != NULL);
+            ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
@@ -263,7 +263,7 @@ namespace filemanager
 
    void SimpleFolderTreeView::StartAnimation()
    {
-      SetTimer(1234567, 50, NULL);
+      SetTimer(1234567, 50, ::null());
    }
 
    bool SimpleFolderTreeView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)

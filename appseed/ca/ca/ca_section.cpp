@@ -21,7 +21,7 @@ namespace ca
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void section::construct(::ca::applicationsp papp)
+   void section::construct(sp(::ca::application) papp)
    {
 
       set_app(papp);

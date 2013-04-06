@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   single_document_template::single_document_template(::ca::applicationsp papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
+   single_document_template::single_document_template(sp(::ca::application) papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
       ca(papp),
       ::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass),
       ::userbase::document_template(papp, pszMatter, pDocClass,   pFrameClass, pViewClass),

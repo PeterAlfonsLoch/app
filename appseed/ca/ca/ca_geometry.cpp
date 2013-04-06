@@ -8,7 +8,7 @@ namespace ca
    {
 
 
-      geometry::geometry(::ca::applicationsp papp) :
+      geometry::geometry(sp(::ca::application) papp) :
          ca(papp)
       {
 

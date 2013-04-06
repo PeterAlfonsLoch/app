@@ -193,7 +193,7 @@ namespace libcompress
       m.Props[propID] = value;
    }
 
-   out_handler::out_handler(::ca::applicationsp papp) :
+   out_handler::out_handler(sp(::ca::application) papp) :
       ca(papp)
    {
    }

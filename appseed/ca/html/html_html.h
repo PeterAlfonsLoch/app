@@ -29,7 +29,7 @@ namespace html
       html();
       virtual ~html();
 
-      virtual void construct(::ca::applicationsp papp);
+      virtual void construct(sp(::ca::application) papp);
 
       string special_chars(const char * psz);
       string entities(const char * psz);

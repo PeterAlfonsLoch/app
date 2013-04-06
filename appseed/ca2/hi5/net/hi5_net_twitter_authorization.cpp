@@ -4,7 +4,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(::ca::applicationsp, const char * , stringa &);
+//typedef string ( *SALT)(sp(::ca::application), const char * , stringa &);
 
 namespace hi5
 {
@@ -15,7 +15,7 @@ namespace hi5
       namespace twitter
       {
 
-         authorization::authorization(::ca::applicationsp papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
+         authorization::authorization(sp(::ca::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
             ca(papp)
          {
             m_strAuthorizationUrl=pszAuthorizationUrl;
@@ -28,10 +28,10 @@ namespace hi5
                System.type_info < form_document > (),
                System.type_info < simple_frame_window > (),
                System.type_info < userex::pane_tab_view > ());
-            m_pviewAuth       = NULL;
-            m_pdocAuth        = NULL;
-            m_pdoc            = NULL;
-            m_ptabview        = NULL;
+            m_pviewAuth       = ::null();
+            m_pdocAuth        = ::null();
+            m_pdoc            = ::null();
+            m_ptabview        = ::null();
          }
 
          authorization::~authorization()
@@ -43,10 +43,10 @@ namespace hi5
             ensure_main_document();
             page1();
 
-            if(m_pviewAuth == NULL)
+            if(m_pviewAuth == ::null())
                return "";
 
-            m_pviewAuth->SetTimer(1984, 484, NULL);
+            m_pviewAuth->SetTimer(1984, 484, ::null());
             m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
             m_ptemplatePane->close_all_documents(FALSE);
             return m_strPin;
@@ -54,16 +54,16 @@ namespace hi5
 
          void authorization::ensure_main_document()
          {
-            if(m_pdoc != NULL)
+            if(m_pdoc != ::null())
                return;
-            ::ca::create_context_sp createcontext(get_app());
+            sp(::ca::create_context) createcontext(allocer());
             createcontext->m_bMakeVisible = false;
             createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
             createcontext->m_bOuterPopupAlertLike = true;
             
             m_pdoc = (m_ptemplatePane->open_document_file(createcontext));
             
-            if(m_pdoc == NULL)
+            if(m_pdoc == ::null())
                return;
 
             userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
@@ -77,7 +77,7 @@ namespace hi5
          void authorization::page1()
          {
 
-            if(m_pdocAuth == NULL)
+            if(m_pdocAuth == ::null())
                return;
 
             string strUrl;
@@ -117,7 +117,7 @@ namespace hi5
          void authorization::display_main_frame()
          {
             rect rectOpen;
-            if(m_ptabview->GetParentFrame()->get_parent() == NULL)
+            if(m_ptabview->GetParentFrame()->get_parent() == ::null())
             {
 
                System.get_screen_rect(rectOpen);
@@ -131,12 +131,12 @@ namespace hi5
             rectOpen.deflate(iWidth / 5, iHeight / 50);
             rectOpen.top = iHeight * 2 / 3;
             sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
-            if(pframe != NULL)
+            if(pframe != ::null())
             {
                pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
                pframe->m_bblur_Background = true;
             }
-            if(&Bergedge != NULL && Bergedge.get_document() != NULL && Bergedge.get_document()->get_bergedge_view() != NULL)
+            if(&Bergedge != ::null() && Bergedge.get_document() != ::null() && Bergedge.get_document()->get_bergedge_view() != ::null())
             {
                Bergedge.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
             }
@@ -170,7 +170,7 @@ namespace hi5
             case 1:
                {
                   m_pdocAuth = Cube.userex().create_child_form(this, pcreatordata->m_pholder);
-                  if(m_pdocAuth != NULL)
+                  if(m_pdocAuth != ::null())
                   {
                      m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
                      m_pviewAuth->m_pcallback = this;
@@ -182,7 +182,7 @@ namespace hi5
 
                break;
             }
-            if(pcreatordata->m_pwnd != NULL)
+            if(pcreatordata->m_pwnd != ::null())
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
             }

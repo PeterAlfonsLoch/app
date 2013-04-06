@@ -13,7 +13,7 @@ namespace fs
    {
    public:
 
-      data(::ca::applicationsp papp);
+      data(sp(::ca::application) papp);
 
 
       // optional if ls_dir is implemented

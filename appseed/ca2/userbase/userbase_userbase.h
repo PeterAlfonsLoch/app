@@ -51,8 +51,8 @@ namespace userbase
    };
 
 
-   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(::ca::applicationsp papp);
-   CLASS_DECL_ca2 ::user::front_end * GetUfe(::ca::applicationsp papp);
+   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(sp(::ca::application) papp);
+   CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(::ca::application) papp);
 
 
 

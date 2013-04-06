@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   job::job(::ca::applicationsp papp) :
+   job::job(sp(::ca::application) papp) :
       ca(papp)
    {
       m_bCancel = false;

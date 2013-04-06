@@ -30,12 +30,12 @@ string chunk_split (const string & body, int32_t chunklen, const string & end)
 
 }
 
-typedef string ( *SALT)(::ca::applicationsp, const char * , stringa &);
+typedef string ( *SALT)(sp(::ca::application), const char * , stringa &);
 
 namespace fontopus
 {
 
-   validate::validate(::ca::applicationsp papp, const char * pszForm, bool bAuth, bool bInteractive) :
+   validate::validate(sp(::ca::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
       ca(papp),
       m_loginthread(papp),
       m_netcfg(papp)
@@ -44,7 +44,7 @@ namespace fontopus
       m_bAuth    = bAuth;
       m_strForm         = pszForm;
       m_puser           = ::null();
-      ::ca::applicationsp pgenapp = papp;
+      sp(::ca::application) pgenapp = papp;
       if(pgenapp != ::null())
       {
          try
@@ -67,38 +67,38 @@ namespace fontopus
    ::fontopus::user * validate::get_user(const char * pszRequestingParty, const char * pszSessId)
    {
       m_loginthread.m_strSalt.Empty();
-      if(command_thread().property("app") == "simpledbcfg"
-      || (command_thread().property("app") == "core_netnodelite" && command_thread().property("root_handler") == "webserver")
-      || (command_thread().property("app") == "core_netnodelite")
-      || command_thread().property("app") == "veievserver"
-      || command_thread().property("app") == "simpledbcfg"
-      //|| command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
-      || command_thread().property("app") == "app-core/netnodecfg")
+      if(command_thread()->property("app") == "simpledbcfg"
+      || (command_thread()->property("app") == "core_netnodelite" && command_thread()->property("root_handler") == "webserver")
+      || (command_thread()->property("app") == "core_netnodelite")
+      || command_thread()->property("app") == "veievserver"
+      || command_thread()->property("app") == "simpledbcfg"
+      //|| command_thread()->property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
+      || command_thread()->property("app") == "app-core/netnodecfg")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
-      else if(command_thread().property("app") == "mydns"
-           || command_thread().has_property("install")
-           || command_thread().has_property("uninstall"))
+      else if(command_thread()->property("app") == "mydns"
+           || command_thread()->has_property("install")
+           || command_thread()->has_property("uninstall"))
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
       //else if(!strcmp(System.get_module_name(), "productionapp")
       //   || !strcmp(System.get_module_name(), "productionbasisapp")
       //   || !strcmp(System.get_module_name(), "backupapp")
-      //   || System.command().m_varTopicQuery["app"] == "production"
+      //   || System.command()->m_varTopicQuery["app"] == "production"
       //   || System.get_license_id() == "winservice_filesystemsize")
-      else if(command_thread().property("app") == "backup"
-           || command_thread().property("app") == "winservice_filesystemsize")
+      else if(command_thread()->property("app") == "backup"
+           || command_thread()->property("app") == "winservice_filesystemsize")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_2;
          return m_puser;
       }
@@ -134,19 +134,19 @@ namespace fontopus
          strHost = System.url().get_server(strHost);
       }
 
-      if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
-         && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
+      if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
+         && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
       {
          m_loginthread.m_puser = Application.m_pfontopus->allocate_user();
-         m_loginthread.m_puser->m_sessionidmap[Application.command_thread().m_varTopicQuery["fontopus"].get_string()] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
-         m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
-         m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread().m_varTopicQuery["sessid"].get_string();
+         m_loginthread.m_puser->m_sessionidmap[Application.command_thread()->m_varTopicQuery["fontopus"].get_string()] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
+         m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
+         m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strRequestingServer = strHost;
          xml::document documentBasicInfo(get_app());
 
          string strApiServer;
 
-         strApiServer = Application.command_thread().m_varTopicQuery["fontopus"];
+         strApiServer = Application.command_thread()->m_varTopicQuery["fontopus"];
 
          strApiServer.replace("account", "api");
 
@@ -206,7 +206,7 @@ namespace fontopus
 
    void validate::ensure_main_document()
    {
-      ::ca::create_context_sp createcontext(get_app());
+      sp(::ca::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
@@ -218,13 +218,13 @@ namespace fontopus
       if(strLicense == "netnodeapp"
          || strLicense == "netnodecfgapp"
          || strLicense == "simpledbcfg"
-         || (strLicense == "core_netnodelite" && command_thread().property("root_handler") == "webserver")
+         || (strLicense == "core_netnodelite" && command_thread()->property("root_handler") == "webserver")
          || (strLicense == "core_netnodelite")
          || strLicense == "veievserver"
          //|| strLicense == "veriwell_mplite"      // churrasco 2011 m_strLicense
          || strLicense == "mydns"
-         || Application.command().m_varTopicQuery.has_property("install")
-         || Application.command().m_varTopicQuery.has_property("uninstall")
+         || Application.command()->m_varTopicQuery.has_property("install")
+         || Application.command()->m_varTopicQuery.has_property("uninstall")
          || strLicense == "app-core/netnodecfg")
       {
          return true;
@@ -276,10 +276,10 @@ namespace fontopus
          strHost = "account.ca2.cc";
       }
 
-      if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
-         && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
+      if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
+         && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
       {
-         strHost = Application.command_thread().m_varTopicQuery["fontopus"].get_string();
+         strHost = Application.command_thread()->m_varTopicQuery["fontopus"].get_string();
       }
 
       string strAuthUrl;
@@ -422,7 +422,7 @@ namespace fontopus
 
 
 
-   login_thread::login_thread(::ca::applicationsp papp) :
+   login_thread::login_thread(sp(::ca::application) papp) :
    ca(papp),
       thread(papp),
       simple_thread(papp)
@@ -682,7 +682,7 @@ namespace fontopus
 
       m_strFontopusServer.Empty();
 
-      ::ca::applicationsp papp = get_app();
+      sp(::ca::application) papp = get_app();
 
       url_domain domainFontopus;
 
@@ -735,7 +735,7 @@ namespace fontopus
 
             //Sleep(15 * 1000);
 
-            string strSessid = System.url().get_param(System.directrix().m_varTopicQuery["ruri"], "sessid");
+            string strSessid = System.url().get_param(System.directrix()->m_varTopicQuery["ruri"], "sessid");
 
             if(strSessid.has_char())
             {

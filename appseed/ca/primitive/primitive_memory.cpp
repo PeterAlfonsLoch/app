@@ -4,7 +4,7 @@
 namespace primitive
 {
 
-   memory::memory(::ca::applicationsp papp) :
+   memory::memory(sp(::ca::application) papp) :
       ca(papp)
    {
 

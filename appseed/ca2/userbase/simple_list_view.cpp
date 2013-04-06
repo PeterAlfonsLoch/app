@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_list_view::simple_list_view(::ca::applicationsp papp) :
+simple_list_view::simple_list_view(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),

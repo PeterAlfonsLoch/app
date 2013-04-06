@@ -19,7 +19,7 @@ namespace platform
       bool                       m_bOnDraw;
       uint32_t                      m_dwLastSuperDock;
 
-      frame(::ca::applicationsp papp);
+      frame(sp(::ca::application) papp);
       virtual ~frame();
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
@@ -46,7 +46,7 @@ namespace platform
 
       void super_dock_on_bergedge();
 
-      virtual uinteraction::frame::frame * create_frame_schema();
+      virtual sp(::uinteraction::frame::frame)create_frame_schema();
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnTimer)

@@ -32,7 +32,7 @@ namespace userbase
    {
    public:
 
-      view(::ca::applicationsp papp);
+      view(sp(::ca::application) papp);
 
       virtual void on_select();
 

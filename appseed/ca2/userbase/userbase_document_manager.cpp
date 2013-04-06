@@ -24,7 +24,7 @@ static const char _vfxShellNewValueName[] = "NullFile";
 static const char _vfxShellNewValue[] = "";
 
 
-#define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
+#define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? ::null() : (_cpc2)-1)
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
@@ -32,7 +32,7 @@ static const char _vfxShellNewValue[] = "";
    int32_t iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
-bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
+bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = ::null());
 
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
@@ -77,7 +77,7 @@ static const char gen_ShellNewValue[] = "";
 namespace userbase
 {
 
-   document_manager::document_manager(::ca::applicationsp papp) :
+   document_manager::document_manager(sp(::ca::application) papp) :
       ca(papp)
    {
    }
@@ -106,7 +106,7 @@ namespace userbase
       wchar_t * lpszLast = lpszKeyCopy + lstrlenW(lpszKeyCopy);
 
       // work until the end of the string
-      while (lpszLast != NULL)
+      while (lpszLast != ::null())
       {
          *lpszLast = '\0';
          lpszLast = _wcsdec(lpszKeyCopy, lpszLast);
@@ -142,7 +142,7 @@ namespace userbase
    __STATIC bool AFXAPI
    __set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName)
    {
-      if (lpszValueName == NULL)
+      if (lpszValueName == ::null())
       {
          if (::RegSetValueW(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
               lpszValue, lstrlenW(lpszValue) * sizeof(char)) != ERROR_SUCCESS)

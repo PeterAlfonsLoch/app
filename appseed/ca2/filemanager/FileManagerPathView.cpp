@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerPathView::FileManagerPathView(::ca::applicationsp papp) :
+FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -17,7 +17,7 @@ FileManagerPathView::FileManagerPathView(::ca::applicationsp papp) :
 void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint >::bases(phint))
       {
@@ -80,7 +80,7 @@ void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::ca::object
             }
          }
          file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
-         if(pmanageruh != NULL)
+         if(pmanageruh != ::null())
          {
             if(!pmanageruh->m_strFind.is_empty())
             {
@@ -100,7 +100,7 @@ void FileManagerPathView::_017Synchronize()
    if(m_bVoidSync)
       return;
 
-   if(GetFileManager() == NULL)
+   if(GetFileManager() == ::null())
       return;
 
    string strOld;
@@ -123,7 +123,7 @@ void FileManagerPathView::_001OnAfterChangeText()
 
    sp(FileManagerInterface) pmanager = GetFileManager();
 
-   if(pmanager == NULL)
+   if(pmanager == ::null())
       return;
 
    ::fs::data * pfsdata = pmanager->get_fs_data();
@@ -131,7 +131,7 @@ void FileManagerPathView::_001OnAfterChangeText()
    if(pfsdata->is_dir(str))
    {
 
-      string strPreviousPath = GetFileManager()->m_item.m_strPath;
+      string strPreviousPath = GetFileManager()->m_item->m_strPath;
       if(strPreviousPath != str)
       {
 

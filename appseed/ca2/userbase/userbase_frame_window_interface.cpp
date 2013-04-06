@@ -30,15 +30,15 @@ namespace userbase
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
-      if(pfiu != NULL)
+      if(pfiu != ::null())
       {
          sp(::userbase::frame_window) pframe = (this);
          // if the frame does not have an active ::view, set to first pane
-         ::view * pview = NULL;
-         if (pframe->GetActiveView() == NULL)
+         ::view * pview = ::null();
+         if (pframe->GetActiveView() == ::null())
          {
             sp(::user::interaction) pWnd = pframe->GetDescendantWindow("pane_first");
-            if (pWnd != NULL && base < ::view >::bases(pWnd))
+            if (pWnd != ::null() && base < ::view >::bases(pWnd))
             {
                pview = dynamic_cast < ::view * > (pWnd.m_p);
                pframe->SetActiveView(pview, FALSE);
@@ -51,14 +51,14 @@ namespace userbase
             pframe->SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
 
             // give ::view a chance to save the focus (CFormView needs this)
-            if (pview != NULL)
+            if (pview != ::null())
                pview->OnActivateFrame(WA_INACTIVE, pframe);
 
             // finally, activate the frame
             // (send the default show command unless the main desktop ::ca::window)
             int32_t nCmdShow = -1;      // default
             ::ca::application* pApp = &System;
-            if (pApp != NULL && pApp->GetMainWnd() == pframe)
+            if (pApp != ::null() && pApp->GetMainWnd() == pframe)
             {
                nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
                pApp->m_nCmdShow = -1; // set to default after first time
@@ -73,14 +73,14 @@ namespace userbase
             {
                pframe->ActivateFrame(nCmdShow);
             }
-            if (pview != NULL)
+            if (pview != ::null())
                pview->OnActivateView(TRUE, pview, pview);
 
          }
 
          sp(::userbase::document) pdoc = pfiu->m_pdoc;
          // update frame counts and frame title (may already have been visible)
-         if(pdoc != NULL)
+         if(pdoc != ::null())
             pdoc->update_frame_counts();
          pframe->on_update_frame_title(TRUE);
 
@@ -105,12 +105,12 @@ namespace userbase
       || m_etranslucency == TranslucencyPresent)
       {
          sp(::user::interaction) pui;
-         if(m_pguie != NULL)
+         if(m_pguie != ::null())
             pui = m_pguie->get_bottom_child();
          else
             pui = get_bottom_child();
 
-         while(pui != NULL)
+         while(pui != ::null())
          {
             if(pui->IsWindowVisible() && !base < MetaButton > ::bases(pui))
             {
@@ -119,11 +119,11 @@ namespace userbase
             pui = pui->above_sibling();
          }
          _001DrawThis(pdc);
-         if(m_pguie != NULL)
+         if(m_pguie != ::null())
             pui = m_pguie->get_bottom_child();
          else
             pui = get_bottom_child();
-         while(pui != NULL)
+         while(pui != ::null())
          {
             if(pui->IsWindowVisible() && base < MetaButton > ::bases(pui))
             {
@@ -243,7 +243,7 @@ namespace userbase
       if(bFullScreen)
       {
          sp(::user::interaction) pwndParentFrame = GetParentFrame();
-         if(pwndParentFrame == NULL)
+         if(pwndParentFrame == ::null())
          {
             if(!WfiIsFullScreen())
             {
@@ -256,7 +256,7 @@ namespace userbase
             }
          }
          frame_window_interface * pframe = dynamic_cast < frame_window_interface * > (pwndParentFrame.m_p);
-         if(pframe == NULL)
+         if(pframe == ::null())
          {
             if(!WfiIsFullScreen())
             {
@@ -290,12 +290,12 @@ namespace userbase
             return true;
          }
          sp(::user::interaction) pwndParentFrame = GetParentFrame();
-         if(pwndParentFrame == NULL)
+         if(pwndParentFrame == ::null())
          {
             return false;
          }
          frame_window_interface * pframe = dynamic_cast < frame_window_interface * > (pwndParentFrame.m_p);
-         if(pframe == NULL)
+         if(pframe == ::null())
          {
             return false;
          }
@@ -310,7 +310,7 @@ namespace userbase
          System.m_hInstance,
          System.dir().path(Application.dir().matter(pszMatter), "icon.ico"),
          1);
-      if (hIcon != NULL)
+      if (hIcon != ::null())
       {
          CREATESTRUCT cs;
          memset(&cs, 0, sizeof(CREATESTRUCT));
@@ -320,7 +320,7 @@ namespace userbase
             // ignore instance handle from pre_create_window.
 
          WNDCLASS wndcls;
-         if (cs.lpszClass != NULL &&
+         if (cs.lpszClass != ::null() &&
             GetClassInfo(System.m_hInstance, cs.lpszClass, &wndcls) &&
             wndcls.hIcon != hIcon)
          {
@@ -329,7 +329,7 @@ namespace userbase
                wndcls.hCursor, wndcls.hbrBackground, hIcon);
          }
       }
-      return NULL;        // just use the default
+      return ::null();        // just use the default
    }
    */
    void frame_window_interface::defer_synch_layered()
@@ -392,7 +392,7 @@ namespace userbase
 
       if(m_bAutoWindowFrame)
       {
-         if(pguieParent == NULL)
+         if(pguieParent == ::null())
          {
             m_bWindowFrame = true;
             m_workset.Enable(true);

@@ -90,7 +90,7 @@ void ssl_sigpipe_handle( int x ) {
    }
 
 
-   SSLInitializer::SSLInitializer(::ca::applicationsp papp) :
+   SSLInitializer::SSLInitializer(sp(::ca::application) papp) :
       ca(papp)
    {
 

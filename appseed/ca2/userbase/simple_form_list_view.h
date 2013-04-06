@@ -10,7 +10,7 @@ public:
    simple_list_header_control   m_headerctrl;
 
 
-   simple_form_list_view(::ca::applicationsp papp);
+   simple_form_list_view(sp(::ca::application) papp);
    virtual ~simple_form_list_view();
 
 

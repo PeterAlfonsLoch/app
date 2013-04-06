@@ -4,7 +4,7 @@
 #endif
 
 
-simple_printer_list_view::simple_printer_list_view(::ca::applicationsp papp) :
+simple_printer_list_view::simple_printer_list_view(sp(::ca::application) papp) :
    ca(papp),
    userbase::view(papp),
    user::scroll_view(papp),
@@ -46,7 +46,7 @@ void simple_printer_list_view::_001OnCreate(::ca::signal_object * pobj)
    DWORD cbNeeded = 0;
 #ifdef WINDOWSEX
    DWORD cbReturned = 0;
-   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, NULL, 1, NULL, 0, &cbNeeded, &cbReturned);
+   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, ::null(), 1, ::null(), 0, &cbNeeded, &cbReturned);
 #else
    throw todo(get_app());
 #endif
@@ -56,7 +56,7 @@ void simple_printer_list_view::_001OnCreate(::ca::signal_object * pobj)
 
 #ifdef WINDOWSEX
    PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
-   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, NULL, 1, (LPBYTE) infoa, cbNeeded, &cbNeeded, &cbReturned);
+   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, ::null(), 1, (LPBYTE) infoa, cbNeeded, &cbNeeded, &cbReturned);
 
    stringa stra;
 

@@ -19,7 +19,7 @@ namespace ca2 // ca8 + cube
       simple_list_view *            m_plistview;
       ::user::keyboard_layout_ida   m_layoutida;
 
-      keyboard_layout(::ca::applicationsp papp);
+      keyboard_layout(sp(::ca::application) papp);
       virtual ~keyboard_layout();
 
       bool CreateViews();
@@ -37,11 +37,11 @@ namespace ca2 // ca8 + cube
 
 
       keyboard_layout(const keyboard_layout & ) :
-         ::userbase::view(NULL),
-         ::user::place_holder_container(NULL),
-         ::userbase::split_layout(NULL),
-         ::userbase::split_view(NULL),
-         ::user::list_data(NULL)
+         ::userbase::view(::null()),
+         ::user::place_holder_container(::null()),
+         ::userbase::split_layout(::null()),
+         ::userbase::split_view(::null()),
+         ::user::list_data(::null())
       {
       }
 

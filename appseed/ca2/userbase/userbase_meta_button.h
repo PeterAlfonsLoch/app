@@ -33,7 +33,7 @@ public:
    //bool              m_bFocus;
 
 
-   MetaButton(::ca::applicationsp papp);
+   MetaButton(sp(::ca::application) papp);
    virtual ~MetaButton();
 
 
@@ -47,14 +47,14 @@ public:
    void UpdateWndRgn();
    void SetEllipsePens(
         ::ca::pen * ppen,
-        ::ca::pen * ppenSel = NULL,
-        ::ca::pen * ppenFocus = NULL,
-        ::ca::pen * ppenDisabled = NULL);
+        ::ca::pen * ppenSel = ::null(),
+        ::ca::pen * ppenFocus = ::null(),
+        ::ca::pen * ppenDisabled = ::null());
    void SetEllipseBrushs(
         ::ca::brush * pbrush,
-        ::ca::brush * pbrushSel = NULL,
-        ::ca::brush * pbrushFocus = NULL,
-        ::ca::brush * pbrushDisabled = NULL);
+        ::ca::brush * pbrushSel = ::null(),
+        ::ca::brush * pbrushFocus = ::null(),
+        ::ca::brush * pbrushDisabled = ::null());
    void SetTextColors(
         COLORREF cr,
         COLORREF crSel,

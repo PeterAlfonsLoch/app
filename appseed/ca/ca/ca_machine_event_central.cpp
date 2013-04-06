@@ -1,6 +1,6 @@
 #include "framework.h"
 
-machine_event_central::machine_event_central(::ca::applicationsp papp) :
+machine_event_central::machine_event_central(sp(::ca::application) papp) :
    ca(papp), 
    thread(papp),
    simple_thread(papp)

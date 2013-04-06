@@ -17,7 +17,7 @@ public:
 
 
    virtual_user_interface();
-   virtual_user_interface(::ca::applicationsp papp);
+   virtual_user_interface(sp(::ca::application) papp);
    virtual ~virtual_user_interface();
 
    virtual void message_handler(::ca::signal_object * pobj);
@@ -93,7 +93,7 @@ public:
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      ::ca::create_context* pContext = ::null());
+      sp(::ca::create_context) pContext = ::null());
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,

@@ -10,7 +10,7 @@ class CLASS_DECL_ca stringa :
 public:
 
 
-   stringa(::ca::applicationsp papp = ::null());
+   stringa(sp(::ca::application) papp = ::null());
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);

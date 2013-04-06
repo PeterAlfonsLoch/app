@@ -356,7 +356,7 @@ namespace ca
       else if(::ca::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         ::ca::applicationsp papp = ::null();
+         sp(::ca::application) papp = ::null();
 
          if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
          {

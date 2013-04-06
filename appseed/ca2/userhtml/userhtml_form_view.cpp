@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-html_form_view::html_form_view(::ca::applicationsp papp) :
+html_form_view::html_form_view(sp(::ca::application) papp) :
    ca(papp),
    html_form(papp),
    ::user::interaction(papp),
@@ -94,15 +94,15 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phi
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       html_view_update_hint * puh = dynamic_cast < html_view_update_hint * >
          (phint);
-      if(puh != NULL)
+      if(puh != ::null())
       {
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {
-            ASSERT(get_html_data() != NULL);
+            ASSERT(get_html_data() != ::null());
 
             defer_implement();
 
@@ -112,8 +112,8 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phi
 
             for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
             {
-               user::sp(control) pcontrol = m_controldescriptorset[i].m_pcontrol;
-               if(pcontrol != NULL)
+               sp(::user::control) pcontrol = m_controldescriptorset[i].m_pcontrol;
+               if(pcontrol != ::null())
                {
                   _001Update(pcontrol);
                }

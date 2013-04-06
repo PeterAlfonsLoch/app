@@ -12,7 +12,7 @@ namespace html
       public:
 
          
-         ::user::check_box * m_pcheckbox;
+         sp(::user::check_box) m_pcheckbox;
 
 
          input_check_box(data * pdoc);

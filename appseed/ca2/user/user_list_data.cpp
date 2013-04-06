@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   simple_list_data::simple_list_data(::ca::applicationsp papp) :
+   simple_list_data::simple_list_data(sp(::ca::application) papp) :
       ca(papp),
       ::user::list_data(papp)
    {

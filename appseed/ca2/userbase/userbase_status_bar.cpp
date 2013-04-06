@@ -69,7 +69,7 @@ namespace userbase
       class rect rect;
       rect.null();
 #ifdef WINDOWSEX
-      return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);
+      return ::user::interaction::create(STATUSCLASSNAME, ::null(), dwStyle, rect, pParentWnd, strId);
 #else
       throw todo(get_app());
 #endif
@@ -89,7 +89,7 @@ namespace userbase
    {
       ASSERT_VALID(this);
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
-      //ASSERT(lpIDArray == NULL ||
+      //ASSERT(lpIDArray == ::null() ||
    //      __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
       ASSERT(IsWindow());
 
@@ -100,14 +100,14 @@ namespace userbase
 
       // copy initial data from indicator array
       bool bResult = TRUE;
-      //if (lpIDArray != NULL)
+      //if (lpIDArray != ::null())
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
-         ::ca::graphics_sp spgraphicsScreen(get_app());
+         ::ca::graphics_sp spgraphicsScreen(allocer());
 
          throw todo(get_app());
-/*         HGDIOBJ hOldFont = NULL;
-         if (hFont != NULL)
+/*         HGDIOBJ hOldFont = ::null();
+         if (hFont != ::null())
             hOldFont = spgraphicsScreen->SelectObject(hFont);*/
 
          __STATUSPANE* pSBP = _GetPanePtr(0);
@@ -146,7 +146,7 @@ namespace userbase
             }
             ++pSBP;
          }
-//         if (hOldFont != NULL)
+//         if (hOldFont != ::null())
   //          spgraphicsScreen->SelectObject(hOldFont);
       //}
       UpdateAllPanes(TRUE, TRUE);
@@ -422,8 +422,8 @@ namespace userbase
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
-         ((lpszNewText == NULL && pSBP->strText.is_empty()) ||
-          (lpszNewText != NULL && pSBP->strText.Compare(lpszNewText) == 0)))
+         ((lpszNewText == ::null() && pSBP->strText.is_empty()) ||
+          (lpszNewText != ::null() && pSBP->strText.Compare(lpszNewText) == 0)))
       {
          // nothing to change
          return TRUE;
@@ -431,7 +431,7 @@ namespace userbase
 
       try
       {
-         if (lpszNewText != NULL)
+         if (lpszNewText != ::null())
             pSBP->strText = lpszNewText;
          else
             pSBP->strText.Empty();
@@ -453,7 +453,7 @@ namespace userbase
       pSBP->nFlags &= ~SBPF_UPDATE;
 #ifdef WINDOWSEX
       DefWindowProc(SB_SETTEXT, ((WORD)pSBP->nStyle)|nIndex,
-         (pSBP->nStyle & SBPS_DISABLED) ? NULL :
+         (pSBP->nStyle & SBPS_DISABLED) ? 0 :
          (LPARAM)(const char *)pSBP->strText);
 #endif
 
@@ -473,13 +473,13 @@ namespace userbase
       {
          // os independence
          throw not_implemented(get_app());
-   /*      CClientDC spgraphics(NULL);
+   /*      CClientDC spgraphics(::null());
          HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
-         HGDIOBJ hOldFont = NULL;
-         if (hFont != NULL)
+         HGDIOBJ hOldFont = ::null();
+         if (hFont != ::null())
             hOldFont = spgraphics->SelectObject(hFont);
          VERIFY(spgraphics->GetTextMetrics(&tm));
-         if (hOldFont != NULL)
+         if (hOldFont != ::null())
             spgraphics->SelectObject(hOldFont);*/
       }
 
@@ -577,7 +577,7 @@ namespace userbase
    // trans   if (message != WM_DRAWITEM)
    //      return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
-      ASSERT(pResult == NULL);
+      ASSERT(pResult == ::null());
 #ifdef WINDOWSEX
       UNUSED(pResult); // unused in release builds
       DrawItem((LPDRAWITEMSTRUCT)lParam);
@@ -710,13 +710,13 @@ namespace userbase
    {
    public: // re-implementations only
 
-      CStatusCmdUI(::ca::applicationsp papp);
+      CStatusCmdUI(sp(::ca::application) papp);
       virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
 
-   CStatusCmdUI::CStatusCmdUI(::ca::applicationsp papp) :
+   CStatusCmdUI::CStatusCmdUI(sp(::ca::application) papp) :
    ca(papp),
       cmd_ui(papp)
 
@@ -728,7 +728,7 @@ namespace userbase
    {
       m_bEnableChanged = TRUE;
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
-      ASSERT(pStatusBar != NULL);
+      ASSERT(pStatusBar != ::null());
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -741,7 +741,7 @@ namespace userbase
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
    {
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
-      ASSERT(pStatusBar != NULL);
+      ASSERT(pStatusBar != ::null());
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -759,7 +759,7 @@ namespace userbase
    void CStatusCmdUI::SetText(const char * lpszText)
    {
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
-      ASSERT(pStatusBar != NULL);
+      ASSERT(pStatusBar != ::null());
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 

@@ -11,7 +11,7 @@ namespace gcom
 
       ImageChange::ImageChange(Main & view) :
          Helper(view),
-         m_spdib(view.get_app()),
+         m_spdib(view.allocer()),
          m_evImageChangeFinish(view.get_app())
       {
 

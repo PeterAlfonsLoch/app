@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   property_set_exchange::property_set_exchange(::ca::applicationsp papp) :
+   property_set_exchange::property_set_exchange(sp(::ca::application) papp) :
       ca(papp)
    {
       m_ppropertyset = ::null();

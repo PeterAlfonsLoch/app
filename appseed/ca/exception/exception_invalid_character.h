@@ -9,7 +9,7 @@ class CLASS_DECL_ca invalid_character :
 public:
    
 
-   invalid_character(::ca::applicationsp papp, const char * pszMessage);
+   invalid_character(sp(::ca::application) papp, const char * pszMessage);
    virtual ~invalid_character();
 
 

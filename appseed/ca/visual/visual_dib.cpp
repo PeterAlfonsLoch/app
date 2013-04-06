@@ -10,8 +10,8 @@ namespace visual
    {
    }
 
-   dib_sp::dib_sp(::ca::applicationsp papp) :
-      ::ca::dib_sp(papp)
+   dib_sp::dib_sp(::ca::allocer allocer) :
+      ::ca::dib_sp(allocer)
    {
    }
 
@@ -91,7 +91,7 @@ namespace visual
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
       if(pfi == ::null())
          return false;
-      ::ca::graphics_sp spgraphics(m_p->m_papp);
+      ::ca::graphics_sp spgraphics(m_p->m_papp->allocer());
       spgraphics->CreateCompatibleDC(::null());
       if(!m_p->from(spgraphics, pfi, true))
          return false;

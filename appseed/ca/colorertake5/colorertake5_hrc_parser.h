@@ -13,7 +13,7 @@ namespace colorertake5
    {
    public:
 
-      HRCParserException(::ca::applicationsp papp) :
+      HRCParserException(sp(::ca::application) papp) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
@@ -23,7 +23,7 @@ namespace colorertake5
       }
 
 
-      HRCParserException(::ca::applicationsp papp, const string & msg) :
+      HRCParserException(sp(::ca::application) papp, const string & msg) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),

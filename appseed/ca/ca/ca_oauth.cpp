@@ -599,7 +599,7 @@ namespace ca
    * @output: none
    *
    *--*/
-   oauth::oauth(::ca::applicationsp papp) :
+   oauth::oauth(sp(::ca::application) papp) :
    ca(papp),
       m_consumerKey( "" ),
       m_consumerSecret( "" ),

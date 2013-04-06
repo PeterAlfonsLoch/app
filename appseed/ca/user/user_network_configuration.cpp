@@ -3,7 +3,7 @@
 namespace user
 {
 
-   network_configuration::network_configuration(::ca::applicationsp papp) :
+   network_configuration::network_configuration(sp(::ca::application) papp) :
       ca(papp)
    {
 //      m_pdoc   = ::null();

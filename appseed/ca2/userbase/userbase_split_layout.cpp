@@ -5,7 +5,7 @@ namespace userbase
 
    const int32_t split_layout::m_iMarging = 5;
 
-   split_layout::split_layout(::ca::applicationsp papp) :
+   split_layout::split_layout(sp(::ca::application) papp) :
       ca(papp),
       m_splitbara(papp),
       m_panea(papp),
@@ -312,7 +312,7 @@ namespace userbase
             }
          }
 
-         if(pwnd != NULL)
+         if(pwnd != ::null())
          {
             pwnd->SetWindowPos(ZORDER_TOP,
                rectA.left     + m_cxBorder,
@@ -474,7 +474,7 @@ namespace userbase
        //    else
       //      pwnd = ::user::interaction::from_handle(pcomponent->m_oswindow);
          pwnd = pcomponent->m_psplitpane;
-           ASSERT(pwnd != NULL);
+           ASSERT(pwnd != ::null());
          if(bNewValue)
             pwnd->ShowWindow(SW_SHOW);
          else
@@ -527,7 +527,7 @@ namespace userbase
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_pane_count());
       split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
-      if(pcomponent->m_pholder != NULL)
+      if(pcomponent->m_pholder != ::null())
       {
          if(!pcomponent->m_pholder->hold(pwnd))
             return false;
@@ -535,7 +535,7 @@ namespace userbase
       else
       {
          pcomponent->m_pholder = hold(pwnd);
-         if(pcomponent->m_pholder == NULL)
+         if(pcomponent->m_pholder == ::null())
             return false;
       }
 
@@ -579,7 +579,7 @@ namespace userbase
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_pane_count());
       split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
-      if(pcomponent->m_pholder != NULL)
+      if(pcomponent->m_pholder != ::null())
       {
          if(!pcomponent->m_pholder->hold(pwnd))
             return false;
@@ -587,7 +587,7 @@ namespace userbase
       else
       {
          pcomponent->m_pholder = hold(pwnd);
-         if(pcomponent->m_pholder == NULL)
+         if(pcomponent->m_pholder == ::null())
             return false;
       }
 
@@ -752,15 +752,15 @@ namespace userbase
       ASSERT(iPane >= 0);
       ASSERT(iPane < get_pane_count());
       if(iPane < 0 || iPane >= get_pane_count())
-         return NULL;
+         return ::null();
       return m_panea[iPane].m_pholder;
    }
 
    sp(::user::interaction) split_layout::get_pane_window(int32_t iPane)
    {
       sp(::user::place_holder) pholder = get_pane_holder(iPane);
-      if(pholder == NULL)
-         return NULL;
+      if(pholder == ::null())
+         return ::null();
       return pholder->get_ui();
    }
 
@@ -788,11 +788,11 @@ namespace userbase
    }
 
 
-   split_layout::Pane::Pane(::ca::applicationsp papp) :
+   split_layout::Pane::Pane(sp(::ca::application) papp) :
       ca(papp)
    {
 
-      m_pholder = NULL;
+      m_pholder = ::null();
 
    }
 

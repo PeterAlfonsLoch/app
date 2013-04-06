@@ -12,13 +12,13 @@ namespace ca
       fontopus::fontopus()
       {
 
-         m_puser                    = NULL;
-         m_pthreadCreatingUser      = NULL;
+         m_puser                    = ::null();
+         m_pthreadCreatingUser      = ::null();
 
       }
 
 
-      void fontopus::construct(::ca::applicationsp papp)
+      void fontopus::construct(sp(::ca::application) papp)
       {
 
          ::fontopus::fontopus::construct(papp);
@@ -63,11 +63,11 @@ namespace ca
       ::fontopus::user * fontopus::login(::ca::property_set & set)
       {
          /*::ca::fontopus * papp;
-         if(m_puiInitialPlaceHolderContainer != NULL)
+         if(m_puiInitialPlaceHolderContainer != ::null())
          {
             papp = m_puiInitialPlaceHolderContainer->m_papp;
          }
-         else if(System.m_puiInitialPlaceHolderContainer != NULL)
+         else if(System.m_puiInitialPlaceHolderContainer != ::null())
          {
             papp = System.m_puiInitialPlaceHolderContainer->m_papp;
          }
@@ -89,11 +89,11 @@ namespace ca
       bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
       {
          /*::ca::fontopus * papp;
-         if(m_puiInitialPlaceHolderContainer != NULL)
+         if(m_puiInitialPlaceHolderContainer != ::null())
          {
             papp = m_puiInitialPlaceHolderContainer->m_papp;
          }
-         else if(System.m_puiInitialPlaceHolderContainer != NULL)
+         else if(System.m_puiInitialPlaceHolderContainer != ::null())
          {
             papp = System.m_puiInitialPlaceHolderContainer->m_papp;
          }
@@ -104,7 +104,7 @@ namespace ca
          //class validate authuser(papp, psz);
          class validate authuser(get_app(), psz);
          validate::auth * pauth = authuser.get_auth();
-         if(pauth == NULL)
+         if(pauth == ::null())
             return false;
          else
          {
@@ -124,7 +124,7 @@ namespace ca
       }
 
 
-      void fontopus::on_request(::ca::create_context * pcreatecontext)
+      void fontopus::on_request(sp(::ca::create_context) pcreatecontext)
       {
 
          if(pcreatecontext->m_spCommandLine.is_set()
@@ -136,10 +136,10 @@ namespace ca
             {
                setLogin["ruri"] = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
             }
-            ::fontopus::user * puser = NULL;
+            ::fontopus::user * puser = ::null();
             while(true)
             {
-               if((puser = login(setLogin)) != NULL)
+               if((puser = login(setLogin)) != ::null())
                   break;
             }
             if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())

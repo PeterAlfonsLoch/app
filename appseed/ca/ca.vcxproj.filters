@@ -932,9 +932,6 @@
     <ClInclude Include="ca\ca_profiler.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_region.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_se_translator.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -2759,9 +2756,6 @@
     <ClInclude Include="ca\ca_property_set.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_raw_pointer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_reference.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -3187,6 +3181,12 @@
     </ClInclude>
     <ClInclude Include="ca\ca_c.h">
       <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\aaa_want_to_remove_ca_raw_pointer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_region.h">
+      <Filter>Header Files\ca\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

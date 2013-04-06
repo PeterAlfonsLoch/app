@@ -5,7 +5,7 @@ namespace nature
 {
 
 
-   view::view(::ca::applicationsp papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -157,7 +157,7 @@ namespace nature
    {
       if(iTab == 1)
       {
-         System.simple_message_box(NULL, "Playlist");
+         System.simple_message_box(::null(), "Playlist");
       }
    }
 

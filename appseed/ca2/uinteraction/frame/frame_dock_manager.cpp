@@ -9,7 +9,7 @@ namespace frame
 
    DockManager::DockManager()
    {
-      m_pworkset = NULL;
+      m_pworkset = ::null();
       m_edock = DockNone;
       m_edockMask = DockHalfSide;
    }
@@ -32,7 +32,7 @@ namespace frame
 
    bool DockManager::update(WorkSet  * pwf)
    {
-      ASSERT(pwf != NULL);
+      ASSERT(pwf != ::null());
       m_pworkset = pwf;
       return true;
    }
@@ -81,20 +81,20 @@ namespace frame
 
    void DockManager::layout()
    {
-      if(m_pworkset == NULL)
+      if(m_pworkset == ::null())
          return;
       sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
-      if(pwndChild == NULL)
+      if(pwndChild == ::null())
          return;
       sp(::user::interaction) pwndParent = pwndChild->get_parent();
-      if(pwndParent == NULL)
+      if(pwndParent == ::null())
          return;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
-      ASSERT(m_pworkset != NULL);
+      ASSERT(m_pworkset != ::null());
       EDock edock = GetDockState();
       if(edock & DockTop)
       {
@@ -125,15 +125,15 @@ namespace frame
       sp(::user::interaction) pwndParent = pwnd->get_parent();
       rect rectPos;
       pwnd->GetWindowRect(rectPos);
-      if(pwndParent != NULL)
+      if(pwndParent != ::null())
       {
          pwndParent->ScreenToClient(rectPos);
       }
-      sp(::user::interaction) ptwi = dynamic_cast < ::user::interaction * >(pwnd.m_p);
+      sp(::user::interaction) ptwi = (pwnd.m_p);
    //   CTransparentWndContainer * ptwc = dynamic_cast<CTransparentWndContainer *>(pwnd);
-       if(ptwi != NULL )
-       //if(ptwi != NULL &&
-      //   ptwc == NULL)
+       if(ptwi != ::null() )
+       //if(ptwi != ::null() &&
+      //   ptwc == ::null())
        {
          rect rectBefore;
            pwnd->GetWindowRect(rectBefore);
@@ -154,7 +154,7 @@ namespace frame
        /*else
        {
           sp(::user::interaction) pwndTopLevel = pwnd->GetTopLevelParent();
-           if(pwndTopLevel != NULL &&
+           if(pwndTopLevel != ::null() &&
                pwndTopLevel->get_handle() == pwnd->get_handle())
            {
             pwnd->SetWindowPos(
@@ -165,7 +165,7 @@ namespace frame
                SWP_NOSIZE
                | SWP_SHOWWINDOW);
            }
-           else if(pwndParent != NULL)
+           else if(pwndParent != ::null())
            {
                rect rectBefore;
                pwnd->GetWindowRect(rectBefore);
@@ -184,7 +184,7 @@ namespace frame
                rectUnion.union(rectBefore, rectAfter);
                pwndParent->RedrawWindow(
                rectUnion,
-               NULL,
+               ::null(),
                RDW_NOERASE
                | RDW_UPDATENOW
                | RDW_INVALIDATE);
@@ -202,7 +202,7 @@ namespace frame
             pwnd->GetClientRect(rectClient);
             pwnd->RedrawWindow(
                rectClient,
-               NULL,
+               ::null(),
                RDW_NOERASE | RDW_UPDATENOW |RDW_INVALIDATE);
            }
        }*/
@@ -211,9 +211,9 @@ namespace frame
 
    bool DockManager::MoveWindow(int32_t x, int32_t y)
    {
-      ASSERT(m_pworkset->GetEventWindow() != NULL);
+      ASSERT(m_pworkset->GetEventWindow() != ::null());
       sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
-      if(pwndParent == NULL)
+      if(pwndParent == ::null())
          return false;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
@@ -221,7 +221,7 @@ namespace frame
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
-      ASSERT(m_pworkset != NULL);
+      ASSERT(m_pworkset != ::null());
 
       EDock edock = GetDockState();
 
@@ -259,9 +259,9 @@ namespace frame
 
    EDock DockManager::CalcDock(int32_t x, int32_t y)
    {
-      ASSERT(m_pworkset->GetEventWindow() != NULL);
+      ASSERT(m_pworkset->GetEventWindow() != ::null());
       sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
-      if(pwndParent == NULL)
+      if(pwndParent == ::null())
          return DockNone;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
@@ -269,7 +269,7 @@ namespace frame
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
-      ASSERT(m_pworkset != NULL);
+      ASSERT(m_pworkset != ::null());
       EDock edockMask = GetDockMask();
       EDock edock = GetDockState();
 
@@ -357,10 +357,10 @@ namespace frame
 
    void DockManager::UpdateDocking()
    {
-      if(m_pworkset->GetEventWindow() == NULL)
+      if(m_pworkset->GetEventWindow() == ::null())
          return;
       sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
-      if(pwndParent == NULL)
+      if(pwndParent == ::null())
          return;
       rect rectParent;
       pwndParent->GetClientRect(rectParent);
@@ -368,7 +368,7 @@ namespace frame
       rect rectChild;
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
-      ASSERT(m_pworkset != NULL);
+      ASSERT(m_pworkset != ::null());
       //EDock edock = GetDockState();
       //UNREFERENCED_PARAMETER(pobj);
 

@@ -32,7 +32,7 @@ namespace simpledb
       string_map < session * > m_mapSession;
 
 
-      manager(::ca::applicationsp papp);
+      manager(sp(::ca::application) papp);
       ~manager();
 
       bool initialize_instance();

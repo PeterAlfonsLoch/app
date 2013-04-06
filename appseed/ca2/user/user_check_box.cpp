@@ -3,7 +3,7 @@
 namespace user
 {
 
-   check_box::check_box(::ca::applicationsp papp) :
+   check_box::check_box(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -34,7 +34,7 @@ namespace user
       ev.m_puie = this;
       ev.m_eevent = ::user::event_set_check;
       ev.m_bUser = bUser;
-      if(get_form() != NULL)
+      if(get_form() != ::null())
       {
          get_form()->send_message(
             ::ca::message_event, 0, (LPARAM) &ev);
@@ -68,7 +68,7 @@ namespace user
          if(m_echeck == check::tristate
          || m_echeck == check::checked)
          {
-            ::ca::pen_sp pen(get_app());
+            ::ca::pen_sp pen(allocer());
             pen->create_solid(pdc, 1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
             pdc->SelectObject(pen);
             pdc->MoveTo(2, 8);

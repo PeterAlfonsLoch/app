@@ -36,7 +36,7 @@ namespace html
          if(this->element_at(i)->get_name().CompareNoCase(pszName) == 0)
             return this->element_at(i);
       }
-      return NULL;
+      return ::null();
    }
 
    const attribute * attribute_array::get(const char * pszName) const 
@@ -47,7 +47,7 @@ namespace html
    string attribute_array::get_value(const char * pszName) const
    {
       const attribute * pattr = get(pszName);
-      if(pattr == NULL)
+      if(pattr == ::null())
          return "";
       else
          return pattr->get_value();

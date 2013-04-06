@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-exit_exception::exit_exception(::ca::applicationsp papp, const char * pszMessage) :
+exit_exception::exit_exception(sp(::ca::application) papp, const char * pszMessage) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

@@ -12,7 +12,7 @@ namespace filemanager
    public:
 
 
-      folder_list_data(::ca::applicationsp papp);
+      folder_list_data(sp(::ca::application) papp);
       virtual ~folder_list_data();
 
 
@@ -30,7 +30,7 @@ namespace filemanager
 
       
       folder_list_data(const folder_list_data & ) :
-         ::user::list_data(NULL)
+         ::user::list_data(::null())
       {
       }
 

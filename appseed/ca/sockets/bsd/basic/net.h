@@ -115,7 +115,7 @@ namespace sockets
       mutex                                           m_mutexCache;
       string_map < dns_cache_item * >   m_mapCache;
 
-      net(::ca::applicationsp papp);
+      net(sp(::ca::application) papp);
       virtual ~net();
 
       /*

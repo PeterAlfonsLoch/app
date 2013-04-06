@@ -1,7 +1,7 @@
 #include "framework.h"
 
 multiple_document_template::multiple_document_template(
-   ::ca::applicationsp papp,
+   sp(::ca::application) papp,
    const char * pszMatter, ::ca::type_info pDocClass,
    ::ca::type_info pFrameClass, ::ca::type_info pViewClass) :
    ca(papp),
@@ -57,7 +57,7 @@ void multiple_document_template::remove_document(sp(::user::document_interface) 
 }
 
 
-void multiple_document_template::request(::ca::create_context * pcreatecontext)
+void multiple_document_template::request(sp(::ca::create_context) pcreatecontext)
 {
 
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();

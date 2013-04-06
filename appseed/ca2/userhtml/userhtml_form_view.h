@@ -9,7 +9,7 @@ public:
    html::elemental * m_pelementalLButtonDown;
 
    
-   html_form_view(::ca::applicationsp papp);
+   html_form_view(sp(::ca::application) papp);
    virtual ~html_form_view();
 
 

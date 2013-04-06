@@ -42,22 +42,22 @@ namespace sockets
 
       /** create is_empty Ipv4 address structure.
       \param port Port number */
-      ipv4_address(::ca::applicationsp papp, port_t port = 0);
+      ipv4_address(sp(::ca::application) papp, port_t port = 0);
       /** create Ipv4 address structure.
       \param a socket address in network byte order (as returned by Utility::u2ip)
       \param port Port number in host byte order */
-      //ipv4_address(::ca::applicationsp papp, ipaddr_t a,port_t port);
+      //ipv4_address(sp(::ca::application) papp, ipaddr_t a,port_t port);
       /** create Ipv4 address structure.
       \param a socket address in network byte order
       \param port Port number in host byte order */
-      ipv4_address(::ca::applicationsp papp, const in_addr& a,port_t port);
-      ipv4_address(::ca::applicationsp papp, const in_addr& a, const string & strServiceName);
+      ipv4_address(sp(::ca::application) papp, const in_addr& a,port_t port);
+      ipv4_address(sp(::ca::application) papp, const in_addr& a, const string & strServiceName);
       /** create Ipv4 address structure.
       \param host Hostname to be resolved
       \param port Port number in host byte order */
-      ipv4_address(::ca::applicationsp papp, const string & host,port_t port);
-      ipv4_address(::ca::applicationsp papp, const string & host, const string & strServiceName);
-      ipv4_address(::ca::applicationsp papp, const sockaddr_in&);
+      ipv4_address(sp(::ca::application) papp, const string & host,port_t port);
+      ipv4_address(sp(::ca::application) papp, const string & host, const string & strServiceName);
+      ipv4_address(sp(::ca::application) papp, const sockaddr_in&);
       ipv4_address(const ipv4_address & addr);
       ~ipv4_address();
 
@@ -83,11 +83,11 @@ namespace sockets
       bool is_in_net(ipv4_address & addr, ipv4_address & mask);
 
       /** Resolve hostname. */
-      //static bool Resolve(::ca::applicationsp papp, const string & hostname, in_addr& a);
+      //static bool Resolve(sp(::ca::application) papp, const string & hostname, in_addr& a);
       /** Reverse resolve (IP to hostname). */
-      //static bool Reverse(::ca::applicationsp papp, in_addr& a,string & name);
+      //static bool Reverse(sp(::ca::application) papp, in_addr& a,string & name);
       /** Convert address struct to text. */
-      //static string Convert(::ca::applicationsp papp, in_addr& a);
+      //static string Convert(sp(::ca::application) papp, in_addr& a);
 
       ipv4_address & operator = (const ipv4_address &);
 

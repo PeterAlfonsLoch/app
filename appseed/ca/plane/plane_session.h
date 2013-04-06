@@ -23,7 +23,7 @@ namespace plane
          string                  m_strApp;
          string                  m_strQuery;
          ::bergedge::bergedge *  m_pbergedgeParent;
-         ::ca::applicationsp     m_papp;
+         sp(::ca::application)     m_papp;
          bool                    m_bMakeVisible;
          sp(::user::interaction)   m_puiParent;
          ::ca::property_set       m_setParameters;
@@ -51,8 +51,8 @@ namespace plane
 
       bool                                                  m_bShowPlatform;
 
-      ::ca::applicationsp                                   m_pappCurrent;
-      string_map < ::ca::applicationsp >                    m_mapApplication;
+      sp(::ca::application)                                   m_pappCurrent;
+      string_map < sp(::ca::application) >                    m_mapApplication;
 
 
       var                                                   m_varTopicFile;
@@ -95,13 +95,13 @@ namespace plane
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::applicationsp get_app() const;
+      virtual sp(::ca::application) get_app() const;
 
       void load_string_table();
 
       void initialize_bergedge_application_interface();
 
-      virtual bool create_bergedge(::ca::create_context * pcreatecontext);
+      virtual bool create_bergedge(sp(::ca::create_context) pcreatecontext);
 
       virtual ::visual::cursor * get_cursor();
       virtual void set_cursor(::visual::e_cursor ecursor);
@@ -112,14 +112,14 @@ namespace plane
 
       // semantics defined by application
       using ::plane::application::request;
-      virtual void request(::ca::create_context * pcreatecontext);
+      virtual void request(sp(::ca::create_context) pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
 
-      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -132,17 +132,17 @@ namespace plane
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
-      void on_request(::ca::create_context * pcreatecontext);
+      void on_request(sp(::ca::create_context) pcreatecontext);
 
-      ::ca::applicationsp application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
+      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
       virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = ::null());
 
-      virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
+      virtual bool open_by_file_extension(sp(::ca::create_context) pcreatecontext);
 
       virtual bool is_session();
 
-      ::ca::applicationsp get_current_application();
+      sp(::ca::application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 
@@ -164,7 +164,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      ::planebase::application * start_application(const char * pszType, const char * pszAppId, ::ca::create_context * pcreatecontext);
+      ::planebase::application * start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext);
 
 
       virtual COLORREF get_default_color(uint64_t ui);

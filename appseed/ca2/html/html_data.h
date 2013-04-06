@@ -23,7 +23,7 @@ namespace html
          string   m_strPath;
          ::visual::dib_sp      m_spdib;
 
-         image(::ca::applicationsp papp);
+         image(sp(::ca::application) papp);
          virtual bool load_image();
       };
 
@@ -108,7 +108,7 @@ namespace html
 
 
 
-      data(::ca::applicationsp papp);
+      data(sp(::ca::application) papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);
@@ -162,9 +162,9 @@ namespace html
 
 
       data(const data & ) :
-         ::ca::data(NULL),
-         m_elemental(NULL),
-         m_uiptra(NULL)
+         ::ca::data(::null()),
+         m_elemental(::null()),
+         m_uiptra(::null())
       {
       }
 

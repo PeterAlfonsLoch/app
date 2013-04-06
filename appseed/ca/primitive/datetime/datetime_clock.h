@@ -20,7 +20,7 @@ public:
    ::ca::font    m_fontSpin;
 
 
-   clock(::ca::applicationsp papp);
+   clock(sp(::ca::application) papp);
 
    void GetRect(LPRECT lprect, enum EElement eelement);
 

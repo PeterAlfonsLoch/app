@@ -21,7 +21,7 @@ namespace userbase
       ::user::view_creator *                 m_pviewcreator;
 
 
-      tab_view(::ca::applicationsp papp);
+      tab_view(sp(::ca::application) papp);
       virtual ~tab_view();
 
 

@@ -3,7 +3,7 @@
 namespace fs
 {
 
-   data::data(::ca::applicationsp papp) :
+   data::data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data(papp)
    {

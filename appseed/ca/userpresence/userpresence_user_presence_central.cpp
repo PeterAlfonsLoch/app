@@ -3,7 +3,7 @@
 namespace userpresence
 {
 
-   presence_central::presence_central(::ca::applicationsp papp) :
+   presence_central::presence_central(sp(::ca::application) papp) :
       ca(papp),
       message_window_simple_callback(papp)
    {

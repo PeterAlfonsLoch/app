@@ -6,7 +6,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderListInterface::SimpleFolderListInterface(::ca::applicationsp papp) :
+   SimpleFolderListInterface::SimpleFolderListInterface(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::list(papp)
@@ -63,7 +63,7 @@ namespace filemanager
 
       m_foldera.clear();
 
-//      m_foldera.clear(NULL, NULL);
+//      m_foldera.clear(::null(), ::null());
 
       Folder folder;
 
@@ -130,12 +130,12 @@ namespace filemanager
       {
    //      char szPath[MAX_PATH * 4];
    //      UINT uiFlags;
-         if(pcolumn->m_pil == NULL)
+         if(pcolumn->m_pil == ::null())
          {
             pcolumn->m_pil = new image_list(get_app());
          }
          image_list * pil = pcolumn->m_pil;
-         //if(pil->GetSafeHandle() != NULL)
+         //if(pil->GetSafeHandle() != ::null())
             //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))
 #ifdef WINDOWSEX
@@ -147,10 +147,10 @@ namespace filemanager
 
 #ifdef WINDOWSEX
             string str;
-            HICON hicon = NULL;
+            HICON hicon = ::null();
             int32_t iIndex;
             for(POSITION pos = m_iconmap.get_start_position();
-               pos != NULL;
+               pos != ::null();
                m_iconmap.get_next_assoc(pos, hicon, iIndex))
             {
                DestroyIcon(hicon);
@@ -170,7 +170,7 @@ namespace filemanager
                   1,
                   (const ITEMIDLIST **) &folder.m_lpiidlRelative,
                   IID_IExtractIcon,
-                  NULL,
+                  ::null(),
                   (void **) &lpiextracticon)))
                {
                   continue;
@@ -183,8 +183,8 @@ namespace filemanager
                   &uiFlags);
                if(hr == S_OK)
                {
-                  HICON hicon = NULL;
-                  HICON hiconLarge = NULL;
+                  HICON hicon = ::null();
+                  HICON hiconLarge = ::null();
                   hr = lpiextracticon->Extract(
                      szPath,
                      iIcon,

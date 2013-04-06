@@ -36,11 +36,11 @@ namespace plane
 
       virtual int32_t run();
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
       sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      ::ca::applicationsp get_system();
+      sp(::ca::application) get_system();
 
       virtual ::planebase::application * assert_running(const char * pszAppdId);
 

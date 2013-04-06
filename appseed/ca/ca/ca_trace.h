@@ -97,9 +97,9 @@ namespace ca
       {
       public:
 
-         ::ca::applicationsp m_papp;
+         sp(::ca::application) m_papp;
 
-         trace(::ca::applicationsp papp)
+         trace(sp(::ca::application) papp)
          {
             m_papp = papp;
          }

@@ -14,7 +14,7 @@ virtual_user_interface::virtual_user_interface()
 }
 
 
-virtual_user_interface::virtual_user_interface(::ca::applicationsp papp) :
+virtual_user_interface::virtual_user_interface(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp)
 {
@@ -33,7 +33,7 @@ virtual_user_interface::~virtual_user_interface()
 
 ::ca::graphics * virtual_user_interface::GetDC()
 {
-   ::ca::graphics_sp g(get_app());
+   ::ca::graphics_sp g(allocer());
    g->CreateCompatibleDC(::null());
    return g.detach();
 }
@@ -298,7 +298,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 
 
-bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, ::ca::create_context * pContext)
+bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, sp(::ca::create_context) pContext)
 {
    if(m_bCreate)
    {
@@ -512,7 +512,7 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, UINT nID,
-      create_context* pContext)
+      sp(::ca::create_context) pContext)
    {
       return FALSE;
    }
@@ -1273,7 +1273,7 @@ void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 
 #endif
 
-   m_spfont.create(get_app());
+   m_spfont.create(allocer());
 
    m_spfont->operator=(*pFont);
 
@@ -1286,7 +1286,7 @@ void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 ::ca::font* virtual_user_interface::GetFont()
 {
    if(m_spfont.is_null())
-      m_spfont.create(get_app());
+      m_spfont.create(allocer());
    return m_spfont;
 }
 

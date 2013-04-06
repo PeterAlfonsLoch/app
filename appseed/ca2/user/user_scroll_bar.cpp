@@ -43,7 +43,7 @@ namespace user
    bool scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, sp(::user::interaction)pParentWnd, UINT nID)
    {
        m_eorientation = eorientation;
-       return ::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID);
+       return ::user::interaction::create(::null(), ::null(), dwStyle, rect, pParentWnd, nID);
    }
 
 

@@ -38,8 +38,8 @@ namespace html
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
          m_pcheckbox->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-         if(pdata->m_pform != NULL
-            && pdata->m_pform->m_pcallback != NULL)
+         if(pdata->m_pform != ::null()
+            && pdata->m_pform->m_pcallback != ::null())
          {
             ::user::control_event ev;
             ev.m_puie = m_pcheckbox;

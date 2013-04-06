@@ -12,7 +12,7 @@ namespace dynamic_source
       uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
-   library_class::library_class(::ca::applicationsp papp)
+   library_class::library_class(sp(::ca::application) papp)
       : m_memfileError(papp), ca(papp)
    {
    }
@@ -68,7 +68,7 @@ namespace dynamic_source
    {
    }
 
-   ::ca::applicationsp library_class::get_app() const
+   sp(::ca::application) library_class::get_app() const
    {
       return m_pmanager->get_app();
    }

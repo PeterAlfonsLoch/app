@@ -1073,7 +1073,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_progress_interface.h" />
     <ClInclude Include="ca\ca_property.h" />
     <ClInclude Include="ca\ca_property_set.h" />
-    <ClInclude Include="ca\ca_raw_pointer.h" />
+    <ClInclude Include="ca\aaa_want_to_remove_ca_raw_pointer.h" />
     <ClInclude Include="ca\ca_reader.h" />
     <ClInclude Include="ca\ca_reference.h" />
     <ClInclude Include="ca\ca_request_interface.h" />

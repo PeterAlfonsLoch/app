@@ -87,7 +87,7 @@ public:
 
     sp(::user::interaction) create_view(::ca::type_info info, sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
    static sp(::user::interaction) s_create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = ::null());
-   static sp(::user::interaction) s_create_view(::ca::create_context * pContext, sp(::user::interaction) pwndParent, id id);
+   static sp(::user::interaction) s_create_view(sp(::ca::create_context) pContext, sp(::user::interaction) pwndParent, id id);
 
    template < class VIEW >
    VIEW * create_view(sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
@@ -173,7 +173,7 @@ public:
       TypeOpenDocument,
    };
 public:
-   view_update_hint(::ca::applicationsp papp);
+   view_update_hint(sp(::ca::application) papp);
    etype m_etype;
 };
 

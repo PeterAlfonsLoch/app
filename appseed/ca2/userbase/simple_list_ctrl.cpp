@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_list_control::simple_list_control(::ca::applicationsp papp) :
+simple_list_control::simple_list_control(sp(::ca::application) papp) :
    ca(papp),
    m_headerctrl(papp),
    ::user::scroll_view(papp),

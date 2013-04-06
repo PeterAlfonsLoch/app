@@ -15,7 +15,7 @@ namespace fs
       ::fs::set                                 m_fsset;
 
 
-      document(::ca::applicationsp papp);
+      document(sp(::ca::application) papp);
       virtual ~document();
 
       sp(document)                                get_document();

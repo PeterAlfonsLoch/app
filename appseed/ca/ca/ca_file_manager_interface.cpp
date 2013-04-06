@@ -23,7 +23,7 @@ namespace ca
       return FALSE;
    }
 
-   bool file_manager_interface::initialize(::ca::applicationsp papp)
+   bool file_manager_interface::initialize(sp(::ca::application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
       //set_app(papp);

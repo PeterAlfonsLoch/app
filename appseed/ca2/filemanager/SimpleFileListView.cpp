@@ -9,7 +9,7 @@
 namespace filemanager
 {
 
-   SimpleFileListView::SimpleFileListView(::ca::applicationsp papp) :
+   SimpleFileListView::SimpleFileListView(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
@@ -133,7 +133,7 @@ namespace filemanager
       {
          _001SetView(ViewIcon);
       }
-      if(phint != NULL)
+      if(phint != ::null())
       {
          if(base < FileManagerViewUpdateHint >::bases(phint))
          {
@@ -142,11 +142,11 @@ namespace filemanager
             {
                m_papp = get_app()->m_pappThis;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-               if(pcentral == NULL)
+               if(pcentral == ::null())
                   return;
                //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
-               SetTimer(5432185, 230, NULL);
-               //::ca::window::SetTimer(5432184, 23, NULL);
+               SetTimer(5432185, 230, ::null());
+               //::ca::window::SetTimer(5432184, 23, ::null());
    // dbbreak            m_pserverNext = simpledb::get(get_app())->GetDataServer();
    //            AddClient(this);
      //          SetDataInterface(&m_datainterface);
@@ -166,7 +166,7 @@ namespace filemanager
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
             {
-               if(GetFileManager()->get_filemanager_data()->m_pholderFileList != NULL)
+               if(GetFileManager()->get_filemanager_data()->m_pholderFileList != ::null())
                {
                   if(GetFileManager()->get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)
                   {
@@ -236,7 +236,7 @@ namespace filemanager
                }
             }
             file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
-            if(pmanageruh != NULL)
+            if(pmanageruh != ::null())
             {
                if(!pmanageruh->m_strFind.is_empty())
                {
@@ -341,12 +341,12 @@ namespace filemanager
          ::userbase::menu menu(get_app());
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
-            _017OpenContextMenuFolder(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
+            _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)));
             /*if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFolderPopup))
             {
                ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
-               //ASSERT(pPopup != NULL);
+               //ASSERT(pPopup != ::null());
                sp(::userbase::frame_window) pframe = ( (GetParentFrame()));
                pframe->SetActiveView(this);
                menuPopup.set_app(get_app());
@@ -359,7 +359,7 @@ namespace filemanager
          {
             ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
-            //ASSERT(pPopup != NULL);
+            //ASSERT(pPopup != ::null());
             sp(::userbase::frame_window) pframe = (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
@@ -370,11 +370,11 @@ namespace filemanager
             {
                pPopup->DeleteMenu(iInsertIndex, MF_BYPOSITION);
                hr = m_spshellfolder->GetUIObjectOf(
-                  NULL,
+                  ::null(),
                   1,
                   (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
                   IID_IContextMenu,
-                  NULL,
+                  ::null(),
                   (void **) &m_contextmenu.m_pcontextmenu);
 
 
@@ -399,17 +399,17 @@ namespace filemanager
          if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strPopup))
          {
             ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
-            //ASSERT(pPopup != NULL);
+            //ASSERT(pPopup != ::null());
             //sp(::frame_window) pframe = GetTopLevelFrame();
 
 
 
    /*         hr = m_spshellfolderParent->GetUIObjectOf(
-               NULL,
+               ::null(),
                1,
                (LPCITEMIDLIST *) &m_lpiidlRelative,
                IID_IContextMenu,
-               NULL,
+               ::null(),
                (void **) &m_contextmenu.m_pcontextmenu);
 
 
@@ -447,7 +447,7 @@ namespace filemanager
    {
       file_size * psize = (file_size *) lpparam;
       db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_papp).simpledb().db());
-      if(pcentral == NULL)
+      if(pcentral == ::null())
          return 0;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       bool bPendingSize;
@@ -473,7 +473,7 @@ namespace filemanager
       m_bFileSize = true;
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == NULL)
+      if(pcentral == ::null())
          return;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
@@ -582,7 +582,7 @@ namespace filemanager
 
    void SimpleFileListView::StartAnimation()
    {
-      //SetTimer(1234567, 50, NULL);
+      //SetTimer(1234567, 50, ::null());
    }
 
    bool SimpleFileListView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
@@ -614,7 +614,7 @@ namespace filemanager
          item_range itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
-            itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
+            itema.add(new  ::fs::item  (get_fs_list_data()->m_itema.get_item(iItem)));
          }
       }
       GetFileManager()->get_filemanager_data()->OnFileManagerItemCommand(
@@ -636,7 +636,7 @@ namespace filemanager
          item_range itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
-            itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
+            itema.add(new  ::fs::item  (get_fs_list_data()->m_itema.get_item(iItem)));
          }
       }
       GetFileManager()->get_filemanager_data()->OnFileManagerItemUpdate(
@@ -762,7 +762,7 @@ namespace filemanager
       string strDir;
       strDir = GetFileManagerItem().m_strPath;
 
-      GetFileManagerDoc()->get_operation_doc(true)->m_thread.queue_copy(stra, strDir, NULL, true);
+      GetFileManagerDoc()->get_operation_doc(true)->m_thread.queue_copy(stra, strDir, ::null(), true);
       GetFileManagerDoc()->get_operation_doc(true)->m_thread.kick();
 
 
@@ -772,7 +772,7 @@ namespace filemanager
             L"\\\\?\\" + ::ca::international::utf8_to_unicode(stra[i]),
             L"\\\\?\\" + ::ca::international::utf8_to_unicode(System.dir().path(strDir, System.file().title(stra[i]))), TRUE);
       }*/
-      //get_document()->update_all_views(NULL, 123);
+      //get_document()->update_all_views(::null(), 123);
    }
 
    void SimpleFileListView::_001OnUpdateTrashThatIsNotTrash(::ca::signal_object * pobj)
@@ -803,7 +803,7 @@ namespace filemanager
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
          ::userbase::menu_button_cmd_ui * pcmdui1 = dynamic_cast < ::userbase::menu_button_cmd_ui * > (pcmdui->m_pcmdui);
-         if(pcmdui1 != NULL)
+         if(pcmdui1 != ::null())
          {
             ::userbase::menu_item_ptra * pitema = pcmdui1->m_pitema;
 
@@ -828,15 +828,15 @@ namespace filemanager
             m_straOpenWith = stra;
             ::count iCount = stra.get_size();
 
-            ::userbase::menu_item menuitem(get_app());
+            sp(::userbase::menu_item) pmenuitem(new ::userbase::menu_item(get_app()));
             string str;
             for(int32_t i = 0; i < iCount; i++)
             {
-               menuitem.m_id = "open with" + stra[i];
-               menuitem.m_button._001SetButtonText(stra[i]);
-               menuitem.m_iLevel = pitema->m_pitemContainer != NULL ? pitema->m_pitemContainer->m_iLevel + 1 : 0;
-               menuitem.m_pbase = pbase;
-               pitema->insert_at(iIndex, menuitem);
+               pmenuitem->m_id = "open with" + stra[i];
+               pmenuitem->m_button._001SetButtonText(stra[i]);
+               pmenuitem->m_iLevel = pitema->m_pitemContainer != ::null() ? pitema->m_pitemContainer->m_iLevel + 1 : 0;
+               pmenuitem->m_pbase = pbase;
+               pitema->insert_at(iIndex, pmenuitem);
                iIndex++;
             }
             pcmdui->m_pcmdui->m_iIndex = iStartIndex;
@@ -899,7 +899,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, System.dir().name(strPath), SW_SHOW);
+         simple_shell_launcher launcher(::null(), "open", m_straOpenWith[iPos], strPath, System.dir().name(strPath), SW_SHOW);
 
          launcher.execute();
 

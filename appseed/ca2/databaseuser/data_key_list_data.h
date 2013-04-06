@@ -12,7 +12,7 @@ namespace databaseuser
    public:
 
 
-      data_key_list_data(::ca::applicationsp papp);
+      data_key_list_data(sp(::ca::application) papp);
       virtual ~data_key_list_data();
 
 
@@ -30,7 +30,7 @@ namespace databaseuser
 
 
       data_key_list_data(const data_key_list_data & ) :
-         ::user::list_data(NULL)
+         ::user::list_data(::null())
       {
       }
 

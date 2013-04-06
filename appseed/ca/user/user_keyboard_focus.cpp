@@ -37,7 +37,7 @@ namespace user
       if(pkey->m_ekey == ::user::key_tab)
       {
          control_event ev;
-         ev.m_puie         = dynamic_cast < ::user::interaction * >(this);
+         ev.m_puie         = (this);
          ev.m_eevent       = ::user::event_tab_key;
          ev.m_bUser        = true;
          get_parent()->BaseOnControlEvent(&ev);
@@ -66,7 +66,7 @@ namespace user
 
    keyboard_focus * keyboard_focus::keyboard_get_next_focusable()
    {
-      sp(interaction) puiThis = dynamic_cast < ::user::interaction * >(this);
+      sp(interaction) puiThis = (this);
       if(puiThis == ::null())
          return ::null();
       single_lock (&puiThis->m_pthread->m_pthread->m_mutex, TRUE);
@@ -89,7 +89,7 @@ namespace user
 
    bool keyboard_focus::keyboard_set_focus()
    {
-      Application.user()->set_keyboard_focus(dynamic_cast < ::user::interaction * > (this));
+      Application.user()->set_keyboard_focus( (this));
       return true;
    }
 

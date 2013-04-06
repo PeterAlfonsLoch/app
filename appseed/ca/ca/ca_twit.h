@@ -28,7 +28,7 @@ namespace ca
        /* OAuth data */
        oauth m_oauth;
 
-       twit(::ca::applicationsp papp);
+       twit(sp(::ca::application) papp);
        virtual ~twit();
 
        /* Twitter OAuth authorization methods */

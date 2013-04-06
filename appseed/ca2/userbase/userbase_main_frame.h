@@ -14,7 +14,7 @@ namespace userbase
       bool           m_bPlacing;
       
       
-      main_frame(::ca::applicationsp papp);
+      main_frame(sp(::ca::application) papp);
       virtual ~main_frame();
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

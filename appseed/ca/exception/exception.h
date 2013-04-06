@@ -26,7 +26,7 @@ namespace win
 namespace ca
 {
 
-   CLASS_DECL_ca applicationsp get_thread_app();
+   CLASS_DECL_ca sp(::ca::application) get_thread_app();
 
 } // namespace ca
 
@@ -205,13 +205,12 @@ namespace ca
 
 } // namespace ca
 
+ 
+
 
 #ifdef DEBUG
 #define DEBUG_NEW new(__FILE__, __LINE__)
 #endif
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-clock_interface::clock_interface(::ca::applicationsp papp) :
+clock_interface::clock_interface(sp(::ca::application) papp) :
    ca(papp)
 {
 }

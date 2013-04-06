@@ -3,7 +3,7 @@
 namespace platform
 {
 
-   pane_view::pane_view(::ca::applicationsp papp) :
+   pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -12,13 +12,13 @@ namespace platform
       place_holder_container(papp)
    {
 
-      m_pviewdataOld = NULL;
+      m_pviewdataOld = ::null();
 
 
       m_etranslucency      = TranslucencyPresent;
 
-      m_pviewdata              = NULL;
-      m_pviewdataOld              = NULL;
+      m_pviewdata              = ::null();
+      m_pviewdataOld              = ::null();
 
    /*   ::userbase::single_document_template* pdoctemplate;
       pdoctemplate = new ::userbase::single_document_template(
@@ -107,7 +107,7 @@ namespace platform
     //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
             ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
-            if(pview != NULL)
+            if(pview != ::null())
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
                pmenuview->LoadXmlMenu("mplite_popup_lyricview.xml");
@@ -123,7 +123,7 @@ namespace platform
             cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
             ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
-            if(pview != NULL)
+            if(pview != ::null())
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
@@ -136,7 +136,7 @@ namespace platform
       case platform::PaneViewDevEdge:
          {
             ::userbase::view * pview = create_view < platform::view > ();
-            if(pview != NULL)
+            if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
                pcreatordata->m_pwnd = pview;
@@ -146,13 +146,13 @@ namespace platform
       case platform::PaneViewFileManager:
          {
             sp(::filemanager::document) pdoc = papp->filemanager().std().OpenChild(false, true);
-            if(pdoc != NULL)
+            if(pdoc != ::null())
             {
                ::view * pview = pdoc->get_view();
-               if(pview != NULL)
+               if(pview != ::null())
                {
                   sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
@@ -167,21 +167,21 @@ namespace platform
          {
             ::mediaplaylistsp(::document) pdoc = ((MusicalPlayerLightApp *) &System)->GetPlaylistCentral().GetCurrentPlaylist(true, false);
 
-            if(pdoc != NULL)
+            if(pdoc != ::null())
             {
                MusicalPlayerLightDoc * pplayerdoc = (MusicalPlayerLightDoc *) get_document();
-               if(pplayerdoc != NULL)
+               if(pplayerdoc != ::null())
                {
                   pplayerdoc->AttachPlaylist(pdoc);
                }
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
                   ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
+                  if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                     if(pframe != NULL)
+                     if(pframe != ::null())
                      {
                         pcreatordata->m_eview = eview;
                         pcreatordata->m_pdoc = pdoc;
@@ -194,19 +194,19 @@ namespace platform
          break;
       case PaneViewMediaLibrary:
          {
-            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(NULL, FALSE);
-            if(pdoc != NULL)
+            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(::null(), FALSE);
+            if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
                ::view * pview = pdoc->get_view(pos);
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
                   ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
+                  if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                     if(pframe != NULL)
+                     if(pframe != ::null())
                      {
                         pcreatordata = new ViewData();
                         pcreatordata->m_eview = eview;
@@ -220,19 +220,19 @@ namespace platform
          break;
       case PaneViewAudioControl:
          {
-            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(NULL, FALSE);
-            if(pdoc != NULL)
+            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(::null(), FALSE);
+            if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
                ::view * pview = pdoc->get_view(pos);
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
                   ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
+                  if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                     if(pframe != NULL)
+                     if(pframe != ::null())
                      {
                         pcreatordata->m_eview = eview;
                         pcreatordata->m_pdoc = pdoc;
@@ -245,19 +245,19 @@ namespace platform
          break;
       case PaneViewOptions:
          {
-            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(NULL, FALSE);
-            if(pdoc != NULL)
+            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(::null(), FALSE);
+            if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
                ::view * pview = pdoc->get_view(pos);
-               if(pdoc != NULL)
+               if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
                   ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
+                  if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
-                     if(pframe != NULL)
+                     if(pframe != ::null())
                      {
                         pcreatordata->m_eview = eview;
                         pcreatordata->m_pdoc = pdoc;

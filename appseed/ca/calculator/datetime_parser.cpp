@@ -6,7 +6,7 @@
 namespace datetime
 {
 
-   parser::parser(::ca::applicationsp papp, ::user::str_context * pcontext) :
+   parser::parser(sp(::ca::application) papp, ::user::str_context * pcontext) :
       ca(papp),
       m_scanner(papp, pcontext)
    {

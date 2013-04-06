@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   scroll_view::scroll_view(::ca::applicationsp papp) :
+   scroll_view::scroll_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),

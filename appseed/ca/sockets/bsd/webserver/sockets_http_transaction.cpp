@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   transaction::transaction(::ca::applicationsp papp) :
+   transaction::transaction(sp(::ca::application) papp) :
       ca(papp)
    {
       m_propertysetHeader.m_bKeyCaseInsensitive       = true;

@@ -20,7 +20,7 @@ public:
    string                     m_strMatter;
 
 
-   dialog(::ca::applicationsp papp);
+   dialog(sp(::ca::application) papp);
    dialog(const char * pszMatter, sp(::user::interaction) puiParent);
    virtual ~dialog();
 
@@ -28,7 +28,7 @@ public:
 
    virtual void EndModalLoop(id nResult);
 
-   virtual bool show(const char * pszMatter = NULL, ::ca::property_set * ppropertyset = NULL);
+   virtual bool show(const char * pszMatter = ::null(), ::ca::property_set * ppropertyset = ::null());
 
    virtual void on_show(const char * pszMatter, ::ca::property_set * ppropertyset);
 

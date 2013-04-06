@@ -2,7 +2,7 @@
 
 
 
-index_array::index_array(::ca::applicationsp papp) :
+index_array::index_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -34,7 +34,7 @@ index_array index_array::operator + (const index_array & indexa) const
 
 
 
-count_array::count_array(::ca::applicationsp papp) :
+count_array::count_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -64,7 +64,7 @@ count_array count_array::operator + (const count_array & counta) const
 }
 
 
-int_array::int_array(::ca::applicationsp papp) :
+int_array::int_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -100,7 +100,7 @@ int_array int_array::operator + (const int_array & inta) const
 
 
 
-int64_array::int64_array(::ca::applicationsp papp) :
+int64_array::int64_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -155,7 +155,7 @@ int64_array int64_array::operator + (const int64_array & inta) const
 
 
 
-uint64_array::uint64_array(::ca::applicationsp papp) :
+uint64_array::uint64_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -226,7 +226,7 @@ uint64_array uint64_array::operator + (const uint64_array & inta) const
 
 
 
-unique_int_sort_array::unique_int_sort_array(::ca::applicationsp papp) :
+unique_int_sort_array::unique_int_sort_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }
@@ -306,7 +306,7 @@ unique_int_sort_array unique_int_sort_array::operator + (const unique_int_sort_a
 
 
 
-unique_index_sort_array::unique_index_sort_array(::ca::applicationsp papp) :
+unique_index_sort_array::unique_index_sort_array(sp(::ca::application) papp) :
    ca(papp)
 {
 }

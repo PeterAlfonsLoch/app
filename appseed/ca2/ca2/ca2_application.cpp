@@ -5,13 +5,13 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 {
 
 
-   CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
+   CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application = ::null();
 
 
    application::application()
    {
 
-      m_puserex = NULL;
+      m_puserex = ::null();
 
       m_dir.set_app(this);
       m_file.set_app(this);
@@ -27,7 +27,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    {
    }
 
-   ::ca::applicationsp application::get_system()
+   sp(::ca::application) application::get_system()
    {
       return new application();
    }
@@ -90,7 +90,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       }*/
 
-      /*if(get_twf() != NULL)
+      /*if(get_twf() != ::null())
       {
          get_twf()->Update(rect);
       }*/
@@ -99,9 +99,9 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       return true;
 
 
-      if(fontopus()->m_puser == NULL &&
-         (App(this).directrix().m_varTopicQuery.has_property("install")
-         || App(this).directrix().m_varTopicQuery.has_property("uninstall")))
+      if(fontopus()->m_puser == ::null() &&
+         (App(this).directrix()->m_varTopicQuery.has_property("install")
+         || App(this).directrix()->m_varTopicQuery.has_property("uninstall")))
       {
 
          if(!fontopus()->create_system_user("system"))
@@ -214,7 +214,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       if(!::cubebase::application::initialize_instance())
          return false;
 
-      if(m_psession != NULL && m_psession->m_pbergedge != NULL)
+      if(m_psession != ::null() && m_psession->m_pbergedge != ::null())
       {
 
          Session.m_pappCurrent = this;
@@ -294,7 +294,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    }
 
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void application::on_request(sp(::ca::create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -387,14 +387,14 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>", "\r\n");
-            return MessageBox(pwndOwner == NULL ? (oswindow) ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
+            return MessageBox(pwndOwner == ::null() ? (oswindow) ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
          }
       }
       catch(...)
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? (oswindow) ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == ::null() ? (oswindow) ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
       }
       if(box.m_strResponse == "ok")
       {
@@ -523,7 +523,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == NULL)
+      if(pcentral == ::null())
          return false;
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
@@ -544,7 +544,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    bool application::final_handle_exception(::ca::exception & e)
    {
       base_exception * pbe = dynamic_cast < standard_exception * > (&e);
-      if(pbe != NULL)
+      if(pbe != ::null())
       {
          TRACE(pbe->stack_trace());
       }
@@ -558,7 +558,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       m_monitorinfoa.remove_all();
 
-      ::EnumDisplayMonitors(NULL, NULL, &application::monitor_enum_proc, (LPARAM) ( dynamic_cast < ::cube::application * > (this)));
+      ::EnumDisplayMonitors(::null(), ::null(), &application::monitor_enum_proc, (LPARAM) ( dynamic_cast < ::cube::application * > (this)));
 
 #else
 
@@ -628,7 +628,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       mutex_lock sl(user_mutex(), true);
 
-      Display * d=XOpenDisplay(NULL);
+      Display * d=XOpenDisplay(::null());
 
 
       //throw todo(get_app());
@@ -697,8 +697,8 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
    }*/
 
    /*
-   ::ca::applicationsp pgenapp = (papp);
-   if(pgenapp != NULL)
+   sp(::ca::application) pgenapp = (papp);
+   if(pgenapp != ::null())
    {
    try
    {
@@ -899,7 +899,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       m_straAppInterest.add(m_strAppName);
       update_app_interest();
       oswindow oswindow = get_ca2_app_wnd(m_strAppName);
-      if(oswindow != NULL)
+      if(oswindow != ::null())
       {
 #ifndef METROWIN
          ::ShowWindow(oswindow, SW_RESTORE);
@@ -916,7 +916,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       {
          strApp = stra[0];
          oswindow oswindow = get_ca2_app_wnd(strApp);
-         if(oswindow != NULL)
+         if(oswindow != ::null())
          {
             return send_simple_command((void *) oswindow, psz, osdataSender);
          }
@@ -941,7 +941,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 #endif
    }
 
-   void application::request(::ca::create_context * pcreatecontext)
+   void application::request(sp(::ca::create_context) pcreatecontext)
    {
       ::cubebase::application::request(pcreatecontext);
    }

@@ -8,14 +8,14 @@
 namespace user
 {
 
-   tab::data::data(::ca::applicationsp papp) :
+   tab::data::data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data(papp),
       m_imagelist(papp),
-      m_pen(papp),
-      m_font(papp),
-      m_fontUnderline(papp),
-      m_fontBold(papp),
+      m_pen(allocer()),
+      m_font(allocer()),
+      m_fontUnderline(allocer()),
+      m_fontBold(allocer()),
       m_dcextension(papp),
       m_panea(papp)
    {
@@ -39,7 +39,7 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(::ca::applicationsp papp) :
+   tab::tab(sp(::ca::application) papp) :
       ca(papp),
       place_holder_container(papp),
       m_dcextension(papp)
@@ -48,7 +48,7 @@ namespace user
       m_spdata = new data(papp);
       get_data()->m_panea.set_app(papp);
       get_data()->m_iHeightAddUp = 0;
-      get_data()->m_pcallback    = NULL;
+      get_data()->m_pcallback    = ::null();
       get_data()->m_bCreated     = false;
       get_data()->m_iTabHeight   = 16;
       get_data()->m_iTabWidth    = 48;
@@ -60,14 +60,14 @@ namespace user
 
       m_bShowTabs                = true;
 
-      m_bNoTabs = System.directrix().m_varTopicQuery.has_property("no_tabs");
+      m_bNoTabs = System.directrix()->m_varTopicQuery.has_property("no_tabs");
 
 
       //m_rectBorder.set(7, 1, 7, 0);
 
 
-      ::ca::graphics_sp spgraphics(get_app());
-      spgraphics->CreateCompatibleDC(NULL);
+      ::ca::graphics_sp spgraphics(allocer());
+      spgraphics->CreateCompatibleDC(::null());
 
 
       get_data()->m_font->create_point_font("Lucida Sans Unicode", 10);
@@ -95,7 +95,7 @@ namespace user
          return false;
       }*/
    //   pane.m_pcontainer = pcontainer;
-     // pane.m_typeinfo = NULL;
+     // pane.m_typeinfo = ::null();
      /* pane.m_iImage = -1;
 
       get_data()->m_panea.add(pane);
@@ -133,7 +133,7 @@ namespace user
 
       ppane->m_id               = id;
       ppane->m_dib.release();
-      ppane->m_pholder          = NULL;
+      ppane->m_pholder          = ::null();
 
       get_data()->m_panea.add(ppane);
 
@@ -187,7 +187,7 @@ namespace user
 
       pane * ppane = new pane(get_app());
 
-      if(ppane == NULL)
+      if(ppane == ::null())
          return false;
 
       ppane->m_bVisible    = bVisible;
@@ -198,8 +198,8 @@ namespace user
          id = get_data()->m_panea.get_size();
 
       ppane->m_id          = id;
-      ppane->m_pholder     = NULL;
-      ppane->m_dib.create(get_app());
+      ppane->m_pholder     = ::null();
+      ppane->m_dib.create(allocer());
       ppane->m_dib.load_from_file(pszImage);
 
       get_data()->m_panea.add(ppane);
@@ -574,7 +574,7 @@ namespace user
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
-            ::ca::graphics_path_sp path(get_app());
+            ::ca::graphics_path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
             {
@@ -589,7 +589,7 @@ namespace user
 
                //path->close_figure();
 
-               ::ca::brush_sp br(get_app());
+               ::ca::brush_sp br(allocer());
 
                br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -645,7 +645,7 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::ca::brush_sp br(get_app());
+                  ::ca::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
@@ -666,7 +666,7 @@ namespace user
                else
                {
 
-                  ::ca::brush_sp br(get_app());
+                  ::ca::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
@@ -699,7 +699,7 @@ namespace user
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
-            ::ca::graphics_path_sp path(get_app());
+            ::ca::graphics_path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
             {
@@ -715,7 +715,7 @@ namespace user
 
                path->end_figure(false);
 
-               ::ca::brush_sp br(get_app());
+               ::ca::brush_sp br(allocer());
 
                br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -749,7 +749,7 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::ca::brush_sp br(get_app());
+                  ::ca::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
@@ -770,7 +770,7 @@ namespace user
                else
                {
 
-                  ::ca::brush_sp br(get_app());
+                  ::ca::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
@@ -927,8 +927,8 @@ namespace user
       {
          int32_t iTabHeight = 16;
          int32_t cy;
-         ::ca::graphics_sp graphics(get_app());
-         graphics->CreateCompatibleDC(NULL);
+         ::ca::graphics_sp graphics(allocer());
+         graphics->CreateCompatibleDC(::null());
          ::ca::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
@@ -945,7 +945,7 @@ namespace user
 
             m_dcextension.GetTextExtent(pdc, str, size);
 
-            if(pane.m_dib.m_p != NULL)
+            if(pane.m_dib.m_p != ::null())
             {
                size.cy = max(size.cy, pane.m_dib->size().cy);
             }
@@ -1012,7 +1012,7 @@ namespace user
 
       sp(place_holder) pholder = get_tab_holder(iPane);
 
-      if(pholder != NULL)
+      if(pholder != ::null())
       {
 
          rect rectChild;
@@ -1054,7 +1054,7 @@ namespace user
          else if(iPane != iSel)
          {
             get_data()->m_iDragTab = iPane;
-            SetTimer(5432187, 1230, NULL);
+            SetTimer(5432187, 1230, ::null());
             pmouse->m_bRet = true;
             pmouse->set_lresult(1);
          }
@@ -1099,7 +1099,7 @@ namespace user
       ScreenToClient(&point);
       if(get_data()->m_iDragTab >= 0)
       {
-         if(get_data()->m_pcallback != NULL)
+         if(get_data()->m_pcallback != ::null())
          {
             get_data()->m_pcallback->_001DropTargetWindowRelay(this);
          }
@@ -1220,10 +1220,10 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca::graphics_sp graphics(get_app());
-         graphics->CreateCompatibleDC(NULL);
+         ::ca::graphics_sp graphics(allocer());
+         graphics->CreateCompatibleDC(::null());
 
-         //HDC hdc = ::CreateCompatibleDC(NULL);
+         //HDC hdc = ::CreateCompatibleDC(::null());
          //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
          //delete pg;
          //::DeleteDC(hdc);
@@ -1309,15 +1309,15 @@ namespace user
    sp(::ca::window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
-      return NULL;
+      return ::null();
 
 #else
       sp(::ca::window) pwnd;
-   //   if((pwnd = m_pguie->get_owner()) != NULL)
+   //   if((pwnd = m_pguie->get_owner()) != ::null())
      //    return pwnd;
-      if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
+      if((pwnd = m_pguie->get_parent()->get_wnd()) != ::null())
          return pwnd;
-      return NULL;
+      return ::null();
 #endif
    }
 
@@ -1392,17 +1392,17 @@ namespace user
    }
 
    tab::pane::pane() :
-      m_istrTitleEx(NULL)
+      m_istrTitleEx(::null())
    {
    }
 
-   tab::pane::pane(::ca::applicationsp papp) :
+   tab::pane::pane(sp(::ca::application) papp) :
       ca(papp),
       m_istrTitleEx(papp)
    {
       m_bVisible     = true;
       m_bPermanent   = false;
-      m_pholder      = NULL;
+      m_pholder      = ::null();
    }
 
    tab::pane::pane(const pane & pane) :
@@ -1441,7 +1441,7 @@ namespace user
    }
 
 
-   tab::pane_array::pane_array(::ca::applicationsp papp) :
+   tab::pane_array::pane_array(sp(::ca::application) papp) :
       ca(papp)
    {
    }
@@ -1461,7 +1461,7 @@ namespace user
             return element_at(i);
          }
       }
-      return NULL;
+      return ::null();
    }
 
    ::count tab::pane_array::get_visible_count()
@@ -1490,7 +1490,7 @@ namespace user
 
    void tab::_001SetTabCallback(tab_callback * pcallback)
    {
-      if(get_data()->m_pcallback != NULL)
+      if(get_data()->m_pcallback != ::null())
       {
          delete get_data()->m_pcallback;
       }
@@ -1518,7 +1518,7 @@ namespace user
 
    bool tab::_001IsAddTab(::index iPane)
    {
-      if(get_data()->m_pcallback != NULL)
+      if(get_data()->m_pcallback != ::null())
       {
          return get_data()->m_pcallback->_001IsAddTab(this, iPane);
       }
@@ -1530,7 +1530,7 @@ namespace user
 
    void tab::_001OnTabClick(::index iPane)
    {
-      if(get_data()->m_pcallback != NULL)
+      if(get_data()->m_pcallback != ::null())
       {
          get_data()->m_pcallback->_001OnTabClick(this, iPane);
       }
@@ -1542,7 +1542,7 @@ namespace user
 
    void tab::_001OnTabClose(::index iPane)
    {
-      if(get_data()->m_pcallback != NULL)
+      if(get_data()->m_pcallback != ::null())
       {
          get_data()->m_pcallback->_001OnTabClose(this, iPane);
       }
@@ -1555,7 +1555,7 @@ namespace user
    bool tab::show_tab_by_id(id id, bool bShow)
    {
       pane * ppane = get_pane_by_id(id);
-      if(ppane == NULL)
+      if(ppane == ::null())
          return false;
 
       ppane->m_bVisible = bShow;
@@ -1567,7 +1567,7 @@ namespace user
    bool tab::show_tab(::index iTab, bool bShow)
    {
       pane * ppane = get_pane(iTab, !bShow);
-      if(ppane == NULL)
+      if(ppane == ::null())
          return !bShow;
 
       ppane->m_bVisible = bShow;
@@ -1581,23 +1581,23 @@ namespace user
    sp(::user::interaction) tab::get_tab_window(::index iPane, bool bVisible)
    {
       sp(place_holder) pholder = get_tab_holder(iPane, bVisible);
-      if(pholder == NULL)
-         return NULL;
+      if(pholder == ::null())
+         return ::null();
       return pholder->get_ui();
    }
 
    sp(::user::place_holder) tab::get_tab_holder(::index iPane, bool bVisible)
    {
       pane * ppane = get_pane(iPane, bVisible);
-      if(ppane == NULL)
-         return NULL;
+      if(ppane == ::null())
+         return ::null();
       return ppane->m_pholder;
    }
 
    tab::pane * tab::get_pane(::index iPane, bool bVisible)
    {
       if(iPane < 0 || iPane >= get_data()->m_panea.get_count())
-         return NULL;
+         return ::null();
       if(bVisible)
       {
          for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
@@ -1614,7 +1614,7 @@ namespace user
                }
             }
          }
-         return NULL;
+         return ::null();
       }
       else
       {
@@ -1625,12 +1625,12 @@ namespace user
 
    void tab::_001SelectTab(::index iPane)
    {
-      if(get_tab_holder(_001GetSel()) != NULL)
+      if(get_tab_holder(_001GetSel()) != ::null())
       {
          get_tab_holder(_001GetSel())->ShowWindow(SW_HIDE);
       }
       _001SetSel(iPane);
-      if(get_tab_holder(_001GetSel()) != NULL)
+      if(get_tab_holder(_001GetSel()) != ::null())
       {
          get_tab_holder(_001GetSel())->ShowWindow(SW_SHOW);
       }
@@ -1639,7 +1639,7 @@ namespace user
 
    void tab::on_show_view()
    {
-      if(get_data()->m_pcallback != NULL && dynamic_cast < ::user::tab * > (get_data()->m_pcallback) != this)
+      if(get_data()->m_pcallback != ::null() && dynamic_cast < ::user::tab * > (get_data()->m_pcallback) != this)
       {
          get_data()->m_pcallback->_001OnShowTab(this);
       }
@@ -1726,7 +1726,7 @@ namespace user
       }
    }
 
-   void tab::set_cur_tab_by_id(id id, ::ca::create_context * pcreatecontext)
+   void tab::set_cur_tab_by_id(id id, sp(::ca::create_context) pcreatecontext)
    {
       try
       {
@@ -1758,7 +1758,7 @@ namespace user
       {
       }
 
-      m_spcreatecontext = (::ca::create_context *) NULL;
+      m_spcreatecontext = (sp(::ca::create_context)) ::null();
 
    }
 
@@ -1835,7 +1835,7 @@ namespace user
 
    void tab::_001OnDropTab(::index iPane, e_position eposition)
    {
-      if(get_data()->m_pcallback != NULL)
+      if(get_data()->m_pcallback != ::null())
       {
          get_data()->m_pcallback->_001OnDropTab(iPane, eposition);
       }
@@ -1844,7 +1844,7 @@ namespace user
 
    sp(::user::interaction) tab::get_view_uie()
    {
-      return NULL;
+      return ::null();
    }
 
 
@@ -1859,7 +1859,7 @@ namespace user
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
-         if(get_data()->m_pcallback != NULL)
+         if(get_data()->m_pcallback != ::null())
          {
             get_data()->m_pcallback->_001DropTargetWindowInitialize(this);
          }
@@ -1926,7 +1926,7 @@ namespace user
 //      int32_t iSize;
       try
       {
-         while(pui != NULL)
+         while(pui != ::null())
          {
             try
             {
@@ -1991,17 +1991,17 @@ namespace user
 
    void tab::get_text_id(stringa & stra)
    {
-      get_presuffixed_ci_id(stra, NULL, NULL);
+      get_presuffixed_ci_id(stra, ::null(), ::null());
    }
 
    void tab::get_prefixed_ci_id(stringa & stra, const char * pszPrefix)
    {
-      get_presuffixed_ci_id(stra, pszPrefix, NULL);
+      get_presuffixed_ci_id(stra, pszPrefix, ::null());
    }
 
    void tab::get_suffixed_ci_id(stringa & stra, const char * pszSuffix)
    {
-      get_presuffixed_ci_id(stra, NULL, pszSuffix);
+      get_presuffixed_ci_id(stra, ::null(), pszSuffix);
    }
 
    void tab::get_presuffixed_ci_id(stringa & stra, const char * pszPrefix, const char * pszSuffix)
@@ -2029,12 +2029,12 @@ namespace user
 
    void tab::get_begins_ci_eat_id(stringa & stra, const char * pszPrefix)
    {
-      get_begins_ends_ci_eat_id(stra, pszPrefix, NULL);
+      get_begins_ends_ci_eat_id(stra, pszPrefix, ::null());
    }
 
    void tab::get_ends_ci_eat_id(stringa & stra, const char * pszSuffix)
    {
-      get_begins_ends_ci_eat_id(stra, NULL, pszSuffix);
+      get_begins_ends_ci_eat_id(stra, ::null(), pszSuffix);
    }
 
    void tab::get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffix)

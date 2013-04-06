@@ -19,7 +19,7 @@ namespace ca
 
    }
 
-   thread::thread(::ca::applicationsp papp) :
+   thread::thread(sp(::ca::application) papp) :
       ca(papp),
       m_mutex(papp)
    {
@@ -37,7 +37,7 @@ namespace ca
 
    }
 
-   thread::thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+   thread::thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
       ca(papp),
       m_mutex(papp)
    {
@@ -67,7 +67,7 @@ namespace ca
    }
 
 
-   ::ca::applicationsp get_thread_app()
+   sp(::ca::application) get_thread_app()
    {
 
       thread * pthread = get_thread();
@@ -961,7 +961,7 @@ namespace ca
 
 
 
-::ca::thread* __begin_thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != ::null());

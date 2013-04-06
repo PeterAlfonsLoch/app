@@ -4,7 +4,7 @@ namespace sip
 {
 
    // --------------------------------------------------------------------------------------
-   request::request(::ca::applicationsp papp) :
+   request::request(sp(::ca::application) papp) :
       ca(papp),
       transaction(papp),
       m_file(papp),

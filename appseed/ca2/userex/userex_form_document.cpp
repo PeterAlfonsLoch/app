@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-form_document::form_document(::ca::applicationsp papp) :
+form_document::form_document(sp(::ca::application) papp) :
    ca(papp),
    ::ca::data_container_base(papp),
    html_document(papp)
@@ -16,7 +16,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
    if(::ca::str::begins_eat(strUrl, "ext://"))
    {
       Application.open_link(strUrl, lpszTargetFrameName);
-/*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+/*         simple_shell_launcher launcher(::null(), "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
 
       *pbCancel = true;
@@ -28,8 +28,8 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
       *pbCancel = true;
       return;
    }
-   if(get_html_data()->m_pform != NULL
-      && get_html_data()->m_pform->m_pcallback != NULL
+   if(get_html_data()->m_pform != ::null()
+      && get_html_data()->m_pform->m_pcallback != ::null()
       && get_html_data()->m_pform->m_pcallback != dynamic_cast < ::user::form_callback * > (this))
    {
       get_html_data()->m_pform->m_pcallback->OnBeforeNavigate2(get_html_data(), varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);

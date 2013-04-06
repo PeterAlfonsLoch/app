@@ -9,7 +9,7 @@ not_implemented::not_implemented(const not_implemented & e) :
 {
 }
 
-not_implemented::not_implemented(::ca::applicationsp papp, const char * pszTip) : 
+not_implemented::not_implemented(sp(::ca::application) papp, const char * pszTip) : 
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

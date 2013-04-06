@@ -4,7 +4,7 @@
 
 
 
-FileManagerTabView::FileManagerTabView(::ca::applicationsp papp) :
+FileManagerTabView::FileManagerTabView(sp(::ca::application) papp) :
    ca(papp),
    ::user::tab(papp),
    ::userbase::view(papp),
@@ -43,7 +43,7 @@ void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::ca::object*
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    ::userbase::tab_view::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint > :: bases(phint))
       {
@@ -56,8 +56,8 @@ void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::ca::object*
          {
             string str;
             str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-            sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
-            if(pframe != NULL)
+            sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+            if(pframe != ::null())
             {
                pframe->m_dataid = str;
             }
@@ -65,15 +65,15 @@ void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::ca::object*
          else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
          {
             OnActivateFrame(WA_INACTIVE, ( (GetParentFrame())));
-            if(GetTypedParent < FileManagerMainFrame > () != NULL)
+            if(GetTypedParent < FileManagerMainFrame > () != ::null())
             {
-               GetTypedParent < FileManagerMainFrame >()->InitialUpdateFrame(NULL, TRUE);
+               GetTypedParent < FileManagerMainFrame >()->InitialUpdateFrame(::null(), TRUE);
                GetTypedParent < FileManagerMainFrame >()->ShowWindow(SW_SHOW);
                GetTypedParent < FileManagerMainFrame >()->ActivateFrame(SW_SHOW);
             }
             else
             {
-               GetParentFrame()->InitialUpdateFrame(NULL, TRUE);
+               GetParentFrame()->InitialUpdateFrame(::null(), TRUE);
                GetParentFrame()->ShowWindow(SW_SHOW);
                GetParentFrame()->ActivateFrame(SW_SHOW);
             }
@@ -103,11 +103,11 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       if(pcreatordata->m_id == "add_location"
          || pcreatordata->m_id == "replace_name")
       {
-         ::ca::create_context_sp createcontext(get_app());
+         sp(::ca::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         file_manager_form_document * pdoc = dynamic_cast < file_manager_form_document * > (Application.filemanager().m_ptemplateForm->open_document_file(createcontext));
-         if(pdoc == NULL)
+         sp(file_manager_form_document) pdoc = Application.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         if(pdoc == ::null())
             return;
          file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view > ();
          file_manager_form_update_hint uh;
@@ -120,18 +120,18 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          {
             uh.m_strForm = "filemanager_add_location_1.xhtml";
          }
-         pdoc->update_all_views(NULL, 0, &uh);
+         pdoc->update_all_views(::null(), 0, &uh);
 
          uh.m_etype = file_manager_form_update_hint::type_get_form_view;
-         pdoc->update_all_views(NULL, 0, &uh);
+         pdoc->update_all_views(::null(), 0, &uh);
 
          uh.m_etype = file_manager_form_update_hint::type_after_browse;
-         pdoc->update_all_views(NULL, 0, &uh);
+         pdoc->update_all_views(::null(), 0, &uh);
 
 
          pformview->m_pfilemanagerinterface =  (m_pviewdata->m_pdoc);
          //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
-         //pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pformview->GetParentFrame());
+         //pcreatordata->m_pwnd = (pformview->GetParentFrame());
          //      file_manager_form_child_frame * pframe = dynamic_cast < file_manager_form_child_frame * >(pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
          pcreatordata->m_pdoc = pdoc;
@@ -140,28 +140,28 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    }
    else if(pcreatordata->m_id == 200000)
    {
-      ::ca::create_context_sp createcontext(get_app());
+      sp(::ca::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
       //throw not_implemented(get_app());
       sp(file_manager_operation_document) pdoc =  (Application.filemanager().m_ptemplateOperation->open_document_file(createcontext));
-      if(pdoc == NULL)
+      if(pdoc == ::null())
          return;
       ::view * pview = pdoc->get_view(0);
       //file_manager_form_view * poperationview = dynamic_cast < file_manager_form_view * > (pview);
-      pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
+      pcreatordata->m_pwnd = (pview->GetParentFrame());
       //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;
       pcreatordata->m_pdoc = pdoc;
    }
    else
    {
-      ::ca::create_context_sp createcontext(get_app());
+      sp(::ca::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       createcontext->m_puiParent = pcreatordata->m_pholder;
       sp(::filemanager::document) pdoc =  (Application.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
-      sp(simple_frame_window) pwndTopLevel = NULL;
-      if(pdoc != NULL)
+      sp(simple_frame_window) pwndTopLevel = ::null();
+      if(pdoc != ::null())
          //if(false)
       {
          //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
@@ -193,14 +193,14 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
          sp(simple_frame_window) pwnd =  (pview->GetParentFrame());
 
-         if(pwnd != NULL)
+         if(pwnd != ::null())
          {
             //pwnd->m_workset.SetAppearanceTransparency(frame::Transparent);
             pwnd->m_etranslucency = ::user::window_interface::TranslucencyTotal;
          }
          pwndTopLevel =  (pview->GetTopLevelFrame());
 
-         if(pwndTopLevel != NULL)
+         if(pwndTopLevel != ::null())
          {
             //pwndTopLevel->m_workset.SetAppearanceTransparency(frame::Transparent);
             pwndTopLevel->m_etranslucency = ::user::window_interface::TranslucencyPresent;
@@ -214,22 +214,22 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          /*FileManagerViewUpdateHint uh;
 
          uh.set_type(FileManagerViewUpdateHint::TypeSetManager);
-         uh.m_pview = NULL;
+         uh.m_pview = ::null();
          uh.GetFileManager() = get_document();
          */
 
-         ///pdoc->update_all_views(NULL, 0, &uh);
+         ///pdoc->update_all_views(::null(), 0, &uh);
 
          pdoc->Initialize(true);
       }
-      if(pdoc == NULL)
+      if(pdoc == ::null())
          return;
 //      ::view * pview = pdoc->get_view(0);
-      //pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
+      //pcreatordata->m_pwnd = (pview->GetParentFrame());
       //      sp(FileManagerChildFrame) pframe = (pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;
       pcreatordata->m_pdoc = pdoc;
-      if(pwndTopLevel != NULL)
+      if(pwndTopLevel != ::null())
       {
          pwndTopLevel->layout();
       }

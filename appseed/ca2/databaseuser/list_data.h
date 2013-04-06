@@ -15,7 +15,7 @@ namespace databaseuser
       ::count m_iItemCount;
 
 
-      list_data(::ca::applicationsp papp);
+      list_data(sp(::ca::application) papp);
       virtual ~list_data();
 
       virtual void _001GetItemText(::user::list_item * pitem);
@@ -29,7 +29,7 @@ namespace databaseuser
 
 
       list_data(const list_data & ) :
-         ::user::list_data(NULL)
+         ::user::list_data(::null())
       {
       }
 

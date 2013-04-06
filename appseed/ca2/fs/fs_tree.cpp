@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   tree::tree(::ca::applicationsp papp) :
+   tree::tree(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::fs::tree_interface(papp)
@@ -46,7 +46,7 @@ namespace fs
       UNREFERENCED_PARAMETER(lHint);
 
       //FileManagerViewInterface::on_update(pSender, lHint, phint);
-      if(phint != NULL)
+      if(phint != ::null())
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
          {
@@ -186,7 +186,7 @@ namespace fs
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiFilePopup))
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
-            ASSERT(pPopup != NULL);
+            ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
@@ -194,11 +194,11 @@ namespace fs
             //IContextMenu * pcontextmenu;
 
             hr = m_spshellfolder->GetUIObjectOf(
-               NULL,
+               ::null(),
                1,
                (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
                IID_IContextMenu,
-               NULL,
+               ::null(),
                (void **) &m_contextmenu.m_pcontextmenu);
 
 
@@ -225,7 +225,7 @@ namespace fs
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiPopup))
          {
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
-            ASSERT(pPopup != NULL);
+            ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
@@ -267,7 +267,7 @@ namespace fs
 
    void tree::StartAnimation()
    {
-      SetTimer(1234567, 50, NULL);
+      SetTimer(1234567, 50, ::null());
    }
 
    bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)

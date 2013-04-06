@@ -15,18 +15,18 @@ namespace platform
 
    view::run::run()
    {
-      m_papp = NULL;
-      m_pview = NULL;
-      m_plink = NULL;
+      m_papp = ::null();
+      m_pview = ::null();
+      m_plink = ::null();
    }
 
-   view::link::link(::ca::applicationsp papp) :
+   view::link::link(sp(::ca::application) papp) :
       m_button(papp)
    {
-      m_prun = NULL;
+      m_prun = ::null();
    }
 
-   view::view(::ca::applicationsp papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -43,13 +43,13 @@ namespace platform
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
       m_buttonschema(papp),
-      m_font1(papp),
-      m_font2(papp),
-      m_font3(papp),
-      m_brushBk(papp),
-      m_brushProgress3(papp),
-      m_brushProgress2(papp),
-      m_brushProgress1(papp)
+      m_font1(allocer()),
+      m_font2(allocer()),
+      m_font3(allocer()),
+      m_brushBk(allocer()),
+      m_brushProgress3(allocer()),
+      m_brushProgress2(allocer()),
+      m_brushProgress1(allocer())
    {
       m_buttonschema.m_crBkDisabled = ARGB(255, 126, 127, 128);
       m_buttonschema.m_crBkPress = ARGB(255, 200, 127, 200);
@@ -196,7 +196,7 @@ namespace platform
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 230, NULL);
+      SetTimer(198477, 230, ::null());
 
 
       //FIBITMAP * pfi;
@@ -209,7 +209,7 @@ namespace platform
       //::ca::savings & savings = System.savings();
       //if(
 
-      const char * pszSessionName = NULL;
+      const char * pszSessionName = ::null();
 
 #ifndef METROWIN
 
@@ -218,7 +218,7 @@ namespace platform
 #endif
 
       bool bConsole = false;
-      if(pszSessionName != NULL)
+      if(pszSessionName != ::null())
       {
          if(strcmp(pszSessionName, "Console") == 0)
          {
@@ -235,7 +235,7 @@ namespace platform
          m_dibBk->Fill(0, 84, 84, 77);
       }
 
-      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
+      SetTimer(21977, 1984 * 11, ::null());  // max. 12 fps
 
       check_apps();
 
@@ -299,12 +299,12 @@ namespace platform
                string strApp = m_linka[i].m_strSrc;
                ::ca::str::ends_eat_ci(strApp, ".dll");
 
-               ::ca::create_context_sp cc(&Application.command_central());
+               sp(::ca::create_context) cc(Application.command_central());
 
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = Bergedge.m_varTopicFile;
 
-               Bergedge.command().request(cc);
+               Bergedge.command()->request(cc);
             }
          }
       }
@@ -358,8 +358,8 @@ namespace platform
       }
       else
       {
-         ::ca::dib_sp spdib(get_app());
-         ::ca::dib_sp spdib2(get_app());
+         ::ca::dib_sp spdib(allocer());
+         ::ca::dib_sp spdib2(allocer());
          if(!spdib->create(rectClient.width(), rectClient.height()))
             return;
          if(!spdib2->create(rectClient.width(), rectClient.height()))
@@ -378,19 +378,19 @@ namespace platform
 
 
       class rect rectThumb;
-      if(&Bergedge != NULL)
+      if(&Bergedge != ::null())
       {
          Bergedge.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
          {
-            ::ca::dib_sp dib(get_app());
+            ::ca::dib_sp dib(allocer());
             dib->create(1920, 1080);
             keeper < bool > keepOnDraw(&dynamic_cast < ::platform::frame * >(GetParentFrame().m_p)->m_bOnDraw, true, false, true);
             Bergedge.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
 
-            ::ca::dib_sp dibThumb(get_app());
+            ::ca::dib_sp dibThumb(allocer());
             double dRate = 184.0 / rectThumb.width();
             dibThumb->create((int32_t) (dRate * rectThumb.width()), (int32_t) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
@@ -457,7 +457,7 @@ namespace platform
 
    }
 
-   void view::open_document_file(::ca::create_context * pcreatecontext)
+   void view::open_document_file(sp(::ca::create_context) pcreatecontext)
    {
       try
       {
@@ -483,11 +483,11 @@ namespace platform
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -521,7 +521,7 @@ namespace platform
    UINT c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
    {
       show_window * pshow = (show_window *) lpparam;
-      if(pshow != NULL)
+      if(pshow != ::null())
          pshow->show();
       delete pshow;
       return 0;
@@ -715,7 +715,7 @@ namespace platform
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(NULL, NULL, System.dir().ca2("cast\\spaadmin.exe"), NULL, NULL, SW_SHOW);
+         simple_shell_launcher launcher(::null(), ::null(), System.dir().ca2("cast\\spaadmin.exe"), ::null(), ::null(), SW_SHOW);
 
          launcher.execute();
 
@@ -772,8 +772,8 @@ namespace platform
 
 
       simple_shell_launcher launcher(
-      NULL,
-      NULL,
+      ::null(),
+      ::null(),
       System.dir().ca2("spaadmin.exe"),
       " uninstall _set_windesk",
       System.dir().ca2(""),
@@ -840,7 +840,7 @@ namespace platform
       {
       SwitchArea(iHitArea);
       m_dw3003Time = ::get_tick_count();
-      SetTimer(3003, 300, NULL);
+      SetTimer(3003, 300, ::null());
 
       }
       else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))

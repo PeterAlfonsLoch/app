@@ -5,13 +5,13 @@ namespace platform
 {
 
 
-   document::document(::ca::applicationsp papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       form_document(papp)
    {
       
-      m_pbergedgedocument = NULL;
+      m_pbergedgedocument = ::null();
 
    }
 
@@ -20,7 +20,7 @@ namespace platform
       if (!::userbase::document::on_new_document())
          return FALSE;
 
-      update_all_views(NULL, 0);
+      update_all_views(::null(), 0);
 
 
       return TRUE;
@@ -81,15 +81,15 @@ namespace platform
 
    }
 
-   frame * document::get_platform_frame()
+   sp(frame) document::get_platform_frame()
    {
       
       pane_view * pview = get_platform_pane_view();
       
-      if(pview == NULL)
-         return NULL;
+      if(pview == ::null())
+         return ::null();
       
-      frame * pplatformframe = pview->GetTypedParent < frame >();
+      sp(frame) pplatformframe = pview->GetTypedParent < frame >();
       
       return pplatformframe;
 

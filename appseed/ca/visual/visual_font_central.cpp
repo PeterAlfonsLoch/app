@@ -1,12 +1,12 @@
 #include "framework.h"
 
-font_central::font_central(::ca::applicationsp papp) :
+font_central::font_central(sp(::ca::application) papp) :
    ca(papp),
-   m_fontCaption(papp),
-   m_fontMenu(papp),
-   m_fontStandard(papp),
-   m_font(papp),
-   m_fontListCtrl(papp)
+   m_fontCaption(allocer()),
+   m_fontMenu(allocer()),
+   m_fontStandard(allocer()),
+   m_font(allocer()),
+   m_fontListCtrl(allocer())
 {
    m_pfontLyric = ::null();
    m_pfontLyricCompact = ::null();
@@ -45,7 +45,7 @@ bool font_central::Initialize()
    if(IsInitialized())
       return false;
 
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(::null());
 
    m_fontMenu->create_point_font(FONTFACENAME_MENU, 9);
@@ -182,7 +182,7 @@ visual::font * font_central::GetSongListFont()
 
 void font_central::CreateLyricViewFonts()
 {
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(::null());
 
 

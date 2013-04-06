@@ -2,9 +2,9 @@
 
 
 
-BaseMenuCentral::BaseMenuCentral(::ca::applicationsp papp) :
+BaseMenuCentral::BaseMenuCentral(sp(::ca::application) papp) :
    ca(papp),
-   m_fontMenu(papp)
+   m_fontMenu(allocer())
 {
 
    m_pil             = new image_list(papp);
@@ -28,29 +28,29 @@ BaseMenuCentral::BaseMenuCentral(::ca::applicationsp papp) :
 
 BaseMenuCentral::~BaseMenuCentral()
 {
-   if(m_pil != NULL)
+   if(m_pil != ::null())
    {
       delete m_pil;
-      m_pil = NULL;
+      m_pil = ::null();
    }
-   if(m_pilHue != NULL)
+   if(m_pilHue != ::null())
    {
       delete m_pilHue;
-      m_pilHue = NULL;
+      m_pilHue = ::null();
    }
-   if(m_pilBlend != NULL)
+   if(m_pilBlend != ::null())
    {
       delete m_pilBlend;
-      m_pilBlend = NULL;
+      m_pilBlend = ::null();
    }
-   if(m_pilHueLight != NULL)
+   if(m_pilHueLight != ::null())
    {
       delete m_pilHueLight;
-      m_pilHueLight = NULL;
+      m_pilHueLight = ::null();
    }
 }
 
-BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::applicationsp papp)
+BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)
 {
    return App(papp).userbase().get_menucentral();
 }
@@ -70,8 +70,8 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::applicationsp papp)
       user++;
    }
 
-   ::ca::graphics_sp spgraphics(get_app());
-   spgraphics->CreateCompatibleDC(NULL);
+   ::ca::graphics_sp spgraphics(allocer());
+   spgraphics->CreateCompatibleDC(::null());
 
    System.visual().imaging().CreateHueImageList(
       &spgraphics,
@@ -114,8 +114,8 @@ bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
    }
 
 
-   ::ca::graphics_sp spgraphics(get_app());
-   spgraphics->CreateCompatibleDC(NULL);
+   ::ca::graphics_sp spgraphics(allocer());
+   spgraphics->CreateCompatibleDC(::null());
 
    class imaging & imaging = System.visual().imaging();
 
@@ -239,7 +239,7 @@ image_list * BaseMenuCentral::MenuV033GetImageListHueLight()
 
 BaseMenuCentralContainer::BaseMenuCentralContainer()
 {
-   m_pmenucentral = NULL;
+   m_pmenucentral = ::null();
 }
 
 BaseMenuCentralContainer::~BaseMenuCentralContainer()
@@ -251,7 +251,7 @@ BaseMenuCentral * BaseMenuCentralContainer::get_menucentral()
    return m_pmenucentral;
 }
 
-bool BaseMenuCentralContainer::initialize_central_container(::ca::applicationsp papp)
+bool BaseMenuCentralContainer::initialize_central_container(sp(::ca::application) papp)
 {
    m_pmenucentral = new BaseMenuCentral(papp);
    if(!m_pmenucentral)
@@ -262,10 +262,10 @@ bool BaseMenuCentralContainer::initialize_central_container(::ca::applicationsp 
 
 bool BaseMenuCentralContainer::finalize_central_container()
 {
-   if(m_pmenucentral != NULL)
+   if(m_pmenucentral != ::null())
    {
       delete m_pmenucentral;
-      m_pmenucentral = NULL;
+      m_pmenucentral = ::null();
    }
    return true;
 }

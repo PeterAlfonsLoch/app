@@ -5,9 +5,9 @@
 int32_t g_idbchange;
 
 
-db_server::db_server(::ca::applicationsp papp) :
+db_server::db_server(sp(::ca::application) papp) :
    ca(papp),
-   ::ca::window_sp(papp)
+   ::ca::window_sp(allocer())
 {
    m_pdb                = ::null();
    m_pSongsDirsSet      = ::null();
@@ -87,9 +87,9 @@ bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * psz
 bool db_server::initialize()
 {
 
-   if(System.directrix().m_varTopicQuery["app"] == "app-core/netnodelite"
-	||  System.directrix().m_varTopicQuery["app"] == "app-core/netnodecfg"
-   ||  System.directrix().m_varTopicQuery["app"] == "app-core/mydns")
+   if(System.directrix()->m_varTopicQuery["app"] == "app-core/netnodelite"
+	||  System.directrix()->m_varTopicQuery["app"] == "app-core/netnodecfg"
+   ||  System.directrix()->m_varTopicQuery["app"] == "app-core/mydns")
    {
       m_bRemote = false;
    }
@@ -114,11 +114,11 @@ bool db_server::initialize()
    m_pStringSet = new db_str_set(&Application.m_simpledb.db());
 
    int32_t iBufferSize = 128 * 1024;
-   ::ca::command_thread & commandthread = System.command();
+   sp(::ca::command_thread) commandthread = System.command();
 
-   if(commandthread.m_varTopicQuery.has_property("filesizebuffer"))
+   if(commandthread->m_varTopicQuery.has_property("filesizebuffer"))
    {
-      iBufferSize = commandthread.m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
+      iBufferSize = commandthread->m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
    }
 
 #if !defined(METROWIN) && !defined(MACOS)

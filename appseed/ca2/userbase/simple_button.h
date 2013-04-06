@@ -12,7 +12,7 @@ public:
    bool                 m_bFocus;
 
 
-   simple_button(::ca::applicationsp papp);
+   simple_button(sp(::ca::application) papp);
    virtual ~simple_button();
 
 

@@ -7,37 +7,37 @@ namespace html
 
    reader::reader()
    {
-      m_ptag = NULL;
-      m_ptagMain = NULL;
+      m_ptag = ::null();
+      m_ptagMain = ::null();
    }
 
    reader::~reader()
    {
 
-      if(m_ptagMain != NULL)
+      if(m_ptagMain != ::null())
       {
          delete m_ptagMain;
       }
 
-      m_ptag      = NULL;
-      m_ptagMain  = NULL;
+      m_ptag      = ::null();
+      m_ptagMain  = ::null();
 
    }
 
    void reader::BeginParse(uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
-      m_ptag = NULL;
-      m_ptagMain = NULL;
+      m_ptag = ::null();
+      m_ptagMain = ::null();
       bAbort = false;
    }
 
    void reader::StartTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
-      if(m_ptag == NULL)
+      if(m_ptag == ::null())
       {
-         m_ptag = new ::html::tag(NULL);
+         m_ptag = new ::html::tag(::null());
          m_ptagMain = m_ptag;
       }
       else
@@ -47,7 +47,7 @@ namespace html
          m_ptag = ptag;
       }
       m_ptag->set_name(pTag->getTagName());
-      if(pTag->getAttributes() != NULL)
+      if(pTag->getAttributes() != ::null())
       {
          for(int32_t i = 0; i < pTag->getAttributes()->getCount(); i++)
          {
@@ -56,7 +56,7 @@ namespace html
             pattr->set_value(pTag->getAttributes()->getAttribute(i).getValue());
          }
       }
-      if(m_ptag->get_parent() != NULL && pTag->getTagName() == "visual")
+      if(m_ptag->get_parent() != ::null() && pTag->getTagName() == "visual")
       {
          m_ptag = m_ptag->get_parent();
       }
@@ -67,7 +67,7 @@ namespace html
    {
       UNREFERENCED_PARAMETER(pTag);
       UNREFERENCED_PARAMETER(dwAppData);
-      if(m_ptag->get_parent() != NULL && pTag->getTagName() != "visual")
+      if(m_ptag->get_parent() != ::null() && pTag->getTagName() != "visual")
       {
          m_ptag = m_ptag->get_parent();
       }
@@ -78,7 +78,7 @@ namespace html
    void reader::Characters(const string &rText, uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
-      if(m_ptag != NULL)
+      if(m_ptag != ::null())
       {
          ::html::value * pvalue = new ::html::value(m_ptag);
          m_ptag->baseptra().add(pvalue);
@@ -106,8 +106,8 @@ namespace html
       tag * ptagMain    = m_ptagMain;
 
 
-      m_ptagMain        = NULL;
-      m_ptag            = NULL;
+      m_ptagMain        = ::null();
+      m_ptag            = ::null();
 
 
       return ptagMain;

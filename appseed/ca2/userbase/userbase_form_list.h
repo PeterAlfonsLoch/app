@@ -12,7 +12,7 @@ namespace userbase
    public:
       
       
-      form_list(::ca::applicationsp papp);
+      form_list(sp(::ca::application) papp);
       virtual ~form_list();
 
 

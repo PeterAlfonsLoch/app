@@ -20,7 +20,7 @@ namespace gcom
          m_bRun = true;
          m_eventThreadExit.ResetEvent();
          m_bDestroy = false;
-         m_pthreadRunStep = NULL;
+         m_pthreadRunStep = ::null();
          m_tool001.m_iStep = 0;
          m_bTransitionStepRunActive = false;
          m_bTransitionStepPostActive = false;
@@ -210,7 +210,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         //ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         //ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
@@ -401,7 +401,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-//         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+//         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
@@ -414,12 +414,12 @@ namespace gcom
          ::ca::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         if(&dcBack == NULL || dcBack.get_os_data() == NULL)
+         if(&dcBack == ::null() || dcBack.get_os_data() == ::null())
          {
             End();
             return;
          }
-         if(dcBuffer.get_os_data() == NULL)
+         if(dcBuffer.get_os_data() == ::null())
          {
             End();
             return;
@@ -429,10 +429,10 @@ namespace gcom
             return;
          if(!sl2Buffer.lock(millis(184)))
             return;
-         dcBack.SelectClipRgn(NULL);
-         dcBuffer.SelectClipRgn(NULL);
+         dcBack.SelectClipRgn(::null());
+         dcBuffer.SelectClipRgn(::null());
 
-         if(bitmapBuffer.get_os_data() == NULL)
+         if(bitmapBuffer.get_os_data() == ::null())
          {
             End();
             return;
@@ -496,14 +496,14 @@ namespace gcom
                   }
                   POINT pointa[4];
                   m_tool001.GetRotateRect(point.x, point.y, pointa);
-                  ::ca::region_sp rgnClip(get_app());
+                  ::ca::region_sp rgnClip(allocer());
                   rgnClip->create_polygon(pointa, 4, ::ca::fill_mode_winding);
 
-                  //dcBack.SelectClipRgn(NULL);
+                  //dcBack.SelectClipRgn(::null());
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(&rectUpdate, pointa, 4);
 
-                  /*               if(lprect != NULL)
+                  /*               if(lprect != ::null())
                   {
                   *lprect = rectUpdate;
                }*/
@@ -522,7 +522,7 @@ namespace gcom
                      rectUpdate.left, rectUpdate.top,
                      rectUpdate.width(), rectUpdate.height(),
                      SRCCOPY);*/
-                  dcBack.SelectClipRgn(NULL);
+                  dcBack.SelectClipRgn(::null());
                   recta.add(rectUpdate);
                }
             }
@@ -549,12 +549,12 @@ namespace gcom
                   }
                   POINT pointa[6];
                   m_tool001.GetRotateHexagon(point.x, point.y, pointa);
-                  ::ca::region_sp rgnClip(get_app());
+                  ::ca::region_sp rgnClip(allocer());
                   rgnClip->create_polygon(pointa, 6, ::ca::fill_mode_winding);
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(rectUpdate, pointa, 6);
 
-                  /*               if(lprect != NULL)
+                  /*               if(lprect != ::null())
                   {
                   *lprect = rectUpdate;
                      }*/
@@ -565,7 +565,7 @@ namespace gcom
                      &dcBuffer,
                      rectUpdate.left, rectUpdate.top,
                      SRCCOPY);
-                  dcBack.SelectClipRgn(NULL);
+                  dcBack.SelectClipRgn(::null());
                }
                recta.add(rectUpdate);
             }
@@ -626,12 +626,12 @@ namespace gcom
                   {
                      rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
                   }
-                  /*               if(lprect != NULL)
+                  /*               if(lprect != ::null())
                   {
                   *lprect = rectUpdate;
                      }*/
 
-                  ::ca::region_sp rgnClip(get_app());
+                  ::ca::region_sp rgnClip(allocer());
                   if(m_etypea[m_iType] == TransitionEffectCirclypixelate_
                      || m_etypea[m_iType] == TransitionEffectEllipsoidalpixelate_)
                   {
@@ -653,7 +653,7 @@ namespace gcom
                         &dcBuffer,
                         rectUpdate.left, rectUpdate.top,
                         SRCCOPY);
-                     dcBack.SelectClipRgn(NULL);
+                     dcBack.SelectClipRgn(::null());
                   }
                   else
                   {
@@ -814,7 +814,7 @@ namespace gcom
                   {
                      rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
                   }
-                  /*            if(lprect != NULL)
+                  /*            if(lprect != ::null())
                   {
                   *lprect = rectUpdate;
                }*/
@@ -1243,7 +1243,7 @@ namespace gcom
                   rectBound.height(),
                   SRCCOPY);
 
-               dcBack.SelectClipRgn(NULL);
+               dcBack.SelectClipRgn(::null());
 
                recta.add(rect);
             }
@@ -1282,7 +1282,7 @@ namespace gcom
                   rect.width(),
                   rect.height(),
                   SRCCOPY);
-               dcBack.SelectClipRgn(NULL);
+               dcBack.SelectClipRgn(::null());
                recta.add(rectClient);
             }
             break;
@@ -1641,7 +1641,7 @@ namespace gcom
 
 
                   /*dc2.BitBlt(0, 0, wWindow, hWindow, pdib1->get_graphics(), 0, 0, SRCCOPY);
-                  dc2.BitBlt(0, 0, wWindow, hWindow, NULL, 0, 0, DSTINVERT);
+                  dc2.BitBlt(0, 0, wWindow, hWindow, ::null(), 0, 0, DSTINVERT);
 
                   dc3.FillSolidRect(0, 0, wWindow, hWindow, 0xff000000);
                   dc2.BitBlt(0, 0, wWindow, hWindow, &dc3, 0, 0, SRCAND);*/
@@ -1709,7 +1709,7 @@ namespace gcom
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
-         ::ca::region_sp rgnTransferClip(get_app());
+         ::ca::region_sp rgnTransferClip(allocer());
          rgnTransferClip->create_rect(graphics.m_rectFinalPlacement);
          //dcTransfer.SelectClipRgn(rgnTransferClip);
 
@@ -1725,7 +1725,7 @@ namespace gcom
                SRCCOPY);
 
          }
-         dcTransfer.SelectClipRgn(NULL);
+         dcTransfer.SelectClipRgn(::null());
       }
 
       int32_t TransitionEffect::CalcRepeatCount()
@@ -1777,7 +1777,7 @@ namespace gcom
 
       void TransitionEffect::OnNoPrecisionThousandMillisTimer()
       {
-         if(m_pthreadRunStep == NULL)
+         if(m_pthreadRunStep == ::null())
             m_pthreadRunStep = CreateRunStepThread();
       }
 
@@ -1825,7 +1825,7 @@ namespace gcom
       ::ca::thread * TransitionEffect::CreateRunStepThread()
       {
 
-         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca::thread_priority_normal, 0, 0, NULL);
+         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca::thread_priority_normal, 0, 0, ::null());
 
       }
 
@@ -1835,7 +1835,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         //ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         //ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
 
@@ -1853,7 +1853,7 @@ namespace gcom
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
 
-         if(&dcTransfer != NULL && dcTransfer.get_os_data() != NULL)
+         if(&dcTransfer != ::null() && dcTransfer.get_os_data() != ::null())
          {
             dcFrame1.BitBlt(0, 0, cx, cy, &dcTransfer, 0, 0, SRCCOPY);
          }
@@ -1870,7 +1870,7 @@ namespace gcom
       UINT c_cdecl TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
-         srand((uint32_t) time(NULL));
+         srand((uint32_t) time(::null()));
          manual_reset_event event(peffect->get_app());
 
          event.ResetEvent();
@@ -1911,7 +1911,7 @@ namespace gcom
                      max(natural(iResolution), peffect->m_dwDelay),
                      iResolution,  // 5 ms resolution
                      (LPTIMECALLBACK) (HANDLE) event,
-                     NULL,
+                     ::null(),
                      TIME_ONESHOT | TIME_CALLBACK_EVENT_SET);*/
 
                   event.wait(millis(5));
@@ -1938,7 +1938,7 @@ namespace gcom
          {
             try
             {
-               peffect->m_pthreadRunStep = NULL;
+               peffect->m_pthreadRunStep = ::null();
             }
             catch(...)
             {

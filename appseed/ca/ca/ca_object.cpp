@@ -217,7 +217,7 @@ namespace ca
 #endif //!DEBUG
 
 
-   ::ca::command_thread & object::command_thread()
+   sp(::ca::command_thread) object::command_thread()
    {
       return Application.command();
    }

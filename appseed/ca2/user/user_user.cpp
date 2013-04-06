@@ -15,8 +15,8 @@ namespace ca
          //::ca::user * papp = dynamic_cast <::ca::user *>(System.GetThread()->m_pAppThread);
          //::ca::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
-         m_pkeyboard = NULL;
-         m_pwindowmap = NULL;
+         m_pkeyboard = ::null();
+         m_pwindowmap = ::null();
 
       }
 
@@ -60,10 +60,10 @@ namespace ca
       {
          if(Application.is_cube())
          {
-            if(m_pwindowmap != NULL)
+            if(m_pwindowmap != ::null())
             {
                delete m_pwindowmap;
-               m_pwindowmap = NULL;
+               m_pwindowmap = ::null();
             }
          }
          return 0;
@@ -79,7 +79,7 @@ namespace ca
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
               sp(::user::interaction) pwnd = wnda.element_at(i);
-              if(pwnd != NULL &&
+              if(pwnd != ::null() &&
                   pwnd != pwndExcept &&
                   pwnd->IsWindowVisible())
               {
@@ -96,7 +96,7 @@ namespace ca
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
             sp(::user::interaction) pwnd = wnda.element_at(i);
-            if(pwnd != NULL &&
+            if(pwnd != ::null() &&
                pwnd != pwndExcept &&
                pwnd->IsWindow() &&
                pwnd->IsWindowVisible() &&
@@ -115,7 +115,7 @@ namespace ca
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
             sp(::user::interaction) pwnd = wnda.element_at(i);
-            if(pwnd != NULL
+            if(pwnd != ::null()
                && pwnd->IsWindow()
                && pwnd->IsWindowVisible())
             {

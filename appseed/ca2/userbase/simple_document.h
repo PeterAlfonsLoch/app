@@ -10,7 +10,7 @@ public:
    ::ca::property_set       m_set;
 
 
-   simple_document(::ca::applicationsp papp);
+   simple_document(sp(::ca::application) papp);
    virtual ~simple_document();
 
 };

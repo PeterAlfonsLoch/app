@@ -1,6 +1,6 @@
 #include "framework.h"
 
-XfplayerViewLines::XfplayerViewLines(::ca::applicationsp papp) :
+XfplayerViewLines::XfplayerViewLines(sp(::ca::application) papp) :
    ca(papp)
 {
     m_iFirstVisible = -1;

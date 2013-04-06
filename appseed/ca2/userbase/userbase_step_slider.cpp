@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   step_slider::step_slider(::ca::applicationsp papp) :
+   step_slider::step_slider(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -17,7 +17,7 @@ namespace userbase
    }
    bool step_slider::create(sp(::user::interaction) pwndParent, id id)
    {
-      return ::user::interaction::create(NULL, NULL, WS_CHILD, rect(0, 0, 0, 0), pwndParent, id) != FALSE;
+      return ::user::interaction::create(::null(), ::null(), WS_CHILD, rect(0, 0, 0, 0), pwndParent, id) != FALSE;
    }
 
 
@@ -77,7 +77,7 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
-      SetTimer(1, 200, NULL);
+      SetTimer(1, 200, ::null());
       m_bHover = true;
       UpdateHover();
    }
@@ -86,7 +86,7 @@ namespace userbase
    void step_slider::_001OnDraw(::ca::graphics * pdc)
    {
       
-      if(m_pscalar == NULL)
+      if(m_pscalar == ::null())
          return;
 
       rect rectClient;

@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   tree::tree(::ca::applicationsp papp) :
+   tree::tree(sp(::ca::application) papp) :
       ca(papp),
       data_container(papp)
    {

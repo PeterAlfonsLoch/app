@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   command::command(::ca::applicationsp papp) :
+   command::command(sp(::ca::application) papp) :
       ca(papp)
    {
    }
@@ -20,7 +20,7 @@ namespace ca
       return true;
    }
 
-   void command::on_request(::ca::create_context * pcreatecontext)
+   void command::on_request(sp(::ca::create_context) pcreatecontext)
    {
       UNREFERENCED_PARAMETER(pcreatecontext);
    }

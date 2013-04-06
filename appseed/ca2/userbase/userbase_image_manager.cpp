@@ -5,8 +5,8 @@ namespace userbase
 
    image_manager::image_manager()
    {
-      m_pimagelist            = NULL;
-      m_pimagelistDisable     = NULL;
+      m_pimagelist            = ::null();
+      m_pimagelistDisable     = ::null();
    }
 
    image_manager::~image_manager()
@@ -16,7 +16,7 @@ namespace userbase
    }
 
 
-   bool image_manager::Initialize(::ca::applicationsp papp, UINT uiaMenuV003Map [][2])
+   bool image_manager::Initialize(sp(::ca::application) papp, UINT uiaMenuV003Map [][2])
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(uiaMenuV003Map);
@@ -45,7 +45,7 @@ namespace userbase
       }
 
       System.visual().imaging().CreateGrayVRCPImageList(
-         NULL,
+         ::null(),
          &GetImageListDisable(),
          &GetImageList());*/
 

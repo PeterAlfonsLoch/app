@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   view::view(::ca::applicationsp papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -15,7 +15,7 @@ namespace bergedge
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
-      m_font(papp),
+      m_font(allocer()),
       m_dibBk(papp),
       m_mutexDraw(papp)
    {
@@ -30,7 +30,7 @@ namespace bergedge
       m_i_winactionarea = 4;
       m_i_winactionarea_h = 49;
       m_i_winactionarea_w = 49;
-      m_ppaneview = NULL;
+      m_ppaneview = ::null();
    }
 
    view::~view()
@@ -140,12 +140,12 @@ namespace bergedge
          if(main.IsInitialized())
          {
 
-            ::ca::region_sp rgn(get_app());
+            ::ca::region_sp rgn(allocer());
 //            rect rectFinal(graphics.m_rectFinalPlacement);
 /*            ClientToScreen(rect);
             rgn->create_rect(rect);
             pdc->SelectClipRgn(rgn);*/
-            pdc->SelectClipRgn(NULL);
+            pdc->SelectClipRgn(::null());
             gcom::backview::Interface::BackViewRender(pdc, rectClient);
 
 
@@ -159,7 +159,7 @@ namespace bergedge
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 1977, NULL);
+      SetTimer(198477, 1977, ::null());
 
       sp(::bergedge::frame) pframe = GetTypedParent < ::bergedge::frame > ();
 
@@ -187,8 +187,8 @@ namespace bergedge
       //gcom::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(gcom::backview::TransitionEffectVisual);
 
 
-      SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
-      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
+      SetTimer(TimerBackView, 83, ::null());  // max. 12 fps
+      SetTimer(21977, 1984 * 11, ::null());  // max. 12 fps
 
       check_apps();
 
@@ -221,7 +221,7 @@ namespace bergedge
    {
       if(iTab == 1)
       {
-         System.simple_message_box(NULL, "Playlist");
+         System.simple_message_box(::null(), "Playlist");
       }
    }
 
@@ -405,11 +405,11 @@ namespace bergedge
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -457,14 +457,14 @@ namespace bergedge
    {
       rect rectClient;
       GetClientRect(rectClient);
-      if(m_ppaneview != NULL)
+      if(m_ppaneview != ::null())
       {
          m_ppaneview->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       }
       else
       {
          sp(::user::interaction) pui = get_top_child();
-         if(pui != NULL)
+         if(pui != ::null())
          {
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
@@ -489,19 +489,19 @@ namespace bergedge
       sp(::user::interaction) pui = get_top_child();
       try
       {
-         while(pui != NULL)
+         while(pui != ::null())
          {
-            ::cube::application * papp = NULL;
+            ::cube::application * papp = ::null();
             try
             {
                papp = &App(pui->get_app());
             }
             catch(...)
             {
-               papp = NULL;
+               papp = ::null();
             }
-            //if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL && (papp) != (m_papp->m_psession))
-            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL)
+            //if(papp != ::null() && m_papp != ::null() && m_papp->m_psession != ::null() && (papp) != (m_papp->m_psession))
+            if(papp != ::null() && m_papp != ::null() && m_papp->m_psession != ::null())
             {
                try
                {
@@ -538,7 +538,7 @@ namespace bergedge
       }
       try
       {
-         if(m_pimpl == NULL)
+         if(m_pimpl == ::null())
             return;
          (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)

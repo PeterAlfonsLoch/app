@@ -34,7 +34,7 @@ namespace user
 
       virtual void update_title();
 
-      virtual void on_alloc(::ca::applicationsp papp);
+      virtual void on_alloc(sp(::ca::application) papp);
 
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);

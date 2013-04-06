@@ -34,7 +34,7 @@ namespace rar
          kIncorrectArchive
       } Cause;
 
-      input_file_exception(::ca::applicationsp papp, CCauseType cause) :
+      input_file_exception(sp(::ca::application) papp, CCauseType cause) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),

@@ -15,19 +15,19 @@ namespace userbase
 
    void frame_window::CommonConstruct()
    {
-      // trans ASSERT(get_handle() == NULL);
+      // trans ASSERT(get_handle() == ::null());
 
       m_nWindow = -1;                 // unknown ::ca::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
-      m_lpfnCloseProc = NULL;
-      m_hMenuDefault = NULL;
-      m_hAccelTable = NULL;
+      m_lpfnCloseProc = ::null();
+      m_hMenuDefault = ::null();
+      m_hAccelTable = ::null();
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
-      m_hMenuAlt = NULL;
+      m_hMenuAlt = ::null();
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.null();
 #ifdef WINDOWSEX
@@ -35,7 +35,7 @@ namespace userbase
 #endif
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = NULL;         // not in list yet
+      m_pNextFrameWnd = ::null();         // not in list yet
 
       m_bInRecalcLayout = FALSE;
       m_nShowDelay = -1;              // no delay pending
@@ -71,11 +71,11 @@ namespace userbase
    void frame_window::NotifyFloatingWindows(uint32_t dwFlags)
    {
       ASSERT_VALID(this);
-   // trans   ASSERT(get_handle() != NULL);
+   // trans   ASSERT(get_handle() != ::null());
 
       // get top level parent frame ::ca::window first unless this is a child ::ca::window
       sp(frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame());
-      ASSERT(pParent != NULL);
+      ASSERT(pParent != ::null());
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
          // update parent ::ca::window activation state
@@ -99,7 +99,7 @@ namespace userbase
       // then update the state of all floating windows owned by the parent
 #ifdef WINDOWSEX
       sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
-      while (oswindow != NULL)
+      while (oswindow != ::null())
       {
          if(::user::is_descendant(pParent, oswindow))
             oswindow->send_message(WM_FLOATSTATUS, dwFlags, 0);
@@ -145,7 +145,7 @@ namespace userbase
    void frame_window::RemoveControlBar(::userbase::control_bar *pBar)
    {
       POSITION pos = m_listControlBars.find(pBar);
-      if (pos != NULL)
+      if (pos != ::null())
          m_listControlBars.remove_at(pos);
    }
 
@@ -167,7 +167,7 @@ namespace userbase
    void frame_window::_001OnQueryEndSession(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
-      if (&Cube != NULL && Cube.GetMainWnd() == this)
+      if (&Cube != ::null() && Cube.GetMainWnd() == this)
       {
          pbase->set_lresult(Cube.save_all_modified());
          pbase->m_bRet = true;
@@ -184,7 +184,7 @@ namespace userbase
    void frame_window::_001OnSetFocus(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      if (m_pViewActive != NULL)
+      if (m_pViewActive != ::null())
          m_pViewActive->SetFocus();
    }
 
@@ -274,7 +274,7 @@ namespace userbase
       }
       try
       {
-         if (m_pViewActive != NULL)
+         if (m_pViewActive != ::null())
             ASSERT_VALID(m_pViewActive);
       }
       catch(...)
@@ -292,7 +292,7 @@ namespace userbase
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
       dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-      if (m_pViewActive != NULL)
+      if (m_pViewActive != ::null())
          dumpcontext << "\nwith active ::view: " << m_pViewActive.m_p;
       else
          dumpcontext << "\nno active ::view";

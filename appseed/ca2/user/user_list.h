@@ -106,7 +106,7 @@ namespace user
       list         *       m_plist;
 
 
-      list_column_array(::ca::applicationsp papp);
+      list_column_array(sp(::ca::application) papp);
 
 
       void Initialize(list * plist);
@@ -536,7 +536,7 @@ namespace user
 
       ::user::list_column_array     m_columna;
 
-      list(::ca::applicationsp papp);
+      list(sp(::ca::application) papp);
       virtual ~list();
 
 

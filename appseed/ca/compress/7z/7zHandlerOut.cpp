@@ -222,7 +222,7 @@ namespace n7z
          db = &volume->Database;
       }
 #else
-      if (_inStream != 0)
+      if (_inStream != ::null())
          db = &_db;
 #endif
 

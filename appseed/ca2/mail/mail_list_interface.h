@@ -7,7 +7,7 @@ namespace mail
       virtual public ::user::list
    {
    public:
-      list_interface(::ca::applicationsp appp);
+      list_interface(sp(::ca::application) appp);
       virtual ~list_interface();
 
       account * m_paccount;
@@ -21,7 +21,7 @@ namespace mail
          stringa   m_straId;
 
 
-         data(::ca::applicationsp papp);
+         data(sp(::ca::application) papp);
 
          void update();
 

@@ -97,7 +97,7 @@ namespace ca
       };
 
       uint32_t                m_ulFlags;
-      ::ca::applicationsp     m_papp;
+      sp(::ca::application)     m_papp;
       //::ca::ptra *            m_pptraListener;
       //::ca::ptra *            m_pptraListened;
       factory_item_base *     m_pfactoryitembase;
@@ -106,7 +106,7 @@ namespace ca
 
       ca();
       ca(const ca & o);
-      ca(::ca::applicationsp papp);
+      ca(sp(::ca::application) papp);
       virtual ~ca();
 
       virtual void delete_this();
@@ -117,10 +117,10 @@ namespace ca
 
       static void system(const char * pszProjectName);
 
+      inline allocer allocer();
 
-
-      virtual ::ca::applicationsp get_app() const;
-      virtual void set_app(::ca::applicationsp papp);
+      virtual sp(::ca::application) get_app() const;
+      virtual void set_app(sp(::ca::application) papp);
 
       inline bool is_set_ca_flag(::ca::ca::flag eflag)
       {

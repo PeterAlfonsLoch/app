@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   native::native(::ca::applicationsp papp) :
+   native::native(sp(::ca::application) papp) :
       ::ca::ca(papp),
       ::ca::data(papp),
       ::fs::data(papp)

@@ -13,7 +13,7 @@ namespace fs
    {
    public:
 
-      native(::ca::applicationsp papp);
+      native(sp(::ca::application) papp);
 
 
       // optional if ls_dir is implemented

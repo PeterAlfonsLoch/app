@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   list_interface::list_interface(::ca::applicationsp papp) :
+   list_interface::list_interface(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
@@ -239,11 +239,11 @@ namespace fs
 
    /*void list_interface::_017OneLevelUp()
    {
-      if(m_lpiidlAbsolute == NULL)
+      if(m_lpiidlAbsolute == ::null())
          return;
 
       single_lock slBrowse(&m_csBrowse, TRUE);
-      LPMALLOC lpmalloc = NULL;
+      LPMALLOC lpmalloc = ::null();
       IShellFolder * lpsfDesktop;
       HRESULT hr;
 
@@ -469,30 +469,30 @@ namespace fs
       ASSERT(FALSE);
    }
 
-   void list_interface::_001OnInitializeForm(user::sp(control) pcontrol)
+   void list_interface::_001OnInitializeForm(sp(::user::control) pcontrol)
    {
-      ASSERT(pcontrol != NULL);
-      if(pcontrol == NULL)
+      ASSERT(pcontrol != ::null());
+      if(pcontrol == ::null())
          return;
 
 /*      FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
-      BaseButtonControl * pbutton = dynamic_cast < BaseButtonControl * > (pcontrol);
-      if(pcallback != NULL && pbutton != NULL)
+      sp(BaseButtonControl) pbutton =  (pcontrol);
+      if(pcallback != ::null() && pbutton != ::null())
       {
          pcallback->InitializeActionButton(((int32_t) pcontrol->descriptor().m_id) - 1000, pbutton);
       } */
    }
 
-   void list_interface::_001OnButtonAction(::user::sp(control) pcontrol)
+   void list_interface::_001OnButtonAction(sp(::user::control) pcontrol)
    {
       UNREFERENCED_PARAMETER(pcontrol);
 //      list_data * pdata = get_fs_list_data();
       /* FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
-      if(pcallback != NULL)
+      if(pcallback != ::null())
       {
          ::fs::item item;
          int32_t iItem = pcontrol->GetEditItem();
@@ -586,13 +586,13 @@ namespace fs
       {
          return System.user()->shellimageset().GetImageList16();
       }
-      return NULL;
+      return ::null();
    }
 
    void list_interface::_001OnFileRename(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      user::sp(control) pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
+      sp(::user::control) pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
       range range;
       _001GetSelection(range);
       if(range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
@@ -618,7 +618,7 @@ namespace fs
 //      SCAST_PTR(::ca::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == NULL)
+      if(pcentral == ::null())
          return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
@@ -707,7 +707,7 @@ namespace fs
 
    COLORREF list_interface::get_background_color()
    {
-      //if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
+      //if(GetFileManager() != ::null() && GetFileManager()->get_filemanager_data()->is_saving())
       {
          return RGB(255, 177, 84);
       }
@@ -745,7 +745,7 @@ namespace fs
 /*      icon_key iconkey;
       icon icon;
       for(POSITION pos = m_iconmap.get_start_position();
-         pos != NULL;
+         pos != ::null();
          m_iconmap.get_next_assoc(pos, iconkey, icon))
       {
          DestroyIcon(icon.m_hicon);
@@ -753,7 +753,7 @@ namespace fs
 
       m_iCreateImageListStep = 0;
       m_bCreateImageList = true;
-      if(m_pcreateimagelistthread == NULL)
+      if(m_pcreateimagelistthread == ::null())
       {
          m_pcreateimagelistthread = new create_image_list_thread(get_app());
          m_pcreateimagelistthread->m_plist = this;
@@ -761,7 +761,7 @@ namespace fs
       }*/
    }
 
-/*   list_interface::create_image_list_thread::create_image_list_thread(::ca::applicationsp papp) :
+/*   list_interface::create_image_list_thread::create_image_list_thread(sp(::ca::application) papp) :
       ca(papp),
       thread(papp)
    {
@@ -786,7 +786,7 @@ namespace fs
    endloop:
       m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
       synch_lock lock(m_plist->m_pthread);
-      m_plist->m_pcreateimagelistthread = NULL;
+      m_plist->m_pcreateimagelistthread = ::null();
       return 0;
    }
 

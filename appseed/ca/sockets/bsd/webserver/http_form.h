@@ -11,7 +11,7 @@ namespace http
       virtual public ::ca::object
    {
    public:
-      form(::ca::applicationsp papp);
+      form(sp(::ca::application) papp);
       /**
        * Default constructor (used in POST operations).
        * Input is read from stdin. Number of characters to read

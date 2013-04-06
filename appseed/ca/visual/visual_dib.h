@@ -31,12 +31,12 @@ namespace visual
    };
 
    class CLASS_DECL_ca dib_sp :
-      virtual public ::ca::dib_sp
+      public ::ca::dib_sp
    {
    public:
       
       dib_sp();
-      dib_sp(::ca::applicationsp papp);
+      dib_sp(::ca::allocer allocer);
       virtual ~dib_sp();
 
 

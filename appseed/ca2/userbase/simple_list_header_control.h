@@ -11,7 +11,7 @@ public:
 
 
 
-   simple_list_header_control(::ca::applicationsp papp);
+   simple_list_header_control(sp(::ca::application) papp);
    virtual ~simple_list_header_control();
 
 

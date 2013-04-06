@@ -5,7 +5,7 @@ namespace mail
 {
 
 
-   list_interface::data::data(::ca::applicationsp papp) :
+   list_interface::data::data(sp(::ca::application) papp) :
       ca(papp),
       ::user::list_data(papp)
    {
@@ -13,12 +13,12 @@ namespace mail
 
 
 
-   list_interface::list_interface(::ca::applicationsp papp) :
+   list_interface::list_interface(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::list(papp)
    {
-      m_paccount= NULL;
+      m_paccount= ::null();
       m_dataid = "mail::list_interface";
       m_pdata = new data(papp);
       m_pdata->m_plist = this;
@@ -88,7 +88,7 @@ namespace mail
 
    void list_interface::data::update()
    {
-      if(m_plist->m_paccount == NULL)
+      if(m_plist->m_paccount == ::null())
          return;
       single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
       m_straId.remove_all();

@@ -2,7 +2,7 @@
 #include "FileManagerMainFrame.h"
 
 
-FileManagerMainFrame::FileManagerMainFrame(::ca::applicationsp papp) :
+FileManagerMainFrame::FileManagerMainFrame(sp(::ca::application) papp) :
    ca(papp),
    simple_frame_window(papp),
    m_menubar(papp),
@@ -29,7 +29,7 @@ bool FileManagerMainFrame::CreateBars()
 {
    sp(::filemanager::document) pdoc =  (GetActiveDocument());
    
-   ASSERT(pdoc != NULL);
+   ASSERT(pdoc != ::null());
    ASSERT(base < ::filemanager::document >::bases(pdoc));
 
    string strToolBar;

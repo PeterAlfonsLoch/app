@@ -4,7 +4,7 @@ class CLASS_DECL_ca mail_frame : public simple_frame_window
 {
 
 public:
-   mail_frame(::ca::applicationsp papp);
+   mail_frame(sp(::ca::application) papp);
 
    string                    m_strAnimatedStatusBarText;
    int32_t                        m_iAnimateStep;

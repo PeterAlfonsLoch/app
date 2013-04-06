@@ -16,7 +16,7 @@ namespace ca2 // ca8 + cube
       form_view *                   m_pview;
 
 
-      network_configuration(::ca::applicationsp papp);
+      network_configuration(sp(::ca::application) papp);
       virtual ~network_configuration();
 
 

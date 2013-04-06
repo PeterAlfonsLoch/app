@@ -10,7 +10,7 @@ namespace user
       
       oprop("combo_list") = true;
 
-      m_pcombo = NULL;
+      m_pcombo = ::null();
 
    }
 
@@ -39,7 +39,7 @@ namespace user
    void combo_list::_001OnDraw(::ca::graphics * pdc)
    {
       
-      if(m_pcombo == NULL)
+      if(m_pcombo == ::null())
          return;
 
       if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
@@ -68,7 +68,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(get_app());
+      ::ca::brush_sp br(allocer());
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
@@ -106,7 +106,7 @@ namespace user
          {
             if(rectItem.contains(ptCursor))
             {
-               ::ca::pen_sp pen(get_app());
+               ::ca::pen_sp pen(allocer());
                pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
@@ -151,7 +151,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(get_app());
+      ::ca::brush_sp br(allocer());
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
@@ -189,7 +189,7 @@ namespace user
          {
             if(rectItem.contains(ptCursor))
             {
-               ::ca::pen_sp pen(get_app());
+               ::ca::pen_sp pen(allocer());
                pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
@@ -225,12 +225,12 @@ namespace user
    void combo_list::query_full_size(LPSIZE lpsize) const
    {
 
-      ::ca::graphics_sp pdc(get_app());
+      ::ca::graphics_sp pdc(((combo_list *) this)->allocer());
 
 
-      pdc->CreateCompatibleDC(NULL);
+      pdc->CreateCompatibleDC(::null());
 
-      ::ca::dib_sp tameshi(get_app());
+      ::ca::dib_sp tameshi(((combo_list *) this)->allocer());
 
       tameshi->create(100, 100);
 

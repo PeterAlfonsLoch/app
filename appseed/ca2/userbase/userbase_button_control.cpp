@@ -2,15 +2,15 @@
 #include "framework.h"
 
 
-BaseButtonControl::BaseButtonControl(::ca::applicationsp papp) :
+BaseButtonControl::BaseButtonControl(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
    ::userbase::button(papp)
 {
    m_iClick = 0;
-   m_pimagelistNormal = NULL;
-   m_pimagelistItemHover = NULL;
-   m_pimagelistSubItemHover = NULL;
+   m_pimagelistNormal = ::null();
+   m_pimagelistItemHover = ::null();
+   m_pimagelistSubItemHover = ::null();
 }
 
 BaseButtonControl::~BaseButtonControl()
@@ -42,7 +42,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
 
    ::user::draw_context * pdrawcontext = pdc->::ca::simple_chain < ::user::draw_context >::get_last();
 
-   if(pdrawcontext != NULL)
+   if(pdrawcontext != ::null())
    {
       rectClient     = pdrawcontext->m_rectClient;
       bItemHover     = pdrawcontext->m_bListItemHover;
@@ -50,7 +50,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
    }
    else
    {
-      if(get_form() != NULL)
+      if(get_form() != ::null())
          return;
       GetClientRect(rectClient);
       bItemHover     = get_hover() >= 0;
@@ -67,7 +67,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
          RGB(255, 255, 255),
          RGB(155, 155, 105));
 
-      if(m_pimagelistSubItemHover != NULL)
+      if(m_pimagelistSubItemHover != ::null())
       {
          m_pimagelistSubItemHover->draw(
             pdc,
@@ -75,7 +75,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
             pt,
             0);
       }
-      else if(m_pimagelistItemHover != NULL)
+      else if(m_pimagelistItemHover != ::null())
       {
          m_pimagelistItemHover->draw(
             pdc,
@@ -83,7 +83,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
             pt,
             0);
       }
-      else if(m_pimagelistNormal != NULL)
+      else if(m_pimagelistNormal != ::null())
       {
          m_pimagelistNormal->draw(
             pdc,
@@ -94,7 +94,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
    }
    else if(bItemHover)
    {
-      if(m_pimagelistItemHover != NULL)
+      if(m_pimagelistItemHover != ::null())
       {
          m_pimagelistItemHover->draw(
             pdc,
@@ -102,7 +102,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
             pt,
             0);
       }
-      else if(m_pimagelistSubItemHover != NULL)
+      else if(m_pimagelistSubItemHover != ::null())
       {
          m_pimagelistSubItemHover->draw(
             pdc,
@@ -110,7 +110,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
             pt,
             0);
       }
-      else if(m_pimagelistNormal != NULL)
+      else if(m_pimagelistNormal != ::null())
       {
          m_pimagelistNormal->draw(
             pdc,
@@ -121,7 +121,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
    }
    else
    {
-      if(m_pimagelistNormal != NULL)
+      if(m_pimagelistNormal != ::null())
       {
          m_pimagelistNormal->draw(
             pdc,
@@ -129,7 +129,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
             pt,
             0);
       }
-      else if(m_pimagelistItemHover != NULL)
+      else if(m_pimagelistItemHover != ::null())
       {
          m_pimagelistItemHover->draw(
             pdc,
@@ -137,7 +137,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
             pt,
             0);
       }
-      else if(m_pimagelistSubItemHover != NULL)
+      else if(m_pimagelistSubItemHover != ::null())
       {
          m_pimagelistSubItemHover->draw(
             pdc,

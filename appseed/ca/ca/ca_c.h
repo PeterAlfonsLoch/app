@@ -2,10 +2,6 @@
 
 
 
-
-#pragma once
-
-
 namespace ca
 {
 
@@ -61,15 +57,15 @@ namespace ca
       int64_t                    m_countReference;
 
 
-      c() { m_countReference = 0; }
-      c(const c &) { m_countReference = 0;}
+      c();
+      c(const c &);
       virtual ~c();
 
 
       virtual void delete_this();
 
 
-      virtual ::ca::applicationsp get_app() const;
+      virtual sp(::ca::application) get_app() const;
 
 
       c & operator = (const c &) { return *this; } 
@@ -111,8 +107,40 @@ namespace ca
 
    };
 
+   template < class T >
+   T * dereference_no_delete(T * p) { p->m_countReference--; return p; }
+
+
+   class CLASS_DECL_ca allocator :
+      virtual public ::ca::c
+   {
+   public:
+
+      
+      sp(application) m_papp;
+
+
+   };
+
+
+   class CLASS_DECL_ca allocer :
+      public sp(allocator)
+   {
+   public:
+
+
+      allocer(sp(application) papp);
+
+
+   };
+
+
+
 
 } // namespace ca
 
 
 
+
+
+#define canew(x) ::ca::dereference_no_delete(new x)

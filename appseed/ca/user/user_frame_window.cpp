@@ -440,7 +440,7 @@ bool frame_window::pre_create_window(CREATESTRUCT& cs)
 
 }
 
-bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, ::ca::create_context* pContext)
+bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(::ca::create_context) pContext)
 {
 
    UNREFERENCED_PARAMETER(lpszMenuName);
@@ -461,7 +461,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
 }
 
 /*
-sp(::user::interaction) frame_window::CreateView(create_context* pContext, UINT nID)
+sp(::user::interaction) frame_window::CreateView(sp(::ca::create_context) pContext, UINT nID)
 {
 // trans   ASSERT(get_handle() != ::null());
    ASSERT(IsWindow());
@@ -469,7 +469,7 @@ sp(::user::interaction) frame_window::CreateView(create_context* pContext, UINT 
    ENSURE_ARG(pContext->m_typeinfoNewView != ::null());
 
    // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-   sp(::user::interaction) pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
+   sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
    if (pview == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::view type %hs failed.\n",
@@ -497,7 +497,7 @@ sp(::user::interaction) frame_window::CreateView(create_context* pContext, UINT 
 }
 */
 
-bool frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext)
+bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::ca::create_context) pContext)
 {
    // default create client will create a ::view if asked for it
    if (pContext != ::null() &&
@@ -531,12 +531,12 @@ void frame_window::_001OnCreate(::ca::signal_object * pobj)
 
    SCAST_PTR(::ca::message::create, pcreate, pobj)
    ENSURE_ARG(pcreate->m_lpcreatestruct != ::null());
-   ::ca::create_context* pContext = (::ca::create_context*) pcreate->m_lpcreatestruct->lpCreateParams;
+   sp(::ca::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
    pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
    pcreate->m_bRet = pcreate->get_lresult() == -1;
 }
 
-int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
+int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext)
 {
 
    // create special children first
@@ -557,7 +557,7 @@ int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* 
 
 
 bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
-   sp(::user::interaction) pParentWnd, ::ca::create_context* pContext)
+   sp(::user::interaction) pParentWnd, sp(::ca::create_context) pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
    UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -1035,7 +1035,7 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
       char szFileName[_MAX_PATH];
       ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
 
-      ::ca::create_context_sp createcontext(get_app());
+      sp(::ca::create_context) createcontext(allocer());
       createcontext->m_spCommandLine->m_varFile = szFileName;
 
       puser->open_document_file(createcontext);

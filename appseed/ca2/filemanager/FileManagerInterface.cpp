@@ -19,7 +19,7 @@ bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
 
    if(m_item.is_set())
    {
-      strOldPath = m_item.m_strPath;
+      strOldPath = m_item->m_strPath;
    }
 
    try
@@ -38,11 +38,11 @@ bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
       if(str == "uifs:// You have not logged in!")
       {
          
-         Application.simple_message_box(NULL, "You have not logged in! Cannot access your User Intelligent File System - uifs://");
+         Application.simple_message_box(::null(), "You have not logged in! Cannot access your User Intelligent File System - uifs://");
          
          // assume can resume at least from this exception one time
          
-         m_item = new ::fs::item(strOldPath_;
+         m_item = new ::fs::item(strOldPath);
 
          OnFileManagerBrowse();
 
@@ -56,14 +56,10 @@ bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
 
 }
 
-bool FileManagerInterface::FileManagerBrowse(const char * lpcsz)
+bool FileManagerInterface::FileManagerBrowse(const char * lpcszPath)
 {
 
-   ::fs::item item;
-
-   item.m_strPath          = lpcsz;
-
-   FileManagerBrowse(item);
+   FileManagerBrowse(new ::fs::item(lpcszPath));
 
    return false;
 
@@ -100,10 +96,10 @@ critical_section * FileManagerInterface::GetItemIdListCriticalSection()
 void FileManagerInterface::OnFileManagerBrowse()
 {
 
-   if(::ca::str::begins(m_item.m_strPath, "uifs://")
-      || ::ca::str::begins(m_item.m_strPath, "fs://"))
+   if(::ca::str::begins(m_item->m_strPath, "uifs://")
+      || ::ca::str::begins(m_item->m_strPath, "fs://"))
    {
-      data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item.m_strPath);
+      data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item->m_strPath);
    }
    else
    {
@@ -117,7 +113,7 @@ void FileManagerInterface::OnFileManagerBrowse()
 #endif
 
       data_set("InitialBrowsePath", ::ca::system::idEmpty, "machinefs://");
-      data_set("InitialBrowsePath", idMachine, m_item.m_strPath);
+      data_set("InitialBrowsePath", idMachine, m_item->m_strPath);
 
    }
    //get_filemanager_data()->OnFileManagerOpenFolder(get_item());
@@ -142,7 +138,7 @@ void FileManagerInterface::FileManagerSaveCancel()
 
 ::fs::data * FileManagerInterface::get_fs_data()
 {
-   return NULL;
+   return ::null();
 }
 
 

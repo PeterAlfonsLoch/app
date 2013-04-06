@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   edit_plain_text_view::edit_plain_text_view(::ca::applicationsp papp) :
+   edit_plain_text_view::edit_plain_text_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -54,7 +54,7 @@ namespace userbase
 
       // rect rectClient;
       // GetClientRect(rectClient);
-      // SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+      // SetWindowPos(::null(), rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       // _001OnUpdate();
       ThreadProcScrollSize((LPVOID) dynamic_cast < ::user::edit_plain_text * > (this));
 

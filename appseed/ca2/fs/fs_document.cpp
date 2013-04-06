@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   document::document(::ca::applicationsp papp) :
+   document::document(sp(::ca::application) papp) :
       ::ca::ca(papp),
       ::ca::data_container_base(papp),
       userbase::document(papp),
@@ -30,7 +30,7 @@ namespace fs
    bool document::file_manager_browse(const char * pszFolder)
    {
       m_strFolder = pszFolder;
-      update_all_views(NULL, 123);
+      update_all_views(::null(), 123);
       return true;
    }
 

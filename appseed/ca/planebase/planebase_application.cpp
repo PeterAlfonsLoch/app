@@ -39,11 +39,11 @@ namespace planebase
    }
 
 
-   ::ca::applicationsp application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
+   sp(::ca::application) application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
    {
 
-      ::ca::applicationsp pcaapp = ::null();
-      ::ca::applicationsp papp = ::null();
+      sp(::ca::application) pcaapp = ::null();
+      sp(::ca::application) papp = ::null();
 
       string strId(pszId);
 
@@ -129,7 +129,7 @@ namespace planebase
 
       papp = pcaapp;
 
-      papp->command_central().consolidate(dynamic_cast < ::ca::command_thread * > (&command_central()));
+      papp->command_central()->consolidate(command_central());
 
       papp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
 
@@ -148,8 +148,8 @@ namespace planebase
 
       if((papp == ::null() || papp->m_strAppId != strId)
          &&
-         (!Application.command().m_varTopicQuery.has_property("install")
-         && !Application.command().m_varTopicQuery.has_property("uninstall")))
+         (!Application.command()->m_varTopicQuery.has_property("install")
+         && !Application.command()->m_varTopicQuery.has_property("uninstall")))
       {
 
          TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strId);
@@ -174,10 +174,10 @@ namespace planebase
    }
 
 
-   ::ca::applicationsp application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias)
+   sp(::ca::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias)
    {
 
-      ::ca::applicationsp papp = instantiate_application(pszType, pszId, pbias);
+      sp(::ca::application) papp = instantiate_application(pszType, pszId, pbias);
 
       if(papp == ::null())
          return ::null();
@@ -639,14 +639,14 @@ InitFailure:
    {
 
       string strId(pszId);
-      string strLocale = command().m_varTopicQuery["locale"];
-      string strSchema = command().m_varTopicQuery["schema"];
+      string strLocale = command()->m_varTopicQuery["locale"];
+      string strSchema = command()->m_varTopicQuery["schema"];
 
       System.install().remove_spa_start(m_strInstallType, strId);
-      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
-      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
-      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
-      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
 
       return true;
 
@@ -656,7 +656,7 @@ InitFailure:
    bool application::initial_check_directrix()
    {
 
-      if(directrix().m_varTopicQuery.has_property("install"))
+      if(directrix()->m_varTopicQuery.has_property("install"))
       {
 
          if(!on_install())
@@ -669,13 +669,13 @@ InitFailure:
          if(strId.is_empty())
             strId = m_strAppName;
 
-         if(strId.has_char() && command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
+         if(strId.has_char() && command()->m_varTopicQuery.has_property("app") && strId == command()->m_varTopicQuery["app"])
          {
 
             system_add_app_install(strId);
 
          }
-         else if(strId.has_char() && command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
+         else if(strId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strId == command()->m_varTopicQuery["session_start"])
          {
 
             system_add_app_install(strId);
@@ -689,7 +689,7 @@ InitFailure:
          }
 
       }
-      else if(directrix().m_varTopicQuery.has_property("uninstall"))
+      else if(directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
          if(!on_uninstall())
@@ -926,10 +926,10 @@ exit_application:
    bool application::is_licensed(const char * pszId, bool bInteractive)
    {
 
-      if(directrix().m_varTopicQuery.has_property("install"))
+      if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      if(directrix().m_varTopicQuery.has_property("uninstall"))
+      if(directrix()->m_varTopicQuery.has_property("uninstall"))
          return true;
 
       return license().has(pszId, bInteractive);
@@ -937,7 +937,7 @@ exit_application:
    }
 
    /*
-      ::ca::applicationsp pgenapp = (papp);
+      sp(::ca::application) pgenapp = (papp);
       if(pgenapp != ::null())
       {
          try
@@ -1026,16 +1026,16 @@ exit_application:
             data_set("system_locale", get_locale());
          }
 
-         if(command().m_varTopicQuery["locale"].get_string().has_char())
+         if(command()->m_varTopicQuery["locale"].get_string().has_char())
          {
-            str = command().m_varTopicQuery["locale"];
+            str = command()->m_varTopicQuery["locale"];
             data_set("system_locale", str);
             data_set("locale", str);
             set_locale(str, false);
          }
-         else if(command().m_varTopicQuery["lang"].get_string().has_char())
+         else if(command()->m_varTopicQuery["lang"].get_string().has_char())
          {
-            str = command().m_varTopicQuery["lang"];
+            str = command()->m_varTopicQuery["lang"];
             data_set("system_locale", str);
             data_set("locale", str);
             set_locale(str, false);
@@ -1071,9 +1071,9 @@ exit_application:
             data_set("system_schema", get_schema());
          }
 
-         if(command().m_varTopicQuery["schema"].get_string().has_char())
+         if(command()->m_varTopicQuery["schema"].get_string().has_char())
          {
-            str = command().m_varTopicQuery["schema"];
+            str = command()->m_varTopicQuery["schema"];
             data_set("system_schema", str);
             data_set("schema", str);
             set_schema(str, false);
@@ -1167,8 +1167,8 @@ exit_application:
 
 
       if(fontopus()->m_puser == ::null() &&
-        (Application.directrix().m_varTopicQuery.has_property("install")
-      || Application.directrix().m_varTopicQuery.has_property("uninstall")))
+        (Application.directrix()->m_varTopicQuery.has_property("install")
+      || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
       {
 
          if(fontopus()->create_system_user("system") == ::null())
@@ -1319,7 +1319,7 @@ exit_application:
    bool application::is_installing()
    {
 
-      return directrix().has_property("install");
+      return directrix()->has_property("install");
 
    }
 
@@ -1327,7 +1327,7 @@ exit_application:
    bool application::is_uninstalling()
    {
 
-      return directrix().has_property("uninstall");
+      return directrix()->has_property("uninstall");
 
    }
 
@@ -1365,25 +1365,25 @@ exit_application:
    int32_t application::run()
    {
 
-      if((command().m_varTopicQuery.has_property("install")
-      || command().m_varTopicQuery.has_property("uninstall"))
+      if((command()->m_varTopicQuery.has_property("install")
+      || command()->m_varTopicQuery.has_property("uninstall"))
       &&
-      ((is_session() && command().m_varTopicQuery["session_start"] == "session")
-    || (is_bergedge() && command().m_varTopicQuery["session_start"] == "bergedge")))
+      ((is_session() && command()->m_varTopicQuery["session_start"] == "session")
+    || (is_bergedge() && command()->m_varTopicQuery["session_start"] == "bergedge")))
       {
       }
       else if(!is_system() && !is_session() && !is_bergedge() && !is_cube())
       {
-         if(command().m_varTopicQuery.has_property("install")
-         || command().m_varTopicQuery.has_property("uninstall"))
+         if(command()->m_varTopicQuery.has_property("install")
+         || command()->m_varTopicQuery.has_property("uninstall"))
          {
          }
-         else if(command().m_varTopicQuery.has_property("service"))
+         else if(command()->m_varTopicQuery.has_property("service"))
          {
             create_new_service();
             service_base::serve(*m_pservice);
          }
-         else if(command().m_varTopicQuery.has_property("run") || is_serviceable())
+         else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
          {
             create_new_service();
             m_pservice->Start(0);
@@ -1443,7 +1443,7 @@ exit_application:
 
    }
 
-   void application::on_service_request(::ca::create_context * pcreatecontext)
+   void application::on_service_request(sp(::ca::create_context) pcreatecontext)
    {
 
       if(!is_serviceable())
@@ -1501,7 +1501,7 @@ exit_application:
             {
                return true;
             }
-            else if(is_session() && System.directrix().m_varTopicQuery["session_start"] != "session")
+            else if(is_session() && System.directrix()->m_varTopicQuery["session_start"] != "session")
             {
                return true;
             }
@@ -1509,7 +1509,7 @@ exit_application:
             {
                return true;
             }
-            else if(is_bergedge() && System.directrix().m_varTopicQuery["session_start"] != "bergedge")
+            else if(is_bergedge() && System.directrix()->m_varTopicQuery["session_start"] != "bergedge")
             {
                return true;
             }
@@ -1684,14 +1684,14 @@ exit_application:
       strLocale  = get_locale();
       strSchema  = get_schema();
 
-      if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
+      if(Application.directrix()->m_varTopicQuery["locale"].has_char() && Application.directrix()->m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
       {
-         strLocale = Application.directrix().m_varTopicQuery["locale"];
+         strLocale = Application.directrix()->m_varTopicQuery["locale"];
       }
 
-      if(Application.directrix().m_varTopicQuery["schema"].has_char() && Application.directrix().m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
+      if(Application.directrix()->m_varTopicQuery["schema"].has_char() && Application.directrix()->m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
       {
-         strSchema = Application.directrix().m_varTopicQuery["schema"];
+         strSchema = Application.directrix()->m_varTopicQuery["schema"];
       }
 
 

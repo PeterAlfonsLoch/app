@@ -13,7 +13,7 @@ namespace userbase
 
       
       
-      edit_plain_text_view(::ca::applicationsp papp);
+      edit_plain_text_view(sp(::ca::application) papp);
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 

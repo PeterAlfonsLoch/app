@@ -10,7 +10,7 @@ namespace uinteraction
    {
 
 
-      appearance::CTool001::CTool001(::ca::applicationsp papp) :
+      appearance::CTool001::CTool001(sp(::ca::application) papp) :
          ca(papp)
       {
       }
@@ -39,7 +39,7 @@ namespace uinteraction
 
       bool appearance::update()
       {
-         if(m_pworkset == NULL)
+         if(m_pworkset == ::null())
             return false;
 
 
@@ -63,9 +63,9 @@ namespace uinteraction
       void appearance::Enable(bool bEnable)
       {
          m_bEnabled = bEnable;
-         if(m_pworkset != NULL)
+         if(m_pworkset != ::null())
          {
-            if(m_pworkset->m_pframeschema != NULL)
+            if(m_pworkset->m_pframeschema != ::null())
             {
                m_pworkset->m_pframeschema->UpdateControlBox();
             }
@@ -79,9 +79,9 @@ namespace uinteraction
 
       void appearance::SetAppearanceMode(EAppearanceMode emode)
       {
-         if(m_pworkset == NULL)
+         if(m_pworkset == ::null())
             return;
-         ASSERT(m_pworkset != NULL);
+         ASSERT(m_pworkset != ::null());
 
          EAppearanceMode emodeOld = m_emode;
          EAppearanceMode emodeNew = emode;
@@ -89,9 +89,9 @@ namespace uinteraction
          m_emode = emode;
 
          if(emodeOld != emodeNew
-            && m_pworkset->m_pframeschema != NULL)
+            && m_pworkset->m_pframeschema != ::null())
          {
-            ASSERT(m_pworkset->m_pframeschema != NULL);
+            ASSERT(m_pworkset->m_pframeschema != ::null());
             m_pworkset->m_pframeschema->OnAppearanceModeChange();
          }
       }
@@ -106,7 +106,7 @@ namespace uinteraction
       {
          sp(::user::interaction) pwnd = GetWnd();
 
-         if(pwnd == NULL)
+         if(pwnd == ::null())
             return;
          if(pwnd->IsZoomed())
             SetAppearanceMode(AppearanceModeZoomed);
@@ -142,7 +142,7 @@ namespace uinteraction
       {
          CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
          //dynamic_cast<CWorkSetDownUpInterface *>(GetDrawWindow());
-         if(pinterface != NULL
+         if(pinterface != ::null()
             && pinterface != this)
          {
             return pinterface->WndFrameworkDownUpGetUpEnable();
@@ -156,7 +156,7 @@ namespace uinteraction
 
          CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
          //dynamic_cast<CWorkSetDownUpInterface *>(GetDrawWindow());
-         if(pinterface != NULL
+         if(pinterface != ::null()
             && pinterface != this)
          {
             return pinterface->WndFrameworkDownUpGetDownEnable();
@@ -169,7 +169,7 @@ namespace uinteraction
       void appearance::frame_Attach()
       {
          CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-         if(pinterface != NULL
+         if(pinterface != ::null()
             && pinterface != this)
          {
             return pinterface->frame_Attach();
@@ -179,7 +179,7 @@ namespace uinteraction
       void appearance::frame_Detach()
       {
          CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-         if(pinterface != NULL
+         if(pinterface != ::null()
             && pinterface != this)
          {
             return pinterface->frame_Detach();
@@ -224,7 +224,7 @@ namespace uinteraction
 
          sp(::database::user::interaction) pui = dynamic_cast < ::database::user::interaction * > (GetWnd().m_p);
 
-         if(pui != NULL && !pui->does_display_match())
+         if(pui != ::null() && !pui->does_display_match())
             return false;
 
          if(GetAppearanceMode() == AppearanceModeFullScreen)
@@ -351,7 +351,7 @@ namespace uinteraction
 
          pdc->SelectObject(m_brushBody);
 
-         ::ca::pen_sp pen(get_app());
+         ::ca::pen_sp pen(allocer());
 
          pen->create_solid(pdc, 0, RGB(255, 255, 255));
 
@@ -396,7 +396,7 @@ namespace uinteraction
 
       sp(::user::interaction) appearance::get_guie()
       {
-         return NULL;
+         return ::null();
       }
 
       bool appearance::IsNotifyIconEnabled()

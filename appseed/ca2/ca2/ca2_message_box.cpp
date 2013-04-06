@@ -5,7 +5,7 @@ namespace ca2 // ca8 + cube
 {
 
 
-   message_box::message_box(::ca::applicationsp papp) :
+   message_box::message_box(sp(::ca::application) papp) :
       ca(papp),
       userbase::view(papp),
       user::scroll_view(papp),

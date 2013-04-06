@@ -43,7 +43,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
@@ -57,8 +57,8 @@ namespace gcom
 
          sl1Back.lock();
          sl2Buffer.lock();
-         dcBack.SelectClipRgn(NULL);
-         dcBuffer.SelectClipRgn(NULL);
+         dcBack.SelectClipRgn(::null());
+         dcBuffer.SelectClipRgn(::null());
 
          //m_iVisual = VisualEffectRotateEx5;
          m_iVisual = transitioneffect.m_iaVisual[transitioneffect.m_iVisual];
@@ -160,7 +160,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -287,7 +287,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -344,7 +344,7 @@ namespace gcom
 
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -419,7 +419,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -487,7 +487,7 @@ namespace gcom
 
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -557,7 +557,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -668,7 +668,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -764,7 +764,7 @@ namespace gcom
 
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
@@ -774,8 +774,8 @@ namespace gcom
 
          sl1Back.lock();
          sl2Buffer.lock();
-         dcBack.SelectClipRgn(NULL);
-         dcBuffer.SelectClipRgn(NULL);
+         dcBack.SelectClipRgn(::null());
+         dcBuffer.SelectClipRgn(::null());
 
          dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -835,7 +835,7 @@ namespace gcom
 
 /*         ::ca::graphics & dcTransfer = graphics.GetBackDC();
          pdibTransfer->stretch_dib(pdibBuffer);
-         if(main.GetWndInterface() == NULL)
+         if(main.GetWndInterface() == ::null())
             return;
          main.GetWndInterface()->BackViewFeedback(pdib2->get_graphics());
          pdib1->stretch_dib(pdib2);*/
@@ -1101,7 +1101,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -1219,7 +1219,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -1268,7 +1268,7 @@ namespace gcom
             int32_t y1 = m_ptColorTrack.y - r;
             int32_t x2 = cx1 - x1 - r;
             int32_t y2 = cy1 - y1 - r;
-            ::ca::brush_sp brush(get_app());
+            ::ca::brush_sp brush(allocer());
             brush->create_solid(colorStrong.get_rgb() | (255 << 24));
             pdib2->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
@@ -1323,7 +1323,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -1472,7 +1472,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -1522,19 +1522,19 @@ namespace gcom
 
 
          {
-            ::ca::pen_sp pen1(get_app());
+            ::ca::pen_sp pen1(allocer());
             pen1->create_solid(pdib2->get_graphics(), 1.0, colorStrong1.get_rgb() | (255 << 24));
             ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
-            ::ca::pen_sp pen2(get_app());
+            ::ca::pen_sp pen2(allocer());
             pen2->create_solid(pdib2->get_graphics(), 1.0, colorStrong2.get_rgb() | (255 << 24));
             ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
-            ::ca::pen_sp pen3(get_app());
+            ::ca::pen_sp pen3(allocer());
             pen3->create_solid(pdib2->get_graphics(), 1.0, colorStrong3.get_rgb() | (255 << 24));
             ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
-            ::ca::pen_sp pen4(get_app());
+            ::ca::pen_sp pen4(allocer());
             pen4->create_solid(pdib2->get_graphics(), 1.0, colorStrong4.get_rgb() | (255 << 24));
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
-            ::ca::pen_sp pen5(get_app());
+            ::ca::pen_sp pen5(allocer());
             pen5->create_solid(pdib2->get_graphics(), 1.0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
@@ -1674,7 +1674,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -1860,7 +1860,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -2088,7 +2088,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -2279,7 +2279,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -2333,7 +2333,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int32_t margin = 10;
@@ -2545,7 +2545,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -2669,7 +2669,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -2734,9 +2734,9 @@ namespace gcom
             colorStrong1.set_hls(dH, dL, dS);
          }
 
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
-         ::ca::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(allocer());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int32_t margin1 = cx1 / 8;
          int32_t margin2 = cy1 / 2;
@@ -2895,7 +2895,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -3103,7 +3103,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -3195,9 +3195,9 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
-         ::ca::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(allocer());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int32_t margin1 = 10;
 //         int32_t margin2 = cy1 / 2;
@@ -3771,7 +3771,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
@@ -3875,7 +3875,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -3969,7 +3969,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -4097,7 +4097,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -4331,7 +4331,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int32_t marginx = cx1 / 12;
@@ -4555,7 +4555,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -4746,7 +4746,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -4800,7 +4800,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int32_t margin = 10;
@@ -5031,7 +5031,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -5096,9 +5096,9 @@ namespace gcom
             colorStrong1.set_hls(dH, dL, dS);
          }
 
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
-         ::ca::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(allocer());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int32_t margin1 = cx1 / 8;
          int32_t margin2 = cy1 / 2;
@@ -5261,7 +5261,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -5469,7 +5469,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
+         //pdib3->get_graphics()->CreateCompatibleDC(::null());
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -5561,9 +5561,9 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
-         ::ca::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(allocer());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int32_t margin1 = 10;
 //         int32_t margin2 = cy1 / 2;
@@ -5833,7 +5833,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
+         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
@@ -6064,7 +6064,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ca::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(allocer());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int32_t marginx = cx1 / 12;

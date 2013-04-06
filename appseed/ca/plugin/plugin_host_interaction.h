@@ -29,7 +29,7 @@ namespace plugin
 
       
 
-      host_interaction(::ca::applicationsp papp);
+      host_interaction(sp(::ca::application) papp);
       virtual ~host_interaction();
 
       void install_message_handling(::ca::message::dispatch * pmessage);

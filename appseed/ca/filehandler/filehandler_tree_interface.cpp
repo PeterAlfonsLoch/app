@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   tree_interface::tree_interface(::ca::applicationsp papp) :
+   tree_interface::tree_interface(sp(::ca::application) papp) :
       ca(papp),
       ::ca::tree(papp)
    {

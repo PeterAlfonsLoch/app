@@ -21,7 +21,7 @@ namespace xml
       public:
 
 
-         array(::ca::applicationsp papp);
+         array(sp(::ca::application) papp);
 
 
       };
@@ -49,7 +49,7 @@ namespace xml
    protected:
 
 
-      node(::ca::applicationsp papp);
+      node(sp(::ca::application) papp);
       node(node * pnodeParent);
 
 

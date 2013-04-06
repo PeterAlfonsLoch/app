@@ -2,7 +2,7 @@
 #include "filemanager_folder_list_view.h"
 #include "filemanager_folder_selection_list_view.h"
 
-folder_list_view::folder_list_view(::ca::applicationsp papp) :
+folder_list_view::folder_list_view(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),

@@ -11,7 +11,7 @@ namespace visual
 {
 
    class CLASS_DECL_ca fastblur :
-      virtual public ::visual::dib_sp
+      public ::visual::dib_sp
    {
    public:
 
@@ -22,7 +22,7 @@ namespace visual
       byte_array     m_uchaDiv;
 
 
-      fastblur(::ca::applicationsp papp);
+      fastblur(::ca::allocer allocer);
 
 
       bool initialize(int32_t cx, int32_t cy, int32_t iRadius);

@@ -90,7 +90,7 @@ namespace ca
       object & operator = (const object & objectSrc);       // no implementation
 
 
-      virtual ::ca::command_thread & command_thread();
+      virtual sp(::ca::command_thread) command_thread();
 
    };
 

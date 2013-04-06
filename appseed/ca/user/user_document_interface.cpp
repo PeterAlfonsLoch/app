@@ -65,7 +65,7 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   void document_interface::on_alloc(::ca::applicationsp papp)
+   void document_interface::on_alloc(sp(::ca::application) papp)
    {
       set_app(papp);
    }

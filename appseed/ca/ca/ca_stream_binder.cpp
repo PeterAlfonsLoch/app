@@ -72,7 +72,7 @@ namespace ca
 
 
 
-   stream_binder::stream_binder(::ca::applicationsp papp) :
+   stream_binder::stream_binder(sp(::ca::application) papp) :
       ca(papp),
       _allBytesAreWritenEvent(papp),
       _thereAreBytesToReadEvent(papp),

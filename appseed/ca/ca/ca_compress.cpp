@@ -164,12 +164,12 @@ namespace ca
       return true;
    }
 
-   bool compress::ungz(::ca::applicationsp papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(sp(::ca::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
       return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
    }
 
-   bool compress::gz(::ca::applicationsp papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::gz(sp(::ca::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
    }
@@ -217,12 +217,12 @@ namespace ca
       return true;
    }
 
-   bool compress::unbz(::ca::applicationsp papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::unbz(sp(::ca::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
       return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
    }
 
-   bool compress::bz(::ca::applicationsp papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(sp(::ca::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
@@ -245,14 +245,14 @@ namespace ca
    }
 
 
-   void compress::extract_all(const char * pszFile, ::ca::applicationsp papp)
+   void compress::extract_all(const char * pszFile, sp(::ca::application) papp)
    {
       string strDir = pszFile;
       ::ca::str::ends_eat_ci(strDir, ".zip");
       App(papp).file().copy(strDir, pszFile, false);
    }
 
-   void compress::zip(const char * pszZip, const char * psz, ::ca::applicationsp papp)
+   void compress::zip(const char * pszZip, const char * psz, sp(::ca::application) papp)
    {
       zip::InFile infile(papp);
 
@@ -282,7 +282,7 @@ namespace ca
 
    }
 
-   void compress::zip(const char * psz, ::ca::applicationsp papp)
+   void compress::zip(const char * psz, sp(::ca::application) papp)
    {
    }
 

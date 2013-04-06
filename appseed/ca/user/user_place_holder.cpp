@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   place_holder::place_holder(::ca::applicationsp papp) :
+   place_holder::place_holder(sp(::ca::application) papp) :
       ca(papp),
       m_uiptraHold(papp)
    {

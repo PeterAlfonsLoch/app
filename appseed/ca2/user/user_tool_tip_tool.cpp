@@ -6,18 +6,18 @@ namespace user
    tool_tip_tool::tool_tip_tool()
    {
       m_uiBaseToolTipText  = 0xffffffff;
-      m_pbasetooltiphdl    = NULL;
+      m_pbasetooltiphdl    = ::null();
    }
 
    tool_tip_tool::~tool_tip_tool()
    {
-      m_pbasetooltiphdl    = NULL;
+      m_pbasetooltiphdl    = ::null();
    }
 
    void tool_tip_tool::BaseToolTipRelayEvent(::ca::signal_object * pobj)
    {
 
-      if(m_pbasetooltiphdl != NULL)
+      if(m_pbasetooltiphdl != ::null())
          m_pbasetooltiphdl->relay_event(this, pobj);
 
    }

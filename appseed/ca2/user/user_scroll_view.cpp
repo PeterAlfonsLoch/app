@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   scroll_view::scroll_view(::ca::applicationsp papp) :
+   scroll_view::scroll_view(sp(::ca::application) papp) :
       ca(papp)
    {
 
@@ -81,7 +81,7 @@ namespace user
 
       _001DeferCreateScrollBars();
 
-      if(m_pscrollbarHorz != NULL)
+      if(m_pscrollbarHorz != ::null())
       {
          if(m_scrollinfo.m_bHScroll)
          {
@@ -93,7 +93,7 @@ namespace user
          }
       }
 
-      if(m_pscrollbarVert != NULL)
+      if(m_pscrollbarVert != ::null())
       {
          if(m_scrollinfo.m_bVScroll)
          {
@@ -113,14 +113,14 @@ namespace user
 
       if(m_scrollinfo.m_bHScroll)
       {
-         if(m_pscrollbarHorz == NULL)
+         if(m_pscrollbarHorz == ::null())
             create_scroll_bar(scroll_bar::orientation_horizontal);
 
       }
 
       if(m_scrollinfo.m_bVScroll)
       {
-         if(m_pscrollbarVert == NULL)
+         if(m_pscrollbarVert == ::null())
             create_scroll_bar(scroll_bar::orientation_vertical);
       }
 
@@ -292,7 +292,7 @@ namespace user
 
       ::user::scroll_info si;
 
-      if(m_pscrollbarHorz != NULL)
+      if(m_pscrollbarHorz != ::null())
       {
          si.fMask       = SIF_ALL;
          si.nMin        = m_scrollinfo.m_rectMargin.left;
@@ -303,7 +303,7 @@ namespace user
          m_pscrollbarHorz->_001SetScrollInfo(&si);
       }
 
-      if(m_pscrollbarVert != NULL)
+      if(m_pscrollbarVert != ::null())
       {
          si.fMask       = SIF_ALL;
          si.nMin        = m_scrollinfo.m_rectMargin.top;
@@ -342,12 +342,12 @@ namespace user
 
       if(eorientation == scroll_bar::orientation_horizontal)
       {
-         if(m_pscrollbarHorz != NULL)
+         if(m_pscrollbarHorz != ::null())
             return;
       }
       else
       {
-         if(m_pscrollbarVert != NULL)
+         if(m_pscrollbarVert != ::null())
             return;
       }
 

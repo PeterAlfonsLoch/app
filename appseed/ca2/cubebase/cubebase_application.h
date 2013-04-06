@@ -29,7 +29,7 @@ namespace cubebase
       virtual bool initialize();
 
 
-      ::ca::applicationsp get_system();
+      sp(::ca::application) get_system();
 
 
       virtual bool is_cube();

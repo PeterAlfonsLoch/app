@@ -76,7 +76,7 @@ namespace plane
    {
    }
 
-   ::ca::applicationsp application::get_system()
+   sp(::ca::application) application::get_system()
    {
       return new application();
    }
@@ -160,7 +160,7 @@ namespace plane
    }
 
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void application::on_request(sp(::ca::create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -299,7 +299,7 @@ namespace plane
          if(bCreate)
          {
 
-            ::ca::create_context_sp spcreatecontext(get_app());
+            sp(::ca::create_context) spcreatecontext(allocer());
 
             papp = Session.start_application("application", pszAppId, spcreatecontext);
 

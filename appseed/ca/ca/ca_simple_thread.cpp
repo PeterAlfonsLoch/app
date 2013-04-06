@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_thread::simple_thread(::ca::applicationsp papp) :
+simple_thread::simple_thread(sp(::ca::application) papp) :
    ca(papp),
    thread(papp)
 {

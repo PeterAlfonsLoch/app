@@ -32,7 +32,7 @@ namespace mysql
       int64_t m_iLastUsedTime;
 
 
-      database(::ca::applicationsp papp);
+      database(sp(::ca::application) papp);
       virtual ~database();
 
 

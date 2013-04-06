@@ -25,7 +25,7 @@ namespace frame
        
       SCAST_PTR(::ca::message::base, pbase, pobj);
 
-      if(m_pworkset->GetEventWindow() == NULL || pbase->m_pwnd != m_pworkset->GetEventWindow())
+      if(m_pworkset->GetEventWindow() == ::null() || pbase->m_pwnd != m_pworkset->GetEventWindow())
          return;
        if(pbase->m_uiMessage == WM_RBUTTONDOWN)
        {
@@ -38,7 +38,7 @@ namespace frame
 //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
    /*            ::userbase::menu * pmenu = pwnd->GetSystemMenu(FALSE);
-            if(pmenu != NULL)
+            if(pmenu != ::null())
             {
                pmenu->TrackPopupMenu(
                   lpMsg->pt.x, lpMsg->pt.y,
@@ -85,7 +85,7 @@ namespace frame
 //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
    /*            ::userbase::menu * pmenu = pwnd->GetSystemMenu(FALSE);
-            if(pmenu != NULL)
+            if(pmenu != ::null())
             {
                point pt(LOWORD(lparam), HIWORD(lparam));
                pwnd->ClientToScreen(&pt);
@@ -104,8 +104,8 @@ namespace frame
    {
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(point);
-      if(m_pworkset == NULL
-         || m_pworkset->m_pappearance == NULL)
+      if(m_pworkset == ::null()
+         || m_pworkset->m_pappearance == ::null())
          return false;
       /*xxx appearance::EElement eelement;
       if(m_pworkset->m_pappearance->hit_test(point, eelement))

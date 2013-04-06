@@ -21,7 +21,7 @@ public:
    ::user::list * m_plistinterface;
 
 
-   simple_form_list_edit(::ca::applicationsp papp);
+   simple_form_list_edit(sp(::ca::application) papp);
    virtual ~simple_form_list_edit();
 
 

@@ -15,7 +15,7 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemana
    UNREFERENCED_PARAMETER(item);
    UNREFERENCED_PARAMETER(straCommand);
    UNREFERENCED_PARAMETER(straCommandTitle);
-   if(pdata->m_pmanager != NULL)
+   if(pdata->m_pmanager != ::null())
    {
       pdata->m_pmanager->OpenSelectionProperties();
    }
@@ -24,7 +24,7 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemana
 void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema)
 {
    UNREFERENCED_PARAMETER(itema);
-   if(pdata->m_pmanager != NULL)
+   if(pdata->m_pmanager != ::null())
    {
       pdata->m_pmanager->OpenSelectionProperties();
    }
@@ -35,7 +35,7 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenu(::filemanager::d
    UNREFERENCED_PARAMETER(pdata);
 }
 
-void FileManagerCallbackInterface::on_request(::ca::create_context * pcreatecontext)
+void FileManagerCallbackInterface::on_request(sp(::ca::create_context) pcreatecontext)
 {
 
    Application.request(pcreatecontext);

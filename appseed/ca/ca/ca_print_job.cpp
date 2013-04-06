@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   print_job::print_job(::ca::applicationsp papp) :
+   print_job::print_job(sp(::ca::application) papp) :
       ca(papp),
       ::ca::job(papp)
    {

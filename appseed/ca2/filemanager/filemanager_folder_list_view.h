@@ -12,7 +12,7 @@ public:
    bool                             m_bRecursiveColumn;
 
 
-   folder_list_view(::ca::applicationsp papp);
+   folder_list_view(sp(::ca::application) papp);
    virtual ~folder_list_view();
 
 

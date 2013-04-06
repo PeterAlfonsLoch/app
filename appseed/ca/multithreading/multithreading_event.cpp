@@ -7,7 +7,7 @@
 #endif
 
 
-event::event(::ca::applicationsp papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
+event::event(sp(::ca::application) papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
    ca(papp)
 {
 

@@ -34,7 +34,7 @@ public:
 
 
 
-   ::uinteraction::frame::frame *       m_pframeschema;
+   sp(::uinteraction::frame::frame)       m_pframeschema;
 
 
 //   HDC                           m_hdcOpenGL;
@@ -51,7 +51,7 @@ public:
    mapsp(id, id, ::user::interaction)    m_toolbarmap;
 
 
-   simple_frame_window(::ca::applicationsp papp);
+   simple_frame_window(sp(::ca::application) papp);
    virtual ~simple_frame_window();
 
 
@@ -60,10 +60,10 @@ public:
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
             const RECT & rectParam = rect(0, 0, 0, 0),
-            sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
-            const char * lpszMenuName = NULL,
+            sp(::user::interaction) pParentWnd = ::null(),        // != ::null() for popups
+            const char * lpszMenuName = ::null(),
             uint32_t dwExStyle = 0,
-            ::ca::create_context* pContext = NULL);
+            sp(::ca::create_context) pContext = ::null());
 
 
 
@@ -89,9 +89,9 @@ public:
 
    void OnUpdateControlBarMenu(cmd_ui * pcmdui);
 
-   virtual ::uinteraction::frame::frame * create_frame_schema();
+   virtual sp(::uinteraction::frame::frame) create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, ::ca::create_context* pContext = NULL);
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = ::null(), sp(::ca::create_context) pContext = ::null());
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
@@ -112,7 +112,7 @@ public:
    sp(::user::interaction) WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
-   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
+   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext);
    virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual void pre_translate_message(::ca::signal_object * pobj);
 

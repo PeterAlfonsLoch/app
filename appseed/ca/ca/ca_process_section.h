@@ -24,7 +24,7 @@ namespace ca
          manual_reset_event      m_evReady;
 
 
-         process_thread(::ca::applicationsp papp);
+         process_thread(sp(::ca::application) papp);
          int32_t run();
 
 

@@ -3,13 +3,13 @@
 namespace userbase
 {
 
-   menu_button::menu_button(::ca::applicationsp papp) :
+   menu_button::menu_button(sp(::ca::application) papp) :
       ::user::interaction(papp),
       ::user::button(papp),
       button(papp),
       ca(papp)
    {
-      m_pitem = NULL;
+      m_pitem = ::null();
    }
 
    menu_button::~menu_button()
@@ -22,10 +22,10 @@ namespace userbase
       button::_001OnDraw(pdc);
       rect rectClient;
       m_pguie->GetClientRect(rectClient);
-      if(m_pitem != NULL && m_pitem->m_bPopup)
+      if(m_pitem != ::null() && m_pitem->m_bPopup)
       {
          ::ca::brush_sp br(get_app(), RGB(0, 0, 0));
-         ::ca::pen_sp pen(get_app());
+         ::ca::pen_sp pen(allocer());
          pen->create_solid(pdc, 1, RGB(0, 0, 0));
          pdc->SelectObject(pen);
          pdc->SelectObject(br);
@@ -48,7 +48,7 @@ namespace userbase
    {
       rect rect;
       class rect rectClient;
-      if(m_pguie == NULL)
+      if(m_pguie == ::null())
          return;
       m_pguie->GetClientRect(rectClient);
 
@@ -69,7 +69,7 @@ namespace userbase
    void menu_button::_001DrawCheck(::ca::graphics * pdc)
    {
       UINT uiImage = 0xffffffffu;
-      if(m_pitem != NULL)
+      if(m_pitem != ::null())
       {
          uiImage = BaseMenuCentral::GetMenuCentral(get_app())->CommandToImage(m_pitem->m_id);
       }
@@ -114,7 +114,7 @@ namespace userbase
       }
    }
 
-   menu_button_cmd_ui::menu_button_cmd_ui(::ca::applicationsp papp) :
+   menu_button_cmd_ui::menu_button_cmd_ui(sp(::ca::application) papp) :
       ca(papp),
       cmd_ui(papp)
    {
@@ -126,7 +126,7 @@ namespace userbase
       m_bEnableChanged = TRUE;
       menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther.m_p);
       pbutton->_001EnableWindow(bOn != FALSE);
-      /*ASSERT(pToolBar != NULL);
+      /*ASSERT(pToolBar != ::null());
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);*/
 
@@ -149,7 +149,7 @@ namespace userbase
       ASSERT(echeck == check::checked || echeck == check::unchecked || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
       menu_button* pbutton = dynamic_cast < menu_button *  > (m_pOther.m_p);
       pbutton->_001SetCheck(echeck, true);
-   /*   ASSERT(pToolBar != NULL);
+   /*   ASSERT(pToolBar != ::null());
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
 

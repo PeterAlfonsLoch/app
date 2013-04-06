@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_child_frame::simple_child_frame(::ca::applicationsp papp) :
+simple_child_frame::simple_child_frame(sp(::ca::application) papp) :
    ca(papp),
    simple_frame_window(papp)
 {
@@ -29,9 +29,9 @@ bool simple_child_frame::pre_create_window(CREATESTRUCT& cs)
 
 #ifdef WINDOWSEX
 
-   if(cs.hwndParent == NULL)
+   if(cs.hwndParent == ::null())
    {
-      if(System.m_pwndMain != NULL)
+      if(System.m_pwndMain != ::null())
       {
          cs.hwndParent = System.m_pwndMain->get_handle();
       }

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_document::menu_document(::ca::applicationsp papp) :
+menu_document::menu_document(sp(::ca::application) papp) :
    ca(papp),
    ::ca::data_container_base(papp),
    form_document(papp)

@@ -17,7 +17,7 @@ namespace ca
 
 bool is_safe_set(void * p);
 
-factory::factory(::ca::applicationsp papp) :
+factory::factory(sp(::ca::application) papp) :
    ca(papp)
 {
    m_pmutex = new mutex(papp);
@@ -195,7 +195,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
 
 
-sp(::ca::ca) factory::create(::ca::applicationsp papp, ::ca::type_info & info)
+sp(::ca::ca) factory::create(sp(::ca::application) papp, ::ca::type_info & info)
 {
    if(info.m_spmutex.is_null())
    {

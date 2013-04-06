@@ -3,7 +3,7 @@
 namespace user
 {
 
-   list_data::list_data(::ca::applicationsp papp) :
+   list_data::list_data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data(papp)
    {

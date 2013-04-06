@@ -28,8 +28,8 @@ namespace userbase
       int32_t                                 m_iItemHeight;
       size                                m_size;
 
-      menu_list_window(::ca::applicationsp papp);
-      menu_list_window(::ca::applicationsp papp, menu_item * pitem);
+      menu_list_window(sp(::ca::application) papp);
+      menu_list_window(sp(::ca::application) papp, menu_item * pitem);
       virtual ~menu_list_window();
 
       void layout();

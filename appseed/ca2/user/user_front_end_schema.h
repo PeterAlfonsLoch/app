@@ -15,14 +15,14 @@ namespace user
       class CLASS_DECL_ca2 system_menu
       {
       public:
-         system_menu(::ca::applicationsp papp);
+         system_menu(sp(::ca::application) papp);
          ::ca::font_sp    m_fontMarlett;
       };
 
       class CLASS_DECL_ca2 menu
       {
       public:
-         menu(::ca::applicationsp papp);
+         menu(sp(::ca::application) papp);
          ~menu();
          ::ca::font_sp     m_font;
          button *          m_pschemaSysMenuButton;
@@ -33,7 +33,7 @@ namespace user
       class CLASS_DECL_ca2 button
       {
       public:
-         button(::ca::applicationsp papp);
+         button(sp(::ca::application) papp);
          COLORREF          m_crTextNormal;
          COLORREF          m_crTextHover;
          COLORREF          m_crTextPress;
@@ -54,7 +54,7 @@ namespace user
       button         m_buttonBaseWndMenuItemPopup;
       
 
-      front_end_schema(::ca::applicationsp app);
+      front_end_schema(sp(::ca::application) app);
       ~front_end_schema();
 
       virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca::graphics * pdc);

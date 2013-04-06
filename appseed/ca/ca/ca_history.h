@@ -23,7 +23,7 @@ namespace ca
    public:
 
 
-      history(::ca::applicationsp papp);
+      history(sp(::ca::application) papp);
          
    
       virtual bool hist(const char *psz);

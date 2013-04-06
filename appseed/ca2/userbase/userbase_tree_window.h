@@ -7,7 +7,7 @@ namespace userbase
       virtual public ::user::tree
    {
    public:
-      tree_window(::ca::applicationsp papp);
+      tree_window(sp(::ca::application) papp);
       virtual ~tree_window();
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

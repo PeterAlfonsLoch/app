@@ -8,7 +8,7 @@ class CLASS_DECL_ca2 file_manager_operation_list_view :
 {
 public:
 
-   file_manager_operation_list_view(::ca::applicationsp papp);
+   file_manager_operation_list_view(sp(::ca::application) papp);
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 

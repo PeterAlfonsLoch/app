@@ -19,7 +19,7 @@ namespace ca
 
 
    class CLASS_DECL_ca ptra :
-      virtual public ::comparable_array < sp(::ca::ca) >
+      virtual public spa(::ca::ca)
    {
    public:
    };
@@ -338,7 +338,7 @@ namespace plane
             ::visual::visual                    m_visual;
 
 
-      system(::ca::applicationsp papp = ::null());
+      system(sp(::ca::application) papp = ::null());
       virtual ~system();
 
 
@@ -360,14 +360,14 @@ namespace plane
 
       virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = ::null());
 
-      virtual void register_bergedge_application(::ca::applicationsp papp);
-      virtual void unregister_bergedge_application(::ca::applicationsp papp);
+      virtual void register_bergedge_application(sp(::ca::application) papp);
+      virtual void unregister_bergedge_application(sp(::ca::application) papp);
 
       using ::plane::application::alloc;
-      virtual sp(::ca::ca) alloc(::ca::applicationsp papp, ::ca::type_info & info);
-      virtual sp(::ca::ca) alloc(::ca::applicationsp papp, const class id & idType);
+      virtual sp(::ca::ca) alloc(sp(::ca::application) papp, ::ca::type_info & info);
+      virtual sp(::ca::ca) alloc(sp(::ca::application) papp, const class id & idType);
 
-      virtual sp(::ca::ca) on_alloc(::ca::applicationsp papp, ::ca::type_info & info);
+      virtual sp(::ca::ca) on_alloc(sp(::ca::application) papp, ::ca::type_info & info);
       virtual sp(::ca::ca) clone();
       virtual sp(::ca::ca) clone(sp(::ca::ca) pobj);
       template < typename T >
@@ -397,14 +397,14 @@ namespace plane
 
       virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
-      virtual void on_allocation_error(::ca::applicationsp papp, ::ca::type_info & info);
+      virtual void on_allocation_error(sp(::ca::application) papp, ::ca::type_info & info);
 
       // file & dir
-      virtual string matter_as_string(::ca::applicationsp papp, const char * pszMatter, const char * pszMatter2 = ::null());
-      virtual string dir_matter(::ca::applicationsp papp, const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string dir_matter(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = ::null());
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(::ca::applicationsp papp, const char * pszPath);
+      virtual string file_as_string(sp(::ca::application) papp, const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = ::null());
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
@@ -484,9 +484,9 @@ namespace plane
       sp(::plane::session) query_session(index iEdge);
 
 
-      void on_request(::ca::create_context * pcreatecontext);
+      void on_request(sp(::ca::create_context) pcreatecontext);
 
-      ::ca::applicationsp application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
+      sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
       void open_by_file_extension(index iEdge, const char * pszPathName);
 
@@ -588,7 +588,7 @@ namespace plane
 
       virtual bool verb();
 
-      virtual ::ca::applicationsp get_new_app(::ca::applicationsp pappNewApplicationParent, const char * pszType, const char * pszId);
+      virtual sp(::ca::application) get_new_app(sp(::ca::application) pappNewApplicationParent, const char * pszType, const char * pszId);
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();
@@ -608,12 +608,12 @@ namespace plane
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
-      virtual ::ca::command_thread & command_thread();
+      virtual sp(::ca::command_thread) command_thread();
 
 
       virtual bool on_install();
 
-      virtual string get_fontopus_server(const char * pszUrl, ::ca::applicationsp papp, int32_t iRetry = -1);
+      virtual string get_fontopus_server(const char * pszUrl, sp(::ca::application) papp, int32_t iRetry = -1);
 
       virtual string get_host_location_url();
 
@@ -647,7 +647,7 @@ namespace ca
 
 
 template < class T >
-bool ::ca::file_system::output(::ca::applicationsp papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
+bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -663,7 +663,7 @@ bool ::ca::file_system::output(::ca::applicationsp papp, const char * pszOutput,
 
 
 template < class T >
-bool ::ca::file_system::output(::ca::applicationsp papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
+bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -781,7 +781,7 @@ DOCUMENT * view::get_typed_document()
 namespace xml
 {
 
-   inline disp_option::disp_option(::ca::applicationsp papp)
+   inline disp_option::disp_option(sp(::ca::application) papp)
    {
       newline = true;
       reference_value = true;

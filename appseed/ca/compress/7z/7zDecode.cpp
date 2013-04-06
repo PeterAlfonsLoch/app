@@ -79,7 +79,7 @@ namespace n7z
       return true;
    }
 
-   CDecoder::CDecoder(::ca::applicationsp papp, bool multiThread) :
+   CDecoder::CDecoder(sp(::ca::application) papp, bool multiThread) :
       ca(papp)
    {
       multiThread = true;
@@ -176,7 +176,7 @@ namespace n7z
             ::ca::smart_pointer < ::ca::object > decoderUnknown;
             if (coderInfo.IsSimpleCoder())
             {
-               if (decoder == 0)
+               if (decoder == ::null())
                   return E_NOTIMPL;
 
                decoderUnknown = (::ca::object *)decoder;
@@ -190,7 +190,7 @@ namespace n7z
             }
             else
             {
-               if (decoder2 == 0)
+               if (decoder2.is_null())
                   return E_NOTIMPL;
                decoderUnknown = (::ca::object *)decoder2;
                if (_multiThread)

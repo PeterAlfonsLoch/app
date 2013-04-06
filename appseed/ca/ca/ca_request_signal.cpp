@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   request_signal::request_signal(::ca::applicationsp papp, ::ca::signal * psignal) :
+   request_signal::request_signal(sp(::ca::application) papp, ::ca::signal * psignal) :
       ca(papp),
       signal_object(psignal)
    {

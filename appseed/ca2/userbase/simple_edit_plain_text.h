@@ -6,7 +6,7 @@ class CLASS_DECL_ca2 simple_edit_plain_text :
 {
 public:
 
-   simple_edit_plain_text(::ca::applicationsp papp);
+   simple_edit_plain_text(sp(::ca::application) papp);
 
    DECL_GEN_SIGNAL(_001OnShowWindow)
 

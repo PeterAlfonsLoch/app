@@ -12,7 +12,7 @@ namespace user
 
 
 
-      keyboard_layout_cfg(::ca::applicationsp papp);
+      keyboard_layout_cfg(sp(::ca::application) papp);
       virtual ~keyboard_layout_cfg();
 
       bool CreateViews();

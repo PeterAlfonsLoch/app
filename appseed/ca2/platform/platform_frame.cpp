@@ -5,12 +5,12 @@ namespace platform
 {
 
 
-   frame::frame(::ca::applicationsp papp) :
+   frame::frame(sp(::ca::application) papp) :
       ca(papp),
       simple_frame_window(papp),
       form_frame(papp)
    {
-      m_pimagelist         = NULL;
+      m_pimagelist         = ::null();
       m_iFrameData         = 10;
       m_dataid             = "ca2::platform::frame";
 
@@ -139,7 +139,7 @@ namespace platform
             else if(!m_bHideTimer && (::get_tick_count() - m_dwLastSuperDock) > 984)
             {
                m_bHideTimer = true;
-               SetTimer(1001, 500, NULL);
+               SetTimer(1001, 500, ::null());
             }
          }
          // OpenGL animation code goes here
@@ -218,7 +218,7 @@ namespace platform
       UNREFERENCED_PARAMETER(pobj);
       m_bMouseLeaveTimer = true;
       m_bHover = false;
-      SetTimer(4321875, 884, NULL);
+      SetTimer(4321875, 884, ::null());
    }
 
    void frame::_001OnCreate(::ca::signal_object * pobj)
@@ -258,11 +258,11 @@ namespace platform
       rect rectDesktop;
 
       sp(::user::interaction) puiParent = GetTypedParent < bergedge::view >();
-      if(puiParent == NULL)
+      if(puiParent == ::null())
          puiParent = GetTypedParent < ::user::place_holder > ();
-      if(puiParent == NULL)
+      if(puiParent == ::null())
          puiParent = get_parent();
-      if(puiParent == NULL)
+      if(puiParent == ::null())
       {
          // There is no place to dock on to.
          return;
@@ -289,10 +289,10 @@ namespace platform
    }
 
 
-   ::uinteraction::frame::frame * frame::create_frame_schema()
+   sp(::uinteraction::frame::frame) frame::create_frame_schema()
    {
 
-      ::uinteraction::frame::frame * pframe = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
+      sp(::uinteraction::frame::frame) pframe = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
       pframe->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
       pframe->set_style("StyleTranslucidWarmGray");
       return pframe;

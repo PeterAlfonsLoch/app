@@ -29,6 +29,7 @@ namespace ca
       font();
 
 
+
       virtual bool create_pixel_font(
          const char * lpszFacename, 
          double dSize,
@@ -70,6 +71,25 @@ namespace ca
 
    };
 
-   typedef smart_pointer < font > font_sp;
+   class CLASS_DECL_ca font_sp :
+      public smart_pointer < font >
+   {
+   public:
+
+      font_sp()
+      {
+      }
+
+      font_sp(const smart_pointer < font > & p) :
+         smart_pointer < font > (p)
+      {
+      }
+
+      font_sp(allocer allocer) :
+         smart_pointer < font > (allocer)
+      {
+      }
+
+   };
 
 } // namespace ca

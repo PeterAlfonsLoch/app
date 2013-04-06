@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   TextHRDMapper::TextHRDMapper(::ca::applicationsp papp) :
+   TextHRDMapper::TextHRDMapper(sp(::ca::application) papp) :
       ca(papp),
       RegionMapperImpl(papp)
    {

@@ -2,7 +2,7 @@
 
 
 
-document::document(::ca::applicationsp papp) :
+document::document(sp(::ca::application) papp) :
    ca(papp),
    ::ca::data_container_base(papp),
    ::ca::data_container(papp)

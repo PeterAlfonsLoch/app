@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   main_frame::main_frame(::ca::applicationsp papp) :
+   main_frame::main_frame(sp(::ca::application) papp) :
       ca(papp),
       simple_frame_window(papp)
    {
@@ -41,7 +41,7 @@ namespace userbase
 
 //      SCAST_PTR(::ca::message::create, pcreate, pobj)
       
-      m_bWindowFrame = !Application.directrix().m_varTopicQuery["client_only"].is_set();
+      m_bWindowFrame = !Application.directrix()->m_varTopicQuery["client_only"].is_set();
 
       if(pobj->previous())
          return;

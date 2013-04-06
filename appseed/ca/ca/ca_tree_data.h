@@ -21,7 +21,7 @@ namespace ca
       tree_item_data_ptr_array   m_itemdataptra;      
 
 
-      tree_data(::ca::applicationsp papp);
+      tree_data(sp(::ca::application) papp);
       virtual ~tree_data();
 
 

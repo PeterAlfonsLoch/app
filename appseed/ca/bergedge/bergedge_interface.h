@@ -8,11 +8,11 @@ class CLASS_DECL_ca bergedge_interface :
 public:
 
 
-   virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
-   //virtual ::uinteraction::frame::frame * get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName);
+   virtual bool open_by_file_extension(sp(::ca::create_context) pcreatecontext);
+   //virtual sp(::uinteraction::frame::frame) get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName);
 
 
-   virtual void on_app_request_bergedge_callback(::ca::applicationsp papp);
+   virtual void on_app_request_bergedge_callback(sp(::ca::application) papp);
 
 
 //   virtual ::fontopus::user * login(::ca::property_set & set) = 0;

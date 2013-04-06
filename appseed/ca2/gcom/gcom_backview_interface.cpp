@@ -7,7 +7,7 @@ namespace gcom
    namespace backview
    {
 
-      Interface::Interface(::ca::applicationsp papp) :
+      Interface::Interface(sp(::ca::application) papp) :
          ca(papp)
       {
          m_bTransferVoid   = false;
@@ -95,7 +95,7 @@ namespace gcom
             ImageChangePostEvent(gcom::backview::event_timer);
          }
          //else
-//            if(GetWnd() != NULL)
+//            if(GetWnd() != ::null())
            // {
   //             GetWnd()->KillTimer(ptimer->m_nIDEvent);
             //}
@@ -247,16 +247,16 @@ namespace gcom
 
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
 
-         if(&dcTransfer == NULL)
+         if(&dcTransfer == ::null())
             return;
 
-         if(dcTransfer.get_os_data() == NULL)
+         if(dcTransfer.get_os_data() == ::null())
             return;
 
-         dcTransfer.SelectClipRgn(NULL);
+         dcTransfer.SelectClipRgn(::null());
 
          //dcTransfer.FillSolidRect(10, 10, 100, 100, ARGB(5, 10, 10, 10));
-         pdc->SelectClipRgn(NULL);
+         pdc->SelectClipRgn(::null());
 
          pdc->BitBlt(
             x, y,
@@ -347,7 +347,7 @@ namespace gcom
 
       sp(::user::interaction) Interface::BackViewGetInteraction()
       {
-         return dynamic_cast < ::user::interaction * > (this);
+         return  (this);
       }
 
       Main & Interface::GetMain()

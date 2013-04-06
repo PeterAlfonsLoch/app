@@ -72,7 +72,7 @@ namespace platform
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::applicationsp application::get_app() const
+   sp(::ca::application) application::get_app() const
    {
       return m_papp;
    }

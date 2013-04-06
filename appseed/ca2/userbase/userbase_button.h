@@ -10,7 +10,7 @@ namespace userbase
 
       visual::dib_sp          m_dib;
 
-      button(::ca::applicationsp papp);
+      button(sp(::ca::application) papp);
    public:
       virtual ~button();
 

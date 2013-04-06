@@ -4,7 +4,7 @@
 
 FileManagerViewUpdateHint::FileManagerViewUpdateHint()
 {
-   m_pview = NULL;
+   m_pview = ::null();
 }
 
 FileManagerViewUpdateHint::~FileManagerViewUpdateHint()

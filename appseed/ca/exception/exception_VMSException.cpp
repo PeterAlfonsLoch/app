@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-vms_exception::vms_exception(::ca::applicationsp papp) :
+vms_exception::vms_exception(sp(::ca::application) papp) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp)
@@ -9,7 +9,7 @@ vms_exception::vms_exception(::ca::applicationsp papp) :
     m_vmsResult = 0;
 }
 
-vms_exception::vms_exception(::ca::applicationsp papp, VMSRESULT vmsr) :
+vms_exception::vms_exception(sp(::ca::application) papp, VMSRESULT vmsr) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp)

@@ -1,7 +1,7 @@
 #include "framework.h"
 
-
-raw_pointer::raw_pointer(::ca::applicationsp papp) :
+/*
+raw_pointer::raw_pointer(sp(::ca::application) papp) :
    ::ca::ca(papp)
 {
 
@@ -24,4 +24,4 @@ raw_pointer::raw_pointer(sp(::ca::ca) pca) :
    m_pca = pca;
 
 }
-
+*/

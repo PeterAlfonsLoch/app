@@ -12,7 +12,7 @@ public:
    {
    }
 
-   map_to_smart_pointer(::ca::applicationsp papp) :
+   map_to_smart_pointer(sp(::ca::application) papp) :
       ::ca::ca(papp),
       map < TYPE, ARG_TYPE, ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & >(papp)
    {
@@ -37,7 +37,7 @@ public:
    {
    }
 
-   string_to_smart_pointer(::ca::applicationsp papp) :
+   string_to_smart_pointer(sp(::ca::application) papp) :
       ::ca::ca(papp),
       string_map < ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & >(papp)
    {

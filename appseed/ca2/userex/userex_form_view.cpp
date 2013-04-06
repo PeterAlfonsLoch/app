@@ -1,6 +1,6 @@
 #include "framework.h"
 
-form_view::form_view(::ca::applicationsp papp) :
+form_view::form_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -11,7 +11,7 @@ form_view::form_view(::ca::applicationsp papp) :
    html_form(papp),
    html_form_view(papp)
 {
-   m_pcallback = NULL;
+   m_pcallback = ::null();
 }
 
 
@@ -19,10 +19,10 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
 
    html_form_view::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       form_update_hint * puh = dynamic_cast < form_update_hint * > (phint);
-      if(puh != NULL)
+      if(puh != ::null())
       {
          if(puh->m_etype == form_update_hint::type_browse)
          {
@@ -44,14 +44,14 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
       else
       {
          html_view_update_hint * puh = dynamic_cast < html_view_update_hint * > (phint);
-         if(puh != NULL)
+         if(puh != ::null())
          {
             if(puh->m_etype == html_view_update_hint::type_document_complete)
             {
                for(int32_t i = 0; i < get_html_data()->m_propertyset.m_propertya.get_count(); i++)
                {
                   html::elemental * pelemental = get_html_data()->get_element_by_id(get_html_data()->m_propertyset.m_propertya[i].name());
-                  if(pelemental != NULL)
+                  if(pelemental != ::null())
                   {
                      pelemental->set_string(get_html_data()->m_propertyset.m_propertya[i].get_string());
                   }
@@ -60,7 +60,7 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
          }
       }
    }
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       m_pcallback->on_update(
          this,
@@ -73,15 +73,15 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 
 bool form_view::BaseOnControlEvent(::user::control_event * pevent)
 {
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       if(m_pcallback->BaseOnControlEvent(
          this,
          pevent))
          return true;
    }
-   else if(get_html_data()->m_pform != NULL
-      && get_html_data()->m_pform->m_pcallback != NULL)
+   else if(get_html_data()->m_pform != ::null()
+      && get_html_data()->m_pform->m_pcallback != ::null())
    {
       if(get_html_data()->m_pform->m_pcallback->BaseOnControlEvent(
          this,
@@ -112,7 +112,7 @@ void form_view::_001OnCreate(::ca::signal_object * pobj)
 void form_view::_001OnTimer(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::timer, ptimer, pobj);
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       ::user::control_event ev;
       ev.m_eevent = ::user::event_timer;
@@ -131,13 +131,13 @@ void form_view::_001OnUser123(::ca::signal_object * pobj)
    SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
-      if(GetTopLevelParent() != NULL)
+      if(GetTopLevelParent() != ::null())
       {
          GetTopLevelParent()->EndModalLoop(IDOK);
       }
       return;
    }
-   if(m_pcallback != NULL)
+   if(m_pcallback != ::null())
    {
       m_pcallback->OnUser123(pbase->m_wparam, pbase->m_lparam);
    }

@@ -62,13 +62,13 @@ namespace ca
    class command_line;
 
    class CLASS_DECL_ca command_line_sp :
-      virtual public ::ca::smart_pointer < command_line >
+      public ::ca::smart_pointer < command_line >
    {
    public:
 
 
       command_line_sp();
-      command_line_sp(::ca::applicationsp papp);
+      command_line_sp(allocer papp);
 
 
       using ::ca::smart_pointer < command_line >::operator =;
@@ -101,16 +101,16 @@ namespace ca
       bool                                m_bHold;
       sp(::user::interaction)               m_puiParent;
       ::view *                            m_pviewAlloc;
-      application_bias_sp                 m_spApplicationBias;
+      sp(application_bias)                 m_spApplicationBias;
       ::ca::command_line_sp              m_spCommandLine;
       stack < ::user::create_context >    m_user;
-      ::ca::command_thread *               m_pthreadParent;
+      sp(::ca::command_thread)               m_pthreadParent;
 
 
 
-      create_context(::ca::applicationsp papp);
-      create_context(::ca::command_thread * pthreadParent);
-      create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
+      create_context(sp(::ca::application) papp);
+      create_context(sp(::ca::command_thread) pthreadParent);
+      create_context(sp(::ca::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
       create_context(const create_context & createcontext);
       virtual ~create_context();
 
@@ -119,22 +119,6 @@ namespace ca
 
    };
 
-
-   class CLASS_DECL_ca create_context_sp :
-      virtual public smart_pointer < create_context >
-   {
-   public:
-
-
-      create_context_sp();
-      create_context_sp(::ca::applicationsp papp);
-      create_context_sp(::ca::command_thread * pthreadParent);
-      create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
-      virtual ~create_context_sp();
-
-
-
-   };
 
 
 } // namespace ca

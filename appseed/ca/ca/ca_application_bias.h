@@ -28,7 +28,7 @@ namespace ca
       public:
 
 
-         void connect_to(::ca::applicationsp papp);
+         void connect_to(sp(::ca::application) papp);
 
          void on_call_signal(::ca::signal_object * pobj);
 
@@ -43,29 +43,12 @@ namespace ca
 
       
       application_bias();
-      application_bias(::ca::applicationsp papp);
+      application_bias(sp(::ca::application) papp);
       application_bias(const application_bias & bias);
       application_bias & operator = (const application_bias & bias);
 
    };
 
-
-   class CLASS_DECL_ca application_bias_sp :
-      virtual public smart_pointer < application_bias >
-   {
-   public:
-
-
-      application_bias_sp();
-      application_bias_sp(::ca::applicationsp papp);
-      virtual ~application_bias_sp();
-
-
-      using ::ca::smart_pointer < application_bias >::operator =;
-
-
-
-   };
 
 
 } // namespace ca

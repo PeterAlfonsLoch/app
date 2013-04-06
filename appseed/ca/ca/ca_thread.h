@@ -261,7 +261,7 @@ namespace ca
       uint_ptr                            m_dwAlive;
       bool                                m_bReady;
       int32_t                             m_iReturnCode;
-      ::ca::applicationsp                 m_pappDelete;
+      sp(::ca::application)                 m_pappDelete;
       sp(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       sp(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       bool *                              m_pbReady;
@@ -270,8 +270,8 @@ namespace ca
 
 
       thread();
-      thread(::ca::applicationsp papp);
-      thread(::ca::applicationsp papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+      thread(sp(::ca::application) papp);
+      thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
       virtual ~thread();
 
 		///  \brief		starts thread on first call

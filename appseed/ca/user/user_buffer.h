@@ -12,7 +12,7 @@ namespace user
       virtual public ::ca::signalizable
    {
    public:
-      buffer(::ca::applicationsp papp);
+      buffer(sp(::ca::application) papp);
       virtual ~buffer();
 
       void BitBlt(::ca::graphics * pdc);

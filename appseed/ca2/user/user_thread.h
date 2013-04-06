@@ -15,7 +15,7 @@ namespace user
       ::user::interaction::timer_array *  m_ptimera;
 
 
-      thread(::ca::applicationsp papp);
+      thread(sp(::ca::application) papp);
       virtual ~thread();
 
 

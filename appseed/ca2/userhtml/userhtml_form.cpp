@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-html_form::html_form(::ca::applicationsp papp) :
+html_form::html_form(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -52,18 +52,18 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
 void html_form::_001DrawChildren(::ca::graphics *pdc)
 {
 
-   if(m_pguie != NULL && m_pguie != this)
+   if(m_pguie != ::null() && m_pguie != this)
    {
       m_pguie->_001DrawChildren(pdc);
    }
    else
    {
       sp(::user::interaction) pui = get_bottom_child();
-      while(pui != NULL)
+      while(pui != ::null())
       {
          try
          {
-            if(pui->m_bVisible && (get_html_data() == NULL || !get_html_data()->contains(pui)))
+            if(pui->m_bVisible && (get_html_data() == ::null() || !get_html_data()->contains(pui)))
             {
                pui->_000OnDraw(pdc);
             }
@@ -80,7 +80,7 @@ void html_form::_001DrawChildren(::ca::graphics *pdc)
 void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(get_html_data() != NULL)
+   if(get_html_data() != ::null())
    {
 
       rect rectClient;
@@ -159,7 +159,7 @@ void html_form::layout()
 
    mutex_lock sl(user_mutex(), true);
 
-   if(get_html_data() == NULL)
+   if(get_html_data() == ::null())
       return;
 
    get_html_data()->implement_and_layout(this);
@@ -173,8 +173,8 @@ void html_form::_001OnCreate(::ca::signal_object * pobj)
    if(pobj->previous())
       return;
    get_html_data()->m_pform = this;
-   ASSERT(get_html_data() != NULL);
-   if(get_html_data() == NULL)
+   ASSERT(get_html_data() != ::null());
+   if(get_html_data() == ::null())
    {
       pcreate->set_lresult(0);
       pcreate->m_bRet = true;
@@ -198,7 +198,7 @@ void html_form::_001OnLButtonDown(::ca::signal_object * pobj)
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
    m_pelementalLButtonDown = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
-   if(m_pelementalLButtonDown != NULL)
+   if(m_pelementalLButtonDown != ::null())
    {
       html::signal signal(pobj->m_psignal);
       signal.m_pdata = get_html_data();
@@ -215,7 +215,7 @@ SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(pt);
-   if(pelemental != NULL)
+   if(pelemental != ::null())
    {
       html::signal signal(pobj->m_psignal);
       signal.m_pdoccontainer = m_pcontainer;
@@ -233,7 +233,7 @@ void html_form::_001OnMouseMove(::ca::signal_object * pobj)
    signal.m_pdata = get_html_data();
    signal.m_psignal = pmouse;
    signal.m_pui = this;
-   if(pelemental != NULL)
+   if(pelemental != ::null())
    {
       pelemental->OnMouseMove(&signal);
       if(signal.m_bRet)
@@ -267,7 +267,7 @@ void html_form::_001OnLButtonUp(::ca::signal_object * pobj)
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
-   if(m_pelementalLButtonDown != NULL
+   if(m_pelementalLButtonDown != ::null()
       && pelemental == m_pelementalLButtonDown)
    {
       html::signal signal(pobj->m_psignal);
@@ -293,7 +293,7 @@ bool html_form::open_document(var varFile)
    {
       strPathName = varFile.propset()["url"];
    }
-   else if(varFile.ca < ::ca::file > () != NULL)
+   else if(varFile.ca < ::ca::file > () != ::null())
    {
       strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->m_set["default_extension"];
    }
@@ -331,7 +331,7 @@ void html_form::_001SetText(const char * psz)
    if(bFocus)
    {
 	   sp(::user::keyboard_focus) pfocus = get_focusable_descendant();
-      if(pfocus != NULL)
+      if(pfocus != ::null())
       {
          Application.user()->set_keyboard_focus(pfocus);
       }
@@ -363,7 +363,7 @@ void html_form::_001OnKeyDown(::ca::signal_object * pobj)
 void html_form::defer_implement()
 {
 
-   if(get_html_data() == NULL)
+   if(get_html_data() == ::null())
       return;
 
    GetClientBox(get_html_data()->m_box);
@@ -384,7 +384,7 @@ void html_form::defer_implement()
 void html_form::defer_layout()
 {
 
-   if(get_html_data() == NULL)
+   if(get_html_data() == ::null())
       return;
 
    GetClientBox(get_html_data()->m_box);

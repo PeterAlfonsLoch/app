@@ -486,7 +486,7 @@ namespace user
 
    sp(::user::interaction) control::ControlExGetWnd()
    {
-      return dynamic_cast < ::user::interaction * > (this);
+      return  (this);
    }
 
 
@@ -654,7 +654,7 @@ namespace user
 
    sp(::user::interaction) control_view_impl::GetWnd()
    {
-      return dynamic_cast < ::user::interaction * > (this);
+      return  (this);
    }
 
 

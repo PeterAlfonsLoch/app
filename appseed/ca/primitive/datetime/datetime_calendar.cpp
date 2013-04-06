@@ -1,11 +1,11 @@
 #include "framework.h"
 
-calendar::calendar(::ca::applicationsp papp) :
+calendar::calendar(sp(::ca::application) papp) :
    ca(papp),
-   m_font(papp),
-   m_fontYear(papp),
-   m_fontMonth(papp),
-   m_fontSpin(papp),
+   m_font(allocer()),
+   m_fontYear(allocer()),
+   m_fontMonth(allocer()),
+   m_fontSpin(allocer()),
    calendar_interface(papp)
 {
    ::datetime::time time = ::datetime::time::get_current_time();

@@ -33,7 +33,7 @@ void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_
 }
 
 
-file_manager_operation_info_view::file_manager_operation_info_view(::ca::applicationsp papp) :
+file_manager_operation_info_view::file_manager_operation_info_view(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::view(papp)
 {
@@ -119,7 +119,7 @@ void file_manager_operation_info_view::_001OnTimer(::ca::signal_object * pobj)
 void file_manager_operation_info_view::_001OnCreate(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   //SetTimer(123, 184, NULL);
+   //SetTimer(123, 184, ::null());
 }
 
 void file_manager_operation_info_view::install_message_handling(::ca::message::dispatch * pinterface)

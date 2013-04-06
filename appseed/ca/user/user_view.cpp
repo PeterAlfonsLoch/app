@@ -82,7 +82,7 @@ void view::_001OnCreate(::ca::signal_object * pobj)
 
    // if ok, wire in the current ::user::document_interface
    ASSERT(::view::get_document() == ::null());
-   ::ca::create_context* pContext = (::ca::create_context*)pcreate->m_lpcreatestruct->lpCreateParams;
+   sp(::ca::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
 
    // A ::view should be created in a given context!
    if (pContext != ::null() && pContext->m_user->m_pCurrentDoc != ::null())
@@ -473,7 +473,7 @@ void view::_001OnView(::ca::signal_object * pobj)
 sp(::user::interaction) view::create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
 
-   ::ca::create_context_sp cacc(get_app());
+   sp(::ca::create_context) cacc(allocer());
 
    stacker < ::user::create_context > cc(cacc->m_user);
 
@@ -510,7 +510,7 @@ sp(::user::interaction) view::create_view(::ca::type_info info, sp(::user::docum
 sp(::user::interaction) view::s_create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
 
-   ::ca::create_context_sp cacc(pdoc->get_app());
+   sp(::ca::create_context) cacc(pdoc->allocer());
 
    stacker < ::user::create_context > cc(cacc->m_user);
 
@@ -524,7 +524,7 @@ sp(::user::interaction) view::s_create_view(::ca::type_info info, sp(::user::doc
 
 }
 
-sp(::user::interaction) view::s_create_view(::ca::create_context* pContext, sp(::user::interaction) pwndParent, id id)
+sp(::user::interaction) view::s_create_view(sp(::ca::create_context) pContext, sp(::user::interaction) pwndParent, id id)
 {
 
 // trans   ASSERT(pwndParent->get_handle() != ::null());
@@ -535,14 +535,14 @@ sp(::user::interaction) view::s_create_view(::ca::create_context* pContext, sp(:
    ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != ::null());
 
 
-   ::ca::applicationsp papp = pwndParent->get_app();
+   sp(::ca::application) papp = pwndParent->get_app();
 
    sp(::user::interaction) pguie;
 
    if(pContext->m_user->m_puiNew != ::null())
    {
 
-      pguie = dynamic_cast < ::user::interaction * > (pContext->m_user->m_puiNew.m_p);
+      pguie =  (pContext->m_user->m_puiNew.m_p);
 
    }
    else
@@ -668,7 +668,7 @@ int32_t view::get_total_page_count(::ca::job * pjob)
 }
 
 
-view_update_hint::view_update_hint(::ca::applicationsp papp) :
+view_update_hint::view_update_hint(sp(::ca::application) papp) :
 ca(papp)
 {
 }

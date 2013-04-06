@@ -16,7 +16,7 @@ namespace filemanager
 
 
 
-      document(::ca::applicationsp papp);
+      document(sp(::ca::application) papp);
       virtual ~document();
 
 
@@ -38,7 +38,7 @@ namespace filemanager
 
       void PopViews();
       void CreateViews();
-      void OpenFolder(::fs::item & item);
+      void OpenFolder(sp(::fs::item) item);
       void Initialize(bool bMakeVisible);
       DECL_GEN_SIGNAL(_001OnLevelUp)
       DECL_GEN_SIGNAL(_001OnUpdateLevelUp)

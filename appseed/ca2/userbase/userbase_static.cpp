@@ -45,7 +45,7 @@ namespace userbase
    // trans   if (message != WM_DRAWITEM)
          // return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
-      ASSERT(pResult == NULL);       // no return value expected
+      ASSERT(pResult == ::null());       // no return value expected
 #ifdef WINDOWSEX
       UNUSED(pResult); // unused in release builds
       DrawItem((LPDRAWITEMSTRUCT)lParam);
@@ -54,7 +54,7 @@ namespace userbase
    }
 
 
-   base_static::base_static(::ca::applicationsp papp) :
+   base_static::base_static(sp(::ca::application) papp) :
       ca(papp)
    {
       
@@ -66,7 +66,7 @@ namespace userbase
    void base_static::set_icon(::visual::icon * picon)
    {
       
-      if(picon == NULL)
+      if(picon == ::null())
          return;
 
       m_etype = type_icon;
@@ -79,7 +79,7 @@ namespace userbase
    ::visual::icon * base_static::get_icon()
    {
 
-      return m_etype == type_icon ? m_picon : NULL;
+      return m_etype == type_icon ? m_picon : ::null();
 
    }
 
@@ -91,7 +91,7 @@ namespace userbase
 
       //return (HENHMETAFILE)send_message( STM_SETIMAGE, IMAGE_ENHMETAFILE, (LPARAM)hMetaFile);
 
-      return NULL;
+      return ::null();
 
    }
 
@@ -103,7 +103,7 @@ namespace userbase
 
       //return (HENHMETAFILE)send_message( STM_GETIMAGE, IMAGE_ENHMETAFILE, 0L);
 
-      return NULL;
+      return ::null();
 
    }
 
@@ -112,7 +112,7 @@ namespace userbase
    {
 
       
-      if(pbitmap == NULL)
+      if(pbitmap == ::null())
          return;
 
       m_etype = type_icon;
@@ -126,7 +126,7 @@ namespace userbase
    ::ca::bitmap * base_static::get_bitmap()
    {
 
-      return m_etype == type_bitmap ? m_pbitmap : NULL;
+      return m_etype == type_bitmap ? m_pbitmap : ::null();
 
    }
 
@@ -134,7 +134,7 @@ namespace userbase
    void base_static::set_cursor(::visual::cursor * pcursor)
    {
 
-      if(pcursor == NULL)
+      if(pcursor == ::null())
          return;
 
       m_etype = type_cursor;
@@ -147,7 +147,7 @@ namespace userbase
    ::visual::cursor *  base_static::get_cursor()
    {
 
-      return m_etype == type_cursor ? m_pcursor : NULL;
+      return m_etype == type_cursor ? m_pcursor : ::null();
 
    }
 

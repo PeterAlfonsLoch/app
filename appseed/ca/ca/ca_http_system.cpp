@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      system::system(::ca::applicationsp papp) :
+      system::system(sp(::ca::application) papp) :
          ca(papp),
          m_mutexPac(papp),
          m_mutexProxy(papp)
@@ -78,20 +78,20 @@ namespace ca
             || !strcmp(System.get_module_name(), "netnodecfgapp")
             || System.get_license_id() == "simpledbcfg"
             || System.get_license_id() == "core_netnodelite"
-            || System.command().m_varTopicQuery["app"] == "simpledbcfg")
+            || System.command()->m_varTopicQuery["app"] == "simpledbcfg")
          {
             return;
          }
-         else if(System.command().m_varTopicQuery["app"] == "mydns"
-            || System.command().m_varTopicQuery.has_property("install")
-            || System.command().m_varTopicQuery.has_property("uninstall"))
+         else if(System.command()->m_varTopicQuery["app"] == "mydns"
+            || System.command()->m_varTopicQuery.has_property("install")
+            || System.command()->m_varTopicQuery.has_property("uninstall"))
          {
             return;
          }
          else if(!strcmp(System.get_module_name(), "productionapp")
             || !strcmp(System.get_module_name(), "productionbasisapp")
             || !strcmp(System.get_module_name(), "backupapp")
-            || System.command().m_varTopicQuery["app"] == "production"
+            || System.command()->m_varTopicQuery["app"] == "production"
             || System.get_license_id() == "winservice_filesystemsize")
          {
             return;
@@ -135,7 +135,7 @@ namespace ca
 
       }
 
-      system::pac::pac(::ca::applicationsp papp) :
+      system::pac::pac(sp(::ca::application) papp) :
          ca(papp),
          m_js(papp)
       {
@@ -195,7 +195,7 @@ namespace ca
       }
 
 
-      system::proxy::proxy(::ca::applicationsp papp) :
+      system::proxy::proxy(sp(::ca::application) papp) :
          ca(papp)
       {
       }
@@ -459,7 +459,7 @@ namespace ca
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = pszHost;
          string strProtocol = pszProtocol;
-         ::ca::applicationsp papp = set["app"].ca < ::ca::application >();
+         sp(::ca::application) papp = set["app"].ca < ::ca::application >();
          int32_t iPort;
          if(strProtocol == "https")
          {
@@ -684,7 +684,7 @@ retry:
 
             uint32_t dwTimeProfile1 = get_tick_count();
 
-            ::ca::applicationsp papp = handler.get_app();
+            sp(::ca::application) papp = handler.get_app();
 
 
             string strRequest = System.url().get_object(pszRequest);
@@ -1093,7 +1093,7 @@ retry:
          string strServer = System.url().get_root(pszUrl);
          string strProtocol = System.url().get_protocol(pszUrl);
          string strObject = System.url().get_object(pszUrl);
-         ::ca::applicationsp papp = set["app"].ca < ::ca::application >();
+         sp(::ca::application) papp = set["app"].ca < ::ca::application >();
          int32_t iPort;
          if(strProtocol == "https")
          {

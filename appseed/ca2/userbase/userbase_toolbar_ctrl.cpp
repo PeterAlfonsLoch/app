@@ -14,7 +14,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
       sp(::user::interaction) pWnd = this;
-      return pWnd->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
+      return pWnd->create(TOOLBARCLASSNAME, ::null(), dwStyle, rect, pParentWnd, nID);
 #else
       throw todo(get_app());
 #endif
@@ -25,7 +25,7 @@ namespace userbase
 #ifdef WINDOWSEX
       ASSERT(IsWindow());
       TBADDBITMAP tbab;
-      tbab.hInst = NULL;
+      tbab.hInst = ::null();
       tbab.nID = (UINT)pBitmap->get_os_data();
       return (int32_t) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
          (LPARAM)&tbab);
@@ -99,20 +99,20 @@ namespace userbase
    /*bool tool_bar_control::LoadToolBar(const char * lpszResourceName)
    {
    ASSERT_VALID(this);
-   ASSERT(lpszResourceName != NULL);
+   ASSERT(lpszResourceName != ::null());
 
    // determine location of the bitmap in resource fork
    HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
    HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
-   if (hRsrc == NULL)
+   if (hRsrc == ::null())
    return FALSE;
 
    HGLOBAL hGlobal = LoadResource(hInst, hRsrc);
-   if (hGlobal == NULL)
+   if (hGlobal == ::null())
    return FALSE;
 
    CToolBarCtrlData* pData = (CToolBarCtrlData*)LockResource(hGlobal);
-   if (pData == NULL)
+   if (pData == ::null())
    return FALSE;
    ASSERT(pData->wVersion == 1);
 
@@ -143,7 +143,7 @@ namespace userbase
    {
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
-      ASSERT(lpIDArray == NULL ||
+      ASSERT(lpIDArray == ::null() ||
          __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
@@ -153,7 +153,7 @@ namespace userbase
 
       TBBUTTON button; memset(&button, 0, sizeof(TBBUTTON));
       button.iString = -1;
-      if (lpIDArray != NULL)
+      if (lpIDArray != ::null())
       {
       // add new buttons to the common control
       int32_t iImage = 0;
@@ -711,7 +711,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return NULL;
+   ASSERT(IsWindow()); return ::null();
 
 #else
 
@@ -727,7 +727,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return NULL;
+   ASSERT(IsWindow()); return ::null();
 
 #else
 
@@ -743,7 +743,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return NULL;
+   ASSERT(IsWindow()); return ::null();
 
 #else
 
@@ -856,7 +856,7 @@ namespace userbase
 #ifdef WINDOWSEX
 
       ASSERT(IsWindow());
-      return NULL;
+      return ::null();
 
 #else
 
@@ -873,7 +873,7 @@ namespace userbase
 #ifdef WINDOWSEX
 
       ASSERT(IsWindow());
-      return NULL;
+      return ::null();
 
 #else
 
@@ -892,7 +892,7 @@ namespace userbase
 #ifdef WINDOWSEX
 
       ASSERT(IsWindow());
-      return NULL;
+      return ::null();
 
 #else
 

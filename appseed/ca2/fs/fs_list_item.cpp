@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   list_item::list_item(::ca::applicationsp papp) :
+   list_item::list_item(sp(::ca::application) papp) :
       ca(papp)
    {
       m_iIndex = -1;

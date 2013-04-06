@@ -5,7 +5,7 @@ namespace nature
 {
 
 
-   document::document(::ca::applicationsp papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::userbase::document(papp)
@@ -19,7 +19,7 @@ namespace nature
          return FALSE;
 
 
-      update_all_views(NULL, 0);
+      update_all_views(::null(), 0);
 
 
       return TRUE;
@@ -69,7 +69,7 @@ namespace nature
       {
          System.sync_load_url(str, varFile, &ApplicationUser);
       }
-      update_all_views(NULL, 123);
+      update_all_views(::null(), 123);
       return TRUE;
    }
 
@@ -82,7 +82,7 @@ namespace nature
    }
 
 
-   frame * document::get_nature_frame()
+   sp(frame) document::get_nature_frame()
    {
       ::view * pview = get_nature_view();
       return (pview->GetTypedParent < frame >());

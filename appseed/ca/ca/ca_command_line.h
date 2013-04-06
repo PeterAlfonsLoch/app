@@ -53,7 +53,7 @@ namespace ca
       var                           m_varQuery;
       ::fs::item_array *            m_pitema;
 
-      ::ca::applicationsp           m_pappFork;
+      sp(::ca::application)           m_pappFork;
       string                        m_strApp;
       string                        m_strAppType;
       sp(::user::interaction)         m_puiParent;
@@ -63,7 +63,7 @@ namespace ca
 
 
 
-      command_line(::ca::applicationsp papp);
+      command_line(sp(::ca::application) papp);
       ~command_line();
 
       void common_construct();

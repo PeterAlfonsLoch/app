@@ -5,7 +5,7 @@ namespace databaseuser
 {
 
 
-   data_key_list_data::data_key_list_data(::ca::applicationsp papp) :
+   data_key_list_data::data_key_list_data(sp(::ca::application) papp) :
       ca(papp),
       ::user::list_data(papp)
    {

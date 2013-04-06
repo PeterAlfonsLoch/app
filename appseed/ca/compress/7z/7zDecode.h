@@ -30,7 +30,7 @@ namespace n7z
       array < ::ca::smart_pointer < ::ca::ca > > _decoders;
       // smart_pointer_array<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
    public:
-      CDecoder(::ca::applicationsp papp,  bool multiThread);
+      CDecoder(sp(::ca::application) papp,  bool multiThread);
       virtual ~CDecoder();
       HRESULT Decode(
          ::libcompress::codecs_info_interface * codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,

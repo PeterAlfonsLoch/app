@@ -2,7 +2,7 @@
 #include "FileManagerFrame.h"
 
 
-FileManagerFrame::FileManagerFrame(::ca::applicationsp papp) :
+FileManagerFrame::FileManagerFrame(sp(::ca::application) papp) :
    ca(papp),
    simple_frame_window(papp),
    m_toolbar(papp),
@@ -46,7 +46,7 @@ bool FileManagerFrame::CreateBars()
 {
    sp(::filemanager::document) pdoc =  (GetActiveDocument());
    
-   ASSERT(pdoc != NULL);
+   ASSERT(pdoc != ::null());
    ASSERT(base < ::filemanager::document > :: bases(pdoc));
 
    DestroyBars();
@@ -56,14 +56,14 @@ bool FileManagerFrame::CreateBars()
    //m_menuhook.Initialize(
      // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
       //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
-      //NULL,
+      //::null(),
       //System.visual().font_central().GetMenuFont());
 
    //m_menuhook.Install(this);
 
    //UINT uiMenuBar = pdoc->get_filemanager_data()->m_ptemplate->m_uiMenuBar;
 
-//  SetMenu(NULL);
+//  SetMenu(::null());
 
 /*    if (!m_menubar.CreateEx(this))
    {
@@ -74,7 +74,7 @@ bool FileManagerFrame::CreateBars()
    if(!m_menubar.Initialize(
       BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
       BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListHueLight(),
-      NULL,
+      ::null(),
       System.visual().font_central().GetMenuFont()) ||
       VMS_FAILED(m_menubar.LoadMenuBar(uiMenuBar)))
    {
@@ -127,7 +127,7 @@ void FileManagerFrame::_001OnSetText(::ca::signal_object * pobj)
    string str;
    
    FileManagerTabView * ptabview = GetTypedParent < FileManagerTabView >();
-   if(ptabview != NULL)
+   if(ptabview != ::null())
    {
       GetWindowText(str);
       ptabview->SetTitleById(m_idTab, str);

@@ -28,7 +28,7 @@ namespace ca
 
 
 
-      math::math(::ca::applicationsp papp) :
+      math::math(sp(::ca::application) papp) :
          ca(papp)
       {
          // initial rng seed

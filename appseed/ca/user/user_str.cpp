@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   str_context::str_context(::ca::applicationsp papp) :
+   str_context::str_context(sp(::ca::application) papp) :
       ca(papp)
    {
       
@@ -155,7 +155,7 @@ namespace user
 
    }
 
-   str::str(::ca::applicationsp papp) :
+   str::str(sp(::ca::application) papp) :
       ca(papp)
    {
 

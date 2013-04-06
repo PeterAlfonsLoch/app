@@ -1871,7 +1871,7 @@ fill_last:
 #endif
 
       // Black blend dib
-      ::ca::dib_sp spdib2(get_app());
+      ::ca::dib_sp spdib2(allocer());
 
 
       throw todo(get_app());

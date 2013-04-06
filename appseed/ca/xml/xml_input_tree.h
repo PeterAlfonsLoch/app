@@ -13,8 +13,8 @@ public:
    virtual node * import_node(const char * lpcszName, importable & importable);
    virtual node * import_node(const char * lpcszName, attr_array & attributea, importable & importable);
    virtual node * import_node(const char * lpcszName, var & var);
-   input_tree(::ca::applicationsp papp);
-   input_tree(::ca::applicationsp papp, tree_schema * pschema);
+   input_tree(sp(::ca::application) papp);
+   input_tree(sp(::ca::application) papp, tree_schema * pschema);
    virtual ~input_tree();
 
    virtual bool get_attr(const char * lpcszName, string & strValue);

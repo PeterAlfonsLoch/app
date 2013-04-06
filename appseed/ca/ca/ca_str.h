@@ -96,7 +96,7 @@ namespace ca
       string CLASS_DECL_ca replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
       string CLASS_DECL_ca replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-      string CLASS_DECL_ca random_replace(::ca::applicationsp papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
+      string CLASS_DECL_ca random_replace(sp(::ca::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
       strsize CLASS_DECL_ca find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 

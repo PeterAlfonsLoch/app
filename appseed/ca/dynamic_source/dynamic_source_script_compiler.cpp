@@ -14,7 +14,7 @@ namespace dynamic_source
    string escape(const char * lpcsz);
 
 
-   script_compiler::script_compiler(::ca::applicationsp papp) :
+   script_compiler::script_compiler(sp(::ca::application) papp) :
       ca(papp),
       m_memfileLibError(papp),
       m_mutexLibrary(papp)

@@ -55,19 +55,19 @@ namespace userpresence
       if(presence_central_container::is_initialized())
          return;
 
-      if(Application.command().m_varTopicQuery.has_property("install")
-      || Application.command().m_varTopicQuery.has_property("uninstall"))
+      if(Application.command()->m_varTopicQuery.has_property("install")
+      || Application.command()->m_varTopicQuery.has_property("uninstall"))
          return;
 
-      if(Application.command().m_varTopicQuery["app"] == "simpledbcfg"
-      || Application.command().m_varTopicQuery["app"] == "core_netnodelite"
-      || Application.command().m_varTopicQuery["app"] == "netshareclient")
+      if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
+      || Application.command()->m_varTopicQuery["app"] == "core_netnodelite"
+      || Application.command()->m_varTopicQuery["app"] == "netshareclient")
          return;
 
-      if(Application.command().m_varTopicQuery["app"] == "mydns")
+      if(Application.command()->m_varTopicQuery["app"] == "mydns")
          return;
 
-      if(Application.command().m_varTopicQuery["app"] == "app-core/netnodecfg")
+      if(Application.command()->m_varTopicQuery["app"] == "app-core/netnodecfg")
          return;
 
       // it may not be initialized, due
@@ -89,12 +89,12 @@ namespace userpresence
       if(!presence_central_container::is_initialized())
          return;
 
-      if(Application.command().m_varTopicQuery.has_property("install")
-      || Application.command().m_varTopicQuery.has_property("uninstall"))
+      if(Application.command()->m_varTopicQuery.has_property("install")
+      || Application.command()->m_varTopicQuery.has_property("uninstall"))
          return;
 
-      if(Application.command().m_varTopicQuery["app"] == "simpledbcfg"
-      || Application.command().m_varTopicQuery["app"] == "core_netnodelite")
+      if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
+      || Application.command()->m_varTopicQuery["app"] == "core_netnodelite")
          return;
 
       // it may not be initialized, due

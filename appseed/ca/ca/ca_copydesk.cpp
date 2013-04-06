@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   copydesk::copydesk(::ca::applicationsp papp) :
+   copydesk::copydesk(sp(::ca::application) papp) :
       ca(papp)
    {
    }

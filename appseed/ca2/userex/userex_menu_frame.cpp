@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_frame::menu_frame(::ca::applicationsp papp) :
+menu_frame::menu_frame(sp(::ca::application) papp) :
    ca(papp),
    simple_frame_window(papp),
    form_frame(papp)

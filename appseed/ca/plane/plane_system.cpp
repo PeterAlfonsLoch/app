@@ -10,7 +10,7 @@ namespace plane
 {
 
 
-   system::system(::ca::applicationsp papp) :
+   system::system(sp(::ca::application) papp) :
       m_mutexDelete(this),
       m_http(this),
       m_net(this),
@@ -188,8 +188,8 @@ namespace plane
          return false;
       }*/
 
-      m_spfile.create(this);
-      m_spdir.create(this);
+      m_spfile.create(allocer());
+      m_spdir.create(allocer());
 
       m_pxml = new ::xml::xml();
 
@@ -207,7 +207,7 @@ namespace plane
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
-      m_spportforward.create(this);
+      m_spportforward.create(allocer());
 
       m_bProcessInitializeResult = true;
       return true;
@@ -271,10 +271,10 @@ namespace plane
       m_spfilehandler = new ::filehandler::handler(this);
 
 
-      //m_spfilesystem.create(this);
-      m_spos.create(this);
+      //m_spfilesystem.create(allocer());
+      m_spos.create(allocer());
 
-      m_spcrypt.create(this);
+      m_spcrypt.create(allocer());
 
       if(!m_spcrypt.is_set())
          return false;
@@ -327,7 +327,7 @@ namespace plane
 
       m_spfilehandler->m_sptree->remove_all();
 
-      if(directrix().m_varTopicQuery.has_property("install"))
+      if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
       ::ca::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::ca::file::type_binary | ::ca::file::mode_read);
@@ -555,10 +555,10 @@ namespace plane
 
       ::plane::application::verb();
 
-      if(directrix().m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
 
-      if(directrix().m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
 
       if(!m_bDoNotExitIfNoApplications)
@@ -577,7 +577,7 @@ namespace plane
                   appptra.remove_at(i);
                   continue;
                }
-               else if(appptra[i].is_serviceable() && appptra[i].m_strAppId != directrix().m_varTopicQuery["app"].get_string())
+               else if(appptra[i].is_serviceable() && appptra[i].m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
                {
                   appptra.remove_at(i);
                   continue;
@@ -765,7 +765,7 @@ namespace plane
       return iRet;
    }
 
-   sp(::ca::ca) system::on_alloc(::ca::applicationsp papp, ::ca::type_info & info)
+   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, ::ca::type_info & info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -819,7 +819,7 @@ namespace plane
    }
 
 
-   ::ca::applicationsp system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       sp(::plane::session) psession = get_session(iEdge, pbiasCreate);
       return psession->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -920,7 +920,7 @@ namespace plane
    return *m_spfilehandler;
    }*/
 
-   void system::register_bergedge_application(::ca::applicationsp papp)
+   void system::register_bergedge_application(sp(::ca::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -941,7 +941,7 @@ namespace plane
 
    }
 
-   void system::unregister_bergedge_application(::ca::applicationsp papp)
+   void system::unregister_bergedge_application(sp(::ca::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -957,7 +957,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ::ca::applicationsp papp = appptra()(i);
+         sp(::ca::application) papp = appptra()(i);
          papp->load_string_table();
       }
 
@@ -970,7 +970,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ::ca::applicationsp papp = appptra()(i);
+         sp(::ca::application) papp = appptra()(i);
          papp->set_locale(pszLocale, bUser);
       }
 
@@ -983,7 +983,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ::ca::applicationsp papp = appptra()(i);
+         sp(::ca::application) papp = appptra()(i);
          papp->set_schema(pszStyle, bUser);
       }
 
@@ -1206,14 +1206,14 @@ namespace plane
    }
 
 
-   string system::matter_as_string(::ca::applicationsp papp, const char * pszMatter, const char * pszMatter2)
+   string system::matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2)
    {
       var varQuery;
       varQuery["disable_ca2_sessid"] = true;
       return file().as_string(dir_matter(papp, pszMatter, pszMatter2), varQuery, papp);
    }
 
-   string system::dir_matter(::ca::applicationsp papp, const char * pszMatter, const char * pszMatter2)
+   string system::dir_matter(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2)
    {
       return dir().matter(papp, pszMatter, pszMatter2);
    }
@@ -1228,7 +1228,7 @@ namespace plane
       return file().is_read_only(pszPath);
    }
 
-   string system::file_as_string(::ca::applicationsp papp, const char * pszPath)
+   string system::file_as_string(sp(::ca::application) papp, const char * pszPath)
    {
       return file().as_string(pszPath, papp);
    }
@@ -1385,7 +1385,7 @@ namespace plane
 #endif
    }
 
-   void system::on_allocation_error(::ca::applicationsp papp, ::ca::type_info & info)
+   void system::on_allocation_error(sp(::ca::application) papp, ::ca::type_info & info)
    {
       UNREFERENCED_PARAMETER(papp);
       simple_message_box(::null(), MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.friendly_name());
@@ -1417,7 +1417,7 @@ namespace plane
       return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
    }
 
-   void system::on_request(::ca::create_context * pcreatecontext)
+   void system::on_request(sp(::ca::create_context) pcreatecontext)
    {
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       psession->request(pcreatecontext);
@@ -1429,12 +1429,12 @@ namespace plane
       psession->open_by_file_extension(pszFileName);
    }
 
-   sp(::ca::ca) system::alloc(::ca::applicationsp papp, ::ca::type_info & info)
+   sp(::ca::ca) system::alloc(sp(::ca::application) papp, ::ca::type_info & info)
    {
       return ::ca::system::alloc(papp, info);
    }
 
-   sp(::ca::ca) system::alloc(::ca::applicationsp papp, const class id & idType)
+   sp(::ca::ca) system::alloc(sp(::ca::application) papp, const class id & idType)
    {
       return ::ca::system::alloc(papp, get_type_info(idType));
    }
@@ -1621,7 +1621,7 @@ namespace plane
    }
 
 
-   ::ca::applicationsp system::get_new_app(::ca::applicationsp pappNewApplicationParent, const char * pszType, const char * pszAppId)
+   sp(::ca::application) system::get_new_app(sp(::ca::application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
    {
 
       string strId(pszAppId);
@@ -1648,7 +1648,7 @@ namespace plane
       }
 
 
-      string strBuildNumber = System.command().m_varTopicQuery["build_number"];
+      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
 
       if(strBuildNumber.is_empty())
       {
@@ -1660,8 +1660,8 @@ namespace plane
 
 #ifndef METROWIN
 
-      if(!System.directrix().m_varTopicQuery.has_property("install")
-         && !System.directrix().m_varTopicQuery.has_property("uninstall")
+      if(!System.directrix()->m_varTopicQuery.has_property("install")
+         && !System.directrix()->m_varTopicQuery.has_property("uninstall")
          && strId.has_char()
          && !install().is(::null(), strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
@@ -1683,7 +1683,7 @@ namespace plane
 
       }
 
-      ::ca::applicationsp papp = ::null();
+      sp(::ca::application) papp = ::null();
 
       if(!library.open(pappNewApplicationParent, strLibrary, false))
          return ::null();
@@ -1693,7 +1693,7 @@ namespace plane
       if(papp == ::null())
          return ::null();
 
-      ::ca::applicationsp pgenapp = (papp);
+      sp(::ca::application) pgenapp = (papp);
 
       pgenapp->m_strAppId = pszAppId;
 
@@ -1725,7 +1725,7 @@ namespace plane
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)
          {
-            command().add_line(" : show_platform=1");
+            command()->add_line(" : show_platform=1");
             m_bDoNotExitIfNoApplications = true;
          }
       }
@@ -1743,7 +1743,7 @@ namespace plane
             strsize iFind = strCommandLine.find(" ", 1);
             strCommandLine = strCommandLine.Mid(iFind + 1);
          }
-         command().add_line(strCommandLine);
+         command()->add_line(strCommandLine);
       }
 
       if(!::plane::application::set_main_init_data(pdata))
@@ -1908,9 +1908,9 @@ namespace plane
 
    }
 
-   ::ca::command_thread & system::command_thread()
+   sp(::ca::command_thread) system::command_thread()
    {
-      return *m_pcommandthread;
+      return m_pcommandthread;
    }
 
 
@@ -1952,7 +1952,7 @@ namespace plane
    }
 
 
-   string system::get_fontopus_server(const char * pszUrl, ::ca::applicationsp papp, int32_t iRetry)
+   string system::get_fontopus_server(const char * pszUrl, sp(::ca::application) papp, int32_t iRetry)
    {
 
       string strFontopusServer;
@@ -2042,17 +2042,17 @@ retry:
    void system::post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate)
    {
 
-      command().add_fork_uri(pszUri, pbiasCreate);
+      command()->add_fork_uri(pszUri, pbiasCreate);
 
-      if(command().m_varTopicQuery["locale"].has_char()
-         && command().m_varTopicQuery["locale"] != "_std")
+      if(command()->m_varTopicQuery["locale"].has_char()
+         && command()->m_varTopicQuery["locale"] != "_std")
       {
-         set_locale(command().m_varTopicQuery["locale"], true);
+         set_locale(command()->m_varTopicQuery["locale"], true);
       }
 
-      if(command().m_varTopicQuery["schema"].has_char())
+      if(command()->m_varTopicQuery["schema"].has_char())
       {
-         set_schema(command().m_varTopicQuery["schema"], true);
+         set_schema(command()->m_varTopicQuery["schema"], true);
       }
 
    }

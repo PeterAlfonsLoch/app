@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-file_manager_operation_view::file_manager_operation_view(::ca::applicationsp papp) :
+file_manager_operation_view::file_manager_operation_view(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -30,17 +30,17 @@ void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
    set_position_rate(0, 0.3);
 
    m_plistview = create_view < file_manager_operation_list_view > ();
-   if(m_plistview == NULL)
+   if(m_plistview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create transfer list ::view");
+      System.simple_message_box(::null(), "Could not create transfer list ::view");
    }
    SetPane(0, m_plistview, false);
 
 
    m_pinfoview = create_view < file_manager_operation_info_view > ();
-   if(m_pinfoview == NULL)
+   if(m_pinfoview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create transfer information ::view");
+      System.simple_message_box(::null(), "Could not create transfer information ::view");
    }
    SetPane(1, m_pinfoview, false);
 

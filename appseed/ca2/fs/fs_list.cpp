@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   list::list(::ca::applicationsp papp) :
+   list::list(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       m_headerctrl(papp),
@@ -113,7 +113,7 @@ namespace fs
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
       UNREFERENCED_PARAMETER(phint);
-      /*if(phint != NULL)
+      /*if(phint != ::null())
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
          {

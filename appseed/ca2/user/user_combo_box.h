@@ -36,7 +36,7 @@ namespace user
       bool                       m_bEdit;
 
 
-      combo_box(::ca::applicationsp papp);
+      combo_box(sp(::ca::application) papp);
       virtual ~combo_box();
 
 

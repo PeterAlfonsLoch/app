@@ -6,7 +6,7 @@
 #endif
 
 
-go_thread::go_thread(::ca::applicationsp papp, bool bRelease) :
+go_thread::go_thread(sp(::ca::application) papp, bool bRelease) :
    ca(papp),
    thread(papp),
    simple_thread(papp),

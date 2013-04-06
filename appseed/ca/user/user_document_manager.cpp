@@ -664,7 +664,7 @@ void document_manager::on_file_open()
 {
    // prompt the ::fontopus::user (with all document templates)
 
-   ::ca::create_context_sp createcontext(get_app());
+   sp(::ca::create_context) createcontext(allocer());
 
    if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, ::null(), ::null()))
       return; // open cancelled
@@ -707,7 +707,7 @@ void document_manager::dump(dump_context & dumpcontext) const
 
 
 
-void document_manager::request(::ca::create_context * pcreatecontext)
+void document_manager::request(sp(::ca::create_context) pcreatecontext)
 {
 
    if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())

@@ -60,7 +60,7 @@ public:
 
 
       
-      sync_queue(::ca::applicationsp papp);
+      sync_queue(sp(::ca::application) papp);
       virtual ~sync_queue();
 
 

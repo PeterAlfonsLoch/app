@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   tree_window::tree_window(::ca::applicationsp papp) :
+   tree_window::tree_window(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

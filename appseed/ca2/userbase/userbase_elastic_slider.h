@@ -8,7 +8,7 @@ namespace userbase
 
    {
    public:
-      elastic_slider(::ca::applicationsp papp);
+      elastic_slider(sp(::ca::application) papp);
    public:
       virtual ~elastic_slider();
 

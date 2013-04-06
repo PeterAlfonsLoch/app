@@ -12,7 +12,7 @@ namespace userbase
    public:
 
 
-      split_view(::ca::applicationsp papp);
+      split_view(sp(::ca::application) papp);
       virtual ~split_view();
 
 

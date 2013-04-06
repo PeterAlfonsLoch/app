@@ -8,7 +8,7 @@ namespace userbase
       public ::user::tool_tip_tool
    {
    public:
-      bitmap_button(::ca::applicationsp papp);
+      bitmap_button(sp(::ca::application) papp);
 
       bool  m_bHover;            // set if cursor is over the button
       bool  m_bCommandEnable;    // set if command is enabled
@@ -29,10 +29,10 @@ namespace userbase
 
       bool LoadBitmaps(
          const char * lpszBitmapResource,
-         const char * lpszBitmapResourceSel = NULL,
-         const char * lpszBitmapResourceFocus = NULL,
-         const char * lpszBitmapResourceDisabled = NULL,
-         const char * lpszBitmapResourceHover = NULL);
+         const char * lpszBitmapResourceSel = ::null(),
+         const char * lpszBitmapResourceFocus = ::null(),
+         const char * lpszBitmapResourceDisabled = ::null(),
+         const char * lpszBitmapResourceHover = ::null());
 
       void UpdateHover();
 

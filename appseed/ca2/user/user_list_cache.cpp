@@ -93,7 +93,7 @@ namespace user
 
       if(pitem->m_iColumnKey < 0)
       {
-         if(pitem->m_pcolumn == NULL)
+         if(pitem->m_pcolumn == ::null())
          {
             pitem->m_pcolumn = pitem->m_plist->m_columna._001GetBySubItem(pitem->m_iSubItem);
          }

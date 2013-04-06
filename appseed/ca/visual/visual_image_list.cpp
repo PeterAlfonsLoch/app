@@ -3,12 +3,12 @@
 #include "include/freeimage.h"
 #endif
 
-image_list::image_list(::ca::applicationsp papp) :
+image_list::image_list(sp(::ca::application) papp) :
    ca(papp),
-   m_spdib(get_app()),
-   m_spdibWork(get_app()),
-   m_spdibWork2(get_app()),
-   m_spdibWork3(get_app())
+   m_spdib(allocer()),
+   m_spdibWork(allocer()),
+   m_spdibWork2(allocer()),
+   m_spdibWork3(allocer())
 {
 
    m_iSize = 0;
@@ -87,7 +87,7 @@ bool image_list::create(image_list * pimagelist)
 
    m_spdib->create(bm.bmWidth, bm.bmHeight);
 
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(::null());
    spgraphics->SelectObject(bitmap);
    m_spdib->from(spgraphics);
@@ -252,7 +252,7 @@ int32_t image_list::add_file(const char * lpcsz)
    return iItem;
 }
 
-int32_t image_list::add_matter(const char * lpcsz, ::ca::applicationsp papp)
+int32_t image_list::add_matter(const char * lpcsz, sp(::ca::application) papp)
 {
    if(papp == ::null())
    {
@@ -290,8 +290,8 @@ bool image_list::_grow()
    }
    else
    {
-      ::ca::dib_sp spdib(get_app());
-      ::ca::dib_sp dibAlpha(get_app());
+      ::ca::dib_sp spdib(allocer());
+      ::ca::dib_sp dibAlpha(allocer());
 
       spdib->Paste(m_spdib);
 

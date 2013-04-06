@@ -30,14 +30,14 @@ namespace ca
       var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
 
 
-      command_thread(::ca::applicationsp papp);
+      command_thread(sp(::ca::application) papp);
       virtual ~command_thread();
 
       virtual var run();
 
-      virtual void request(::ca::create_context * pcreationcontext);
+      virtual void request(sp(::ca::create_context) pcreationcontext);
 
-      virtual void on_request(::ca::create_context * pcreationcontext);
+      virtual void on_request(sp(::ca::create_context) pcreationcontext);
 
 
       // should transform the following command in a "command_line", a command line can/should/must/shall/ought to be virtually anything
@@ -47,8 +47,8 @@ namespace ca
 
       virtual bool is_thread();
 
-      virtual void consolidate(const ::ca::create_context * pcreatecontext);
-      virtual void consolidate(::ca::command_thread * pthread);
+      virtual void consolidate(sp(::ca::create_context) pcreatecontext);
+      virtual void consolidate(sp(::ca::command_thread) pthread);
 
       virtual var & property(const char * pszKey);
       virtual bool has_property(const char * pszKey);

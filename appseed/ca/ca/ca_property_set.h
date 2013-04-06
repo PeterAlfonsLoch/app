@@ -21,7 +21,7 @@ namespace ca
 
 
 
-      property_set(::ca::applicationsp papp = ::null(), bool bAutoAdd = true, bool bMultiValue = false, bool bKeyCaseInsensitive = true);
+      property_set(sp(::ca::application) papp = ::null(), bool bAutoAdd = true, bool bMultiValue = false, bool bKeyCaseInsensitive = true);
       property_set(const property_set & set);
       property_set(const pair_set_interface & set);
       property_set(const str_str_interface & set);
@@ -189,7 +189,7 @@ namespace ca
    public:
 
 
-      relation_set(::ca::applicationsp papp = ::null());
+      relation_set(sp(::ca::application) papp = ::null());
       virtual ~relation_set();
 
 

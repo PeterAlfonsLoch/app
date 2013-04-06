@@ -95,7 +95,7 @@ namespace ca
 
       using ::user::interaction::create;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, create_context* pContext = ::null());
+      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, sp(::ca::create_context) pContext = ::null());
 
       // advanced creation (allows access to extended styles)
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = ::null());
@@ -697,7 +697,7 @@ class CLASS_DECL_ca guie_message_wnd :
    virtual public ::ca::window
 {
 public:
-   guie_message_wnd(::ca::applicationsp papp);
+   guie_message_wnd(sp(::ca::application) papp);
    virtual void message_handler(::ca::signal_object * pobj);
    sp(::user::interaction) m_pguieForward;
 };

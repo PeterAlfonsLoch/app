@@ -66,7 +66,7 @@ namespace user
       int32_t                           m_iItemHeight;
       
 
-      tree(::ca::applicationsp papp);
+      tree(sp(::ca::application) papp);
       virtual ~tree();
 
       virtual void _001OnDrawBackground(::ca::graphics * pdc);

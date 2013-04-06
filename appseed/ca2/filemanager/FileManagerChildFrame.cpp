@@ -3,7 +3,7 @@
 #include "SimpleFileListInterface.h"
 
 
-FileManagerChildFrame::FileManagerChildFrame(::ca::applicationsp papp) :
+FileManagerChildFrame::FileManagerChildFrame(sp(::ca::application) papp) :
    ca(papp),
    simple_child_frame(papp), 
    m_toolbar(papp)
@@ -25,10 +25,10 @@ void FileManagerChildFrame::install_message_handling(::ca::message::dispatch * p
 bool FileManagerChildFrame::CreateBars()
 {
    sp(::filemanager::document) pdoc =  (GetActiveDocument());
-   if(pdoc == NULL)
+   if(pdoc == ::null())
       return false;
    
-   ASSERT(pdoc != NULL);
+   ASSERT(pdoc != ::null());
    ASSERT(base < ::filemanager::document >::bases(pdoc));
 
    DestroyBars();
@@ -92,7 +92,7 @@ void FileManagerChildFrame::OnChangeEditSearch()
 
    sp(::user::document_interface) pdoc = GetActiveDocument();
 
-   if(pdoc != NULL)
+   if(pdoc != ::null())
    {
       FileManagerViewUpdateHint uh;
       uh.set_type(FileManagerViewUpdateHint::TypeFilter);
@@ -108,7 +108,7 @@ void FileManagerChildFrame::_001OnCreate(::ca::signal_object * pobj)
       return;
    
 
-   m_hMenuDefault = NULL;
+   m_hMenuDefault = ::null();
    
    
 }
@@ -124,7 +124,7 @@ void FileManagerChildFrame::GetSelected(::fs::item_array &itema)
 {
    filemanager::SimpleFileListInterface * plistinterface = dynamic_cast <filemanager::SimpleFileListInterface *>
       (GetActiveView());
-   if(plistinterface != NULL)
+   if(plistinterface != ::null())
    {
       plistinterface->GetSelected(itema);
    }

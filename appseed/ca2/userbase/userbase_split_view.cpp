@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   split_view::split_view(::ca::applicationsp papp) :
+   split_view::split_view(sp(::ca::application) papp) :
       ca(papp),
       ::userbase::view(papp),
       split_layout(papp),

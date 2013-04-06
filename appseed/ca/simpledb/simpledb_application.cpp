@@ -103,15 +103,15 @@ namespace simpledb
    bool simpledb::initialize2()
    {
 
-      if(m_papp->m_pappThis->command().m_varTopicQuery["locale"].get_string().has_char())
+      if(m_papp->m_pappThis->command()->m_varTopicQuery["locale"].get_string().has_char())
       {
-         string str = m_papp->m_pappThis->command().m_varTopicQuery["locale"];
+         string str = m_papp->m_pappThis->command()->m_varTopicQuery["locale"];
          m_papp->m_pappThis->set_locale(str, false);
       }
 
-      if(m_papp->m_pappThis->command().m_varTopicQuery["schema"].get_string().has_char())
+      if(m_papp->m_pappThis->command()->m_varTopicQuery["schema"].get_string().has_char())
       {
-         string str = m_papp->m_pappThis->command().m_varTopicQuery["schema"];
+         string str = m_papp->m_pappThis->command()->m_varTopicQuery["schema"];
          m_papp->m_pappThis->set_schema(str, false);
       }
 

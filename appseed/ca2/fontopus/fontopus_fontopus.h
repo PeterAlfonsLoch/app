@@ -19,7 +19,7 @@ namespace ca
          virtual ~fontopus();
 
 
-         virtual void construct(::ca::applicationsp papp);
+         virtual void construct(sp(::ca::application) papp);
 
 
          virtual ::fontopus::user * login(::ca::property_set & set);
@@ -31,7 +31,7 @@ namespace ca
 
          virtual bool check_license(const char * pszId, bool bInteractive);
 
-         virtual void on_request(::ca::create_context * pcreatecontext);
+         virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
 
       };

@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   combo_box::combo_box(::ca::applicationsp papp) :
+   combo_box::combo_box(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp),
@@ -49,7 +49,7 @@ namespace userbase
       {
       case WM_DRAWITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == NULL);       // no return value expected
+         ASSERT(pResult == ::null());       // no return value expected
          DrawItem((LPDRAWITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -57,7 +57,7 @@ namespace userbase
          break;
       case WM_MEASUREITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == NULL);       // no return value expected
+         ASSERT(pResult == ::null());       // no return value expected
          MeasureItem((LPMEASUREITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -65,7 +65,7 @@ namespace userbase
          break;
       case WM_COMPAREITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult != NULL);       // return value expected
+         ASSERT(pResult != ::null());       // return value expected
          *pResult = CompareItem((LPCOMPAREITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -73,7 +73,7 @@ namespace userbase
          break;
       case WM_DELETEITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == NULL);       // no return value expected
+         ASSERT(pResult == ::null());       // no return value expected
          DeleteItem((LPDELETEITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -147,7 +147,7 @@ namespace userbase
 
       //ASSERT(IsWindow()); return (LPVOID)GetItemData(nIndex);
 
-      return NULL;
+      return ::null();
 
    }
 

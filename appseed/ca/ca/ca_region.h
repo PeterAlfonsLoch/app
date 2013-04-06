@@ -98,7 +98,27 @@ namespace ca
    };
 
 
-   typedef smart_pointer < region > region_sp;
+   class CLASS_DECL_ca region_sp :
+      public smart_pointer < region >
+   {
+   public:
+
+      region_sp()
+      {
+      }
+
+      region_sp(const smart_pointer < region > & p) :
+         smart_pointer < region > (p)
+      {
+      }
+
+      region_sp(allocer allocer) :
+         smart_pointer < region > (allocer)
+      {
+      }
+
+   };
+
 
 
 } // namespace ca

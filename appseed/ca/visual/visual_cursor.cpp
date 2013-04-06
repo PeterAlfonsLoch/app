@@ -3,10 +3,10 @@
 namespace visual
 {
 
-   cursor::cursor(::ca::applicationsp papp) :
+   cursor::cursor(sp(::ca::application) papp) :
       ca(papp),
-      m_dib(papp),
-      m_dibWork(papp)
+      m_dib(allocer()),
+      m_dibWork(allocer())
    {
    }
 

@@ -46,7 +46,7 @@ namespace visual
       virtual ~visual();
 
 
-      virtual void construct(::ca::applicationsp papp);
+      virtual void construct(sp(::ca::application) papp);
 
       virtual bool process_initialize();
       

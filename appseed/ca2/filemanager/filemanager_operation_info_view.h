@@ -8,7 +8,7 @@ public:
 
    double m_dAnime;
 
-   file_manager_operation_info_view(::ca::applicationsp papp);
+   file_manager_operation_info_view(sp(::ca::application) papp);
 
    virtual void OnDraw(::ca::graphics * pdc);
 

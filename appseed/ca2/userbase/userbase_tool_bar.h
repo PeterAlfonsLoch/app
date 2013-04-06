@@ -53,7 +53,7 @@ namespace userbase
       //bool LoadBitmap(UINT nIDResource);
       bool from(HBITMAP hbmImageWell);
       bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
-         // lpIDArray can be NULL to allocate is_empty buttons
+         // lpIDArray can be ::null() to allocate is_empty buttons
 
 
       // standard control bar things

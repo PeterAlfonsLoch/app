@@ -13,7 +13,7 @@ namespace user
       spa(place_holder) m_holdera;
 
 
-      place_holder_container(::ca::applicationsp papp);
+      place_holder_container(sp(::ca::application) papp);
       virtual ~place_holder_container();
 
 

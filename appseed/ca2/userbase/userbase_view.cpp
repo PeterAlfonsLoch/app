@@ -38,7 +38,7 @@
 namespace userbase
 {
 
-   view::view(::ca::applicationsp papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -107,8 +107,8 @@ namespace userbase
       sp(::user::interaction) pwndex;
       if(base < ::view > ::bases(get_parent()))
       {
-         pwndex = dynamic_cast < ::user::interaction * >(get_parent().m_p);
-         if(pwndex != NULL)
+         pwndex = (get_parent().m_p);
+         if(pwndex != ::null())
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
                return TRUE;
@@ -116,7 +116,7 @@ namespace userbase
       }
 
       // then pump through document
-      if (::view::get_document() != NULL)
+      if (::view::get_document() != ::null())
       {
          if(::view::get_document()->_001OnCmdMsg(pcmdmsg))
             return TRUE;
@@ -125,8 +125,8 @@ namespace userbase
          if (pview != this
             && pview != get_parent())
          {
-            pwndex = dynamic_cast < ::user::interaction * >(pview);
-            if(pwndex != NULL)
+            pwndex = (pview);
+            if(pwndex != ::null())
             {
                if(pwndex->::user::interaction::_001OnCmdMsg(pcmdmsg))
                   return TRUE;
@@ -145,7 +145,7 @@ namespace userbase
 
    /*void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
-      on_update(NULL, 0, NULL);        // initial update
+      on_update(::null(), 0, ::null());        // initial update
    }*/
 
    void view::on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint)
@@ -196,7 +196,7 @@ namespace userbase
       }
 
       sp(::userbase::frame_window) pParentFrame = (GetParentFrame());
-      if (pParentFrame != NULL)
+      if (pParentFrame != ::null())
       {
          // eat it if this will cause activation
          ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
@@ -224,7 +224,7 @@ namespace userbase
    void view::on_select()
    {
       sp(::userbase::frame_window) pParentFrame = (GetParentFrame());
-      if (pParentFrame != NULL)
+      if (pParentFrame != ::null())
       {
          // eat it if this will cause activation
    /*      ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
@@ -330,8 +330,8 @@ namespace userbase
    {
       ::user::interaction::dump(dumpcontext);
 
-      if (::view::get_document() != NULL)
-         dumpcontext << "with document: " << ::view::get_document();
+      if (::view::get_document() != ::null())
+         dumpcontext << "with document: " << ::view::get_document().m_p;
       else
          dumpcontext << "with no document\n";
    }
@@ -368,32 +368,32 @@ namespace userbase
 
 
    /*
-   sp(::user::interaction) view::CreateView(create_context* pContext, UINT nID)
+   sp(::user::interaction) view::CreateView(sp(::ca::create_context) pContext, UINT nID)
    {
       ASSERT(IsWindow());
-      ASSERT(pContext != NULL);
-      ASSERT(pContext->m_typeinfoNewView != NULL);
+      ASSERT(pContext != ::null());
+      ASSERT(pContext->m_typeinfoNewView != ::null());
 
       // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-      sp(::user::interaction) pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
-      if (pview == NULL)
+      sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
+      if (pview == ::null())
       {
          TRACE1("Warning: Dynamic create of ::view type %hs failed.\n",
             pContext->m_typeinfoNewView.name());
-         return NULL;
+         return ::null();
       }
       ASSERT_KINDOF(::user::interaction, pview);
 
       // views are always created with a border!
-      if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-         rect(0,0,0,0), this, nID, (create_context *) pContext))
+      if (!pview->create(::null(), ::null(), __WS_DEFAULT_VIEW,
+         rect(0,0,0,0), this, nID, (sp(::ca::create_context)) pContext))
       {
          TRACE0("Warning: could not create ::view for frame.\n");
-         return NULL;        // can't continue without a ::view
+         return ::null();        // can't continue without a ::view
       }
 
       ::view * pview = dynamic_cast < ::view * > (pview);
-      pview->_001OnInitialUpdate(NULL);
+      pview->_001OnInitialUpdate(::null());
       if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
          // remove the 3d style from the frame, since the ::view is
@@ -405,31 +405,31 @@ namespace userbase
    }*/
 
 
-   /*sp(::user::interaction) view::CreateView(create_context* pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*sp(::user::interaction) view::CreateView(sp(::ca::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
    {
       ASSERT(pwndParent->IsWindow());
-      ASSERT(pContext != NULL);
-      ASSERT(pContext->m_typeinfoNewView != NULL);
+      ASSERT(pContext != ::null());
+      ASSERT(pContext->m_typeinfoNewView != ::null());
 
       // Note: can be a ::ca::window with PostNcDestroy self cleanup
       sp(::ca::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
-      if (pview == NULL)
+      if (pview == ::null())
       {
          TRACE1("Warning: Dynamic create of ::view type %hs failed.\n",
             pContext->m_typeinfoNewView.name());
-         return NULL;
+         return ::null();
       }
       ASSERT_KINDOF(::ca::window, pview);
 
       // views are always created with a border!
-      if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-         rect(0,0,0,0), pwndParent, nID, (create_context *) pContext))
+      if (!pview->create(::null(), ::null(), __WS_DEFAULT_VIEW,
+         rect(0,0,0,0), pwndParent, nID, (sp(::ca::create_context)) pContext))
       {
          TRACE0("Warning: could not create ::view for frame.\n");
-         return NULL;        // can't continue without a ::view
+         return ::null();        // can't continue without a ::view
       }
 
-      (dynamic_cast < ::view * > (pview))->_001OnInitialUpdate(NULL);
+      (dynamic_cast < ::view * > (pview))->_001OnInitialUpdate(::null());
       if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
          // remove the 3d style from the frame, since the ::view is

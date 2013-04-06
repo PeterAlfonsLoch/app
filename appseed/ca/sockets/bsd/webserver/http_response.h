@@ -6,7 +6,7 @@ namespace http
    class CLASS_DECL_ca response : public http::transaction
    {
    public:
-      response(::ca::applicationsp papp, const string & version = "HTTP/1.0");
+      response(sp(::ca::application) papp, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 

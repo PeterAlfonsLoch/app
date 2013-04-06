@@ -17,7 +17,7 @@ public:
    string_map < uint32_t >   m_mapfileTimeout;
 
 
-   ifs(::ca::applicationsp papp, const char * pszRoot);
+   ifs(sp(::ca::application) papp, const char * pszRoot);
 
    
    virtual bool has_subdir(const char * pszPath);

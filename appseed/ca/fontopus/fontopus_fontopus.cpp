@@ -291,13 +291,13 @@ namespace fontopus
 
 #ifndef METROWIN
 
-      if(!System.directrix().m_varTopicQuery.has_property("install")
-      && !System.directrix().m_varTopicQuery.has_property("uninstall"))
+      if(!System.directrix()->m_varTopicQuery.has_property("install")
+      && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
-         ::ca::create_context_sp spcreatecontext(get_app());
+         sp(::ca::create_context) spcreatecontext(allocer());
 
-         ::ca::applicationsp papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::ca::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == ::null())
          {

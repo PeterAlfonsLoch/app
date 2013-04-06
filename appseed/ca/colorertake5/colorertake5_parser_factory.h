@@ -42,7 +42,7 @@ public:
    * Searches for catalog.xml in the set of predefined locations
    * @throw ParserFactoryException If can't find catalog at any of standard locations.
    */
-   ParserFactory(::ca::applicationsp papp);
+   ParserFactory(sp(::ca::application) papp);
 
   /**
    * ParserFactory Constructor with explicit catalog path.
@@ -50,7 +50,7 @@ public:
    *        standard search method is used.
    * @throw ParserFactoryException If can't load specified catalog.
    */
-  ParserFactory(::ca::applicationsp papp, string catalogPath);
+  ParserFactory(sp(::ca::application) papp, string catalogPath);
   virtual ~ParserFactory();
 
   static const char *getVersion();

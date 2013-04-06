@@ -6,7 +6,7 @@ namespace ca2
 
    CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef ::ca::applicationsp (* LPFN_instantiate_application)(::ca::applicationsp pappParent, const char * pszId);
+   typedef sp(::ca::application) (* LPFN_instantiate_application)(sp(::ca::application) pappParent, const char * pszId);
 
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -60,11 +60,11 @@ namespace ca2
 
       virtual int32_t run();
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
       sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      ::ca::applicationsp get_system();
+      sp(::ca::application) get_system();
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -131,7 +131,7 @@ namespace ca2
 
 
       using cubebase::application::request;
-      virtual void request(::ca::create_context * pcreatecontext);
+      virtual void request(sp(::ca::create_context) pcreatecontext);
 
       virtual void on_exclusive_instance_local_conflict();
 

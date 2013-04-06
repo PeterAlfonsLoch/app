@@ -5,13 +5,13 @@ namespace bergedge
 {
 
 
-   document::document(::ca::applicationsp papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::userbase::document(papp)
    {
-      m_pplatformdocument = NULL;
-      m_pnaturedocument = NULL;
+      m_pplatformdocument = ::null();
+      m_pnaturedocument = ::null();
    }
 
    bool document::on_new_document()
@@ -20,7 +20,7 @@ namespace bergedge
          return FALSE;
 
    
-      update_all_views(NULL, 0);
+      update_all_views(::null(), 0);
 
       return TRUE;
    }
@@ -56,7 +56,7 @@ namespace bergedge
       //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
       //pframe->ShowWindow(SW_RESTORE);
-      //pframe->SetWindowPos(NULL, 0, 0, 200, 200, SWP_SHOWWINDOW);
+      //pframe->SetWindowPos(::null(), 0, 0, 200, 200, SWP_SHOWWINDOW);
    }
 
    void document::set_nature(sp(::nature::document) pdoc)
@@ -65,7 +65,7 @@ namespace bergedge
       //nature_frame * pframe = pdoc->get_nature_frame();
       //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
-      //pframe->SetWindowPos(NULL, 200, 200, 400, 400, SWP_SHOWWINDOW);
+      //pframe->SetWindowPos(::null(), 200, 200, 400, 400, SWP_SHOWWINDOW);
    }
 
    ::bergedge::bergedge * document::get_bergedge()

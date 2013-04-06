@@ -32,7 +32,7 @@ namespace user
 
 
          pane();
-         pane(::ca::applicationsp papp);
+         pane(sp(::ca::application) papp);
          pane(const pane & pane);
          virtual ~pane();
 
@@ -51,7 +51,7 @@ namespace user
       public:
 
 
-         pane_array(::ca::applicationsp papp);
+         pane_array(sp(::ca::application) papp);
          virtual ~pane_array();
 
 
@@ -93,7 +93,7 @@ namespace user
          bool                             m_bEnableCloseAll;
 
 
-         data(::ca::applicationsp papp);
+         data(sp(::ca::application) papp);
          virtual ~data();
 
          virtual pane * get_pane_by_id(id id);
@@ -126,7 +126,7 @@ namespace user
       sp(::ca::create_context)         m_spcreatecontext;
 
 
-      tab(::ca::applicationsp papp);
+      tab(sp(::ca::application) papp);
             virtual ~tab();
 
 
@@ -150,7 +150,7 @@ namespace user
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, e_position eposition);
-      virtual void set_cur_tab_by_id(id id, ::ca::create_context * pcreatecontext = NULL);
+      virtual void set_cur_tab_by_id(id id, sp(::ca::create_context) pcreatecontext = ::null());
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();

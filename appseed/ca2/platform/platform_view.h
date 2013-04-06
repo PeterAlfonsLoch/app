@@ -23,7 +23,7 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          view *                  m_pview;
-         ::ca::applicationsp     m_papp;
+         sp(::ca::application)     m_papp;
          bool                    m_bMakeVisible;
       };
 
@@ -31,7 +31,7 @@ namespace platform
          virtual public ::ca::ca
       {
       public:
-         link(::ca::applicationsp papp);
+         link(sp(::ca::application) papp);
          int32_t                     m_iId;
          run *                   m_prun;
          string                  m_strName;
@@ -93,7 +93,7 @@ namespace platform
 
 
       
-      view(::ca::applicationsp papp);
+      view(sp(::ca::application) papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -103,7 +103,7 @@ namespace platform
 
       void SetScreen(int32_t iScreen);
 
-      virtual void open_document_file(::ca::create_context * pcreatecontext);
+      virtual void open_document_file(sp(::ca::create_context) pcreatecontext);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-os_history::os_history(::ca::applicationsp papp) :
+os_history::os_history(sp(::ca::application) papp) :
    ca(papp),
    ::ca::history(papp)
 {

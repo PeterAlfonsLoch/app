@@ -12,7 +12,7 @@
 namespace plugin
 {
 
-   host_interaction::host_interaction(::ca::applicationsp papp) :
+   host_interaction::host_interaction(sp(::ca::application) papp) :
       ::ca::ca(papp)
    {
       m_pframe = ::null();

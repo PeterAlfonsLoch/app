@@ -30,7 +30,7 @@ namespace userbase
       e_type                         m_etype;
 
 
-      base_static(::ca::applicationsp papp);
+      base_static(sp(::ca::application) papp);
       virtual ~base_static();
 
 

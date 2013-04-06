@@ -5,11 +5,11 @@ namespace ca
 {
 
 
-   create_context::create_context(::ca::applicationsp papp) :
+   create_context::create_context(sp(::ca::application) papp) :
       ca(papp),
       ::ca::command(papp),
-      m_spApplicationBias(papp),
-      m_spCommandLine(papp)
+      m_spApplicationBias(allocer()),
+      m_spCommandLine(allocer())
    {
 
       m_bMakeVisible                      = true;
@@ -19,15 +19,15 @@ namespace ca
       m_bHold                             = true;
       m_pviewAlloc                        = ::null();
       m_puiParent                         = ::null();
-      m_pthreadParent                     = &Application.creation();
+      m_pthreadParent                     = Application.creation();
 
    }
 
-   create_context::create_context(::ca::command_thread * pthreadParent) :
+   create_context::create_context(sp(::ca::command_thread) pthreadParent) :
       ca(pthreadParent->get_app()),
       ::ca::command(pthreadParent->get_app()),
-      m_spApplicationBias(pthreadParent->get_app()),
-      m_spCommandLine(pthreadParent->get_app()),
+      m_spApplicationBias(allocer()),
+      m_spCommandLine(allocer()),
       m_pthreadParent(pthreadParent)
    {
 
@@ -42,11 +42,11 @@ namespace ca
 
    }
 
-   create_context::create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent) :
+   create_context::create_context(sp(::ca::command_thread) pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent) :
       ca(pthreadParent->get_app()),
       ::ca::command(pthreadParent->get_app()),
-      m_spApplicationBias(pthreadParent->get_app()),
-      m_spCommandLine(pthreadParent->get_app()),
+      m_spApplicationBias(allocer()),
+      m_spCommandLine(allocer()),
       m_pthreadParent(pthreadParent)
    {
 
@@ -65,8 +65,8 @@ namespace ca
    create_context::create_context(const create_context & createcontext) :
       ca(createcontext.get_app()),
       ::ca::command(createcontext.get_app()),
-      m_spApplicationBias(createcontext.get_app()),
-      m_spCommandLine(createcontext.get_app())
+      m_spApplicationBias(allocer()),
+      m_spCommandLine(allocer())
    {
       m_pviewAlloc                        = ::null();
       m_puiParent                         = ::null();
@@ -91,7 +91,7 @@ namespace ca
       m_spApplicationBias        .oattrib(createcontext.m_spApplicationBias);
       m_spCommandLine            .oattrib(createcontext.m_spCommandLine);
 
-      m_pthreadParent->consolidate(this);
+      m_pthreadParent->consolidate((sp(::ca::create_context)) this);
 
       return *this;
 
@@ -102,40 +102,12 @@ namespace ca
 
 
 
-   create_context_sp::create_context_sp()
-   {
-   }
-
-   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent) 
-   {
-
-      m_p = ::null();
-      sp(create_context)::operator = (new ::ca::create_context(pthreadParent));
-
-   }
-
-   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent)
-   {
-
-      m_p = ::null();
-      sp(create_context)::operator = (new ::ca::create_context(pthreadParent, varFile, bMakeVisible, puiParent));
-
-   }
-
-
-
-   create_context_sp::create_context_sp(::ca::applicationsp papp) :
-      ::ca::smart_pointer < create_context > (papp)
-   {
-   }
-
-
-   create_context_sp::~create_context_sp()
-   {
-   }
-
 
 
 } // namespace ca
+
+
+
+
 
 

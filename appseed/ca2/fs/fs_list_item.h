@@ -17,7 +17,7 @@ namespace fs
       index                            m_iArrange;
 
 
-      list_item(::ca::applicationsp papp);
+      list_item(sp(::ca::application) papp);
       list_item(const list_item & item);
 
       static index CompareArrangeByName(sp(list_item) * pitema, sp(list_item) * pitemb);

@@ -20,7 +20,7 @@ namespace http
 
 
 
-      request(::ca::applicationsp papp);
+      request(sp(::ca::application) papp);
       request(const request& src);
       ~request();
 

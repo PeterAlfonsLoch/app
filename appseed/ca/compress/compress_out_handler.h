@@ -20,7 +20,7 @@ namespace libcompress
    {
    public:
 
-      out_handler(::ca::applicationsp papp);
+      out_handler(sp(::ca::application) papp);
 
       ::ca::HRes SetProperty(const char *name, var value);
 

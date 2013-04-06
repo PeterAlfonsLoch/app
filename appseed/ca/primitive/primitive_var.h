@@ -181,7 +181,7 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::ca::property_set &              propset(::ca::applicationsp papp = ::null());
+   ::ca::property_set &              propset(sp(::ca::application) papp = ::null());
    ::ca::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
@@ -328,21 +328,21 @@ public:
    var & operator = (id * pid);
 
    template < class T >
-   T * ca()
+   sp(T) ca()
    {
       if(m_etype == type_pvar && m_pvar != ::null())
          return m_pvar->ca < T > ();
-      if(m_etype != type_ca2 || m_sp.is_set())
+      if(m_etype != type_ca2)
          return ::null();
-      return m_sp.cast < T >();
+      return m_sp;
    }
 
    template < class T >
-   const T * ca() const
+   const sp(T) ca() const
    {
-      if(m_etype != type_ca2 || m_sp.is_set())
+      if(m_etype != type_ca2)
          return ::null();
-      return m_sp.cast < const T >();
+      return m_sp;
    }
 
    bool strict_equal(const var & var) const;

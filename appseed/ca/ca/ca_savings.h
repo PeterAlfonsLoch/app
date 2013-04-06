@@ -17,7 +17,7 @@ namespace ca
       virtual public ::ca::object
    {
    public:
-      savings(::ca::applicationsp papp);
+      savings(sp(::ca::application) papp);
       virtual ~savings();
 
       flags_ex < e_resource > m_eresourceflagsShouldSave;

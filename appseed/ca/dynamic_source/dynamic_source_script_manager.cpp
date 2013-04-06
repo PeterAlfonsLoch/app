@@ -42,7 +42,7 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager(::ca::applicationsp papp) :
+   script_manager::script_manager(sp(::ca::application) papp) :
       ca(papp),
       thread(papp),
       ::ca::message_window_simple_callback(papp),

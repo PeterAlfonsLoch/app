@@ -114,99 +114,99 @@ namespace ca
          {
          case PrototypeNone:
             {
-               pbase = new base(get_app());
+               pbase = canew(base(get_app()));
             }
             break;
          case PrototypeCreate:
             {
-               pbase = new ::ca::message::create(get_app());
+               pbase = canew(::ca::message::create(get_app()));
             }
             break;
          case PrototypeNcActivate:
             {
-               pbase = new nc_activate(get_app());
+               pbase = canew(nc_activate(get_app()));
             }
             break;
          case PrototypeKey:
             {
-               pbase = new key(get_app());
+               pbase = canew(key(get_app()));
             }
             break;
          case PrototypeTimer:
             {
-               pbase = new timer(get_app());
+               pbase = canew(timer(get_app()));
             }
             break;
          case PrototypeShowWindow:
             {
-               pbase = new show_window(get_app());
+               pbase = canew(show_window(get_app()));
             }
             break;
          case PrototypeSetCursor:
             {
-               pbase = new set_cursor(get_app());
+               pbase = canew(set_cursor(get_app()));
             }
             break;
          case PrototypeNcHitTest:
             {
-               pbase = new nchittest(get_app());
+               pbase = canew(nchittest(get_app()));
             }
             break;
          case PrototypeMove:
             {
-               pbase = new move(get_app());
+               pbase = canew(move(get_app()));
             }
             break;
          case PrototypeEraseBkgnd:
             {
-               pbase = new erase_bkgnd(get_app());
+               pbase = canew(erase_bkgnd(get_app()));
             }
             break;
          case PrototypeScroll:
             {
-               pbase = new scroll(get_app());
+               pbase = canew(scroll(get_app()));
             }
             break;
          case PrototypeSetFocus:
             {
-               pbase = new set_focus(get_app());
+               pbase = canew(set_focus(get_app()));
             }
             break;
 #if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
          case PrototypeWindowPos:
             {
-               pbase = new window_pos(get_app());
+               pbase = canew(window_pos(get_app()));
             }
             break;
          case PrototypeNcCalcSize:
             {
-               pbase = new nc_calc_size(get_app());
+               pbase = canew(nc_calc_size(get_app()));
             }
             break;
 #endif
          case PrototypeMouse:
             {
-               pbase = new mouse(get_app());
+               pbase = canew(mouse(get_app()));
             }
             break;
          case PrototypeMouseWheel:
             {
-               pbase = new mouse_wheel(get_app());
+               pbase = canew(mouse_wheel(get_app()));
             }
             break;
          case PrototypeSize:
             {
-               pbase = new size(get_app());
+               pbase = canew(size(get_app()));
             }
             break;
          case PrototypeActivate:
             {
-               pbase = new activate(get_app());
+               pbase = canew(activate(get_app()));
             }
             break;
          default:
             {
-               pbase = new base(get_app());
+               pbase = canew(base(get_app()));
             }
             break;
          }
@@ -526,7 +526,7 @@ namespace ca
          }
       }
 
-      base::base(::ca::applicationsp papp, ::ca::signal * psignal) :
+      base::base(sp(::ca::application) papp, ::ca::signal * psignal) :
          ca(papp),
          signal_object(psignal)
       {
@@ -534,7 +534,7 @@ namespace ca
          m_plresult = &m_lresult;
       }
 
-      base::base(::ca::applicationsp papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
+      base::base(sp(::ca::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
          ca(papp),
          signal_object(papp)
       {
@@ -599,7 +599,7 @@ namespace ca
          m_nIDEvent = static_cast<UINT>(wparam);
       }
 
-      activate::activate(::ca::applicationsp papp) :
+      activate::activate(sp(::ca::application) papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
@@ -615,7 +615,7 @@ namespace ca
 
 
 
-      erase_bkgnd::erase_bkgnd(::ca::applicationsp papp) :
+      erase_bkgnd::erase_bkgnd(sp(::ca::application) papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
@@ -626,7 +626,7 @@ namespace ca
          set_lresult(bResult);
       }
 
-      key::key(::ca::applicationsp papp) :
+      key::key(sp(::ca::application) papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
@@ -647,7 +647,7 @@ namespace ca
 
       }
 
-      nc_activate::nc_activate(::ca::applicationsp papp) :
+      nc_activate::nc_activate(sp(::ca::application) papp) :
          ca(papp),
          ::ca::message::base(papp)
       {
@@ -666,7 +666,7 @@ namespace ca
          m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
       }
 
-      mouse::mouse(::ca::applicationsp papp) :
+      mouse::mouse(sp(::ca::application) papp) :
          ca(papp),
          base(papp),
          m_ecursor(::visual::cursor_unmodified)
@@ -897,7 +897,7 @@ namespace ca
          m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
       }
 
-      ::ca::applicationsp dispatch::calc_app()
+      sp(::ca::application) dispatch::calc_app()
       {
          return ::null();
       }
@@ -966,7 +966,7 @@ namespace ca
 
             case PrototypeCreate:
                {
-                  create create(get_app());
+                  create create(allocer());
                   create.m_psignal = psignal;
                   create.set(message, wparam, lparam, lresult);
                   psignal->emit(&create);

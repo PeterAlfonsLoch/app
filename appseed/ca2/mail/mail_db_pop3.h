@@ -22,7 +22,7 @@ namespace mail
       string                  m_strTransaction;
 
 
-      db_pop3(::ca::applicationsp papp);
+      db_pop3(sp(::ca::application) papp);
 
 
       virtual string get_user();

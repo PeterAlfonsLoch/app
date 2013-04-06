@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   pane_tab_view::pane_tab_view(::ca::applicationsp papp) :
+   pane_tab_view::pane_tab_view(sp(::ca::application) papp) :
       ca(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
@@ -35,7 +35,7 @@ namespace userex
 
    void pane_tab_view::GetTabClientRect(LPRECT lprect)
    {
-      if(m_pviewdata == NULL || m_pviewdata->m_pwnd == NULL || m_pviewdata->m_iExtendOnParent == 0)
+      if(m_pviewdata == ::null() || m_pviewdata->m_pwnd == ::null() || m_pviewdata->m_iExtendOnParent == 0)
       {
          ::userbase::tab_view::GetTabClientRect(lprect);
       }
@@ -47,7 +47,7 @@ namespace userex
          for(; i > 0; i--)
          {
             pguieNext = pguie->get_parent();
-            if(pguieNext == NULL || !pguieNext->IsWindow())
+            if(pguieNext == ::null() || !pguieNext->IsWindow())
                break;
             pguie = pguieNext;
          }
@@ -63,7 +63,7 @@ namespace userex
          {
             wnda.add(pguie);
             pguieNext = pguie->get_parent();
-            if(pguieNext == NULL || (pguie->m_pimpl.m_p) != NULL)
+            if(pguieNext == ::null() || (pguie->m_pimpl.m_p) != ::null())
                break;
             pguie = pguieNext;
          }
@@ -79,15 +79,15 @@ namespace userex
    {
       ::userbase::tab_view::on_show_view();
       ::user::view_creator::on_show_view();
-      if(m_pviewdata != NULL && m_pviewdata->m_id != "file_manager" && m_pviewdataOld != NULL && m_pviewdataOld->m_id == "file_manager")
+      if(m_pviewdata != ::null() && m_pviewdata->m_id != "file_manager" && m_pviewdataOld != ::null() && m_pviewdataOld->m_id == "file_manager")
       {
          if(GetParentFrame()->ContinueModal(0))
          {
             GetParentFrame()->EndModalLoop("yes");
          }
-         if(get_filemanager_document() != NULL)
+         if(get_filemanager_document() != ::null())
          {
-            get_filemanager_document()->get_filemanager_data()->m_pdocumentSave = NULL;
+            get_filemanager_document()->get_filemanager_data()->m_pdocumentSave = ::null();
          }
       }
 
@@ -105,12 +105,12 @@ namespace userex
 
       pane * ppane = (pane *) get_data()->m_panea.element_at(iTab);
 
-      if(ppane == NULL)
+      if(ppane == ::null())
          return;
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
-      if(ppane->m_pholder == NULL)
+      if(ppane->m_pholder == ::null())
          return;
 
       pcreatordata->m_pviewdata = (void *) ppane;
@@ -128,9 +128,9 @@ namespace userex
          if(panea[iTab].m_pholder == pholder)
          {
             ::user::view_creator_data * pcreatordata = ensure(panea[iTab].m_id);
-            if(pcreatordata != NULL)
+            if(pcreatordata != ::null())
             {
-               if(pcreatordata->m_pwnd == NULL)
+               if(pcreatordata->m_pwnd == ::null())
                {
                   pcreatordata->m_pwnd = pui;
                }
@@ -152,8 +152,8 @@ namespace userex
 
       if(pcreatordata->m_id.is_text())
       {
-         ::ca::library * plibrary = NULL;
-         if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
+         ::ca::library * plibrary = ::null();
+         if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != ::null())
          {
             plibrary->on_create_view(pcreatordata);
          }
@@ -178,13 +178,13 @@ namespace userex
                pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
             sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
-            if(pdoc != NULL)
+            if(pdoc != ::null())
             {
                ::view * pview = pdoc->get_view();
-               if(pview != NULL)
+               if(pview != ::null())
                {
                   sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
-                  if(pframe != NULL)
+                  if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;
                   }
@@ -194,20 +194,20 @@ namespace userex
          else if(pcreatordata->m_id == "tabbed_file_manager")
          {
 
-            ::ca::create_context_sp cc(get_app());
+            sp(::ca::create_context) cc(allocer());
             cc->m_bTransparentBackground     = true;
             cc->m_bMakeVisible               = true;
             cc->m_puiParent                  = pcreatordata->m_pholder;
 
             sp(::filemanager::document) pdoc = Application.filemanager().std().open(cc);
 
-            if(pdoc != NULL)
+            if(pdoc != ::null())
             {
                ::view * pview = pdoc->get_view();
-               if(pview != NULL)
+               if(pview != ::null())
                {
                   sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
-                  if(pframe != NULL)
+                  if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
@@ -234,8 +234,8 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(GetParentFrame()->ContinueModal(0) && get_filemanager_document() != NULL
-      && get_filemanager_document()->get_filemanager_data()->m_pdocumentSave != NULL)
+      if(GetParentFrame()->ContinueModal(0) && get_filemanager_document() != ::null()
+      && get_filemanager_document()->get_filemanager_data()->m_pdocumentSave != ::null())
       {
          GetParentFrame()->EndModalLoop("yes");
       }

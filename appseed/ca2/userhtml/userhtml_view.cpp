@@ -21,7 +21,7 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
 // // END_MESSAGE_MAP()
 
 
-html_view::html_view(::ca::applicationsp papp) :
+html_view::html_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -95,11 +95,11 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       html_view_update_hint * puh = dynamic_cast < html_view_update_hint * >
          (phint);
-      if(puh != NULL)
+      if(puh != ::null())
       {
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {

@@ -24,8 +24,8 @@ namespace userbase
       };
 
 
-      menu(::ca::applicationsp papp);
-      menu(::ca::applicationsp papp, menu_item * pitem);
+      menu(sp(::ca::application) papp);
+      menu(sp(::ca::application) papp, menu_item * pitem);
       virtual ~menu();
 
 

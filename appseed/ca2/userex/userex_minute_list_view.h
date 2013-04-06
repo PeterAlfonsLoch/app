@@ -11,7 +11,7 @@ namespace userex
    public:
 
 
-      minute_list_view(::ca::applicationsp papp);   
+      minute_list_view(sp(::ca::application) papp);   
       virtual ~minute_list_view();
 
 

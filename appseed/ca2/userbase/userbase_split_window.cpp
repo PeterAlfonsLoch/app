@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-BaseSplitWnd::BaseSplitWnd(::ca::applicationsp papp) :
+BaseSplitWnd::BaseSplitWnd(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    place_holder_container(papp)

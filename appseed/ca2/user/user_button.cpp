@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   button::button(::ca::applicationsp papp) :
+   button::button(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       m_istrButtonText(papp)
@@ -13,7 +13,7 @@ namespace user
       m_iHover    = -1;
       m_bEnabled  = true;
       m_echeck    = check::unchecked;
-      m_pschema   = NULL;
+      m_pschema   = ::null();
    }
 
    button::~button()
@@ -44,7 +44,7 @@ namespace user
 
       rect rectClient;
       GetClientRect(rectClient);
-      if(m_pschema == NULL)
+      if(m_pschema == ::null())
       {
    
          pdc->SelectObject(_001GetFont());
@@ -132,11 +132,11 @@ namespace user
 
       if(hit_test(pmouse->m_pt, eelement) >= 0 && g_pwndLastLButtonDown == this)
       {
-         g_pwndLastLButtonDown = NULL;
+         g_pwndLastLButtonDown = ::null();
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::event_button_clicked;
-         if(get_form() != NULL)
+         if(get_form() != ::null())
          {
             get_form()->send_message(
                ::ca::message_event, 0, (LPARAM) &ev);
@@ -155,7 +155,7 @@ namespace user
    void button::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
-         if(get_form() == NULL)
+         if(get_form() == ::null())
          {
 
             e_element eelement;
@@ -191,7 +191,7 @@ namespace user
    void button::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
-         if(get_form() == NULL)
+         if(get_form() == ::null())
          {
             index iOldHover = m_iHover;
             m_iHover = -1;
@@ -201,7 +201,7 @@ namespace user
                ::user::control_event ev;
                ev.m_puie = this;
                ev.m_eevent = ::user::event_mouse_leave;
-               if(get_parent() != NULL)
+               if(get_parent() != ::null())
                {
                   get_parent()->send_message(::ca::message_event, 0, (LPARAM) &ev);
                }
@@ -293,17 +293,17 @@ namespace user
       //SCAST_PTR(::ca::message::create, pcreate, pobj)
 
       sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
-      if(pframewindow != NULL)
+      if(pframewindow != ::null())
       {
-         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
+         if(pframewindow->GetTypedParent < ::simple_frame_window > () != ::null())
          {
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
          }
-         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
+         if(pframewindow->GetTypedParent < ::simple_frame_window > () != ::null())
          {
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
          }
-         if(pframewindow->m_workset.m_pframeschema == NULL)
+         if(pframewindow->m_workset.m_pframeschema == ::null())
          {
             m_pschema = &Application.userbase().GetUfeSchema()->m_button;
          }
@@ -357,8 +357,8 @@ namespace user
    {
       
       if(!create(
-         NULL,
-         NULL,
+         ::null(),
+         ::null(),
          WS_VISIBLE | WS_CHILD, 
          rect(0, 0, 0, 0), 
          pdescriptor->m_pform, 

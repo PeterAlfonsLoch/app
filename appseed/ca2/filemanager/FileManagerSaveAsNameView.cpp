@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerSaveAsView::FileManagerSaveAsView(::ca::applicationsp papp) :
+FileManagerSaveAsView::FileManagerSaveAsView(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::edit_plain_text_view(papp),
    ::user::interaction(papp),
@@ -16,7 +16,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(::ca::applicationsp papp) :
 void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint >::bases(phint))
       {
@@ -78,7 +78,7 @@ void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::ca::obje
                }
             }
             file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
-            if(pmanageruh != NULL)
+            if(pmanageruh != ::null())
             {
                if(!pmanageruh->m_strFind.is_empty())
                {

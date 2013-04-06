@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-      tree_data(::ca::applicationsp papp);
+      tree_data(sp(::ca::application) papp);
 
 
       virtual ::ca::tree_item_data * on_allocate_item();

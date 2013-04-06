@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   front_end_schema::front_end_schema(::ca::applicationsp papp) :
+   front_end_schema::front_end_schema(sp(::ca::application) papp) :
       ca(papp),
       m_menu(papp),
       m_sysmenu(papp),
@@ -15,8 +15,8 @@ namespace user
       m_buttonBaseWndMenuItemPopup(papp)
    {
 
-      ::ca::graphics_sp spgraphics(papp);
-      spgraphics->CreateCompatibleDC(NULL);
+      ::ca::graphics_sp spgraphics(papp->allocer());
+      spgraphics->CreateCompatibleDC(::null());
 
       m_button.m_font->create_point_font("Arial", 11.0);
 
@@ -100,17 +100,17 @@ namespace user
    {
    }
 
-   front_end_schema::system_menu::system_menu(::ca::applicationsp papp) :
-      m_fontMarlett(papp)
+   front_end_schema::system_menu::system_menu(sp(::ca::application) papp) :
+      m_fontMarlett(papp->allocer())
    {
-      ::ca::graphics_sp spgraphics(papp);
-      spgraphics->CreateCompatibleDC(NULL);
+      ::ca::graphics_sp spgraphics(papp->allocer());
+      spgraphics->CreateCompatibleDC(::null());
 
       m_fontMarlett->create_point_font("Marlett", 11.0);
    }
 
-   front_end_schema::menu::menu(::ca::applicationsp papp) :
-      m_font(papp)
+   front_end_schema::menu::menu(sp(::ca::application) papp) :
+      m_font(papp->allocer())
    {
       //m_pschemaSysMenuButton = new button();
 
@@ -118,10 +118,10 @@ namespace user
 
    front_end_schema::menu::~menu()
    {
-      //if(m_pschemaSysMenuButton != NULL)
+      //if(m_pschemaSysMenuButton != ::null())
       //{
       // delete m_pschemaSysMenuButton;
-      //m_pschemaSysMenuButton = NULL;
+      //m_pschemaSysMenuButton = ::null();
       //}
    }
 
@@ -146,8 +146,8 @@ namespace user
 
    }
 
-   front_end_schema::button::button(::ca::applicationsp papp) :
-      m_font(papp)
+   front_end_schema::button::button(sp(::ca::application) papp) :
+      m_font(papp->allocer())
    {
       m_bBorder = true;
    }

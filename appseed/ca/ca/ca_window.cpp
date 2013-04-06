@@ -182,7 +182,7 @@ namespace ca
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT & rect,
       sp(::user::interaction) pParentWnd, id id,
-      create_context * pContext)
+      sp(::ca::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
@@ -2260,7 +2260,7 @@ namespace ca
 } // namespace ca
 
 
-CTestCmdUI::CTestCmdUI(::ca::applicationsp papp) :
+CTestCmdUI::CTestCmdUI(sp(::ca::application) papp) :
 ca(papp),
    cmd_ui(papp)
 {
@@ -2292,7 +2292,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 
-guie_message_wnd::guie_message_wnd(::ca::applicationsp papp) :
+guie_message_wnd::guie_message_wnd(sp(::ca::application) papp) :
 ca(papp)
 {
    m_pguieForward = ::null();

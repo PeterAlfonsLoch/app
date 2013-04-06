@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   form_view::form_view(::ca::applicationsp papp) :
+   form_view::form_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -58,7 +58,7 @@ namespace userbase
    /*
    void form_view::layout()
    {
-      if(m_pcontainer == NULL)
+      if(m_pcontainer == ::null())
          return;
       GetClientRect(&get_html_data()->m_rect);
       bool bLayoutOk = false;
@@ -98,7 +98,7 @@ namespace userbase
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_pelementalLButtonDown = get_html_data()->m_elemental.hit_test(pt);
-      if(m_pelementalLButtonDown != NULL)
+      if(m_pelementalLButtonDown != ::null())
       {
          html::signal signal(pobj->m_psignal);
          signal.m_pdoccontainer = m_pcontainer;
@@ -114,7 +114,7 @@ namespace userbase
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
       html::elemental * pelemental = get_html_data()->m_elemental.hit_test(pt);
-      if(pelemental != NULL)
+      if(pelemental != ::null())
       {
          html::signal signal(pobj->m_psignal);
          signal.m_pdoccontainer = m_pcontainer;
@@ -130,7 +130,7 @@ namespace userbase
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
       html::elemental * pelemental = get_html_data()->m_elemental.hit_test(pt);
-      if(m_pelementalLButtonDown != NULL
+      if(m_pelementalLButtonDown != ::null()
          && pelemental == m_pelementalLButtonDown)
       {
          html::signal signal(pobj->m_psignal);
@@ -142,7 +142,7 @@ namespace userbase
 
    html::document_container * form_view::calc_container()
    {
-      if(m_pcontainer != NULL)
+      if(m_pcontainer != ::null())
          return m_pcontainer;
       else
          return dynamic_cast < html::document_container * > (System.alloc(System.type_info < html::document_container > ()));

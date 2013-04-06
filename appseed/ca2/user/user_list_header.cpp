@@ -5,12 +5,12 @@
 namespace user
 {
 
-   list_header::list_header(::ca::applicationsp papp) :
+   list_header::list_header(sp(::ca::application) papp) :
       ca(papp),
-      m_font(papp),
+      m_font(allocer()),
       m_dcextension(papp)
    {
-      m_plistctrlinterface = NULL;
+      m_plistctrlinterface = ::null();
       m_bTrack = false;
       m_bLButtonDown = false;
       m_bHover = false;

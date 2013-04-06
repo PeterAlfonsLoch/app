@@ -11,7 +11,7 @@ void base_exception::operator delete(void * pbData,   const char * /* lpszFileNa
    operator delete(pbData);
 }
 
-base_exception::base_exception(::ca::applicationsp papp, uint32_t uiSkip) :
+base_exception::base_exception(sp(::ca::application) papp, uint32_t uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
 {
@@ -20,7 +20,7 @@ base_exception::base_exception(::ca::applicationsp papp, uint32_t uiSkip) :
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(::ca::applicationsp papp, bool bAutoDelete, uint32_t uiSkip) :
+base_exception::base_exception(sp(::ca::application) papp, bool bAutoDelete, uint32_t uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
 {

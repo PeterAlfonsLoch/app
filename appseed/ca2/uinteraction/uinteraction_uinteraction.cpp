@@ -22,7 +22,7 @@ namespace uinteraction
 
       string strId(pszUinteractionLibrary);
 
-      string strBuildNumber = System.command().m_varTopicQuery["build_number"];
+      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
 
       if(strBuildNumber.is_empty())
       {
@@ -32,18 +32,18 @@ namespace uinteraction
       }
 
 #ifndef METROWIN
-      if(!System.directrix().m_varTopicQuery.has_property("install")
-      && !System.directrix().m_varTopicQuery.has_property("uninstall")
-      && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema))
+      if(!System.directrix()->m_varTopicQuery.has_property("install")
+      && !System.directrix()->m_varTopicQuery.has_property("uninstall")
+      && !System.install().is(::null(), strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema))
       {
 
-         throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
+         throw not_installed(get_app(), ::null(), strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
 
       }
 
 #endif
 
-      ::ca::library library(NULL);
+      ::ca::library library(::null());
 
       string strLibrary(strId);
 
@@ -63,23 +63,23 @@ namespace uinteraction
 #endif
 
       if(!library.open(get_app(), strLibrary, false))
-         return NULL;
+         return ::null();
 
       stringa stra;
 
       library.get_app_list(stra);
 
       if(stra.get_size() != 1) // a uinteraction OSLibrary should have one uinteraction
-         return NULL;
+         return ::null();
 
       string strAppId(stra[0]);
 
       if(strAppId.is_empty()) // trivial validity check
-         return NULL;
+         return ::null();
 
       sp(::uinteraction::interaction) pinteraction = library.get_new_uinteraction();
-      if(pinteraction == NULL)
-         return NULL;
+      if(pinteraction == ::null())
+         return ::null();
 
       return pinteraction;
 
@@ -88,7 +88,7 @@ namespace uinteraction
    sp(::uinteraction::interaction) uinteraction::get_uinteraction(const char * pszUinteraction)
    {
 
-      if(System.get_twf() == NULL)
+      if(System.get_twf() == ::null())
       {
 
          System.create_twf();
@@ -97,7 +97,7 @@ namespace uinteraction
 
       sp(::uinteraction::interaction) pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
 
-      if(Bergedge.m_mapUinteraction[pszUinteraction] == NULL)
+      if(Bergedge.m_mapUinteraction[pszUinteraction] == ::null())
       {
 
          Bergedge.m_mapUinteraction[pszUinteraction] = Bergedge.uinteraction().get_new_uinteraction(pszUinteraction);
@@ -112,13 +112,13 @@ namespace uinteraction
    }
 
 
-   ::uinteraction::frame::frame * uinteraction::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
+   sp(::uinteraction::frame::frame) uinteraction::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
    {
 
       sp(::uinteraction::interaction) pinteraction = get_uinteraction(pszLibrary);
 
-      if(pinteraction == NULL)
-         return NULL;
+      if(pinteraction == ::null())
+         return ::null();
 
 
       return pinteraction->get_frame_schema(pszFrameSchemaName);

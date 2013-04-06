@@ -2,7 +2,7 @@
 
 
 
-FileManagerAView::FileManagerAView(::ca::applicationsp papp) :
+FileManagerAView::FileManagerAView(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -32,7 +32,7 @@ void FileManagerAView::dump(dump_context & dumpcontext) const
 void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint >::bases(phint))
       {
@@ -48,8 +48,8 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
-               if(pframe != NULL)
+               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               if(pframe != ::null())
                {
                   pframe->m_dataid = str;
                }
@@ -63,24 +63,24 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {
-               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > (GetParentFrame());
-               if(pframe != NULL)
+               sp(FileManagerFrame) pframe = (GetParentFrame());
+               if(pframe != ::null())
                {
-                  ASSERT(pframe != NULL);
+                  ASSERT(pframe != ::null());
                   ASSERT(base < FileManagerFrame > :: bases(pframe));
                   pframe->SetActiveView(this);
                   pframe->CreateBars();
                }
                sp(FileManagerMainFrame) pmainframe = (GetTopLevelFrame());
-               if(pmainframe != NULL)
+               if(pmainframe != ::null())
                {
                   pmainframe->SetActiveView(this);
                   pmainframe->CreateBars();
                }
                sp(FileManagerChildFrame) pchildframe = (GetParentFrame());
-               if(pchildframe != NULL)
+               if(pchildframe != ::null())
                {
-                  ASSERT(pchildframe != NULL);
+                  ASSERT(pchildframe != ::null());
                   ASSERT(base < FileManagerChildFrame > :: bases(pchildframe));
 
                   pchildframe->SetActiveView(this);
@@ -97,9 +97,9 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
                   //cc.m_usercreatecontext.m_pCurrentFrame = this;
 
                   FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView > ();
-                  if(ptopview == NULL)
+                  if(ptopview == ::null())
                   {
-                     System.simple_message_box(NULL, "Could not create folder tree ::view");
+                     System.simple_message_box(::null(), "Could not create folder tree ::view");
                   }
                   ptopview->m_pfilemanagerinterface = GetFileManager();
                   InsertPaneAt(0, ptopview, true);
@@ -127,7 +127,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSaveAsOK))
             {
-               ASSERT(GetFileManager()->get_filemanager_data()->m_pdocumentSave != NULL);
+               ASSERT(GetFileManager()->get_filemanager_data()->m_pdocumentSave != ::null());
 
                string strPath = puh->m_strPath;
                if(strPath.is_empty())
@@ -180,9 +180,9 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
                {
                   uh.set_type(FileManagerViewUpdateHint::TypeSaveAsCancel);
                }
-               get_document()->update_all_views(NULL, 0, &uh);
+               get_document()->update_all_views(::null(), 0, &uh);
 
-               GetFileManager()->get_filemanager_data()->m_pdocumentSave = NULL;
+               GetFileManager()->get_filemanager_data()->m_pdocumentSave = ::null();
 
                if(base < FileManagerSaveAsView >::bases(get_pane_window(0)))
                {
@@ -196,7 +196,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* p
    }
 
    FileManagerTabView * ptabview = GetParentFrame()->GetTypedParent < FileManagerTabView > ();
-   if(ptabview != NULL)
+   if(ptabview != ::null())
    {
       ptabview->on_update(this, lHint, phint);
    }
@@ -214,9 +214,9 @@ void FileManagerAView::CreateViews()
 
 
    FileManagerPathView * ptopview = create_view < FileManagerPathView > ();
-   if(ptopview == NULL)
+   if(ptopview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::view");
    }
    SetPane(0, ptopview, false);
    //ptopview->CreateViews();
@@ -224,9 +224,9 @@ void FileManagerAView::CreateViews()
 
    FileManagerView * pmediaview = create_view < FileManagerView > ();
 
-   if(pmediaview == NULL)
+   if(pmediaview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::view");
    }
    SetPane(1, pmediaview, false);
    pmediaview->CreateViews();
@@ -235,14 +235,14 @@ void FileManagerAView::CreateViews()
 
 
 
-FileManagerView::FileManagerView(::ca::applicationsp papp) :
+FileManagerView::FileManagerView(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
    ::userbase::split_view(papp),
    place_holder_container(papp)
 {
-   m_ppropform = NULL;
+   m_ppropform = ::null();
 }
 
 FileManagerView::~FileManagerView()
@@ -276,7 +276,7 @@ void FileManagerView::dump(dump_context & dumpcontext) const
 void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint >::bases(phint))
       {
@@ -292,8 +292,8 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
-               if(pframe != NULL)
+               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               if(pframe != ::null())
                {
                   pframe->m_dataid = str;
                }
@@ -313,8 +313,8 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
-               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
-               if(pframe != NULL)
+               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               if(pframe != ::null())
                {
    //xxx               pframe->WindowDataLoadWindowRect();
         //xxx          pframe->WindowDataEnableSaveWindowRect(true);
@@ -322,23 +322,23 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* ph
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {
-               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
-               if(pframe != NULL)
+               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               if(pframe != ::null())
                {
-                  ASSERT(pframe != NULL);
+                  ASSERT(pframe != ::null());
                   ASSERT(base < FileManagerFrame > :: bases(pframe));
 
                   pframe->CreateBars();
                }
                sp(FileManagerMainFrame) pmainframe = (GetTopLevelFrame());
-               if(pmainframe != NULL)
+               if(pmainframe != ::null())
                {
                   pmainframe->CreateBars();
                }
                sp(FileManagerChildFrame) pchildframe = ((sp(::ca::window)) GetParentFrame());
-               if(pchildframe != NULL)
+               if(pchildframe != ::null())
                {
-                  ASSERT(pchildframe != NULL);
+                  ASSERT(pchildframe != ::null());
                   ASSERT(base < FileManagerChildFrame > :: bases(pchildframe));
 
 
@@ -364,18 +364,18 @@ void FileManagerView::CreateViews()
 
    FileManagerLeftView * pleftview = create_view < FileManagerLeftView > ();
 
-   if(pleftview == NULL)
+   if(pleftview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::view");
    }
    SetPane(0, pleftview, false);
    pleftview->CreateViews();
 
    m_pfilelist = create_view < filemanager::SimpleFileListView > ();
 
-   if(m_pfilelist == NULL)
+   if(m_pfilelist == ::null())
    {
-      System.simple_message_box(NULL, "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::view");
    }
    SetPane(1, m_pfilelist, false);
 
@@ -388,12 +388,12 @@ void FileManagerView::OpenSelectionProperties()
 {
    ::fs::item_array itema;
    m_pfilelist->GetSelected(itema);
-   if(m_ppropform == NULL)
+   if(m_ppropform == ::null())
    {
       m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
    }
    sp(::user::interaction) puie = m_ppropform->open(this, itema);
-   if(puie == NULL)
+   if(puie == ::null())
       return;
    SetPane(1, puie, false);
    layout();

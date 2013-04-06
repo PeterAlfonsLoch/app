@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-simple_static::simple_static(::ca::applicationsp papp) :
+simple_static::simple_static(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::base_static(papp),
-   m_brushBkg(papp)
+   m_brushBkg(allocer())
 {
-   m_pimagelist = NULL;
+   m_pimagelist = ::null();
    m_bTransparent = false;
    m_brushBkg->CreateStockObject(NULL_BRUSH);
 }
@@ -20,7 +20,7 @@ void simple_static::_001OnDraw(::ca::graphics *pdc)
    if(get_type() == type_icon)
    {
       ::visual::icon * picon = get_icon();
-      if(picon != NULL)
+      if(picon != ::null())
       {
          pdc->DrawIcon(null_point(), picon);
       }
@@ -36,7 +36,7 @@ void simple_static::pre_subclass_window()
 
 LRESULT simple_static::OnSetIcon(WPARAM wparam, LPARAM lparam)
 {
-   if(m_pimagelist != NULL)
+   if(m_pimagelist != ::null())
    {
       delete m_pimagelist;
    }

@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   output_tree::output_tree(::ca::applicationsp papp) :
+   output_tree::output_tree(sp(::ca::application) papp) :
       ca(papp),
       tree_base(papp)
    {
@@ -11,7 +11,7 @@ namespace xml
       m_pnode = ::null();
    }
 
-   output_tree::output_tree(::ca::applicationsp papp, tree_schema * pschema) :
+   output_tree::output_tree(sp(::ca::application) papp, tree_schema * pschema) :
       ca(papp),
       tree_base(papp, pschema)
    {

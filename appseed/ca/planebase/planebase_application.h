@@ -58,7 +58,7 @@ namespace planebase
       virtual bool stop_service();
 
 
-      virtual void on_service_request(::ca::create_context * pcreatecontext);
+      virtual void on_service_request(sp(::ca::create_context) pcreatecontext);
 
 
 
@@ -96,13 +96,13 @@ namespace planebase
       virtual bool os_native_bergedge_start();
 
 
-      virtual ::ca::applicationsp instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias);
-      virtual ::ca::applicationsp create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias);
+      virtual sp(::ca::application) instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias);
+      virtual sp(::ca::application) create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias);
 
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
-      //virtual sp(::user::interaction) get_request_parent_ui(::ca::command_line * pline);
+      //virtual sp(::user::interaction) get_request_parent_ui(sp(::ca::command_line) pline);
 
       virtual bool initial_check_directrix();
 
@@ -162,7 +162,7 @@ namespace planebase
 
    CLASS_DECL_ca UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef ::ca::applicationsp (* LPFN_instantiate_application)(::ca::applicationsp pappParent, const char * pszId);
+   typedef sp(::ca::application) (* LPFN_instantiate_application)(sp(::ca::application) pappParent, const char * pszId);
 
    extern CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application;
 

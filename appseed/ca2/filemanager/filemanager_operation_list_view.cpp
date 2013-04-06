@@ -2,7 +2,7 @@
 
 
 
-file_manager_operation_list_view::file_manager_operation_list_view(::ca::applicationsp papp) :
+file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca::application) papp) :
    ca(papp),
    m_headerctrl(papp),
    ::userbase::view(papp),
@@ -30,7 +30,7 @@ void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
 
 ::count file_manager_operation_list_view::_001GetItemCount()
 {
-   if(get_document() == NULL)
+   if(get_document() == ::null())
       return 0;
    return get_document()->m_thread.get_item_count();
 }
@@ -98,7 +98,7 @@ void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint,
 void file_manager_operation_list_view::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
-   SetTimer(123, 500, NULL);
+   SetTimer(123, 500, ::null());
 }
 void file_manager_operation_list_view::_001OnTimer(::ca::signal_object * pobj)
 {

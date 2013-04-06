@@ -7,8 +7,8 @@ class CLASS_DECL_ca2 BaseMenuCentral :
    virtual public ::ca::object
 {
 public:
-   static BaseMenuCentral * GetMenuCentral(::ca::applicationsp papp);
-   BaseMenuCentral(::ca::applicationsp papp);
+   static BaseMenuCentral * GetMenuCentral(sp(::ca::application) papp);
+   BaseMenuCentral(sp(::ca::application) papp);
    virtual ~BaseMenuCentral();
    image_list * MenuV033GetImageList();
    image_list * MenuV033GetImageListHue();
@@ -42,7 +42,7 @@ public:
    BaseMenuCentralContainer();
    virtual ~BaseMenuCentralContainer();
    virtual BaseMenuCentral * get_menucentral();
-   virtual bool initialize_central_container(::ca::applicationsp papp);
+   virtual bool initialize_central_container(sp(::ca::application) papp);
    virtual bool finalize_central_container();
 protected:
    BaseMenuCentral * m_pmenucentral;

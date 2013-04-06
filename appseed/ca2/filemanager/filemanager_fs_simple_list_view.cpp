@@ -10,7 +10,7 @@ namespace filemanager
       namespace simple
       {
 
-         list_view::list_view(::ca::applicationsp papp) :
+         list_view::list_view(sp(::ca::application) papp) :
          ca(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),
@@ -271,7 +271,7 @@ namespace filemanager
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
-            if(phint == NULL)
+            if(phint == ::null())
             {
                _001UpdateColumns();
                //_001SetItemCountEx(get_document()->GetSongCount());
@@ -498,7 +498,7 @@ namespace filemanager
                if(m_buildhelper.m_iStep >= m_buildhelper.m_iDisplayItemCount)
                {
                KillTimer(1123);
-               SetTimer(1124, 50, NULL);
+               SetTimer(1124, 50, ::null());
                m_buildhelper.m_bActive = false;
                break;
                }
@@ -613,12 +613,12 @@ namespace filemanager
          if(bDisplayOnly)
          {
          m_buildhelper.m_bActive = true;
-         SetTimer(1123, 50, NULL);
+         SetTimer(1123, 50, ::null());
          }
          else
          {
          m_buildhelper.m_bActive = true;
-         SetTimer(1124, 50, NULL);
+         SetTimer(1124, 50, ::null());
          }
          }*/
 
@@ -640,9 +640,9 @@ namespace filemanager
                RedrawWindow();
                //FillTask * ptask = (FillTask *) lparam;
 
-               //if(ptask != NULL)
+               //if(ptask != ::null())
                {
-                  // SetTimer(ptask->m_uiTimer, 50, NULL);
+                  // SetTimer(ptask->m_uiTimer, 50, ::null());
 
                   //delete ptask;
                }
@@ -701,7 +701,7 @@ namespace filemanager
 
             mediamanager::get(get_app())->KickBuildAlbum();*/
 
-            SetTimer(123654, 700, NULL);
+            SetTimer(123654, 700, ::null());
 
          }
 
@@ -719,7 +719,7 @@ namespace filemanager
             if (menu.LoadMenu(IDR_POPUP_ALBUM_ITEM))
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
-            ASSERT(pPopup != NULL);
+            ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
             (sp(::ca::window)) pframe);
@@ -731,7 +731,7 @@ namespace filemanager
             if (menu.LoadMenu(IDR_POPUP_ALBUM))
             {
             ::userbase::menu* pPopup = menu.GetSubMenu(0);
-            ASSERT(pPopup != NULL);
+            ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
@@ -753,7 +753,7 @@ namespace filemanager
                {
                   GetSongPath(str, j);
                   mediaplaylistsp(::document) pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
-                  if(pdoc != NULL)
+                  if(pdoc != ::null())
                   {
                      pdoc->AddSong(
                         str,
@@ -809,7 +809,7 @@ namespace filemanager
             }
             else
             {
-               System.simple_message_box(NULL, "error"); // simple parsing error check
+               System.simple_message_box(::null(), "error"); // simple parsing error check
                return;
             }
 
@@ -925,7 +925,7 @@ namespace filemanager
 
          ::count list_view::_001GetItemCount()
          {
-            /*if(get_document() != NULL)
+            /*if(get_document() != ::null())
             {
             return get_document()->GetSongCount();
             }

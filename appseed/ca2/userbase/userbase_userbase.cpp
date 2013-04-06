@@ -8,8 +8,8 @@ namespace userbase
    userbase::userbase()
    {
 
-      m_pufeschema      = NULL;
-      m_pufe            = NULL;
+      m_pufeschema      = ::null();
+      m_pufe            = ::null();
 
    }
 
@@ -53,8 +53,8 @@ namespace userbase
       }
 
 
-      if(Application.m_pdocmanager != NULL)
-         Application.m_pdocmanager->add_document_template(NULL);
+      if(Application.m_pdocmanager != ::null())
+         Application.m_pdocmanager->add_document_template(::null());
 
       if(!BaseMenuCentralContainer::initialize_central_container(get_app()))
          return false;
@@ -79,10 +79,10 @@ namespace userbase
 
       try
       {
-         if(m_pufeschema != NULL)
+         if(m_pufeschema != ::null())
          {
             delete m_pufeschema;
-            m_pufeschema = NULL;
+            m_pufeschema = ::null();
          }
       }
       catch(...)
@@ -91,10 +91,10 @@ namespace userbase
 
       try
       {
-         if(m_pufe != NULL)
+         if(m_pufe != ::null())
          {
             delete m_pufe;
-            m_pufe = NULL;
+            m_pufe = ::null();
          }
       }
       catch(...)
@@ -118,7 +118,7 @@ namespace userbase
 
    void userbase::add_document_template(::userbase::document_template * ptemplate)
    {
-      if(Application.m_pdocmanager == NULL)
+      if(Application.m_pdocmanager == ::null())
          Application.m_pdocmanager = new ::userbase::document_manager(get_app());
       Application.m_pdocmanager->add_document_template(ptemplate);
    }
@@ -128,7 +128,7 @@ namespace userbase
    {
       ::userbase::document_template * puserbasetemplate = dynamic_cast < ::userbase::document_template * > (ptemplate);
 
-      if(puserbasetemplate == NULL)
+      if(puserbasetemplate == ::null())
          throw "should add user base document template";
 
       add_document_template(puserbasetemplate);
@@ -137,8 +137,8 @@ namespace userbase
 
    sp(::userbase::document) userbase::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
-      ASSERT(Application.m_pdocmanager != NULL);
-      ::ca::create_context_sp cc(get_app());
+      ASSERT(Application.m_pdocmanager != ::null());
+      sp(::ca::create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return (Application.m_pdocmanager->open_document_file(cc));
    }
@@ -161,19 +161,19 @@ namespace userbase
 
    void  userbase::_001CloseAllDocuments(bool bEndSession)
    {
-      if(Application.m_pdocmanager != NULL)
+      if(Application.m_pdocmanager != ::null())
       {
          Application.m_pdocmanager->close_all_documents(bEndSession);
       }
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(::ca::applicationsp papp)
+   ::user::front_end_schema * GetUfeSchema(sp(::ca::application) papp)
    {
       return App(papp).userbase().GetUfeSchema();
    }
 
-   ::user::front_end * GetUfe(::ca::applicationsp papp)
+   ::user::front_end * GetUfe(sp(::ca::application) papp)
    {
       return App(papp).userbase().GetUfe();
    }

@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-simple_button::simple_button(::ca::applicationsp papp) :
+simple_button::simple_button(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
    ::userbase::button(papp),
-   m_brushBkg(papp)
+   m_brushBkg(allocer())
 {
    m_bFocus = true;
    m_bTransparent = true;
@@ -48,7 +48,7 @@ void simple_button::_001OnCtlColor(::ca::signal_object * pobj)
    }
    else
    {
-      pctlcolor->m_hbrush = NULL;
+      pctlcolor->m_hbrush = ::null();
    }
 }
 

@@ -5,20 +5,20 @@ namespace user
 {
 
 
-   plain_text_data::plain_text_data(::ca::applicationsp papp) :
+   plain_text_data::plain_text_data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::tree_data(papp),
       m_editfile(papp)
    {
-      m_pgroupcommand      = NULL;
-      m_ptreeitem          = NULL;
-      m_pfile              = NULL;
+      m_pgroupcommand      = ::null();
+      m_ptreeitem          = ::null();
+      m_pfile              = ::null();
       m_iBranch            = 0;
    }
 
    plain_text_data::~plain_text_data()
    {
-      if(m_pfile != NULL)
+      if(m_pfile != ::null())
       {
          delete m_pfile;
       }
@@ -80,7 +80,7 @@ namespace user
    plain_text_data::GroupCommand::GroupCommand()
    {
 
-      m_pparent = NULL;
+      m_pparent = ::null();
 
    }
 

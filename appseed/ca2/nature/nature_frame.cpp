@@ -31,7 +31,7 @@ namespace nature
    /////////////////////////////////////////////////////////////////////////////
    // frame construction/destruction
 
-   frame::frame(::ca::applicationsp papp) :
+   frame::frame(sp(::ca::application) papp) :
       ca(papp),
       simple_frame_window(papp)
    {
@@ -44,7 +44,7 @@ namespace nature
    //   m_datakeyWindow = VMSDATAKEY(WindowData);
 
       m_bWindowFrame    = true;
-      m_pimagelist      = NULL;
+      m_pimagelist      = ::null();
 
    }
 
@@ -167,7 +167,7 @@ namespace nature
       }
       else
       {
-         SetTimer(3, 500, NULL);
+         SetTimer(3, 500, ::null());
       }
    }
 

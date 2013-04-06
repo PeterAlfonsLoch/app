@@ -32,7 +32,7 @@ public:
    ::ca::font_sp    m_fontSpin;
 
 
-   calendar(::ca::applicationsp papp);
+   calendar(sp(::ca::application) papp);
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);

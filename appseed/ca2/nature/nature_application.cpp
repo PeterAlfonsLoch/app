@@ -46,7 +46,7 @@ namespace nature
 
       if(!InitializeLocalDataCentral())
       {
-         simple_message_box(NULL, "Could not initialize Local data central");
+         simple_message_box(::null(), "Could not initialize Local data central");
          return false;
       }
 
@@ -81,7 +81,7 @@ namespace nature
 
       m_pdatabase = new nature::database(this);
 
-      if(m_pdatabase == NULL)
+      if(m_pdatabase == ::null())
       {
          TRACE("VmpLightApp::initialize_instance failed to instatiate LightDB\n");
          return false;

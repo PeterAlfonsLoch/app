@@ -15,7 +15,7 @@ namespace html
       m_strTextDecoration     = font.m_strTextDecoration;
    }
 
-   bool font::create(::ca::applicationsp papp)
+   bool font::create(sp(::ca::application) papp)
    {
       m_font.create(papp);
 
@@ -40,7 +40,7 @@ namespace html
       }
       else
       {
-         dSize = strtod(m_strSize, NULL);
+         dSize = strtod(m_strSize, ::null());
       }
 
 

@@ -15,7 +15,7 @@ public:
    vsstring      m_strSchema;
 
 
-   not_installed(::ca::applicationsp papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
+   not_installed(sp(::ca::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
    not_installed(const not_installed & e);
    virtual ~not_installed();
 

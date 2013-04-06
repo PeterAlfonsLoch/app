@@ -23,7 +23,7 @@ namespace xml
       ::xml::edit *              m_pedit;
 
 
-      document(::ca::applicationsp papp, parse_info * pparseinfo = ::null());
+      document(sp(::ca::application) papp, parse_info * pparseinfo = ::null());
       virtual ~document();
     
 

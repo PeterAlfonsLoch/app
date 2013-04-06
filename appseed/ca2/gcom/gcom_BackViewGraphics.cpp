@@ -17,9 +17,9 @@ namespace gcom
          m_mutex3Source(main.get_app()),
          m_mutex4Transfer(main.get_app())
       {
-//         m_spdrawdib.create(get_app());
+//         m_spdrawdib.create(allocer());
 //         m_spdrawdib->open();
-         m_dcScreen.create(get_app());
+         m_dcScreen.create(allocer());
       }
 
       Graphics::~Graphics()
@@ -118,7 +118,7 @@ namespace gcom
 
          bool bOk = false;
          // 2004-08-24
-         if(pdib != NULL)
+         if(pdib != ::null())
          {
             GetDib(_graphics::DibSource)->from(pdib);
             bOk = true;
@@ -178,13 +178,13 @@ namespace gcom
 
          //         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
-         if(dcSource.get_os_data() == NULL)
+         if(dcSource.get_os_data() == ::null())
             return false;
 
-         if(&dcBuffer == NULL)
+         if(&dcBuffer == ::null())
             return false;
 
-         if(dcBuffer.get_os_data() == NULL)
+         if(dcBuffer.get_os_data() == ::null())
             return false;
 
          try
@@ -196,7 +196,7 @@ namespace gcom
 #ifdef WINDOWSEX
 
             HENHMETAFILE hemf = main.GetInterface().BackViewGetFillingMetaFile();
-            if(hemf != NULL)
+            if(hemf != ::null())
             {
                ENHMETAHEADER emh;
 
@@ -251,7 +251,7 @@ namespace gcom
             //sl3Source.lock();
             ::ca::bitmap & bmpSource = GetSourceBitmap();
 
-            if(bmpSource.get_os_data() != NULL 
+            if(bmpSource.get_os_data() != ::null() 
                && GetDib(_graphics::DibSource)->area() > 0)
             {
                if(main.IsFullScreen())
@@ -411,11 +411,11 @@ namespace gcom
 
          ::ca::graphics & spgraphicsScreen    = GetScreenDC();
 
-         if(spgraphicsScreen.get_os_data() != NULL)
+         if(spgraphicsScreen.get_os_data() != ::null())
          {
             spgraphicsScreen.DeleteDC();
          }
-         spgraphicsScreen.CreateCompatibleDC(NULL);
+         spgraphicsScreen.CreateCompatibleDC(::null());
 
          GetDib(_graphics::DibBack)->create(cx, cy); // Back
          GetDib(_graphics::DibBack)->Fill(0, 0, 0, 0);
@@ -471,7 +471,7 @@ namespace gcom
          }
          else
          {
-            ::ca::dib_sp spdib(get_app());
+            ::ca::dib_sp spdib(allocer());
             OnCreateDib(spdib, iIndex);
             m_mapDib.set_at(iIndex, spdib);
             ::ca::add_ref(spdib.m_p);

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   document::document(::ca::applicationsp papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::fs::document(papp)
@@ -91,13 +91,13 @@ namespace filemanager
       {
          FileManagerViewUpdateHint uh;
          uh.set_type(FileManagerViewUpdateHint::TypePreSynchronize);
-         update_all_views(NULL, 0, &uh);
+         update_all_views(::null(), 0, &uh);
       }
 
       {
          FileManagerViewUpdateHint uh;
          uh.set_type(FileManagerViewUpdateHint::TypeSynchronize);
-         update_all_views(NULL, 0, &uh);
+         update_all_views(::null(), 0, &uh);
       }
 
 
@@ -110,7 +110,7 @@ namespace filemanager
       {
          FileManagerViewUpdateHint uh;
          uh.set_type(FileManagerViewUpdateHint::TypeOpenSelectionProperties);
-         update_all_views(NULL, 0, &uh);
+         update_all_views(::null(), 0, &uh);
       }
 
    }
@@ -119,8 +119,8 @@ namespace filemanager
    bool document::_001OnCommand(id id)
    {
 
-      if(get_filemanager_data() != NULL
-      && get_filemanager_data()->m_ptemplate != NULL)
+      if(get_filemanager_data() != ::null()
+      && get_filemanager_data()->m_ptemplate != ::null())
       {
 //         FileManagerTemplate * ptemplate = get_filemanager_data()->m_ptemplate;
          if(id == get_filemanager_data()->m_ptemplate->m_strLevelUp)
@@ -179,7 +179,7 @@ namespace filemanager
    void document::_001OnUpdateLevelUp(::ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-         if(m_item.m_strPath.is_empty())
+         if(m_item->m_strPath.is_empty())
          {
             pcmdui->m_pcmdui->Enable(FALSE);
          }
@@ -212,7 +212,7 @@ namespace filemanager
    void document::_001OnAddLocation(::ca::signal_object * pobj)
    {
 
-      update_all_views(NULL, ::view::hint_add_location, NULL);
+      update_all_views(::null(), ::view::hint_add_location, ::null());
 
       pobj->m_bRet = true;
 
@@ -234,7 +234,7 @@ namespace filemanager
    void document::_001OnReplaceText(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      update_all_views(NULL, 89124593, NULL);
+      update_all_views(::null(), 89124593, ::null());
    }
 
    void document::_001OnUpdateEditPaste(::ca::signal_object * pobj)
@@ -249,7 +249,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
       //System.file().paste(get_filemanager_data()->GetFileManager()->get_item().m_strPath, System.m_strCopy);
-      //update_all_views(NULL, 123, NULL);
+      //update_all_views(::null(), 123, ::null());
       //pobj->m_bRet = true;
    }
 
@@ -268,7 +268,7 @@ namespace filemanager
          FileManagerViewUpdateHint uh;
          uh.m_pmanager = this;
          uh.set_type(FileManagerViewUpdateHint::TypeSaveAsOK);
-         update_all_views(NULL, 0, &uh);
+         update_all_views(::null(), 0, &uh);
       }
 
    }
@@ -323,17 +323,17 @@ namespace filemanager
       }
 
       uh.set_type(FileManagerViewUpdateHint::TypeCreateBars);
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
 
       if(bMakeVisible)
       {
          uh.set_type(FileManagerViewUpdateHint::TypePop);
-         update_all_views(NULL, 0, &uh);
+         update_all_views(::null(), 0, &uh);
       }
 
    }
 
-   void document::OpenFolder(::fs::item &item)
+   void document::OpenFolder(sp(::fs::item) item)
    {
       FileManagerBrowse(item);
    }
@@ -344,12 +344,12 @@ namespace filemanager
       FileManagerViewUpdateHint uh;
       uh.m_pmanager = this;
       uh.set_type(FileManagerViewUpdateHint::TypeCreateViews);
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
 
       uh.set_type(FileManagerViewUpdateHint::TypeInitialize);
       uh.m_uiId = get_filemanager_data()->m_iDocument;
       uh.m_pmanager = this;
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
 
 
    }
@@ -360,11 +360,11 @@ namespace filemanager
       uh.m_uiId = get_filemanager_data()->m_iDocument;
       uh.m_pmanager = this;
       uh.set_type(FileManagerViewUpdateHint::TypeCreateBars);
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
 
       uh.set_type(FileManagerViewUpdateHint::TypePop);
 
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
    }
 
    bool document::HandleDefaultFileManagerItemCmdMsg(BaseCmdMsg * pcmdmsg, ::fs::item_array & itema)
@@ -396,11 +396,11 @@ namespace filemanager
    sp(file_manager_operation_document) document::get_operation_doc(bool bSwitch)
    {
       FileManagerTabView * ptabview = get_typed_view < FileManagerTabView > ();
-      if(ptabview == NULL)
-         return NULL;
+      if(ptabview == ::null())
+         return ::null();
 
-      ASSERT(ptabview != NULL);
-      if(ptabview != NULL)
+      ASSERT(ptabview != ::null());
+      if(ptabview != ::null())
       {
          if(bSwitch)
          {
@@ -413,14 +413,14 @@ namespace filemanager
          return 
             (ptabview->get(200000)->m_pdoc);
       }
-      return NULL;
+      return ::null();
    }
 
    void document::GetActiveViewSelection(::fs::item_array & itema)
    {
       FileManagerViewUpdateHint uh;
       uh.set_type(FileManagerViewUpdateHint::TypeGetActiveViewSelection);
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
       itema = uh.m_itemaSelected;
    }
 
@@ -431,9 +431,9 @@ namespace filemanager
       FileManagerViewUpdateHint uh;
       uh.m_pmanager = this;
       uh.set_type(FileManagerViewUpdateHint::TypeSaveAsStart);
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
       uh.set_type(FileManagerViewUpdateHint::TypeCreateBars);
-      update_all_views(NULL, 0, &uh);
+      update_all_views(::null(), 0, &uh);
    }
 
 

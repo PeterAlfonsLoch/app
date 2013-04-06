@@ -5,7 +5,7 @@ namespace ca2 // ca8 + cube
 {
 
 
-   wait_message_dialog::wait_message_dialog(::ca::applicationsp papp) :
+   wait_message_dialog::wait_message_dialog(sp(::ca::application) papp) :
       ca(papp),
       userbase::view(papp),
       user::scroll_view(papp),
@@ -23,10 +23,10 @@ namespace ca2 // ca8 + cube
 
    wait_message_dialog::~wait_message_dialog()
    {
-      /*if(m_pdocument != NULL)
+      /*if(m_pdocument != ::null())
       {
          m_pdocument->on_close_document();
-         m_pdocument = NULL;
+         m_pdocument = ::null();
       }*/
    }
 
@@ -37,7 +37,7 @@ namespace ca2 // ca8 + cube
       if(m_dwDelay > 0)
       {
          m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int32_t) (m_dwDelay / 1000);
-         m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
+         m_pdocument->get_view()->SetTimer(5432175, 584, ::null());
       }
       m_dwStartTime = ::get_tick_count();
    }
@@ -89,7 +89,7 @@ namespace ca2 // ca8 + cube
       string str;
       str.Format("%d", (int32_t) ((m_dwDelay - dwTimeout) / 1000));
       html::elemental * pelemental = m_pdocument->get_html_data()->get_element_by_id("timeout");
-      if(pelemental != NULL)
+      if(pelemental != ::null())
       {
          pelemental->set_string(str);
          m_pframe->layout();

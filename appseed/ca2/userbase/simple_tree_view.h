@@ -8,7 +8,7 @@ class CLASS_DECL_ca2 simple_tree_view :
 public:
 
    
-   simple_tree_view(::ca::applicationsp papp);   
+   simple_tree_view(sp(::ca::application) papp);   
    virtual ~simple_tree_view();
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);

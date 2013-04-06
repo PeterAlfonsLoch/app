@@ -29,7 +29,7 @@ namespace user
 
    }
 
-   interaction::interaction(::ca::applicationsp papp) :
+   interaction::interaction(sp(::ca::application) papp) :
       ca(papp),
       ::user::window_interface(papp)
    {
@@ -1141,7 +1141,7 @@ namespace user
    sp(::frame_window) interaction::GetTopLevelFrame()
    {
       if(m_pimpl == ::null())
-         return FALSE;
+         return ::null();
       else
          return m_pimpl->GetTopLevelFrame();
    }
@@ -1342,7 +1342,7 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, ::ca::create_context* pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(::ca::create_context) pContext)
    {
 
       if(IsWindow())
@@ -1410,7 +1410,7 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         ::ca::create_context* pContext)
+         sp(::ca::create_context) pContext)
    {
       //if(IsWindow())
       //{
@@ -1563,7 +1563,7 @@ namespace user
    {
       try
       {
-         sp(::user::interaction) pui = dynamic_cast < ::user::interaction * > (this);
+         sp(::user::interaction) pui =  (this);
          if(pui == ::null())
             return FALSE;
       }
@@ -1729,7 +1729,7 @@ namespace user
    sp(interaction) interaction::GetLastActivePopup()
    {
       if(m_pimpl == ::null())
-         return FALSE;
+         return ::null();
       else
          return m_pimpl->GetLastActivePopup();
    }
@@ -2285,8 +2285,8 @@ namespace user
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
-      ::ca::applicationsp pappThis1 = (m_pthread->m_pthread->m_p);
-      ::ca::applicationsp pappThis2 = (m_pthread->m_pthread);
+      sp(::ca::application) pappThis1 = (m_pthread->m_pthread->m_p);
+      sp(::ca::application) pappThis2 = (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -2735,7 +2735,7 @@ ExitModal:
             // if it fails, most probably the object is damaged.
             bWindow = m_pguie->IsWindow() != FALSE;
             if(bWindow)
-               bWindow = dynamic_cast < ::user::interaction * > (m_pguie.m_p) != ::null();
+               bWindow =  (m_pguie.m_p) != ::null();
          }
          catch(...)
          {
@@ -2888,7 +2888,7 @@ ExitModal:
    }
 
 
-   interaction::timer_array::timer_array(::ca::applicationsp papp) :
+   interaction::timer_array::timer_array(sp(::ca::application) papp) :
       ca(papp),
       m_mutex(papp)
    {

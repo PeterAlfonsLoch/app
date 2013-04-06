@@ -2,9 +2,9 @@
 
 FileManagerFileListCallback::FileManagerFileListCallback()
 {
-   m_pimagelistSubItemHover   = NULL;
-   m_pimagelistItemHover      = NULL;
-   m_pimagelistNormal         = NULL;
+   m_pimagelistSubItemHover   = ::null();
+   m_pimagelistItemHover      = ::null();
+   m_pimagelistNormal         = ::null();
 
 }
 
@@ -15,13 +15,13 @@ FileManagerFileListCallback::~FileManagerFileListCallback()
 
 bool FileManagerFileListCallback::initialize()
 {
-   ::ca::applicationsp papp = get_app();
+   sp(::ca::application) papp = get_app();
    m_pimagelistSubItemHover   = new image_list(papp);
    m_pimagelistItemHover      = new image_list(papp);
    m_pimagelistNormal         = new image_list(papp);
 
-   ::ca::graphics_sp spgraphics(get_app());
-   spgraphics->CreateCompatibleDC(NULL);
+   ::ca::graphics_sp spgraphics(allocer());
+   spgraphics->CreateCompatibleDC(::null());
 
    m_pimagelistSubItemHover->create(16, 16, 0,  10, 10);
 
@@ -48,7 +48,7 @@ int32_t FileManagerFileListCallback::GetActionButtonCount()
    return 0;
 }
 
-void FileManagerFileListCallback::InitializeActionButton(id id, BaseButtonControl * pbutton)
+void FileManagerFileListCallback::InitializeActionButton(id id, sp(BaseButtonControl) pbutton)
 {
    switch(id)
    {
@@ -99,6 +99,6 @@ image_list * FileManagerFileListCallback::GetActionButtonImageList(id i)
    {
       //return System.user()->shellimageset().GetImageList16();
    }
-   return NULL;
+   return ::null();
 }
 

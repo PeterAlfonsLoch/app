@@ -1895,7 +1895,7 @@ var_array var::vara() const
    return *m_pvara;
 }
 
-::ca::property_set & var::propset(::ca::applicationsp papp)
+::ca::property_set & var::propset(sp(::ca::application) papp)
 {
    ::ca::property_set * pset;
    if(m_etype == type_pvar)
@@ -3409,11 +3409,7 @@ bool var::has_property(const char * pszName) const
    }
    else if(get_type() == type_ca2)
    {
-      if(ca < var >() != ::null())
-      {
-         return ca < var >()->has_property(pszName);
-      }
-      else if(ca < ::ca::property_set >() != ::null())
+      if(ca < ::ca::property_set >() != ::null())
       {
          return ca < ::ca::property_set >()->has_property(pszName);
       }

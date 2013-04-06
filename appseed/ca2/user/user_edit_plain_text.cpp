@@ -20,7 +20,7 @@ namespace user
 {
 
 
-   edit_plain_text::edit_plain_text(::ca::applicationsp papp) :
+   edit_plain_text::edit_plain_text(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -31,7 +31,7 @@ namespace user
       ::ca::data_listener(papp)
    {
 
-      m_pdata              = NULL;
+      m_pdata              = ::null();
       m_bOwnData           = false;
 
       m_bMultiLine         = true;
@@ -63,7 +63,7 @@ namespace user
       if(m_bOwnData)
       {
          delete m_pdata;
-         m_pdata = NULL;
+         m_pdata = ::null();
       }
    }
 
@@ -117,7 +117,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
 
-      ::ca::memory_graphics pdc(get_app());
+      ::ca::memory_graphics pdc(allocer());
       _001OnCalcLayout(pdc);
 
 
@@ -138,7 +138,7 @@ namespace user
    {
       _001OnUpdate();
 
-      ::ca::memory_graphics pdc(get_app());
+      ::ca::memory_graphics pdc(allocer());
       _001OnCalcLayout(pdc);
 
 
@@ -193,17 +193,17 @@ namespace user
 
       ::ca::job * pjob = pdc->m_pjob;
 
-      ::user::print_job * pprintjob = NULL;
-      if(pjob!= NULL)
+      ::user::print_job * pprintjob = ::null();
+      if(pjob!= ::null())
          pprintjob = dynamic_cast < ::user::print_job * > (pjob);
       else
-         pprintjob = NULL;
+         pprintjob = ::null();
 
 
       rect rectClient;
       GetClientRect(rectClient);
 
-      if(pprintjob != NULL)
+      if(pprintjob != ::null())
       {
          TRACE("Print Job Is Printing page %d", pprintjob->m_iPrintingPage);
       }
@@ -244,11 +244,11 @@ namespace user
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
             HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            ::visual::fastblur *( *pfnNew )(::ca::applicationsp) = (::visual::fastblur *(*)(::ca::applicationsp)) ::GetProcAddress(hmodule, "new_fastblur");*/
-/*            m_fastblur.create(get_app());
+            ::visual::fastblur *( *pfnNew )(sp(::ca::application)) = (::visual::fastblur *(*)(sp(::ca::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
+/*            m_fastblur.create(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
-         if(m_fastblur.is_set() && m_fastblur->get_graphics() != NULL)
+         if(m_fastblur.is_set() && m_fastblur->get_graphics() != ::null())
          {
             m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
             m_fastblur.blur();
@@ -282,7 +282,7 @@ namespace user
       COLORREF crBorder = c.get_rgb() | (0xff << 24);
       pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
-      if(m_pdata == NULL)
+      if(m_pdata == ::null())
          return;
 
       if(m_pdata->is_in_use())
@@ -299,7 +299,7 @@ namespace user
          pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x, -(m_scrollinfo.m_ptScroll.y % m_iLineHeight));
       }
 
-      ::ca::region_sp rgn(get_app());
+      ::ca::region_sp rgn(allocer());
 
       rectClient.deflate(2, 2);
 
@@ -323,7 +323,7 @@ namespace user
       strsize iSelEnd;
       strsize lim = 0;
 
-      ::ca::pen_sp penCaret(get_app());
+      ::ca::pen_sp penCaret(allocer());
 
 
       penCaret->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
@@ -368,14 +368,14 @@ namespace user
          {
             strLine.Empty();
          }
-         colorertake5::LineRegion * pregion = NULL;
+         colorertake5::LineRegion * pregion = ::null();
          if(m_bColorerTake5)
             pregion = getLineRegions(i);
-         if(pregion != NULL)
+         if(pregion != ::null())
          {
-            for(; pregion != NULL; pregion = pregion->next)
+            for(; pregion != ::null(); pregion = pregion->next)
             {
-               if(pregion->special || pregion->rdef == NULL)
+               if(pregion->special || pregion->rdef == ::null())
                   continue;
                index end = pregion->end;
                if(end == -1)
@@ -495,9 +495,9 @@ namespace user
 
 
 
-      if(get_document() != NULL
-      && ::view::get_data < document > () != NULL
-      && dynamic_cast < plain_text_data * > (::view::get_data < document >()) != NULL)
+      if(get_document() != ::null()
+      && ::view::get_data < document > () != ::null()
+      && dynamic_cast < plain_text_data * > (::view::get_data < document >()) != ::null())
       {
          set_plain_text_data(dynamic_cast < plain_text_data * > (::view::get_data < document > ()), false);
       }
@@ -507,7 +507,7 @@ namespace user
       }
 
       ::ca::data * pdataParentLock = oprop("parent_lock_data").ca < ::ca::data > ();
-      if(pdataParentLock != NULL)
+      if(pdataParentLock != ::null())
       {
          m_pdata->m_spdataParentLock = pdataParentLock;
       }
@@ -530,7 +530,7 @@ namespace user
       m_bPassword = false;
 
 
-      SetTimer(100, 100, NULL);
+      SetTimer(100, 100, ::null());
       m_iSelStart  = 0;
       m_iSelEnd = 0;
       _001OnUpdate();
@@ -558,7 +558,7 @@ namespace user
    /*   ::userbase::menu menu;
       Ex1TextFile file;
 
-      ::ca::applicationsp papp = ::ca::get_app();
+      sp(::ca::application) papp = ::ca::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
@@ -576,7 +576,7 @@ namespace user
       if (menu.LoadMenu(get_app(), &node))
       {
          //::userbase::menu* pPopup = (::userbase::menu_item *) menu.GetSubMenu(0);
-         //ASSERT(pPopup != NULL);
+         //ASSERT(pPopup != ::null());
          sp(::userbase::frame_window) pframe = (sp(::userbase::frame_window)) (sp(::ca::window)) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
@@ -614,7 +614,7 @@ namespace user
          if(ptimer->m_nIDEvent == 500)
          {
             KillTimer(500);
-            SetTimer(501, 300, NULL);
+            SetTimer(501, 300, ::null());
          }
          key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
       }
@@ -631,7 +631,7 @@ namespace user
             pkey->m_bRet      = false;
             return;
          }
-         if((!m_bMultiLine || m_bSendEnterKey) && get_parent() != NULL)
+         if((!m_bMultiLine || m_bSendEnterKey) && get_parent() != ::null())
          {
             ::user::control_event ev;
             ev.m_puie         = this;
@@ -814,8 +814,8 @@ namespace user
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
       ::ca::data::writing writing(pview->m_pdata);
 
-      ::ca::graphics_sp graphics(pview->get_app());
-      graphics->CreateCompatibleDC(NULL);
+      ::ca::graphics_sp graphics(pview->allocer());
+      graphics->CreateCompatibleDC(::null());
       ::ca::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
 
@@ -827,7 +827,7 @@ namespace user
    void edit_plain_text::_001GetText(string & str)
    {
       ::ca::data::writing writing(m_pdata);
-      if(m_pdata == NULL)
+      if(m_pdata == ::null())
          return;
       file_size iSize = m_pdata->m_editfile.get_length();
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
@@ -907,8 +907,8 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca::memory_graphics pdc(get_app());
-      if(pdc == NULL)
+      ::ca::memory_graphics pdc(allocer());
+      if(pdc.is_null())
          return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
@@ -925,7 +925,7 @@ namespace user
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca::memory_graphics pdc(get_app());
+      ::ca::memory_graphics pdc(allocer());
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
 
@@ -942,7 +942,7 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca::memory_graphics pdc(get_app());
+      ::ca::memory_graphics pdc(allocer());
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
 
@@ -958,7 +958,7 @@ namespace user
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca::memory_graphics pdc(get_app());
+      ::ca::memory_graphics pdc(allocer());
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
 
@@ -1072,7 +1072,7 @@ namespace user
          if(iSel >= i1
             && iSel < i2)
          {
-            ::ca::memory_graphics pgraphics(get_app());
+            ::ca::memory_graphics pgraphics(allocer());
 
             pgraphics->SelectObject(GetFont());
             pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -1136,7 +1136,7 @@ namespace user
    strsize edit_plain_text::LineXToSel(index iLine, int32_t x)
    {
 
-      ::ca::memory_graphics pgraphics(get_app());
+      ::ca::memory_graphics pgraphics(allocer());
 
       pgraphics->SelectObject(GetFont());
       pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -1311,7 +1311,7 @@ namespace user
 
       if(m_bMouseDown)
       {
-         ::ca::memory_graphics pdc(get_app());
+         ::ca::memory_graphics pdc(allocer());
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
 
        //  _001RedrawWindow();
@@ -1874,8 +1874,8 @@ namespace user
       m_bGetTextNeedUpdate = 1;
       CreateLineIndex();
       m_y = -1;
-      ::ca::graphics_sp dc(get_app());
-      dc->CreateCompatibleDC(NULL);
+      ::ca::graphics_sp dc(allocer());
+      dc->CreateCompatibleDC(::null());
       _001OnCalcLayout(dc);
       lineCountEvent(m_lines.lines.get_count());
 
@@ -1915,12 +1915,12 @@ namespace user
 
    void edit_plain_text::MacroEnd()
    {
-      if(m_pdata->m_pgroupcommand == NULL)
+      if(m_pdata->m_pgroupcommand == ::null())
       {
          ASSERT(FALSE);
          return;
       }
-      if(m_pdata->m_pgroupcommand->m_pparent == NULL)
+      if(m_pdata->m_pgroupcommand->m_pparent == ::null())
       {
          MacroRecord(m_pdata->m_pgroupcommand);
       }
@@ -1930,15 +1930,15 @@ namespace user
 
    void edit_plain_text::MacroRecord(plain_text_data::Command * pcommand)
    {
-      if(m_pdata->m_pgroupcommand != NULL && m_pdata->m_pgroupcommand != pcommand)
+      if(m_pdata->m_pgroupcommand != ::null() && m_pdata->m_pgroupcommand != pcommand)
       {
          m_pdata->m_pgroupcommand->add(pcommand);
          return;
       }
-      if(m_pdata->m_ptreeitem->m_pnext != NULL)
+      if(m_pdata->m_ptreeitem->m_pnext != ::null())
       {
          ::ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
-         if(pitemNew != NULL)
+         if(pitemNew != ::null())
          {
             m_pdata->m_ptreeitem = pitemNew;
          }
@@ -1946,7 +1946,7 @@ namespace user
       else
       {
          ::ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
-         if(pitemNew != NULL)
+         if(pitemNew != ::null())
          {
             m_pdata->m_ptreeitem = pitemNew;
          }
@@ -1973,7 +1973,7 @@ namespace user
    }
    bool edit_plain_text::Redo()
    {
-      if(m_pdata->m_ptreeitem == NULL)
+      if(m_pdata->m_ptreeitem == ::null())
       {
          return false;
       }
@@ -1982,7 +1982,7 @@ namespace user
       {
          return false;
       }
-      plain_text_data::Command * pcommand = NULL;
+      plain_text_data::Command * pcommand = ::null();
       ::ca::tree_item * ptreeitem;
       if(m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count())
       {
@@ -1990,7 +1990,7 @@ namespace user
       }
       else
          ptreeitem = m_pdata->m_ptreeitem->get_next();
-      if(ptreeitem == NULL)
+      if(ptreeitem == ::null())
          return false;
       m_pdata->m_ptreeitem = ptreeitem;
       pcommand = (plain_text_data::Command *) ptreeitem->m_pitemdata;
@@ -2012,14 +2012,14 @@ namespace user
    bool edit_plain_text::CanRedo()
    {
       return m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count()
-         || m_pdata->m_ptreeitem->get_next(false, false) != NULL;
+         || m_pdata->m_ptreeitem->get_next(false, false) != ::null();
    }
 
    ::count edit_plain_text::GetRedoBranchCount()
    {
       return m_pdata->m_ptreeitem->get_expandable_children_count()
-           + (m_pdata->m_ptreeitem->m_pnext != NULL ? 1 : 0)
-           + (m_pdata->m_ptreeitem->m_pchild != NULL ? 1 : 0);
+           + (m_pdata->m_ptreeitem->m_pnext != ::null() ? 1 : 0)
+           + (m_pdata->m_ptreeitem->m_pchild != ::null() ? 1 : 0);
    }
 
 
@@ -2160,7 +2160,7 @@ namespace user
 
    colorertake5::file_type *edit_plain_text::colorer_select_type()
    {
-      colorertake5::file_type *type = NULL;
+      colorertake5::file_type *type = ::null();
   /*if (typeDescription != null){
     type = hrcParser->getFileType(typeDescription);
     if (type == null){
@@ -2180,10 +2180,10 @@ namespace user
   }*/
 //  if (typeDescription == null || type == null){
       ::view * pview = dynamic_cast < ::view *> (this);
-   if (pview!= NULL)
+   if (pview!= ::null())
    {
       sp(::user::document_interface) pdoc = pview->get_document();
-      if(type == NULL)
+      if(type == ::null())
       {
          string textStart;
     strsize totalLength = 0;
@@ -2197,7 +2197,7 @@ namespace user
     type = System.parser_factory().getHRCParser()->chooseFileType(pdoc->get_path_name(), textStart, 0);
       }
   }
-   if(type != NULL)
+   if(type != ::null())
    {
       type->getBaseScheme();
       setFileType(type);
@@ -2233,7 +2233,7 @@ namespace user
    {
       m_bCaretOn = true;
       m_dwLastCaret = get_tick_count();
-      SetTimer(100, 100, NULL);
+      SetTimer(100, 100, ::null());
       _001RedrawWindow();
       return true;
    }
@@ -2253,14 +2253,14 @@ namespace user
    void edit_plain_text::set_plain_text_data(plain_text_data * pdata, bool bOwnData)
    {
       ::ca::data::writing writing(m_pdata);
-      if(m_pdata != NULL && m_bOwnData)
+      if(m_pdata != ::null() && m_bOwnData)
       {
          delete m_pdata;
-         m_pdata = NULL;
+         m_pdata = ::null();
       }
       m_pdata = pdata;
-      m_bOwnData = m_pdata != NULL && bOwnData;
-      if(m_pdata != NULL)
+      m_bOwnData = m_pdata != ::null() && bOwnData;
+      if(m_pdata != ::null())
       {
          listen(m_pdata);
       }

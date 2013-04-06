@@ -2458,8 +2458,8 @@ namespace ca
 
    }
 
-   memory_graphics::memory_graphics(::ca::applicationsp papp) :
-      ::ca::graphics_sp(papp)
+   memory_graphics::memory_graphics(::ca::allocer allocer) :
+      ::ca::graphics_sp(allocer)
    {
       ::ca::graphics_sp::m_p->CreateCompatibleDC(::null());
    }
@@ -2472,7 +2472,8 @@ namespace ca
    client_graphics::client_graphics(sp(::user::interaction) pui)
    {
       m_pui = pui;
-      ::ca::graphics_sp::operator = (pui->GetDC());
+      throw "prefer not to use";
+      //::ca::graphics_sp::operator = (pui->GetDC());
    }
 
    client_graphics::~client_graphics()

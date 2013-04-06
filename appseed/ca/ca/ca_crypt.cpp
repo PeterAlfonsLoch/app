@@ -12,7 +12,7 @@ namespace ca
 {
 
 
-   crypt::crypt(::ca::applicationsp papp) :
+   crypt::crypt(sp(::ca::application) papp) :
       ca(papp)
    {
    }
@@ -643,7 +643,7 @@ namespace ca
    }
 
 
-   bool crypt::file_set(var varFile, const char * pszData, const char * pszSalt, ::ca::applicationsp papp)
+   bool crypt::file_set(var varFile, const char * pszData, const char * pszSalt, sp(::ca::application) papp)
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
@@ -651,7 +651,7 @@ namespace ca
       return true;
    }
 
-   bool crypt::file_get(var varFile, string & str, const char * pszSalt, ::ca::applicationsp papp)
+   bool crypt::file_get(var varFile, string & str, const char * pszSalt, sp(::ca::application) papp)
    {
       primitive::memory memoryEncrypt;
       App(papp).file().as_memory(varFile, memoryEncrypt);

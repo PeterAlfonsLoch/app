@@ -6,7 +6,7 @@ namespace ca
 
 
    pen_sp::pen_sp(::ca::graphics * pgraphics, double dWidth, COLORREF crColor) :
-      smart_pointer < pen > (pgraphics->get_app())
+      smart_pointer < pen > (pgraphics->allocer())
    {
       m_p->create_solid(pgraphics, dWidth, crColor);
    }

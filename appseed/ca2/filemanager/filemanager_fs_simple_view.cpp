@@ -10,20 +10,20 @@ namespace filemanager
       namespace simple
       {
 
-         view::view(::ca::applicationsp papp) :
+         view::view(sp(::ca::application) papp) :
             ca(papp),
             ::userbase::split_layout(papp),
             ::userbase::view(papp),
             ::userbase::split_view(papp),
             place_holder_container(papp)
          {
-         //   m_pinetsession = NULL;
-            m_prequestinterface = NULL;
+         //   m_pinetsession = ::null();
+            m_prequestinterface = ::null();
          }
 
          view::~view()
          {
-           // if(m_pinetsession != NULL)
+           // if(m_pinetsession != ::null())
              //  delete m_pinetsession;
          }
 
@@ -120,7 +120,7 @@ namespace filemanager
 
             strUrl.Format("http://file.veriwell.net/ifs/get?name=" + System.url().url_encode(lpszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
-            if(m_prequestinterface != NULL)
+            if(m_prequestinterface != ::null())
             {
                m_prequestinterface->add_line_uri(strUrl);
             }

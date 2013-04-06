@@ -34,7 +34,7 @@ namespace filemanager
          SimpleFileListInterface * m_plist;
 
 
-         create_image_list_thread(::ca::applicationsp papp);
+         create_image_list_thread(sp(::ca::application) papp);
 
          virtual int32_t run();
 
@@ -84,7 +84,7 @@ namespace filemanager
       public:
 
 
-         ItemArray(::ca::applicationsp papp);
+         ItemArray(sp(::ca::application) papp);
 
 
          void add_item(Item & item);
@@ -153,7 +153,7 @@ namespace filemanager
          index         m_iImage;
       };*/
 
-      SimpleFileListInterface(::ca::applicationsp papp);
+      SimpleFileListInterface(sp(::ca::application) papp);
       virtual ~SimpleFileListInterface();
       virtual void file_size_add_request(bool bClear);
 
@@ -171,8 +171,8 @@ namespace filemanager
 
       void GetSelected(::fs::item_array & itema);
 
-      void _001OnInitializeForm(user::sp(control) pcontrol);
-      void _001OnButtonAction(user::sp(control) pcontrol);
+      void _001OnInitializeForm(sp(::user::control) pcontrol);
+      void _001OnButtonAction(sp(::user::control) pcontrol);
 
       virtual void _017OpenFile(const ::fs::item_array & itema);
       virtual void _017OpenFolder(sp(::fs::item)  item);

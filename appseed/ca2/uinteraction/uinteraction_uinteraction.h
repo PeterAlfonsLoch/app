@@ -17,7 +17,7 @@ namespace uinteraction
 
       virtual sp(::uinteraction::interaction) get_new_uinteraction(const char * pszUinteractionLibrary);
       virtual sp(::uinteraction::interaction) get_uinteraction(const char * pszUinteractionLibrary);
-      virtual ::uinteraction::frame::frame * get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
+      virtual sp(::uinteraction::frame::frame) get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
 
    };
 

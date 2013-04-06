@@ -14,7 +14,7 @@ namespace fs
    public:
 
 
-      tree(::ca::applicationsp papp);
+      tree(sp(::ca::application) papp);
       virtual ~tree();
 
       virtual void install_message_handling(::ca::message::dispatch * pdispatch);

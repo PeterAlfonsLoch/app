@@ -8,7 +8,7 @@ namespace visual
    void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
 
 
-   graphics_extension::graphics_extension(::ca::applicationsp papp) :
+   graphics_extension::graphics_extension(sp(::ca::application) papp) :
       ca(papp)
    {
 
@@ -414,7 +414,7 @@ namespace visual
       {
          if(pfontUnderline == ::null())
          {
-            fontUnderline.create(get_app());
+            fontUnderline.create(allocer());
             pfontUnderline = fontUnderline;
             fontUnderline ->operator=(pdc->GetCurrentFont());
             fontUnderline->set_bold();

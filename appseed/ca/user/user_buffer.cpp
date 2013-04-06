@@ -3,9 +3,9 @@
 namespace user
 {
 
-   buffer::buffer(::ca::applicationsp papp) :
+   buffer::buffer(sp(::ca::application) papp) :
       ca(papp),
-      m_spdib(papp)
+      m_spdib(allocer())
    {
    }
 

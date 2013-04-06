@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   set::set(::ca::applicationsp papp) :
+   set::set(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data(papp),
       ::fs::data(papp)
@@ -18,7 +18,7 @@ namespace fs
    }
 
 
-   string_map < ::fs::data * > & set::fsmap()
+   strsp(::fs::data) & set::fsmap()
    {
       return m_fsdatamap;
    }
@@ -43,18 +43,18 @@ namespace fs
          stra.add(straFs);
          for(int32_t j = 0; j < straFs.get_size(); j++)
          {
-            m_fsdatamap[straFs[j]] = &m_spafsdata[i];
+            m_fsdatamap[straFs[j]] = m_spafsdata(i);
          }
       }
 
    }
 
-   data * set::path_data(const char * psz)
+   sp(data) set::path_data(const char * psz)
    {
       POSITION pos = m_fsdatamap.get_start_position();
 
       string strRoot;
-      ::fs::data * pdata;
+      sp(::fs::data) pdata;
 
       while(pos != ::null())
       {

@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   signal_object::signal_object(::ca::applicationsp papp) :
+   signal_object::signal_object(sp(::ca::application) papp) :
       ca(papp)
    {
       m_iParam    = 0;

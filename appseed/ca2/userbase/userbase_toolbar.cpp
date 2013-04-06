@@ -48,7 +48,7 @@ namespace userbase
           m_bSimpleLayout = true;
 
       // initialize state
-      m_pStringMap = NULL;
+      m_pStringMap = ::null();
 
       m_bDelayedButtonLayout = TRUE;
 
@@ -124,7 +124,7 @@ namespace userbase
       class rect rect;
       rect.null();
 #ifdef WINDOWSEX
-      if (!::user::interaction::create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID))
+      if (!::user::interaction::create(TOOLBARCLASSNAME, ::null(), dwStyle, rect, pParentWnd, nID))
          return FALSE;
 #else
       throw todo(get_app());
@@ -148,7 +148,7 @@ namespace userbase
 
       // if the owner was set before the toolbar was created, set it now
 #ifdef WINDOWSEX
-      if (m_pguieOwner != NULL)
+      if (m_pguieOwner != ::null())
          DefWindowProc(TB_SETPARENT, (WPARAM)m_pguieOwner.m_p, 0);
 
       DefWindowProc(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
@@ -236,20 +236,20 @@ namespace userbase
    /*bool tool_bar::LoadToolBar(const char * lpszResourceName)
    {
       ASSERT_VALID(this);
-      ASSERT(lpszResourceName != NULL);
+      ASSERT(lpszResourceName != ::null());
 
       // determine location of the bitmap in resource fork
       HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
       HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
-      if (hRsrc == NULL)
+      if (hRsrc == ::null())
          return FALSE;
 
       HGLOBAL hGlobal = LoadResource(hInst, hRsrc);
-      if (hGlobal == NULL)
+      if (hGlobal == ::null())
          return FALSE;
 
       tool_bar_data* pData = (tool_bar_data*)LockResource(hGlobal);
-      if (pData == NULL)
+      if (pData == ::null())
          return FALSE;
       ASSERT(pData->wVersion == 1);
 
@@ -281,12 +281,12 @@ namespace userbase
    /*bool tool_bar::LoadBitmap(const char * lpszResourceName)
    {
       ASSERT_VALID(this);
-      ASSERT(lpszResourceName != NULL);
+      ASSERT(lpszResourceName != ::null());
 
       // determine location of the bitmap in resource fork
       HINSTANCE hInstImageWell = ::ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
       HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
-      if (hRsrcImageWell == NULL)
+      if (hRsrcImageWell == ::null())
          return FALSE;
 
       // load the bitmap
@@ -309,11 +309,11 @@ namespace userbase
    bool tool_bar::from(HBITMAP hbmImageWell)
    {
       ASSERT_VALID(this);
-      ASSERT(hbmImageWell != NULL);
+      ASSERT(hbmImageWell != ::null());
 
       // the caller must manage changing system colors
-//      m_hInstImageWell = NULL;
-  //    m_hRsrcImageWell = NULL;
+//      m_hInstImageWell = ::null();
+  //    m_hRsrcImageWell = ::null();
 
       // tell common control toolbar about the new bitmap
       return AddReplaceBitmap(hbmImageWell);
@@ -329,10 +329,10 @@ namespace userbase
       VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
 
       // add the bitmap to the common control toolbar
-      if (m_hbmImageWell == NULL)
+      if (m_hbmImageWell == ::null())
       {
          TBADDBITMAP addBitmap;
-         addBitmap.hInst = NULL; // makes TBADDBITMAP::nID behave a HBITMAP
+         addBitmap.hInst = ::null(); // makes TBADDBITMAP::nID behave a HBITMAP
          addBitmap.nID = (UINT)hbmImageWell;
          bResult =  DefWindowProc(TB_ADDBITMAP,
             bitmap.bmWidth / m_sizeImage.cx, (LPARAM)&addBitmap) == 0;
@@ -340,9 +340,9 @@ namespace userbase
       else
       {
          TBREPLACEBITMAP replaceBitmap;
-         replaceBitmap.hInstOld = NULL;
+         replaceBitmap.hInstOld = ::null();
          replaceBitmap.nIDOld = (UINT)m_hbmImageWell;
-         replaceBitmap.hInstNew = NULL;
+         replaceBitmap.hInstNew = ::null();
          replaceBitmap.nIDNew = (UINT)hbmImageWell;
          replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
          bResult = DefWindowProc(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != FALSE;
@@ -364,7 +364,7 @@ namespace userbase
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
-      ASSERT(lpIDArray == NULL || __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
+      ASSERT(lpIDArray == ::null() || __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
       int32_t nCount = (int32_t)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
@@ -373,7 +373,7 @@ namespace userbase
 
       TBBUTTON button; memset(&button, 0, sizeof(TBBUTTON));
       button.iString = -1;
-      if (lpIDArray != NULL)
+      if (lpIDArray != ::null())
       {
          // add new buttons to the common control
          int32_t iImage = 0;
@@ -576,7 +576,7 @@ namespace userbase
 #ifdef WINDOWSEX
    size tool_bar::CalcSize(TBBUTTON* pData, int32_t nCount)
    {
-      ASSERT(pData != NULL && nCount > 0);
+      ASSERT(pData != ::null() && nCount > 0);
 
       point cur(0,0);
       size sizeResult(0,0);
@@ -637,7 +637,7 @@ namespace userbase
 
    int32_t tool_bar::WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth)
    {
-      ASSERT(pData != NULL && nCount > 0);
+      ASSERT(pData != ::null() && nCount > 0);
       ::ca::client_graphics pdc(this);
       int32_t nResult = 0;
       int32_t x = 0;
@@ -723,7 +723,7 @@ namespace userbase
 
    void  tool_bar::SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert)
    {
-      ASSERT(pData != NULL && nCount > 0);
+      ASSERT(pData != ::null() && nCount > 0);
 
       if (!bVert)
       {
@@ -810,7 +810,7 @@ namespace userbase
          ASSERT(dwMode & LM_HORZ);
 
       int32_t nCount;
-      TBBUTTON* pData = NULL;
+      TBBUTTON* pData = ::null();
       size sizeResult(0,0);
 
       //BLOCK: Load Buttons
@@ -857,7 +857,7 @@ namespace userbase
 
          if (dwMode & LM_COMMIT)
          {
-            ___CONTROLPOS* pControl = NULL;
+            ___CONTROLPOS* pControl = ::null();
             int32_t nControlCount = 0;
             bool bIsDelayed = m_bDelayedButtonLayout;
             m_bDelayedButtonLayout = FALSE;
@@ -942,14 +942,14 @@ namespace userbase
                for (int32_t i = 0; i < nControlCount; i++)
                {
                   sp(::user::interaction) pWnd = get_child_by_id(pControl[i].nID);
-                  if (pWnd != NULL)
+                  if (pWnd != ::null())
                   {
                      rect rect;
                      pWnd->GetWindowRect(&rect);
                      point pt = rect.top_left() - pControl[i].rectOldPos.top_left();
                      GetItemRect(pControl[i].nIndex, &rect);
                      pt = rect.top_left() + pt;
-                     pWnd->SetWindowPos(NULL, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+                     pWnd->SetWindowPos(0, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
                   }
                }
                delete[] pControl;
@@ -1041,14 +1041,14 @@ throw todo(get_app());
       int_ptr nString = -1;
       void * p;
       string wstrText(lpszText);
-      if (m_pStringMap != NULL && m_pStringMap->Lookup(wstrText, p))
+      if (m_pStringMap != ::null() && m_pStringMap->Lookup(wstrText, p))
          nString = (int_ptr)p;
 
       // add new string if not already in map
       if (nString == -1)
       {
          // initialize map if necessary
-         if (m_pStringMap == NULL)
+         if (m_pStringMap == ::null())
             m_pStringMap = new string_to_ptr;
 
          string str;
@@ -1102,7 +1102,7 @@ throw todo(get_app());
    void tool_bar::GetButtonText(int32_t nIndex, string & rWString) const
    {
 #ifdef WINDOWSEX
-      if (m_pStringMap != NULL)
+      if (m_pStringMap != ::null())
       {
          // get button information (need button.iString)
          TBBUTTON button;
@@ -1307,11 +1307,11 @@ throw todo(get_app());
    {
       UNREFERENCED_PARAMETER(pobj);
       // re-color bitmap for toolbar
-//      if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
+//      if (m_hInstImageWell != ::null() && m_hbmImageWell != ::null())
       {
    // trans      HBITMAP hbmNew;
    /*      hbmNew = ::ca::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
-         if (hbmNew != NULL)
+         if (hbmNew != ::null())
             AddReplaceBitmap(hbmNew);*/
       }
    }
@@ -1324,7 +1324,7 @@ throw todo(get_app());
    {
       m_bEnableChanged = TRUE;
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
-      ASSERT(pToolBar != NULL);
+      ASSERT(pToolBar != ::null());
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -1350,7 +1350,7 @@ throw todo(get_app());
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
-      ASSERT(pToolBar != NULL);
+      ASSERT(pToolBar != ::null());
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -1392,11 +1392,11 @@ throw todo(get_app());
             // allow reflections
             if (::user::interaction::_001OnCommand(0,
                MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
-               &state, NULL))
+               &state, ::null()))
                continue;
 
             // allow the toolbar itself to have update handlers
-            if (::user::interaction::_001OnCommand(state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
+            if (::user::interaction::_001OnCommand(state.m_nID, CN_UPDATE_COMMAND_UI, &state, ::null()))
                continue;
 
             // allow the owner to process the update
@@ -1418,11 +1418,11 @@ throw todo(get_app());
       // Note: ::userbase::control_bar::assert_valid is not called because it checks for
       //  m_nCount and m_pData to be in sync, which they are not in tool_bar.
 
-/*      ASSERT(m_hbmImageWell == NULL ||
+/*      ASSERT(m_hbmImageWell == ::null() ||
          (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
 
-      if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
-         ASSERT(m_hRsrcImageWell != NULL);*/
+      if (m_hInstImageWell != ::null() && m_hbmImageWell != ::null())
+         ASSERT(m_hRsrcImageWell != ::null());*/
    }
 
    void tool_bar::dump(dump_context & dumpcontext) const
@@ -1476,7 +1476,7 @@ throw todo(get_app());
 
 #ifdef WINDOWSEX
       int32_t nCount;
-      TBBUTTON* pData = NULL;
+      TBBUTTON* pData = ::null();
 
       //BLOCK: Load Buttons
       {

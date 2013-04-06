@@ -5,7 +5,7 @@ namespace mail
 {
 
 
-   tree_data::tree_data(::ca::applicationsp papp) :
+   tree_data::tree_data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::tree_data(papp)
    {

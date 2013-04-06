@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   pane_view::pane_view(::ca::applicationsp papp) :
+   pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::userbase::view(papp)
    {
@@ -66,7 +66,7 @@ namespace userex
             //cc.m_typeinfoNewView = System.type_info < ::userbase::menu_list_view > ();
 
             ::userbase::view * pview = create_view < userbase::view > ();
-            if(pview != NULL)
+            if(pview != ::null())
             {
 //               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
    /* xxx           xml::node node(get_app());

@@ -31,8 +31,8 @@ namespace bergedge
 
       bool                                                           m_bShowPlatform;
 
-      ::ca::applicationsp                                            m_pappCurrent;
-      string_map < ::ca::applicationsp >               m_mapApplication;
+      sp(::ca::application)                                            m_pappCurrent;
+      string_map < sp(::ca::application) >               m_mapApplication;
 
 
       ::userbase::single_document_template *                         m_ptemplate_bergedge;
@@ -68,7 +68,7 @@ namespace bergedge
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::applicationsp get_app() const;
+      virtual sp(::ca::application) get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -78,27 +78,27 @@ namespace bergedge
 
       void initialize_bergedge_application_interface();
 
-      virtual bool create_bergedge(::ca::create_context * pcreatecontext);
+      virtual bool create_bergedge(sp(::ca::create_context) pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(::ca::applicationsp papp);
+      virtual void on_app_request_bergedge_callback(sp(::ca::application) papp);
 
       
 
 
       // semantics defined by application
       using platform::application::request;
-      virtual void request(::ca::create_context * pcreatecontext);
+      virtual void request(sp(::ca::create_context) pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
 
-      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
 
-      virtual bool place(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual bool place(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -130,13 +130,13 @@ namespace bergedge
 
       virtual service_base * allocate_new_service();
 
-      void on_request(::ca::create_context * pcreatecontext);
+      void on_request(sp(::ca::create_context) pcreatecontext);
 
-      ::ca::applicationsp application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
       virtual bool is_bergedge();
 
-      ::ca::applicationsp get_current_application();
+      sp(::ca::application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

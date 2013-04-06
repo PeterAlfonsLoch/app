@@ -126,7 +126,7 @@ namespace database
    {
    }
 
-   result_set::result_set(::ca::applicationsp papp) :
+   result_set::result_set(sp(::ca::application) papp) :
    ca(papp)
    {
    }

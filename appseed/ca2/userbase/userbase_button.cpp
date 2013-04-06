@@ -5,13 +5,13 @@ namespace userbase
 {
 
 
-   button::button(::ca::applicationsp papp) :
+   button::button(sp(::ca::application) papp) :
       ::user::interaction(papp),
       ::user::button(papp),
       ca(papp),
       m_dib(papp)
    {
-      m_pschema   = NULL;
+      m_pschema   = ::null();
    }
 
    button::~button()
@@ -20,15 +20,15 @@ namespace userbase
 
    ::ca::font * button::_001GetFont()
    {
-      if(m_pschema == NULL)
-         return NULL;
+      if(m_pschema == ::null())
+         return ::null();
       return m_pschema->m_font;
    }
 
    void button::_001OnDraw(::ca::graphics * pdc)
    {
 
-      if(m_pschema == NULL)
+      if(m_pschema == ::null())
          return;
 
 
@@ -147,9 +147,9 @@ namespace userbase
    void button::ResizeToFit()
    {
 
-      ::ca::client_graphics pdc(this);
+      ::ca::memory_graphics pdc(allocer());
 
-      if(pdc == NULL)
+      if(pdc.is_null())
          return;
 
       pdc->SelectObject(m_pschema->m_font);

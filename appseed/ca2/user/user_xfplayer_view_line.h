@@ -101,7 +101,7 @@ protected:
 
 public:
 
-   XfplayerViewLine(::ca::applicationsp papp);
+   XfplayerViewLine(sp(::ca::application) papp);
    XfplayerViewLine(const XfplayerViewLine & line);
    XfplayerViewLine(XfplayerViewLines * pContainer);
    virtual ~XfplayerViewLine();
@@ -138,7 +138,7 @@ public:
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
-      ::ca::applicationsp papp,
+      sp(::ca::application) papp,
       ::ca::graphics * pdc,
       const char * lpcsz,
       int32_t left,
@@ -150,7 +150,7 @@ public:
       double dBlend);
 
    void EmbossedTextOut(
-      ::ca::applicationsp papp,
+      sp(::ca::application) papp,
       ::ca::graphics * pdc,
       ::ca::dib * pdibCache,
       const char * lpcsz,
@@ -164,7 +164,7 @@ public:
 
    
    void CacheEmboss(
-      ::ca::applicationsp papp,
+      sp(::ca::application) papp,
       ::ca::graphics * pdc, 
       const char * lpcsz, 
       strsize iLen, 
@@ -172,8 +172,8 @@ public:
 
 
    bool IsVisible();
-   void Validate(LPCRECT lpcrect = NULL);
-   void Invalidate(LPCRECT lpcrect = NULL);
+   void Validate(LPCRECT lpcrect = ::null());
+   void Invalidate(LPCRECT lpcrect = ::null());
    //void AddVmsFont(visual::font * pfont);
    //int32_t GetVmsFontCount();
    void SetPlacement(LPCRECT lpcrect);
@@ -231,7 +231,7 @@ public:
       visual::font * pFont);
    
    bool to(
-      ::ca::applicationsp papp,
+      sp(::ca::application) papp,
       ::ca::graphics *                  pdc,
       bool                  bDraw,
       LPRECT               lpRect,
@@ -239,7 +239,7 @@ public:
       bool                  bRecalcLayout);
 
    bool to(
-      ::ca::applicationsp papp,
+      sp(::ca::application) papp,
       ::ca::graphics *                  pdcForeground,
       bool                  bDraw,
       LPRECT               lpRect,

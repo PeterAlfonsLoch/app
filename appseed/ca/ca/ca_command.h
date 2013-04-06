@@ -12,13 +12,13 @@ namespace ca
    public:
 
       
-      command(::ca::applicationsp papp);
+      command(sp(::ca::application) papp);
       virtual ~command();
 
       virtual var run();
 
 
-      virtual void on_request(::ca::create_context * pcreationcontext);
+      virtual void on_request(sp(::ca::create_context) pcreationcontext);
 
 
       virtual string get_description();

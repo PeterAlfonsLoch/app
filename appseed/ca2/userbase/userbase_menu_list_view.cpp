@@ -5,13 +5,13 @@ namespace userbase
 {
 
 
-   menu_list_view::menu_list_view(::ca::applicationsp papp) :
+   menu_list_view::menu_list_view(sp(::ca::application) papp) :
       ca(papp),
       menu_base(papp),
       menu_list_window(papp)
    {
       m_etranslucency      = TranslucencyPresent;
-      m_pguieNotify        = NULL;
+      m_pguieNotify        = ::null();
       m_bAutoClose         = false;
    }
 
@@ -60,7 +60,7 @@ namespace userbase
 
    bool menu_list_view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
-      if(m_pguieNotify != NULL && m_pguieNotify != this)
+      if(m_pguieNotify != ::null() && m_pguieNotify != this)
       {
          if(m_pguieNotify->_001OnCmdMsg(pcmdmsg))
             return TRUE;

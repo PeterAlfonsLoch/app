@@ -93,7 +93,7 @@ public:
    ::ca::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(::ca::applicationsp papp);
+   command_target_interface(sp(::ca::application) papp);
 
 
    template < class T >
@@ -167,7 +167,7 @@ class CLASS_DECL_ca command_target :
 {
 public:
    command_target();
-   command_target(::ca::applicationsp papp);
+   command_target(sp(::ca::application) papp);
 
    void CommonConstruct();
 
@@ -238,7 +238,7 @@ public:
                      //  (probably a secondary popup menu)
 
 
-   cmd_ui(::ca::applicationsp papp);
+   cmd_ui(sp(::ca::application) papp);
 
 
 // Operations to do in ON_UPDATE_COMMAND_UI
@@ -267,7 +267,7 @@ inline void cmd_ui::ContinueRouting()
 class CTestCmdUI : public cmd_ui
 {
 public:
-   CTestCmdUI(::ca::applicationsp papp);
+   CTestCmdUI(sp(::ca::application) papp);
 
 public: // re-implementations only
    virtual void Enable(bool bOn);

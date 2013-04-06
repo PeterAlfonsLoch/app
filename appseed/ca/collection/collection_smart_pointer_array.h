@@ -11,7 +11,7 @@ public:
    {
    }
 
-   smart_pointer_array(::ca::applicationsp papp) :
+   smart_pointer_array(sp(::ca::application) papp) :
       ::ca::ca(papp),
       array < ::ca::smart_pointer < T > >(papp)
    {

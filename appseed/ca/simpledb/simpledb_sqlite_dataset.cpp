@@ -4,7 +4,7 @@ namespace sqlite
 {
    extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
-   set::set(::ca::applicationsp papp) :
+   set::set(sp(::ca::application) papp) :
       ca(papp),
       ::database::set()
    {

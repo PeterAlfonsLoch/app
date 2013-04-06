@@ -12,7 +12,7 @@ namespace filemanager
 
    filemanager::filemanager()
    {
-      m_ptemplateStd       = NULL;
+      m_ptemplateStd       = ::null();
 
    }
 
@@ -138,14 +138,14 @@ namespace filemanager
    {
 
       item_action * pitemaction = dynamic_cast < item_action * > (this);
-      if(pitemaction != NULL)
+      if(pitemaction != ::null())
       {
          if(pitemaction->file_manager_open_file(pdata, itema))
             return;
       }
 
 
-      ::ca::create_context_sp cc(get_app());
+      sp(::ca::create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
       request(cc);
 
@@ -156,8 +156,8 @@ namespace filemanager
    bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument)
    {
 
-      ::userex::pane_tab_view * ppanetabview = NULL;
-      if(pdocument->get_view() != NULL && pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > () != NULL)
+      ::userex::pane_tab_view * ppanetabview = ::null();
+      if(pdocument->get_view() != ::null() && pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > () != ::null())
       {
          ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > ();
          ppanetabview->set_cur_tab_by_id("file_manager");
@@ -223,7 +223,7 @@ namespace filemanager
 
       }
 
-      if(pszDefault != NULL && strlen(pszDefault) > 0)
+      if(pszDefault != ::null() && strlen(pszDefault) > 0)
       {
 
          strPath = pszDefault;
@@ -248,7 +248,7 @@ namespace filemanager
    }
 
 
-   void filemanager::on_request(::ca::create_context * pcreatecontext)
+   void filemanager::on_request(sp(::ca::create_context) pcreatecontext)
    {
       FileManagerCallbackInterface::on_request(pcreatecontext);
    }

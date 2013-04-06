@@ -5,7 +5,7 @@ namespace uinteraction
 {
 
 
-   interaction::interaction(::ca::applicationsp papp) :
+   interaction::interaction(sp(::ca::application) papp) :
       ca(papp)
    {
    }
@@ -27,7 +27,7 @@ namespace uinteraction
 
    }
 
-   frame::frame * interaction::get_frame_schema(const char * pszSchema)
+   sp(frame::frame) interaction::get_frame_schema(const char * pszSchema)
    {
       
       UNREFERENCED_PARAMETER(pszSchema);

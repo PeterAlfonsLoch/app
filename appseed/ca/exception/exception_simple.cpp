@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-simple_exception::simple_exception(::ca::applicationsp papp) :
+simple_exception::simple_exception(sp(::ca::application) papp) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp)
 {
 }
 
-simple_exception::simple_exception(::ca::applicationsp papp, const char * pszMessage) :
+simple_exception::simple_exception(sp(::ca::application) papp, const char * pszMessage) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp)

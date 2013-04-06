@@ -4,7 +4,7 @@
 namespace user
 {
 
-   printer::printer(::ca::applicationsp papp) :
+   printer::printer(sp(::ca::application) papp) :
       ca(papp)
    {
    }
@@ -22,7 +22,7 @@ namespace user
 
    ::ca::graphics * printer::create_graphics()
    {
-      return NULL;
+      return ::null();
    }
 
    bool printer::is_opened()

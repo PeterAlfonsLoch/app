@@ -9,7 +9,7 @@
 #define ITEMCHECKEDPADRIGHT 2
 #define ITEMCHECKEDPADBOTTOM 2
 
-simple_menu_bar::simple_menu_bar(::ca::applicationsp papp) :
+simple_menu_bar::simple_menu_bar(sp(::ca::application) papp) :
    ca(papp),
    simple_toolbar(papp),
    m_menu(papp)
@@ -64,11 +64,11 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
 
    TBBUTTON tbb;
    memset(&tbb, 0, sizeof(tbb));
-   tbb.iBitmap = NULL;
+   tbb.iBitmap = 0;
    tbb.fsState = TBSTATE_ENABLED;
    tbb.fsStyle = TBSTYLE_BUTTON;
-   tbb.dwData = NULL;
-   tbb.iString = NULL;
+   tbb.dwData = 0;
+   tbb.iString = 0;
 
    TBBUTTONINFOW tbbi;
    tbbi.cbSize = sizeof(tbbi);
@@ -85,7 +85,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    //_001Layout();
 
    {
-//      smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
+//      smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = ::null();
    }
 
    return true;
@@ -157,12 +157,12 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     tpm.rcExclude.bottom = rect.bottom;
     tpm.rcExclude.right  = rect.right;
 #endif
-//    smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
+//    smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = ::null();
 
 
 
 //    oswindow oswindowOld = __get_thread_state()->m_hTrackingWindow;
-//    m_oswindowFilter = NULL;
+//    m_oswindowFilter = ::null();
     return VMSR_SUCCESS;
 }
 
@@ -193,7 +193,7 @@ void simple_menu_bar::_001OnCreate(::ca::signal_object * pobj)
    if(pobj->previous())
       return;
 
-/*   MessageFilterHookManager * lpmfmh = NULL;
+/*   MessageFilterHookManager * lpmfmh = ::null();
    if(!MessageFilterHookManager::AppGetMessageFilterHookManager(&lpmfmh))
    {
       pcreate->set_lresult(-1);
@@ -201,7 +201,7 @@ void simple_menu_bar::_001OnCreate(::ca::signal_object * pobj)
       return;
    }
 
-   ASSERT(lpmfmh != NULL);
+   ASSERT(lpmfmh != ::null());
    lpmfmh->MessageFilterHook(this);*/
 
    //m_menuhook.Install((sp(::userbase::frame_window)) (sp(::user::interaction))this);
@@ -308,9 +308,9 @@ void simple_menu_bar::_001OnDestroy(::ca::signal_object * pobj)
 {
    pobj->previous();
 
-/*   MessageFilterHookManager * lpmfmh = NULL;
+/*   MessageFilterHookManager * lpmfmh = ::null();
    if(MessageFilterHookManager::AppGetMessageFilterHookManager(&lpmfmh)
-      && lpmfmh != NULL)
+      && lpmfmh != ::null())
    {
       lpmfmh->MessageFilterUnhook(this);
    }*/
@@ -370,11 +370,11 @@ void simple_menu_bar::OnUpdateCmdUI(sp(::userbase::frame_window)pTarget, bool bD
          // allow reflections
          if (::user::interaction::_001OnCommand(0,
             MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
-            &state, NULL))
+            &state, ::null()))
             continue;
 
          // allow the toolbar itself to have update handlers
-         if (::user::interaction::_001OnCommand(state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
+         if (::user::interaction::_001OnCommand(state.m_nID, CN_UPDATE_COMMAND_UI, &state, ::null()))
             continue;
 
          // allow the owner to process the update
@@ -566,7 +566,7 @@ bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCt
    // create the oswindow
    class rect rect;
    rect.null();
-   if (!::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID))
+   if (!::user::interaction::create(::null(), ::null(), dwStyle, rect, pParentWnd, nID))
       return FALSE;
 
    // sync up the sizes
@@ -721,7 +721,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       }
       else
       {
-         SetTimer(TIMER_HOVER, 50, NULL);
+         SetTimer(TIMER_HOVER, 50, ::null());
       }
       _001RedrawWindow();
    }

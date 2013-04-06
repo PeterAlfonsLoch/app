@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_tree_view::simple_tree_view(::ca::applicationsp papp) :
+simple_tree_view::simple_tree_view(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),

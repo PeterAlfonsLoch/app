@@ -7,7 +7,7 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
-void prop_id_debug(::ca::applicationsp papp);
+void prop_id_debug(sp(::ca::application) papp);
 
 
 
@@ -1353,7 +1353,7 @@ namespace ca
    }
 
 
-   property_set::property_set(::ca::applicationsp papp,
+   property_set::property_set(sp(::ca::application) papp,
       bool bAutoAdd, bool bMultiValue, bool bKeyCaseInsensitive) :
    ca(papp)
    {
@@ -2678,7 +2678,7 @@ namespace ca
 
 
 
-   relation_set::relation_set(::ca::applicationsp papp) :
+   relation_set::relation_set(sp(::ca::application) papp) :
       ca(papp),
       property_set(papp, true, true)
    {
@@ -2695,7 +2695,7 @@ namespace ca
 
 
 
-void prop_id_debug(::ca::applicationsp papp)
+void prop_id_debug(sp(::ca::application) papp)
 {
 
    comparable_array < ::id > idaSchema;

@@ -166,7 +166,7 @@ namespace exception
 
 #endif
 
-   engine::engine(::ca::applicationsp papp) :
+   engine::engine(sp(::ca::application) papp) :
       ca(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)

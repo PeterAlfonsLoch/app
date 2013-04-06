@@ -72,7 +72,7 @@ namespace uinteraction
 
 
 
-         frame(::ca::applicationsp papp);
+         frame(sp(::ca::application) papp);
          virtual ~frame();
 
 

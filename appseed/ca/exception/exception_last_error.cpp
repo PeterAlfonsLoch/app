@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-last_error_exception::last_error_exception(::ca::applicationsp papp) :
+last_error_exception::last_error_exception(sp(::ca::application) papp) :
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),

@@ -5,7 +5,7 @@
 namespace filemanager
 {
 
-   SimplePreview::SimplePreview(::ca::applicationsp papp) :
+   SimplePreview::SimplePreview(sp(::ca::application) papp) :
       ca(papp),
       ::userbase::view(papp),
       SimplePreviewInterface(papp)
@@ -27,7 +27,7 @@ namespace filemanager
    void SimplePreview::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
-      if(phint != NULL)
+      if(phint != ::null())
       {
          if(base < FileManagerViewUpdateHint > :: bases (phint))
          {
@@ -94,7 +94,7 @@ namespace filemanager
                }  
             }
             file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
-            if(pmanageruh != NULL)
+            if(pmanageruh != ::null())
             {
                if(!pmanageruh->m_strFind.is_empty())
                {

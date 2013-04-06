@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   list_data::list_data(::ca::applicationsp papp) :
+   list_data::list_data(sp(::ca::application) papp) :
       ::ca::ca(papp),
       ::user::list_data(papp),
       m_itema(papp)

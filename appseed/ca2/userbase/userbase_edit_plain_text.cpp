@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   edit_plain_text::edit_plain_text(::ca::applicationsp papp) :
+   edit_plain_text::edit_plain_text(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::edit_plain_text(papp),

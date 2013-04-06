@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   elastic_slider::elastic_slider(::ca::applicationsp papp) :
+   elastic_slider::elastic_slider(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp)
    {
@@ -33,7 +33,7 @@ namespace userbase
    void elastic_slider::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      SetTimer(1, 50, NULL);
+      SetTimer(1, 50, ::null());
    }
 
    void elastic_slider::_001OnTimer(::ca::signal_object * pobj)

@@ -20,7 +20,7 @@ namespace sqlite
 
    public:
    /* default constructor */
-     base(::ca::applicationsp papp);
+     base(sp(::ca::application) papp);
    /* destructor */
      ~base();
 

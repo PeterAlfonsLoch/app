@@ -50,7 +50,7 @@ namespace xml
       index       m_iEdit;
 
 
-      edit(::ca::applicationsp papp);
+      edit(sp(::ca::application) papp);
       virtual ~edit();
 
 

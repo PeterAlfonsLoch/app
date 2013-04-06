@@ -5,7 +5,7 @@ namespace ca
 {
 
    
-   os::os(::ca::applicationsp papp) :
+   os::os(sp(::ca::application) papp) :
       ca(papp)
    {
    }

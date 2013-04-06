@@ -30,10 +30,10 @@ namespace ca
 
 
 
-      virtual void on_allocation_error(::ca::applicationsp papp, ::ca::type_info & info);
-      sp(::ca::ca) alloc(::ca::applicationsp papp, ::ca::type_info & info);
-      sp(::ca::ca) alloc(::ca::applicationsp papp, const std_type_info & info);
-      virtual sp(::ca::ca) on_alloc(::ca::applicationsp papp, ::ca::type_info & info);
+      virtual void on_allocation_error(sp(::ca::application) papp, ::ca::type_info & info);
+      sp(::ca::ca) alloc(sp(::ca::application) papp, ::ca::type_info & info);
+      sp(::ca::ca) alloc(sp(::ca::application) papp, const std_type_info & info);
+      virtual sp(::ca::ca) on_alloc(sp(::ca::application) papp, ::ca::type_info & info);
       virtual void on_delete(sp(::ca::ca) pobject);
 
 

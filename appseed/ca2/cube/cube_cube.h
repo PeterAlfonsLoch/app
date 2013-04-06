@@ -37,10 +37,10 @@ namespace cube
       virtual bool finalize();
       virtual int32_t exit_instance();
 
-      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = NULL);
+      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = ::null());
 
-      virtual void register_bergedge_application(::ca::applicationsp papp);
-      virtual void unregister_bergedge_application(::ca::applicationsp papp);
+      virtual void register_bergedge_application(sp(::ca::application) papp);
+      virtual void unregister_bergedge_application(sp(::ca::application) papp);
 
 
       virtual bool base_support();
@@ -53,20 +53,20 @@ namespace cube
       bool set_history(::ca::history * phistory);
 
 
-      virtual ::bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      virtual sp(::platform::document)             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      virtual sp(::nature::document)               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual ::bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      virtual sp(::platform::document)             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      virtual sp(::nature::document)               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
 
       virtual bergedge::bergedge *             query_bergedge(index iEdge);
-      virtual void on_request(::ca::create_context * pcreatecontext);
-      virtual ::ca::applicationsp application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
+      virtual sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
       virtual bool is_cube();
 
-	   virtual ::ca::command_thread & command_thread();
+	   virtual sp(::ca::command_thread) command_thread();
 
       virtual ::cube::cube * get_cube();
 

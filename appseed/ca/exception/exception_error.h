@@ -12,7 +12,7 @@ public:
    vsstring m_strError;
 
 
-   error_exception(::ca::applicationsp papp, const char * pszError);
+   error_exception(sp(::ca::application) papp, const char * pszError);
    virtual ~error_exception();
 
    virtual bool get_error_message(string & str, PUINT pnHelpContext = ::null());

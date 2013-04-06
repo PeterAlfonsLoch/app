@@ -22,7 +22,7 @@ namespace bergedge
 
 
 
-      pane_view(::ca::applicationsp papp);
+      pane_view(sp(::ca::application) papp);
       virtual ~pane_view();
 
       using ::userbase::tab_view::on_show_view;

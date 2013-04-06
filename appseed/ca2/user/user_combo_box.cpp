@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   combo_box::combo_box(::ca::applicationsp papp) :
+   combo_box::combo_box(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp)
@@ -58,7 +58,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(get_app());
+      ::ca::brush_sp br(allocer());
 
       br->create_solid(ARGB(84, 255, 255, 255));
 
@@ -108,7 +108,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(get_app());
+      ::ca::brush_sp br(allocer());
 
 //      int32_t iMargin = rectClient.height() / 8;
 
@@ -122,7 +122,7 @@ namespace user
 
       pdc->FillRectangle(rectDropDown);
 
-      ::ca::graphics_path_sp path(get_app());
+      ::ca::graphics_path_sp path(allocer());
 
       point_array pointa;
 
@@ -176,7 +176,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(get_app());
+      ::ca::brush_sp br(allocer());
 
       rect rectDropDown;
 
@@ -258,7 +258,7 @@ namespace user
       br->create_solid(ARGB(210, 77, 184, 49));
 
 
-      ::ca::graphics_path_sp path(get_app());
+      ::ca::graphics_path_sp path(allocer());
 
       point_array pointa;
 
@@ -299,7 +299,7 @@ namespace user
    {
 
       //if(m_estyle == style_simply)
-      if(m_plist == NULL)
+      if(m_plist == ::null())
       {
 
          _001OnDrawSimply(pdc);
@@ -665,7 +665,7 @@ namespace user
 
 
 
-         if(m_plist != NULL)
+         if(m_plist != ::null())
          {
 
             m_plist->ShowWindow(SW_HIDE);
@@ -685,14 +685,14 @@ namespace user
    void combo_box::defer_create_combo_list()
    {
 
-      if(m_plist == NULL)
+      if(m_plist == ::null())
       {
 
          sp(::ca::ca) pca = Application.alloc(m_typeComboList);
 
          m_plist =  (pca);
 
-         if(m_plist == NULL)
+         if(m_plist == ::null())
          {
             delete pca;
             throw resource_exception(get_app());
@@ -705,7 +705,7 @@ namespace user
       if(!m_plist->IsWindow())
       {
 
-         if(!m_plist->CreateEx(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
+         if(!m_plist->CreateEx(0, ::null(), "combo_list", 0, rect(0, 0, 0, 0), ::null(), 0, ::null()))
          {
             m_plist.release();
             throw resource_exception(get_app());
@@ -754,7 +754,7 @@ namespace user
       }
 
 
-      ::ca::font_sp fontxyz(get_app());
+      ::ca::font_sp fontxyz(allocer());
 
       rect rectClient;
 

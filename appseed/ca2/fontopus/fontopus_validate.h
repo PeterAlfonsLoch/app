@@ -28,7 +28,7 @@ namespace ca
          void *                                    m_pvOldWindow;
          
 
-         validate(::ca::applicationsp papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+         validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
          virtual ~validate();
 
 
@@ -49,7 +49,7 @@ namespace ca
          virtual void page1(const stringa & straMatter = stringa());
          virtual void pageMessage(const stringa & stra, ::ca::property_set & set);
 
-         //virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
+         //virtual ::fontopus::user * get_user(const char * pszHost = ::null(), const char * pszSessid = ::null());
          virtual auth * get_auth();
          //virtual bool get_license(const char * pszId);
 

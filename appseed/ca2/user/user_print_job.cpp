@@ -4,7 +4,7 @@
 namespace user
 {
 
-   print_job::print_job(::ca::applicationsp papp) :
+   print_job::print_job(sp(::ca::application) papp) :
       ca(papp),
       ::ca::print_job(papp),
       ::ca::job(papp),
@@ -27,7 +27,7 @@ namespace user
          throw "printer not opened";
       }
 
-      if(m_pview == NULL)
+      if(m_pview == ::null())
       {
          throw "a view should collaborate";
       }

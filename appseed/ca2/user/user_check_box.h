@@ -8,7 +8,7 @@ namespace user
       virtual public check_interface
    {
    public:
-      check_box(::ca::applicationsp papp);
+      check_box(sp(::ca::application) papp);
       virtual ~check_box();
 
    protected:

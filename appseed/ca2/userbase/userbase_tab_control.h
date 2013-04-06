@@ -9,7 +9,7 @@ namespace userbase
    public:
 
 
-      tab_control(::ca::applicationsp papp);
+      tab_control(sp(::ca::application) papp);
       virtual ~tab_control();
 
 

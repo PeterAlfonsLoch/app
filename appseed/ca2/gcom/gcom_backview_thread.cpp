@@ -9,13 +9,13 @@ namespace gcom
       const UINT thread::MESSAGE_BACKVIEW = WM_APP + 123;
       const WPARAM thread::WPARAM_BACKVIEW_IMAGELOADED = 0;
 
-      thread::thread(::ca::applicationsp papp) :
+      thread::thread(sp(::ca::application) papp) :
          ca(papp),
          ::ca::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
-         m_pbackviewinterface = NULL;
+         m_pbackviewinterface = ::null();
       }
 
       thread::~thread()
@@ -55,7 +55,7 @@ namespace gcom
             THREAD_PRIORITY_IDLE,
             0,
             0,
-            NULL);*/
+            ::null());*/
       }
 
       /*void thread::OnImageLoaded(HBITMAP hbitmap)
@@ -71,9 +71,9 @@ namespace gcom
       //    if(iEconoMode != CVMSApp::SaveMemory)
         //  {
          ::ca::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
-          if(pbmpOld != NULL)
+          if(pbmpOld != ::null())
           {
-              if(hBitmapOld != NULL)
+              if(hBitmapOld != ::null())
               {
                  // ASSERT(pbmpOld->GetSafeHandle() == hBitmapOld);
               }
@@ -84,7 +84,7 @@ namespace gcom
               TRACE("CXfplayerThreadV1::OnImageLoaded:Bitmap not selected\n");
           }
           //}
-          if(hBitmapOld != NULL)
+          if(hBitmapOld != ::null())
           {
               if(hBitmapOld != graphics.m_bmpBackViewSourceOld.GetSafeHandle())
               {
@@ -97,7 +97,7 @@ namespace gcom
           }
          slGdi.unlock();
 
-         if(pbmpOld == NULL)
+         if(pbmpOld == ::null())
          {
             delete_object(hbitmap);
               pinterface->BackViewImageChangePostEvent(backview::Main::CImageChange::EventLoadFailed);
@@ -105,9 +105,9 @@ namespace gcom
          }
           //TRACE("CXfplayerThreadV1::TranslateUserMessage 3 slGdi.UnLock\n");
          
-          if(pinterface == NULL)
+          if(pinterface == ::null())
               return;
-         if(hbitmap != NULL)
+         if(hbitmap != ::null())
             //pview->PostMessage(WM_USER, 17, pview->BkImageChangeEventLoaded);
               pinterface->BackViewImageChangePostEvent(backview::Main::CImageChange::EventLoaded);
               //pview->BackgroundImageChangeStateMachine(pview->BkImageChangeEventLoaded);
@@ -127,7 +127,7 @@ namespace gcom
          UNREFERENCED_PARAMETER(cx);
          UNREFERENCED_PARAMETER(cy);
          UNREFERENCED_PARAMETER(iUserData);
-          ASSERT(GetMainWnd() == NULL);
+          ASSERT(GetMainWnd() == ::null());
           ASSERT(FALSE);
 
           /*
@@ -200,7 +200,7 @@ namespace gcom
                return;
                  TRACE("thread::OnBackViewMessage WPARAM_BACKVIEW_IMAGELOADED\n");
                load_image  * lploadimage = (load_image *) pbase->m_lparam;
-               if(lploadimage != NULL)
+               if(lploadimage != ::null())
                {
                   lploadimage->OnImageLoaded();
                }
@@ -212,12 +212,12 @@ namespace gcom
       void thread::OnUserMessage(::ca::signal_object * pobj)
       {
          SCAST_PTR(::ca::message::base, pbase, pobj);
-          ASSERT(GetMainWnd() == NULL);
-         if(pbase->m_wparam == 1) //&& m_pImageLoader != NULL)
+          ASSERT(GetMainWnd() == ::null());
+         if(pbase->m_wparam == 1) //&& m_pImageLoader != ::null())
          {
             ASSERT(FALSE);
       //      _bstr_t * pBstr = (_bstr_t *) lparam;
-      //      m_pImageLoader->load_image(*pBstr, (int32_t) NULL);
+      //      m_pImageLoader->load_image(*pBstr, (int32_t) ::null());
       //      delete pBstr;
          }
          else if(pbase->m_wparam == 2)
@@ -293,8 +293,8 @@ namespace gcom
             ASSERT(FALSE);
       /*        TRACE("\nCXfplayerThreadV3::TranslateUserMessage 23\n");
               LPONLOADIMAGESTRUCTURE lpoli = (LPONLOADIMAGESTRUCTURE) lparam;
-              if(lpoli == NULL)
-                  OnImageLoaded(NULL);
+              if(lpoli == ::null())
+                  OnImageLoaded(::null());
               else
                   OnImageLoaded(lpoli->m_hbitmap);
               delete lpoli;*/
@@ -351,7 +351,7 @@ namespace gcom
          if(cy <= 0)
             cy = 1;
          single_lock sl(&m_mutexBitmap, TRUE);
-         if(m_bitmap.m_hObject == NULL)
+         if(m_bitmap.m_hObject == ::null())
              return;*/
          /*double horizRate, vertRate, rate;
           BITMAP bm;
@@ -401,14 +401,14 @@ namespace gcom
             THREAD_PRIORITY_IDLE,
             0,
             0,
-            NULL);*/
+            ::null());*/
       }
 
       void thread::StretchImageAsync(LPSTRETCHIMAGESTRUCTURE lpSi, bool bBitmapLocked)
       {
          UNREFERENCED_PARAMETER(bBitmapLocked);
          uint32_t dwThreadID = 0;
-          ::create_thread(NULL, 0, ThreadProcStretchImage, lpSi, 0, &dwThreadID);
+          ::create_thread(::null(), 0, ThreadProcStretchImage, lpSi, 0, &dwThreadID);
       }
 
       UINT c_cdecl thread::ThreadProcLoadImage(LPVOID lpParameter)
@@ -419,7 +419,7 @@ namespace gcom
 
 
          if(!Sys(lploadimage->GetThread()->get_app()).visual().imaging().LoadImageSync(lploadimage->m_pdib, lploadimage->m_strImagePath, lploadimage->GetThread()->get_app()))
-            lploadimage->m_pdib = NULL;
+            lploadimage->m_pdib = ::null();
 
          lploadimage->OnImageLoaded();
          

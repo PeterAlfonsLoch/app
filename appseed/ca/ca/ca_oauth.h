@@ -23,7 +23,7 @@ namespace ca
       virtual public ::ca::object
    {
    public:
-       oauth(::ca::applicationsp papp);
+       oauth(sp(::ca::application) papp);
        virtual ~oauth();
 
        /* OAuth public methods used by twitCurl */

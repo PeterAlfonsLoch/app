@@ -47,7 +47,7 @@ namespace datetime
       ::user::str_context *   m_pstrcontext;
 
 
-      scanner(::ca::applicationsp papp, ::user::str_context * pstrcontext);
+      scanner(sp(::ca::application) papp, ::user::str_context * pstrcontext);
       virtual ~scanner();
 
       void initialize(const char * psz);

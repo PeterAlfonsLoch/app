@@ -14,13 +14,13 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    form_view(puiParent->get_app())
 {
    m_strMatter = pszMatter;
-   m_pdocument    = NULL;
-   m_pframe       = NULL;
+   m_pdocument    = ::null();
+   m_pframe       = ::null();
    m_ulFlags      &= ~::ca::ca::flag_auto_delete;
 }
 
 
-dialog::dialog(::ca::applicationsp papp) :
+dialog::dialog(sp(::ca::application) papp) :
    ca(papp),
    userbase::view(papp),
    user::scroll_view(papp),
@@ -31,22 +31,22 @@ dialog::dialog(::ca::applicationsp papp) :
    html_form_view(papp),
    form_view(papp)
 {
-   m_pdocument    = NULL;
-   m_pframe       = NULL;
+   m_pdocument    = ::null();
+   m_pframe       = ::null();
    m_ulFlags      &= ~::ca::ca::flag_auto_delete;
 }
 
 dialog::~dialog()
 {
-   if(m_pdocument != NULL)
+   if(m_pdocument != ::null())
    {
       m_pdocument->on_close_document();
-      m_pdocument = NULL;
+      m_pdocument = ::null();
    }
-   if(m_pframe != NULL)
+   if(m_pframe != ::null())
    {
 //      m_pframe->DestroyWindow();
-     // m_pframe = NULL;
+     // m_pframe = ::null();
    }
 }
 
@@ -54,7 +54,7 @@ dialog::~dialog()
 bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 {
 
-   if(pszMatter != NULL && *pszMatter != '\0')
+   if(pszMatter != ::null() && *pszMatter != '\0')
    {
       m_strMatter = pszMatter;
    }
@@ -63,8 +63,8 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 
    set["hold"] = false;
 
-   m_pdocument = Application.userex().create_form(this, NULL, Bergedge.get_view(), set);
-   if(m_pdocument == NULL)
+   m_pdocument = Application.userex().create_form(this, ::null(), Bergedge.get_view(), set);
+   if(m_pdocument == ::null())
    {
       string str;
       str.Format("Could not show dialog %s", pszMatter);
@@ -72,7 +72,7 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
       return false;
    }
 
-   if(ppropertyset != NULL)
+   if(ppropertyset != ::null())
    {
 
       m_pdocument->get_html_data()->m_propertyset = *ppropertyset;

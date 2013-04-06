@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   xml_data::xml_data(::ca::applicationsp papp, ::xml::parse_info * pparseinfo) :
+   xml_data::xml_data(sp(::ca::application) papp, ::xml::parse_info * pparseinfo) :
       ::xml::document(papp, pparseinfo)
    {
 

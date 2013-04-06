@@ -908,7 +908,7 @@ namespace user
 
    }
 
-   interaction_ptr_array::interaction_ptr_array(::ca::applicationsp papp) :
+   interaction_ptr_array::interaction_ptr_array(sp(::ca::application) papp) :
       ca(papp)
    {
 

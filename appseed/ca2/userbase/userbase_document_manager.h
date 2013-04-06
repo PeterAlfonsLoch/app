@@ -15,7 +15,7 @@ namespace userbase
    public:
       
       
-      document_manager(::ca::applicationsp papp);
+      document_manager(sp(::ca::application) papp);
       virtual ~document_manager();
 
 

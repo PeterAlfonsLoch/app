@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(::ca::applicationsp papp);
+      library_class(sp(::ca::application) papp);
       ~library_class();
 
 
@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-      ::ca::applicationsp get_app() const;
+      sp(::ca::application) get_app() const;
 
    };
 

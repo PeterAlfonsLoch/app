@@ -492,7 +492,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
       // free in reverse order to make it easier to debug
       index i = m_nBlockSize - 1;
       passoc += i;
-      passoc->m_pnext = m_passocFree;
+      passoc->m_pnext = ::null();
       passoc->m_pprev = ::null();
       m_passocFree = passoc;
       i--;
@@ -504,6 +504,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
          m_passocFree = passoc;
 
       }
+      m_passocFree->m_pprev = :: null();
    }
 
    ENSURE(m_passocFree != ::null());  // we must have something
@@ -528,15 +529,15 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
    if(m_passocHead != NULL)
    {
 
-      m_passocHead->m_pnext   = passoc;
+      m_passocHead->m_pprev   = passoc;
 
    }
 
-   passoc->m_pprev            = m_passocHead;
+   passoc->m_pnext            = m_passocHead;
    
    m_passocHead               = passoc;
 
-   m_passocHead->m_pnext      = NULL;
+   m_passocHead->m_pprev      = NULL;
 
    m_nCount++;
    
@@ -555,7 +556,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::free_assoc(assoc * pas
    if(m_passocHead == passoc)
    {
 
-      m_passocHead = m_passocHead->m_pprev;
+      m_passocHead = m_passocHead->m_pnext;
 
    }
 

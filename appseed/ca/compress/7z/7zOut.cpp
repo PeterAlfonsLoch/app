@@ -29,7 +29,7 @@ static HRESULT WriteBytes(::ca::writer *stream, const void *data, ::primitive::m
 
 namespace n7z
 {
-   COutArchive::COutArchive(::ca::applicationsp papp) :
+   COutArchive::COutArchive(sp(::ca::application) papp) :
       ca(papp)
    {
      _outByte.create(1 << 16);

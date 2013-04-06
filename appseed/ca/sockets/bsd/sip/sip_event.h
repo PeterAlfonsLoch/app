@@ -16,7 +16,7 @@ namespace sockets
 
       e_event     m_eevent;
 
-      sip_event(::ca::applicationsp papp);
+      sip_event(sp(::ca::application) papp);
    };
 
 

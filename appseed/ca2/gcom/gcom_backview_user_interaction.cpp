@@ -13,7 +13,7 @@ namespace gcom
       {
 
 
-         interaction::interaction(::ca::applicationsp papp) :
+         interaction::interaction(sp(::ca::application) papp) :
             ca(papp),
             ::userbase::view(papp),
             Interface(papp)
@@ -69,7 +69,7 @@ namespace gcom
             }
             if(data.is_signalized(InterfaceDataEnhancedMetaFile))
             {
-               data.m_henhmetafile = NULL;
+               data.m_henhmetafile = ::null();
             }
          }
 
@@ -111,7 +111,7 @@ namespace gcom
          void interaction::initialize_user_interaction()
          {
             sp(::simple_frame_window) pframe = GetTypedParent < ::simple_frame_window > ();
-            if(pframe != NULL && pframe->m_workset.m_pframeschema != NULL)
+            if(pframe != ::null() && pframe->m_workset.m_pframeschema != ::null())
             {
                color c;
                c.set_rgb(pframe->m_workset.m_pframeschema->get_border_main_body_color());

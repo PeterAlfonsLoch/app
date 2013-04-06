@@ -1,6 +1,6 @@
 #include "framework.h"
 
-document_template::document_template(::ca::applicationsp papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
+document_template::document_template(sp(::ca::application) papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
    ca(papp)
 {
    
@@ -113,7 +113,7 @@ sp(::user::document_interface) document_template::create_new_document()
 /////////////////////////////////////////////////////////////////////////////
 // Default frame creation
 
-sp(frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(frame_window) pOther, ::ca::create_context * pcreatecontext)
+sp(frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(frame_window) pOther, sp(::ca::create_context) pcreatecontext)
 {
 
    // create a frame wired to the specified ::user::document_interface

@@ -93,7 +93,7 @@ namespace user
          index                               m_iItem;
 
 
-         timer_array(::ca::applicationsp papp);
+         timer_array(sp(::ca::application) papp);
 
 
          virtual void on_delete(sp(interaction) poc);
@@ -160,7 +160,7 @@ namespace user
 
 
       interaction();
-      interaction(::ca::applicationsp papp);
+      interaction(sp(::ca::application) papp);
       virtual ~interaction();
 
 
@@ -270,13 +270,13 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         ::ca::create_context* pContext = ::null());
+         sp(::ca::create_context) pContext = ::null());
       using ::ca::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         ::ca::create_context* pContext = ::null());
+         sp(::ca::create_context) pContext = ::null());
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
@@ -572,7 +572,7 @@ namespace user
 } // namespace user
 
 CLASS_DECL_ca sp(::user::interaction) WINAPI CreateGuieEx(
-   ::ca::applicationsp papp,
+   sp(::ca::application) papp,
     uint32_t dwExStyle,
     const char * lpClassName,
     const char * lpWindowName,

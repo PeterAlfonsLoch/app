@@ -42,7 +42,7 @@ namespace mail
 
 
 
-      pop3(::ca::applicationsp papp);
+      pop3(sp(::ca::application) papp);
 
       virtual void update_lists();
 

@@ -15,7 +15,7 @@ namespace cube
    {
 
 
-      m_prunstartinstaller       = NULL;
+      m_prunstartinstaller       = ::null();
       m_bLicense                 = false;
       m_strAppName               = "cube";
       m_strInstallToken          = "cube";
@@ -132,12 +132,12 @@ namespace cube
 
    bergedge::bergedge * cube::query_bergedge(index iEdge)
    {
-      sp(::plane::session) psession = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
+      sp(::plane::session) psession = ::null();
+      if(m_pbergedgemap == ::null())
+         return ::null();
       if(!m_pbergedgemap->Lookup(iEdge, psession))
       {
-         return NULL;
+         return ::null();
       }
       return dynamic_cast < ::bergedge::bergedge * > (psession->m_pbergedge);
    }
@@ -145,14 +145,14 @@ namespace cube
 
    bergedge::bergedge * cube::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      sp(::plane::session) psession = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
+      sp(::plane::session) psession = ::null();
+      if(m_pbergedgemap == ::null())
+         return ::null();
       if(!m_pbergedgemap->Lookup(iEdge, psession))
       {
          psession =  (create_application("application", "session", true, pbiasCreation));
-         if(psession == NULL)
-            return NULL;
+         if(psession == ::null())
+            return ::null();
          psession->m_iEdge = iEdge;
          m_pbergedgemap->set_at(iEdge, psession);
       }
@@ -172,7 +172,7 @@ namespace cube
       return pbergedge->get_nature();
    }
 
-   ::ca::applicationsp cube::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca::application) cube::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -190,7 +190,7 @@ namespace cube
 
 
 
-   void cube::register_bergedge_application(::ca::applicationsp papp)
+   void cube::register_bergedge_application(sp(::ca::application) papp)
    {
 
 
@@ -199,7 +199,7 @@ namespace cube
 
    }
 
-   void cube::unregister_bergedge_application(::ca::applicationsp papp)
+   void cube::unregister_bergedge_application(sp(::ca::application) papp)
    {
 
       System.unregister_bergedge_application(papp);
@@ -230,7 +230,7 @@ namespace cube
    }
 
 
-   void cube::on_request(::ca::create_context * pcreatecontext)
+   void cube::on_request(sp(::ca::create_context) pcreatecontext)
    {
       ::bergedge::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       pbergedge->request(pcreatecontext);
@@ -255,7 +255,7 @@ namespace cube
       {
          iNewEdge++;
       }
-      if(get_bergedge(iNewEdge, pbiasCreation) == NULL)
+      if(get_bergedge(iNewEdge, pbiasCreation) == ::null())
          return -1;
       m_iNewEdge = iNewEdge + 1;
       return iNewEdge;
@@ -275,7 +275,7 @@ namespace cube
    bool cube::set_main_init_data(::ca::main_init_data * pdata)
    {
 
-      if(pdata == NULL)
+      if(pdata == ::null())
       {
          if(!::cube::application::set_main_init_data(pdata))
             return false;
@@ -295,7 +295,7 @@ namespace cube
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)
          {
-            command().add_line(" : show_platform=1");
+            command()->add_line(" : show_platform=1");
          }
       }
       else
@@ -312,7 +312,7 @@ namespace cube
             strsize iFind = strCommandLine.find(" ", 1);
             strCommandLine = strCommandLine.Mid(iFind + 1);
          }
-         command().add_line(strCommandLine);
+         command()->add_line(strCommandLine);
       }
 
       if(!::cube::application::set_main_init_data(pdata))
@@ -323,9 +323,9 @@ namespace cube
    }
 
 
-   ::ca::command_thread & cube::command_thread()
+   sp(::ca::command_thread) cube::command_thread()
    {
-	   return *m_pcommandthread;
+	   return m_pcommandthread;
    }
 
 

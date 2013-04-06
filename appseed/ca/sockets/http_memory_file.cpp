@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   memory_file::memory_file(::ca::applicationsp papp) :
+   memory_file::memory_file(sp(::ca::application) papp) :
       ca(papp),
       ::primitive::memory_file(papp),
       primitive::memory_container(papp)

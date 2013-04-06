@@ -5,7 +5,7 @@ namespace ca2 // ca8 + cube
 {
 
 
-   keyboard_layout::keyboard_layout(::ca::applicationsp papp) :
+   keyboard_layout::keyboard_layout(sp(::ca::application) papp) :
       ca(papp),
       ::user::list_data(papp),
       ::userbase::split_layout(papp),
@@ -13,8 +13,8 @@ namespace ca2 // ca8 + cube
       ::userbase::split_view(papp),
       place_holder_container(papp)
    {
-      m_pdoc   = NULL;
-      m_pview  = NULL;
+      m_pdoc   = ::null();
+      m_pview  = ::null();
    }
 
    keyboard_layout::~keyboard_layout()
@@ -41,9 +41,9 @@ namespace ca2 // ca8 + cube
       ::user::list_column column;
       column.m_iWidth = 584;
       m_plistview->_001InsertColumn(column);
-      if(m_plistview == NULL)
+      if(m_plistview == ::null())
       {
-         System.simple_message_box(NULL, "Could not create list view");
+         System.simple_message_box(::null(), "Could not create list view");
       }
 
 
@@ -59,7 +59,7 @@ namespace ca2 // ca8 + cube
       }
 
       m_layoutida.quick_sort(true);
-      if(&System.user()->keyboard().layout() != NULL)
+      if(&System.user()->keyboard().layout() != ::null())
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
@@ -86,7 +86,7 @@ namespace ca2 // ca8 + cube
       m_plistview->_001OnUpdateItemCount();
       SetPane(0, m_plistview, false);
 
-      if(m_pdoc != NULL)
+      if(m_pdoc != ::null())
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
          m_pview->m_pcallback = this;

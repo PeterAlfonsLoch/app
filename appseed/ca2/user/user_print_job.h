@@ -12,7 +12,7 @@ namespace user
 
       sp(printer)     m_phprinter;
 
-      print_job(::ca::applicationsp papp);
+      print_job(sp(::ca::application) papp);
       virtual ~print_job();
 
 

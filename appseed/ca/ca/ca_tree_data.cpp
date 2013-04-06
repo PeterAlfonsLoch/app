@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   tree_data::tree_data(::ca::applicationsp papp) :
+   tree_data::tree_data(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data(papp)
    {

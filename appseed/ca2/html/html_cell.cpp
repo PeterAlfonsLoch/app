@@ -8,7 +8,7 @@ namespace html
    namespace impl
    {
 
-      cell::cell(::ca::applicationsp papp) :
+      cell::cell(sp(::ca::application) papp) :
          ca(papp),
          user::scroll_view(papp),
          user::edit_plain_text(papp),
@@ -36,10 +36,10 @@ namespace html
          while(true)
          {
             pelemental = pelemental->m_pparent;
-            if(pelemental == NULL)
-               return NULL;
+            if(pelemental == ::null())
+               return ::null();
             table * ptable = dynamic_cast < table * > (pelemental->m_pimpl);
-            if(ptable != NULL)
+            if(ptable != ::null())
                return ptable;
          }
       }
@@ -50,10 +50,10 @@ namespace html
          while(true)
          {
             pelemental = pelemental->m_pparent;
-            if(pelemental == NULL)
-               return NULL;
+            if(pelemental == ::null())
+               return ::null();
             table_row * prow = dynamic_cast < table_row * > (pelemental->m_pimpl);
-            if(prow != NULL)
+            if(prow != ::null())
                return prow;
          }
       }
@@ -91,7 +91,7 @@ namespace html
 
          point pointBound = pcellParent->get_bound_point();
          float l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
-         if(get_row() != NULL)
+         if(get_row() != ::null())
          {
             l = get_row()->get_bound_point().x;
             if(pcellParent->is_tag())
@@ -179,10 +179,10 @@ namespace html
          }
 
          table * ptable = get_table();
-         if(ptable == NULL)
+         if(ptable == ::null())
             return;
          table_row * prow = get_row();
-         if(prow == NULL)
+         if(prow == ::null())
             return;
 
 
@@ -210,7 +210,7 @@ namespace html
             // if first cell in this column has a width,
             // copy this cell width
             cell * pcellFirst = ptable->m_cellholdera[m_iColBeg][0].m_pcell;
-            if(pcellFirst != NULL && pcellFirst->m_flags.is_signalized(FlagWidth))
+            if(pcellFirst != ::null() && pcellFirst->m_flags.is_signalized(FlagWidth))
             {
                m_flags.signalize(FlagWidth);
                if(pcellFirst->m_flags.is_signalized(FlagWidthPercent))
@@ -296,10 +296,10 @@ namespace html
          }
 
          table * ptable = get_table();
-         if(ptable == NULL)
+         if(ptable == ::null())
             return;
          table_row * prow = get_row();
-         if(prow == NULL)
+         if(prow == ::null())
             return;
 
          ::html::impl::elemental::implement_phase2(pdata);
@@ -426,7 +426,7 @@ namespace html
       {
          index iMinCol = 0;
          table_row * prow = get_row();
-         if(prow != NULL)
+         if(prow != ::null())
          {
             for(int32_t i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
@@ -434,7 +434,7 @@ namespace html
                if(pelemental == m_pelemental)
                   break;
                cell * pcell = dynamic_cast < cell * > (pelemental->m_pimpl);
-               if(pcell != NULL)
+               if(pcell != ::null())
                {
                   iMinCol += pcell->m_iColSpan;
                }
@@ -457,7 +457,7 @@ namespace html
       cell::holder::holder()
       {
          
-         m_pcell  =   NULL;
+         m_pcell  =   ::null();
          m_iCol      = -1;
          m_iRow      = -1;
 
@@ -466,7 +466,7 @@ namespace html
       cell::holder::holder(int32_t iCol, int32_t iRow)
       {
 
-         m_pcell     = NULL;
+         m_pcell     = ::null();
          m_iCol      = iCol;
          m_iRow      = iRow;
 
@@ -488,7 +488,7 @@ namespace html
 
       bool cell::holder::is_null()
       {
-         return m_pcell == NULL;
+         return m_pcell == ::null();
       }
 
       cell::holder & cell::holder::operator = (const class holder & holder)
@@ -563,7 +563,7 @@ namespace html
 
          float cxMax;
 
-         if(get_table() != NULL)
+         if(get_table() != ::null())
          {
 
             ::count n = get_table()->m_columna.get_size();

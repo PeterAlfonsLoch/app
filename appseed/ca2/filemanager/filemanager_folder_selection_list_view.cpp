@@ -5,7 +5,7 @@
 #include "FileManagerViewUpdateHint.h"
 
 
-folder_selection_list_view::folder_selection_list_view(::ca::applicationsp papp) :
+folder_selection_list_view::folder_selection_list_view(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -67,9 +67,9 @@ void folder_selection_list_view::CreateViews()
 
    m_ptreeview = create_view  < filemanager::SimpleFolderTreeView > ();
 
-   if(m_ptreeview == NULL)
+   if(m_ptreeview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::view");
    }
 
    m_ptreeview->m_pfilemanagerinterface = this;
@@ -78,9 +78,9 @@ void folder_selection_list_view::CreateViews()
 
    m_plistview = create_view < folder_list_view > ();
 
-   if(m_plistview == NULL)
+   if(m_plistview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::view");
    }
 
    m_plistview->m_pfilemanagerinterface = this;
@@ -94,12 +94,12 @@ void folder_selection_list_view::OnFileManagerBrowse()
    {
       FileManagerViewUpdateHint uh;
       uh.set_type(FileManagerViewUpdateHint::TypePreSynchronize);
-      get_document()->update_all_views(NULL, 0, &uh);
+      get_document()->update_all_views(::null(), 0, &uh);
    }
    {
       FileManagerViewUpdateHint uh;
       uh.set_type(FileManagerViewUpdateHint::TypeSynchronize);
-      get_document()->update_all_views(NULL, 0, &uh);
+      get_document()->update_all_views(::null(), 0, &uh);
    }
 }
 

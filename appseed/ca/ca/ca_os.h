@@ -21,7 +21,7 @@ namespace ca
    public:
 
 
-      os(::ca::applicationsp papp);
+      os(sp(::ca::application) papp);
       virtual ~os();
 
 

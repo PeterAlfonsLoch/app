@@ -18,7 +18,7 @@ namespace filemanager
       int32_t         m_iCurFile;
 
 
-      SimplePreviewInterface(::ca::applicationsp papp);
+      SimplePreviewInterface(sp(::ca::application) papp);
       virtual ~SimplePreviewInterface();
 
 

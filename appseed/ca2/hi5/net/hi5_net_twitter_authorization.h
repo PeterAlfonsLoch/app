@@ -35,7 +35,7 @@ namespace hi5
             bool                                      m_bLicense;
             bool                                      m_bInteractive;
 
-            authorization(::ca::applicationsp papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+            authorization(sp(::ca::application) papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
             virtual ~authorization();
 
             void ensure_main_document();

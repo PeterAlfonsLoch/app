@@ -225,7 +225,7 @@ namespace html
             m_box.get(rect);
             COLORREF cr;
             double d;
-            if(m_pelemental->m_style.get_alpha(NULL, pdata, m_pelemental, d))
+            if(m_pelemental->m_style.get_alpha(::null(), pdata, m_pelemental, d))
             {
                if(m_pelemental->get_background_color(cr))
                {
@@ -272,7 +272,7 @@ namespace html
             {
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::ca::pen_sp pen(pdata->get_app());
+               ::ca::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.left, m_border.crLeft);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -284,7 +284,7 @@ namespace html
                pa[1] = ::pointd(bIn.left, bIn.top);
                pa[2] = ::pointd(bIn.left, bIn.bottom);
                pa[3] = ::pointd(bOut.left, bOut.bottom);
-               ::ca::brush_sp brush(pdata->get_app());
+               ::ca::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crLeft);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -296,7 +296,7 @@ namespace html
             {
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               ::ca::pen_sp pen(pdata->get_app());
+               ::ca::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.top, m_border.crTop);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -308,7 +308,7 @@ namespace html
                pa[1] = ::pointd(bOut.right, bOut.top);
                pa[2] = ::pointd(bIn.right, bIn.top);
                pa[3] = ::pointd(bIn.left, bIn.top);
-               ::ca::brush_sp brush(pdata->get_app());
+               ::ca::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crTop);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -320,7 +320,7 @@ namespace html
             {
                point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::ca::pen_sp pen(pdata->get_app());
+               ::ca::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.right, m_border.crRight);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -332,7 +332,7 @@ namespace html
                pa[1] = ::pointd(bOut.right, bOut.bottom);
                pa[2] = ::pointd(bIn.right, bIn.bottom);
                pa[3] = ::pointd(bIn.right, bIn.top);
-               ::ca::brush_sp brush(pdata->get_app());
+               ::ca::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crRight);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -344,7 +344,7 @@ namespace html
             {
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::ca::pen_sp pen(pdata->get_app());
+               ::ca::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.bottom, m_border.crBottom);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -356,7 +356,7 @@ namespace html
                pa[1] = ::pointd(bIn.right, bIn.bottom);
                pa[2] = ::pointd(bOut.right, bOut.bottom);
                pa[3] = ::pointd(bOut.left, bOut.bottom);
-               ::ca::brush_sp brush(pdata->get_app());
+               ::ca::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crBottom);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -375,7 +375,7 @@ namespace html
       }
       bool elemental::has_link()
       {
-         if(m_pelemental->m_pparent != NULL)
+         if(m_pelemental->m_pparent != ::null())
          {
             return m_pelemental->m_pparent->m_pimpl->has_link();
          }
@@ -386,7 +386,7 @@ namespace html
       }
       string elemental::link()
       {
-         if(m_pelemental->m_pparent != NULL)
+         if(m_pelemental->m_pparent != ::null())
          {
             return m_pelemental->m_pparent->m_pimpl->link();
          }
@@ -510,7 +510,7 @@ namespace html
 
          ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (pimplChild);
 
-         if(pcell != NULL)
+         if(pcell != ::null())
          {
             if(pcell->m_iColBeg >= 0
             || pcell->m_iColEnd >= 0
@@ -616,7 +616,7 @@ namespace html
       float elemental::calc_width()
       {
 
-         if(m_pelemental != NULL && m_pelemental->m_pparent != NULL)
+         if(m_pelemental != ::null() && m_pelemental->m_pparent != ::null())
          {
 
             return m_pelemental->m_pparent->m_pimpl->calc_width();
@@ -702,8 +702,8 @@ namespace html
    elemental::elemental(data * pdata, elemental * pparent)
    {
       m_pparent      = pparent;
-      m_pimpl        = NULL;
-      m_pbase        = NULL;
+      m_pimpl        = ::null();
+      m_pbase        = ::null();
       m_pdata        = pdata;
    }
 
@@ -735,13 +735,13 @@ namespace html
       }
       else
       {
-         return NULL;
+         return ::null();
       }
    }
 
    string elemental::get_tag_name()
    {
-      if(m_pparent != NULL && m_propertyset.is_new_or_null("PropertyTag"))
+      if(m_pparent != ::null() && m_propertyset.is_new_or_null("PropertyTag"))
       {
          return m_pparent->m_propertyset["PropertyTag"];
       }
@@ -753,13 +753,13 @@ namespace html
 
    void elemental::implement_phase1(data * pdata)
    {
-      if(m_pbase == NULL)
+      if(m_pbase == ::null())
          return;
       string strTag = get_tag_name();
 //      bool tBody = strTag == "tbody";
 //      TRACE("elemental::implement_phase1\nstrTag=%s\n", strTag);
       tag * ptag = get_tag();
-      if(ptag != NULL)
+      if(ptag != ::null())
       {
          string str = ptag->get_attr_value("style");
          if(!str.is_empty())
@@ -782,7 +782,7 @@ namespace html
       }
 
 
-      if(m_pimpl == NULL)
+      if(m_pimpl == ::null())
       {
          if(strTag == "html" || strTag == "body" || strTag == "head"
          || strTag == "style")
@@ -861,10 +861,10 @@ namespace html
          }
       }
 
-      m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
-      m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
-      m_style.get_border_color("border", NULL, pdata, this, m_pimpl->m_border);
-      m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
+      m_style.get_surround_box("padding", ::null(), pdata, this, m_pimpl->m_padding);
+      m_style.get_border_box("border", ::null(), pdata, this, m_pimpl->m_border);
+      m_style.get_border_color("border", ::null(), pdata, this, m_pimpl->m_border);
+      m_style.get_surround_box("margin", ::null(), pdata, this, m_pimpl->m_margin);
 
       m_pimpl->implement_phase1(pdata, this);
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
@@ -875,8 +875,8 @@ namespace html
 
    void elemental::implement_phase2(data * pdata)
    {
-   //   ASSERT(m_pimpl != NULL);
-      if(m_pimpl == NULL)
+   //   ASSERT(m_pimpl != ::null());
+      if(m_pimpl == ::null())
          return;
       while(true)
       {
@@ -943,17 +943,17 @@ namespace html
 
    void elemental::layout_phase1(data * pdata)
    {
-      if(m_pimpl == NULL)
+      if(m_pimpl == ::null())
          return;
       // implement must be called before
-      ASSERT(m_pimpl != NULL);
+      ASSERT(m_pimpl != ::null());
       string strTag = get_tag_name();
 
-      if(m_pimpl != NULL)
+      if(m_pimpl != ::null())
       {
-         if(strTag == "html" || strTag == "body" || strTag == "head" || m_pparent == NULL)
+         if(strTag == "html" || strTag == "body" || strTag == "head" || m_pparent == ::null())
          {
-            if(m_pparent == NULL)
+            if(m_pparent == ::null())
             {
                m_pimpl->set_pos(
                   pdata,
@@ -1033,14 +1033,14 @@ namespace html
 
    void elemental::layout_phase2(data * pdata)
    {
-      if(m_pimpl == NULL)
+      if(m_pimpl == ::null())
          return;
       // implement must be called before
-      ASSERT(m_pimpl != NULL);
+      ASSERT(m_pimpl != ::null());
       string strTag = get_tag_name();
 //      tag * ptag = get_tag();
 
-      if(m_pimpl != NULL)
+      if(m_pimpl != ::null())
       {
          if(strTag == "html" || strTag == "body" || strTag == "head")
          {
@@ -1090,14 +1090,14 @@ namespace html
 
    void elemental::layout_phase3(data * pdata)
    {
-      if(m_pimpl == NULL)
+      if(m_pimpl == ::null())
          return;
 
       // implement must be called before
-      ASSERT(m_pimpl != NULL);
+      ASSERT(m_pimpl != ::null());
       string strTag = get_tag_name();
 
-      if(m_pimpl != NULL)
+      if(m_pimpl != ::null())
       {
          if(strTag == "html" || strTag == "body" || strTag == "head")
          {
@@ -1156,7 +1156,7 @@ namespace html
 
       /*
       index iIndex = -1;
-      if(m_pparent != NULL)
+      if(m_pparent != ::null())
       {
          for(int32_t i = 0; i < m_pparent->m_elementalptra.get_count(); i++)
          {
@@ -1169,7 +1169,7 @@ namespace html
       }*/
       ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
       float iTableBorder = 0;
-      if(pcell != NULL)
+      if(pcell != ::null())
       {
          if(pcell->get_table()->m_iBorder > 0)
          {
@@ -1181,7 +1181,7 @@ namespace html
          && (strTag == "td"
          || strTag == "table"))
       {
-         if(pcell != NULL && pcell->m_iColBeg == 0)
+         if(pcell != ::null() && pcell->m_iColBeg == 0)
          {
             pdata->m_layoutstate.m_x = pcell->get_table()->get_x();
             if(pcell->m_iRowBeg > 0)
@@ -1189,13 +1189,13 @@ namespace html
                pdata->m_layoutstate.m_x -= iTableBorder;
             }
          }
-         if(pcell != NULL)
+         if(pcell != ::null())
          {
             pdata->m_layoutstate.m_y = pcell->get_row()->get_y() + iTableBorder;
          }
          if(strTag == "table")
          {
-            if(m_pparent != NULL)
+            if(m_pparent != ::null())
             {
                pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
             }
@@ -1207,7 +1207,7 @@ namespace html
          }
          if(pdata->m_layoutstate.m_bLastCellX || m_style.m_propertyset["display"] == "table-cell")
          {
-            pdata->m_layoutstate.m_x += (pdata->m_layoutstate.m_bLastCellX ? pdata->m_layoutstate.m_cx : 0)  + (pcell == NULL ? 0 : (pcell->m_iColEnd - pcell->m_iColBeg + 1) * iTableBorder);
+            pdata->m_layoutstate.m_x += (pdata->m_layoutstate.m_bLastCellX ? pdata->m_layoutstate.m_cx : 0)  + (pcell == ::null() ? 0 : (pcell->m_iColEnd - pcell->m_iColBeg + 1) * iTableBorder);
             pdata->m_layoutstate.m_bLastCellX = false;
          }
          if(pdata->m_layoutstate.m_bLastCellY || m_style.m_propertyset["display"] == "table")
@@ -1227,7 +1227,7 @@ namespace html
       {
          if(pdata->m_layoutstate.m_bLastBlockX || m_style.m_propertyset["display"] == "block")
          {
-            if(m_pparent != NULL)
+            if(m_pparent != ::null())
             {
                pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
             }
@@ -1286,7 +1286,7 @@ namespace html
                //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
                pdata->m_layoutstate.m_cy = 0;
                pdata->m_layoutstate.m_cx = 0;
-               if(m_pparent != NULL)
+               if(m_pparent != ::null())
                {
                   pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
                }
@@ -1323,7 +1323,7 @@ namespace html
       {
          if(strTag.CompareNoCase("br") == 0)
          {
-            if(m_pparent != NULL)
+            if(m_pparent != ::null())
             {
                pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
             }
@@ -1385,14 +1385,14 @@ namespace html
          {
             m_elementalptra[i]->_001OnDraw(pdata);
          }
-         if(m_pimpl != NULL)
+         if(m_pimpl != ::null())
          {
             m_pimpl->_001OnDraw(pdata);
          }
       }
       else
       {
-         if(m_pimpl != NULL)
+         if(m_pimpl != ::null())
          {
             m_pimpl->_001OnDraw(pdata);
          }
@@ -1406,11 +1406,11 @@ namespace html
 
    void elemental::load(data * pdata, base * pbase)
    {
-      if(pdata == NULL)
+      if(pdata == ::null())
          return;
-      if(pdata->m_pform == NULL)
+      if(pdata->m_pform == ::null())
          return;
-      if(pbase == NULL)
+      if(pbase == ::null())
          return;
       ::ca::data::writing writing(pdata);
 
@@ -1440,9 +1440,9 @@ namespace html
          m_propertyset["PropertyBody"] = pvalue->get_value();
          if(m_pparent->m_propertyset["PropertyTag"] == "style")
          {
-            style_sheet stylesheet;
-            stylesheet.parse(pdata, pvalue->get_value());
-            pdata->m_stylesheeta.add(stylesheet);
+            sp(style_sheet) pstylesheet(new style_sheet);
+            pstylesheet->parse(pdata, pvalue->get_value());
+            pdata->m_stylesheeta.add(pstylesheet);
          }
       }
       else
@@ -1623,10 +1623,10 @@ namespace html
    bool elemental::get_background_color(COLORREF & cr)
    {
 
-      if(m_style.get_color("background-color", NULL, m_pdata, this, cr))
+      if(m_style.get_color("background-color", ::null(), m_pdata, this, cr))
          return true;
 
-      if(m_pparent != NULL && m_pparent->get_background_color(cr))
+      if(m_pparent != ::null() && m_pparent->get_background_color(cr))
          return true;
 
       cr = ARGB(127, 255, 255, 247);
@@ -1642,15 +1642,15 @@ namespace html
    elemental * elemental::get_element_by_name(id id)
    {
       if(m_pbase->get_type() == base::type_value)
-         return NULL;
+         return ::null();
       ::html::tag * ptag = m_pbase->get_tag();
       if(id == ptag->get_attr_value("name"))
          return this;
-      elemental * pelemental = NULL;
+      elemental * pelemental = ::null();
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          pelemental = m_elementalptra[i]->get_element_by_name(id);
-         if(pelemental != NULL)
+         if(pelemental != ::null())
             break;
       }
       return pelemental;
@@ -1659,15 +1659,15 @@ namespace html
    elemental * elemental::get_element_by_id(id id)
    {
       if(m_pbase->get_type() == base::type_value)
-         return NULL;
+         return ::null();
       ::html::tag * ptag = m_pbase->get_tag();
       if(id == ptag->get_attr_value("id"))
          return this;
-      elemental * pelemental = NULL;
+      elemental * pelemental = ::null();
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          pelemental = m_elementalptra[i]->get_element_by_id(id);
-         if(pelemental != NULL)
+         if(pelemental != ::null())
             break;
       }
       return pelemental;
@@ -1691,7 +1691,7 @@ namespace html
    elemental * elemental::hit_test(data * pdata, ::point pt)
    {
       string strTag = get_tag_name();
-      if(m_pimpl != NULL)
+      if(m_pimpl != ::null())
       {
          if(m_pimpl->hit_test(pdata, pt))
          {
@@ -1699,7 +1699,7 @@ namespace html
             for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
             {
                pelemental = m_elementalptra[i]->hit_test(pdata, pt);
-               if(pelemental != NULL)
+               if(pelemental != ::null())
                   return pelemental;
             }
             if(m_pimpl->is_value() || m_elementalptra.get_size() <= 0)
@@ -1707,11 +1707,11 @@ namespace html
                string strBody = m_propertyset["PropertyBody"];
                strBody.trim();
                if(strBody.is_empty())
-                  return NULL;
+                  return ::null();
             }
             else
             {
-               return NULL;
+               return ::null();
             }
             return this;
          }
@@ -1720,7 +1720,7 @@ namespace html
             return bound_hit_test(pdata, pt);
          }
       }
-      return NULL;
+      return ::null();
    }
 
    elemental * elemental::bound_hit_test(data * pdata, ::point pt)
@@ -1731,7 +1731,7 @@ namespace html
 
    elemental * elemental::bound_hit_test(data * pdata, ::point pt, double & dMin)
    {
-      if(m_pimpl != NULL)
+      if(m_pimpl != ::null())
       {
          double d = m_pimpl->bound_hit_test(pdata, pt);
          if(dMin < 0.0 || (d <= dMin && d >= 0.0))
@@ -1742,13 +1742,13 @@ namespace html
             for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
             {
                elemental * pelemental = m_elementalptra[i]->bound_hit_test(pdata, pt, dMin);
-               if(pelemental != NULL)
+               if(pelemental != ::null())
                   return pelemental;
             }
             return this;
          }
       }
-      return NULL;
+      return ::null();
    }
 
    void elemental::_001SetText(const char * psz)
@@ -1781,12 +1781,12 @@ namespace html
 
    void elemental::delete_implementation()
    {
-      if(m_pimpl == NULL)
+      if(m_pimpl == ::null())
          return;
       m_pimpl->delete_implementation();
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
-         if(m_elementalptra[i] != NULL)
+         if(m_elementalptra[i] != ::null())
             m_elementalptra[i]->delete_implementation();
       }
    }
@@ -1795,7 +1795,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_value)
       {
-         str += Sys(pdata->m_papp).html().entities(m_propertyset["PropertyBody"].get_string());
+         str += Sys(pdata->m_papp).html()->entities(m_propertyset["PropertyBody"].get_string());
       }
       else
       {
@@ -1815,7 +1815,7 @@ namespace html
          str += ">";
          if(m_elementalptra.get_size() <= 0)
          {
-            str += Sys(pdata->m_papp).html().entities(m_propertyset["PropertyBody"].get_string());
+            str += Sys(pdata->m_papp).html()->entities(m_propertyset["PropertyBody"].get_string());
          }
          else
          {

@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      text::text(::ca::applicationsp papp) :
+      text::text(sp(::ca::application) papp) :
          ca(papp),
          user::scroll_view(papp),
          user::edit_plain_text(papp)
@@ -68,10 +68,10 @@ namespace html
             return;
 
          ::ca::graphics * pdc = pdata->m_pdc;
-         if(pdc == NULL)
+         if(pdc == ::null())
             return;
          font * pfont = pdata->get_font(m_pelemental);
-         if(pfont != NULL)
+         if(pfont != ::null())
          {
             pdc->SelectObject(pfont->m_font);
          }
@@ -166,7 +166,7 @@ namespace html
 //            int32_t iIndex = -1;
 
             ::ca::graphics * pdc = pdata->m_pdc;
-            if(pdc == NULL)
+            if(pdc == ::null())
                return;
             if(pdata->m_layoutstate.m_cy <= 0)
             {
@@ -202,7 +202,7 @@ namespace html
 //            int32_t iIndex = -1;
 
             ::ca::graphics * pdc = pdata->m_pdc;
-            if(pdc == NULL)
+            if(pdc == ::null())
                return;
             pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
             string str = m_pelemental->m_propertyset["PropertyBody"];
@@ -305,7 +305,7 @@ namespace html
                cy += m_sizea[i].cy;
             }
 
-            if(m_pelemental->m_pparent == NULL)
+            if(m_pelemental->m_pparent == ::null())
             {
 
                m_box.set_cy(cy);
@@ -368,7 +368,7 @@ namespace html
             m_box.get(rect);
             COLORREF cr;
             double d;
-            if(m_pelemental->m_style.get_alpha(NULL, pdata, m_pelemental, d))
+            if(m_pelemental->m_style.get_alpha(::null(), pdata, m_pelemental, d))
             {
                if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
@@ -386,7 +386,7 @@ namespace html
                      cr,
                      max(0, min(255, (BYTE)(d * 255))));
                }
-               else if(m_pelemental->m_style.get_color("background-color", NULL, pdata, m_pelemental, cr))
+               else if(m_pelemental->m_style.get_color("background-color", ::null(), pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
                      pdata->m_pdc,
@@ -405,7 +405,7 @@ namespace html
                {
                   pdata->m_pdc->FillSolidRect(rect, cr);
                }
-               else if(m_pelemental->m_style.get_color("background-color", NULL, pdata, m_pelemental, cr))
+               else if(m_pelemental->m_style.get_color("background-color", ::null(), pdata, m_pelemental, cr))
                {
                   pdata->m_pdc->FillSolidRect(rect, cr);
                }
@@ -429,7 +429,7 @@ namespace html
             pdc->SetBkMode(OPAQUE);
             pdc->SetBkColor(cr);
          }
-         else if(m_pelemental->m_style.get_color("background-color", NULL, pdata, m_pelemental, cr))
+         else if(m_pelemental->m_style.get_color("background-color", ::null(), pdata, m_pelemental, cr))
          {
             pdc->SetBkMode(OPAQUE);
             pdc->SetBkColor(cr);
@@ -476,7 +476,7 @@ namespace html
 
          float y = get_y();
 
-         if(m_pelemental->m_pparent != NULL)
+         if(m_pelemental->m_pparent != ::null())
          {
 
             x += m_pelemental->m_pparent->m_pimpl->m_border.left + m_pelemental->m_pparent->m_pimpl->m_padding.left + m_pelemental->m_pparent->m_pimpl->m_margin.left;
@@ -710,8 +710,8 @@ namespace html
                {
                   strClass = m_pelemental->get_tag()->get_attr_value("class");
                }
-               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(strTag, strClass, "hover", NULL);
-               if(pstyle == NULL)
+               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(strTag, strClass, "hover", ::null());
+               if(pstyle == ::null())
                {
                   bHasHover = false;
                }

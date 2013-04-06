@@ -5,12 +5,12 @@ namespace userbase
 {
 
 
-   document::document(::ca::applicationsp papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::document(papp)
    {
-      m_pdocumentemplate = NULL;
+      m_pdocumentemplate = ::null();
       m_bModified = FALSE;
       m_bAutoDelete = TRUE;       // default to auto delete document
       m_bEmbedded = FALSE;        // default to file-based document
@@ -28,7 +28,7 @@ namespace userbase
          return TRUE;
 
       // otherwise check template
-      if (m_pdocumentemplate != NULL &&
+      if (m_pdocumentemplate != ::null() &&
         m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
@@ -73,7 +73,7 @@ namespace userbase
    #endif //DEBUG
 
 
-   void document::on_alloc(::ca::applicationsp papp)
+   void document::on_alloc(sp(::ca::application) papp)
    {
 
       ::document::on_alloc(papp);

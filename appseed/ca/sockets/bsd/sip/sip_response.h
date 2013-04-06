@@ -7,7 +7,7 @@ namespace sip
       virtual public transaction
    {
    public:
-      response(::ca::applicationsp papp, const string & version = "HTTP/1.0");
+      response(sp(::ca::application) papp, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 

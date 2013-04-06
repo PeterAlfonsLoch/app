@@ -5,14 +5,14 @@ namespace fs
 {
 
 
-   tree_interface::tree_interface(::ca::applicationsp papp) :
+   tree_interface::tree_interface(sp(::ca::application) papp) :
       ca(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp)
    {
       m_dataid = "filemanager::fs::tree_interface";
 
-      m_pdataitemCreateImageListStep = NULL;
+      m_pdataitemCreateImageListStep = ::null();
 
       m_iAnimate = 0;
       m_bDelayedListUpdate = false;
@@ -30,7 +30,7 @@ namespace fs
    {
       if(!::ca::tree::initialize())
          return false;
-      if(::ca::tree::get_data() == NULL)
+      if(::ca::tree::get_data() == ::null())
       {
          set_data(new ::fs::tree_data(get_app()));
       }
@@ -45,33 +45,33 @@ namespace fs
 
    void tree_interface::_017UpdateList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
    {
-      if(lpcsz == NULL)
+      if(lpcsz == ::null())
          lpcsz = "";
 
       m_strPath = lpcsz;
 
-      if(pitemParent == NULL)
+      if(pitemParent == ::null())
       {
          pitemParent =  get_base_item();
       }
-      else if(get_base_item() == NULL)
+      else if(get_base_item() == ::null())
       {
          m_pitem = pitemParent;
       }
 
-      /*if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
+      /*if(GetFileManager() != ::null() && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != ::null()
       && !(dynamic_cast < user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
          GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }*/
 
-      ::fs::tree_item * pitemFolder = NULL;
+      ::fs::tree_item * pitemFolder = ::null();
 
       string strRawName1 = typeid(*pitemParent).name();
       string strRawName2 = typeid(::fs::tree_item).name();
       if(strRawName1 == strRawName2)
       {
-         pitemFolder = (::fs::tree_item *) pitemParent;
+         pitemFolder = dynamic_cast < ::fs::tree_item * > ( pitemParent);
       }
 
 
@@ -79,7 +79,7 @@ namespace fs
       ::ca::tree_item * pitem;
       ::ca::tree_item_ptr_array ptraRemove;
 
-      if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(FlagHasSubFolderUnknown))
+      if(pitemFolder != ::null() && pitemFolder->m_flags.is_signalized(FlagHasSubFolderUnknown))
       {
          if(get_document()->set().has_subdir(pitemFolder->m_strPath))
          {
@@ -141,7 +141,7 @@ namespace fs
                pitemChild->m_flags.signalize(FlagInZip);
 
                pitem = find_item(pitemChild->m_strPath);
-               if(pitem != NULL)
+               if(pitem != ::null())
                {
                   pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
                }
@@ -177,7 +177,7 @@ namespace fs
          pitemChild->m_iImageSelected = m_iDefaultImageSelected;
 
          pitem = find_item(pitemChild->m_strPath);
-         if(pitem != NULL)
+         if(pitem != ::null())
          {
             pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
@@ -232,15 +232,15 @@ namespace fs
       {
          string strAscendant = stra[i];
          ::ca::tree_item * pitem = find_item(strAscendant);
-         if(pitem == NULL)
+         if(pitem == ::null())
          {
             string str;
             str = strAscendant;
             get_document()->set().eat_end_level(str, 1);
-            _017UpdateList(str, NULL, 1);
+            _017UpdateList(str, ::null(), 1);
          }
          pitem = find_item(strAscendant);
-         if(pitem == NULL)
+         if(pitem == ::null())
             break;
 
          if(!(pitem->m_dwState & ::ca::tree_item_state_expanded))
@@ -259,7 +259,7 @@ namespace fs
 
       ::ca::tree_item * pitem = find_item(lpcsz);
 
-      if(pitem != NULL)
+      if(pitem != ::null())
       {
          index iLevel = 0;
 
@@ -290,7 +290,7 @@ namespace fs
       if(!bForceUpdate)
       {
          ::ca::tree_item * pitem = find_item(lpcsz);
-         if(pitem != NULL)
+         if(pitem != ::null())
          {
             if(is_selected(pitem))
                return;
@@ -420,7 +420,7 @@ namespace fs
             pitemNew->m_iImageSelected = m_iDefaultImageSelected;
             //         item.m_flags.signalize(FlagInZip);
             ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
-            if(pitem == NULL)
+            if(pitem == ::null())
             {
                pitem = insert_item(pitemNew, ::ca::RelativeLastChild, pitemParent);
             }
@@ -507,7 +507,7 @@ namespace fs
    {
       for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
       {
-         stra.add(((::fs::tree_item *)m_itemptraSelected[0]->m_pitemdata)->m_strPath);
+         stra.add((dynamic_cast < ::fs::tree_item * > (m_itemptraSelected[0]))->m_strPath);
       }
    }
 
@@ -563,28 +563,28 @@ namespace fs
          ASSERT(iCSIDL >= 0);
 
          if(iCSIDL < 0)
-            return NULL;
+            return ::null();
 
-         IShellFolder * psfDesktop = NULL;
+         IShellFolder * psfDesktop = ::null();
          HRESULT hr = SHGetDesktopFolder(&psfDesktop);
          LPITEMIDLIST lpidl;
 
          hr = SHGetSpecialFolderLocation(
-            NULL,
+            ::null(),
             iCSIDL,
             &lpidl);
 
          if(FAILED(hr))
-            return NULL;
+            return ::null();
 
          hr = psfDesktop->BindToObject(
             lpidl,
-            NULL,
+            ::null(),
             IID_IShellFolder,
             (void **) &psf);
 
          if(FAILED(hr))
-            return NULL;
+            return ::null();
 
          m_mapFolder.set_at(efolder, psf);
 
@@ -610,7 +610,7 @@ namespace fs
    {
       if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
       {
-         _017UpdateList(((::fs::tree_item *)pitem->m_pitemdata)->m_strPath, pitem, 1);
+         _017UpdateList((dynamic_cast < ::fs::tree_item *> (pitem))->m_strPath, pitem, 1);
       }
       else
       {
@@ -631,7 +631,7 @@ namespace fs
    void tree_interface::_001OnOpenItem(::ca::tree_item * pitem)
    {
       
-      _017OpenFolder(new ::fs::item(((::fs::tree_item *) pitem->m_pitemdata)->m_strPath));
+      _017OpenFolder(new ::fs::item(dynamic_cast < ::fs::tree_item *> ( pitem->m_pitemdata)->m_strPath));
 
    }
 
@@ -645,7 +645,7 @@ namespace fs
    void tree_interface::_StartCreateImageList()
    {
       m_pdataitemCreateImageListStep = (::ca::tree_item *) get_base_item()->m_pchild;
-//         SetTimer(TimerCreateImageList, 80, NULL);
+//         SetTimer(TimerCreateImageList, 80, ::null());
    }
 
    void tree_interface::_StopCreateImageList()
@@ -655,7 +655,7 @@ namespace fs
 
    void tree_interface::_CreateImageListStep()
    {
-      if(m_pdataitemCreateImageListStep == NULL)
+      if(m_pdataitemCreateImageListStep == ::null())
       {
          _StopCreateImageList();
          return;
@@ -689,7 +689,7 @@ namespace fs
 
    void tree_interface::_StartDelayedListUpdate()
    {
-      //SetTimer(TimerDelayedListUpdate, 500, NULL);
+      //SetTimer(TimerDelayedListUpdate, 500, ::null());
    }
 
    void tree_interface::_StopDelayedListUpdate()
@@ -712,7 +712,7 @@ namespace fs
 
 
       ::ca::tree_item * pitem = find_item(m_straMissingUpdate[0]);
-      if(pitem != NULL)
+      if(pitem != ::null())
       {
 
          _017UpdateList(m_straMissingUpdate[0], pitem, 1);
@@ -725,7 +725,7 @@ namespace fs
 
    COLORREF tree_interface::get_background_color()
    {
-      if(get_document() == NULL)
+      if(get_document() == ::null())
       {
          return RGB(200, 255, 255);
       }
@@ -742,23 +742,23 @@ namespace fs
    ::ca::tree_item * tree_interface::find_absolute(const char * lpcszPath)
    {
       ::ca::tree_item * pitem = get_base_item();
-      if(lpcszPath == NULL || strlen(lpcszPath) == 0)
+      if(lpcszPath == ::null() || strlen(lpcszPath) == 0)
          return pitem;
       string strPath(lpcszPath);
       strPath.trim_right("\\/");
-      while(pitem != NULL)
+      while(pitem != ::null())
       {
-         if(pitem->m_pitemdata != NULL
+         if(pitem->m_pitemdata != ::null()
          && typeid(*pitem->m_pitemdata) == System.type_info < tree_item > ())
          {
-            string strTreeItem(((tree_item *)pitem->m_pitemdata)->m_strPath);
+            string strTreeItem((dynamic_cast < tree_item * > (pitem->m_pitemdata))->m_strPath);
             strTreeItem.trim_right("\\/");
             if(strTreeItem.CompareNoCase(strPath) == 0)
                return pitem;
          }
          pitem = pitem->get_next();
       }
-      return NULL;
+      return ::null();
    }
 
    void tree_interface::arrange(e_arrange earrange)

@@ -3,7 +3,7 @@
 namespace nature
 {
 
-   database::database(::ca::applicationsp papp) :
+   database::database(sp(::ca::application) papp) :
       ca(papp)
    {
       m_bInitialized = false;
@@ -30,9 +30,9 @@ namespace nature
       if(!m_bInitialized)
          return;
       m_bInitialized = false;
-      if(m_pimagefileset != NULL)
+      if(m_pimagefileset != ::null())
          delete m_pimagefileset;
-      m_pimagefileset = NULL;
+      m_pimagefileset = ::null();
    }
 
 

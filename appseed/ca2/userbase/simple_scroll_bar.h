@@ -17,14 +17,14 @@ public:
    UINT                 m_uiTimer;
 
 
-   simple_scroll_bar(::ca::applicationsp papp);
+   simple_scroll_bar(sp(::ca::application) papp);
    virtual ~simple_scroll_bar();
 
 
 
    virtual void pre_translate_message(::ca::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
+   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::ca::create_context) pContext = ::null());
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::ca::graphics * pdc);

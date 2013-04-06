@@ -3,7 +3,7 @@
 namespace user
 {
 
-   keyboard::keyboard(::ca::applicationsp papp) :
+   keyboard::keyboard(sp(::ca::application) papp) :
       ca(papp)
    {
 

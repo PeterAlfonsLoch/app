@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   split_view::split_view(::ca::applicationsp papp) :
+   split_view::split_view(sp(::ca::application) papp) :
       ca(papp),
       ::userbase::split_layout(papp),
       ::userbase::view(papp),
@@ -34,7 +34,7 @@ namespace userex
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
-      if(ppane->m_pholder == NULL)
+      if(ppane->m_pholder == ::null())
          return;
 
       pcreatordata->m_pviewdata = (void *) ppane;

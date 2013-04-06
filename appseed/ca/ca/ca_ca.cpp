@@ -10,30 +10,30 @@ namespace ca
    ca::ca()
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
-      m_papp               = 0; // ::null()
+//      m_papp               = 0; // ::null()
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
-      m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
+      //m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
 //      m_pptraListener      = ::null();
   //    m_pptraListened      = ::null();
       m_pfactoryitembase   = ::null();
    }
 
-   ca::ca(const ca & o)
+   ca::ca(const ca & o) :
+      m_papp(o.m_papp)
    {
       m_ulFlags            = o.m_ulFlags;
-      m_papp               = o.m_papp;
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
-      m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
+      //m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
     //  m_pptraListener      = ::null();
       //m_pptraListened      = ::null();
       m_pfactoryitembase   = ::null();
    }
 
-   ca::ca(::ca::applicationsp papp)
+   ca::ca(sp(::ca::application) papp) :
+      m_papp(papp)
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
-      m_papp               = papp;
-      m_countReference     = 1; // avoid creating a "perambulator" phantom
+      //m_countReference     = 1; // avoid creating a "perambulator" phantom
 //      m_pptraListener      = ::null();
   //    m_pptraListened      = ::null();
       m_pfactoryitembase   = ::null();
@@ -131,12 +131,12 @@ namespace ca
 
    }
 
-   ::ca::applicationsp ca::get_app() const
+   sp(::ca::application) ca::get_app() const
    {
       return m_papp;
    }
 
-   void ca::set_app(::ca::applicationsp papp)
+   void ca::set_app(sp(::ca::application) papp)
    {
       m_papp = papp;
    }

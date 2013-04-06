@@ -192,15 +192,33 @@ namespace ca
 
    };
 
-   typedef smart_pointer < dib > dib_sp;
+   class CLASS_DECL_ca dib_sp :
+      public smart_pointer < dib >
+   {
+   public:
 
+      dib_sp()
+      {
+      }
+
+      dib_sp(const smart_pointer < dib > & p) :
+         smart_pointer < dib > (p)
+      {
+      }
+
+      dib_sp(allocer allocer) :
+         smart_pointer < dib > (allocer)
+      {
+      }
+
+   };
 
    class CLASS_DECL_ca dibmap :
       virtual public map < size, size, ::ca::dib_sp, ::ca::dib_sp >
    {
    public:
 
-      dibmap(::ca::applicationsp papp) :
+      dibmap(sp(::ca::application) papp) :
          ca(papp)
       {
       }
@@ -210,7 +228,7 @@ namespace ca
       {
          ::ca::dib_sp & dib = map < class size, class size, ::ca::dib_sp, ::ca::dib_sp >::operator [](key);
          if(dib.is_null())
-            dib.create(get_app());
+            dib.create(allocer());
          return dib;
       }
 

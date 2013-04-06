@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   handler::handler(::ca::applicationsp papp) :
+   handler::handler(sp(::ca::application) papp) :
       ca(papp)
    {
 

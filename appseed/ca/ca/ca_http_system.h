@@ -39,7 +39,7 @@ namespace ca
             uint32_t       m_dwLastChecked;
 
 
-            pac(::ca::applicationsp papp);
+            pac(sp(::ca::application) papp);
 
 
          };
@@ -58,7 +58,7 @@ namespace ca
             uint32_t       m_dwLastChecked;
 
 
-            proxy(::ca::applicationsp papp);
+            proxy(sp(::ca::application) papp);
 
 
          };
@@ -69,7 +69,7 @@ namespace ca
          string_map < proxy *  >  m_mapProxy;
 
 
-         system(::ca::applicationsp papp);
+         system(sp(::ca::application) papp);
          virtual ~system();
 
 

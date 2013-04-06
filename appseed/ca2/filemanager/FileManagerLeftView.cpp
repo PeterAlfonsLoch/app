@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerLeftView::FileManagerLeftView(::ca::applicationsp papp) :
+FileManagerLeftView::FileManagerLeftView(sp(::ca::application) papp) :
    ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
@@ -31,7 +31,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
 void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != NULL)
+   if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint > :: bases(phint))
       {
@@ -46,8 +46,8 @@ void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::ca::object
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe =dynamic_cast < sp(FileManagerFrame) > ((sp(::ca::window)) GetParentFrame());
-               if(pframe != NULL)
+               sp(FileManagerFrame) pframe = GetParentFrame();
+               if(pframe != ::null())
                {
                   pframe->m_dataid = str;
                }
@@ -71,9 +71,9 @@ void FileManagerLeftView::CreateViews()
 
    filemanager::SimpleFileListView * plist = create_view < filemanager::SimpleFileListView >();
 
-   if(plist == NULL)
+   if(plist == ::null())
    {
-      System.simple_message_box(NULL, "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::view");
    }
    
    plist->m_bStatic = true;
@@ -84,9 +84,9 @@ void FileManagerLeftView::CreateViews()
 
   filemanager:: SimpleFolderTreeView * pmediaview = create_view < filemanager::SimpleFolderTreeView > ();
 
-   if(pmediaview == NULL)
+   if(pmediaview == ::null())
    {
-      System.simple_message_box(NULL, "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::view");
    }
 
    SetPane(1, pmediaview, false);

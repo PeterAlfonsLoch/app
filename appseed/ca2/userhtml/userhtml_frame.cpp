@@ -33,11 +33,11 @@
    ID_INDICATOR_SCRL,
 };*/
 
-html_frame::html_frame(::ca::applicationsp papp) :
+html_frame::html_frame(sp(::ca::application) papp) :
    ca(papp),
    simple_frame_window(papp)
 {
-   m_pimagelist = NULL;
+   m_pimagelist = ::null();
    m_iFrameData = 10;
    //DISetSection("MusicalPlayerscreencaptureFrame");
    m_iAnimateStep = 0;
@@ -109,7 +109,7 @@ void html_frame::SetAnimatedStatusBarText(const char * lpcsz)
    }
    else
    {
-      SetTimer(3, 500, NULL);
+      SetTimer(3, 500, ::null());
    }
 }
 
