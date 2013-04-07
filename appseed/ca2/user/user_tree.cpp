@@ -28,6 +28,7 @@ namespace user
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
       m_pimagelist               = ::null();
+      m_uchHoverAlphaInit        = 0;
    }
 
    tree::~tree()
@@ -151,8 +152,8 @@ namespace user
       point ptCursor;
 
       Session.get_cursor_pos(&ptCursor);
-      DWORD dwHoverIn = 1984 * 2;
-      DWORD dwHoverOut = (1984 + 1977) * 2;
+      DWORD dwHoverIn = 384;
+      DWORD dwHoverOut = 1284;
       ScreenToClient(&ptCursor);
       bool bTreeHover = rectClient.contains(ptCursor);
       if(bTreeHover)
@@ -160,6 +161,7 @@ namespace user
          if(!m_bHoverStart)
          {
             m_bHoverStart = true;
+            m_uchHoverAlphaInit = m_uchHoverAlpha;
             m_dwHoverStart = get_tick_count();
          }
          if(get_tick_count() - m_dwHoverStart > dwHoverIn)
@@ -168,7 +170,11 @@ namespace user
          }
          else
          {
-            m_uchHoverAlpha = (get_tick_count() - m_dwHoverStart * 255) / dwHoverIn;
+            DWORD dwCurve =  (DWORD) (255.0 * (1.0 - pow(2.718281, -3.3 * (get_tick_count() - m_dwHoverStart) / dwHoverIn)));
+            if(m_uchHoverAlphaInit + dwCurve > 255)
+               m_uchHoverAlpha = 255;
+            else
+               m_uchHoverAlpha =  m_uchHoverAlphaInit + dwCurve;
          }
       }
       else
@@ -176,20 +182,21 @@ namespace user
          if(m_bHoverStart)
          {
             m_bHoverStart = false;
-            m_dwHoverEndInit = min(max(0, m_dwHoverStart + dwHoverIn - get_tick_count()), dwHoverOut);
-            m_dwHoverEnd = get_tick_count() + dwHoverOut - m_dwHoverEndInit;
+            m_uchHoverAlphaInit = m_uchHoverAlpha;
+            m_dwHoverEnd = get_tick_count();
          }
          
-         if(m_dwHoverEnd - get_tick_count()  < dwHoverOut)
+         if(get_tick_count() - m_dwHoverEnd  > dwHoverOut)
          {
             m_uchHoverAlpha = 0;
          }
          else
          {
-            if((dwHoverOut - m_dwHoverEndInit) == 0)
+            DWORD dwCurve =  (DWORD) (255.0 * (1.0 - pow(2.718281, -3.3 * (get_tick_count() - m_dwHoverEnd) / dwHoverOut)));
+            if(m_uchHoverAlphaInit < dwCurve)
                m_uchHoverAlpha = 0;
             else
-               m_uchHoverAlpha = ((m_dwHoverEnd - get_tick_count()) * 255) / (dwHoverOut - m_dwHoverEndInit);
+               m_uchHoverAlpha =  m_uchHoverAlphaInit - dwCurve;
          }
       }
 //      ::ca::savings & savings = System.savings();

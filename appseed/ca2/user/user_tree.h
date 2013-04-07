@@ -70,8 +70,8 @@ namespace user
       bool                          m_bHoverStart;
       DWORD                         m_dwHoverStart;
       DWORD                         m_dwHoverEnd;
-      DWORD                         m_dwHoverEndInit;
       BYTE                          m_uchHoverAlpha;
+      BYTE                          m_uchHoverAlphaInit;
       
 
       tree(sp(::ca::application) papp);
