@@ -127,7 +127,7 @@ namespace fs
       int32_t iSize;
       iSize = 0;
 
-//      get_fs_list_data()->m_itema.SetItemCount(iMaxSize);
+      get_fs_list_data()->m_itema.m_itema.remove_all();
 
       m_straStrictOrder.remove_all();
 

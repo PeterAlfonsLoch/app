@@ -7,6 +7,9 @@ namespace ca
       ca(papp),
       ::ca::data(papp)
    {
+
+      m_pimagelist               = ::null();
+
    }
 
    tree_data::~tree_data()

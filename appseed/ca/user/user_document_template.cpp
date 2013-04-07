@@ -1,6 +1,6 @@
 #include "framework.h"
 
-document_template::document_template(sp(::ca::application) papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
+document_template::document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass) :
    ca(papp)
 {
    
@@ -90,7 +90,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
 
 sp(::user::document_interface) document_template::create_new_document()
 {
-   // default implementation constructs one from ::ca::type_info
+   // default implementation constructs one from sp(::ca::type_info)
    if(!m_typeinfoDocument)
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
@@ -101,7 +101,7 @@ sp(::user::document_interface) document_template::create_new_document()
    if (pdocument == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
-         m_typeinfoDocument.name());
+         m_typeinfoDocument->name());
       return ::null();
    }
    pdocument->on_alloc(get_app());
@@ -142,7 +142,7 @@ sp(frame_window) document_template::create_new_frame(sp(::user::document_interfa
    if (pFrame == ::null())
    {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
-         m_typeinfoFrame.name());
+         m_typeinfoFrame->name());
       return ::null();
    }
    ASSERT_KINDOF(frame_window, pFrame);
@@ -269,7 +269,7 @@ void document_template::dump(dump_context & dumpcontext) const
    dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 
    if (m_typeinfoDocument)
-      dumpcontext << "\nm_pDocClass = " << m_typeinfoDocument.name();
+      dumpcontext << "\nm_pDocClass = " << m_typeinfoDocument->name();
    else
       dumpcontext << "\nm_pDocClass = ::null()";
 

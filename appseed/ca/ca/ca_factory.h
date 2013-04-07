@@ -8,23 +8,23 @@ class strid_array;
 class mutex;
 
 
-class CLASS_DECL_ca factory_allocator
+class CLASS_DECL_ca factory_allocator :
+   virtual public ::ca::object
 {
 public:
 
 
-   uint32_t                   m_uiAllocSize;
-   int32_t                     m_iCount;
-   int64_t                 m_iAllocCount;
-   id                      m_idType;
-   sp(::ca::application)     m_papp;
+   uint32_t                      m_uiAllocSize;
+   int32_t                       m_iCount;
+   int64_t                       m_iAllocCount;
+   id                            m_idType;
 
 
    factory_allocator(sp(::ca::application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
+      ca(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
-      m_idType(idType),
-      m_papp(papp)
+      m_idType(idType)
    {
       m_iAllocCount = 0;
    }
@@ -94,9 +94,9 @@ class CLASS_DECL_ca factory_item_base :
 {
 public:
 
-   factory_allocator * m_pallocator;
+   sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(sp(::ca::application) papp, factory_allocator * pallocator) : ca(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(sp(::ca::application) papp, sp(factory_allocator) pallocator) : ca(papp), m_pallocator(pallocator) {}
 
    virtual sp(::ca::ca) create(sp(::ca::application) papp) = 0;
    virtual sp(::ca::ca) clone(sp(::ca::ca) pobject) = 0;
@@ -109,7 +109,7 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(sp(::ca::application) papp, factory_allocator * pallocator) : ca(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(sp(::ca::application) papp, sp(factory_allocator) pallocator) : ca(papp), factory_item_base(papp, pallocator) {}
 
    virtual sp(::ca::ca) create(sp(::ca::application) papp)
    {
@@ -142,7 +142,7 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(sp(::ca::application) papp, factory_allocator * pallocator) : ::ca::ca(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(sp(::ca::application) papp, sp(factory_allocator) pallocator) : ::ca::ca(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
    virtual sp(::ca::ca) clone(sp(::ca::ca) pobject)
    {
@@ -164,120 +164,121 @@ public:
 namespace ca
 {
 
-class CLASS_DECL_ca factory :
-   virtual public ::ca::object
-{
-public:
 
-
-
-   bool                             m_bSimpleFactoryRequest;
-   array < ::ca::type_info * >  m_typeinfoptraSimpleFactoryRequest;
-
-
-
-   factory(sp(::ca::application) papp);
-   virtual ~factory();
-
-   template < class T >
-   void creatable_small(bool bOverwrite = false)
+   class CLASS_DECL_ca factory :
+      virtual public ::ca::object
    {
-      creatable < T > (32, bOverwrite);
-   }
-
-   template < class T >
-   void cloneable_small(bool bOverwrite = false)
-   {
-      cloneable < T > (32, bOverwrite);
-   }
-
-   template < class T >
-   void creatable_large(bool bOverwrite = false)
-   {
-      creatable < T > (1024, bOverwrite);
-   }
-
-   template < class T >
-   void cloneable_large(bool bOverwrite = false)
-   {
-      cloneable < T > (1024, bOverwrite);
-   }
-
-   template < class T >
-   void creatable_small(::ca::type_info info, bool bOverwrite = false)
-   {
-      creatable < T > (info, 32, bOverwrite);
-   }
-
-   template < class T >
-   void cloneable_small(::ca::type_info info, bool bOverwrite = false)
-   {
-      cloneable < T > (info, 32, bOverwrite);
-   }
-
-   template < class T >
-   void creatable_large(::ca::type_info info, bool bOverwrite = false)
-   {
-      creatable < T > (info, 1024, bOverwrite);
-   }
-
-   template < class T >
-   void cloneable_large(::ca::type_info info, bool bOverwrite = false)
-   {
-      cloneable < T > (info, 1024, bOverwrite);
-   }
-
-   template < class T >
-   void creatable(int32_t iCount, bool bOverwrite = false);
-
-   template < class T >
-   void cloneable(int32_t iCount, bool bOverwrite = false);
-
-   template < class T >
-   void creatable(::ca::type_info info, int32_t iCount, bool bOverwrite = false)
-   {
-      if(bOverwrite || !is_set(info.name()))
-         set_at(info.name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
-   }
-
-   template < class T >
-   void cloneable(::ca::type_info  info, int32_t iCount, bool bOverwrite = false)
-   {
-      if(bOverwrite || !is_set(info.name()))
-         set_at(info.name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
-   }
-
-   virtual sp(::ca::ca) create(sp(::ca::application) papp, ::ca::type_info & info);
-   virtual sp(::ca::ca) base_clone(sp(::ca::ca) pobject);
-   template < class T >
-   sp(T) clone(sp(T) pobject)
-   {
-      return base_clone(pobject);
-   }
-
-   template < class T >
-   factory_allocator * get_allocator(int32_t iCount);
+   public:
 
 
-   bool is_set(const char * pszType);
-
-   void set_at(const char * pszType, factory_item_base * pitem);
-   void set_at(const char * pszType, factory_allocator * pitem);
-
-   factory_allocator * get_allocator(const char * pszType);
-
-   void discard(sp(::ca::ca) pobject);
-
-   void enable_simple_factory_request(bool bEnable = true);
+      bool                             m_bSimpleFactoryRequest;
+      spa(::ca::type_info)             m_typeinfoptraSimpleFactoryRequest;
 
 
-private:
-   mutex *                                                     m_pmutex;
-   strid_array *                                               m_pstrida;
-   array < factory_item_base *, factory_item_base * >     m_itemptra;
-   strid_array *                                               m_pstridaAllocator;
-   array < factory_allocator *, factory_allocator * >     m_itemptraAllocator;
-};
+
+      factory(sp(::ca::application) papp);
+      virtual ~factory();
+
+
+      template < class T >
+      void creatable_small(bool bOverwrite = false)
+      {
+         creatable < T > (32, bOverwrite);
+      }
+
+      template < class T >
+      void cloneable_small(bool bOverwrite = false)
+      {
+         cloneable < T > (32, bOverwrite);
+      }
+
+      template < class T >
+      void creatable_large(bool bOverwrite = false)
+      {
+         creatable < T > (1024, bOverwrite);
+      }
+
+      template < class T >
+      void cloneable_large(bool bOverwrite = false)
+      {
+         cloneable < T > (1024, bOverwrite);
+      }
+
+      template < class T >
+      void creatable_small(sp(::ca::type_info) info, bool bOverwrite = false)
+      {
+         creatable < T > (info, 32, bOverwrite);
+      }
+
+      template < class T >
+      void cloneable_small(sp(::ca::type_info) info, bool bOverwrite = false)
+      {
+         cloneable < T > (info, 32, bOverwrite);
+      }
+
+      template < class T >
+      void creatable_large(sp(::ca::type_info) info, bool bOverwrite = false)
+      {
+         creatable < T > (info, 1024, bOverwrite);
+      }
+
+      template < class T >
+      void cloneable_large(sp(::ca::type_info) info, bool bOverwrite = false)
+      {
+         cloneable < T > (info, 1024, bOverwrite);
+      }
+
+      template < class T >
+      void creatable(int32_t iCount, bool bOverwrite = false);
+
+      template < class T >
+      void cloneable(int32_t iCount, bool bOverwrite = false);
+
+      template < class T >
+      void creatable(sp(::ca::type_info) info, int32_t iCount, bool bOverwrite = false)
+      {
+         if(bOverwrite || !is_set(info->name()))
+            set_at(info->name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+      }
+
+      template < class T >
+      void cloneable(sp(::ca::type_info)  info, int32_t iCount, bool bOverwrite = false)
+      {
+         if(bOverwrite || !is_set(info->name()))
+            set_at(info->name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+      }
+
+      virtual sp(::ca::ca) create(sp(::ca::application) papp, sp(::ca::type_info) info);
+      virtual sp(::ca::ca) base_clone(sp(::ca::ca) pobject);
+      template < class T >
+      sp(T) clone(sp(T) pobject)
+      {
+         return base_clone(pobject);
+      }
+
+      template < class T >
+      sp(factory_allocator) get_allocator(int32_t iCount);
+
+
+      bool is_set(const char * pszType);
+
+      void set_at(const char * pszType, factory_item_base * pitem);
+      void set_at(const char * pszType, sp(factory_allocator) pitem);
+
+      sp(factory_allocator) get_allocator(const char * pszType);
+
+      void discard(sp(::ca::ca) pobject);
+
+      void enable_simple_factory_request(bool bEnable = true);
+
+
+   private:
+      mutex *                                                     m_pmutex;
+      strid_array *                                               m_pstrida;
+      spa(factory_item_base)                                      m_itemptra;
+      strid_array *                                               m_pstridaAllocator;
+      spa(factory_allocator)                                      m_itemptraAllocator;
+   };
 
 
 

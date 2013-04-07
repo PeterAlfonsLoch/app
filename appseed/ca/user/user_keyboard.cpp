@@ -111,7 +111,7 @@ namespace user
 
       ::user::e_key ekey;
 
-      ::ca::type_info typeinfoKey = System.type_info < ::user::e_key > ();
+      sp(::ca::type_info) typeinfoKey = System.type_info < ::user::e_key > ();
 
       string str = Application.file().as_string(pszPath);
 

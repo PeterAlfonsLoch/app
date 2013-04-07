@@ -98,7 +98,7 @@ namespace ca
          }
          if(pdescriptor->m_pcontrol != ::null())
          {
-            ::ca::type_info ti = typeid(pdescriptor->m_pcontrol);
+            sp(::ca::type_info) ti = System.get_type_info(typeid(pdescriptor->m_pcontrol));
             if(ti == System.type_info < ::user::list > ())
             {
                if(pdescriptor->m_etype == control::type_simple_list)
@@ -541,7 +541,7 @@ namespace ca
 
          ::user::list * plist = dynamic_cast < ::user::list * >(get_child_by_id(pcontrol->m_id).m_p);
 
-         if(System.type_info < ::user::simple_list_data > () == typeid(plist->GetDataInterface()))
+         if(*System.type_info < ::user::simple_list_data > () == typeid(plist->GetDataInterface()))
          {
             ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
             stringa stra;
@@ -846,7 +846,7 @@ namespace ca
                }
                if(descriptor.m_pcontrol != ::null())
                {
-                  ::ca::type_info ti = typeid(descriptor.m_pcontrol);
+                  sp(::ca::type_info) ti = System.get_type_info(typeid(descriptor.m_pcontrol));
                   if(ti == System.type_info < ::user::list > ())
                   {
                      if(descriptor.m_etype == control::type_simple_list)

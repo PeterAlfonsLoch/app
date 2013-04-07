@@ -123,7 +123,7 @@ namespace user
          sp(control)             m_pcontrol;
          id                      m_id;
          id                      m_uiText;
-         ::ca::type_info         m_typeinfo;
+         sp(::ca::type_info)     m_typeinfo;
          index                   m_iSubItem;
          id                      m_idPrivateDataSection;
          bool                    m_bTransparent;

@@ -39,11 +39,7 @@ void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::ca::object
             DISetSection(str);
             _001UpdateColumns();*/
          }
-         else if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
-         {
-            //_017PreSynchronize();
-         }
-         else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
+         else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
          {
             _017Synchronize();
          }

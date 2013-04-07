@@ -45,15 +45,16 @@ namespace ca
    public:
 
 
-      uint_ptr                  m_dwUser;
-      uint_ptr                  m_dwMetaData;
+      uint_ptr                   m_dwUser;
+      uint_ptr                   m_dwMetaData;
       tree_item *                m_pparent;
       tree_item *                m_pchild;
       tree_item *                m_pnext;
       tree_item *                m_pprevious;
-      uint32_t                      m_dwState;
-      tree *                     m_ptree;
+      uint32_t                   m_dwState;
       tree_item_data *           m_pitemdata;
+      tree_data *                m_ptreedata;
+      tree *                     m_ptree;
 
 
       tree_item();

@@ -849,7 +849,7 @@ void var::read(::ca::byte_input_stream & is)
       break;
    case type_ca2:
       {
-         ::ca::type_info info;
+         sp(::ca::type_info) info;
          is >> info;
          m_sp = Sys(is.get_app()).alloc(info);
          if(m_sp.is_null())
@@ -926,7 +926,7 @@ void var::write(::ca::byte_output_stream & ostream)
       break;
    case type_ca2:
       {
-         ::ca::type_info info(typeid(*m_sp.m_p));
+         sp(::ca::type_info) info(Sys(ostream.get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
          sp(::ca::byte_serializable) pserializable = m_sp;
          if(pserializable != ::null())

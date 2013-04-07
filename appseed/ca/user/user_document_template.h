@@ -72,17 +72,17 @@ public:
    //UINT                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
    //UINT                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
-   ::ca::type_info         m_typeinfoDocument;         // class for creating new documents
-   ::ca::type_info         m_typeinfoFrame;       // class for creating new frames
-   ::ca::type_info         m_typeinfoView;        // class for creating new views
-   //::ca::type_info       m_pOleFrameClass;    // class for creating in-place frame
-   //::ca::type_info       m_pOleViewClass;     // class for creating in-place ::view
+   sp(::ca::type_info)         m_typeinfoDocument;         // class for creating new documents
+   sp(::ca::type_info)         m_typeinfoFrame;       // class for creating new frames
+   sp(::ca::type_info)         m_typeinfoView;        // class for creating new views
+   //sp(::ca::type_info)       m_pOleFrameClass;    // class for creating in-place frame
+   //sp(::ca::type_info)       m_pOleViewClass;     // class for creating in-place ::view
 
    string                  m_strDocStrings;    // '\n' separated names
       // The ::user::document_interface names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-   document_template(sp(::ca::application) papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
+   document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass);
 
    virtual void load_template();
 

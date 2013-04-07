@@ -69,13 +69,10 @@ namespace filemanager
                m_dataid = str;
    //            _001UpdateColumns();
             }
-            if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
+            if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
             {
                _017PreSynchronize();
-            }
-            if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
-            {
-               _017Synchronize();
+              _017Synchronize();
             }
             if(puh->is_type_of(FileManagerViewUpdateHint::TypeFilter))
             {
@@ -292,16 +289,6 @@ namespace filemanager
       if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
-      m_pimagelist = System.user()->shellimageset().GetImageList16();
-      m_iDefaultImage = System.user()->shellimageset().GetImage(
-         "foo",
-         _shell::FileAttributeDirectory,
-         _shell::IconNormal);
-
-      m_iDefaultImageSelected = System.user()->shellimageset().GetImage(
-         "foo",
-         _shell::FileAttributeDirectory,
-         _shell::IconOpen);
    }
 
 

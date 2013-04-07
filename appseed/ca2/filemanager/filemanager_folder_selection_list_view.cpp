@@ -93,12 +93,7 @@ void folder_selection_list_view::OnFileManagerBrowse()
 {
    {
       FileManagerViewUpdateHint uh;
-      uh.set_type(FileManagerViewUpdateHint::TypePreSynchronize);
-      get_document()->update_all_views(::null(), 0, &uh);
-   }
-   {
-      FileManagerViewUpdateHint uh;
-      uh.set_type(FileManagerViewUpdateHint::TypeSynchronize);
+      uh.set_type(FileManagerViewUpdateHint::TypeSynchronizeFolderSelection);
       get_document()->update_all_views(::null(), 0, &uh);
    }
 }

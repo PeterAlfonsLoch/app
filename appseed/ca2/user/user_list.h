@@ -536,6 +536,8 @@ namespace user
 
       ::user::list_column_array     m_columna;
 
+
+
       list(sp(::ca::application) papp);
       virtual ~list();
 

@@ -28,17 +28,17 @@ namespace ca
       virtual ~type_info();
 
 
-      type_info & operator = (const ::ca::type_info & info);
+      type_info & operator = (const type_info & info);
       type_info & operator = (const std_type_info & info);
 
 
-      bool operator == (const ::ca::type_info & info) const;
+      bool operator == (const type_info & info) const;
       bool operator == (const std_type_info & info) const;
       bool operator == (const string & strName) const;
       bool operator == (const id & id) const;
 
 
-      bool operator != (const ::ca::type_info & info) const;
+      bool operator != (const type_info & info) const;
       bool operator != (const std_type_info & info) const;
       bool operator != (const string & strName) const;
       bool operator != (const id & id) const;
@@ -60,15 +60,15 @@ namespace ca
 } // namespace ca
 
 
-CLASS_DECL_ca bool operator == (const std_type_info & info1, const ::ca::type_info & info2);
-CLASS_DECL_ca bool operator != (const std_type_info & info1, const ::ca::type_info & info2);
+CLASS_DECL_ca bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2);
+CLASS_DECL_ca bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2);
 
 
 template<>
-inline UINT HashKey(::ca::type_info key)
+inline UINT HashKey(sp(::ca::type_info) key)
 {
 	// default identity hash - works for most primitive values
-	return HashKey(key.name());
+	return HashKey(key->name());
 }
 
 

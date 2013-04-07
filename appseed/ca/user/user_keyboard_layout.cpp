@@ -93,7 +93,7 @@ namespace user
    bool keyboard_layout::load(const char * pszPath)
    {
 
-      ::ca::type_info typeinfoKey = System.type_info < ::user::e_key > ();
+      sp(::ca::type_info) typeinfoKey = System.type_info < ::user::e_key > ();
 
       int32_t iMap;
       int32_t iCode;

@@ -85,8 +85,8 @@ public:
 
 
 
-    sp(::user::interaction) create_view(::ca::type_info info, sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
-   static sp(::user::interaction) s_create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = ::null());
+    sp(::user::interaction) create_view(sp(::ca::type_info) info, sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
+   static sp(::user::interaction) s_create_view(sp(::ca::type_info) info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = ::null());
    static sp(::user::interaction) s_create_view(sp(::ca::create_context) pContext, sp(::user::interaction) pwndParent, id id);
 
    template < class VIEW >
@@ -106,7 +106,7 @@ public:
 
    // Advanced: for implementing custom print preview
 /*   bool DoPrintPreview(UINT nIDResource, view * pPrintView,
-         ::ca::type_info pPreviewViewClass, CPrintPreviewState* pState);*/
+         sp(::ca::type_info) pPreviewViewClass, CPrintPreviewState* pState);*/
 
    virtual void CalcWindowRect(LPRECT lpClientRect,
       UINT nAdjustType = adjustBorder);

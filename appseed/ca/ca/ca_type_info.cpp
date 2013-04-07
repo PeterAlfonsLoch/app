@@ -206,12 +206,12 @@ namespace ca
 } //  namespace ca
 
 
-CLASS_DECL_ca bool operator == (const std_type_info & info1, const ::ca::type_info & info2)
+CLASS_DECL_ca bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2)
 {
 
 #ifdef WINDOWS
 
-   return strcmp(info1.raw_name(), info2.name()) == 0;
+   return strcmp(info1.raw_name(), info2->name()) == 0;
 
 #else
 
@@ -221,7 +221,7 @@ CLASS_DECL_ca bool operator == (const std_type_info & info1, const ::ca::type_in
 
 }
 
-CLASS_DECL_ca bool operator != (const std_type_info & info1, const ::ca::type_info & info2)
+CLASS_DECL_ca bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2)
 {
 
    return !operator == (info1, info2);

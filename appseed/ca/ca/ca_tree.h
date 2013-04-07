@@ -70,11 +70,11 @@ namespace ca
 
       virtual tree_item * get_base_item();
 
-      virtual tree_item * insert_item(tree_item_data * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
-      virtual tree_item * create_item(tree_item * pitemRelative, ERelative erelativeNewItem);
-      virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
+      virtual tree_item * insert_item(::ca::tree_data * ptreedata, tree_item_data * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
+      virtual tree_item * create_item(::ca::tree_data * ptreedata, tree_item * pitemRelative, ERelative erelativeNewItem);
+      virtual bool insert_item(::ca::tree_data * ptreedata, tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
 
-      tree_item * allocate_item();
+      tree_item * allocate_item(::ca::tree_data * pdata);
       void delete_item(tree_item * pitem);
 
       virtual void remove_all();

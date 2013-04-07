@@ -240,7 +240,7 @@ namespace ca
    {
       if(m_pitem != ::null())
          return true;
-      m_pitem = allocate_item();
+      m_pitem = allocate_item(NULL);
       if(m_pitem == ::null())
          return false;
       m_pitem->m_dwState |= ::ca::tree_item_state_expandable;
@@ -267,14 +267,23 @@ namespace ca
       return m_pitem;
    }
 
-   ::ca::tree_item * tree::insert_item(::ca::tree_item_data * pitemdataNew, ERelative erelativeNewItem, ::ca::tree_item * pitemRelative)
+   ::ca::tree_item * tree::insert_item(::ca::tree_data * pdata, ::ca::tree_item_data * pitemdataNew, ERelative erelativeNewItem, ::ca::tree_item * pitemRelative)
    {
       if(erelativeNewItem == RelativeReplace)
-         return ::null();
-      ::ca::tree_item * pitemNew = allocate_item();
+      {
+
+         if(!contains(pitemRelative))
+            return ::null();
+
+         pitemRelative->m_pitemdata = pitemdataNew;
+
+         return pitemRelative;
+
+      }
+      ::ca::tree_item * pitemNew = allocate_item(pdata);
       if(pitemNew == ::null())
          return ::null();
-      if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
+      if(!insert_item(pdata, pitemNew, erelativeNewItem, pitemRelative))
       {
          delete_item(pitemNew);
          return ::null();
@@ -283,14 +292,14 @@ namespace ca
       return pitemNew;
    }
 
-   ::ca::tree_item * tree::create_item(::ca::tree_item * pitemRelative, ERelative erelativeNewItem)
+   ::ca::tree_item * tree::create_item(::ca::tree_data * pdata, ::ca::tree_item * pitemRelative, ERelative erelativeNewItem)
    {
       if(erelativeNewItem == RelativeReplace)
          return ::null();
-      ::ca::tree_item * pitemNew = allocate_item();
+      ::ca::tree_item * pitemNew = allocate_item(pdata);
       if(pitemNew == ::null())
          return ::null();
-      if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
+      if(!insert_item(pdata, pitemNew, erelativeNewItem, pitemRelative))
       {
          delete_item(pitemNew);
          return ::null();
@@ -303,7 +312,7 @@ namespace ca
    }
 
 
-   bool tree::insert_item(::ca::tree_item * pitemNew, ERelative erelativeNewItem, ::ca::tree_item * pitemRelative)
+   bool tree::insert_item(::ca::tree_data * pdata, ::ca::tree_item * pitemNew, ERelative erelativeNewItem, ::ca::tree_item * pitemRelative)
    {
       if(pitemNew == ::null())
          return false;
@@ -369,7 +378,7 @@ namespace ca
             // Is pitemRelative a first child ?
             if(pitemRelative->get_item(RelativeFirstSibling) == pitemRelative)
             {
-               return insert_item(pitemNew, RelativeFirstChild, pitemRelative->m_pparent);
+               return insert_item(pdata, pitemNew, RelativeFirstChild, pitemRelative->m_pparent);
             }
             else
             {
@@ -387,7 +396,7 @@ namespace ca
             // Is pitemRelative a last child ?
             if(pitemRelative->get_item(RelativeLastSibling) == pitemRelative)
             {
-               return insert_item(pitemNew, RelativeLastChild, pitemRelative->m_pparent);
+               return insert_item(pdata, pitemNew, RelativeLastChild, pitemRelative->m_pparent);
             }
             else
             {
@@ -437,9 +446,10 @@ namespace ca
       return true;
    }
 
-   ::ca::tree_item * tree::allocate_item()
+   ::ca::tree_item * tree::allocate_item(::ca::tree_data * pdata)
    {
       ::ca::tree_item * pitemNew = new tree_item;
+      pitemNew->m_ptreedata = pdata;
       pitemNew->m_ptree = this;
       return pitemNew;
    }

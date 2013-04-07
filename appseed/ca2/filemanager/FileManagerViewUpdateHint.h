@@ -9,8 +9,9 @@ public:
    enum e_type
    {
       TypeInitialize,
-      TypePreSynchronize,
-      TypeSynchronize,
+      TypeSynchronizePath,
+      TypeSynchronizeLocations,
+      TypeSynchronizeFolderSelection,
       TypeCreateBars,
       TypePop,
       TypeCreateViews,

@@ -19,7 +19,7 @@ namespace user
    {
    public:
       // for creating new views
-      ::ca::type_info         m_typeinfoNewView; // runtime class of ::view to create or ::null()
+      sp(::ca::type_info)         m_typeinfoNewView; // runtime class of ::view to create or ::null()
       sp(::user::document_interface)              m_pCurrentDoc;
       sp(::user::interaction)   m_puiNew;
 

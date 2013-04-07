@@ -18,7 +18,8 @@ namespace ca
    public:
       
 
-      tree_item_data_ptr_array   m_itemdataptra;      
+      tree_item_data_ptr_array         m_itemdataptra;    
+      image_list *                     m_pimagelist;
 
 
       tree_data(sp(::ca::application) papp);

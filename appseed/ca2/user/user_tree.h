@@ -51,19 +51,27 @@ namespace user
       index                         m_iClick;
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
-      ::ca::tree_item *            m_pitemFirstVisible;
+      ::ca::tree_item *             m_pitemFirstVisible;
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
-      int32_t                           m_iCurrentViewWidth;
+      int32_t                       m_iCurrentViewWidth;
       COLORREF                      m_crText;
       COLORREF                      m_crTextSelected;
       COLORREF                      m_crTextHighlight;
       COLORREF                      m_crTextSelectedHighlight;
-      uint32_array                   m_dwaItemState;
+      uint32_array                  m_dwaItemState;
       image_list *                  m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
-      int32_t                           m_iItemHeight;
+      int32_t                       m_iItemHeight;
+
+
+
+      bool                          m_bHoverStart;
+      DWORD                         m_dwHoverStart;
+      DWORD                         m_dwHoverEnd;
+      DWORD                         m_dwHoverEndInit;
+      BYTE                          m_uchHoverAlpha;
       
 
       tree(sp(::ca::application) papp);
@@ -82,8 +90,8 @@ namespace user
       virtual int32_t _001CalcCurrentViewWidth();
       void _001SelectItem(::ca::tree_item * pitem);
       count _001GetVisibleItemCount();
-      void _001SetCollapseImage(HICON hicon);
-      void _001SetExpandImage(HICON hicon);
+      void _001SetCollapseImage(const char * pszMatter);
+      void _001SetExpandImage(const char * pszMatter);
       void UpdateHover();
       virtual void _001OnOpenItem(::ca::tree_item * pitem);
       void _001ExpandItem(::ca::tree_item * pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);

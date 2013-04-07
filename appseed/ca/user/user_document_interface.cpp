@@ -896,7 +896,7 @@ namespace user
    }
 
 
-   ::view * document_interface::get_view(const ::ca::type_info & info, index indexFind)
+   ::view * document_interface::get_typed_view(sp(::ca::type_info) info, index indexFind)
    {
       single_lock sl(&m_mutex, true);
       ::count countView = get_view_count();
@@ -905,7 +905,7 @@ namespace user
       for(index index = 0; index < countView; index++)
       {
          pview = get_view(index);
-         if(info == typeid(*pview))
+         if(*info == typeid(*pview))
          {
             if(indexFind == countFind)
                return pview;

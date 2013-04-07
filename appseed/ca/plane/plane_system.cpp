@@ -676,6 +676,8 @@ namespace plane
          TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
       }
 
+      m_typemap.release();
+
       int32_t iRet = 0;
       try
       {
@@ -765,7 +767,7 @@ namespace plane
       return iRet;
    }
 
-   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, ::ca::type_info & info)
+   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -1385,10 +1387,10 @@ namespace plane
 #endif
    }
 
-   void system::on_allocation_error(sp(::ca::application) papp, ::ca::type_info & info)
+   void system::on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info)
    {
       UNREFERENCED_PARAMETER(papp);
-      simple_message_box(::null(), MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.friendly_name());
+      simple_message_box(::null(), MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info->friendly_name());
    }
 
 
@@ -1429,7 +1431,7 @@ namespace plane
       psession->open_by_file_extension(pszFileName);
    }
 
-   sp(::ca::ca) system::alloc(sp(::ca::application) papp, ::ca::type_info & info)
+   sp(::ca::ca) system::alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
    {
       return ::ca::system::alloc(papp, info);
    }
@@ -1753,17 +1755,17 @@ namespace plane
 
    }
 
-   ::ca::type_info & system::get_type_info(const ::std_type_info & info)
+   sp(::ca::type_info) system::get_type_info(const ::std_type_info & info)
    {
 
 #ifdef WINDOWS
-      ::ca::type_info & typeinfo = m_typemap[info.raw_name()];
+      sp(::ca::type_info) & typeinfo = m_typemap[info.raw_name()];
 #else
-      ::ca::type_info & typeinfo = m_typemap[info.name()];
+      sp(::ca::type_info) & typeinfo = m_typemap[info.name()];
 #endif
 
-      if(typeinfo.m_id.is_null())
-         typeinfo = info;
+      if(typeinfo.is_null())
+         typeinfo = canew(::ca::type_info(info));
 
       return typeinfo;
 

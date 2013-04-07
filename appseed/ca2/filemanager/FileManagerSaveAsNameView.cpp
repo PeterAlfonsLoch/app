@@ -38,11 +38,7 @@ void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::ca::obje
             DISetSection(str);
             _001UpdateColumns();*/
          }
-         else if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
-         {
-            //_017PreSynchronize();
-         }
-         else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
+         else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
          {
             _017Synchronize();
          }

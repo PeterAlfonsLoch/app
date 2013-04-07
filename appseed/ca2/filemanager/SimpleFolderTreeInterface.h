@@ -71,6 +71,9 @@ namespace filemanager
 #endif
       ::ca::tree_item *        m_pdataitemCreateImageListStep;
       string                  m_strPath;
+      //image_list *            m_pimagelistFs;
+      int32_t   m_iDefaultImage;
+      int32_t   m_iDefaultImageSelected;
 
 
       SimpleFolderTreeInterface(sp(::ca::application) papp);
@@ -84,8 +87,6 @@ namespace filemanager
       DECL_GEN_VSIGNAL(_001OnTimer)
 
 
-      int32_t   m_iDefaultImage;
-      int32_t   m_iDefaultImageSelected;
       virtual void _017Synchronize();
       void install_message_handling(::ca::message::dispatch * pinterface);
 

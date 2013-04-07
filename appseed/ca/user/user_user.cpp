@@ -478,10 +478,10 @@ retry_license:
    }
 
 
-   ::ca::type_info user::controltype_to_typeinfo(::user::control::e_type e_type)
+   sp(::ca::type_info) user::controltype_to_typeinfo(::user::control::e_type e_type)
    {
 
-      return ::ca::type_info();
+      return sp(::ca::type_info)();
 
    }
 

@@ -54,7 +54,7 @@ namespace ca
 
 
 
-   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, ::ca::type_info & info)
+   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
    {
 /*      if(info == System.type_info < class ::ca::log > ())
       {
@@ -67,18 +67,17 @@ namespace ca
       return ::null();
    }
 
-   sp(::ca::ca) system::alloc(sp(::ca::application) papp, ::ca::type_info & info)
+   sp(::ca::ca) system::alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
    {
       return on_alloc(papp, info);
    }
 
    sp(::ca::ca) system::alloc(sp(::ca::application) papp, const std_type_info & info)
    {
-      ::ca::type_info typeinfo(info);
-      return on_alloc(papp, typeinfo);
+      return on_alloc(papp, canew(::ca::type_info(info)));
    }
 
-   void system::on_allocation_error(sp(::ca::application) papp, ::ca::type_info & info)
+   void system::on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);

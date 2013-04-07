@@ -434,7 +434,15 @@ namespace ca
 
    image_list * tree_item::get_image_list()
    {
-      return m_ptree->get_image_list();
+      
+      if(m_ptreedata != ::null())
+         return m_ptreedata->m_pimagelist;
+
+      if(m_ptree != ::null())
+         return m_ptree->get_image_list();
+
+      return ::null();
+
    }
 
 

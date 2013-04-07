@@ -22,8 +22,9 @@ namespace filemanager
 
             m_etranslucency = TranslucencyPresent;
 
+            m_spdataFs = new ::ca::simple_tree_data(get_app());
 
-            ::ca::data_container::m_spdata = new ::ca::simple_tree_data(get_app());
+            ::ca::data_container::m_spdata = m_spdataFs;
             if(!::ca::data_container::m_spdata->initialize_data())
                throw simple_exception(papp);
          }
@@ -136,7 +137,7 @@ namespace filemanager
 
                if(pdataitemChild == ::null())
                {
-                  pdataitemChild = create_item(pdataitemParent, ::ca::RelativeLastChild);
+                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::ca::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == ::null())
@@ -219,13 +220,13 @@ namespace filemanager
          void tree_view::_001OnCreate(::ca::signal_object * pobj)
          {
             pobj->previous();
-            m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
+            m_iIconFolderNormal = m_spdataFs->m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
 
-            m_iIconFolderSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected.ico");
+            m_iIconFolderSelected = m_spdataFs->m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected.ico");
 
-            m_iIconArtistNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
+            m_iIconArtistNormal = m_spdataFs->m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
 
-            m_iIconArtistSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_selected.ico");
+            m_iIconArtistSelected = m_spdataFs->m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_selected.ico");
 
          }
 

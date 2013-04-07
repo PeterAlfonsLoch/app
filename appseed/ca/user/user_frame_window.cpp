@@ -172,7 +172,7 @@ void frame_window::PostNcDestroy()
    // default for frame windows is to allocate them on the heap
    //  the default post-cleanup is to 'delete this'.
    // never explicitly call 'delete' on a frame_window, use DestroyWindow instead
-   delete_this();
+   //release();
 }
 
 void frame_window::OnPaletteChanged(sp(::user::interaction) pFocusWnd)

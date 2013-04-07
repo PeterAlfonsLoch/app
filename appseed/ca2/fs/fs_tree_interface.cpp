@@ -143,11 +143,11 @@ namespace fs
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != ::null())
                {
-                  pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
+                  pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
+                  pitem = insert_item(get_fs_tree_data(),pitemChild, ::ca::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
@@ -179,14 +179,14 @@ namespace fs
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != ::null())
          {
-            pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
+            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(FlagHasSubFolderUnknown);
          }
          else
          {
-               pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
+               pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(FlagHasSubFolder))
@@ -422,11 +422,11 @@ namespace fs
             ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == ::null())
             {
-               pitem = insert_item(pitemNew, ::ca::RelativeLastChild, pitemParent);
+               pitem = insert_item(get_fs_tree_data(), pitemNew, ::ca::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(pitemNew, ::ca::RelativeReplace, pitem);
+               pitem = insert_item(get_fs_tree_data(), pitemNew, ::ca::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();

@@ -282,11 +282,11 @@ namespace filemanager
             ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == ::null())
             {
-               pitem = insert_item(pitemNew, ::ca::RelativeLastChild, pitemParent);
+               pitem = insert_item(get_fs_tree_data(), pitemNew, ::ca::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(pitemNew, ::ca::RelativeReplace, pitem);
+               pitem = insert_item(get_fs_tree_data(), pitemNew, ::ca::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
@@ -312,7 +312,6 @@ namespace filemanager
          lpcsz = "";
 
 
-      m_pimagelist = System.user()->shellimageset().GetImageList16();
       /*if(lpcsz == ::null())
       {
       if(zip::Util(get_app()).IsUnzipable(pitemParent->m_strPath))
@@ -452,7 +451,7 @@ namespace filemanager
          }
          else
          {
-            pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemBase);
+            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemBase);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
@@ -541,7 +540,7 @@ namespace filemanager
       while(pitem != ::null())
       {
 
-         string strPathOld = dynamic_cast < ::fs::tree_item * > ( pitem)->m_strPath;
+         string strPathOld = dynamic_cast < ::fs::tree_item * > ( pitem->m_pitemdata)->m_strPath;
 
          strPathOld.trim_right("/\\");
 
@@ -596,11 +595,11 @@ namespace filemanager
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != ::null())
                {
-                  pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
+                  pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
+                  pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
@@ -658,14 +657,14 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != ::null())
          {
-            pitem = insert_item(pitemChild, ::ca::RelativeReplace, pitem);
+            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
          }
          else
          {
-            pitem = insert_item(pitemChild, ::ca::RelativeLastChild, pitemParent);
+            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
@@ -917,7 +916,7 @@ namespace filemanager
    void SimpleFolderTreeInterface::_001OnOpenItem(::ca::tree_item * pitem)
    {
 
-      _017OpenFolder(new ::fs::item(*dynamic_cast < ::fs::tree_item * > (pitem)));
+      _017OpenFolder(new ::fs::item(*dynamic_cast < ::fs::tree_item * > (pitem->m_pitemdata)));
 
    }
 
@@ -930,6 +929,26 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::_StartCreateImageList()
    {
+
+      if(get_fs_tree_data()->m_pimagelist == ::null())
+      {
+         
+         get_fs_tree_data()->m_pimagelist = System.user()->shellimageset().GetImageList16();
+
+         m_iDefaultImage = System.user()->shellimageset().GetImage(
+            "foo",
+            _shell::FileAttributeDirectory,
+            _shell::IconNormal);
+
+         m_iDefaultImageSelected = System.user()->shellimageset().GetImage(
+            "foo",
+            _shell::FileAttributeDirectory,
+            _shell::IconOpen);
+
+      }
+
+
+
       m_pdataitemCreateImageListStep = (::ca::tree_item *) get_base_item()->m_pchild;
       SetTimer(TimerCreateImageList, 80, ::null());
    }

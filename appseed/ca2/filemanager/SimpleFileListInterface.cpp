@@ -500,7 +500,7 @@ namespace filemanager
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
       //control.m_typeinfo = System.type_info < simple_edit_plain_text > ();
-      control.m_typeinfo = ::ca::type_info();
+      control.m_typeinfo = sp(::ca::type_info)();
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
       index iControl =  _001AddControl(control);
@@ -805,9 +805,22 @@ namespace filemanager
 
    void SimpleFileListInterface::_017Synchronize()
    {
+      
+      if(m_bStatic)
+      {
+
+         _017UpdateList();
+
+         return;
+
+      }
+
       ::ca::data::writing writing(m_pdata);
+      
       _001HideEditingControls();
+
       _017Browse(GetFileManagerItem().m_strPath);
+
    }
 
    void SimpleFileListInterface::install_message_handling(::ca::message::dispatch *pinterface)

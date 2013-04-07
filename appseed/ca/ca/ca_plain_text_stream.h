@@ -100,7 +100,7 @@ namespace ca
       plain_text_input_stream & operator >> (double & d);
       plain_text_input_stream & operator >> (LPRECT lprect);
       plain_text_input_stream & operator >> (SIZE & size);
-      plain_text_input_stream & operator >> (::ca::type_info & info);
+      plain_text_input_stream & operator >> (sp(::ca::type_info) info);
       plain_text_input_stream & operator >> (plain_text_serializable & writable);
 
       virtual string get_location() const;
@@ -143,7 +143,7 @@ namespace ca
       plain_text_output_stream & operator << (double d);
       plain_text_output_stream & operator << (LPCRECT lpcrect);
       plain_text_output_stream & operator << (SIZE & size);
-      plain_text_output_stream & operator << (::ca::type_info & info);
+      plain_text_output_stream & operator << (sp(::ca::type_info) info);
       plain_text_output_stream & operator << (plain_text_serializable & serializable);
       plain_text_output_stream & operator << (const char * psz);
 

@@ -8,7 +8,7 @@ namespace fs
    class CLASS_DECL_ca2 list_item_array :
       virtual ::ca::object
    {
-   protected:
+   public:
 
       class CLASS_DECL_ca2 base_list_item_array :
          public spsa(list_item)

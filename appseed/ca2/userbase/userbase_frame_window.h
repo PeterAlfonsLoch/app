@@ -32,7 +32,7 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
    // All fields are optional and may be ::null()
 {
    // for creating new views
-   ::ca::type_info m_typeinfoNewView; // runtime class of ::view to create or ::null()
+   sp(::ca::type_info) m_typeinfoNewView; // runtime class of ::view to create or ::null()
    sp(::userbase::document) m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)

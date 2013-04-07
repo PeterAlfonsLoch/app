@@ -136,7 +136,7 @@ CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 // Enumerate allocated objects or runtime classes
 /*void __do_for_all_objects(void (c_cdecl *pfn)(::ca::object* pObject, void * pContext),
    void * pContext);
-void ::ca::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
+void ::ca::DoForAllClasses(void (c_cdecl *pfn)(sp(::ca::type_info) pClass,
    void * pContext), void * pContext);*/
 
 #define new DEBUG_NEW

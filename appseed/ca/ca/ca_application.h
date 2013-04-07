@@ -718,8 +718,8 @@ namespace ca
       sp(::ca::command_thread) axiom();
       sp(::ca::command_thread) creation();
 
-      //virtual void on_allocation_error(const ::ca::type_info & info);
-      //virtual sp(::ca::ca) on_alloc(const ::ca::type_info & info);
+      //virtual void on_allocation_error(const sp(::ca::type_info) info);
+      //virtual sp(::ca::ca) on_alloc(const sp(::ca::type_info) info);
 
 
       virtual bool check_exclusive();
@@ -1059,7 +1059,7 @@ namespace ca
 
       bool ca_finalize();
 
-      virtual sp(::ca::ca) alloc(::ca::type_info & info);
+      virtual sp(::ca::ca) alloc(sp(::ca::type_info) info);
       virtual sp(::ca::ca) alloc(const id & idType);
 
 

@@ -26,7 +26,6 @@ namespace user
       m_columna.Initialize(this);
 
       m_bDrag = false;
-
       m_eview = ViewReport;
       m_iItemFocus = -1;
       m_iItemHover = -1;
@@ -181,6 +180,7 @@ namespace user
       rect rectClient;
 
       GetClientRect(rectClient);
+
 
       pdc->SetBkMode(TRANSPARENT);
 

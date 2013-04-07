@@ -60,7 +60,7 @@ namespace uinteraction
 
 
 
-         ::ca::type_info                                             m_typeinfoControlBoxButton;
+         sp(::ca::type_info)                                             m_typeinfoControlBoxButton;
 
          map < e_button, e_button, id, id >            m_mapButtonId;
          map < id, id, e_button, e_button >            m_mapIdButton;

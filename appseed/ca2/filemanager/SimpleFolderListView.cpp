@@ -95,7 +95,7 @@ namespace filemanager
                }
                _001UpdateColumns();
             }
-            else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
+            else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
             {
                _017Synchronize();
             }

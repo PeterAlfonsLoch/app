@@ -879,11 +879,11 @@ namespace user
 #endif
    }
 
-   sp(::user::interaction) interaction_ptr_array::find_first(::ca::type_info info)
+   sp(::user::interaction) interaction_ptr_array::find_first_typed(sp(::ca::type_info) info)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         if(typeid(*this->element_at(i)).name() == info.name())
+         if(typeid(*this->element_at(i)).name() == info->name())
          {
             return this->element_at(i);
          }

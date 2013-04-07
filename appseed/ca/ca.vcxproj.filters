@@ -3188,6 +3188,9 @@
     <ClInclude Include="ca\ca_region.h">
       <Filter>Header Files\ca\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="plane\plane_system_ca_factory.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">

@@ -57,7 +57,7 @@ namespace ca
       byte_input_stream & operator >> (double & d);
       byte_input_stream & operator >> (LPRECT lprect);
       byte_input_stream & operator >> (SIZE & size);
-      byte_input_stream & operator >> (::ca::type_info & info);
+      byte_input_stream & operator >> (sp(::ca::type_info) info);
       byte_input_stream & operator >> (byte_serializable & serializable);
       byte_input_stream & operator >> (id & id);
       byte_input_stream & operator >> (var & var);
@@ -114,7 +114,7 @@ namespace ca
       byte_output_stream & operator << (double d);
       byte_output_stream & operator << (LPCRECT lpcrect);
       byte_output_stream & operator << (SIZE & size);
-      byte_output_stream & operator << (::ca::type_info & info);
+      byte_output_stream & operator << (sp(::ca::type_info) info);
       byte_output_stream & operator << (byte_serializable & serializable);
       byte_output_stream & operator << (const char * psz);
       byte_output_stream & operator << (const id & id);

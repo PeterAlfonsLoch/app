@@ -13,6 +13,8 @@ namespace user
       ::ca::tree(papp),
       m_dcextension(papp)
    {
+      m_bHoverStart = false;
+
       m_pitemFirstVisible        = ::null();
       m_iFirstVisibleItemLevel   = 0;
       m_pitemHover               = ::null();
@@ -23,6 +25,9 @@ namespace user
       m_crTextHighlight          = ARGB(255, 102, 153, 255);
       m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
       m_iItemHeight              = 18;
+      m_iImageExpand             = -1;
+      m_iImageCollapse           = -1;
+      m_pimagelist               = ::null();
    }
 
    tree::~tree()
@@ -39,9 +44,6 @@ namespace user
       if(!::ca::tree::initialize())
          throw simple_exception(get_app());
 
-      m_pimagelist = new image_list(get_app());
-      m_pimagelist->create(16, 16, 0, 10, 10);
-
       class rect rect;
       rect.null();
 
@@ -49,6 +51,14 @@ namespace user
       {
          RedrawWindow();
       }
+
+
+      m_pimagelist = new image_list(get_app());
+      m_pimagelist->create(16, 16, 0, 10, 10);
+
+      _001SetCollapseImage("list/collapse.png");
+      _001SetExpandImage("list/expand.png");
+      
 
    }
 
@@ -136,6 +146,52 @@ namespace user
 
       GetClientRect(rectClient);
 
+
+
+      point ptCursor;
+
+      Session.get_cursor_pos(&ptCursor);
+      DWORD dwHoverIn = 1984 * 2;
+      DWORD dwHoverOut = (1984 + 1977) * 2;
+      ScreenToClient(&ptCursor);
+      bool bTreeHover = rectClient.contains(ptCursor);
+      if(bTreeHover)
+      {
+         if(!m_bHoverStart)
+         {
+            m_bHoverStart = true;
+            m_dwHoverStart = get_tick_count();
+         }
+         if(get_tick_count() - m_dwHoverStart > dwHoverIn)
+         {
+            m_uchHoverAlpha = 255;
+         }
+         else
+         {
+            m_uchHoverAlpha = (get_tick_count() - m_dwHoverStart * 255) / dwHoverIn;
+         }
+      }
+      else
+      {
+         if(m_bHoverStart)
+         {
+            m_bHoverStart = false;
+            m_dwHoverEndInit = min(max(0, m_dwHoverStart + dwHoverIn - get_tick_count()), dwHoverOut);
+            m_dwHoverEnd = get_tick_count() + dwHoverOut - m_dwHoverEndInit;
+         }
+         
+         if(m_dwHoverEnd - get_tick_count()  < dwHoverOut)
+         {
+            m_uchHoverAlpha = 0;
+         }
+         else
+         {
+            if((dwHoverOut - m_dwHoverEndInit) == 0)
+               m_uchHoverAlpha = 0;
+            else
+               m_uchHoverAlpha = ((m_dwHoverEnd - get_tick_count()) * 255) / (dwHoverOut - m_dwHoverEndInit);
+         }
+      }
 //      ::ca::savings & savings = System.savings();
 
 ///      ::ca::graphics * pDCBuffer = pdc;
@@ -240,10 +296,10 @@ namespace user
       drawitemdata.m_iItemHeight = 18;
       GetClientRect(drawitemdata.m_rectClient);
 
+
    //   _001OnDrawBackground(pdc);
 
       ::ca::tree_item * pitem = m_pitemFirstVisible;
-
 
 
 
@@ -315,11 +371,16 @@ namespace user
       tree * ptree = this;
       ::ca::tree_item * pitem = data.m_pitem;
 
-      image_list * pimagelistItem = data.m_pitem->get_image_list();
-      image_list * pimagelistTree = ptree == ::null() ? ::null() : ptree->m_pimagelist;
+      image_list * pimagelistItem = pitem->get_image_list();
+      image_list * pimagelistTree = get_image_list();
 
       bool bSelected    = ptree->is_selected(pitem);
       bool bHover       = ptree->is_hover(pitem);
+
+
+
+      if(m_uchHoverAlpha > 0)
+      {
 
       if(ptree != ::null() && pimagelistTree != ::null() && data.m_pitem->m_dwState & ::ca::tree_item_state_expandable)
       {
@@ -335,7 +396,8 @@ namespace user
          {
             iImage = (int32_t) ptree->m_iImageExpand;
          }
-         pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0);
+         pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0, m_uchHoverAlpha);
+      }
       }
 
 
@@ -389,6 +451,7 @@ namespace user
             data.m_pdc->set_color(m_crText);
          }
       }
+
 
       if(pimagelistItem != ::null())
       {
@@ -904,14 +967,14 @@ namespace user
       }*/
    }
 
-   void tree::_001SetExpandImage(HICON hicon)
+   void tree::_001SetExpandImage(const char * pszMatter)
    {
-      m_iImageExpand = m_pimagelist->add_icon_os_data(hicon);
+      m_iImageExpand = m_pimagelist->add_matter(pszMatter);
    }
 
-   void tree::_001SetCollapseImage(HICON hicon)
+   void tree::_001SetCollapseImage(const char * pszMatter)
    {
-      m_iImageCollapse = m_pimagelist->add_icon_os_data(hicon);
+      m_iImageCollapse = m_pimagelist->add_matter(pszMatter);
    }
 
    ::count tree::_001GetVisibleItemCount()
@@ -1018,7 +1081,7 @@ namespace user
 
       tree * ptree = dynamic_cast < tree * > (pui.m_p);
 
-      if(!insert_item(ptree->get_base_item(), ::ca::RelativeLastChild, get_base_item()))
+      if(!insert_item(NULL, ptree->get_base_item(), ::ca::RelativeLastChild, get_base_item()))
          return false;
 
       m_treeptra.add(ptree);

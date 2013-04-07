@@ -29,7 +29,7 @@ namespace user
 
       sp(combo_list)              m_plist;
 
-      ::ca::type_info            m_typeComboList;
+      sp(::ca::type_info)            m_typeComboList;
 
       e_style                    m_estyle;
 

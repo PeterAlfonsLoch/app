@@ -8,7 +8,7 @@ namespace ca
    template < class T >
    void smart_pointer <T>::create(allocer palloc)
    {
-      static class id idType = Sys(palloc->m_papp).type_info < T > ().m_id;
+      static class id idType = Sys(palloc->m_papp).type_info < T > ()->m_id;
       if(m_p != ::null())
          ::ca::release(m_p);
       sp(::ca::ca) pca = Sys(palloc->m_papp).alloc(palloc->m_papp, idType);

@@ -111,7 +111,7 @@ namespace user
       }
       if(pdescriptor->m_pcontrol != ::null())
       {
-         ::ca::type_info ti = typeid(pdescriptor->m_pcontrol);
+         //sp(::ca::type_info) ti = typeid(pdescriptor->m_pcontrol);
 /*         if(ti == System.type_info < ::user::list > ())
          {
             if(pdescriptor->m_etype == control::type_simple_list)
@@ -951,7 +951,7 @@ namespace user
             }
             if(descriptor.m_pcontrol != ::null())
             {
-               ::ca::type_info ti = typeid(descriptor.m_pcontrol);
+//               sp(::ca::type_info) ti = typeid(descriptor.m_pcontrol);
 /*               if(ti == System.type_info < ::user::list > ())
                {
                   if(descriptor.m_etype == control::type_simple_list)

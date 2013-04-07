@@ -57,7 +57,7 @@ namespace user
       class keyboard & keyboard();
 
 
-      virtual ::ca::type_info controltype_to_typeinfo(::user::control::e_type type);
+      virtual sp(::ca::type_info) controltype_to_typeinfo(::user::control::e_type type);
 
 
       virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);

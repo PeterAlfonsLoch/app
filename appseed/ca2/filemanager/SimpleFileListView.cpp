@@ -98,7 +98,7 @@ namespace filemanager
          if(strPath.has_char() && GetFileManager()->get_fs_data()->is_dir(strPath))
          {
 
-            if(stra.add_unique(strPath))
+            if(stra.add_unique(strPath) >= 0)
             {
 
                GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
@@ -163,8 +163,9 @@ namespace filemanager
                }
                m_dataid = str;
                _001UpdateColumns();
+
             }
-            else if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
+            else if(!m_bStatic && puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
             {
                if(GetFileManager()->get_filemanager_data()->m_pholderFileList != ::null())
                {
@@ -176,9 +177,6 @@ namespace filemanager
                   GetFileManager()->get_filemanager_data()->m_pholderFileList->layout();
                }
                _017PreSynchronize();
-            }
-            else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
-            {
                _017Synchronize();
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
@@ -195,6 +193,10 @@ namespace filemanager
                      }
                   }
                }*/
+            }
+            else if(m_bStatic && puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizeLocations))
+            {
+               _017UpdateList();
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeFilter))
             {

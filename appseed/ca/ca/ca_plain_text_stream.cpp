@@ -186,7 +186,7 @@ namespace ca
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (::ca::type_info & info)
+   plain_text_input_stream & plain_text_input_stream::operator >> (sp(::ca::type_info) info)
    {
       {
          int32_t iLen;
@@ -194,7 +194,7 @@ namespace ca
          char * psz = (char *) malloc(iLen + 1);
          read(psz, iLen);
          psz[iLen] = '\0';
-         info.m_id = psz;
+         info->m_id = psz;
          free((void *) psz);
       }
       {
@@ -203,7 +203,7 @@ namespace ca
          char * psz = (char *) malloc(iLen + 1);
          read(psz, iLen);
          psz[iLen] = '\0';
-         info.m_idFriendly = psz;
+         info->m_idFriendly = psz;
          free((void *) psz);
       }
       return *this;
@@ -340,11 +340,11 @@ namespace ca
       return *this;
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (::ca::type_info & info)
+   plain_text_output_stream & plain_text_output_stream::operator << (sp(::ca::type_info) info)
    {
 
-      raw_print(info.name());
-      raw_print(info.friendly_name());
+      raw_print(info->name());
+      raw_print(info->friendly_name());
 
       return *this;
    }

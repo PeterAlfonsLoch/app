@@ -35,7 +35,7 @@ namespace user
 
 
       using spa(::user::interaction)::find_first;
-      sp(::user::interaction) find_first(::ca::type_info info);
+      sp(::user::interaction) find_first_typed(sp(::ca::type_info) info);
       sp(::user::interaction) find_first(oswindow oswindow);
 
       void get_wnda(::user::oswindow_array & oswindowa);

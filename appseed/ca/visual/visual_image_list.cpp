@@ -117,6 +117,18 @@ bool image_list::draw(::ca::graphics *pdc, int32_t iImage, point pt, int32_t iFl
 }
 
 
+bool image_list::draw(::ca::graphics *pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha)
+{
+
+   UNREFERENCED_PARAMETER(iFlag);
+
+   if(alpha == 255)
+      return draw(pdc, iImage, pt, iFlag);
+
+   return System.visual().imaging().color_blend(pdc, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), alpha / 255.0);
+
+}
+
 bool image_list::draw(::ca::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag)
 {
 

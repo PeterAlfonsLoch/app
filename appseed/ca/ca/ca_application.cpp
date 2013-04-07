@@ -4496,7 +4496,7 @@ namespace ca
    }
 
 
-   sp(::ca::ca) application::alloc(::ca::type_info & info)
+   sp(::ca::ca) application::alloc(sp(::ca::type_info) info)
    {
       return System.alloc(this, info);
    }

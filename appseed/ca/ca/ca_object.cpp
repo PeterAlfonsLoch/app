@@ -8,10 +8,10 @@ namespace ca
    // Runtime Typing
 
    // special runtime-class structure for ::object (no base class)
-   /*const struct ::ca::type_info object::classbase_object =
+   /*const struct sp(::ca::type_info) object::classbase_object =
    { "::object", sizeof(::object), 0xffff, ::null(), ::null(), ::null() };*/
    /*
-   ::ca::type_info object::GetRuntimeClass() const
+   sp(::ca::type_info) object::GetRuntimeClass() const
    {
    return _RUNTIME_CLASS(::object);
    }

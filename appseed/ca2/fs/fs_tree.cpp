@@ -73,12 +73,9 @@ namespace fs
                m_dataid = str;*/
    //            _001UpdateColumns();
             }
-            if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
+            if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
             {
                _017PreSynchronize();
-            }
-            if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
-            {
                _017Synchronize();
             }
             if(puh->is_type_of(FileManagerViewUpdateHint::TypeFilter))

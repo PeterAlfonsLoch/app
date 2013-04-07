@@ -49,6 +49,7 @@ public:
    int32_t add_std_matter(const char * lpcsz);
 
    bool draw(::ca::graphics * pdc, int32_t iImage, point pt, int32_t iFlag);
+   bool draw(::ca::graphics * pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha);
    bool draw(::ca::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
    int32_t get_image_count() const;
    bool create(image_list * pimagelist);

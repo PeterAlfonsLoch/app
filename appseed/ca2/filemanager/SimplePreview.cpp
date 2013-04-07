@@ -48,11 +48,7 @@ namespace filemanager
                DISetSection(str);
                _001UpdateColumns();*/
             }
-            else if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
-            {
-               //_017PreSynchronize();
-            }
-            else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
+            else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronizePath))
             {
                //_017Synchronize();
                m_strPath = GetFileManagerItem().m_strPath;

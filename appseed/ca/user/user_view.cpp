@@ -470,7 +470,7 @@ void view::_001OnView(::ca::signal_object * pobj)
 }
 
 
-sp(::user::interaction) view::create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+sp(::user::interaction) view::create_view(sp(::ca::type_info) info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
 
    sp(::ca::create_context) cacc(allocer());
@@ -498,7 +498,7 @@ sp(::user::interaction) view::create_view(::ca::type_info info, sp(::user::docum
    if(id.is_empty())
    {
 
-      id = (const ::id &) cc->m_typeinfoNewView.name();
+      id = (const ::id &) cc->m_typeinfoNewView->name();
 
    }
 
@@ -507,7 +507,7 @@ sp(::user::interaction) view::create_view(::ca::type_info info, sp(::user::docum
 }
 
 
-sp(::user::interaction) view::s_create_view(::ca::type_info info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+sp(::user::interaction) view::s_create_view(sp(::ca::type_info) info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
 
    sp(::ca::create_context) cacc(pdoc->allocer());

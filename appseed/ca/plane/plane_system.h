@@ -252,7 +252,7 @@ namespace plane
 
       spa(service_base)                            m_serviceptra;
 
-      strid_map < ::ca::type_info >  m_typemap;
+      strsp(::ca::type_info)                       m_typemap;
 
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
@@ -364,10 +364,10 @@ namespace plane
       virtual void unregister_bergedge_application(sp(::ca::application) papp);
 
       using ::plane::application::alloc;
-      virtual sp(::ca::ca) alloc(sp(::ca::application) papp, ::ca::type_info & info);
+      virtual sp(::ca::ca) alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
       virtual sp(::ca::ca) alloc(sp(::ca::application) papp, const class id & idType);
 
-      virtual sp(::ca::ca) on_alloc(sp(::ca::application) papp, ::ca::type_info & info);
+      virtual sp(::ca::ca) on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
       virtual sp(::ca::ca) clone();
       virtual sp(::ca::ca) clone(sp(::ca::ca) pobj);
       template < typename T >
@@ -397,7 +397,7 @@ namespace plane
 
       virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
-      virtual void on_allocation_error(sp(::ca::application) papp, ::ca::type_info & info);
+      virtual void on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info);
 
       // file & dir
       virtual string matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = ::null());
@@ -496,25 +496,25 @@ namespace plane
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
       template < class T >
-      ::ca::type_info & type_info()
+      sp(::ca::type_info) type_info()
       {
          return get_type_info(typeid(T));
       }
 
-      virtual ::ca::type_info & get_type_info(const ::std_type_info & info);
-      inline ::ca::type_info & get_type_info(const class id & idType)
+      virtual sp(::ca::type_info) get_type_info(const ::std_type_info & info);
+      inline sp(::ca::type_info) get_type_info(const class id & idType)
       {
          return m_typemap[idType];
       }
 
-      void set_enum_name(::ca::type_info etype, int32_t i, const char * psz)
+      void set_enum_name(sp(::ca::type_info) etype, int32_t i, const char * psz)
       {
-         m_mapEnumToName[etype.name()][i] = psz;
-         m_mapNameToEnum[etype.name()][psz] = i;
+         m_mapEnumToName[etype->name()][i] = psz;
+         m_mapNameToEnum[etype->name()][psz] = i;
       }
-      string get_enum_name(::ca::type_info info, int32_t i)
+      string get_enum_name(sp(::ca::type_info) info, int32_t i)
       {
-         return m_mapEnumToName[info.name()].get(i, "");
+         return m_mapEnumToName[info->name()].get(i, "");
       }
 
       template < class E , E edefault>
@@ -530,13 +530,13 @@ namespace plane
       }
 
       template < class ENUM >
-      ENUM enum_from_name(::ca::type_info info, const char * psz, int32_t iDefault = 0)
+      ENUM enum_from_name(sp(::ca::type_info) info, const char * psz, int32_t iDefault = 0)
       {
-         return (ENUM) m_mapNameToEnum[info.name()].get(psz, iDefault);
+         return (ENUM) m_mapNameToEnum[info->name()].get(psz, iDefault);
       }
-      int32_t enum_from_name(::ca::type_info info, const char * psz, int32_t iDefault = 0)
+      int32_t enum_from_name(sp(::ca::type_info) info, const char * psz, int32_t iDefault = 0)
       {
-         return m_mapNameToEnum[info.name()].get(psz, iDefault);
+         return m_mapNameToEnum[info->name()].get(psz, iDefault);
       }
       int32_t enum_from_name(const std_type_info & info, const char * psz, int32_t iDefault = 0)
       {
@@ -548,12 +548,12 @@ namespace plane
       }
 
       template < class TYPE >
-      void set_enum_name(::ca::type_info etype, TYPE e, const char * psz)
+      void set_enum_name(sp(::ca::type_info) etype, TYPE e, const char * psz)
       {
          set_enum_name(etype, (int32_t) e, psz);
       }
       template < class TYPE >
-      string get_enum_name(::ca::type_info etype, TYPE e)
+      string get_enum_name(sp(::ca::type_info) etype, TYPE e)
       {
          return get_enum_name(etype, (int32_t) e);
       }
@@ -561,12 +561,12 @@ namespace plane
       template < class TYPE >
       void set_enum_name(const std_type_info & info, TYPE e, const char * psz)
       {
-         set_enum_name(::ca::type_info(info), (int32_t) e, psz);
+         set_enum_name(sp(::ca::type_info)(info), (int32_t) e, psz);
       }
       template < class TYPE >
       string get_enum_name(const std_type_info & info, TYPE e)
       {
-         return get_enum_name(::ca::type_info(info), (int32_t) e);
+         return get_enum_name(sp(::ca::type_info)(info), (int32_t) e);
       }
 
       template < class TYPE >

@@ -84,7 +84,7 @@ public:
    HMENU m_hMenuAlt;           // menu to update to (::null() means default)
    string m_strTitle;         // default title (original)
    bool m_bInRecalcLayout;     // avoid recursion in layout
-   ::ca::type_info m_pFloatingFrameClass;
+   sp(::ca::type_info) m_pFloatingFrameClass;
    static const uint32_t dwDockBarMap[4][2];
 
 
