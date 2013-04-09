@@ -8,8 +8,8 @@ typedef enum {
   GEOIP_NON_IPV4_ERR            = -12, /* Non - IPv4 address */
   GEOIP_SOCKET_OPEN_ERR         = -13, /* Error opening socket */
    GEOIP_CONNECTION_ERR          = -14, /* Unable to connect */
-   GEOIP_GZIP_IO_ERR             = -15, /* Unable to write GeoIP.dat.gz sp(::ca::file)/
-  GEOIP_TEST_IO_ERR             = -16, /* Unable to write GeoIP.dat.test sp(::ca::file)/
+   GEOIP_GZIP_IO_ERR             = -15, /* Unable to write GeoIP.dat.gz file */
+  GEOIP_TEST_IO_ERR             = -16, /* Unable to write GeoIP.dat.test file */
    GEOIP_GZIP_READ_ERR           = -17, /* Unable to read gzip data */
    GEOIP_OUT_OF_MEMORY_ERR       = -18, /* Out of primitive::memory error */
    GEOIP_SOCKET_READ_ERR         = -19, /* Error reading from socket, see errno */
@@ -25,10 +25,10 @@ typedef enum {
 const char * GeoIP_get_error_message(int32_t i);
 
 /* Original Update Function, just for MaxMind GeoIP Country database */
-int16_t GeoIP_update_database (sp(::ca::application) papp, char * license_key, int32_t verbose, void (*f)( char *));
+int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int32_t verbose, void (*f)( char *));
 
 /* More generalized update function that works more databases */
-int16_t GeoIP_update_database_general (sp(::ca::application) papp, char * user_id, char * license_key,char * data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id, char * license_key,char * data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
    /* experimental export */
    int32_t  GeoIP_fprintf(int32_t (*f)(FILE *, char *),FILE *fp, const char *fmt, ...);

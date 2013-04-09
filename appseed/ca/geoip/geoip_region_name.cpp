@@ -1,9 +1,9 @@
 #include "framework.h"
 
 const char * GeoIP_region_name_by_code(const char * country_code,const char * region_code) {
-  const char * name = ::null();
+  const char * name = NULL;
   int32_t region_code2 = -1;
-  if (region_code == ::null()) { return ::null(); }
+  if (region_code == NULL) { return NULL; }
 
   if (   ((region_code[0] >= 48) && (region_code[0] < (48 + 10)))
       && ((region_code[1] >= 48) && (region_code[1] < (48 + 10)))
@@ -22,7 +22,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
     region_code2 = (region_code[0] - 48) * (65 + 26 - 48) + region_code[1] - 48 + 100;
   }
 
-  if (region_code2 == -1) {return ::null();}
+  if (region_code2 == -1) {return NULL;}
 
   if (strcmp(country_code,"CA") == 0) {
     switch (region_code2) {

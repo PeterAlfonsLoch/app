@@ -7,14 +7,17 @@ namespace ca
 
    file_composite::file_composite()
    {
+
    }
 
-   file_composite::file_composite(file * pfile)
+
+   file_composite::file_composite(sp(file) pfile)
    {
 
       m_spfile = pfile;
 
    }
+
 
    file_position file_composite::get_position() const
    {

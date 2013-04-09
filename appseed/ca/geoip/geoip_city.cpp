@@ -6,8 +6,8 @@ const int32_t FULL_RECORD_LENGTH = 50;
 static
 GeoIPRecord * _extract_record(GeoIP* gi, uint32_t seek_record, int32_t *next_record_ptr) {
    int32_t record_pointer;
-   uchar *record_buf = ::null();
-   uchar *begin_record_buf = ::null();
+   uchar *record_buf = NULL;
+   uchar *begin_record_buf = NULL;
    GeoIPRecord * record;
    int32_t str_length = 0;
    int32_t j;
@@ -15,7 +15,7 @@ GeoIPRecord * _extract_record(GeoIP* gi, uint32_t seek_record, int32_t *next_rec
    int32_t metroarea_combo = 0;
    size_t bytes_read = 0;
    if (seek_record == gi->databaseSegments[0])
-      return ::null();
+      return NULL;
 
    record = (GeoIPRecord *) malloc(sizeof(GeoIPRecord));
    memset(record, 0, sizeof(GeoIPRecord));
@@ -24,7 +24,7 @@ GeoIPRecord * _extract_record(GeoIP* gi, uint32_t seek_record, int32_t *next_rec
 
    record_pointer = seek_record + (2 * gi->record_length - 1) * gi->databaseSegments[0];
 
-   if (gi->cache == ::null()) {
+   if (gi->cache == NULL) {
       fseek(gi->GeoIPDatabase, record_pointer, SEEK_SET);
       begin_record_buf = record_buf = (uchar *) malloc(sizeof(char) * FULL_RECORD_LENGTH);
       bytes_read = fread(record_buf, sizeof(char), FULL_RECORD_LENGTH, gi->GeoIPDatabase);
@@ -32,7 +32,7 @@ GeoIPRecord * _extract_record(GeoIP* gi, uint32_t seek_record, int32_t *next_rec
          /* eof or other error */
          free(begin_record_buf);
          free(record);
-         return ::null();
+         return NULL;
       }
    } else {
       record_buf = gi->cache + (long)record_pointer;
@@ -100,11 +100,11 @@ for (j = 0; j < 3; ++j)
       }
    }
 
-   if (gi->cache == ::null())
+   if (gi->cache == NULL)
       free(begin_record_buf);
 
    /* Used for GeoIP_next_record */
-   if (next_record_ptr != ::null())
+   if (next_record_ptr != NULL)
       *next_record_ptr = (int32_t) (seek_record + record_buf - begin_record_buf + 3);
 
    return record;
@@ -121,7 +121,7 @@ GeoIPRecord * _get_record(GeoIP* gi, uint32_t ipnum) {
    }
 
    seek_record = _GeoIP_seek_record(gi, ipnum);
-   return _extract_record(gi, seek_record, ::null());
+   return _extract_record(gi, seek_record, NULL);
 }
 
 static
@@ -135,7 +135,7 @@ GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum) {
        }
 
        seek_record = _GeoIP_seek_record_v6(gi, ipnum);
-       return _extract_record(gi, seek_record, ::null());
+       return _extract_record(gi, seek_record, NULL);
 }
 
 
@@ -150,7 +150,7 @@ GeoIPRecord * GeoIP_record_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum) {
 
 GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const char *addr) {
    uint32_t ipnum;
-   if (addr == ::null()) {
+   if (addr == NULL) {
       return 0;
    }
    ipnum = _GeoIP_addr_to_num(addr);
@@ -159,7 +159,7 @@ GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const char *addr) {
 
 GeoIPRecord * GeoIP_record_by_addr_v6 (GeoIP* gi, const char *addr) {
        geoipv6_t ipnum;
-       if (addr == ::null()) {
+       if (addr == NULL) {
                return 0;
        }
        ipnum = _GeoIP_addr_to_num_v6(addr);
@@ -168,7 +168,7 @@ GeoIPRecord * GeoIP_record_by_addr_v6 (GeoIP* gi, const char *addr) {
 
 GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const char *name) {
    uint32_t ipnum;
-   if (name == ::null()) {
+   if (name == NULL) {
       return 0;
    }
    ipnum = _GeoIP_lookupaddress(name);
@@ -177,7 +177,7 @@ GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const char *name) {
 
 GeoIPRecord * GeoIP_record_by_name_v6 (GeoIP* gi, const char *name) {
         geoipv6_t ipnum;
-       if (name == ::null()) {
+       if (name == NULL) {
                return 0;
        }
        ipnum = _GeoIP_lookupaddress_v6(name);
@@ -191,7 +191,7 @@ int32_t GeoIP_record_id_by_addr (GeoIP* gi, const char *addr) {
       printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int32_t)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
       return 0;
    }
-   if (addr == ::null()) {
+   if (addr == NULL) {
       return 0;
    }
    ipnum = _GeoIP_addr_to_num(addr);
@@ -205,7 +205,7 @@ int32_t GeoIP_record_id_by_addr_v6 (GeoIP* gi, const char *addr) {
                printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int32_t)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
                return 0;
        }
-       if (addr == ::null()) {
+       if (addr == NULL) {
                return 0;
        }
        ipnum = _GeoIP_addr_to_num_v6(addr);
@@ -217,7 +217,7 @@ int32_t GeoIP_init_record_iter (GeoIP* gi) {
 }
 
 int32_t GeoIP_next_record (GeoIP* gi, GeoIPRecord **gir, int32_t *record_iter) {
-   if (gi->cache != ::null()) {
+   if (gi->cache != NULL) {
       printf("GeoIP_next_record not supported in primitive::memory cache mode\n");
       return 1;
    }

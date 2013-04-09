@@ -2,12 +2,12 @@
 
 const char* GeoIP_time_zone_by_country_and_region(const char * country,const char * region)
 {
-   const char* timezone = ::null();
-   if (country == ::null())
+   const char* timezone = NULL;
+   if (country == NULL)
    {
-      return ::null();
+      return NULL;
    }
-   if (region == ::null())
+   if (region == NULL)
    {
       region = "";
    }
