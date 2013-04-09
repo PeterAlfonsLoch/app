@@ -49,7 +49,7 @@
 /* The size of a `long', as computed by sizeof. */
 #define SIZEOF_LONG 4
 
-/* set the native cpu bit order */
+/* Set the native cpu bit order */
 #define HOST_FILLORDER FILLORDER_LSB2MSB
 
 /* Define to 1 if your processor stores words with the most significant byte

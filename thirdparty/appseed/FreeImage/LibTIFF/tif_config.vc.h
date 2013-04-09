@@ -38,7 +38,7 @@
 /* Unsigned 64-bit type */
 #define TIFF_UINT64_T unsigned __int64
 
-/* set the native cpu bit order */
+/* Set the native cpu bit order */
 #define HOST_FILLORDER FILLORDER_LSB2MSB
 
 /* Define to 1 if your processor stores words with the most significant byte

@@ -713,7 +713,7 @@ opj_image_t* jp2_decode(opj_jp2_t *jp2, opj_cio_t *cio,
 	return NULL;
    }
 
-/* set Image Color Space */
+/* Set Image Color Space */
 	if (jp2->enumcs == 16)
 		image->color_space = CLRSPC_SRGB;
 	else if (jp2->enumcs == 17)

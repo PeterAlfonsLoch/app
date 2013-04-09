@@ -208,7 +208,7 @@ static uint32_t oc_cpu_flags_get(){
          flags, not AMD-style.
         Currently, this only defines bits 11, 20, and 29 (0x20100800), which
          do not conflict with any of the AMD flags we inspect.
-        For the remaining bits, Intel tells us, "Do not ::count on their value",
+        For the remaining bits, Intel tells us, "Do not count on their value",
          but VIA assures us that they will all be zero (at least on the C7 and
          Isaiah chips).
         In the (unlikely) event a future processor uses bits 18, 19, 30, or 31

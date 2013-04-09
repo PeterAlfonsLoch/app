@@ -2304,7 +2304,7 @@ static const ASN1_OBJECT nid_objs[NUM_NID]={
 	"GOST R 34.11-94 with GOST R 34.10-2001 Cryptocom",
 	NID_id_GostR3411_94_with_GostR3410_2001_cc,8,&(lvalues[5685]),0},
 {"id-GostR3410-2001-ParamSet-cc",
-	"GOST R 3410-2001 Parameter set Cryptocom",
+	"GOST R 3410-2001 Parameter Set Cryptocom",
 	NID_id_GostR3410_2001_ParamSet_cc,8,&(lvalues[5693]),0},
 {"HMAC","hmac",NID_hmac,0,NULL,0},
 {"LocalKeySet","Microsoft Local Key set",NID_LocalKeySet,9,
@@ -3359,7 +3359,7 @@ static const unsigned int ln_objs[NUM_LN]={
 853,	/* "GOST R 34.11-94 with GOST R 34.10-2001 Cryptocom" */
 808,	/* "GOST R 34.11-94 with GOST R 34.10-94" */
 852,	/* "GOST R 34.11-94 with GOST R 34.10-94 Cryptocom" */
-854,	/* "GOST R 3410-2001 Parameter set Cryptocom" */
+854,	/* "GOST R 3410-2001 Parameter Set Cryptocom" */
 810,	/* "HMAC GOST 34.11-94" */
 432,	/* "Hold Instruction Call Issuer" */
 430,	/* "Hold Instruction Code" */

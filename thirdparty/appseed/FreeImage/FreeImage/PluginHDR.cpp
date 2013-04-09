@@ -557,7 +557,7 @@ Format() {
 
 static const char * DLL_CALLCONV
 Description() {
-	return "High Dynamic range Image";
+	return "High Dynamic Range Image";
 }
 
 static const char * DLL_CALLCONV

@@ -303,9 +303,9 @@ typedef struct opj_cparameters {
 	char infile[OPJ_PATH_LEN];
 	/** output file name */
 	char outfile[OPJ_PATH_LEN];
-	/** DEPRECATED. Index generation is now handeld with the opj_encode_with_info() function. set to NULL */
+	/** DEPRECATED. Index generation is now handeld with the opj_encode_with_info() function. Set to NULL */
 	int index_on;
-	/** DEPRECATED. Index generation is now handeld with the opj_encode_with_info() function. set to NULL */
+	/** DEPRECATED. Index generation is now handeld with the opj_encode_with_info() function. Set to NULL */
 	char index[OPJ_PATH_LEN];
 	/** subimage encoding: origin image offset in x direction */
 	int image_offset_x0;
@@ -372,7 +372,7 @@ Decompression parameters
 */
 typedef struct opj_dparameters {
 	/** 
-	set the number of highest resolution levels to be discarded. 
+	Set the number of highest resolution levels to be discarded. 
 	The image resolution is effectively divided by 2 to the power of the number of discarded levels. 
 	The reduce factor is limited by the smallest total number of decomposition levels among tiles.
 	if != 0, then original dimension divided by 2^(reduce); 
@@ -380,7 +380,7 @@ typedef struct opj_dparameters {
 	*/
 	int cp_reduce;
 	/** 
-	set the maximum number of quality layers to decode. 
+	Set the maximum number of quality layers to decode. 
 	If there are less quality layers than the specified number, all the quality layers are decoded.
 	if != 0, then only the first "layer" layers are decoded; 
 	if == 0 or not used, all the quality layers are decoded 
@@ -786,7 +786,7 @@ Get position in byte stream
 */
 OPJ_API int OPJ_CALLCONV cio_tell(opj_cio_t *cio);
 /**
-set position in byte stream
+Set position in byte stream
 @param cio CIO handle
 @param pos Position, in number of bytes, from the beginning of the stream
 */
@@ -817,7 +817,7 @@ Destroy a decompressor handle
 */
 OPJ_API void OPJ_CALLCONV opj_destroy_decompress(opj_dinfo_t *dinfo);
 /**
-set decoding parameters to default values
+Set decoding parameters to default values
 @param parameters Decompression parameters
 */
 OPJ_API void OPJ_CALLCONV opj_set_default_decoder_parameters(opj_dparameters_t *parameters);
@@ -856,7 +856,7 @@ Destroy a compressor handle
 */
 OPJ_API void OPJ_CALLCONV opj_destroy_compress(opj_cinfo_t *cinfo);
 /**
-set encoding parameters to default values, that means : 
+Set encoding parameters to default values, that means : 
 <ul>
 <li>Lossless
 <li>1 tile
@@ -889,7 +889,7 @@ Encode an image into a JPEG-2000 codestream
 @param cinfo compressor handle
 @param cio Output buffer stream
 @param image Image to encode
-@param index Depreacted -> set to NULL. To extract index, used opj_encode_wci()
+@param index Depreacted -> Set to NULL. To extract index, used opj_encode_wci()
 @return Returns true if successful, returns false otherwise
 */
 OPJ_API bool OPJ_CALLCONV opj_encode(opj_cinfo_t *cinfo, opj_cio_t *cio, opj_image_t *image, char *index);

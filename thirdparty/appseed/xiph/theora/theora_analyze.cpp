@@ -128,7 +128,7 @@ static int32_t oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
     }
     else{
       int32_t ri;
-      /*For scheme 0, incrementing the mode ::count could potentially change the
+      /*For scheme 0, incrementing the mode count could potentially change the
          mode's rank.
         Find the index where the mode would be moved to in the optimal list,
          and use its bit cost instead of the one for the mode's current
@@ -486,7 +486,7 @@ struct oc_enc_pipeline_state{
   uint32_t            sbi_end[3];
   /*The number of tokens for zzi=1 for each color plane.*/
   int32_t                 ndct_tokens1[3];
-  /*The outstanding eob_run ::count for zzi=1 for each color plane.*/
+  /*The outstanding eob_run count for zzi=1 for each color plane.*/
   int32_t                 eob_run1[3];
   /*Whether or not the loop filter is enabled.*/
   int32_t                 loop_filter;
@@ -507,7 +507,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
      all three planes, so we can't compute them in parallel.*/
   for(pli=0;pli<3;pli++)oc_fr_state_init(_pipe->fr+pli);
   for(pli=0;pli<3;pli++)oc_qii_state_init(_pipe->qs+pli);
-  /*set up the per-plane skip SSD storage pointers.*/
+  /*Set up the per-plane skip SSD storage pointers.*/
   mcu_nvsbs=_enc->mcu_nvsbs;
   mcu_nfrags=mcu_nvsbs*_enc->state.fplanes[0].nhsbs*16;
   hdec=!(_enc->state.info.pixel_fmt&1);
@@ -515,7 +515,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   _pipe->skip_ssd[0]=_enc->mcu_skip_ssd;
   _pipe->skip_ssd[1]=_pipe->skip_ssd[0]+mcu_nfrags;
   _pipe->skip_ssd[2]=_pipe->skip_ssd[1]+(mcu_nfrags>>hdec+vdec);
-  /*set up per-plane pointers to the coded and uncoded fragments lists.
+  /*Set up per-plane pointers to the coded and uncoded fragments lists.
     Unlike the decoder, each planes' coded and uncoded fragment list is kept
      separate during the analysis stage; we only make the coded list for all
      three planes contiguous right before the final packet is output
@@ -528,7 +528,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   }
   memset(_pipe->ncoded_fragis,0,sizeof(_pipe->ncoded_fragis));
   memset(_pipe->nuncoded_fragis,0,sizeof(_pipe->nuncoded_fragis));
-  /*set up condensed quantizer tables.*/
+  /*Set up condensed quantizer tables.*/
   for(pli=0;pli<3;pli++){
     for(qii=0;qii<_enc->state.nqis;qii++){
       int32_t qi;
@@ -2201,7 +2201,7 @@ int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _r
   if(_allow_keyframe){
     if(interbits>intrabits)return 1;
     /*Technically the chroma plane counts are over-estimations, because they
-       don't ac::count for continuing runs from the luma planes, but the
+       don't account for continuing runs from the luma planes, but the
        inaccuracy is small.*/
     for(pli=0;pli<3;pli++)interbits+=pipe.fr[pli].bits<<OC_BIT_SCALE;
     interbits+=OC_MINI(_enc->mv_bits[0],_enc->mv_bits[1])<<OC_BIT_SCALE;
@@ -2519,7 +2519,7 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
     ptrdiff_t ti[64];
     int32_t       eob_token[64];
     int32_t       eob_run[64];
-    /*set up token indices and eob run counts.
+    /*Set up token indices and eob run counts.
       We don't bother trying to figure out the real cost of the runs that span
        coefficients; instead we use the costs that were available when R-D
        token optimization was done.*/

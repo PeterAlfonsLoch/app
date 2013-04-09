@@ -147,11 +147,11 @@ extern "C"
 typedef struct {
     int32_t   y_width;      /**< Width of the Y' luminance plane */
     int32_t   y_height;     /**< Height of the luminance plane */
-    int32_t   y_stride;     /**< offset in bytes between successive rows */
+    int32_t   y_stride;     /**< Offset in bytes between successive rows */
 
     int32_t   uv_width;     /**< Width of the Cb and Cr chroma planes */
     int32_t   uv_height;    /**< Height of the chroma planes */
-    int32_t   uv_stride;    /**< offset between successive chroma rows */
+    int32_t   uv_stride;    /**< Offset between successive chroma rows */
     uchar *y;   /**< Pointer to start of luminance data */
     uchar *u;   /**< Pointer to start of Cb data */
     uchar *v;   /**< Pointer to start of Cr data */
@@ -191,7 +191,7 @@ typedef enum {
  * To handle other frame sizes, a crop rectangle is specified in
  * frame_height and frame_width, offset_x and * offset_y. The offset
  * and size should still be a multiple of 2 to avoid chroma sampling
- * shifts. offset values in this structure are measured from the
+ * shifts. Offset values in this structure are measured from the
  * upper left of the image.
  *
  * Frame rate, in frames per second, is stored as a rational
@@ -305,7 +305,7 @@ typedef struct theora_comment{
  */
 #define TH_DECCTL_GET_PPLEVEL_MAX (1)
 
-/**set the post-processing level.
+/**Set the post-processing level.
  * Sets the level of post-processing to use when decoding the 
  * compressed stream. This must be a value between zero (off)
  * and the maximum returned by TH_DECCTL_GET_PPLEVEL_MAX.
@@ -326,7 +326,7 @@ typedef struct theora_comment{
  * \retval OC_IMPL   Not supported by this implementation.*/
 #define TH_ENCCTL_SET_KEYFRAME_FREQUENCY_FORCE (4)
 
-/**set the granule position.
+/**Set the granule position.
  * Call this after a seek, to update the internal granulepos
  * in the decoder, to insure that subsequent frames are marked
  * properly. If you track timestamps yourself and do not use
@@ -619,8 +619,8 @@ extern int32_t theora_packet_iskeyframe(ogg_packet *op);
  *
  * When embedded in Ogg, Theora uses a two-part granulepos, 
  * splitting the 64-bit field into two pieces. The more-significant
- * section represents the frame ::count at the last keyframe,
- * and the less-significant section represents the ::count of
+ * section represents the frame count at the last keyframe,
+ * and the less-significant section represents the count of
  * frames since the last keyframe. In this way the overall
  * field is still non-decreasing with time, but usefully encodes
  * a pointer to the last keyframe, which is necessary for
@@ -736,14 +736,14 @@ extern void theora_comment_add_tag(theora_comment *tc,
  * Look up a comment value by tag.
  * \param tc Tn initialized theora_comment structure
  * \param tag The tag to look up
- * \param ::count The instance of the tag. The same tag can appear multiple
+ * \param count The instance of the tag. The same tag can appear multiple
  *              times, each with a distinct and ordered value, so an index
  *              is required to retrieve them all.
  * \returns A pointer to the queried tag's value
  * \retval NULL No matching tag is found
  *
  * \note Use theora_comment_query_count() to get the legal range for the
- * ::count parameter.
+ * count parameter.
  **/
 
 extern char *theora_comment_query(theora_comment *tc, char *tag, int32_t count);

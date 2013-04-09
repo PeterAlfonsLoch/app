@@ -622,7 +622,7 @@ TIFFReadBufferSetup(TIFF* tif, tdata_t bp, tsize_t size)
 }
 
 /*
- * set state to appear as if a
+ * Set state to appear as if a
  * strip has just been read in.
  */
 static int
@@ -652,7 +652,7 @@ TIFFStartStrip(TIFF* tif, tstrip_t strip)
 }
 
 /*
- * set state to appear as if a
+ * Set state to appear as if a
  * tile has just been read in.
  */
 static int

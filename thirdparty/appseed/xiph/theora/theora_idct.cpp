@@ -302,7 +302,7 @@ void oc_idct8x8(const oc_theora_state *_state,int16_t _y[64],
   The input is assumed to be scaled by a factor of 4 relative to orthonormal
    version of the transform.*/
 void oc_idct8x8_c(int16_t _y[64],int32_t _last_zzi){
-  /*_last_zzi is subtly different from an actual ::count of the number of
+  /*_last_zzi is subtly different from an actual count of the number of
      coefficients we decoded for this block.
     It contains the value of zzi BEFORE the final token in the block was
      decoded.
@@ -315,7 +315,7 @@ void oc_idct8x8_c(int16_t _y[64],int32_t _last_zzi){
     However, if the last token WAS a pure zero run of length 63, then _last_zzi
      will be 1 while the number of coefficients decoded is 64.
     Thus, we will trigger the following special case, where the real
-     coefficient ::count would not.
+     coefficient count would not.
     Note also that a zero run of length 64 will give _last_zzi a value of 0,
      but we still process the DC coefficient, which might have a non-zero value
      due to DC prediction.

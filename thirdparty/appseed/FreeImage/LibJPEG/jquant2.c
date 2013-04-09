@@ -1176,12 +1176,12 @@ start_pass_2_quant (j_decompress_ptr cinfo, boolean is_pre_scan)
     cinfo->dither_mode = JDITHER_FS;
 
   if (is_pre_scan) {
-    /* set up method pointers */
+    /* Set up method pointers */
     cquantize->pub.color_quantize = prescan_quantize;
     cquantize->pub.finish_pass = finish_pass1;
     cquantize->needs_zeroed = TRUE; /* Always zero histogram */
   } else {
-    /* set up method pointers */
+    /* Set up method pointers */
     if (cinfo->dither_mode == JDITHER_FS)
       cquantize->pub.color_quantize = pass2_fs_dither;
     else

@@ -101,7 +101,7 @@ int OPJ_CALLCONV cio_tell(opj_cio_t *cio) {
 }
 
 /*
- * set position in byte stream.
+ * Set position in byte stream.
  *
  * pos : position, in number of bytes, from the beginning of the stream
  */

@@ -91,7 +91,7 @@ start_pass_prep (j_compress_ptr cinfo, J_BUF_MODE pass_mode)
    * These aren't used in non-context mode, so we needn't test which mode.
    */
   prep->this_row_group = 0;
-  /* set next_buf_stop to stop after two row groups have been read in. */
+  /* Set next_buf_stop to stop after two row groups have been read in. */
   prep->next_buf_stop = 2 * cinfo->max_v_samp_factor;
 #endif
 }
@@ -335,7 +335,7 @@ jinit_c_prep_controller (j_compress_ptr cinfo, boolean need_full_buffer)
    * horizontally within the buffer, if it so chooses.
    */
   if (cinfo->downsample->need_context_rows) {
-    /* set up to provide context rows */
+    /* Set up to provide context rows */
 #ifdef CONTEXT_ROWS_SUPPORTED
     prep->pub.pre_process_data = pre_process_context;
     create_context_buffer(cinfo);

@@ -83,7 +83,7 @@ Reset a tag-tree (set all leaves to 0)
 */
 void tgt_reset(opj_tgt_tree_t *tree);
 /**
-set the value of a leaf of a tag-tree
+Set the value of a leaf of a tag-tree
 @param tree Tag-tree to modify
 @param leafno Number that identifies the leaf to modify
 @param value New value of the leaf

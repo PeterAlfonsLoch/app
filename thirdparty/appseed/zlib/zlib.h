@@ -1269,7 +1269,7 @@ ZEXTERN gzFile ZEXPORT gzdopen OF((int fd, const char *mode));
 
 ZEXTERN int ZEXPORT gzbuffer OF((gzFile file, unsigned size));
 /*
-     set the internal buffer size used by this library's functions.  The
+     Set the internal buffer size used by this library's functions.  The
    default buffer size is 8192 bytes.  This function must be called after
    gzopen() or gzdopen(), and before any other calls that read or write the
    file.  The buffer memory allocation is always deferred to the first read or

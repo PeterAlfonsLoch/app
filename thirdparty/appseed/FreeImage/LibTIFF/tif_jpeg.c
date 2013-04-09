@@ -669,14 +669,14 @@ JPEGSetupDecode(TIFF* tif)
 		break;
 	}
 
-	/* set up for reading normal data */
+	/* Set up for reading normal data */
 	TIFFjpeg_data_src(sp, tif);
 	tif->tif_postdecode = _TIFFNoPostDecode; /* override byte swapping */
 	return (1);
 }
 
 /*
- * set up for decoding a strip or tile.
+ * Set up for decoding a strip or tile.
  */
 static int
 JPEGPreDecode(TIFF* tif, tsample_t s)
@@ -1187,7 +1187,7 @@ JPEGSetupEncode(TIFF* tif)
 	sp->cinfo.c.input_components = 1;
 	if (!TIFFjpeg_set_defaults(sp))
 		return (0);
-	/* set per-file parameters */
+	/* Set per-file parameters */
 	sp->photometric = td->td_photometric;
 	switch (sp->photometric) {
 	case PHOTOMETRIC_YCBCR:
@@ -1298,7 +1298,7 @@ JPEGSetupEncode(TIFF* tif)
 }
 
 /*
- * set encoding state at the start of a strip or tile.
+ * Set encoding state at the start of a strip or tile.
  */
 static int
 JPEGPreEncode(TIFF* tif, tsample_t s)
@@ -1312,7 +1312,7 @@ JPEGPreEncode(TIFF* tif, tsample_t s)
 	assert(sp != NULL);
 	assert(!sp->cinfo.comm.is_decompressor);
 	/*
-	 * set encoding parameters for this strip/tile.
+	 * Set encoding parameters for this strip/tile.
 	 */
 	if (isTiled(tif)) {
 		segment_width = td->td_tilewidth;
@@ -1352,7 +1352,7 @@ JPEGPreEncode(TIFF* tif, tsample_t s)
 			if (!TIFFjpeg_set_colorspace(sp, JCS_YCbCr))
 				return (0);
 			/*
-			 * set Y sampling factors;
+			 * Set Y sampling factors;
 			 * we assume jpeg_set_colorspace() set the rest to 1
 			 */
 			sp->cinfo.c.comp_info[0].h_samp_factor = sp->h_sampling;

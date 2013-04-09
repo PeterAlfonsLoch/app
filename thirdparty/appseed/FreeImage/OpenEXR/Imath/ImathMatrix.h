@@ -274,7 +274,7 @@ template <class T> class Matrix33
 
 
     //-----------------------------------------
-    // set matrix to rotation by r (in radians)
+    // Set matrix to rotation by r (in radians)
     //-----------------------------------------
 
     template <class S>
@@ -290,14 +290,14 @@ template <class T> class Matrix33
 
 
     //--------------------------------------------
-    // set matrix to scale by given uniform factor
+    // Set matrix to scale by given uniform factor
     //--------------------------------------------
 
     const Matrix33 &    setScale (T s);
 
 
     //------------------------------------
-    // set matrix to scale by given vector
+    // Set matrix to scale by given vector
     //------------------------------------
 
     template <class S>
@@ -313,7 +313,7 @@ template <class T> class Matrix33
 
 
     //------------------------------------------
-    // set matrix to translation by given vector
+    // Set matrix to translation by given vector
     //------------------------------------------
 
     template <class S>
@@ -336,7 +336,7 @@ template <class T> class Matrix33
 
 
     //-----------------------------------------------------------
-    // set matrix to shear x for each y coord. by given factor xy
+    // Set matrix to shear x for each y coord. by given factor xy
     //-----------------------------------------------------------
 
     template <class S>
@@ -344,7 +344,7 @@ template <class T> class Matrix33
 
 
     //-------------------------------------------------------------
-    // set matrix to shear x for each y coord. by given factor h[0]
+    // Set matrix to shear x for each y coord. by given factor h[0]
     // and to shear y for each x coord. by given factor h[1]
     //-------------------------------------------------------------
 
@@ -618,7 +618,7 @@ template <class T> class Matrix44
 
 
     //--------------------------------------------------------
-    // set matrix to rotation by XYZ euler angles (in radians)
+    // Set matrix to rotation by XYZ euler angles (in radians)
     //--------------------------------------------------------
 
     template <class S>
@@ -626,7 +626,7 @@ template <class T> class Matrix44
 
 
     //--------------------------------------------------------
-    // set matrix to rotation around given axis by given angle
+    // Set matrix to rotation around given axis by given angle
     //--------------------------------------------------------
 
     template <class S>
@@ -642,14 +642,14 @@ template <class T> class Matrix44
 
 
     //--------------------------------------------
-    // set matrix to scale by given uniform factor
+    // Set matrix to scale by given uniform factor
     //--------------------------------------------
 
     const Matrix44 &    setScale (T s);
 
 
     //------------------------------------
-    // set matrix to scale by given vector
+    // Set matrix to scale by given vector
     //------------------------------------
 
     template <class S>
@@ -665,7 +665,7 @@ template <class T> class Matrix44
 
 
     //------------------------------------------
-    // set matrix to translation by given vector
+    // Set matrix to translation by given vector
     //------------------------------------------
 
     template <class S>
@@ -688,7 +688,7 @@ template <class T> class Matrix44
 
 
     //-------------------------------------------------------------
-    // set matrix to shear by given vector h.  The resulting matrix
+    // Set matrix to shear by given vector h.  The resulting matrix
     //    will shear x for each y coord. by a factor of h[0] ;
     //    will shear x for each z coord. by a factor of h[1] ;
     //    will shear y for each z coord. by a factor of h[2] .
@@ -699,7 +699,7 @@ template <class T> class Matrix44
 
 
     //------------------------------------------------------------
-    // set matrix to shear by given factors.  The resulting matrix
+    // Set matrix to shear by given factors.  The resulting matrix
     //    will shear x for each y coord. by a factor of h.xy ;
     //    will shear x for each z coord. by a factor of h.xz ;
     //    will shear y for each z coord. by a factor of h.yz ; 

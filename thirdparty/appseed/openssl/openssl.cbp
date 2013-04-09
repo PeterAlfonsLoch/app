@@ -494,6 +494,9 @@
 		<Unit filename="crypto/bn/bn_x931p.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="crypto/bn/vms-helper.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="crypto/buffer/buf_err.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1293,6 +1296,9 @@
 		<Unit filename="crypto/modes/ctr128.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="crypto/modes/cts128.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="crypto/modes/gcm128.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1995,6 +2001,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="engines/ccgost/gosthash.h" />
+		<Unit filename="engines/ccgost/gostsum.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="engines/e_4758cca.c">
 			<Option compilerVar="CC" />
 		</Unit>

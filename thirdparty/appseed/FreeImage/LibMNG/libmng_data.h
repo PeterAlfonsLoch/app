@@ -357,7 +357,7 @@ typedef struct mng_data_struct {
            mng_getbkgdline   fGetbkgdline;
            mng_getalphaline  fGetalphaline;
            mng_refresh       fRefresh;
-           mng_gettickcount fGettickcount;
+           mng_gettickcount  fGettickcount;
            mng_settimer      fSettimer;
            mng_processgamma  fProcessgamma;
            mng_processchroma fProcesschroma;

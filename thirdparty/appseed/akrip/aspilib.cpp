@@ -1607,7 +1607,7 @@ int32_t jitterAdjust( LPTRACKBUF tbuf, LPTRACKBUF tover, int32_t checkFrames )
 	}
     }
 
-  /* adjust frame ::count and crop length */
+  /* adjust frame count and crop length */
   tbuf->numFrames = tbuf->len / 2352;
   tbuf->len = 2352 * tbuf->numFrames;
 

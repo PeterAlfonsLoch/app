@@ -321,7 +321,7 @@ end:
 		goto err;
 
 	/* We now need to generate g */
-	/* set r0=(p-1)/q */
+	/* Set r0=(p-1)/q */
 	if (!BN_sub(test,p,BN_value_one())) goto err;
 	if (!BN_div(r0,NULL,test,q,ctx)) goto err;
 

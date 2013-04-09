@@ -539,7 +539,7 @@ static uint32_t oc_dec_partial_sb_flags_unpack(oc_dec_ctx *_dec){
     }
     else flag=!flag;
   }
-  /*TODO: run_::count should be 0 here.
+  /*TODO: run_count should be 0 here.
     If it's not, we should issue a warning of some kind.*/
   return npartial;
 }
@@ -578,7 +578,7 @@ static void oc_dec_coded_sb_flags_unpack(oc_dec_ctx *_dec){
     else flag=!flag;
   }
   while(sbi<nsbs);
-  /*TODO: run_::count should be 0 here.
+  /*TODO: run_count should be 0 here.
     If it's not, we should issue a warning of some kind.*/
 }
 
@@ -644,7 +644,7 @@ static void oc_dec_coded_flags_unpack(oc_dec_ctx *_dec){
     prev_ncoded_fragis=ncoded_fragis;
   }
   _dec->state.ntotal_coded_fragis=ncoded_fragis;
-  /*TODO: run_::count should be 0 here.
+  /*TODO: run_count should be 0 here.
     If it's not, we should issue a warning of some kind.*/
 }
 
@@ -917,7 +917,7 @@ static void oc_dec_block_qis_unpack(oc_dec_ctx *_dec){
       }
       else flag=!flag;
     }
-    /*TODO: run_::count should be 0 here.
+    /*TODO: run_count should be 0 here.
       If it's not, we should issue a warning of some kind.*/
     /*If we have 3 different qi's for this frame, and there was at least one
        fragment with a non-zero qi, make the second pass.*/
@@ -943,7 +943,7 @@ static void oc_dec_block_qis_unpack(oc_dec_ctx *_dec){
         else flag=!flag;
       }
       while(fragii<ncoded_fragis);
-      /*TODO: run_::count should be 0 here.
+      /*TODO: run_count should be 0 here.
         If it's not, we should issue a warning of some kind.*/
     }
   }
@@ -1023,7 +1023,7 @@ static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
         frags[coded_fragis[fragii++]].dc=coeff;
       }
     }
-    /*Add the total EOB ::count to the longest run length.*/
+    /*Add the total EOB count to the longest run length.*/
     run_counts[63]+=eob_count;
     /*And convert the run_counts array to a moment table.*/
     for(rli=63;rli-->0;)run_counts[rli]+=run_counts[rli+1];
@@ -1095,7 +1095,7 @@ static int32_t oc_dec_ac_coeff_unpack(oc_dec_ctx *_dec,int32_t _zzi,int32_t _huf
     eob_count+=ntoks_left-ntoks;
     /*And remove it from the remaining EOB count.*/
     _eobs-=ntoks_left-ntoks;
-    /*Add the total EOB ::count to the longest run length.*/
+    /*Add the total EOB count to the longest run length.*/
     run_counts[63]+=eob_count;
     /*And convert the run_counts array to a moment table.*/
     for(rli=63;rli-->0;)run_counts[rli]+=run_counts[rli+1];
@@ -1327,7 +1327,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
   memcpy(_pipe->ti,_dec->ti0,sizeof(_pipe->ti));
   /*Also copy over the initial the EOB run counts.*/
   memcpy(_pipe->eob_runs,_dec->eob_runs,sizeof(_pipe->eob_runs));
-  /*set up per-plane pointers to the coded and uncoded fragments lists.*/
+  /*Set up per-plane pointers to the coded and uncoded fragments lists.*/
   coded_fragis=_dec->state.coded_fragis;
   uncoded_fragis=coded_fragis+_dec->state.nfrags;
   for(pli=0;pli<3;pli++){
@@ -1338,7 +1338,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
     coded_fragis+=ncoded_fragis;
     uncoded_fragis+=ncoded_fragis-_dec->state.fplanes[pli].nfrags;
   }
-  /*set up condensed quantizer tables.*/
+  /*Set up condensed quantizer tables.*/
   for(pli=0;pli<3;pli++){
     for(qii=0;qii<_dec->state.nqis;qii++){
       for(qti=0;qti<2;qti++){
@@ -1347,7 +1347,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
       }
     }
   }
-  /*set the previous DC predictor to 0 for all color planes and frame types.*/
+  /*Set the previous DC predictor to 0 for all color planes and frame types.*/
   memset(_pipe->pred_last,0,sizeof(_pipe->pred_last));
   /*Initialize the bounding value array for the loop filter.*/
   _pipe->loop_filter=!oc_state_loop_filter_init(&_dec->state,

@@ -307,7 +307,7 @@ void dtls1_start_timer(SSL *s)
 		s->d1->timeout_duration = 1;
 		}
 	
-	/* set timeout to current time */
+	/* Set timeout to current time */
 	get_current_time(&(s->d1->next_timeout));
 
 	/* Add duration to current time */

@@ -46,7 +46,7 @@ typedef struct {
  * tag constants
  */
 #define CDCH_TAG_UNKNOWN    0L      // undefined
-#define CDCH_TAG_QUERY      1L      // array of uint32_t for generating query
+#define CDCH_TAG_QUERY      1L      // base_array of uint32_t for generating query
 #define CDCH_TAG_LOCALCDDB  2L      // locally entered CDDB info
 #define CDCH_TAG_CDDBINFO   3L      // CDDB info
 #define CDCH_TAG_PARTIAL    4L      // CDDB info for partial match

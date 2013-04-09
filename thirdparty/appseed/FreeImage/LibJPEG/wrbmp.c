@@ -190,7 +190,7 @@ write_bmp_header (j_decompress_ptr cinfo, bmp_dest_ptr dest)
   headersize = 14 + 40 + cmap_entries * 4; /* Header and colormap */
   bfSize = headersize + (INT32) dest->row_width * (INT32) cinfo->output_height;
   
-  /* set unused fields of header to 0 */
+  /* Set unused fields of header to 0 */
   MEMZERO(bmpfileheader, SIZEOF(bmpfileheader));
   MEMZERO(bmpinfoheader, SIZEOF(bmpinfoheader));
 
@@ -255,7 +255,7 @@ write_os2_header (j_decompress_ptr cinfo, bmp_dest_ptr dest)
   headersize = 14 + 12 + cmap_entries * 3; /* Header and colormap */
   bfSize = headersize + (INT32) dest->row_width * (INT32) cinfo->output_height;
   
-  /* set unused fields of header to 0 */
+  /* Set unused fields of header to 0 */
   MEMZERO(bmpfileheader, SIZEOF(bmpfileheader));
   MEMZERO(bmpcoreheader, SIZEOF(bmpcoreheader));
 

@@ -263,7 +263,7 @@ bufferedReadPixels (InputFile::Data* ifd, int scanLine1, int scanLine2)
 		 y += toSlice.ySampling)
             {
 		//
-                // set the pointers to the start of the y scanline in
+                // Set the pointers to the start of the y scanline in
                 // this row of tiles
 		//
                 

@@ -1298,7 +1298,7 @@ int ssl3_get_key_exchange(SSL *s)
 		{
 #ifndef OPENSSL_NO_PSK
 		/* In plain PSK ciphersuite, ServerKeyExchange can be
-		   omitted if no identity hint is sent. set
+		   omitted if no identity hint is sent. Set
 		   session->sess_cert anyway to avoid problems
 		   later.*/
 		if (s->s3->tmp.new_cipher->algorithm_mkey & SSL_kPSK)
@@ -2769,7 +2769,7 @@ int ssl3_send_client_key_exchange(SSL *s)
 			/* Check if pubkey from client certificate was used */
 			if (EVP_PKEY_CTX_ctrl(pkey_ctx, -1, -1, EVP_PKEY_CTRL_PEER_KEY, 2, NULL) > 0)
 				{
-				/* set flag "skip certificate verify" */
+				/* Set flag "skip certificate verify" */
 				s->s3->flags |= TLS1_FLAGS_SKIP_CERT_VERIFY;
 				}
 			EVP_PKEY_CTX_free(pkey_ctx);

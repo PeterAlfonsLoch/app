@@ -386,7 +386,7 @@ int PKCS7_SIGNER_INFO_set(PKCS7_SIGNER_INFO *p7i, X509 *x509, EVP_PKEY *pkey,
 	CRYPTO_add(&pkey->references,1,CRYPTO_LOCK_EVP_PKEY);
 	p7i->pkey=pkey;
 
-	/* set the algorithms */
+	/* Set the algorithms */
 
 	X509_ALGOR_set0(p7i->digest_alg, OBJ_nid2obj(EVP_MD_type(dgst)),
 				V_ASN1_NULL, NULL);

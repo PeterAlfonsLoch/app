@@ -119,7 +119,7 @@ ASN1_SEQUENCE_enc(X509_CRL_INFO, enc, crl_inf_cb) = {
 	ASN1_EXP_SEQUENCE_OF_OPT(X509_CRL_INFO, extensions, X509_EXTENSION, 0)
 } ASN1_SEQUENCE_END_enc(X509_CRL_INFO, X509_CRL_INFO)
 
-/* set CRL entry issuer according to CRL certificate issuer extension.
+/* Set CRL entry issuer according to CRL certificate issuer extension.
  * Check for unhandled critical CRL entry extensions.
  */
 
@@ -311,7 +311,7 @@ static int crl_cb(int operation, ASN1_VALUE **pval, const ASN1_ITEM *it,
 static void setup_idp(X509_CRL *crl, ISSUING_DIST_POINT *idp)
 	{
 	int idp_only = 0;
-	/* set various flags according to IDP */
+	/* Set various flags according to IDP */
 	crl->idp_flags |= IDP_PRESENT;
 	if (idp->onlyuser > 0)
 		{

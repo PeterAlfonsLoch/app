@@ -2868,7 +2868,7 @@
 
 #define SN_account		"account"
 #define NID_account		446
-#define OBJ_account OBJ_pilotObjectClass,5L
+#define OBJ_account		OBJ_pilotObjectClass,5L
 
 #define SN_document		"document"
 #define NID_document		447
@@ -3877,7 +3877,7 @@
 #define OBJ_id_GostR3411_94_with_GostR3410_2001_cc		OBJ_cryptocom,1L,3L,4L
 
 #define SN_id_GostR3410_2001_ParamSet_cc		"id-GostR3410-2001-ParamSet-cc"
-#define LN_id_GostR3410_2001_ParamSet_cc		"GOST R 3410-2001 Parameter set Cryptocom"
+#define LN_id_GostR3410_2001_ParamSet_cc		"GOST R 3410-2001 Parameter Set Cryptocom"
 #define NID_id_GostR3410_2001_ParamSet_cc		854
 #define OBJ_id_GostR3410_2001_ParamSet_cc		OBJ_cryptocom,1L,8L,1L
 

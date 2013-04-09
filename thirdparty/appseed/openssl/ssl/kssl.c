@@ -933,7 +933,7 @@ unsigned char	*kssl_skip_confound(krb5_enctype etype, unsigned char *a)
 	}
 
 
-/*	set kssl_err error info when reason text is a simple string
+/*	Set kssl_err error info when reason text is a simple string
 **		kssl_err = struct { int reason; char text[KSSL_ERR_MAX+1]; }
 */
 void
@@ -1644,7 +1644,7 @@ kssl_ctx_setprinc(KSSL_CTX *kssl_ctx, int which,
         }
 
 
-/*	set one of the plain (char *) string members of the kssl_ctx struct.
+/*	Set one of the plain (char *) string members of the kssl_ctx struct.
 **	Default values should be:
 **		which == KSSL_SERVICE	=>	"khost" (KRB5SVC)
 **		which == KSSL_KEYTAB	=>	"/etc/krb5.keytab" (KRB5KEYTAB)

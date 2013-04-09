@@ -236,7 +236,7 @@ make_funny_pointers (j_decompress_ptr cinfo)
 
 LOCAL(void)
 set_wraparound_pointers (j_decompress_ptr cinfo)
-/* set up the "wraparound" pointers at top and bottom of the pointer lists.
+/* Set up the "wraparound" pointers at top and bottom of the pointer lists.
  * This changes the pointer list state from top-of-image to the normal state.
  */
 {

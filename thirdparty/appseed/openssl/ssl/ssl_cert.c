@@ -162,7 +162,7 @@ int SSL_get_ex_data_X509_STORE_CTX_idx(void)
 
 static void ssl_cert_set_default_md(CERT *cert)
 	{
-	/* set digest values to defaults */
+	/* Set digest values to defaults */
 #ifndef OPENSSL_NO_DSA
 	cert->pkeys[SSL_PKEY_DSA_SIGN].digest = EVP_dss1();
 #endif
@@ -322,7 +322,7 @@ CERT *ssl_cert_dup(CERT *cert)
 	 * chain is held inside SSL_CTX */
 
 	ret->references=1;
-	/* set digests to defaults. NB: we don't copy existing values as they
+	/* Set digests to defaults. NB: we don't copy existing values as they
 	 * will be set during handshake.
 	 */
 	ssl_cert_set_default_md(ret);

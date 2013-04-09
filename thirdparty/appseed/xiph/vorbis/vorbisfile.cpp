@@ -29,7 +29,7 @@
    worrying ahead of time about chaining (see decoder_example.c).  If
    we have the whole file, however, and want random access
    (seeking/scrubbing) or desire to know the total length/time of a
-   file, we need to ac::count for the possibility of chaining. */
+   file, we need to account for the possibility of chaining. */
 
 /* We can handle things a number of ways; we can determine the entire
    bitstream structure right off the bat, or find pieces on demand.
@@ -423,7 +423,7 @@ static int64_t _initial_pcmoffset(OggVorbis_File *vf, vorbis_info *vi){
     if(ogg_page_bos(&og)) break;
     if(ogg_page_serialno(&og)!=serialno) continue;
 
-    /* ::count blocksizes of all frames in the page */
+    /* count blocksizes of all frames in the page */
     ogg_stream_pagein(&vf->os,&og);
     while((result=ogg_stream_packetout(&vf->os,&op))){
       if(result>0){ /* ignore holes */
@@ -892,7 +892,7 @@ static int32_t _ov_open1(void *f,OggVorbis_File *vf,const char *initial,
   /* can we seek? Stevens suggests the seek test was portable */
   if(offsettest!=-1)vf->seekable=1;
 
-  /* No seeking yet; set up a 'single' (current) logical bitstream
+  /* No seeking yet; Set up a 'single' (current) logical bitstream
      entry for partial open */
   vf->links=1;
   vf->vi=(vorbis_info *) _ogg_calloc(vf->links,sizeof(*vf->vi));
@@ -1410,7 +1410,7 @@ int32_t ov_pcm_seek_page(OggVorbis_File *vf,int64_t pos){
   /* search within the logical bitstream for the page with the highest
      pcm_pos preceding (or equal to) pos.  There is a danger here;
      missing pages or incorrect frame number information in the
-     bitstream could make our task impossible.  Ac::count for that (it
+     bitstream could make our task impossible.  Account for that (it
      would be an error condition) */
 
   /* new search algorithm by HB (Nicholas Vinen) */

@@ -10,20 +10,8 @@
 	<File name="crypto/arm_arch.h" open="0" top="0" tabpos="2">
 		<Cursor position="1166" topLine="16" />
 	</File>
-	<File name="crypto/asn1/a_strnid.c" open="0" top="0" tabpos="59">
-		<Cursor position="9183" topLine="244" />
-	</File>
-	<File name="crypto/asn1/x_info.c" open="0" top="0" tabpos="107">
-		<Cursor position="3995" topLine="68" />
-	</File>
-	<File name="crypto/asn1/x_pkey.c" open="0" top="0" tabpos="108">
-		<Cursor position="5148" topLine="105" />
-	</File>
 	<File name="crypto/bf/bf_enc.c" open="0" top="0" tabpos="13">
 		<Cursor position="6381" topLine="184" />
-	</File>
-	<File name="crypto/bio/bio_lib.c" open="0" top="0" tabpos="109">
-		<Cursor position="4410" topLine="102" />
 	</File>
 	<File name="crypto/bio/bss_sock.c" open="0" top="0" tabpos="0">
 		<Cursor position="4852" topLine="113" />
@@ -33,12 +21,6 @@
 	</File>
 	<File name="crypto/cmac/cm_pmeth.c" open="0" top="0" tabpos="4">
 		<Cursor position="2813" topLine="41" />
-	</File>
-	<File name="crypto/conf/conf_sap.c" open="0" top="0" tabpos="60">
-		<Cursor position="3816" topLine="65" />
-	</File>
-	<File name="crypto/cryptlib.c" open="0" top="0" tabpos="110">
-		<Cursor position="26285" topLine="880" />
 	</File>
 	<File name="crypto/cryptlib.h" open="0" top="0" tabpos="6">
 		<Cursor position="3453" topLine="47" />
@@ -52,77 +34,23 @@
 	<File name="crypto/des/spr.h" open="0" top="0" tabpos="7">
 		<Cursor position="3193" topLine="41" />
 	</File>
-	<File name="crypto/dh/dh_lib.c" open="0" top="0" tabpos="111">
-		<Cursor position="6733" topLine="210" />
-	</File>
 	<File name="crypto/dsa/dsa_depr.c" open="0" top="0" tabpos="45">
 		<Cursor position="3720" topLine="52" />
 	</File>
 	<File name="crypto/dsa/dsa_err.c" open="0" top="0" tabpos="44">
 		<Cursor position="0" topLine="76" />
 	</File>
-	<File name="crypto/dsa/dsa_lib.c" open="0" top="0" tabpos="112">
-		<Cursor position="6864" topLine="219" />
-	</File>
 	<File name="crypto/dsa/dsa_pmeth.c" open="0" top="0" tabpos="43">
 		<Cursor position="7313" topLine="238" />
-	</File>
-	<File name="crypto/dso/dso_lib.c" open="0" top="0" tabpos="113">
-		<Cursor position="4548" topLine="126" />
-	</File>
-	<File name="crypto/ec/ec_key.c" open="0" top="0" tabpos="114">
-		<Cursor position="6259" topLine="207" />
-	</File>
-	<File name="crypto/ec/ecp_nistp256.c" open="0" top="0" tabpos="61">
-		<Cursor position="7612" topLine="234" />
-	</File>
-	<File name="crypto/engine/eng_init.c" open="0" top="0" tabpos="115">
-		<Cursor position="4260" topLine="84" />
-	</File>
-	<File name="crypto/engine/eng_lib.c" open="0" top="0" tabpos="116">
-		<Cursor position="4144" topLine="101" />
-	</File>
-	<File name="crypto/err/err.c" open="0" top="0" tabpos="117">
-		<Cursor position="16588" topLine="455" />
 	</File>
 	<File name="crypto/evp/e_aes.c" open="0" top="0" tabpos="8">
 		<Cursor position="2674" topLine="42" />
 	</File>
-	<File name="crypto/evp/openbsd_hw.c" open="0" top="0" tabpos="118">
-		<Cursor position="8950" topLine="338" />
-	</File>
-	<File name="crypto/evp/p_lib.c" open="0" top="0" tabpos="119">
-		<Cursor position="9704" topLine="378" />
-	</File>
-	<File name="crypto/mem_dbg.c" open="0" top="0" tabpos="120">
-		<Cursor position="20823" topLine="752" />
-	</File>
-	<File name="crypto/pkcs7/pk7_doit.c" open="0" top="0" tabpos="62">
-		<Cursor position="13954" topLine="538" />
-	</File>
 	<File name="crypto/pkcs7/pk7_enc.c" open="0" top="0" tabpos="9">
 		<Cursor position="3611" topLine="41" />
 	</File>
-	<File name="crypto/rsa/rsa_lib.c" open="0" top="0" tabpos="121">
-		<Cursor position="6326" topLine="215" />
-	</File>
 	<File name="crypto/threads/th-lock.c" open="0" top="0" tabpos="10">
 		<Cursor position="3288" topLine="46" />
-	</File>
-	<File name="crypto/ts/ts_rsp_sign.c" open="0" top="0" tabpos="63">
-		<Cursor position="28725" topLine="972" />
-	</File>
-	<File name="e_os.h" open="0" top="0" tabpos="64">
-		<Cursor position="12943" topLine="357" />
-	</File>
-	<File name="engines/vendor_defns/cswift.h" open="0" top="0" tabpos="122">
-		<Cursor position="6261" topLine="87" />
-	</File>
-	<File name="engines/vendor_defns/hwcryptohook.h" open="0" top="0" tabpos="65">
-		<Cursor position="10030" topLine="206" />
-	</File>
-	<File name="ssl/kssl.c" open="0" top="0" tabpos="66">
-		<Cursor position="24168" topLine="646" />
 	</File>
 	<File name="ssl/s2_lib.c" open="0" top="0" tabpos="15">
 		<Cursor position="6154" topLine="106" />
@@ -130,16 +58,7 @@
 	<File name="ssl/s3_lib.c" open="0" top="0" tabpos="12">
 		<Cursor position="8051" topLine="152" />
 	</File>
-	<File name="ssl/ssl_cert.c" open="0" top="0" tabpos="123">
-		<Cursor position="11417" topLine="362" />
-	</File>
-	<File name="ssl/ssl_lib.c" open="0" top="0" tabpos="124">
-		<Cursor position="16915" topLine="509" />
-	</File>
 	<File name="ssl/ssl_locl.h" open="0" top="0" tabpos="11">
 		<Cursor position="22708" topLine="587" />
-	</File>
-	<File name="ssl/ssl_sess.c" open="0" top="0" tabpos="125">
-		<Cursor position="24116" topLine="725" />
 	</File>
 </CodeBlocks_layout_file>

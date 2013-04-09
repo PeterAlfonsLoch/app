@@ -7511,7 +7511,7 @@ void CLASS identify()
     maximum = 0xf7f;
   }
 
-/* set parameters based on camera name (for non-DNG files). */
+/* Set parameters based on camera name (for non-DNG files). */
  if (is_foveon) {
     if (height*2 < width) pixel_aspect = 0.5;
     if (height   > width) pixel_aspect = 2;

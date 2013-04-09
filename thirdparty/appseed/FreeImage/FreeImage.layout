@@ -34,9 +34,6 @@
 	<File name="FreeImage/PluginGIF.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="40484" topLine="1265" />
 	</File>
-	<File name="FreeImage/PluginJPEG.cpp" open="0" top="0" tabpos="59">
-		<Cursor position="4080" topLine="91" />
-	</File>
 	<File name="FreeImage/PluginPNG.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="17898" topLine="546" />
 	</File>
@@ -46,14 +43,11 @@
 	<File name="FreeImageToolkit/Rescale.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1848" topLine="4" />
 	</File>
-	<File name="LibJPEG/cdjpeg.c" open="0" top="0" tabpos="60">
-		<Cursor position="4938" topLine="143" />
+	<File name="LibJPEG/cdjpeg.c" open="0" top="0" tabpos="10">
+		<Cursor position="559" topLine="0" />
 	</File>
 	<File name="LibJPEG/jconfig.h" open="0" top="0" tabpos="11">
 		<Cursor position="955" topLine="5" />
-	</File>
-	<File name="LibJPEG/jerror.c" open="0" top="0" tabpos="61">
-		<Cursor position="3701" topLine="95" />
 	</File>
 	<File name="LibPNG/pngread.c" open="0" top="0" tabpos="0">
 		<Cursor position="5036" topLine="129" />

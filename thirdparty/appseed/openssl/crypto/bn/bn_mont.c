@@ -360,7 +360,7 @@ int BN_MONT_CTX_set(BN_MONT_CTX *mont, const BIGNUM *mod, BN_CTX *ctx)
 	BN_CTX_start(ctx);
 	if((Ri = BN_CTX_get(ctx)) == NULL) goto err;
 	R= &(mont->RR);					/* grab RR as a temp */
-	if (!BN_copy(&(mont->N),mod)) goto err;		/* set N */
+	if (!BN_copy(&(mont->N),mod)) goto err;		/* Set N */
 	mont->N.neg = 0;
 
 #ifdef MONT_WORD

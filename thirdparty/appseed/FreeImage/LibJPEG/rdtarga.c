@@ -317,7 +317,7 @@ preload_image (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
   if (progress != NULL)
     progress->completed_extra_passes++;
 
-  /* set up to read from the virtual array in unscrambled order */
+  /* Set up to read from the virtual array in unscrambled order */
   source->pub.get_pixel_rows = get_memory_row;
   source->current_row = 0;
   /* And read the first row */

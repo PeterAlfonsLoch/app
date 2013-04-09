@@ -66,7 +66,7 @@ class Line3
     Line3(const Vec3<T>& point1, const Vec3<T>& point2);
 
     //------------------
-    //	State Query/set
+    //	State Query/Set
     //------------------
 
     void			set(const Vec3<T>& point1, 

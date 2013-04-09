@@ -451,7 +451,7 @@ prepare_for_output_pass (j_decompress_ptr cinfo)
     }
   }
 
-  /* set up progress monitor's pass info if present */
+  /* Set up progress monitor's pass info if present */
   if (cinfo->progress != NULL) {
     cinfo->progress->completed_passes = master->pass_number;
     cinfo->progress->total_passes = master->pass_number +

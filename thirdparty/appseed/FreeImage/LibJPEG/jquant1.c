@@ -543,7 +543,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
       for (col = width; col > 0; col--) {
 	/* Form pixel value + dither, range-limit to 0..MAXJSAMPLE,
 	 * select output value, accumulate into output code for this pixel.
-	 * range-limiting need not be done explicitly, as we have extended
+	 * Range-limiting need not be done explicitly, as we have extended
 	 * the colorindex table to produce the right answers for out-of-range
 	 * inputs.  The maximum dither is +- MAXJSAMPLE; this sets the
 	 * required amount of padding.

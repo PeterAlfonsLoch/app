@@ -216,7 +216,7 @@ png_info_init_3(png_infopp ptr_ptr, png_size_t png_info_struct_size)
       *ptr_ptr = info_ptr;
    }
 
-   /* set everything to 0 */
+   /* Set everything to 0 */
    png_memset(info_ptr, 0, png_sizeof(png_info));
 }
 

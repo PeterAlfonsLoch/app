@@ -2120,7 +2120,7 @@ int X509_STORE_CTX_init(X509_STORE_CTX *ctx, X509_STORE *store, X509 *x509,
 	return 1;
 	}
 
-/* set alternative lookup method: just a STACK of trusted certificates.
+/* Set alternative lookup method: just a STACK of trusted certificates.
  * This avoids X509_STORE nastiness where it isn't needed.
  */
 

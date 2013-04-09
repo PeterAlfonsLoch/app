@@ -764,7 +764,7 @@ png_write_row(png_structp png_ptr, png_bytep row)
    }
 #endif
 
-   /* set up row info for transformations */
+   /* Set up row info for transformations */
    png_ptr->row_info.color_type = png_ptr->color_type;
    png_ptr->row_info.width = png_ptr->usr_width;
    png_ptr->row_info.channels = png_ptr->usr_channels;
@@ -831,7 +831,7 @@ png_write_row(png_structp png_ptr, png_bytep row)
 }
 
 #ifdef PNG_WRITE_FLUSH_SUPPORTED
-/* set the automatic flush interval or 0 to turn flushing off */
+/* Set the automatic flush interval or 0 to turn flushing off */
 void PNGAPI
 png_set_flush(png_structp png_ptr, int nrows)
 {

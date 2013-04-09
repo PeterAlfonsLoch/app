@@ -790,7 +790,7 @@ TiledInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     Lock lock (*_data);
 
     //
-    // set the frame buffer
+    // Set the frame buffer
     //
 
     //

@@ -456,7 +456,7 @@ extern int32_t th_encode_ycbcr_in(th_enc_ctx *_enc,th_ycbcr_buffer _ycbcr);
  *        manner.
  *       However, this may be changed in the future.
  * \param _enc  A #th_enc_ctx handle.
- * \param _last set this flag to a non-zero value if no more uncompressed
+ * \param _last Set this flag to a non-zero value if no more uncompressed
  *               frames will be submitted.
  *              This ensures that a proper EOS flag is set on the last packet.
  * \param _op   An <tt>ogg_packet</tt> structure to fill.

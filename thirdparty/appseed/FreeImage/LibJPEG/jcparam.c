@@ -89,12 +89,12 @@ static const unsigned int std_chrominance_quant_tbl[DCTSIZE2] = {
 
 GLOBAL(void)
 jpeg_default_qtables (j_compress_ptr cinfo, boolean force_baseline)
-/* set or change the 'quality' (quantization) setting, using default tables
+/* Set or change the 'quality' (quantization) setting, using default tables
  * and straight percentage-scaling quality scales.
  * This entry point allows different scalings for luminance and chrominance.
  */
 {
-  /* set up two quantization tables using the specified scaling */
+  /* Set up two quantization tables using the specified scaling */
   jpeg_add_quant_table(cinfo, 0, std_luminance_quant_tbl,
 		       cinfo->q_scale_factor[0], force_baseline);
   jpeg_add_quant_table(cinfo, 1, std_chrominance_quant_tbl,
@@ -105,13 +105,13 @@ jpeg_default_qtables (j_compress_ptr cinfo, boolean force_baseline)
 GLOBAL(void)
 jpeg_set_linear_quality (j_compress_ptr cinfo, int scale_factor,
 			 boolean force_baseline)
-/* set or change the 'quality' (quantization) setting, using default tables
+/* Set or change the 'quality' (quantization) setting, using default tables
  * and a straight percentage-scaling quality scale.  In most cases it's better
  * to use jpeg_set_quality (below); this entry point is provided for
  * applications that insist on a linear percentage scaling.
  */
 {
-  /* set up two quantization tables using the specified scaling */
+  /* Set up two quantization tables using the specified scaling */
   jpeg_add_quant_table(cinfo, 0, std_luminance_quant_tbl,
 		       scale_factor, force_baseline);
   jpeg_add_quant_table(cinfo, 1, std_chrominance_quant_tbl,
@@ -147,7 +147,7 @@ jpeg_quality_scaling (int quality)
 
 GLOBAL(void)
 jpeg_set_quality (j_compress_ptr cinfo, int quality, boolean force_baseline)
-/* set or change the 'quality' (quantization) setting, using default tables.
+/* Set or change the 'quality' (quantization) setting, using default tables.
  * This is the standard quality-adjusting entry point for typical user
  * interfaces; only those who want detailed control over quantization tables
  * would use the preceding three routines directly.
@@ -156,7 +156,7 @@ jpeg_set_quality (j_compress_ptr cinfo, int quality, boolean force_baseline)
   /* Convert user 0-100 rating to percentage scaling */
   quality = jpeg_quality_scaling(quality);
 
-  /* set up standard quality tables */
+  /* Set up standard quality tables */
   jpeg_set_linear_quality(cinfo, quality, force_baseline);
 }
 
@@ -197,7 +197,7 @@ add_huff_table (j_compress_ptr cinfo,
 
 LOCAL(void)
 std_huff_tables (j_compress_ptr cinfo)
-/* set up the standard Huffman tables (cf. JPEG standard section K.3) */
+/* Set up the standard Huffman tables (cf. JPEG standard section K.3) */
 /* IMPORTANT: these are only valid for 8-bit data precision! */
 {
   static const UINT8 bits_dc_luminance[17] =
@@ -304,9 +304,9 @@ jpeg_set_defaults (j_compress_ptr cinfo)
   cinfo->scale_num = 1;		/* 1:1 scaling */
   cinfo->scale_denom = 1;
   cinfo->data_precision = BITS_IN_JSAMPLE;
-  /* set up two quantization tables using default quality of 75 */
+  /* Set up two quantization tables using default quality of 75 */
   jpeg_set_quality(cinfo, 75, TRUE);
-  /* set up two Huffman tables */
+  /* Set up two Huffman tables */
   std_huff_tables(cinfo);
 
   /* Initialize default arithmetic coding conditioning */
@@ -406,7 +406,7 @@ jpeg_default_colorspace (j_compress_ptr cinfo)
 
 
 /*
- * set the JPEG colorspace, and choose colorspace-dependent default values.
+ * Set the JPEG colorspace, and choose colorspace-dependent default values.
  */
 
 GLOBAL(void)

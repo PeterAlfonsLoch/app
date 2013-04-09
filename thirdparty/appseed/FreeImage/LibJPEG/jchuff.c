@@ -223,7 +223,7 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, boolean isDC, int tblno,
   /* Figure C.3: generate encoding tables */
   /* These are code and size indexed by symbol value */
 
-  /* set all codeless symbols to have code length 0;
+  /* Set all codeless symbols to have code length 0;
    * this lets us detect duplicate VAL entries here, and later
    * allows emit_bits to detect any attempt to emit such symbols.
    */
@@ -1384,7 +1384,7 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     }
   }
 
-  /* set sent_table FALSE so updated table will be written to JPEG file. */
+  /* Set sent_table FALSE so updated table will be written to JPEG file. */
   htbl->sent_table = FALSE;
 }
 

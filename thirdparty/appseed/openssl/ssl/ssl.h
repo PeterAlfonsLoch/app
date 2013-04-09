@@ -587,10 +587,10 @@ struct ssl_session_st
 #define SSL_OP_SINGLE_ECDH_USE				0x00080000L
 /* If set, always create a new key when using tmp_dh parameters */
 #define SSL_OP_SINGLE_DH_USE				0x00100000L
-/* set to always use the tmp_rsa key when doing RSA operations,
+/* Set to always use the tmp_rsa key when doing RSA operations,
  * even when this violates protocol specs */
 #define SSL_OP_EPHEMERAL_RSA				0x00200000L
-/* set on servers to choose the cipher according to the server's
+/* Set on servers to choose the cipher according to the server's
  * preferences */
 #define SSL_OP_CIPHER_SERVER_PREFERENCE			0x00400000L
 /* If set, a server will allow a client to issue a SSLv3.0 version number

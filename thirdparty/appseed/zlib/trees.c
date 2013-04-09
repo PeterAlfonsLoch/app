@@ -458,7 +458,7 @@ local void pqdownheap(s, tree, k)
     int v = s->heap[k];
     int j = k << 1;  /* left son of k */
     while (j <= s->heap_len) {
-        /* set j to the smallest of the two sons: */
+        /* Set j to the smallest of the two sons: */
         if (j < s->heap_len &&
             smaller(tree, s->heap[j+1], s->heap[j], s->depth)) {
             j++;

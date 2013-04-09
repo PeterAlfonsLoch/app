@@ -101,7 +101,7 @@ Reset the states of all the context of the coder/decoder
 */
 void mqc_resetstates(opj_mqc_t *mqc);
 /**
-set the state of a particular context
+Set the state of a particular context
 @param mqc MQC handle
 @param ctxno Number that identifies the context
 @param msb The MSB of the new state of the context
@@ -115,7 +115,7 @@ Initialize the encoder
 */
 void mqc_init_enc(opj_mqc_t *mqc, unsigned char *bp);
 /**
-set the current context used for coding/decoding
+Set the current context used for coding/decoding
 @param mqc MQC handle
 @param ctxno Number that identifies the context
 */

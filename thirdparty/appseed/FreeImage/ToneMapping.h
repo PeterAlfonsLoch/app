@@ -1,5 +1,5 @@
 // ==========================================================
-// High Dynamic range bitmap conversion routines
+// High Dynamic Range bitmap conversion routines
 //
 // Design and implementation by
 // - Hervé Drolon (drolon@infonie.fr)

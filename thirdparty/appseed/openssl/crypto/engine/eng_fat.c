@@ -98,7 +98,7 @@ int ENGINE_set_default(ENGINE *e, unsigned int flags)
 	return 1;
 	}
 
-/* set default algorithms using a string */
+/* Set default algorithms using a string */
 
 static int int_def_cb(const char *alg, int len, void *arg)
 	{

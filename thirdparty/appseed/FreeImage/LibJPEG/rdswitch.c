@@ -9,9 +9,9 @@
  * command-line switches.  Switches processed here are:
  *	-qtables file		Read quantization tables from text file
  *	-scans file		Read scan script from text file
- *	-quality N[,N,...]	set quality ratings
- *	-qslots N[,N,...]	set component quantization table selectors
- *	-sample HxV[,HxV,...]	set component sampling factors
+ *	-quality N[,N,...]	Set quality ratings
+ *	-qslots N[,N,...]	Set component quantization table selectors
+ *	-sample HxV[,HxV,...]	Set component sampling factors
  */
 
 #include "cdjpeg.h"		/* Common decls for cjpeg/djpeg applications */

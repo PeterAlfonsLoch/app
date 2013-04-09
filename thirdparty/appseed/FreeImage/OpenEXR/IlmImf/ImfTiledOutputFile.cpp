@@ -575,7 +575,7 @@ convertToXdr (TiledOutputFile::Data *ofd,
     //
 
     //
-    // set these to point to the start of the tile.
+    // Set these to point to the start of the tile.
     // We will write to toPtr, and read from fromPtr.
     //
 

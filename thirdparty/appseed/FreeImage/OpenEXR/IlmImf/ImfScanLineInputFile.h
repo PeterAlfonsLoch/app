@@ -91,7 +91,7 @@ class ScanLineInputFile
 
 
     //-----------------------------------------------------------
-    // set the current frame buffer -- copies the FrameBuffer
+    // Set the current frame buffer -- copies the FrameBuffer
     // object into the InputFile object.
     //
     // The current frame buffer is the destination for the pixel

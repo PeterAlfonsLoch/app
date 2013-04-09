@@ -108,7 +108,7 @@ jpeg_abort_decompress (j_decompress_ptr cinfo)
 
 
 /*
- * set default decompression parameters.
+ * Set default decompression parameters.
  */
 
 LOCAL(void)
@@ -185,7 +185,7 @@ default_decompress_parms (j_decompress_ptr cinfo)
     break;
   }
 
-  /* set defaults for other decompression parameters. */
+  /* Set defaults for other decompression parameters. */
   cinfo->scale_num = cinfo->block_size;		/* 1:1 scaling */
   cinfo->scale_denom = cinfo->block_size;
   cinfo->output_gamma = 1.0;
@@ -301,9 +301,9 @@ jpeg_consume_input (j_decompress_ptr cinfo)
   case DSTATE_INHEADER:
     retcode = (*cinfo->inputctl->consume_input) (cinfo);
     if (retcode == JPEG_REACHED_SOS) { /* Found SOS, prepare to decompress */
-      /* set up default parameters based on header data */
+      /* Set up default parameters based on header data */
       default_decompress_parms(cinfo);
-      /* set global state: ready for start_decompress */
+      /* Set global state: ready for start_decompress */
       cinfo->global_state = DSTATE_READY;
     }
     break;

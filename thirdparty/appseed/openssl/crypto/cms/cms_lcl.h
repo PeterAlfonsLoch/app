@@ -124,7 +124,7 @@ struct CMS_EncapsulatedContentInfo_st
 	{
 	ASN1_OBJECT *eContentType;
 	ASN1_OCTET_STRING *eContent;
-	/* set to 1 if incomplete structure only part set up */
+	/* Set to 1 if incomplete structure only part set up */
 	int partial;
 	};
 
@@ -175,7 +175,7 @@ struct CMS_EncryptedContentInfo_st
 	const EVP_CIPHER *cipher;
 	unsigned char *key;
 	size_t keylen;
-	/* set to 1 if we are debugging decrypt and don't fake keys for MMA */
+	/* Set to 1 if we are debugging decrypt and don't fake keys for MMA */
 	int debug;
 	};
 

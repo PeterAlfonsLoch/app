@@ -1108,7 +1108,7 @@ local void lm_init (s)
 
     CLEAR_HASH(s);
 
-    /* set the default configuration parameters:
+    /* Set the default configuration parameters:
      */
     s->max_lazy_match   = configuration_table[s->level].max_lazy;
     s->good_match       = configuration_table[s->level].good_length;
@@ -1131,7 +1131,7 @@ local void lm_init (s)
 
 #ifndef FASTEST
 /* ===========================================================================
- * set match_start to the longest match starting at the given string and
+ * Set match_start to the longest match starting at the given string and
  * return its length. Matches shorter or equal to prev_length are discarded,
  * in which case the result is equal to prev_length and match_start is
  * garbage.

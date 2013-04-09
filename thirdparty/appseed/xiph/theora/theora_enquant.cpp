@@ -179,7 +179,7 @@ void oc_enquant_tables_init(uint16_t *_dequant[64][3][2],
   These values were measured after motion-compensated prediction, before
    quantization, over a large set of test video (from QCIF to 1080p) encoded at
    all possible rates.
-  The DC coefficient takes into ac::count the DPCM prediction (using the
+  The DC coefficient takes into account the DPCM prediction (using the
    quantized values from neighboring blocks, as the encoder does, but still
    before quantization of the coefficient in the current block).
   The results differ significantly from the expected variance (e.g., using an

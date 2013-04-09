@@ -309,7 +309,7 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
   int32_t *sortindex;
   memset(c,0,sizeof(*c));
 
-  /* ::count actually used entries */
+  /* count actually used entries */
   for(i=0;i<s->entries;i++)
     if(s->lengthlist[i]>0)
       n++;

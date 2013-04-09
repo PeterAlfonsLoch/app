@@ -111,7 +111,7 @@ class IStream
 
 
     //-------------------------------------------
-    // set the current reading position.
+    // Set the current reading position.
     // After calling seekg(i), tellg() returns i.
     //-------------------------------------------
 
@@ -181,7 +181,7 @@ class OStream
 
 
     //-------------------------------------------
-    // set the current writing position.
+    // Set the current writing position.
     // After calling seekp(i), tellp() returns i.
     //-------------------------------------------
 

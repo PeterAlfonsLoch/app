@@ -88,7 +88,7 @@ PKCS12 *PKCS12_create(char *pass, char *name, EVP_PKEY *pkey, X509 *cert,
 	unsigned char keyid[EVP_MAX_MD_SIZE];
 	unsigned int keyidlen = 0;
 
-	/* set defaults */
+	/* Set defaults */
 	if (!nid_cert)
 		nid_cert = NID_pbe_WithSHA1And40BitRC2_CBC;
 	if (!nid_key)

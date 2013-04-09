@@ -3040,7 +3040,7 @@ int SSL_want(const SSL *s)
 	}
 
 /*!
- * \brief set the callback for generating temporary RSA keys.
+ * \brief Set the callback for generating temporary RSA keys.
  * \param ctx the SSL context.
  * \param cb the callback
  */
@@ -3077,7 +3077,7 @@ RSA *cb(SSL *ssl,int is_export,int keylength)
 #endif
 
 /*!
- * \brief set the callback for generating temporary DH keys.
+ * \brief Set the callback for generating temporary DH keys.
  * \param ctx the SSL context.
  * \param dh the callback
  */

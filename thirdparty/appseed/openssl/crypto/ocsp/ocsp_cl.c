@@ -95,7 +95,7 @@ err:
 	return NULL;
         }
 
-/* set requestorName from an OPENSSL_X509_NAME structure */
+/* Set requestorName from an OPENSSL_X509_NAME structure */
 
 int OCSP_request_set1_name(OPENSSL_OCSP_REQUEST *req, OPENSSL_X509_NAME *nm)
 	{

@@ -25,7 +25,7 @@ typedef struct oc_mcenc_ctx           oc_mcenc_ctx;
 struct oc_mcenc_ctx{
   /*The candidate motion vectors.*/
   int32_t                candidates[13][2];
-  /*The start of the set B candidates.*/
+  /*The start of the Set B candidates.*/
   int32_t                setb0;
   /*The total number of candidates.*/
   int32_t                ncandidates;
@@ -414,7 +414,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
                     Otherwise we could continue to read it, but not write to it
                      without saving and restoring it for each block.
                     Note that we could still eliminate a large number of
-                     duplicate checks by taking into ac::count the site we came
+                     duplicate checks by taking into account the site we came
                      from when choosing the site list.
                     We can still do that to avoid extra hit_cache queries, and
                      it might even be a speed win.

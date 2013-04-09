@@ -682,7 +682,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				return FALSE;
 			}
 
-			// set error handling.  REQUIRED if you aren't supplying your own
+			// Set error handling.  REQUIRED if you aren't supplying your own
 			// error handling functions in the png_create_write_struct() call.
 
 			if (setjmp(png_jmpbuf(png_ptr)))  {
@@ -706,7 +706,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				png_set_pHYs(png_ptr, info_ptr, res_x, res_y, 1);
 			}
 
-			// set the image information here.  Width and height are up to 2^31,
+			// Set the image information here.  Width and height are up to 2^31,
 			// bit_depth is one of 1, 2, 4, 8, or 16, but valid values also depend on
 			// the color_type selected. color_type is one of PNG_COLOR_TYPE_GRAY,
 			// PNG_COLOR_TYPE_GRAY_ALPHA, PNG_COLOR_TYPE_PALETTE, PNG_COLOR_TYPE_RGB,

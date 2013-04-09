@@ -48,7 +48,7 @@ jpeg_start_compress (j_compress_ptr cinfo, boolean write_all_tables)
   (*cinfo->dest->init_destination) (cinfo);
   /* Perform master selection of active modules */
   jinit_compress_master(cinfo);
-  /* set up for the first pass */
+  /* Set up for the first pass */
   (*cinfo->master->prepare_for_pass) (cinfo);
   /* Ready for application to drive first pass through jpeg_write_scanlines
    * or jpeg_write_raw_data.

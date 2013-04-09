@@ -446,7 +446,7 @@ extern "C" {
 struct ASN1_TEMPLATE_st {
 unsigned long flags;		/* Various flags */
 long tag;			/* tag, not used if no tagging */
-unsigned long offset;		/* offset of this field in structure */
+unsigned long offset;		/* Offset of this field in structure */
 #ifndef NO_ASN1_FIELD_NAMES
 const char *field_name;		/* Field name */
 #endif
@@ -463,7 +463,7 @@ typedef struct ASN1_ADB_st ASN1_ADB;
 
 struct ASN1_ADB_st {
 	unsigned long flags;	/* Various flags */
-	unsigned long offset;	/* offset of selector field */
+	unsigned long offset;	/* Offset of selector field */
 	STACK_OF(ASN1_ADB_TABLE) **app_items; /* Application defined items */
 	const ASN1_ADB_TABLE *tbl;	/* Table of possible types */
 	long tblcount;		/* Number of entries in tbl */
@@ -722,10 +722,10 @@ typedef int ASN1_aux_cb(int operation, ASN1_VALUE **in, const ASN1_ITEM *it,
 typedef struct ASN1_AUX_st {
 	void *app_data;
 	int flags;
-	int ref_offset;		/* offset of reference value */
+	int ref_offset;		/* Offset of reference value */
 	int ref_lock;		/* Lock type to use */
 	ASN1_aux_cb *asn1_cb;
-	int enc_offset;		/* offset of ASN1_ENCODING structure */
+	int enc_offset;		/* Offset of ASN1_ENCODING structure */
 } ASN1_AUX;
 
 /* For print related callbacks exarg points to this structure */

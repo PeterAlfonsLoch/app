@@ -193,7 +193,7 @@ int ec_GF2m_simple_group_copy(EC_GROUP *dest, const EC_GROUP *src)
 	}
 
 
-/* set the curve parameters of an EC_GROUP structure. */
+/* Set the curve parameters of an EC_GROUP structure. */
 int ec_GF2m_simple_group_set_curve(EC_GROUP *group,
 	const BIGNUM *p, const BIGNUM *a, const BIGNUM *b, BN_CTX *ctx)
 	{
@@ -341,7 +341,7 @@ int ec_GF2m_simple_point_copy(EC_POINT *dest, const EC_POINT *src)
 	}
 
 
-/* set an EC_POINT to the point at infinity.  
+/* Set an EC_POINT to the point at infinity.  
  * A point at infinity is represented by having Z=0.
  */
 int ec_GF2m_simple_point_set_to_infinity(const EC_GROUP *group, EC_POINT *point)
@@ -352,7 +352,7 @@ int ec_GF2m_simple_point_set_to_infinity(const EC_GROUP *group, EC_POINT *point)
 	}
 
 
-/* set the coordinates of an EC_POINT using affine coordinates. 
+/* Set the coordinates of an EC_POINT using affine coordinates. 
  * Note that the simple implementation only uses affine coordinates.
  */
 int ec_GF2m_simple_point_set_affine_coordinates(const EC_GROUP *group, EC_POINT *point,

@@ -247,7 +247,7 @@ preload_image (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
   if (progress != NULL)
     progress->completed_extra_passes++;
 
-  /* set up to read from the virtual array in top-to-bottom order */
+  /* Set up to read from the virtual array in top-to-bottom order */
   switch (source->bits_per_pixel) {
   case 8:
     source->pub.get_pixel_rows = get_8bit_row;
@@ -369,7 +369,7 @@ start_input_bmp (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
       ERREXIT(cinfo, JERR_BMP_COMPRESSED);
 
     if (biXPelsPerMeter > 0 && biYPelsPerMeter > 0) {
-      /* set JFIF density parameters from the BMP data */
+      /* Set JFIF density parameters from the BMP data */
       cinfo->X_density = (UINT16) (biXPelsPerMeter/100); /* 100 cm per meter */
       cinfo->Y_density = (UINT16) (biYPelsPerMeter/100);
       cinfo->density_unit = 2;	/* dots/cm */

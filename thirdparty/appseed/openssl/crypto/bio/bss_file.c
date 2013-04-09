@@ -336,7 +336,7 @@ static long MS_CALLBACK file_ctrl(BIO *b, int cmd, long num, void *ptr)
 			setmode(fd,O_BINARY);
 #elif defined(OPENSSL_SYS_MSDOS)
 		int fd = fileno((FILE*)ptr);
-		/* set correct text/binary mode */
+		/* Set correct text/binary mode */
 		if (num & BIO_FP_TEXT)
 			_setmode(fd,_O_TEXT);
 		/* Dangerous to set stdin/stdout to raw (unless redirected) */

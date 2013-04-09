@@ -127,7 +127,7 @@ int PKCS12_verify_mac(PKCS12 *p12, const char *pass, int passlen)
 	return 1;
 }
 
-/* set a mac */
+/* Set a mac */
 
 int PKCS12_set_mac(PKCS12 *p12, const char *pass, int passlen,
 	     unsigned char *salt, int saltlen, int iter, const EVP_MD *md_type)
@@ -152,7 +152,7 @@ int PKCS12_set_mac(PKCS12 *p12, const char *pass, int passlen,
 	return 1;
 }
 
-/* set up a mac structure */
+/* Set up a mac structure */
 int PKCS12_setup_mac(PKCS12 *p12, int iter, unsigned char *salt, int saltlen,
 	     const EVP_MD *md_type)
 {

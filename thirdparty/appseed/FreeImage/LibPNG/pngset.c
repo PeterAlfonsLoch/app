@@ -706,7 +706,7 @@ png_set_text_2(png_structp png_ptr, png_infop info_ptr, png_textp text_ptr,
       else
 #ifdef PNG_iTXt_SUPPORTED
       {
-         /* set iTXt data */
+         /* Set iTXt data */
 
          if (text_ptr[i].lang != NULL)
             lang_len = png_strlen(text_ptr[i].lang);

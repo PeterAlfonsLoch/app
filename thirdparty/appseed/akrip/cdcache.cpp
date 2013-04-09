@@ -118,7 +118,7 @@ uint32_t CDDBSum( uint32_t n )
 /*
  * Computes the CDDBID for the CD in the drive represented by hCD.
  * Data which can be used to construct a CDDB query is stored in the 
- * array pID.
+ * base_array pID.
  *   pID[0] = CDDBID
  *   pID[1] = number of tracks
  *   pID[2..(2+n)] = starting LBA offset of tracks on CD
@@ -377,7 +377,7 @@ uint32_t CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
 /*
  * Queries the CDDB for a given disk.
  * Returns SS_COMP on success, SS_ERR on error.  numEntries on entry contains
- * the number of elements in the lpq array, and on return is set to the 
+ * the number of elements in the lpq base_array, and on return is set to the 
  * number of entries returned.
  *
  * If the no items are returned, or if no network connection is available,
@@ -1224,7 +1224,7 @@ uint32_t CDDBIndex1CDPlayerIni( char *szCDDBId, uint32_t *dwRetVal, uint32_t *nu
 
 /*
  * Stores a CDDB entry in cdplayer.ini.  NOTE: the buffer pointed to
- * by szCDDBEntry may be modified by this function.  Do not ::count on the
+ * by szCDDBEntry may be modified by this function.  Do not count on the
  * buffer being unmodified!!!
  */
 void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry )

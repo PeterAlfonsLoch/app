@@ -123,7 +123,7 @@ class TiledOutputFile
 
 
     //-------------------------------------------------------
-    // set the current frame buffer -- copies the FrameBuffer
+    // Set the current frame buffer -- copies the FrameBuffer
     // object into the TiledOutputFile object.
     //
     // The current frame buffer is the source of the pixel
