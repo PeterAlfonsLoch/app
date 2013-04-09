@@ -246,6 +246,7 @@ public:
    index    find_pair(pair * ppair) const;
    bool     find_key(ARG_KEY key, index & i) const;
 
+   index    add_key(ARG_KEY key);
    index    add_pair(ARG_KEY key, ARG_VALUE value);
 
    // sort by key
@@ -446,7 +447,7 @@ VALUE& fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::operator[](ARG_KEY 
    if(ppair == ::null())
    {
 
-      add_pair(key, VALUE());
+      add_key(key);
 
       ppair = PLookup(key);
 
@@ -565,6 +566,24 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort(bool bAsc)
 
 }
 
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_key(ARG_KEY key)
+{
+
+   index i;
+
+   if(!find_key(key, i))
+   {
+
+      m_ptra.add(new pair(key));
+
+      i = m_ptra.get_upper_bound();
+
+   }
+
+   return i;
+
+}
 
 
 
@@ -577,7 +596,9 @@ index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key
    if(!find_key(key, i))
    {
 
-      m_ptra.set_at_grow(i, new pair(key));
+      m_ptra.add(new pair(key));
+
+      i = m_ptra.get_upper_bound();
 
    }
 
