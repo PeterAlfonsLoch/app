@@ -252,7 +252,7 @@ int16_t GeoIP_update_database (sp(::ca::application) papp, char * license_key, i
    size_t written;
    _GeoIP_setup_dbfilename();
 
-   /* get MD5 of current GeoIP database file */
+   /* get MD5 of current GeoIP database sp(::ca::file)/
    if ((cur_db_fh = fopen (GeoIPDBFileName[GEOIP_COUNTRY_EDITION], "rb")) == ::null()) {
     GeoIP_printf(f,"%s%s",  NoCurrentDB, GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    } else {
@@ -299,7 +299,7 @@ int16_t GeoIP_update_database (sp(::ca::application) papp, char * license_key, i
       GeoIP_printf(f, "via Host or Proxy Server: %s:%d\n", hostlist->h_name, GeoIPHTTPPort);
    }
 
-   /* Download gzip file */
+   /* Download gzip sp(::ca::file)/
    if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
       return GEOIP_CONNECTION_ERR;
 
@@ -351,7 +351,7 @@ int16_t GeoIP_update_database (sp(::ca::application) papp, char * license_key, i
    if (verbose == 1)
       GeoIP_printf(f,"Done\n");
 
-   /* save gzip file */
+   /* save gzip sp(::ca::file)/
    file_path_gz = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 4));
    if (file_path_gz == ::null())
       return GEOIP_OUT_OF_MEMORY_ERR;
@@ -381,7 +381,7 @@ int16_t GeoIP_update_database (sp(::ca::application) papp, char * license_key, i
    if (verbose == 1)
       GeoIP_printf(f,"Uncompressing gzip file ... ");
 
-   /* uncompress gzip file */
+   /* uncompress gzip sp(::ca::file)/
    gz_fh = gzopen(file_path_gz, "rb");
    file_path_test = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
    if (file_path_test == ::null())
@@ -594,7 +594,7 @@ int16_t GeoIP_update_database_general (sp(::ca::application) papp, char * user_i
    }
    _GeoIP_setup_dbfilename();
 
-   /* get MD5 of current GeoIP database file */
+   /* get MD5 of current GeoIP database sp(::ca::file)/
    if ((cur_db_fh = fopen (geoipfilename, "rb")) == ::null()) {
     GeoIP_printf(f, NoCurrentDB, geoipfilename);
    } else {
@@ -630,7 +630,7 @@ int16_t GeoIP_update_database_general (sp(::ca::application) papp, char * user_i
       if (verbose == 1)
          GeoIP_printf(f,"Connecting to MaxMind GeoIP Update server\n");
 
-      /* Download gzip file */
+      /* Download gzip sp(::ca::file)/
       if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0) {
          free(geoipfilename);
          return GEOIP_CONNECTION_ERR;
@@ -773,7 +773,7 @@ int16_t GeoIP_update_database_general (sp(::ca::application) papp, char * user_i
 
    GeoIP_printf(f, "Updating %s\n", geoipfilename);
 
-   /* save gzip file */
+   /* save gzip sp(::ca::file)/
    file_path_gz =(char *) malloc(sizeof(char) * (strlen(geoipfilename) + 4));
 
    if (file_path_gz == ::null())
@@ -817,7 +817,7 @@ int16_t GeoIP_update_database_general (sp(::ca::application) papp, char * user_i
       free(file_path_gz);
       return GEOIP_TEST_IO_ERR;
    }
-   /* uncompress gzip file */
+   /* uncompress gzip sp(::ca::file)/
    offset = 0;
    gz_fh = gzopen(file_path_gz, "rb");
    for (;;) {

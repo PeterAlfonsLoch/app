@@ -70,7 +70,7 @@ namespace filemanager
             };
 
             list_view(sp(::ca::application) papp);
-            ::filemanager::fs::simple::view * m_pserver;
+            sp(::filemanager::fs::simple::view) m_pserver;
 
             void install_message_handling(::ca::message::dispatch * pinterface);
        
@@ -79,7 +79,7 @@ namespace filemanager
 
             ItemArray         m_itema; 
 
-            image_list *          m_pil;
+            sp(image_list)          m_pil;
             int64_t m_iParentFolder;
 
 
@@ -126,7 +126,7 @@ namespace filemanager
             virtual count _001GetItemCount();
             virtual void _001SearchGetItemText(::user::list_item * pitem);
 
-            virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+            virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
             virtual void _001OnClick(UINT nFlags, point point);
 

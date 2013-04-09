@@ -382,7 +382,7 @@ namespace user
    }
 
 
-   void form::_001OnUpdate(::view * pviewSender, LPARAM lhint, ::ca::object* phint)
+   void form::_001OnUpdate(sp(::view) pviewSender, LPARAM lhint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);
@@ -1095,7 +1095,7 @@ namespace user
       if(m_bInitialized)
          return true;
       _001InitializeFormPreData();
-   /*   ::view * pview = dynamic_cast <::view *>(get_guie());
+   /*   sp(::view) pview = dynamic_cast <sp(::view)>(get_guie());
       if(pview != ::null())
       {
          if(pview->get_document() != ::null())

@@ -132,7 +132,7 @@ namespace user
       for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
 
-         ::xml::node * pnode = doc.get_root()->child_at(i);
+         sp(::xml::node) pnode = doc.get_root()->child_at(i);
 
          if(pnode->get_name().CompareNoCase("item") == 0)
          {
@@ -161,7 +161,7 @@ namespace user
       return *m_playout;
    }
 
-   void keyboard::process_escape(::xml::node * pnode, ::ca::property_set & set)
+   void keyboard::process_escape(sp(::xml::node) pnode, ::ca::property_set & set)
    {
       m_playout->process_escape(pnode, set);
    }

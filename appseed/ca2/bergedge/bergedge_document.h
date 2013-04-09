@@ -28,7 +28,7 @@ namespace bergedge
 
       ::bergedge::bergedge * get_bergedge();
 
-      view * get_bergedge_view();
+      sp(view) get_bergedge_view();
       
       virtual bool on_new_document();
       

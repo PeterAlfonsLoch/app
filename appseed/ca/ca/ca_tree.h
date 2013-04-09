@@ -1,83 +1,92 @@
 #pragma once
 
+
 class image_list;
+
 
 namespace ca
 {
 
+
    class tree_data;
+
 
    class CLASS_DECL_ca tree :
       public ::ca::data_container
    {
-   protected:
-
-      tree_item *             m_pitem;
-      tree_item_ptr_array     m_itemptraSelected;
-      tree_item *             m_pitemHover;
-
-
    public:
+
+
+      sp(tree_item)              m_pitem;
+      tree_item_ptr_array        m_itemptraSelected;
+      sp(tree_item)              m_pitemHover;
+
 
       tree(sp(::ca::application) papp);
       virtual ~tree();
 
 
-      virtual bool initialize();
-      virtual bool finalize();
+      sp(tree_data) get_tree_data();
 
 
-      tree_data * get_data();
+      sp(tree_item) allocate_branch_item(sp(::ca::tree_data) pdata);
+      sp(tree_item) allocate_item(sp(::ca::tree_data) pdata);
 
-      virtual tree_item * find(tree_item_data * pitemdata, index i = 0);
-      virtual bool contains(tree_item_data * pitemdata);
 
-      virtual bool contains(tree_item * pitem);
+      virtual void remove_all();
+
+
+
+      virtual sp(tree_item) find(sp(tree_item_data) pitemdata, index i = 0);
+      virtual bool contains(sp(tree_item_data) pitemdata);
+
+      virtual bool contains(sp(tree_item) pitem);
 
       virtual void _001OnTreeDataChange();
 
-      virtual bool   hover(tree_item * pitem);
-      virtual bool   hover(tree_item_data * pitem, index i = 0);
+      virtual bool      hover_tree_item(sp(tree_item) pitem);
+      virtual bool      hover_tree_item_data(sp(tree_item_data) pitem, index i = 0);
 
-      virtual ::count add_selection(tree_item_ptr_array & itemptra);
-      virtual bool   add_selection(tree_item * pitem);
-      virtual bool   add_selection(tree_item_data * pitem, index i = 0);
+      virtual ::count   add_tree_item_array_selection(tree_item_ptr_array & itemptra);
+      virtual bool      add_tree_item_selection(sp(tree_item) pitem);
+      virtual bool      add_tree_item_data_selection(sp(tree_item_data) pitem, index i = 0);
 
-      virtual ::count set_selection(tree_item_ptr_array & itemptra);
-      virtual bool   set_selection(tree_item * pitem);
-      virtual bool   set_selection(tree_item_data * pitem, index i = 0);
+      virtual ::count   set_tree_item_array_selection(tree_item_ptr_array & itemptra);
+      virtual bool      set_tree_item_selection(sp(tree_item) pitem);
+      virtual bool      set_tree_item_data_selection(sp(tree_item_data) pitem, index i = 0);
 
-      virtual ::count remove_selection(tree_item_ptr_array & itemptra);
-      virtual bool   remove_selection(tree_item * pitem);
-      virtual bool   remove_selection(tree_item_data * pitem, index i = 0);
+      virtual ::count   remove_tree_item_array_selection(tree_item_ptr_array & itemptra);
+      virtual bool      remove_tree_item_selection(sp(tree_item) pitem);
+      virtual bool      remove_tree_item_data_selection(sp(tree_item_data) pitem, index i = 0);
 
-      virtual ::count clear_selection();
+      virtual ::count   remove_tree_item_array(tree_item_ptr_array & itemptra);
+      virtual ::count   remove_tree_item(sp(tree_item) pitem);
+      virtual ::count   remove_tree_item_data(sp(tree_item_data) pitem, index i = 0);
 
-      virtual bool   is_selected(tree_item * pitem);
-      virtual bool   is_selected(tree_item_data * pitem);
-      virtual bool   is_hover(tree_item * pitem);
-      virtual bool   is_hover(tree_item_data * pitem);
 
-      void sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *));
+      virtual ::count   clear_selection();
 
-      virtual tree_item * get_proper_item(index iIndex, index * piLevel);
-      virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel);
+      virtual bool   is_tree_item_selected(sp(tree_item) pitem);
+      virtual bool   is_tree_item_data_selected(sp(tree_item_data) pitem);
+      virtual bool   is_tree_item_hover(sp(tree_item) pitem);
+      virtual bool   is_tree_item_data_hover(sp(tree_item_data) pitem);
+
+      void sort(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &));
+
+      virtual sp(tree_item) get_proper_item(index iIndex, index * piLevel);
+      virtual index get_proper_item_index(sp(tree_item) pitemParam, index * piLevel);
       virtual ::count get_proper_item_count();
 
 
 
-      virtual image_list * get_image_list();
+      virtual sp(image_list) get_image_list();
 
-      virtual tree_item * get_base_item();
+      virtual sp(tree_item) get_base_item();
 
-      virtual tree_item * insert_item(::ca::tree_data * ptreedata, tree_item_data * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
-      virtual tree_item * create_item(::ca::tree_data * ptreedata, tree_item * pitemRelative, ERelative erelativeNewItem);
-      virtual bool insert_item(::ca::tree_data * ptreedata, tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
+      virtual sp(tree_item) insert_item_data(sp(::ca::tree_data) ptreedata, sp(tree_item_data) pitemdataNew, ERelative erelativeNewItem, sp(tree_item) pitemRelative);
+      virtual sp(tree_item) create_item(sp(::ca::tree_data) ptreedata, sp(tree_item) pitemRelative, ERelative erelativeNewItem);
+      virtual bool insert_item(sp(::ca::tree_data) ptreedata, sp(tree_item) pitemNew, ERelative erelativeNewItem, sp(tree_item) pitemRelative);
 
-      tree_item * allocate_item(::ca::tree_data * pdata);
-      void delete_item(tree_item * pitem);
-
-      virtual void remove_all();
 
    };
 

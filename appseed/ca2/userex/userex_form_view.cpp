@@ -15,7 +15,7 @@ form_view::form_view(sp(::ca::application) papp) :
 }
 
 
-void form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+void form_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
 
    html_form_view::on_update(pSender, lHint, phint);

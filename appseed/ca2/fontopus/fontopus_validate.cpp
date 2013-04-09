@@ -12,7 +12,7 @@ namespace ca
       validate::validate(sp(::ca::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
          ca(papp),
          ::fontopus::validate(papp, pszForm, bAuth, bInteractive),
-         m_netcfg(papp)
+         m_netcfg(allocer())
       {
          m_bInteractive          = bInteractive;
          m_bAuth          = bAuth;
@@ -96,7 +96,7 @@ namespace ca
          createcontext->m_bOuterPopupAlertLike = true;
          //Sleep(15 * 1000);
          m_pdoc = m_ptemplatePane->open_document_file(createcontext);
-         userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
+         sp(userex::pane_tab_view) pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
          pview->set_view_creator(this);
          m_ptabview = pview;
          pview->set_tab("ca2open", 1);
@@ -692,7 +692,7 @@ namespace ca
          sp(::ca::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = true;
          sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
-         userex::pane_tab_view * pview = pdoc->get_typed_view < userex::pane_tab_view > ();
+         sp(userex::pane_tab_view) pview = pdoc->get_typed_view < userex::pane_tab_view > ();
          pview->set_view_creator(this);
          rect rectOpen;
          System.get_screen_rect(rectOpen);

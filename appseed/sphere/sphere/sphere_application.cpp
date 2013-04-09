@@ -23,7 +23,7 @@ namespace sphere
    {
    }
 
-   ::ca::application * application::get_system()
+   sp(::ca::application) application::get_system()
    {
       return new application();
    }
@@ -201,7 +201,7 @@ namespace sphere
    }
 
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void application::on_request(sp(::ca::create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -279,7 +279,7 @@ namespace sphere
    }
 
 
-   ::user::document_interface * application::_001OpenDocumentFile(var varFile)
+   sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';

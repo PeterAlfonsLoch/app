@@ -13,29 +13,30 @@ namespace ca
    class tree;
 
 
-   class CLASS_DECL_ca tree_item_data
+   class CLASS_DECL_ca tree_item_data :
+      virtual public ::ca::c
    {
    public:
 
 
-      tree_data *                m_pdata;
+      sp(tree_data)                m_pdata;
 
 
       tree_item_data();
       virtual ~tree_item_data();
 
-      virtual bool set_tree_data(tree_data * pdata);
-      virtual tree_data * get_tree_data();
+      virtual bool set_tree_data(sp(tree_data) pdata);
+      virtual sp(tree_data) get_tree_data();
 
-      virtual string get_text(tree * ptree);
-      virtual index get_image(tree * ptree);
-      virtual image_list * get_image_list(tree * ptree);
+      virtual string get_text(sp(tree) ptree);
+      virtual index get_image(sp(tree) ptree);
+      virtual sp(image_list) get_image_list(sp(tree) ptree);
 
    };
 
 
    class CLASS_DECL_ca tree_item_data_ptr_array :
-      public comparable_array < tree_item_data * >
+      public spa(tree_item_data)
    {
    public:
 

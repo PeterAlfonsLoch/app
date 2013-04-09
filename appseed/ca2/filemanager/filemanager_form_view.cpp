@@ -14,7 +14,7 @@ file_manager_form_view::file_manager_form_view(sp(::ca::application) papp) :
 {
 }
 
-void file_manager_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
+void file_manager_form_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    sp(::filemanager::document) pdoc =  (GetFileManager());

@@ -317,8 +317,8 @@ void simple_menu_bar::_001OnDestroy(::ca::signal_object * pobj)
 }
 
 bool simple_menu_bar::Initialize(
-   image_list *   pimagelist,
-   image_list *   pimagelistDisabled,
+   sp(image_list)   pimagelist,
+   sp(image_list)   pimagelistDisabled,
    int_int_spreadset * prel,
    ::ca::font *        pfont)
 {

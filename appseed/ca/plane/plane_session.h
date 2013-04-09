@@ -119,8 +119,6 @@ namespace plane
 
       virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
 
-      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
-
       virtual void request_topic_file(var & varQuery);
 
       virtual void request_topic_file();
@@ -164,7 +162,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      ::planebase::application * start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext);
+      sp(::planebase::application) start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext);
 
 
       virtual COLORREF get_default_color(uint64_t ui);

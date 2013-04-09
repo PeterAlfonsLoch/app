@@ -9,9 +9,9 @@ class CLASS_DECL_ca2 BaseButtonControl :
 public:
 
 
-   image_list *      m_pimagelistNormal;
-   image_list *      m_pimagelistItemHover;
-   image_list *      m_pimagelistSubItemHover;
+   sp(image_list)      m_pimagelistNormal;
+   sp(image_list)      m_pimagelistItemHover;
+   sp(image_list)      m_pimagelistSubItemHover;
    int32_t               m_iImageNormal;
    int32_t               m_iImageItemHover;
    int32_t               m_iImageSubItemHover;

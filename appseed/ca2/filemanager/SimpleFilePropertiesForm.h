@@ -11,10 +11,10 @@ namespace filemanager
    public:
 
 
-      ::userbase::single_document_template *    m_ptemplatePane;
+      sp(::userbase::single_document_template)    m_ptemplatePane;
       sp(::form_document)                           m_pdocGeneral;
-      form_view *                               m_pviewGeneral;
-      ::userex::pane_tab_view *                 m_ptabview;
+      sp(form_view)                               m_pviewGeneral;
+      sp(::userex::pane_tab_view)                 m_ptabview;
       ::fs::item_array                          m_itema;
 
 

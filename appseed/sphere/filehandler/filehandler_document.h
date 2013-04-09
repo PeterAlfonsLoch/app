@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-      document(::ca::application * papp);
+      document(sp(::ca::application) papp);
       virtual ~document();
 
 

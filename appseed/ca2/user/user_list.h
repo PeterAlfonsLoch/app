@@ -65,8 +65,8 @@ namespace user
       COLORREF                         m_crSmallMask;
       int32_t                              m_iSmallImageWidth;
       index                            m_iSubItem;
-      image_list *                     m_pil;
-      image_list *                     m_pilHover;
+      sp(image_list)                     m_pil;
+      sp(image_list)                     m_pilHover;
       ::visual::icon_int_map           m_mapIcon;
       size                             m_sizeIcon;
       bool                             m_bIcon;
@@ -232,7 +232,7 @@ namespace user
       draw_list_item(list * plist);
 
 
-      image_list * get_image_list();
+      sp(image_list) get_image_list();
       bool draw_image();
       bool draw_group_image();
       void update_item_color();
@@ -524,8 +524,8 @@ namespace user
       ::count m_nGroupCount;
 
 
-      image_list *                  m_pilGroup;
-      image_list *                  m_pilGroupHover;
+      sp(image_list)                  m_pilGroup;
+      sp(image_list)                  m_pilGroupHover;
       bool                          m_bGroup;
       bool                          m_bLateralGroup;
       int32_t                           m_iLateralGroupWidth;

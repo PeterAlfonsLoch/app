@@ -101,7 +101,7 @@ namespace html
       ::ca::property_set          m_propset;
       string                     m_strSource;
 
-      ::html_form *              m_pform;
+      sp(::html_form)              m_pform;
       bool                       m_bEdit;
       elemental *                m_pElementalSelStart;
       elemental *                m_pElementalSelEnd;

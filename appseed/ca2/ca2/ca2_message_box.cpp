@@ -15,8 +15,8 @@ namespace ca2 // ca8 + cube
       html_form(papp),
       html_form_view(papp),
       form_view(papp),
-      dialog(papp),
-      wait_message_dialog(papp)
+      dialog(allocer()),
+      wait_message_dialog(allocer())
    {
    }
 

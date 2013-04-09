@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   view::view(::ca::application * papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -14,7 +14,7 @@ namespace userstack
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
-      m_font(papp),
+      m_font(allocer()),
       m_dibBk(papp),
       m_mutexDraw(papp)
    {
@@ -29,7 +29,7 @@ namespace userstack
       m_i_winactionarea = 4;
       m_i_winactionarea_h = 49;
       m_i_winactionarea_w = 49;
-      m_ppaneview = NULL;
+      m_ppaneview = ::null();
    }
 
    view::~view()
@@ -97,7 +97,7 @@ namespace userstack
 
    }
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -133,7 +133,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 1977, NULL);
+      SetTimer(198477, 1977, ::null());
 
       frame * pframe = GetTypedParent < frame > ();
 
@@ -158,8 +158,8 @@ namespace userstack
 
 
 
-      SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
-      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
+      SetTimer(TimerBackView, 83, ::null());  // max. 12 fps
+      SetTimer(21977, 1984 * 11, ::null());  // max. 12 fps
 
       check_apps();
 
@@ -191,7 +191,7 @@ namespace userstack
    {
       if(iTab == 1)
       {
-         System.simple_message_box(NULL, "Playlist");
+         System.simple_message_box(::null(), "Playlist");
       }
    }
 
@@ -211,9 +211,9 @@ namespace userstack
       ::userbase::view::pre_translate_message(pobj);
    }
 
-   document * view::get_document()
+   sp(document) view::get_document()
    {
-      return dynamic_cast < document * > (::userbase::scroll_view::get_document());
+      return  (::userbase::scroll_view::get_document());
    }
 
    void view::_001OnTimer(::ca::signal_object * pobj)
@@ -291,11 +291,11 @@ namespace userstack
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::bergedge");
 #else
       throw todo(get_app());
 #endif
@@ -345,14 +345,14 @@ namespace userstack
    {
       rect rectClient;
       GetClientRect(rectClient);
-      if(m_ppaneview != NULL)
+      if(m_ppaneview != ::null())
       {
          m_ppaneview->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       }
       else
       {
          user::interaction * pui = get_top_child();
-         if(pui != NULL)
+         if(pui != ::null())
          {
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
@@ -377,18 +377,18 @@ namespace userstack
       user::interaction * pui = get_top_child();
       try
       {
-         while(pui != NULL)
+         while(pui != ::null())
          {
-            ::asphere::application * papp = NULL;
+            ::asphere::sp(application) papp = ::null();
             try
             {
                papp = &App(pui->get_app());
             }
             catch(...)
             {
-               papp = NULL;
+               papp = ::null();
             }
-            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_papp->m_psession))
+            if(papp != ::null() && m_papp != ::null() && m_papp->m_psession != ::null() && dynamic_cast < sp(::ca::application) > (papp) != dynamic_cast < sp(::ca::application) > (m_papp->m_psession))
             {
                try
                {
@@ -425,7 +425,7 @@ namespace userstack
       }
       try
       {
-         if(m_pimpl == NULL)
+         if(m_pimpl == ::null())
             return;
          (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)

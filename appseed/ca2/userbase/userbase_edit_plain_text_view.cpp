@@ -54,7 +54,7 @@ namespace userbase
 
       // rect rectClient;
       // GetClientRect(rectClient);
-      // SetWindowPos(::null(), rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+      // SetWindowPos(0, rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       // _001OnUpdate();
       ThreadProcScrollSize((LPVOID) dynamic_cast < ::user::edit_plain_text * > (this));
 

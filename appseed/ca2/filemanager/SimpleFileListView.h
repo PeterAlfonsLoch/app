@@ -54,7 +54,7 @@ namespace filemanager
       void FileSize();
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);

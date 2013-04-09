@@ -14,11 +14,8 @@ namespace ca
       simple_tree_data(sp(::ca::application) papp);
 
 
-      virtual bool initialize_data();
-      virtual bool finalize_data();
-
-      virtual tree_item_data * on_allocate_item();
-      virtual void on_delete_item(tree_item_data * pitem);
+      virtual sp(tree_item_data) on_allocate_item();
+      virtual void on_delete_item(sp(tree_item_data) pitem);
 
    };
 

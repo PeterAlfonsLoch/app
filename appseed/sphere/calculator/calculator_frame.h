@@ -13,11 +13,11 @@ namespace calculator
 
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
-      image_list *               m_pimagelist;
+      sp(image_list)               m_pimagelist;
       bool                       m_bTimerOn;
 
 
-      frame(::ca::application * papp);
+      frame(sp(::ca::application) papp);
       virtual ~frame();
 
       virtual bool pre_create_window(CREATESTRUCT& cs);

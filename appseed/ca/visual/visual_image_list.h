@@ -52,7 +52,7 @@ public:
    bool draw(::ca::graphics * pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha);
    bool draw(::ca::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
    int32_t get_image_count() const;
-   bool create(image_list * pimagelist);
+   bool create(sp(image_list) pimagelist);
    image_list(sp(::ca::application) papp);
    virtual ~image_list();
 

@@ -21,7 +21,7 @@ public:
 
 
    DECL_GEN_SIGNAL(_001OnCreate)
-   virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
    virtual ~FileManagerTabView();
 #ifdef DEBUG
    virtual void assert_valid() const;

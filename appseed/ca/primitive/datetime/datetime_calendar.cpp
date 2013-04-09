@@ -117,7 +117,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
    pdc->draw_text(">", rect, DT_CENTER | DT_VCENTER);
 }
 
-void calendar::_001GetHtml(::html::file * pfile)
+void calendar::_001GetHtml(::html::sp(::ca::file) pfile)
 {
 
 

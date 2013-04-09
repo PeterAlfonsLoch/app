@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   view::view(::ca::application * papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -19,7 +19,7 @@ namespace filehandler
       m_document(papp)
    {
 
-      ::ca::font_sp font(get_app());
+      ::ca::font_sp font(allocer());
 
       font->create_point_font("Geneva", 14.0);
 
@@ -56,7 +56,7 @@ namespace filehandler
       if(pobj->previous())
          return;
 
-      SetTimer(1984, 1984 + 1977, NULL);
+      SetTimer(1984, 1984 + 1977, ::null());
 
    }
 
@@ -85,13 +85,13 @@ namespace filehandler
 
    }
 
-   void view::draw_item::draw(view * pview, ::ca::graphics * pdc, list * plist, item * pitem)
+   void view::draw_item::draw(sp(view) pview, ::ca::graphics * pdc, list * plist, item * pitem)
    {
 
       UNREFERENCED_PARAMETER(plist);
 
       COLORREF cr;
-      ::ca::application * papp = pview->get_app();
+      sp(::ca::application) papp = pview->get_app();
       bool bHover = pview->m_iHover == pitem->m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
       if(!Sys(papp).savings().is_trying_to_save(::ca::resource_processing)
@@ -155,7 +155,7 @@ namespace filehandler
       }
    }
 
-   void view::draw_list::draw(view * pview, ::ca::graphics * pdc, list * plist)
+   void view::draw_list::draw(sp(view) pview, ::ca::graphics * pdc, list * plist)
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
@@ -201,7 +201,7 @@ namespace filehandler
          Bergedge.request(varRequest);
          */
 
-         ::ca::create_context_sp createcontext(&get_app()->cast_app < ::ca::application > ().command());
+         sp(::ca::create_context) createcontext(&get_app()->cast_app < ::ca::application > ().command());
 
          createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
 

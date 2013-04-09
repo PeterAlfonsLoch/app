@@ -14,7 +14,7 @@
 
          mutex                   m_mutexData;
          ::primitive::memory_file        m_memoryfile;
-         ::ca::file *             m_pfile;
+         sp(::ca::file)             m_pfile;
 
 
          //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response

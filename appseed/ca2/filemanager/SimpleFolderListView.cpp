@@ -72,7 +72,7 @@ namespace filemanager
    }
 #endif //DEBUG
 
-   void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::ca::object * phint) 
+   void SimpleFolderListView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);  
       if(phint != ::null())

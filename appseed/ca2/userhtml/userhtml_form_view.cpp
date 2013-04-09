@@ -90,7 +90,7 @@ void html_form_view::_001OnInitialUpdate(::ca::signal_object * pobj)
 }
 
 
-void html_form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+void html_form_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);

@@ -21,15 +21,15 @@ namespace ca
    {
    }
 
-   string simple_tree_item_data::get_text(::ca::tree * ptree)
+   string simple_tree_item_data::get_text(sp(::ca::tree) ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
       return m_str;
    }
    
-   index simple_tree_item_data::get_image(::ca::tree * ptree)
+   index simple_tree_item_data::get_image(sp(::ca::tree) ptree)
    {
-      if(ptree->is_selected(this))
+      if(ptree->is_tree_item_data_selected(this))
       {
          return m_iImageSelected;
       }

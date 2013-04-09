@@ -1491,7 +1491,7 @@ namespace ca
       }
    }
 
-   void file_system::write_n_number(::ca::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   void file_system::write_n_number(sp(::ca::file) pfile, ::crypto::md5::context * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1509,7 +1509,7 @@ namespace ca
 
    }
 
-   void file_system::read_n_number(::ca::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   void file_system::read_n_number(sp(::ca::file) pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1545,7 +1545,7 @@ namespace ca
 
    }
 
-   void file_system::write_gen_string(::ca::file * pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::write_gen_string(sp(::ca::file) pfile, ::crypto::md5::context * pctx, string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -1556,7 +1556,7 @@ namespace ca
       }
    }
 
-   void file_system::read_gen_string(::ca::file * pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::read_gen_string(sp(::ca::file) pfile, ::crypto::md5::context * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);

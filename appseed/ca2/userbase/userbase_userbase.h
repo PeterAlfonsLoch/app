@@ -36,7 +36,7 @@ namespace userbase
       virtual bool finalize();
 
       virtual void _001CloseAllDocuments(bool bEndSession);
-      void add_document_template(::userbase::document_template * ptemplate);
+      void add_document_template(sp(::userbase::document_template) ptemplate);
       virtual sp(::userbase::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
@@ -45,7 +45,7 @@ namespace userbase
       virtual void _001OnFileNew();
 
 
-      void defer_add_document_template(::document_template * ptemplate);
+      void defer_add_document_template(sp(::document_template) ptemplate);
       
 
    };

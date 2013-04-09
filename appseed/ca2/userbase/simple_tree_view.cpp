@@ -38,22 +38,11 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 
 void simple_tree_view::_001OnCreate(::ca::signal_object * pobj)
 {
+
    SCAST_PTR(::ca::message::create, pcreate, pobj);
+
    pcreate->previous();
 
-/*   if(!::ca::tree_data::initialize())
-   {
-      pcreate->set_lresult(0);
-      pcreate->m_bRet = true;
-      return;
-   }*/
-
-   if(!::ca::tree::initialize())
-   {
-      pcreate->set_lresult(0);
-      pcreate->m_bRet = true;
-      return;
-   }
 
 }
 

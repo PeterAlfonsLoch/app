@@ -46,7 +46,7 @@ namespace command
          m_ptemplateCommandMain = pDocTemplate;
 
 
-         m_ptemplateCommandMain->open_document_file(::ca::create_context_sp());
+         m_ptemplateCommandMain->open_document_file(sp(::ca::create_context));
       }
 
       return true;
@@ -72,10 +72,10 @@ namespace command
 #ifdef WINDOWSEX
 
          ::ShellExecuteW(
-            NULL,
+            ::null(),
             L"open",
             ::ca::international::utf8_to_unicode(itema[0].m_strPath),
-            NULL,
+            ::null(),
             ::ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
             SW_SHOW);
 

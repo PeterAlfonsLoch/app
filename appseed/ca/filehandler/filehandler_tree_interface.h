@@ -15,9 +15,7 @@ namespace filehandler
       virtual ~tree_interface();
 
 
-      ::filehandler::tree_data * get_filehandler_tree_data();
-
-      virtual bool initialize();
+      sp(::filehandler::tree_data) get_filehandler_tree_data();
 
       void update_list();
 

@@ -37,11 +37,11 @@ namespace sphere
 
       virtual int32_t run();
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
-      ::user::document_interface * _001OpenDocumentFile(var varFile);
+      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      ::ca::application * get_system();
+      sp(::ca::application) get_system();
 
    };
 

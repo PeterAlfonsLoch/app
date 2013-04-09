@@ -1141,7 +1141,7 @@ namespace filemanager
    }
 
 
-   image_list * SimpleFileListInterface::GetActionButtonImageList(index i)
+   sp(image_list) SimpleFileListInterface::GetActionButtonImageList(index i)
    {
       if(i == 0)
       {

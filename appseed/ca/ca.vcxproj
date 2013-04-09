@@ -1486,7 +1486,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filehandler\filehandler_menu_library.h" />
     <ClInclude Include="filehandler\filehandler_tree_data.h" />
     <ClInclude Include="filehandler\filehandler_tree_interface.h" />
-    <ClInclude Include="filehandler\filehandler_tree_item.h" />
+    <ClInclude Include="filehandler\filehandler_tree_item_data.h" />
     <ClInclude Include="fontopus\fontopus.h" />
     <ClInclude Include="fontopus\fontopus_application.h" />
     <ClInclude Include="fontopus\fontopus_authentication_map.h" />
@@ -2544,7 +2544,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filehandler\filehandler_menu_library.cpp" />
     <ClCompile Include="filehandler\filehandler_tree_data.cpp" />
     <ClCompile Include="filehandler\filehandler_tree_interface.cpp" />
-    <ClCompile Include="filehandler\filehandler_tree_item.cpp" />
+    <ClCompile Include="filehandler\filehandler_tree_item_data.cpp" />
     <ClCompile Include="fontopus\fontopus_contact_list.cpp" />
     <ClCompile Include="fontopus\fontopus_fontopus.cpp" />
     <ClCompile Include="fontopus\fontopus_license.cpp" />

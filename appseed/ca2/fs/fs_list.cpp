@@ -108,7 +108,7 @@ namespace fs
    }
 #endif //DEBUG
 
-   void list::on_update(::view * pSender, LPARAM lHint, ::ca::object * phint)
+   void list::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

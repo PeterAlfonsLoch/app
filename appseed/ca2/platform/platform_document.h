@@ -34,7 +34,7 @@ namespace platform
       virtual ~document();
 
 
-      view *                  get_platform_view();
+      sp(view)                  get_platform_view();
       pane_view *             get_platform_pane_view();
       sp(frame)                 get_platform_frame();
       bergedge::bergedge *    get_bergedge();

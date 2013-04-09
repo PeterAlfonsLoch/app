@@ -41,7 +41,7 @@ namespace userbase
    }
 
 
-   void tab_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void tab_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
 
       if(m_pviewcreator != ::null())

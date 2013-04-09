@@ -18,12 +18,12 @@ namespace userstack
                                                                      
       bool                                                           m_bShowPlatform;
                                                                      
-      ::ca::application *                                            m_pappCurrent;
-      string_map < ::ca::application * >               m_mapApplication;
+      sp(::ca::application)                                            m_pappCurrent;
+      string_map < sp(::ca::application) >               m_mapApplication;
                                                                      
       
-      ::userbase::single_document_template *                         m_ptemplate_main;
-      ::userbase::single_document_template *                         m_ptemplate_pane;
+      sp(::userbase::single_document_template)                         m_ptemplate_main;
+      sp(::userbase::single_document_template)                         m_ptemplate_pane;
                                                                      
                                                                      
       var                                                            m_varTopicFile;
@@ -47,7 +47,7 @@ namespace userstack
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::application * get_app() const;
+      virtual sp(::ca::application) get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -56,19 +56,6 @@ namespace userstack
       virtual bool file_manager_open_file(::filemanager::data * pdata, ::fs::item_array & itema);
 
       void initialize_bergedge_application_interface();
-
-      //virtual void request(::ca::create_context * pcreatecontext);
-      // main loosely coupled semantics
-      // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
-      // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
-
-      //virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
-
-      //virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
-
-      //virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
-
-      //virtual bool place(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -95,11 +82,11 @@ namespace userstack
 
       virtual service_base * allocate_new_service();
 
-      void on_request(::ca::create_context * pcreatecontext);
+      void on_request(sp(::ca::create_context) pcreatecontext);
 
-      ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
-      ::ca::application * get_current_application();
+      sp(::ca::application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

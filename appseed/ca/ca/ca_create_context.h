@@ -100,7 +100,7 @@ namespace ca
       bool                                m_bOuterPopupAlertLike;
       bool                                m_bHold;
       sp(::user::interaction)               m_puiParent;
-      ::view *                            m_pviewAlloc;
+      sp(::view)                            m_pviewAlloc;
       sp(application_bias)                 m_spApplicationBias;
       ::ca::command_line_sp              m_spCommandLine;
       stack < ::user::create_context >    m_user;

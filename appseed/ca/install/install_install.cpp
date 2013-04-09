@@ -40,7 +40,7 @@ namespace ca
       straName.add("id");
       straValue.add(pszId);
 
-      ::xml::node * lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
+      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
       if(lpnode == ::null())
       {
@@ -83,7 +83,7 @@ namespace ca
       straName.add("id");
       straValue.add(pszId);
 
-      ::xml::node * lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
+      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
       if(lpnode != ::null())
       {
@@ -120,11 +120,11 @@ namespace ca
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      ::xml::node * lpnodeVersion = doc.get_root()->get_child("basis");
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("basis");
 
 #else
          
-      ::xml::node * lpnodeVersion = doc.get_root()->get_child("stage");
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("stage");
 
 #endif
 
@@ -143,7 +143,7 @@ namespace ca
          
       }
 
-      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
 
       if(lpnodeInstalled == ::null())
       {
@@ -154,7 +154,7 @@ namespace ca
 
       }
 
-      ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
+      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
 
       if(lpnodeType == ::null())
       {
@@ -163,7 +163,7 @@ namespace ca
 
       }
 
-      ::xml::node * lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
+      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
       if(lpnode == ::null())
       {
@@ -184,7 +184,7 @@ namespace ca
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node * lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
+      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
       if(lpnodeLocalization == ::null())
       {
@@ -255,7 +255,7 @@ namespace ca
 
       }
 
-      ::xml::node * lpnodeVersion = doc.get_root()->get_child(pszVersion);
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child(pszVersion);
 
       if(lpnodeVersion == ::null())
          return false;
@@ -269,17 +269,17 @@ namespace ca
 
       }
 
-      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuildNumber);
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuildNumber);
 
       if(lpnodeInstalled == ::null())
          return false;
       
-      ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
+      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
       
       if(lpnodeType == ::null())
          return false;
       
-      ::xml::node * lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
+      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
       if(lpnode == ::null())
          return false;
@@ -294,7 +294,7 @@ namespace ca
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node * lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
+      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
       if(lpnodeLocalization == ::null())
          return false;

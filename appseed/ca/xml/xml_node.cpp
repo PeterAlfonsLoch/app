@@ -25,7 +25,7 @@ namespace xml
 
 
 
-   node::node(sp(::ca::application) papp) :
+   node::node(::ca::application * papp) :
       ca(papp),
       m_nodea(papp),
       m_attra(papp)
@@ -2045,12 +2045,12 @@ namespace xml
 
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
-            ::xml::node * pcol = add_child("c");
+            sp(::xml::node) pcol = add_child("c");
             iRowCount = str2a[iCol].get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
             {
-//               xml::node * prow = add_child("r");
+//               sp(::xml::node) prow = add_child("r");
                if(iRow < str2a[iCol].get_count())
                {
                   pcol->m_strValue = str2a[iCol].element_at(iRow);
@@ -2075,18 +2075,18 @@ namespace xml
       }
       str2a.set_size(iColCount);
       ::count iRowCount = 0;
-      ::xml::node * pheader = m_nodea.element_at(0);
+      sp(::xml::node) pheader = m_nodea.element_at(0);
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
-         ::xml::node * pcol = pheader->m_nodea.element_at(iCol);
+         sp(::xml::node) pcol = pheader->m_nodea.element_at(iCol);
          str2a[iCol].set_size(pcol->attr("row_count"));
       }
       for(::index iRow = 0; iRow < iRowCount; iRow++)
       {
-//         xml::node * prow = m_nodea.element_at(0);
+//         sp(::xml::node) prow = m_nodea.element_at(0);
          for(int32_t iCol = 0; iCol < str2a[iCol].get_count(); iCol++)
          {
-//            xml::node * pcol = prow->add_child("c");
+//            sp(::xml::node) pcol = prow->add_child("c");
             if(iRow < str2a[iCol].get_count())
             {
                //pcol->m_strValue =

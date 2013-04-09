@@ -12,14 +12,9 @@ namespace fs
    }
 
 
-   ::ca::tree_item_data * tree_data::on_allocate_item()
+   sp(::ca::tree_item_data) tree_data::on_allocate_item()
    {
-      return new ::fs::tree_item();
-   }
-
-   void tree_data::on_delete_item(::ca::tree_item_data * pitem)
-   {
-      delete dynamic_cast < ::fs::tree_item * > (pitem);
+      return canew(::fs::tree_item_data());
    }
 
 

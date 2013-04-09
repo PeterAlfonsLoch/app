@@ -8,7 +8,7 @@ class CLASS_DECL_ca2 simple_static :
 public:
    bool                 m_bTransparent;
    ::ca::brush_sp       m_brushBkg;
-   image_list *         m_pimagelist;
+   sp(image_list)         m_pimagelist;
 
    simple_static(sp(::ca::application) papp);
 

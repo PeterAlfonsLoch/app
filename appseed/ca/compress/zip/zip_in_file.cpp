@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   ::ca::file * InFile::Duplicate() const
+   sp(::ca::file) InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != ::null());
@@ -82,7 +82,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->zip_open((::ca::file *) m_izfilea.last_element()))
+         if(!m_filea.last_element()->zip_open((sp(::ca::file)) m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -99,7 +99,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::unzip_open(::ca::file * pfile)
+   bool InFile::unzip_open(sp(::ca::file) pfile)
    {
 
       m_filea.remove_all();
@@ -158,7 +158,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->unzip_open((::ca::file *)m_izfilea.last_element()))
+         if(!m_filea.last_element()->unzip_open((sp(::ca::file))m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -230,7 +230,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::dump(::ca::file * pfile)
+   bool InFile::dump(sp(::ca::file) pfile)
    {
       if(m_strFileName.is_empty())
          return false;

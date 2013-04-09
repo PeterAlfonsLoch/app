@@ -173,8 +173,8 @@ namespace bergedge
    void frame::_000OnMouse(::ca::message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
-//      ::cube::application * pappParent = &App(Application.m_papp);
-//      ::cube::application * papp = &Application;
+//      sp(::cube::application) pappParent = &App(Application.m_papp);
+//      sp(::cube::application) papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != ::null()
       && m_pdocument->m_pplatformdocument != ::null()
@@ -210,7 +210,7 @@ namespace bergedge
 
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
-//      bergedge::application * papp = dynamic_cast < bergedge::application * > (get_app());
+//      bergedge::sp(application) papp = dynamic_cast < bergedge::sp(application) > (get_app());
    }
 
    void frame::pre_translate_message(::ca::signal_object * pobj)

@@ -1530,7 +1530,7 @@ finishedCa2ModuleFolder:;
 
          for(index index = 0; index < count; index++)
          {
-            document_template * ptemplate = m_pdocmanager->get_template(index);
+            sp(document_template) ptemplate = m_pdocmanager->get_template(index);
             ASSERT_KINDOF(document_template, ptemplate);
             ptemplate->on_idle();
          }
@@ -2037,7 +2037,7 @@ namespace ca
       /*if(::get_app() == ::null())
       {
          ::set_app(get_system());
-         system::application * pApp = dynamic_cast < system::application * > (::get_app());
+         system::sp(application) pApp = dynamic_cast < system::sp(application) > (::get_app());
          thread * pThread = ::get_app();
          // App global initializations (rare)
          if (pApp != ::null() && !pApp->InitApplication())
@@ -2761,7 +2761,7 @@ namespace ca
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::user::document_interface) pdocument)
          // if ptemplate==::null() => all document templates
    {
       if(m_pfilemanager != ::null())
@@ -3168,7 +3168,7 @@ namespace ca
 
 
    // Helper for message boxes; can work when no application can be found
-   int32_t application::ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
+   int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
 
       throw not_implemented(pApp);
@@ -3515,7 +3515,7 @@ namespace ca
       /*xxx POSITION pos = get_template_count();
       while (pos != ::null())
       {
-         document_template * pTempl = get_template(pos);
+         sp(document_template) pTempl = get_template(pos);
          if (pTempl != ::null())
             pTempl->_001OnCommand(0, CN_OLE_UNREGISTER, ::null(), ::null());
       }*/
@@ -4577,11 +4577,6 @@ namespace ca
 
       sp(::user::interaction) puiParent = ::null();
 
-/*      if(puiParent == ::null() && dynamic_cast < ::userbase::main_frame * > (pinteraction) != ::null())
-      {
-         puiParent = get_request_parent_ui(dynamic_cast < ::userbase::main_frame * > (pinteraction), pcreatecontext);
-      }*/
-
       if(puiParent == ::null())
       {
          puiParent = pcreatecontext->m_puiParent;
@@ -4599,18 +4594,6 @@ namespace ca
       }
 
       return puiParent;
-
-   }
-
-   sp(::user::interaction) application::get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
-   {
-
-      if(m_psession != ::null())
-      {
-         return Sess(this).get_request_parent_ui(pmainframe, pcreatecontext);
-      }
-
-      return ::null();
 
    }
 
@@ -5282,7 +5265,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
             return load_cached_string_by_id(str, id, "", bLoadStringTable);
          }
       }
-      ::xml::node * pnodeRoot = doc.get_root();
+      sp(::xml::node) pnodeRoot = doc.get_root();
       if(pnodeRoot->get_name() == "string")
       {
          string strId = pnodeRoot->attr("id");
@@ -5730,7 +5713,7 @@ ret:
       }*/
    }
 
-   void application::defer_add_document_template(::document_template * ptemplate)
+   void application::defer_add_document_template(sp(::document_template) ptemplate)
    {
 
       throw interface_only_exception(get_app());

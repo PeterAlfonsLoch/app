@@ -116,8 +116,8 @@ public:
    virtual sp(::user::document_interface) GetActiveDocument();
 
    // Active child ::view maintenance
-   ::view * GetActiveView() const;           // active ::view or ::null()
-   void SetActiveView(::view * pViewNew, bool bNotify = TRUE);
+   sp(::view) GetActiveView() const;           // active ::view or ::null()
+   void SetActiveView(sp(::view) pViewNew, bool bNotify = TRUE);
       // active ::view or ::null(), bNotify == FALSE if focus should not be set
 
    // Active frame (for frames within frames -- MDI)

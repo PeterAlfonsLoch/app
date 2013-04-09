@@ -59,7 +59,7 @@ public:
    uint_ptr    m_crc;     /* crc32 of uncompressed data */
 
 
-   bzip(::ca::file * pfileDest);
+   bzip(sp(::ca::file) pfileDest);
    bzip(::ca::writer & writer);
    bzip(::ca::byte_output_stream & ostreamDest);
    virtual ~bzip();

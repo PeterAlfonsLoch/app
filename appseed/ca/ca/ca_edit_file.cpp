@@ -329,17 +329,13 @@ namespace ca
       ::ca::filesp(papp),
       ::ca::tree(papp)
    {
+
       m_iBranch = 0;
       m_pgroupitem = ::null();
 
-      if(!::ca::tree_data::initialize_data())
-         throw simple_exception(get_app());
-
-      if(!::ca::tree::initialize())
-         throw simple_exception(get_app());
-
       m_ptreeitem = get_base_item();
       m_ptreeitemFlush = get_base_item();
+
    }
 
    edit_file::~edit_file()
@@ -348,7 +344,7 @@ namespace ca
    }
 
 
-   void edit_file::SetFile(::ca::file * pfile)
+   void edit_file::SetFile(sp(::ca::file) pfile)
    {
    
       if(pfile == ::null())
@@ -378,7 +374,7 @@ namespace ca
 //      uint32_t dwMaxCount = m_dwFileLength;
 //      uint32_t dwUpperLimit = m_dwFileLength;
 //      int32_t iOffset =0;
-      ::ca::tree_item * ptreeitem;
+      sp(::ca::tree_item) ptreeitem;
 //      GroupItem * pitemgroup = ::null();
       int_array ia;
 
@@ -392,7 +388,7 @@ l1:
          m_dwReadPosition = m_dwPosition;
          while(nCount > 0 && ptreeitem != ::null() && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
          {
-            Item * pitem = (Item * )ptreeitem->m_pitemdata;
+            sp(Item) pitem = (sp(Item) )ptreeitem->m_pitemdata;
             uiReadItem = pitem->read_ch(this);
             if(uiReadItem <= 255)
             {
@@ -425,7 +421,7 @@ l1:
    }
 
 
-   void edit_file::TreeInsert(Item * pitem)
+   void edit_file::TreeInsert(sp(Item) pitem)
    {
       if(m_pgroupitem != ::null()
         && m_pgroupitem != pitem)
@@ -433,7 +429,7 @@ l1:
          m_pgroupitem->add(pitem);
          return;
       }
-      ::ca::tree_item * pitemNew = ::null();
+      sp(::ca::tree_item) pitemNew = ::null();
       if(m_ptreeitem != ::null() && m_ptreeitem->m_pnext != ::null())
       {
          pitemNew = insert_item(this, pitem, RelativeFirstChild, m_ptreeitem);
@@ -653,7 +649,7 @@ l1:
       if(!CanUndo())
          return false;
 
-      m_dwFileLength -= ((Item *)m_ptreeitem->m_pitemdata)->get_delta_length();
+      m_dwFileLength -= ((sp(Item))m_ptreeitem->m_pitemdata)->get_delta_length();
       m_ptreeitem = get_previous(m_ptreeitem);
 
       return true;
@@ -665,8 +661,8 @@ l1:
       {
          return false;
       }
-//      Item * pitem = ::null();
-      ::ca::tree_item * ptreeitem;
+//      sp(Item) pitem = ::null();
+      sp(::ca::tree_item) ptreeitem;
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_ptreeitem->get_expandable_child(m_iBranch);
@@ -675,7 +671,7 @@ l1:
          ptreeitem = get_next(m_ptreeitem);
       if(ptreeitem == ::null())
          return false;
-      m_dwFileLength += (( Item * ) ptreeitem->m_pitemdata)->get_delta_length();
+      m_dwFileLength += (( sp(Item) ) ptreeitem->m_pitemdata)->get_delta_length();
       m_ptreeitem = ptreeitem;
       return true;
    }
@@ -705,7 +701,7 @@ l1:
 
    bool edit_file::calc_root_direction()
    {
-      ::ca::tree_item * ptreeitem;
+      sp(::ca::tree_item) ptreeitem;
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;
@@ -717,7 +713,7 @@ l1:
    }
 
 
-   ::ca::tree_item * edit_file::get_previous(::ca::tree_item * pitem)
+   sp(::ca::tree_item) edit_file::get_previous(sp(::ca::tree_item) pitem)
    {
       if(pitem->m_pprevious != ::null())
          return pitem->m_pprevious;
@@ -725,7 +721,7 @@ l1:
          return pitem->m_pparent;
    }
 
-   ::ca::tree_item * edit_file::get_next(::ca::tree_item * pitem, bool bChild)
+   sp(::ca::tree_item) edit_file::get_next(sp(::ca::tree_item) pitem, bool bChild)
    {
       if(bChild && pitem->m_pchild != ::null())
          return pitem->m_pchild;
@@ -739,14 +735,14 @@ l1:
 
 
 
-   tree_item_data * edit_file::on_allocate_item()
+   sp(tree_item_data) edit_file::on_allocate_item()
    {
       return new Item;
    }
 
-   void edit_file::on_delete_item(tree_item_data * pitem)
+   void edit_file::on_delete_item(sp(tree_item_data) pitem)
    {
-      delete (Item *) pitem;
+      delete (sp(Item)) pitem;
    }
 
 

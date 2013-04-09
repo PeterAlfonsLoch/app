@@ -38,7 +38,7 @@ namespace fontopus
    validate::validate(sp(::ca::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
       ca(papp),
       m_loginthread(papp),
-      m_netcfg(papp)
+      m_netcfg(allocer())
    {
       m_bInteractive    = bInteractive;
       m_bAuth    = bAuth;

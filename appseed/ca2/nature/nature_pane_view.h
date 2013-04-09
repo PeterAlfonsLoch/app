@@ -11,7 +11,7 @@ namespace nature
    public:
 
       
-      ::userbase::single_document_template * m_pdoctemplateAppearance;
+      sp(::userbase::single_document_template) m_pdoctemplateAppearance;
       ::ca2::keyboard_layout *             m_pkeyboardlayout;
 
 
@@ -25,7 +25,7 @@ namespace nature
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
-      void on_update(::view * pview, LPARAM lHint, ::ca::object* pHint);
+      void on_update(sp(::view) pview, LPARAM lHint, ::ca::object* pHint);
 
       
    #ifdef DEBUG

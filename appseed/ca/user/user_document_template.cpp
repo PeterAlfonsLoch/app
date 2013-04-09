@@ -302,7 +302,7 @@ void document_template::assert_valid() const
 
 
 
-void document_template::update_all_views(::view * pviewSender, LPARAM lhint, ::ca::object * puh)
+void document_template::update_all_views(sp(::view) pviewSender, LPARAM lhint, ::ca::object * puh)
 {
    ::count count = get_document_count();
    for(index index = 0; index < count; index++)

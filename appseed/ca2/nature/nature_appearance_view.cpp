@@ -54,7 +54,7 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void appearance_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

@@ -51,7 +51,7 @@ namespace sphere
    }
 
 
-/*   ::ca::application * library::get_new_app(const char * pszAppId)
+/*   sp(::ca::application) library::get_new_app(const char * pszAppId)
    {
 
       if(::ca::str::equals_ci(pszAppId, "calculator"))

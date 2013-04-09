@@ -39,7 +39,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+   void SimpleFolderTreeView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != ::null())
@@ -284,10 +284,8 @@ namespace filemanager
 
    void SimpleFolderTreeView::_001OnCreate(::ca::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
 
-      if(!::ca::tree::initialize())
-         throw simple_exception(get_app());
+      UNREFERENCED_PARAMETER(pobj);
 
    }
 

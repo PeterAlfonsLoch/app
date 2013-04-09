@@ -5,11 +5,11 @@ namespace calculator
 {
 
 
-   frame::frame(::ca::application * papp) :
+   frame::frame(sp(::ca::application) papp) :
       ca(papp),
       simple_frame_window(papp)
    {
-      m_pimagelist = NULL;
+      m_pimagelist = ::null();
       m_iFrameData = 10;
       m_dataid = "MusicalPlayerscreencaptureFrame";
       m_iAnimateStep = 0;
@@ -115,7 +115,7 @@ namespace calculator
       }
       else
       {
-         SetTimer(3, 500, NULL);
+         SetTimer(3, 500, ::null());
       }
    }
 

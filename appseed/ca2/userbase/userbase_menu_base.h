@@ -19,7 +19,7 @@ namespace userbase
 
 
       bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
-      bool LoadMenu(xml::node * lpnode);
+      bool LoadMenu(sp(::xml::node) lpnode);
       bool LoadXmlMenu(const char * pszMatter);
       
 

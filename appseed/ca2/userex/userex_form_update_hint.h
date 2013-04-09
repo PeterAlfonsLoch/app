@@ -16,7 +16,7 @@ public:
    };
 
 
-   form_view *    m_pformview;
+   sp(form_view)    m_pformview;
    e_type         m_etype;
    string         m_strForm;
 };

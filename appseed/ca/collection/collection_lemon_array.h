@@ -142,7 +142,7 @@ namespace lemon
    template < class A >
 	void array_makecombination(smart_pointer_array < A > & comb, const A & a, A blindprefixa = A(), index idx = 0)
 	{
-		comb.add(blindprefixa);
+		comb.add(canew(A(blindprefixa)));
 		for(::index i = idx; i < a.get_count(); i++)
 		{
 			array_makecombination(comb, a, blindprefixa + make_array < A > (a[i]), i + 1);
@@ -169,7 +169,7 @@ namespace lemon
 		::count count = a.get_count();
 		if(count == 1)
       {
-      	perm.add(a);
+      	perm.add(new A(a));
          return;
       }
       A elema;
@@ -192,7 +192,7 @@ namespace lemon
 			array_permute(perm2, topermut);
 			for(int32_t j = 0; j < perm2.get_count(); j++)
 			{
-            perm.add(elema + perm2[j]);
+            perm.add(new A(elema + perm2[j]));
 		   }
 		}
 	}

@@ -5,13 +5,13 @@ namespace command
 {
 
 
-   frame::frame(::ca::application * papp) :
+   frame::frame(sp(::ca::application) papp) :
       ca(papp),
       simple_frame_window(papp),
       ::ca::message_window_simple_callback(papp),
       m_toolbar(papp)
    {
-      m_pimagelist = NULL;
+      m_pimagelist = ::null();
       m_iFrameData = 10;
       m_dataid = "::ca::command::frame";
       m_iAnimateStep = 0;
@@ -98,7 +98,7 @@ namespace command
          if(!rectWindow.contains(pt) && !m_bTimerHide)
          {
             m_bTimerHide = true;
-            SetTimer(1001, 800, NULL);
+            SetTimer(1001, 800, ::null());
          }
          else
          {
@@ -155,7 +155,7 @@ namespace command
       }
       else
       {
-         SetTimer(3, 500, NULL);
+         SetTimer(3, 500, ::null());
       }
    }
 
@@ -206,9 +206,9 @@ namespace command
       {
          if(bShowWinActionArea)
          {
-            if(GetActiveDocument() != NULL)
+            if(GetActiveDocument() != ::null())
             {
-               GetActiveDocument()->update_all_views(NULL, 543218);
+               GetActiveDocument()->update_all_views(::null(), 543218);
             }
          }
          ToFront();
@@ -337,8 +337,8 @@ namespace command
 
       if(!pshowwindow->m_bShow)
       {
-         if(GetActiveDocument() != NULL)
-            GetActiveDocument()->update_all_views(NULL, 5432108);
+         if(GetActiveDocument() != ::null())
+            GetActiveDocument()->update_all_views(::null(), 5432108);
       }
    }
 
@@ -388,7 +388,7 @@ namespace command
          if(pbase->m_lparam == 1)
          {
             m_bTimerOn = true;
-            SetTimer(1000, 23, NULL);
+            SetTimer(1000, 23, ::null());
          }
          else if(pbase->m_lparam == 0)
          {

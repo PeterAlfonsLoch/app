@@ -39,7 +39,7 @@ void FileManagerTabView::install_message_handling(::ca::message::dispatch * pint
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
 }
 
-void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerTabView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    ::userbase::tab_view::on_update(pSender, lHint, phint);
@@ -147,7 +147,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       sp(file_manager_operation_document) pdoc =  (Application.filemanager().m_ptemplateOperation->open_document_file(createcontext));
       if(pdoc == ::null())
          return;
-      ::view * pview = pdoc->get_view(0);
+      sp(::view) pview = pdoc->get_view(0);
       //file_manager_form_view * poperationview = dynamic_cast < file_manager_form_view * > (pview);
       pcreatordata->m_pwnd = (pview->GetParentFrame());
       //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
@@ -189,7 +189,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
 
 
-         ::view * pview = pdoc->get_view(0);
+         sp(::view) pview = pdoc->get_view(0);
 
          sp(simple_frame_window) pwnd =  (pview->GetParentFrame());
 
@@ -224,7 +224,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       }
       if(pdoc == ::null())
          return;
-//      ::view * pview = pdoc->get_view(0);
+//      sp(::view) pview = pdoc->get_view(0);
       //pcreatordata->m_pwnd = (pview->GetParentFrame());
       //      sp(FileManagerChildFrame) pframe = (pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;

@@ -1580,17 +1580,6 @@ namespace geometry
 } // namespace geometry
 
 
-namespace userbase
-{
-
-
-   class main_frame;
-
-
-} // namespace userbase
-
-
-
 #if defined(LINUX) || defined(MACOS)
 
 typedef ::visual::icon * HICON;

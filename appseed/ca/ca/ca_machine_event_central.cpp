@@ -48,7 +48,7 @@ bool machine_event_central::is_close_application()
 }
 
 
-void machine_event_central::command(xml::node * pnode)
+void machine_event_central::command(sp(::xml::node) pnode)
 {
    mutex_lock lockMachineEvent(m_machineevent.m_mutex, true);
    machine_event_data data;

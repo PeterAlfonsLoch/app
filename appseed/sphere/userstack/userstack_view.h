@@ -49,7 +49,7 @@ namespace userstack
       mutex m_mutexDraw;
 
 
-      view(::ca::application * papp);
+      view(sp(::ca::application) papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -70,9 +70,9 @@ namespace userstack
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void OnDraw(::ca::graphics * pgraphics);
-      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      document * get_document();
+      sp(document) get_document();
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 

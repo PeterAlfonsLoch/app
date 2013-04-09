@@ -867,7 +867,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    for(int32_t i = 0; i < childs.get_size(); i++)
    {
-      xml::node * pchild = childs(i);
+      sp(::xml::node) pchild = childs(i);
       if(pchild->get_name() == "button")
       {
          xml::attr * pattr = pchild->find_attr("id");
@@ -1505,7 +1505,7 @@ void simple_toolbar::_001DiscardImageList()
    }*/
 }
 
-void simple_toolbar::_001SetImageList(image_list * pimagelist)
+void simple_toolbar::_001SetImageList(sp(image_list) pimagelist)
 {
    UNREFERENCED_PARAMETER(pimagelist);
    /*   m_pimagelist = pimagelist;
@@ -1992,7 +1992,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
                point pt = rect.top_left() - pControl[i].rectOldPos.top_left();
                _001GetItemRect(pControl[i].nIndex, &rect);
                pt = rect.top_left() + pt;
-               pWnd->SetWindowPos(::null(), pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+               pWnd->SetWindowPos(0, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
                }*/
             }
             delete[] pControl;

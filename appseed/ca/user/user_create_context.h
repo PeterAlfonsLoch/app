@@ -24,7 +24,7 @@ namespace user
       sp(::user::interaction)   m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
-      document_template *     m_pNewDocTemplate;
+      sp(document_template)     m_pNewDocTemplate;
 
       // for sharing ::view/frame state from the original ::view/frame
       sp(::user::interaction)   m_pLastView;

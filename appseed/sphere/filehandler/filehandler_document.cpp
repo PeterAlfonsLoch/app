@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   document::document(::ca::application * papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       html_document(papp)
@@ -23,7 +23,7 @@ namespace filehandler
       //   return FALSE;
       //}
 
-      //update_all_views(NULL, 19847);
+      //update_all_views(::null(), 19847);
 
       return TRUE;
    }

@@ -10,7 +10,7 @@ namespace platform
    public:
 
       string                     m_strAnimatedStatusBarText;
-      image_list *               m_pimagelist;
+      sp(image_list)               m_pimagelist;
       bool                       m_bTimerOn;
       e_position                 m_eposition;
       bool                       m_bHover;

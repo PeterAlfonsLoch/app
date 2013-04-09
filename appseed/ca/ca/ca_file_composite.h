@@ -16,7 +16,7 @@ namespace ca
 
 
       file_composite();
-      file_composite(::ca::file * pfile);
+      file_composite(sp(::ca::file) pfile);
       virtual ~file_composite();
 
       virtual file_position get_position() const;
@@ -35,7 +35,7 @@ namespace ca
       virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
-      virtual file* Duplicate() const;
+      virtual sp(::ca::file) Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);

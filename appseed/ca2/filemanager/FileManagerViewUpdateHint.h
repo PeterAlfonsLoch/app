@@ -36,7 +36,7 @@ public:
    string                     m_wstrFilter;
    sp(FileManagerInterface)     m_pmanager;
    sp(FileManagerInterface)     m_pmanagerMain;
-   ::view    *                m_pview;
+   sp(::view)               m_pview;
    UINT                       m_uiId;
    string                     m_strPath;
 

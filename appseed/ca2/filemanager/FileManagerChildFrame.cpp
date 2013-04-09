@@ -122,8 +122,7 @@ void FileManagerChildFrame::_001OnAppLanguage(::ca::signal_object * pobj)
 
 void FileManagerChildFrame::GetSelected(::fs::item_array &itema)
 {
-   filemanager::SimpleFileListInterface * plistinterface = dynamic_cast <filemanager::SimpleFileListInterface *>
-      (GetActiveView());
+   sp(::filemanager::SimpleFileListInterface) plistinterface = GetActiveView();
    if(plistinterface != ::null())
    {
       plistinterface->GetSelected(itema);

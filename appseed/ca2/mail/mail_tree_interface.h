@@ -16,8 +16,6 @@ namespace mail
       virtual ~tree_interface();
 
 
-      virtual bool initialize();
-
       void update_list();
 
 

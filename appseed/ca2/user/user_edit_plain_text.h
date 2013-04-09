@@ -183,7 +183,7 @@ namespace user
       void IndexRegisterInsert(strsize iSel, const char * lpcszWhat);
 
       void MacroBegin();
-      void MacroRecord(plain_text_data::Command * pcommand);
+      void MacroRecord(sp(plain_text_data::Command) pcommand);
       void MacroEnd();
 
       bool Undo();
@@ -200,8 +200,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual ::ca::tree_item_data * on_allocate_item();
-      virtual void on_delete_item(::ca::tree_item_data * pitem);
+      virtual sp(::ca::tree_item_data) on_allocate_item();
+      virtual void on_delete_item(sp(::ca::tree_item_data) pitem);
 
 
    };

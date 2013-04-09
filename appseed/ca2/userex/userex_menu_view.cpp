@@ -17,7 +17,7 @@ menu_view::menu_view(sp(::ca::application) papp) :
 }
 
 
-void menu_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
+void menu_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
 {
    form_view::on_update(pSender, lHint, phint);
 }

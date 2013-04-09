@@ -74,14 +74,14 @@ public:
 
 
    // Activation
-   virtual void OnActivateView(bool bActivate, view * pActivateView,
-               view * pDeactiveView);
+   virtual void OnActivateView(bool bActivate, sp(view) pActivateView,
+               sp(view) pDeactiveView);
    virtual void OnActivateFrame(UINT nState, sp(frame_window) pFrameWnd);
 
    // General drawing/updating
-   virtual void on_update(view * pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void on_update(sp(view) pSender, LPARAM lHint, ::ca::object* pHint);
    virtual void _001OnDraw(::ca::graphics * pgraphics);
-   virtual void OnViewUpdateHint(view * pSender, LPARAM lHint, view_update_hint * pHint);
+   virtual void OnViewUpdateHint(sp(view) pSender, LPARAM lHint, view_update_hint * pHint);
 
 
 
@@ -105,7 +105,7 @@ public:
    virtual void assert_valid() const;
 
    // Advanced: for implementing custom print preview
-/*   bool DoPrintPreview(UINT nIDResource, view * pPrintView,
+/*   bool DoPrintPreview(UINT nIDResource, sp(view) pPrintView,
          sp(::ca::type_info) pPreviewViewClass, CPrintPreviewState* pState);*/
 
    virtual void CalcWindowRect(LPRECT lpClientRect,
@@ -160,7 +160,7 @@ public:
 
    virtual ::user::interaction::e_type get_window_type();
 
-   virtual void on_simple_view_update_hint(::view * pviewSender, e_hint ehint, ::ca::object * phint);
+   virtual void on_simple_view_update_hint(sp(::view) pviewSender, e_hint ehint, ::ca::object * phint);
 
 };
 

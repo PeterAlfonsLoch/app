@@ -179,7 +179,7 @@ void HRCParserImpl::parseHRC(const char * psz)
    };
    for (strsize i = 0; i < types.get_children_count(); i++)
    {
-      xml::node *elem = types.child_at(i);
+      sp(::xml::node)elem = types.child_at(i);
       if (elem->get_name() == "prototype"){
          addPrototype(elem);
          continue;
@@ -201,7 +201,7 @@ void HRCParserImpl::parseHRC(const char * psz)
 }
 
 
-void HRCParserImpl::addPrototype(xml::node *elem)
+void HRCParserImpl::addPrototype(sp(::xml::node)elem)
 {
 
    string typeName         = elem->attr("name");
@@ -251,7 +251,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
 
    for(strsize i = 0; i < elem->get_children_count(); i++)
    {
-      xml::node *content = elem->child_at(i);
+      sp(::xml::node)content = elem->child_at(i);
       if (content->get_name() == "location"){
          string locationLink = (content)->attr("link");
          if (locationLink.is_empty())
@@ -303,7 +303,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
       {
          for(strsize i = 0; i < content->get_children_count(); i++)
          {
-            xml::node *param = content->child_at(i);
+            sp(::xml::node)param = content->child_at(i);
             if (param->get_name() == "param")
             {
                string name    = (param)->attr("name");
@@ -336,7 +336,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
    }
 }
 
-void HRCParserImpl::addType(xml::node *elem)
+void HRCParserImpl::addType(sp(::xml::node)elem)
 {
    string typeName = elem->attr("name");
 
@@ -364,7 +364,7 @@ void HRCParserImpl::addType(xml::node *elem)
    parseType = type;
 
    for(strsize i = 0; i < elem->get_children_count(); i++){
-      xml::node *xmlpar = elem->child_at(i);
+      sp(::xml::node)xmlpar = elem->child_at(i);
       if(xmlpar->get_name() == "region")
       {
 
@@ -450,7 +450,7 @@ void HRCParserImpl::addType(xml::node *elem)
    parseType = o_parseType;
 }
 
-void HRCParserImpl::addScheme(xml::node *elem)
+void HRCParserImpl::addScheme(sp(::xml::node)elem)
 {
    string schemeName = elem->attr("name");
    string qSchemeName = qualifyOwnName(schemeName);
@@ -480,10 +480,10 @@ void HRCParserImpl::addScheme(xml::node *elem)
    addSchemeNodes(scheme, elem->child_at(0));
 }
 
-void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
+void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, sp(::xml::node)elem)
 {
    ::ca::smart_pointer < SchemeNode > next;
-   for(xml::node *tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
+   for(sp(::xml::node)tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
       if (tmpel->get_name().is_empty()) continue;
 
       if (next == ::null()){
@@ -524,7 +524,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          };
 
          if (tmpel->first_child() != ::null()){
-            for(xml::node *vel = tmpel->first_child(); vel; vel = vel->get_next_sibling()){
+            for(sp(::xml::node)vel = tmpel->first_child(); vel; vel = vel->get_next_sibling()){
                if (vel->get_name() != "virtual"){
                   continue;
                }
@@ -585,11 +585,11 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string sParam = tmpel->attr("start");
          string eParam = tmpel->attr("end");
 
-         xml::node *eStart = ::null(), *eEnd = ::null();
+         sp(::xml::node)eStart = ::null(), eEnd = ::null();
 
-         for(xml::node *blkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
+         for(sp(::xml::node)blkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
          {
-            xml::node *blkel;
+            sp(::xml::node)blkel;
             if(blkn->get_type() == xml::node_element) blkel = blkn;
             else continue;
 
@@ -688,7 +688,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          };
 
          next->kwList = new KeywordList;
-         for(xml::node *keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling()){
+         for(sp(::xml::node)keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling()){
             if (keywrd_count->get_name() == "uint16_t" ||
                keywrd_count->get_name() == "symb")
             {
@@ -703,7 +703,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          next->kwList->kwList = pIDs;
          next->type = SNT_KEYWORDS;
 
-         for(xml::node *keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling()){
+         for(sp(::xml::node)keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling()){
             strsize type = 0;
             if (keywrd->get_name() == "uint16_t") type = 1;
             if (keywrd->get_name() == "symb") type = 2;
@@ -747,7 +747,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 };
 
 
-void HRCParserImpl::loadRegions(SchemeNode *node, xml::node *el, bool st)
+void HRCParserImpl::loadRegions(SchemeNode *node, sp(::xml::node)el, bool st)
 {
    static char rg_tmpl[0x10] = "region\0\0";
 
@@ -778,7 +778,7 @@ void HRCParserImpl::loadRegions(SchemeNode *node, xml::node *el, bool st)
 }
 
 
-void HRCParserImpl::loadBlockRegions(SchemeNode *node, xml::node *el)
+void HRCParserImpl::loadBlockRegions(SchemeNode *node, sp(::xml::node)el)
 {
    strsize i;
    static char rg_tmpl[0x10] = "region";
@@ -1043,7 +1043,7 @@ class region* HRCParserImpl::getNCRegion(const char * name, bool logErrors)
    return reg;
 };
 
-class region* HRCParserImpl::getNCRegion(xml::node *el, const char * tag)
+class region* HRCParserImpl::getNCRegion(sp(::xml::node)el, const char * tag)
 {
    string par = el->attr(tag);
    if (par.is_empty()) return ::null();

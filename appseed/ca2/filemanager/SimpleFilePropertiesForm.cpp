@@ -29,7 +29,7 @@ namespace filemanager
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
-      ::userex::pane_tab_view * pview = pdoc->get_typed_view < ::userex::pane_tab_view > ();
+      sp(::userex::pane_tab_view) pview = pdoc->get_typed_view < ::userex::pane_tab_view > ();
       pview->set_view_creator(this);
       m_ptabview = pview;
       pview->add_tab("general", 1);

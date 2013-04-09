@@ -25,8 +25,7 @@ namespace filemanager
             m_spdataFs = new ::ca::simple_tree_data(get_app());
 
             ::ca::data_container::m_spdata = m_spdataFs;
-            if(!::ca::data_container::m_spdata->initialize_data())
-               throw simple_exception(papp);
+
          }
 
          tree_view::~tree_view()
@@ -65,8 +64,8 @@ namespace filemanager
 
             m_iParentFolder = doc.get_root()->attr("id");
 
-            ::ca::tree_item * pdataitemParent;
-            ::ca::tree_item * pdataitemChild;
+            sp(::ca::tree_item) pdataitemParent;
+            sp(::ca::tree_item) pdataitemChild;
 
             pdataitemParent = FindTreeItem(m_iParentFolder);
             if(pdataitemParent == ::null())
@@ -81,7 +80,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             index iNode = 0;
-            xml::node * pnodeFolder = doc.get_root()->get_child("folder");
+            sp(::xml::node) pnodeFolder = doc.get_root()->get_child("folder");
 
 
    //         xml::node::array childs(get_app());
@@ -92,7 +91,7 @@ namespace filemanager
    //         index iNode = 0;
             for(int32_t i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
-               xml::node * pnodeItem = pnodeFolder->child_at(i);
+               sp(::xml::node) pnodeItem = pnodeFolder->child_at(i);
                folder.m_iFolder = pnodeItem->attr("id");
                folder.m_strName = pnodeItem->attr("name");
 
@@ -145,7 +144,7 @@ namespace filemanager
                   pdataitemChild->m_pitemdata = new ::ca::simple_tree_item_data();
                }
 
-               ((::ca::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
+               ((::ca::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else
@@ -163,7 +162,7 @@ namespace filemanager
          }
 
 
-         ::ca::tree_item * tree_view::FindTreeItem(int64_t iFolder)
+         sp(::ca::tree_item) tree_view::FindTreeItem(int64_t iFolder)
          {
             int32_t iUser;
 
@@ -191,7 +190,7 @@ namespace filemanager
 
 
          index tree_view::_001GetItemImage(
-            ::ca::tree_item * pitem,
+            sp(::ca::tree_item) pitem,
             bool bSelected
             )
          {
@@ -205,7 +204,7 @@ namespace filemanager
             }
          }
 
-         void tree_view::_001OnItemExpand(::ca::tree_item *pitem)
+         void tree_view::_001OnItemExpand(sp(::ca::tree_item)pitem)
          {
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }

@@ -12,7 +12,7 @@ namespace nature
       
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
-      image_list *               m_pimagelist;
+      sp(image_list)               m_pimagelist;
       bool                       m_bTimerOn;
       bool                       m_bHoverMouse;
       uint32_t                      m_dwLastHover;

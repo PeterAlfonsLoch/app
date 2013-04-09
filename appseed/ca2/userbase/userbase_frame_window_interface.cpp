@@ -34,13 +34,13 @@ namespace userbase
       {
          sp(::userbase::frame_window) pframe = (this);
          // if the frame does not have an active ::view, set to first pane
-         ::view * pview = ::null();
+         sp(::view) pview = ::null();
          if (pframe->GetActiveView() == ::null())
          {
             sp(::user::interaction) pWnd = pframe->GetDescendantWindow("pane_first");
             if (pWnd != ::null() && base < ::view >::bases(pWnd))
             {
-               pview = dynamic_cast < ::view * > (pWnd.m_p);
+               pview =  (pWnd.m_p);
                pframe->SetActiveView(pview, FALSE);
             }
          }

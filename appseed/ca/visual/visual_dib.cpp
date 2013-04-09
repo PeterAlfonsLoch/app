@@ -86,7 +86,7 @@ namespace visual
       return load_from_file(App(m_p->m_papp).dir().matter(pszMatter));
    }
 
-   bool dib_sp::read_from_file(::ca::file * pfile)
+   bool dib_sp::read_from_file(sp(::ca::file) pfile)
    {
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
       if(pfi == ::null())
@@ -107,7 +107,7 @@ namespace visual
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(::ca::file * pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(sp(::ca::file) pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == ::null())

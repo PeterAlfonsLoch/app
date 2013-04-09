@@ -57,11 +57,11 @@ namespace user
 
 
       class GroupCommand : public Command,
-         public array < Command *, Command * >
+         public spa(Command)
       {
       public:
          GroupCommand();
-         GroupCommand * m_pparent;
+         sp(GroupCommand) m_pparent;
          virtual ECommand get_command(){ return CommandGroup;};
          virtual void Undo(plain_text_data * pedit);
          virtual void Redo(plain_text_data * pedit);
@@ -73,10 +73,10 @@ namespace user
       };
 
 
-      ::ca::tree_item *       m_ptreeitem;
-      GroupCommand *          m_pgroupcommand;
+      sp(::ca::tree_item)     m_ptreeitem;
+      sp(GroupCommand)        m_pgroupcommand;
       index                   m_iBranch;
-      ::ca::file *            m_pfile;
+      sp(::ca::file)            m_pfile;
       ::ca::edit_file         m_editfile;
       
       
@@ -88,7 +88,7 @@ namespace user
       virtual ~plain_text_data();
 
 
-      void SetFile(::ca::file * pfile);
+      void SetFile(sp(::ca::file) pfile);
 
 
    private:

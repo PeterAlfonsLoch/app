@@ -100,7 +100,7 @@ namespace bergedge
 
    }
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -491,7 +491,7 @@ namespace bergedge
       {
          while(pui != ::null())
          {
-            ::cube::application * papp = ::null();
+            sp(::cube::application) papp = ::null();
             try
             {
                papp = &App(pui->get_app());

@@ -25,8 +25,8 @@ public:
 /* smart_pointer_array < SimpleMenuBarButton , SimpleMenuBarButton &>
                         m_buttona;*/
 
-   image_list *         m_pimagelist;
-   image_list *         m_pimagelistDisabled;
+   sp(image_list)         m_pimagelist;
+   sp(image_list)         m_pimagelistDisabled;
    int_int_spreadset *  m_prel;
 
    bool                 m_bTracking;
@@ -86,8 +86,8 @@ public:
    void RemoveAllButtons();
 
    bool Initialize(
-      image_list * pimagelist,
-      image_list * pimagelistDisabled,
+      sp(image_list) pimagelist,
+      sp(image_list) pimagelistDisabled,
       int_int_spreadset * prel,
       ::ca::font * pfont);
 

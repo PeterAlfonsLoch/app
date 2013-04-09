@@ -356,7 +356,7 @@ void simple_frame_window::layout()
    }
 }
 
-void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT user, sp(::user::interaction) pframe)
+void simple_frame_window::ViewOnActivateFrame(sp(::userbase::view) pview, UINT user, sp(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
@@ -636,7 +636,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       return;
    }
 
-   ::cube::application * papp = &Application;
+   sp(::cube::application) papp = &Application;
 
    if(papp->is_cube() || papp->is_bergedge() || papp->is_session() || papp->is_system())
    {
@@ -647,7 +647,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       for(int32_t i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
 
-         ::cube::application * pappChild = &App(Sys(papp).m_appptra(i).m_p);
+         sp(::cube::application) pappChild = &App(Sys(papp).m_appptra(i).m_p);
 
          if(!pappChild->_001CloseApplicationByUser(this))
             return;

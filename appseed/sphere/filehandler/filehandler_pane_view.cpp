@@ -7,7 +7,7 @@ namespace filehandler
 {
 
 
-   pane_view::pane_view(::ca::application * papp) :
+   pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -16,13 +16,13 @@ namespace filehandler
       place_holder_container(papp)
    {
 
-      m_pviewdataOld = NULL;
+      m_pviewdataOld = ::null();
 
 
       m_etranslucency      = TranslucencyPresent;
 
-      m_pviewdata              = NULL;
-      m_pviewdataOld              = NULL;
+      m_pviewdata              = ::null();
+      m_pviewdataOld              = ::null();
 
       /*   ::userbase::single_document_template* pdoctemplate;
       pdoctemplate = new ::userbase::single_document_template(
@@ -79,7 +79,7 @@ namespace filehandler
          return;
 
 
-      application * papp = dynamic_cast < application * > (get_app());
+      sp(application) papp =  (get_app());
 
       papp->m_ppaneview = this;
 
@@ -87,20 +87,20 @@ namespace filehandler
    }
 
 
-   void pane_view::on_update(::view* pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      /*   ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
+      /*   sp(::ca::application) papp = dynamic_cast < sp(::ca::application) > (get_app());
       POSITION pos = papp->m_ptemplate_html->get_document_count();
-      while(pos != NULL)
+      while(pos != ::null())
       {
-      ::userbase::document * pdoc = papp->m_ptemplate_html->get_document(index);
+      sp(::userbase::document) pdoc = papp->m_ptemplate_html->get_document(index);
       pdoc->update_all_views(pSender, lHint, pHint);
       }*/
 
 
-      if(pHint != NULL)
+      if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -115,14 +115,14 @@ namespace filehandler
             }
          }
       }
-      if(pHint != NULL)
+      if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               (dynamic_cast < userbase::frame_window * > (GetTopLevelFrame()))->SetActiveView(this);
+               ( (GetTopLevelFrame()))->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
@@ -144,7 +144,7 @@ namespace filehandler
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      //         application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
+      //         sp(application) papp =  (( (GetParentFrame()))->get_app());
 
       if(pcreatordata->m_id.is_text())
       {
@@ -154,7 +154,7 @@ namespace filehandler
          if(::ca::str::begins_eat_ci(strFile, "default_file_handler://"))
          {
 
-            ::filehandler::view * pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
+            ::filehandlersp(::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
 
             pcreatordata->m_pwnd = pview;
 
@@ -171,18 +171,18 @@ namespace filehandler
       {
       case pane_view_new:
          {
-            /*               ::ca::create_context_sp createcontext(get_app());
+            /*               sp(::ca::create_context) createcontext(get_app());
             createcontext->m_bMakeVisible = true;
             createcontext->m_puiParent = this;
-            rtprx::document * pdoc = dynamic_cast < rtprx::document * > (papp->m_ptemplateVideo->open_document_file(createcontext));
-            if(pdoc != NULL)
+            rtprx::sp(document) pdoc = dynamic_cast < rtprx::sp(document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
+            if(pdoc != ::null())
             {
-            ::view * pview = pdoc->get_view();
-            pview->on_update(NULL, 0, NULL);
-            if(pview != NULL)
+            sp(::view) pview = pdoc->get_view();
+            pview->on_update(::null(), 0, ::null());
+            if(pview != ::null())
             {
-            userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-            if(pframe != NULL)
+            sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+            if(pframe != ::null())
             {
             pcreatordata->m_pdoc = pdoc;
             pcreatordata->m_pwnd = pframe;
@@ -195,8 +195,8 @@ namespace filehandler
             cc.m_pCurrentDoc = get_document();
             cc.m_typeinfoNewView =  System.type_info < rtprx::view > ();
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
-            if(pview != NULL)
+            sp(::userbase::view) pview = (CreateView(&cc, 101, this));
+            if(pview != ::null())
             {
             pcreatordata = new ViewData();
             pcreatordata->m_eview = eview;

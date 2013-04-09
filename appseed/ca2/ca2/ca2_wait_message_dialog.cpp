@@ -15,7 +15,7 @@ namespace ca2 // ca8 + cube
       html_form(papp),
       html_form_view(papp),
       form_view(papp),
-      dialog(papp)
+      dialog(allocer())
    {
       m_dwStartTime = 0;
       m_dwDelay = 0;

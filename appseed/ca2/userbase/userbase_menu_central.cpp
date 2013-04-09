@@ -88,7 +88,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)
 
 */
 
-bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
+bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 {
 
 /*   if(!MenuV033GetImageList()->create(
@@ -102,7 +102,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
    id id;
    for(int32_t i = 0; i < lpnode->children().get_count(); i++)
    {
-      xml::node * lpchild = lpnode->child_at(i);
+      sp(::xml::node) lpchild = lpnode->child_at(i);
       string strId;
       lpchild->get_attr("id", strId);
       string strImage;
@@ -216,22 +216,22 @@ id BaseMenuCentral::ImageToCommand(UINT uiImage)
    }
 }
 
-image_list * BaseMenuCentral::MenuV033GetImageList()
+sp(image_list) BaseMenuCentral::MenuV033GetImageList()
 {
     return m_pil;
 }
 
-image_list * BaseMenuCentral::MenuV033GetImageListHue()
+sp(image_list) BaseMenuCentral::MenuV033GetImageListHue()
 {
     return m_pilHue;
 }
 
-image_list * BaseMenuCentral::MenuV033GetImageListBlend()
+sp(image_list) BaseMenuCentral::MenuV033GetImageListBlend()
 {
     return m_pilBlend;
 }
 
-image_list * BaseMenuCentral::MenuV033GetImageListHueLight()
+sp(image_list) BaseMenuCentral::MenuV033GetImageListHueLight()
 {
     return m_pilHueLight;
 }

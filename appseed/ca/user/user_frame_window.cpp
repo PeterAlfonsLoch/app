@@ -618,13 +618,13 @@ void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
 void frame_window::InitialUpdateFrame(sp(::user::document_interface) pDoc, bool bMakeVisible)
 {
    // if the frame does not have an active ::view, set to first pane
-   ::view * pview = ::null();
+   sp(::view) pview = ::null();
    if (GetActiveView() == ::null())
    {
       sp(::user::interaction) pWnd = GetDescendantWindow("pane_first");
       if (pWnd != ::null() && base < ::view > ::bases(pWnd))
       {
-         pview = dynamic_cast < ::view * > (pWnd.m_p);
+         pview =  (pWnd.m_p);
          SetActiveView(pview, FALSE);
       }
    }
@@ -775,7 +775,7 @@ void frame_window::OnClose()
       POSITION pos = pdocument->get_view_count();
       while (pos != ::null())
       {
-         ::view * pview = pdocument->get_view(pos);
+         sp(::view) pview = pdocument->get_view(pos);
          ENSURE_VALID(pview);
          if (pview->GetParentFrame() != this)
          {
@@ -833,11 +833,11 @@ void frame_window::install_message_handling(::ca::message::dispatch * pinterface
 bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 {
    // pump through current ::view FIRST
-   ::view * pview = GetActiveView();
+   sp(::view) pview = GetActiveView();
    if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   pview = dynamic_cast < ::view * > (this->get_child_by_id("pane_first").m_p);
+   pview =  (this->get_child_by_id("pane_first").m_p);
    if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -905,7 +905,7 @@ LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
    ASSERT(pThread);
    if (pThread->GetMainWnd() == this)
    {
-      ::view * pActiveView = GetActiveView();
+      sp(::view) pActiveView = GetActiveView();
       if (pActiveView == ::null())
          pActiveView = GetActiveFrame()->GetActiveView();
       if (pActiveView != ::null())
@@ -948,9 +948,9 @@ void frame_window::_001OnActivate(::ca::signal_object * pobj)
    NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
    // get active ::view (use active frame if no active ::view)
-   ::view * pActiveView = GetActiveView();
+   sp(::view) pActiveView = GetActiveView();
    if (pActiveView == ::null())
-      pActiveView = dynamic_cast < ::view * > (GetActiveFrame()->GetActiveView());
+      pActiveView =  (GetActiveFrame()->GetActiveView());
 
    // when frame gets activated, re-activate current ::view
    if (pActiveView != ::null())
@@ -1191,14 +1191,14 @@ LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 /////////////////////////////////////////////////////////////////////////////
 // frame_window attributes
 
-::view * frame_window::GetActiveView() const
+sp(::view) frame_window::GetActiveView() const
 {
    ASSERT(m_pViewActive == ::null() ||
       base < ::view >::bases(m_pViewActive));
    return m_pViewActive;
 }
 
-void frame_window::SetActiveView(::view * pViewNew, bool bNotify)
+void frame_window::SetActiveView(sp(::view) pViewNew, bool bNotify)
 {
 #ifdef DEBUG
    if (pViewNew != ::null())
@@ -1208,7 +1208,7 @@ void frame_window::SetActiveView(::view * pViewNew, bool bNotify)
    }
 #endif //DEBUG
 
-   ::view * pViewOld = m_pViewActive;
+   sp(::view) pViewOld = m_pViewActive;
    if (pViewNew == pViewOld)
       return;     // do not re-activate if SetActiveView called more than once
 
@@ -1255,7 +1255,7 @@ void frame_window::OnSetFocus(sp(::user::interaction) pOldWnd)
 sp(::user::document_interface) frame_window::GetActiveDocument()
 {
    ASSERT_VALID(this);
-   ::view * pview = GetActiveView();
+   sp(::view) pview = GetActiveView();
    if (pview != ::null())
       return pview->get_document();
    return ::null();

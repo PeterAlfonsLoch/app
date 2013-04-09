@@ -45,7 +45,7 @@ namespace filemanager
             int32_t                             m_iIconFolderSelected;
             int32_t                             m_iIconArtistNormal;
             int32_t                             m_iIconArtistSelected;
-            ::filemanager::fs::simple::view *   m_pserver;
+            sp(::filemanager::fs::simple::view)   m_pserver;
             FolderArray                         m_foldera; 
             int64_t                             m_iParentFolder;
             sp(::ca::simple_tree_data)          m_spdataFs;
@@ -57,13 +57,13 @@ namespace filemanager
 
 
 
-            void _001OnItemExpand(::ca::tree_item *pitem);
+            void _001OnItemExpand(sp(::ca::tree_item)pitem);
 
 
             void parse(const char * lpszSource);
 
-            ::ca::tree_item * FindTreeItem(int64_t iFolder);
-            index _001GetItemImage(::ca::tree_item * pitem, bool bSelected);
+            sp(::ca::tree_item) FindTreeItem(int64_t iFolder);
+            index _001GetItemImage(sp(::ca::tree_item) pitem, bool bSelected);
 
 
             virtual ~tree_view();

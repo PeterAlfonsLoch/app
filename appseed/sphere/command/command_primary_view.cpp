@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   primary_view::primary_view(::ca::application * papp) :
+   primary_view::primary_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -23,7 +23,7 @@ namespace command
 
    }
 
-   void primary_view::on_update(::view* pSender, LPARAM lHint, ::ca::object* phint)
+   void primary_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
 
       UNREFERENCED_PARAMETER(pSender);
@@ -137,11 +137,11 @@ namespace command
 #ifdef WINDOWSEX
 
                   if(::ShellExecuteW(
-                     NULL,
-                     NULL,
+                     ::null(),
+                     ::null(),
                      ::ca::international::utf8_to_unicode(strLine),
-                     NULL,
-                     NULL,
+                     ::null(),
+                     ::null(),
                      SW_SHOW))
                   {
                      string strNewText = str + "executing " + strLine  + "...";

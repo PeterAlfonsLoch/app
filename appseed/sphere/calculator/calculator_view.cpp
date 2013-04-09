@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   view::view(::ca::application * papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp)
@@ -85,19 +85,19 @@ namespace calculator
 
    }
 
-   ::user::interaction* view::get_guie()
+   sp(::user::interaction) view::get_guie()
    {
       return this;
    }
 
-   void view::on_update(::view* pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
       UNREFERENCED_PARAMETER(phint);
    }
 
-   ::user::interaction* view::BackViewGetWnd()
+   sp(::user::interaction) view::BackViewGetWnd()
    {
       return this;
    }
@@ -148,7 +148,7 @@ namespace calculator
    {
       if(iTab == 1)
       {
-         System.simple_message_box(NULL, "Playlist");
+         System.simple_message_box(::null(), "Playlist");
       }
    }
 
@@ -190,10 +190,10 @@ namespace calculator
    }
 
 
-   document * view::get_document()
+   sp(document) view::get_document()
    {
 
-      return dynamic_cast < document * > (::userbase::view::get_document());
+      return  (::userbase::view::get_document());
 
    }
 

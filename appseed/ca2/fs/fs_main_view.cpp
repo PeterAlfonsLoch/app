@@ -26,7 +26,7 @@ namespace fs
       if(pobj->m_bRet)
          return;
 
-//      application * papp = dynamic_cast < application * > (get_app());
+//      sp(application) papp =  (get_app());
       //papp->m_pmainview = this;
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
@@ -37,7 +37,7 @@ namespace fs
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();
       sp(::user::interaction) pwnd = create_view(System.type_info < tree > (), get_document(), this, 100);
       SetPane(0, pwnd, false);
-//      tree * ptree = dynamic_cast < tree * > (pwnd);
+//      sp(tree) ptree =  (pwnd);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();

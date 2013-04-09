@@ -26,7 +26,7 @@ namespace bergedge
 
       bool                       m_bMouseOver;
 
-      view *                     m_pview;
+      sp(view)                     m_pview;
       pane_view *                m_ppaneview;
 
 

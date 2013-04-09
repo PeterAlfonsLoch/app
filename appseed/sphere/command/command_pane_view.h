@@ -9,7 +9,7 @@ namespace command
       virtual public command::form_callback
    {
    public:
-	   pane_view(::ca::application * papp);
+	   pane_view(sp(::ca::application) papp);
 	   void rotate();
       
       void on_create_view(::user::view_creator_data * pcreatordata);
@@ -17,7 +17,7 @@ namespace command
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
-	   virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+	   virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
 	   virtual bool pre_create_window(CREATESTRUCT& cs);
 
 

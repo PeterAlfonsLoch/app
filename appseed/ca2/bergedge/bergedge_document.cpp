@@ -44,7 +44,7 @@ namespace bergedge
 
 
 
-   ::bergedge::view * document::get_bergedge_view()
+   sp(::bergedge::view) document::get_bergedge_view()
    {
       return get_typed_view < ::bergedge::view > ();
    }
@@ -56,7 +56,7 @@ namespace bergedge
       //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
       //pframe->ShowWindow(SW_RESTORE);
-      //pframe->SetWindowPos(::null(), 0, 0, 200, 200, SWP_SHOWWINDOW);
+      //pframe->SetWindowPos(0, 0, 0, 200, 200, SWP_SHOWWINDOW);
    }
 
    void document::set_nature(sp(::nature::document) pdoc)
@@ -65,7 +65,7 @@ namespace bergedge
       //nature_frame * pframe = pdoc->get_nature_frame();
       //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
-      //pframe->SetWindowPos(::null(), 200, 200, 400, 400, SWP_SHOWWINDOW);
+      //pframe->SetWindowPos(0, 200, 200, 400, 400, SWP_SHOWWINDOW);
    }
 
    ::bergedge::bergedge * document::get_bergedge()

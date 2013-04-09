@@ -19,8 +19,8 @@ namespace ca
       simple_tree_item_data();
       virtual ~simple_tree_item_data();
 
-      virtual string get_text(::ca::tree * ptree);
-      virtual index get_image(::ca::tree * ptree);
+      virtual string get_text(sp(::ca::tree) ptree);
+      virtual index get_image(sp(::ca::tree) ptree);
 
       /*#undef new
       void * operator new(size_t i, const char * lpszFileName, int32_t iLine);

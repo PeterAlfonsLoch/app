@@ -63,10 +63,10 @@ namespace ca
 
 
          bool put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = ::null());
-         bool put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser = ::null());
+         bool put(const char * pszUrl, sp(::ca::file) pfile, ::fontopus::user * puser = ::null());
 
          bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = ::null());
-         bool put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser = ::null());
+         bool put(string & strResponse, const char * pszUrl, sp(::ca::file) pfile, ::fontopus::user * puser = ::null());
 
       };
 

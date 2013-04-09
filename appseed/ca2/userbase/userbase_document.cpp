@@ -51,7 +51,7 @@ namespace userbase
          ::count count = get_view_count();
          for(index index = 0; index < count; index++)
          {
-            ::view * pview = get_view(index);
+            sp(::view) pview = get_view(index);
             dumpcontext << "\nwith ::view " << (void *)pview;
          }
       }
@@ -66,7 +66,7 @@ namespace userbase
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
       }
    }

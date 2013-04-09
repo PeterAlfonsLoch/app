@@ -45,7 +45,7 @@ namespace ca
    {
    }
 
-   file* file::Duplicate() const
+   sp(::ca::file) file::Duplicate() const
    {
       return ::null();
    }

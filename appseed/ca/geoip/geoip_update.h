@@ -8,8 +8,8 @@ typedef enum {
   GEOIP_NON_IPV4_ERR            = -12, /* Non - IPv4 address */
   GEOIP_SOCKET_OPEN_ERR         = -13, /* Error opening socket */
    GEOIP_CONNECTION_ERR          = -14, /* Unable to connect */
-   GEOIP_GZIP_IO_ERR             = -15, /* Unable to write GeoIP.dat.gz file */
-  GEOIP_TEST_IO_ERR             = -16, /* Unable to write GeoIP.dat.test file */
+   GEOIP_GZIP_IO_ERR             = -15, /* Unable to write GeoIP.dat.gz sp(::ca::file)/
+  GEOIP_TEST_IO_ERR             = -16, /* Unable to write GeoIP.dat.test sp(::ca::file)/
    GEOIP_GZIP_READ_ERR           = -17, /* Unable to read gzip data */
    GEOIP_OUT_OF_MEMORY_ERR       = -18, /* Out of primitive::memory error */
    GEOIP_SOCKET_READ_ERR         = -19, /* Error reading from socket, see errno */

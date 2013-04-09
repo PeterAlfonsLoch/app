@@ -1957,7 +1957,7 @@ fill_last:
 
    void dib::rotate(dib * pdib, double dAngle, double dScale)
    {
-      // ::ca::dib_sp spdib(get_app());
+      // ::ca::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
       int32_t l = max(cx, cy);
@@ -2108,7 +2108,7 @@ fill_last:
 
    void dib::rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale)
    {
-      // ::ca::dib_sp spdib(get_app());
+      // ::ca::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
 

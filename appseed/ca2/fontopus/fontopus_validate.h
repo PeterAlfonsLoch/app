@@ -17,12 +17,12 @@ namespace ca
 
 
          int32_t                                   m_iView;
-         ::userbase::single_document_template *    m_ptemplatePane;
+         sp(::userbase::single_document_template)    m_ptemplatePane;
          sp(::form_document)                           m_pdoc;
-         ::userex::pane_tab_view *                 m_ptabview;
+         sp(::userex::pane_tab_view)                 m_ptabview;
          sp(::form_document)                           m_pdocAuth;
          sp(::form_document)                           m_pdocMessage;
-         form_view *                               m_pviewAuth;
+         sp(form_view)                               m_pviewAuth;
          ::ca2::network_configuration              m_netcfg;
          ::ca2::keyboard_layout *                  m_pkeyboardlayout;
          void *                                    m_pvOldWindow;

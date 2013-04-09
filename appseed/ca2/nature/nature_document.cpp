@@ -76,7 +76,7 @@ namespace nature
 
 
 
-   ::view * document::get_nature_view()
+   sp(::view) document::get_nature_view()
    {
       return get_typed_view < ::view > ();
    }
@@ -84,7 +84,7 @@ namespace nature
 
    sp(frame) document::get_nature_frame()
    {
-      ::view * pview = get_nature_view();
+      sp(::view) pview = get_nature_view();
       return (pview->GetTypedParent < frame >());
    }
 

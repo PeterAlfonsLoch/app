@@ -32,13 +32,13 @@ void ParserFactory::init()
       throw ParserFactoryException(get_app(), str);
    }
 
-   xml::node * catalog = document.get_root();
+   sp(::xml::node) catalog = document.get_root();
    if(catalog == ::null() || catalog->get_name() != "catalog")
    {
       throw ParserFactoryException(get_app(), string("bad catalog structure"));
    }
 
-   xml::node * elem = catalog->first_child();
+   sp(::xml::node) elem = catalog->first_child();
    while(elem != ::null())
    {
       // hrc locations
@@ -55,7 +55,7 @@ void ParserFactory::init()
          {
             fileErrorHandler = new DefaultErrorHandler();
          }
-         xml::node *loc = elem->first_child();
+         sp(::xml::node)loc = elem->first_child();
          while(loc != ::null())
          {
             if(loc->get_type() == xml::node_element && loc->get_name() == "location")
@@ -68,7 +68,7 @@ void ParserFactory::init()
       // hrd locations
       else if (elem->get_type() == xml::node_element && elem->get_name() == "hrd-sets")
       {
-         xml::node *hrd = elem->first_child();
+         sp(::xml::node)hrd = elem->first_child();
          while(hrd != ::null())
          {
             if(hrd->get_type() == xml::node_element && hrd->get_name() == "hrd")
@@ -88,7 +88,7 @@ void ParserFactory::init()
                hrdDescriptions.set_at(hrd_class + "-" + hrd_name, hrd_descr);
                string_map<stringa> & hrdClass = hrdLocations[hrd_class];
                stringa & hrdLocV =  hrdClass[hrd_name];
-               xml::node *loc = hrd->first_child();
+               sp(::xml::node)loc = hrd->first_child();
                while(loc != ::null())
                {
                   if(loc->get_type() == xml::node_element && loc->get_name() == "location")

@@ -18,29 +18,29 @@ namespace ca
    public:
       
 
-      tree_item_data_ptr_array         m_itemdataptra;    
-      image_list *                     m_pimagelist;
+      tree_item_data_ptr_array            m_itemdataptra;    
+      sp(image_list)                      m_pimagelist;
 
 
       tree_data(sp(::ca::application) papp);
       virtual ~tree_data();
 
 
-      virtual bool initialize_data();
-      virtual bool finalize_data();
+      //virtual bool initialize_data();
+      //virtual bool finalize_data();
 
 
-      bool contains(tree_item_data * pitem);
+      bool contains(sp(tree_item_data) pitem);
 
-      virtual tree_item_data * _allocate_item();
-      virtual bool _delete_item(tree_item_data * pitem);
+      virtual sp(tree_item_data) _allocate_item();
+      virtual bool _delete_item(sp(tree_item_data) pitem);
 
 
    protected:
 
 
-      virtual tree_item_data * on_allocate_item();
-      virtual void on_delete_item(tree_item_data * pitem);
+      virtual sp(tree_item_data) on_allocate_item();
+      virtual void on_delete_item(sp(tree_item_data) pitem);
 
 
    };

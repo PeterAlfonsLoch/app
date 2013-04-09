@@ -49,8 +49,8 @@ namespace xml
    protected:
 
 
-      node(sp(::ca::application) papp);
-      node(node * pnodeParent);
+      node(::ca::application * papp);
+      node(::xml::node * pnodeParent);
 
 
    public:

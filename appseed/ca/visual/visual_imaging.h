@@ -241,15 +241,15 @@ public:
 
    bool CreateHueImageList(
       ::ca::graphics * pdc,
-      image_list * pilGray,
-      image_list * pilParam,
+      sp(image_list) pilGray,
+      sp(image_list) pilParam,
       COLORREF crHue,
       double dCompress);
 
 
    bool Createcolor_blend_ImageList(
-      image_list * pilGray,
-      image_list * pilParam,
+      sp(image_list) pilGray,
+      sp(image_list) pilParam,
       COLORREF cr,
       BYTE bAlpha);
 
@@ -331,7 +331,7 @@ public:
    virtual bool LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, sp(::ca::application) papp);
 
    virtual FIBITMAP * LoadImageFile(var varFile, sp(::ca::application) papp);
-   virtual FIBITMAP * LoadImageFile(::ca::file * pfile);
+   virtual FIBITMAP * LoadImageFile(sp(::ca::file) pfile);
    virtual ::ca::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::ca::bitmap_sp hbitmap);
    virtual ::ca::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, sp(::ca::application) papp);

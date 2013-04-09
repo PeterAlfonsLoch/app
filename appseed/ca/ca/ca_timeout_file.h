@@ -19,7 +19,7 @@ namespace ca
       sp(mutex)         m_spmutex;
 
 
-      timeout_file(sp(::ca::application) papp, ::ca::file * pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
+      timeout_file(sp(::ca::application) papp, sp(::ca::file) pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
       virtual ~timeout_file();
 
       virtual bool IsValid() const;

@@ -121,7 +121,7 @@ namespace sockets
 
          if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
          {
-            ::xml::node * pnode = m_fields["xml"].ca < ::xml::node >();
+            sp(::xml::node) pnode = m_fields["xml"].ca < ::xml::node >();
             body = pnode->get_xml();
             body.trim();
             if(inheader("Content-type").get_string().find_ci("application/xml") < 0)

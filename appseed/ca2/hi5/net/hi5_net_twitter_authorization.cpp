@@ -66,7 +66,7 @@ namespace hi5
             if(m_pdoc == ::null())
                return;
 
-            userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
+            sp(userex::pane_tab_view) pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
             pview->set_view_creator(this);
             m_ptabview = pview;
             pview->add_tab("ca2open", 1);

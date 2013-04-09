@@ -67,7 +67,7 @@ namespace platform
 
    }
 
-   view * document::get_platform_view()
+   sp(view) document::get_platform_view()
    {
 
       return get_typed_view < view > ();

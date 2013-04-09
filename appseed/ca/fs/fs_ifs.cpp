@@ -33,7 +33,7 @@ bool ifs::has_subdir(const char * pszPath)
    if(doc.get_root()->get_name() != "folder")
       return false;
 
-   xml::node * pnode = doc.get_child("folder");
+   sp(::xml::node) pnode = doc.get_child("folder");
 
    if(pnode == ::null())
       return false;
@@ -87,7 +87,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
    if(doc.get_root()->get_name() != "folder")
       return false;
 
-   xml::node * pnode = doc.get_root()->get_child("folder");
+   sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
    if(pnode != ::null())
    {

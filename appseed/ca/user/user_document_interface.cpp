@@ -57,7 +57,7 @@ namespace user
       single_lock sl(&m_mutex, true);
       for(index index = 0; index < m_viewptra.get_count(); index++)
       {
-         ::view * pview = (::view *)m_viewptra[index];
+         sp(::view) pview = m_viewptra(index);
          ASSERT_VALID(pview);
          ASSERT_KINDOF(::view, pview);
          pview->m_spdocument->release();
@@ -118,7 +118,7 @@ namespace user
       index index;
       for(index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -134,7 +134,7 @@ namespace user
       count = get_view_count();
       for(index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -155,7 +155,7 @@ namespace user
       count = get_view_count();
       for(index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -184,7 +184,7 @@ namespace user
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
          sp(frame_window) pFrame = pview->GetParentFrame();
          // assume frameless views are ok to close
@@ -361,7 +361,7 @@ namespace user
 
       if(newName.is_empty() || is_new_document())
       {
-         document_template * ptemplate = get_document_template();
+         sp(document_template) ptemplate = get_document_template();
          ASSERT(ptemplate != ::null());
 
          newName = m_strPathName;
@@ -708,7 +708,7 @@ namespace user
       for(index index = 0; index < m_viewptra.get_count(); index++)
       {
          // get frame attached to the ::view
-         ::view * pview = m_viewptra[index];
+         sp(::view) pview = m_viewptra(index);
          ASSERT_VALID(pview);
          sp(frame_window) pFrame = pview->GetParentFrame();
 
@@ -738,7 +738,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::view operations
 
-   void document_interface::add_view(::view * pview)
+   void document_interface::add_view(sp(::view) pview)
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
@@ -750,7 +750,7 @@ namespace user
       }
    }
 
-   void document_interface::remove_view(::view * pview)
+   void document_interface::remove_view(sp(::view) pview)
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
@@ -767,17 +767,17 @@ namespace user
       return m_viewptra.get_count();
    }
 
-   ::view * document_interface::get_view(index index) const
+   sp(::view) document_interface::get_view(index index) const
    {
       single_lock sl(&((document_interface *) this)->m_mutex, true);
       if(index < 0 || index >= m_viewptra.get_count())
          return ::null();
-      ::view * pview = (::view *) m_viewptra[index];
+      sp(::view) pview = m_viewptra(index);
       ASSERT_KINDOF(::view, pview);
       return pview;
    }
 
-   void document_interface::update_all_views(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void document_interface::update_all_views(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == ::null() || !m_viewptra.is_empty());
@@ -786,14 +786,14 @@ namespace user
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
          if (pview != pSender)
             pview->on_update(pSender, lHint, pHint);
       }
    }
 
-   void document_interface::send_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void document_interface::send_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == ::null() || !m_viewptra.is_empty());
@@ -803,7 +803,7 @@ namespace user
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
 
          pupdate = new update;
          pupdate->m_pSender = pSender;
@@ -820,7 +820,7 @@ namespace user
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
          pview->_001OnInitialUpdate(::null());
       }
@@ -859,7 +859,7 @@ namespace user
          ::count count = get_view_count();
          for(index index = 0; index < count; index++)
          {
-            ::view * pview = get_view(index);
+            sp(::view) pview = get_view(index);
             dumpcontext << "\nwith ::view " << (void *)pview;
          }
       }
@@ -874,7 +874,7 @@ namespace user
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          ASSERT_VALID(pview);
       }
    }
@@ -896,12 +896,12 @@ namespace user
    }
 
 
-   ::view * document_interface::get_typed_view(sp(::ca::type_info) info, index indexFind)
+   sp(::view) document_interface::get_typed_view(sp(::ca::type_info) info, index indexFind)
    {
       single_lock sl(&m_mutex, true);
       ::count countView = get_view_count();
       ::count countFind = 0;
-      ::view * pview;
+      sp(::view) pview;
       for(index index = 0; index < countView; index++)
       {
          pview = get_view(index);
@@ -922,7 +922,7 @@ namespace user
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
       {
-         ::view * pview = get_view(index);
+         sp(::view) pview = get_view(index);
          pview->GetParentFrame()->ShowWindow(nCmdShow);
       }
    }
@@ -933,7 +933,7 @@ namespace user
    { ASSERT(this != ::null()); return m_strTitle; }
    const string & document_interface::get_path_name() const
    { ASSERT(this != ::null()); return m_strPathName; }
-   document_template * document_interface::get_document_template() const
+   sp(document_template) document_interface::get_document_template() const
    { ASSERT(this != ::null()); return m_pdocumentemplate; }
    bool document_interface::is_modified()
    { ASSERT(this != ::null()); return m_bModified; }

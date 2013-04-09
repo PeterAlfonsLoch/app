@@ -180,7 +180,7 @@ namespace userex
             sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
             if(pdoc != ::null())
             {
-               ::view * pview = pdoc->get_view();
+               sp(::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
                   sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
@@ -203,7 +203,7 @@ namespace userex
 
             if(pdoc != ::null())
             {
-               ::view * pview = pdoc->get_view();
+               sp(::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
                   sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();

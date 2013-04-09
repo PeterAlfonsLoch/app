@@ -13,7 +13,7 @@ namespace ca2 // ca8 + cube
 
 
       sp(::form_document)               m_pdoc;
-      form_view *                   m_pview;
+      sp(form_view)                   m_pview;
 
 
       network_configuration(sp(::ca::application) papp);

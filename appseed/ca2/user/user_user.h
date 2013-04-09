@@ -56,9 +56,9 @@ namespace ca
 
       // Running Operations - to be done on a running user
          // Dealing with document templates
-         void add_document_template(document_template * ptemplate);
+         void add_document_template(sp(document_template) ptemplate);
          ::count get_template_count() const;
-         document_template * get_template(index index) const;
+         sp(document_template) get_template(index index) const;
 
 
   //       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
@@ -71,9 +71,9 @@ namespace ca
 
    // Running Operations - to be done on a running user
       // Dealing with document templates
-   /*   void add_document_template(document_template * ptemplate);
+   /*   void add_document_template(sp(document_template) ptemplate);
       POSITION get_template_count() const;
-      document_template * get_template(POSITION& pos) const;
+      sp(document_template) get_template(POSITION& pos) const;
 
       // open named file, trying to match a regsitered
       // document template to it.
@@ -100,7 +100,7 @@ namespace ca
 
       // helpers for standard commdlg dialogs
       bool do_prompt_file_name(var & varFile, UINT nIDSTitle,
-            uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate);
+            uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate);
       int_ptr DoPrintDialog(CPrintDialog* pPD);
    // Implementation
          // Server object for document creation

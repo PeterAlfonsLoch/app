@@ -16,7 +16,7 @@ public:
    public:
 
 
-      document_template *                 m_ptemplate;
+      sp(document_template)                 m_ptemplate;
       sp(::user::document_interface)        m_pdocument;
       var                                 m_varFile;
 
@@ -96,7 +96,7 @@ public:
    //sp(frame_window) CreateOleFrame(sp(::ca::window) pParentWnd, sp(::user::document_interface) pDoc,
    //   bool bCreateView);
 
-   void update_all_views(::view * pviewSender, LPARAM lhint, ::ca::object * puh);
+   void update_all_views(sp(::view) pviewSender, LPARAM lhint, ::ca::object * puh);
 
    virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
    virtual sp(::user::document_interface) create_new_document();

@@ -13,7 +13,7 @@ namespace userstack
    public:
 
 
-      form_view *                               m_pformOptions;
+      sp(form_view)                               m_pformOptions;
       visual::dib_sp                            m_dibBk;
       int32_t                                       m_iNewArea;
       int32_t                                       m_iArea;
@@ -23,7 +23,7 @@ namespace userstack
 
 
 
-      pane_view(::ca::application * papp);
+      pane_view(sp(::ca::application) papp);
       virtual ~pane_view();
 
       using ::userbase::tab_view::on_show_view;
@@ -53,7 +53,7 @@ namespace userstack
 
       virtual void set_display(int32_t iDisplay);
 
-      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
    #ifdef DEBUG

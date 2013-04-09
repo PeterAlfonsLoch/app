@@ -46,10 +46,10 @@ namespace ca
 
    data::~data()
    {
-      comparable_array < data_listener * > listenerptra = m_listenerptra;
+      spa(data_listener) listenerptra = m_listenerptra;
       for(int32_t i = 0; i < listenerptra.get_count(); i++)
       {
-         listenerptra[i]->listen(this, false);
+         listenerptra[i].listen(this, false);
       }
    }
 
@@ -62,18 +62,8 @@ namespace ca
    {
       for(int32_t i = 0; i < m_listenerptra.get_count(); i++)
       {
-         m_listenerptra[i]->on_update_data(this, iHint);
+         m_listenerptra[i].on_update_data(this, iHint);
       }
-   }
-
-   bool data::initialize_data()
-   {
-      return true;
-   }
-
-   bool data::finalize_data()
-   {
-      return true;
    }
 
    void data::edit(::ca::base_edit * pbaseedit)

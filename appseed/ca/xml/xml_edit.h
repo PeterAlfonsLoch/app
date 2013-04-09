@@ -27,10 +27,10 @@ namespace xml
       string         m_strValue;
 
 
-      void set_name(const ::xml::node * pnode);
-      void set_value(const ::xml::node * pnode);
-      void set_attr(const ::xml::node * pnode, const attr * pattr);
-      void add_attr(const ::xml::node * pnode, const attr * pattr);
+      void set_name(const sp(::xml::node) pnode);
+      void set_value(const sp(::xml::node) pnode);
+      void set_attr(const sp(::xml::node) pnode, const attr * pattr);
+      void add_attr(const sp(::xml::node) pnode, const attr * pattr);
 
 
       virtual void write(::ca::byte_output_stream & ostream);
@@ -54,10 +54,10 @@ namespace xml
       virtual ~edit();
 
 
-      void set_name(const ::xml::node * pnode);
-      void set_value(const ::xml::node * pnode);
-      void set_attr(const ::xml::node * pnode, const attr * pattr);
-      void add_attr(const ::xml::node * pnode, const attr * pattr);
+      void set_name(const sp(::xml::node) pnode);
+      void set_value(const sp(::xml::node) pnode);
+      void set_attr(const sp(::xml::node) pnode, const attr * pattr);
+      void add_attr(const sp(::xml::node) pnode, const attr * pattr);
 
 
    private:

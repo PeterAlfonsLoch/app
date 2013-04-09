@@ -11,36 +11,34 @@ namespace fs
    public:
 
 
-      string                  m_strPath;
-      critical_section        m_csBrowse;
-      bool                    m_bCreateImageList;
-      bool                    m_bCreateImageListRedraw;
-      int32_t                     m_iAnimate;
-      bool                    m_bTimer123;
-      stringa                 m_straUpdatePtrFilter;
-      stringa                 m_straMissingUpdate;
-      bool                    m_bDelayedListUpdate;
-      ::ca::tree_item *        m_pdataitemCreateImageListStep;
-      int32_t                     m_iDefaultImage;
-      int32_t                     m_iDefaultImageSelected;
+      string                        m_strPath;
+      critical_section              m_csBrowse;
+      bool                          m_bCreateImageList;
+      bool                          m_bCreateImageListRedraw;
+      int32_t                       m_iAnimate;
+      bool                          m_bTimer123;
+      stringa                       m_straUpdatePtrFilter;
+      stringa                       m_straMissingUpdate;
+      bool                          m_bDelayedListUpdate;
+      sp(::ca::tree_item)           m_pdataitemCreateImageListStep;
+      int32_t                       m_iDefaultImage;
+      int32_t                       m_iDefaultImageSelected;
 
          
       tree_interface(sp(::ca::application) papp);
       virtual ~tree_interface();
 
 
-      virtual bool initialize();
-
       void update_list();
 
-      void _001OnItemExpand(::ca::tree_item * pitem);
-      void _017UpdateList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel);
+      void _001OnItemExpand(sp(::ca::tree_item) pitem);
+      void _017UpdateList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel);
 
       sp(document) get_document();
-      virtual tree_data * get_fs_tree_data();
+      virtual sp(tree_data) get_fs_tree_data();
 
       virtual void _001InsertColumns();
-      virtual void _001UpdateImageList(::ca::tree_item * pitem);
+      virtual void _001UpdateImageList(sp(::ca::tree_item) pitem);
 
    
 
@@ -53,8 +51,8 @@ namespace fs
       void _CreateImageListStep();
 
       // user::tree
-      virtual void _001OnOpenItem(::ca::tree_item * pitem);
-      virtual void _001OnItemCollapse(::ca::tree_item * pitem);
+      virtual void _001OnOpenItem(sp(::ca::tree_item) pitem);
+      virtual void _001OnItemCollapse(sp(::ca::tree_item) pitem);
 
 
       virtual void _017OpenFolder(sp(::fs::item) item);
@@ -69,12 +67,12 @@ namespace fs
 
       void _017Browse(const char * lpcsz, bool bForceUpdate = false);
       void _017UpdateList();
-      void _017UpdateZipList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel);
+      void _017UpdateZipList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel);
       void _017EnsureVisible(const char * lpcsz);
       
-      ::ca::tree_item * find_item(const char * lpcsz);
+      sp(::ca::tree_item) find_item(const char * lpcsz);
 
-      ::ca::tree_item * find_absolute(const char * lpcsz);
+      sp(::ca::tree_item) find_absolute(const char * lpcsz);
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
       void arrange(e_arrange earrange);
 

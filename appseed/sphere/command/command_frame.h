@@ -14,7 +14,7 @@ namespace command
       string                  m_strAnimatedStatusBarText;
       bool                    m_bAutoHideOnOutClick;
       int32_t                     m_iAnimateStep;
-      image_list *            m_pimagelist;
+      sp(image_list)            m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
       simple_toolbar          m_toolbar;
@@ -22,7 +22,7 @@ namespace command
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-	   frame(::ca::application * papp);
+	   frame(sp(::ca::application) papp);
       virtual ~frame();
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

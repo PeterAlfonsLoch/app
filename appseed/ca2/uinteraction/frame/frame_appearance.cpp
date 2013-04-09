@@ -222,7 +222,7 @@ namespace uinteraction
       bool appearance::IsInAutomaticModeSwitching()
       {
 
-         sp(::database::user::interaction) pui = dynamic_cast < ::database::user::interaction * > (GetWnd().m_p);
+         sp(::database::user::interaction) pui =  (GetWnd().m_p);
 
          if(pui != ::null() && !pui->does_display_match())
             return false;

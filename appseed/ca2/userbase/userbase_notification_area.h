@@ -42,7 +42,7 @@ namespace userbase
 
 
       oswindow             m_oswindowTray;
-      image_list *         m_pil16;
+      sp(image_list)         m_pil16;
 #ifdef WINDOWSEX
       spa(TrayItemInfo)    m_infoa;
 #endif

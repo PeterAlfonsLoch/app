@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   view::view(::ca::application * papp) :
+   view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp)
@@ -94,13 +94,13 @@ namespace command
    }
 
 
-   void view::on_update(::view* pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
       if(lHint == 5432108)
       {
-         SetTimer(5432108, 100, NULL);
+         SetTimer(5432108, 100, ::null());
       }
 
    }
@@ -151,7 +151,7 @@ namespace command
    {
       if(pobj->previous())
          return;
-      SetTimer(543218, 1000, NULL);
+      SetTimer(543218, 1000, ::null());
    }
 
 
@@ -168,7 +168,7 @@ namespace command
    {
       if(iTab == 1)
       {
-         Application.simple_message_box(NULL, "Playlist");
+         Application.simple_message_box(::null(), "Playlist");
       }
    }
 
@@ -183,9 +183,9 @@ namespace command
 
    }
 
-   document * view::get_document()
+   sp(document) view::get_document()
    {
-      return dynamic_cast < document * > (::userbase::view::get_document());
+      return  (::userbase::view::get_document());
    }
 
 

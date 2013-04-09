@@ -19,18 +19,18 @@ namespace userstack
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
       image_list  *              m_pimagelist;
-      document *                 m_pdocument;
+      sp(document)                 m_pdocument;
       bool                       m_bHoverMouse;
       uint32_t                      m_dwLastHover;
       bool                       m_bTimerOn;
 
       bool                       m_bMouseOver;
 
-      view *                     m_pview;
+      sp(view)                     m_pview;
       pane_view *                m_ppaneview;
 
 
-      frame(::ca::application * papp);
+      frame(sp(::ca::application) papp);
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);

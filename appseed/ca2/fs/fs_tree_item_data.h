@@ -1,10 +1,11 @@
 #pragma once
 
+
 namespace fs
 {
 
 
-   class CLASS_DECL_ca2 tree_item :
+   class CLASS_DECL_ca2 tree_item_data :
       virtual public ::ca::tree_item_data,
       virtual public ::fs::item
 
@@ -20,12 +21,12 @@ namespace fs
       int32_t                                m_iImageSelected;
 
 
-      tree_item();
+      tree_item_data();
 
-      string get_text(::ca::tree * ptree);
-      index get_image(::ca::tree * ptree);
+      string get_text(sp(::ca::tree) ptree);
+      index get_image(sp(::ca::tree) ptree);
 
-      static int32_t CompareArrangeByName(::ca::tree_item * pitema, ::ca::tree_item * pitemb, ::ca::tree_data * pdata);
+      static int32_t CompareArrangeByName(sp(::ca::tree_item) & pitema, sp(::ca::tree_item) & pitemb);
       int32_t get_index() const;
       bool is_folder() const;
 
@@ -34,3 +35,8 @@ namespace fs
 
 
 } // namespace fs
+
+
+
+
+

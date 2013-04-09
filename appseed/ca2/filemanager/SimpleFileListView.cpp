@@ -79,7 +79,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+   void SimpleFileListView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
 
       FileManagerViewInterface::on_update(pSender, lHint, phint);
@@ -213,7 +213,7 @@ namespace filemanager
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeGetActiveViewSelection))
             {
-               if(GetParentFrame()->GetActiveView() == dynamic_cast < ::view * > (this))
+               if(GetParentFrame()->GetActiveView() ==  (this))
                {
                   GetSelected(puh->m_itemaSelected);
                }

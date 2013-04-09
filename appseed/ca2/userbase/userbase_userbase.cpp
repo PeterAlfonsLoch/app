@@ -116,7 +116,7 @@ namespace userbase
    }
 
 
-   void userbase::add_document_template(::userbase::document_template * ptemplate)
+   void userbase::add_document_template(sp(::userbase::document_template) ptemplate)
    {
       if(Application.m_pdocmanager == ::null())
          Application.m_pdocmanager = new ::userbase::document_manager(get_app());
@@ -124,9 +124,9 @@ namespace userbase
    }
 
 
-   void userbase::defer_add_document_template(::document_template * ptemplate)
+   void userbase::defer_add_document_template(sp(::document_template) ptemplate)
    {
-      ::userbase::document_template * puserbasetemplate = dynamic_cast < ::userbase::document_template * > (ptemplate);
+      sp(::userbase::document_template) puserbasetemplate =  (ptemplate);
 
       if(puserbasetemplate == ::null())
          throw "should add user base document template";

@@ -15,7 +15,7 @@ namespace ca
       virtual ~file_manager_interface();
       
       
-      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument);
+      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::user::document_interface) pdocument);
 
       bool initialize(sp(::ca::application) papp);
 

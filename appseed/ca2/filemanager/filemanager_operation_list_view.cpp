@@ -79,7 +79,7 @@ void file_manager_operation_list_view::_001OnInitialUpdate(::ca::signal_object *
 }
 
 
-void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint)
+void file_manager_operation_list_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(pHint);

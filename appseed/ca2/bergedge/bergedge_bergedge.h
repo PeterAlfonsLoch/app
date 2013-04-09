@@ -35,10 +35,10 @@ namespace bergedge
       string_map < sp(::ca::application) >               m_mapApplication;
 
 
-      ::userbase::single_document_template *                         m_ptemplate_bergedge;
-      ::userbase::single_document_template *                         m_ptemplate_platform;
-      ::userbase::single_document_template *                         m_ptemplate_nature;
-      ::userbase::single_document_template *                         m_ptemplate_html;
+      sp(::userbase::single_document_template)                         m_ptemplate_bergedge;
+      sp(::userbase::single_document_template)                         m_ptemplate_platform;
+      sp(::userbase::single_document_template)                         m_ptemplate_nature;
+      sp(::userbase::single_document_template)                         m_ptemplate_html;
       sp(document)                                                     m_pbergedgedocument;
       sp(::platform::document)                                           m_pplatformdocument;
       sp(::nature::document)                                             m_pnaturedocument;
@@ -94,11 +94,9 @@ namespace bergedge
 
       virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
 
-      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
+      virtual ::user::place_holder_ptra get_place_holder(sp(::frame_window) pmainframe, sp(::ca::create_context) pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
-
-      virtual bool place(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
+      virtual bool place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 

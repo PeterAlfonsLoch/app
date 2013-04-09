@@ -19,8 +19,8 @@ namespace userbase
       image_manager();
       virtual ~image_manager();
 
-      image_list * m_pimagelist;
-      image_list * m_pimagelistDisable;
+      sp(image_list) m_pimagelist;
+      sp(image_list) m_pimagelistDisable;
       ///CBaseNumericDiscreteRelation < UINT, UINT, UINT, UINT > m_rel;
       map < id, id, UINT, UINT > m_rel;
 

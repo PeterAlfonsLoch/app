@@ -11,7 +11,7 @@ namespace userstack
 
       m_bDrawCursor              = true;
       m_bShowPlatform            = false;
-      m_pappCurrent              = NULL;
+      m_pappCurrent              = ::null();
       m_bLicense				      = false;
 
       m_strAppName               = "userstack";
@@ -67,19 +67,19 @@ namespace userstack
       }
 
       string strId;
-      ::ca::application * pcaapp;
+      sp(::ca::application) pcaapp;
 
       POSITION pos = m_mapApplication.get_start_position();
 
-      while(pos != NULL)
+      while(pos != ::null())
       {
 
          strId.Empty();
-         pcaapp = NULL;
+         pcaapp = ::null();
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
+         sp(::ca::application) papp = dynamic_cast < sp(::ca::application) > (pcaapp);
 
          papp->post_thread_message(WM_QUIT, 0, 0);
       }
@@ -109,7 +109,7 @@ namespace userstack
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * application::get_app() const
+   sp(::ca::application) application::get_app() const
    {
       return ::asphere::application::get_app();
    }
@@ -170,7 +170,7 @@ namespace userstack
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void application::on_request(sp(::ca::create_context) pcreatecontext)
    {
 
 
@@ -185,14 +185,14 @@ namespace userstack
       {
 #ifdef WINDOWSEX
          ::primitive::memory_file file(get_app());
-         file.from_string(command().m_varTopicFile);
+         file.from_string(command()->m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::application::");
+         ::oswindow oswindow = ::FindWindowA(::null(), "::ca::fontopus::message_wnd::application::");
 
-         ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
+         ::SendMessage(oswindow, WM_COPYDATA, ::null(), (LPARAM) &data);
 #else
          throw todo(get_app());
 #endif
@@ -200,19 +200,19 @@ namespace userstack
    }
 
 
-/*   void application::request(::ca::create_context * pcreatecontext)
+/*   void application::request(sp(::ca::create_context) pcreatecontext)
    {
 
-      if(m_pappCurrent != NULL && m_pappCurrent != this
+      if(m_pappCurrent != ::null() && m_pappCurrent != this
          && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
-         if(get_document() != NULL && get_document()->get_typed_view < pane_view >() != NULL)
+         if(get_document() != ::null() && get_document()->get_typed_view < pane_view >() != ::null())
          {
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > () == ::null())
          {
             goto alt1;
          }
@@ -230,7 +230,7 @@ namespace userstack
                || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
-                  command().add_fork_uri(strCommand);
+                  command()->add_fork_uri(strCommand);
                }
                return;
             }
@@ -240,16 +240,16 @@ namespace userstack
             }
          }
          else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
-            get_document() != NULL && get_document()->get_typed_view < pane_view >() != NULL
-            && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+            get_document() != ::null() && get_document()->get_typed_view < pane_view >() != ::null()
+            && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == ::null()))
          {
-            //MessageBox(NULL, "request3", "request3", MB_ICONEXCLAMATION);
+            //MessageBox(::null(), "request3", "request3", MB_ICONEXCLAMATION);
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
             App(m_pappCurrent).request(pcreatecontext);
          }
          else
          {
-            //MessageBox(NULL, "request4", "request4", MB_ICONEXCLAMATION);
+            //MessageBox(::null(), "request4", "request4", MB_ICONEXCLAMATION);
             on_request(pcreatecontext);
          }
       }
@@ -264,28 +264,28 @@ namespace userstack
    }
 
 
-   ::ca::application * application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca::application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      ::ca::application * papp = NULL;
+      sp(::ca::application) papp = ::null();
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
       else
       {
          if(!bCreate)
-            return NULL;
-         papp = NULL;
+            return ::null();
+         papp = ::null();
          try
          {
             papp = create_application(pszType, pszId, bSynch, pbiasCreate);
          }
          catch(...)
          {
-            papp = NULL;
+            papp = ::null();
          }
-         if(papp == NULL)
-            return NULL;
-         if(&App(papp) == NULL)
+         if(papp == ::null())
+            return ::null();
+         if(&App(papp) == ::null())
          {
             try
             {
@@ -294,7 +294,7 @@ namespace userstack
             catch(...)
             {
             }
-            return NULL;
+            return ::null();
          }
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
@@ -302,7 +302,7 @@ namespace userstack
       }
    }
 
-   ::ca::application * application::get_current_application()
+   sp(::ca::application) application::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -317,44 +317,44 @@ namespace userstack
       }
    }
 
-/*   ::user::interaction * application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+/*   sp(::user::interaction) application::get_request_parent_ui(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
-      return get_request_parent_ui((::user::interaction * ) pmainframe, pcreatecontext);
+      return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
 
    }
 
-   ::user::interaction * application::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
    {
 
 
-      ::user::interaction * puiParent = NULL;
+      sp(::user::interaction) puiParent = ::null();
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != ::null())
          puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
 
-      if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
+      if(puiParent == ::null() && pcreatecontext->m_puiParent != ::null())
       {
          puiParent = pcreatecontext->m_puiParent;
       }
 
-      if(puiParent == NULL && pcreatecontext->m_spCommandLine->m_pbiasCreate != NULL)
+      if(puiParent == ::null() && pcreatecontext->m_spCommandLine->m_pbiasCreate != ::null())
       {
          puiParent = pcreatecontext->m_spCommandLine->m_pbiasCreate->m_puiParent;
       }
 
-      if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      if(puiParent == ::null() && pcreatecontext->m_spApplicationBias.is_set())
       {
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
 
-      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
+      if(pui == ::null() && m_puiInitialPlaceHolderContainer != ::null())
       {
          pui = m_puiInitialPlaceHolderContainer;
       }*/
 
-/*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
+/*      if(pui == ::null() && m_bShowPlatform && m_pbergedge->get_document() != ::null())
       {
          pui = Bergedge.get_document()->get_bergedge_view();
       }
@@ -364,7 +364,7 @@ namespace userstack
    }*/
 
   /*    if(pinteraction->get_app()->is_bergedge() || pcreatecontext->m_bClientOnly ||
-         Application.directrix().m_varTopicQuery["client_only"] != 0 ||
+         Application.directrix()->m_varTopicQuery["client_only"] != 0 ||
          pcreatecontext->m_bOuterPopupAlertLike)
       {
          return puiParent;
@@ -372,7 +372,7 @@ namespace userstack
 
       if(!create_bergedge(pcreatecontext))
       {
-         return NULL;
+         return ::null();
       }
 
 
@@ -385,10 +385,10 @@ namespace userstack
       if(strAppName != "bergedge")
       {
 
-         if(get_document() != NULL)
+         if(get_document() != ::null())
          {
 
-            if(get_document()->get_typed_view < ::application::pane_view >() != NULL)
+            if(get_document()->get_typed_view < ::application::pane_view >() != ::null())
             {
 
                get_document()->get_typed_view < ::application::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
@@ -411,7 +411,7 @@ namespace userstack
 
    }
 
-   ::user::place_holder_ptra application::get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   ::user::place_holder_ptra application::get_place_holder(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -423,7 +423,7 @@ namespace userstack
 
       string strAppName = app.m_strAppName;
 
-      if(get_document()->get_typed_view < ::application::pane_view >() != NULL)
+      if(get_document()->get_typed_view < ::application::pane_view >() != ::null())
       {
 
          get_document()->get_typed_view < ::application::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
@@ -442,7 +442,7 @@ namespace userstack
 
    }
 
-   bool application::place(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   bool application::place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -455,7 +455,7 @@ namespace userstack
 
    void application::get_screen_rect(LPRECT lprect)
    {
-      if(get_document() != NULL && get_view() != NULL)
+      if(get_document() != ::null() && get_view() != ::null())
       {
          get_view()->GetWindowRect(lprect);
       }
@@ -483,21 +483,21 @@ namespace userstack
    void application::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      ::ca::application * papp = NULL;
+      sp(::ca::application) papp = ::null();
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {
 
          pane_view * ppaneview = get_document()->get_typed_view < pane_view >();
 
-         if(ppaneview != NULL)
+         if(ppaneview != ::null())
          {
 
             string strAppName(pszAppId);
 
             ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
 
-            if(ppane != NULL)
+            if(ppane != ::null())
             {
 
                ppane->m_istrTitleEx = pszTitle;
@@ -589,7 +589,7 @@ namespace userstack
    {
 
 
-      return NULL;
+      return ::null();
 
 
    }

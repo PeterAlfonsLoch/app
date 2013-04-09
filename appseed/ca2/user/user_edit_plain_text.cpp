@@ -488,11 +488,8 @@ namespace user
 
    void edit_plain_text::_001OnCreate(::ca::signal_object * pobj)
    {
+
       SCAST_PTR(::ca::message::create, pcreate, pobj);
-
-      if(!::ca::tree::initialize())
-         throw simple_exception(get_app());
-
 
 
       if(get_document() != ::null()
@@ -511,9 +508,6 @@ namespace user
       {
          m_pdata->m_spdataParentLock = pdataParentLock;
       }
-
-      if(!m_pdata->initialize_data())
-         throw simple_exception(get_app());
 
       m_pdata->m_ptreeitem          = get_base_item();
 
@@ -1908,7 +1902,7 @@ namespace user
 
    void edit_plain_text::MacroBegin()
    {
-      plain_text_data::GroupCommand * pgroupcommand = new plain_text_data::GroupCommand;
+      sp(::plain_text_data::GroupCommand) pgroupcommand = new plain_text_data::GroupCommand;
       pgroupcommand->m_pparent = m_pdata->m_pgroupcommand;
       m_pdata->m_pgroupcommand = pgroupcommand;
    }
@@ -1928,7 +1922,7 @@ namespace user
    }
 
 
-   void edit_plain_text::MacroRecord(plain_text_data::Command * pcommand)
+   void edit_plain_text::MacroRecord(sp(plain_text_data::Command) pcommand)
    {
       if(m_pdata->m_pgroupcommand != ::null() && m_pdata->m_pgroupcommand != pcommand)
       {
@@ -1937,7 +1931,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != ::null())
       {
-         ::ca::tree_item * pitemNew = insert_item(m_pdata, pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
+         sp(::ca::tree_item) pitemNew = insert_item(m_pdata, pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != ::null())
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1945,7 +1939,7 @@ namespace user
       }
       else
       {
-         ::ca::tree_item * pitemNew = insert_item(m_pdata, pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
+         sp(::ca::tree_item) pitemNew = insert_item(m_pdata, pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != ::null())
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1960,7 +1954,7 @@ namespace user
          return false;
 
 
-      plain_text_data::Command * pcommand = (plain_text_data::Command *) m_pdata->m_ptreeitem->m_pitemdata;
+      sp(plain_text_data::Command) pcommand = (sp(plain_text_data::Command)) m_pdata->m_ptreeitem->m_pitemdata;
       pcommand->Undo(m_pdata);
       m_pdata->m_ptreeitem = m_pdata->m_ptreeitem->get_previous();
       CreateLineIndex();
@@ -1982,8 +1976,8 @@ namespace user
       {
          return false;
       }
-      plain_text_data::Command * pcommand = ::null();
-      ::ca::tree_item * ptreeitem;
+      sp(plain_text_data::Command) pcommand = ::null();
+      sp(::ca::tree_item) ptreeitem;
       if(m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_pdata->m_ptreeitem->get_expandable_child(m_pdata->m_iBranch);
@@ -1993,7 +1987,7 @@ namespace user
       if(ptreeitem == ::null())
          return false;
       m_pdata->m_ptreeitem = ptreeitem;
-      pcommand = (plain_text_data::Command *) ptreeitem->m_pitemdata;
+      pcommand = (sp(plain_text_data::Command)) ptreeitem->m_pitemdata;
       pcommand->Redo(m_pdata);
       CreateLineIndex();
       m_bGetTextNeedUpdate = true;
@@ -2179,7 +2173,7 @@ namespace user
     }
   }*/
 //  if (typeDescription == null || type == null){
-      ::view * pview = dynamic_cast < ::view *> (this);
+      sp(::view) pview =  (this);
    if (pview!= ::null())
    {
       sp(::user::document_interface) pdoc = pview->get_document();
@@ -2240,12 +2234,12 @@ namespace user
 
 
 
-   ::ca::tree_item_data * edit_plain_text::on_allocate_item()
+   sp(::ca::tree_item_data) edit_plain_text::on_allocate_item()
    {
       return new plain_text_data::Command;
    }
 
-   void edit_plain_text::on_delete_item(::ca::tree_item_data * pitem)
+   void edit_plain_text::on_delete_item(sp(::ca::tree_item_data) pitem)
    {
       delete pitem;
    }

@@ -65,7 +65,7 @@ namespace bergedge
 
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
@@ -93,7 +93,7 @@ namespace bergedge
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               (dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame().m_p))->SetActiveView(this);
+               ( (GetTopLevelFrame().m_p))->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
@@ -245,7 +245,7 @@ namespace bergedge
                pdoc->Initialize(true);
                pdoc->update_all_views(::null(), 1234);
                pdoc->update_all_views(::null(), 1234525);
-               ::view * pview = pdoc->get_view();
+               sp(::view) pview = pdoc->get_view();
                string strDirName;
                strDirName.Format("application-%d", 0);
                string strDir = Application.dir().userappdata("bergedge", strDirName);
@@ -283,7 +283,7 @@ namespace bergedge
          {
          case PaneViewContextMenu:
             {
-   /*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.type_info < bergedge::menu_view > (), get_document(), this, 102));
+   /*            sp(::userbase::view) pview = (create_view(System.type_info < bergedge::menu_view > (), get_document(), this, 102));
                if(pview != ::null())
                {
                   pcreatordata->m_pdoc = get_document();
@@ -308,7 +308,7 @@ namespace bergedge
                   pdoc->Initialize(true);
                   pdoc->update_all_views(::null(), 1234);
                   pdoc->update_all_views(::null(), 1234525);
-                  ::view * pview = pdoc->get_view();
+                  sp(::view) pview = pdoc->get_view();
                   string strDirName;
                   strDirName.Format("desktop-%d", m_iDisplay);
                   string strDir = Application.dir().userfolder(strDirName);
@@ -343,7 +343,7 @@ namespace bergedge
                   pdoc->update_all_views(::null(), 1234);
                   //pdoc->update_all_views(::null(), 123458);
                   pdoc->update_all_views(::null(), 1234525);
-                  ::view * pview = pdoc->get_view();
+                  sp(::view) pview = pdoc->get_view();
                   string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
                   check_3click_dir(strDir);
                   pdoc->FileManagerBrowse(strDir);

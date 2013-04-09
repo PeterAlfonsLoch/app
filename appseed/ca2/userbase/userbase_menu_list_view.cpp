@@ -68,7 +68,7 @@ namespace userbase
       return view::_001OnCmdMsg(pcmdmsg);
    }
 
-   bool menu_list_view::LoadMenu(xml::node * pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage)
+   bool menu_list_view::LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage)
    {
       
       m_uiMessage = uiCallbackMessage;

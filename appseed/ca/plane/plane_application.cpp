@@ -221,11 +221,11 @@ namespace plane
 
 
 
-   ::planebase::application * application::assert_running(const char * pszAppId)
+   sp(::planebase::application) application::assert_running(const char * pszAppId)
    {
 
 
-      ::planebase::application * papp = ::null();
+      sp(::planebase::application) papp = ::null();
 
 
       try
@@ -238,7 +238,7 @@ namespace plane
             try
             {
 
-               papp = dynamic_cast < ::planebase::application * > (System.m_appptra(i).m_p);
+               papp = System.m_appptra(i);
 
                if(papp->m_strAppName == pszAppId)
                {

@@ -163,7 +163,7 @@ namespace ca
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      string nessie(::ca::file * pfile);
+      string nessie(sp(::ca::file) pfile);
 
 //      path & path36();
 
@@ -174,11 +174,11 @@ namespace ca
       void is_valid_fileset(const char * pszFile, sp(::ca::application) papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(::ca::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(::ca::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+      static void write_n_number(sp(::ca::file) pfile, ::crypto::md5::context * pctx, int64_t iNumber);
+      static void read_n_number(sp(::ca::file) pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
 
-      static void write_gen_string(::ca::file * pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_gen_string(::ca::file * pfile, ::crypto::md5::context * pctx, string & str);
+      static void write_gen_string(sp(::ca::file) pfile, ::crypto::md5::context * pctx, string & str);
+      static void read_gen_string(sp(::ca::file) pfile, ::crypto::md5::context * pctx, string & str);
 
 
 

@@ -12,7 +12,7 @@ namespace filehandler
 
 
       pane_view *                                  m_ppaneview;      
-      ::userbase::single_document_template *       m_ptemplateMenu;
+      sp(::userbase::single_document_template)       m_ptemplateMenu;
 
 
       application();
@@ -24,7 +24,7 @@ namespace filehandler
       virtual int32_t exit_instance();
 
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
 
    };

@@ -13,7 +13,7 @@ namespace filemanager
       virtual ~SimplePreview();
 
       virtual void install_message_handling(::ca::message::dispatch * pdispatch);
-      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
    };
 
 

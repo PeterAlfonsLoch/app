@@ -121,7 +121,7 @@ namespace ca
 
       };
 
-      class ItemPtrArray : public array < Item *, Item * >
+      class ItemPtrArray : public array < sp(Item), sp(Item) >
       {
       public:
       };
@@ -161,16 +161,16 @@ namespace ca
 
       //ItemPtrArray         m_itemptra;
       //tree_data            m_tree;
-      ::ca::tree_item *   m_ptreeitem;
-      ::ca::tree_item *   m_ptreeitemFlush;
+      sp(::ca::tree_item)   m_ptreeitem;
+      sp(::ca::tree_item)   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
-      ::ca::file *          m_pfile;
+      sp(::ca::file)          m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(::ca::file * pfile);
+      void SetFile(sp(::ca::file) pfile);
 
-      void FillFilePosition(Item * pitem);
+      void FillFilePosition(sp(Item) pitem);
 
       edit_file(sp(::ca::application) papp);
       virtual ~edit_file();
@@ -212,17 +212,17 @@ namespace ca
       void MacroEnd();
 
 
-      ::ca::tree_item * get_previous(::ca::tree_item * pitem);
-      ::ca::tree_item * get_next(::ca::tree_item * pitem, bool bChild = true);
+      sp(::ca::tree_item) get_previous(sp(::ca::tree_item) pitem);
+      sp(::ca::tree_item) get_next(sp(::ca::tree_item) pitem, bool bChild = true);
 
-      virtual tree_item_data * on_allocate_item();
-      virtual void on_delete_item(tree_item_data * pitem);
+      virtual sp(tree_item_data) on_allocate_item();
+      virtual void on_delete_item(sp(tree_item_data) pitem);
 
 
    protected:
       
       
-      void TreeInsert(Item * pitem);
+      void TreeInsert(sp(Item) pitem);
       bool calc_root_direction();
 
 

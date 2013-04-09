@@ -27,6 +27,43 @@ class index_array;
 #define __max(a,b)  (((a) > (b)) ? (a) : (b))
 #endif
 
+#define ARRAY_MOVE_SEMANTICS(A) \
+      \
+   A(A && a) :  \
+   ca(a.get_app()) \
+   { \
+    \
+   m_nGrowBy      = a.m_nGrowBy; \
+   m_pData        = a.m_pData; \
+   m_nSize        = a.m_nSize; \
+   m_nMaxSize     = a.m_nMaxSize; \
+   \
+   a.m_pData      = ::null(); \
+   \
+   } \
+   \
+   inline A & A::operator = (A && a)      \
+   {                                      \
+                                          \
+      if(&a != this)                      \
+      { \
+         destroy(); \
+         \
+         m_nGrowBy      = a.m_nGrowBy; \
+         m_pData        = a.m_pData; \
+         m_nSize        = a.m_nSize; \
+         m_nMaxSize     = a.m_nMaxSize; \
+         \
+         a.m_pData      = null(); \
+         \
+      } \
+      \
+   return *this; \
+   \
+   } 
+
+
+
 
 // raw array is a special array and should be used with care
 // it uses operations like memmove and memcopy to move objects and does not
@@ -417,7 +454,7 @@ public:
 
    array(sp(::ca::application) papp = ::null(), ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
-   array(array <TYPE, ARG_TYPE> && a);
+   ARRAY_MOVE_SEMANTICS(array);
    array(::count n);
    array(ARG_TYPE t, ::count n = 1);
    array(TYPE * ptypea, ::count n);
@@ -520,7 +557,6 @@ public:
    void swap(index index1, index index2);
 
    array & operator = (const array & src);
-   array & operator = (array && src);
 
    index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;
    index raw_find_first(TYPE * pt, index first = 0, index last = -1) const;
@@ -850,27 +886,6 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & 
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (array && a)
-{
-
-   if(&a != this)
-   {
-
-      destroy();
-
-      m_nGrowBy      = a.m_nGrowBy;
-      m_pData        = a.m_pData;
-      m_nSize        = a.m_nSize;
-      m_nMaxSize     = a.m_nMaxSize;
-
-      a.m_pData      = null();
-
-   }
-
-   return *this;
-
-}
 
 // out-of-line functions
 
@@ -893,19 +908,6 @@ ca(a.get_app())
    operator = (a);
 }
 
-template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(array <TYPE, ARG_TYPE> && a) :
-ca(a.get_app())
-{
-   
-   m_nGrowBy      = a.m_nGrowBy;
-   m_pData        = a.m_pData;
-   m_nSize        = a.m_nSize;
-   m_nMaxSize     = a.m_nMaxSize;
-
-   a.m_pData      = ::null();
-
-}
 
 
 template<class TYPE, class ARG_TYPE>

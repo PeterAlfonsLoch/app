@@ -153,10 +153,10 @@ namespace filemanager
 
 
 
-   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument)
+   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::user::document_interface) pdocument)
    {
 
-      ::userex::pane_tab_view * ppanetabview = ::null();
+      sp(::userex::pane_tab_view) ppanetabview = ::null();
       if(pdocument->get_view() != ::null() && pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > () != ::null())
       {
          ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > ();

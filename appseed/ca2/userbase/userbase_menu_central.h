@@ -10,12 +10,12 @@ public:
    static BaseMenuCentral * GetMenuCentral(sp(::ca::application) papp);
    BaseMenuCentral(sp(::ca::application) papp);
    virtual ~BaseMenuCentral();
-   image_list * MenuV033GetImageList();
-   image_list * MenuV033GetImageListHue();
-   image_list * MenuV033GetImageListBlend();
-   image_list * MenuV033GetImageListHueLight();
+   sp(image_list) MenuV033GetImageList();
+   sp(image_list) MenuV033GetImageListHue();
+   sp(image_list) MenuV033GetImageListBlend();
+   sp(image_list) MenuV033GetImageListHueLight();
    //bool MenuV033CreateImageMap(UINT uiaMenuV003Map [][2]);
-   bool MenuV033AddImageMap(xml::node * lpnode);
+   bool MenuV033AddImageMap(sp(::xml::node) lpnode);
 
    UINT CommandToImage(id id);
    id ImageToCommand(UINT uiImage);
@@ -24,10 +24,10 @@ public:
    map < id, id, UINT, UINT > m_mapCommandToImage;
    map < UINT, UINT, id, id > m_mapImageToCommand;
 
-   image_list *    m_pil;
-   image_list *    m_pilHue;
-   image_list *    m_pilBlend;
-   image_list *    m_pilHueLight;
+   sp(image_list)    m_pil;
+   sp(image_list)    m_pilHue;
+   sp(image_list)    m_pilBlend;
+   sp(image_list)    m_pilHueLight;
    ::ca::font_sp          m_fontMenu;
 
    ::ca::font * MenuV033GetFont();

@@ -12,30 +12,30 @@ namespace ca
    {
    }
 
-   bool tree_item_data::set_tree_data(tree_data * pdata)
+   bool tree_item_data::set_tree_data(sp(tree_data) pdata)
    {
       m_pdata = pdata;
       return true;
    }
 
-   tree_data * tree_item_data::get_tree_data()
+   sp(tree_data) tree_item_data::get_tree_data()
    {
       return m_pdata;
    }
 
-   string tree_item_data::get_text(tree * ptree)
+   string tree_item_data::get_text(sp(tree) ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
       return "";
    }
 
-   index tree_item_data::get_image(tree * ptree)
+   index tree_item_data::get_image(sp(tree) ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
       return -1;
    }
 
-   image_list * tree_item_data::get_image_list(tree * ptree)
+   sp(image_list) tree_item_data::get_image_list(sp(tree) ptree)
    {
       if(ptree == ::null())
          return ::null();

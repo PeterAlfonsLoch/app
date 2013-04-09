@@ -3530,7 +3530,7 @@ namespace user
       {
          pcolumn->m_pil = new image_list(get_app());
       }
-//      image_list * pil = column.m_pil;
+//      sp(image_list) pil = column.m_pil;
       //   if(pil != ::null())
       //      pil->DeleteImageList();
       throw not_implemented(get_app());
@@ -5239,7 +5239,7 @@ namespace user
    }
 
 
-   image_list * draw_list_item::get_image_list()
+   sp(image_list) draw_list_item::get_image_list()
    {
       if(m_bListItemHover && m_pcolumn->m_pilHover != ::null())
       {

@@ -11,7 +11,7 @@ namespace command
    {
    }
 
-   void form_callback::on_update(::user::form * pview, ::view* pSender, LPARAM lHint, ::ca::object* phint) 
+   void form_callback::on_update(::user::form * pview, sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
    {
       UNREFERENCED_PARAMETER(pview);
       UNREFERENCED_PARAMETER(pSender);
@@ -23,8 +23,8 @@ namespace command
    bool form_callback::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
-      ::user::interaction * pguie = dynamic_cast < ::user::interaction * > (this);
-      if(pguie != NULL && pguie->get_parent() != NULL)
+      sp(::user::interaction) pguie =  (this);
+      if(pguie != ::null() && pguie->get_parent() != ::null())
       {
          return pguie->get_parent()->BaseOnControlEvent(pevent);
       }

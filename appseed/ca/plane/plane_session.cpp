@@ -456,7 +456,7 @@ namespace plane
    }
 
 
-   ::planebase::application * session::start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext)
+   sp(::planebase::application) session::start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);
@@ -540,7 +540,7 @@ namespace plane
       return m_pbergedgedocument;
    }
 
-   ::session::view * session::get_view()
+   ::sessionsp(::view) session::get_view()
    {
       if(get_document() == ::null())
          return ::null();
@@ -854,13 +854,6 @@ namespace plane
       }
    }
 
-   sp(::user::interaction) session::get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
-   {
-
-      return get_request_parent_ui((::user::interaction *) pmainframe, pcreatecontext);
-
-   }
-
    sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
    {
 
@@ -948,7 +941,7 @@ namespace plane
 
    }
 
-/*   ::user::place_holder_ptra session::get_place_holder(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
+/*   ::user::place_holder_ptra session::get_place_holder(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -980,7 +973,7 @@ namespace plane
    }*/
 
    /*
-   bool session::place(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool session::place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

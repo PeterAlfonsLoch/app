@@ -7,8 +7,8 @@ namespace filehandler
 
    application::application()
    {
-      m_ptemplateMenu   = NULL;
-      m_ppaneview       = NULL;
+      m_ptemplateMenu   = ::null();
+      m_ppaneview       = ::null();
    }
 
 
@@ -76,15 +76,15 @@ namespace filehandler
 
    }
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void application::on_request(sp(::ca::create_context) pcreatecontext)
    {
 
-      if(m_ppaneview == NULL)
+      if(m_ppaneview == ::null())
       {
          m_ptemplateMenu->open_document_file(pcreatecontext);
       }
 
-      if(m_ppaneview != NULL && pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+      if(m_ppaneview != ::null() && pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
          m_ppaneview->set_cur_tab_by_id("default_file_handler://" + pcreatecontext->m_spCommandLine->m_varFile.get_string());
       }

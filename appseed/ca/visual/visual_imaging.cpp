@@ -190,7 +190,7 @@ return LoadImageFile(ar.GetFile());
 }
 */
 
-FIBITMAP * imaging::LoadImageFile(::ca::file * pfile)
+FIBITMAP * imaging::LoadImageFile(sp(::ca::file) pfile)
 {
 
    if(pfile == ::null())
@@ -236,7 +236,7 @@ return false;
 
 file.seek_to_begin();
 
-::ca::file * pfile = &file;
+sp(::ca::file) pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;
@@ -740,12 +740,12 @@ bool imaging::GrayVRCP(
       crTransparent);
 }
 
-/*::image_list * imaging::CreateGrayVRCPImageList(
+/*::sp(image_list) imaging::CreateGrayVRCPImageList(
 ::ca::graphics * pdc,
-::image_list * pilGray,
-::image_list * pilParam)
+::sp(image_list) pilGray,
+::sp(image_list) pilParam)
 {
-::image_list * pil = pilGray;
+::sp(image_list) pil = pilGray;
 
 pil->create(pilParam);
 
@@ -768,12 +768,12 @@ return pil;
 
 bool imaging::CreateHueImageList(
 ::ca::graphics * pdc,
-::image_list * pilGray,
-::image_list * pilParam,
+::sp(image_list) pilGray,
+::sp(image_list) pilParam,
 COLORREF crHue,
 double dCompress)
 {
-::image_list * pil = pilGray;
+::sp(image_list) pil = pilGray;
 
 if(!pil->create(pilParam))
 return false;
@@ -804,10 +804,10 @@ return true;
 
 
 
-bool imaging::CreateHueImageList(::ca::graphics * pdc, image_list * pilGray, image_list * pilParam, COLORREF crHue, double dCompress)
+bool imaging::CreateHueImageList(::ca::graphics * pdc, sp(image_list) pilGray, sp(image_list) pilParam, COLORREF crHue, double dCompress)
 {
 
-   image_list * pil = pilGray;
+   sp(image_list) pil = pilGray;
 
    if(!pil->create(pilParam))
       return false;
@@ -824,8 +824,8 @@ bool imaging::CreateHueImageList(::ca::graphics * pdc, image_list * pilGray, ima
 }
 
 bool imaging::Createcolor_blend_ImageList(
-   image_list * pilGray,
-   image_list * pilParam,
+   sp(image_list) pilGray,
+   sp(image_list) pilParam,
    COLORREF cr,
    BYTE bAlpha)
 {
@@ -833,7 +833,7 @@ bool imaging::Createcolor_blend_ImageList(
    try
    {
 
-      image_list * pil = pilGray;
+      sp(image_list) pil = pilGray;
 
       if(!pil->create(pilParam))
          return false;
@@ -882,11 +882,11 @@ bool imaging::Createcolor_blend_ImageList(
 
 
 /*
-::image_list * imaging::CreateGrayVRCPImageList(
+::sp(image_list) imaging::CreateGrayVRCPImageList(
 ::ca::graphics * pdc,
-::image_list * pilParam)
+::sp(image_list) pilParam)
 {
-::image_list * pil = new ::image_list();
+::sp(image_list) pil = new ::image_list();
 
 pil->create(pilParam);
 
@@ -2057,7 +2057,7 @@ dibPat->Fill(255, 0, 0, 0);
 ::ca::brush_sp brush(allocer());
 brush->CreatePatternBrush(dibPat->get_bitmap());
 
-::ca::dib_sp spdib(get_app());
+::ca::dib_sp spdib(allocer());
 spdib->create(size);
 
 spdib->get_graphics()->FillRect(rect, brush);
@@ -2099,7 +2099,7 @@ bool imaging::BitmapDivBlend(
    BYTE bAlpha)
 {
 
-   visual::dib_sp spdib(get_app());
+   visual::dib_sp spdib(allocer());
 
    spdib->create(size);
 
@@ -2724,7 +2724,7 @@ bool imaging::color_blend(
    COLORREF cr,
    BYTE bA)
 {
-   //::ca::dib_sp spdib(get_app());
+   //::ca::dib_sp spdib(allocer());
    //return color_blend(pdc, pt, size, cr, bA, spdib);
    return color_blend(pdc, pt, size, cr, bA, ::null());
 }

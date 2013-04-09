@@ -42,7 +42,7 @@ namespace plane
 
       sp(::ca::application) get_system();
 
-      virtual ::planebase::application * assert_running(const char * pszAppdId);
+      virtual sp(::planebase::application) assert_running(const char * pszAppdId);
 
    };
 

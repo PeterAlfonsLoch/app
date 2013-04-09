@@ -47,7 +47,7 @@ namespace xml
 
    }
 
-   bool document::load(::ca::file * pfile)
+   bool document::load(sp(::ca::file) pfile)
    {
 
       primitive::memory memory;
@@ -80,7 +80,7 @@ namespace xml
 
       m_strData = psz;
       const char * pszXml = m_strData;
-      class node * pnodeRoot = new class node(this);
+      sp(::xml::node) pnodeRoot = new class node(this);
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = this;
@@ -123,7 +123,7 @@ namespace xml
       }
 
       // Not found: create one.
-      class node * pnodeRoot = new class node(get_app());
+      sp(::xml::node) pnodeRoot = new class node(get_app());
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = this;
@@ -214,7 +214,7 @@ namespace xml
          throw simple_exception(get_app(), "edit exception");
 
 
-      ::xml::node * pnode;
+      sp(::xml::node) pnode;
 //      ::xml::attr * pattr;
 
 

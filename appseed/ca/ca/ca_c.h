@@ -58,17 +58,13 @@ namespace ca
 
 
       c();
-      c(const c &);
       virtual ~c();
 
 
       virtual void delete_this();
 
 
-      virtual sp(::ca::application) get_app() const;
 
-
-      c & operator = (const c &) { return *this; } 
 
       inline int64_t get_ref_count()
       {
@@ -111,28 +107,6 @@ namespace ca
    T * dereference_no_delete(T * p) { p->m_countReference--; return p; }
 
 
-   class CLASS_DECL_ca allocator :
-      virtual public ::ca::c
-   {
-   public:
-
-      
-      sp(application) m_papp;
-
-
-   };
-
-
-   class CLASS_DECL_ca allocer :
-      public sp(allocator)
-   {
-   public:
-
-
-      allocer(sp(application) papp);
-
-
-   };
 
 
 

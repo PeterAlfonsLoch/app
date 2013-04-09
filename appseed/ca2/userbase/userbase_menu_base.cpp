@@ -31,7 +31,7 @@ namespace userbase
 
    }
 
-   bool menu_base::LoadMenu(xml::node * lpnode)
+   bool menu_base::LoadMenu(sp(::xml::node) lpnode)
    {
 
       return m_pitem->load_menu(lpnode);

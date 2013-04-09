@@ -42,7 +42,7 @@ namespace fs
       if(doc.get_root()->get_name() != "folder")
          return false;
 
-      xml::node * pnode = doc.get_child("folder");
+      sp(::xml::node) pnode = doc.get_child("folder");
 
       if(pnode == ::null())
          return false;
@@ -97,7 +97,7 @@ namespace fs
       if(doc.get_root()->get_name() != "folder")
          return false;
 
-      xml::node * pnode = doc.get_root()->get_child("folder");
+      sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
       if(pnode != ::null())
       {

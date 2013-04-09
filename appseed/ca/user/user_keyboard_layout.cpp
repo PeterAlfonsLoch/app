@@ -69,12 +69,12 @@ namespace user
       m_setEscape.m_bKeyCaseInsensitive = false;
    }
 
-      void keyboard_layout::process_escape(::xml::node * pnode, ::ca::property_set & set)
+      void keyboard_layout::process_escape(sp(::xml::node) pnode, ::ca::property_set & set)
       {
          set.m_bKeyCaseInsensitive = false;
          for(int32_t i = 0; i < pnode->get_children_count(); i++)
          {
-            ::xml::node * pchild = pnode->child_at(i);
+            sp(::xml::node) pchild = pnode->child_at(i);
             if(pchild->get_name().CompareNoCase("item") == 0)
             {
                string str = pchild->attr("char");
@@ -105,7 +105,7 @@ namespace user
          return false;
       for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
-         ::xml::node * pnode = doc.get_root()->child_at(i);
+         sp(::xml::node) pnode = doc.get_root()->child_at(i);
          if(pnode->get_name().CompareNoCase("item") == 0)
          {
             string strCode = pnode->attr("code");

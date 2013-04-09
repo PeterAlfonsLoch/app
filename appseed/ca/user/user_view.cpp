@@ -191,7 +191,7 @@ void view::OnPaint()
 
 sp(::user::document_interface) view::get_document(sp(::user::interaction) pguie)
 {
-   ::view * pview = dynamic_cast < ::view * > (pguie.m_p);
+   sp(::view) pview =  (pguie.m_p);
    if(pview != ::null())
       return ::null();
    return pview->get_document();
@@ -203,7 +203,7 @@ void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    on_update(::null(), 0, ::null());        // initial update
 }
 
-void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
 {
    if(pHint != ::null())
    {
@@ -224,7 +224,7 @@ void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
    //Invalidate(TRUE);
 }
 
-void view::on_simple_view_update_hint(::view * pviewSender, e_hint ehint, ::ca::object * phint)
+void view::on_simple_view_update_hint(sp(::view) pviewSender, e_hint ehint, ::ca::object * phint)
 {
    
    switch(ehint)
@@ -240,7 +240,7 @@ void view::on_simple_view_update_hint(::view * pviewSender, e_hint ehint, ::ca::
 
 }
 
-void view::OnViewUpdateHint(::view * pSender, LPARAM lHint, view_update_hint * pHint)
+void view::OnViewUpdateHint(sp(::view) pSender, LPARAM lHint, view_update_hint * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -259,7 +259,7 @@ bool view::IsSelected(const ::ca::object* pDocItem) const
    return FALSE;   // not implemented, so not selected
 }
 
-void view::OnActivateView(bool bActivate, ::view * pActivateView, ::view *)
+void view::OnActivateView(bool bActivate, sp(::view) pActivateView, sp(::view))
 {
    UNUSED(pActivateView);   // unused in release builds
 
@@ -291,7 +291,7 @@ int32_t view::OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT 
       ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
       // either re-activate the current ::view, or set this ::view to be active
-      ::view * pview = pParentFrame->GetActiveView();
+      sp(::view) pview = pParentFrame->GetActiveView();
       oswindow oswindow_Focus = ::GetFocus();
       if (pview == this &&
          get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
@@ -570,7 +570,7 @@ sp(::user::interaction) view::s_create_view(sp(::ca::create_context) pContext, s
    }
 
 
-   ::view * pview = dynamic_cast < ::view * > (pguie.m_p);
+   sp(::view) pview =  (pguie.m_p);
    if(pview != ::null())
    {
       pview->_001OnInitialUpdate(::null());

@@ -155,6 +155,28 @@ namespace ca
    };
 
 
+   class CLASS_DECL_ca allocator :
+      virtual public ::ca::ca
+   {
+   public:
+
+      
+   };
+
+
+   class CLASS_DECL_ca allocer :
+      public sp(allocator)
+   {
+   public:
+
+
+      allocer(sp(application) papp);
+
+
+   };
+
+
+
 } // namespace ca
 
 

@@ -59,10 +59,10 @@ namespace userbase
 
 
 
-      virtual void OnActivateView(bool bActivate, ::view* pActivateView, ::view* pDeactiveView);
+      virtual void OnActivateView(bool bActivate, sp(::view) pActivateView, sp(::view) pDeactiveView);
       virtual void OnActivateFrame(UINT nState, sp(frame_window) pFrameWnd);
 
-      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
       virtual ~view();
 #ifdef DEBUG

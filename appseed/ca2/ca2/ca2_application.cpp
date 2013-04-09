@@ -577,7 +577,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
      LPRECT lprcMonitor,
      LPARAM dwData)
    {
-      cube::application * papp = (cube::application *) dwData;
+      sp(::cube::application) papp = (sp(::cube::application)) dwData;
       papp->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
       return TRUE; // to enumerate all
    }
@@ -784,7 +784,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
    BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam)
    {
-      application * papp = (application *) lParam;
+      sp(application) papp = (sp(application)) lParam;
       uint32_t dwptr;
       if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 1, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 2)
       {
@@ -850,7 +850,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
 #ifdef WINDOWSEX
 
-      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) (application *) (this));
+      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) (sp(application)) (this));
 
 #else
 
@@ -946,7 +946,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       ::cubebase::application::request(pcreatecontext);
    }
 
-   void application::defer_add_document_template(::document_template * ptemplate)
+   void application::defer_add_document_template(sp(::document_template) ptemplate)
    {
       m_puserbase->defer_add_document_template(ptemplate);
    }

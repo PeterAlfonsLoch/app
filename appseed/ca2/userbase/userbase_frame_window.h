@@ -39,7 +39,7 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
    ::userbase::document_template* m_pNewDocTemplate;
 
    // for sharing ::view/frame state from the original ::view/frame
-   ::userbase::view* m_pLastView;
+   sp(::userbase::view) m_pLastView;
    sp(frame_window) m_pCurrentFrame;
 
 // Implementation

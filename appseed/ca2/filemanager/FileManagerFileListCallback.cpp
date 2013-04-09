@@ -92,7 +92,7 @@ void FileManagerFileListCallback::GetMenuItemUpdate(id iId, const ::fs::item_arr
    UNREFERENCED_PARAMETER(pcmdui);
 }
 
-image_list * FileManagerFileListCallback::GetActionButtonImageList(id i)
+sp(image_list) FileManagerFileListCallback::GetActionButtonImageList(id i)
 {
    UNREFERENCED_PARAMETER(i);
    //if(i == 0)

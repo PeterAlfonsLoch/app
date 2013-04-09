@@ -32,7 +32,7 @@ namespace fs
       virtual void _017Synchronize();
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
-      image_list * GetActionButtonImageList(index i);
+      sp(image_list) GetActionButtonImageList(index i);
 
 
 

@@ -9,7 +9,7 @@ namespace platform
    public:
 
 
-      ::userbase::single_document_template * m_ptemplate_html;
+      sp(::userbase::single_document_template) m_ptemplate_html;
 
 
       application();

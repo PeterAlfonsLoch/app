@@ -134,7 +134,7 @@ namespace filemanager
          {
             pcolumn->m_pil = new image_list(get_app());
          }
-         image_list * pil = pcolumn->m_pil;
+         sp(image_list) pil = pcolumn->m_pil;
          //if(pil->GetSafeHandle() != ::null())
             //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))

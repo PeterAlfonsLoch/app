@@ -63,7 +63,7 @@ bool image_list::realize(::ca::graphics * pdc)
 }
 
 
-bool image_list::create(image_list * pimagelist)
+bool image_list::create(sp(image_list) pimagelist)
 {
    m_spdib->Paste(pimagelist->m_spdib);
    m_size   = pimagelist->m_size;
@@ -345,7 +345,7 @@ bool image_list::get_image_info(int32_t nImage, info * pinfo) const
       pinfo->m_rect.right     = pinfo->m_rect.left + m_size.cx;
       pinfo->m_rect.top       = 0;
       pinfo->m_rect.bottom    = m_size.cy;
-      pinfo->m_pdib           =((image_list *) this)->m_spdib;
+      pinfo->m_pdib           = ((image_list *) this)->m_spdib;
 //      pImageInfo->hbmMask           = ::null();
 
       return TRUE;

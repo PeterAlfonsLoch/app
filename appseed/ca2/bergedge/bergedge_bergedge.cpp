@@ -691,13 +691,6 @@ alt1:
       }
    }
 
-   sp(::user::interaction) bergedge::get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
-   {
-
-      return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
-
-   }
-
    sp(::user::interaction) bergedge::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
    {
 
@@ -785,7 +778,7 @@ alt1:
 
    }
 
-   ::user::place_holder_ptra bergedge::get_place_holder(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
+   ::user::place_holder_ptra bergedge::get_place_holder(sp(::frame_window) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -816,7 +809,7 @@ alt1:
 
    }
 
-   bool bergedge::place(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool bergedge::place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

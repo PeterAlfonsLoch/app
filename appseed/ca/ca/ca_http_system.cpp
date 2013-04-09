@@ -369,7 +369,7 @@ namespace ca
             ::sockets::address ipHost(get_app(), strHost, iHostPort);
             for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
             {
-               xml::node * pnode = doc.get_root()->child_at(iNode);
+               sp(::xml::node) pnode = doc.get_root()->child_at(iNode);
                if(pnode->get_name() == "proxy")
                {
                   ::sockets::address ipAddress(get_app(), pnode->attr("address"), 0);
@@ -1692,7 +1692,7 @@ retry:
          return put(pszUrl, &file, puser);
       }
 
-      bool system::put(const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, sp(::ca::file) pfile, ::fontopus::user * puser)
       {
          if(puser == ::null())
          {
@@ -1718,7 +1718,7 @@ retry:
       }
 
 
-      bool system::put(string & strResponse, const char * pszUrl, ::ca::file * pfile, ::fontopus::user * puser)
+      bool system::put(string & strResponse, const char * pszUrl, sp(::ca::file) pfile, ::fontopus::user * puser)
       {
 
          if(puser == ::null())

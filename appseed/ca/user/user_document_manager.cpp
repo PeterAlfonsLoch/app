@@ -118,7 +118,7 @@ void document_manager::UnregisterShellFileTypes()
    POSITION pos = m_templateptra.get_head_position();
    for (int32_t nTemplateIndex = 1; pos != ::null(); nTemplateIndex++)
    {
-      document_template * ptemplate = (document_template *)m_templateptra.get_next(pos);
+      sp(document_template) ptemplate = (sp(document_template))m_templateptra.get_next(pos);
 
       string strFilterExt, strFileTypeId, strFileTypeName;
       if (ptemplate->GetDocString(strFileTypeId,
@@ -208,7 +208,7 @@ void document_manager::RegisterShellFileTypes(bool bCompat)
    POSITION pos = m_templateptra.get_head_position();
    for (int32_t nTemplateIndex = 1; pos != ::null(); nTemplateIndex++)
    {
-      document_template * ptemplate = (document_template *)m_templateptra.get_next(pos);
+      sp(document_template) ptemplate = (sp(document_template))m_templateptra.get_next(pos);
 
       string strOpenCommandLine = strPathName;
       string strPrintCommandLine = strPathName;
@@ -354,7 +354,7 @@ void document_manager::RegisterShellFileTypes(bool bCompat)
 
 /*
 __STATIC void _::ca::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
-   document_template * ptemplate, string* pstrDefaultExt)
+   sp(document_template) ptemplate, string* pstrDefaultExt)
 {
    ENSURE_VALID(ptemplate);
    ASSERT_KINDOF(document_template, ptemplate);
@@ -412,7 +412,7 @@ __STATIC void _::ca::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
 }
 */
 
-void document_manager::add_document_template(document_template * ptemplate)
+void document_manager::add_document_template(sp(document_template) ptemplate)
 {
    ASSERT_VALID(ptemplate);
    if(m_templateptra.add_unique(ptemplate))
@@ -426,7 +426,7 @@ void document_manager::add_document_template(document_template * ptemplate)
    return m_templateptra.get_count();
 }
 
-document_template * document_manager::get_template(index index) const
+sp(document_template) document_manager::get_template(index index) const
 {
    if(index < 0 || index >= m_templateptra.get_count())
       return ::null();
@@ -438,7 +438,7 @@ bool document_manager::save_all_modified()
    ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = m_templateptra[index];
+      sp(document_template) ptemplate = m_templateptra[index];
       ASSERT_KINDOF(document_template, ptemplate);
       if (!ptemplate->save_all_modified())
          return FALSE;
@@ -451,13 +451,13 @@ void document_manager::close_all_documents(bool bEndSession)
    ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = m_templateptra[index];
+      sp(document_template) ptemplate = m_templateptra[index];
       ASSERT_KINDOF(document_template, ptemplate);
       ptemplate->close_all_documents(bEndSession);
    }
 }
 
-bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::document) pdocument)
+bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::document) pdocument)
 {
    return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }
@@ -469,7 +469,7 @@ bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32
    ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = m_templateptra[index];
+      sp(document_template) ptemplate = m_templateptra[index];
       nCount += ptemplate->get_document_count();
    }
    return nCount;
@@ -642,7 +642,7 @@ void document_manager::_001OnFileNew()
       return;
    }
 
-   document_template * ptemplate = (document_template *)m_templateptra.first_element();
+   sp(document_template) ptemplate = (sp(document_template))m_templateptra.first_element();
    if (m_templateptra.get_count() > 1)
    {
       // more than one document template to choose from
@@ -681,7 +681,7 @@ void document_manager::assert_valid() const
    ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = (document_template *) m_templateptra[index];
+      sp(document_template) ptemplate = (sp(document_template)) m_templateptra[index];
       ASSERT_VALID(ptemplate);
    }
 }
@@ -696,7 +696,7 @@ void document_manager::dump(dump_context & dumpcontext) const
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         document_template * ptemplate = m_templateptra[index];
+         sp(document_template) ptemplate = m_templateptra[index];
          dumpcontext << "\ntemplate " << ptemplate;
       }
       dumpcontext << "}";
@@ -718,7 +718,7 @@ void document_manager::request(sp(::ca::create_context) pcreatecontext)
    // find the highest confidence
    ::count count = m_templateptra.get_count();
    document_template::Confidence bestMatch = document_template::noAttempt;
-   document_template * pBestTemplate = ::null();
+   sp(document_template) pBestTemplate = ::null();
    sp(::user::document_interface) pOpenDocument = ::null();
 
    /*char szPath[_MAX_PATH];
@@ -745,7 +745,7 @@ void document_manager::request(sp(::ca::create_context) pcreatecontext)
 
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = m_templateptra[index];
+      sp(document_template) ptemplate = m_templateptra[index];
       ASSERT_KINDOF(document_template, ptemplate);
 
       document_template::Confidence match;
@@ -762,7 +762,7 @@ void document_manager::request(sp(::ca::create_context) pcreatecontext)
 
    if (pOpenDocument != ::null())
    {
-      ::view * pview = pOpenDocument->get_view(0); // get first one
+      sp(::view) pview = pOpenDocument->get_view(0); // get first one
       if(pview != ::null())
       {
          ASSERT_VALID(pview);
@@ -807,7 +807,7 @@ void document_manager::request(sp(::ca::create_context) pcreatecontext)
    ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = m_templateptra[index];
+      sp(document_template) ptemplate = m_templateptra[index];
       nOpen += ptemplate->get_document_count();
    }
    return nOpen;
@@ -820,7 +820,7 @@ document_manager::~document_manager()
    ::count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
-      document_template * ptemplate = m_templateptra[index];
+      sp(document_template) ptemplate = m_templateptra[index];
       if (ptemplate->m_bAutoDelete)
       {
          delete ptemplate;

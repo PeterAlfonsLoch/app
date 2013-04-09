@@ -28,9 +28,9 @@ class CLASS_DECL_ca2 FileManagerFileListCallback :
 {
 public:
 
-   image_list *           m_pimagelistSubItemHover;
-   image_list *           m_pimagelistItemHover;
-   image_list *           m_pimagelistNormal;
+   sp(image_list)           m_pimagelistSubItemHover;
+   sp(image_list)           m_pimagelistItemHover;
+   sp(image_list)           m_pimagelistNormal;
 
    FileManagerFileListCallback();
    virtual ~FileManagerFileListCallback();
@@ -38,7 +38,7 @@ public:
    virtual bool initialize();
 
    virtual int32_t GetActionButtonCount();
-   virtual image_list * GetActionButtonImageList(id i);
+   virtual sp(image_list) GetActionButtonImageList(id i);
    virtual void InitializeActionButton(id i, sp(BaseButtonControl) pbutton);
    virtual void OnButtonAction(id i, sp(::fs::item)  item);
 

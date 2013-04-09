@@ -14,7 +14,7 @@ public:
    //BaseMenuMessageHandler        m_menuhook;
    string                     m_strAnimatedStatusBarText;
    int32_t                        m_iAnimateStep;
-   image_list *                m_pimagelist;
+   sp(image_list)                m_pimagelist;
    bool m_bTimerOn;
 
    virtual bool pre_create_window(CREATESTRUCT& cs);

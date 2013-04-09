@@ -39,7 +39,7 @@ namespace ca
    }
 
 
-   string file_system::nessie(::ca:: file * pfile)
+   string file_system::nessie(::ca:: sp(::ca::file) pfile)
    {
       
 	   int32_t iBufSize = 1024 * 256;

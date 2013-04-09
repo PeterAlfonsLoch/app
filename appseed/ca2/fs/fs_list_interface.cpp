@@ -580,7 +580,7 @@ namespace fs
    }
 
 
-   image_list * list_interface::GetActionButtonImageList(index i)
+   sp(image_list) list_interface::GetActionButtonImageList(index i)
    {
       if(i == 0)
       {

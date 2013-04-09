@@ -38,7 +38,7 @@ namespace ca
 
 
    // Overridables
-      virtual file* Duplicate() const;
+      virtual sp(::ca::file) Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);

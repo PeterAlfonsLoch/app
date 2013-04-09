@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   void edit_item::set_name(const ::xml::node * pnode)
+   void edit_item::set_name(const sp(::xml::node) pnode)
    {
       
       m_eaction      = ::xml::set_name;
@@ -14,7 +14,7 @@ namespace xml
 
    }
 
-   void edit_item::set_value(const ::xml::node * pnode)
+   void edit_item::set_value(const sp(::xml::node) pnode)
    {
       
       m_eaction      = ::xml::set_value;
@@ -23,7 +23,7 @@ namespace xml
 
    }
 
-   void edit_item::set_attr(const ::xml::node * pnode, const attr * pattr)
+   void edit_item::set_attr(const sp(::xml::node) pnode, const attr * pattr)
    {
       
       m_eaction      = ::xml::set_attr;
@@ -33,7 +33,7 @@ namespace xml
 
    }
 
-   void edit_item::add_attr(const ::xml::node * pnode, const attr * pattr)
+   void edit_item::add_attr(const sp(::xml::node) pnode, const attr * pattr)
    {
       
       m_eaction      = ::xml::add_attr;
@@ -79,7 +79,7 @@ namespace xml
    }
 
 
-   void edit::set_name(const ::xml::node * pnode)
+   void edit::set_name(const sp(::xml::node) pnode)
    {
 
       if(pnode->get_document() != m_spdata.m_p)
@@ -91,7 +91,7 @@ namespace xml
 
    }
 
-   void edit::set_value(const ::xml::node * pnode)
+   void edit::set_value(const sp(::xml::node) pnode)
    {
 
       if(pnode->get_document() != m_spdata.m_p)
@@ -103,7 +103,7 @@ namespace xml
 
    }
 
-   void edit::set_attr(const ::xml::node * pnode, const ::xml::attr * pattr)
+   void edit::set_attr(const sp(::xml::node) pnode, const ::xml::attr * pattr)
    {
 
       if(pnode->get_document() != m_spdata.m_p)
@@ -116,7 +116,7 @@ namespace xml
    }
 
 
-   void edit::add_attr(const ::xml::node * pnode, const ::xml::attr * pattr)
+   void edit::add_attr(const sp(::xml::node) pnode, const ::xml::attr * pattr)
    {
 
       if(pnode->get_document() != m_spdata.m_p)

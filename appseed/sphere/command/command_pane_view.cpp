@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   pane_view::pane_view(::ca::application * papp) :
+   pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -56,14 +56,14 @@ namespace command
 
    }
 
-   void pane_view::on_update(::view* pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
       {
          set_cur_tab_by_id(command::PaneViewPrimaryCommand);
       }
-      if(pHint != NULL)
+      if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -77,14 +77,14 @@ namespace command
             }
          }
       }
-	      if(pHint != NULL)
+	      if(pHint != ::null())
       {
    	   if(base < pane_view_update_hint >::bases(pHint))
          {
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               (dynamic_cast < userbase::frame_window * > (GetTopLevelFrame()))->SetActiveView(this);
+               ( (GetTopLevelFrame()))->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
@@ -108,7 +108,7 @@ namespace command
       }
       else if(get_view_id() == command::PaneViewContextMenu)
       {
-         ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (get_view_uie());
+         sp(::filemanager::document) pdoc =  (get_view_uie());
          pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"));
       }
       else
@@ -136,13 +136,13 @@ namespace command
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
+      sp(application) papp =  (( (GetParentFrame()))->get_app());
       switch(pcreatordata->m_id)
       {
       case PaneViewContextMenu:
          {
-            ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true);
-            if(pdoc != NULL)
+            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true);
+            if(pdoc != ::null())
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
                pdoc->get_filemanager_data()->m_bListText = true;
@@ -151,14 +151,14 @@ namespace command
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_menu";
                pdoc->get_filemanager_data()->m_pcallback = this;
                pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
-               ::view * pview = pdoc->get_view();
+               pdoc->update_all_views(::null(), 1234);
+               pdoc->update_all_views(::null(), 123458);
+               sp(::view) pview = pdoc->get_view();
                pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"));
-               if(pview != NULL)
+               if(pview != ::null())
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+                  if(pframe != ::null())
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->set_parent(this);
@@ -171,8 +171,8 @@ namespace command
          break;
       case PaneViewPrimaryCommand:
          {
-            ::userbase::view * pview = create_view < primary_view > ();
-            if(pview != NULL)
+            sp(::userbase::view) pview = create_view < primary_view > ();
+            if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
                pcreatordata->m_pwnd = pview;
@@ -182,18 +182,18 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-            ::filemanager::document * pdoc = papp->filemanager().std().OpenChild(false, true);
-            if(pdoc != NULL)
+            sp(::filemanager::document) pdoc = papp->filemanager().std().OpenChild(false, true);
+            if(pdoc != ::null())
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
                pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
-               ::view * pview = pdoc->get_view();
-               if(pview != NULL)
+               pdoc->update_all_views(::null(), 1234);
+               pdoc->update_all_views(::null(), 123458);
+               sp(::view) pview = pdoc->get_view();
+               if(pview != ::null())
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+                  if(pframe != ::null())
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->set_parent(this);
@@ -208,8 +208,8 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-            ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true);
-            if(pdoc != NULL)
+            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true);
+            if(pdoc != ::null())
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
                pdoc->get_filemanager_data()->m_bListText = false;
@@ -217,14 +217,14 @@ namespace command
                pdoc->get_filemanager_data()->m_pcallback = this;
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
                pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
-               ::view * pview = pdoc->get_view();
+               pdoc->update_all_views(::null(), 1234);
+               pdoc->update_all_views(::null(), 123458);
+               sp(::view) pview = pdoc->get_view();
                pdoc->FileManagerBrowse(Application.dir().userappdata("command\\3-action-launch"));
-               if(pview != NULL)
+               if(pview != ::null())
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+                  if(pframe != ::null())
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->set_parent(this);
@@ -239,25 +239,25 @@ namespace command
          break;
       case PaneViewConfiguration:
       {
-         form_document * pdoc = Cube.userex().create_form(this, this);
-         if(pdoc == NULL)
+         sp(form_document) pdoc = Cube.userex().create_form(this, this);
+         if(pdoc == ::null())
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;
-         ::view * pview = pdoc->get_typed_view < ::view > ();
+         sp(::view) pview = pdoc->get_typed_view < ::view > ();
          form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
-         pdoc->update_all_views(NULL, 0, &uh);
+         pdoc->update_all_views(::null(), 0, &uh);
 
          uh.m_etype = form_update_hint::type_get_form_view;
-         pdoc->update_all_views(NULL, 0, &uh);
+         pdoc->update_all_views(::null(), 0, &uh);
 
          uh.m_etype = form_update_hint::type_after_browse;
-         pdoc->update_all_views(NULL, 0, &uh);
+         pdoc->update_all_views(::null(), 0, &uh);
 
 
          pcreatordata->m_pwnd = dynamic_cast < ::ca::window * >(pview->GetParentFrame());
-//         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
+//         sp(form_child_frame) pframe = (pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
          pcreatordata->m_pdoc = pdoc;
       }
@@ -319,9 +319,9 @@ namespace command
 
          i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
-            NULL,
+            ::null(),
             ::ca::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
-            NULL,
+            ::null(),
             ::ca::international::utf8_to_unicode("\"" +  System.dir().name(itema[0].m_strPath) + "\""),
             SW_SHOWNORMAL);
 

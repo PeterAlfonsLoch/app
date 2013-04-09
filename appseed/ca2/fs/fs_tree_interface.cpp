@@ -10,6 +10,7 @@ namespace fs
       ::user::scroll_view(papp),
       ::user::tree(papp)
    {
+
       m_dataid = "filemanager::fs::tree_interface";
 
       m_pdataitemCreateImageListStep = ::null();
@@ -17,33 +18,24 @@ namespace fs
       m_iAnimate = 0;
       m_bDelayedListUpdate = false;
 
+      set_data(new ::fs::tree_data(get_app()));
 
    }
 
 
    tree_interface::~tree_interface()
    {
+
    }
 
-
-   bool tree_interface::initialize()
-   {
-      if(!::ca::tree::initialize())
-         return false;
-      if(::ca::tree::get_data() == ::null())
-      {
-         set_data(new ::fs::tree_data(get_app()));
-      }
-      return true;
-   }
 
    void tree_interface::update_list()
    {
+
    }
 
 
-
-   void tree_interface::_017UpdateList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel)
    {
       if(lpcsz == ::null())
          lpcsz = "";
@@ -60,23 +52,23 @@ namespace fs
       }
 
       /*if(GetFileManager() != ::null() && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != ::null()
-      && !(dynamic_cast < user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
+      && !(dynamic_cast < user::sp(tree) > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
          GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }*/
 
-      ::fs::tree_item * pitemFolder = ::null();
+      sp(::fs::tree_item_data) pitemFolder = ::null();
 
-      string strRawName1 = typeid(*pitemParent).name();
-      string strRawName2 = typeid(::fs::tree_item).name();
+      string strRawName1 = typeid(*pitemParent->m_pitemdata.m_p).name();
+      string strRawName2 = typeid(::fs::tree_item_data).name();
       if(strRawName1 == strRawName2)
       {
-         pitemFolder = dynamic_cast < ::fs::tree_item * > ( pitemParent);
+         pitemFolder = pitemParent;
       }
 
 
-      ::fs::tree_item * pitemChild;
-      ::ca::tree_item * pitem;
+      sp(::fs::tree_item_data) pitemChild;
+      sp(::ca::tree_item) pitem;
       ::ca::tree_item_ptr_array ptraRemove;
 
       if(pitemFolder != ::null() && pitemFolder->m_flags.is_signalized(FlagHasSubFolderUnknown))
@@ -118,7 +110,7 @@ namespace fs
       for(i = 0; i < straPath.get_size(); i++)
       {
 
-         pitemChild = new ::fs::tree_item;
+         pitemChild = new ::fs::tree_item_data;
 
          pitemChild->m_pdata = ::ca::tree::get_data();
 
@@ -202,7 +194,7 @@ namespace fs
       }
       for(int32_t j = 0; j < ptraRemove.get_size(); j++)
       {
-         delete_item(ptraRemove[j]);
+         ptraRemove(j).release();
       }
 
       arrange(arrange_by_name);
@@ -231,7 +223,7 @@ namespace fs
       for(index i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
-         ::ca::tree_item * pitem = find_item(strAscendant);
+         sp(::ca::tree_item) pitem = find_item(strAscendant);
          if(pitem == ::null())
          {
             string str;
@@ -257,7 +249,7 @@ namespace fs
 
       _StartDelayedListUpdate();
 
-      ::ca::tree_item * pitem = find_item(lpcsz);
+      sp(::ca::tree_item) pitem = find_item(lpcsz);
 
       if(pitem != ::null())
       {
@@ -280,7 +272,7 @@ namespace fs
       _001RedrawWindow();
    }
 
-   ::ca::tree_item * tree_interface::find_item(const char * lpcsz)
+   sp(::ca::tree_item) tree_interface::find_item(const char * lpcsz)
    {
       return find_absolute(lpcsz);
    }
@@ -289,12 +281,12 @@ namespace fs
    {
       if(!bForceUpdate)
       {
-         ::ca::tree_item * pitem = find_item(lpcsz);
+         sp(::ca::tree_item) pitem = find_item(lpcsz);
          if(pitem != ::null())
          {
-            if(is_selected(pitem))
+            if(is_tree_item_selected(pitem))
                return;
-            if(is_selected(pitem->m_pparent))
+            if(is_tree_item_selected(pitem->m_pparent))
             {
                pitem->set_selection();
                return;
@@ -318,11 +310,8 @@ namespace fs
 
    }
 
-   void tree_interface::_017UpdateZipList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateZipList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel)
    {
-      index i;
-
-      //::fs::tree_item * pitemChild;
 
       string szPath(lpcsz);
 
@@ -372,7 +361,7 @@ namespace fs
       {
          wstrItem = wstraItem[i];
 
-         ::fs::tree_item * pitemNew = new ::fs::tree_item;
+         sp(::fs::tree_item_data) pitemNew = new ::fs::tree_item_data;
 
          pitemNew->m_strPath = lpcsz;
          pitemNew->m_flags.signalize(FlagInZip);
@@ -422,11 +411,11 @@ namespace fs
             ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == ::null())
             {
-               pitem = insert_item(get_fs_tree_data(), pitemNew, ::ca::RelativeLastChild, pitemParent);
+               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::ca::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(get_fs_tree_data(), pitemNew, ::ca::RelativeReplace, pitem);
+               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::ca::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
@@ -440,14 +429,14 @@ namespace fs
             }
          }
       }
-      for( i = 0; i < ptraRemove.get_size(); i++)
-      {
-         delete_item(ptraRemove[i]);
-      }
+
+
+      remove_tree_item_array(ptraRemove);
+
    }
 
 
-   void tree_interface::_001UpdateImageList(::ca::tree_item * pitem)
+   void tree_interface::_001UpdateImageList(sp(::ca::tree_item) pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
 //         Item & item = m_itema.get_item(pitem->m_dwUser);
@@ -507,7 +496,7 @@ namespace fs
    {
       for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
       {
-         stra.add((dynamic_cast < ::fs::tree_item * > (m_itemptraSelected[0]))->m_strPath);
+         stra.add(m_itemptraSelected(0)->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath);
       }
    }
 
@@ -606,11 +595,11 @@ namespace fs
    }
    */
 
-   void tree_interface::_001OnItemExpand(::ca::tree_item * pitem)
+   void tree_interface::_001OnItemExpand(sp(::ca::tree_item) pitem)
    {
-      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
+      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item_data > ())
       {
-         _017UpdateList((dynamic_cast < ::fs::tree_item *> (pitem))->m_strPath, pitem, 1);
+         _017UpdateList(pitem->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath, pitem, 1);
       }
       else
       {
@@ -618,7 +607,7 @@ namespace fs
       }
    }
 
-   void tree_interface::_001OnItemCollapse(::ca::tree_item * pitem)
+   void tree_interface::_001OnItemCollapse(sp(::ca::tree_item) pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
@@ -628,10 +617,10 @@ namespace fs
       return true;
    }
 
-   void tree_interface::_001OnOpenItem(::ca::tree_item * pitem)
+   void tree_interface::_001OnOpenItem(sp(::ca::tree_item) pitem)
    {
       
-      _017OpenFolder(new ::fs::item(dynamic_cast < ::fs::tree_item *> ( pitem->m_pitemdata)->m_strPath));
+      _017OpenFolder(new ::fs::item(*pitem->m_pitemdata.cast < ::fs::tree_item_data > ()));
 
    }
 
@@ -644,7 +633,7 @@ namespace fs
 
    void tree_interface::_StartCreateImageList()
    {
-      m_pdataitemCreateImageListStep = (::ca::tree_item *) get_base_item()->m_pchild;
+      m_pdataitemCreateImageListStep = (sp(::ca::tree_item)) get_base_item()->m_pchild;
 //         SetTimer(TimerCreateImageList, 80, ::null());
    }
 
@@ -711,7 +700,7 @@ namespace fs
       m_bDelayedListUpdate = true;
 
 
-      ::ca::tree_item * pitem = find_item(m_straMissingUpdate[0]);
+      sp(::ca::tree_item) pitem = find_item(m_straMissingUpdate[0]);
       if(pitem != ::null())
       {
 
@@ -739,9 +728,9 @@ namespace fs
       }
    }
 
-   ::ca::tree_item * tree_interface::find_absolute(const char * lpcszPath)
+   sp(::ca::tree_item) tree_interface::find_absolute(const char * lpcszPath)
    {
-      ::ca::tree_item * pitem = get_base_item();
+      sp(::ca::tree_item) pitem = get_base_item();
       if(lpcszPath == ::null() || strlen(lpcszPath) == 0)
          return pitem;
       string strPath(lpcszPath);
@@ -749,9 +738,9 @@ namespace fs
       while(pitem != ::null())
       {
          if(pitem->m_pitemdata != ::null()
-         && typeid(*pitem->m_pitemdata) == System.type_info < tree_item > ())
+         && typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item_data > ())
          {
-            string strTreeItem((dynamic_cast < tree_item * > (pitem->m_pitemdata))->m_strPath);
+            string strTreeItem(pitem->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath);
             strTreeItem.trim_right("\\/");
             if(strTreeItem.CompareNoCase(strPath) == 0)
                return pitem;
@@ -766,7 +755,7 @@ namespace fs
 
       if(earrange == arrange_by_name)
       {
-         sort(tree_item::CompareArrangeByName);
+         sort(tree_item_data::CompareArrangeByName);
       }
 
    }
@@ -776,9 +765,9 @@ namespace fs
       return  (::user::tree::get_document());
    }
 
-   ::fs::tree_data * tree_interface::get_fs_tree_data()
+   sp(::fs::tree_data) tree_interface::get_fs_tree_data()
    {
-      return dynamic_cast < ::fs::tree_data * > (::ca::tree::get_data());
+      return ::ca::tree::get_tree_data();
    }
 
 

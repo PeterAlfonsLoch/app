@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      document_template *           m_pdocumenttemplate;
+      sp(document_template)           m_pdocumenttemplate;
 
 
       frame_window_interface();

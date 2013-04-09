@@ -2,8 +2,8 @@
 
 message_box::message_box(sp(::ca::application) papp) :
    ca(papp)/*,
-   dialog(papp)*/,
-   wait_message_dialog(papp)
+   dialog(allocer())*/,
+   wait_message_dialog(allocer())
 {
 }
 

@@ -106,10 +106,10 @@ namespace platform
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
+            sp(::userbase::view) pview = (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != ::null())
             {
-               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
+               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
                pmenuview->LoadXmlMenu("mplite_popup_lyricview.xml");
                pcreatordata = new ::user::view_creator_data();
                pcreatordata->m_pdoc = get_document();
@@ -122,10 +122,10 @@ namespace platform
             cc.m_pCurrentDoc = get_document();
             cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
+            sp(::userbase::view) pview = (CreateView(&cc, 101, this));
             if(pview != ::null())
             {
-               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
+               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
                pmenuview->m_wnd.m_bAutoClose = false;
                pcreatordata = new ViewData();
@@ -135,7 +135,7 @@ namespace platform
             }*/
       case platform::PaneViewDevEdge:
          {
-            ::userbase::view * pview = create_view < platform::view > ();
+            sp(::userbase::view) pview = create_view < platform::view > ();
             if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
@@ -148,7 +148,7 @@ namespace platform
             sp(::filemanager::document) pdoc = papp->filemanager().std().OpenChild(false, true);
             if(pdoc != ::null())
             {
-               ::view * pview = pdoc->get_view();
+               sp(::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
                   sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -177,7 +177,7 @@ namespace platform
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -198,11 +198,11 @@ namespace platform
             if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
+               sp(::view) pview = pdoc->get_view(pos);
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -224,11 +224,11 @@ namespace platform
             if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
+               sp(::view) pview = pdoc->get_view(pos);
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -249,11 +249,11 @@ namespace platform
             if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
+               sp(::view) pview = pdoc->get_view(pos);
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());

@@ -28,7 +28,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
+void FileManagerLeftView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != ::null())

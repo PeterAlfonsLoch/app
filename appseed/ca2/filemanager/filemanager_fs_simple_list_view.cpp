@@ -267,7 +267,7 @@ namespace filemanager
             return dynamic_cast < MediaLibraryDoc * > (::view::get_document());
          }*/
 
-         void list_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+         void list_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
@@ -816,7 +816,7 @@ namespace filemanager
 
             m_iParentFolder = doc.attr("id");
 
-            xml::node * pnodeFolder = doc.get_root()->get_child("folder");
+            sp(::xml::node) pnodeFolder = doc.get_root()->get_child("folder");
 
 
             xml::node::array childs(get_app());
@@ -828,7 +828,7 @@ namespace filemanager
             index iNode = 0;
             for(int32_t i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
-               xml::node * pnodeItem = pnodeFolder->child_at(i);
+               sp(::xml::node) pnodeItem = pnodeFolder->child_at(i);
                if(pnodeItem->get_name() == "folder")
                {
                   item.m_iParent = m_iParentFolder;
@@ -868,11 +868,11 @@ namespace filemanager
                }
             }
 
-            xml::node * pnodeFile = doc.get_root()->get_child("file");
+            sp(::xml::node) pnodeFile = doc.get_root()->get_child("file");
 
             for(int32_t i = 0; i < pnodeFile->get_children_count(); i++)
             {
-               xml::node * pnodeItem = pnodeFile->child_at(i);
+               sp(::xml::node) pnodeItem = pnodeFile->child_at(i);
                if(pnodeItem->get_name() == "file")
                {
                   wstrType = pnodeItem->attr("type");

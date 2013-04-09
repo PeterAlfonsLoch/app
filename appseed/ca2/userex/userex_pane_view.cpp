@@ -65,10 +65,10 @@ namespace userex
             //cc.m_pCurrentDoc = get_document();
             //cc.m_typeinfoNewView = System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::view * pview = create_view < userbase::view > ();
+            sp(::userbase::view) pview = create_view < userbase::view > ();
             if(pview != ::null())
             {
-//               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
+//               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
    /* xxx           xml::node node(get_app());
                node.load(Application.file().as_string(Application.dir().matter(
                   "mplite_popup_lyricview.xml")));

@@ -24,7 +24,7 @@ sp(::filemanager::document) FileManagerViewInterface::GetFileManagerDoc()
    return  (m_pfilemanagerinterface);
 }
 
-void FileManagerViewInterface::on_update(::view * psender, LPARAM lhint, ::ca::object * phint)
+void FileManagerViewInterface::on_update(sp(::view) psender, LPARAM lhint, ::ca::object * phint)
 { 
    UNREFERENCED_PARAMETER(psender);
    UNREFERENCED_PARAMETER(lhint);
@@ -38,7 +38,7 @@ void FileManagerViewInterface::on_update(::view * psender, LPARAM lhint, ::ca::o
          {
             if(m_pfilemanagerinterface == ::null()
                && (puh->m_pview == ::null() ||
-                   puh->m_pview == dynamic_cast < ::userbase::view * > (this)))
+                   puh->m_pview == (this)))
             {
                m_pfilemanagerinterface = puh->m_pmanager;
             }

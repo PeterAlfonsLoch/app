@@ -40,7 +40,7 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
    }
 
-   void tree::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
+   void tree::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -272,37 +272,32 @@ namespace fs
       return ::fs::tree_interface::_001OnCmdMsg(pcmdmsg);
    }
 
+
    void tree::_001OnShellCommand(::ca::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::command, pcommand, pobj)
+
       UNREFERENCED_PARAMETER(pobj);
+
    }
+
 
    void tree::_017OpenFolder(sp(::fs::item) item)
    {
+
       get_document()->file_manager_browse(item->m_strPath);
+
    }
+
 
    void tree::_001OnCreate(::ca::signal_object * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
 
-      if(!initialize())
-         throw simple_exception(get_app());
-
-      /*m_pimagelist = System.user()->shellimageset().GetImageList16();
-      m_iDefaultImage = System.user()->shellimageset().GetImage(
-         "foo",
-         _shell::FileAttributeDirectory,
-         _shell::IconNormal);
-
-      m_iDefaultImageSelected = System.user()->shellimageset().GetImage(
-         "foo",
-         _shell::FileAttributeDirectory,
-         _shell::IconOpen);*/
    }
 
 
 } // namespace fs
+
 
 

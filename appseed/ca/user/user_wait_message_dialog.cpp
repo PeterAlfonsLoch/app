@@ -3,7 +3,7 @@
 
 wait_message_dialog::wait_message_dialog(sp(::ca::application) papp) :
    ca(papp)//,
-   //dialog(papp)
+   //dialog(allocer())
 {
    m_dwStartTime = 0;
    m_dwDelay = 0;

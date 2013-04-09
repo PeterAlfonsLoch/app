@@ -129,7 +129,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, ::ca::s
                   System.get_cursor_pos(&pt);
                   if(viewline.GetLink(str, pt))
                   {
-                     //user::view * pview = viewline.get_interaction();
+                     //usersp(::view) pview = viewline.get_interaction();
                      //pview->on_link_click(str);
                   }
                }
@@ -532,7 +532,7 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
             string str;
             if(viewline.GetLink(str, pt) == ::user::line_hit_link)
             {
-               //                   user::view * pview = viewline.get_interaction();
+               //                   usersp(::view) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
             }
          }
@@ -613,7 +613,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
             string str;
             if(viewline.GetLink(str, pt) == ::user::line_hit_link)
             {
-               //                   user::view * pview = viewline.get_interaction();
+               //                   usersp(::view) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
             }
          }

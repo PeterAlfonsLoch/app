@@ -7,7 +7,7 @@ class CLASS_DECL_ca document_manager :
 public:
 
 
-   comparable_array < document_template * >  m_templateptra;
+   comparable_array < sp(document_template) >  m_templateptra;
 
 
    static const char gen_ShellOpenFmt[];
@@ -42,9 +42,9 @@ public:
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 
-   virtual void add_document_template(document_template * ptemplate);
+   virtual void add_document_template(sp(document_template) ptemplate);
    virtual ::count get_template_count() const;
-   virtual document_template * get_template(index index) const;
+   virtual sp(document_template) get_template(index index) const;
    virtual void RegisterShellFileTypes(bool bCompat);
    void UnregisterShellFileTypes();
    virtual void request(sp(::ca::create_context) pcreatecontext); // open named file
@@ -52,7 +52,7 @@ public:
    virtual void close_all_documents(bool bEndSession); // close documents before exiting
    virtual ::count get_open_document_count();
 
-   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::document) pdocument);
+   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::document) pdocument);
 
    virtual bool OnDDECommand(LPTSTR lpszCommand);
    virtual void _001OnFileNew();

@@ -80,10 +80,10 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
+            sp(::userbase::menu_list_view) pview =  (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != ::null())
             {
-               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
+               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
                pmenuview->LoadXmlMenu("idioma_nature_menu.xml");
                pmenuview->m_bAutoClose = false;
                pcreatordata->m_pdoc = get_document();
@@ -96,10 +96,10 @@ namespace nature
             cc.m_pCurrentDoc = get_document();
             cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userex::pane_tab_view * pview = dynamic_cast < ::userex::pane_tab_view * > (CreateView(&cc, 101, this));
+            sp(::userex::pane_tab_view) pview = (CreateView(&cc, 101, this));
             if(pview != ::null())
             {
-               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
+               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
                pmenuview->m_wnd.m_bAutoClose = false;
                pcreatordata = new ViewData();
@@ -126,7 +126,7 @@ namespace nature
             sp(::userbase::document) pdoc = (m_pdoctemplateAppearance->open_document_file(sp(::ca::create_context)()));
             if(pdoc != ::null())
             {
-               ::view * pview = pdoc->get_view();
+               sp(::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
                   sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -154,7 +154,7 @@ namespace nature
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -176,11 +176,11 @@ namespace nature
             if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
+               sp(::view) pview = pdoc->get_view(pos);
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -203,11 +203,11 @@ namespace nature
             if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
+               sp(::view) pview = pdoc->get_view(pos);
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -230,11 +230,11 @@ namespace nature
             if(pdoc != ::null())
             {
                POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
+               sp(::view) pview = pdoc->get_view(pos);
                if(pdoc != ::null())
                {
                   POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
+                  sp(::view) pview = pdoc->get_view(pos);
                   if(pview != ::null())
                   {
                      sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
@@ -282,14 +282,14 @@ namespace nature
       ::userex::pane_tab_view::on_show_view();
       if(m_pviewdata->m_id == nature::PaneViewIdioma)
       {
-         ::userbase::menu_list_view * pmenuview = dynamic_cast < ::userbase::menu_list_view * > (m_pviewdata->m_pwnd.m_p);
-         pmenuview->m_pguieNotify = m_pviewdataOld == ::null() ? ::null() : dynamic_cast < ::userex::pane_tab_view * > (m_pviewdataOld->m_pwnd.m_p);
+         sp(::userbase::menu_list_view) pmenuview =  (m_pviewdata->m_pwnd.m_p);
+         pmenuview->m_pguieNotify = m_pviewdataOld == ::null() ? ::null() : (m_pviewdataOld->m_pwnd.m_p);
          pmenuview->m_uiMessage = WM_USER + 1122;
          pmenuview->TrackPopupMenu(pmenuview, GetParentFrame());
       }
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

@@ -120,7 +120,7 @@ namespace userbase
       {
          if(::view::get_document()->_001OnCmdMsg(pcmdmsg))
             return TRUE;
-         ::view * pview = ::view::get_document()->get_view(0);
+         sp(::view) pview = ::view::get_document()->get_view(0);
          ASSERT_VALID(pview);
          if (pview != this
             && pview != get_parent())
@@ -148,7 +148,7 @@ namespace userbase
       on_update(::null(), 0, ::null());        // initial update
    }*/
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint)
+   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * pHint)
    {
       ::view::on_update(pSender, lHint, pHint);
    }
@@ -164,7 +164,7 @@ namespace userbase
       return FALSE;   // not implemented, so not selected
    }
 
-   void view::OnActivateView(bool bActivate, ::view* pActivateView, ::view*)
+   void view::OnActivateView(bool bActivate, sp(::view) pActivateView, sp(::view))
    {
   //    UNUSED(pActivateView);   // unused in release builds
 
@@ -203,7 +203,7 @@ namespace userbase
              || pmouseactivate->GetDesktopWindow()->IsChild(pParentFrame));
 
          // either re-activate the current ::view, or set this ::view to be active
-         ::view * pview = pParentFrame->GetActiveView();
+         sp(::view) pview = pParentFrame->GetActiveView();
          sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
@@ -231,7 +231,7 @@ namespace userbase
              || pmouseactivate->GetDesktopWindow()->IsChild(pParentFrame));*/
 
          // either re-activate the current ::view, or set this ::view to be active
-         ::view * pview = pParentFrame->GetActiveView();
+         sp(::view) pview = pParentFrame->GetActiveView();
          sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
@@ -392,7 +392,7 @@ namespace userbase
          return ::null();        // can't continue without a ::view
       }
 
-      ::view * pview = dynamic_cast < ::view * > (pview);
+      sp(::view) pview =  (pview);
       pview->_001OnInitialUpdate(::null());
       if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
@@ -429,7 +429,7 @@ namespace userbase
          return ::null();        // can't continue without a ::view
       }
 
-      (dynamic_cast < ::view * > (pview))->_001OnInitialUpdate(::null());
+      ( (pview))->_001OnInitialUpdate(::null());
       if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
          // remove the 3d style from the frame, since the ::view is
@@ -446,7 +446,7 @@ namespace userbase
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
-      GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
+      GetParentFrame()->SetActiveView( (this));
    }
 
    void view::_001OnLButtonDown(::ca::signal_object * pobj)
@@ -454,7 +454,7 @@ namespace userbase
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
-      GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
+      GetParentFrame()->SetActiveView( (this));
    }
 
    void view::_001OnMButtonDown(::ca::signal_object * pobj)
@@ -462,7 +462,7 @@ namespace userbase
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
-      GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
+      GetParentFrame()->SetActiveView( (this));
    }
 
 } // namespace userbase

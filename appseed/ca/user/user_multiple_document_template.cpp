@@ -63,7 +63,7 @@ void multiple_document_template::request(sp(::ca::create_context) pcreatecontext
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();
    bool bMakeVisible = pcreatecontext->m_bMakeVisible;
 //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
-//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
+//   sp(::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
    sp(::user::document_interface) pdocument = create_new_document();
    if (pdocument == ::null())
    {

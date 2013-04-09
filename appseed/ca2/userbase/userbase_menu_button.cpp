@@ -80,7 +80,7 @@ namespace userbase
          rectImageBorder.inflate(2, 2);
 #ifdef WINDOWSEX
          ::image_list::info ii;
-         image_list * pimagelist;
+         sp(image_list) pimagelist;
          if(!_001IsWindowEnabled())
          {
             pimagelist = BaseMenuCentral::GetMenuCentral(get_app())->MenuV033GetImageListHueLight();

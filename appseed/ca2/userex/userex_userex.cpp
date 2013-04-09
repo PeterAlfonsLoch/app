@@ -85,7 +85,7 @@ namespace userex
 
 
 
-   sp(::form_document) userex::create_form(form_view * pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   sp(::form_document) userex::create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
       sp(::form_document) pdoc;
       if(m_ptemplateForm == ::null())
@@ -125,14 +125,14 @@ namespace userex
       }
 
       pdoc = (m_ptemplateForm->open_document_file(createcontext));
-      ::view * pview = pdoc->get_view(0);
-      pdoc->get_html_data()->m_pform = dynamic_cast < ::html_form * > (pview);
+      sp(::view) pview = pdoc->get_view(0);
+      pdoc->get_html_data()->m_pform =  (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
    }
 
 
-   sp(::form_document) userex::create_child_form(form_view * pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   sp(::form_document) userex::create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
       sp(::form_document) pdoc;
       if(m_ptemplateChildForm == ::null())
@@ -167,8 +167,8 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
-      ::view * pview = pdoc->get_view(0);
-      pdoc->get_html_data()->m_pform = dynamic_cast < ::html_form * > (pview);
+      sp(::view) pview = pdoc->get_view(0);
+      pdoc->get_html_data()->m_pform =  (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
    }

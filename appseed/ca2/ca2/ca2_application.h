@@ -72,7 +72,7 @@ namespace ca2
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
 
-      virtual void defer_add_document_template(::document_template * ptemplate);
+      virtual void defer_add_document_template(sp(::document_template) ptemplate);
 
       void enum_display_monitors();
 

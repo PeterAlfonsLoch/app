@@ -1,8 +1,6 @@
 #include "framework.h"
 
 
-
-
 namespace filehandler
 {
 
@@ -11,17 +9,20 @@ namespace filehandler
       ca(papp),
       ::ca::tree_data(papp)
    {
+
    }
 
 
-   ::ca::tree_item_data * tree_data::on_allocate_item()
+   sp(::ca::tree_item_data) tree_data::on_allocate_item()
    {
-      return new ::filehandler::tree_item();
+
+      return canew(::filehandler::tree_item_data());
+
    }
 
-   void tree_data::on_delete_item(::ca::tree_item_data * pitem)
+   void tree_data::on_delete_item(sp(::ca::tree_item_data) pitem)
    {
-      delete (::filehandler::tree_item *) pitem;
+
    }
    
    

@@ -93,14 +93,14 @@ restart:
          {
             for(int32_t i = 0; i < node.get_children_count(); i++)
             {
-               xml::node * pnodeMessage = node.child_at(i);
+               sp(::xml::node) pnodeMessage = node.child_at(i);
                string strSender;
                string strBody;
-               xml::node * pnodeSender = pnodeMessage->get_child("sender");
+               sp(::xml::node) pnodeSender = pnodeMessage->get_child("sender");
                if(pnodeSender != ::null())
                   strSender = pnodeSender->get_value();
 //               int32_t iLength = strSender.get_length();
-               xml::node * pnodeBody = pnodeMessage->get_child("body");
+               sp(::xml::node) pnodeBody = pnodeMessage->get_child("body");
                if(pnodeBody != ::null())
                {
                   strBody = pnodeBody->get_value();

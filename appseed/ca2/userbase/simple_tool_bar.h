@@ -67,10 +67,10 @@ public:
 #endif
    HINSTANCE        m_hInstImageWell; // instance handle to load image well from
    HBITMAP          m_hbmImageWell; // contains color mapped button images
-//   image_list *    m_pimagelist;
-//   image_list *    m_pimagelistHue;
-//   image_list *    m_pimagelistBlend;
-//   image_list *    m_pimagelistHueLight;
+//   sp(image_list)    m_pimagelist;
+//   sp(image_list)    m_pimagelistHue;
+//   sp(image_list)    m_pimagelistBlend;
+//   sp(image_list)    m_pimagelistHueLight;
    //bool           m_bInternalImageList;
    int32_t              m_iButtonPressItem;
    bool             m_bDelayedButtonLayout;
@@ -122,7 +122,7 @@ public:
    UINT GetButtonStyle(int32_t iButton);
    bool SetItemStyle(int32_t iItem, BYTE bStyle);
    int32_t GetItemStyle(int32_t iItem);
-   void _001SetImageList(image_list * pimagelist);
+   void _001SetImageList(sp(image_list) pimagelist);
    void _001DiscardImageList();
    void _001OnClick(int32_t iItem);
    int32_t _001HitTest(point pt);

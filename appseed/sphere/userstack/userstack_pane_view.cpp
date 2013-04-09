@@ -4,7 +4,7 @@
 namespace userstack
 {
 
-   pane_view::pane_view(::ca::application * papp) :
+   pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -15,15 +15,15 @@ namespace userstack
    {
       m_iNewArea        = 0;
       m_iArea           = -1;
-      m_pviewdataOld    = NULL;
+      m_pviewdataOld    = ::null();
 
       m_etranslucency   = TranslucencyTotal;
 
-      m_pviewdata       = NULL;
-      m_pviewdataOld    = NULL;
+      m_pviewdata       = ::null();
+      m_pviewdataOld    = ::null();
 
       m_iDisplay        = -1;
-      m_ppropform       = NULL;
+      m_ppropform       = ::null();
       m_dataid          = "ca2::bergedge::pane_view";
 
       get_data()->m_matchanyRestore.add(new ::ca::match::prefix("app:"));
@@ -60,31 +60,31 @@ namespace userstack
 
       add_tab("menu", ::userstack::PaneViewContextMenu);
 
-      for(int32_t i = 0; i < Application.directrix().m_varTopicQuery["app"].get_count(); i++)
+      for(int32_t i = 0; i < Application.directrix()->m_varTopicQuery["app"].get_count(); i++)
       {
 
-         string strId = Application.directrix().m_varTopicQuery["app"].stra()[i];
+         string strId = Application.directrix()->m_varTopicQuery["app"].stra()[i];
 
          if(i == 0 && strId == "app/sphere/userstack")
             continue;
 
          add_tab(strId, "app:" + strId);
 
-         set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[i]);
+         set_cur_tab_by_id("app:" + Application.directrix()->m_varTopicQuery["app"].stra()[i]);
 
       }
 
 
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
       {
          set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
       }
-      if(pHint != NULL)
+      if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -98,14 +98,14 @@ namespace userstack
             }
          }
       }
-         if(pHint != NULL)
+         if(pHint != ::null())
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               (dynamic_cast < userbase::frame_window * > (GetTopLevelFrame()))->SetActiveView(this);
+               ( (GetTopLevelFrame()))->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
@@ -123,14 +123,14 @@ namespace userstack
          string strId = get_view_id();
          if(::ca::str::begins_eat(strId, "app:"))
          {
-            ::ca::application * pappTab;
+            sp(::ca::application) pappTab;
             if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
                Session.m_pappCurrent = pappTab;
                //Bergedge.m_pappCurrent = pappTab;
             }
 /*            ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (m_pviewdata->m_pwnd);
-            if(pframeApp != NULL)
+            if(pframeApp != ::null())
             {
                pframeApp->WfiFullScreen(true, false);
             }*/
@@ -139,12 +139,12 @@ namespace userstack
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
-         ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * >(pview->get_document());
+         sp(::filemanager::document) pdoc = (pview->get_document());
          pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"));*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
-   /*      ::user::interaction * pui = m_pformOptions->ve_display_bandwidth");
+   /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
          if(System.savings().save().is_signalized(::ca::save_display_bandwidth))
          {
@@ -164,16 +164,16 @@ namespace userstack
          {
             check_desktop_dir(strDir);
          }
-         ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pviewdata->m_pdoc);
+         sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir);
       }
       else
       {
 //         pframe->m_bAutoHideOnOutClick = true;
       }
-      /*if(m_pviewdataOld != NULL)
+      /*if(m_pviewdataOld != ::null())
       {
-         if(m_pviewdataOld->m_pwnd != NULL)
+         if(m_pviewdataOld->m_pwnd != ::null())
          {
             m_pviewdataOld->m_pwnd->ShowWindow(SW_HIDE);
          }
@@ -191,7 +191,7 @@ namespace userstack
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      class application * papp = dynamic_cast < class application * > (get_app());
+      class sp(application) papp = dynamic_cast < class sp(application) > (get_app());
 
       if(pcreatordata->m_id.is_text())
       {
@@ -199,29 +199,29 @@ namespace userstack
 
          if(::ca::str::begins_eat(strId, "app:"))
          {
-            ::ca::application * pappTab;
+            sp(::ca::application) pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
 
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-               ::ca::create_context_sp createcontext(get_app());
+               sp(::ca::create_context) createcontext(get_app());
                createcontext->m_spApplicationBias = pbiasCreate;
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
 
                string str;
 
-               if(papp->directrix().m_varTopicQuery.has_property(strId))
+               if(papp->directrix()->m_varTopicQuery.has_property(strId))
                {
 
-                  createcontext->m_spCommandLine->m_varQuery.propset().merge(papp->directrix().m_varTopicQuery[(const char *) strId].propset());
+                  createcontext->m_spCommandLine->m_varQuery.propset().merge(papp->directrix()->m_varTopicQuery[(const char *) strId].propset());
 
-                  if(papp->directrix().m_varTopicQuery[(const char *) strId].has_property("file"))
+                  if(papp->directrix()->m_varTopicQuery[(const char *) strId].has_property("file"))
                   {
 
-                     createcontext->m_spCommandLine->m_varFile = papp->directrix().m_varTopicQuery[(const char *) strId]["file"];
+                     createcontext->m_spCommandLine->m_varFile = papp->directrix()->m_varTopicQuery[(const char *) strId]["file"];
 
                   }
 
@@ -237,7 +237,7 @@ namespace userstack
 
             }
 
-            ::ca::application * pappCurrent = Session.m_pappCurrent;
+            sp(::ca::application) pappCurrent = Session.m_pappCurrent;
 
             Application.m_mapApplication[strId] = pappCurrent;
 
@@ -296,9 +296,9 @@ namespace userstack
       {
          int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
-            NULL,
+            ::null(),
             L"\"" + ::ca::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
-            NULL,
+            ::null(),
             L"\"" + ::ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
@@ -316,7 +316,7 @@ namespace userstack
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().commonprograms(), &straPath, ::null(), &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -325,7 +325,7 @@ namespace userstack
       }
       straRelative.remove_all();
       straPath.remove_all();
-      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().userprograms(::null()), &straPath, ::null(), &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -351,7 +351,7 @@ namespace userstack
       string strApp;
       string strLibrary;
 
-      while(pos != NULL)
+      while(pos != ::null())
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::ca::str::begins_eat(strApp, "application:"))
@@ -364,7 +364,7 @@ namespace userstack
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
+      System.dir().rls(Application.dir().userquicklaunch(), &straPath, ::null(), &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -381,7 +381,7 @@ namespace userstack
       char buf[4096];
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
-         NULL,
+         ::null(),
          buf,
          CSIDL_COMMON_DESKTOPDIRECTORY,
          FALSE);
@@ -391,7 +391,7 @@ namespace userstack
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, ::null(), &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -402,7 +402,7 @@ namespace userstack
       }
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
-         NULL,
+         ::null(),
          buf,
          CSIDL_DESKTOPDIRECTORY,
          FALSE);
@@ -412,7 +412,7 @@ namespace userstack
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, ::null(), &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -528,7 +528,7 @@ namespace userstack
       {
 
 #ifndef METROWIN
-         simple_shell_launcher launcher(::ca::null(), NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+         simple_shell_launcher launcher(::ca::null(), ::null(), "control.exe", "desk.cpl", ::null(), SW_SHOWNORMAL);
 
          launcher.execute();
 #else

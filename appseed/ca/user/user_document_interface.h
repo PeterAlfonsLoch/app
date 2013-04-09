@@ -16,11 +16,11 @@ namespace user
    public:
 
       mutex                            m_mutex;
-      comparable_array < sp(document) >  m_documentptra;
+      spa(document)                    m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
-      document_template *              m_pdocumentemplate;
-      comparable_array < ::view * >    m_viewptra;
+      sp(document_template)              m_pdocumentemplate;
+      spa(::view)                      m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
@@ -41,7 +41,7 @@ namespace user
       const string & get_path_name() const;
       virtual void set_path_name(var varFile, bool bAddToMRU = TRUE);
 
-      document_template * get_document_template() const;
+      sp(document_template) get_document_template() const;
       virtual bool is_modified();
       virtual void set_modified_flag(bool bModified = TRUE);
       virtual void set_new(bool bNew = true);
@@ -49,10 +49,10 @@ namespace user
       virtual bool is_new_document();
 
    // Operations
-      void add_view(::view * pview);
-      void remove_view(::view * pview);
+      void add_view(sp(::view) pview);
+      void remove_view(sp(::view) pview);
       virtual ::count get_view_count() const;
-      virtual ::view * get_view(index index = 0) const;
+      virtual sp(::view) get_view(index index = 0) const;
 
 
       template < class T >
@@ -76,7 +76,7 @@ namespace user
          ::count count = 0;
          for(index index = 0; index < m_viewptra.get_count(); index++)
          {
-            T * pt = dynamic_cast < T * > (m_viewptra[index]);
+            T * pt = dynamic_cast < T * > (m_viewptra(index).m_p);
             if(pt != ::null())
             {
                if(indexFind == count)
@@ -88,7 +88,7 @@ namespace user
          return ::null();
       }
 
-      virtual ::view * get_typed_view(sp(::ca::type_info) info, index indexFind = 0);
+      virtual sp(::view) get_typed_view(sp(::ca::type_info) info, index indexFind = 0);
 
       virtual void show_all_frames(UINT nCmdShow);
 
@@ -96,16 +96,16 @@ namespace user
       class update
       {
       public:
-         ::view *         m_pSender;
+         sp(::view)         m_pSender;
          LPARAM         m_lHint;
          ::ca::object *  m_pHint;
       };
 
       // Update Views (simple update - DAG only)
-      void update_all_views(::view * pSender, LPARAM lHint = 0L,
+      void update_all_views(sp(::view) pSender, LPARAM lHint = 0L,
          ::ca::object* pHint = ::null());
 
-      void send_update(::view * pSender, LPARAM lHint = 0L,
+      void send_update(sp(::view) pSender, LPARAM lHint = 0L,
          ::ca::object* pHint = ::null());
 
    // Overridables

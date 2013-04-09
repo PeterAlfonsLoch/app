@@ -22,7 +22,7 @@ namespace userbase
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      bool LoadMenu(xml::node * pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage);
+      bool LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage);
          
    #ifdef DEBUG
       virtual void assert_valid() const;

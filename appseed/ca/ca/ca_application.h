@@ -164,7 +164,7 @@ namespace ca
       string                        m_strAppName;
       string                        m_strAppId;
       string                        m_strLibraryName;
-      sp(::plane::application)        m_pappThis;
+      ::plane::application *        m_pappThis;
       ::cube::application *         m_pappCube;
 
 
@@ -663,7 +663,7 @@ namespace ca
 
       lemon::array & lemon_array();
 
-      virtual void defer_add_document_template(::document_template * ptemplate);
+      virtual void defer_add_document_template(sp(::document_template) ptemplate);
 
       // overrides for implementation
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
@@ -921,13 +921,13 @@ namespace ca
       int32_t get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, sp(::user::document_interface) pdocument);
+      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::user::document_interface) pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 
       // Helper for message boxes; can work when no application can be found
-      static int32_t ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
+      static int32_t ShowAppMessageBox(sp(application)pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 #ifdef WINDOWSEX
@@ -1065,8 +1065,6 @@ namespace ca
 
 
       virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
-      virtual sp(::user::interaction) get_request_parent_ui(::userbase::main_frame * pmainframe, sp(::ca::create_context) pcontext);
-      //      ::ca::file_system_sp m_spfilesystem;
 
 
 

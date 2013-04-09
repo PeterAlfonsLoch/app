@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   document::document(::ca::application * papp) :
+   document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
       ::userbase::document(papp)
@@ -17,7 +17,7 @@ namespace command
 	   if (!::userbase::document::on_new_document())
 		   return FALSE;
 
-      update_all_views(NULL, 0);
+      update_all_views(::null(), 0);
 
 
 	   return TRUE;
@@ -68,7 +68,7 @@ namespace command
       string str = Application.file().as_string(varFile);
    //  m_document.load(str);
       
-      update_all_views(NULL, 123);
+      update_all_views(::null(), 123);
 
       return TRUE;
 

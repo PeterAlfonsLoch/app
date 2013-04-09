@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_ca tree_item :
+   class CLASS_DECL_ca tree_item_data :
       public ::ca::tree_item_data
    {
    public:
@@ -26,8 +26,8 @@ namespace filehandler
       stringa        m_straApp;
 
 
-      string get_text(::ca::tree * ptree);
-      index get_image(::ca::tree * ptree);
+      string get_text(sp(::ca::tree) ptree);
+      index get_image(sp(::ca::tree) ptree);
 
 
 

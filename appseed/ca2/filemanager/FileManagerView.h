@@ -21,7 +21,7 @@ public:
    
    void FileManagerBrowse(const char * lpcwstr);
 
-   virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
    virtual ~FileManagerAView();
 #ifdef DEBUG
    virtual void assert_valid() const;
@@ -51,7 +51,7 @@ public:
 
    virtual void OpenSelectionProperties();
 
-   virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
    virtual ~FileManagerView();
 #ifdef DEBUG
