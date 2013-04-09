@@ -398,7 +398,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, NULL);
+   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, ::null());
 
    if(hfile == INVALID_HANDLE_VALUE)
    {
@@ -432,12 +432,12 @@ vsstring get_file_md5_by_map(const char * path)
 
    HANDLE hfilemap = CreateFileMappingFromApp(
       hfile,
-      NULL,
+      ::null(),
       PAGE_READONLY,
       dwSize,
-      NULL);
+      ::null());
 
-   if(hfilemap == NULL)
+   if(hfilemap == ::null())
    {
 
       CloseHandle(hfile);
@@ -452,7 +452,7 @@ vsstring get_file_md5_by_map(const char * path)
       0,
       0);
 
-   if(pview == NULL)
+   if(pview == ::null())
    {
 
       CloseHandle(hfile);
@@ -468,7 +468,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFileW(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+   HANDLE hfile = ::CreateFileW(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, ::null(), OPEN_EXISTING, 0, ::null());
 
    if(hfile == INVALID_HANDLE_VALUE)
    {
@@ -503,13 +503,13 @@ vsstring get_file_md5_by_map(const char * path)
 
    HANDLE hfilemap = CreateFileMapping(
       hfile,
-      NULL,
+      ::null(),
       PAGE_READONLY,
       0,
       0,
-      NULL);
+      ::null());
 
-   if(hfilemap == NULL)
+   if(hfilemap == ::null())
    {
 
       CloseHandle(hfile);
@@ -526,7 +526,7 @@ vsstring get_file_md5_by_map(const char * path)
       0
       );
 
-   if(pview == NULL)
+   if(pview == ::null())
    {
 
       CloseHandle(hfile);
@@ -549,7 +549,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    int64_t dwSize = ::get_file_size(fd);
 
-   char * pview = (char *) mmap(NULL, dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
+   char * pview = (char *) mmap(::null(), dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
 
    if(pview == MAP_FAILED)
    {
@@ -628,7 +628,7 @@ vsstring get_file_md5_by_read(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
 
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
@@ -665,7 +665,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #ifdef WINDOWS
 
-      if(!::ReadFile(hfile, psz, min((int32_t) uiSize, iAlloc), &dwRead, NULL))
+      if(!::ReadFile(hfile, psz, min((int32_t) uiSize, iAlloc), &dwRead, ::null()))
       {
          break;
       }

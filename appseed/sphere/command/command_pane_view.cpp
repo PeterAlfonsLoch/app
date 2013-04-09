@@ -99,7 +99,7 @@ namespace command
    void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
-      frame * pframe = GetTypedParent < frame > ();
+      sp(frame) pframe = GetTypedParent < frame > ();
 
       if(get_view_id() == command::PaneViewFileManager)
       {

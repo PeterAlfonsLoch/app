@@ -9,7 +9,7 @@ namespace ca
     thread_base::thread_base()
     {
 
-        m_pthread = NULL;
+        m_pthread = ::null();
 
     }
 
@@ -23,7 +23,7 @@ namespace ca
     HTHREAD thread_base::get_os_handle() const
     {
 
-        return NULL;
+        return ::null();
 
     }
 

@@ -149,8 +149,8 @@ vsstring stra_dup::encode_v16()
 void stra_dup::decode_v16(const char * psz)
 {
    int32_t iSize = 1024;
-   char * str = NULL;
-   if(psz == NULL)
+   char * str = ::null();
+   if(psz == ::null())
       return;
    while(*psz != '\0')
    {
@@ -167,12 +167,12 @@ void stra_dup::decode_v16(const char * psz)
       if(ch == '\0')
       {
          add(str);
-         str = NULL;
+         str = ::null();
          iSize = 1024;
       }
       else
       {
-         if(str == NULL)
+         if(str == ::null())
          {
             str = (char *) _ca_alloc(iSize);
          }
@@ -195,7 +195,7 @@ void stra_dup::decode_v16(const char * psz)
 
 bool stra_dup::spa_insert(const char * psz)
 {
-   if(psz == NULL)
+   if(psz == ::null())
       return false;
    if(strlen_dup(psz) == 0)
       return false;

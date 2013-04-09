@@ -31,7 +31,7 @@ public:
    const TYPE& element_at(index nIndex) const;
    TYPE& element_at(index nIndex);
 
-   // Direct Access to the element data (may return NULL)
+   // Direct Access to the element data (may return ::null())
    const TYPE* get_data() const;
    TYPE* get_data();
 
@@ -180,14 +180,14 @@ inline simple_array<TYPE, ARG_TYPE> & simple_array<TYPE, ARG_TYPE>::operator = (
 template<class TYPE, class ARG_TYPE>
 simple_array<TYPE, ARG_TYPE>::simple_array()
 {
-   m_pData = NULL;
+   m_pData = ::null();
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
 template<class TYPE, class ARG_TYPE>
 simple_array<TYPE, ARG_TYPE>::~simple_array()
 {
-   if (m_pData != NULL)
+   if (m_pData != ::null())
    {
       for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
@@ -206,14 +206,14 @@ template<class TYPE, class ARG_TYPE>
    if (nNewSize == 0)
    {
       // shrink to nothing
-      if (m_pData != NULL)
+      if (m_pData != ::null())
       {
          delete[] (BYTE*)m_pData;
-         m_pData = NULL;
+         m_pData = ::null();
       }
       m_nSize = m_nMaxSize = 0;
    }
-   else if (m_pData == NULL)
+   else if (m_pData == ::null())
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.

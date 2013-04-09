@@ -17,7 +17,7 @@ db_str_set::db_str_set(db_server * pserver) :
 
    if(!m_pdataserver->m_bRemote && m_pmysqldbUser == ::null())
    {
-      ::sqlite::base * pdb = db()->GetImplDatabase();
+      sp(::sqlite::base) pdb = db()->GetImplDatabase();
       //create string Table if necessary
       try
       {
@@ -346,7 +346,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       string strValue(lpcsz);
       strValue.replace("'", "''");
 
-      ::sqlite::base * pdb   = db()->GetImplDatabase();
+      sp(::sqlite::base) pdb   = db()->GetImplDatabase();
       string strSql;
       string str;
       slDatabase.lock();

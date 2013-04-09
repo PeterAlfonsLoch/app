@@ -193,25 +193,25 @@ namespace filemanager
 /*            UNREFERENCED_PARAMETER(iListItem);
             MediaLibraryDoc * pdoc = get_document();
             single_lock sl(pdoc->m_pcsAlbum1, TRUE);
-            ::sqlite::set * pds = pdoc->m_pdsAlbum1;
+            sp(::sqlite::set) pds = pdoc->m_pdsAlbum1;
 
             if((iSubItem != SubItemFileName &&
                iSubItem != SubItemFilePath) &&
                (mediamanager::get(get_app())->
-               GetAlbumBuild().m_fileinfo.m_iaUpdate.get_size() > 0
+               album_build().m_fileinfo.m_iaUpdate.get_size() > 0
                ||
                mediamanager::get(get_app())->
-               GetAlbumBuild().m_fileinfo.m_iaRemove.get_size() > 0))
+               album_build().m_fileinfo.m_iaRemove.get_size() > 0))
             {
                int32_t iId;
                iId = pds->result.records[iItem][FieldIndexId].int32();
                int32_t iFound;
-               if((iFound = mediamanager::get(get_app())->GetAlbumBuild().m_fileinfo.m_iaUpdate.find_first(iId)) >= 0)
+               if((iFound = mediamanager::get(get_app())->album_build().m_fileinfo.m_iaUpdate.find_first(iId)) >= 0)
                {
                   str.Empty();
                   return false;
                }
-               else if((iFound = mediamanager::get(get_app())->GetAlbumBuild().m_fileinfo.m_iaRemove.find_first(iId)) >= 0)
+               else if((iFound = mediamanager::get(get_app())->album_build().m_fileinfo.m_iaRemove.find_first(iId)) >= 0)
                {
                   str.Empty();
                   return false;
@@ -275,7 +275,7 @@ namespace filemanager
             {
                _001UpdateColumns();
                //_001SetItemCountEx(get_document()->GetSongCount());
-//               mediamanager::get(get_app())->GetAlbumBuild().SetCallbackWnd(this);
+//               mediamanager::get(get_app())->album_build().SetCallbackWnd(this);
             }
             else
             {
@@ -424,20 +424,20 @@ namespace filemanager
 
             string & wstrPath = ptask->m_wstrFile;
             MediaLibraryDoc * pdoc = ptask->m_pview->get_document();
-            ::sqlite::set * pds = pdoc->m_pdsAlbum;
+            sp(::sqlite::set) pds = pdoc->m_pdsAlbum;
 
             int32_t iFind;
             if((iFind = pdoc->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
-            mediamanager::GetMediaManager()->GetAlbumBuild().add(wstrPath, pdoc->m_fileinfo.m_timeaAdd[iFind]);
+            mediamanager::GetMediaManager()->album_build().add(wstrPath, pdoc->m_fileinfo.m_timeaAdd[iFind]);
             pdoc->m_fileinfo.m_wstraAdd.remove_at(iFind);
             pdoc->m_fileinfo.m_timeaAdd.remove_at(iFind);
             }
             else if((iFind = pdoc->m_fileinfo.m_wstraUpdate.FindFirst(wstrPath)) >= 0)
             {
-            mediamanager::GetMediaManager()->GetAlbumBuild().Update(wstrPath, pdoc->m_fileinfo.m_timeaUpdate[iFind]);
-            pds->SetFieldValue("title", sqlite::CFieldValue(mediamanager::GetMediaManager()->GetAlbumBuild().GetAlbumRecord().m_wstrTitle));
-            pds->SetFieldValue("filename", sqlite::CFieldValue(mediamanager::GetMediaManager()->GetAlbumBuild().GetAlbumRecord().m_wstrFileName));
+            mediamanager::GetMediaManager()->album_build().Update(wstrPath, pdoc->m_fileinfo.m_timeaUpdate[iFind]);
+            pds->SetFieldValue("title", sqlite::CFieldValue(mediamanager::GetMediaManager()->album_build().album_record().m_wstrTitle));
+            pds->SetFieldValue("filename", sqlite::CFieldValue(mediamanager::GetMediaManager()->album_build().album_record().m_wstrFileName));
             pdoc->m_fileinfo.m_iaUpdate.remove_at(iFind);
             pdoc->m_fileinfo.m_wstraUpdate.remove_at(iFind);
             pdoc->m_fileinfo.m_timeaUpdate.remove_at(iFind);
@@ -486,7 +486,7 @@ namespace filemanager
                int32_t iItem;
 
 
-               ::sqlite::set * pds = pdoc->m_pdsAlbum;
+               sp(::sqlite::set) pds = pdoc->m_pdsAlbum;
 
                int32_t iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
 
@@ -533,7 +533,7 @@ namespace filemanager
                break;
                }
                }
-               mediamanager::GetMediaManager()->GetAlbumBuild().remove(iaRemove);
+               mediamanager::GetMediaManager()->album_build().remove(iaRemove);
                }
 
                }
@@ -541,7 +541,7 @@ namespace filemanager
                {
                KillTimer(1124);
                MediaLibraryDoc * pdoc = get_document();
-               ::sqlite::set * pds = pdoc->m_pdsAlbum;
+               sp(::sqlite::set) pds = pdoc->m_pdsAlbum;
 
                int32_t iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
 
@@ -622,7 +622,7 @@ namespace filemanager
          }
          }*/
 
-         /*list_view::FillTask::FillTask(list_view * pview, LPWString lpcsz)
+         /*list_view::FillTask::FillTask(sp(list_view) pview, LPWString lpcsz)
          :
          m_pview(pview),m_wstrFile(lpcsz)
          {
@@ -664,7 +664,7 @@ namespace filemanager
             }
          }
 
-         void list_view::KickBuild(int32_t iItem)
+         void list_view::start_build(int32_t iItem)
          {
             UNREFERENCED_PARAMETER(iItem);
             index iTopIndex = m_iTopIndex;
@@ -682,12 +682,12 @@ namespace filemanager
 
 /*            MediaLibraryDoc * pdoc = get_document();
 
-            int_array & ia = mediamanager::get(get_app())->GetAlbumBuild().GetPriorityArray();
+            int_array & ia = mediamanager::get(get_app())->album_build().GetPriorityArray();
             ia.remove_all();
 
             int32_t iId;
             single_lock sl(pdoc->m_pcsAlbum1, TRUE);
-            ::sqlite::set * pds = pdoc->m_pdsAlbum1;
+            sp(::sqlite::set) pds = pdoc->m_pdsAlbum1;
             for(int32_t i = 0; i < iDisplayItemCount; i++)
             {
                int32_t iItem = DisplayToStrict(iTopIndex + i);
@@ -699,7 +699,7 @@ namespace filemanager
                }
             }
 
-            mediamanager::get(get_app())->KickBuildAlbum();*/
+            mediamanager::get(get_app())->start_album_build();*/
 
             SetTimer(123654, 700, ::null());
 

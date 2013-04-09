@@ -30,7 +30,7 @@ verisimple_wstring::verisimple_wstring(const char * psz)
 
 verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, ::count iCount)
 {
-   if(pwsz == NULL)
+   if(pwsz == ::null())
    {
 
       m_pwsz         = wstring_data::get_nil();
@@ -52,7 +52,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, ::count iCount)
 verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
 {
 
-   if(pwsz == NULL)
+   if(pwsz == ::null())
    {
 
       m_pwsz         = wstring_data::get_nil();
@@ -88,14 +88,14 @@ verisimple_wstring::~verisimple_wstring()
 {
 
    wstring_data::free(m_pwsz);
-   m_pwsz = NULL;
+   m_pwsz = ::null();
 
 }
 
 wchar_t * verisimple_wstring::alloc(::count iCount)
 {
 
-   if(m_pwsz != NULL && iCount < get_data()->m_iAllocation)
+   if(m_pwsz != ::null() && iCount < get_data()->m_iAllocation)
       return m_pwsz;
 
    wstring_data::free(m_pwsz);
@@ -113,7 +113,7 @@ verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & 
    if(this != &wstr)
    {
 
-      if(m_pwsz != NULL && get_data()->m_iAllocation >= (wstr.length() + 1))
+      if(m_pwsz != ::null() && get_data()->m_iAllocation >= (wstr.length() + 1))
       {
 
          memcpy_dup(m_pwsz, wstr.m_pwsz, (wstr.length() + 1) * sizeof(wchar_t));
@@ -240,7 +240,7 @@ CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 
 verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 {
-   if(m_pwsz == NULL)
+   if(m_pwsz == ::null())
    {
 
       return L"";

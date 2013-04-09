@@ -90,13 +90,13 @@ public:
    static sp(::user::interaction) s_create_view(sp(::ca::create_context) pContext, sp(::user::interaction) pwndParent, id id);
 
    template < class VIEW >
-   VIEW * create_view(sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
+   sp(VIEW) create_view(sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
 
    template < class VIEW >
-   VIEW * create_view(sp(::user::interaction) pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
+   sp(VIEW) create_view(sp(::user::interaction) pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
 
    template < class VIEW >
-   VIEW * create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = ::null());
+   sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = ::null());
 
 
    static sp(::user::document_interface) get_document(sp(::user::interaction) pguie);

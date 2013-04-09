@@ -21,7 +21,7 @@ public:
    verisimple_string(const char * psz, int_ptr count);
    verisimple_string(const verisimple_string & str);
 #ifdef METROWIN
-   inline verisimple_string(Platform::Object ^ str) { m_psz = NULL; operator = (str->ToString()->Begin()); }
+   inline verisimple_string(Platform::Object ^ str) { m_psz = ::null(); operator = (str->ToString()->Begin()); }
 #endif
    ~verisimple_string();
 
@@ -40,7 +40,7 @@ public:
    verisimple_string & operator = (const wchar_t * pwsz);
    verisimple_string & operator = (char ch);
 #ifdef METROWIN
-   inline verisimple_string &  operator = (Platform::Object ^ str) { m_psz = NULL; operator = (str->ToString()->Begin()); return *this; }
+   inline verisimple_string &  operator = (Platform::Object ^ str) { m_psz = ::null(); operator = (str->ToString()->Begin()); return *this; }
 #endif
 
    bool operator == (const char * psz) const;

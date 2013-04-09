@@ -14,11 +14,11 @@ int32_t spaboot_registry_register(const char * lpszFile)
       return 1;
    char strValue[2048];
    strcpy_dup(strValue, "ca2_spaboot_file");
-   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, NULL, NULL, REG_SZ,
+   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, ::null(), 0, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue))+1)*sizeof(char))
       return 1;
    strcpy_dup(strValue, "application/x-ca2_spaboot_file");
-   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, "ContentType", NULL, REG_SZ,
+   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, "ContentType", 0, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue)+1)*sizeof(char)))
       return 1;
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
@@ -30,7 +30,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
 	   &hkey))
       return 1;
    strcpy_dup(strValue, "open");
-   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, NULL, NULL, REG_SZ,
+   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, ::null(), 0, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue)+1)*sizeof(char)))
       return 1;
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
@@ -41,7 +41,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
 	   &hkey))
       return 1;
    strcpy_dup(strValue, "&Open");
-   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, NULL, NULL, REG_SZ,
+   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, ::null(), 0, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue)+1)*sizeof(char)))
       return 1;
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
@@ -54,7 +54,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
    strcpy_dup(strValue, "\"");
    strcat_dup(strValue, lpszFile);
    strcat_dup(strValue, "\" \"%L\"");
-   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, NULL, NULL, REG_SZ,
+   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, ::null(), 0, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue)+1)*sizeof(char)))
       return 1;
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
@@ -67,7 +67,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
 	   &hkey))
       return 1;
    strcpy_dup(strValue, ".spaboot");
-   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, "Extension", NULL, REG_SZ,
+   if(ERROR_SUCCESS != ::RegSetValueEx(hkey, "Extension", 0, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue)+1)*sizeof(char)))
       return 1;
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
@@ -87,7 +87,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
    ::GetModuleFileNameA((HINSTANCE) ::GetModuleHandleA("npca2.dll"), szModulePath, sizeof(szModulePath));
 
    char path[MAX_PATH * 3];
-   char * file = NULL;
+   char * file = ::null();
    ::GetFullPathNameA(szModulePath, sizeof(path), path, &file);
    file[0] = '\0';
 

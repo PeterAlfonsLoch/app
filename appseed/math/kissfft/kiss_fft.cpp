@@ -18,9 +18,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  fixed or doubleing point complex numbers.  It also delares the kf_ internal functions.
  */
 
-static kiss_fft_cpx *scratchbuf=NULL;
+static kiss_fft_cpx *scratchbuf=::null();
 static size_t nscratchbuf=0;
-static kiss_fft_cpx *tmpbuf=NULL;
+static kiss_fft_cpx *tmpbuf=::null();
 static size_t ntmpbuf=0;
 
 #define CHECKBUF(buf,nbuf,n) \
@@ -321,11 +321,11 @@ void kf_factor(int32_t n,int32_t * facbuf)
  * */
 kiss_fft_cfg kiss_fft_alloc(int32_t nfft,int32_t inverse_fft,void * mem,size_t * lenmem )
 {
-    kiss_fft_cfg st=NULL;
+    kiss_fft_cfg st=::null();
     size_t memneeded = sizeof(struct kiss_fft_state)
         + sizeof(kiss_fft_cpx)*(nfft-1); /* twiddle factors*/
 
-    if ( lenmem==NULL ) {
+    if ( lenmem==::null() ) {
         st = ( kiss_fft_cfg)malloc( memneeded );
     }else{
         if (*lenmem >= memneeded)

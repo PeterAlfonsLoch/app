@@ -20,7 +20,7 @@ namespace xml
       parse_info *               m_pparseinfo;
       string                     m_strLocation;
       string                     m_strData;
-      ::xml::edit *              m_pedit;
+      sp(::xml::edit)              m_pedit;
 
 
       document(sp(::ca::application) papp, parse_info * pparseinfo = ::null());
@@ -42,7 +42,7 @@ namespace xml
       virtual void edit(::ca::base_edit * pbaseedit);
 
 
-      inline ::xml::edit * validate_edit(::ca::base_edit * pbaseedit)
+      inline sp(::xml::edit) validate_edit(::ca::base_edit * pbaseedit)
       {
          return ::ca::data::validate_edit < ::xml::edit > (pbaseedit);
       }

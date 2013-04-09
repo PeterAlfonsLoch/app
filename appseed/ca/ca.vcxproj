@@ -1753,10 +1753,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include=".\uinteraction\uinteraction_interaction.h" />
     <ClInclude Include="uinteraction\uinteraction_frame.h" />
     <ClInclude Include="userpresence\userpresence.h" />
-    <ClInclude Include="userpresence\userpresence_application.h" />
+    <ClInclude Include="userpresence\userpresence_userpresence.h" />
     <ClInclude Include="userpresence\userpresence_user_presence.h" />
-    <ClInclude Include="userpresence\userpresence_user_presence_central.h" />
-    <ClInclude Include="userpresence\userpresence_user_presence_central_container.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user_application.h" />
     <ClInclude Include="user\user_buffer.h" />
@@ -3058,8 +3056,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="uinteraction\uinteraction_frame.cpp" />
     <ClCompile Include="userpresence\userpresence_userpresence.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence.cpp" />
-    <ClCompile Include="userpresence\userpresence_user_presence_central.cpp" />
-    <ClCompile Include="userpresence\userpresence_user_presence_central_container.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\user_buffer.cpp" />
     <ClCompile Include="user\user_check_interface.cpp" />

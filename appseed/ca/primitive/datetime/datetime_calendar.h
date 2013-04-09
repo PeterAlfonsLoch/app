@@ -40,7 +40,7 @@ public:
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
    void _001OnDraw(::ca::graphics * pdc);
-   void _001GetHtml(::html::file * pfile);
+   void _001GetHtml(sp(::html::file) pfile);
 
    void set_pos(point pt, size sz);
 

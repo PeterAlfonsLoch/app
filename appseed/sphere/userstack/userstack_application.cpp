@@ -488,7 +488,7 @@ namespace userstack
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {
 
-         pane_view * ppaneview = get_document()->get_typed_view < pane_view >();
+         sp(pane_view) ppaneview = get_document()->get_typed_view < pane_view >();
 
          if(ppaneview != ::null())
          {

@@ -729,20 +729,20 @@ bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutpu
 
 
 template < class VIEW >
-inline VIEW * view::create_view(sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+inline sp(VIEW) view::create_view(sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
-   return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast).m_p);
+   return create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast);
 }
 
 
 template < class VIEW >
-inline VIEW * view::create_view(sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+inline sp(VIEW) view::create_view(sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
    return create_view < VIEW > (::null(), pwndParent, id, pviewLast);
 }
 
 template < class VIEW >
-inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
+inline sp(VIEW) view::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
 {
 
    VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);

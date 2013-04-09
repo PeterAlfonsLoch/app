@@ -14,7 +14,7 @@ bool __internal_pump_message()
 
 #else
 MESSAGE g_msgSpaAdminWindow;
-	if (!::GetMessage(&g_msgSpaAdminWindow, NULL, NULL, NULL))
+	if (!::GetMessage(&g_msgSpaAdminWindow, 0, 0, 0))
 	{
 #ifdef DEBUG
 /*		TRACE(traceAppMsg, 1, "CWinThread::PumpMessage - Received WM_QUIT.\n");

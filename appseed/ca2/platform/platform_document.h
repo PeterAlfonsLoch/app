@@ -35,7 +35,7 @@ namespace platform
 
 
       sp(view)                  get_platform_view();
-      pane_view *             get_platform_pane_view();
+      sp(pane_view)             get_platform_pane_view();
       sp(frame)                 get_platform_frame();
       bergedge::bergedge *    get_bergedge();
       

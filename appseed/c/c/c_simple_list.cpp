@@ -3,8 +3,8 @@
 
 void base_simple_list::add_head(void * p)
 {
-//   ASSERT(p != NULL);
-//   ASSERT(*GetNextPtr(p) == NULL);
+//   ASSERT(p != ::null());
+//   ASSERT(*GetNextPtr(p) == ::null());
 
    *GetNextPtr(p) = m_pHead;
    m_pHead = p;
@@ -12,27 +12,27 @@ void base_simple_list::add_head(void * p)
 
 bool base_simple_list::remove(void * p)
 {
-//   ASSERT(p != NULL);
+//   ASSERT(p != ::null());
 
-   if (m_pHead == NULL)
+   if (m_pHead == ::null())
       return FALSE;
 
    bool bResult = FALSE;
    if (m_pHead == p)
    {
       m_pHead = *GetNextPtr(p);
-//      DEBUG_ONLY(*GetNextPtr(p) = NULL);
+//      DEBUG_ONLY(*GetNextPtr(p) = ::null());
       bResult = TRUE;
    }
    else
    {
       void * pTest = m_pHead;
-      while (pTest != NULL && *GetNextPtr(pTest) != p)
+      while (pTest != ::null() && *GetNextPtr(pTest) != p)
          pTest = *GetNextPtr(pTest);
-      if (pTest != NULL)
+      if (pTest != ::null())
       {
          *GetNextPtr(pTest) = *GetNextPtr(p);
-  //       DEBUG_ONLY(*GetNextPtr(p) = NULL);
+  //       DEBUG_ONLY(*GetNextPtr(p) = ::null());
          bResult = TRUE;
       }
    }

@@ -9,13 +9,13 @@ namespace c
    library::library()
    {
       m_bAutoClose = true;
-      m_plibrary = NULL;
+      m_plibrary = ::null();
    }
 
    library::library(const char * pszOpen)
    {
       m_bAutoClose = true;
-      m_plibrary = NULL;
+      m_plibrary = ::null();
       open(pszOpen);
    }
 
@@ -29,7 +29,7 @@ namespace c
 
    bool library::is_opened()
    {
-      return m_plibrary != NULL;
+      return m_plibrary != ::null();
    }
 
    bool library::is_closed()
@@ -68,7 +68,7 @@ namespace c
       if(str_ends_ci_dup(strPath, ".exp"))
          return false;
 
-      if(strstr_dup(file_title_dup(strPath), ".") == NULL)
+      if(strstr_dup(file_title_dup(strPath), ".") == ::null())
          strPath += ".dll";
 
 #ifdef _M_X64
@@ -80,7 +80,7 @@ namespace c
 
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
 
-      if(m_plibrary == NULL)
+      if(m_plibrary == ::null())
       {
 
          strPath = "\\\\?\\" + strPath;
@@ -89,13 +89,13 @@ namespace c
 
       }
    
-      return m_plibrary != NULL;
+      return m_plibrary != ::null();
 
    }
 
    bool library::close()
    {
-      if(m_plibrary != NULL)
+      if(m_plibrary != ::null())
       {
          bool bOk = false;
          try
@@ -105,7 +105,7 @@ namespace c
          catch(...)
          {
          }
-         m_plibrary = NULL;
+         m_plibrary = ::null();
          return bOk;
       }
       return true;
@@ -135,7 +135,7 @@ namespace c
    bool ca2_library::open(const char * pszPath)
    {
       m_plibrary = ::ca::open_ca2_library(pszPath);
-      return m_plibrary != NULL;
+      return m_plibrary != ::null();
    }
 
 

@@ -74,16 +74,16 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
    HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
 
-   if(hmodule == NULL)
+   if(hmodule == ::null())
       hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
 
-   if(hmodule == NULL)
+   if(hmodule == ::null())
    {
 
       vsstring buf;
 
       throw metrowin_todo();
-      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wstringtovss(buf, 4096));
+      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, ::null(), wstringtovss(buf, 4096));
       //if(FAILED(hr))
       // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
 
@@ -141,14 +141,14 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
    HMODULE hmodule = ::GetModuleHandleA("ca.dll");
 
-   if(hmodule == NULL)
+   if(hmodule == ::null())
       hmodule = ::GetModuleHandleA("spalib.dll");
 
-   if(hmodule == NULL)
+   if(hmodule == ::null())
    {
 
       SHGetSpecialFolderPath(
-         NULL,
+         ::null(),
          lpszModuleFilePath,
          CSIDL_PROGRAM_FILES,
          FALSE);
@@ -259,7 +259,7 @@ vsstring ca2_module_folder_dup()
 
    void * handle = dlopen("libca2ca.so", RTLD_NOW);
 
-   if(handle == NULL)
+   if(handle == ::null())
       return "";
 
    link_map * plm;
@@ -280,7 +280,7 @@ vsstring ca2_module_folder_dup()
 
    {
 
-      char * pszCurDir = getcwd(NULL, 0);
+      char * pszCurDir = getcwd(::null(), 0);
 
       vsstring strCurDir = pszCurDir;
 
@@ -306,7 +306,7 @@ vsstring dir::ca(const char * path1, const char * path2, const char * path3, con
 
 #ifdef WINDOWS
 
-   if(path1 == NULL && path2 == NULL && path3 == NULL && path4 == NULL)
+   if(path1 == ::null() && path2 == ::null() && path3 == ::null() && path4 == ::null())
    {
 
       vsstring str;
@@ -384,7 +384,7 @@ bool dir::mk(const char * lpcsz)
       uint32_t dw = ::GetFileAttributesW(wstr);
       if(dw == INVALID_FILE_ATTRIBUTES)
       {
-         ::CreateDirectoryW(wstr, NULL);
+         ::CreateDirectoryW(wstr, ::null());
       }
       oldpos = pos;
       pos = url.find("\\", oldpos + 1);
@@ -395,7 +395,7 @@ bool dir::mk(const char * lpcsz)
    wstring wstr(unc + dir);
    if(::GetFileAttributesW(wstr) == INVALID_FILE_ATTRIBUTES)
    {
-      ::CreateDirectoryW(wstr, NULL);
+      ::CreateDirectoryW(wstr, ::null());
    }
    return true;
 
@@ -439,7 +439,7 @@ vsstring dir::module_folder(const char * path1)
 #ifdef WINDOWSEX
 
    char path[MAX_PATH * 4];
-   if(!GetModuleFileName(NULL, path, sizeof(path)))
+   if(!GetModuleFileName(::null(), path, sizeof(path)))
    {
       return path1;
    }
@@ -468,7 +468,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
    {
       str = str.substr(0, str.length() - 1);
    }
-   if(path2 != NULL)
+   if(path2 != ::null())
    {
       vsstring strAdd(path2);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
@@ -477,7 +477,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
       }
       str += strAdd;
    }
-   if(path3 != NULL)
+   if(path3 != ::null())
    {
       vsstring strAdd(path3);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
@@ -486,7 +486,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
       }
       str += strAdd;
    }
-   if(path4 != NULL)
+   if(path4 != ::null())
    {
       vsstring strAdd(path4);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
@@ -495,7 +495,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
       }
       str += strAdd;
    }
-   if(path5 != NULL)
+   if(path5 != ::null())
    {
       vsstring strAdd(path5);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
@@ -593,12 +593,12 @@ void dir::ls(stra_dup & stra, const char *psz)
 
    DIR * dirp = opendir(psz);
 
-   if(dirp == NULL)
+   if(dirp == ::null())
       return;
 
    dirent * dp;
 
-   while ((dp = readdir(dirp)) != NULL)
+   while ((dp = readdir(dirp)) != ::null())
    {
 
       if(strcmp(dp->d_name, "..") == 0)
@@ -662,12 +662,12 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
 
    DIR * dirp = opendir(psz);
 
-   if(dirp == NULL)
+   if(dirp == ::null())
       return;
 
    dirent * dp;
 
-   while ((dp = readdir(dirp)) != NULL)
+   while ((dp = readdir(dirp)) != ::null())
    {
       if(dp->d_name[0] == '.')
       {
@@ -823,7 +823,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
 #ifdef WINDOWSEX
 
-   SHGetSpecialFolderPath(NULL, (vsstring &) str, CSIDL_PROFILE, false);
+   SHGetSpecialFolderPath(::null(), (vsstring &) str, CSIDL_PROFILE, false);
 
 #elif defined(METROWIN)
 
@@ -860,11 +860,11 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
    return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
 
    //      return path(path(str, "ca2"), lpcsz);
-   /*      if(&AppUser(papp) == NULL)
+   /*      if(&AppUser(papp) == ::null())
    {
    string str;
    SHGetSpecialFolderPath(
-   NULL,
+   ::null(),
    str,
    CSIDL_PROFILE,
    FALSE);

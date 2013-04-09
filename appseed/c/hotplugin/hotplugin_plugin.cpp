@@ -30,7 +30,7 @@ namespace hotplugin
    plugin::plugin()
    {
 
-      m_phost           = NULL;
+      m_phost           = ::null();
       m_bInitialized    = false;
       m_bOk             = false;
       m_rect.left       = 0;
@@ -58,9 +58,9 @@ namespace hotplugin
    {
       free_memory();
 #if !defined(MACOS) && !defined(LINUX) && !defined(METROWIN)
-      if(m_pbitmap != NULL)
+      if(m_pbitmap != ::null())
          delete (Gdiplus::Bitmap *) m_pbitmap;
-      if(m_pcolorref != NULL)
+      if(m_pcolorref != ::null())
          _ca_free(m_pcolorref, 0);
 #endif
       //delete m_pinfo;
@@ -69,7 +69,7 @@ namespace hotplugin
    bool plugin::open_url(const char * psz)
    {
 
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
 
          return m_phost->open_url(psz);
@@ -83,7 +83,7 @@ namespace hotplugin
 
    bool plugin::reload_plugin()
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          return m_phost->reload_plugin();
       }
@@ -92,7 +92,7 @@ namespace hotplugin
 
    vsstring plugin::get_host_location_url()
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          return m_phost->get_host_location_url();
       }
@@ -101,7 +101,7 @@ namespace hotplugin
 
    void plugin::redraw()
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->redraw();
       }
@@ -109,7 +109,7 @@ namespace hotplugin
 
    void plugin::post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->post_message(uiMessage, wparam, lparam);
       }
@@ -117,7 +117,7 @@ namespace hotplugin
 
    oswindow plugin::get_host_window()
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          return m_phost->get_host_window();
       }
@@ -141,7 +141,7 @@ namespace hotplugin
 
    void plugin::set_memory(void * puchMemory, ::count c)
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->set_memory(puchMemory, c);
       }
@@ -149,7 +149,7 @@ namespace hotplugin
 
    void plugin::append_memory(void * puchMemory, ::count c)
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->append_memory(puchMemory, c);
       }
@@ -157,7 +157,7 @@ namespace hotplugin
 
    ::count plugin::get_memory_length()
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          return m_phost->get_memory_length();
       }
@@ -166,7 +166,7 @@ namespace hotplugin
 
    ::count plugin::read_memory(void * puchMemory, ::count c)
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          return m_phost->read_memory(puchMemory, c);
       }
@@ -217,13 +217,13 @@ namespace hotplugin
 
       m_bOk = true;
 
-      if(m_bOk && m_phost != NULL && m_phost->is_ok())
+      if(m_bOk && m_phost != ::null() && m_phost->is_ok())
       {
 
          on_ready();
 
       }
-      else if(m_phost != NULL)
+      else if(m_phost != ::null())
       {
 
 #ifdef WINDOWSEX
@@ -798,7 +798,7 @@ namespace hotplugin
 
    void plugin::set_progress_rate(double dRate)
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->set_progress_rate(dRate);
       }
@@ -806,7 +806,7 @@ namespace hotplugin
 
    double plugin::get_progress_rate()
    {
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          return m_phost->get_progress_rate();
       }
@@ -816,7 +816,7 @@ namespace hotplugin
    void plugin::on_paint_progress(simple_graphics & g, LPCRECT lprect)
    {
 
-      if(m_phost != NULL && !m_phost->m_bShowProgress)
+      if(m_phost != ::null() && !m_phost->m_bShowProgress)
          return;
 
       RECT rectWindow = *lprect;
@@ -858,7 +858,7 @@ namespace hotplugin
    void plugin::start_plugin()
    {
 
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->start_plugin();
       }
@@ -877,7 +877,7 @@ namespace hotplugin
    void plugin::plugin_system_redraw()
    {
 
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->plugin_system_redraw();
       }
@@ -887,7 +887,7 @@ namespace hotplugin
    void plugin::set_ca2_installation_ready(bool bReady)
    {
 
-      if(m_phost != NULL)
+      if(m_phost != ::null())
       {
          m_phost->set_ca2_installation_ready(bReady);
       }
@@ -906,7 +906,7 @@ namespace hotplugin
    void plugin::restart_small_ipc_channel()
    {
 
-      if(m_phost != NULL && m_phost != this)
+      if(m_phost != ::null() && m_phost != this)
       {
 
          m_phost->restart_small_ipc_channel();
@@ -931,7 +931,7 @@ namespace hotplugin
    void plugin::ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile)
    {
 
-      if(m_pcolorref == NULL
+      if(m_pcolorref == ::null()
          || m_sizeBitmapData.cx != cx
          || m_sizeBitmapData.cy != cy)
       {
@@ -940,7 +940,7 @@ namespace hotplugin
          m_sizeBitmapData.cy = cy;
 
 #ifdef WINDOWS
-         if(m_pcolorref != NULL)
+         if(m_pcolorref != ::null())
 #else
          if(m_pcolorref != MAP_FAILED)
 #endif
@@ -957,14 +957,14 @@ namespace hotplugin
             {
             }
 #ifdef WINDOWS
-            m_pcolorref = NULL;
+            m_pcolorref = ::null();
 #else
             m_pcolorref = (uint32_t *)  MAP_FAILED;
 #endif
          }
 
 #ifdef WINDOWS
-         if(m_hfilemapBitmap != NULL)
+         if(m_hfilemapBitmap != ::null())
          {
             try
             {
@@ -973,7 +973,7 @@ namespace hotplugin
             catch(...)
             {
             }
-            m_hfilemapBitmap = NULL;
+            m_hfilemapBitmap = ::null();
          }
 #endif
 
@@ -1031,7 +1031,7 @@ namespace hotplugin
          m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
 #elif defined(WINDOWS)
          wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
-         m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
+         m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, ::null(), iOpen, FILE_ATTRIBUTE_NORMAL, ::null());
 #else
          m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
 #endif
@@ -1066,12 +1066,12 @@ namespace hotplugin
 #ifdef METROWIN
          m_hfilemapBitmap = CreateFileMappingFromApp(
             m_hfileBitmap,
-            NULL,
+            ::null(),
             PAGE_READWRITE,
             size,
-            NULL);
+            ::null());
 
-         if(m_hfilemapBitmap == NULL)
+         if(m_hfilemapBitmap == ::null())
          {
             CloseHandle(m_hfileBitmap);
             m_hfileBitmap = INVALID_HANDLE_VALUE;
@@ -1081,13 +1081,13 @@ namespace hotplugin
 #elif defined(WINDOWS)
          m_hfilemapBitmap = CreateFileMapping(
             m_hfileBitmap,
-            NULL,
+            ::null(),
             PAGE_READWRITE,
             0,
             0,
-            NULL);
+            ::null());
 
-         if(m_hfilemapBitmap == NULL)
+         if(m_hfilemapBitmap == ::null())
          {
             CloseHandle(m_hfileBitmap);
             m_hfileBitmap = INVALID_HANDLE_VALUE;
@@ -1111,18 +1111,18 @@ namespace hotplugin
             0
             );
 #else
-         m_pcolorref = (COLORREF *) mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
+         m_pcolorref = (COLORREF *) mmap(::null(), size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
 #endif
 
 #ifdef WINDOWS
-         if(m_pcolorref == NULL)
+         if(m_pcolorref == ::null())
 #else
          if(m_pcolorref == MAP_FAILED)
 #endif
          {
 #ifdef WINDOWS
             CloseHandle(m_hfilemapBitmap);
-            m_hfilemapBitmap = NULL;
+            m_hfilemapBitmap = ::null();
             CloseHandle(m_hfileBitmap);
             m_hfileBitmap = INVALID_HANDLE_VALUE;
 #else

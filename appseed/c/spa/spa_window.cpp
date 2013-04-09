@@ -125,7 +125,7 @@ namespace spa
       rect.right        = cx;
       rect.bottom       = cy;
 
-      if(lprect == NULL)
+      if(lprect == ::null())
       {
          lprect = &rect;
       }
@@ -142,8 +142,8 @@ namespace spa
 
       PaintBk(g);
 
-//      HFONT hfontOld = NULL;
-//      HFONT hfont = NULL;
+//      HFONT hfontOld = ::null();
+//      HFONT hfont = ::null();
 
       m_canvas.on_paint(g, &rect);
 
@@ -190,7 +190,7 @@ namespace spa
 
          gWindow.from_entire_window(m_oswindow);
 
-         OnPaint(gWindow, NULL);
+         OnPaint(gWindow, ::null());
 #else
          throw "todo";
 
@@ -206,8 +206,8 @@ namespace spa
       case WM_CREATE:
          {
 #ifdef WINDOWSEX
-            ::SetTimer(m_oswindow, TIMER_CARET, 100, NULL);
-            ::SetTimer(m_oswindow, TIMER_ANIMATION, 33, NULL);
+            ::SetTimer(m_oswindow, TIMER_CARET, 100, ::null());
+            ::SetTimer(m_oswindow, TIMER_ANIMATION, 33, ::null());
 #else
          throw "todo";
 
@@ -276,7 +276,7 @@ namespace spa
    LRESULT CALLBACK window::s_window_proc(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam)
    {
       window * pwindow = s_windowmap[oswindow];
-      if(pwindow != NULL)
+      if(pwindow != ::null())
          return pwindow->window_proc(message, wParam, lParam);
 #ifdef WINDOWSEX
       return DefWindowProc(oswindow, message, wParam, lParam);
@@ -299,12 +299,12 @@ namespace spa
       wcex.cbWndExtra	   = 0;
       wcex.hInstance		   = hInstance;
       //	wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CA2_SPA));
-      //wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
+      //wcex.hCursor		   = LoadCursor(::null(), IDC_ARROW);
       wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CA2_SPA));
-      wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
+      wcex.hCursor		   = LoadCursor(::null(), IDC_ARROW);
       wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
       //wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_CA2_SPA);
-      wcex.lpszMenuName	   = NULL;
+      wcex.lpszMenuName	   = ::null();
       wcex.lpszClassName	= "spa_main_window";
       wcex.hIconSm		   = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_CA2_SPA));
 
@@ -321,7 +321,7 @@ namespace spa
       ::GetCursorPos(&ptCursor);
 #ifdef WINDOWSEX
 
-      ::SetWindowPos(m_oswindow, NULL,
+      ::SetWindowPos(m_oswindow, ::null(),
          ptCursor.x - m_ptDragStart.x + m_rectWindowDragStart.left,
          ptCursor.y - m_ptDragStart.y + m_rectWindowDragStart.top,
          0,
@@ -343,7 +343,7 @@ namespace spa
       }
 #ifdef WINDOWSEX
 
-      ::RedrawWindow(m_oswindow, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
+      ::RedrawWindow(m_oswindow, ::null(), ::null(), RDW_UPDATENOW | RDW_INVALIDATE);
 #else
             throw "todo";
 #endif
@@ -354,7 +354,7 @@ namespace spa
 #ifdef WINDOWSEX
       if(!::IsIconic(m_oswindow) && IsWindowVisible(m_oswindow))
       {
-         ::RedrawWindow(m_oswindow, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+         ::RedrawWindow(m_oswindow, ::null(), ::null(), RDW_INVALIDATE | RDW_UPDATENOW);
       }
 #else
             throw "todo";

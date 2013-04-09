@@ -35,9 +35,9 @@ namespace ca
          dPi = atan(1.0) * 4.0;
 
 #ifdef WINDOWSEX
-         hCryptProv = NULL;
-         hOriginalKey = NULL;
-         hDuplicateKey = NULL;
+         hCryptProv = ::null();
+         hOriginalKey = ::null();
+         hDuplicateKey = ::null();
 
          if(!CryptAcquireContext(
             &hCryptProv,

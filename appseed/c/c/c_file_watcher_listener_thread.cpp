@@ -8,7 +8,7 @@ namespace file_watcher
    id listener_thread::add_file_watch(const char * directory, bool bRecursive)
    {
 
-      if(m_hthread == NULL)
+      if(m_hthread == ::null())
          begin();
 
       op * pop = new op;

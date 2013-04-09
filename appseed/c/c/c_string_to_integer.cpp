@@ -33,7 +33,7 @@ int32_t atoi_dup(const char *psz, const char ** pszEnd)
       iResult = iResult * 10 + (ch - '0');
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -65,7 +65,7 @@ uint32_t atoui_dup(const char *psz, const char ** pszEnd)
       uiResult = uiResult * 10 + (ch - '0');
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -74,7 +74,7 @@ uint32_t atoui_dup(const char *psz, const char ** pszEnd)
 
 /*int64_t atoi64_dup(const char *str)
 {
-return atol64_dup(str, NULL, 10);
+return atol64_dup(str, ::null(), 10);
 /*    while (isspace_dup(*str))			// skip whitespace
 ++str;
 
@@ -146,7 +146,7 @@ int32_t _digit_atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       iResult = iResult * iBase + (ch - '0');
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -182,7 +182,7 @@ int32_t _atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       psz++;
 
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -215,7 +215,7 @@ uint32_t _digit_atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       uiResult = uiResult * iBase + (ch - '0');
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -251,7 +251,7 @@ uint32_t _atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       psz++;
 
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -300,7 +300,7 @@ int32_t natoi_dup(const char *psz, const char ** pszEnd, size_t iLen)
       psz++;
       iLen--;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -310,7 +310,7 @@ int32_t natoi_dup(const char *psz, const char ** pszEnd, size_t iLen)
 
 /*int64_t atoi64_dup(const char *str)
 {
-return atol64_dup(str, NULL, 10);
+return atol64_dup(str, ::null(), 10);
 /*    while (isspace_dup(*str))			// skip whitespace
 ++str;
 
@@ -398,7 +398,7 @@ int32_t _digit_natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, 
       psz++;
       iLen--;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -434,7 +434,7 @@ int32_t _natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t
       psz++;
       iLen--;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = psz;
    }
@@ -489,7 +489,7 @@ int64_t atoi64_dup(const char *psz, char ** pszEnd)
 #endif
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -508,7 +508,7 @@ int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       iResult = iResult * iBase + (ch - '0');
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -544,7 +544,7 @@ int64_t _atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       psz++;
 
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -598,7 +598,7 @@ uint64_t atoui64_dup(const char *psz, char ** pszEnd)
 #endif
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -617,7 +617,7 @@ uint64_t _digit_atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       uiResult = uiResult * iBase + (ch - '0');
       psz++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -653,7 +653,7 @@ uint64_t _atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       psz++;
 
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -681,7 +681,7 @@ uint64_t atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
    {
       szIter++;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = szIter;
    }
@@ -745,7 +745,7 @@ int64_t natoi64_dup(const char *psz, char ** pszEnd, size_t iLen)
       psz++;
       iLen--;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -765,7 +765,7 @@ int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size
       psz++;
       iLen--;
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -802,7 +802,7 @@ int64_t _natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLe
       iLen--;
 
    }
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = const_cast < char * > (psz);
    }
@@ -878,7 +878,7 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase,
       cur = *str++;							// Do the next character.
    }
 
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = str;
    }
@@ -940,7 +940,7 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase)
       cur = *str++;							// Do the next character.
    }
 
-   if(pszEnd != NULL)
+   if(pszEnd != ::null())
    {
       *pszEnd = str;
    }
@@ -956,13 +956,13 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase)
 CLASS_DECL_c int64_t wtoi64_dup(const wchar_t * sz, const wchar_t ** pszEnd)
 {
 
-   return wtoi64_dup(sz, NULL, 10);
+   return wtoi64_dup(sz, ::null(), 10);
 
 }
 
 CLASS_DECL_c int64_t wtoi64_dup(const wchar_t * sz)
 {
 
-   return wtoi64_dup(sz, NULL);
+   return wtoi64_dup(sz, ::null());
 
 }

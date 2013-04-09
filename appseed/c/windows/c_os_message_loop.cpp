@@ -6,7 +6,7 @@ void _c_simple_message_loop()
 
 
    MSG msg;
-	while(GetMessage(&msg, NULL, 0, 0xffffffffu))
+	while(GetMessage(&msg, ::null(), 0, 0xffffffffu))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);

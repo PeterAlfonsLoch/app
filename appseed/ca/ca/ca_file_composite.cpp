@@ -82,7 +82,7 @@ namespace ca
 
    }
 
-   file * file_composite::Duplicate() const
+   sp(::ca::file) file_composite::Duplicate() const
    {
 
       return m_spfile->Duplicate();

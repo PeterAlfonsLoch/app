@@ -18,7 +18,7 @@ namespace filemanager
          {
          public:
             tree_view * m_ptree;
-            list_view * m_plist;
+            sp(list_view) m_plist;
             ::ca::request_interface * m_prequestinterface;
 
             view(sp(::ca::application) papp);

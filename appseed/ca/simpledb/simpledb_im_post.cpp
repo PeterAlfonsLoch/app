@@ -3,8 +3,8 @@
 im_post::im_post(db_server * pserver) : 
    db_set(pserver, "im_post")
 {
-   ::sqlite::base * pdb = db()->GetImplDatabase();
-   ::sqlite::set *  pds = (::sqlite::set *) pdb->CreateDataset();
+   sp(::sqlite::base) pdb = db()->GetImplDatabase();
+   sp(::sqlite::set)  pds = (sp(::sqlite::set)) pdb->CreateDataset();
    
    //create string Table if necessary
    pdb->start_transaction();
@@ -31,7 +31,7 @@ bool im_post::write(var rec)
 {
    single_lock slDatabase(db()->GetImplCriticalSection());
 
-   ::sqlite::base * pdb = db()->GetImplDatabase();
+   sp(::sqlite::base) pdb = db()->GetImplDatabase();
 
    string strMessage;
    strMessage = rec["message"];
@@ -64,7 +64,7 @@ var im_post::get_since(var rec)
 {
    single_lock slDatabase(db()->GetImplCriticalSection());
 
-//   ::sqlite::base * pdb = db()->GetImplDatabase();
+//   sp(::sqlite::base) pdb = db()->GetImplDatabase();
 
    string strSql;
    strSql.Format(

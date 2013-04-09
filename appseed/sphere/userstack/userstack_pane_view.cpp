@@ -52,7 +52,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      frame * pframe = dynamic_cast < frame * > (GetParentFrame());
+      sp(frame) pframe = dynamic_cast < sp(frame) > (GetParentFrame());
       pframe->m_ppaneview = this;
 
 
@@ -117,7 +117,7 @@ namespace userstack
    void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
-//      frame * pframe = dynamic_cast < frame *> (GetParentFrame());
+//      sp(frame) pframe = dynamic_cast < sp(frame)> (GetParentFrame());
       if(get_view_id().is_text())
       {
          string strId = get_view_id();

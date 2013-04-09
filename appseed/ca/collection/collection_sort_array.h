@@ -53,7 +53,7 @@ public:
          
          sort_index_map::assoc * passoc = sort_index_map::PGetFirstAssoc();
 
-         while(passoc != NULL)
+         while(passoc != ::null())
          {
             passoc->m_element2->m_bUpdated = false;
             passoc = passoc->m_pnext;

@@ -26,9 +26,6 @@ namespace plane
       m_pifs                     = new ifs(this, "");
       m_prfs                     = new ::fs::remote_native(this, "");
 
-      m_puserpresence            = new ::userpresence::userpresence();
-
-
       m_ecursorDefault  = ::visual::cursor_arrow;
       m_ecursor         = ::visual::cursor_default;
 
@@ -80,7 +77,6 @@ namespace plane
       m_strInstallToken    = "session";
       m_bLicense           = false;
       m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;
-      m_puserpresence->construct(this);
 
    }
 
@@ -90,8 +86,38 @@ namespace plane
       if(!::planebase::application::initialize())
          return false;
 
-      if(!m_puserpresence->initialize())
+      m_puserpresence            = canew(::userpresence::userpresence(this));
+
+      if(m_puserpresence.is_null())
+      {
+         TRACE("Failed to create new User Presence");
          return false;
+      }
+
+      try
+      {
+         
+         m_puserpresence->construct(this);
+
+      }
+      catch(...)
+      {
+
+         TRACE("Failed to construct User Presence");
+
+         return false;
+
+      }
+
+         
+      if(!m_puserpresence->initialize())
+      {
+         
+         TRACE("Failed to initialize User Presence");
+         
+         return false;
+
+      }
 
       return true;
 
@@ -1034,7 +1060,7 @@ namespace plane
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {
 
-/*         ::session::pane_view * ppaneview = get_document()->get_typed_view < ::session::pane_view >();
+/*         ::session::sp(pane_view) ppaneview = get_document()->get_typed_view < ::session::pane_view >();
 
          if(ppaneview != ::null())
          {

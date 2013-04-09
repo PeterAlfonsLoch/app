@@ -7,7 +7,7 @@ bool g_bInstallingCa2 = false;
 bool g_bSpaInstalled = false;
 bool g_bSpaUpdated = false;
 bool g_bUpdated = false;
-char * g_pszCa2Build = NULL;
+char * g_pszCa2Build = ::null();
 extern oswindow g_oswindowMessage;
 
 
@@ -139,7 +139,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 void update_ca2_build()
 {
-   if(g_pszCa2Build != NULL)
+   if(g_pszCa2Build != ::null())
       _ca_free(g_pszCa2Build, 0);
    g_pszCa2Build = (char *) strdup_dup(ms_get_dup("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone"));
 }
@@ -198,7 +198,7 @@ UINT spa_starter_start::start()
       if((i % 5) == 0 || strBuildNumber.is_empty())
       {
 
-         strBuildNumber = get_latest_build_number(NULL);
+         strBuildNumber = get_latest_build_number(::null());
 
       }
 
@@ -226,7 +226,7 @@ UINT spa_starter_start::start()
    //set_installing_ca2(false);
 
    //if(is_ca2_installed() && is_installed("application", m_strId) && is_ca2_updated())
-   if(is_ca2_installed() && is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema) && m_pplugin != NULL)
+   if(is_ca2_installed() && is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema) && m_pplugin != ::null())
    {
       defer_play_small_bell();
       m_pplugin->set_ca2_installation_ready();

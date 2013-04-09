@@ -296,7 +296,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       strKey.replace("'", "''");
 
 
-      ::sqlite::base * pdb   = db()->GetImplDatabase();
+      sp(::sqlite::base) pdb   = db()->GetImplDatabase();
       string strSql;
       int64_t l;
       slDatabase.lock();

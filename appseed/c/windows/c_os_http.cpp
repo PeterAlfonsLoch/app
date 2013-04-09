@@ -1,28 +1,28 @@
 #include "framework.h"
 #include <WinInet.h>
 
-HINTERNET  g_hSession = NULL;
-HINTERNET  g_hConnect = NULL;
-HINTERNET  g_hPreviousRequest = NULL;
+HINTERNET  g_hSession = ::null();
+HINTERNET  g_hConnect = ::null();
+HINTERNET  g_hPreviousRequest = ::null();
 uint32_t g_MsDownloadSize = 1024 * 16;
-char * g_MsDownloadBuffer = NULL;
-vsstring * g_pstrHost = NULL;
+char * g_MsDownloadBuffer = ::null();
+vsstring * g_pstrHost = ::null();
 
 
 void reset_http()
 {
 
-   g_hSession           = NULL;
+   g_hSession           = ::null();
 
-   g_hConnect           = NULL;
+   g_hConnect           = ::null();
    
-   g_hPreviousRequest   = NULL;
+   g_hPreviousRequest   = ::null();
 
    g_MsDownloadSize     = 1024 * 16;
 
-   g_MsDownloadBuffer   = NULL;
+   g_MsDownloadBuffer   = ::null();
 
-   g_pstrHost           = NULL;
+   g_pstrHost           = ::null();
 
    ::LoadLibrary("Wininet.dll");
 
@@ -32,14 +32,14 @@ void reset_http()
 void prepare_http()
 {
    
-   if(g_MsDownloadBuffer == NULL)
+   if(g_MsDownloadBuffer == ::null())
    {
 
       g_MsDownloadBuffer = new char[g_MsDownloadSize];
 
    }
 
-   if(g_pstrHost == NULL)
+   if(g_pstrHost == ::null())
    {
 
       g_pstrHost = new vsstring();
@@ -52,7 +52,7 @@ void prepare_http()
 bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, uint_ptr), void * callback_param )
 {
 
-   if(piStatus != NULL)
+   if(piStatus != ::null())
       *piStatus = 0;
 
    vsstring strUrl;
@@ -75,7 +75,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       return false;
    }
 
-   if(callback != NULL)
+   if(callback != ::null())
    {
       callback(callback_param, -1, 0);
    }
@@ -106,13 +106,13 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
    WCHAR * pwzHost = utf8_to_16(strHost);
 
-   if(g_hSession == NULL)
+   if(g_hSession == ::null())
    {
       g_hSession = InternetOpen(
          "ca2",
          INTERNET_OPEN_TYPE_PRECONFIG,
-         NULL,
-         NULL,
+         ::null(),
+         ::null(),
          INTERNET_FLAG_EXISTING_CONNECT
          | INTERNET_FLAG_KEEP_CONNECTION);
       HTTP_VERSION_INFO vi;
@@ -126,16 +126,16 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
 
 
-   if(g_hSession != NULL)
+   if(g_hSession != ::null())
    {
-      if(strHost != *g_pstrHost || g_hConnect == NULL)
+      if(strHost != *g_pstrHost || g_hConnect == ::null())
       {
-         if(g_hConnect != NULL)
+         if(g_hConnect != ::null())
          {
             ::InternetCloseHandle(g_hConnect);
          }
          g_hConnect = InternetConnect( g_hSession, strHost,
-            80, NULL, NULL, INTERNET_SERVICE_HTTP,
+            80, ::null(), ::null(), INTERNET_SERVICE_HTTP,
             INTERNET_FLAG_EXISTING_CONNECT
             | INTERNET_FLAG_KEEP_CONNECTION,
             1);
@@ -144,17 +144,17 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
 
 
-   HINTERNET hRequest = NULL;
-   if (g_hConnect != NULL)
+   HINTERNET hRequest = ::null();
+   if (g_hConnect != ::null())
       hRequest = HttpOpenRequest( g_hConnect, "GET", strReq,
-      NULL, "ca2",
-      NULL,
+      ::null(), "ca2",
+      ::null(),
       INTERNET_FLAG_EXISTING_CONNECT
       | INTERNET_FLAG_KEEP_CONNECTION,
       1);
 
    if (hRequest)
-      bResults = HttpSendRequest(hRequest, NULL, 0, NULL, 0) != FALSE;
+      bResults = HttpSendRequest(hRequest, ::null(), 0, ::null(), 0) != FALSE;
 
    if(hRequest != g_hPreviousRequest)
    {
@@ -167,11 +167,11 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    DWORD dwIndex = 0;
    if(bResults)
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
-   if(piStatus != NULL)
+   if(piStatus != ::null())
       *piStatus = dwStatusCode;
    dwBufferLen = 1024;
    char * pszStatus = (char *) _ca_alloc(dwBufferLen);
-   if(pszStatus != NULL)
+   if(pszStatus != ::null())
    {
       memset_dup(pszStatus, 0, dwBufferLen);
       dwIndex = 0;
@@ -185,11 +185,11 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
    if(bResults && dwStatusCode != HTTP_STATUS_OK)
    {
-      if(piStatus == NULL)
+      if(piStatus == ::null())
       {
          /*dwBufferLen = 1024 + 256;
          char * pszMessage = (char *) _ca_alloc(dwBufferLen);
-         if(pszMessage != NULL)
+         if(pszMessage != ::null())
          {
          //sprintf_s(pszMessage, dwBufferLen, "download error : status %d - %s", dwStatusCode, pszStatus);
          //trace(pszMessage);
@@ -204,7 +204,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       }
       bResults = FALSE;
    }
-   if(pszStatus != NULL)
+   if(pszStatus != ::null())
    {
       _ca_free(pszStatus, 0);
    }
@@ -219,7 +219,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       strPath = pszFile;
       uint32_t dwLen = 0;
       dir::mk(dir::name(strPath));
-      HANDLE hfile = ::create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
+      HANDLE hfile = ::create_file(strPath, GENERIC_WRITE, 0, ::null(), CREATE_ALWAYS, 0, ::null());
       if(hfile == INVALID_HANDLE_VALUE)
       {
          dwError = ::GetLastError();
@@ -238,7 +238,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
          trace(str);
          return false;
       }
-      if(callback != NULL)
+      if(callback != ::null())
       {
 
          callback(callback_param, 0, 0);
@@ -251,16 +251,16 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
          {
             //sprintf(szBuf, "Error %u in WinHttpReadData.\n", GetLastError());
             //trace(szBuf);
-            if(callback != NULL)
+            if(callback != ::null())
             {
                callback(callback_param, -2, 0);
             }
          }
          else
          {
-            ::WriteFile(hfile, pszOutBuffer, dwDownloaded, &dwWritten, NULL);
+            ::WriteFile(hfile, pszOutBuffer, dwDownloaded, &dwWritten, ::null());
             dwLen += dwWritten;
-            if(callback != NULL)
+            if(callback != ::null())
             {
                callback(callback_param, 1, dwLen);
             }
@@ -272,7 +272,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
    if(bResults)
    {
-      if(callback != NULL)
+      if(callback != ::null())
       {
          callback(callback_param, 2,  0);
       }
@@ -281,7 +281,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    {
       //sprintf(szBuf, "Error %d has occurred.\n",dw);
       //trace(szBuf);
-      if(callback != NULL)
+      if(callback != ::null())
       {
          callback(callback_param, -2, 0);
       }
@@ -339,13 +339,13 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    DWORD dwDownloaded = 0;
    LPSTR pszOutBuffer;
    bool  bResults = FALSE;
-   HINTERNET  hSession = NULL,
-      hConnect = NULL,
-      hRequest = NULL;
+   HINTERNET  hSession = ::null(),
+      hConnect = ::null(),
+      hRequest = ::null();
 
    WCHAR * pwzHost = utf8_to_16(strHost);
 
-   /*WCHAR * pwzAutoUrl = NULL;
+   /*WCHAR * pwzAutoUrl = ::null();
    if(WinHttpDetectAutoProxyConfigUrl(
    WINHTTP_AUTO_DETECT_TYPE_DHCP|
    WINHTTP_AUTO_DETECT_TYPE_DNS_A, pwzAutoUrl))
@@ -357,10 +357,10 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
 
    // Use WinHttpOpen to obtain a session handle.
-   hSession = InternetOpen("ca2", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+   hSession = InternetOpen("ca2", INTERNET_OPEN_TYPE_PRECONFIG, ::null(), ::null(), 0);
 
    if(hSession)
-      hConnect = InternetConnect(hSession, strHost, iPort, NULL, NULL, INTERNET_SERVICE_HTTP, iPort == 443 ? INTERNET_FLAG_SECURE : 0, 1);
+      hConnect = InternetConnect(hSession, strHost, iPort, ::null(), ::null(), INTERNET_SERVICE_HTTP, iPort == 443 ? INTERNET_FLAG_SECURE : 0, 1);
 
    uint32_t dwFlags = 0;
 
@@ -377,15 +377,15 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    }
 
    if(hConnect)
-      hRequest = HttpOpenRequest(hConnect, "GET", strReq, NULL, "ca2", NULL,  dwFlags, 1); 
+      hRequest = HttpOpenRequest(hConnect, "GET", strReq, ::null(), "ca2", ::null(),  dwFlags, 1); 
 
    if(hRequest)
       bResults =
-      HttpSendRequest(hRequest, NULL, 0, NULL, 0) != FALSE;
+      HttpSendRequest(hRequest, ::null(), 0, ::null(), 0) != FALSE;
 
    if(!bResults)
    {
-      if(callback != NULL)
+      if(callback != ::null())
       {
          callback(callback_param, -2, 0);
       }
@@ -398,7 +398,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    dwBufferLen = 1024;
    char * pszStatus = (char *) _ca_alloc(dwBufferLen);
-   if(pszStatus != NULL)
+   if(pszStatus != ::null())
    {
       memset_dup(pszStatus, 0, dwBufferLen);
       dwIndex = 0;
@@ -412,7 +412,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
    if(bResults && dwStatusCode != HTTP_STATUS_OK)
    {
-      if(callback != NULL)
+      if(callback != ::null())
       {
          simple_http_status status;
          status.m_dwStatusCode = dwStatusCode;
@@ -421,7 +421,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
          bResults = FALSE;
       }
    }
-   if(pszStatus != NULL)
+   if(pszStatus != ::null())
    {
       _ca_free(pszStatus, 0);
    }
@@ -433,7 +433,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    pszOutBuffer = new char[dwSize+1];
    if (bResults)
    {
-      if(callback != NULL)
+      if(callback != ::null())
       {
          callback(callback_param, 0, 0);
       }
@@ -454,7 +454,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
             {
                //printf( "Error %u in WinHttpReadData.\n",
                //      GetLastError());
-               if(callback != NULL)
+               if(callback != ::null())
                {
                   callback(callback_param, -2, 0);
                }
@@ -463,7 +463,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
             {
                strRet += vsstring(pszOutBuffer, dwDownloaded);
                dwLen += dwDownloaded;
-               if(bProgress && callback != NULL)
+               if(bProgress && callback != ::null())
                {
                   callback(callback_param, 1, dwSize);
                }
@@ -472,7 +472,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
          // Free the primitive::memory allocated to the buffer.
       }
       while (dwDownloaded>0);
-      if(callback != NULL)
+      if(callback != ::null())
       {
 
          callback(callback_param, 2, 0);
@@ -576,13 +576,13 @@ uint32_t dwSize = 0;
 uint32_t dwDownloaded = 0;
 LPSTR pszOutBuffer;
 bool  bResults = FALSE;
-HINTERNET  hSession = NULL,
-hConnect = NULL,
-hRequest = NULL;
+HINTERNET  hSession = ::null(),
+hConnect = ::null(),
+hRequest = ::null();
 
 WCHAR * pwzHost = utf8_to_16(strHost);
 
-/*WCHAR * pwzAutoUrl = NULL;
+/*WCHAR * pwzAutoUrl = ::null();
 if(WinHttpDetectAutoProxyConfigUrl(
 WINHTTP_AUTO_DETECT_TYPE_DHCP|
 WINHTTP_AUTO_DETECT_TYPE_DNS_A, pwzAutoUrl))
@@ -617,7 +617,7 @@ iPort, 0);
 if (hConnect)
 hRequest = WinHttpOpenRequest( hConnect, L"POST",
 pwzReq,
-NULL, WINHTTP_NO_REFERER,
+::null(), WINHTTP_NO_REFERER,
 WINHTTP_DEFAULT_ACCEPT_TYPES,
 iPort == 443 ? WINHTTP_FLAG_SECURE : 0);
 //                                       WINHTTP_FLAG_SECURE);
@@ -651,7 +651,7 @@ GetLastError());
 
 // End the request.
 if (bResults)
-bResults = WinHttpReceiveResponse( hRequest, NULL);
+bResults = WinHttpReceiveResponse( hRequest, ::null());
 
 vsstring strResult;
 
@@ -731,18 +731,18 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 {
 LONG l;
 uint32_t dw;
-if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", NULL, NULL, (LPBYTE) &szPac, &lcbPac)) == ERROR_SUCCESS
+if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", ::null(), ::null(), (LPBYTE) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {
 apop.dwAutoDetectFlags = WINHTTP_AUTO_DETECT_TYPE_DHCP | WINHTTP_AUTO_DETECT_TYPE_DNS_A;
 apop.dwFlags = WINHTTP_AUTOPROXY_AUTO_DETECT;
 apop.fAutoLogonIfChallenged = TRUE;
-apop.lpszAutoConfigUrl = NULL;
+apop.lpszAutoConfigUrl = ::null();
 bGot = true;
 }
 else
 {
-FormatMessage(0, 0, l, 0, szPac, sizeof(szPac), NULL);
+FormatMessage(0, 0, l, 0, szPac, sizeof(szPac), ::null());
 }
 }
 lcbPac = sizeof(szPac);
@@ -753,7 +753,7 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 &hkey) == ERROR_SUCCESS)
 {
 LONG l;
-if((l = RegQueryValueEx(hkey, "AutoConfigURL", NULL, NULL, (LPBYTE) szPac, &lcbPac)) == ERROR_SUCCESS)
+if((l = RegQueryValueEx(hkey, "AutoConfigURL", ::null(), ::null(), (LPBYTE) szPac, &lcbPac)) == ERROR_SUCCESS)
 {
 
 apop.dwAutoDetectFlags = 0;
@@ -764,7 +764,7 @@ bGot = true;
 }
 else
 {
-FormatMessage(0, 0, l, 0, szPac, sizeof(szPac), NULL);
+FormatMessage(0, 0, l, 0, szPac, sizeof(szPac), ::null());
 }
 }
 }

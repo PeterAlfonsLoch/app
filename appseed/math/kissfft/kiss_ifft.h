@@ -22,7 +22,7 @@ kiss_fftr_cfg kiss_fftr_alloc(int32_t nfft,int32_t inverse_fft,void * mem, size_
 /*
  nfft must be even
 
- If you don't care to allocate space, use mem = lenmem = NULL 
+ If you don't care to allocate space, use mem = lenmem = ::null() 
 */
 
 

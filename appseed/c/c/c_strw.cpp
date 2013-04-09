@@ -10,7 +10,7 @@
 ::count wcslen_dup(const wchar_t * str)
 {
 
-   if(str == NULL)
+   if(str == ::null())
       return 0;
 
    const wchar_t * pszEnd = str;
@@ -42,14 +42,14 @@ CLASS_DECL_c int32_t iswspace_dup(int32_t ch)
 
 int32_t wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 {
-   if(sz1 == NULL)
+   if(sz1 == ::null())
    {
-      if(sz2 == NULL)
+      if(sz2 == ::null())
          return 0;
       else
          return -1;
    }
-   else if(sz2 == NULL)
+   else if(sz2 == ::null())
    {
       return 1;
    }
@@ -67,14 +67,14 @@ int32_t wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 
 int32_t wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 {
-   if(sz1 == NULL)
+   if(sz1 == ::null())
    {
-      if(sz2 == NULL)
+      if(sz2 == ::null())
          return 0;
       else
          return -1;
    }
-   else if(sz2 == NULL)
+   else if(sz2 == ::null())
    {
       return 1;
    }
@@ -135,14 +135,14 @@ CLASS_DECL_c int32_t iswalnum_dup(int32_t wch)
 
 CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
 {
-   if(sz == NULL)
-      return NULL;
+   if(sz == ::null())
+      return ::null();
    while(true)
    {
       if(*sz == ch)
          return (wchar_t *) sz;
       if(*sz == L'\0')
-         return NULL;
+         return ::null();
       sz++;
    }
 }
@@ -348,7 +348,7 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
 
         /* We put one last argument in -- a null ptr */
         if (argv)
-            *argv++ = NULL;
+            *argv++ = ::null();
         ++*numargs;
 }
 
@@ -361,9 +361,9 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
 
 void wcscat_dup(wchar_t * dest, const wchar_t * cat)
 {
-   if(dest == NULL)
+   if(dest == ::null())
       return;
-   if(cat == NULL)
+   if(cat == ::null())
       return;
    while(*dest != 0)
       dest++;

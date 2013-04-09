@@ -3,14 +3,14 @@
 vsstringtow::vsstringtow(wstring & str, int32_t iAllocCount)
 {
    m_pwstring = &str;
-   m_psz = NULL;
+   m_psz = ::null();
    alloc(iAllocCount);
 }
 
 vsstringtow::~vsstringtow()
 {
 
-   if(m_pwstring != NULL)
+   if(m_pwstring != ::null())
    {
 
       ::count iLen = utf16_len(m_psz);
@@ -23,12 +23,12 @@ vsstringtow::~vsstringtow()
 
    }
 
-   if(m_psz != NULL)
+   if(m_psz != ::null())
    {
 
       //g_pfixedallocaWstring->free(m_psz, (wcslen(m_psz) + 1) * 2);
       _ca_free(m_psz, 0);
-      m_psz = NULL;
+      m_psz = ::null();
 
    }
 

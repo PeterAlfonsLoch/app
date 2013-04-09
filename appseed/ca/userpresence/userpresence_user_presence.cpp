@@ -72,7 +72,7 @@ namespace userpresence
    }
 
 
-} // namespace ca5
+} // namespace userpresence
 
 
 

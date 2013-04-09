@@ -1,18 +1,18 @@
 #include "framework.h"
 
 const int32_t g_iGzUncompressLen = 1024 * 1024;
-char * g_pchGzUncompressBuffer = NULL;
+char * g_pchGzUncompressBuffer = ::null();
 
 
 
 int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
 {
-   if(g_pchGzUncompressBuffer == NULL)
+   if(g_pchGzUncompressBuffer == ::null())
    {
        g_pchGzUncompressBuffer = new char[g_iGzUncompressLen];
    }
    BZFILE * file = BZ2_bzopen(lpcszGzFileCompressed, "rb");
-   if (file == NULL)
+   if (file == ::null())
    {
       //fprintf_dup(stderr_dup, "bzopen error\n");
       return -2;
@@ -20,7 +20,7 @@ int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
    vsstring strUn(lpcszUncompressed);
 //   strUn += ".tmp";
    _FILE * fileUn = fopen_dup(strUn, "wb+");
-   if (fileUn == NULL)
+   if (fileUn == ::null())
    {
       BZ2_bzclose(file);
       return -1;

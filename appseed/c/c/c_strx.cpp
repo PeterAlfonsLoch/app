@@ -36,20 +36,20 @@
    const char * utf8_inc(const char * psz)
    {
       char len =  1 + trailingBytesForUTF8[(uchar) *psz];
-      if(len == 0)      return NULL;
-      if(*psz++ == 0)   return NULL;
+      if(len == 0)      return ::null();
+      if(*psz++ == 0)   return ::null();
       if(len == 1)      return psz;
-      if(*psz++ == 0)   return NULL;
+      if(*psz++ == 0)   return ::null();
       if(len == 2)      return psz;
-      if(*psz++ == 0)   return NULL;
+      if(*psz++ == 0)   return ::null();
       if(len == 3)      return psz;
-      if(*psz++ == 0)   return NULL;
+      if(*psz++ == 0)   return ::null();
       if(len == 4)      return psz;
-      if(*psz++ == 0)   return NULL;
+      if(*psz++ == 0)   return ::null();
       if(len == 5)      return psz;
-      if(*psz++ == 0)   return NULL;
+      if(*psz++ == 0)   return ::null();
       if(len == 6)      return psz;
-      return NULL;
+      return ::null();
    }
 
 
@@ -108,10 +108,10 @@ int32_t uni_to_utf8(char * psz, int32_t w)
 
 ::count utf16_len(const char * psz)
 {
-   if(psz == NULL)
+   if(psz == ::null())
       return -1;
    int32_t count = 0;
-   while((psz = utf8_inc(psz)) != NULL)
+   while((psz = utf8_inc(psz)) != ::null())
    {
       count++;
    }
@@ -120,12 +120,12 @@ int32_t uni_to_utf8(char * psz, int32_t w)
 
 void utf8_to_16(wchar_t * pwsz, const char * psz)
 {
-   while(psz != NULL && *psz != '\0')
+   while(psz != ::null() && *psz != '\0')
    {
       *pwsz++ = uni_index(psz);
       psz = utf8_inc(psz);
    }
-   if(psz != NULL)
+   if(psz != ::null())
    {
       *pwsz = L'\0';
    }
@@ -138,7 +138,7 @@ WCHAR * utf8_to_16(const char * psz)
    ::count iCount = utf16_len(psz);
 
    if(iCount < 0)
-      return NULL;
+      return ::null();
 
    WCHAR * pwz = new WCHAR[iCount + 1];
 
@@ -150,7 +150,7 @@ WCHAR * utf8_to_16(const char * psz)
 
 int32_t utf8_len(const wchar_t * pwsz)
 {
-   if(pwsz == NULL)
+   if(pwsz == ::null())
       return -1;
    int32_t count = 0;
    int32_t n;
@@ -185,7 +185,7 @@ char * utf16_to_8(const wchar_t * pwsz)
 {
    int32_t iCount = utf8_len(pwsz);
    if(iCount < 0)
-      return NULL;
+      return ::null();
    char * psz = new char[iCount + 1];
    utf16_to_8(psz, pwsz);
    return psz;

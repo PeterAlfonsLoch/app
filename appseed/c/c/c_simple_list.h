@@ -25,15 +25,15 @@ public:
 };
 
 inline base_simple_list::base_simple_list(int32_t nNextOffset)
-   { m_pHead = NULL; m_nNextOffset = nNextOffset; }
+   { m_pHead = ::null(); m_nNextOffset = nNextOffset; }
 inline void base_simple_list::Construct(int32_t nNextOffset)
    { m_nNextOffset = nNextOffset; }
 inline bool base_simple_list::is_empty() const
-   { return m_pHead == NULL; }
+   { return m_pHead == ::null(); }
 inline void ** base_simple_list::GetNextPtr(void * p) const
    { return (void **)((BYTE*)p+m_nNextOffset); }
 inline void base_simple_list::remove_all()
-   { m_pHead = NULL; }
+   { m_pHead = ::null(); }
 inline void * base_simple_list::get_head() const
    { return m_pHead; }
 inline void * base_simple_list::get_next(void * prevElement) const

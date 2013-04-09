@@ -12,6 +12,6 @@ public:
 
 
    sp(html_document) get_document();
-   html_view * get_view();
+   sp(html_view) get_view();
 
 };

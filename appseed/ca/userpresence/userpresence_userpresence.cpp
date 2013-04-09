@@ -5,9 +5,13 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence()
+   userpresence::userpresence(sp(::ca::application) papp) :
+      ca(papp),
+      message_window_simple_callback(papp)
    {
-      //m_strMainStringTable = "main_string_table.xml";
+
+      m_bUserPresenceFeatureRequired = false;
+
    }
 
    userpresence::~userpresence()
@@ -17,11 +21,22 @@ namespace userpresence
    bool userpresence::initialize()
    {
 
-      //m_dwAlive = ::get_tick_count();
-      
-      //if(!::simpledb::userpresence::initialize())
-        // return false;
+      if(!initialize_message_window("ca5::user::userpresence::message_window"))
+         return false;
 
+      m_spuiMessage->SetTimer(1984, 1000, ::null());
+
+      if(ApplicationUser.m_ppresence == ::null())
+      {
+         presence * ppresence = new presence(get_app());
+         ppresence->report_activity();
+         ppresence->pulse_user_presence();
+         ApplicationUser.m_ppresence = ppresence;
+      }
+
+
+      if(!defer_initialize_user_presence())
+         return false;
 
       return true;
 
@@ -35,82 +50,134 @@ namespace userpresence
          defer_finalize_user_presence();
       }
 
-/*      
-      try
+      return true;
+
+   }
+
+   bool userpresence::defer_initialize_user_presence()
+   {
+
+
+      if(Application.command()->m_varTopicQuery.has_property("install")
+      || Application.command()->m_varTopicQuery.has_property("uninstall"))
+         return true;
+
+      if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
+      || Application.command()->m_varTopicQuery["app"] == "core_netnodelite"
+      || Application.command()->m_varTopicQuery["app"] == "netshareclient")
+         return true;
+
+      if(Application.command()->m_varTopicQuery["app"] == "mydns")
+         return true;
+
+      if(Application.command()->m_varTopicQuery["app"] == "app-core/netnodecfg")
+         return true;
+
+      // it may not be initialized, due
+      // licensing for example
+      if(!Application.is_licensed("user_presence", m_bUserPresenceFeatureRequired))
       {
-         ::simpledb::userpresence::finalize();
+         TRACE("user presence not licensed for this user");
+         return false;
       }
-      catch(...)
+      else
       {
+         TRACE("user presence is licensed for this user");
       }
-*/
+
+
 
       return true;
 
    }
 
-   void userpresence::defer_initialize_user_presence()
+   bool userpresence::defer_finalize_user_presence()
    {
 
-      if(presence_central_container::is_initialized())
-         return;
+      if(!is_initialized())
+         return true;
 
       if(Application.command()->m_varTopicQuery.has_property("install")
       || Application.command()->m_varTopicQuery.has_property("uninstall"))
-         return;
-
-      if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
-      || Application.command()->m_varTopicQuery["app"] == "core_netnodelite"
-      || Application.command()->m_varTopicQuery["app"] == "netshareclient")
-         return;
-
-      if(Application.command()->m_varTopicQuery["app"] == "mydns")
-         return;
-
-      if(Application.command()->m_varTopicQuery["app"] == "app-core/netnodecfg")
-         return;
-
-      // it may not be initialized, due
-      // licensing for example
-      if(presence_central_container::initialize_central_container(m_papp))
-      {
-         TRACE("user presence enabled");
-      }
-      else
-      {
-         TRACE("user presence not enabled");
-      }
-
-   }
-
-   void userpresence::defer_finalize_user_presence()
-   {
-
-      if(!presence_central_container::is_initialized())
-         return;
-
-      if(Application.command()->m_varTopicQuery.has_property("install")
-      || Application.command()->m_varTopicQuery.has_property("uninstall"))
-         return;
+         return true;
 
       if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
       || Application.command()->m_varTopicQuery["app"] == "core_netnodelite")
-         return;
+         return true;
 
-      // it may not be initialized, due
-      // licensing for example
-      if(presence_central_container::finalize_central_container())
+      if(!is_initialized())
       {
-         TRACE("user presence finalized");
+         return true;
       }
-      else
+
+      m_spuiMessage->KillTimer(1984);
+
+      finalize_message_window();
+
+      if(ApplicationUser.m_ppresence != ::null())
       {
-         TRACE("user presence finalization failed");
+         ApplicationUser.m_ppresence.release();
+      }
+
+      return true;
+
+      return true;
+
+   }
+
+
+
+
+   bool userpresence::is_initialized()
+   {
+
+      if(!m_spuiMessage->IsWindow())
+         return false;
+
+      return true;
+
+   }
+
+
+   void userpresence::message_window_message_handler(::ca::signal_object * pobj)
+   {
+
+      SCAST_PTR(::ca::message::base, pbase, pobj);
+
+      if(pbase->m_uiMessage == WM_TIMER)
+      {
+
+         SCAST_PTR(::ca::message::timer, ptimer, pobj);
+
+         if(&ApplicationUser != ::null())
+         {
+
+            presence * ppresence = ApplicationUser.m_ppresence;
+
+            if(ptimer->m_nIDEvent == 1984 && ppresence != ::null())
+            {
+
+               ppresence->defer_pulse_user_presence();
+
+            }
+
+         }
+
       }
 
    }
 
 
-} //namespace ca5
+
+} //namespace userpresence
+
+
+
+
+
+
+
+
+
 
 

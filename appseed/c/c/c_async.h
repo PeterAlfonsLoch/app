@@ -17,7 +17,7 @@ namespace async
       uint_ptr    m_uiToken;
       token()
       {
-         m_ptoken = NULL;
+         m_ptoken = ::null();
          m_uiToken = 0;
       }
       token(const token & token)
@@ -27,7 +27,7 @@ namespace async
       }
       void set_token(uint_ptr uiTokenValue)
       {
-         if(m_ptoken != NULL)
+         if(m_ptoken != ::null())
          {
             m_ptoken->set_token(uiTokenValue);
          }
@@ -39,7 +39,7 @@ namespace async
 
       uint_ptr get_token()
       {
-         if(m_ptoken != NULL)
+         if(m_ptoken != ::null())
          {
             return m_ptoken->get_token();
          }
@@ -88,7 +88,7 @@ namespace async
 
       cancellation_token()
       {
-         m_pcallback = NULL;
+         m_pcallback = ::null();
          m_pfnCancel = NULL;
       }
 
@@ -136,7 +136,7 @@ namespace async
       {
          if(t.m_ptoken == this)
          {
-            m_pcallback = NULL;
+            m_pcallback = ::null();
             m_pfnCancel = NULL;
          }
       }
@@ -182,9 +182,9 @@ namespace async
       inline task(task_completion_event < T > & ev, cancellation_token token)
       {
 
-         m_presult                  = NULL;
-         m_pcompletioncallback      = NULL;
-         m_pfncompletioncallback    = NULL;
+         m_presult                  = ::null();
+         m_pcompletioncallback      = ::null();
+         m_pfncompletioncallback    = ::null();
          m_estatus                  = status_complete;
          m_pev                      = &ev;
          m_cancellationtoken        = token;
@@ -222,10 +222,10 @@ namespace async
 
          m_estatus = estatus;
 
-         if(m_pcompletioncallback == NULL)
+         if(m_pcompletioncallback == ::null())
             return;
 
-         if(m_pfncompletioncallback == NULL)
+         if(m_pfncompletioncallback == ::null())
             return;
 
          (m_pcompletioncallback->*m_pfncompletioncallback)(*this, m_estatus);
@@ -253,12 +253,12 @@ namespace async
       virtual void close()
       {
 
-         if(m_presult != NULL)
+         if(m_presult != ::null())
          {
 
             destroy_result();
 
-            m_presult = NULL;
+            m_presult = ::null();
 
          }
 
@@ -267,7 +267,7 @@ namespace async
       virtual void destroy_result()
       {
 
-         if(m_presult == NULL)
+         if(m_presult == ::null())
             return;
 
          delete m_presult;

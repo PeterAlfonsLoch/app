@@ -17,7 +17,7 @@ namespace filemanager
 
       FileManagerTemplate *                        m_ptemplateStd;
       FileManagerTemplate *                        m_ptemplateFs;
-      ::userbase::multiple_document_template *     m_ptemplateForm;
+      sp(::userbase::multiple_document_template)     m_ptemplateForm;
       sp(::userbase::single_document_template)       m_ptemplateOperation;
 
       string                                       m_strCopy;

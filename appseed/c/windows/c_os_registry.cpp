@@ -66,7 +66,7 @@
 
 void reg_delete_tree_dup(HKEY hkey, const char * name)
 {
-   HKEY hkeySub = NULL;
+   HKEY hkeySub = ::null();
    if(ERROR_SUCCESS == ::RegOpenKey(
       hkey,
       name,

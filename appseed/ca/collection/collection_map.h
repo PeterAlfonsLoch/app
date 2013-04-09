@@ -526,7 +526,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
    m_passocFree               = m_passocFree->m_pnext;
 
 
-   if(m_passocHead != NULL)
+   if(m_passocHead != ::null())
    {
 
       m_passocHead->m_pprev   = passoc;
@@ -537,7 +537,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
    
    m_passocHead               = passoc;
 
-   m_passocHead->m_pprev      = NULL;
+   m_passocHead->m_pprev      = ::null();
 
    m_nCount++;
    
@@ -560,14 +560,14 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::free_assoc(assoc * pas
 
    }
 
-   if(passoc->m_pnext != NULL)
+   if(passoc->m_pnext != ::null())
    {
 
       passoc->m_pnext->m_pprev = passoc->m_pprev;
 
    }
 
-   if(passoc->m_pprev != NULL)
+   if(passoc->m_pprev != ::null())
    {
 
       passoc->m_pprev->m_pnext = passoc->m_pnext;
@@ -778,7 +778,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc(POSITIO
    if (passocRet == (assoc*) BEFORE_START_POSITION)
    {
       passocRet = m_passocHead;
-      if(passocRet == NULL)
+      if(passocRet == ::null())
          throw error_exception(get_app(), "map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc : must find something");
    }
 

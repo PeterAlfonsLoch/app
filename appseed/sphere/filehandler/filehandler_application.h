@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-      pane_view *                                  m_ppaneview;      
+      sp(pane_view)                                  m_ppaneview;      
       sp(::userbase::single_document_template)       m_ptemplateMenu;
 
 

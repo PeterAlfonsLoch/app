@@ -207,7 +207,7 @@ namespace xml
    void document::edit(::ca::base_edit * pbaseedit)
    {
 
-      ::xml::edit * pedit = validate_edit(pbaseedit);
+      sp(::xml::edit) pedit = validate_edit(pbaseedit);
 
 
       if(pedit == ::null())

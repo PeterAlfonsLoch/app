@@ -6,13 +6,13 @@
 os_simple_graphics::os_simple_graphics()
 {
 
-   m_pgraphics    = NULL;
+   m_pgraphics    = ::null();
 
-   m_oswindow         = NULL;
+   m_oswindow         = ::null();
 
    m_iType        = 0;
 
-   m_hdc          = NULL;
+   m_hdc          = ::null();
 
 }
 
@@ -20,7 +20,7 @@ os_simple_graphics::os_simple_graphics()
 os_simple_graphics::~os_simple_graphics()
 {
 
-   if(m_pgraphics != NULL && m_iType != 0)
+   if(m_pgraphics != ::null() && m_iType != 0)
    {
 
       destroy();
@@ -37,7 +37,7 @@ bool os_simple_graphics::create(HDC hdc)
    
    m_pgraphics = new Gdiplus::Graphics(hdc);
 
-   if(m_pgraphics == NULL)
+   if(m_pgraphics == ::null())
       return false;
    
    m_iType = 1;
@@ -54,7 +54,7 @@ bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
    
    m_pgraphics = new ::Gdiplus::Graphics(b.m_pbitmap);
 
-   if(m_pgraphics == NULL)
+   if(m_pgraphics == ::null())
       return false;
 
    m_iType = 3;
@@ -71,15 +71,15 @@ bool os_simple_graphics::from_entire_window(oswindow oswindow)
 
    m_hdc = ::GetWindowDC(oswindow);
 
-   if(m_hdc == NULL)
+   if(m_hdc == ::null())
       return false;
 
    m_pgraphics = new Gdiplus::Graphics(m_hdc);
 
-   if(m_pgraphics == NULL)
+   if(m_pgraphics == ::null())
    {
       ::ReleaseDC(oswindow, m_hdc);
-      m_hdc = NULL;
+      m_hdc = ::null();
       return false;
    }
 
@@ -100,15 +100,15 @@ bool os_simple_graphics::from_window(oswindow oswindow)
 
    m_hdc = ::GetDC(oswindow);
 
-   if(m_hdc == NULL)
+   if(m_hdc == ::null())
       return false;
 
    m_pgraphics = new Gdiplus::Graphics(m_hdc);
 
-   if(m_pgraphics == NULL)
+   if(m_pgraphics == ::null())
    {
       ::ReleaseDC(oswindow, m_hdc);
-      m_hdc = NULL;
+      m_hdc = ::null();
       return false;
    }
 
@@ -129,16 +129,16 @@ bool os_simple_graphics::from_window_paint(oswindow oswindow, LPRECT lprectPaint
 
    m_hdc = BeginPaint(oswindow, &m_ps);
 
-   if(m_hdc == NULL)
+   if(m_hdc == ::null())
       return false;
 
    m_pgraphics = new Gdiplus::Graphics(m_hdc);
 
-   if(m_pgraphics == NULL)
+   if(m_pgraphics == ::null())
    {
       ::EndPaint(oswindow, &m_ps);
       memset(&m_ps, 0, sizeof(m_ps));
-      m_hdc = NULL;
+      m_hdc = ::null();
       return false;
    }
 
@@ -146,7 +146,7 @@ bool os_simple_graphics::from_window_paint(oswindow oswindow, LPRECT lprectPaint
 
    m_iType = 4;
 
-   if(lprectPaint != NULL)
+   if(lprectPaint != ::null())
    {
     
       *lprectPaint = m_ps.rcPaint;
@@ -176,7 +176,7 @@ bool os_simple_graphics::create()
 
    os_simple_graphics g;
 
-   g.from_window(NULL);
+   g.from_window(::null());
    
    return create(g.m_hdc);
    
@@ -185,7 +185,7 @@ bool os_simple_graphics::create()
 bool os_simple_graphics::create_from_screen()
 {
    
-   return from_window(NULL);
+   return from_window(::null());
    
 }
 
@@ -221,7 +221,7 @@ bool os_simple_graphics::destroy()
    
    bool bOk = true;
 
-   if(m_pgraphics != NULL && m_iType != 5)
+   if(m_pgraphics != ::null() && m_iType != 5)
    {
       
       try
@@ -239,7 +239,7 @@ bool os_simple_graphics::destroy()
       
    }
 
-   m_pgraphics = NULL;
+   m_pgraphics = ::null();
 
 
    if(m_iType == 2)
@@ -287,9 +287,9 @@ bool os_simple_graphics::destroy()
    }
 
 
-   m_oswindow   = NULL;
+   m_oswindow   = ::null();
 
-   m_hdc    = NULL;
+   m_hdc    = ::null();
 
    m_iType  = 0;
 
@@ -426,10 +426,10 @@ bool os_simple_graphics::rectangle(LPCRECT lpcrect)
 bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 {
 
-   if(&pen == NULL)
+   if(&pen == ::null())
       return true;
 
-   if(pen.m_ppen == NULL)
+   if(pen.m_ppen == ::null())
       return true;
    
    return m_pgraphics->DrawRectangle(pen.m_ppen, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect)) == Gdiplus::Ok;
@@ -440,10 +440,10 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
 
-   if(&brush == NULL)
+   if(&brush == ::null())
       return true;
    
-   if(brush.m_pbrush == NULL)
+   if(brush.m_pbrush == ::null())
       return true;
    
    return m_pgraphics->FillRectangle(brush.m_pbrush, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect)) == Gdiplus::Ok;
@@ -540,7 +540,7 @@ bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, st
 bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca::e_fill_mode)
 {
 
-   if(m_brush.m_pbrush == NULL)
+   if(m_brush.m_pbrush == ::null())
       return true;
 
    Gdiplus::Point * ppa = new Gdiplus::Point[iCount];
@@ -578,5 +578,5 @@ bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
 
 bool os_simple_graphics::is_null()
 {
-   return m_pgraphics == NULL;
+   return m_pgraphics == ::null();
 }

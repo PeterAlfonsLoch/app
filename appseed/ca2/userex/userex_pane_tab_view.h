@@ -23,7 +23,7 @@ namespace userex
    public:
 
 
-      pane_view * m_ppaneview;
+      sp(pane_view) m_ppaneview;
 
 
       pane_tab_view(sp(::ca::application) papp);

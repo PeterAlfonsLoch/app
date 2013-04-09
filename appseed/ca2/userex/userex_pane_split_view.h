@@ -12,7 +12,7 @@ public:
    pane_split_view(sp(::ca::application) papp);
    virtual ~pane_split_view();
 
-   pane_view * m_ppaneview;
+   sp(pane_view) m_ppaneview;
 };
 
 

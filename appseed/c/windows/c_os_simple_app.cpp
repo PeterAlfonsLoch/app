@@ -144,7 +144,7 @@ int32_t simple_app::run()
 
 	while(true)
 	{
-      GetMessage(&m_msg, NULL, 0, 0xffffffffu);
+      GetMessage(&m_msg, ::null(), 0, 0xffffffffu);
 		TranslateMessage(&m_msg);
 		DispatchMessage(&m_msg);
 	}

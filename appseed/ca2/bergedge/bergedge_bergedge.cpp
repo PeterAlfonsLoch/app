@@ -853,7 +853,7 @@ alt1:
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {
 
-         ::bergedge::pane_view * ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+         sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
 
          if(ppaneview != ::null())
          {

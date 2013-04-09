@@ -2312,7 +2312,7 @@ namespace user
             if (!(dwFlags & MLF_NOIDLEMSG) && puieParent != ::null() && lIdleCount == 0)
             {
                // send WM_ENTERIDLE to the parent
-               puieParent->send_message(WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM) (DWORD_PTR) NULL);
+               puieParent->send_message(WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM) (DWORD_PTR) ::null());
             }
             /*if ((dwFlags & MLF_NOKICKIDLE) ||
                !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MESSAGEF_DIALOGBOX, lIdleCount++))

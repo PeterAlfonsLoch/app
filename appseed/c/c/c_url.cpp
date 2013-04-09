@@ -17,7 +17,7 @@ CLASS_DECL_c bool url_query_get_param_dup(vsstring & strParam, const char * pszK
 
       pszBeg = strstr_dup(pszUrl, strKey);
 
-      if(pszBeg != NULL)
+      if(pszBeg != ::null())
       {
          
          pszBeg += strKey.get_length();
@@ -38,7 +38,7 @@ CLASS_DECL_c bool url_query_get_param_dup(vsstring & strParam, const char * pszK
 
       pszBeg = strstr_dup(pszUrl, strKey);
 
-      if(pszBeg != NULL)
+      if(pszBeg != ::null())
       {
          
          pszBeg += strKey.get_length();
@@ -59,7 +59,7 @@ CLASS_DECL_c bool url_query_get_param_dup(vsstring & strParam, const char * pszK
 
       pszBeg = strstr_dup(pszUrl, strKey);
 
-      if(pszBeg != NULL)
+      if(pszBeg != ::null())
       {
 
          strParam = "";
@@ -80,7 +80,7 @@ CLASS_DECL_c bool url_query_get_param_dup(vsstring & strParam, const char * pszK
 
       pszBeg = strstr_dup(pszUrl, strKey);
 
-      if(pszBeg != NULL)
+      if(pszBeg != ::null())
       {
 
          strParam = "";
@@ -97,7 +97,7 @@ success:
 
    pszEnd = strstr_dup(pszBeg, "&");
 
-   if(pszEnd == NULL)
+   if(pszEnd == ::null())
    {
       strParam = pszBeg;
    }

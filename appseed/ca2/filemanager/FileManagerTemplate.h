@@ -64,10 +64,10 @@ public:
 
    string  m_strLevelUp;
 
-   ::userbase::multiple_document_template * m_pdoctemplateMain;
-   ::userbase::multiple_document_template * m_pdoctemplate;
-   ::userbase::multiple_document_template * m_pdoctemplateChild;
-   ::userbase::multiple_document_template * m_pdoctemplateChildList;
+   sp(::userbase::multiple_document_template) m_pdoctemplateMain;
+   sp(::userbase::multiple_document_template) m_pdoctemplate;
+   sp(::userbase::multiple_document_template) m_pdoctemplateChild;
+   sp(::userbase::multiple_document_template) m_pdoctemplateChildList;
 
    SimpleDialogBar *    m_pdialogbar;
 

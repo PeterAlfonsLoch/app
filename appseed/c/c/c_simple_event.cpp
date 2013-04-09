@@ -14,7 +14,7 @@ simple_event::simple_event(bool bInitialWait, bool bManualReset)
    if(bManualReset)
       dwFlags |= CREATE_EVENT_MANUAL_RESET;
 
-   m_hEvent = ::CreateEventEx(NULL, NULL, dwFlags, EVENT_ALL_ACCESS);
+   m_hEvent = ::CreateEventEx(::null(), ::null(), dwFlags, EVENT_ALL_ACCESS);
 
 #elif defined(WINDOWS)
 
@@ -22,7 +22,7 @@ simple_event::simple_event(bool bInitialWait, bool bManualReset)
 
 #else
 
-   pthread_cond_init(&m_cond, NULL);
+   pthread_cond_init(&m_cond, ::null());
 
    m_bManualEvent = bManualReset;
 

@@ -2,13 +2,13 @@
 
 verisimple_string::verisimple_string()
 {
-   m_psz = NULL;
+   m_psz = ::null();
 }
 
 verisimple_string::verisimple_string(const wchar_t * pwsz)
 {
 
-   m_psz = NULL;
+   m_psz = ::null();
 
    operator = (pwsz);
 
@@ -16,8 +16,8 @@ verisimple_string::verisimple_string(const wchar_t * pwsz)
 
 verisimple_string::verisimple_string(const char * psz)
 {
-   if(psz == NULL)
-      m_psz = NULL;
+   if(psz == ::null())
+      m_psz = ::null();
    else
    {
       m_psz = (char *) strdup_dup(psz);
@@ -26,14 +26,14 @@ verisimple_string::verisimple_string(const char * psz)
 
 verisimple_string::verisimple_string(char ch)
 {
-   m_psz = NULL;
+   m_psz = ::null();
    operator = (ch);
 }
 
 verisimple_string::verisimple_string(const char * psz, int_ptr count)
 {
-   if(psz == NULL)
-      m_psz = NULL;
+   if(psz == ::null())
+      m_psz = ::null();
    else
    {
       if(count < 0)
@@ -46,13 +46,13 @@ verisimple_string::verisimple_string(const char * psz, int_ptr count)
 
 verisimple_string::verisimple_string(const verisimple_string & str)
 {
-   m_psz = NULL;
+   m_psz = ::null();
    operator = (str);
 }
 
 verisimple_string::~verisimple_string()
 {
-   if(m_psz != NULL)
+   if(m_psz != ::null())
    {
 //      g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
       _ca_free(m_psz, 0);
@@ -71,7 +71,7 @@ char * verisimple_string::alloc(::count iCount)
 
 ::count verisimple_string::get_length() const
 {
-   if(m_psz == NULL)
+   if(m_psz == ::null())
       return 0;
    return strlen_dup(m_psz);
 }
@@ -99,12 +99,12 @@ verisimple_string & verisimple_string::operator = (const char * psz)
 {
    if(m_psz != psz)
    {
-      if(m_psz != NULL)
+      if(m_psz != ::null())
       {
          clear();
       }
-      if(psz == NULL)
-         m_psz = NULL;
+      if(psz == ::null())
+         m_psz = ::null();
       else
       {
          m_psz = strdup_dup(psz);
@@ -116,11 +116,11 @@ verisimple_string & verisimple_string::operator = (const char * psz)
 
 verisimple_string & verisimple_string::operator = (char ch)
 {
-   if(m_psz != NULL)
+   if(m_psz != ::null())
    {
       //g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
       _ca_free(m_psz, 0);
-      m_psz = NULL;
+      m_psz = ::null();
    }
    if(ch == '\0')
    {
@@ -141,11 +141,11 @@ void verisimple_string::attach(const char * psz)
 {
    if(m_psz != psz)
    {
-      if(m_psz != NULL)
+      if(m_psz != ::null())
       {
          //g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
          _ca_free(m_psz, 0);
-         m_psz = NULL;
+         m_psz = ::null();
       }
       m_psz = (char *) psz;
    }
@@ -266,7 +266,7 @@ bool verisimple_string::ends_ci(const verisimple_string & strSuffix) const
 
 bool verisimple_string::ends_ci(const char * pszSuffix) const
 {
-   vsstring strSuffix(pszSuffix == NULL ? "" : pszSuffix);
+   vsstring strSuffix(pszSuffix == ::null() ? "" : pszSuffix);
    if(length() < strSuffix.length())
       return false;
    if(substr(length() - strSuffix.length(), strSuffix.length()).CompareNoCase(strSuffix) != 0)
@@ -282,7 +282,7 @@ bool verisimple_string::begins_ci(const verisimple_string & strPrefix) const
 
 bool verisimple_string::begins_ci(const char * pszPrefix) const
 {
-   vsstring strPrefix(pszPrefix == NULL ? "" : pszPrefix);
+   vsstring strPrefix(pszPrefix == ::null() ? "" : pszPrefix);
    if(length() < strPrefix.length())
       return false;
    if(substr(0, strPrefix.length()).CompareNoCase(strPrefix) != 0)
@@ -297,7 +297,7 @@ bool verisimple_string::ends(const verisimple_string & strSuffix) const
 
 bool verisimple_string::ends(const char * pszSuffix) const
 {
-   vsstring strSuffix(pszSuffix == NULL ? "" : pszSuffix);
+   vsstring strSuffix(pszSuffix == ::null() ? "" : pszSuffix);
    if(length() < strSuffix.length())
       return false;
    if(substr(length() - strSuffix.length(), strSuffix.length()) != strSuffix)
@@ -314,7 +314,7 @@ bool verisimple_string::begins(const verisimple_string & strPrefix) const
 
 bool verisimple_string::begins(const char * pszPrefix) const
 {
-   vsstring strPrefix(pszPrefix == NULL ? "" : pszPrefix);
+   vsstring strPrefix(pszPrefix == ::null() ? "" : pszPrefix);
    if(length() < strPrefix.length())
       return false;
    if(substr(0, strPrefix.length()) != strPrefix)
@@ -453,7 +453,7 @@ index verisimple_string::find(const char * str, index iStart) const
       return -1;
 
    const char * pszFind = strstr_dup(&m_psz[iStart], str);
-   if(pszFind == NULL)
+   if(pszFind == ::null())
       return -1;
    return pszFind - m_psz;
 }
@@ -488,7 +488,7 @@ index verisimple_string::find_ci(const char * str, index iStart) const
       return -1;
 
    const char * pszFind = stristr_dup(&m_psz[iStart], str);
-   if(pszFind == NULL)
+   if(pszFind == ::null())
       return -1;
    return pszFind - m_psz;
 }
@@ -512,10 +512,10 @@ void verisimple_string::replace_ci(const char * pszFind, const char * pszReplace
 
 void verisimple_string::clear()
 {
-   if(m_psz != NULL)
+   if(m_psz != ::null())
    {
       _ca_free(m_psz, 0);
-      m_psz = NULL;
+      m_psz = ::null();
    }
 }
 

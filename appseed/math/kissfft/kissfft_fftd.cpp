@@ -8,7 +8,7 @@ namespace kissfft
    fftd::fftd(int32_t iSize)
    {
       m_iSize = iSize;
-      m_cfg = kiss_fftr_alloc(iSize, 0, NULL, NULL);
+      m_cfg = kiss_fftr_alloc(iSize, 0, ::null(), ::null());
    }
 
    fftd::~fftd()

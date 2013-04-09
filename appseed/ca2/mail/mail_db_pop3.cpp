@@ -11,7 +11,7 @@ namespace mail
       m_pdatabase = new ::sqlite::base(papp);
 
       single_lock slDataset(&m_csDataset, TRUE);
-      m_pdataset = (::sqlite::set *) m_pdatabase->CreateDataset();
+      m_pdataset = (sp(::sqlite::set)) m_pdatabase->CreateDataset();
       m_bRun = false;
 
    }

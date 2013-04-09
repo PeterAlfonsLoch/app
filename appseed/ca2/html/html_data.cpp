@@ -5,7 +5,7 @@ namespace html
 
    data::image::image(sp(::ca::application) papp) :
       ca(papp),
-      m_spdib(papp)
+      m_spdib(allocer())
    {
    }
 

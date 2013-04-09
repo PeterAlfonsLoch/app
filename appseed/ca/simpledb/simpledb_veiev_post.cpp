@@ -3,8 +3,8 @@
 veiev_post::veiev_post(db_server * pserver) :
    db_set(pserver, "veiev_post")
 {
-   ::sqlite::base * pdb = db()->GetImplDatabase();
-   ::sqlite::set *  pds = (::sqlite::set *) pdb->CreateDataset();
+   sp(::sqlite::base) pdb = db()->GetImplDatabase();
+   sp(::sqlite::set)  pds = (sp(::sqlite::set)) pdb->CreateDataset();
 
    //create string Table if necessary
    pdb->start_transaction();
@@ -31,7 +31,7 @@ bool veiev_post::write(var rec)
 {
    single_lock slDatabase(db()->GetImplCriticalSection());
 
-   ::sqlite::base * pdb = db()->GetImplDatabase();
+   sp(::sqlite::base) pdb = db()->GetImplDatabase();
 
    string strMessage;
    strMessage = rec["message"];
@@ -110,7 +110,7 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 
    class var var;
 
-//   ::sqlite::base * pdb = db()->GetImplDatabase();
+//   sp(::sqlite::base) pdb = db()->GetImplDatabase();
 
    string strSql;
    strSql.Format(
@@ -152,7 +152,7 @@ int64_t veiev_post::get_count()
 
    class var var;
 
-//   ::sqlite::base * pdb = db()->GetImplDatabase();
+//   sp(::sqlite::base) pdb = db()->GetImplDatabase();
 
    string strSql;
    strSql = "select COUNT(*) as ::count FROM veiev_post";

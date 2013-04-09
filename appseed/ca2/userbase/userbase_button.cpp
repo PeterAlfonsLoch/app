@@ -9,7 +9,7 @@ namespace userbase
       ::user::interaction(papp),
       ::user::button(papp),
       ca(papp),
-      m_dib(papp)
+      m_dib(allocer())
    {
       m_pschema   = ::null();
    }

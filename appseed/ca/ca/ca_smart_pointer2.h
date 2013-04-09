@@ -285,12 +285,12 @@ template < class T1, class T2 >
 bool operator ==(const T1  * t1, const ::ca::smart_pointer < T2 > & t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
-   if(pt1 != NULL)
+   if(pt1 != ::null())
    {
       return pt1 == t1;
    }
    T2 * pt2 = dynamic_cast < T2 * > ((T1 *) t1);
-   if(pt2 != NULL)
+   if(pt2 != ::null())
    {
       return pt2 == t2.m_p;
    }
@@ -301,12 +301,12 @@ template < class T1, class T2 >
 bool operator ==(const ::ca::smart_pointer < T1 > & t1, const T2 * t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > ((T2 *) t2);
-   if(pt1 != NULL)
+   if(pt1 != ::null())
    {
       return pt1 == t1.m_p;
    }
    T2 * pt2 = dynamic_cast < T2 * > (t1.m_p);
-   if(pt2 != NULL)
+   if(pt2 != ::null())
    {
       return pt2 == t2;
    }
@@ -318,12 +318,12 @@ template < class T1, class T2 >
 bool operator ==(const ::ca::smart_pointer < T1 > & t1, const ::ca::smart_pointer < T2 > & t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
-   if(pt1 != NULL)
+   if(pt1 != ::null())
    {
       return pt1 == t1.m_p;
    }
    T2 * pt2 = dynamic_cast < T2 * > (t1.m_p);
-   if(pt2 != NULL)
+   if(pt2 != ::null())
    {
       return pt2 == t2.m_p;
    }

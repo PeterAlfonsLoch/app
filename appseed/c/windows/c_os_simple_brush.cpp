@@ -6,7 +6,7 @@
 simple_brush::simple_brush()
 {
 
-   m_pbrush    = NULL;
+   m_pbrush    = ::null();
 
    m_bDelete   = true;
 
@@ -16,7 +16,7 @@ simple_brush::simple_brush()
 simple_brush::~simple_brush()
 {
    
-   if(m_pbrush != NULL)
+   if(m_pbrush != ::null())
    {
 
       destroy();
@@ -31,7 +31,7 @@ bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 
    UNREFERENCED_PARAMETER(g);
 
-   if(m_pbrush != NULL)
+   if(m_pbrush != ::null())
    {
     
       destroy();
@@ -40,7 +40,7 @@ bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 
    m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)));
 
-   if(m_pbrush == NULL)
+   if(m_pbrush == ::null())
       return false;
 
    m_bDelete = true;
@@ -53,7 +53,7 @@ bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 bool simple_brush::create_linear_gradient(simple_graphics & g, POINT np1, POINT np2, COLORREF cr1, COLORREF cr2)
 {
 
-   if(m_pbrush != NULL)
+   if(m_pbrush != ::null())
    {
 
       destroy();
@@ -75,7 +75,7 @@ bool simple_brush::create_linear_gradient(simple_graphics & g, POINT np1, POINT 
       Gdiplus::Color(GetAValue(cr1), GetRValue(cr1), GetGValue(cr1), GetBValue(cr1)), 
       Gdiplus::Color(GetAValue(cr2), GetRValue(cr2), GetGValue(cr2), GetBValue(cr2)));
 
-   if(m_pbrush == NULL)
+   if(m_pbrush == ::null())
       return false;
 
    m_bDelete = true;
@@ -88,7 +88,7 @@ bool simple_brush::create_linear_gradient(simple_graphics & g, POINT np1, POINT 
 bool simple_brush::from_stock(int32_t iId)
 {
 
-   if(m_pbrush != NULL)
+   if(m_pbrush != ::null())
    {
 
       destroy();
@@ -98,7 +98,7 @@ bool simple_brush::from_stock(int32_t iId)
    if(iId == NULL_BRUSH)
    {
 
-      m_pbrush = NULL;
+      m_pbrush = ::null();
 
    }
    else
@@ -116,7 +116,7 @@ bool simple_brush::from_stock(int32_t iId)
 bool simple_brush::destroy()
 {
 
-   if(m_pbrush == NULL)
+   if(m_pbrush == ::null())
       return true;
 
    bool bOk = true;
@@ -142,7 +142,7 @@ bool simple_brush::destroy()
 
    m_bDelete = false;
    
-   m_pbrush = NULL;
+   m_pbrush = ::null();
 
    if(!bOk)
       return false;
@@ -156,7 +156,7 @@ bool simple_brush::destroy()
 simple_brush & simple_brush::operator = (const simple_brush & brush)
 {
 
-   if(m_pbrush != NULL)
+   if(m_pbrush != ::null())
    {
 
       destroy();

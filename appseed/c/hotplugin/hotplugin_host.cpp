@@ -15,27 +15,27 @@ namespace hotplugin
    host::host()
    {
 
-      m_pplugin                  = NULL;
-      m_puchMemory               = NULL;
+      m_pplugin                  = ::null();
+      m_puchMemory               = ::null();
       m_countMemory              = 0;
       m_dProgressRate            = 0.0;
       m_bShowProgress            = false;
       m_bCa2InstallationReady    = false;
       m_bStream                  = false;
-      m_pvoidSystem              = NULL;
+      m_pvoidSystem              = ::null();
 
 
 #ifdef WINDOWS
-      m_pcolorref                = NULL;
-      m_hfilemapBitmap           = NULL;
+      m_pcolorref                = ::null();
+      m_hfilemapBitmap           = ::null();
       m_hfileBitmap              = INVALID_HANDLE_VALUE;
 #else
       m_pcolorref                = (uint32_t *) MAP_FAILED;
       m_hfileBitmap              = -1;
 #endif
 
-      m_pbitmap                  = NULL;
-      m_pmutexBitmap             = NULL;
+      m_pbitmap                  = ::null();
+      m_pmutexBitmap             = ::null();
 
    }
 
@@ -81,7 +81,7 @@ namespace hotplugin
    void host::get_window_rect(LPRECT lprect)
    {
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
 
          m_pplugin->get_window_rect(lprect);
@@ -100,7 +100,7 @@ namespace hotplugin
    {
 
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
 
          m_pplugin->set_window_rect(lpcrect);
@@ -133,13 +133,13 @@ namespace hotplugin
    {
       if(c <= 0)
          return;
-      if(m_puchMemory == NULL)
+      if(m_puchMemory == ::null())
       {
          set_memory(puchMemory, c);
       }
       else
       {
-         byte * puchMemoryNew = (byte *) _ca_realloc(m_puchMemory, m_countMemory + c, 0, NULL, 0);
+         byte * puchMemoryNew = (byte *) _ca_realloc(m_puchMemory, m_countMemory + c, 0, ::null(), 0);
          memcpy_dup(&puchMemoryNew[m_countMemory], puchMemory, c);
          m_countMemory += c;
          m_puchMemory = puchMemoryNew;
@@ -166,11 +166,11 @@ namespace hotplugin
 
    void host::free_memory(byte ** ppuchMemory)
    {
-      if(*ppuchMemory != NULL)
+      if(*ppuchMemory != ::null())
       {
          _ca_free(*ppuchMemory, 0);
       }
-      *ppuchMemory = NULL;
+      *ppuchMemory = ::null();
    }
 
 
@@ -185,7 +185,7 @@ namespace hotplugin
 
    int32_t host::start_ca2_system()
    {
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          return m_pplugin->start_ca2_system();
       }
@@ -195,7 +195,7 @@ namespace hotplugin
    void host::on_paint(simple_graphics & gWindow, LPCRECT lprect)
    {
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
 
          try
@@ -224,7 +224,7 @@ namespace hotplugin
 
    LRESULT host::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          return m_pplugin->message_handler(uiMessage, wparam, lparam);
       }
@@ -235,7 +235,7 @@ namespace hotplugin
 
    int32_t host::message_handler(XEvent * pevent)
    {
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          return m_pplugin->message_handler(pevent);
       }
@@ -250,7 +250,7 @@ namespace hotplugin
 
       m_bOk = true;
 
-      if(is_ok() && m_pplugin != NULL && m_pplugin->is_ok())
+      if(is_ok() && m_pplugin != ::null() && m_pplugin->is_ok())
       {
 
          on_ready();
@@ -263,7 +263,7 @@ namespace hotplugin
    void host::on_ready()
    {
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
 
          m_pplugin->on_ready();
@@ -275,7 +275,7 @@ namespace hotplugin
    bool host::initialize()
    {
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
 
          return m_pplugin->initialize();
@@ -289,12 +289,12 @@ namespace hotplugin
    bool host::finalize()
    {
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
 
          plugin * pplugin = m_pplugin;
 
-         m_pplugin = NULL;
+         m_pplugin = ::null();
 
          pplugin->finalize();
 
@@ -330,7 +330,7 @@ namespace hotplugin
 
    void host::start_ca2()
    {
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          m_pplugin->start_ca2();
       }
@@ -382,7 +382,7 @@ namespace hotplugin
       pstart->m_strCommandLine      = pszCommandLine;
 #ifdef WINDOWS
 
-      ::create_thread(NULL, 0, &::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
+      ::create_thread(::null(), 0, &::_ca2_starter_start, pstart, 0, pplugin == ::null() ? ::null() : &pplugin->m_nCa2StarterStartThreadID);
 
 #else
       pthread_t threadId;
@@ -422,7 +422,7 @@ namespace hotplugin
    void host::deferred_prodevian_redraw()
    {
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          m_pplugin->deferred_prodevian_redraw();
       }
@@ -448,7 +448,7 @@ namespace hotplugin
 
       ::hotplugin::plugin::set_status(pszStatus);
 
-      if(m_pplugin != NULL)
+      if(m_pplugin != ::null())
       {
          m_pplugin->set_status(pszStatus);
       }
@@ -461,7 +461,7 @@ namespace hotplugin
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
 
-      if(m_pcolorref == NULL)
+      if(m_pcolorref == ::null())
          return;
 
       mutex_lock ml(*m_pmutexBitmap, true);
@@ -497,7 +497,7 @@ namespace hotplugin
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
 
-      if(m_pcolorref == NULL)
+      if(m_pcolorref == ::null())
          return;
 
       mutex_lock ml(*m_pmutexBitmap, true);
@@ -540,7 +540,7 @@ namespace hotplugin
 
       ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
 
-      if(m_pcolorref == NULL)
+      if(m_pcolorref == ::null())
          return;
 
       mutex_lock ml(*m_pmutexBitmap, true);

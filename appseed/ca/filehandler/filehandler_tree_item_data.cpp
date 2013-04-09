@@ -15,7 +15,7 @@ namespace filehandler
 
    index tree_item_data::get_image(sp(::ca::tree) ptree)
    {
-      if(ptree->is_tree_item_selected(this))
+      if(ptree->is_tree_item_data_selected(this))
       {
          return -1;
       }

@@ -45,7 +45,7 @@ class CLASS_DECL_c small_ipc_tx_channel :
 public:
 
 
-   bool open(const char * pszKey, launcher * plauncher = NULL);
+   bool open(const char * pszKey, launcher * plauncher = ::null());
    bool close();
 
 
@@ -137,11 +137,11 @@ public:
    small_ipc_channel();
 
 #ifdef WINDOWS
-   bool open_ab(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
-   bool open_ba(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
+   bool open_ab(const char * pszKey, const char * pszModule, launcher * plauncher = ::null());
+   bool open_ba(const char * pszKey, const char * pszModule, launcher * plauncher = ::null());
 #else
-   bool open_ab(const char * pszKey, launcher * plauncher = NULL);
-   bool open_ba(const char * pszKey, launcher * plauncher = NULL);
+   bool open_ab(const char * pszKey, launcher * plauncher = ::null());
+   bool open_ba(const char * pszKey, launcher * plauncher = ::null());
 #endif
    bool close();
 

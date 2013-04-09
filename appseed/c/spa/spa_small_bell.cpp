@@ -20,11 +20,11 @@ void prepare_small_bell(bool bExistsOk)
    if((bExistsOk && file_exists_dup(dir::ca("stage\\small_bell.mp3")))
    || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3"))
+   || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA(::null()), ID_MP3_SMALL_BELL, "MP3"))
    {
-      if(mciSendString(("open \"" + dir::ca("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"), NULL, 0, NULL) == 0)
+      if(mciSendString(("open \"" + dir::ca("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"), ::null(), 0, ::null()) == 0)
       {
-         mciSendString("close small_bell_mp3", NULL, 0, NULL);
+         mciSendString("close small_bell_mp3", ::null(), 0, ::null());
       }
    }
 
@@ -49,14 +49,14 @@ void play_small_bell()
 
    if(read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::ca("stage\\small_bell.mp3"), ::GetModuleHandleA(::null()), ID_MP3_SMALL_BELL, "MP3")
    || file_exists_dup(dir::ca("stage\\small_bell.mp3")))
    {
-      if(mciSendString(("open \"" + dir::ca("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"), NULL, 0, NULL) == 0)
+      if(mciSendString(("open \"" + dir::ca("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"), ::null(), 0, ::null()) == 0)
       {
-         mciSendString("play small_bell_mp3", NULL, 0, NULL);
+         mciSendString("play small_bell_mp3", ::null(), 0, ::null());
          Sleep(4884);
-         mciSendString("close small_bell_mp3", NULL, 0, NULL);
+         mciSendString("close small_bell_mp3", ::null(), 0, ::null());
       }
    }
 #endif

@@ -60,9 +60,9 @@ namespace plane
 
       bool                                                  m_bDrawCursor;
 
-      ifs *                                                 m_pifs;
-      fs::remote_native *                                   m_prfs;
-      ::userpresence::userpresence *                        m_puserpresence;
+      sp(::ifs)                                                 m_pifs;
+      sp(::fs::remote_native)                                   m_prfs;
+      sp(::userpresence::userpresence)                        m_puserpresence;
 
 
 

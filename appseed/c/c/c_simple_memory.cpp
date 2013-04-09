@@ -5,7 +5,7 @@
 simple_memory::simple_memory()
 {
 
-   m_psz       = NULL;
+   m_psz       = ::null();
    m_iAlloc    = 0;
    m_iSize     = 0;
    m_iPos      = 0;
@@ -15,7 +15,7 @@ simple_memory::simple_memory()
 simple_memory::simple_memory(const simple_memory & memory)
 {
 
-   m_psz       = NULL;
+   m_psz       = ::null();
    m_iAlloc    = 0;
    m_iSize     = 0;
    m_iPos      = 0;
@@ -41,7 +41,7 @@ simple_memory::simple_memory(const char * psz)
 simple_memory::~simple_memory()
 {
    
-   if(m_psz != NULL && !m_bAttach)
+   if(m_psz != ::null() && !m_bAttach)
    {
       ca2_free(m_psz);
    }
@@ -96,14 +96,14 @@ void simple_memory::allocate(::count iSize)
    
    ::count iNewAlloc;
 
-   if(m_psz == NULL)
+   if(m_psz == ::null())
    {
 
       iNewAlloc = iSize + 2048;
       
       m_psz = (char *) ca2_alloc(iNewAlloc);
 
-      if(m_psz == NULL)
+      if(m_psz == ::null())
          throw "no memory";
 
       m_iAlloc = iNewAlloc;
@@ -116,7 +116,7 @@ void simple_memory::allocate(::count iSize)
       
       m_psz = (char *) ca2_realloc(m_psz, iNewAlloc);
 
-      if(m_psz == NULL)
+      if(m_psz == ::null())
          throw "no memory";
 
       m_iAlloc = iNewAlloc;

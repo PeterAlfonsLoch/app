@@ -105,7 +105,7 @@ namespace filemanager
             {
             public:
                //FillTask(MAlbumView * pview, const wchar_t * lpcsz);
-         //      list_view *      m_pview;
+         //      sp(list_view)      m_pview;
                string             m_strFile;
                UINT              m_uiTimer;
 
@@ -113,7 +113,7 @@ namespace filemanager
 
 
             void parse(const char * lpszSource);
-            void KickBuild(int32_t iItem = -1);
+            void start_build(int32_t iItem = -1);
          
             void PostFillTask(string & strFile, uint_ptr uiTimer);
 

@@ -34,7 +34,7 @@ int32_t crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char
    simple_memory storageDecrypt;
    simple_memory storageEncrypt;
    simple_memory storageKey;
-   if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
+   if(pszDecrypt == ::null() || strlen(pszDecrypt) == 0)
    {
       strEncrypt = "";
       return 0;
@@ -92,7 +92,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
 #ifdef MACOS
 
-    CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(::null(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
     CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
 
@@ -104,11 +104,11 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
     CFDataRef keyData = memKeyData.get_os_cf_data();
 
-    CFErrorRef error = NULL;
+    CFErrorRef error = ::null();
 
     SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
 
-    if(error != NULL)
+    if(error != ::null())
     {
 
         CFRelease(parameters);
@@ -124,7 +124,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
     SecTransformRef transform = SecEncryptTransformCreate(key, &error);
 
 
-    if(error != NULL)
+    if(error != ::null())
     {
 
         CFRelease(parameters);
@@ -142,7 +142,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
     SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
 
-    if(error != NULL)
+    if(error != ::null())
     {
 
         CFRelease(transform);
@@ -167,7 +167,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
     SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
 
-    if(error != NULL)
+    if(error != ::null())
     {
 
         CFRelease(dataIn);
@@ -190,7 +190,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
     CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
 
-    if(error != NULL)
+    if(error != ::null())
     {
 
         CFRelease(dataIn);
@@ -249,8 +249,8 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    int32_t i = RSA_public_encrypt((int32_t) memIn.get_size(), (const uchar * ) (const char *) memIn.get_data(), (uchar *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
-   ERR_error_string(ERR_get_error(), NULL);
-//   const char * pszError = ERR_error_string(ERR_get_error(), NULL);
+   ERR_error_string(ERR_get_error(), ::null());
+//   const char * pszError = ERR_error_string(ERR_get_error(), ::null());
 
    //TRACE(psz);
 

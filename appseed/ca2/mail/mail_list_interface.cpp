@@ -92,7 +92,7 @@ namespace mail
          return;
       single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
       m_straId.remove_all();
-      ::sqlite::set * pdataset = m_plist->m_paccount->m_pop3.m_pdataset;
+      sp(::sqlite::set) pdataset = m_plist->m_paccount->m_pop3.m_pdataset;
       pdataset->query_items(m_straId, "select id from inbox");
    }
 

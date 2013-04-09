@@ -1902,7 +1902,7 @@ namespace user
 
    void edit_plain_text::MacroBegin()
    {
-      sp(::plain_text_data::GroupCommand) pgroupcommand = new plain_text_data::GroupCommand;
+      sp(::user::plain_text_data::GroupCommand) pgroupcommand = new plain_text_data::GroupCommand;
       pgroupcommand->m_pparent = m_pdata->m_pgroupcommand;
       m_pdata->m_pgroupcommand = pgroupcommand;
    }

@@ -74,7 +74,7 @@ namespace platform
 
    }
 
-   pane_view * document::get_platform_pane_view()
+   sp(pane_view) document::get_platform_pane_view()
    {
 
       return get_typed_view < pane_view > ();
@@ -84,7 +84,7 @@ namespace platform
    sp(frame) document::get_platform_frame()
    {
       
-      pane_view * pview = get_platform_pane_view();
+      sp(pane_view) pview = get_platform_pane_view();
       
       if(pview == ::null())
          return ::null();

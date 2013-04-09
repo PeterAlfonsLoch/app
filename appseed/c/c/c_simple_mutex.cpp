@@ -29,30 +29,30 @@ END_EXTERN_C
 
 simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
 {
-   if(pszName != NULL && strlen_dup(pszName) > 0)
+   if(pszName != ::null() && strlen_dup(pszName) > 0)
    {
       m_strName = pszName;
    }
 #ifdef WINDOWSEX
    if(m_strName.is_empty())
    {
-      m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, NULL);
+      m_hMutex = ::CreateMutexW(::null(), bInitialLock ? TRUE : FALSE, ::null());
    }
    else
    {
       wchar_t * pwszName = utf8_to_16(m_strName);
-      m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, pwszName);
+      m_hMutex = ::CreateMutexW(::null(), bInitialLock ? TRUE : FALSE, pwszName);
       _ca_free(pwszName, 0);
    }
 #elif defined(METROWIN)
    if(m_strName.is_empty())
    {
-      m_hMutex = ::CreateMutexEx(NULL, NULL, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
+      m_hMutex = ::CreateMutexEx(::null(), ::null(), bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
    }
    else
    {
       wchar_t * pwszName = utf8_to_16(m_strName);
-      m_hMutex = ::CreateMutexEx(NULL, pwszName, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
+      m_hMutex = ::CreateMutexEx(::null(), pwszName, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
       _ca_free(pwszName, 0);
    }
 #else
@@ -160,7 +160,7 @@ void simple_mutex::lock()
 int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs_timeout)
 {
    
-   if(abs_timeout == NULL || (abs_timeout->tv_sec == 0 && abs_timeout->tv_nsec == 0))
+   if(abs_timeout == ::null() || (abs_timeout->tv_sec == 0 && abs_timeout->tv_nsec == 0))
    {
       
       return pthread_mutex_lock(mutex);

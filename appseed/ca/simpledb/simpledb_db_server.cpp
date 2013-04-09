@@ -396,7 +396,7 @@ MidiInstrumentSet * db_server::GetMidiInstrumentSet()
 }
 */
 
-::sqlite::base * db_server::GetImplDatabase()
+sp(::sqlite::base) db_server::GetImplDatabase()
 {
    return m_pdatabaseImpl;
 }

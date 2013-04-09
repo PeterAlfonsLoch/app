@@ -27,7 +27,7 @@ namespace userstack
       bool                       m_bMouseOver;
 
       sp(view)                     m_pview;
-      pane_view *                m_ppaneview;
+      sp(pane_view)                m_ppaneview;
 
 
       frame(sp(::ca::application) papp);

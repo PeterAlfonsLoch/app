@@ -30,8 +30,8 @@ class CLASS_DECL_ca db_server :
 public:
 
 
-   ::sqlite::base *        m_pdb;
-   ::sqlite::base *        m_pdatabaseImpl;
+   sp(::sqlite::base)        m_pdb;
+   sp(::sqlite::base)        m_pdatabaseImpl;
    ::critical_section      m_csImplDatabase;
 
    ::simpledb::base *      m_pbase;
@@ -55,7 +55,7 @@ public:
 
 
    ::critical_section * GetImplCriticalSection();
-   ::sqlite::base * GetImplDatabase();
+   sp(::sqlite::base) GetImplDatabase();
    MidiInstrumentSet * GetMidiInstrumentSet();
 
 

@@ -65,7 +65,7 @@ CLASS_DECL_c uint32_t call_sync(
       if(dwExitCode != STILL_ACTIVE)
          break;
       Sleep(84);
-      if(pfnOnRetry != NULL)
+      if(pfnOnRetry != ::null())
       {
          if(!pfnOnRetry(iTry, dwParam))
             break;
@@ -156,7 +156,7 @@ bool process_modules(stra_dup & stra, uint32_t processID)
 
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID );
 
-   if (NULL == hProcess)
+   if (::null() == hProcess)
       return false;
 
    const int32_t iMaxModuleCount = 1024 * 8;
@@ -204,7 +204,7 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
 
    ::count iLenExcept;
 
-   if(pszExceptDir != NULL)
+   if(pszExceptDir != ::null())
    {
       
       iLenExcept = strlen_dup(pszExceptDir);
@@ -256,12 +256,12 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
       if(!bFound)
       {
          
-         hmodule = NULL;
+         hmodule = ::null();
 
          // double check, ensure, that the module has not been already loaded
          // it may happen by loading a missing module that loads dependencies that satisfies straOld modules state.
 
-         if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == FALSE || hmodule == NULL)
+         if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == FALSE || hmodule == ::null())
          {
 
             try

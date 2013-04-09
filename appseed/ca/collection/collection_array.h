@@ -81,7 +81,7 @@ public:
 
    class_size(C * p) : m_p(p), m_c(-1) {}
 
-   class_size(C * p, ::count c) : m_p(NULL), m_c(c) {}
+   class_size(C * p, ::count c) : m_p(::null()), m_c(c) {}
 
    class_size(const class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
 
@@ -962,7 +962,7 @@ void array<TYPE, ARG_TYPE>::destroy()
       for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
       delete[] (BYTE*)m_pData;
-      m_pData     = NULL;
+      m_pData     = ::null();
       m_nSize     = 0;
       m_nMaxSize  = 0;
    }

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-HANDLE g_hmutexBoot = NULL;
+HANDLE g_hmutexBoot = ::null();
 
 int32_t installer(const char * param);
 

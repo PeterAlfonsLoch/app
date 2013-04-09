@@ -264,7 +264,7 @@ bool is_installation_lock_file_locked()
 
       simple_hold_handle hold_handle(::OpenMutexW(SYNCHRONIZE, FALSE, L"Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
 
-      if(hold_handle.m_handle == NULL)
+      if(hold_handle.m_handle == ::null())
       {
 
          return false;

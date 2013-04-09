@@ -29,11 +29,11 @@ namespace fontopus
       string                                 m_strFontopusServerSessId;
       string                                 m_strRequestingServer;
 
-      contact_list *                         m_pcontactlist;
+      sp(contact_list)                         m_pcontactlist;
 
-      ::userpresence::presence *             m_ppresence;
+      sp(::userpresence::presence)             m_ppresence;
 
-      ifs *                                  m_pifs;
+      sp(::ifs)                                  m_pifs;
 
 
       user(sp(::ca::application) papp);
