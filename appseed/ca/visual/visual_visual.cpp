@@ -94,7 +94,7 @@ namespace visual
       if(!m_pfontcentral->Initialize())
          return false;
 
-      m_pimaging = new class imaging(allocer());
+      m_pimaging = new class imaging(get_app());
 
       if(m_pimaging == ::null())
          throw memory_exception(get_app());

@@ -189,80 +189,80 @@ void font_central::CreateLyricViewFonts()
    string strLucida;
 
 
-   visual::font * pPlayerFont = new visual::font(allocer());
+   visual::font * pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 54, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pfontLyric = pPlayerFont;
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font("Tahoma", 12, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pfontLyricCompact = pPlayerFont;
 
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 48, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 48, FW_BOLD, false, false, false, 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 48, FW_BOLD, false, false, false, 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 48, FW_BOLD, false, false, false, 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 48, FW_BOLD, false, false, false, 0.9 * 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 24, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 24, FW_NORMAL, false, false, false, 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 24, FW_NORMAL, false, false, false, 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 24, FW_NORMAL, false, false, false, 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 24, FW_NORMAL, false, false, false, 0.9 * 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 12, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_lpSongLabelFont = pPlayerFont;
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 12, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_lpSongListFont = pPlayerFont;
 
 
 
-   pPlayerFont = new visual::font(allocer());
+   pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 10, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pxffontMidiTrackName = pPlayerFont;

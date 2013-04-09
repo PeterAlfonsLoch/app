@@ -11,7 +11,16 @@ public:
    T2       m_element2;
 
    
-   pair(const T1 & element1 = T1(), const T2 & element2 = T2())
+   pair()
+   {
+   }
+
+   pair(const T1 & element1)
+   {
+      m_element1 = element1;
+   }
+
+   pair(const T1 & element1, const T2 & element2)
    {
       m_element1 = element1;
       m_element2 = element2;

@@ -15,7 +15,14 @@ public:
    map_association *                   m_pnext;
    map_association *                   m_pnextHash;
 
-   map_association(const T1 & element1 = T1(), const T2 & element2 = T2()) :
+   map_association()
+   {
+   }
+   map_association(const T1 & element1) :
+      pair(element1)
+   {
+   }
+   map_association(const T1 & element1, const T2 & element2) :
       pair(element1, element2)
    {
    }
