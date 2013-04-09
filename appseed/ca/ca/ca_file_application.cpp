@@ -402,7 +402,7 @@ namespace ca
             return spfile;
          }
 
-         spfile.create(m_papp);
+         spfile.create(allocer());
 
          if(!spfile->open(strPath, nOpenFlags))
          {

@@ -21,18 +21,7 @@ namespace userpresence
    bool userpresence::initialize()
    {
 
-      if(!initialize_message_window("ca5::user::userpresence::message_window"))
-         return false;
 
-      m_spuiMessage->SetTimer(1984, 1000, ::null());
-
-      if(ApplicationUser.m_ppresence == ::null())
-      {
-         presence * ppresence = new presence(get_app());
-         ppresence->report_activity();
-         ppresence->pulse_user_presence();
-         ApplicationUser.m_ppresence = ppresence;
-      }
 
 
       if(!defer_initialize_user_presence())
@@ -57,13 +46,28 @@ namespace userpresence
    bool userpresence::defer_initialize_user_presence()
    {
 
+      if(!is_initialized())
+      {
+
+         //if(m_spuiMessage.is_null())
+         {
+           // m_spuiMessage = canew(::user::interaction());
+         }
+   
+         if(!initialize_message_window("ca5::user::userpresence::message_window"))
+            return false;
+
+      }
+
+
+      string strQuery = Application.command()->m_varTopicQuery["app"];
 
       if(Application.command()->m_varTopicQuery.has_property("install")
       || Application.command()->m_varTopicQuery.has_property("uninstall"))
          return true;
 
       if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
-      || Application.command()->m_varTopicQuery["app"] == "core_netnodelite"
+      || Application.command()->m_varTopicQuery["app"] == "app-core/netnodelite"
       || Application.command()->m_varTopicQuery["app"] == "netshareclient")
          return true;
 
@@ -86,6 +90,15 @@ namespace userpresence
       }
 
 
+      m_spuiMessage->SetTimer(1984, 1000, ::null());
+
+      if(ApplicationUser.m_ppresence == ::null())
+      {
+         presence * ppresence = new presence(get_app());
+         ppresence->report_activity();
+         ppresence->pulse_user_presence();
+         ApplicationUser.m_ppresence = ppresence;
+      }
 
       return true;
 
@@ -130,6 +143,10 @@ namespace userpresence
 
    bool userpresence::is_initialized()
    {
+
+      if(m_spuiMessage.is_null())
+         return false;
+
 
       if(!m_spuiMessage->IsWindow())
          return false;

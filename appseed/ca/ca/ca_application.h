@@ -1109,7 +1109,7 @@ namespace ca
       if(!contains_app(pszAppId))
          return ::null();
 
-      sp(::ca::application) papp = new APP();
+      sp(::ca::application) papp = canew(APP());
 
       if(papp == ::null())
          return ::null();

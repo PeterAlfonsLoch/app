@@ -502,7 +502,7 @@ namespace plane
       }
 
       virtual sp(::ca::type_info) get_type_info(const ::std_type_info & info);
-      inline sp(::ca::type_info) get_type_info(const class id & idType)
+      sp(::ca::type_info) get_type_info(const class id & idType)
       {
          return m_typemap[idType];
       }

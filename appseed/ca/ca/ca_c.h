@@ -73,30 +73,17 @@ namespace ca
 
       inline int64_t add_ref()
       {
-         return m_countReference++;
+         return InterlockedIncrement64(&m_countReference);
       }
 
       inline int64_t release()
       {
-         if(m_countReference > 0)
+         int64_t i = InterlockedDecrement64(&m_countReference);
+         if(i == 0)
          {
-            if(m_countReference == 1)
-            {
-               m_countReference = 0;
-               delete_this();
-               return 0;
-            }
-            else
-            {
-               m_countReference--;
-               return m_countReference;
-            }
+            delete_this();
          }
-         else
-         {
-            return 0;
-         }
-
+         return i;
       }
 
 

@@ -31,7 +31,7 @@ namespace ca
       set_app(papp);
       if(!s_bAllocReady)
          return;
-      ::ca::thread_sp::create(papp);
+      ::ca::thread_sp::create(allocer());
       m_p->set_p(this);
       m_p->construct();
 
@@ -44,7 +44,7 @@ namespace ca
 
       construct();
 
-      ::ca::thread_sp::create(papp);
+      ::ca::thread_sp::create(allocer());
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
 
