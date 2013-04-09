@@ -113,7 +113,7 @@ public:
       else
          iEnd = iStart + nCount - 1;
 
-      for(int i = iStart; i <= iEnd; i++)
+      for(index i = iStart; i <= iEnd; i++)
       {
 
          if(this->element_at(i).m_p == p)
@@ -146,7 +146,7 @@ public:
       else
          iEnd = iStart + nCount - 1;
 
-      for(int i = iStart; i <= iEnd; i++)
+      for(index i = iStart; i <= iEnd; i++)
       {
 
          if(lpfnCompare(this->element_at(i).m_p, p) == 0)

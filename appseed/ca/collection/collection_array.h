@@ -580,7 +580,7 @@ public:
       else 
          iEnd = iStart + nCount - 1;
 
-      for(int i = iStart; i <= iEnd; i++)
+      for(index i = iStart; i <= iEnd; i++)
       {
 
          a.add(element_at(i));

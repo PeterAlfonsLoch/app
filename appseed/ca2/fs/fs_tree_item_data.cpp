@@ -11,7 +11,7 @@ namespace fs
    }
 
 
-   int32_t tree_item_data::CompareArrangeByName(sp(::ca::tree_item) & item1, sp(::ca::tree_item) & item2)
+   index tree_item_data::CompareArrangeByName(sp(::ca::tree_item) & item1, sp(::ca::tree_item) & item2)
    {
       
       if(item1->m_ptreedata == item2->m_ptreedata)

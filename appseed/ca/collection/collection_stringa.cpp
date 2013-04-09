@@ -175,7 +175,7 @@ index stringa::find_first_ci(const char * lpcsz, index find, index last) const
       find += this->get_count();
    if(last < 0)
       last += this->get_count();
-   for(; find < this->get_count(); find++)
+   for(; find <= last; find++)
    {
       if(this->element_at(find).CompareNoCase(lpcsz) == 0)
          return find;
@@ -189,7 +189,36 @@ index stringa::find_first(const char * lpcsz, index find, index last) const
       find += this->get_count();
    if(last < 0)
       last += this->get_count();
-   for(; find < this->get_count(); find++)
+   for(; find <= last; find++)
+   {
+      if(this->element_at(find).Compare(lpcsz) == 0)
+         return find;
+   }
+   return -1;
+}
+
+
+index stringa::reverse_find_ci(const char * lpcsz, index find, index last) const
+{
+   if(find < 0)
+      find += this->get_count();
+   if(last < 0)
+      last += this->get_count();
+   for(; find >= last; find--)
+   {
+      if(this->element_at(find).CompareNoCase(lpcsz) == 0)
+         return find;
+   }
+   return -1;
+}
+
+index stringa::reverse_find(const char * lpcsz, index find, index last) const
+{
+   if(find < 0)
+      find += this->get_count();
+   if(last < 0)
+      last += this->get_count();
+   for(; find >= last; find--)
    {
       if(this->element_at(find).Compare(lpcsz) == 0)
          return find;

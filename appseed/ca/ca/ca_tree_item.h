@@ -72,7 +72,7 @@ namespace ca
       sp(tree_item) get_next(bool bChild = true, bool bParent = true, index * pindexLevel = ::null());
 
 
-      void sort_children(int32_t ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &));
+      void sort_children(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &));
 
       static void swap_sibling(sp(tree_item) pitem1, sp(tree_item) pitem2);
 

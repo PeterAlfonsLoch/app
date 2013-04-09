@@ -51,7 +51,7 @@ namespace ca
       return m_ptree;
    }
 
-   void tree_item::sort_children(int32_t ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &))
+   void tree_item::sort_children(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &))
    {
       
       sp(tree_item) pitemParent = this;

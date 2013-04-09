@@ -26,7 +26,7 @@ namespace fs
       string get_text(sp(::ca::tree) ptree);
       index get_image(sp(::ca::tree) ptree);
 
-      static int32_t CompareArrangeByName(sp(::ca::tree_item) & pitema, sp(::ca::tree_item) & pitemb);
+      static index CompareArrangeByName(sp(::ca::tree_item) & pitema, sp(::ca::tree_item) & pitemb);
       int32_t get_index() const;
       bool is_folder() const;
 

@@ -286,11 +286,11 @@ namespace exception
 
 
 #ifdef AMD64
-      m_pstackframe->AddrPC.offset       = pcontext->Rip;
+      m_pstackframe->AddrPC.Offset       = pcontext->Rip;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrStack.offset    = pcontext->Rsp;
+      m_pstackframe->AddrStack.Offset    = pcontext->Rsp;
       m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.offset    = pcontext->Rsp;
+      m_pstackframe->AddrFrame.Offset    = pcontext->Rsp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #elif defined(X86)
       m_pstackframe->AddrPC.Offset       = pcontext->Eip;

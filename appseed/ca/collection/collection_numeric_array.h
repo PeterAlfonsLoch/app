@@ -812,7 +812,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) > hi)
       {
@@ -832,7 +832,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) >= hi)
       {
@@ -852,7 +852,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) < lo)
       {
@@ -872,7 +872,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) <= lo)
       {
@@ -892,7 +892,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) < lo)
       {
@@ -917,7 +917,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) < lo)
       {
@@ -942,7 +942,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) <= lo)
       {
@@ -967,7 +967,7 @@ template < class TYPE >
 
    ::count c = 0;
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       if(element_at(i) <= lo)
       {
@@ -997,7 +997,7 @@ template < class TYPE >
 
    c += remove_lesser_than_or_greater_than(start, end);
 
-   for(int i = get_upper_bound(); i >= 0; i--)
+   for(index i = get_upper_bound(); i >= 0; i--)
    {
       index iFind = 0;
       if(a.binary_search(element_at(i), iFind, &::numeric_compare < TYPE >))
