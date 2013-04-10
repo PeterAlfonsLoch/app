@@ -38,7 +38,7 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenu(::filemanager::d
 void FileManagerCallbackInterface::on_request(sp(::ca::create_context) pcreatecontext)
 {
 
-   Application.request(pcreatecontext);
+   Application.request_create(pcreatecontext);
 
 }
 

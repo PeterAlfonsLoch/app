@@ -388,7 +388,7 @@ namespace userstack
             {
                papp = ::null();
             }
-            if(papp != ::null() && m_papp != ::null() && m_papp->m_psession != ::null() && dynamic_cast < sp(::ca::application) > (papp) != dynamic_cast < sp(::ca::application) > (m_papp->m_psession))
+            if(papp != ::null() && m_papp != ::null() && m_papp->m_psession != ::null() &&  (papp) !=  (m_papp->m_psession))
             {
                try
                {

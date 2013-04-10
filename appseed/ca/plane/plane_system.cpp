@@ -1422,7 +1422,7 @@ namespace plane
    void system::on_request(sp(::ca::create_context) pcreatecontext)
    {
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-      psession->request(pcreatecontext);
+      psession->request_create(pcreatecontext);
    }
 
    void system::open_by_file_extension(index iEdge, const char * pszFileName)

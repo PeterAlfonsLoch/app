@@ -11,7 +11,7 @@ namespace ca
          pcreatecontext->m_bClientOnly = true;
       }
 
-      request(pcreatecontext);
+      request_create(pcreatecontext);
    }
 
    void request_interface::add_line(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
@@ -58,20 +58,20 @@ namespace ca
       create(createcontext);
    }
 
-   void request_interface::request(var & varFile)
+   void request_interface::request_file(var & varFile)
    {
 
       sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
 
-      request(createcontext);
+      request_create(createcontext);
 
       varFile = createcontext->m_spCommandLine->m_varFile;
 
    }
 
-   void request_interface::request(var & varFile, var & varQuery)
+   void request_interface::request_file_query(var & varFile, var & varQuery)
    {
 
       sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
@@ -83,25 +83,25 @@ namespace ca
          createcontext->m_spCommandLine->m_ecommand = ::ca::command_line::command_file_open;
       }
 
-      request(createcontext);
+      request_create(createcontext);
 
       varFile                       = createcontext->m_spCommandLine->m_varFile;
       varQuery                      = createcontext->m_spCommandLine->m_varQuery;
 
    }
 
-   void request_interface::request(sp(::ca::command_line) pcommandline)
+   void request_interface::request_command(sp(::ca::command_line) pcommandline)
    {
 
       sp(::ca::create_context) createcontext(allocer());
 
       createcontext->m_spCommandLine = pcommandline;
 
-      on_request(createcontext);
+      request_create(createcontext);
 
    }
 
-   void request_interface::request(sp(::ca::create_context) pcreatecontext)
+   void request_interface::request_create(sp(::ca::create_context) pcreatecontext)
    {
       on_request(pcreatecontext);
    }

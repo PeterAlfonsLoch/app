@@ -91,7 +91,7 @@ namespace filehandler
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      /*   sp(::ca::application) papp = dynamic_cast < sp(::ca::application) > (get_app());
+      /*   sp(::ca::application) papp =  (get_app());
       POSITION pos = papp->m_ptemplate_html->get_document_count();
       while(pos != ::null())
       {

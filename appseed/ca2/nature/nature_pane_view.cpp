@@ -123,7 +123,7 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            sp(::userbase::document) pdoc = (m_pdoctemplateAppearance->open_document_file(sp(::ca::create_context)()));
+            sp(::userbase::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
             if(pdoc != ::null())
             {
                sp(::view) pview = pdoc->get_view();

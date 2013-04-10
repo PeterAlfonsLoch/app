@@ -4,10 +4,174 @@
 
 
 
+
+#define new DEBUG_NEW
+
+
+#ifdef DEBUG
+#define TEMPLATE_TYPE_NEW new(__FILE__ + string(" - ") + typeid(TYPE).name(), __LINE__)
+#else
+#define TEMPLATE_TYPE_NEW new
+#endif
+
+
+class index_array;
+
+
+#undef new
+
+
+#define new TEMPLATE_TYPE_NEW
+
+
+#ifndef __max
+#define __max(a,b)  (((a) > (b)) ? (a) : (b))
+#endif
+
+#define ARRAY_MOVE_SEMANTICS(A) \
+      \
+   A(A && a) :  \
+   ca(a.get_app()) \
+   { \
+    \
+   m_nGrowBy      = a.m_nGrowBy; \
+   m_pData        = a.m_pData; \
+   m_nSize        = a.m_nSize; \
+   m_nMaxSize     = a.m_nMaxSize; \
+   \
+   a.m_pData      = ::null(); \
+   \
+   } \
+   \
+   inline A & A::operator = (A && a)      \
+   {                                      \
+                                          \
+      if(&a != this)                      \
+      { \
+         destroy(); \
+         \
+         m_nGrowBy      = a.m_nGrowBy; \
+         m_pData        = a.m_pData; \
+         m_nSize        = a.m_nSize; \
+         m_nMaxSize     = a.m_nMaxSize; \
+         \
+         a.m_pData      = null(); \
+         \
+      } \
+      \
+   return *this; \
+   \
+   } 
+
+
+
+
+// raw array is a special array and should be used with care
+// it uses operations like memmove and memcopy to move objects and does not
+// call constructors and destructors for the elements
+// it is faster than the more generic arrays and is proper for use
+// with strict structs and primitive data types
+
+template < typename C >
+class class_size
+{
+public:
+
+   sp(C)          m_p;
+   ::count        m_c;
+
+   class_size(C * p) : m_p(p), m_c(-1) {}
+
+   class_size(C * p, ::count c) : m_p(::null()), m_c(c) {}
+
+   class_size(const class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
+
+   operator ::count ()
+   {
+      if(m_c >= 0)
+      {
+         return m_c;
+      }
+      else
+      {
+         return m_p->get_size();
+      }
+
+   }
+
+   class class_size & operator ++()
+   {
+
+      m_p->set_size(m_p->get_size() + 1);
+
+      return *this;
+
+   }
+
+   class class_size & operator --()
+   {
+
+      m_p->set_size(m_p->get_size() - 1);
+
+      return *this;
+
+   }
+
+
+   class class_size operator ++(int)
+   {
+
+      class_size size(m_p, m_p->get_size());
+
+      m_p->set_size(m_p->get_size() + 1);
+
+      return size;
+
+   }
+
+   class class_size operator --(int)
+   {
+
+      class_size size(m_p, m_p->get_size());
+
+      m_p->set_size(m_p->get_size() - 1);
+
+      return size;
+
+   }
+
+
+
+   class class_size & operator +=(::count c)
+   {
+
+      m_p->set_size(m_p->get_size() + c);
+
+      return *this;
+
+   }
+
+   class class_size & operator -=(::count c)
+   {
+
+      m_p->set_size(m_p->get_size() - c);
+
+      return *this;
+
+   }
+
+};
+
+
+
+
+
+
 #include "collection_pair.h"
 
 
 #include "collection_array.h"
+#include "collection_raw_array.h"
 #include "collection_smart_pointer_array.h"
 #include "collection_comparable_eq_array.h"
 #include "collection_comparable_array.h"

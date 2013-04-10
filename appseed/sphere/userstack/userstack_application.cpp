@@ -79,7 +79,7 @@ namespace userstack
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         sp(::ca::application) papp = dynamic_cast < sp(::ca::application) > (pcaapp);
+         sp(::ca::application) papp =  (pcaapp);
 
          papp->post_thread_message(WM_QUIT, 0, 0);
       }

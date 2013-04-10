@@ -102,7 +102,7 @@ namespace ca
          sp(application) papp = get_app().cast < application > ();
          if(papp != ::null())
          {
-            papp->request(pline);
+            papp->request_create(pline);
          }
       }
       catch(::exit_exception & e)

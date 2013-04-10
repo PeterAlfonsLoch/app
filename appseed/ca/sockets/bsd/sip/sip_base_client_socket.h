@@ -104,7 +104,6 @@ namespace sockets
       ::ca::property & outheader(const char * pszName);
       ::ca::property_set & outheaders();
 
-      using ::ca::object::request;
       sip::request & request();
       sip::response & response();
 

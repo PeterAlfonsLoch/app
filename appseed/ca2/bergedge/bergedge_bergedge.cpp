@@ -297,7 +297,7 @@ namespace bergedge
             {
                if(m_pappCurrent != ::null())
                {
-                  App(m_pappCurrent).request(pcreatecontext->m_spCommandLine);
+                  App(m_pappCurrent).request_command(pcreatecontext->m_spCommandLine);
                }
             }
          }
@@ -533,7 +533,7 @@ namespace bergedge
    }
 
 
-   void bergedge::request(sp(::ca::create_context) pcreatecontext)
+   void bergedge::request_create(sp(::ca::create_context) pcreatecontext)
    {
 
       if(m_pappCurrent != ::null() && m_pappCurrent != this
@@ -544,7 +544,7 @@ namespace bergedge
          {
             get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
-         App(m_pappCurrent).request(pcreatecontext);
+         App(m_pappCurrent).request_create(pcreatecontext);
          if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > () == ::null())
          {
             goto alt1;
@@ -572,7 +572,7 @@ alt1:
                && get_document()->get_typed_view < ::bergedge::pane_view >() != ::null())
             {
                get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-               App(m_pappCurrent).request(pcreatecontext);
+               App(m_pappCurrent).request_create(pcreatecontext);
             }
             else
             {
@@ -585,7 +585,7 @@ alt1:
          {
             //MessageBox(::null(), "request3", "request3", MB_ICONEXCLAMATION);
             get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-            App(m_pappCurrent).request(pcreatecontext);
+            App(m_pappCurrent).request_create(pcreatecontext);
          }
          else
          {
@@ -597,12 +597,12 @@ alt1:
 
    void bergedge::request_topic_file(var & varQuery)
    {
-      request(m_varTopicFile, varQuery);
+      request_file_query(m_varTopicFile, varQuery);
    }
 
    void bergedge::request_topic_file()
    {
-      request(m_varTopicFile);
+      request_file(m_varTopicFile);
    }
 
    /*void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)

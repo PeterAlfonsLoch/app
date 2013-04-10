@@ -86,8 +86,7 @@ namespace bergedge
 
 
       // semantics defined by application
-      using platform::application::request;
-      virtual void request(sp(::ca::create_context) pcreatecontext);
+      virtual void request_create(sp(::ca::create_context) pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application

@@ -53,7 +53,6 @@ namespace ca
          bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = ::null());
 
 
-         using ::ca::signalizable::request;
          string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = ::null());
 
       

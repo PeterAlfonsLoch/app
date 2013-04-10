@@ -42,10 +42,10 @@ namespace ca
 
 
       // semantics defined by the requested object - request_interface implementator
-      virtual void request(var & varFile);
-      virtual void request(var & varFile, var & varQuery);
-      virtual void request(sp(::ca::command_line) pcommandline);
-      virtual void request(sp(::ca::create_context) pcreatecontext);
+      virtual void request_file(var & varFile);
+      virtual void request_file_query(var & varFile, var & varQuery);
+      virtual void request_command(sp(::ca::command_line) pcommandline);
+      virtual void request_create(sp(::ca::create_context) pcreatecontext);
 
       // another name for request
       virtual void create(sp(::ca::create_context) pcreatecontext);

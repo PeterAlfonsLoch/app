@@ -108,7 +108,6 @@ namespace ca
 
          string get(const char * pszUrl, ::fontopus::user * puser = ::null());
 
-         using ::ca::object::request;
          bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = ::null());
          bool request(const char * pszRequest, const char * pszUrl, string & str, ::ca::property_set & post, ::ca::property_set & headers, ::ca::property_set & set, ::http::cookies * pcookies = ::null(), ::fontopus::user * puser = ::null(), const char * pszVersion = ::null(), e_status * pestatus = ::null());
          bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = ::null());

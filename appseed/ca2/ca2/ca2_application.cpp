@@ -941,9 +941,9 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 #endif
    }
 
-   void application::request(sp(::ca::create_context) pcreatecontext)
+   void application::request_create(sp(::ca::create_context) pcreatecontext)
    {
-      ::cubebase::application::request(pcreatecontext);
+      ::cubebase::application::request_create(pcreatecontext);
    }
 
    void application::defer_add_document_template(sp(::document_template) ptemplate)

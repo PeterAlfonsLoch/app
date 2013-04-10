@@ -393,7 +393,7 @@ namespace plane
             {
                if(m_pappCurrent != ::null())
                {
-                  App(m_pappCurrent).request(pcreatecontext->m_spCommandLine);
+                  App(m_pappCurrent).request_command(pcreatecontext->m_spCommandLine);
                }
             }
             bCreate = false;
@@ -739,13 +739,13 @@ namespace plane
    }
 
 
-   void session::request(sp(::ca::create_context) pcreatecontext)
+   void session::request_create(sp(::ca::create_context) pcreatecontext)
    {
 
       if(m_pbergedgeInterface != ::null())
       {
 
-         m_pbergedgeInterface->request(pcreatecontext);
+         m_pbergedgeInterface->request_create(pcreatecontext);
          return;
 
       }
@@ -779,7 +779,7 @@ namespace plane
          {
             get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }*/
-         App(m_pappCurrent).request(pcreatecontext);
+         App(m_pappCurrent).request_create(pcreatecontext);
       }
       else
       {
@@ -789,12 +789,12 @@ namespace plane
 
    void session::request_topic_file(var & varQuery)
    {
-      request(m_varTopicFile, varQuery);
+      request_file_query(m_varTopicFile, varQuery);
    }
 
    void session::request_topic_file()
    {
-      request(m_varTopicFile);
+      request_file(m_varTopicFile);
    }
 
    /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)

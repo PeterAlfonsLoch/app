@@ -1,20 +1,20 @@
 #pragma once
 
 
-// raw_array is an array that does not call destructor or constructors in elements
-// so, if raw_array can be a copy of array changing the following members :
+// raw_array is an raw_array that does not call destructor or constructors in elements
+// so, if raw_array can be a copy of raw_array changing the following members :
 // set_size, remove_at
 
 
+
 template<class TYPE, class ARG_TYPE = const TYPE &>
-class array :
+class raw_array :
    virtual public ::ca::object
 {
 public:
 
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > THIS_ARRAY;
 
    /*
 
@@ -24,7 +24,7 @@ public:
 
 
    index            m_i;
-   array *     m_parray;
+   raw_array *     m_parray;
 
    iterator()
    {
@@ -32,7 +32,7 @@ public:
    m_parray = ::null();
    }
 
-   iterator(index i, array * parray)
+   iterator(index i, raw_array * parray)
    {
    m_i         = i;
    m_parray    = parray;
@@ -108,7 +108,7 @@ public:
 
 
       index            m_i;
-      array *     m_parray;
+      raw_array *     m_parray;
 
       iterator()
       {
@@ -116,7 +116,7 @@ public:
          m_parray = ::null();
       }
 
-      iterator(index i, array * parray)
+      iterator(index i, raw_array * parray)
       {
          m_i = i;
          m_parray = parray;
@@ -198,7 +198,7 @@ public:
 
 
       index            m_i;
-      const array *     m_parray;
+      const raw_array *     m_parray;
 
       const_iterator()
       {
@@ -206,7 +206,7 @@ public:
          m_parray = ::null();
       }
 
-      const_iterator(index i, const array * parray)
+      const_iterator(index i, const raw_array * parray)
       {
          m_i = i;
          m_parray = parray;
@@ -291,19 +291,20 @@ public:
 
    };
 
-   TYPE *      m_pData;    // the actual array of data
+   TYPE *      m_pData;    // the actual raw_array of data
    ::count     m_nSize;    // # of elements (upperBound - 1)
    ::count     m_nMaxSize; // max allocated
    ::count     m_nGrowBy;  // grow amount
 
 
 
-   array(sp(::ca::application) papp = ::null(), ::count nGrowBy = 32);
-   array(const array <TYPE, ARG_TYPE> & a);
-   array(::count n);
-   array(ARG_TYPE t, ::count n = 1);
-   array(TYPE * ptypea, ::count n);
-   virtual ~array();
+   raw_array(sp(::ca::application) papp = ::null(), ::count nGrowBy = 32);
+   raw_array(const raw_array <TYPE, ARG_TYPE> & a);
+   ARRAY_MOVE_SEMANTICS(raw_array);
+   raw_array(::count n);
+   raw_array(ARG_TYPE t, ::count n = 1);
+   raw_array(TYPE * ptypea, ::count n);
+   virtual ~raw_array();
 
    virtual void destroy();
 
@@ -312,8 +313,8 @@ public:
    inline ::count get_count() const;
    inline ::count get_byte_count() const;
 
-   class_size < array > size();
-   class_size < array > count();
+   class_size < raw_array > size();
+   class_size < raw_array > count();
 
    inline bool is_empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
@@ -356,16 +357,16 @@ public:
    inline const TYPE* get_data() const;
    inline TYPE* get_data();
 
-   // Potentially growing the array
+   // Potentially growing the raw_array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
    TYPE & element_at_grow(index nIndex);
    TYPE get_at_grow(index nIndex);
    index add(ARG_TYPE newElement);
-   index add(const array& src);
+   index add(const raw_array& src);
    virtual index add_new(::count count);
    virtual TYPE & add_new();
-   index append(const array& src);
-   void copy(const array& src);
+   index append(const raw_array& src);
+   void copy(const raw_array& src);
 
 
    TYPE pop(index index = -1);
@@ -396,12 +397,12 @@ public:
    index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
    void _001RemoveIndexes(index_array & ia);
-   void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
-   void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
-   index insert_at(index nStartIndex, array* pNewArray);
+   void remove_indexes(const index_array & ia); // remove indexes from index raw_array upper bound to index raw_array lower bound
+   void remove_descending_indexes(const index_array & ia); // remove indexes from index raw_array lower bound to index raw_array upper bound
+   index insert_at(index nStartIndex, raw_array* pNewArray);
    void swap(index index1, index index2);
 
-   array & operator = (const array & src);
+   raw_array & operator = (const raw_array & src);
 
    index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;
    index raw_find_first(TYPE * pt, index first = 0, index last = -1) const;
@@ -422,7 +423,7 @@ public:
 
       if(nCount < 0)
          iEnd = get_upper_bound(nCount);
-      else
+      else 
          iEnd = iStart + nCount - 1;
 
       for(index i = iStart; i <= iEnd; i++)
@@ -444,119 +445,86 @@ public:
 
    bool binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const;
    index sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
-   ::count sort_add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
+   ::count sort_add(const raw_array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
    index sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
+   
 
 
-
-   array & operator += (const array & a);
-   array operator + (const array & a) const;
+   raw_array & operator += (const raw_array & a);
+   raw_array operator + (const raw_array & a) const;
 
    void dump(dump_context &) const;
    void assert_valid() const;
-
-   array(array && a) :
-   ca(a.get_app())
-   {
-
-   m_nGrowBy      = a.m_nGrowBy;
-   m_pData        = a.m_pData;
-   m_nSize        = a.m_nSize;
-   m_nMaxSize     = a.m_nMaxSize;
-
-   a.m_pData      = ::null();
-
-   }
-
-
-   inline array & operator = (array && a)
-   {
-
-      if(&a != this)
-      {
-         destroy();
-
-         m_nGrowBy      = a.m_nGrowBy;
-         m_pData        = a.m_pData;
-         m_nSize        = a.m_nSize;
-         m_nMaxSize     = a.m_nMaxSize;
-
-         a.m_pData      = null();
-
-      }
-
-   return *this;
-   }
 
 
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// array<TYPE, ARG_TYPE> inline functions
+// raw_array<TYPE, ARG_TYPE> inline functions
 
 template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_size() const
+inline ::count raw_array<TYPE, ARG_TYPE>::get_size() const
 {
    return m_nSize;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_size_in_bytes() const
+inline ::count raw_array<TYPE, ARG_TYPE>::get_size_in_bytes() const
 {
    return m_nSize * sizeof(TYPE);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_count() const
+inline ::count raw_array<TYPE, ARG_TYPE>::get_count() const
 {
    return this->get_size();
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_byte_count() const
+inline ::count raw_array<TYPE, ARG_TYPE>::get_byte_count() const
 {
    return this->get_size_in_bytes();
 }
 
 template<class TYPE, class ARG_TYPE>
-inline class_size < array<TYPE, ARG_TYPE > > array<TYPE, ARG_TYPE>::size()
+inline class_size < raw_array<TYPE, ARG_TYPE > > raw_array<TYPE, ARG_TYPE>::size()
 {
-   return class_size < array<TYPE, ARG_TYPE > >(this);
+   return class_size < raw_array<TYPE, ARG_TYPE > >(this);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline class_size < array<TYPE, ARG_TYPE > > array<TYPE, ARG_TYPE>::count()
+inline class_size < raw_array<TYPE, ARG_TYPE > > raw_array<TYPE, ARG_TYPE>::count()
 {
-   return class_size < array<TYPE, ARG_TYPE > >(this);
+   return class_size < raw_array<TYPE, ARG_TYPE > >(this);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline bool array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
+inline bool raw_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
 {
    return m_nSize < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
+inline bool raw_array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
 {
    return m_nSize >= countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
+inline index raw_array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
 {
    return m_nSize + index;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::remove_all()
+inline ::count raw_array<TYPE, ARG_TYPE>::remove_all()
 {
    return set_size(0, -1);
 }
 
 template <class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::
+void raw_array<TYPE, ARG_TYPE>::
    clear()
 {
    remove_all();
@@ -564,27 +532,27 @@ void array<TYPE, ARG_TYPE>::
 
 
 template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::remove_last()
+inline void raw_array<TYPE, ARG_TYPE>::remove_last()
 {
    remove_at(get_upper_bound());
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::get_at(index nIndex)
+inline TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    //   throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::get_at(index nIndex) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
+inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    m_pData[nIndex] = newElement;
@@ -592,82 +560,82 @@ inline void array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
    //  throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::element_at(index nIndex) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::element_at(index nIndex)
+inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::first_element(index nIndex) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex) const
 {
    return this->element_at(nIndex);
 }
 template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::first_element(index nIndex)
+inline TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex)
 {
    return this->element_at(nIndex);
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::last_element(index index) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index) const
 {
    return element_at(get_upper_bound(index));
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::last_element(index index)
+inline TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index)
 {
    return element_at(get_upper_bound(index));
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & array<TYPE, ARG_TYPE>::front(index n)
+inline TYPE & raw_array<TYPE, ARG_TYPE>::front(index n)
 {
    return first_element(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & array<TYPE, ARG_TYPE>::front(index n) const
+inline const TYPE & raw_array<TYPE, ARG_TYPE>::front(index n) const
 {
    return first_element(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & array<TYPE, ARG_TYPE>::back(index n)
+inline TYPE & raw_array<TYPE, ARG_TYPE>::back(index n)
 {
    return last_element(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & array<TYPE, ARG_TYPE>::back(index n) const
+inline const TYPE & raw_array<TYPE, ARG_TYPE>::back(index n) const
 {
    return last_element(n);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE* array<TYPE, ARG_TYPE>::get_data() const
+inline const TYPE* raw_array<TYPE, ARG_TYPE>::get_data() const
 {
    return (const TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE* array<TYPE, ARG_TYPE>::get_data()
+inline TYPE* raw_array<TYPE, ARG_TYPE>::get_data()
 {
    return (TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 {
    index nIndex = m_nSize;
    set_at_grow(nIndex, newElement);
@@ -676,29 +644,29 @@ inline index array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 
 
 template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::add(const array & src)
+inline index raw_array<TYPE, ARG_TYPE>::add(const raw_array & src)
 {
    return append(src);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::add_new(::count count)
+inline index raw_array<TYPE, ARG_TYPE>::add_new(::count count)
 {
    set_size(m_nSize + count);
-   return get_upper_bound();
+   return get_upper_bound(); 
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & array<TYPE, ARG_TYPE>::add_new()
+inline TYPE & raw_array<TYPE, ARG_TYPE>::add_new()
 {
    set_size(m_nSize + 1);
-   return last_element();
+   return last_element(); 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE array<TYPE, ARG_TYPE>::pop(index n)
+inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index n)
 {
 
    index i = get_upper_bound(n);
@@ -712,7 +680,7 @@ inline TYPE array<TYPE, ARG_TYPE>::pop(index n)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::pop_back(index n)
+inline void raw_array<TYPE, ARG_TYPE>::pop_back(index n)
 {
 
    remove_at(get_upper_bound(n));
@@ -720,33 +688,33 @@ inline void array<TYPE, ARG_TYPE>::pop_back(index n)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement, index n)
+inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement, index n)
 {
    return insert_at(get_upper_bound(n), newElement);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement, index n)
+inline void raw_array<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement, index n)
 {
    insert_at(get_upper_bound(n), newElement);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::operator[](index nIndex) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 {
    return element_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::operator[](index nIndex)
+inline TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 {
    return this->element_at(nIndex);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::swap(index index1, index index2)
+inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 {
    TYPE t = m_pData[index1];
    m_pData[index1] = m_pData[index2];
@@ -754,7 +722,7 @@ inline void array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & src)
+inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const raw_array & src)
 {
    if(&src != this)
    {
@@ -768,7 +736,7 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(sp(::ca::application) papp, ::count nGrowBy) :
+raw_array<TYPE, ARG_TYPE>::raw_array(sp(::ca::application) papp, ::count nGrowBy) :
 ca(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
@@ -777,7 +745,7 @@ ca(papp)
 }
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(const array <TYPE, ARG_TYPE> & a) :
+raw_array<TYPE, ARG_TYPE>::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
 ca(a.get_app())
 {
    m_nGrowBy = 32;
@@ -789,7 +757,7 @@ ca(a.get_app())
 
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>:: array(::count n)
+raw_array<TYPE, ARG_TYPE>:: raw_array(::count n)
 {
    m_nGrowBy = 32;
    m_pData = ::null();
@@ -798,7 +766,7 @@ array<TYPE, ARG_TYPE>:: array(::count n)
 }
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(ARG_TYPE t, ::count n)
+raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n)
 {
    m_nGrowBy = 32;
    m_pData = ::null();
@@ -808,7 +776,7 @@ array<TYPE, ARG_TYPE>::array(ARG_TYPE t, ::count n)
 
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(TYPE * ptypea, ::count n)
+raw_array<TYPE, ARG_TYPE>::raw_array(TYPE * ptypea, ::count n)
 {
    m_nGrowBy = 32;
    m_pData = ::null();
@@ -823,15 +791,15 @@ array<TYPE, ARG_TYPE>::array(TYPE * ptypea, ::count n)
 
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::~array()
+raw_array<TYPE, ARG_TYPE>::~raw_array()
 {
-
+   
    destroy();
 
 }
 
 template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::destroy()
+void raw_array<TYPE, ARG_TYPE>::destroy()
 {
    ASSERT_VALID(this);
 
@@ -848,7 +816,7 @@ void array<TYPE, ARG_TYPE>::destroy()
 }
 
 template<class TYPE, class ARG_TYPE>
-::count array<TYPE, ARG_TYPE>::set_size_in_bytes(::count nNewSize, ::count nGrowBy)
+::count raw_array<TYPE, ARG_TYPE>::set_size_in_bytes(::count nNewSize, ::count nGrowBy)
 {
    if(nGrowBy < 0)
    {
@@ -861,7 +829,7 @@ template<class TYPE, class ARG_TYPE>
 }
 
 template<class TYPE, class ARG_TYPE>
-::count array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
+::count raw_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -974,7 +942,7 @@ template<class TYPE, class ARG_TYPE>
 }
 
 template<class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::append(const array& src)
+index raw_array<TYPE, ARG_TYPE>::append(const raw_array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
@@ -989,7 +957,7 @@ index array<TYPE, ARG_TYPE>::append(const array& src)
 }
 
 template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::copy(const array& src)
+void raw_array<TYPE, ARG_TYPE>::copy(const raw_array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
@@ -1002,7 +970,7 @@ void array<TYPE, ARG_TYPE>::copy(const array& src)
 }
 
 template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::free_extra()
+void raw_array<TYPE, ARG_TYPE>::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -1029,7 +997,7 @@ void array<TYPE, ARG_TYPE>::free_extra()
 }
 
 template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
+void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
    //ASSERT_VALID(this);
    //ASSERT(nIndex >= 0);
@@ -1043,14 +1011,14 @@ void array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-TYPE array<TYPE, ARG_TYPE>::get_at_grow(index nIndex)
+TYPE raw_array<TYPE, ARG_TYPE>::get_at_grow(index nIndex)
 {
    return element_at_grow(nIndex);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-TYPE & array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
+TYPE & raw_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
@@ -1065,7 +1033,7 @@ TYPE & array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 
 
 template<class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
    //ASSERT_VALID(this);
    //ASSERT(nIndex >= 0);    // will expand to meet need
@@ -1078,12 +1046,12 @@ index array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::coun
 
    if (nIndex >= m_nSize)
    {
-      // adding after the end of the array
+      // adding after the end of the raw_array
       set_size(nIndex + nCount, -1);   // grow so nIndex is valid
    }
    else
    {
-      // inserting in the middle of the array
+      // inserting in the middle of the raw_array
       ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
@@ -1112,7 +1080,7 @@ index array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::coun
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
+inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -1124,9 +1092,6 @@ inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
    // just remove a range
    ::count nMoveCount = m_nSize - (nUpperBound);
-   for( int32_t i = 0; i < nCount; i++ )
-      (m_pData + nIndex + i)->~TYPE();
-
    if (nMoveCount)
    {
       ::ca::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
@@ -1138,7 +1103,7 @@ inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
 
 template<class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, array * pNewArray)
+index raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array * pNewArray)
 {
    ASSERT_VALID(this);
    ASSERT(pNewArray != ::null());
@@ -1161,7 +1126,7 @@ index array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, array * pNewArray)
 
 
 template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
+void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
    ::ca::object::dump(dumpcontext);
 
@@ -1176,7 +1141,7 @@ void array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 }
 
 template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::assert_valid() const
+void raw_array<TYPE, ARG_TYPE>::assert_valid() const
 {
    ::ca::object::assert_valid();
 
@@ -1195,7 +1160,7 @@ void array<TYPE, ARG_TYPE>::assert_valid() const
 }
 
 template<class TYPE, class ARG_TYPE>
-typename array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator pos)
+typename raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator pos)
 {
    if(pos.m_parray == this)
    {
@@ -1209,7 +1174,7 @@ typename array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator p
 }
 
 template<class TYPE, class ARG_TYPE>
-typename  array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
+typename  raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
 {
    if(begin.m_parray == this && last.m_parray == this)
    {
@@ -1232,7 +1197,7 @@ typename  array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator 
 
 
 template <class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
+index raw_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -1246,7 +1211,7 @@ index array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) co
    return -1;
 }
 template <class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
+index raw_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -1261,16 +1226,233 @@ index array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_
 }
 
 
+template <class TYPE, class ARG_TYPE>
+void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), void (* fSwap)(TYPE *, TYPE *))
+{
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   //   uint32_t t;
+
+   if(get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(get_upper_bound());
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(fCompare(&element_at(iMPos), &element_at(iUPos)) <= 0)
+                  iUPos--;
+               else
+               {
+                  fSwap(&element_at(iMPos), &element_at(iUPos));
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+               if(fCompare(&element_at(iLPos), &element_at(iMPos)) <= 0)
+                  iLPos++;
+               else
+               {
+                  fSwap(&element_at(iLPos), &element_at(iMPos));
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
+template <class TYPE, class ARG_TYPE>
+void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *))
+{
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   //   uint32_t t;
+
+   if(get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(get_upper_bound());
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(fCompare(&element_at(iMPos), &element_at(iUPos)) <= 0)
+                  iUPos--;
+               else
+               {
+                  swap(iMPos, iUPos);
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+               if(fCompare(&element_at(iLPos), &element_at(iMPos)) <= 0)
+                  iLPos++;
+               else
+               {
+                  swap(iLPos, iMPos);
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
+template <class TYPE, class ARG_TYPE>
+void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), index_array & ia)
+{
+
+   // minimum check
+   if(ia.get_size() != get_size())
+      throw invalid_argument_exception(get_app());
+
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   //   uint32_t t;
+
+   if(get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(get_upper_bound());
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(fCompare(&element_at(ia[iMPos]), &element_at(ia[iUPos])) <= 0)
+                  iUPos--;
+               else
+               {
+                  ia.swap(iMPos, iUPos);
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+               if(fCompare(&element_at(ia[iLPos]), &element_at(ia[iMPos])) <= 0)
+                  iLPos++;
+               else
+               {
+                  ia.swap(iLPos, iMPos);
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
 
 template < class TYPE, class ARG_TYPE >
-bool array < TYPE, ARG_TYPE >::
+bool raw_array < TYPE, ARG_TYPE >::
 binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
    if(this->get_size() == 0)
    {
       return false;
    }
-
+   
    index iLowerBound = 0;
    index iMaxBound   = get_upper_bound();
    index iUpperBound = iMaxBound;
@@ -1333,15 +1515,130 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *))
 }
 
 
+template < class TYPE, class ARG_TYPE >
+bool raw_array < TYPE, ARG_TYPE >::
+binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const
+{
+   if(this->get_size() == 0)
+   {
+      return false;
+   }
+   
+   index iLowerBound = 0;
+   index iMaxBound   = get_upper_bound();
+   index iUpperBound = iMaxBound;
+   index iCompare;
+   // do binary search
+   iIndex = (iUpperBound + iLowerBound) / 2;
+   while(iUpperBound - iLowerBound >= 8)
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      if(iCompare == 0)
+      {
+         return true;
+      }
+      else if(iCompare > 0)
+      {
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
+         {
+            iIndex = 0;
+            break;
+         }
+      }
+      else
+      {
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
+         {
+            iIndex = iMaxBound + 1;
+            break;
+         }
+      }
+      iIndex = (iUpperBound + iLowerBound) / 2;
+   }
+   // do sequential search
+   while(iIndex < this->get_count())
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      if(iCompare == 0)
+         return true;
+      else if(iCompare < 0)
+         iIndex++;
+      else
+         break;
+   }
+   if(iIndex >= this->get_count())
+      return false;
+   while(iIndex >= 0)
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *)  &t);
+      if(iCompare == 0)
+         return true;
+      else if(iCompare > 0)
+         iIndex--;
+      else
+         break;
+   }
+   iIndex++;
+   return false;
+
+}
+
+template < class TYPE, class ARG_TYPE >
+index raw_array < TYPE, ARG_TYPE >::
+sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
+{
+   index iIndex = 0;
+   binary_search(t, iIndex, fCompare, ia);
+   this->insert_at(iIndex, t);
+   ia.add(iIndex);
+   return iIndex;
+}
+
+template < class TYPE, class ARG_TYPE >
+::count raw_array < TYPE, ARG_TYPE >::
+sort_add(const raw_array  < TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
+{
+   for(index i = 0; i < a.get_size(); i++)
+   {
+      sort_add((ARG_TYPE) a[i], fCompare, ia);
+   }
+   return a.get_size();
+}
+
+template < class TYPE, class ARG_TYPE >
+::count raw_array < TYPE, ARG_TYPE >::
+sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
+{
+   ::count c = 0;
+   index iFind = 0;
+   while(binary_search(t, iFind, fCompare, ia))
+   {
+      remove_at(iFind);
+      index iIndex = ia[iFind];
+      ia.remove_at(iFind);
+      for(index i = 0; i < ia.get_size(); i++)
+      {
+         if(ia[i] > iIndex)
+         {
+            ia[i]--;
+         }
+      }
+      iFind = 0;
+      c++;
+   }
+   return c;
+}
 
 
 template <class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator += (const array & a)
+raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator += (const raw_array & a)
 {
 
    if(&a == this)
    {
-      array<TYPE, ARG_TYPE> aCopy(a);
+      raw_array<TYPE, ARG_TYPE> aCopy(a);
       add(aCopy);
    }
    else
@@ -1353,9 +1650,9 @@ array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator += (const array & a)
 }
 
 template <class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE> array<TYPE, ARG_TYPE>::operator + (const array & a) const
+raw_array<TYPE, ARG_TYPE> raw_array<TYPE, ARG_TYPE>::operator + (const raw_array & a) const
 {
-   array<TYPE, ARG_TYPE> aNew(*this);
+   raw_array<TYPE, ARG_TYPE> aNew(*this);
    aNew += a;
    return a;
 }

@@ -3185,6 +3185,9 @@
     <ClInclude Include="userpresence\userpresence_userpresence.h">
       <Filter>Header Files\userpresence</Filter>
     </ClInclude>
+    <ClInclude Include="collection\collection_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">

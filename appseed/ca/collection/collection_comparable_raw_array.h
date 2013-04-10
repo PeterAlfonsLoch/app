@@ -5,7 +5,7 @@
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class comparable_eq_raw_array :
-   public comparable_eq_array < TYPE, ARG_TYPE, array < TYPE, ARG_TYPE > >
+   public comparable_eq_array < TYPE, ARG_TYPE, raw_array < TYPE, ARG_TYPE > >
 {
 };
 

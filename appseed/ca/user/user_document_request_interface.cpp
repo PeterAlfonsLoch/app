@@ -4,6 +4,11 @@
 namespace user
 {
 
+   sp(::user::document_interface) document_request_interface::open_new_document()
+   {
+      return open_document_file(sp(::ca::create_context)());
+   }
+
    sp(::user::document_interface) document_request_interface::open_document_file(sp(::ca::create_context) pcreatecontext)
    {
 
@@ -14,7 +19,7 @@ namespace user
          pcreatecontext = cc;
       }
 
-      request(pcreatecontext);
+      request_create(pcreatecontext);
 
       return pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > ();
 

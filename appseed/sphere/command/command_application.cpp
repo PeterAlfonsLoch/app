@@ -46,7 +46,7 @@ namespace command
          m_ptemplateCommandMain = pDocTemplate;
 
 
-         m_ptemplateCommandMain->open_document_file(sp(::ca::create_context));
+         m_ptemplateCommandMain->open_new_document();
       }
 
       return true;

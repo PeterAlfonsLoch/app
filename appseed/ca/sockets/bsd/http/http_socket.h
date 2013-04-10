@@ -95,7 +95,6 @@
          ::ca::property & lowoutheader(const string & strName);
          ::ca::property_set & outheaders();
 
-         using tcp_socket::request;
          http::request & request();
          http::response & response();
 

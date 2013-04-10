@@ -254,7 +254,7 @@ namespace ca
 
    void signalizable::on_request_signal(request_signal * prequestsignal)
    {
-      request(prequestsignal->m_varFile, prequestsignal->m_varQuery);
+      request_file_query(prequestsignal->m_varFile, prequestsignal->m_varQuery);
    }
 
 

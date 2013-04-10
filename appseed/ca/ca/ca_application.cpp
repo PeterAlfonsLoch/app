@@ -4616,7 +4616,7 @@ namespace ca
 
       varQuery["command"] = "new_file";
 
-      request(varFile, varQuery);
+      request_file_query(varFile, varQuery);
 
       //::ca::smart_pointer < application_base >::m_p->_001OnFileNew();
    }

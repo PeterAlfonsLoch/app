@@ -233,7 +233,7 @@ namespace cube
    void cube::on_request(sp(::ca::create_context) pcreatecontext)
    {
       ::bergedge::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-      pbergedge->request(pcreatecontext);
+      pbergedge->request_create(pcreatecontext);
    }
 
    void cube::open_by_file_extension(index iEdge, const char * pszFileName)

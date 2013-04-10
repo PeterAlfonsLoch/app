@@ -130,8 +130,7 @@ namespace ca2
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-      using cubebase::application::request;
-      virtual void request(sp(::ca::create_context) pcreatecontext);
+      virtual void request_create(sp(::ca::create_context) pcreatecontext);
 
       virtual void on_exclusive_instance_local_conflict();
 

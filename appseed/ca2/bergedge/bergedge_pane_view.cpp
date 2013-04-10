@@ -105,7 +105,7 @@ namespace bergedge
    void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
-//      sp(frame) pframe = dynamic_cast < sp(frame)> (GetParentFrame());
+//      sp(frame) pframe =  (GetParentFrame());
       if(get_view_id().is_text())
       {
          string strId = get_view_id();
@@ -212,7 +212,7 @@ namespace bergedge
                string str;
                str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
                //MessageBox(::null(), str, str, MB_ICONEXCLAMATION);
-               Bergedge.request(createcontext);
+               Bergedge.request_create(createcontext);
 
             }
 

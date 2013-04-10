@@ -102,13 +102,13 @@ namespace filemanager
             {
                varFile = itema[0].m_strPath;
                varQuery["file_manager_id"] = "left_file";
-               m_pcallback->request(varFile, varQuery);
+               m_pcallback->request_file_query(varFile, varQuery);
             }
 
             {
                varFile = itema[1].m_strPath;
                varQuery["file_manager_id"] = "right_file";
-               m_pcallback->request(varFile, varQuery);
+               m_pcallback->request_file_query(varFile, varQuery);
             }
          }
          else if(itema.get_count() == 2 && m_id == "right_file")
@@ -116,13 +116,13 @@ namespace filemanager
             {
                varFile = itema[0].m_strPath;
                varQuery["file_manager_id"] = "right_file";
-               m_pcallback->request(varFile, varQuery);
+               m_pcallback->request_file_query(varFile, varQuery);
             }
 
             {
                varFile = itema[1].m_strPath;
                varQuery["file_manager_id"] = "left_file";
-               m_pcallback->request(varFile, varQuery);
+               m_pcallback->request_file_query(varFile, varQuery);
             }
          }
          else
@@ -134,7 +134,7 @@ namespace filemanager
 
             varQuery["file_manager_id"] = m_id;
 
-            m_pcallback->request(varFile, varQuery);
+            m_pcallback->request_file_query(varFile, varQuery);
 
          }
 

@@ -262,7 +262,7 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 uint32_t simple_frame_window_save_window_rect(void * pvoidParam)
 {
 
-   sp(simple_frame_window) pframe = (simple_frame_window *) pvoidParam;
+   sp(simple_frame_window) pframe = (sp(::simple_frame_window)) pvoidParam;
 
    pframe->WindowDataSaveWindowRect();
 

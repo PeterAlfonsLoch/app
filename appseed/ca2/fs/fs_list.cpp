@@ -91,7 +91,7 @@ namespace fs
             }
             varFile = stra;
          }
-         get_document()->request(varFile, varQuery);
+         get_document()->request_file_query(varFile, varQuery);
       }
    }
 
