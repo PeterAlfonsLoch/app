@@ -19,8 +19,8 @@
 	<File name="ansios/ansios_file_std.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="11423" topLine="632" />
 	</File>
-	<File name="ansios/ansios_thread.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="13836" topLine="656" />
+	<File name="ansios/ansios_thread.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="13332" topLine="635" />
 	</File>
 	<File name="ansios/ansios_thread.h" open="0" top="0" tabpos="8">
 		<Cursor position="280" topLine="5" />

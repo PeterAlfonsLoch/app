@@ -922,13 +922,13 @@ void frame_window::_001OnActivate(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::activate, pactivate, pobj);
 
-   sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+   sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
 
    pobj->previous();
 
    // get top level frame unless this is a child ::ca::window
    // determine if ::ca::window should be active or not
-   sp(frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
+   sp(frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame().m_p;
 
    if(pTopLevel == ::null())
       pTopLevel = this;

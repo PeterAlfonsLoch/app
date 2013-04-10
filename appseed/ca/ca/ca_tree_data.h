@@ -16,9 +16,9 @@ namespace ca
       public ::ca::data
    {
    public:
-      
 
-      tree_item_data_ptr_array            m_itemdataptra;    
+
+      tree_item_data_ptr_array            m_itemdataptra;
       sp(image_list)                      m_pimagelist;
 
 
@@ -33,14 +33,14 @@ namespace ca
       bool contains(sp(tree_item_data) pitem);
 
       virtual sp(tree_item_data) _allocate_item();
-      virtual bool _delete_item(sp(tree_item_data) pitem);
+      //virtual bool _delete_item(sp(tree_item_data) pitem);
 
 
    protected:
 
 
       virtual sp(tree_item_data) on_allocate_item();
-      virtual void on_delete_item(sp(tree_item_data) pitem);
+      //virtual void on_delete_item(sp(tree_item_data) pitem);
 
 
    };

@@ -11,8 +11,6 @@ namespace userbase
 
    image_manager::~image_manager()
    {
-      delete m_pimagelist;
-      delete m_pimagelistDisable;
    }
 
 

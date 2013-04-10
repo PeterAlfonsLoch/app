@@ -2239,10 +2239,6 @@ namespace user
       return new plain_text_data::Command;
    }
 
-   void edit_plain_text::on_delete_item(sp(::ca::tree_item_data) pitem)
-   {
-      delete pitem;
-   }
 
    void edit_plain_text::set_plain_text_data(plain_text_data * pdata, bool bOwnData)
    {

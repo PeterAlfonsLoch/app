@@ -830,7 +830,6 @@ namespace user
 
 
 
-#include "ca_application_interface.h"
 #include "ca_section.h"
 
 
@@ -1492,7 +1491,7 @@ inline bool is_null(const TYPE & ref)
    return &ref == ::null();
 }
 
-#define NULL_REF(class) (*((class *) ::null()))
+#define NULL_REF(class) (*((class *) NULL))
 
 
 CLASS_DECL_ca ::ca::byte_input_stream &  operator >>(::ca::byte_input_stream & istream, string & string);

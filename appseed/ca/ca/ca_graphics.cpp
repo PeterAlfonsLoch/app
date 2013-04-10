@@ -2500,7 +2500,7 @@ namespace ca
 #ifdef WINDOWSEX
       m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
 #else
-      throw todo(get_app());
+      throw todo(::ca::get_thread_app());
 #endif
    }
 
@@ -2509,7 +2509,7 @@ namespace ca
 #ifdef WINDOWSEX
       ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
 #else
-      throw todo(get_app());
+      throw todo(::ca::get_thread_app());
 #endif
    }
 

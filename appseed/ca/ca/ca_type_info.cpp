@@ -215,7 +215,7 @@ CLASS_DECL_ca bool operator == (const std_type_info & info1, const sp(::ca::type
 
 #else
 
-   return strcmp(info1.name(), info2.name()) == 0;
+   return strcmp(info1.name(), info2->name()) == 0;
 
 #endif
 

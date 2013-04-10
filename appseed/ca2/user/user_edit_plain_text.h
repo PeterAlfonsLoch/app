@@ -21,7 +21,7 @@ namespace user
       WPARAM                        m_dwLastKeyWparam;
       LPARAM                        m_dwLastKeyLparam;
 
-      
+
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
@@ -58,12 +58,12 @@ namespace user
 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size
-      index_array                m_iaLineIndex; 
+      index_array                m_iaLineIndex;
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
       index_array                m_iaLineEndIndex;
-      count_array                m_iaCLineIndex; 
-      
+      count_array                m_iaCLineIndex;
+
       plain_text_data *          m_pdata;
       bool                       m_bOwnData;
 
@@ -153,7 +153,7 @@ namespace user
 
       colorertake5::file_type * colorer_select_type();
 
-      virtual void _001GetText(string & str); 
+      virtual void _001GetText(string & str);
       virtual void _001GetSelText(string & str);
 
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd);
@@ -201,7 +201,6 @@ namespace user
 
 
       virtual sp(::ca::tree_item_data) on_allocate_item();
-      virtual void on_delete_item(sp(::ca::tree_item_data) pitem);
 
 
    };

@@ -18,10 +18,6 @@ namespace user
 
    plain_text_data::~plain_text_data()
    {
-      if(m_pfile != ::null())
-      {
-         delete m_pfile;
-      }
    }
 
 

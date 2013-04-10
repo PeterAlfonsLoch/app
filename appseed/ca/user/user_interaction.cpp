@@ -216,7 +216,7 @@ namespace user
             }
             if(!pimplNew->CreateEx(0, ::null(), strName, iStyle, rect(0, 0, 0, 0), ::null(), GetDlgCtrlId()))
             {
-               delete pimplNew;
+               pimplNew.release();
                pimplNew = ::null();
                m_pimpl = pimplOld;
                m_pimpl->set_parent(pparentOld);
@@ -233,7 +233,7 @@ namespace user
                      m_pthread->m_pthread->remove(pimplOld);
                      pimplOld->m_pguie = ::null();
                      pimplOld->DestroyWindow();
-                     delete pimplOld;
+                     pimplOld.release();
                   }
                   catch(...)
                   {
@@ -285,7 +285,7 @@ namespace user
                      pimplOld->filter_target(this);
                      pimplOld->m_pguie = ::null();
                      pimplOld->DestroyWindow();
-                     delete pimplOld;
+                     pimplOld.release();
                   }
                   catch(...)
                   {
@@ -1232,9 +1232,7 @@ namespace user
       if(!pimplNew->subclass_window(posdata))
       {
 
-         delete pimplNew;
-
-         pimplNew = ::null();
+         pimplNew.release();
 
       }
 
@@ -1257,7 +1255,7 @@ namespace user
 
             }
 
-            delete pimplOld;
+            pimplOld.release();
 
          }
 
@@ -1329,7 +1327,6 @@ namespace user
       m_pguie = this;
       if(!m_pimpl->create(pparent, id))
       {
-         delete m_pimpl;
          m_pimpl.release();
          return false;
       }
@@ -1358,9 +1355,8 @@ namespace user
       if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
       {
 
-         delete pimplNew;
+         pimplNew.release();
 
-         pimplNew = ::null();
 
       }
 
@@ -1383,7 +1379,7 @@ namespace user
 
             }
 
-            delete pimplOld;
+            pimplOld.release();
 
          }
 
@@ -1427,8 +1423,7 @@ namespace user
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
          {
             m_pimpl.release();
-            delete pimplNew;
-            pimplNew = ::null();
+            pimplNew.release();
          }
       }
       else
@@ -1437,8 +1432,7 @@ namespace user
          pimplNew->m_pguie = this;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
          {
-            delete pimplNew;
-            pimplNew = ::null();
+            pimplNew.release();
          }
       }
       if(pimplNew != ::null())
@@ -1486,7 +1480,6 @@ namespace user
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
-         delete m_pimpl;
          m_pimpl.release();
          return false;
       }
@@ -1514,7 +1507,6 @@ namespace user
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
          {
-            delete m_pimpl;
             m_pimpl.release();
             return false;
          }
@@ -1532,7 +1524,6 @@ namespace user
          m_pimpl->m_pguie = this;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
          {
-            delete m_pimpl;
             m_pimpl.release();
             return false;
          }

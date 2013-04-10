@@ -162,7 +162,7 @@ namespace bergedge
 
    void bergedge::load_string_table()
    {
-      
+
       cube::application::load_string_table();
       cube::application::load_string_table("platform", "");
 
@@ -411,7 +411,7 @@ namespace bergedge
    {
       if(&App(papp) != ::null())
       {
-             
+
          m_pappCurrent = papp;
 
       }
@@ -567,8 +567,8 @@ alt1:
                }
                return;
             }
-            else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() 
-               && get_document() != ::null() 
+            else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
+               && get_document() != ::null()
                && get_document()->get_typed_view < ::bergedge::pane_view >() != ::null())
             {
                get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
@@ -658,7 +658,7 @@ alt1:
          {
             try
             {
-               delete papp;
+               papp.release();
             }
             catch(...)
             {

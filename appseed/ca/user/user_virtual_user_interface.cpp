@@ -643,7 +643,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
 
    ::ca::smart_pointer < ::ca::message::base > spbase;
 
-   spbase(get_base(pevent, m_pguie));
+   spbase = get_base(pevent, m_pguie);
 
    try
    {

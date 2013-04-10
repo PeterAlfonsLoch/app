@@ -27,10 +27,10 @@ void simple_static::_001OnDraw(::ca::graphics *pdc)
    }
 }
 
-void simple_static::pre_subclass_window() 
+void simple_static::pre_subclass_window()
 {
-   PreSubClassWindow();   
-   
+   PreSubClassWindow();
+
    ::userbase::base_static::pre_subclass_window();
 }
 
@@ -38,7 +38,7 @@ LRESULT simple_static::OnSetIcon(WPARAM wparam, LPARAM lparam)
 {
    if(m_pimagelist != ::null())
    {
-      delete m_pimagelist;
+      m_pimagelist.release();
    }
    return DefWindowProc(WM_SETICON, wparam, lparam);
 }

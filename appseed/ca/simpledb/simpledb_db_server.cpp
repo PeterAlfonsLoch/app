@@ -176,16 +176,14 @@ bool db_server::finalize()
    if(m_pdatabaseImpl != ::null())
    {
       m_pdatabaseImpl->disconnect();
-      delete m_pdatabaseImpl;
-      m_pdatabaseImpl = ::null();
+      m_pdatabaseImpl.release();
    }
 
 
    if(m_pdb != ::null())
    {
       m_pdb->disconnect();
-      delete m_pdb;
-      m_pdb = ::null();
+      m_pdb.release();
    }
 
 

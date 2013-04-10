@@ -694,7 +694,7 @@ namespace user
 
          if(m_plist == ::null())
          {
-            delete pca;
+            pca.release();
             throw resource_exception(get_app());
          }
 

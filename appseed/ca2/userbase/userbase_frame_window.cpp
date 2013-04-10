@@ -74,7 +74,7 @@ namespace userbase
    // trans   ASSERT(get_handle() != ::null());
 
       // get top level parent frame ::ca::window first unless this is a child ::ca::window
-      sp(frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame());
+      sp(frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
       ASSERT(pParent != ::null());
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {

@@ -3,7 +3,7 @@
 document_template::document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass) :
    ca(papp)
 {
-   
+
    m_bQueueDocumentOpening    = true;
    m_strMatter                = pszMatter;
    m_typeinfoDocument         = pDocClass;
@@ -124,7 +124,7 @@ sp(frame_window) document_template::create_new_frame(sp(::user::document_interfa
    context->m_pCurrentDoc      = pdocument;
    if(pcreatecontext->m_pviewAlloc != ::null())
    {
-      context->m_puiNew           = pcreatecontext->m_pviewAlloc;   
+      context->m_puiNew           = pcreatecontext->m_pviewAlloc;
    }
    else
    {
@@ -236,7 +236,7 @@ void document_template::close_all_documents(bool)
          sp(::user::document_interface) pdocument = get_document(index);
          pdocument->on_close_document();
          remove_document(pdocument);
-         delete pdocument;
+         pdocument.release();
       }
       catch(...)
       {
@@ -317,9 +317,9 @@ bool document_template::on_open_document(sp(::user::document_interface) pdocumen
 
    if(m_bQueueDocumentOpening)
    {
-      
+
       class on_open_document * ponopendocument = new class on_open_document();
-      
+
       ponopendocument->m_ptemplate     = this;
       ponopendocument->m_pdocument     = pdocument;
       ponopendocument->m_varFile       = varFile;
@@ -331,7 +331,7 @@ bool document_template::on_open_document(sp(::user::document_interface) pdocumen
    }
    else
    {
-      
+
       wait_cursor wait(get_app());
 
       return do_open_document(pdocument, varFile);

@@ -8,7 +8,7 @@ namespace user
 
    CLASS_DECL_ca sp(::user::interaction) create_virtual_window(sp(::ca::application) papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
                                                              int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, sp(::user::interaction) pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam);
-   
+
 
    CLASS_DECL_ca sp(::user::interaction) create_virtual_window(sp(::ca::application) papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
       int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, sp(::user::interaction) pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
@@ -28,7 +28,7 @@ namespace user
       {
          return pguie;
       }
-      delete pguie;
+      pguie.release();
       return ::null();
    }
 

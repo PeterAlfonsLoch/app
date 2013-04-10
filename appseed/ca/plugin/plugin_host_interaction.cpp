@@ -24,7 +24,7 @@ namespace plugin
       {
          try
          {
-            delete m_papp;
+            m_papp.release();
          }
          catch(...)
          {

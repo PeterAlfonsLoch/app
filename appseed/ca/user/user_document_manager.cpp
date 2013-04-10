@@ -697,7 +697,7 @@ void document_manager::dump(dump_context & dumpcontext) const
       for(index index = 0; index < count; index++)
       {
          sp(document_template) ptemplate = m_templateptra[index];
-         dumpcontext << "\ntemplate " << ptemplate;
+         dumpcontext << "\ntemplate " << ptemplate.m_p;
       }
       dumpcontext << "}";
    }
@@ -823,7 +823,7 @@ document_manager::~document_manager()
       sp(document_template) ptemplate = m_templateptra[index];
       if (ptemplate->m_bAutoDelete)
       {
-         delete ptemplate;
+         ptemplate.release();
       }
    }
    m_templateptra.remove_all();

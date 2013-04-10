@@ -97,7 +97,6 @@
 		<Unit filename="ca/ca_application.h" />
 		<Unit filename="ca/ca_application_bias.cpp" />
 		<Unit filename="ca/ca_application_bias.h" />
-		<Unit filename="ca/ca_application_interface.h" />
 		<Unit filename="ca/ca_assert.cpp" />
 		<Unit filename="ca/ca_back_insert_iterator.h" />
 		<Unit filename="ca/ca_base.h" />
@@ -126,6 +125,8 @@
 		<Unit filename="ca/ca_byte_stream.h" />
 		<Unit filename="ca/ca_byte_stream_memory_file.cpp" />
 		<Unit filename="ca/ca_byte_stream_memory_file.h" />
+		<Unit filename="ca/ca_c.cpp" />
+		<Unit filename="ca/ca_c.h" />
 		<Unit filename="ca/ca_c_number.h" />
 		<Unit filename="ca/ca_ca.cpp" />
 		<Unit filename="ca/ca_ca.h" />
@@ -305,6 +306,7 @@
 		<Unit filename="ca/ca_machine_event_central.h" />
 		<Unit filename="ca/ca_main.h" />
 		<Unit filename="ca/ca_main_init_data.h" />
+		<Unit filename="ca/ca_map_to_smart_pointer.h" />
 		<Unit filename="ca/ca_match.cpp" />
 		<Unit filename="ca/ca_match.h" />
 		<Unit filename="ca/ca_math.cpp" />
@@ -414,6 +416,9 @@
 		<Unit filename="ca/ca_size_count_writer.h" />
 		<Unit filename="ca/ca_smart_pointer.cpp" />
 		<Unit filename="ca/ca_smart_pointer.h" />
+		<Unit filename="ca/ca_smart_pointer1.h" />
+		<Unit filename="ca/ca_smart_pointer2.h" />
+		<Unit filename="ca/ca_smart_pointer_array.h" />
 		<Unit filename="ca/ca_smart_pointer_query.h" />
 		<Unit filename="ca/ca_sockets_address.h" />
 		<Unit filename="ca/ca_std_pair.h" />
@@ -1054,8 +1059,8 @@
 		<Unit filename="filehandler/filehandler_tree_data.h" />
 		<Unit filename="filehandler/filehandler_tree_interface.cpp" />
 		<Unit filename="filehandler/filehandler_tree_interface.h" />
-		<Unit filename="filehandler/filehandler_tree_item.cpp" />
-		<Unit filename="filehandler/filehandler_tree_item.h" />
+		<Unit filename="filehandler/filehandler_tree_item_data.cpp" />
+		<Unit filename="filehandler/filehandler_tree_item_data.h" />
 		<Unit filename="fontopus/fontopus.h" />
 		<Unit filename="fontopus/fontopus_application.h" />
 		<Unit filename="fontopus/fontopus_authentication_map.h" />
@@ -1699,11 +1704,10 @@
 		<Unit filename="userpresence/userpresence_application.h" />
 		<Unit filename="userpresence/userpresence_user_presence.cpp" />
 		<Unit filename="userpresence/userpresence_user_presence.h" />
-		<Unit filename="userpresence/userpresence_user_presence_central.cpp" />
 		<Unit filename="userpresence/userpresence_user_presence_central.h" />
-		<Unit filename="userpresence/userpresence_user_presence_central_container.cpp" />
 		<Unit filename="userpresence/userpresence_user_presence_central_container.h" />
 		<Unit filename="userpresence/userpresence_userpresence.cpp" />
+		<Unit filename="userpresence/userpresence_userpresence.h" />
 		<Unit filename="visual/visual.h" />
 		<Unit filename="visual/visual_FreeImageFileProc.cpp" />
 		<Unit filename="visual/visual_FreeImageFileProc.h" />

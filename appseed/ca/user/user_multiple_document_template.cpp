@@ -81,7 +81,7 @@ void multiple_document_template::request(sp(::ca::create_context) pcreatecontext
    {
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(::null(), "Failed to create user::document_interface");
-      delete pdocument;       // explicit delete on error
+      pdocument.release();       // explicit delete on error
       return;
    }
    ASSERT_VALID(pFrame);
@@ -143,13 +143,13 @@ void multiple_document_template::set_default_title(sp(::user::document_interface
    if (GetDocString(strDocName, document_template::docName) &&
       !strDocName.is_empty())
    {
-      
+
       string strNum;
-      
+
       strNum.Format("%d", m_nUntitledCount+1);
-      
+
       strDocName += strNum;
-      
+
    }
    else
    {

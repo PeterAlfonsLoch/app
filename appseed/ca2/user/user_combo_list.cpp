@@ -7,7 +7,7 @@ namespace user
 
    combo_list::combo_list()
    {
-      
+
       oprop("combo_list") = true;
 
       m_pcombo = ::null();
@@ -38,7 +38,7 @@ namespace user
 
    void combo_list::_001OnDraw(::ca::graphics * pdc)
    {
-      
+
       if(m_pcombo == ::null())
          return;
 
@@ -61,7 +61,7 @@ namespace user
    {
 
       ::count c = m_pcombo->_001GetListCount();
-      
+
       string strItem;
 
       rect rectClient;
@@ -144,7 +144,7 @@ namespace user
    {
 
       ::count c = m_pcombo->_001GetListCount();
-      
+
       string strItem;
 
       rect rectClient;
@@ -235,7 +235,7 @@ namespace user
       tameshi->create(100, 100);
 
       pdc->SelectObject(tameshi->get_bitmap());
-      
+
       int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
@@ -254,9 +254,9 @@ namespace user
 
       for(index i = 0; i < c; i++)
       {
-         
+
          m_pcombo->_001GetListText(i, strItem);
-         
+
          sz = pdc->GetTextExtent(strItem);
 
          if(sz.cx > lpsize->cx)
@@ -274,7 +274,7 @@ namespace user
 
    int32_t combo_list::_001GetItemHeight() const
    {
-      
+
       return m_iItemHeight;
 
    }
@@ -313,13 +313,13 @@ namespace user
 
       SCAST_PTR(::ca::message::activate, pactivate, pobj);
 
-      sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+      sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
 
       if(pactivate->m_nState == WA_INACTIVE)
       {
-      
+
          point ptCursor;
-      
+
          Session.get_cursor_pos(&ptCursor);
 
          m_pcombo->ScreenToClient(&ptCursor);
@@ -383,7 +383,7 @@ namespace user
 
          if(eelement == element_item)
          {
-            
+
             m_pcombo->_001SetCurSel(iItem);
 
          }
@@ -462,7 +462,7 @@ namespace user
 
    void combo_list::_001OnClose(::ca::signal_object * pobj)
    {
-      
+
       PostMessage(WM_DESTROY, 0, 0);
 
    }
@@ -488,7 +488,7 @@ namespace user
 
          if(rectItem.contains(pt))
          {
-            
+
             eelement = element_item;
 
             return i;
@@ -503,7 +503,7 @@ namespace user
 
       if(rectItem.contains(pt))
       {
-            
+
          eelement = element_search_edit;
 
          return 0;

@@ -18,9 +18,9 @@ namespace ca
       m_pmemory->set_app(papp);
       m_pmemory->m_spmutex = m_spmutex;
 
-      m_pmemoryfileIn = new ::primitive::memory_file(papp, m_pmemory);
+      m_pmemoryfileIn = new ::primitive::memory_file(papp, m_pmemory.m_p);
 
-      m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory);
+      m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory.m_p);
 
       // (uint64_t) -1 - initially unknown size
       m_ptimeoutfile = new ::ca::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
@@ -47,7 +47,7 @@ namespace ca
       m_pmemory = pmemoryfileIn->get_memory();
       m_pmemoryfileIn = pmemoryfileIn;
 
-      m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory);
+      m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory.m_p);
 
       m_ptimeoutfile = new ::ca::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;

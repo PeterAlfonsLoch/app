@@ -106,7 +106,7 @@ namespace uinteraction
             if(puieCapture != ::null()
                && puieCapture == GetEventWindow())
             {
-               TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie());
+               TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
                System.release_capture_uie();
             }
             return false;
@@ -219,7 +219,7 @@ namespace uinteraction
          pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
          if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
          {
-            TRACE("MoveManager::message_handler oswindow ReleaseCapture 2 %x\n", System.get_capture_uie());
+            TRACE("MoveManager::message_handler oswindow ReleaseCapture 2 %x\n", System.get_capture_uie().m_p);
             System.release_capture_uie();
             m_bMoving = false;
          }
@@ -486,7 +486,7 @@ namespace uinteraction
             pbase->m_uiMessage == WM_LBUTTONUP)
          {
             sp(::user::interaction) pWndCapture = System.get_capture_uie();
-            TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie());
+            TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie().m_p);
             if(!m_bMoving ||
                pWndCapture == ::null() ||
                pWndCapture->get_handle() != GetEventWindow()->get_handle())

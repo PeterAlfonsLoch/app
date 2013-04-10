@@ -26,7 +26,7 @@ FileManagerTemplate::~FileManagerTemplate()
 {
    if(m_pdoctemplate != ::null())
    {
-      delete m_pdoctemplate;
+      m_pdoctemplate.release();
    }
 }
 

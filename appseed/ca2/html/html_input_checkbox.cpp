@@ -9,12 +9,11 @@ namespace html
 
       input_check_box::input_check_box(data * pdata)
       {
-         m_pcheckbox = new ::user::check_box(pdata->get_app());
+         m_pcheckbox = canew( ::user::check_box(pdata->get_app()));
       }
 
       input_check_box::~input_check_box()
       {
-         delete m_pcheckbox;
       }
 
       void input_check_box::implement_phase1(data * pdata, ::html::elemental * pelemental)

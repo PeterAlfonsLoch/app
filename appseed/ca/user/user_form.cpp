@@ -64,7 +64,7 @@ namespace user
 
             pdescriptor->m_bCreated = false;
 
-            delete pdescriptor->m_pcontrol;
+            pdescriptor->m_pcontrol.release();
 
             pdescriptor->m_pcontrol.release();
 
@@ -991,13 +991,13 @@ namespace user
       sp(class control) pcontrol = pca;
       if(pcontrol == ::null())
       {
-         delete pca;
+         pca.release();
          TRACE("form::create_control: failed to create control, object is not derived from user::control::descriptor");
          return false;
       }
       if(!pcontrol->create_control(pdescriptor))
       {
-         delete pcontrol;
+         pcontrol.release();
          return false;
       }
       return true;

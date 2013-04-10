@@ -234,8 +234,8 @@
 		<Unit filename="fs/fs_tree_data.h" />
 		<Unit filename="fs/fs_tree_interface.cpp" />
 		<Unit filename="fs/fs_tree_interface.h" />
-		<Unit filename="fs/fs_tree_item.cpp" />
 		<Unit filename="fs/fs_tree_item.h" />
+		<Unit filename="fs/fs_tree_item_data.cpp" />
 		<Unit filename="gcom/gcom.h" />
 		<Unit filename="gcom/gcom_BackView.cpp" />
 		<Unit filename="gcom/gcom_BackView.h" />

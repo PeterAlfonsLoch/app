@@ -28,26 +28,6 @@ BaseMenuCentral::BaseMenuCentral(sp(::ca::application) papp) :
 
 BaseMenuCentral::~BaseMenuCentral()
 {
-   if(m_pil != ::null())
-   {
-      delete m_pil;
-      m_pil = ::null();
-   }
-   if(m_pilHue != ::null())
-   {
-      delete m_pilHue;
-      m_pilHue = ::null();
-   }
-   if(m_pilBlend != ::null())
-   {
-      delete m_pilBlend;
-      m_pilBlend = ::null();
-   }
-   if(m_pilHueLight != ::null())
-   {
-      delete m_pilHueLight;
-      m_pilHueLight = ::null();
-   }
 }
 
 BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)

@@ -46,14 +46,14 @@ namespace user
       {
 
          class CLASS_DECL_ca DispatchHandlerItemArray :
-            public base_array < DispatchHandlerItemBase *, DispatchHandlerItemBase *>
+            public array < DispatchHandlerItemBase *, DispatchHandlerItemBase *>
          {
          public:
             bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
          class DispatchSignalPtrArray :
-            public base_array < DispatchSignal * , DispatchSignal * >
+            public array < DispatchSignal * , DispatchSignal * >
          {
          };
 

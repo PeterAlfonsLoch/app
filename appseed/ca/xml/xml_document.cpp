@@ -88,7 +88,7 @@ namespace xml
 
       if((end = pnodeRoot->load( pszXml, m_pparseinfo )) == ::null())
       {
-         delete pnodeRoot;
+         pnodeRoot.release();
          return false;
       }
 

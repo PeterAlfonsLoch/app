@@ -10,10 +10,10 @@ namespace libcompress
       struct CCoder2: public CCoderInfo2, public ::ca::thread
       {
          HRESULT Result;
-         base_array < sp(::ca::reader) > InStreams;
-         base_array < sp(::ca::writer) > OutStreams;
-         base_array < ::ca::reader * > InStreamPointers;
-         base_array < ::ca::writer * > OutStreamPointers;
+         array < sp(::ca::reader) > InStreams;
+         array < sp(::ca::writer) > OutStreams;
+         array < ::ca::reader * > InStreamPointers;
+         array < ::ca::writer * > OutStreamPointers;
 
          CCoder2(::ca::application * papp, uint32 numInStreams, uint32 numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
@@ -42,7 +42,7 @@ namespace libcompress
          public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         base_array < ::ca::stream_binder > _streamBinders;
+         array < ::ca::stream_binder > _streamBinders;
          int32_t _progressCoderIndex;
 
          void AddCoderCommon();

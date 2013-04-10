@@ -1,7 +1,7 @@
 #include "framework.h"
 
 single_document_template::single_document_template(
-   sp(::ca::application) papp, 
+   sp(::ca::application) papp,
    const char * pszMatter,
    sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass,
    sp(::ca::type_info) pViewClass) :
@@ -108,7 +108,7 @@ void single_document_template::request(sp(::ca::create_context) pcreatecontext)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
          System.simple_message_box(::null(), "Failed to create ::user::document_interface");
-         delete pdocument;       // explicit delete on error
+         pdocument.release();       // explicit delete on error
          return;
       }
    }
@@ -183,7 +183,7 @@ void single_document_template::request(sp(::ca::create_context) pcreatecontext)
          Application.m_puiMain = pFrame;
       }
    }
-   
+
    if(!pcreatecontext->m_bHold)
    {
       pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
@@ -194,7 +194,7 @@ void single_document_template::request(sp(::ca::create_context) pcreatecontext)
    view_update_hint uh(get_app());
    uh.m_etype = view_update_hint::TypeOpenDocument;
    pdocument->update_all_views(::null(), 0, &uh);
-   
+
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 
 }

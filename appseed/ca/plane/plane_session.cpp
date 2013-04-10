@@ -96,7 +96,7 @@ namespace plane
 
       try
       {
-         
+
          m_puserpresence->construct(this);
 
       }
@@ -109,12 +109,12 @@ namespace plane
 
       }
 
-         
+
       if(!m_puserpresence->initialize())
       {
-         
+
          TRACE("Failed to initialize User Presence");
-         
+
          return false;
 
       }
@@ -516,7 +516,7 @@ namespace plane
                try
                {
 
-                  delete papp;
+                  papp.release();
 
                }
                catch(...)
@@ -546,7 +546,7 @@ namespace plane
          {
             try
             {
-               delete papp;
+               papp.release();
             }
             catch(...)
             {

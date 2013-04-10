@@ -655,6 +655,13 @@ os_thread * os_thread::get()
 
 }
 
+void os_thread::set(os_thread * posthread)
+{
+
+   t_posthread = posthread;
+
+}
+
 bool os_thread::get_run()
 {
 

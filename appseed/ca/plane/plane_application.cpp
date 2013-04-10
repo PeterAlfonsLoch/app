@@ -283,7 +283,7 @@ namespace plane
                }
                try
                {
-                  delete papp;
+                  papp.release();
                }
                catch(...)
                {

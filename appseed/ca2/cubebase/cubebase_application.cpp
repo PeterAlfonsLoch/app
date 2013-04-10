@@ -124,7 +124,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
          ::bergedge::bergedge * pbergedge    = dynamic_cast < ::bergedge::bergedge * > (papp.m_p);
          if(pbergedge == ::null())
          {
-            delete papp;
+            papp.release();
             return false;
          }
 
