@@ -79,7 +79,7 @@ namespace ca
    class bergedge;
    class system;
 
-   
+
    class CLASS_DECL_ca ca :
       virtual public ::ca::c
    {
@@ -117,7 +117,7 @@ namespace ca
 
       static void system(const char * pszProjectName);
 
-      inline allocer allocer();
+      inline allocatorsp allocer();
 
       virtual sp(::ca::application) get_app() const;
       virtual void set_app(sp(::ca::application) papp);
@@ -160,17 +160,17 @@ namespace ca
    {
    public:
 
-      
+
    };
 
 
-   class CLASS_DECL_ca allocer :
+   class CLASS_DECL_ca allocatorsp :
       public sp(allocator)
    {
    public:
 
 
-      allocer(sp(application) papp);
+      allocatorsp(sp(application) papp);
 
 
    };

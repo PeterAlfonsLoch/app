@@ -5,6 +5,63 @@
 namespace ca
 {
 
+
+
+   class CLASS_DECL_ca c
+   {
+   public:
+
+
+      int64_t                    m_countReference;
+
+
+      c();
+      virtual ~c();
+
+
+      virtual void delete_this();
+
+
+
+
+      inline int64_t get_ref_count()
+      {
+         return m_countReference;
+      }
+
+      inline int64_t add_ref()
+      {
+          #ifdef WINDOWS
+         return InterlockedIncrement64(&m_countReference);
+         #else
+         return __sync_fetch_and_add(&m_countReference, 1);
+         #endif
+      }
+
+      inline int64_t release()
+      {
+          #ifdef WINDOWS
+         int64_t i = InterlockedDecrement64(&m_countReference);
+         #else
+         int64_t i =  __sync_fetch_and_sub(&m_countReference, 1);
+         #endif
+         if(i == 0)
+         {
+            delete_this();
+         }
+         return i;
+      }
+
+
+
+   };
+
+   template < class T >
+   T * dereference_no_delete(T * p) { p->m_countReference--; return p; }
+
+
+
+
    template < class c_derived >
    inline int64_t add_ref(c_derived * pca)
    {
@@ -47,55 +104,6 @@ namespace ca
          p = ::null();
       }
    }
-
-
-   class CLASS_DECL_ca c
-   {
-   public:
-
-
-      int64_t                    m_countReference;
-
-
-      c();
-      virtual ~c();
-
-
-      virtual void delete_this();
-
-
-
-
-      inline int64_t get_ref_count()
-      {
-         return m_countReference;
-      }
-
-      inline int64_t add_ref()
-      {
-         return InterlockedIncrement64(&m_countReference);
-      }
-
-      inline int64_t release()
-      {
-         int64_t i = InterlockedDecrement64(&m_countReference);
-         if(i == 0)
-         {
-            delete_this();
-         }
-         return i;
-      }
-
-
-
-   };
-
-   template < class T >
-   T * dereference_no_delete(T * p) { p->m_countReference--; return p; }
-
-
-
-
 
 
 } // namespace ca

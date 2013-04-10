@@ -291,7 +291,7 @@ namespace ca
    }
 
 
-   command_line_sp::command_line_sp(allocer allocer) :
+   command_line_sp::command_line_sp(allocatorsp allocer) :
       ::ca::smart_pointer < command_line > (allocer)
    {
    }

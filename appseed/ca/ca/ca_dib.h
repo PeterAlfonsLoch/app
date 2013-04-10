@@ -206,7 +206,7 @@ namespace ca
       {
       }
 
-      dib_sp(allocer allocer) :
+      dib_sp(allocatorsp allocer) :
          smart_pointer < dib > (allocer)
       {
       }

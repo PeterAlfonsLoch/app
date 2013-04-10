@@ -71,13 +71,13 @@ namespace ca
       {
       }
 
-      brush_sp(allocer allocer) :
+      brush_sp(allocatorsp allocer) :
          smart_pointer < brush > (allocer)
       {
       }
 
       // create_solid
-      brush_sp(allocer allocer, COLORREF crColor) :
+      brush_sp(allocatorsp allocer, COLORREF crColor) :
          smart_pointer < brush > (allocer)
       {
          m_p->create_solid(crColor);

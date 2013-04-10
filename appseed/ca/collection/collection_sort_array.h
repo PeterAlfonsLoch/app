@@ -50,8 +50,8 @@ public:
 
       inline void mark_dirty()
       {
-         
-         sort_index_map::assoc * passoc = sort_index_map::PGetFirstAssoc();
+
+         typename sort_index_map::assoc * passoc = sort_index_map::PGetFirstAssoc();
 
          while(passoc != ::null())
          {
@@ -65,7 +65,7 @@ public:
 
 
    sort_index_map    m_indexmap;
-         
+
    index_array & defer_update(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
 
    index add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
@@ -118,7 +118,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 index_array & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
 defer_update(index ( * fCompare ) (TYPE *, TYPE *))
 {
-   
+
    sp(sort_index) & sortindex = m_indexmap[fCompare];
 
    if(sortindex.is_null())
@@ -126,7 +126,7 @@ defer_update(index ( * fCompare ) (TYPE *, TYPE *))
 
    if(!sortindex->m_bUpdated)
    {
-      sortindex->m_indexa.ensure_sequence(0, get_upper_bound());
+      sortindex->m_indexa.ensure_sequence(0, this->get_upper_bound());
       quick_sort(fCompare, sortindex->m_indexa);
       sortindex->m_bUpdated = true;
    }

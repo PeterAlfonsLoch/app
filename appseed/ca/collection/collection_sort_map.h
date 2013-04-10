@@ -845,19 +845,19 @@ sort_string_map < VALUE, ARG_VALUE, COMPARE >::sort_string_map(::count nBlockSiz
 }
 
 template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_string_map < VALUE, ARG_VALUE, COMPARE >::sort_string_map(const sort_string_map & sort_map) :
-   sort_attrib_map < sort_map < string, const string &, VALUE, ARG_VALUE, COMPARE > > (sort_map)
+sort_string_map < VALUE, ARG_VALUE, COMPARE >::sort_string_map(const sort_string_map & sortmap) :
+   sort_attrib_map < sort_map < string, const string &, VALUE, ARG_VALUE, COMPARE > > (sortmap)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_string_map < VALUE, ARG_VALUE, COMPARE > & sort_string_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_string_map & sort_map)
+sort_string_map < VALUE, ARG_VALUE, COMPARE > & sort_string_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_string_map & sortmap)
 {
 
-   if(this != &sort_map)
+   if(this != &sortmap)
    {
 
-      sort_attrib_map < sort_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >::operator = (sort_map);
+      sort_attrib_map < sort_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >::operator = (sortmap);
 
    }
 
@@ -889,18 +889,18 @@ sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(::count nBlockSize)
 
 
 template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(const sort_strid_map & sort_map) :
-   sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > > (sort_map)
+sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(const sort_strid_map & sortmap) :
+   sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > > (sortmap)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_strid_map < VALUE, ARG_VALUE, COMPARE > & sort_strid_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_strid_map & sort_map)
+sort_strid_map < VALUE, ARG_VALUE, COMPARE > & sort_strid_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_strid_map & sortmap)
 {
 
-   if(this != &sort_map)
+   if(this != &sortmap)
    {
-      sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > >::operator = (sort_map);
+      sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > >::operator = (sortmap);
    }
 
    return *this;
@@ -928,18 +928,18 @@ sort_int_map < VALUE, ARG_VALUE, COMPARE >::sort_int_map(::count nBlockSize) :
 }
 
 template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_int_map < VALUE, ARG_VALUE, COMPARE >::sort_int_map(const sort_int_map & sort_map) :
-   sort_attrib_map < sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > > (sort_map)
+sort_int_map < VALUE, ARG_VALUE, COMPARE >::sort_int_map(const sort_int_map & sortmap) :
+   sort_attrib_map < sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > > (sortmap)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_int_map < VALUE, ARG_VALUE, COMPARE > & sort_int_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_int_map & sort_map)
+sort_int_map < VALUE, ARG_VALUE, COMPARE > & sort_int_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_int_map & sortmap)
 {
 
-   if(this != &sort_map)
+   if(this != &sortmap)
    {
-      sort_attrib_map < sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >::operator = (sort_map);
+      sort_attrib_map < sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >::operator = (sortmap);
    }
 
    return *this;

@@ -78,7 +78,7 @@ namespace ca
       {
       }
 
-      pen_sp(allocer allocer) :
+      pen_sp(allocatorsp allocer) :
          smart_pointer < pen > (allocer)
       {
       }

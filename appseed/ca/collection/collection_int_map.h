@@ -22,18 +22,18 @@ int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::count nBlockSize) :
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & map) :
-   attrib_map <:: map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
+int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & intmap) :
+   attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >(intmap)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-int_map < VALUE, ARG_VALUE, HASH, EQUALS > & int_map < VALUE, ARG_VALUE, HASH, EQUALS >::operator = (const int_map & map)
+int_map < VALUE, ARG_VALUE, HASH, EQUALS > & int_map < VALUE, ARG_VALUE, HASH, EQUALS >::operator = (const int_map & intmap)
 {
 
-   if(this != &map)
+   if(this != &intmap)
    {
-      attrib_map < ::map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
+      this->attrib_map < ::map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (intmap);
    }
 
    return *this;

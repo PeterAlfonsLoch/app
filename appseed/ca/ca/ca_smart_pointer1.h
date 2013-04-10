@@ -16,7 +16,9 @@ namespace ca
 {
 
 
-   class allocer;
+
+
+   class allocatorsp;
 
 
    template < class T >
@@ -24,7 +26,7 @@ namespace ca
    {
    public:
 
-  
+
 
       T * m_p;
 
@@ -34,8 +36,8 @@ namespace ca
       smart_pointer(LPARAM lparam);
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(smart_pointer < T > && t);
-      smart_pointer(const allocer & t);
-      smart_pointer(allocer && t);
+      smart_pointer(const allocatorsp & t);
+      smart_pointer(allocatorsp && t);
       smart_pointer(T * p);
       smart_pointer(void * p);
       smart_pointer(const ::ca::null &);
@@ -164,7 +166,7 @@ namespace ca
 
 
       sp(T) clone() const;
-      void create(allocer allocer);
+      void create(allocatorsp allocer);
 
 
 

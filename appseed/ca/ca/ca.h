@@ -44,8 +44,8 @@ namespace plane
 
 
 #include "ca_enum.h"
-#include "ca_smart_pointer1.h"
 #include "ca_c.h"
+#include "ca_smart_pointer1.h"
 #include "ca_ca.h"
 #include "ca_smart_pointer2.h"
 #include "ca_live_object.h"
@@ -1723,14 +1723,14 @@ namespace cube // ca8 + cube
 #include "ca_http_get_socket.h"
 #include "ca_ip_enum.h"
 #include "ca_port_forward.h"
-          
-          
+
+
 #include "ca_oauth.h"
 #include "ca_twit.h"
 
 #include "ca_process_section.h"
 
-          
+
 #include "ca_application.h"
 
 

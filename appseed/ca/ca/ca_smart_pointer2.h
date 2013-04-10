@@ -32,7 +32,7 @@ namespace ca
    template < class T >
    smart_pointer < T > ::smart_pointer(smart_pointer < T > && t)
    {
-      
+
       m_p      = t.m_p;
       t.m_p    = ::null();
 
@@ -68,17 +68,17 @@ namespace ca
       m_p = (T *) p;
       ::ca::add_ref(m_p);
    }
-   
+
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(const allocer & a)
+   smart_pointer < T > ::smart_pointer(const allocatorsp & a)
    {
       m_p = ::null();
       create(a);
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(allocer && a)
+   smart_pointer < T > ::smart_pointer(allocatorsp && a)
    {
       m_p = ::null();
       create(a);
@@ -207,7 +207,7 @@ namespace ca
 template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (smart_pointer < T > && t)
    {
-      
+
       if(&t != this)
       {
 
@@ -226,7 +226,7 @@ template < class T >
 
       if(is_set())
          release();
-      
+
       return * this;
 
    }
@@ -238,7 +238,7 @@ template < class T >
       release();
 
       m_p = (T *) lparam;
-      
+
       return * this;
 
    }
@@ -250,7 +250,7 @@ template < class T >
       release();
 
       m_p = (T *) p;
-      
+
       return * this;
 
    }
@@ -332,48 +332,48 @@ bool operator ==(const ::ca::smart_pointer < T1 > & t1, const ::ca::smart_pointe
 
 template < class T1, class T2 >
 bool operator ==(T1 * t1, const ::ca::smart_pointer < T2 > & t2)
-{ 
+{
    return operator == ((const T1 *) t1, t2);
 }
 
 
 template < class T1, class T2 >
 bool operator ==(const ::ca::smart_pointer < T1 > & t1, T2 * t2)
-{ 
+{
    return operator == (t1,  (const T2 *) t2);
 }
 
 
 template < class T1, class T2 >
 bool operator !=(const T1 * t1, const ::ca::smart_pointer < T2 > & t2)
-{ 
+{
    return !operator == (t1, t2);
 }
 
 
 template < class T1, class T2 >
 bool operator !=(const ::ca::smart_pointer < T1 > & t1, const T2 * t2)
-{ 
+{
    return !operator == (t1, t2);
 }
 
 template < class T1, class T2 >
 bool operator !=(T1 * t1, const ::ca::smart_pointer < T2 > & t2)
-{ 
+{
    return !operator == ((const T1 *) t1, t2);
 }
 
 
 template < class T1, class T2 >
 bool operator !=(const ::ca::smart_pointer < T1 > & t1, T2 * t2)
-{ 
+{
    return !operator == (t1, (const T2 *) t2);
 }
 
 
 template < class T1, class T2 >
 bool operator !=(const ::ca::smart_pointer < T1 > & t1, const ::ca::smart_pointer < T2 > & t2)
-{ 
+{
    return !operator == (t1, t2);
 }
 
@@ -393,3 +393,7 @@ template < class T >
 bool operator ==(const ::ca::null &, const ::ca::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
 template < class T >
 bool operator !=(const ::ca::null &, const ::ca::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
+
+
+
+

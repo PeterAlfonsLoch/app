@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca edit_file : 
+   class CLASS_DECL_ca edit_file :
       public ::ca::filesp,
       public ::ca::tree,
       public ::ca::tree_data
@@ -25,16 +25,16 @@ namespace ca
       class Item : public tree_item_data
       {
       public:
-         
+
          file_position m_dwPosition;
 
-         
+
          Item();
 
          virtual UINT read_ch(edit_file * pfile);
 
          virtual file_position get_position(bool bForward);
-         
+
          virtual BYTE * get_data() ;
          virtual EItemType get_type();
          virtual ::primitive::memory_size get_extent();
@@ -59,13 +59,13 @@ namespace ca
       class DeleteItem : public Item
       {
       public:
-         
-         
+
+
          primitive::memory m_memstorage;
 
 
          virtual UINT read_ch(edit_file * pfile);
-         
+
          virtual EItemType get_type();
          virtual ::primitive::memory_size get_extent() ;
          virtual ::primitive::memory_size get_file_extent();
@@ -84,7 +84,7 @@ namespace ca
 
 
          primitive::memory m_memstorage;
-         
+
 
          virtual UINT read_ch(edit_file * pfile);
 
@@ -103,11 +103,11 @@ namespace ca
       class EditItem : public Item
       {
       public:
-         
-         
+
+
          primitive::memory m_memstorage;
          primitive::memory m_memstorageReverse;
-         
+
 
          virtual EItemType get_type();
          virtual ::primitive::memory_size get_extent() ;
@@ -129,8 +129,8 @@ namespace ca
       class GroupItem : public Item, public ItemPtrArray
       {
       public:
-         
-         
+
+
          GroupItem * m_pgroupitem;
 
 
@@ -157,7 +157,7 @@ namespace ca
       file_size               m_dwFileLength;
       file_position           m_dwReadPosition;
       file_offset             m_iCurItem;
-      
+
 
       //ItemPtrArray         m_itemptra;
       //tree_data            m_tree;
@@ -191,7 +191,7 @@ namespace ca
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual void Insert(const void * lpBuf, ::primitive::memory_size nCount);
       virtual void Delete(::primitive::memory_size uiCount);
-      
+
 
 
       void flush();
@@ -216,12 +216,12 @@ namespace ca
       sp(::ca::tree_item) get_next(sp(::ca::tree_item) pitem, bool bChild = true);
 
       virtual sp(tree_item_data) on_allocate_item();
-      virtual void on_delete_item(sp(tree_item_data) pitem);
+      //virtual void on_delete_item(sp(tree_item_data) pitem);
 
 
    protected:
-      
-      
+
+
       void TreeInsert(sp(Item) pitem);
       bool calc_root_direction();
 

@@ -36,7 +36,7 @@ strid_map < VALUE, ARG_VALUE, HASH, EQUALS > & strid_map < VALUE, ARG_VALUE, HAS
 
    if(this != &map)
    {
-      attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
+      this->attrib_map < ::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
    }
 
    return *this;

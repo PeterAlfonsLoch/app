@@ -346,7 +346,7 @@ namespace ca
 
    void edit_file::SetFile(sp(::ca::file) pfile)
    {
-   
+
       if(pfile == ::null())
          throw invalid_argument_exception(get_app());
 
@@ -740,10 +740,6 @@ l1:
       return new Item;
    }
 
-   void edit_file::on_delete_item(sp(tree_item_data) pitem)
-   {
-      delete (sp(Item)) pitem;
-   }
 
 
 } // namespace ca

@@ -613,7 +613,7 @@ namespace ca
       {
       }
 
-      graphics_sp(allocer allocer) :
+      graphics_sp(allocatorsp allocer) :
          smart_pointer < graphics > (allocer)
       {
       }
@@ -625,7 +625,7 @@ namespace ca
    {
    public:
 
-      memory_graphics(allocer allocer);
+      memory_graphics(allocatorsp allocer);
       virtual ~memory_graphics();
 
    };

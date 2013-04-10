@@ -336,7 +336,7 @@ DWORD WINAPI ResumeThread(HTHREAD hThread)
    // Start the thread.
    try
    {
-      PendingThreadInfo& info = threadInfo->m_value;
+      PendingThreadInfo& info = threadInfo->m_element2;
 
       StartThread(info.lpStartAddress, info.lpParameter, info.m_hthread, info.nPriority, info.cbStack);
    }
@@ -367,7 +367,7 @@ WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority)
    }
 
    // Store the new priority.
-   threadInfo->m_value.nPriority = nPriority;
+   threadInfo->m_element2.nPriority = nPriority;
 
    return TRUE;
 }
@@ -605,7 +605,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hThread)
 
    }
 
-   return threadInfo->m_value.nPriority;
+   return threadInfo->m_element2.nPriority;
 
 }
 
@@ -699,14 +699,14 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
 }
 
-void * s_thread::thread_proc(LPVOID lpparameter)
+void * os_thread::thread_proc(LPVOID lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
 
    t_posthread = posthread;
 
-   void * pvRet = posthread->run();
+   void * pvRet = (void *) posthread->run();
 
    t_posthread = NULL;
 
@@ -716,7 +716,7 @@ void * s_thread::thread_proc(LPVOID lpparameter)
 
 }
 
-void * os_thread::run()
+uint32_t os_thread::run()
 {
 
 
@@ -758,7 +758,7 @@ void * os_thread::run()
 
    delete currentThread;
 
-   return (void *) (int_ptr) dwRet;
+   return dwRet;
 
 }
 
@@ -1032,7 +1032,7 @@ CLASS_DECL_c DWORD WINAPI GetThreadId(HTHREAD Thread)
       return -1;
 
 
-   return p->m_value;
+   return p->m_element2;
 
 }
 
@@ -1047,7 +1047,7 @@ CLASS_DECL_c HTHREAD  WINAPI get_thread_handle(DWORD dw)
       return NULL;
 
 
-   return p->m_value;
+   return p->m_element2;
 
 }
 

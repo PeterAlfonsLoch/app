@@ -31,19 +31,19 @@ namespace ca
 
 
       virtual bool create_pixel_font(
-         const char * lpszFacename, 
+         const char * lpszFacename,
          double dSize,
-         int32_t iWeight = 400, 
-         bool bItalic = false, 
+         int32_t iWeight = 400,
+         bool bItalic = false,
          bool bUnderline = false,
          bool bStrikeOut = false,
          double dWidth = 1.0);
 
       virtual bool create_point_font(
-         const char * lpszFacename, 
+         const char * lpszFacename,
          double dSize,
-         int32_t iWeight = 400, 
-         bool bItalic = false, 
+         int32_t iWeight = 400,
+         bool bItalic = false,
          bool bUnderline = false,
          bool bStrikeOut = false,
          double dWidth = 1.0);
@@ -85,7 +85,7 @@ namespace ca
       {
       }
 
-      font_sp(allocer allocer) :
+      font_sp(allocatorsp allocer) :
          smart_pointer < font > (allocer)
       {
       }

@@ -15,7 +15,7 @@ namespace ca
 
 
 
-typedef sp(::ca::file) HFILE;
+typedef ::ca::file * HFILE;
 
 
 #endif

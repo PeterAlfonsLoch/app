@@ -148,7 +148,7 @@ namespace ca
       {
       }
 
-      graphics_path_sp(allocer allocer) :
+      graphics_path_sp(allocatorsp allocer) :
          smart_pointer < graphics_path > (allocer)
       {
       }

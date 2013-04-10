@@ -2458,7 +2458,7 @@ namespace ca
 
    }
 
-   memory_graphics::memory_graphics(::ca::allocer allocer) :
+   memory_graphics::memory_graphics(::ca::allocatorsp allocer) :
       ::ca::graphics_sp(allocer)
    {
       ::ca::graphics_sp::m_p->CreateCompatibleDC(::null());

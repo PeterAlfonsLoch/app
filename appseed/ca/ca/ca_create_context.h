@@ -68,7 +68,7 @@ namespace ca
 
 
       command_line_sp();
-      command_line_sp(allocer papp);
+      command_line_sp(allocatorsp allocer);
 
 
       using ::ca::smart_pointer < command_line >::operator =;

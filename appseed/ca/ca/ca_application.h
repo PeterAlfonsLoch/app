@@ -474,7 +474,7 @@ namespace ca
       rect                             m_rectScreen;
       bool                             m_bSessionSynchronizedScreen;
       sp(::user::interaction)          m_pwndMain;
-      ::ca::allocer                    m_allocer;
+      ::ca::allocatorsp                m_allocer;
 
 
       int32_t                              m_iResourceId;
@@ -1135,7 +1135,7 @@ namespace ca
    }
 
 
-   inline allocer ca::allocer()
+   inline allocatorsp ca::allocer()
    {
       return m_papp->m_allocer;
    }

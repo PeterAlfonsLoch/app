@@ -4172,7 +4172,7 @@ namespace ca
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == ::null())
          return ::null();
-      return System.window_from_os_data(oswindowCapture)->get_capture();
+      return (ystem.window_from_os_data(oswindowCapture)-cast < ::ca::window >()->get_capture();
 
 #else
 
@@ -4182,7 +4182,7 @@ namespace ca
       if(oswindowCapture == ::null())
          return ::null();
 
-      return (::GetCapture().get_user_interaction()->m_pimpl.m_p)->get_capture();
+      return ::GetCapture().get_user_interaction()->m_pimpl.cast < ::ca::window >()->get_capture();
 
 #endif
 

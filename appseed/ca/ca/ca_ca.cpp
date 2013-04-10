@@ -221,7 +221,7 @@ namespace ca
    }*/
 
 
-   allocer::allocer(sp(application) papp)
+   allocatorsp::allocatorsp(sp(application) papp)
    {
 
       sp(allocator) spallocator = canew(allocator());

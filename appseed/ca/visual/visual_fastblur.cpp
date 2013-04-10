@@ -10,7 +10,7 @@
 namespace visual
 {
 
-   fastblur::fastblur(::ca::allocer allocer) :
+   fastblur::fastblur(::ca::allocatorsp allocer) :
       dib_sp(allocer)
    {
       m_iRadius = 0;

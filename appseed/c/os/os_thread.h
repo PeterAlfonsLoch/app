@@ -86,7 +86,7 @@ public:
 
 #ifdef LINUX
 
-   static uint32_t thread_proc(void * pparam);
+   static void * thread_proc(void * pparam);
 
 #else
 

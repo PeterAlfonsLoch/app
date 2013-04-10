@@ -10,7 +10,7 @@ namespace visual
    {
    }
 
-   dib_sp::dib_sp(::ca::allocer allocer) :
+   dib_sp::dib_sp(::ca::allocatorsp allocer) :
       ::ca::dib_sp(allocer)
    {
    }

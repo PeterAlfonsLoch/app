@@ -1,7 +1,7 @@
 // Super Fast Blur v1.1
 // by Mario Klingemann <http://incubator.quasimondo.com>
 //
-// Tip: Multiple invovations of this filter with a small 
+// Tip: Multiple invovations of this filter with a small
 // radius will approximate a gaussian blur quite well.
 //
 
@@ -22,7 +22,7 @@ namespace visual
       byte_array     m_uchaDiv;
 
 
-      fastblur(::ca::allocer allocer);
+      fastblur(::ca::allocatorsp allocer);
 
 
       bool initialize(int32_t cx, int32_t cy, int32_t iRadius);

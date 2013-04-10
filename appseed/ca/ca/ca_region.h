@@ -112,7 +112,7 @@ namespace ca
       {
       }
 
-      region_sp(allocer allocer) :
+      region_sp(allocatorsp allocer) :
          smart_pointer < region > (allocer)
       {
       }
