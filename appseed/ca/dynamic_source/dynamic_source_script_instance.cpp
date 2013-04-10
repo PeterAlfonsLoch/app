@@ -10,9 +10,14 @@ namespace dynamic_source
    {
       m_pscript = pscript;
       m_pscriptScriptInstance = pscript;
+      m_pscriptScriptInstance->m_scriptinstanceptra.add(this);
    }
 
    script_instance::~script_instance()
+   {
+   }
+
+   void script_instance::destroy()
    {
       single_lock sl(&m_pscriptScriptInstance->m_mutex);
       try
@@ -29,11 +34,8 @@ namespace dynamic_source
       catch(...)
       {
       }
-   }
-
-   void script_instance::destroy()
-   {
-      delete this;
+      m_pscriptScriptInstance.release();
+      m_pscript.release();
    }
 
 

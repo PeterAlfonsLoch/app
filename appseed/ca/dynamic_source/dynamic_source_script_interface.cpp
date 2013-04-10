@@ -60,6 +60,12 @@ namespace dynamic_source
 
    bool script_interface::main_finalize()
    {
+      m_pinstanceMain      .release();
+      m_pinstanceParent    .release();
+      m_pnetnodesocket     .release();
+      m_pmanager           .release();
+
+      m_pscript            .release();
 
       return true;
 

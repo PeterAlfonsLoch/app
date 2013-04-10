@@ -260,7 +260,6 @@ namespace ca
 
       }
 
-      return bExited;
 
 #elif defined(METROWIN)
 

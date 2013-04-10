@@ -804,6 +804,14 @@ namespace ca
 
             try
             {
+               ofile->flush();
+            }
+            catch(...)
+            {
+            }
+
+            try
+            {
                ofile->close();
             }
             catch(...)

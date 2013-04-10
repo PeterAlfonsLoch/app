@@ -417,24 +417,16 @@ namespace dynamic_source
 
    script_instance * ds_script::create_instance()
    {
-      //single_lock slCreationEnabled(&m_evCreationEnabled);
-      //if(!slCreationEnabled.lock(minutes(2)))
-      {
-        // m_bShouldBuild = true;
-      }
       single_lock sl(&m_mutex);
       if(!sl.lock(minutes(2)))
          return ::null();
       if(ShouldBuild())
       {
-          //m_evCreationEnabled.ResetEvent();
          string str;
          int32_t iRetry = 0;
          do
          {
-            // unload should be much more safe Unload(false);
             m_pmanager->m_pcompiler->compile(this);
-            Load(false);
             m_memfileError.seek_to_begin();
             m_memfileError.to_string(str);
             if(iRetry == 0)
@@ -447,12 +439,13 @@ namespace dynamic_source
             }
             iRetry++;
          } while(HasTempError() && iRetry < 8);
+
+         Load(false);
          // retried at least 8 times, give up any rebuild attemp until file is changed
          m_bShouldBuild = false;
          m_bCalcHasTempError = true;
          m_bHasTempError = false;
          // don't bother with sleeps if not compiling even if there are errors
-        //m_evCreationEnabled.SetEvent();
       }
 
       script_instance * pinstance;
@@ -465,7 +458,7 @@ namespace dynamic_source
          pinstance = m_lpfnCreateInstance(this);
       }
       pinstance->m_dwCreate = get_tick_count();
-      m_scriptinstanceptra.add(pinstance);
+      
       return pinstance;
    }
 

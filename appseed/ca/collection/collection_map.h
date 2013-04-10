@@ -491,40 +491,21 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
       map::assoc* passoc = (map::assoc*) newBlock->data();
       // free in reverse order to make it easier to debug
       index i = m_nBlockSize - 1;
-      passoc += i;
-      passoc->m_pnext = ::null();
-      passoc->m_pprev = ::null();
-      m_passocFree = passoc;
-      i--;
-      passoc--;
-      for (; i >= 0; i--, passoc--)
+      for (passoc = &passoc[i]; i >= 0; i--, passoc--)
       {
          passoc->m_pnext = m_passocFree;
-         m_passocFree->m_pprev = passoc;
          m_passocFree = passoc;
 
       }
-      m_passocFree->m_pprev = :: null();
    }
 
    ENSURE(m_passocFree != ::null());  // we must have something
 
    map::assoc* passoc = m_passocFree;
 
-   {
+   m_passocFree  = m_passocFree->m_pnext;
 
-      map::assoc * pnext = passoc->m_pnext;
-      map::assoc * pprev = passoc->m_pprev;
-
-      ZEROP(passoc);
-
-      passoc->m_pnext = pnext;
-      passoc->m_pprev = pprev;
-
-   }
-
-   m_passocFree               = m_passocFree->m_pnext;
-
+   ZEROP(passoc);
 
    if(m_passocHead != ::null())
    {
@@ -553,12 +534,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, c
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::free_assoc(assoc * passoc)
 {
 
-   if(m_passocHead == passoc)
-   {
-
-      m_passocHead = m_passocHead->m_pnext;
-
-   }
+   assoc * pnext = passoc->m_pnext;
 
    if(passoc->m_pnext != ::null())
    {
@@ -571,6 +547,20 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::free_assoc(assoc * pas
    {
 
       passoc->m_pprev->m_pnext = passoc->m_pnext;
+
+   }
+
+   if(m_passocHead == passoc)
+   {
+
+      m_passocHead = pnext;
+
+      if(m_passocHead != NULL)
+      {
+
+         m_passocHead->m_pprev = ::null();
+
+      }
 
    }
 
@@ -716,11 +706,11 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_key(ARG_KEY key
       if(EQUALS::CompareElements(&passoc->m_element1, key))
       {
          // remove it
-         *ppAssocPrev = passoc->m_pnext;  // remove from list
+         *ppAssocPrev = passoc->m_pnextHash;  // remove from list
          free_assoc(passoc);
          return true;
       }
-      ppAssocPrev = &passoc->m_pnext;
+      ppAssocPrev = &passoc->m_pnextHash;
    }
    return false;  // not found
 }

@@ -1246,6 +1246,9 @@ inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
    // just remove a range
    ::count nMoveCount = m_nSize - (nUpperBound);
+   for( int32_t i = 0; i < nCount; i++ )
+      (m_pData + nIndex + i)->~TYPE();
+
    if (nMoveCount)
    {
       ::ca::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
