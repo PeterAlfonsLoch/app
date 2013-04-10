@@ -168,7 +168,7 @@ void ssl_sigpipe_handle( int x ) {
    //TRACE("SSLInitializer: no random file generated\n");
    //   }
 
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
 
       spfile->open(m_rand_file, ::ca::file::type_binary | ::ca::file::mode_read);
 

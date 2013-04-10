@@ -227,7 +227,7 @@ namespace simpledb
       {
          outheader("Content-Type") = "application/x-jar";
       }
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
       if(!spfile->open(lpcsz, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone))
       {
          return false;

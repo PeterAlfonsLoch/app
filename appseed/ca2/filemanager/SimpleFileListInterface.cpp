@@ -235,7 +235,7 @@ namespace filemanager
       string wstrItemExtra;
 
       int32_t iFind;
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
 
       //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 

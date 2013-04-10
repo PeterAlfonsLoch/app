@@ -314,7 +314,7 @@ namespace ca
       // fail if exists, create if not exists
       bool file_system::mk_time(const char * lpcszCandidate)
       {
-         ::ca::filesp spfile(get_app());
+         ::ca::filesp spfile(allocer());
          if(System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
@@ -490,7 +490,7 @@ namespace ca
       void file_system::lines(stringa & stra, var varFile, sp(::ca::application) papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         ::ca::text_file_sp spfile(get_app());
+         ::ca::text_file_sp spfile(allocer());
 
          try
          {
@@ -1347,7 +1347,7 @@ namespace ca
    string file_system::md5(const char * psz)
    {
 
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
 
       try
       {

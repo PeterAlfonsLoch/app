@@ -37,7 +37,7 @@ namespace zip
 
       m_bOwnFile = true;
 
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
 
       try
       {
@@ -72,7 +72,7 @@ namespace zip
    bool File::zip_open(const char * lpcwsz)
    {
       m_bOwnFile = true;
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
       try
       {
          if(!spfile->open(lpcwsz, ::ca::file::mode_read_write | ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::defer_create_directory))

@@ -1428,7 +1428,7 @@ retry:
          if(psocket == ::null())
             return false;
 
-         ::ca::filesp spfile(get_app());
+         ::ca::filesp spfile(allocer());
          if(!spfile->open(pszFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_read_write
             | ::ca::file::defer_create_directory))
          {

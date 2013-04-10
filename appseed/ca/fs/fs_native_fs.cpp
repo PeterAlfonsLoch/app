@@ -112,7 +112,7 @@ namespace fs
    ::ca::filesp native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca::filesp spfile(get_app());
+      ::ca::filesp spfile(allocer());
 
       // ::ca::file::mode_read | ::ca::file::shareDenyNone | ::ca::file::type_binary
       if(!spfile->open(varFile.get_string(), nOpenFlags))
