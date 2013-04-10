@@ -2011,15 +2011,6 @@ var var::key(index i) const
 
 
 
-void var::on_delete(sp(::ca::ca) pca)
-{
-   if(m_sp == pca)
-   {
-      m_sp = ::null();
-      unset();
-   }
-}
-
 variable_strict_compare var::strict_compare() const
 {
    return *this;

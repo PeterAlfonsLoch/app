@@ -85,10 +85,6 @@ namespace ca
 
 
 
-   void system::on_delete(sp(::ca::ca) pca)
-   {
-      UNREFERENCED_PARAMETER(pca);
-   }
 
 } // namespace ca
 

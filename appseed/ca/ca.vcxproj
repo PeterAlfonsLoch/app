@@ -1065,7 +1065,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_plain_text_string_stream.h" />
     <ClInclude Include="ca\ca_plex.h" />
     <ClInclude Include="ca\ca_plex_heap.h" />
-    <ClInclude Include="ca\ca_pointer_manager.h" />
     <ClInclude Include="ca\ca_port_forward.h" />
     <ClInclude Include="ca\ca_process.h" />
     <ClInclude Include="ca\ca_process_data.h" />

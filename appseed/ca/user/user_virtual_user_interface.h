@@ -111,7 +111,6 @@ public:
    void GetWindowText(string & str);
 
 
-   virtual void on_delete(sp(::ca::ca) poc);
 
 
    DECL_GEN_SIGNAL(_001OnSize)

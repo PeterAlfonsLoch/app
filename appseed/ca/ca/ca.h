@@ -1460,8 +1460,6 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 #include "ca_var.h"
 #include "ca_var_array.h"
 
-#include "ca_pointer_manager.h"
-
 #include "ca_pipe.h"
 #include "ca_process.h"
 

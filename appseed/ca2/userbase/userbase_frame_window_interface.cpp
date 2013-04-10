@@ -414,13 +414,10 @@ namespace userbase
       UNREFERENCED_PARAMETER(dc);
    }
 
-   void frame_window_interface::on_delete(sp(::ca::ca) pca)
-   {
-      UNREFERENCED_PARAMETER(pca);
-   }
-
 
 } // namespace userbase
+
+
 
 
 

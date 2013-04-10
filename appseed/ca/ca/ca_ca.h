@@ -140,15 +140,7 @@ namespace ca
 
       ca & operator = (const ca & o);
 
-      virtual void on_delete(sp(::ca::ca) pca);
-
-
-
-      //ptra & listenerptra();
-      //ptra & listenedptra();
-
-      //virtual ptra * new_ptra();
-
+      
       virtual ::bergedge::bergedge * get_bergedge();
       virtual ::cube::cube * get_cube();
 

@@ -1019,8 +1019,6 @@ namespace ca
 
       ::user::str_context * str_context();
 
-      virtual void on_delete(sp(::ca::ca) pobject);
-
       //      virtual bool open_link(const char * pszLink, const char * pszTarget = ::null());
 
       // Temporary map management (locks temp map on current thread)

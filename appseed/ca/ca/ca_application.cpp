@@ -4172,7 +4172,7 @@ namespace ca
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == ::null())
          return ::null();
-      return (ystem.window_from_os_data(oswindowCapture)-cast < ::ca::window >()->get_capture();
+      return System.window_from_os_data(oswindowCapture).cast < ::ca::window >()->get_capture();
 
 #else
 
@@ -4193,122 +4193,6 @@ namespace ca
       return m_puserstrcontext;
    }
 
-   void application::on_delete(sp(::ca::ca) pobject)
-   {
-/*      try
-      {
-         waitable * pobj = dynamic_cast < waitable * >(pobject);
-         if(pobj != ::null())
-         {
-            mutex * pmutex = get_mutex(pobj);
-            if(pmutex != ::null())
-            {
-               single_lock sl(&m_mutexObjectLock, TRUE);
-               delete pmutex;
-               m_mapObjectMutex.remove_key(pobj);
-            }
-         }
-      }
-      catch(...)
-      {
-      }*/
-   }
-
-/*   mutex * application::get_mutex(waitable * pobject)
-   {
-      single_lock sl(&m_mutexObjectLock, TRUE);
-      mutex * pmutex;
-      if(!m_mapObjectMutex.Lookup(pobject, pmutex))
-      {
-         pmutex = new mutex(this);
-         m_mapObjectMutex.set_at(pobject, pmutex);
-      }
-      return pmutex;
-   }*/
-
-   /*void application::wait(waitable * pobject)
-   {
-
-      mutex * pmutex = get_mutex(pobject);
-
-      if(pmutex == ::null())
-         throw resource_exception(this);
-
-      pmutex->wait();
-
-   }*/
-
-/*   wait_result application::wait(waitable * pobject, duration duration)
-   {
-
-      mutex * pmutex = get_mutex(pobject);
-
-      if(pmutex == ::null())
-         return wait_result(wait_result::Failure);
-
-      return pmutex->wait(duration);
-
-   }
-
-   void application::lock(waitable * pobject)
-   {
-      mutex * pmutex = get_mutex(pobject);
-      if(pmutex == ::null())
-         throw "could not get generic mutex for object";
-      pmutex->lock();
-   }
-
-
-   bool application::lock(waitable * pobject, duration duration)
-   {
-      mutex * pmutex = get_mutex(pobject);
-      if(pmutex == ::null())
-         return false;
-      return pmutex->lock(duration) != FALSE;
-   }
-
-
-   bool application::unlock(waitable * pobject)
-   {
-      mutex * pmutex = get_mutex(pobject);
-      if(pmutex == ::null())
-         return false;
-      return pmutex->unlock() != FALSE;
-   }*/
-
-   /*event * application::get_event(::ca::object * pobject, int32_t iEvent)
-   {
-      single_lock sl(&m_mutexObjectEvent, TRUE);
-      map < int32_t, int32_t, event *, event * > * peventmap;
-      if(!m_mapObjectEvent.Lookup(pobject, peventmap))
-      {
-         peventmap = new map < int32_t, int32_t, event *, event * >();
-         m_mapObjectEvent.set_at(pobject, peventmap);
-      }
-      event * pevent;
-      if(!peventmap->Lookup(iEvent, pevent))
-      {
-         pevent = new event(this);
-         peventmap->set_at(iEvent, pevent);
-      }
-      return pevent;
-   }
-
-   bool application::event_lock(::ca::object * pobject, int32_t iEvent, duration duration)
-   {
-      event * pevent = get_event(pobject, iEvent);
-      if(pevent == ::null())
-         return false;
-      return pevent->wait(duration).signaled();
-   }
-
-   bool application::event_unlock(::ca::object * pobject, int32_t iEvent)
-   {
-      event * pevent = get_event(pobject, iEvent);
-      if(pevent == ::null())
-         return false;
-      return true;
-   }*/
    void application::get_cursor_pos(LPPOINT lppoint)
    {
       if(is_system() || is_cube())

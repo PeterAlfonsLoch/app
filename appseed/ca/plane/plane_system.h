@@ -457,7 +457,7 @@ namespace plane
             inline class ::visual::visual             & visual()     { return m_visual       ; }
 
 
-      virtual void on_delete(sp(::ca::ca) pca);
+      
 
 
       virtual bool base_support();

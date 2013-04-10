@@ -72,7 +72,7 @@ namespace userbase
       virtual void assert_valid() const;
       virtual void dump(dump_context & dc) const;
 
-      virtual void on_delete(sp(::ca::ca) pca);
+      //
 
       void data_on_after_change(::ca::signal_object * pobj);
 

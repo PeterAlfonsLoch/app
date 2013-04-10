@@ -17,7 +17,6 @@ namespace frame
       friend class WorkSet;
       friend class WorkSetListener;
    public:
-      virtual void on_delete(sp(::ca::ca) poc);
       void attach(WorkSetListener *plistener);
       //void add(WorkSetListener * plistener);
       WorkSetListenerArray();

@@ -41,93 +41,6 @@ namespace ca
 
    ca::~ca()
    {
-/*      if(m_papp != ::null())
-      {
-         try
-         {
-            m_papp->on_delete(this);
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            if(m_papp->m_psystem != ::null())
-            {
-                  m_papp->m_psystem->on_delete(this);
-            }
-         }
-         catch(...)
-         {
-         }
-      }
-
-      if(m_pptraListener != ::null())
-      {
-         for(int32_t i = 0; i < m_pptraListener->get_size(); i++)
-         {
-            sp(::ca::ca) plistener = m_pptraListener->element_at(i);
-            if(plistener != ::null())
-            {
-               try
-               {
-                  plistener->on_delete(this);
-               }
-               catch(...)
-               {
-               }
-               try
-               {
-                  if(plistener->m_pptraListened != ::null())
-                  {
-                     plistener->m_pptraListened->remove(this);
-                  }
-               }
-               catch(...)
-               {
-               }
-            }
-         }
-         try
-         {
-            delete m_pptraListener;
-         }
-         catch(...)
-         {
-         }
-         m_pptraListener = ::null();
-      }
-      if(m_pptraListened != ::null())
-      {
-         for(int32_t i = 0; i < m_pptraListened->get_size(); i++)
-         {
-            sp(::ca::ca) plistened = m_pptraListened->element_at(i);
-            if(plistened != ::null())
-            {
-               try
-               {
-                  if(plistened->m_pptraListener != ::null())
-                  {
-                     plistened->m_pptraListener->remove(this);
-                  }
-               }
-               catch(...)
-               {
-               }
-            }
-         }
-         try
-         {
-            delete m_pptraListened;
-         }
-         catch(...)
-         {
-         }
-         m_pptraListened = ::null();
-      }
-
-*/
-
 
    }
 
@@ -156,28 +69,6 @@ namespace ca
       return *this;
    }
 
-   void ca::on_delete(sp(::ca::ca) pca)
-   {
-   }
-
-/*   ptra & ca::listenerptra()
-   {
-      if(m_pptraListener == ::null())
-      {
-         m_pptraListener = new_ptra();
-      }
-      return *m_pptraListener;
-   }
-
-   ptra & ca::listenedptra()
-   {
-      if(m_pptraListened == ::null())
-      {
-         m_pptraListened = new_ptra();
-      }
-      return *m_pptraListened;
-   }
-   */
    ::bergedge::bergedge * ca::get_bergedge()
    {
       return m_papp->m_psession->m_pbergedge;

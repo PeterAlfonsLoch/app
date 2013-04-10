@@ -64,7 +64,7 @@ namespace userbase
       void CommonConstruct();
 
 
-      virtual void on_delete(sp(::ca::ca) pca);
+      
 
 
       virtual void _000OnDraw(::ca::graphics * pdc);

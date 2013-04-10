@@ -8,7 +8,6 @@ namespace ca
    {
    public:
 
-      virtual void on_delete(sp(::ca::ca) pca);
    };
 
 }// namespace ca

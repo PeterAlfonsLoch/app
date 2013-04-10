@@ -15,7 +15,7 @@ namespace frame
       public spa(WorkSetListenerArray)
    {
    public:
-      virtual void on_delete(sp(::ca::ca) poc);
+      
       void attach(WorkSetListenerArray * plistenerpa);
       
       WorkSetListener();

@@ -1233,10 +1233,6 @@ void frame_window::SetActiveView(sp(::view) pViewNew, bool bNotify)
    }
 }
 
-void frame_window::on_delete(sp(::ca::ca) p)
-{
-   ::user::frame_window_interface::on_delete(p);
-}
 
 
 /////////////////////////////////////////////////////////////////////////////

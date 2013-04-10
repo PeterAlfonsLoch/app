@@ -96,7 +96,6 @@ namespace user
          timer_array(sp(::ca::application) papp);
 
 
-         virtual void on_delete(sp(interaction) poc);
          uint_ptr set(sp(interaction) pguie, uint_ptr uiId, UINT uiElapse);
          void check();
          bool unset(sp(interaction) pguie, uint_ptr uiId);
@@ -426,16 +425,6 @@ namespace user
       virtual DECL_GEN_SIGNAL(_002OnTimer)
 
 
-      virtual void on_delete(sp(::ca::ca) poc);
-
-      //virtual void _001SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      //virtual void _001SetFocus();
-      //virtual void _001ShowWindow(int32_t iShow);
-      //virtual void _001ScreenToClient(LPPOINT lppoint);
-
-
-   // trans   virtual bool _001IsVisible();
-   // trans   virtual void _001SetVisible(bool bVisible);
 
       virtual bool _001IsPointInside(point64 pt);
       virtual sp(interaction) _001FromPoint(point64 pt, bool bTestedIfParentVisible = false);

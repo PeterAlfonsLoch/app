@@ -367,7 +367,6 @@ namespace ca
 //      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
 //      virtual void step_timer();
 
-      virtual void on_delete(sp(::ca::ca) p);
 
 
       virtual bool verb();

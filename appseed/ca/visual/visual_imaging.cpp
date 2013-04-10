@@ -4704,7 +4704,7 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
    else
    {
 
-      ::visual::dib_sp dib(get_app());
+      ::visual::dib_sp dib(allocer());
 
       if(!dib->create(size))
          return false;

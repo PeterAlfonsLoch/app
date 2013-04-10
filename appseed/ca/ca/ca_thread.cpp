@@ -166,12 +166,6 @@ namespace ca
    }
 
 
-   void thread::on_delete(sp(::ca::ca) pca)
-   {
-
-      UNREFERENCED_PARAMETER(pca);
-
-   }
 
 
    void thread::start()
@@ -458,10 +452,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void thread::on_delete(sp(::ca::ca) pui)
-   {
-      UNREFERENCED_PARAMETER(pui);
-   }
    */
    void thread::set_os_data(void * pvoidOsData)
    {
@@ -697,20 +687,6 @@ namespace ca
    void thread::remove(sp(::user::interaction) pui)
    {
 
-      try
-      {
-
-         if(m_p->m_ptimera != ::null())
-         {
-
-            m_p->m_ptimera->on_delete(pui);
-
-         }
-
-      }
-      catch(...)
-      {
-      }
       try
       {
          if(m_p != ::null())

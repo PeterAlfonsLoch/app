@@ -907,11 +907,6 @@ namespace user
    }
 
 
-   void interaction::on_delete(sp(::ca::ca) pca)
-   {
-      UNREFERENCED_PARAMETER(pca);
-   }
-
    sp(interaction) interaction::get_child_by_name(const char * pszName, int32_t iLevel)
    {
       sp(interaction) pui = get_top_child();
@@ -2894,11 +2889,6 @@ ExitModal:
    {
    }
 
-
-   void interaction::timer_array::on_delete(sp(interaction) pui)
-   {
-      unset(pui);
-   }
 
    bool interaction::timer_array::unset(sp(interaction) pguie, uint_ptr uiId)
    {

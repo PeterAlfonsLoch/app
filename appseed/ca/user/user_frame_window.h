@@ -163,7 +163,6 @@ public:
    void OnContextHelp();   // for Shift+F1 help
    void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
    bool OnBarCheck(UINT nID);
-   virtual void on_delete(sp(::ca::ca) poc);
 
 #ifdef WINDOWSEX
    virtual void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);

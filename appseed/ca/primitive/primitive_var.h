@@ -205,8 +205,6 @@ public:
 
    var dereference();
 
-   void on_delete(sp(::ca::ca) poc);
-
 
    variable_strict_compare strict_compare() const;
 

@@ -1284,11 +1284,6 @@ namespace plane
       plistened->listenerptra().remove(plistener);
    }*/
 
-   void system::on_delete(sp(::ca::ca) pca)
-   {
-      UNREFERENCED_PARAMETER(pca);
-   }
-
    int32_t system::__ca2_logging_report(
       int32_t iReportType,
       const char * pszFileName,

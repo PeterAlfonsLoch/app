@@ -2723,9 +2723,6 @@
     <ClInclude Include="ca\ca_plex_heap.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_pointer_manager.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_port_forward.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>

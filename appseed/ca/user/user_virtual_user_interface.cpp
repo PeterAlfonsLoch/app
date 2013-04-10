@@ -1388,19 +1388,6 @@ void virtual_user_interface::_001OnNcDestroy(::ca::signal_object * pobj)
    pobj->m_bRet = true;
 }
 
-void virtual_user_interface::on_delete(sp(::ca::ca) pui)
-{
-   ::user::interaction::on_delete(pui);
-}
-
-/*int32_t virtual_user_interface::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
-{
-   if(dynamic_cast < virtual_user_interface * > (GetTopLevelFrame()) == this)
-      return ::user::interaction::RunModalLoop(dwFlags, pliveobject);
-   else
-      return RunModalLoop(dwFlags, pliveobject);
-}
-*/
 
 void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
 {

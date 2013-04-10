@@ -354,14 +354,19 @@ namespace userbase
       frame_window_interface::_000OnDraw(pdc);
    }
 
-   void frame_window::on_delete(sp(::ca::ca) pca)
-   {
-      UNREFERENCED_PARAMETER(pca);
-   }
 
    void frame_window::AddControlBar(::userbase::control_bar *pBar)
    {
+
       m_listControlBars.add_tail(pBar);
+
    }
 
+
 } // namespace userbase
+
+
+
+
+
+
