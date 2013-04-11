@@ -870,7 +870,7 @@ namespace xml
                {
                   if(pEnd[0] == '&' && pEnd[1] != '#')
                   {
-                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, ::null());
+                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, NULL);
                   }
                   else
                   {
@@ -987,7 +987,7 @@ namespace xml
                {
                   if(pEnd[0] == '&' && pEnd[1] != '#')
                   {
-                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, ::null());
+                     pEnd = m_pdoc->patch_entity_ref((const char * &) pEnd, true, &xml, NULL);
                   }
                   else
                   {

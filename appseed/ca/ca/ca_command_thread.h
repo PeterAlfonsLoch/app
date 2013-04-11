@@ -35,7 +35,7 @@ namespace ca
 
       virtual var run();
 
-      virtual void request(sp(::ca::create_context) pcreationcontext);
+      virtual void request_create(sp(::ca::create_context) pcreationcontext);
 
       virtual void on_request(sp(::ca::create_context) pcreationcontext);
 

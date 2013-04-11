@@ -34,7 +34,7 @@ namespace ca
           #ifdef WINDOWS
          return InterlockedIncrement64(&m_countReference);
          #else
-         return __sync_fetch_and_add(&m_countReference, 1);
+         return __sync_add_and_fetch(&m_countReference, 1);
          #endif
       }
 
@@ -43,7 +43,7 @@ namespace ca
           #ifdef WINDOWS
          int64_t i = InterlockedDecrement64(&m_countReference);
          #else
-         int64_t i =  __sync_fetch_and_sub(&m_countReference, 1);
+         int64_t i =  __sync_sub_and_fetch(&m_countReference, 1);
          #endif
          if(i == 0)
          {

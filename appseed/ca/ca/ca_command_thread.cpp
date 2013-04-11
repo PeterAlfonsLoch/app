@@ -57,13 +57,13 @@ namespace ca
             }
             catch(::exit_exception & e)
             {
-            
+
                throw e;
 
             }
             catch(::ca::exception & e)
             {
-            
+
                if(!Application.on_run_exception(e))
                   throw exit_exception(get_app());
 
@@ -89,7 +89,7 @@ namespace ca
       return true;
    }
 
-   void command_thread::request(sp(::ca::create_context) pline)
+   void command_thread::request_create(sp(::ca::create_context) pline)
    {
       single_lock sl(&m_mutex, TRUE);
       m_ptra.add(pline);
@@ -113,7 +113,7 @@ namespace ca
       }
       catch(::ca::exception & e)
       {
-         
+
          if(!Application.on_run_exception(e))
             throw exit_exception(get_app());
 
