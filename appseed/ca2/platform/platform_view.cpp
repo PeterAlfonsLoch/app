@@ -304,7 +304,7 @@ namespace platform
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = Bergedge.m_varTopicFile;
 
-               Bergedge.command()->request(cc);
+               Bergedge.command()->request_create(cc);
             }
          }
       }
