@@ -729,14 +729,14 @@ bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutpu
 
 
 template < class VIEW >
-inline sp(VIEW) view::create_view(sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+inline sp(VIEW) view::create_view(::user::document_interface * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
 {
    return create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast);
 }
 
 
 template < class VIEW >
-inline sp(VIEW) view::create_view(sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+inline sp(VIEW) view::create_view(::user::interaction * pwndParent, id id, sp(::user::interaction) pviewLast)
 {
    return create_view < VIEW > (::null(), pwndParent, id, pviewLast);
 }
