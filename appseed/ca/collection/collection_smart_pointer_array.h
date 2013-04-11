@@ -298,7 +298,7 @@ public:
    }
 
 
-   T * last_sp(index n = 0) const
+   T * last_sp(index n = -1) const
    {
 
       return this->array < ::ca::smart_pointer < T > >::last_element(n);
@@ -306,7 +306,7 @@ public:
    }
 
 
-   ::ca::smart_pointer < T > & last_sp(index n = 0)
+   ::ca::smart_pointer < T > & last_sp(index n = -1)
    {
 
       return this->array < ::ca::smart_pointer < T > >::last_element(n);
@@ -314,7 +314,7 @@ public:
    }
 
 
-   T * last_ptr(index n = 0) const
+   T * last_ptr(index n = -1) const
    {
 
       return this->last_sp(n);
@@ -322,7 +322,7 @@ public:
    }
 
 
-   T * last_ptr(index n = 0)
+   T * last_ptr(index n = -1)
    {
 
       return this->last_sp(n);
@@ -330,7 +330,7 @@ public:
    }
 
 
-   T & last(index n = 0) const
+   T & last(index n = -1) const
    {
 
       return *last_ptr(n);
@@ -338,7 +338,7 @@ public:
    }
 
 
-   T & last(index n = 0)
+   T & last(index n = -1)
    {
 
       return *this->last_ptr(n);

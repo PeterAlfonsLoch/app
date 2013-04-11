@@ -196,6 +196,12 @@
 	<File name="html/html.h" open="0" top="0" tabpos="72">
 		<Cursor position="40" topLine="0" />
 	</File>
+	<File name="html/html_attribute.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="108" topLine="0" />
+	</File>
+	<File name="html/html_attribute.h" open="0" top="0" tabpos="0">
+		<Cursor position="94" topLine="0" />
+	</File>
 	<File name="html/html_base.cpp" open="0" top="0" tabpos="35">
 		<Cursor position="540" topLine="14" />
 	</File>
@@ -203,7 +209,7 @@
 		<Cursor position="419" topLine="0" />
 	</File>
 	<File name="html/html_data.cpp" open="0" top="0" tabpos="36">
-		<Cursor position="6451" topLine="166" />
+		<Cursor position="4301" topLine="85" />
 	</File>
 	<File name="html/html_data.h" open="0" top="0" tabpos="35">
 		<Cursor position="4317" topLine="132" />
@@ -233,7 +239,7 @@
 		<Cursor position="2955" topLine="5" />
 	</File>
 	<File name="html/html_reader.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="1327" topLine="38" />
+		<Cursor position="1128" topLine="31" />
 	</File>
 	<File name="html/html_style.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="33027" topLine="840" />
@@ -245,10 +251,10 @@
 		<Cursor position="808" topLine="0" />
 	</File>
 	<File name="html/html_tag.cpp" open="0" top="0" tabpos="16">
-		<Cursor position="820" topLine="10" />
+		<Cursor position="295" topLine="0" />
 	</File>
 	<File name="html/html_text.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="7870" topLine="184" />
+		<Cursor position="1933" topLine="72" />
 	</File>
 	<File name="html/image.h" open="0" top="0" tabpos="1">
 		<Cursor position="142" topLine="0" />
@@ -302,7 +308,7 @@
 		<Cursor position="3786" topLine="82" />
 	</File>
 	<File name="platform/platform_view.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="15453" topLine="507" />
+		<Cursor position="8188" topLine="284" />
 	</File>
 	<File name="uinteraction/frame/frame_appearance.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="9199" topLine="315" />
@@ -350,7 +356,7 @@
 		<Cursor position="45" topLine="0" />
 	</File>
 	<File name="user/user_button.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="5025" topLine="148" />
+		<Cursor position="8487" topLine="271" />
 	</File>
 	<File name="user/user_check_box.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3612" topLine="104" />
@@ -488,7 +494,7 @@
 		<Cursor position="4599" topLine="107" />
 	</File>
 	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="2402" topLine="41" />
+		<Cursor position="7584" topLine="233" />
 	</File>
 	<File name="userbase/userbase_frame_window_interface.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3866" topLine="94" />

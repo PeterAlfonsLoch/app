@@ -127,7 +127,7 @@ namespace html
             return i;
       }
       class font * pfont = new class font(font);
-      pfont->create(allocer());
+      pfont->create(get_app());
       m_fonta.add(pfont);
       pfont->m_iIndex = (int32_t) m_fonta.get_upper_bound();
       return (int32_t) pfont->m_iIndex;
@@ -552,7 +552,7 @@ restart:
    void data::implement_and_layout(html_form * pform)
    {
 
-      ::ca::client_graphics pdc(pform);
+      ::ca::memory_graphics pdc(allocer());
 
       m_pguie  = pform;
 

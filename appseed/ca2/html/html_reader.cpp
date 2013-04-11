@@ -51,7 +51,8 @@ namespace html
       {
          for(int32_t i = 0; i < pTag->getAttributes()->getCount(); i++)
          {
-            attribute * pattr = m_ptag->attra().add_new();
+             m_ptag->attra().add(canew(attribute()));
+            attribute * pattr = m_ptag->attra().last_sp();
             pattr->set_name(pTag->getAttributes()->getAttribute(i).getName().make_lower());
             pattr->set_value(pTag->getAttributes()->getAttribute(i).getValue());
          }
