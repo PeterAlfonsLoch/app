@@ -71,7 +71,7 @@ namespace userpresence
       || Application.command()->m_varTopicQuery["app"] == "netshareclient")
          return true;
 
-      if(Application.command()->m_varTopicQuery["app"] == "mydns")
+      if(Application.command()->m_varTopicQuery["app"] == "app-core/mydns")
          return true;
 
       if(Application.command()->m_varTopicQuery["app"] == "app-core/netnodecfg")

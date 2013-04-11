@@ -80,7 +80,7 @@ namespace fontopus
          m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
-      else if(command_thread()->property("app") == "mydns"
+      else if(command_thread()->property("app") == "app-core/mydns"
            || command_thread()->has_property("install")
            || command_thread()->has_property("uninstall"))
       {

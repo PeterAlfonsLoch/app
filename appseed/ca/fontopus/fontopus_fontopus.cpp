@@ -66,7 +66,10 @@ namespace fontopus
          m_puser = create_user(puser);
          System.userset().add(m_puser);
 
-         if(m_puser != ::null() && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
+
+         if(m_puser != ::null() 
+            && !::ca::str::begins(m_puser->m_strLogin, "system")
+            && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
             && !::ca::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
             && !m_papp->m_pappThis->is_serviceable())
          {
