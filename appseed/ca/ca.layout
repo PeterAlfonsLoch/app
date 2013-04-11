@@ -1564,7 +1564,7 @@
 	<File name="primitive/primitive_id.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="59" topLine="0" />
 	</File>
-	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="4">
+	<File name="primitive/primitive_id.h" open="1" top="1" tabpos="0">
 		<Cursor position="4194" topLine="138" />
 	</File>
 	<File name="primitive/primitive_id_space.cpp" open="0" top="0" tabpos="44">
