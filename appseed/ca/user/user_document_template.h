@@ -4,7 +4,7 @@
 #include "user_document_request_interface.h"
 
 
-class CLASS_DECL_ca document_template : 
+class CLASS_DECL_ca document_template :
    virtual public command_target,
    virtual public ::user::document_request_interface
 {
@@ -104,7 +104,7 @@ public:
    virtual void InitialUpdateFrame(sp(frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
    virtual bool save_all_modified();     // for all documents
    virtual void close_all_documents(bool bEndSession);
-   virtual void request(sp(::ca::create_context) pcreatecontext) = 0;
+   virtual void request_create(sp(::ca::create_context) pcreatecontext) = 0;
                // open named file
                // if lpszPathName == ::null() => create new file with this type
    virtual void set_default_title(sp(::user::document_interface) pdocument) = 0;
@@ -124,6 +124,6 @@ public:
    bool do_open_document(sp(::user::document_interface) pdoc, var varFile);
 
    static UINT s_on_open_document(LPVOID lpvoid);
-      
+
 
 };

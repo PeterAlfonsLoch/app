@@ -398,7 +398,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="calculator/numeric_value.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="2019" topLine="75" />
+		<Cursor position="2195" topLine="75" />
 	</File>
 	<File name="calculator/numeric_value.h" open="0" top="0" tabpos="18">
 		<Cursor position="0" topLine="10" />
@@ -1453,8 +1453,8 @@
 	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2816" topLine="98" />
 	</File>
-	<File name="plane/plane_system.h" open="0" top="0" tabpos="2">
-		<Cursor position="7165" topLine="244" />
+	<File name="plane/plane_system.h" open="1" top="1" tabpos="0">
+		<Cursor position="15071" topLine="456" />
 	</File>
 	<File name="plane/plane_system_allocate.h" open="0" top="0" tabpos="13">
 		<Cursor position="504" topLine="0" />
@@ -1607,7 +1607,7 @@
 		<Cursor position="3979" topLine="39" />
 	</File>
 	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="8">
-		<Cursor position="7139" topLine="176" />
+		<Cursor position="9042" topLine="266" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="229" topLine="17" />

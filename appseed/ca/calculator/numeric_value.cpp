@@ -3,17 +3,17 @@
 
 namespace calculator
 {
-   
-   
+
+
    value pow(const value & val1, double c);
 
-   
+
    value::value()
    {
       m_dR = 0.0;
       m_dI = 0.0;
    }
-   
+
    value::~value()
    {
    }
@@ -98,7 +98,7 @@ namespace calculator
    }
 
    double g_dPi = ::atan(1.0) * 4;
-   
+
    double pi()
    {
       return g_dPi;
@@ -112,7 +112,7 @@ namespace calculator
       val.m_dI = val1.m_dI + val2.m_dI;
       return val;
    }
-   
+
    value operator - (const value & val1, const value & val2)
    {
       value val;
@@ -120,7 +120,7 @@ namespace calculator
       val.m_dI = val1.m_dI - val2.m_dI;
       return val;
    }
-   
+
    value operator * (const value & val1, const value & val2)
    {
       value val;
@@ -128,7 +128,7 @@ namespace calculator
       val.m_dI = val1.m_dR * val2.m_dI + val2.m_dR * val1.m_dI;
       return val;
    }
-   
+
    value operator / (const value & val1, const value & val2)
    {
       value val;
@@ -166,7 +166,7 @@ namespace calculator
    {
       return val * val;
    }
-   
+
    value sqrt(const value & val)
    {
       return pow(val, 0.5);
