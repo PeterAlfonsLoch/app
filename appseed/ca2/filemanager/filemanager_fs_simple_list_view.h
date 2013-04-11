@@ -140,12 +140,6 @@ namespace filemanager
             DECL_GEN_SIGNAL(_001OnTimer)
             DECL_GEN_SIGNAL(_001OnSize)
             DECL_GEN_SIGNAL(_001OnContextMenu)
-            //DECL_GEN_SIGNAL(_001OnAlbumExecutePlay)
-            //DECL_GEN_SIGNAL(_001OnUpdateAlbumExecutePlay)
-            DECL_GEN_SIGNAL(_001OnExecutePrevious)
-            DECL_GEN_SIGNAL(_001OnUpdateExecutePrevious)
-            DECL_GEN_SIGNAL(_001OnExecuteNext)
-            DECL_GEN_SIGNAL(_001OnUpdateExecuteNext)
             DECL_GEN_SIGNAL(_001OnEraseBkgnd)
             DECL_GEN_SIGNAL(_001OnFillTaskResponse)
 

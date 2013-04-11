@@ -106,8 +106,8 @@ namespace nature
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       filemanager::filemanager & filemanager = Cube.filemanager();
-      folder_selection_list_view * pview;
-      pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
+      sp(folder_selection_list_view) pview;
+      pview =  (::view::create_view(
          System.type_info < folder_selection_list_view > (),
          get_document(),
          this,
@@ -127,14 +127,14 @@ namespace nature
 
    void appearance_view::_001OnEditAdd(::ca::signal_object * pobj)
    {
-      folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie().m_p);
+      sp(folder_selection_list_view) pview =  (get_view_uie().m_p);
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
    void appearance_view::_001OnEditRemove(::ca::signal_object * pobj)
    {
-      folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie().m_p);
+      sp(folder_selection_list_view) pview =  (get_view_uie().m_p);
       pview->FolderRemove();
       pobj->m_bRet = true;
    }

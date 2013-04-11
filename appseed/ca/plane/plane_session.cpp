@@ -1060,7 +1060,7 @@ namespace plane
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
       {
 
-/*         ::session::sp(pane_view) ppaneview = get_document()->get_typed_view < ::session::pane_view >();
+/*         ::sessionsp(::pane_view) ppaneview = get_document()->get_typed_view < ::session::pane_view >();
 
          if(ppaneview != ::null())
          {

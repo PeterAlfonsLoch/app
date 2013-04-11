@@ -232,7 +232,7 @@ namespace ca
          {
          case CBN_SELCHANGE:
             {
-      /* linux         simple_combo_box * pcombo = (simple_combo_box *) get_child_by_id(pcontrol->m_id);
+      /* linux         sp(simple_combo_box) pcombo = (sp(simple_combo_box)) get_child_by_id(pcontrol->m_id);
                int32_t iSel = pcombo->get_cur_sel();
                if(iSel != CB_ERR)
                {
@@ -465,7 +465,7 @@ namespace ca
             int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((uint32_t) i);
             if(iSel >= 0)
             {
-               simple_combo_box * pcombo = (simple_combo_box *) get_child_by_id(pcontrol->m_id);
+               sp(simple_combo_box) pcombo = (sp(simple_combo_box)) get_child_by_id(pcontrol->m_id);
                pcombo->set_cur_sel(iSel);
             }
          }*/
@@ -804,7 +804,7 @@ namespace ca
                   pcontrol->GetComboBox()->m_datakeyFill,
                   0, 0,
                   var);
-               simple_combo_box * pcombo = (simple_combo_box *) pcontrol->m_pwnd;
+               sp(simple_combo_box) pcombo = (sp(simple_combo_box)) pcontrol->m_pwnd;
                pcombo->ResetContent();
                string str;
                for(int32_t i = 0; i < pcontrol->GetComboBox()->m_wstra.get_size(); i++)

@@ -52,7 +52,7 @@ namespace fs
       }
 
       /*if(GetFileManager() != ::null() && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != ::null()
-      && !(dynamic_cast < user::sp(tree) > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
+      && !(dynamic_cast < usersp(::tree) > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
          GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }*/

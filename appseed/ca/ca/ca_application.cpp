@@ -2037,7 +2037,7 @@ namespace ca
       /*if(::get_app() == ::null())
       {
          ::set_app(get_system());
-         system::sp(application) pApp = dynamic_cast < system::sp(application) > (::get_app());
+         systemsp(::application) pApp = dynamic_cast < systemsp(::application) > (::get_app());
          thread * pThread = ::get_app();
          // App global initializations (rare)
          if (pApp != ::null() && !pApp->InitApplication())

@@ -154,7 +154,7 @@ namespace filehandler
          if(::ca::str::begins_eat_ci(strFile, "default_file_handler://"))
          {
 
-            ::filehandlersp(::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
+            sp(::filehandler::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
 
             pcreatordata->m_pwnd = pview;
 
@@ -174,7 +174,7 @@ namespace filehandler
             /*               sp(::ca::create_context) createcontext(get_app());
             createcontext->m_bMakeVisible = true;
             createcontext->m_puiParent = this;
-            rtprx::sp(document) pdoc = dynamic_cast < rtprx::sp(document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
+            rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
             if(pdoc != ::null())
             {
             sp(::view) pview = pdoc->get_view();

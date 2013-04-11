@@ -740,12 +740,12 @@ bool imaging::GrayVRCP(
       crTransparent);
 }
 
-/*::sp(image_list) imaging::CreateGrayVRCPImageList(
+/*sp(::image_list) imaging::CreateGrayVRCPImageList(
 ::ca::graphics * pdc,
-::sp(image_list) pilGray,
-::sp(image_list) pilParam)
+sp(::image_list) pilGray,
+sp(::image_list) pilParam)
 {
-::sp(image_list) pil = pilGray;
+sp(::image_list) pil = pilGray;
 
 pil->create(pilParam);
 
@@ -768,12 +768,12 @@ return pil;
 
 bool imaging::CreateHueImageList(
 ::ca::graphics * pdc,
-::sp(image_list) pilGray,
-::sp(image_list) pilParam,
+sp(::image_list) pilGray,
+sp(::image_list) pilParam,
 COLORREF crHue,
 double dCompress)
 {
-::sp(image_list) pil = pilGray;
+sp(::image_list) pil = pilGray;
 
 if(!pil->create(pilParam))
 return false;
@@ -882,11 +882,11 @@ bool imaging::Createcolor_blend_ImageList(
 
 
 /*
-::sp(image_list) imaging::CreateGrayVRCPImageList(
+sp(::image_list) imaging::CreateGrayVRCPImageList(
 ::ca::graphics * pdc,
-::sp(image_list) pilParam)
+sp(::image_list) pilParam)
 {
-::sp(image_list) pil = new ::image_list();
+sp(::image_list) pil = new ::image_list();
 
 pil->create(pilParam);
 

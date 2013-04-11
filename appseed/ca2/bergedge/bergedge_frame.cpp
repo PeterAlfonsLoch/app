@@ -210,7 +210,7 @@ namespace bergedge
 
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
-//      bergedge::sp(application) papp = dynamic_cast < bergedge::sp(application) > (get_app());
+//      bergedgesp(::application) papp = dynamic_cast < bergedgesp(::application) > (get_app());
    }
 
    void frame::pre_translate_message(::ca::signal_object * pobj)

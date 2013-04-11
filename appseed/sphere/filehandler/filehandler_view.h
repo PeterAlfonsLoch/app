@@ -45,13 +45,13 @@ namespace filehandler
          rect        m_rectItem;
          rect        m_rectStatusImage;
          rect        m_rectName;
-
+         
          void draw(sp(view) pview, ::ca::graphics * pdc, list * plist, item * pcontact);
 
       };
 
       class CLASS_DECL_sphere draw_list :
-         public smart_pointer_array < draw_item >
+         public array < draw_item >
       {
       public:
 

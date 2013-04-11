@@ -175,7 +175,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneview = dynamic_cast < sp(pane_view) > (create_view(System.type_info < pane_view > (), get_document(), this, 102));
+      m_ppaneview = (create_view(System.type_info < pane_view > (), get_document(), this, 102));
 
 
    }
@@ -379,7 +379,7 @@ namespace userstack
       {
          while(pui != ::null())
          {
-            ::asphere::sp(application) papp = ::null();
+            sp(::asphere::application) papp = ::null();
             try
             {
                papp = &App(pui->get_app());

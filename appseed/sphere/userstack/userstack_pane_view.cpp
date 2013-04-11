@@ -52,7 +52,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      sp(frame) pframe = dynamic_cast < sp(frame) > (GetParentFrame());
+      sp(frame) pframe =  (GetParentFrame());
       pframe->m_ppaneview = this;
 
 
@@ -191,7 +191,7 @@ namespace userstack
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      class sp(application) papp = dynamic_cast < class sp(application) > (get_app());
+      class sp(application) papp =  (get_app());
 
       if(pcreatordata->m_id.is_text())
       {
@@ -250,7 +250,7 @@ namespace userstack
 
 	   	   if(planeApp(pappCurrent).file().exists(strIcon))
             {
-               ppane->m_dib.create(papp);
+               ppane->m_dib.create(allocer());
                ppane->m_dib.load_from_file(strIcon);
             }
             else

@@ -214,7 +214,7 @@ namespace user
       //virtual form_list * get_form_list();
       virtual bool _001IsPointInside(point64 pt);
 
-      Ex1FormInterfaceComboBox * GetComboBox();
+      sp(Ex1FormInterfaceComboBox) GetComboBox();
       static control Null();
       bool Validate(string & str);
       bool get_data(sp(::user::interaction) pwnd, var & var);

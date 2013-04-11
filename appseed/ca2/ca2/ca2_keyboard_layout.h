@@ -16,7 +16,7 @@ namespace ca2 // ca8 + cube
 
       sp(::form_document)               m_pdoc;
       sp(form_view)                   m_pview;
-      simple_list_view *            m_plistview;
+      sp(simple_list_view)            m_plistview;
       ::user::keyboard_layout_ida   m_layoutida;
 
       keyboard_layout(sp(::ca::application) papp);

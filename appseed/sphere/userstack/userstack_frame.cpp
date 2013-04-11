@@ -173,8 +173,8 @@ namespace userstack
    void frame::_000OnMouse(::ca::message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
-//      ::asphere::sp(application) pappParent = &App(Application.m_papp);
-//      ::asphere::sp(application) papp = &Application;
+//      ::aspheresp(::application) pappParent = &App(Application.m_papp);
+//      ::aspheresp(::application) papp = &Application;
 /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != ::null()
       && m_pdocument->m_pplatformdocument != ::null()
@@ -210,7 +210,7 @@ namespace userstack
 
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
-//      bergedge::sp(application) papp = dynamic_cast < bergedge::sp(application) > (get_app());
+//      bergedgesp(::application) papp = dynamic_cast < bergedgesp(::application) > (get_app());
    }
 
    void frame::pre_translate_message(::ca::signal_object * pobj)

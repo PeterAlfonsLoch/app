@@ -9,12 +9,13 @@ namespace uinteraction
 
       class UpDownTarget;
 
-      class CLASS_DECL_ca2 CWorkSetDownUpInterface  
+      class CLASS_DECL_ca2 CWorkSetDownUpInterface:
+         virtual public ::ca::object
       {
       public:
 
 
-         UpDownTarget *       m_pupdowntarget;
+         sp(UpDownTarget)       m_pupdowntarget;
          int32_t                  m_iType;
          int32_t                  m_iIndex;
 

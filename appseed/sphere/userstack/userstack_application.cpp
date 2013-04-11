@@ -192,7 +192,7 @@ namespace userstack
          data.lpData = file.get_data();
          ::oswindow oswindow = ::FindWindowA(::null(), "::ca::fontopus::message_wnd::application::");
 
-         ::SendMessage(oswindow, WM_COPYDATA, ::null(), (LPARAM) &data);
+         ::SendMessage(oswindow, WM_COPYDATA, (WPARAM) 0, (LPARAM) &data);
 #else
          throw todo(get_app());
 #endif

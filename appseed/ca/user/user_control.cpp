@@ -369,7 +369,7 @@ namespace user
       return control();
    }
 
-   Ex1FormInterfaceComboBox * control::GetComboBox()
+   sp(Ex1FormInterfaceComboBox) control::GetComboBox()
    {
       return descriptor().m_data.m_pcombobox;
    }

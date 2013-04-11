@@ -80,7 +80,7 @@ namespace filehandler
       {
          item.parse(straApp[i]);
          item.m_iIndex = i;
-         add(item);
+         add(canew(class item(item)));
       }
 
    }
@@ -159,7 +159,7 @@ namespace filehandler
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
-         element_at(i)->draw(pview, pdc, plist, plist->element_at(i));
+         element_at(i).draw(pview, pdc, plist, plist->element_at(i));
       }
    }
 
@@ -201,13 +201,13 @@ namespace filehandler
          Bergedge.request(varRequest);
          */
 
-         sp(::ca::create_context) createcontext(&get_app()->cast_app < ::ca::application > ().command());
+         sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
 
          createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
 
          createcontext->m_spCommandLine->m_varFile                = m_strName;
 
-         Bergedge.request(createcontext.detach());
+         Bergedge.request_create(createcontext);
 
          //varFile = createcontext->m_spCommandLine->m_varFile;
 

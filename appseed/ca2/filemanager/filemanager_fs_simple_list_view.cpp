@@ -56,12 +56,6 @@ namespace filemanager
             IGUI_WIN_MSG_LINK(WM_ERASEBKGND, pinterface, this, &list_view::_001OnEraseBkgnd);
             IGUI_WIN_MSG_LINK(WM_USER + 1217    , pinterface, this, &list_view::_001OnFillTaskResponse);
 
-//            connect_command(        "ID_ALBUM_EXECUTE_PLAY"   , &list_view::_001OnAlbumExecutePlay);
-  //          connect_update_cmd_ui(  "ID_ALBUM_EXECUTE_PLAY"   , &list_view::_001OnUpdateAlbumExecutePlay);
-            connect_command(        "ID_EXECUTE_PREVIOUS"     , &list_view::_001OnExecutePrevious);
-            connect_update_cmd_ui(  "ID_EXECUTE_PREVIOUS"     , &list_view::_001OnUpdateExecutePrevious);
-            connect_command(        "ID_EXECUTE_NEXT"         , &list_view::_001OnExecuteNext);
-            connect_update_cmd_ui(  "ID_EXECUTE_NEXT"         , &list_view::_001OnUpdateExecuteNext);
          }
 
 
@@ -190,82 +184,9 @@ namespace filemanager
 
          void list_view::_001SearchGetItemText(::user::list_item * pitem)
          {
-/*            UNREFERENCED_PARAMETER(iListItem);
-            MediaLibraryDoc * pdoc = get_document();
-            single_lock sl(pdoc->m_pcsAlbum1, TRUE);
-            sp(::sqlite::set) pds = pdoc->m_pdsAlbum1;
-
-            if((iSubItem != SubItemFileName &&
-               iSubItem != SubItemFilePath) &&
-               (mediamanager::get(get_app())->
-               album_build().m_fileinfo.m_iaUpdate.get_size() > 0
-               ||
-               mediamanager::get(get_app())->
-               album_build().m_fileinfo.m_iaRemove.get_size() > 0))
-            {
-               int32_t iId;
-               iId = pds->result.records[iItem][FieldIndexId].int32();
-               int32_t iFound;
-               if((iFound = mediamanager::get(get_app())->album_build().m_fileinfo.m_iaUpdate.find_first(iId)) >= 0)
-               {
-                  str.Empty();
-                  return false;
-               }
-               else if((iFound = mediamanager::get(get_app())->album_build().m_fileinfo.m_iaRemove.find_first(iId)) >= 0)
-               {
-                  str.Empty();
-                  return false;
-               }
-            }
-
-            EFieldIndex eindex;
-            switch(iSubItem)
-            {
-            case SubItemId:
-               eindex = FieldIndexId;
-               break;
-            case SubItemTitle:
-               eindex = FieldIndexTitle;
-               break;
-            case SubItemArtist:
-               eindex = FieldIndexArtist;
-               break;
-            case SubItemFileName:
-               eindex = FieldIndexFileName;
-               break;;
-            case SubItemFilePath:
-               eindex = FieldIndexFilePath;
-               break;
-            default:
-               ASSERT(FALSE);
-               eindex = FieldIndexNone;
-               break;
-            }
-            if(eindex == FieldIndexNone)
-            {
-               str.Empty();
-               return true;
-            }
-            else if(eindex == FieldIndexId)
-            {
-               str.Format("%05d",
-                  pds->result.records[iItem][(int32_t) eindex].int32());
-               return true;
-            }
-            else
-            {
-               str = pds->result.records[iItem][(int32_t) eindex].get_string();
-               return true;
-            }
-            str.Empty();
-            return false;*/
             return_(pitem->m_bOk, false);
          }
 
-/*         MediaLibraryDoc * list_view::get_document()
-         {
-            return dynamic_cast < MediaLibraryDoc * > (::view::get_document());
-         }*/
 
          void list_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
          {
@@ -274,28 +195,9 @@ namespace filemanager
             if(phint == ::null())
             {
                _001UpdateColumns();
-               //_001SetItemCountEx(get_document()->GetSongCount());
-//               mediamanager::get(get_app())->album_build().SetCallbackWnd(this);
             }
             else
             {
-               /*if(base < view_update_hint >::bases(phint))
-               {
-               view_update_hint * puh = (view_update_hint *) phint;
-               if(puh->is_type_of(view_update_hint::TypeFilter))
-               {
-               m_cache._001Invalidate();
-               if(puh->m_wstrFilter.is_empty())
-               {
-               FilterClose();
-               }
-               else
-               {
-               FilterBegin();
-               Filter1(puh->m_wstrFilter);
-               }
-               }
-               }*/
             }
 
 
@@ -680,26 +582,6 @@ namespace filemanager
 
             m_bKickActive = true;
 
-/*            MediaLibraryDoc * pdoc = get_document();
-
-            int_array & ia = mediamanager::get(get_app())->album_build().GetPriorityArray();
-            ia.remove_all();
-
-            int32_t iId;
-            single_lock sl(pdoc->m_pcsAlbum1, TRUE);
-            sp(::sqlite::set) pds = pdoc->m_pdsAlbum1;
-            for(int32_t i = 0; i < iDisplayItemCount; i++)
-            {
-               int32_t iItem = DisplayToStrict(iTopIndex + i);
-               if(iItem >= 0)
-               {
-                  pds->seek(iItem);
-                  iId = pds->fv("id").int32();
-                  ia.add(iId);
-               }
-            }
-
-            mediamanager::get(get_app())->start_album_build();*/
 
             SetTimer(123654, 700, ::null());
 
@@ -738,62 +620,6 @@ namespace filemanager
             (sp(::ca::window)) pframe);
             }
             }*/
-         }
-
-         /*void list_view::_001OnAlbumExecutePlay(::ca::signal_object * pobj)
-         {
-            UNREFERENCED_PARAMETER(pobj);
-            range range;
-            _001GetSelection(range);
-            string str;
-            for(int32_t i = 0; i < range.get_item_count(); i++)
-            {
-               item_range & item = range.ItemAt(i);
-               for(int32_t j = item.get_lower_bound(); j <= item.get_upper_bound(); j++)
-               {
-                  GetSongPath(str, j);
-                  mediaplaylistsp(::document) pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
-                  if(pdoc != ::null())
-                  {
-                     pdoc->AddSong(
-                        str,
-                        mediaplaylist::document::AddSongAndPlayIfNotPlaying,
-                        false,
-                        true);
-                  }
-               }
-            }
-
-
-         }
-
-         void list_view::_001OnUpdateAlbumExecutePlay(::ca::signal_object * pobj)
-         {
-            SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
-               range range;
-            _001GetSelection(range);
-            pupdatecmdui->m_pcmdui->Enable(range.get_item_count() > 0);
-            pupdatecmdui->m_bRet = true;
-         }*/
-
-         void list_view::_001OnExecutePrevious(::ca::signal_object * pobj)
-         {
-            UNREFERENCED_PARAMETER(pobj);
-         }
-
-         void list_view::_001OnUpdateExecutePrevious(::ca::signal_object * pobj)
-         {
-            UNREFERENCED_PARAMETER(pobj);
-         }
-
-         void list_view::_001OnExecuteNext(::ca::signal_object * pobj)
-         {
-            UNREFERENCED_PARAMETER(pobj);
-         }
-
-         void list_view::_001OnUpdateExecuteNext(::ca::signal_object * pobj)
-         {
-            UNREFERENCED_PARAMETER(pobj);
          }
 
          void list_view::parse(const char * lpszSource)
