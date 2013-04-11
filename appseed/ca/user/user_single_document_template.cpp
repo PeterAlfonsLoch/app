@@ -53,7 +53,7 @@ void single_document_template::remove_document(sp(::user::document_interface) pd
 /////////////////////////////////////////////////////////////////////////////
 // single_document_template commands
 
-void single_document_template::request(sp(::ca::create_context) pcreatecontext)
+void single_document_template::request_create(sp(::ca::create_context) pcreatecontext)
    // if lpszPathName == ::null() => create new file of this type
 {
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();

@@ -57,7 +57,7 @@ void multiple_document_template::remove_document(sp(::user::document_interface) 
 }
 
 
-void multiple_document_template::request(sp(::ca::create_context) pcreatecontext)
+void multiple_document_template::request_create(sp(::ca::create_context) pcreatecontext)
 {
 
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();

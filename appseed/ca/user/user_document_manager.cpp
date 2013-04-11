@@ -798,7 +798,7 @@ void document_manager::request(sp(::ca::create_context) pcreatecontext)
       return;
    }
 
-   pBestTemplate->request(pcreatecontext);
+   pBestTemplate->request_create(pcreatecontext);
 }
 
 ::count document_manager::get_open_document_count()
