@@ -58,7 +58,6 @@ void html_form_view::OnDraw(::ca::graphics * pdcScreen)
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view diagnostics
 
-#ifdef DEBUG
 void html_form_view::assert_valid() const
 {
    html_form::assert_valid();
@@ -68,7 +67,6 @@ void html_form_view::dump(dump_context & dumpcontext) const
 {
    html_form::dump(dumpcontext);
 }
-#endif //DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view message handlers

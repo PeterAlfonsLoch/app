@@ -4,7 +4,7 @@ namespace userbase
 {
 
    class CLASS_DECL_ca2 form_view :
-      virtual public scroll_view,
+      virtual public ::userbase::scroll_view,
       virtual public ::user::form
    {
    public:

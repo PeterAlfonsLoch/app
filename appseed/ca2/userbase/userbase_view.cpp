@@ -18,7 +18,7 @@
    //{{__MSG_MAP(::view)
 /*   ON_WM_PAINT()
    ON_WM_MOUSEACTIVATE()
-   
+
    ON_WM_DESTROY()
 
    // Standard commands for split pane
@@ -325,7 +325,6 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view diagnostics
 
-   #ifdef DEBUG
    void view::dump(dump_context & dumpcontext) const
    {
       ::user::interaction::dump(dumpcontext);
@@ -340,7 +339,6 @@ namespace userbase
    {
       ::user::interaction::assert_valid();
    }
-   #endif //DEBUG
 
 
    // // IMPLEMENT_DYNAMIC for ::view is in wincore.cpp for .OBJ granularity reasons

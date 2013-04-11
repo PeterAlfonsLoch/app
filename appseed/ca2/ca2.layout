@@ -230,7 +230,7 @@
 		<Cursor position="423" topLine="12" />
 	</File>
 	<File name="html/html_input_button.cpp" open="0" top="0" tabpos="37">
-		<Cursor position="3265" topLine="52" />
+		<Cursor position="523" topLine="10" />
 	</File>
 	<File name="html/html_input_checkbox.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="205" topLine="0" />
@@ -434,7 +434,7 @@
 		<Cursor position="16692" topLine="634" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="5">
-		<Cursor position="555" topLine="19" />
+		<Cursor position="555" topLine="20" />
 	</File>
 	<File name="userbase/simple_menu_bar.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="6314" topLine="182" />
@@ -492,6 +492,9 @@
 	</File>
 	<File name="userbase/userbase_form_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4599" topLine="107" />
+	</File>
+	<File name="userbase/userbase_form_view.h" open="0" top="0" tabpos="0">
+		<Cursor position="111" topLine="0" />
 	</File>
 	<File name="userbase/userbase_frame_window.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="7584" topLine="233" />
@@ -563,19 +566,25 @@
 		<Cursor position="621" topLine="0" />
 	</File>
 	<File name="userbase/userbase_view.cpp" open="0" top="0" tabpos="43">
-		<Cursor position="8784" topLine="253" />
+		<Cursor position="10417" topLine="317" />
 	</File>
 	<File name="userbase/userbase_view.h" open="0" top="0" tabpos="7">
-		<Cursor position="41" topLine="0" />
+		<Cursor position="725" topLine="0" />
 	</File>
 	<File name="userex/userex.h" open="0" top="0" tabpos="70">
 		<Cursor position="41" topLine="0" />
+	</File>
+	<File name="userex/userex_form_view.h" open="0" top="0" tabpos="0">
+		<Cursor position="78" topLine="0" />
 	</File>
 	<File name="userex/userex_pane_tab_view.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="5435" topLine="157" />
 	</File>
 	<File name="userex/userex_pane_view.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="1189" topLine="39" />
+	</File>
+	<File name="userex/userex_userex.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="69" />
 	</File>
 	<File name="userhtml/userhtml.h" open="0" top="0" tabpos="71">
 		<Cursor position="38" topLine="0" />
@@ -586,8 +595,14 @@
 	<File name="userhtml/userhtml_form.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="8123" topLine="289" />
 	</File>
+	<File name="userhtml/userhtml_form.h" open="0" top="0" tabpos="0">
+		<Cursor position="90" topLine="0" />
+	</File>
 	<File name="userhtml/userhtml_form_view.cpp" open="0" top="0" tabpos="25">
-		<Cursor position="4749" topLine="123" />
+		<Cursor position="2359" topLine="45" />
+	</File>
+	<File name="userhtml/userhtml_form_view.h" open="0" top="0" tabpos="0">
+		<Cursor position="80" topLine="0" />
 	</File>
 	<File name="userhtml/userhtml_frame.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="1558" topLine="57" />

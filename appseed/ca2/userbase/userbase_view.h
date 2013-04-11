@@ -33,6 +33,7 @@ namespace userbase
    public:
 
       view(sp(::ca::application) papp);
+      virtual ~view();
 
       virtual void on_select();
 
@@ -64,11 +65,8 @@ namespace userbase
 
       virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      virtual ~view();
-#ifdef DEBUG
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
-#endif //DEBUG
 
 
 
