@@ -114,7 +114,7 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
-   var(sp(::ca::ca) pca2);
+   var(::ca::ca * pca2);
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);

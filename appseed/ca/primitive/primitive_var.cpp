@@ -7,7 +7,7 @@ var::var(const char * psz)
    set_string(psz);
 }
 
-var::var(sp(::ca::ca) pca2)
+var::var(::ca::ca * pca2)
 {
    m_etype = type_new;
    operator = (pca2);
