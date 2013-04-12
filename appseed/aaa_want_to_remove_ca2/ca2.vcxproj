@@ -1073,6 +1073,7 @@
     <ClInclude Include="user\user_combo_box.h" />
     <ClInclude Include="user\user_combo_list.h" />
     <ClInclude Include="user\user_form.h" />
+    <ClInclude Include="user\user_form_callback.h" />
     <ClInclude Include="user\user_inline.h" />
     <ClInclude Include="user\user_plain_text_data.h" />
     <ClInclude Include="user\user_printer.h" />
@@ -1259,7 +1260,6 @@
     <ClInclude Include="user\user_edit_plain_text.h" />
     <ClInclude Include="user\user_element_2d.h" />
     <ClInclude Include="user\user_elemental.h" />
-    <ClInclude Include="user\user_form_callback.h" />
     <ClInclude Include="user\user_form_list.h" />
     <ClInclude Include="user\user_front_end.h" />
     <ClInclude Include="user\user_front_end_schema.h" />
@@ -1419,6 +1419,7 @@
     <ClCompile Include="user\user_combo_box.cpp" />
     <ClCompile Include="user\user_combo_list.cpp" />
     <ClCompile Include="user\user_form.cpp" />
+    <ClCompile Include="user\user_form_callback.cpp" />
     <ClCompile Include="user\user_plain_text_data.cpp" />
     <ClCompile Include="user\user_printer.cpp" />
     <ClCompile Include="user\user_print_job.cpp" />

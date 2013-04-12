@@ -3994,9 +3994,6 @@
     <ClCompile Include="user\user_place_holder_container.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_form.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_frame_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>

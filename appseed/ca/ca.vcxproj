@@ -3073,7 +3073,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user_draw_context.cpp" />
     <ClCompile Include="user\user_draw_interface.cpp" />
     <ClCompile Include="user\user_elemental.cpp" />
-    <ClCompile Include="user\user_form.cpp" />
     <ClCompile Include="user\user_form_callback.cpp" />
     <ClCompile Include="user\user_frame_window.cpp" />
     <ClCompile Include="user\user_frame_window_interface.cpp" />
