@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca wstringtou :
+class CLASS_DECL_ca2 wstringtou :
    public wstring
 {
 public:

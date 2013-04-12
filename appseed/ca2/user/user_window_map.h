@@ -1,43 +1,20 @@
+// window_map.h: interface for the window_map class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#if !defined(__BASEWNDINTERFACEMAP_H__3917A26E_328F_406A_9719_E6C0563571B4__INCLUDED_)
+#define __BASEWNDINTERFACEMAP_H__3917A26E_328F_406A_9719_E6C0563571B4__INCLUDED_
+
+#if _MSC_VER > 1000
 #pragma once
+#endif // _MSC_VER > 1000
 
-#ifdef _WIN64
-template <>
-inline UINT HashKey(int_ptr key)
+class window_map  
 {
-   // default identity hash - works for most primitive values
-   return (uint32_t)(((uint_ptr)key)>>32);
-}
-#else
-template <>
-inline UINT HashKey(int_ptr key)
-{
-   // default identity hash - works for most primitive values
-   return (uint32_t)(((uint_ptr)key)>>16);
-}
-#endif
+public:
+   window_map();
+   virtual ~window_map();
 
-namespace user
-{
+};
 
-
-   class window_interface;
-
-
-   class CLASS_DECL_ca2 window_map
-   {
-   public:
-      window_map();
-      virtual ~window_map();
-
-      ::user::window_interface * get(int_ptr iWindow);
-
-
-      void set(int_ptr iWindow, const ::user::window_interface * pinterface);
-      map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
-
-   };
-
-
-} // namespace user
-
-
+#endif // !defined(__BASEWNDINTERFACEMAP_H__3917A26E_328F_406A_9719_E6C0563571B4__INCLUDED_)

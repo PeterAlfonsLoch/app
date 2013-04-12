@@ -25,3 +25,5 @@ protected:  // standard implementation
    spa(::user::document_interface) m_docptra;          // open documents of this type
    UINT m_nUntitledCount;   // start at 0, for "Document1" title
 };
+
+

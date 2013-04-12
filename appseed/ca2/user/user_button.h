@@ -43,8 +43,23 @@ namespace user
       void VirtualOnSize();
 
       virtual bool create_control(class control::descriptor * pdescriptor);
+      
+      visual::dib_sp          m_dib;
 
 
+      button(sp(::ca::application) papp);
+   public:
+      virtual ~button();
+
+      virtual void ResizeToFit();
+
+      virtual ::ca::font * _001GetFont();
+
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+
+      virtual void _001OnDraw(::ca::graphics * pdc);
+
+      DECL_GEN_SIGNAL(_001OnCreate)
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
