@@ -390,6 +390,24 @@
     <Filter Include="Header Files\primitive\NewFilter1">
       <UniqueIdentifier>{05bd5394-0cfa-4688-b82c-cceb40d2e2c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\bergedge\nature">
+      <UniqueIdentifier>{3c897fda-f8ac-4551-bb06-b53aec0ceb38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2">
+      <UniqueIdentifier>{d35ce920-6f69-485b-8856-84c3719cad9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{e98c2e61-818f-4886-bace-7e30f423820d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bergedge\nature">
+      <UniqueIdentifier>{22c68237-016a-49f9-8df7-1d3924bd4d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{a53dd049-a131-400c-8fb1-c6f017559ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userbase">
+      <UniqueIdentifier>{f691236e-1e3a-472f-bc9c-10c334d4c526}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -3185,6 +3203,69 @@
     <ClInclude Include="collection\collection_raw_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
+    <ClInclude Include="bergedge\bergedge_bergedge.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_document.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_form_callback.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_frame.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_pane_view.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_pane_view_update_hint.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_view.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_appearance_view.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_application.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_database.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_document.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_frame.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_pane_view.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_pane_view_update_hint.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\nature\nature_view.h">
+      <Filter>Header Files\bergedge\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_application.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_keyboard_layout.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_message_box.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_network_configuration.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_wait_message_dialog.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5283,6 +5364,387 @@
     </ClCompile>
     <ClCompile Include="filehandler\filehandler_tree_item_data.cpp">
       <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_application.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_keyboard_layout.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_message_box.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_network_configuration.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_wait_message_dialog.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_bergedge.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_document.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_form_callback.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_frame.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_pane_view.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_pane_view_update_hint.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\bergedge_view.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_appearance_view.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_application.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_database.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_document.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_frame.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_pane_view.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_pane_view_update_hint.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="bergedge\nature\nature_view.cpp">
+      <Filter>Source Files\bergedge\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\platform_view.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\platform_pane_view_update_hint.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\platform_pane_view.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\platform_frame.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\platform_document.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\platform_application.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_button.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_check_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_combo_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_combo_list.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_form_callback.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_form_list.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_front_end.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_front_end_schema.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_list.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_list_cache.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_list_cache_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_list_data.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_list_data_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_list_header.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_plain_text_data.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_print_job.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_printer.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_scroll_bar.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_scroll_view.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_tab.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_tab_callback.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_tool_tip_tool.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_tool_tip_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_tree.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_xfplayer_view_line.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_xfplayer_view_line_selection.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user2\user_xfplayer_view_lines.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_button.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_child_frame.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_combo_box.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_combo_list.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_document.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_edit.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_edit_plain_text.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_form_list_edit.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_form_list_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_frame_window.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_list_ctrl.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_list_header_ctrl.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_list_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_main_frame.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_menu_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_printer_list_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_push_button.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_scroll_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_static.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_status_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_tab_ctrl.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_tab_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_toolbar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_tree_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_base_bitmap_buttonex.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_button.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_button_control.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_combo_box.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_combo_list.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_control_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_document.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_document_manager.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_document_template.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_edit_plain_text.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_edit_plain_text_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_elastic_slider.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_form_list.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_form_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_frame_window.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_frame_window_interface.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_image_manager.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_main_frame.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu_base.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu_button.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu_central.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu_item.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu_list_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_menu_list_window.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_meta_button.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_multiple_document_template.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_notification_area.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_notify_icon.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_notify_icon_listener.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_scroll_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_single_document_template.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_split_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_split_layout.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_split_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_split_window.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_static.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_status_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_step_slider.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_tab_control.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_tab_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_tab_view_update_hint.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_tool_cmd_ui.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_toolbar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_toolbar_ctrl.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_tree_window.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_userbase.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_util.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_view.cpp">
+      <Filter>Source Files\userbase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
