@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca file :
+   class CLASS_DECL_ca2 file :
       virtual public ::ca::file
    {
    public:

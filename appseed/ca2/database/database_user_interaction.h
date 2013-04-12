@@ -9,7 +9,7 @@ namespace database
    {
 
 
-      class CLASS_DECL_ca interaction :
+      class CLASS_DECL_ca2 interaction :
          virtual public ::user::interaction,
          virtual public client
       {

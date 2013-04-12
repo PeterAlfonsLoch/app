@@ -5,8 +5,8 @@ namespace ca
 {
 
 
-   CLASS_DECL_ca PFN_get_thread g_pfn_get_thread = ::null();
-   CLASS_DECL_ca PFN_get_thread_state g_pfn_get_thread_state = ::null();
+   CLASS_DECL_ca2 PFN_get_thread g_pfn_get_thread = ::null();
+   CLASS_DECL_ca2 PFN_get_thread_state g_pfn_get_thread_state = ::null();
    bool thread::s_bAllocReady = false;
 
 
@@ -529,7 +529,7 @@ namespace ca
 
 
 
-   CLASS_DECL_ca void thread_alloc_ready(bool bReady)
+   CLASS_DECL_ca2 void thread_alloc_ready(bool bReady)
    {
       ::ca::thread::s_bAllocReady = bReady;
    }

@@ -18,7 +18,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca resource :
+   class CLASS_DECL_ca2 resource :
       virtual public ::ca::object
    {
    public:

@@ -3,7 +3,7 @@
 namespace calculator
 {
 
-      class CLASS_DECL_ca element :
+      class CLASS_DECL_ca2 element :
          virtual public ::ca::ca
       {
       public:

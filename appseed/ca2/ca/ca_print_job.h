@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca print_job :
+   class CLASS_DECL_ca2 print_job :
       virtual public ::ca::job
    {
    public:

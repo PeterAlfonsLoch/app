@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_ca stringa :
+class CLASS_DECL_ca2 stringa :
    virtual public string_array,
    virtual public ::ca::byte_serializable
 {

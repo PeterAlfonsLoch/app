@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca memory_exception : 
+class CLASS_DECL_ca2 memory_exception : 
    virtual public simple_exception
 {
 public:

@@ -8,7 +8,7 @@ namespace plugin
    class plugin;
 
 
-   class CLASS_DECL_ca system :
+   class CLASS_DECL_ca2 system :
       virtual public ::plane::system
    {
    public:

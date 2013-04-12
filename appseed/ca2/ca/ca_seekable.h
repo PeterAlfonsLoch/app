@@ -8,7 +8,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca stream_get_size :
+   class CLASS_DECL_ca2 stream_get_size :
       virtual public stream_base
    {
    public:
@@ -23,7 +23,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca seekable :
+   class CLASS_DECL_ca2 seekable :
       virtual public stream_base
    {
    public:

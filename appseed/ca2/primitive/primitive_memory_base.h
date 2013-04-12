@@ -28,7 +28,7 @@ namespace primitive
    class memory_container;
 
 
-   class CLASS_DECL_ca memory_base :
+   class CLASS_DECL_ca2 memory_base :
       public ::ca::object,
       public ::ca::byte_serializable
    {

@@ -14,7 +14,7 @@ namespace ca
    typedef ::ca::smart_pointer < reader > reader_sp;
 
 
-   class CLASS_DECL_ca reader :
+   class CLASS_DECL_ca2 reader :
       virtual public seekable
    {
    public:

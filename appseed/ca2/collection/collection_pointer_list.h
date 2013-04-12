@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca pointer_list :
+class CLASS_DECL_ca2 pointer_list :
    virtual public ::ca::object
 {
 public:

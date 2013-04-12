@@ -6,7 +6,7 @@ namespace user
 
    class keyboard_layout;
 
-   class CLASS_DECL_ca keyboard :
+   class CLASS_DECL_ca2 keyboard :
       virtual public ::ca::object
    {
    public:

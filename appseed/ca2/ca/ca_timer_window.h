@@ -7,7 +7,7 @@ namespace ca
    // TimerWnd ::ca::window
    class TimerCallback;
 
-   class CLASS_DECL_ca TimerWnd : public ::ca::window
+   class CLASS_DECL_ca2 TimerWnd : public ::ca::window
    {
    // Construction
    public:

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca retry_multi_lock
+class CLASS_DECL_ca2 retry_multi_lock
 {
 protected:
 

@@ -5,7 +5,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca pipe
+   class CLASS_DECL_ca2 pipe
    {
    public:
 
@@ -72,7 +72,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca cross_pipe
+   class CLASS_DECL_ca2 cross_pipe
    {
    public:
 

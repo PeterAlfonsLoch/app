@@ -9,18 +9,18 @@ namespace ca
    class base_edit;
    class data;
 
-   typedef CLASS_DECL_ca spa(data_listener) data_listener_ptra;
-   typedef CLASS_DECL_ca comparable_array < data * > data_ptra;
-   typedef CLASS_DECL_ca comparable_array < sp(::ca::ca) > ca_ptra;
+   typedef CLASS_DECL_ca2 spa(data_listener) data_listener_ptra;
+   typedef CLASS_DECL_ca2 comparable_array < data * > data_ptra;
+   typedef CLASS_DECL_ca2 comparable_array < sp(::ca::ca) > ca_ptra;
 
 
-   class CLASS_DECL_ca data :
+   class CLASS_DECL_ca2 data :
       virtual public ::ca::object
    {
    public:
 
 
-      class CLASS_DECL_ca writing :
+      class CLASS_DECL_ca2 writing :
          public interlocked_long_pulse
       {
       public:
@@ -34,7 +34,7 @@ namespace ca
 
       };
 
-      class CLASS_DECL_ca saving :
+      class CLASS_DECL_ca2 saving :
          public interlocked_long_pulse
       {
       public:

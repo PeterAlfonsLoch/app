@@ -11,7 +11,7 @@ namespace dynamic_source
    typedef   script_instance * (*NET_NODE_CREATE_INSTANCE_PROC)(script * pscript);
 
 
-   class CLASS_DECL_ca script :
+   class CLASS_DECL_ca2 script :
       virtual public ::ca::object
    {
    public:
@@ -36,7 +36,7 @@ namespace dynamic_source
    };
 
 
-   class CLASS_DECL_ca ds_script :
+   class CLASS_DECL_ca2 ds_script :
       virtual public script
    {
    public:

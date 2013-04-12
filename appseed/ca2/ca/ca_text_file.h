@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca text_file : 
+   class CLASS_DECL_ca2 text_file : 
       virtual public ::ca::file
    {
    public:

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca trace_add_file_and_line 
+   class CLASS_DECL_ca2 trace_add_file_and_line 
 #if defined(LINUX) || defined(MACOS)
       : public string_format_printer
 #endif
@@ -20,7 +20,7 @@ namespace ca
 
 #if defined(LINUX) || defined(MACOS)
 
-      class CLASS_DECL_ca category_level
+      class CLASS_DECL_ca2 category_level
       {
       public:
 

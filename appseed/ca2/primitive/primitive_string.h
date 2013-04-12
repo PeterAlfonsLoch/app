@@ -1,9 +1,9 @@
 #pragma once
 
 
-CLASS_DECL_ca string_manager * __get_string_manager();
-CLASS_DECL_ca int64_t strtoi(const char * psz);
-CLASS_DECL_ca int64_t strtoi(const wchar_t * psz);
+CLASS_DECL_ca2 string_manager * __get_string_manager();
+CLASS_DECL_ca2 int64_t strtoi(const char * psz);
+CLASS_DECL_ca2 int64_t strtoi(const wchar_t * psz);
 
 
 inline UINT _gen_GetConversionACP()
@@ -127,7 +127,7 @@ class string_trait :
 {
 public:
 
-   CLASS_DECL_ca static string_manager * GetDefaultManager() throw()
+   CLASS_DECL_ca2 static string_manager * GetDefaultManager() throw()
    {
       static string_manager * s_pdefaultManager = __get_string_manager();
       return s_pdefaultManager;
@@ -142,7 +142,7 @@ class fixed_alloc_array;
 
 
 
-class CLASS_DECL_ca string :
+class CLASS_DECL_ca2 string :
    public simple_string
 #if defined(LINUX)
    , public string_format_printer
@@ -631,21 +631,21 @@ public:
    return( TRUE );
    }*/
 
-   friend string CLASS_DECL_ca operator+(const string & str1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,const char * psz2 );
-   friend string CLASS_DECL_ca operator+(const char * psz1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,wchar_t ch2 );
-   friend string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,char ch2 );
-   friend string CLASS_DECL_ca operator+(char ch1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,int32_t ch2 );
-   friend string CLASS_DECL_ca operator+(int32_t ch1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,int64_t ch2 );
-   friend string CLASS_DECL_ca operator+(int64_t ch1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const var & var, const char * psz);
-   friend string CLASS_DECL_ca operator+(const char * psz, const var & var);
-   friend string CLASS_DECL_ca operator+(const var & var, const string & str);
-   friend string CLASS_DECL_ca operator+(const string & str, const var & var);
+   friend string CLASS_DECL_ca2 operator+(const string & str1,const string & str2 );
+   friend string CLASS_DECL_ca2 operator+(const string & str1,const char * psz2 );
+   friend string CLASS_DECL_ca2 operator+(const char * psz1,const string & str2 );
+   friend string CLASS_DECL_ca2 operator+(const string & str1,wchar_t ch2 );
+   friend string CLASS_DECL_ca2 operator+(wchar_t ch1,const string & str2 );
+   friend string CLASS_DECL_ca2 operator+(const string & str1,char ch2 );
+   friend string CLASS_DECL_ca2 operator+(char ch1,const string & str2 );
+   friend string CLASS_DECL_ca2 operator+(const string & str1,int32_t ch2 );
+   friend string CLASS_DECL_ca2 operator+(int32_t ch1,const string & str2 );
+   friend string CLASS_DECL_ca2 operator+(const string & str1,int64_t ch2 );
+   friend string CLASS_DECL_ca2 operator+(int64_t ch1,const string & str2 );
+   friend string CLASS_DECL_ca2 operator+(const var & var, const char * psz);
+   friend string CLASS_DECL_ca2 operator+(const char * psz, const var & var);
+   friend string CLASS_DECL_ca2 operator+(const var & var, const string & str);
+   friend string CLASS_DECL_ca2 operator+(const string & str, const var & var);
 
 
 
@@ -878,7 +878,7 @@ inline void string_composite::set_string(const char * psz)
       m_pinterface->set_string(psz);
 }
 
-class CLASS_DECL_ca const_empty_string :
+class CLASS_DECL_ca2 const_empty_string :
    public string_interface
 {
 public:
@@ -892,8 +892,8 @@ public:
 
 namespace ca
 {
-   extern CLASS_DECL_ca const_empty_string g_strEmpty;
-   CLASS_DECL_ca string_interface & empty_string();
+   extern CLASS_DECL_ca2 const_empty_string g_strEmpty;
+   CLASS_DECL_ca2 string_interface & empty_string();
 }
 
 #define BAD_WCHAR ((wchar_t)(0xFFFF))
@@ -901,14 +901,14 @@ namespace ca
 /// macro - number of elements in array
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
-#include "ca/x/x_charcategory.h"
-#include "ca/ca/ca_bit.h"
-#include "ca/collection/collection_bit_array.h"
+#include "x/x_charcategory.h"
+#include "ca/ca_bit.h"
+#include "collection/collection_bit_array.h"
 
-#include "ca/ca/ca_ch.h"
-#include "ca/ca/ca_ch_class.h"
-#include "ca/ca/ca_international.h"
-#include "ca/ca/ca_str.h"
+#include "ca/ca_ch.h"
+#include "ca/ca_ch_class.h"
+#include "ca/ca_international.h"
+#include "ca/ca_str.h"
 
 inline bool id::operator == (const string & str) const
 {
@@ -1066,7 +1066,7 @@ inline bool id::is_empty() const
    return is_null() || (is_text() && (m_pstr == ::null() || m_pstr->is_empty()));
 }
 
-inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str)
+inline CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, const string & str)
 {
    if(pid->is_null())
    {
@@ -1111,7 +1111,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str)
    }
 }
 
-inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
+inline CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, const char * psz)
 {
    if(pid->is_null())
    {
@@ -1156,7 +1156,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
    }
 }
 
-inline CLASS_DECL_ca int_ptr id_strcmp(const id * pid1, const id * pid2)
+inline CLASS_DECL_ca2 int_ptr id_strcmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;
@@ -1204,7 +1204,7 @@ simple_string( string_trait::GetDefaultManager() )
 }
 
 
-#include "ca/ca/ca_str2.h"
+#include "ca/ca_str2.h"
 
 
 
@@ -1238,7 +1238,7 @@ inline int32_t string::CompareNoCase(const char * psz ) const RELEASENOTHROW
 }
 
 
-inline   string CLASS_DECL_ca operator+(const string & str1,const string & str2 )
+inline   string CLASS_DECL_ca2 operator+(const string & str1,const string & str2 )
 {
    string strResult( str1.GetManager() );
 
@@ -1247,7 +1247,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,const string & str2 
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(const string & str1,const char * psz2 )
+inline   string CLASS_DECL_ca2 operator+(const string & str1,const char * psz2 )
 {
    string strResult( str1.GetManager() );
 
@@ -1256,7 +1256,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,const char * psz2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(const char * psz1,const string & str2 )
+inline   string CLASS_DECL_ca2 operator+(const char * psz1,const string & str2 )
 {
    string strResult( str2.GetManager() );
 
@@ -1265,7 +1265,7 @@ inline   string CLASS_DECL_ca operator+(const char * psz1,const string & str2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(const string & str1,wchar_t ch2 )
+inline   string CLASS_DECL_ca2 operator+(const string & str1,wchar_t ch2 )
 {
    string strResult( str1.GetManager() );
    char chTemp = char( ch2 );
@@ -1275,7 +1275,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,wchar_t ch2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(const string & str1,char ch2 )
+inline   string CLASS_DECL_ca2 operator+(const string & str1,char ch2 )
 {
    string strResult( str1.GetManager() );
    char chTemp = char( ch2 );
@@ -1285,7 +1285,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,char ch2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 )
+inline   string CLASS_DECL_ca2 operator+(wchar_t ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
    char chTemp = char( ch1 );
@@ -1295,7 +1295,7 @@ inline   string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(char ch1,const string & str2 )
+inline   string CLASS_DECL_ca2 operator+(char ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
    char chTemp = char( ch1 );
@@ -1306,7 +1306,7 @@ inline   string CLASS_DECL_ca operator+(char ch1,const string & str2 )
 }
 
 
-inline   string CLASS_DECL_ca operator+ (const string & str1, int32_t i2)
+inline   string CLASS_DECL_ca2 operator+ (const string & str1, int32_t i2)
 {
 
    string strResult( str1.GetManager() );
@@ -1316,7 +1316,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int32_t i2)
    return strResult;
 }
 
-inline   string CLASS_DECL_ca operator+ (int32_t i1, const string & str2)
+inline   string CLASS_DECL_ca2 operator+ (int32_t i1, const string & str2)
 {
 
    string strResult( str2.GetManager() );
@@ -1326,7 +1326,7 @@ inline   string CLASS_DECL_ca operator+ (int32_t i1, const string & str2)
    return strResult;
 }
 
-inline   string CLASS_DECL_ca operator+ (const string & str1, int64_t i2)
+inline   string CLASS_DECL_ca2 operator+ (const string & str1, int64_t i2)
 {
 
    string strResult( str1.GetManager() );
@@ -1336,7 +1336,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int64_t i2)
    return strResult;
 }
 
-inline   string CLASS_DECL_ca operator+ (int64_t i1, const string & str2)
+inline   string CLASS_DECL_ca2 operator+ (int64_t i1, const string & str2)
 {
 
    string strResult( str2.GetManager() );
@@ -1535,47 +1535,47 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
 }
 
 
-inline bool CLASS_DECL_ca operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
-inline bool CLASS_DECL_ca operator==(const char *  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_ca operator==(const wchar_t *  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_ca operator==(char   ch                      , const string & str )  { return str  == ch  ; }
-inline bool CLASS_DECL_ca operator==(wchar_t   ch                      , const string & str )  { return str  == ch  ; }
-inline bool CLASS_DECL_ca operator==(int32_t i                       , const string & str )  { return str  == i   ; }
+inline bool CLASS_DECL_ca2 operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
+inline bool CLASS_DECL_ca2 operator==(const char *  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_ca2 operator==(const wchar_t *  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_ca2 operator==(char   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_ca2 operator==(wchar_t   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_ca2 operator==(int32_t i                       , const string & str )  { return str  == i   ; }
 
-inline bool CLASS_DECL_ca operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
-inline bool CLASS_DECL_ca operator>(const char * psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_ca operator>(const wchar_t * psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_ca operator>(char ch                        , const string & str  )   { return str  < ch  ; }
-inline bool CLASS_DECL_ca operator>(wchar_t ch                        , const string & str  )   { return str  < ch  ; }
-inline bool CLASS_DECL_ca operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
+inline bool CLASS_DECL_ca2 operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
+inline bool CLASS_DECL_ca2 operator>(const char * psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_ca2 operator>(const wchar_t * psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_ca2 operator>(char ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_ca2 operator>(wchar_t ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_ca2 operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
 
-inline bool CLASS_DECL_ca operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
-inline bool CLASS_DECL_ca operator<(const char * psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_ca operator<(const wchar_t * psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_ca operator<(char ch                        , const string & str  )   { return str  > ch  ; }
-inline bool CLASS_DECL_ca operator<(wchar_t ch                        , const string & str  )   { return str  > ch  ; }
-inline bool CLASS_DECL_ca operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
+inline bool CLASS_DECL_ca2 operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
+inline bool CLASS_DECL_ca2 operator<(const char * psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_ca2 operator<(const wchar_t * psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_ca2 operator<(char ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_ca2 operator<(wchar_t ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_ca2 operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
 
-inline bool CLASS_DECL_ca operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
-inline bool CLASS_DECL_ca operator!=(const char * psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_ca operator!=(const wchar_t * psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_ca operator!=(char ch,const string & str)                        { return !::operator==(ch, str); }
-inline bool CLASS_DECL_ca operator!=(wchar_t ch,const string & str)                        { return !::operator==(ch, str); }
-inline bool CLASS_DECL_ca operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
+inline bool CLASS_DECL_ca2 operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
+inline bool CLASS_DECL_ca2 operator!=(const char * psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_ca2 operator!=(const wchar_t * psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_ca2 operator!=(char ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_ca2 operator!=(wchar_t ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_ca2 operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
 
-inline bool CLASS_DECL_ca operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
-inline bool CLASS_DECL_ca operator>=(const char * psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_ca operator>=(const wchar_t * psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_ca operator>=(char ch,const string & str)                        { return !::operator<(ch, str); }
-inline bool CLASS_DECL_ca operator>=(wchar_t ch,const string & str)                        { return !::operator<(ch, str); }
-inline bool CLASS_DECL_ca operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
+inline bool CLASS_DECL_ca2 operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
+inline bool CLASS_DECL_ca2 operator>=(const char * psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_ca2 operator>=(const wchar_t * psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_ca2 operator>=(char ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_ca2 operator>=(wchar_t ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_ca2 operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
 
-inline bool CLASS_DECL_ca operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
-inline bool CLASS_DECL_ca operator<=(const char * psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_ca operator<=(const wchar_t * psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_ca operator<=(char ch,const string & str)                        { return !::operator>(ch, str); }
-inline bool CLASS_DECL_ca operator<=(wchar_t ch,const string & str)                        { return !::operator>(ch, str); }
-inline bool CLASS_DECL_ca operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
+inline bool CLASS_DECL_ca2 operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
+inline bool CLASS_DECL_ca2 operator<=(const char * psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_ca2 operator<=(const wchar_t * psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_ca2 operator<=(char ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_ca2 operator<=(wchar_t ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_ca2 operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 
 
 

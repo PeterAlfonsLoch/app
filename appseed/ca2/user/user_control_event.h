@@ -19,7 +19,7 @@ namespace user
       event_after_change_text,
    };
 
-   class CLASS_DECL_ca control_event
+   class CLASS_DECL_ca2 control_event
    {
    public:
       control_event();

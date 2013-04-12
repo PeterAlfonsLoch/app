@@ -80,7 +80,7 @@ namespace ca
    class system;
 
 
-   class CLASS_DECL_ca ca :
+   class CLASS_DECL_ca2 ca :
       virtual public ::ca::c
    {
    public:
@@ -147,7 +147,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca allocator :
+   class CLASS_DECL_ca2 allocator :
       virtual public ::ca::ca
    {
    public:
@@ -156,7 +156,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca allocatorsp :
+   class CLASS_DECL_ca2 allocatorsp :
       public sp(allocator)
    {
    public:

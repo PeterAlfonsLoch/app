@@ -4,7 +4,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_ca virtual_memory :
+   class CLASS_DECL_ca2 virtual_memory :
       public ::primitive::memory_base
    {
    public:

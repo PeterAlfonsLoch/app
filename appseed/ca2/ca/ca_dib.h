@@ -15,7 +15,7 @@ namespace ca
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_ca dib :
+   class CLASS_DECL_ca2 dib :
       virtual public ::ca::object,
       virtual public ::ca::byte_serializable
    {
@@ -192,7 +192,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca dib_sp :
+   class CLASS_DECL_ca2 dib_sp :
       public smart_pointer < dib >
    {
    public:
@@ -213,7 +213,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca dibmap :
+   class CLASS_DECL_ca2 dibmap :
       virtual public map < size, size, ::ca::dib_sp, ::ca::dib_sp >
    {
    public:

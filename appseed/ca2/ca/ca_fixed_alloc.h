@@ -4,7 +4,7 @@
 struct plex;
 
 
-class CLASS_DECL_ca fixed_alloc_no_sync
+class CLASS_DECL_ca2 fixed_alloc_no_sync
 {
 public:
 
@@ -63,7 +63,7 @@ inline void fixed_alloc_no_sync::Free(void * p)
 
 
 
-class CLASS_DECL_ca fixed_alloc_sync
+class CLASS_DECL_ca2 fixed_alloc_sync
 {
 public:
 
@@ -138,7 +138,7 @@ inline void fixed_alloc_sync::Free(void * p)
 }
 
 
-class CLASS_DECL_ca fixed_alloc
+class CLASS_DECL_ca2 fixed_alloc
 {
 public:
 
@@ -201,7 +201,7 @@ inline void fixed_alloc::Free(void * p)
 
 
 
-class CLASS_DECL_ca fixed_alloc_array :
+class CLASS_DECL_ca2 fixed_alloc_array :
    public simple_array < fixed_alloc * >
 {
 public:
@@ -294,4 +294,4 @@ fixed_alloc_no_sync class_name::s_alloc(sizeof(class_name), block_size) \
 */
 
 
-extern CLASS_DECL_ca fixed_alloc_array g_fixedalloca;
+extern CLASS_DECL_ca2 fixed_alloc_array g_fixedalloca;

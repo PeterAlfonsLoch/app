@@ -10,7 +10,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca out_buffer_exception: 
+   class CLASS_DECL_ca2 out_buffer_exception: 
       virtual public system_exception
    {
    public:
@@ -24,7 +24,7 @@ namespace ca
       }
    };
 
-   class CLASS_DECL_ca out_buffer :
+   class CLASS_DECL_ca2 out_buffer :
       virtual public ::ca::object
    {
    public:

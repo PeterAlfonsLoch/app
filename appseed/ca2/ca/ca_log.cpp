@@ -91,7 +91,7 @@ namespace ca
 
 //   extern sp(::ca::application) g_papp;
 
-   CLASS_DECL_ca int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_ca2 int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {
       #ifdef WIN32
 

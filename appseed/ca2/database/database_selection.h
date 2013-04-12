@@ -7,7 +7,7 @@
 namespace database
 {
 
-   class CLASS_DECL_ca selection
+   class CLASS_DECL_ca2 selection
    {
    public:
 

@@ -12,7 +12,7 @@ namespace ca
    class byte_output_stream;
 
 
-   class CLASS_DECL_ca byte_serializable :
+   class CLASS_DECL_ca2 byte_serializable :
       virtual public ::ca::ca
    {
    public:

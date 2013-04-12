@@ -3,7 +3,7 @@
 
 #if defined(WINDOWS)
 
-CLASS_DECL_ca bool IsWow64();
+CLASS_DECL_ca2 bool IsWow64();
 
 #endif
 
@@ -18,12 +18,12 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca file_system :
+   class CLASS_DECL_ca2 file_system :
       public ::ca::object
    {
    public:
 
-      class CLASS_DECL_ca path :
+      class CLASS_DECL_ca2 path :
          virtual public ::ca::object
       {
       public:

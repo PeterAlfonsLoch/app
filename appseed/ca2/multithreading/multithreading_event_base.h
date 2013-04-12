@@ -7,7 +7,7 @@
 
 
 /// This class represents waitables which can be put into a event_collection.
-class CLASS_DECL_ca event_base :
+class CLASS_DECL_ca2 event_base :
    virtual public waitable
 {
 public:

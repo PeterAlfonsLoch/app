@@ -11,7 +11,7 @@ struct FIBITMAP;
 
 class image_list;
 
-class CLASS_DECL_ca imaging :
+class CLASS_DECL_ca2 imaging :
    virtual public ::ca::object
 {
 public:

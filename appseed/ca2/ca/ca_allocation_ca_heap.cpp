@@ -1,17 +1,17 @@
 #include "framework.h"
 
 
-extern CLASS_DECL_ca plex_heap_alloc_array g_heap;
+extern CLASS_DECL_ca2 plex_heap_alloc_array g_heap;
 
 
-CLASS_DECL_ca void * ca2_heap_alloc(size_t size)
+CLASS_DECL_ca2 void * ca2_heap_alloc(size_t size)
 {
    size_t * psize = (size_t *) g_heap.alloc(size + sizeof(size_t));
    psize[0] = size + sizeof(size_t);
    return &psize[1];
 }
 
-CLASS_DECL_ca void * ca2_heap_realloc(void * pvoidOld, size_t size)
+CLASS_DECL_ca2 void * ca2_heap_realloc(void * pvoidOld, size_t size)
 {
    size_t * psize = (size_t *) g_heap.realloc(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t));
    psize[0] = size + sizeof(size_t);
@@ -19,7 +19,7 @@ CLASS_DECL_ca void * ca2_heap_realloc(void * pvoidOld, size_t size)
 }
 
 
-CLASS_DECL_ca void ca2_heap_free(void * pvoid)
+CLASS_DECL_ca2 void ca2_heap_free(void * pvoid)
 {
    return g_heap.free(&((size_t *)pvoid)[-1], ((size_t *)pvoid)[-1]);
 }
@@ -27,7 +27,7 @@ CLASS_DECL_ca void ca2_heap_free(void * pvoid)
 #define LAST_MEM_FILE_AND_LINE 0
 
 
-CLASS_DECL_ca void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+CLASS_DECL_ca2 void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
 #ifdef MEMDLEAK
    size_t * psize = (size_t *) g_heap.alloc_dbg(size + sizeof(size_t), nBlockUse, pszFileName, iLine);
@@ -50,7 +50,7 @@ CLASS_DECL_ca void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const ch
 #endif
 }
 
-CLASS_DECL_ca void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t nBlockUse, const char * szFileName, int32_t iLine)
+CLASS_DECL_ca2 void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t nBlockUse, const char * szFileName, int32_t iLine)
 {
 #ifdef MEMDLEAK
    size_t * psize = (size_t *) g_heap.realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
@@ -73,7 +73,7 @@ CLASS_DECL_ca void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t 
 }
 
 
-CLASS_DECL_ca void ca2_heap_free_dbg(void * pvoid)
+CLASS_DECL_ca2 void ca2_heap_free_dbg(void * pvoid)
 {
 #ifdef MEMDLEAK
    return g_heap.free_dbg(&((size_t *)pvoid)[-1], ((size_t *)pvoid)[-1]);
@@ -97,12 +97,12 @@ CLASS_DECL_ca void ca2_heap_free_dbg(void * pvoid)
 
 static mutex * s_pmutexHeap = ::null();
 
-CLASS_DECL_ca void set_heap_mutex(mutex * pmutex)
+CLASS_DECL_ca2 void set_heap_mutex(mutex * pmutex)
 {
    s_pmutexHeap = pmutex;
 }
 
-CLASS_DECL_ca mutex * get_heap_mutex()
+CLASS_DECL_ca2 mutex * get_heap_mutex()
 {
    return s_pmutexHeap;
 }

@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   class CLASS_DECL_ca server :
+   class CLASS_DECL_ca2 server :
       virtual public ::ca::object
    {
    public:

@@ -213,8 +213,8 @@ namespace ca
 #endif
    }
 
-   CLASS_DECL_ca int32_t get_errno();
-   CLASS_DECL_ca void set_errno(int32_t _Value);
+   CLASS_DECL_ca2 int32_t get_errno();
+   CLASS_DECL_ca2 void set_errno(int32_t _Value);
 
 
 

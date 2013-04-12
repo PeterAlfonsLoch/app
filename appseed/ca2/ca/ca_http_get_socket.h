@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca http_get_socket : 
+   class CLASS_DECL_ca2 http_get_socket : 
       public ::sockets::http_get_socket
    {
    public:

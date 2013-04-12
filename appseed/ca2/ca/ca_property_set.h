@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca property_set :
+   class CLASS_DECL_ca2 property_set :
       public ::ca::object,
       public ::ca::byte_serializable
    {
@@ -183,7 +183,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca relation_set :
+   class CLASS_DECL_ca2 relation_set :
       public property_set
    {
    public:
@@ -196,7 +196,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca PropertySignalObject : public signal_object
+   class CLASS_DECL_ca2 PropertySignalObject : public signal_object
    {
    public:
 

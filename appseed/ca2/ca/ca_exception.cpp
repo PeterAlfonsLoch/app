@@ -12,7 +12,7 @@ namespace ca
       delete this;
    }
 
-   void CLASS_DECL_ca rethrow(exception * pe)
+   void CLASS_DECL_ca2 rethrow(exception * pe)
    {
       throw pe;
    }

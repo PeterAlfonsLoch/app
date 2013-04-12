@@ -10,7 +10,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca process
+   class CLASS_DECL_ca2 process
    {
    public:
 

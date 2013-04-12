@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca compress :
+   class CLASS_DECL_ca2 compress :
       public ::ca::object
    {
    public:
@@ -49,10 +49,10 @@ namespace ca
 
 
 #ifdef WINDOWS
-CLASS_DECL_ca int32_t my_open(const char * psz, int32_t i);
-CLASS_DECL_ca FILE * my_fopen(const char * psz, const char * pszMode);
+CLASS_DECL_ca2 int32_t my_open(const char * psz, int32_t i);
+CLASS_DECL_ca2 FILE * my_fopen(const char * psz, const char * pszMode);
 #else
-CLASS_DECL_ca void _get_errno(int32_t * perrno);
-CLASS_DECL_ca int32_t my_open(const char * psz, int32_t i);
-CLASS_DECL_ca FILE * my_fopen(const char * psz, const char * pszMode);
+CLASS_DECL_ca2 void _get_errno(int32_t * perrno);
+CLASS_DECL_ca2 int32_t my_open(const char * psz, int32_t i);
+CLASS_DECL_ca2 FILE * my_fopen(const char * psz, const char * pszMode);
 #endif

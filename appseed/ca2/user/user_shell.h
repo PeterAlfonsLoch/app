@@ -8,7 +8,7 @@ namespace filemanager
 {
 
 #ifdef WINDOWSEX
-   class CLASS_DECL_ca Shell
+   class CLASS_DECL_ca2 Shell
    {
    public:
 
@@ -72,7 +72,7 @@ namespace filemanager
 
 
 
-      class CLASS_DECL_ca ImageSet :
+      class CLASS_DECL_ca2 ImageSet :
          virtual public ::ca::object
       {
       protected:
@@ -133,25 +133,25 @@ namespace filemanager
       };
 
 
-//      string CLASS_DECL_ca _017FilePathGetParent(const char * lpcsz);
+//      string CLASS_DECL_ca2 _017FilePathGetParent(const char * lpcsz);
 
 #ifdef WINDOWSEX
-      HICON CLASS_DECL_ca CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
-      bool CLASS_DECL_ca _017HasSubFolder(sp(::ca::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
+      HICON CLASS_DECL_ca2 CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
+      bool CLASS_DECL_ca2 _017HasSubFolder(sp(::ca::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
 #endif
-      EFolder CLASS_DECL_ca GetFolderType(sp(::ca::application) papp, const wchar_t * lpcszPath);
-      EFolder CLASS_DECL_ca GetFolderType(sp(::ca::application) papp, const char * lpcszPath);
-//      void CLASS_DECL_ca GetChildren(stringa & stra, const char * lpcszPath);
+      EFolder CLASS_DECL_ca2 GetFolderType(sp(::ca::application) papp, const wchar_t * lpcszPath);
+      EFolder CLASS_DECL_ca2 GetFolderType(sp(::ca::application) papp, const char * lpcszPath);
+//      void CLASS_DECL_ca2 GetChildren(stringa & stra, const char * lpcszPath);
 #ifdef WINDOWSEX
-      LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetLast(LPITEMIDLIST lpiidl);
-      int32_t CLASS_DECL_ca _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
-      LPITEMIDLIST CLASS_DECL_ca _017ItemIDListDup(LPITEMIDLIST lpiidl);
-      LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl);
-      LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl);
-      bool CLASS_DECL_ca _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2);
-      void CLASS_DECL_ca _017ItemIDListParsePath(LPITEMIDLIST * lpiidl, const char * lpcsz);
+      LPITEMIDLIST CLASS_DECL_ca2 _017ItemIDListGetLast(LPITEMIDLIST lpiidl);
+      int32_t CLASS_DECL_ca2 _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
+      LPITEMIDLIST CLASS_DECL_ca2 _017ItemIDListDup(LPITEMIDLIST lpiidl);
+      LPITEMIDLIST CLASS_DECL_ca2 _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl);
+      LPITEMIDLIST CLASS_DECL_ca2 _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl);
+      bool CLASS_DECL_ca2 _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2);
+      void CLASS_DECL_ca2 _017ItemIDListParsePath(LPITEMIDLIST * lpiidl, const char * lpcsz);
 
-      void CLASS_DECL_ca _017ItemIDListFree(LPITEMIDLIST lpiidl);
+      void CLASS_DECL_ca2 _017ItemIDListFree(LPITEMIDLIST lpiidl);
 #endif
    } // namespace _shell
 

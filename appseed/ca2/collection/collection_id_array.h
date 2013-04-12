@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-class CLASS_DECL_ca id_array :
+class CLASS_DECL_ca2 id_array :
    virtual protected ::array < id >
 {
 public:

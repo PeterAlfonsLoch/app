@@ -6,7 +6,7 @@ namespace database
    class client;
    class server;
 
-   class CLASS_DECL_ca update_hint  :
+   class CLASS_DECL_ca2 update_hint  :
       virtual public ::ca::object
    {
    public:

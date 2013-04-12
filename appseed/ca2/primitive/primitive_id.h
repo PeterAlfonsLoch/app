@@ -17,7 +17,7 @@ namespace ca
    class type_info;
 }
 
-class CLASS_DECL_ca id
+class CLASS_DECL_ca2 id
 {
 public:
 
@@ -132,11 +132,11 @@ public:
    inline bool is_text() const;
 
 
-   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid, int_ptr user);
-   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz);
-   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str);
-   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid1, const id * pid2);
-   friend CLASS_DECL_ca int_ptr id_strcmp(const id * pid1, const id * pid2);
+   friend CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, int_ptr user);
+   friend CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, const char * psz);
+   friend CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, const string & str);
+   friend CLASS_DECL_ca2 int_ptr id_cmp(const id * pid1, const id * pid2);
+   friend CLASS_DECL_ca2 int_ptr id_strcmp(const id * pid1, const id * pid2);
    friend class id_space;
    friend class sp(::ca::type_info);
 
@@ -337,7 +337,7 @@ inline bool id::is_text() const
 }
 
 
-inline CLASS_DECL_ca bool id_is_number(const char * psz)
+inline CLASS_DECL_ca2 bool id_is_number(const char * psz)
 {
    if(*psz == '\0')
       return false;
@@ -350,17 +350,17 @@ inline CLASS_DECL_ca bool id_is_number(const char * psz)
    return true;
 }
 
-inline CLASS_DECL_ca bool id_is_text(const char * psz)
+inline CLASS_DECL_ca2 bool id_is_text(const char * psz)
 {
    return !id_is_number(psz);
 }
 
-inline CLASS_DECL_ca bool id_is_null(const char * psz)
+inline CLASS_DECL_ca2 bool id_is_null(const char * psz)
 {
    return psz == ::null();
 }
 
-inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, int_ptr i)
+inline CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, int_ptr i)
 {
    if(pid->is_null())
    {
@@ -378,7 +378,7 @@ inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, int_ptr i)
 
 
 
-inline CLASS_DECL_ca int_ptr id_cmp(const id * pid1, const id * pid2)
+inline CLASS_DECL_ca2 int_ptr id_cmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;

@@ -5,7 +5,7 @@
 
 #ifdef WINDOWSEX
 
-CLASS_DECL_ca HANDLE g_system_heap()
+CLASS_DECL_ca2 HANDLE g_system_heap()
 {
 
    static HANDLE s_hSystemHeap = HeapCreate(0, 0, 0);
@@ -19,7 +19,7 @@ CLASS_DECL_ca HANDLE g_system_heap()
 static simple_mutex g_mutexSystemHeap;
 
 
-CLASS_DECL_ca void * system_heap_alloc(size_t size)
+CLASS_DECL_ca2 void * system_heap_alloc(size_t size)
 {
 
    mutex_lock lock(g_mutexSystemHeap, true);
@@ -56,7 +56,7 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
 }
 
 
-CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
+CLASS_DECL_ca2 void * system_heap_realloc(void * pvoidOld, size_t size)
 {
    mutex_lock lock(g_mutexSystemHeap, true);
    byte * pOld = (byte *) pvoidOld;
@@ -100,7 +100,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 }
 
 
-CLASS_DECL_ca void system_heap_free(void * pvoid)
+CLASS_DECL_ca2 void system_heap_free(void * pvoid)
 {
 
    mutex_lock lock(g_mutexSystemHeap, true);

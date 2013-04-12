@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca fs_interface
+   class CLASS_DECL_ca2 fs_interface
    {
    public:
       virtual void ls_dir(const char * pszPath, stringa & straName);

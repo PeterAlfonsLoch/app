@@ -8,7 +8,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca process_section :
+   class CLASS_DECL_ca2 process_section :
       public ::ca::section
    {
    public:

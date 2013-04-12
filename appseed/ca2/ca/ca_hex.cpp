@@ -32,7 +32,7 @@ namespace ca
    }
 
 
-   CLASS_DECL_ca int64_t hex::from_char(const char * pszUtf8Char)
+   CLASS_DECL_ca2 int64_t hex::from_char(const char * pszUtf8Char)
    {
       string low = ::ca::ch::to_lower_case(pszUtf8Char);
       int64_t ch = ::ca::ch::uni_index(low);
@@ -52,7 +52,7 @@ namespace ca
    }
 
 
-   CLASS_DECL_ca string hex::lo_from(void * p, primitive::memory_size s)
+   CLASS_DECL_ca2 string hex::lo_from(void * p, primitive::memory_size s)
    {
       string str;
       char * lpsz = str.GetBufferSetLength(s * 2);
@@ -63,7 +63,7 @@ namespace ca
    }
 
 
-   CLASS_DECL_ca string hex::hi_from(void * p, primitive::memory_size s)
+   CLASS_DECL_ca2 string hex::hi_from(void * p, primitive::memory_size s)
    {
       string str;
       char * lpsz = str.GetBufferSetLength(s * 2);

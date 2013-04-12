@@ -1,11 +1,11 @@
 #pragma once
 
-class CLASS_DECL_ca image_list :
+class CLASS_DECL_ca2 image_list :
    virtual public ::ca::object
 {
 public:
 
-   class CLASS_DECL_ca info
+   class CLASS_DECL_ca2 info
    {
    public:
 

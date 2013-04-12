@@ -5,7 +5,7 @@
 
 /*namespace win
 {
-   class CLASS_DECL_ca message
+   class CLASS_DECL_ca2 message
    {
    public:
       sp(::user::interaction)  m_pguie;
@@ -86,7 +86,7 @@ namespace ca
 
 #endif
 
-   class CLASS_DECL_ca heap_item
+   class CLASS_DECL_ca2 heap_item
    {
    public:
 
@@ -141,7 +141,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca heap_item_array :
+   class CLASS_DECL_ca2 heap_item_array :
       public simple_array < heap_item, heap_item >
    {
    public:
@@ -217,7 +217,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca thread_state
+   class CLASS_DECL_ca2 thread_state
    {
    public:
 
@@ -234,7 +234,7 @@ namespace ca
    typedef smart_pointer < thread > thread_sp;
 
 
-   class CLASS_DECL_ca thread :
+   class CLASS_DECL_ca2 thread :
       virtual public ::ca::thread_base,
       virtual public command_target,
       virtual public ::exception::translator,
@@ -542,19 +542,19 @@ namespace ca
 
    };
 
-   CLASS_DECL_ca void thread_alloc_ready(bool bReady);
+   CLASS_DECL_ca2 void thread_alloc_ready(bool bReady);
 
 
 
-   CLASS_DECL_ca thread * get_thread();
-   CLASS_DECL_ca thread_state * get_thread_state();
+   CLASS_DECL_ca2 thread * get_thread();
+   CLASS_DECL_ca2 thread_state * get_thread_state();
 
 
    typedef thread * (* PFN_get_thread)();
    typedef thread_state * (* PFN_get_thread_state)();
 
-   extern CLASS_DECL_ca PFN_get_thread g_pfn_get_thread;
-   extern CLASS_DECL_ca PFN_get_thread_state g_pfn_get_thread_state;
+   extern CLASS_DECL_ca2 PFN_get_thread g_pfn_get_thread;
+   extern CLASS_DECL_ca2 PFN_get_thread_state g_pfn_get_thread_state;
 
 
 

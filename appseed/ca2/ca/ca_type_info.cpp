@@ -206,7 +206,7 @@ namespace ca
 } //  namespace ca
 
 
-CLASS_DECL_ca bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2)
+CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2)
 {
 
 #ifdef WINDOWS
@@ -221,7 +221,7 @@ CLASS_DECL_ca bool operator == (const std_type_info & info1, const sp(::ca::type
 
 }
 
-CLASS_DECL_ca bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2)
+CLASS_DECL_ca2 bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2)
 {
 
    return !operator == (info1, info2);

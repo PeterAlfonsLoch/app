@@ -8,7 +8,7 @@ namespace ca
    class graphics;
 
 
-   class CLASS_DECL_ca pen :
+   class CLASS_DECL_ca2 pen :
       virtual public ::ca::graphics_object
    {
    public:
@@ -64,7 +64,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca pen_sp :
+   class CLASS_DECL_ca2 pen_sp :
       virtual public smart_pointer < pen >
    {
    public:

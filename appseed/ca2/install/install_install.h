@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca install :
+   class CLASS_DECL_ca2 install :
       public ::ca::object
    {
    public:

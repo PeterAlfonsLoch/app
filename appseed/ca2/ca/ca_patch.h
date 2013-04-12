@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca patch :
+   class CLASS_DECL_ca2 patch :
       public ::ca::object
    {
    public:

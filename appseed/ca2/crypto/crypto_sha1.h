@@ -75,7 +75,7 @@ namespace crypto
       const uint32_t kBlockSizeInWords = (kBlockSize >> 2);
       const uint32_t kDigestSizeInWords = (kDigestSize >> 2);
 
-      class CLASS_DECL_ca CContextBase
+      class CLASS_DECL_ca2 CContextBase
       {
       protected:
          sha1_ctx_t     m_ctx;
@@ -100,7 +100,7 @@ namespace crypto
          void update(const void * msg, int32_t iSize);
       };
 
-      class CLASS_DECL_ca CContextBase2: public CContextBase
+      class CLASS_DECL_ca2 CContextBase2: public CContextBase
       {
       protected:
          uint32_t _count2;
@@ -110,7 +110,7 @@ namespace crypto
          void Init() { CContextBase::Init(); _count2 = 0; }
       };
 
-      class CLASS_DECL_ca CContext: public CContextBase2
+      class CLASS_DECL_ca2 CContext: public CContextBase2
       {
       public:
          void Update(const void * data, size_t size);
@@ -118,7 +118,7 @@ namespace crypto
          void Final(void * digest);
       };
 
-      class CLASS_DECL_ca CContext32: public CContextBase2
+      class CLASS_DECL_ca2 CContext32: public CContextBase2
       {
       public:
          void Update(const uint32_t *data, size_t size);

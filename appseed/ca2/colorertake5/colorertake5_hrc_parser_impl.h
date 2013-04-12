@@ -11,7 +11,7 @@ namespace colorertake5
        realtime text syntax parsing.
        @ingroup colorer_parsers
    */
-   class CLASS_DECL_ca HRCParserImpl : public HRCParser
+   class CLASS_DECL_ca2 HRCParserImpl : public HRCParser
    {
    public:
       HRCParserImpl(sp(::ca::application) papp);

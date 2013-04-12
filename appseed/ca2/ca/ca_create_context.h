@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "ca/ca/ca_command.h"
-#include "ca/user/user_create_context.h"
+#include "ca/ca_command.h"
+#include "user/user_create_context.h"
 
 
 template < class TYPE, class BASE_ARRAY = array < TYPE > >
@@ -61,7 +61,7 @@ namespace ca
 
    class command_line;
 
-   class CLASS_DECL_ca command_line_sp :
+   class CLASS_DECL_ca2 command_line_sp :
       public ::ca::smart_pointer < command_line >
    {
    public:
@@ -88,7 +88,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca create_context :
+   class CLASS_DECL_ca2 create_context :
       virtual public ::ca::command
    {
    public:

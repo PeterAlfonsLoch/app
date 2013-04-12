@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/database/database_key.h"
+#include "database/database_key.h"
 
 
 namespace database
@@ -12,7 +12,7 @@ namespace database
    class update_hint;
 
 
-   class CLASS_DECL_ca change_event :
+   class CLASS_DECL_ca2 change_event :
       public ::ca::signal_object
    {
    public:

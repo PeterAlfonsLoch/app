@@ -4,7 +4,7 @@
 class string_manager;
 
 
-struct CLASS_DECL_ca string_data
+struct CLASS_DECL_ca2 string_data
 {
    string_manager * pstringmanager;  // string manager for this string_data
    strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating null)
@@ -24,7 +24,7 @@ struct CLASS_DECL_ca string_data
 
 
 
-class CLASS_DECL_ca nil_string_data :
+class CLASS_DECL_ca2 nil_string_data :
    public string_data
 {
 public:
@@ -234,8 +234,8 @@ namespace ca
 {
    namespace str
    {
-      CLASS_DECL_ca inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
-      CLASS_DECL_ca inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
+      CLASS_DECL_ca2 inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
+      CLASS_DECL_ca2 inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
    } // namespace str
 } // namespace ca
 
@@ -247,10 +247,10 @@ namespace ca
    namespace international
    {
 
-      CLASS_DECL_ca strsize          UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz);
-      CLASS_DECL_ca bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz);
-      CLASS_DECL_ca const char * UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
-      CLASS_DECL_ca
+      CLASS_DECL_ca2 strsize          UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz);
+      CLASS_DECL_ca2 bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz);
+      CLASS_DECL_ca2 const char * UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
+      CLASS_DECL_ca2
       inline const char * _001GetUtf8(const char * psz)
       {
          return _strdup(psz);
@@ -274,7 +274,7 @@ extern "C"
 
       struct string_data;
 
-/*      class CLASS_DECL_ca string_manager
+/*      class CLASS_DECL_ca2 string_manager
       {
    public:
       // allocate a new string_data
@@ -367,7 +367,7 @@ static_string& operator=( const static_string& str ) NOTHROW;
 #define _SW( psz ) ::ca::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
-class CLASS_DECL_ca char_traits_base
+class CLASS_DECL_ca2 char_traits_base
 {
 public:
 };
@@ -401,7 +401,7 @@ public:
       class string_buffer;
 
 
-class CLASS_DECL_ca simple_string
+class CLASS_DECL_ca2 simple_string
 {
 public:
 
@@ -1116,7 +1116,7 @@ public:
 
 };
 
-class CLASS_DECL_ca string_buffer
+class CLASS_DECL_ca2 string_buffer
 {
 public:
 
@@ -1256,7 +1256,7 @@ inline void string_data::unlock() RELEASENOTHROW
 class string;
 
 
-#include "wstringtou.h"
+#include "primitive_wstringtou.h"
 
 
 

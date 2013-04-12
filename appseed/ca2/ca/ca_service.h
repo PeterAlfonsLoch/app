@@ -2,7 +2,7 @@
 
 namespace ca
 {
-   class CLASS_DECL_ca service :
+   class CLASS_DECL_ca2 service :
       public ::ca::object
    {
    public:

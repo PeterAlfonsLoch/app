@@ -9,7 +9,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca in_buffer_exception : 
+   class CLASS_DECL_ca2 in_buffer_exception : 
       virtual public system_exception
    {
    public:
@@ -23,7 +23,7 @@ namespace ca
       }
    };
 
-   class CLASS_DECL_ca in_buffer :
+   class CLASS_DECL_ca2 in_buffer :
       virtual public ::ca::object
    {
      byte *_buffer;

@@ -41,7 +41,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_ca engine :
+   class CLASS_DECL_ca2 engine :
       virtual public ::ca::ca
    {
    public:

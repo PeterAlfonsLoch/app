@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca error_exception : 
+class CLASS_DECL_ca2 error_exception : 
    virtual public base_exception
 {
    // base class for resource-critical ca API exceptions

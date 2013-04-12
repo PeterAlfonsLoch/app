@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca document_manager : 
+class CLASS_DECL_ca2 document_manager : 
    virtual public ::user::document_request_interface
 {
 public:

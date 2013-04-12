@@ -1,14 +1,14 @@
 #pragma once
 
 
-#include "ca/multithreading/multithreading.h"
-#include "ca/ca/ca_dib.h"
+#include "multithreading/multithreading.h"
+#include "ca/ca_dib.h"
 
 
 namespace user
 {
 
-   class CLASS_DECL_ca buffer :
+   class CLASS_DECL_ca2 buffer :
       virtual public ::ca::signalizable
    {
    public:

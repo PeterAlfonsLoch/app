@@ -8,7 +8,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca type_info :
+   class CLASS_DECL_ca2 type_info :
       virtual public ca
    {
    public:
@@ -60,8 +60,8 @@ namespace ca
 } // namespace ca
 
 
-CLASS_DECL_ca bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2);
-CLASS_DECL_ca bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2);
+CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2);
+CLASS_DECL_ca2 bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2);
 
 
 template<>

@@ -18,7 +18,7 @@ namespace ca
    class command_thread;
 
 
-   class CLASS_DECL_ca command_line :
+   class CLASS_DECL_ca2 command_line :
       virtual public ::ca::object
    {
    public:

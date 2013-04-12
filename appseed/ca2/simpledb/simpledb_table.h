@@ -6,7 +6,7 @@ namespace simpledb
 
    class base;
 
-   class CLASS_DECL_ca table : 
+   class CLASS_DECL_ca2 table : 
       virtual public ::ca::object
    {
    public:

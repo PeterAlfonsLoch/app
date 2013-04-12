@@ -562,7 +562,7 @@ unique_number_sort_array < TYPE >::
 }
 
 
-class CLASS_DECL_ca index_array :
+class CLASS_DECL_ca2 index_array :
    virtual public numeric_array < index >
 {
 public:
@@ -575,7 +575,7 @@ public:
 };
 
 
-class CLASS_DECL_ca count_array :
+class CLASS_DECL_ca2 count_array :
    virtual public numeric_array < count >
 {
 public:
@@ -588,7 +588,7 @@ public:
 };
 
 
-class CLASS_DECL_ca int_array :
+class CLASS_DECL_ca2 int_array :
    virtual public numeric_array < int32_t >
 {
 public:
@@ -601,7 +601,7 @@ public:
 };
 
 
-class CLASS_DECL_ca int64_array :
+class CLASS_DECL_ca2 int64_array :
    virtual public numeric_array < int64_t >
 {
 public:
@@ -613,7 +613,7 @@ public:
    int64_array operator + (const int64_array & inta) const;
 };
 
-class CLASS_DECL_ca uint64_array :
+class CLASS_DECL_ca2 uint64_array :
    virtual public numeric_array < uint64_t >
 {
 public:
@@ -625,7 +625,7 @@ public:
    uint64_array operator + (const uint64_array & inta) const;
 };
 
-class CLASS_DECL_ca unique_int_sort_array :
+class CLASS_DECL_ca2 unique_int_sort_array :
    virtual public unique_number_sort_array < int32_t >
 {
 public:
@@ -638,7 +638,7 @@ public:
 };
 
 
-class CLASS_DECL_ca unique_index_sort_array :
+class CLASS_DECL_ca2 unique_index_sort_array :
    virtual public unique_number_sort_array < index >
 {
 public:
@@ -649,7 +649,7 @@ public:
    unique_index_sort_array operator - (const unique_index_sort_array & inta) const;
    unique_index_sort_array operator + (const unique_index_sort_array & inta) const;
 };
-class CLASS_DECL_ca float_array :
+class CLASS_DECL_ca2 float_array :
    virtual public numeric_array < float >
 {
 public:
@@ -658,7 +658,7 @@ public:
    virtual ~float_array();
 };
 
-class CLASS_DECL_ca double_array :
+class CLASS_DECL_ca2 double_array :
    virtual public numeric_array < double >
 {
 public:
@@ -667,7 +667,7 @@ public:
    virtual ~double_array();
 };
 
-class CLASS_DECL_ca byte_array :
+class CLASS_DECL_ca2 byte_array :
    virtual public numeric_array < byte >
 {
 public:
@@ -675,7 +675,7 @@ public:
 };
 
 
-class CLASS_DECL_ca uint16_array :
+class CLASS_DECL_ca2 uint16_array :
    virtual public numeric_array < uint16_t >
 {
 public:
@@ -684,7 +684,7 @@ public:
 
 
 
-class CLASS_DECL_ca uint32_array :
+class CLASS_DECL_ca2 uint32_array :
    virtual public numeric_array < uint32_t >
 {
 public:
@@ -697,7 +697,7 @@ public:
 
 
 
-class CLASS_DECL_ca uint_ptr_array :
+class CLASS_DECL_ca2 uint_ptr_array :
    virtual public numeric_array < uint_ptr >
 {
 public:
@@ -710,7 +710,7 @@ public:
 
 
 
-class CLASS_DECL_ca uint_array :
+class CLASS_DECL_ca2 uint_array :
    public numeric_array < uint32_t >
 {
 public:

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca base64 :
+   class CLASS_DECL_ca2 base64 :
       virtual public ::ca::object
    {
    protected:

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca simple_tree_data :
+   class CLASS_DECL_ca2 simple_tree_data :
       virtual public tree_data
    {
    public:

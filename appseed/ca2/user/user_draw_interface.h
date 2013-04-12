@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca draw_interface  
+   class CLASS_DECL_ca2 draw_interface  
    {
    public:
 

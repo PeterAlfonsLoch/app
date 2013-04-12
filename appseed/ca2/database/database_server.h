@@ -6,7 +6,7 @@ namespace database
 
    class id;
 
-   class CLASS_DECL_ca server :
+   class CLASS_DECL_ca2 server :
       public client_array
    {
    public:

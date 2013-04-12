@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca buffered_file : 
+   class CLASS_DECL_ca2 buffered_file : 
       public ::ca::file
    {
    public:

@@ -272,7 +272,7 @@ namespace win
 {
 
 
-   CLASS_DECL_ca string error_message(uint32_t dwError)
+   CLASS_DECL_ca2 string error_message(uint32_t dwError)
    {
 
       return get_system_error_message(dwError);

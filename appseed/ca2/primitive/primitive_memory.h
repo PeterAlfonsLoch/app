@@ -8,7 +8,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_ca memory :
+   class CLASS_DECL_ca2 memory :
       public memory_base
    {
    public:

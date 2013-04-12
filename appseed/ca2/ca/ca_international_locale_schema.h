@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      class CLASS_DECL_ca locale_schema : 
+      class CLASS_DECL_ca2 locale_schema : 
          virtual public ::ca::object
       {
       public:

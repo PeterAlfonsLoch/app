@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca string_tokenizer : public string 
+class CLASS_DECL_ca2 string_tokenizer : public string 
 {
 protected:
 

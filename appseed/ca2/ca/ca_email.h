@@ -4,7 +4,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca email :
+   class CLASS_DECL_ca2 email :
       virtual public ::ca::object
    {
    public:

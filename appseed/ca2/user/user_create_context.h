@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/ca_type_info.h"
+#include "ca/ca_type_info.h"
 
 
 class document;
@@ -14,7 +14,7 @@ namespace user
    class interaction;
 
 
-   class CLASS_DECL_ca create_context   // Creation information structure
+   class CLASS_DECL_ca2 create_context   // Creation information structure
       // All fields are optional and may be ::null()
    {
    public:

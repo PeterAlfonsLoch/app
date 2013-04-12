@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca single_lock
+class CLASS_DECL_ca2 single_lock
 {
 public:
 

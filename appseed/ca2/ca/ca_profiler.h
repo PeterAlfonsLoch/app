@@ -15,13 +15,13 @@ namespace ca
 
 #ifdef WINDOWS
 
-      extern CLASS_DECL_ca int64_t g_iFrequency;
+      extern CLASS_DECL_ca2 int64_t g_iFrequency;
 
 #endif
 
-      CLASS_DECL_ca void initialize();
+      CLASS_DECL_ca2 void initialize();
 
-      CLASS_DECL_ca int64_t micros();
+      CLASS_DECL_ca2 int64_t micros();
 
 
       inline float millis()

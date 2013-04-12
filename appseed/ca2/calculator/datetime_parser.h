@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ca parser :
+   class CLASS_DECL_ca2 parser :
       virtual public ::ca::object
    {
    public:

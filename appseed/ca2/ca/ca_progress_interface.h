@@ -15,7 +15,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca progress_interface :
+   class CLASS_DECL_ca2 progress_interface :
       virtual public ::ca::object
    {
    public:

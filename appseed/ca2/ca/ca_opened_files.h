@@ -21,8 +21,8 @@ typedef void (CALLBACK* OF_CALLBACK)(OF_INFO_t OpenedFileInf0, uint_ptr uUserCon
 
 
 
-extern "C" CLASS_DECL_ca void ShowOpenedFiles( LPCWSTR lpPath );
-extern "C" CLASS_DECL_ca void GetOpenedFiles( LPCWSTR lpPath, 
+extern "C" CLASS_DECL_ca2 void ShowOpenedFiles( LPCWSTR lpPath );
+extern "C" CLASS_DECL_ca2 void GetOpenedFiles( LPCWSTR lpPath, 
 													  OF_TYPE Filter,
 													  OF_CALLBACK CallBackProc,
 													  uint_ptr pUserContext );

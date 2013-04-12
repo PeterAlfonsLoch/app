@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca file_set :
+   class CLASS_DECL_ca2 file_set :
       virtual public ::ca::object
    {
    public:

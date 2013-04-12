@@ -8,7 +8,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca cookie :
+   class CLASS_DECL_ca2 cookie :
       virtual public ::ca::ca
    {
    public:
@@ -63,7 +63,7 @@ namespace http
 
 
 
-   class CLASS_DECL_ca cookies :
+   class CLASS_DECL_ca2 cookies :
       public spa(cookie)
    {
    public:

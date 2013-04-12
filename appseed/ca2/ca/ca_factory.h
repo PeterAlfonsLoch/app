@@ -8,7 +8,7 @@ class strid_array;
 class mutex;
 
 
-class CLASS_DECL_ca factory_allocator :
+class CLASS_DECL_ca2 factory_allocator :
    virtual public ::ca::object
 {
 public:
@@ -89,7 +89,7 @@ public:
 };
 
 
-class CLASS_DECL_ca factory_item_base :
+class CLASS_DECL_ca2 factory_item_base :
    virtual public ::ca::object
 {
 public:
@@ -165,7 +165,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca factory :
+   class CLASS_DECL_ca2 factory :
       virtual public ::ca::object
    {
    public:

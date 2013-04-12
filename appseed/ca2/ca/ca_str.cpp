@@ -45,12 +45,12 @@ namespace ca
       return compare_ci(psz1, psz2) == 0;
    }
 
-   string CLASS_DECL_ca str::equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent)
+   string CLASS_DECL_ca2 str::equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent)
    {
       return equals(psz1, psz2) ? pszGetOnEqual : pszGetOnDifferent;
    }
 
-   string CLASS_DECL_ca str::equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent)
+   string CLASS_DECL_ca2 str::equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent)
    {
       return equals_ci(psz1, psz2) ? pszGetOnEqual : pszGetOnDifferent;
    }
@@ -418,7 +418,7 @@ namespace ca
    }
 
 
-   index CLASS_DECL_ca str::find_first(const stringa & straSearch, index & iFound, const string & str, index iStart)
+   index CLASS_DECL_ca2 str::find_first(const stringa & straSearch, index & iFound, const string & str, index iStart)
    {
 
       index iFind = -1;
@@ -449,7 +449,7 @@ namespace ca
 
    }
 
-   string CLASS_DECL_ca str::random_replace(sp(::ca::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   string CLASS_DECL_ca2 str::random_replace(sp(::ca::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
    {
 
       string str(psz);
@@ -1317,7 +1317,7 @@ namespace ca
 
    }
 
-   CLASS_DECL_ca  int_ptr str::to_int_ptr(const char * psz)
+   CLASS_DECL_ca2  int_ptr str::to_int_ptr(const char * psz)
    {
 
 #if defined(_LP64) || defined(_AMD64_)
@@ -2354,7 +2354,7 @@ namespace ca
    }
 
 
-   bool CLASS_DECL_ca str::while_begins_with_chars_eat(string & str, const char * lpcszChars)
+   bool CLASS_DECL_ca2 str::while_begins_with_chars_eat(string & str, const char * lpcszChars)
    {
       int32_t i = 0;
       for(i = 0; i < str.get_length(); i++)
@@ -2366,7 +2366,7 @@ namespace ca
       return i > 0;
    }
 
-   bool CLASS_DECL_ca str::while_begins_with_chars_eat_ci(string & str, const char * lpcszChars) // case insensitive
+   bool CLASS_DECL_ca2 str::while_begins_with_chars_eat_ci(string & str, const char * lpcszChars) // case insensitive
    {
       int32_t i = 0;
       for(i = 0; i < str.get_length(); i++)
@@ -2558,7 +2558,7 @@ namespace ca
    }
 
 
-   CLASS_DECL_ca string          str::to_lower(const char * psz)
+   CLASS_DECL_ca2 string          str::to_lower(const char * psz)
    {
 
       return string(psz).make_lower();
@@ -2566,7 +2566,7 @@ namespace ca
    }
 
 
-   CLASS_DECL_ca string          str::to_upper(const char * psz)
+   CLASS_DECL_ca2 string          str::to_upper(const char * psz)
    {
 
       return string(psz).make_upper();

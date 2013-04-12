@@ -9,15 +9,12 @@
 #pragma warning(disable: 4251)  // using non-exported as public in exported
 
 
-#ifdef WINDOWS
-#ifdef __CA__DLL
-   #define CLASS_DECL_ca  _declspec(dllexport)
+#ifdef _CA2_LIBRARY
+   #define CLASS_DECL_ca2  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_ca  _declspec(dllimport)
+   #define CLASS_DECL_ca2  CLASS_DECL_IMPORT
 #endif
-#else
-   #define CLASS_DECL_ca
-#endif
+
 
 
 
@@ -65,7 +62,7 @@ namespace plane
 
 
 
-#include "ca/api/api_rotate.h"
+#include "api/api_rotate.h"
 
 
 #define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
@@ -76,7 +73,7 @@ namespace plane
 #ifdef WINDOWS
 #include <crtdbg.h>
 #else
-#include "ca/api/api_debug.h"
+#include "api/api_debug.h"
 #endif
 
 
@@ -95,10 +92,10 @@ namespace plane
 #endif
 
 
-#include "ca/primitive/count.h"
+#include "primitive/count.h"
 
 
-#include "ca/api/api.h"
+#include "api/api.h"
 
 
 
@@ -237,19 +234,19 @@ class dump_context;
 #define new DEBUG_NEW
 
 
-#include "ca/exception/exception.h"
+#include "exception/exception.h"
 
 
 
 
-#include "ca/primitive/primitive_numeric_info.h"
+#include "primitive/primitive_numeric_info.h"
 #include "ca_c_number.h"
 
-#include "ca/multithreading/multithreading_wait_result.h"
-#include "ca/primitive/datetime/datetime_duration.h"
+#include "multithreading/multithreading_wait_result.h"
+#include "primitive/datetime/datetime_duration.h"
 #include "ca_request_interface.h"
-#include "ca/multithreading/multithreading_waitable.h"
-#include "ca/primitive/primitive.h"
+#include "multithreading/multithreading_waitable.h"
+#include "primitive/primitive.h"
 
 
 #include "ca_object.h"
@@ -264,7 +261,7 @@ class dump_context;
 #include "ca_plex_heap.h"
 #include "ca_fixed_alloc.h"
 
-#include "ca/primitive/primitive_simple_string.h"
+#include "primitive/primitive_simple_string.h"
 
 #include "ca_ch.h"
 #include "ca_str.h"
@@ -272,16 +269,16 @@ class dump_context;
 #include "ca_hex.h"
 
 
-#include "ca/primitive/primitive_id.h"
-#include "ca/primitive/primitive_string_format.h"
-#include "ca/primitive/primitive_fixed_string.h"
-#include "ca/primitive/primitive_string_interface.h"
-#include "ca/primitive/primitive_string_composite.h"
-#include "ca/primitive/primitive_string.h"
-#include "ca/primitive/datetime/datetime_time.h"
+#include "primitive/primitive_id.h"
+#include "primitive/primitive_string_format.h"
+#include "primitive/primitive_fixed_string.h"
+#include "primitive/primitive_string_interface.h"
+#include "primitive/primitive_string_composite.h"
+#include "primitive/primitive_string.h"
+#include "primitive/datetime/datetime_time.h"
 
 
-#include "ca/primitive/primitive.h"
+#include "primitive/primitive.h"
 
 #include "ca_object.h"
 
@@ -321,7 +318,7 @@ class dump_context;
 
 
 #undef __DATA
-#define __DATA CLASS_DECL_ca
+#define __DATA CLASS_DECL_ca2
 
 
 #ifdef ___ALL_WARNINGS
@@ -333,7 +330,7 @@ class dump_context;
 #include "ca_allocate.h"
 #include "ca_plex.h"
 
-#include "ca/collection/collection.h"
+#include "collection/collection.h"
 
 
 #include "ca_plex_heap.h"
@@ -346,7 +343,7 @@ class dump_context;
 #include "ca_interlocked_long.h"
 #include "ca_interlocked_long_pulse.h"
 
-#include "ca/multithreading/multithreading.h"
+#include "multithreading/multithreading.h"
 
 #include "ca_data.h"
 #include "ca_data_container.h"
@@ -358,10 +355,8 @@ class dump_context;
 #include "ca_factory.h"
 
 
-#include "ca/user/user_str.h"
+#include "user/user_str.h"
 
-
-#pragma once
 
 typedef long VMSRESULT;
 
@@ -612,18 +607,18 @@ enum __HELP_TYPE
 
 #ifdef DEBUG
 // Diagnostic Output
-CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+CLASS_DECL_ca2 dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_ca2 dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_ca2 dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
 #endif //DEBUG
 
 // Serialization
-/*CLASS_DECL_ca CArchive& operator<<(CArchive& ar, SIZE size);
-CLASS_DECL_ca CArchive& operator<<(CArchive& ar, POINT point);
-CLASS_DECL_ca CArchive& operator<<(CArchive& ar, const RECT& rect);
-CLASS_DECL_ca CArchive& operator>>(CArchive& ar, SIZE& size);
-CLASS_DECL_ca CArchive& operator>>(CArchive& ar, POINT& point);
-CLASS_DECL_ca CArchive& operator>>(CArchive& ar, RECT& rect);
+/*CLASS_DECL_ca2 CArchive& operator<<(CArchive& ar, SIZE size);
+CLASS_DECL_ca2 CArchive& operator<<(CArchive& ar, POINT point);
+CLASS_DECL_ca2 CArchive& operator<<(CArchive& ar, const RECT& rect);
+CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, SIZE& size);
+CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, POINT& point);
+CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, RECT& rect);
 */
 
 
@@ -631,10 +626,10 @@ CLASS_DECL_ca CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca void __get_gray_bitmap(sp(::ca::application) papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca void __draw_gray_bitmap(sp(::ca::application) papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca void __get_dithered_bitmap(sp(::ca::application) papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca void __draw_dithered_bitmap(sp(::ca::application) papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __get_gray_bitmap(sp(::ca::application) papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::ca::application) papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca::application) papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca::application) papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "ca_graphic_classes.h"
@@ -644,7 +639,7 @@ CLASS_DECL_ca void __draw_dithered_bitmap(sp(::ca::application) papp, ::ca::grap
 #include "ca_fixed_alloc.h"
 #include "ca_request_signal.h"
 
-#include "ca/visual/visual_const.h"
+#include "visual/visual_const.h"
 
 #include "ca_var_array.h"
 
@@ -659,8 +654,8 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
-/* xxx CLASS_DECL_ca thread* __begin_thread(sp(::ca::type_info) pThreadClass,
+CLASS_DECL_ca2 ::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca::type_info) pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null()); xxxx */
 
@@ -675,13 +670,13 @@ THREAD_TYPE * __begin_thread (sp(::ca::application) papp, ::ca::e_thread_priorit
 
 
 // Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_ca void __post_quit_message(int32_t nExitCode);
+CLASS_DECL_ca2 void __post_quit_message(int32_t nExitCode);
 
 
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_ca CCommandLineInfo : public ::ca::object
+/*class CLASS_DECL_ca2 CCommandLineInfo : public ::ca::object
 {
 public:
    // Sets default values
@@ -722,11 +717,11 @@ protected:
 // document_manager
 
 
-/*CLASS_DECL_ca bool __delete_reg_key(const char * lpszKey);
+/*CLASS_DECL_ca2 bool __delete_reg_key(const char * lpszKey);
 
 
 
-CLASS_DECL_ca bool _API
+CLASS_DECL_ca2 bool _API
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = ::null());
 
 */
@@ -777,29 +772,29 @@ namespace user
 
 
 //#include "user_element_2d.h"
-#include "ca/user/user_draw_interface.h"
-#include "ca/user/user_mouse_focus.h"
-#include "ca/user/user_keyboard_focus.h"
-#include "ca/user/user_elemental.h"
-#include "ca/user/user_window_util.h"
-#include "ca/user/user_text_interface.h"
-#include "ca/user/user_check_interface.h"
-#include "ca/user/user_window_interface.h"
-#include "ca/user/user_text_interface.h"
-#include "ca/user/user_check_interface.h"
-#include "ca/user/user_control_event.h"
-#include "ca/user/user_control_property.h"
-#include "ca/user/user_window_id.h"
-#include "ca/user/user_interaction.h"
-#include "ca/user/user_virtual_user_interface.h"
+#include "user/user_draw_interface.h"
+#include "user/user_mouse_focus.h"
+#include "user/user_keyboard_focus.h"
+#include "user/user_elemental.h"
+#include "user/user_window_util.h"
+#include "user/user_text_interface.h"
+#include "user/user_check_interface.h"
+#include "user/user_window_interface.h"
+#include "user/user_text_interface.h"
+#include "user/user_check_interface.h"
+#include "user/user_control_event.h"
+#include "user/user_control_property.h"
+#include "user/user_window_id.h"
+#include "user/user_interaction.h"
+#include "user/user_virtual_user_interface.h"
 
 
-#include "ca/database/database_id.h"
-#include "ca/database/database_key.h"
+#include "database/database_id.h"
+#include "database/database_key.h"
 
-#include "ca/database/database_selection_item.h"
-#include "ca/database/database_selection.h"
-#include "ca/database/database_update_hint.h"
+#include "database/database_selection_item.h"
+#include "database/database_selection.h"
+#include "database/database_update_hint.h"
 
 
 #include "ca_window.h"
@@ -849,11 +844,11 @@ namespace windows
 
 
 
-#include "ca/collection/collection_sort_array.h"
+#include "collection/collection_sort_array.h"
 
 
-#include "ca/primitive/primitive_id_space.h"
-#include "ca/primitive/primitive_id_space.h"
+#include "primitive/primitive_id_space.h"
+#include "primitive/primitive_id_space.h"
 
 
 #include "ca_international_locale_schema.h"
@@ -869,11 +864,11 @@ namespace windows
 // Extra diagnostic tracing options
 
 #ifdef DEBUG
-extern CLASS_DECL_ca UINT g_uiTraceFlags;
+extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca ::ca::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca2 ::ca::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -882,28 +877,28 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_ca void ::ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_ca void ::ca::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_ca2 void ::ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_ca2 void ::ca::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
-/*CLASS_DECL_ca int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
+/*CLASS_DECL_ca2 int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
-/*CLASS_DECL_ca int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
+/*CLASS_DECL_ca2 int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
             UINT nIDHelp = (UINT)-1);*/
 
 // Implementation string helpers
-//CLASS_DECL_ca void __format_strings(string & rString, UINT nIDS,
+//CLASS_DECL_ca2 void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
 namespace ca
 {
 
-   CLASS_DECL_ca void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
-   CLASS_DECL_ca bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
+   CLASS_DECL_ca2 void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
+   CLASS_DECL_ca2 bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
 
 }
 
 
 
-#include "ca/os/os.h"
+#include "os/os.h"
 
 
 
@@ -986,22 +981,22 @@ namespace ca
 
 
 // memory primitives
-#include "ca/primitive/primitive_memory_base.h"
-#include "ca/primitive/primitive_memory.h"
-#include "ca/primitive/primitive_virtual_memory.h"
-#include "ca/primitive/primitive_shared_memory.h"
-#include "ca/primitive/primitive_memory_container.h"
-#include "ca/primitive/primitive_memory_file.h"
-#include "ca/primitive/primitive_shared_file.h"
+#include "primitive/primitive_memory_base.h"
+#include "primitive/primitive_memory.h"
+#include "primitive/primitive_virtual_memory.h"
+#include "primitive/primitive_shared_memory.h"
+#include "primitive/primitive_memory_container.h"
+#include "primitive/primitive_memory_file.h"
+#include "primitive/primitive_shared_file.h"
 
 
 
 #include "zlib/zlib.h"
-#include "ca/sqlite/sqlite.h"
+#include "sqlite/sqlite.h"
 
 
 
-#include "ca/libcharguess/libcharguess.h"
+#include "libcharguess/libcharguess.h"
 
 
 
@@ -1164,7 +1159,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user::interaction) oswindow, LPCRECT lpRect);
+CLASS_DECL_ca2 void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user::interaction) oswindow, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR
 #define LAYOUT_LTR                         0x00000000
@@ -1305,7 +1300,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CArchiveStream
 /*
-class CLASS_DECL_ca CArchiveStream : public IStream
+class CLASS_DECL_ca2 CArchiveStream : public IStream
 {
 public:
    CArchiveStream(CArchive* pArchive);
@@ -1334,12 +1329,12 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_ca void ::ca::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_ca2 void ::ca::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_ca BSTR ::ca::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_ca wchar_t * ::ca::TaskStringA2W(const char * lpa);
-CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_ca2 BSTR ::ca::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_ca2 wchar_t * ::ca::TaskStringA2W(const char * lpa);
+CLASS_DECL_ca2 char * ::ca::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -1400,7 +1395,7 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 
 #include "ca_debug.h"
 
-#include "ca/math/math_math.h"
+#include "math/math_math.h"
 
 #include "ca_math_rng.h"
 #include "ca_math.h"
@@ -1440,11 +1435,11 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 #include "ca_template.h"
 
 
-#include "ca/collection/collection_base_2array.h"
-#include "ca/collection/collection_string_array.h"
-#include "ca/collection/collection_stringa.h"
-#include "ca/collection/collection_stringl.h"
-#include "ca/collection/collection_string_sort_array.h"
+#include "collection/collection_base_2array.h"
+#include "collection/collection_string_array.h"
+#include "collection/collection_stringa.h"
+#include "collection/collection_stringl.h"
+#include "collection/collection_string_sort_array.h"
 
 #include "ca_string_tokenizer.h"
 
@@ -1455,7 +1450,7 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 //#include "ca_full_pointer.h"
 //#include "ca_time.h"
 #include "ca_byte_serializable.h"
-#include "ca/collection/collection_stringa.h"
+#include "collection/collection_stringa.h"
 #include "ca_var.h"
 #include "ca_var_array.h"
 
@@ -1476,7 +1471,7 @@ CLASS_DECL_ca char * ::ca::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "ca/primitive/primitive_int_biunique.h"
+#include "primitive/primitive_int_biunique.h"
 
 
 //#include "ca_memory_file.h"
@@ -1494,8 +1489,8 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca ::ca::byte_input_stream &  operator >>(::ca::byte_input_stream & istream, string & string);
-CLASS_DECL_ca ::ca::byte_output_stream &  operator <<(::ca::byte_output_stream & ostream, const string & string);
+CLASS_DECL_ca2 ::ca::byte_input_stream &  operator >>(::ca::byte_input_stream & istream, string & string);
+CLASS_DECL_ca2 ::ca::byte_output_stream &  operator <<(::ca::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
 #include "ca_file_association.h"
@@ -1620,12 +1615,12 @@ namespace lemon
 
 
 
-#include "ca/calculator/calculator.h"
-#include "ca/xml/xml.h"
-#include "ca/sockets/sockets.h"
-#include "ca/colorertake5/colorertake5.h"
+#include "calculator/calculator.h"
+#include "xml/xml.h"
+#include "sockets/sockets.h"
+#include "colorertake5/colorertake5.h"
 
-#include "ca/html/html.h"
+#include "html/html.h"
 
 
 #include "ca_definition.h"
@@ -1643,7 +1638,7 @@ namespace ca
 } // namespace ca
 
 
-#include "ca/crypto/crypto.h"
+#include "crypto/crypto.h"
 
 
 #include "ca_file_application.h"
@@ -1660,7 +1655,7 @@ namespace ca
 #include "ca_machine_event_central.h"
 
 
-#include "ca/install/install.h"
+#include "install/install.h"
 
 
 #include "ca_os.h"
@@ -1677,20 +1672,20 @@ namespace ca
 #include "ca_library.h"
 
 
-#include "ca/xml/xml_data.h"
+#include "xml/xml_data.h"
 
 
-#include "ca/filehandler/filehandler.h"
-
-
-
+#include "filehandler/filehandler.h"
 
 
 
 
 
-#include "ca/compress/compress.h"
-#include "ca/javascript/javascript.h"
+
+
+
+#include "compress/compress.h"
+#include "javascript/javascript.h"
 
 // former ca - changed to ca on 2013-02-21
 ////////////////////////////////////////////////////////////////

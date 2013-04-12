@@ -4,7 +4,7 @@
 #if defined(LINUX) || defined(MACOS)
 
 
-class CLASS_DECL_ca string_format_printer
+class CLASS_DECL_ca2 string_format_printer
 {
 public:
 
@@ -79,7 +79,7 @@ Depending on the format string, the function may expect a sequence of additional
 */
 
 
-class CLASS_DECL_ca string_format
+class CLASS_DECL_ca2 string_format
 {
 public:
 

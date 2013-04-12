@@ -9,7 +9,7 @@ namespace user
    class frame_window_interface;
 
 
-   class CLASS_DECL_ca window_interface :
+   class CLASS_DECL_ca2 window_interface :
       virtual public elemental,
       virtual public command_target,
       virtual public text_interface,
@@ -224,13 +224,13 @@ namespace user
 } // namespace user
 
 
-#include "ca/user/user_buffer.h"
-#include "ca/user/user_window_map.h"
-#include "ca/ca/ca_keeper.h"
-#include "ca/ca/ca_seekable.h"
-#include "ca/ca/ca_reader.h"
-#include "ca/ca/ca_writer.h"
-#include "ca/ca/ca_stream.h"
-#include "ca/ca/ca_byte_stream.h"
-#include "ca/ca/ca_stream2.h"
-#include "ca/ca/ca_str_stream.h"
+#include "user/user_buffer.h"
+#include "user/user_window_map.h"
+#include "ca/ca_keeper.h"
+#include "ca/ca_seekable.h"
+#include "ca/ca_reader.h"
+#include "ca/ca_writer.h"
+#include "ca/ca_stream.h"
+#include "ca/ca_byte_stream.h"
+#include "ca/ca_stream2.h"
+#include "ca/ca_str_stream.h"

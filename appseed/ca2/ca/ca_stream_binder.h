@@ -6,7 +6,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca stream_binder :
+   class CLASS_DECL_ca2 stream_binder :
       virtual public ::ca::object
    {
    public:

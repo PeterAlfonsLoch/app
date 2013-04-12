@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca document :
+class CLASS_DECL_ca2 document :
    virtual public user::document_interface,
    public ::ca::data_container,
    virtual public ::database::client

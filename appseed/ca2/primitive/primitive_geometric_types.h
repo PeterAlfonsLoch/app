@@ -39,7 +39,7 @@ class rect;
 class rect64;
 class rectd;
 
-class CLASS_DECL_ca __point64
+class CLASS_DECL_ca2 __point64
 {
 public:
     int64_t    x;
@@ -67,14 +67,14 @@ class rect64;
 struct tagRECTD;
 class rectd;
 
-class CLASS_DECL_ca __size64
+class CLASS_DECL_ca2 __size64
 {
 public:
    int64_t     cx;
    int64_t     cy;
 };
 
-class CLASS_DECL_ca __rect64
+class CLASS_DECL_ca2 __rect64
 {
 public:
    int64_t     left;
@@ -111,44 +111,44 @@ typedef const RECTD FAR* LPCRECTD;
 
 
 
-CLASS_DECL_ca int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator);
-CLASS_DECL_ca inline bool is64integer(int64_t i)
+CLASS_DECL_ca2 int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator);
+CLASS_DECL_ca2 inline bool is64integer(int64_t i)
 {
    return (i & 0xffffffff00000000 ) != 0;
 }
-CLASS_DECL_ca inline bool is64natural(uint64_t ui)
+CLASS_DECL_ca2 inline bool is64natural(uint64_t ui)
 {
    return (ui & 0xffffffff00000000u ) != 0;
 }
-CLASS_DECL_ca inline bool is64integer(double d)
+CLASS_DECL_ca2 inline bool is64integer(double d)
 {
    return (d >= ((double) (int64_t) (0xfff0000000000000))) && (d < ((double) (uint64_t) 0xfffffffffffffu));
 }
-CLASS_DECL_ca inline bool is64natural(double d)
+CLASS_DECL_ca2 inline bool is64natural(double d)
 {
    return (d >= 0.0) && (d < ((double) (uint64_t) 0xfffffffffffffu));
 }
-CLASS_DECL_ca inline bool is32integer(double d)
+CLASS_DECL_ca2 inline bool is32integer(double d)
 {
    return (d >= ((double) (int64_t) (0x80000000))) && (d < ((double) (uint64_t) 0x7fffffffu));
 }
-CLASS_DECL_ca inline bool is32natural(double d)
+CLASS_DECL_ca2 inline bool is32natural(double d)
 {
    return (d >= 0.0) && (d < ((double) (uint64_t) 0xffffffffu));
 }
-CLASS_DECL_ca inline bool is32integer(int64_t i)
+CLASS_DECL_ca2 inline bool is32integer(int64_t i)
 {
    return (i >= 0xffffffff80000000LL) && (i <= 0x000000007fffffffLL);
 }
-CLASS_DECL_ca inline bool is32natural(int64_t i)
+CLASS_DECL_ca2 inline bool is32natural(int64_t i)
 {
    return (i & 0xffffffff00000000 ) == 0;
 }
-CLASS_DECL_ca inline bool is32natural(uint64_t ui)
+CLASS_DECL_ca2 inline bool is32natural(uint64_t ui)
 {
    return (ui & 0xffffffff00000000 ) == 0;
 }
-CLASS_DECL_ca inline bool is_double(int64_t i)
+CLASS_DECL_ca2 inline bool is_double(int64_t i)
 {
    if(i >= 0)
    {
@@ -159,46 +159,46 @@ CLASS_DECL_ca inline bool is_double(int64_t i)
       return (i & 0xffe0000000000000 ) != 0;
    }
 }
-CLASS_DECL_ca inline bool is_double(uint64_t ui)
+CLASS_DECL_ca2 inline bool is_double(uint64_t ui)
 {
    return (ui & 0xfff0000000000000 ) == 0;
 }
-CLASS_DECL_ca bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc);
-CLASS_DECL_ca bool copy(tagRECTD * prectDest, const RECT * prectSrc);
-CLASS_DECL_ca bool copy(RECT * prectDest, const tagRECTD * prectSrc);
-CLASS_DECL_ca bool copy(tagRECTD * prectDest, const __rect64 * prectSrc);
-CLASS_DECL_ca bool copy(__rect64 * prectDest, const tagRECTD * prectSrc);
-CLASS_DECL_ca bool is_empty(const tagRECTD * prect);
-CLASS_DECL_ca bool contains(const tagRECTD * prect, POINTD pt);
-CLASS_DECL_ca bool set(tagRECTD * prectDest, double x1, double y1, double x2, double y2);
-CLASS_DECL_ca bool null(tagRECTD * prectDest);
-CLASS_DECL_ca bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_ca bool inflate(tagRECTD * prect, double x, double y);
-CLASS_DECL_ca bool deflate(tagRECTD * prect, double x, double y);
-CLASS_DECL_ca bool offset(tagRECTD * prect, double x, double y);
-CLASS_DECL_ca bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_ca bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_ca bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_ca bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_ca double width(LPRECTD lpcrect);
-CLASS_DECL_ca double height(LPCRECTD lpcrect);
+CLASS_DECL_ca2 bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc);
+CLASS_DECL_ca2 bool copy(tagRECTD * prectDest, const RECT * prectSrc);
+CLASS_DECL_ca2 bool copy(RECT * prectDest, const tagRECTD * prectSrc);
+CLASS_DECL_ca2 bool copy(tagRECTD * prectDest, const __rect64 * prectSrc);
+CLASS_DECL_ca2 bool copy(__rect64 * prectDest, const tagRECTD * prectSrc);
+CLASS_DECL_ca2 bool is_empty(const tagRECTD * prect);
+CLASS_DECL_ca2 bool contains(const tagRECTD * prect, POINTD pt);
+CLASS_DECL_ca2 bool set(tagRECTD * prectDest, double x1, double y1, double x2, double y2);
+CLASS_DECL_ca2 bool null(tagRECTD * prectDest);
+CLASS_DECL_ca2 bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca2 bool inflate(tagRECTD * prect, double x, double y);
+CLASS_DECL_ca2 bool deflate(tagRECTD * prect, double x, double y);
+CLASS_DECL_ca2 bool offset(tagRECTD * prect, double x, double y);
+CLASS_DECL_ca2 bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca2 bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca2 bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca2 bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca2 double width(LPRECTD lpcrect);
+CLASS_DECL_ca2 double height(LPCRECTD lpcrect);
 
-CLASS_DECL_ca bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
-CLASS_DECL_ca bool copy(__rect64 * prectDest, const RECT * prectSrc);
-CLASS_DECL_ca bool copy(RECT * prectDest, const __rect64 * prectSrc);
-CLASS_DECL_ca bool is_empty(const __rect64 * prect);
-CLASS_DECL_ca bool contains(const __rect64 * prect, point64 pt);
-CLASS_DECL_ca bool set(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2);
-CLASS_DECL_ca bool null(__rect64 * prectDest);
-CLASS_DECL_ca bool is_equal(const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_ca bool inflate(__rect64 * prect, int64_t x, int64_t y);
-CLASS_DECL_ca bool deflate(__rect64 * prect, int64_t x, int64_t y);
-CLASS_DECL_ca bool offset(__rect64 * prect, int64_t x, int64_t y);
-CLASS_DECL_ca bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_ca bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_ca bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_ca bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca2 bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
+CLASS_DECL_ca2 bool copy(__rect64 * prectDest, const RECT * prectSrc);
+CLASS_DECL_ca2 bool copy(RECT * prectDest, const __rect64 * prectSrc);
+CLASS_DECL_ca2 bool is_empty(const __rect64 * prect);
+CLASS_DECL_ca2 bool contains(const __rect64 * prect, point64 pt);
+CLASS_DECL_ca2 bool set(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2);
+CLASS_DECL_ca2 bool null(__rect64 * prectDest);
+CLASS_DECL_ca2 bool is_equal(const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca2 bool inflate(__rect64 * prect, int64_t x, int64_t y);
+CLASS_DECL_ca2 bool deflate(__rect64 * prect, int64_t x, int64_t y);
+CLASS_DECL_ca2 bool offset(__rect64 * prect, int64_t x, int64_t y);
+CLASS_DECL_ca2 bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca2 bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca2 bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca2 bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 
 
 
-CLASS_DECL_ca bool deflate(LPRECT prect, LPCRECT lpcrect);
+CLASS_DECL_ca2 bool deflate(LPRECT prect, LPCRECT lpcrect);

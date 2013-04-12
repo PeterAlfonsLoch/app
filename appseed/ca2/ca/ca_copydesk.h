@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca copydesk : 
+   class CLASS_DECL_ca2 copydesk : 
       virtual public ::ca::object
    {
    public:

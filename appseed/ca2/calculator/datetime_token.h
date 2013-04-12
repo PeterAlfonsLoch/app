@@ -4,7 +4,7 @@
 namespace datetime
 {
 
-   class CLASS_DECL_ca token
+   class CLASS_DECL_ca2 token
    {
    public:
       token();

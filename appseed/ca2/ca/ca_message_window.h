@@ -7,14 +7,14 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca window_callback :
+   class CLASS_DECL_ca2 window_callback :
       virtual public ::ca::object
    {
    public:
       virtual void message_window_message_handler(::ca::signal_object * pobj) = 0;
    };
 
-   class CLASS_DECL_ca message_window_simple_callback :
+   class CLASS_DECL_ca2 message_window_simple_callback :
       virtual public window_callback
    {
    public:

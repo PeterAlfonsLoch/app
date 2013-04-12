@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca critical_section :
+class CLASS_DECL_ca2 critical_section :
    virtual public waitable
 {
 public:

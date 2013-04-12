@@ -8,7 +8,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca bitmap :
+   class CLASS_DECL_ca2 bitmap :
       virtual public ::ca::graphics_object
    {
    public:

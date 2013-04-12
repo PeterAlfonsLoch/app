@@ -296,12 +296,12 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 #endif
 
 //#ifdef WINDOWS
-DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, uint32_t)
+DEFINE_C_NUMBER(CLASS_DECL_ca2, os_lock_duration, uint32_t)
 //#endif
 
-//DEFINE_C_NUMBER(CLASS_DECL_ca, file_size        , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_ca, file_position    , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_ca, file_offset      ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2, file_size        , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2, file_position    , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2, file_offset      ,  int64_t)
 
 
 /*namespace numeric_info
@@ -348,7 +348,7 @@ DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, uint32_t)
 namespace numeric_info
 {
 
-   template < typename T > class CLASS_DECL_ca offset < ::c_number < T > > { public: typedef typename ::numeric_info::offset < T >::TYPE TYPE; };
-   template < typename T > class CLASS_DECL_ca type   < ::c_number < T > > { public: typedef typename ::numeric_info::type   < T >::TYPE TYPE; };
+   template < typename T > class CLASS_DECL_ca2 offset < ::c_number < T > > { public: typedef typename ::numeric_info::offset < T >::TYPE TYPE; };
+   template < typename T > class CLASS_DECL_ca2 type   < ::c_number < T > > { public: typedef typename ::numeric_info::type   < T >::TYPE TYPE; };
 
 }

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca base_edit :
+   class CLASS_DECL_ca2 base_edit :
       public ::ca::data_container
    {
    public:

@@ -25,14 +25,14 @@
 #include <signal.h>
 #endif
 
-extern CLASS_DECL_ca bool g_bExiting;
+extern CLASS_DECL_ca2 bool g_bExiting;
 
 
 namespace exception
 {
 
 
-   class CLASS_DECL_ca translator :
+   class CLASS_DECL_ca2 translator :
       virtual public ::ca::ca
    {
    public:
@@ -81,7 +81,7 @@ namespace exception
 
 
 /*
-class CLASS_DECL_ca the_se_translator : public translator
+class CLASS_DECL_ca2 the_se_translator : public translator
 {
 public:
    the_se_translator();

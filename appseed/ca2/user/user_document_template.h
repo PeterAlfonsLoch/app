@@ -4,7 +4,7 @@
 #include "user_document_request_interface.h"
 
 
-class CLASS_DECL_ca document_template :
+class CLASS_DECL_ca2 document_template :
    virtual public command_target,
    virtual public ::user::document_request_interface
 {

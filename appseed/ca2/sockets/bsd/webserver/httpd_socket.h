@@ -39,7 +39,7 @@ namespace sockets
    /** \defgroup webserver Webserver framework */
    /** Web server socket framework. 
       \ingroup webserver */
-   class CLASS_DECL_ca httpd_socket : public http_base_socket
+   class CLASS_DECL_ca2 httpd_socket : public http_base_socket
    {
    public:
       httpd_socket(socket_handler_base& );

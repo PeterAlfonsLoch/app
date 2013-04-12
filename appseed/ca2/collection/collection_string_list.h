@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca string_list :
+class CLASS_DECL_ca2 string_list :
    virtual public ::ca::object
 {
 public:

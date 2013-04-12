@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca io_exception :
+class CLASS_DECL_ca2 io_exception :
    virtual public simple_exception
 {
 public:

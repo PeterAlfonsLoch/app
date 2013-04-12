@@ -8,7 +8,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_ca File : 
+   class CLASS_DECL_ca2 File : 
       virtual public ::ca::object
    {
    public:

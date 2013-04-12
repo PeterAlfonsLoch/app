@@ -29,7 +29,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca request_interface :
+   class CLASS_DECL_ca2 request_interface :
       virtual public ::ca::ca
    {
    public:

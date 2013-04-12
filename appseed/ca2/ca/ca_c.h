@@ -7,7 +7,7 @@ namespace ca
 
 
 
-   class CLASS_DECL_ca c
+   class CLASS_DECL_ca2 c
    {
    public:
 

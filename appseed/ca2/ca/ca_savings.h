@@ -13,7 +13,7 @@ namespace ca
       resource_translucent_background,
    };
 
-   class CLASS_DECL_ca savings :
+   class CLASS_DECL_ca2 savings :
       virtual public ::ca::object
    {
    public:

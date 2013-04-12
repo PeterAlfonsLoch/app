@@ -3,7 +3,7 @@
 namespace simpledb
 {
 
-   class CLASS_DECL_ca manager :
+   class CLASS_DECL_ca2 manager :
       virtual public ::ca::thread,
       virtual public ::ca::message_window_simple_callback
    {

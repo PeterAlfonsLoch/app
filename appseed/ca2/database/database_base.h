@@ -11,7 +11,7 @@ namespace database
    represents  connection with database server;
 
    ******************************************************************/
-   class CLASS_DECL_ca base :
+   class CLASS_DECL_ca2 base :
       virtual public ::ca::object
    {
    public:

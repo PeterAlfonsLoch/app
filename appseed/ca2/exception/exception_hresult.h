@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca hresult_exception : 
+class CLASS_DECL_ca2 hresult_exception : 
    virtual public base_exception
 {
 public:

@@ -11,7 +11,7 @@ class string;
 class istring;
 
 
-class CLASS_DECL_ca string_interface :
+class CLASS_DECL_ca2 string_interface :
    virtual public ::ca::object
 {
 public:

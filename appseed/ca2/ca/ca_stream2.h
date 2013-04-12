@@ -5,7 +5,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca output_stream2 :
+   class CLASS_DECL_ca2 output_stream2 :
       virtual public byte_output_stream
    {
    public:

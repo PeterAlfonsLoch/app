@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca mouse_focus
+   class CLASS_DECL_ca2 mouse_focus
    {
    public:
       mouse_focus();

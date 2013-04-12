@@ -3,7 +3,7 @@
 namespace visual
 {
 
-   class CLASS_DECL_ca font :
+   class CLASS_DECL_ca2 font :
       virtual public ::ca::object
    {
    public:

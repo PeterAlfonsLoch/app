@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/userpresence/userpresence.h"
+#include "userpresence/userpresence.h"
 
 
 #include "ft2build.h"
@@ -14,9 +14,9 @@ namespace visual
 } // namespace visual
 
 
-CLASS_DECL_ca bool TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t c);
-CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t c, LPSIZE psizl);
-CLASS_DECL_ca int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format);
+CLASS_DECL_ca2 bool TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t c);
+CLASS_DECL_ca2 bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t c, LPSIZE psizl);
+CLASS_DECL_ca2 int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format);
 
 
 

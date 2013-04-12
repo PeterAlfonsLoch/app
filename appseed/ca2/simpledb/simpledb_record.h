@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   class CLASS_DECL_ca record_row : 
+   class CLASS_DECL_ca2 record_row : 
       virtual public ::ca::byte_serializable
    {
    public:

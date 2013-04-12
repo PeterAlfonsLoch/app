@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_ca invalid_character : 
+class CLASS_DECL_ca2 invalid_character : 
    virtual public simple_exception
 {
 public:

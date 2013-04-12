@@ -7,7 +7,7 @@ namespace ca
 
    class writer;
 
-   class CLASS_DECL_ca out_stream_flush :
+   class CLASS_DECL_ca2 out_stream_flush :
       virtual public ::ca::object
    {
    public:
@@ -18,7 +18,7 @@ namespace ca
    typedef ::ca::smart_pointer < writer > writer_sp;
 
 
-   class CLASS_DECL_ca writer :
+   class CLASS_DECL_ca2 writer :
       virtual public seekable,
       virtual public out_stream_flush
    {

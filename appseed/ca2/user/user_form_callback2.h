@@ -7,7 +7,7 @@ namespace user
 {
    class form;
 
-   class CLASS_DECL_ca form_callback :
+   class CLASS_DECL_ca2 form_callback :
       virtual public ::ca::object
    {
    public:

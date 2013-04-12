@@ -57,7 +57,7 @@ namespace ca
 } // namespace ca
 
 
-#include "ca/user/user_key_enum.h"
+#include "user/user_key_enum.h"
 
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048
@@ -95,7 +95,7 @@ namespace ca
    {
 
 
-      CLASS_DECL_ca UINT translate_to_os_message(UINT uiMessage);
+      CLASS_DECL_ca2 UINT translate_to_os_message(UINT uiMessage);
 
       class base;
 
@@ -133,7 +133,7 @@ namespace ca
 
       ::ca::signal * CreateSignal();
 
-      class CLASS_DECL_ca Handler
+      class CLASS_DECL_ca2 Handler
       {
       public:
          Handler();
@@ -141,12 +141,12 @@ namespace ca
          virtual int32_t OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
       };
 
-      class CLASS_DECL_ca dispatch :
+      class CLASS_DECL_ca2 dispatch :
          virtual public ::ca::object
       {
       public:
 
-         class CLASS_DECL_ca HandlerItemBase
+         class CLASS_DECL_ca2 HandlerItemBase
          {
          public:
             virtual ~HandlerItemBase();
@@ -165,7 +165,7 @@ namespace ca
             virtual ::ca::signalizable * get_signalizable() { return m_psignalizable; }
          };
 
-         class CLASS_DECL_ca HandlerItemArray :
+         class CLASS_DECL_ca2 HandlerItemArray :
             public array < HandlerItemBase *, HandlerItemBase *>
          {
          public:
@@ -173,7 +173,7 @@ namespace ca
             bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
-         class CLASS_DECL_ca Signal :
+         class CLASS_DECL_ca2 Signal :
             virtual public ::ca::ca
          {
          public:
@@ -190,12 +190,12 @@ namespace ca
             ~Signal();
          };
 
-         class CLASS_DECL_ca SignalPtrArray :
+         class CLASS_DECL_ca2 SignalPtrArray :
             public array < Signal * , Signal * >
          {
          };
 
-         class CLASS_DECL_ca SignalArray :
+         class CLASS_DECL_ca2 SignalArray :
             public spa(Signal)
          {
          public:
@@ -301,7 +301,7 @@ namespace ca
 
 #undef new
 
-      class CLASS_DECL_ca base :
+      class CLASS_DECL_ca2 base :
             public ::ca::signal_object
          {
          public:
@@ -327,7 +327,7 @@ namespace ca
             LRESULT  m_lresult;
          };
 
-         class CLASS_DECL_ca create : public base
+         class CLASS_DECL_ca2 create : public base
          {
          public:
 
@@ -340,7 +340,7 @@ namespace ca
             virtual void failed(const char * lpcszErrorMessage);
          };
 
-         class CLASS_DECL_ca timer : public base
+         class CLASS_DECL_ca2 timer : public base
          {
          public:
 
@@ -350,7 +350,7 @@ namespace ca
             UINT m_nIDEvent;
          };
 
-         class CLASS_DECL_ca activate : public base
+         class CLASS_DECL_ca2 activate : public base
          {
          public:
 
@@ -365,7 +365,7 @@ namespace ca
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
-         class CLASS_DECL_ca move : public base
+         class CLASS_DECL_ca2 move : public base
          {
          public:
 
@@ -374,7 +374,7 @@ namespace ca
             point m_pt;
          };
 
-         class CLASS_DECL_ca size : public base
+         class CLASS_DECL_ca2 size : public base
          {
          public:
 
@@ -386,7 +386,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca scroll : public base
+         class CLASS_DECL_ca2 scroll : public base
          {
          public:
 
@@ -399,7 +399,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca mouse : public base
+         class CLASS_DECL_ca2 mouse : public base
          {
          public:
 
@@ -416,7 +416,7 @@ namespace ca
             static mouse * cast(::ca::signal_object * pobj) { return (mouse *) pobj; }
          };
 
-         class CLASS_DECL_ca mouse_wheel : public mouse
+         class CLASS_DECL_ca2 mouse_wheel : public mouse
          {
          public:
 
@@ -430,7 +430,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca mouse_activate : public base
+         class CLASS_DECL_ca2 mouse_activate : public base
          {
          public:
 
@@ -441,7 +441,7 @@ namespace ca
             UINT GetMessage();
          };
 
-         class CLASS_DECL_ca context_menu : public base
+         class CLASS_DECL_ca2 context_menu : public base
          {
          public:
 
@@ -452,7 +452,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca set_cursor : public base
+         class CLASS_DECL_ca2 set_cursor : public base
          {
          public:
 
@@ -463,7 +463,7 @@ namespace ca
             UINT m_message;
          };
 
-         class CLASS_DECL_ca show_window : public base
+         class CLASS_DECL_ca2 show_window : public base
          {
          public:
 
@@ -474,7 +474,7 @@ namespace ca
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
-         class CLASS_DECL_ca on_draw : public base
+         class CLASS_DECL_ca2 on_draw : public base
          {
          public:
 
@@ -483,7 +483,7 @@ namespace ca
             ::ca::graphics * m_pdc;
          };
 
-         class CLASS_DECL_ca erase_bkgnd : public base
+         class CLASS_DECL_ca2 erase_bkgnd : public base
          {
          public:
 
@@ -500,7 +500,7 @@ namespace ca
          // WM_PAINT -> base
          // WM_MOUSELEAVE -> base
 
-         class CLASS_DECL_ca nchittest : public base
+         class CLASS_DECL_ca2 nchittest : public base
          {
          public:
 
@@ -509,7 +509,7 @@ namespace ca
             point m_pt;
          };
 
-         class CLASS_DECL_ca key : public base
+         class CLASS_DECL_ca2 key : public base
          {
          public:
 
@@ -533,7 +533,7 @@ namespace ca
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
-         class CLASS_DECL_ca nc_activate : public base
+         class CLASS_DECL_ca2 nc_activate : public base
          {
          public:
 
@@ -548,7 +548,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-         class CLASS_DECL_ca notify : public base
+         class CLASS_DECL_ca2 notify : public base
          {
          public:
 
@@ -560,7 +560,7 @@ namespace ca
 
 #endif
 
-         class CLASS_DECL_ca update_cmd_ui : public base
+         class CLASS_DECL_ca2 update_cmd_ui : public base
          {
          public:
 
@@ -569,7 +569,7 @@ namespace ca
             cmd_ui *    m_pcmdui;
          };
 
-         class CLASS_DECL_ca command : public base
+         class CLASS_DECL_ca2 command : public base
          {
          public:
 
@@ -580,7 +580,7 @@ namespace ca
             oswindow get_oswindow();
          };
 
-         class CLASS_DECL_ca ctl_color : public base
+         class CLASS_DECL_ca2 ctl_color : public base
          {
          public:
 
@@ -592,7 +592,7 @@ namespace ca
             UINT        m_nCtlType;
          };
 
-         class CLASS_DECL_ca set_focus : public base
+         class CLASS_DECL_ca2 set_focus : public base
          {
          public:
 
@@ -603,7 +603,7 @@ namespace ca
 
 
 
-         class CLASS_DECL_ca window_pos : public base
+         class CLASS_DECL_ca2 window_pos : public base
          {
          public:
 
@@ -617,7 +617,7 @@ namespace ca
 #ifdef WINDOWSEX
 
 
-         class CLASS_DECL_ca measure_item : public base
+         class CLASS_DECL_ca2 measure_item : public base
          {
          public:
 
@@ -629,7 +629,7 @@ namespace ca
 
 #endif
 
-         class CLASS_DECL_ca nc_calc_size : public base
+         class CLASS_DECL_ca2 nc_calc_size : public base
          {
          public:
 
@@ -642,7 +642,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca enable : public base
+         class CLASS_DECL_ca2 enable : public base
          {
          public:
 

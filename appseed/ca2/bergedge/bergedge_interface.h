@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca bergedge_interface :
+class CLASS_DECL_ca2 bergedge_interface :
    virtual public plane::application,
    virtual public ::ca::session
 {

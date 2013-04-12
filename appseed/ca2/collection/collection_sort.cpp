@@ -113,7 +113,7 @@ namespace  sort
 
 
 
-   void CLASS_DECL_ca quick_sort(
+   void CLASS_DECL_ca2 quick_sort(
       index iSize,
       ::array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
       ::array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,

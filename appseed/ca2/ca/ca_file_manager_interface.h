@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca file_manager_interface :
+   class CLASS_DECL_ca2 file_manager_interface :
       virtual public ::ca::object
    {
    public:

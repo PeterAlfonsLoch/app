@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ca/x/x_charcategory.h"
-#include "ca/x/x_defines.h"
-#include "ca/x/x_tables.h"
+#include "x/x_charcategory.h"
+#include "x/x_defines.h"
+#include "x/x_tables.h"
 
 
 /** Character information class.
@@ -31,7 +31,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca utf8_char
+   class CLASS_DECL_ca2 utf8_char
    {
    public:
 
@@ -49,9 +49,9 @@ namespace ca
    namespace ch
    {
 
-      CLASS_DECL_ca  int64_t uni_index(const char * pszUtf8);
-      CLASS_DECL_ca  int64_t uni_index_len(const char * pszUtf8, strsize & len);
-      CLASS_DECL_ca  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
+      CLASS_DECL_ca2  int64_t uni_index(const char * pszUtf8);
+      CLASS_DECL_ca2  int64_t uni_index_len(const char * pszUtf8, strsize & len);
+      CLASS_DECL_ca2  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
 
 
       inline bool is_legal_uni_index(int64_t c)
@@ -113,32 +113,32 @@ namespace ca
       }
 
 
-      CLASS_DECL_ca string to_lower_case(const char * pszUtf8Char);
-      CLASS_DECL_ca string to_upper_case(const char * pszUtf8Char);
-      CLASS_DECL_ca string to_title_case(const char * pszUtf8Char);
+      CLASS_DECL_ca2 string to_lower_case(const char * pszUtf8Char);
+      CLASS_DECL_ca2 string to_upper_case(const char * pszUtf8Char);
+      CLASS_DECL_ca2 string to_title_case(const char * pszUtf8Char);
 
-      CLASS_DECL_ca bool is_lower_case(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_upper_case(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_title_case(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_letter(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_letter_or_digit(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_digit(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_assigned(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_space_char(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_whitespace(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
+      CLASS_DECL_ca2 bool is_lower_case(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_upper_case(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_title_case(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_letter(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_letter_or_digit(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_digit(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_assigned(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_space_char(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_whitespace(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
 
-      CLASS_DECL_ca bool is_number(const char * pszUtf8Char);
-//      CLASS_DECL_ca bool to_numeric_value(const char * pszUtf8Char, float *f);
+      CLASS_DECL_ca2 bool is_number(const char * pszUtf8Char);
+//      CLASS_DECL_ca2 bool to_numeric_value(const char * pszUtf8Char, float *f);
 
-      CLASS_DECL_ca string get_category_name(const char * pszUtf8Char);
+      CLASS_DECL_ca2 string get_category_name(const char * pszUtf8Char);
       ECharCategory get_category(const char * pszUtf8Char);
 
-      CLASS_DECL_ca int32_t get_combining_class(const char * pszUtf8Char);
-      CLASS_DECL_ca bool is_mirrored(const char * pszUtf8Char);
+      CLASS_DECL_ca2 int32_t get_combining_class(const char * pszUtf8Char);
+      CLASS_DECL_ca2 bool is_mirrored(const char * pszUtf8Char);
 
       /** @deprecated For debug purposes only. */
-      CLASS_DECL_ca int32_t size_of_tables();
+      CLASS_DECL_ca2 int32_t size_of_tables();
 
 
    }

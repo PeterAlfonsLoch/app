@@ -53,7 +53,7 @@ namespace ca
          }
       };
 
-      typedef CLASS_DECL_ca encoder < out_buffer > out_buffer_encoder;
+      typedef CLASS_DECL_ca2 encoder < out_buffer > out_buffer_encoder;
 
    } // namespace bitm
 

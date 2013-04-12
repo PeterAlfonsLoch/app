@@ -4,7 +4,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_ca set_input_stream_interface :
+   class CLASS_DECL_ca2 set_input_stream_interface :
       virtual public ::ca::object
    {
    public:

@@ -36,7 +36,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca object :
+   class CLASS_DECL_ca2 object :
       virtual public waitable
    {
    public:

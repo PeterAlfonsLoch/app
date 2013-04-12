@@ -8,7 +8,7 @@ namespace ca
    struct file_status;
 
 
-   class CLASS_DECL_ca file :
+   class CLASS_DECL_ca2 file :
       virtual public ::ca::stream,
       virtual public ::ca::output_stream_flush_interface
    {

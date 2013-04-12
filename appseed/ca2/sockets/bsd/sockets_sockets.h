@@ -5,7 +5,7 @@
    {
 
 
-      class CLASS_DECL_ca sockets :
+      class CLASS_DECL_ca2 sockets :
          virtual public ::ca::section
       {
       public:

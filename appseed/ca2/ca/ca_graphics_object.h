@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca graphics_object :
+   class CLASS_DECL_ca2 graphics_object :
       virtual public ::ca::object
    {
    public:

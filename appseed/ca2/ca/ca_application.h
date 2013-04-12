@@ -121,7 +121,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca application_signal_object :
+   class CLASS_DECL_ca2 application_signal_object :
       public ::ca::signal_object
    {
    public:
@@ -141,7 +141,7 @@ namespace ca
    class application_base;
 
 
-   class CLASS_DECL_ca application_ptra :
+   class CLASS_DECL_ca2 application_ptra :
       virtual public spa(::ca::application_base)
    {
    public:
@@ -151,7 +151,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca application_base :
+   class CLASS_DECL_ca2 application_base :
       virtual public ::ca::live_object,
       virtual public ::ca::thread,
       virtual public ::ca::smart_pointer < ::ca::application_base >
@@ -228,7 +228,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       virtual public ::ca::application_base,
       virtual public command_target_interface,
       virtual public request_interface,
@@ -1143,7 +1143,7 @@ namespace ca
 
 
 
-#include "ca/ca/ca_font.h"
+#include "ca/ca_font.h"
 
 
 

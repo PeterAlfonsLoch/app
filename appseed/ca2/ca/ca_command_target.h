@@ -1,17 +1,17 @@
 #pragma once
 
 
-#include "ca/ca/ca_message.h"
-#include "ca/user/user_create_context.h"
+#include "ca/ca_message.h"
+#include "user/user_create_context.h"
 
 
-class CLASS_DECL_ca command_target_interface :
+class CLASS_DECL_ca2 command_target_interface :
    virtual public ::ca::signalizable,
    virtual public ::ca::message::dispatch
 {
 public:
 
-   class CLASS_DECL_ca command_signalid : public ::ca::signalid
+   class CLASS_DECL_ca2 command_signalid : public ::ca::signalid
    {
    public:
 
@@ -47,7 +47,7 @@ public:
       }
    };
 
-   class CLASS_DECL_ca command_signalrange : public ::ca::signalid
+   class CLASS_DECL_ca2 command_signalrange : public ::ca::signalid
    {
    public:
 
@@ -161,7 +161,7 @@ public:
 
 
 
-class CLASS_DECL_ca command_target :
+class CLASS_DECL_ca2 command_target :
    virtual public ::ca::signalizable,
    virtual public command_target_interface
 {
@@ -195,7 +195,7 @@ protected:
 };
 
 
-#include "ca/user/user_check_interface.h"
+#include "user/user_check_interface.h"
 
 
 namespace userbase
@@ -208,7 +208,7 @@ namespace userbase
 }
 
 
-class CLASS_DECL_ca cmd_ui :
+class CLASS_DECL_ca2 cmd_ui :
    public ::user::check_interface
 {
 public:
@@ -297,7 +297,7 @@ enum __DISPMAP_FLAGS
 //IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size
 // bloat from alignment
 #pragma warning( disable: 4121 )
-struct CLASS_DECL_ca __DISPMAP_ENTRY
+struct CLASS_DECL_ca2 __DISPMAP_ENTRY
 {
    const char * lpszName;       // member/property name
    long lDispID;           // DISPID (may be DISPID_UNKNOWN)
@@ -310,7 +310,7 @@ struct CLASS_DECL_ca __DISPMAP_ENTRY
 };
 #pragma warning( default: 4121 )
 
-struct CLASS_DECL_ca __EVENTSINKMAP_ENTRY
+struct CLASS_DECL_ca2 __EVENTSINKMAP_ENTRY
 {
    __DISPMAP_ENTRY dispEntry;
    UINT nCtrlIDFirst;

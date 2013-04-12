@@ -41,7 +41,7 @@ namespace ca
    typedef class library * (* PFN_GET_NEW_LIBRARY)();
 
 
-   class CLASS_DECL_ca library :
+   class CLASS_DECL_ca2 library :
       virtual public ::c::library,
       virtual public ::ca::object
    {

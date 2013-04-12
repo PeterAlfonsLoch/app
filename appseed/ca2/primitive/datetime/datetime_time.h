@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ca date_span
+   class CLASS_DECL_ca2 date_span
    {
    public:
       date_span();
@@ -14,7 +14,7 @@ namespace datetime
       bool m_bConstraintMonth;
    };
 
-   class CLASS_DECL_ca time_span
+   class CLASS_DECL_ca2 time_span
    {
    public:
       time_span() NOTHROW;
@@ -54,7 +54,7 @@ namespace datetime
       __time64_t m_timeSpan;
    };
 
-   class CLASS_DECL_ca time
+   class CLASS_DECL_ca2 time
    {
    private:
 
@@ -150,7 +150,7 @@ namespace datetime
 
    };
 
-   class CLASS_DECL_ca file_time_span
+   class CLASS_DECL_ca2 file_time_span
    {
    public:
       file_time_span() NOTHROW;
@@ -179,7 +179,7 @@ namespace datetime
       LONGLONG m_nSpan;
    };
 
-   class CLASS_DECL_ca file_time :
+   class CLASS_DECL_ca2 file_time :
       public FILETIME
    {
    public:
@@ -220,8 +220,8 @@ namespace datetime
    };
 
    // Used only if these strings could not be found in resources.
-   extern CLASS_DECL_ca const char * const szInvalidDateTime;
-   extern CLASS_DECL_ca const char * const szInvalidDateTimeSpan;
+   extern CLASS_DECL_ca2 const char * const szInvalidDateTime;
+   extern CLASS_DECL_ca2 const char * const szInvalidDateTimeSpan;
 
    const int32_t maxTimeBufferSize = 128;
    const long maxDaysInSpan  =   3615897L;

@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca multi_lock :
+class CLASS_DECL_ca2 multi_lock :
    virtual public ::ca::object
 {
 public:

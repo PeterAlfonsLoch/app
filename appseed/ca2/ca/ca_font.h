@@ -10,7 +10,7 @@ namespace ca
       unit_point,
    };
 
-   class CLASS_DECL_ca font :
+   class CLASS_DECL_ca2 font :
       virtual public graphics_object
    {
    public:
@@ -71,7 +71,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca font_sp :
+   class CLASS_DECL_ca2 font_sp :
       public smart_pointer < font >
    {
    public:

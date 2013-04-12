@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca object_list :
+class CLASS_DECL_ca2 object_list :
    public ::ca::object
 {
 public:

@@ -85,7 +85,7 @@ namespace sockets
    */
 
 
-   class CLASS_DECL_ca net :
+   class CLASS_DECL_ca2 net :
       public ::ca::object
    {
    private:
@@ -102,7 +102,7 @@ namespace sockets
    public:
 
 
-      class CLASS_DECL_ca dns_cache_item
+      class CLASS_DECL_ca2 dns_cache_item
       {
       public:
 

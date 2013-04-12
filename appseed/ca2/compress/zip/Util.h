@@ -5,7 +5,7 @@ namespace zip
 {
 
 
-   class CLASS_DECL_ca Util
+   class CLASS_DECL_ca2 Util
    {
    public:
 

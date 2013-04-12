@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca palette :
+   class CLASS_DECL_ca2 palette :
       virtual public ::ca::graphics_object
    {
    public:

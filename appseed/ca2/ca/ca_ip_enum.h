@@ -14,7 +14,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca ip_enum :
+   class CLASS_DECL_ca2 ip_enum :
       virtual public ::ca::object
    {
    public:

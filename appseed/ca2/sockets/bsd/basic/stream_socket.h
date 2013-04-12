@@ -7,7 +7,7 @@
 
       /** SOCK_STREAM socket base class.
       \ingroup basic */
-      class CLASS_DECL_ca stream_socket : 
+      class CLASS_DECL_ca2 stream_socket : 
          virtual public socket
       {
       public:

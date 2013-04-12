@@ -8,7 +8,7 @@ namespace colorertake5
     *
     * @ingroup colorer_handlers
     */
-   class CLASS_DECL_ca DefaultErrorHandler: public ErrorHandler
+   class CLASS_DECL_ca2 DefaultErrorHandler: public ErrorHandler
    {
    public:
      DefaultErrorHandler();

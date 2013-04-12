@@ -10,7 +10,7 @@ namespace ca
          char category -> enumeration conversion.
        @ingroup unicode
    */
-   class CLASS_DECL_ca ch_class
+   class CLASS_DECL_ca2 ch_class
    {
    private:
       bit_array **infoIndex;

@@ -15,7 +15,7 @@ namespace libcompress
       bool IsLzma() const;
    };
 
-   class CLASS_DECL_ca out_handler :
+   class CLASS_DECL_ca2 out_handler :
       virtual public ::ca::object
    {
    public:

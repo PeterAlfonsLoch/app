@@ -3,7 +3,7 @@
 
 namespace ca
 {
-   class CLASS_DECL_ca stra :
+   class CLASS_DECL_ca2 stra :
       public ::ca::object
    {
    public:

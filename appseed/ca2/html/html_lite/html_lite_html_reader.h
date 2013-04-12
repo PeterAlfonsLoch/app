@@ -26,7 +26,7 @@ class lite_html_reader;   // forward declaration
  @version 1.0 (Mar 06, 2004)
  @author Gurmeet S. Kochar
  */
-class CLASS_DECL_ca ILiteHTMLReaderEvents
+class CLASS_DECL_ca2 ILiteHTMLReaderEvents
 {
    friend class lite_html_reader;
 
@@ -99,7 +99,7 @@ public:
   @todo add more reader options (ReaderOptionsEnum). Until now,
         there is only one.
  */
-class CLASS_DECL_ca lite_html_reader :
+class CLASS_DECL_ca2 lite_html_reader :
    virtual public ::ca::object
 {
 public:

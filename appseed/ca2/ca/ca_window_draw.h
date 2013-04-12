@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/user/user_window_util.h"
+#include "user/user_window_util.h"
 
 
 #define ca2m_PRODEVIAN_SYNCH (WM_APP + 1985)
@@ -15,7 +15,7 @@ namespace user
 namespace ca
 {
 
-   class CLASS_DECL_ca window_draw :
+   class CLASS_DECL_ca2 window_draw :
       virtual public ::ca::thread
    {
    public:

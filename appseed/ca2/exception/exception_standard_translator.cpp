@@ -404,4 +404,4 @@ namespace exception
 } // namespace exception
 
 
-CLASS_DECL_ca bool g_bExiting;
+CLASS_DECL_ca2 bool g_bExiting;

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca timeout_file : 
+   class CLASS_DECL_ca2 timeout_file : 
       public ::ca::file
    {
    public:

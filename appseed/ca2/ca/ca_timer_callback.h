@@ -12,7 +12,7 @@ namespace ca
 
    class TimerWnd;
 
-   class CLASS_DECL_ca TimerCallback
+   class CLASS_DECL_ca2 TimerCallback
    {
    protected:
 

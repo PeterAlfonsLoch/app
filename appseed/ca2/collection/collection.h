@@ -178,7 +178,7 @@ public:
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
 
-#include "ca/ca/ca_byte_serializable.h"
+#include "ca/ca_byte_serializable.h"
 
 #include "collection_primitive_array.h"
 #include "collection_numeric_array.h"
@@ -251,14 +251,14 @@ public:
 #include "collection_string_list.h"
 
 
-class CLASS_DECL_ca map_word_to_ptr :
+class CLASS_DECL_ca2 map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_ptr_to_word :
+class CLASS_DECL_ca2 map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
@@ -266,14 +266,14 @@ public:
 };
 
 
-class CLASS_DECL_ca map_ptr_to_ptr :
+class CLASS_DECL_ca2 map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_word_to_ob :
+class CLASS_DECL_ca2 map_word_to_ob :
    virtual public map < WORD, WORD, ::ca::object *, ::ca::object * >
 {
 public:
@@ -281,14 +281,14 @@ public:
 };
 
 
-class CLASS_DECL_ca map_string_to_ptr :
+class CLASS_DECL_ca2 map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_string_to_ob :
+class CLASS_DECL_ca2 map_string_to_ob :
    virtual public map < string, const string &, ::ca::object *, ::ca::object * >
 {
 public:
@@ -303,22 +303,22 @@ public:
 #include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "ca/ca/ca_variable_strict_compare.h"
+#include "ca/ca_variable_strict_compare.h"
 
-#include "ca/primitive/primitive_var.h"
+#include "primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
-#include "ca/ca/ca_var_array.h"
-#include "ca/ca/ca_property.h"
+#include "ca/ca_var_array.h"
+#include "ca/ca_property.h"
 
 
 
 
-#include "ca/ca/ca_signal.h"
-#include "ca/ca/ca_property_set.h"
-#include "ca/ca/ca_international2.h"
+#include "ca/ca_signal.h"
+#include "ca/ca_property_set.h"
+#include "ca/ca_international2.h"
 
 
 #include "collection_point_array.h"
@@ -334,13 +334,13 @@ public:
 #include "collection.inl"
 
 
-class CLASS_DECL_ca dword_2darray :
+class CLASS_DECL_ca2 dword_2darray :
    public spa(uint32_array)
 {
 public:
 };
 
-class CLASS_DECL_ca index_2darray :
+class CLASS_DECL_ca2 index_2darray :
    public spa(index_array)
 {
 public:
@@ -366,7 +366,7 @@ public:
 
 #include "collection_priority_queue.h"
 
-class CLASS_DECL_ca time_array :
+class CLASS_DECL_ca2 time_array :
    public array < ::datetime::time, ::datetime::time & >
 {
 };

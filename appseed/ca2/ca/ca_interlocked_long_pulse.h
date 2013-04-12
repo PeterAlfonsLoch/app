@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca interlocked_long_pulse
+   class CLASS_DECL_ca2 interlocked_long_pulse
    {
    public:
 

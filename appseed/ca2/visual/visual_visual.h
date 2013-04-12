@@ -5,7 +5,7 @@
 namespace visual
 {
 
-   class CLASS_DECL_ca visual
+   class CLASS_DECL_ca2 visual
    {
    public:
       visual(::ca::graphics * pdc);
@@ -30,7 +30,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_ca visual  :
+   class CLASS_DECL_ca2 visual  :
       virtual public ::ca::section
    {
    public:

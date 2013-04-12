@@ -2,4 +2,4 @@
 
 
 
-CLASS_DECL_ca void registerJavascriptFunctions(tinyjs *tinyJS);
+CLASS_DECL_ca2 void registerJavascriptFunctions(tinyjs *tinyJS);

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca section :
+   class CLASS_DECL_ca2 section :
       virtual public ::ca::signalizable
    {
    public:

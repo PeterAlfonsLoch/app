@@ -4,7 +4,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca document_request_interface :
+   class CLASS_DECL_ca2 document_request_interface :
       virtual public ::ca::object
    {
    public:

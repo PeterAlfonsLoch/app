@@ -1,7 +1,7 @@
 #pragma once
 
 class var;
-class CLASS_DECL_ca variable_strict_compare
+class CLASS_DECL_ca2 variable_strict_compare
 {
 public:
    variable_strict_compare(const var & var);
@@ -23,17 +23,17 @@ public:
    bool operator != (int32_t i) const;
    bool operator != (bool b) const;
 
-   friend bool CLASS_DECL_ca operator == (const char * psz, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator == (const string & str, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator == (double d, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator == (int32_t i, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator == (bool b, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator == (const char * psz, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator == (const string & str, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator == (double d, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator == (int32_t i, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator == (bool b, const variable_strict_compare & var);
 
-   friend bool CLASS_DECL_ca operator != (const char * psz, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator != (const string & str, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator != (double d, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator != (int32_t i, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator != (bool b, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator != (const char * psz, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator != (const string & str, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator != (double d, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator != (int32_t i, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca2 operator != (bool b, const variable_strict_compare & var);
 
 };
 

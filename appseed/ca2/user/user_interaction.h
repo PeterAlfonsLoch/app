@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/user/user_window_interface.h"
+#include "user/user_window_interface.h"
 
 
 namespace ca
@@ -31,7 +31,7 @@ namespace user
    class control_event;
 
 
-   class CLASS_DECL_ca interaction :
+   class CLASS_DECL_ca2 interaction :
       virtual public window_interface,
       virtual public ::user::interaction_base
    {
@@ -66,7 +66,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca timer_item :
+      class CLASS_DECL_ca2 timer_item :
          virtual public ::ca::ca
       {
       public:
@@ -82,7 +82,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca timer_array :
+      class CLASS_DECL_ca2 timer_array :
          virtual public spa(interaction)
       {
       public:
@@ -560,7 +560,7 @@ namespace user
 
 } // namespace user
 
-CLASS_DECL_ca sp(::user::interaction) WINAPI CreateGuieEx(
+CLASS_DECL_ca2 sp(::user::interaction) WINAPI CreateGuieEx(
    sp(::ca::application) papp,
     uint32_t dwExStyle,
     const char * lpClassName,

@@ -4,7 +4,7 @@
 #undef new
 
 
-CLASS_DECL_ca plex_heap_alloc_array g_heap;
+CLASS_DECL_ca2 plex_heap_alloc_array g_heap;
 
 plex* plex::create(plex*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {

@@ -4,7 +4,7 @@
 class db_server;
 
 
-class CLASS_DECL_ca im_post :
+class CLASS_DECL_ca2 im_post :
    public db_set
 {
 public:
@@ -13,7 +13,7 @@ public:
    virtual ~im_post();
 
 
-   /*class CLASS_DECL_ca record
+   /*class CLASS_DECL_ca2 record
    {
    public:
       var sender;

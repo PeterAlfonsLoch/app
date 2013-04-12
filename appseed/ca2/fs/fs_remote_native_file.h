@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca remote_native_file : 
+   class CLASS_DECL_ca2 remote_native_file : 
       virtual public ::sockets::http::batch_file
    {
    public:

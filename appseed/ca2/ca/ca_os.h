@@ -15,7 +15,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca os :
+   class CLASS_DECL_ca2 os :
       public ::ca::object
    {
    public:

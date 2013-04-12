@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca graphics_path :
+   class CLASS_DECL_ca2 graphics_path :
       virtual public graphics_object
    {
    public:
@@ -134,7 +134,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca graphics_path_sp :
+   class CLASS_DECL_ca2 graphics_path_sp :
       public smart_pointer < graphics_path >
    {
    public:

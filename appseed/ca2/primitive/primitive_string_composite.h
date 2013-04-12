@@ -4,7 +4,7 @@
 
 
 
-class CLASS_DECL_ca string_composite :
+class CLASS_DECL_ca2 string_composite :
    public string_interface
 {
 private:

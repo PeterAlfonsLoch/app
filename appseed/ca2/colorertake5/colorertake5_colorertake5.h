@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   class CLASS_DECL_ca colorertake5 :
+   class CLASS_DECL_ca2 colorertake5 :
       virtual public ::ca::section
    {
    public:

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca edit_file :
+   class CLASS_DECL_ca2 edit_file :
       public ::ca::filesp,
       public ::ca::tree,
       public ::ca::tree_data

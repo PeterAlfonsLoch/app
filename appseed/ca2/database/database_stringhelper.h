@@ -28,7 +28,7 @@
 
 #pragma once
 
-class CLASS_DECL_ca str_helper 
+class CLASS_DECL_ca2 str_helper 
 {
   private:
   string work_str;

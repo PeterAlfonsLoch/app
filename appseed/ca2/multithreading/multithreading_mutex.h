@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca mutex :
+class CLASS_DECL_ca2 mutex :
    public sync_object
 {
 public:

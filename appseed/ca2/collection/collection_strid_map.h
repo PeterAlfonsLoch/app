@@ -45,7 +45,7 @@ strid_map < VALUE, ARG_VALUE, HASH, EQUALS > & strid_map < VALUE, ARG_VALUE, HAS
 
 
 template < class T >
-class CLASS_DECL_ca string_to_pointer :
+class CLASS_DECL_ca2 string_to_pointer :
    virtual public string_to_ptr
 {
 public:

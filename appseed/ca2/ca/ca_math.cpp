@@ -442,17 +442,17 @@ namespace ca
    namespace lemon
    {
 
-      int32_t CLASS_DECL_ca time_seed();
+      int32_t CLASS_DECL_ca2 time_seed();
 
-      void CLASS_DECL_ca srand();
+      void CLASS_DECL_ca2 srand();
 
-      int32_t CLASS_DECL_ca time_seed()
+      int32_t CLASS_DECL_ca2 time_seed()
       {
          return (time(::null()) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;
       }
 
 
-      void CLASS_DECL_ca srand()
+      void CLASS_DECL_ca2 srand()
       {
          int32_t iSeed = time_seed();
          ::srand(iSeed);

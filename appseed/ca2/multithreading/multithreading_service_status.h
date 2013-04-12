@@ -12,7 +12,7 @@
 #ifdef WINDOWSEX
 
 
-class CLASS_DECL_ca service_status : public SERVICE_STATUS
+class CLASS_DECL_ca2 service_status : public SERVICE_STATUS
 {
 public:
 
@@ -29,7 +29,7 @@ public:
 #else
 
 
-class CLASS_DECL_ca service_status
+class CLASS_DECL_ca2 service_status
 {
 public:
 

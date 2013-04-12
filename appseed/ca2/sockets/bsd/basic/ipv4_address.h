@@ -30,7 +30,7 @@ namespace sockets
 
    /* Ipv4 address implementation.
    \ingroup basic */
-   class CLASS_DECL_ca ipv4_address :
+   class CLASS_DECL_ca2 ipv4_address :
       virtual public ::ca::object
    {
    public:

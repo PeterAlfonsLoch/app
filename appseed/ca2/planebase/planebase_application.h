@@ -5,7 +5,7 @@ namespace planebase
 {
 
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       virtual public ::ca::application,
       virtual public ::database::client
    {
@@ -160,11 +160,11 @@ namespace planebase
 
    };
 
-   CLASS_DECL_ca UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+   CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
    typedef sp(::ca::application) (* LPFN_instantiate_application)(sp(::ca::application) pappParent, const char * pszId);
 
-   extern CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application;
+   extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
 } // namespace cube4

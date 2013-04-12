@@ -2,7 +2,7 @@
 
 #define CA2_PALACE_SAFE_ZONE_BORDER_SIZE 32
 
-struct CLASS_DECL_ca plex     // warning var length structure
+struct CLASS_DECL_ca2 plex     // warning var length structure
 {
    plex*                            pNext;
    ::primitive::memory_size         size;

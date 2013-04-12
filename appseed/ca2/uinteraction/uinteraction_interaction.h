@@ -5,7 +5,7 @@ namespace uinteraction
 {
 
 
-   class CLASS_DECL_ca interaction :
+   class CLASS_DECL_ca2 interaction :
       virtual public ::ca::object
    {
    public:

@@ -17,7 +17,7 @@ namespace user
    class interaction;
    class control_event;
 
-   class CLASS_DECL_ca keyboard_focus :
+   class CLASS_DECL_ca2 keyboard_focus :
       virtual public ::ca::signalizable
    {
    public:

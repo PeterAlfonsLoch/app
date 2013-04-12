@@ -17,7 +17,7 @@ namespace ca
             The Mersenne Twister
             http://www.math.keio.ac.jp/~matumoto/emt.html
          */
-         class CLASS_DECL_ca rng
+         class CLASS_DECL_ca2 rng
          {
          public:
             rng();

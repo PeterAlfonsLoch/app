@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca request_signal : 
+   class CLASS_DECL_ca2 request_signal : 
       public ::ca::signal_object
    {
    public:

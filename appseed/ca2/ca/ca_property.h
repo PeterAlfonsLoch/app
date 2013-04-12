@@ -9,40 +9,40 @@ namespace ca
 } // namespace ca
 
 
-string CLASS_DECL_ca operator + (const char * psz, const ::ca::property & prop);
-string CLASS_DECL_ca operator + (const string & str, const ::ca::property & prop);
+string CLASS_DECL_ca2 operator + (const char * psz, const ::ca::property & prop);
+string CLASS_DECL_ca2 operator + (const string & str, const ::ca::property & prop);
 
-var CLASS_DECL_ca operator - (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator - (uint32_t user, const ::ca::property & prop);
-var CLASS_DECL_ca operator - (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator - (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca operator - (double d, const ::ca::property & prop);
-var CLASS_DECL_ca operator - (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca operator - (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator - (int32_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator - (uint32_t user, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator - (int64_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator - (uint64_t ui, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator - (double d, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator - (const var & var, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator - (const ::ca::property & prop1, const ::ca::property & prop2);
 
-var CLASS_DECL_ca operator + (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator + (uint32_t user, const ::ca::property & prop);
-var CLASS_DECL_ca operator + (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator + (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca operator + (double d, const ::ca::property & prop);
-var CLASS_DECL_ca operator + (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca operator + (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator + (int32_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator + (uint32_t user, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator + (int64_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator + (uint64_t ui, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator + (double d, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator + (const var & var, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator + (const ::ca::property & prop1, const ::ca::property & prop2);
 
-var CLASS_DECL_ca operator / (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator / (uint32_t user, const ::ca::property & prop);
-var CLASS_DECL_ca operator / (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator / (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca operator / (double d, const ::ca::property & prop);
-var CLASS_DECL_ca operator / (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca operator / (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator / (int32_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator / (uint32_t user, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator / (int64_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator / (uint64_t ui, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator / (double d, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator / (const var & var, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator / (const ::ca::property & prop1, const ::ca::property & prop2);
 
-var CLASS_DECL_ca operator * (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator * (uint32_t user, const ::ca:: property & prop);
-var CLASS_DECL_ca operator * (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca operator * (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca operator * (double d, const ::ca::property & prop);
-var CLASS_DECL_ca operator * (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca operator * (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator * (int32_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator * (uint32_t user, const ::ca:: property & prop);
+var CLASS_DECL_ca2 operator * (int64_t i, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator * (uint64_t ui, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator * (double d, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator * (const var & var, const ::ca::property & prop);
+var CLASS_DECL_ca2 operator * (const ::ca::property & prop1, const ::ca::property & prop2);
 
 
 namespace xml
@@ -59,7 +59,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca pair_set_interface
+   class CLASS_DECL_ca2 pair_set_interface
    {
    public:
 
@@ -81,7 +81,7 @@ namespace ca
       var & operator[](const char * pszName);
    };
 
-   class CLASS_DECL_ca str_str_interface
+   class CLASS_DECL_ca2 str_str_interface
    {
    public:
 
@@ -106,7 +106,7 @@ namespace ca
    class property_map;
 
 
-   class CLASS_DECL_ca property :
+   class CLASS_DECL_ca2 property :
       public ::ca::object,
       public ::ca::byte_serializable
    {
@@ -537,8 +537,8 @@ namespace ca
       string operator + (const char * psz) const;
       string operator + (const string & str) const;
 
-//      friend string CLASS_DECL_ca operator + (const char * psz, const property & var);
-//      friend string CLASS_DECL_ca operator + (const string & str, const property & var);
+//      friend string CLASS_DECL_ca2 operator + (const char * psz, const property & var);
+//      friend string CLASS_DECL_ca2 operator + (const string & str, const property & var);
 
       var operator - (int32_t i) const;
       var operator - (uint32_t user) const;
@@ -547,13 +547,13 @@ namespace ca
       var operator - (double d) const;
       var operator - (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator - (int32_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator - (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator - (int64_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator - (uint64_t ui, const property & prop);
-//      friend var CLASS_DECL_ca operator - (double d, const property & prop);
-//      friend var CLASS_DECL_ca operator - (const var & var, const property & prop);
-//      friend var CLASS_DECL_ca operator - (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca2 operator - (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator - (uint32_t user, const property & prop);
+//      friend var CLASS_DECL_ca2 operator - (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator - (uint64_t ui, const property & prop);
+//      friend var CLASS_DECL_ca2 operator - (double d, const property & prop);
+//      friend var CLASS_DECL_ca2 operator - (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca2 operator - (const property & prop1, const property & prop2);
 
       var operator + (int32_t i) const;
       var operator + (uint32_t user) const;
@@ -562,13 +562,13 @@ namespace ca
       var operator + (double d) const;
       var operator + (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator + (int32_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator + (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator + (int64_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator + (uint64_t ui, const property & prop);
-//      friend var CLASS_DECL_ca operator + (double d, const property & prop);
-//      friend var CLASS_DECL_ca operator + (const var & var, const property & prop);
-//      friend var CLASS_DECL_ca operator + (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca2 operator + (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator + (uint32_t user, const property & prop);
+//      friend var CLASS_DECL_ca2 operator + (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator + (uint64_t ui, const property & prop);
+//      friend var CLASS_DECL_ca2 operator + (double d, const property & prop);
+//      friend var CLASS_DECL_ca2 operator + (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca2 operator + (const property & prop1, const property & prop2);
 
       var operator / (int32_t i) const;
       var operator / (uint32_t user) const;
@@ -577,13 +577,13 @@ namespace ca
       var operator / (double d) const;
       var operator / (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator / (int32_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator / (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator / (int64_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator / (uint64_t ui, const property & prop);
-//      friend var CLASS_DECL_ca operator / (double d, const property & prop);
-//      friend var CLASS_DECL_ca operator / (const var & var, const property & prop);
-//      friend var CLASS_DECL_ca operator / (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca2 operator / (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator / (uint32_t user, const property & prop);
+//      friend var CLASS_DECL_ca2 operator / (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator / (uint64_t ui, const property & prop);
+//      friend var CLASS_DECL_ca2 operator / (double d, const property & prop);
+//      friend var CLASS_DECL_ca2 operator / (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca2 operator / (const property & prop1, const property & prop2);
 
       var operator * (int32_t i) const;
       var operator * (uint32_t user) const;
@@ -592,13 +592,13 @@ namespace ca
       var operator * (double d) const;
       var operator * (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator * (int32_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator * (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator * (int64_t i, const property & prop);
-//      friend var CLASS_DECL_ca operator * (uint64_t ui, const property & prop);
-//      friend var CLASS_DECL_ca operator * (double d, const property & prop);
-//      friend var CLASS_DECL_ca operator * (const var & var, const property & prop);
-//      friend var CLASS_DECL_ca operator * (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca2 operator * (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator * (uint32_t user, const property & prop);
+//      friend var CLASS_DECL_ca2 operator * (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca2 operator * (uint64_t ui, const property & prop);
+//      friend var CLASS_DECL_ca2 operator * (double d, const property & prop);
+//      friend var CLASS_DECL_ca2 operator * (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca2 operator * (const property & prop1, const property & prop2);
 
       property & operator -= (int32_t i);
       property & operator -= (uint32_t user);
@@ -665,7 +665,7 @@ namespace ca
 
 
 
-   class CLASS_DECL_ca property_array :
+   class CLASS_DECL_ca2 property_array :
       public ::ca::byte_serializable_pointer_array < spa(property) >
    {
    public:
@@ -678,7 +678,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca property_map :
+   class CLASS_DECL_ca2 property_map :
       public string_to_intptr
    {
    public:
@@ -697,7 +697,7 @@ namespace ca
 
    namespace str
    {
-      inline bool CLASS_DECL_ca begins(const ::ca::property & property, const char * lpcszPrefix) { return begins((const string &) property, lpcszPrefix); };
+      inline bool CLASS_DECL_ca2 begins(const ::ca::property & property, const char * lpcszPrefix) { return begins((const string &) property, lpcszPrefix); };
    }
 
 

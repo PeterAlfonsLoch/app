@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_ca cursor :
+   class CLASS_DECL_ca2 cursor :
       virtual public ::ca::object
    {
    public:

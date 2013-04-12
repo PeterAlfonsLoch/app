@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca calendar_interface :
+class CLASS_DECL_ca2 calendar_interface :
    virtual public ::ca::object
 {
 public:

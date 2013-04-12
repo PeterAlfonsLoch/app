@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca system :
+   class CLASS_DECL_ca2 system :
       virtual public ::ca::application
    {
    public:

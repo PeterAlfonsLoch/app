@@ -9,7 +9,7 @@ namespace ca
    class plain_text_input_stream;
 
 
-   class CLASS_DECL_ca plain_text_serializable :
+   class CLASS_DECL_ca2 plain_text_serializable :
       virtual public ::ca::object
    {
    public:

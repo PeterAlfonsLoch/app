@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca todo :
+class CLASS_DECL_ca2 todo :
    virtual public not_implemented
 {
 public:

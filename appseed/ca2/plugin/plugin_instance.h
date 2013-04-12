@@ -5,7 +5,7 @@ namespace plugin
 {
 
 
-   class CLASS_DECL_ca instance : 
+   class CLASS_DECL_ca2 instance : 
       public ::plugin::plugin
    {
    public:

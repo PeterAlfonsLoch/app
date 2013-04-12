@@ -2,7 +2,7 @@
 
 
 /// This class represents events for socket communication.
-class CLASS_DECL_ca socket_event :
+class CLASS_DECL_ca2 socket_event :
    public event
 {
 public:

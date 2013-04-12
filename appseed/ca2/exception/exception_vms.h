@@ -4,7 +4,7 @@
 typedef long VMSRESULT;
 
 
-class CLASS_DECL_ca vms_exception : 
+class CLASS_DECL_ca2 vms_exception : 
    virtual public base_exception  
 {
 public:

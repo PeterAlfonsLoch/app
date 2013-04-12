@@ -26,7 +26,7 @@ namespace user
    class str_context;
 
 
-   class CLASS_DECL_ca str_schema : 
+   class CLASS_DECL_ca2 str_schema : 
       public map < id, const ::id &, string, const string & >
    {
    public:
@@ -40,7 +40,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca str_locale : 
+   class CLASS_DECL_ca2 str_locale : 
       public map < id, const ::id &, str_schema, const str_schema & >
    {
    public:
@@ -63,7 +63,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca str : 
+   class CLASS_DECL_ca2 str : 
       public map < id, const ::id &, str_locale, const str_locale & >
    {
    public:
@@ -108,7 +108,7 @@ namespace user
 
 
 
-   class CLASS_DECL_ca str_context :
+   class CLASS_DECL_ca2 str_context :
       virtual public ::ca::object
    {
    public:

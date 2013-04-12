@@ -24,14 +24,14 @@ namespace dynamic_source
 {
 
 
-   class CLASS_DECL_ca script_manager :
+   class CLASS_DECL_ca2 script_manager :
       virtual public ::ca::thread,
       virtual public ::ca::message_window_simple_callback
    {
    public:
 
       
-      class CLASS_DECL_ca clear_include_matches_folder_watch :
+      class CLASS_DECL_ca2 clear_include_matches_folder_watch :
          public ::file_watcher::listener_thread
       
       {
@@ -47,7 +47,7 @@ namespace dynamic_source
       };
 
       
-      class CLASS_DECL_ca session :
+      class CLASS_DECL_ca2 session :
          virtual public ::ca::object
       {
       public:
@@ -62,7 +62,7 @@ namespace dynamic_source
 
       };
 
-      class CLASS_DECL_ca plugin_map_item :
+      class CLASS_DECL_ca2 plugin_map_item :
          virtual public ::ca::ca
       {
       public:
@@ -80,7 +80,7 @@ namespace dynamic_source
 
       };
 
-      class CLASS_DECL_ca tunnel_map_item
+      class CLASS_DECL_ca2 tunnel_map_item
       {
       public:
 

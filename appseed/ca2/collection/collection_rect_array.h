@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca rect_array :
+class CLASS_DECL_ca2 rect_array :
    public array < rect >
 {
 public:

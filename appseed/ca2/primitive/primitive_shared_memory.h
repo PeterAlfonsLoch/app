@@ -7,7 +7,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_ca shared_memory :
+   class CLASS_DECL_ca2 shared_memory :
       public ::primitive::memory_base
    {
    public:

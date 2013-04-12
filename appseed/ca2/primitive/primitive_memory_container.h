@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_ca memory_container :
+   class CLASS_DECL_ca2 memory_container :
       virtual public ::ca::object
    {
    protected:

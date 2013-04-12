@@ -11,7 +11,7 @@
 
 #pragma once
 
-class CLASS_DECL_ca service_base :
+class CLASS_DECL_ca2 service_base :
    virtual public ::ca::object
 {
 public:

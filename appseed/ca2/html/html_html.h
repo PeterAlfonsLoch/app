@@ -11,7 +11,7 @@ namespace html
    typedef string_to_colorref CNamedColors;
 
 
-   class CLASS_DECL_ca html :
+   class CLASS_DECL_ca2 html :
       public ::ca::section
    {
    public:

@@ -29,7 +29,7 @@ namespace ca
    };
 
    template < >
-   class CLASS_DECL_ca hash < const string & >
+   class CLASS_DECL_ca2 hash < const string & >
    {
    public:
 
@@ -50,7 +50,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca strid_hash
+   class CLASS_DECL_ca2 strid_hash
    {
    public:
 
@@ -66,7 +66,7 @@ namespace ca
 
 
 
-template<> CLASS_DECL_ca UINT HashKey<const wchar_t *> (const wchar_t * key);
+template<> CLASS_DECL_ca2 UINT HashKey<const wchar_t *> (const wchar_t * key);
 
 
 template<> inline UINT HashKey<rect> (rect key)

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/user/user_interaction.h"
+#include "user/user_interaction.h"
 
 
 namespace ca
@@ -12,7 +12,7 @@ namespace ca
    class window_callback;
 
 
-   class CLASS_DECL_ca window :
+   class CLASS_DECL_ca2 window :
       virtual public ::user::interaction
    {
    public:
@@ -693,7 +693,7 @@ namespace ca
 } // namespace ca
 
 
-class CLASS_DECL_ca guie_message_wnd :
+class CLASS_DECL_ca2 guie_message_wnd :
    virtual public ::ca::window
 {
 public:

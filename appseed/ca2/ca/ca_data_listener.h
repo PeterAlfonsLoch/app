@@ -5,7 +5,7 @@ namespace ca
 
    class data;
 
-   class CLASS_DECL_ca data_listener :
+   class CLASS_DECL_ca2 data_listener :
       virtual public ::ca::object
    {
    public:

@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS
 
-class CLASS_DECL_ca bstr
+class CLASS_DECL_ca2 bstr
 {
 public:
 

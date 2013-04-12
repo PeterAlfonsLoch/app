@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca data_container :
+   class CLASS_DECL_ca2 data_container :
       virtual public ::ca::object
    {
    public:
@@ -27,7 +27,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca data_container_base :
+   class CLASS_DECL_ca2 data_container_base :
       virtual public ::ca::object
    {
    public:

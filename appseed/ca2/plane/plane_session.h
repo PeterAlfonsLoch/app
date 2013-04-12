@@ -8,7 +8,7 @@ namespace plane
    class view;
 
 
-   class CLASS_DECL_ca session :
+   class CLASS_DECL_ca2 session :
       virtual public ::plane::application,
       virtual public ::ca::session
    {
@@ -37,7 +37,7 @@ namespace plane
          virtual void run_start_install(const char * pszInstall) = 0;
       };
 
-      class CLASS_DECL_ca map :
+      class CLASS_DECL_ca2 map :
          virtual public ::map < index, index, sp(::plane::session), sp(::plane::session) >
       {
       };

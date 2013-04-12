@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca interlocked_long
+   class CLASS_DECL_ca2 interlocked_long
    {
    public:
       

@@ -36,7 +36,7 @@ namespace sockets
 
    /** StdLog implementation, logs to stdout. 
       \ingroup logging */
-   class CLASS_DECL_ca trace_log : public StdLog
+   class CLASS_DECL_ca2 trace_log : public StdLog
    {
    public:
       void error(

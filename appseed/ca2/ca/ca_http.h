@@ -22,7 +22,7 @@ namespace ca
          status_failed,
       };
 
-      class CLASS_DECL_ca signal :
+      class CLASS_DECL_ca2 signal :
          public ::ca::signal_object
       {
       public:

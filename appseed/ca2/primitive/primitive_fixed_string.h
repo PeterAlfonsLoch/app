@@ -2,7 +2,7 @@
 
 
 /*
-class CLASS_DECL_ca fixed_string_log_interface
+class CLASS_DECL_ca2 fixed_string_log_interface
 {
 public:
 
@@ -14,7 +14,7 @@ public:
 };
 
 
-class CLASS_DECL_ca fixed_string_manager :
+class CLASS_DECL_ca2 fixed_string_manager :
    public string_manager
 {
 protected:
@@ -172,7 +172,7 @@ fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const string & str
 }
 
 
-class CLASS_DECL_ca fixed_string_log :
+class CLASS_DECL_ca2 fixed_string_log :
    public fixed_string_log_interface
 {
 public:

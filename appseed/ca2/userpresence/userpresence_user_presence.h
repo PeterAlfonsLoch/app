@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   class CLASS_DECL_ca presence :
+   class CLASS_DECL_ca2 presence :
       virtual public ::ca::object
    {
    public:

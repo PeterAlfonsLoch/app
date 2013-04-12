@@ -14,7 +14,7 @@ namespace ca
 
    class TimerCallback;
 
-class CLASS_DECL_ca Timer  
+class CLASS_DECL_ca2 Timer  
 {
 public:
    class CCreate

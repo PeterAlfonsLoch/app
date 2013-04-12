@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      class CLASS_DECL_ca rotation
+      class CLASS_DECL_ca2 rotation
       {
       public:
          double   m_dCosPhi;
@@ -20,7 +20,7 @@ namespace ca
          void rotate(LPPOINT lppoint, int32_t iCount);
       };
 
-      class CLASS_DECL_ca geometry  :
+      class CLASS_DECL_ca2 geometry  :
          virtual public ::ca::object
       {
       public:

@@ -21,8 +21,8 @@
 
 
 // compress filters
-#include "ca/compress/crypto/crypto_rar20.h"
+#include "compress/crypto/crypto_rar20.h"
 
 
 // coders
-#include "ca/compress/crypto/crypto_aes_cbc_coder.h"
+#include "compress/crypto/crypto_aes_cbc_coder.h"

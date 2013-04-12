@@ -1,7 +1,7 @@
 #pragma once
 
 // MDI support (zero or more documents)
-class CLASS_DECL_ca multiple_document_template :
+class CLASS_DECL_ca2 multiple_document_template :
    virtual public document_template
 {
 public:

@@ -5,7 +5,7 @@ class db_server;
 class FileSystemSizeWnd;
 
 
-class CLASS_DECL_ca file_size_table :
+class CLASS_DECL_ca2 file_size_table :
    virtual public ::ca::object
 {
 public:
@@ -94,7 +94,7 @@ public:
 
 
 
-class CLASS_DECL_ca DBFileSystemSizeSet :
+class CLASS_DECL_ca2 DBFileSystemSizeSet :
    virtual public ::ca::object
 {
 public:
@@ -122,7 +122,7 @@ public:
 
 
 
-class CLASS_DECL_ca FileSystemSizeServerThread :
+class CLASS_DECL_ca2 FileSystemSizeServerThread :
    virtual public ::ca::thread
 {
 public:
@@ -136,7 +136,7 @@ public:
 
 
 
-class CLASS_DECL_ca FileSystemSizeWnd :
+class CLASS_DECL_ca2 FileSystemSizeWnd :
    public ::ca::window_sp,
    public ::ca::signalizable
 {

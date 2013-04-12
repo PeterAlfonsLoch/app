@@ -6,7 +6,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca live_signal :
+   class CLASS_DECL_ca2 live_signal :
       virtual public ::ca::live_object,
       virtual protected ::comparable_array < live_object * >
    {

@@ -3,7 +3,7 @@
 namespace simpledb
 {
 
-   class CLASS_DECL_ca file_set :
+   class CLASS_DECL_ca2 file_set :
       public ::ca::file_set_sp,
       public ::database::client
    {

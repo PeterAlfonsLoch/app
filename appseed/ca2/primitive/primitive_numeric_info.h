@@ -211,10 +211,10 @@ namespace numeric_info
 
    template < typename T > class offset { public: typedef T TYPE; };
 
-   template < > class CLASS_DECL_ca offset < uchar > { public: typedef char TYPE; };
-   template < > class CLASS_DECL_ca offset < uint16_t > { public: typedef int16_t TYPE; };
-   template < > class CLASS_DECL_ca offset < uint32_t > { public: typedef int32_t TYPE; };
-   template < > class CLASS_DECL_ca offset < uint64_t > { public: typedef int64_t TYPE; };
+   template < > class CLASS_DECL_ca2 offset < uchar > { public: typedef char TYPE; };
+   template < > class CLASS_DECL_ca2 offset < uint16_t > { public: typedef int16_t TYPE; };
+   template < > class CLASS_DECL_ca2 offset < uint32_t > { public: typedef int32_t TYPE; };
+   template < > class CLASS_DECL_ca2 offset < uint64_t > { public: typedef int64_t TYPE; };
 
    template < typename T > class type { public: typedef T TYPE; };
 

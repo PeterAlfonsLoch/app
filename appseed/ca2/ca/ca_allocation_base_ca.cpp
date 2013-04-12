@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-CLASS_DECL_ca void * base_ca2_alloc(size_t size);
-CLASS_DECL_ca void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_ca void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_ca void   base_ca2_free(void * pvoid, int32_t iBlockType);
-CLASS_DECL_ca size_t base_ca2_msize(void * pvoid, int32_t iBlockType);
+CLASS_DECL_ca2 void * base_ca2_alloc(size_t size);
+CLASS_DECL_ca2 void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca2 void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca2 void   base_ca2_free(void * pvoid, int32_t iBlockType);
+CLASS_DECL_ca2 size_t base_ca2_msize(void * pvoid, int32_t iBlockType);
 
 
 void use_base_ca2_allocator()

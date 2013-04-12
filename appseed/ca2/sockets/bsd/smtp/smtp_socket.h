@@ -1,12 +1,12 @@
 #pragma once
 
-class CLASS_DECL_ca email :
+class CLASS_DECL_ca2 email :
    virtual public ::ca::object
 {
 public:
    email(sp(::ca::application) papp);
 
-   class CLASS_DECL_ca address
+   class CLASS_DECL_ca2 address
    {
    public:
       address();
@@ -46,7 +46,7 @@ public:
 namespace sockets
 {
    /** Smtp server base class. */
-   class CLASS_DECL_ca smtp_socket : public tcp_socket
+   class CLASS_DECL_ca2 smtp_socket : public tcp_socket
    {
    public:
       typedef enum {

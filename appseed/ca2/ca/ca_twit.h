@@ -5,7 +5,7 @@ namespace ca
 {
 
    /* twitCurl class */
-   class CLASS_DECL_ca twit :
+   class CLASS_DECL_ca2 twit :
       virtual public ::ca::object
    {
    public:

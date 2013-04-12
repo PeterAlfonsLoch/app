@@ -7,7 +7,7 @@ namespace database
    class client;
 
 
-   class CLASS_DECL_ca key
+   class CLASS_DECL_ca2 key
    {
    public:
 

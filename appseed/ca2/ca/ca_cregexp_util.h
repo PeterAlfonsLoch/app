@@ -11,7 +11,7 @@ namespace user
 } // namespace user
 
 
-class CLASS_DECL_ca cregexp_util  
+class CLASS_DECL_ca2 cregexp_util  
 {
 public:
 

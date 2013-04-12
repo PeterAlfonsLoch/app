@@ -3,7 +3,7 @@
 namespace http
 {
 
-   class CLASS_DECL_ca response : public http::transaction
+   class CLASS_DECL_ca2 response : public http::transaction
    {
    public:
       response(sp(::ca::application) papp, const string & version = "HTTP/1.0");

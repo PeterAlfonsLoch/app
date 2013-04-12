@@ -8,7 +8,7 @@ namespace fs
    class list_item;
 
 
-   class CLASS_DECL_ca item :
+   class CLASS_DECL_ca2 item :
       virtual public ::ca::ca
    {
    public:

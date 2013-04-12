@@ -4,7 +4,7 @@
 #include <sys/sem.h>
 #endif
 
-class CLASS_DECL_ca event :
+class CLASS_DECL_ca2 event :
    virtual public event_base
 {
 public:

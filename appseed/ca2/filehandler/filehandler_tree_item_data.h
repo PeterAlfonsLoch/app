@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_ca tree_item_data :
+   class CLASS_DECL_ca2 tree_item_data :
       public ::ca::tree_item_data
    {
    public:

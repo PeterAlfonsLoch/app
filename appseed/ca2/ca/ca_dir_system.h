@@ -22,7 +22,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca path :
+   class CLASS_DECL_ca2 path :
       virtual public ::ca::object
 
    {
@@ -35,14 +35,14 @@ namespace ca
    {
 
 
-      class CLASS_DECL_ca system :
+      class CLASS_DECL_ca2 system :
          virtual public ::ca::object
       {
       public:
 
 
 
-         class CLASS_DECL_ca is_dir
+         class CLASS_DECL_ca2 is_dir
          {
          public:
 
@@ -55,7 +55,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca is_dir_map :
+         class CLASS_DECL_ca2 is_dir_map :
             virtual public string_map < is_dir >
          {
          public:

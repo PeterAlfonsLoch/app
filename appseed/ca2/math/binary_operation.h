@@ -6,7 +6,7 @@ namespace math
 {
 
 
-   class CLASS_DECL_ca binary_operation :
+   class CLASS_DECL_ca2 binary_operation :
       virtual public value
    {
    public:

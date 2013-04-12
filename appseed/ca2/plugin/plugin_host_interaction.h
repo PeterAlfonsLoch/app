@@ -10,7 +10,7 @@ namespace plugin
    class plugin;
 
 
-   class CLASS_DECL_ca host_interaction :
+   class CLASS_DECL_ca2 host_interaction :
       public ::user::interaction
    {
    public:

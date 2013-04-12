@@ -5,7 +5,7 @@ namespace ca
 {
 
    /*
-   class CLASS_DECL_ca file_association :
+   class CLASS_DECL_ca2 file_association :
       public ::win::registry
    {
    public:

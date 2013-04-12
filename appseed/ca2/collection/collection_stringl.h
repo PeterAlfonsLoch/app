@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca stringl :
+class CLASS_DECL_ca2 stringl :
    virtual public string_list,
    virtual public ::ca::byte_serializable
 {

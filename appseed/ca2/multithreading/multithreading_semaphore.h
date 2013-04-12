@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca semaphore :
+class CLASS_DECL_ca2 semaphore :
    virtual public sync_object
 {
 public:

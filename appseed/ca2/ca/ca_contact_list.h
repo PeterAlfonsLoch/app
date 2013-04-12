@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca contact_list :
+   class CLASS_DECL_ca2 contact_list :
       public smart_pointer_array < ::user::profile *, ::user::profile * >
    {
    public:

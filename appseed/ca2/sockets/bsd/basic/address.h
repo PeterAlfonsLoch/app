@@ -20,7 +20,7 @@ namespace sockets
    'struct in_addr' is an IPv4 address.
    \ingroup basic
    */
-   class CLASS_DECL_ca address :
+   class CLASS_DECL_ca2 address :
       virtual public ::ca::object
    {
    public:

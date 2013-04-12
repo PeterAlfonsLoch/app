@@ -8,7 +8,7 @@ namespace database
    class base;
 
 
-   class CLASS_DECL_ca set :
+   class CLASS_DECL_ca2 set :
       virtual public ::ca::object
    {
    protected:

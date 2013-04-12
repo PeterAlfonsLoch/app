@@ -3,7 +3,7 @@
 namespace database
 {
 
-   class CLASS_DECL_ca field_definition_item : 
+   class CLASS_DECL_ca2 field_definition_item : 
       virtual public ::ca::object
    {
    public:
@@ -32,7 +32,7 @@ namespace database
    };
 
 
-   class CLASS_DECL_ca field_definition : 
+   class CLASS_DECL_ca2 field_definition : 
       virtual public array < field_definition_item >
    {
    public:

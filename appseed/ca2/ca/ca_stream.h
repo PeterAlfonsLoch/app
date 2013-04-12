@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca stream :
+   class CLASS_DECL_ca2 stream :
       virtual public reader,
       virtual public writer
    {

@@ -23,7 +23,7 @@ namespace user
    class window_interface;
 
 
-   class CLASS_DECL_ca window_map
+   class CLASS_DECL_ca2 window_map
    {
    public:
       window_map();

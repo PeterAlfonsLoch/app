@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca dump_context :
+class CLASS_DECL_ca2 dump_context :
    virtual public ::ca::ca
 {
 public:

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "ca/user/user.h"
-#include "ca/uinteraction/uinteraction.h"
+#include "user/user.h"
+#include "uinteraction/uinteraction.h"
 
 
 namespace fs

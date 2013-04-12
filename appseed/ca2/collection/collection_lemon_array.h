@@ -31,7 +31,7 @@ namespace lemon
       return a;
    }
    
-   class CLASS_DECL_ca array  : virtual public ::ca::object
+   class CLASS_DECL_ca2 array  : virtual public ::ca::object
    {
    public:
       array(sp(::ca::application) papp);
@@ -197,9 +197,9 @@ namespace lemon
 		}
 	}
 
-   CLASS_DECL_ca stringa x1_decode_ida(const char * psz);
+   CLASS_DECL_ca2 stringa x1_decode_ida(const char * psz);
 
-   CLASS_DECL_ca string x1_encode_ida(const stringa & stra);
+   CLASS_DECL_ca2 string x1_encode_ida(const stringa & stra);
 
 /*	function array_remove_by_keys($a, $keys, $bStrict = false)
 {

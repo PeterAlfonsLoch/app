@@ -33,7 +33,7 @@ namespace ca
 }
 
 
-class CLASS_DECL_ca var
+class CLASS_DECL_ca2 var
 {
 public:
 
@@ -357,17 +357,17 @@ public:
    bool strict_different(int32_t i) const;
    bool strict_different(bool b) const;
 
-   friend bool CLASS_DECL_ca strict_equal(const char * psz, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(const string & str, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(double d, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(int32_t i, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(bool b, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(const char * psz, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(const string & str, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(double d, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(int32_t i, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(bool b, const var & var);
 
-   friend bool CLASS_DECL_ca strict_different(const char * psz, const var & var);
-   friend bool CLASS_DECL_ca strict_different(const string & str, const var & var);
-   friend bool CLASS_DECL_ca strict_different(double d, const var & var);
-   friend bool CLASS_DECL_ca strict_different(int32_t i, const var & var);
-   friend bool CLASS_DECL_ca strict_different(bool b, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(const char * psz, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(const string & str, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(double d, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(int32_t i, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(bool b, const var & var);
 
    int32_t compare(const var & var) const;
    int32_t compare(const char * psz) const;
@@ -451,12 +451,12 @@ public:
    var operator - (uint64_t ui) const;
    var operator - (double d) const;
 
-   friend var CLASS_DECL_ca operator - (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator - (uint32_t ui, const var & var);
-   friend var CLASS_DECL_ca operator - (int64_t l, const var & var);
-   friend var CLASS_DECL_ca operator - (uint64_t ul, const var & var);
-   friend var CLASS_DECL_ca operator - (double d, const var & var);
-   friend var CLASS_DECL_ca operator - (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator - (int32_t i, const var & var);
+   friend var CLASS_DECL_ca2 operator - (uint32_t ui, const var & var);
+   friend var CLASS_DECL_ca2 operator - (int64_t l, const var & var);
+   friend var CLASS_DECL_ca2 operator - (uint64_t ul, const var & var);
+   friend var CLASS_DECL_ca2 operator - (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator - (const var & var1, const var & var2);
 
    var operator + (int32_t i) const;
    var operator + (uint32_t ui) const;
@@ -464,12 +464,12 @@ public:
    var operator + (uint64_t ui) const;
    var operator + (double d) const;
 
-   friend var CLASS_DECL_ca operator + (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator + (uint32_t ui, const var & var);
-   friend var CLASS_DECL_ca operator + (int64_t l, const var & var);
-   friend var CLASS_DECL_ca operator + (uint64_t ul, const var & var);
-   friend var CLASS_DECL_ca operator + (double d, const var & var);
-   friend var CLASS_DECL_ca operator + (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator + (int32_t i, const var & var);
+   friend var CLASS_DECL_ca2 operator + (uint32_t ui, const var & var);
+   friend var CLASS_DECL_ca2 operator + (int64_t l, const var & var);
+   friend var CLASS_DECL_ca2 operator + (uint64_t ul, const var & var);
+   friend var CLASS_DECL_ca2 operator + (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator + (const var & var1, const var & var2);
 
    var operator / (int32_t i) const;
    var operator / (uint32_t ui) const;
@@ -477,12 +477,12 @@ public:
    var operator / (uint64_t ui) const;
    var operator / (double d) const;
 
-   friend var CLASS_DECL_ca operator / (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator / (uint32_t ui, const var & var);
-   friend var CLASS_DECL_ca operator / (int64_t l, const var & var);
-   friend var CLASS_DECL_ca operator / (uint64_t ul, const var & var);
-   friend var CLASS_DECL_ca operator / (double d, const var & var);
-   friend var CLASS_DECL_ca operator / (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator / (int32_t i, const var & var);
+   friend var CLASS_DECL_ca2 operator / (uint32_t ui, const var & var);
+   friend var CLASS_DECL_ca2 operator / (int64_t l, const var & var);
+   friend var CLASS_DECL_ca2 operator / (uint64_t ul, const var & var);
+   friend var CLASS_DECL_ca2 operator / (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator / (const var & var1, const var & var2);
 
    var operator * (int32_t i) const;
    var operator * (uint32_t ui) const;
@@ -490,12 +490,12 @@ public:
    var operator * (uint64_t ui) const;
    var operator * (double d) const;
 
-   friend var CLASS_DECL_ca operator * (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator * (uint32_t ui, const var & var);
-   friend var CLASS_DECL_ca operator * (int64_t l, const var & var);
-   friend var CLASS_DECL_ca operator * (uint64_t ul, const var & var);
-   friend var CLASS_DECL_ca operator * (double d, const var & var);
-   friend var CLASS_DECL_ca operator * (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator * (int32_t i, const var & var);
+   friend var CLASS_DECL_ca2 operator * (uint32_t ui, const var & var);
+   friend var CLASS_DECL_ca2 operator * (int64_t l, const var & var);
+   friend var CLASS_DECL_ca2 operator * (uint64_t ul, const var & var);
+   friend var CLASS_DECL_ca2 operator * (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator * (const var & var1, const var & var2);
 
    var & operator -= (int32_t i);
    var & operator -= (uint32_t ui);
@@ -558,7 +558,7 @@ namespace ca
    {
 
 
-      inline CLASS_DECL_ca string from(const var & var)
+      inline CLASS_DECL_ca2 string from(const var & var)
       {
 
          return var.get_string();
@@ -572,7 +572,7 @@ namespace ca
 } // namespace ca
 
 
-inline string CLASS_DECL_ca operator+ (const char * psz, const var & var)
+inline string CLASS_DECL_ca2 operator+ (const char * psz, const var & var)
 {
 
    string strResult(psz);
@@ -583,7 +583,7 @@ inline string CLASS_DECL_ca operator+ (const char * psz, const var & var)
 }
 
 
-inline string CLASS_DECL_ca operator+ (const var & var, const char * psz)
+inline string CLASS_DECL_ca2 operator+ (const var & var, const char * psz)
 {
 
    string strResult(var.get_string());
@@ -594,7 +594,7 @@ inline string CLASS_DECL_ca operator+ (const var & var, const char * psz)
 }
 
 
-inline string CLASS_DECL_ca operator+ (const string & str, const var & var)
+inline string CLASS_DECL_ca2 operator+ (const string & str, const var & var)
 {
 
    string strResult(str);
@@ -605,7 +605,7 @@ inline string CLASS_DECL_ca operator+ (const string & str, const var & var)
 }
 
 
-inline string CLASS_DECL_ca operator+ (const var & var, const string & str)
+inline string CLASS_DECL_ca2 operator+ (const var & var, const string & str)
 {
 
    string strResult(var.get_string());

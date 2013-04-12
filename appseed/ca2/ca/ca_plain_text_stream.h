@@ -16,12 +16,12 @@ namespace ca
 	   _Hardfail      = 0x10,
    };
 
-   CLASS_DECL_ca typedef base_enum < e_iostate, goodbit > iostate;
+   CLASS_DECL_ca2 typedef base_enum < e_iostate, goodbit > iostate;
 
    class plain_text_output_stream;
    class plain_text_input_stream;
 
-   class CLASS_DECL_ca plain_text_stream_base :
+   class CLASS_DECL_ca2 plain_text_stream_base :
       virtual public stream_base
    {
    public:
@@ -73,7 +73,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca plain_text_input_stream :
+   class CLASS_DECL_ca2 plain_text_input_stream :
       virtual public reader,
       virtual public plain_text_stream_base
    {
@@ -116,7 +116,7 @@ namespace ca
 
 
 
-   class CLASS_DECL_ca plain_text_output_stream :
+   class CLASS_DECL_ca2 plain_text_output_stream :
       virtual public writer,
       virtual public plain_text_stream_base
    {
@@ -160,7 +160,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca plain_text_stream :
+   class CLASS_DECL_ca2 plain_text_stream :
       virtual public stream,
       virtual public plain_text_input_stream,
       virtual public plain_text_output_stream
@@ -185,10 +185,10 @@ namespace ca
 
 
 /*
-   CLASS_DECL_ca HRESULT ReadStream(reader * stream, void *data, uint64_t *size);
-   CLASS_DECL_ca HRESULT ReadStream_FALSE(reader * stream, void *data, uint64_t size);
-   CLASS_DECL_ca HRESULT ReadStream_FAIL(reader * stream, void *data, uint64_t size);
-   CLASS_DECL_ca HRESULT WriteStream(writer * stream, const void *data, uint64_t size);
+   CLASS_DECL_ca2 HRESULT ReadStream(reader * stream, void *data, uint64_t *size);
+   CLASS_DECL_ca2 HRESULT ReadStream_FALSE(reader * stream, void *data, uint64_t size);
+   CLASS_DECL_ca2 HRESULT ReadStream_FAIL(reader * stream, void *data, uint64_t size);
+   CLASS_DECL_ca2 HRESULT WriteStream(writer * stream, const void *data, uint64_t size);
    */
 
    template < class type_array >

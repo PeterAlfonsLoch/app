@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/ca_opened_files.h"
+#include "ca/ca_opened_files.h"
 
 
 
@@ -9,7 +9,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca file_exception :
+   class CLASS_DECL_ca2 file_exception :
       virtual public ::io_exception
    {
    public:

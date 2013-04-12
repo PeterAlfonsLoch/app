@@ -5,10 +5,10 @@ namespace ca
 {
 
 
-   bool CLASS_DECL_ca is_url(const char * pszCandidate, const char ** ppszRequest = ::null());
+   bool CLASS_DECL_ca2 is_url(const char * pszCandidate, const char ** ppszRequest = ::null());
 
 
-   class CLASS_DECL_ca url :
+   class CLASS_DECL_ca2 url :
       public ::ca::object
    {
    public:

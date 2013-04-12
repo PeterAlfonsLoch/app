@@ -12,13 +12,13 @@ namespace sockets
    /** \defgroup basic Basic sockets */
    /** socket base class.
    \ingroup basic */
-   class CLASS_DECL_ca socket :
+   class CLASS_DECL_ca2 socket :
       virtual public ::ca::object
    {
    public:
 
 
-      class CLASS_DECL_ca callback
+      class CLASS_DECL_ca2 callback
       {
       public:
          virtual void OnRawData(socket * psocket, void * pdata, size_t len) = 0;
@@ -27,7 +27,7 @@ namespace sockets
       friend class socket_handler_base;
       /** Detached socket run thread.
       \ingroup internal */
-      class CLASS_DECL_ca socket_thread :
+      class CLASS_DECL_ca2 socket_thread :
          virtual public ::ca::thread
       {
       public:

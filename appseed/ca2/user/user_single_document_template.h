@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca single_document_template :
+class CLASS_DECL_ca2 single_document_template :
    virtual public document_template
 {
 public:

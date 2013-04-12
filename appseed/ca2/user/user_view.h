@@ -15,7 +15,7 @@ class view_update_hint;
 
 
 
-class CLASS_DECL_ca view :
+class CLASS_DECL_ca2 view :
    virtual public database::user::interaction
 {
 public:

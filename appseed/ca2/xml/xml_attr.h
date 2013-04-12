@@ -9,7 +9,7 @@ namespace xml
    typedef ::ca::property attr;
 
 
-   class CLASS_DECL_ca attr_array :
+   class CLASS_DECL_ca2 attr_array :
       public ::ca::property_set
    {
    protected:

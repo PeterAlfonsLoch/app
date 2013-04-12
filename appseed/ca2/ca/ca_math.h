@@ -9,11 +9,11 @@ namespace ca
    {
 
 
-      CLASS_DECL_ca int32_t ceil_div(int32_t num, int32_t den);
-      CLASS_DECL_ca int64_t ceil_div(int64_t num, int64_t den);
+      CLASS_DECL_ca2 int32_t ceil_div(int32_t num, int32_t den);
+      CLASS_DECL_ca2 int64_t ceil_div(int64_t num, int64_t den);
 
 
-      class CLASS_DECL_ca math :
+      class CLASS_DECL_ca2 math :
          virtual public ::ca::object
       {
       private:

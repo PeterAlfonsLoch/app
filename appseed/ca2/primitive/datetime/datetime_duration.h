@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca duration
+class CLASS_DECL_ca2 duration
 {
 public:
 
@@ -114,7 +114,7 @@ duration & duration::operator = (const duration & duration)
    return *this;
 }
 
-class CLASS_DECL_ca millis :
+class CLASS_DECL_ca2 millis :
    public duration
 {
 public:
@@ -128,7 +128,7 @@ public:
 };
 
 
-class CLASS_DECL_ca seconds :
+class CLASS_DECL_ca2 seconds :
    public millis
 {
 public:
@@ -143,7 +143,7 @@ public:
 };
 
 
-class CLASS_DECL_ca minutes :
+class CLASS_DECL_ca2 minutes :
    public seconds
 {
 public:
@@ -158,7 +158,7 @@ public:
 };
 
 
-class CLASS_DECL_ca hours :
+class CLASS_DECL_ca2 hours :
    public minutes
 {
 public:
@@ -173,7 +173,7 @@ public:
 };
 
 
-class CLASS_DECL_ca days :
+class CLASS_DECL_ca2 days :
    public hours
 {
 public:

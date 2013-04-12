@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_ca api :
+   class CLASS_DECL_ca2 api :
       virtual public ::ca::object
    {
    public:

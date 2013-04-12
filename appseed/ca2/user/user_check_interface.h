@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/ca_flags.h"
+#include "ca/ca_flags.h"
 
 
 
@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca check_interface :
+   class CLASS_DECL_ca2 check_interface :
       virtual public ::ca::object
    {
    public:

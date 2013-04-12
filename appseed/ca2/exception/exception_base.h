@@ -7,7 +7,7 @@
 class string;
 
 
-class CLASS_DECL_ca base_exception :
+class CLASS_DECL_ca2 base_exception :
    virtual public ::ca::exception,
    virtual public call_stack
 {

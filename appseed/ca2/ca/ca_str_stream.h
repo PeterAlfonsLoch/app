@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca str_stream_base_impl
+   class CLASS_DECL_ca2 str_stream_base_impl
    {
    public:
       
@@ -20,7 +20,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca str_reader :
+   class CLASS_DECL_ca2 str_reader :
       virtual public reader,
       virtual public str_stream_base_impl
    {
@@ -33,7 +33,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca str_writer :
+   class CLASS_DECL_ca2 str_writer :
       virtual public writer,
       virtual public str_stream_base_impl
    {

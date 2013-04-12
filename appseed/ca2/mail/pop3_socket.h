@@ -3,7 +3,7 @@
 namespace mail
 {
 
-   class CLASS_DECL_ca pop3_socket : 
+   class CLASS_DECL_ca2 pop3_socket : 
       public ::sockets::tcp_socket
    {
    public:

@@ -16,13 +16,13 @@ namespace ca
    // for example, the OS command line can call a cube::system that takes a command line parameter that is
    // passed as application_bias to bergedge that can later pass or use this information as application_bias
    // for further actions.
-   class CLASS_DECL_ca application_bias :
+   class CLASS_DECL_ca2 application_bias :
       virtual public ::ca::object
    {
    public:
 
 
-      class CLASS_DECL_ca callback :
+      class CLASS_DECL_ca2 callback :
          virtual public ::ca::signalizable
       {
       public:

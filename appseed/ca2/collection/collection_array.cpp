@@ -45,7 +45,7 @@ void ___arrayStdSortTest()
 namespace lemon
 {
 
-   CLASS_DECL_ca stringa x1_decode_ida(const char * psz)
+   CLASS_DECL_ca2 stringa x1_decode_ida(const char * psz)
 	{
       string str(psz);
       if(str.is_empty())
@@ -57,7 +57,7 @@ namespace lemon
 		return stra;
 	}
 
-   CLASS_DECL_ca string x1_encode_ida(const stringa & stra)
+   CLASS_DECL_ca2 string x1_encode_ida(const stringa & stra)
 	{
 		string str;
       for(int32_t i = 0 ; i < stra.get_count(); i++)

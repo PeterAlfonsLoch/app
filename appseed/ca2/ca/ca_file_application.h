@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca file_application :
+   class CLASS_DECL_ca2 file_application :
       public ::ca::object
    {
    public:

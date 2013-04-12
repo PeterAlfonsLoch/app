@@ -16,7 +16,7 @@ namespace crypto
    {
 
 
-      class CLASS_DECL_ca context :
+      class CLASS_DECL_ca2 context :
          public ::ca::object
       {
       public:

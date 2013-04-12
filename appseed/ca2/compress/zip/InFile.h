@@ -26,7 +26,7 @@ namespace zip
 
    class File;
 
-   class CLASS_DECL_ca InFile :
+   class CLASS_DECL_ca2 InFile :
       public ::ca::file
    {
    public:

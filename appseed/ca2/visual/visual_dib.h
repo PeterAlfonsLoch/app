@@ -18,7 +18,7 @@ namespace visual
 
    } // namespace image
 
-   class CLASS_DECL_ca save_image
+   class CLASS_DECL_ca2 save_image
    {
    public:
 
@@ -30,7 +30,7 @@ namespace visual
 
    };
 
-   class CLASS_DECL_ca dib_sp :
+   class CLASS_DECL_ca2 dib_sp :
       public ::ca::dib_sp
    {
    public:

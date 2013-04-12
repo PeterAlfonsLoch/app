@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca memory_file : 
+   class CLASS_DECL_ca2 memory_file : 
       virtual public ::http::file,
       virtual public ::primitive::memory_file
    {

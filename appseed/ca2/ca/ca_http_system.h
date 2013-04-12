@@ -21,13 +21,13 @@ namespace ca
    namespace http
    {
 
-      class CLASS_DECL_ca system :
+      class CLASS_DECL_ca2 system :
          virtual public ::ca::signalizable
       {
       public:
 
 
-         class CLASS_DECL_ca pac :
+         class CLASS_DECL_ca2 pac :
             virtual public ::ca::object
          {
          public:
@@ -45,7 +45,7 @@ namespace ca
          };
 
 
-         class CLASS_DECL_ca proxy :
+         class CLASS_DECL_ca2 proxy :
             virtual public ::ca::object
          {
          public:

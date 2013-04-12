@@ -4,7 +4,7 @@ namespace xml
 {
 
 
-class CLASS_DECL_ca tree_schema  
+class CLASS_DECL_ca2 tree_schema  
 {
 public:
    tree_schema();

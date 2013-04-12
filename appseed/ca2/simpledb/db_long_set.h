@@ -10,13 +10,13 @@ namespace mysql
 }
 
 
-class CLASS_DECL_ca db_long_set :
+class CLASS_DECL_ca2 db_long_set :
    public db_set
 {
 public:
 
 
-   class CLASS_DECL_ca item
+   class CLASS_DECL_ca2 item
    {
    public:
 
@@ -25,7 +25,7 @@ public:
 
    };
 
-   class CLASS_DECL_ca queue_item :
+   class CLASS_DECL_ca2 queue_item :
       virtual public ::ca::ca
    {
    public:
@@ -44,7 +44,7 @@ public:
 
    };
 
-   class CLASS_DECL_ca sync_queue :
+   class CLASS_DECL_ca2 sync_queue :
       public simple_thread
    {
    public:

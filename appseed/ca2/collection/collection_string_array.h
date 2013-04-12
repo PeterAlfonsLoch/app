@@ -11,7 +11,7 @@ namespace ca
 } // namespace ca
 
 
-class CLASS_DECL_ca string_array :
+class CLASS_DECL_ca2 string_array :
    virtual public ::ca::object
 {
 public:

@@ -42,7 +42,7 @@ namespace libcompress
    };
 
 
-   CLASS_DECL_ca HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca::ca) coder);
+   CLASS_DECL_ca2 HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca::ca) coder);
 
 
 } // namespace libcompress

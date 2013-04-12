@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca file_composite :
+   class CLASS_DECL_ca2 file_composite :
       virtual public ::ca::file
    {
    public:

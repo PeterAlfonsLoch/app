@@ -7,7 +7,7 @@ class point_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_ca rect : public tagRECT
+class CLASS_DECL_ca2 rect : public tagRECT
 {
 // Constructors
 public:
@@ -162,7 +162,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // rect64 - A 2-D rect64angle, similar to Windows RECT structure.
 
-class CLASS_DECL_ca rect64 : public __rect64
+class CLASS_DECL_ca2 rect64 : public __rect64
 {
 // Constructors
 public:
@@ -399,7 +399,7 @@ class pointd_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_ca rectd : public tagRECTD
+class CLASS_DECL_ca2 rectd : public tagRECTD
 {
 // Constructors
 public:

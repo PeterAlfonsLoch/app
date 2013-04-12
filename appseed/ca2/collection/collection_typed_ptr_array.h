@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca ptr_array :
+class CLASS_DECL_ca2 ptr_array :
    virtual public comparable_raw_array < void * >
 {
 public:

@@ -3,7 +3,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_ca get_sub_stream_size_interface :
+   class CLASS_DECL_ca2 get_sub_stream_size_interface :
       virtual public ::ca::object
    {
    public:

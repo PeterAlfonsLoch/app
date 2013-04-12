@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca condition :
+class CLASS_DECL_ca2 condition :
    virtual public waitable
 {
 public:

@@ -280,7 +280,7 @@ local int32_t strcmpcasenosensitive_internal (const char * fileName1, const char
         (like 1 on Unix, 2 on Windows)
 
 */
-extern int32_t CLASS_DECL_ca unzStringFileNameCompare (
+extern int32_t CLASS_DECL_ca2 unzStringFileNameCompare (
     const char* fileName1,
     const char* fileName2,
     int32_t iCaseSensitivity)
@@ -386,7 +386,7 @@ local uint_ptr unzlocal_SearchCentralDir(
      Else, the return value is a unzFile Handle, usable with other function
        of this unzip package.
 */
-extern unzFile CLASS_DECL_ca unzOpen2 (
+extern unzFile CLASS_DECL_ca2 unzOpen2 (
     const char *path,
     zlib_filefunc_def* pzlib_filefunc_def)
 {
@@ -489,7 +489,7 @@ extern unzFile CLASS_DECL_ca unzOpen2 (
 }
 
 
-extern unzFile CLASS_DECL_ca unzOpen (const char * path)
+extern unzFile CLASS_DECL_ca2 unzOpen (const char * path)
 {
     return unzOpen2(path, ::null());
 }
@@ -499,7 +499,7 @@ extern unzFile CLASS_DECL_ca unzOpen (const char * path)
   If there is files inside the .Zip opened with unzipOpenCurrentFile (see later),
     these files MUST be closed with unzipCloseCurrentFile before call unzipClose.
   return UNZ_OK if there is no problem. */
-extern int32_t CLASS_DECL_ca unzClose (unzFile file)
+extern int32_t CLASS_DECL_ca2 unzClose (unzFile file)
 {
     unz_s* s;
     if (file==::null())
@@ -519,7 +519,7 @@ extern int32_t CLASS_DECL_ca unzClose (unzFile file)
   write info about the ZipFile in the *pglobal_info structure.
   No preparation of the structure is needed
   return UNZ_OK if there is no problem. */
-extern int32_t CLASS_DECL_ca unzGetGlobalInfo (unzFile file,
+extern int32_t CLASS_DECL_ca2 unzGetGlobalInfo (unzFile file,
     unz_global_info *pglobal_info)
 {
     unz_s* s;
@@ -744,7 +744,7 @@ local int32_t unzlocal_GetCurrentFileInfoInternal (
   No preparation of the structure is needed
   return UNZ_OK if there is no problem.
 */
-extern int32_t CLASS_DECL_ca unzGetCurrentFileInfo (
+extern int32_t CLASS_DECL_ca2 unzGetCurrentFileInfo (
     unzFile file,
     unz_file_info *pfile_info,
     char *szFileName,
@@ -764,7 +764,7 @@ extern int32_t CLASS_DECL_ca unzGetCurrentFileInfo (
   set the current file of the zipfile to the first spfile->
   return UNZ_OK if there is no problem
 */
-extern int32_t CLASS_DECL_ca unzGoToFirstFile (unzFile file)
+extern int32_t CLASS_DECL_ca2 unzGoToFirstFile (unzFile file)
 {
     int32_t err=UNZ_OK;
     unz_s* s;
@@ -785,7 +785,7 @@ extern int32_t CLASS_DECL_ca unzGoToFirstFile (unzFile file)
   return UNZ_OK if there is no problem
   return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
 */
-extern int32_t CLASS_DECL_ca unzGoToNextFile (unzFile file)
+extern int32_t CLASS_DECL_ca2 unzGoToNextFile (unzFile file)
 {
     unz_s* s;
     int32_t err;
@@ -817,7 +817,7 @@ extern int32_t CLASS_DECL_ca unzGoToNextFile (unzFile file)
   UNZ_OK if the file is found. It becomes the current spfile->
   UNZ_END_OF_LIST_OF_FILE if the file is not found
 */
-extern int32_t CLASS_DECL_ca unzLocateFile (
+extern int32_t CLASS_DECL_ca2 unzLocateFile (
     unzFile file,
     const char *szFileName,
     int32_t iCaseSensitivity)
@@ -896,7 +896,7 @@ typedef struct unz_file_pos_s
 } unz_file_pos;
 */
 
-extern int32_t CLASS_DECL_ca unzGetFilePos(
+extern int32_t CLASS_DECL_ca2 unzGetFilePos(
     unzFile file,
     unz_file_pos* file_pos)
 {
@@ -914,7 +914,7 @@ extern int32_t CLASS_DECL_ca unzGetFilePos(
     return UNZ_OK;
 }
 
-extern int32_t CLASS_DECL_ca unzGoToFilePos(
+extern int32_t CLASS_DECL_ca2 unzGoToFilePos(
     unzFile file,
     unz_file_pos* file_pos)
 {
@@ -1046,7 +1046,7 @@ local int32_t unzlocal_CheckCurrentFileCoherencyHeader (
   open for reading data the current file in the zipfile.
   If there is no error and the file is opened, the return value is UNZ_OK.
 */
-extern int32_t CLASS_DECL_ca unzOpenCurrentFile3 (unzFile file, int32_t * method, int32_t * level, int32_t raw, const char * password)
+extern int32_t CLASS_DECL_ca2 unzOpenCurrentFile3 (unzFile file, int32_t * method, int32_t * level, int32_t raw, const char * password)
 {
     int32_t err=UNZ_OK;
     uint32_t iSizeVar;
@@ -1183,20 +1183,20 @@ extern int32_t CLASS_DECL_ca unzOpenCurrentFile3 (unzFile file, int32_t * method
     return UNZ_OK;
 }
 
-extern int32_t CLASS_DECL_ca unzOpenCurrentFile (
+extern int32_t CLASS_DECL_ca2 unzOpenCurrentFile (
     unzFile file)
 {
     return unzOpenCurrentFile3(file, ::null(), ::null(), 0, ::null());
 }
 
-extern int32_t CLASS_DECL_ca unzOpenCurrentFilePassword (
+extern int32_t CLASS_DECL_ca2 unzOpenCurrentFilePassword (
     unzFile file,
     const char* password)
 {
     return unzOpenCurrentFile3(file, ::null(), ::null(), 0, password);
 }
 
-extern int32_t CLASS_DECL_ca unzOpenCurrentFile2 (
+extern int32_t CLASS_DECL_ca2 unzOpenCurrentFile2 (
     unzFile file,
     int32_t* method,
     int32_t* level,
@@ -1215,7 +1215,7 @@ extern int32_t CLASS_DECL_ca unzOpenCurrentFile2 (
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
 */
-extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
+extern int32_t CLASS_DECL_ca2 unzReadCurrentFile  (
     unzFile file,
     voidp buf,
     uint32_t len)
@@ -1365,7 +1365,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
 /*
   Give the current position in uncompressed data
 */
-extern int_ptr CLASS_DECL_ca unztell (
+extern int_ptr CLASS_DECL_ca2 unztell (
     unzFile file)
 {
     unz_s* s;
@@ -1385,7 +1385,7 @@ extern int_ptr CLASS_DECL_ca unztell (
 /*
   return 1 if the end of file was reached, 0 elsewhere
 */
-extern int32_t CLASS_DECL_ca unzeof (
+extern int32_t CLASS_DECL_ca2 unzeof (
     unzFile file)
 {
     unz_s* s;
@@ -1418,7 +1418,7 @@ extern int32_t CLASS_DECL_ca unzeof (
   the return value is the number of bytes copied in buf, or (if <0)
     the error code
 */
-extern int32_t CLASS_DECL_ca unzGetLocalExtrafield (
+extern int32_t CLASS_DECL_ca2 unzGetLocalExtrafield (
     unzFile file,
     voidp buf,
     uint32_t len)
@@ -1469,7 +1469,7 @@ extern int32_t CLASS_DECL_ca unzGetLocalExtrafield (
   close the file in zip opened with unzipOpenCurrentFile
   Return UNZ_CRCERROR if all the file was read but the CRC is not good
 */
-extern int32_t CLASS_DECL_ca unzCloseCurrentFile (
+extern int32_t CLASS_DECL_ca2 unzCloseCurrentFile (
     unzFile file)
 {
     int32_t err=UNZ_OK;
@@ -1512,7 +1512,7 @@ extern int32_t CLASS_DECL_ca unzCloseCurrentFile (
   uSizeBuf is the size of the szComment buffer.
   return the number of byte copied or an error code <0
 */
-extern int32_t CLASS_DECL_ca unzGetGlobalComment (
+extern int32_t CLASS_DECL_ca2 unzGetGlobalComment (
     unzFile file,
     char *szComment,
     uint_ptr uSizeBuf)

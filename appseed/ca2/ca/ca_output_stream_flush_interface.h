@@ -5,7 +5,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca output_stream_flush_interface
+   class CLASS_DECL_ca2 output_stream_flush_interface
    {
    public:
       virtual void flush() = 0;

@@ -27,7 +27,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca call_stack :
+class CLASS_DECL_ca2 call_stack :
    virtual public ::ca::ca
 {
 public:

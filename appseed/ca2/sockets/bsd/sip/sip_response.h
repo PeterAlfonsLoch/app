@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_ca response : 
+   class CLASS_DECL_ca2 response : 
       virtual public transaction
    {
    public:

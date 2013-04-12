@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca temporary_exception : 
+class CLASS_DECL_ca2 temporary_exception : 
    virtual public base_exception
 {
 public:

@@ -458,7 +458,7 @@ local uint_ptr ziplocal_SearchCentralDir(
 #endif /* !NO_ADDFILEINEXISTINGZIP*/
 
 /************************************************************/
-extern zipFile CLASS_DECL_ca zipOpen2 (
+extern zipFile CLASS_DECL_ca2 zipOpen2 (
     const char *pathname,
     int32_t append,
     zipcharpc* globalcomment,
@@ -623,14 +623,14 @@ extern zipFile CLASS_DECL_ca zipOpen2 (
     }
 }
 
-extern zipFile CLASS_DECL_ca zipOpen (
+extern zipFile CLASS_DECL_ca2 zipOpen (
     const char *pathname,
     int32_t append)
 {
     return zipOpen2(pathname,append,::null(),::null());
 }
 
-extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
+extern int32_t CLASS_DECL_ca2 zipOpenNewFileInZip3 (
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -834,7 +834,7 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     return err;
 }
 
-extern int32_t CLASS_DECL_ca zipOpenNewFileInZip2(
+extern int32_t CLASS_DECL_ca2 zipOpenNewFileInZip2(
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -855,7 +855,7 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip2(
                                  ::null(), 0);
 }
 
-extern int32_t CLASS_DECL_ca zipOpenNewFileInZip (
+extern int32_t CLASS_DECL_ca2 zipOpenNewFileInZip (
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -895,7 +895,7 @@ local int32_t zipFlushWriteBuffer(
     return err;
 }
 
-extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
+extern int32_t CLASS_DECL_ca2 zipWriteInFileInZip (
     zipFile file,
     const void * buf,
     uint32_t len)
@@ -960,7 +960,7 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
     return err;
 }
 
-extern int32_t CLASS_DECL_ca zipCloseFileInZipRaw (
+extern int32_t CLASS_DECL_ca2 zipCloseFileInZipRaw (
     zipFile file,
     uint_ptr uncompressed_size,
     uint_ptr crc32)
@@ -1056,13 +1056,13 @@ extern int32_t CLASS_DECL_ca zipCloseFileInZipRaw (
     return err;
 }
 
-extern int32_t CLASS_DECL_ca zipCloseFileInZip (
+extern int32_t CLASS_DECL_ca2 zipCloseFileInZip (
     zipFile file)
 {
     return zipCloseFileInZipRaw (file,0,0);
 }
 
-extern int32_t CLASS_DECL_ca zipClose (
+extern int32_t CLASS_DECL_ca2 zipClose (
     zipFile file,
     const char* global_comment)
 {

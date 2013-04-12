@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca not_licensed : 
+class CLASS_DECL_ca2 not_licensed : 
    virtual public base_exception
 {
 public:

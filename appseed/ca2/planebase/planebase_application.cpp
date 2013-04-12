@@ -9,7 +9,7 @@ namespace planebase
    void progress();
 
 
-   CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application = ::null();
+   CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application = ::null();
 
 
    application::application()

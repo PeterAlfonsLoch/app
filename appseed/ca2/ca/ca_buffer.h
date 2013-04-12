@@ -71,8 +71,8 @@ namespace ca
       return !(b1 == b2);
    }
 
-   typedef CLASS_DECL_ca buffer < char >      char_buffer;
-   typedef CLASS_DECL_ca buffer < wchar_t >  wchar_buffer;
-   typedef CLASS_DECL_ca buffer < byte >      byte_buffer;
+   typedef CLASS_DECL_ca2 buffer < char >      char_buffer;
+   typedef CLASS_DECL_ca2 buffer < wchar_t >  wchar_buffer;
+   typedef CLASS_DECL_ca2 buffer < byte >      byte_buffer;
 
 } // namespace ca

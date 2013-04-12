@@ -112,7 +112,7 @@ inline bool var::is_array() const
 
 
 
-inline bool CLASS_DECL_ca operator == (const string & str, const var & var)
+inline bool CLASS_DECL_ca2 operator == (const string & str, const var & var)
 {
    return str == var.get_string();
 }

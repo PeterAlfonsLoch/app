@@ -46,7 +46,7 @@
 
 
 
-class CLASS_DECL_ca frame_window :
+class CLASS_DECL_ca2 frame_window :
    virtual public ::user::frame_window_interface
 {
 public:

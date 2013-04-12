@@ -22,7 +22,7 @@ namespace sqlite
 
 
 
-class CLASS_DECL_ca db_server :
+class CLASS_DECL_ca2 db_server :
    virtual public ::database::server,
    virtual public ::ca::window_sp,
    virtual public ::ca::signalizable

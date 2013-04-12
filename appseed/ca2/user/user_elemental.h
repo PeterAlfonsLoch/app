@@ -6,7 +6,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca elemental : 
+   class CLASS_DECL_ca2 elemental : 
       virtual public keyboard_focus,
       virtual public mouse_focus
    {

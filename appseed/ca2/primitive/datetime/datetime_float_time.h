@@ -21,19 +21,19 @@ typedef struct
 #define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
 
 
-CLASS_DECL_ca HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ULONG dwFlags, UDATE *lpUdate);
-CLASS_DECL_ca WINBOOL   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
-CLASS_DECL_ca WINBOOL   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
+CLASS_DECL_ca2 HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ULONG dwFlags, UDATE *lpUdate);
+CLASS_DECL_ca2 WINBOOL   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
+CLASS_DECL_ca2 WINBOOL   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
 
 
 #endif
 
 
-CLASS_DECL_ca int32_t       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
-CLASS_DECL_ca int32_t       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
-CLASS_DECL_ca HRESULT   FloatTimeFromStr(const char * pstr, LCID lcid, ULONG dwFlags, FLOAT_DATE * pdateOut);
-CLASS_DECL_ca HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
-CLASS_DECL_ca HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_ca2 int32_t       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
+CLASS_DECL_ca2 int32_t       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
+CLASS_DECL_ca2 HRESULT   FloatTimeFromStr(const char * pstr, LCID lcid, ULONG dwFlags, FLOAT_DATE * pdateOut);
+CLASS_DECL_ca2 HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_ca2 HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
 
 
 namespace datetime
@@ -71,7 +71,7 @@ namespace datetime
    }
 
 
-   class CLASS_DECL_ca float_time_span
+   class CLASS_DECL_ca2 float_time_span
    {
    private:
       static const long maxDaysInSpan  = 3615897L;
@@ -138,7 +138,7 @@ namespace datetime
       static const double FLOAT_TIME_HALF_SECOND;
    };
 
-   class CLASS_DECL_ca float_time
+   class CLASS_DECL_ca2 float_time
    {
       // Constructors
    public:

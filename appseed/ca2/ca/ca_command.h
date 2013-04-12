@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca command :
+   class CLASS_DECL_ca2 command :
       virtual public ::ca::object,
       virtual public ::ca::request_interface
    {
@@ -47,7 +47,7 @@ namespace ca
 class command_target;
 
 
-class CLASS_DECL_ca base_cmd_ui :
+class CLASS_DECL_ca2 base_cmd_ui :
    public ::ca::signal_object
 {
 public:
@@ -62,7 +62,7 @@ public:
 };
 
 
-class CLASS_DECL_ca BaseCommand :
+class CLASS_DECL_ca2 BaseCommand :
    public ::ca::signal_object
 {
 public:
@@ -77,7 +77,7 @@ public:
 };
 
 
-class CLASS_DECL_ca BaseCmdMsg :
+class CLASS_DECL_ca2 BaseCmdMsg :
    public ::ca::object
 {
 public:

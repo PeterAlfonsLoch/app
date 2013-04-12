@@ -249,7 +249,7 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 //  some code references these by other names.
 //
 
-CLASS_DECL_ca inline int32_t muldiv32(int32_t a, int32_t b, int32_t c)
+CLASS_DECL_ca2 inline int32_t muldiv32(int32_t a, int32_t b, int32_t c)
 {
    return (int32_t) ::MulDiv((int32_t) a, (int32_t) b, (int32_t) c);
 }

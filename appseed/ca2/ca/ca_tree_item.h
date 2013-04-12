@@ -40,7 +40,7 @@ namespace ca
       tree_item_state_selected   = 4,
    };
 
-   class CLASS_DECL_ca tree_item :
+   class CLASS_DECL_ca2 tree_item :
       public ::ca::c
    {
    public:
@@ -110,7 +110,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca tree_item_ptr_array :
+   class CLASS_DECL_ca2 tree_item_ptr_array :
       public spa(tree_item)
    {
    public:

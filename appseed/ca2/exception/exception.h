@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/ca_exception.h"
+#include "ca/ca_exception.h"
 
 
 #include "exception_engine.h"
@@ -19,14 +19,14 @@
 
 namespace win
 {
-   CLASS_DECL_ca string error_message(uint32_t dwError);
+   CLASS_DECL_ca2 string error_message(uint32_t dwError);
 }
 
 
 namespace ca
 {
 
-   CLASS_DECL_ca sp(::ca::application) get_thread_app();
+   CLASS_DECL_ca2 sp(::ca::application) get_thread_app();
 
 } // namespace ca
 
@@ -87,8 +87,8 @@ namespace datetime
 
 
 // ::datetime::time_span diagnostics and serialization
-CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
-CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
+CLASS_DECL_ca2 dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
+CLASS_DECL_ca2 dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
 
 
 #if defined(DEBUG) && !defined(___NO_DEBUG_CRT)
@@ -116,20 +116,20 @@ enum e_memdbg // primitive::memory debug/diagnostic flags
 #define __output_debug_string TRACE
 
 // turn on/off tracking for a int16_t while
-CLASS_DECL_ca bool __enable_memory_tracking(bool bTrack);
+CLASS_DECL_ca2 bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
 // then further calls to __enable_memory_tracking() wont change the current
 // primitive::memory tracking state, until __enable_memory_leak_override(bool bEnable)
 // is called again with bEnable == FALSE.
-CLASS_DECL_ca bool __enable_memory_leak_override(bool bEnable);
+CLASS_DECL_ca2 bool __enable_memory_leak_override(bool bEnable);
 
 
 // A failure hook returns whether to permit allocation
 typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
 
 // set new hook, return old (never ::null())
-CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
+CLASS_DECL_ca2 __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 
 #include "exception_memory_state.h"
 
@@ -177,8 +177,8 @@ void __dump_stack(uint32_t dwFlags = __stack_dump_TARGET_DEFAULT);
 #include "exception_dump_context.h"
 
 #ifdef DEBUG
-extern CLASS_DECL_ca dump_context g_dumpcontext;
-extern CLASS_DECL_ca bool g_bTraceEnabled;
+extern CLASS_DECL_ca2 dump_context g_dumpcontext;
+extern CLASS_DECL_ca2 bool g_bTraceEnabled;
 #endif
 
 #ifdef DEBUG
@@ -221,13 +221,13 @@ namespace ca
 
 
 
-CLASS_DECL_ca bool __assert_failed_line(const char * lpszFileName, int32_t nLine);
+CLASS_DECL_ca2 bool __assert_failed_line(const char * lpszFileName, int32_t nLine);
 
-CLASS_DECL_ca void c_cdecl __trace(const char * lpszFormat, ...);
+CLASS_DECL_ca2 void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_ca void assert_valid_object(const ::ca::object* pOb,
+CLASS_DECL_ca2 void assert_valid_object(const ::ca::object* pOb,
             const char * lpszFileName, int32_t nLine);
-CLASS_DECL_ca void __dump(const ::ca::object* pOb); // dump an object from CodeView
+CLASS_DECL_ca2 void __dump(const ::ca::object* pOb); // dump an object from CodeView
 
 
 // extern ::ca::CTrace TRACE;

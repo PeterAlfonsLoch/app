@@ -11,7 +11,7 @@ namespace ca
    class request_signal;
 
 
-   class CLASS_DECL_ca signal_object :
+   class CLASS_DECL_ca2 signal_object :
       public ::ca::object
    {
    public:
@@ -42,7 +42,7 @@ namespace ca
    };
 
 
-   class CLASS_DECL_ca signalizable :
+   class CLASS_DECL_ca2 signalizable :
       virtual public ::ca::object
    {
    public:
@@ -64,7 +64,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca base_signalizable_array : 
+   class CLASS_DECL_ca2 base_signalizable_array : 
       virtual protected comparable_array < signalizable * >
    {
    public:
@@ -110,7 +110,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca signal
+   class CLASS_DECL_ca2 signal
    {
    protected:
 
@@ -199,7 +199,7 @@ namespace ca
          && m_pfn == deleg.m_pfn;
    }
 
-   class CLASS_DECL_ca signalid
+   class CLASS_DECL_ca2 signalid
    {
    public:
       virtual ~signalid();
@@ -208,7 +208,7 @@ namespace ca
       virtual signalid * copy() = 0;
    };
 
-   class CLASS_DECL_ca signalid_array :
+   class CLASS_DECL_ca2 signalid_array :
       virtual public array < signalid *, signalid * >
    {
    public:
@@ -216,12 +216,12 @@ namespace ca
       signalid * get(signalid * pid);
    };
 
-   class CLASS_DECL_ca dispatch
+   class CLASS_DECL_ca2 dispatch
    {
       protected:
       public:
 
-         class CLASS_DECL_ca handler_item_base
+         class CLASS_DECL_ca2 handler_item_base
          {
          public:
             virtual ::ca::signalizable * get_signalizable() = 0;
@@ -239,14 +239,14 @@ namespace ca
             virtual ::ca::signalizable * get_signalizable() { return dynamic_cast < ::ca::signalizable * > (m_psignalizable); }
          };
 
-         class CLASS_DECL_ca handler_item_array :
+         class CLASS_DECL_ca2 handler_item_array :
             public array < handler_item_base *, handler_item_base *>
          {
          public:
             bool HasSignalizable(::ca::signalizable * psignalizable);
          };
 
-         class CLASS_DECL_ca signal :
+         class CLASS_DECL_ca2 signal :
             virtual public ::ca::object
          {
          public:
@@ -260,14 +260,14 @@ namespace ca
 
          };
 
-         class CLASS_DECL_ca signal_ptr_array :
+         class CLASS_DECL_ca2 signal_ptr_array :
             public array < signal * , signal * >
          {
          public:
             bool emit(signal_object * pobj);
          };
 
-         class CLASS_DECL_ca signal_array :
+         class CLASS_DECL_ca2 signal_array :
             public spa(signal)
          {
          public:

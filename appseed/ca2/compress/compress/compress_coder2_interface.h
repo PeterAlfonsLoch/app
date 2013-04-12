@@ -3,7 +3,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_ca coder2_interface :
+   class CLASS_DECL_ca2 coder2_interface :
       virtual public ::ca::object
    {
    public:

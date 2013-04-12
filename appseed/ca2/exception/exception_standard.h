@@ -24,7 +24,7 @@
 #include <eh.h>
 
 
-#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_ca name : virtual public standard_exception \
+#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_ca2 name : virtual public standard_exception \
    { \
     friend class translator; \
    protected: \
@@ -47,7 +47,7 @@
 
 #endif
 
-class CLASS_DECL_ca standard_exception :
+class CLASS_DECL_ca2 standard_exception :
    virtual public base_exception
 {
 public:
@@ -273,7 +273,7 @@ namespace exception
 #include <sys/ucontext.h>
 #endif*/
 
-/*class CLASS_DECL_ca standard_exception :
+/*class CLASS_DECL_ca2 standard_exception :
    public bastandard_exception
 {
 public:

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "ca/ca/ca_definition.h"
-#include "ca/ca/ca_core.h"
+#include "ca/ca_definition.h"
+#include "ca/ca_core.h"
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2
@@ -347,7 +347,7 @@ API_(void *) gen_WinModuleExtractCreateWndData(_WIN_MODULE* pWinModule);
 /////////////////////////////////////////////////////////////////////////////
 // get Registrar object from ca DLL.
 
-//extern "C" CLASS_DECL_ca HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
+//extern "C" CLASS_DECL_ca2 HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
 
 /////////////////////////////////////////////////////////////////////////////
 // GUID comparison

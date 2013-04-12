@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca output_file_stream :
+   class CLASS_DECL_ca2 output_file_stream :
       virtual public ::ca::file_composite
    {
    public:

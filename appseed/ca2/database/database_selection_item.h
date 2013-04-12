@@ -3,7 +3,7 @@
 namespace database
 {
 
-   class CLASS_DECL_ca selection_item  
+   class CLASS_DECL_ca2 selection_item  
    {
    public:
       selection_item();

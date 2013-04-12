@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca port_forward_change_callbacks  
+   class CLASS_DECL_ca2 port_forward_change_callbacks  
    {
    public:
 	   port_forward_change_callbacks();
@@ -16,7 +16,7 @@ namespace ca
 	
    };
 
-   class CLASS_DECL_ca port_forward   :
+   class CLASS_DECL_ca2 port_forward   :
       virtual public ::ca::object
    {
    public:
@@ -42,7 +42,7 @@ namespace ca
 	   // these are public because they are needed by classes that call the 
 	   // GetPortMappingVector() and GetDeviceInformationContainer() methods
 	
-	   class CLASS_DECL_ca port_map :
+	   class CLASS_DECL_ca2 port_map :
          virtual public ::ca::ca
 	   {
 	   public:
@@ -55,7 +55,7 @@ namespace ca
 		   string Description;
 	   };
 		
-	   class CLASS_DECL_ca device :
+	   class CLASS_DECL_ca2 device :
          virtual public ::ca::ca
 	   {
 	   public:

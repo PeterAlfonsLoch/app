@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/user/user_draw_context.h"
+#include "user/user_draw_context.h"
 #include "ca_bitmap.h"
 #include "ca_pen.h"
 #include "ca_brush.h"
@@ -42,7 +42,7 @@ namespace ca
       text_rendering_clear_type_grid_fit,
    };
 
-   class CLASS_DECL_ca graphics :
+   class CLASS_DECL_ca2 graphics :
       virtual public ::ca::simple_chain < ::user::draw_context >
    {
    public:
@@ -599,7 +599,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca graphics_sp :
+   class CLASS_DECL_ca2 graphics_sp :
       public smart_pointer < graphics >
    {
    public:
@@ -620,7 +620,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca memory_graphics :
+   class CLASS_DECL_ca2 memory_graphics :
       public graphics_sp
    {
    public:
@@ -630,7 +630,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca client_graphics :
+   class CLASS_DECL_ca2 client_graphics :
       virtual public graphics_sp
    {
    public:
@@ -642,7 +642,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca window_graphics :
+   class CLASS_DECL_ca2 window_graphics :
       virtual public graphics_sp
    {
    public:
@@ -654,7 +654,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca paint_graphics :
+   class CLASS_DECL_ca2 paint_graphics :
       virtual public graphics_sp
    {
    public:

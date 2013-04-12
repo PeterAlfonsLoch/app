@@ -5,7 +5,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_ca memory_file :
+   class CLASS_DECL_ca2 memory_file :
       public ::primitive::memory_file
 
    {

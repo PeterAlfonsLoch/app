@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/geoip/geoip.h"
+#include "geoip/geoip.h"
 
 
 #include "numeric_value.h"
@@ -11,7 +11,7 @@
 #include "numeric_parser.h"
 
 
-#include "ca/primitive/datetime/datetime_value.h"
+#include "primitive/datetime/datetime_value.h"
 
 
 #include "datetime_token.h"
@@ -20,10 +20,10 @@
 #include "datetime_parser.h"
 
 
-#include "ca/primitive/datetime/datetime_calendar_interface.h"
-#include "ca/primitive/datetime/datetime_clock_interface.h"
-#include "ca/primitive/datetime/datetime_calendar.h"
-#include "ca/primitive/datetime/datetime_clock.h"
+#include "primitive/datetime/datetime_calendar_interface.h"
+#include "primitive/datetime/datetime_clock_interface.h"
+#include "primitive/datetime/datetime_calendar.h"
+#include "primitive/datetime/datetime_clock.h"
 
 
 #include "calculator_calculator.h"

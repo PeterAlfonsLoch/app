@@ -25,7 +25,7 @@ namespace ca
    };
 
    template < >
-   class CLASS_DECL_ca compare < int32_t >
+   class CLASS_DECL_ca2 compare < int32_t >
    {
    public:
 
@@ -38,7 +38,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca strid_compare
+   class CLASS_DECL_ca2 strid_compare
    {
    public:
 

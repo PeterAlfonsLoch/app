@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca byte_stream_memory_file :
+   class CLASS_DECL_ca2 byte_stream_memory_file :
       virtual public ::primitive::memory_file,
       virtual public ::ca::byte_stream
    {

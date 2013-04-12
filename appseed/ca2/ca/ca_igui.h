@@ -4,7 +4,7 @@ namespace ca
 {
    class graphics;
 
-   class CLASS_DECL_ca draw_item
+   class CLASS_DECL_ca2 draw_item
    {
    public:
        UINT          CtlType;

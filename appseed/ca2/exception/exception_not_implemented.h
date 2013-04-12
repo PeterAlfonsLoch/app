@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca not_implemented : 
+class CLASS_DECL_ca2 not_implemented : 
    virtual public base_exception
 {
 public:

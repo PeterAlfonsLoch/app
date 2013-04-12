@@ -2,12 +2,12 @@
 
 
 
-CLASS_DECL_ca int64_t strtoi(const char * psz)
+CLASS_DECL_ca2 int64_t strtoi(const char * psz)
 {
    return ::ca::str::to_int64(psz);
 }
 
-CLASS_DECL_ca int64_t strtoi(const wchar_t * psz)
+CLASS_DECL_ca2 int64_t strtoi(const wchar_t * psz)
 {
    return wtoi64_dup(psz);
 }
@@ -53,9 +53,9 @@ void const_empty_string::set_string(const char * psz)
 
 namespace ca
 {
-   CLASS_DECL_ca const_empty_string g_strEmpty;
+   CLASS_DECL_ca2 const_empty_string g_strEmpty;
 
-   CLASS_DECL_ca string_interface & empty_string()
+   CLASS_DECL_ca2 string_interface & empty_string()
    {
       return g_strEmpty;
    }

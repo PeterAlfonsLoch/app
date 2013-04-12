@@ -2,7 +2,7 @@
 
 namespace crypto
 {
-   class CLASS_DECL_ca properties_interface :
+   class CLASS_DECL_ca2 properties_interface :
       virtual public ::ca::object
    {
    public:

@@ -18,7 +18,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca ptra :
+   class CLASS_DECL_ca2 ptra :
       virtual public spa(::ca::ca)
    {
    public:
@@ -42,7 +42,7 @@ namespace plane
 {
 
 
-   class CLASS_DECL_ca str_pool
+   class CLASS_DECL_ca2 str_pool
    {
    public:
 
@@ -229,7 +229,7 @@ namespace plane
    };
 
 
-   class CLASS_DECL_ca system :
+   class CLASS_DECL_ca2 system :
       virtual public ::plane::application,
       virtual public ::ca::system
    {
@@ -625,9 +625,9 @@ namespace plane
    };
 
 
-   //CLASS_DECL_ca class heap_item_array * get_heap_itema();
+   //CLASS_DECL_ca2 class heap_item_array * get_heap_itema();
 
-   //CLASS_DECL_ca void set_heap_itema(class heap_item_array * pitema);
+   //CLASS_DECL_ca2 void set_heap_itema(class heap_item_array * pitema);
 
 
 } // namespace cube

@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca document_interface :
+   class CLASS_DECL_ca2 document_interface :
       virtual public command_target,
       virtual public ::ca::data_container_base,
       virtual public ::ca::byte_serializable

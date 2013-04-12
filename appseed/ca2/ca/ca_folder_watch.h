@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca folder_watch :
+   class CLASS_DECL_ca2 folder_watch :
       virtual public ::ca::object
    {
    public:
@@ -17,7 +17,7 @@ namespace ca
          action_unexpected,
       };
 
-      class CLASS_DECL_ca callback
+      class CLASS_DECL_ca2 callback
       {
       public:
          virtual void on_file_action(e_action eaction, const char * pszFolder, const char * psz);

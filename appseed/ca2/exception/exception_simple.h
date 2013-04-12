@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_ca simple_exception : 
+class CLASS_DECL_ca2 simple_exception : 
    virtual public base_exception
 {
 public:

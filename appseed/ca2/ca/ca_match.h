@@ -9,7 +9,7 @@ namespace ca
    {
 
 
-      class CLASS_DECL_ca item :
+      class CLASS_DECL_ca2 item :
          virtual public ::ca::ca
       {
       public:
@@ -19,7 +19,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca _and :
+      class CLASS_DECL_ca2 _and :
          virtual public item
       {
       public:
@@ -34,7 +34,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca string :
+      class CLASS_DECL_ca2 string :
          virtual public item
       {
       public:
@@ -52,7 +52,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca ci_string :
+      class CLASS_DECL_ca2 ci_string :
          virtual public string
       {
       public:
@@ -67,7 +67,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca prefix :
+      class CLASS_DECL_ca2 prefix :
          virtual public string
       {
       public:
@@ -82,7 +82,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca ci_prefix :
+      class CLASS_DECL_ca2 ci_prefix :
          virtual public string
       {
       public:
@@ -97,7 +97,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca suffix :
+      class CLASS_DECL_ca2 suffix :
          virtual public string
       {
       public:
@@ -112,7 +112,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca ci_suffix :
+      class CLASS_DECL_ca2 ci_suffix :
          virtual public string
       {
       public:
@@ -126,7 +126,7 @@ namespace ca
       };
 
 
-      class CLASS_DECL_ca any :
+      class CLASS_DECL_ca2 any :
          virtual public spa(item),
          virtual public item
       {

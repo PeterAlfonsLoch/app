@@ -5,7 +5,7 @@
    {
 
 
-      class CLASS_DECL_ca http_session : 
+      class CLASS_DECL_ca2 http_session : 
          virtual public http_get_socket,
          virtual public http_post_socket,
          virtual public http_put_socket,

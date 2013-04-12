@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_ca xml :
+   class CLASS_DECL_ca2 xml :
       public ::ca::section
    {
    public:

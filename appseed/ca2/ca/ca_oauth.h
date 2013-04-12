@@ -4,8 +4,8 @@
 namespace ca
 {
 
-   CLASS_DECL_ca string char2hex( char dec );
-   CLASS_DECL_ca string urlencode( const string &c );
+   CLASS_DECL_ca2 string char2hex( char dec );
+   CLASS_DECL_ca2 string urlencode( const string &c );
   
 
    typedef enum _eOAuthHttpRequestType
@@ -19,7 +19,7 @@ namespace ca
    typedef stringa oAuthKeyValueList;
    typedef ::ca::property_set oAuthKeyValuePairs;
 
-   class CLASS_DECL_ca oauth :
+   class CLASS_DECL_ca2 oauth :
       virtual public ::ca::object
    {
    public:

@@ -6,7 +6,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca xml_data :
+   class CLASS_DECL_ca2 xml_data :
       public ::xml::document
    {
    public:

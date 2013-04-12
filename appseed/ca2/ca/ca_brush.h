@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca brush :
+   class CLASS_DECL_ca2 brush :
       virtual public graphics_object
    {
    public:
@@ -56,7 +56,7 @@ namespace ca
       virtual void dump(dump_context & dumpcontext) const;
    };
 
-   class CLASS_DECL_ca brush_sp :
+   class CLASS_DECL_ca2 brush_sp :
       virtual public smart_pointer < brush >
    {
    public:

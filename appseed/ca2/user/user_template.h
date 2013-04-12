@@ -45,7 +45,7 @@ namespace user
       namespace message
       {
 
-         class CLASS_DECL_ca DispatchHandlerItemArray :
+         class CLASS_DECL_ca2 DispatchHandlerItemArray :
             public array < DispatchHandlerItemBase *, DispatchHandlerItemBase *>
          {
          public:

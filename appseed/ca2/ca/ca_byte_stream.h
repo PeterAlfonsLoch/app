@@ -27,7 +27,7 @@ namespace ca
    class byte_serializable;
 
 
-   class CLASS_DECL_ca byte_input_stream  :
+   class CLASS_DECL_ca2 byte_input_stream  :
       virtual public reader
    {
    public:
@@ -79,7 +79,7 @@ namespace ca
 
 
 
-   class CLASS_DECL_ca byte_output_stream :
+   class CLASS_DECL_ca2 byte_output_stream :
       virtual public writer,
       virtual public out_stream_flush
    {
@@ -126,7 +126,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca byte_stream :
+   class CLASS_DECL_ca2 byte_stream :
       virtual public stream,
       virtual public byte_input_stream,
       virtual public byte_output_stream
@@ -149,10 +149,10 @@ namespace ca
    };
 
 
-   CLASS_DECL_ca HRESULT ReadStream(reader * stream, void * data, ::primitive::memory_size * size);
-   CLASS_DECL_ca HRESULT ReadStream_FALSE(reader * stream, void * data, ::primitive::memory_size size);
-   CLASS_DECL_ca HRESULT ReadStream_FAIL(reader * stream, void * data, ::primitive::memory_size size);
-   CLASS_DECL_ca HRESULT WriteStream(writer * stream, const void * data, ::primitive::memory_size size);
+   CLASS_DECL_ca2 HRESULT ReadStream(reader * stream, void * data, ::primitive::memory_size * size);
+   CLASS_DECL_ca2 HRESULT ReadStream_FALSE(reader * stream, void * data, ::primitive::memory_size size);
+   CLASS_DECL_ca2 HRESULT ReadStream_FAIL(reader * stream, void * data, ::primitive::memory_size size);
+   CLASS_DECL_ca2 HRESULT WriteStream(writer * stream, const void * data, ::primitive::memory_size size);
 
 } // namespace ca
 

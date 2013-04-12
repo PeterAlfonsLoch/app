@@ -9,18 +9,18 @@ template<class TYPE> void freePointer(TYPE * * pointer)
    *pointer = ::null();
 }
 
-CLASS_DECL_ca ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID, UINT nData);
-CLASS_DECL_ca ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID);
+CLASS_DECL_ca2 ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID, UINT nData);
+CLASS_DECL_ca2 ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID);
 
 
 namespace ca
 {
-//   string CLASS_DECL_ca file_as_string(const char * lpcsz);
-//   bool CLASS_DECL_ca file_put_contents(const char * lpcszFileNmae, const char * lpcszContents);
-//   void CLASS_DECL_ca mkdirp(const char * lpcszFolderPath);
-//   void CLASS_DECL_ca split_path(stringa & stra, const char * lpcszPath);
-//   void CLASS_DECL_ca mkdir(const char * lpcszFolderPath);
-//   bool CLASS_DECL_ca is_dir(const char * lpcszCandidate);
+//   string CLASS_DECL_ca2 file_as_string(const char * lpcsz);
+//   bool CLASS_DECL_ca2 file_put_contents(const char * lpcszFileNmae, const char * lpcszContents);
+//   void CLASS_DECL_ca2 mkdirp(const char * lpcszFolderPath);
+//   void CLASS_DECL_ca2 split_path(stringa & stra, const char * lpcszPath);
+//   void CLASS_DECL_ca2 mkdir(const char * lpcszFolderPath);
+//   bool CLASS_DECL_ca2 is_dir(const char * lpcszCandidate);
 
    
 } //namespace ca

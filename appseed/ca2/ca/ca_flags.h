@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
+class CLASS_DECL_ca2 base_sort_serializable_int_ptr_array :
    virtual public ::ca::byte_serializable_array < sort_array < int_ptr, int_ptr > >
 {
 

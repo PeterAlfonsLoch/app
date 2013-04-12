@@ -20,7 +20,7 @@ namespace ca
    {
 
 
-      class CLASS_DECL_ca application :
+      class CLASS_DECL_ca2 application :
          virtual public ::ca::signalizable
       {
       public:
