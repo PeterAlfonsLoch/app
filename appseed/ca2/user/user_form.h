@@ -95,12 +95,12 @@ namespace user
 
 
       virtual void OnBeforeNavigate2(var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel);
-        form_view(sp(::ca::application) papp);
-      virtual ~form_view();
+//        form_view(sp(::ca::application) papp);
+  //    virtual ~form_view();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      //virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+//      DECL_GEN_SIGNAL(_001OnCreate);
 
    };
 

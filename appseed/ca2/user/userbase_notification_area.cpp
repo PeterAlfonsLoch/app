@@ -9,7 +9,7 @@ Contact : nish@voidnish.com
 
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    // notification_area
@@ -307,4 +307,4 @@ namespace userbase
    }
 #endif
 
-} // namespace userbase
+} // namespace user

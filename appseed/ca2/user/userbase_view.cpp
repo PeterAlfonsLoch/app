@@ -35,7 +35,7 @@
    ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
  // END_MESSAGE_MAP()
 
-namespace userbase
+namespace user
 {
 
    view::view(sp(::ca::application) papp) :
@@ -195,7 +195,7 @@ namespace userbase
          pmouseactivate->m_bRet = true;
       }
 
-      sp(::userbase::frame_window) pParentFrame = (GetParentFrame());
+      sp(::user::frame_window) pParentFrame = (GetParentFrame());
       if (pParentFrame != ::null())
       {
          // eat it if this will cause activation
@@ -223,7 +223,7 @@ namespace userbase
 
    void view::on_select()
    {
-      sp(::userbase::frame_window) pParentFrame = (GetParentFrame());
+      sp(::user::frame_window) pParentFrame = (GetParentFrame());
       if (pParentFrame != ::null())
       {
          // eat it if this will cause activation
@@ -463,4 +463,4 @@ namespace userbase
       GetParentFrame()->SetActiveView( (this));
    }
 
-} // namespace userbase
+} // namespace user

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -12,7 +12,7 @@ namespace userbase
       ::ca::user::form(papp),
       ::user::form_list(papp),
       ::user::scroll_view(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::list(papp)
    {
 
@@ -28,13 +28,13 @@ namespace userbase
    {
       
       ::user::form_list::install_message_handling(pdispatch);
-      ::userbase::view::install_message_handling(pdispatch);
+      ::user::view::install_message_handling(pdispatch);
       
 
    }
 
 
-} // namespace userbase
+} // namespace user
 
 
 

@@ -2,7 +2,7 @@
 
 class simple_tool_bar;
 
-namespace userbase
+namespace user
 {
 
    class tool_bar;
@@ -26,4 +26,4 @@ namespace userbase
 
    };
 
-} // namespace userbase
+} // namespace user

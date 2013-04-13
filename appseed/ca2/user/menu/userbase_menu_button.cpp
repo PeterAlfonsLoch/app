@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    menu_button::menu_button(sp(::ca::application) papp) :
@@ -110,7 +110,7 @@ namespace userbase
       }
       else
       {
-         ::userbase::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdc);
+         ::user::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdc);
       }
    }
 
@@ -168,4 +168,4 @@ namespace userbase
       // ignore it
    }
 
-} // namespace userbase
+} // namespace user

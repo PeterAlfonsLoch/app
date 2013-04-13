@@ -4,7 +4,7 @@ class image_list;
 
 
 class CLASS_DECL_ca2 BaseButtonControl :
-   virtual public ::userbase::button
+   virtual public ::user::button
 {
 public:
 

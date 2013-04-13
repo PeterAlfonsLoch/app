@@ -6,8 +6,8 @@ namespace platform
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::userbase::view(papp),
-      ::userbase::tab_view(papp),
+      ::user::view(papp),
+      ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
    {
@@ -20,15 +20,15 @@ namespace platform
       m_pviewdata              = ::null();
       m_pviewdataOld              = ::null();
 
-   /*   ::userbase::single_document_template* pdoctemplate;
-      pdoctemplate = new ::userbase::single_document_template(
+   /*   ::user::single_document_template* pdoctemplate;
+      pdoctemplate = new ::user::single_document_template(
          IDR_ALBUM,
          System.type_info < MediaLibraryDoc > (),
          System.type_info < MediaLibraryChildFrame > (),
          System.type_info < ::mplite::library::view > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
-      pdoctemplate = new ::userbase::single_document_template(
+      pdoctemplate = new ::user::single_document_template(
          IDR_ALBUM,
          System.type_info < OptionsDoc > (),
          System.type_info < OptionsChildFrame > (),
@@ -37,7 +37,7 @@ namespace platform
 
       m_pdoctemplateOptions = pdoctemplate;
 
-      pdoctemplate = new ::userbase::single_document_template(
+      pdoctemplate = new ::user::single_document_template(
          IDR_ALBUM,
          System.type_info < GoodMixerDoc > (),
          System.type_info < simple_child_frame > (),
@@ -61,12 +61,12 @@ namespace platform
    #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -104,12 +104,12 @@ namespace platform
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::userbase::view) pview = (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
+            sp(::user::view) pview = (view::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != ::null())
             {
-               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
+               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->LoadXmlMenu("mplite_popup_lyricview.xml");
                pcreatordata = new ::user::view_creator_data();
                pcreatordata->m_pdoc = get_document();
@@ -120,12 +120,12 @@ namespace platform
 
    /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
+            cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::userbase::view) pview = (CreateView(&cc, 101, this));
+            sp(::user::view) pview = (CreateView(&cc, 101, this));
             if(pview != ::null())
             {
-               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
+               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
                pmenuview->m_wnd.m_bAutoClose = false;
                pcreatordata = new ViewData();
@@ -135,7 +135,7 @@ namespace platform
             }*/
       case platform::PaneViewDevEdge:
          {
-            sp(::userbase::view) pview = create_view < platform::view > ();
+            sp(::user::view) pview = create_view < platform::view > ();
             if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
@@ -151,7 +151,7 @@ namespace platform
                sp(::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
-                  sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
+                  sp(::user::frame_window) pframe = (pview->GetParentFrame());
                   if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;

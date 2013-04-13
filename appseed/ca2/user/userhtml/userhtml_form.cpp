@@ -4,11 +4,11 @@
 html_form::html_form(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::scroll_view(papp),
-   ::userbase::scroll_view(papp),
+   ::user::scroll_view(papp),
    ::user::form(papp),
-   ::userbase::form_view(papp)
+   ::user::form_view(papp)
 {
 
    m_sphtmldata = new html::data(papp);
@@ -106,7 +106,7 @@ void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
 
 void html_form::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::form_view::install_message_handling(pinterface);
+   ::user::form_view::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &html_form::_001OnCreate);
 

@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 
-//   // BEGIN_MESSAGE_MAP(html_view, ::userbase::view)
+//   // BEGIN_MESSAGE_MAP(html_view, ::user::view)
 //{{__MSG_MAP(html_view)
 /*
 ON_WM_DESTROY()
@@ -14,9 +14,9 @@ ON_WM_ERASEBKGND()
 // Standard printing commands
 ON_MESSAGE(WM_USER + 177, OnTabClick)
 ON_MESSAGE(WM_APP + 119, OnWavePlayerEvent)
-ON_COMMAND(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
-ON_COMMAND(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
-ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
+ON_COMMAND(ID_FILE_PRINT, ::user::view::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_DIRECT, ::user::view::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
 */
 // // END_MESSAGE_MAP()
 
@@ -24,11 +24,11 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
 html_view::html_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::scroll_view(papp),
    ::user::form(papp),
-   ::userbase::scroll_view(papp),
-   ::userbase::form_view(papp),
+   ::user::scroll_view(papp),
+   ::user::form_view(papp),
    html_form(papp)
 {
 }
@@ -39,7 +39,7 @@ html_view::~html_view()
 
 void html_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::view::install_message_handling(pinterface);
+   ::user::view::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &html_view::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &html_view::_001OnSize);
@@ -48,9 +48,9 @@ void html_view::install_message_handling(::ca::message::dispatch * pinterface)
    IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &html_view::_001OnSetCursor);
 
    //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &html_view::_001OnTabClick);
-   //connect_command(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
+   //connect_command(ID_FILE_PRINT, ::user::view::OnFilePrint)
+   //connect_command(ID_FILE_PRINT_DIRECT, ::user::view::OnFilePrint)
+   //connect_command(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
@@ -69,12 +69,12 @@ void html_view::install_message_handling(::ca::message::dispatch * pinterface)
 #ifdef DEBUG
 void html_view::assert_valid() const
 {
-   ::userbase::view::assert_valid();
+   ::user::view::assert_valid();
 }
 
 void html_view::dump(dump_context & dumpcontext) const
 {
-   ::userbase::view::dump(dumpcontext);
+   ::user::view::dump(dumpcontext);
 }
 #endif //DEBUG
 
@@ -82,12 +82,12 @@ void html_view::dump(dump_context & dumpcontext) const
 bool html_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.style &= ~WS_EX_CLIENTEDGE;
-   return ::userbase::view::pre_create_window(cs);
+   return ::user::view::pre_create_window(cs);
 }
 void html_view::_001OnInitialUpdate(::ca::signal_object * pobj) 
 {
 
-   ::userbase::view::_001OnInitialUpdate(pobj);
+   ::user::view::_001OnInitialUpdate(pobj);
 
 }
 
@@ -119,7 +119,7 @@ void html_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
 
 void html_view::_001OnDestroy(::ca::signal_object * pobj) 
 {
-   ::userbase::view::_001OnDestroy(pobj);
+   ::user::view::_001OnDestroy(pobj);
 
 }
 
@@ -161,7 +161,7 @@ void html_view::_001OnSetCursor(::ca::signal_object * pobj)
 
 sp(html_document) html_view::get_document()
 {
-   return  (::userbase::view::get_document());
+   return  (::user::view::get_document());
 }
 
 string html_view::GetLocationURL()

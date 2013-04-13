@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
 
    class tool_bar_control;
 
 
-} // namespace userbase
+} // namespace user
 
 
 class SimpleMenu;
@@ -33,7 +33,7 @@ public:
    int32_t                  m_iTracking;
    UINT                 m_uiResourceID;
    int32_t                  m_iTopMenuCount;
-   ::userbase::menu     m_menu;
+   ::user::menu     m_menu;
 
 
    simple_menu_bar(sp(::ca::application) papp);
@@ -82,7 +82,7 @@ public:
    //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
    //virtual void _001OnDraw(::ca::graphics * pdc);
    bool ReloadMenuBar();
-   virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
+   virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
 
    bool Initialize(
@@ -96,7 +96,7 @@ public:
    //size CalcFixedLayout(bool bStretch, bool bHorz);
 
    //size CalcDynamicLayout(int32_t nLength, uint32_t dwMode);
-   //static VMSRESULT CalcSize(::userbase::tool_bar_control & tbc, size & size);
+   //static VMSRESULT CalcSize(::user::tool_bar_control & tbc, size & size);
    //static VMSRESULT CalcSize(CToolBarCtrl & tbc, size & size);
    VMSRESULT _TrackPopupMenu(point point);
    VMSRESULT _TrackPopupMenu(int32_t iItem);

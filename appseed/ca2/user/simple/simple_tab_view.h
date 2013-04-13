@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_ca2 simple_tab_view :
-   virtual public ::userbase::view,
+   virtual public ::user::view,
    virtual public ::user::tab
 {
 public:

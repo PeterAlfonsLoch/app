@@ -7,15 +7,15 @@ namespace nature
 
 
    class CLASS_DECL_ca2 view :
-      virtual public ::userbase::view
+      virtual public ::user::view
    {
    public:
 
 
-      ::userbase::button    m_buttonKaraoke;
-      ::userbase::button    m_buttonDevEdge;
-      ::userbase::button    m_buttonNetShare;
-      ::userbase::button    m_buttonHtmlApp;
+      ::user::button    m_buttonKaraoke;
+      ::user::button    m_buttonDevEdge;
+      ::user::button    m_buttonNetShare;
+      ::user::button    m_buttonHtmlApp;
 
 
       view(sp(::ca::application) papp);

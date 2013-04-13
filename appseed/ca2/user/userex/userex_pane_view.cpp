@@ -7,7 +7,7 @@ namespace userex
 
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
-      ::userbase::view(papp)
+      ::user::view(papp)
    {
 
    }
@@ -51,7 +51,7 @@ namespace userex
             return true;
          }
       }
-      return ::userbase::view::_001OnCommand(id);
+      return ::user::view::_001OnCommand(id);
    }
 
 
@@ -63,12 +63,12 @@ namespace userex
          {
             //create_context cc;
             //cc.m_pCurrentDoc = get_document();
-            //cc.m_typeinfoNewView = System.type_info < ::userbase::menu_list_view > ();
+            //cc.m_typeinfoNewView = System.type_info < ::user::menu_list_view > ();
 
-            sp(::userbase::view) pview = create_view < userbase::view > ();
+            sp(::user::view) pview = create_view < user::view > ();
             if(pview != ::null())
             {
-//               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
+//               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
    /* xxx           xml::node node(get_app());
                node.load(Application.file().as_string(Application.dir().matter(
                   "mplite_popup_lyricview.xml")));

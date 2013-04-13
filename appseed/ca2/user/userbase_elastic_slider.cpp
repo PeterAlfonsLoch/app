@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    elastic_slider::elastic_slider(sp(::ca::application) papp) :
@@ -232,4 +232,4 @@ namespace userbase
       rect.right = (LONG) min(rectClient.right, m_dPos * ((rectClient.width() - iWidth)) + iWidth);
    }
 
-} // namespace userbase
+} // namespace user

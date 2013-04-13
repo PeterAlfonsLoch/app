@@ -3,7 +3,7 @@
 #define SBPF_UPDATE 0x0001  // pending update of text
 #define CX_PANE_BORDER 6    // 3 pixels on each side of each pane
 
-namespace userbase
+namespace user
 {
 
    __STATUSPANE* status_bar::_GetPanePtr(int32_t nIndex)
@@ -82,7 +82,7 @@ namespace userbase
       if ((m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) == CBRS_BOTTOM)
          m_dwStyle &= ~(CBRS_BORDER_ANY|CBRS_BORDER_3D);
 
-      return ::userbase::control_bar::pre_create_window(cs);
+      return ::user::control_bar::pre_create_window(cs);
    }
 
    bool status_bar::SetIndicators(stringa & stra)
@@ -168,7 +168,7 @@ namespace userbase
       //}
 
       // allocate new elements
-      //if (!::userbase::control_bar::AllocElements(nElements, cbElement))
+      //if (!::user::control_bar::AllocElements(nElements, cbElement))
       //   return FALSE;
 
       // construct new elements
@@ -191,8 +191,8 @@ namespace userbase
       ASSERT(IsWindow());
       ASSERT(bHorz);  // vertical status bar not supported
 
-      // subtract standard ::userbase::control_bar borders
-      ::userbase::control_bar::CalcInsideRect(rect, bHorz);
+      // subtract standard ::user::control_bar borders
+      ::user::control_bar::CalcInsideRect(rect, bHorz);
 #ifdef WINDOWSEX
       // subtract size grip if present
       if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->IsZoomed())
@@ -530,7 +530,7 @@ namespace userbase
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
-      ::userbase::control_bar::CalcInsideRect(rect, TRUE);
+      ::user::control_bar::CalcInsideRect(rect, TRUE);
       ASSERT(rect.top >= 2);
 
       // adjust non-client area for border space
@@ -621,7 +621,7 @@ namespace userbase
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
-   // trans   ::userbase::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
+   // trans   ::user::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pwindowpos->previous();
       m_dwStyle = dwStyle;
 #else
@@ -767,7 +767,7 @@ namespace userbase
    }
 
 
-   void status_bar::OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler)
+   void status_bar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
    {
       CStatusCmdUI state(get_app());
       state.m_pOther = this;
@@ -795,12 +795,12 @@ namespace userbase
    #ifdef DEBUG
    void status_bar::assert_valid() const
    {
-      ::userbase::control_bar::assert_valid();
+      ::user::control_bar::assert_valid();
    }
 
    void status_bar::dump(dump_context & dumpcontext) const
    {
-      ::userbase::control_bar::dump(dumpcontext);
+      ::user::control_bar::dump(dumpcontext);
 
       if (dumpcontext.GetDepth() > 0)
       {
@@ -823,7 +823,7 @@ namespace userbase
    #pragma code_seg(__INIT_SEG)
    #endif
 
-   // IMPLEMENT_DYNAMIC(status_bar, ::userbase::control_bar)
+   // IMPLEMENT_DYNAMIC(status_bar, ::user::control_bar)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -871,4 +871,4 @@ namespace userbase
       //SetPaneInfo(nIndex, pszId, nStyle, cxWidth);
    }
 
-} // namespace userbase
+} // namespace user

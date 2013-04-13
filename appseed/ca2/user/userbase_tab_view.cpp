@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    tab_view::tab_view(sp(::ca::application) papp) :
@@ -123,14 +123,14 @@ namespace userbase
    {
       sp(::user::interaction) pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
       sp(::user::interaction) pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
-      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.type_info < ::userbase::split_view > (), get_document(), this, 100).m_p);
+      ::user::split_view * psplitview = dynamic_cast < ::user::split_view * > (view::create_view(System.type_info < ::user::split_view > (), get_document(), this, 100).m_p);
       if(eposition == position_top || eposition == position_bottom)
       {
-         psplitview->SetSplitOrientation(::userbase::split_layout::orientation_horizontal);
+         psplitview->SetSplitOrientation(::user::split_layout::orientation_horizontal);
       }
       else
       {
-         psplitview->SetSplitOrientation(::userbase::split_layout::orientation_vertical);
+         psplitview->SetSplitOrientation(::user::split_layout::orientation_vertical);
       }
       psplitview->SetPaneCount(2);
       bool bSwap;
@@ -278,7 +278,7 @@ namespace userbase
       /*
       if(idSplit.has_char())
       {
-         ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * >
+         ::user::split_view * psplitview = dynamic_cast < ::user::split_view * >
             (m_pviewcreator->m_viewmap[idSplit]->m_pwnd);
          bool bSwap = m_pviewcreator->m_viewmap[idSplit]->m_bTabSplitSwap;
          if(bSwap)
@@ -587,4 +587,4 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user

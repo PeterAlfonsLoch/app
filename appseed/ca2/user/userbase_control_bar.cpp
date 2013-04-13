@@ -2,7 +2,7 @@
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
 
-namespace userbase
+namespace user
 {
 
    control_bar::control_bar()
@@ -304,7 +304,7 @@ namespace userbase
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
-      sp(::userbase::frame_window) pFrameWnd = (GetTopLevelFrame());
+      sp(::user::frame_window) pFrameWnd = (GetTopLevelFrame());
       if (pFrameWnd != ::null() && pFrameWnd->m_bHelpMode)
          return;
 
@@ -402,7 +402,7 @@ namespace userbase
       if(pobj->previous())
          return;
 
-      sp(::userbase::frame_window)pFrameWnd = (get_parent().m_p);
+      sp(::user::frame_window)pFrameWnd = (get_parent().m_p);
       if (pFrameWnd->is_frame_window())
       {
          m_pDockSite = pFrameWnd;
@@ -609,7 +609,7 @@ namespace userbase
       // the dockbar style must also be visible
       if ((GetStyle() & WS_VISIBLE))
       {
-         sp(::userbase::frame_window) pTarget = (get_owner().m_p);
+         sp(::user::frame_window) pTarget = (get_owner().m_p);
          if (pTarget == ::null() || !pTarget->is_frame_window())
             pTarget = (GetParentFrame());
          if (pTarget != ::null())
@@ -1041,19 +1041,19 @@ namespace userbase
 
    #endif
 
-   sp(::userbase::frame_window) control_bar::GetDockingFrame()
+   sp(::user::frame_window) control_bar::GetDockingFrame()
    {
 
-      sp(::userbase::frame_window) pFrameWnd = (GetParentFrame());
+      sp(::user::frame_window) pFrameWnd = (GetParentFrame());
 
       if (pFrameWnd == ::null())
          pFrameWnd = m_pDockSite;
 
       ASSERT(pFrameWnd != ::null());
 
-      ASSERT_KINDOF(::userbase::frame_window, pFrameWnd);
+      ASSERT_KINDOF(::user::frame_window, pFrameWnd);
 
-      return (sp(::userbase::frame_window)) pFrameWnd;
+      return (sp(::user::frame_window)) pFrameWnd;
 
    }
 
@@ -1070,4 +1070,4 @@ namespace userbase
       { return rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder); }
 
 
-} // namespace userbase
+} // namespace user

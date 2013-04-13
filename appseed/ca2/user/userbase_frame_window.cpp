@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -142,7 +142,7 @@ namespace userbase
 
 
 
-   void frame_window::RemoveControlBar(::userbase::control_bar *pBar)
+   void frame_window::RemoveControlBar(::user::control_bar *pBar)
    {
       POSITION pos = m_listControlBars.find(pBar);
       if (pos != ::null())
@@ -306,7 +306,7 @@ namespace userbase
    // in this file for is_kind_of library granularity (is_kind_of references these)
    //// IMPLEMENT_DYNCREATE(frame_window, ::user::interaction)
    //// IMPLEMENT_DYNAMIC(::view, ::user::interaction)
-   //// IMPLEMENT_DYNAMIC(::::userbase::control_bar, ::user::interaction)
+   //// IMPLEMENT_DYNAMIC(::::user::control_bar, ::user::interaction)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -355,7 +355,7 @@ namespace userbase
    }
 
 
-   void frame_window::AddControlBar(::userbase::control_bar *pBar)
+   void frame_window::AddControlBar(::user::control_bar *pBar)
    {
 
       m_listControlBars.add_tail(pBar);
@@ -363,7 +363,7 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 
 
 

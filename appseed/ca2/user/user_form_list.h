@@ -1,10 +1,12 @@
 #pragma once
 
+
 namespace user
 {
 
+
    class CLASS_DECL_ca2 form_list :
-      virtual public ::ca::user::form,
+      virtual public ::user::form,
       virtual public ::user::list
    {
    protected:
@@ -95,6 +97,14 @@ namespace user
       bool BaseOnControlEvent(::user::control_event * pevent);
 
       virtual void _001OnColumnChange();
+
+
    };
 
+
 } // namespace user
+
+
+
+
+

@@ -3,7 +3,7 @@
 SimplePushButton::SimplePushButton(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
-   ::userbase::button(papp)
+   ::user::button(papp)
 {
    m_bTransitionEffect = false;
 //   m_crPush = RGB(70, 150, 100);
@@ -38,7 +38,7 @@ bool SimplePushButton::pre_create_window(CREATESTRUCT& cs)
    cs.style |= BS_PUSHBUTTON;
 #endif
 
-   return ::userbase::button::pre_create_window(cs);
+   return ::user::button::pre_create_window(cs);
 
 }
 
@@ -192,7 +192,7 @@ void SimplePushButton::_001OnCreate(::ca::signal_object * pobj)
 void SimplePushButton::_001OnDestroy(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   ::userbase::button::OnDestroy();
+//   ::user::button::OnDestroy();
 
    KillTimer(16384);
 
@@ -210,7 +210,7 @@ void SimplePushButton::_001OnTimer(::ca::signal_object * pobj)
       TransitionEffectRunStep();
    }
 
-// trans   ::userbase::button::OnTimer(ptimer->m_nIDEvent);
+// trans   ::user::button::OnTimer(ptimer->m_nIDEvent);
 }
 
 void SimplePushButton::UpdateHover()

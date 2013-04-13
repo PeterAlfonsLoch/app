@@ -11,9 +11,9 @@ namespace userex
    public:
 
 
-      sp(::userbase::multiple_document_template)     m_ptemplateForm;
-      sp(::userbase::multiple_document_template)     m_ptemplateChildForm;
-      sp(::userbase::multiple_document_template)     m_ptemplatePlaceHolder;
+      sp(::user::multiple_document_template)     m_ptemplateForm;
+      sp(::user::multiple_document_template)     m_ptemplateChildForm;
+      sp(::user::multiple_document_template)     m_ptemplatePlaceHolder;
 
 
       userex();

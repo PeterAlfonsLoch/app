@@ -8,8 +8,8 @@ namespace bergedge
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
-      ::userbase::view(papp),
-      ::userbase::scroll_view(papp),
+      ::user::view(papp),
+      ::user::scroll_view(papp),
       gcom::backview::user::interaction(papp),
       gcom::backview::Interface(papp),
       m_dibV(papp),
@@ -39,7 +39,7 @@ namespace bergedge
 
    void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::view::install_message_handling(pinterface);
+      ::user::view::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);
       gcom::backview::Interface::install_message_handling(pinterface);
 
@@ -67,12 +67,12 @@ namespace bergedge
    #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -90,11 +90,11 @@ namespace bergedge
    bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
    }
    void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
-      ::userbase::view::_001OnInitialUpdate(pobj);
+      ::user::view::_001OnInitialUpdate(pobj);
 
 
 
@@ -110,7 +110,7 @@ namespace bergedge
 
    void view::_001OnDestroy(::ca::signal_object * pobj)
    {
-      ::userbase::view::_001OnDestroy(pobj);
+      ::user::view::_001OnDestroy(pobj);
 
    }
 
@@ -238,12 +238,12 @@ namespace bergedge
 
    void view::pre_translate_message(::ca::signal_object * pobj)
    {
-      ::userbase::view::pre_translate_message(pobj);
+      ::user::view::pre_translate_message(pobj);
    }
 
    sp(document) view::get_document()
    {
-      return  (::userbase::scroll_view::get_document());
+      return  (::user::scroll_view::get_document());
    }
 
    void view::_001OnTimer(::ca::signal_object * pobj)
@@ -469,7 +469,7 @@ namespace bergedge
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::userbase::scroll_view::layout();
+      ::user::scroll_view::layout();
       gcom::backview::user::interaction::layout();
    }*/
 

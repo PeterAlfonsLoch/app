@@ -4,7 +4,7 @@
 MetaButton::MetaButton(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
-   ::userbase::button(papp),
+   ::user::button(papp),
    m_spregion(allocer())
 {
 
@@ -20,7 +20,7 @@ MetaButton::~MetaButton()
 bool MetaButton::pre_create_window(CREATESTRUCT& cs)
 {
 //   cs.style |= BS_OWNERDRAW;
-   return ::userbase::button::pre_create_window(cs);
+   return ::user::button::pre_create_window(cs);
 }
 
 void MetaButton::SetEllipseBrushs(
@@ -248,7 +248,7 @@ void MetaButton::UpdateWndRgn()
 
 void MetaButton::install_message_handling(::ca::message::dispatch *pinterface)
 {
-   ::userbase::button::install_message_handling(pinterface);
+   ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &MetaButton::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &MetaButton::_001OnLButtonUp);

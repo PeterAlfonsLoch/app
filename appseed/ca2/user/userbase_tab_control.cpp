@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    tab_control::tab_control(sp(::ca::application) papp) :
@@ -16,4 +16,4 @@ namespace userbase
    {
    }
 
-} // namespace userbase
+} // namespace user

@@ -143,7 +143,7 @@ public:
    void SetMessageText(const char * lpszText);
    void SetMessageText(UINT nID);
 
-   ::userbase::control_bar* GetControlBar(UINT nID);
+   ::user::control_bar* GetControlBar(UINT nID);
 
    // frame ::ca::window based modality
    virtual void BeginModalState();
@@ -264,7 +264,7 @@ public:
 #pragma once
 
 
-namespace userbase
+namespace user
 {
    class view;
    class frame_window;
@@ -273,7 +273,7 @@ namespace userbase
    class document;
    class document_template;
 
-} // namespace userbase
+} // namespace user
 
 
 
@@ -296,13 +296,13 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
 {
    // for creating new views
    sp(::ca::type_info) m_typeinfoNewView; // runtime class of ::view to create or ::null()
-   sp(::userbase::document) m_pCurrentDoc;
+   sp(::user::document) m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)
-   ::userbase::document_template* m_pNewDocTemplate;
+   ::user::document_template* m_pNewDocTemplate;
 
    // for sharing ::view/frame state from the original ::view/frame
-   sp(::userbase::view) m_pLastView;
+   sp(::user::view) m_pLastView;
    sp(frame_window) m_pCurrentFrame;
 
 // Implementation
@@ -310,7 +310,7 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
 };*/
 
 
-namespace userbase
+namespace user
 {
 
    class CLASS_DECL_ca2 frame_window :
@@ -372,18 +372,18 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnSetFocus)
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnQueryEndSession)
-      friend class userbase;
+      friend class user;
 
       mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
       uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = ::null()); // called by CDockContext
-      void AddControlBar(::userbase::control_bar *pBar);
-      void RemoveControlBar(::userbase::control_bar *pBar);
-      void DockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
-      void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
+      void AddControlBar(::user::control_bar *pBar);
+      void RemoveControlBar(::user::control_bar *pBar);
+      void DockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
+      void ReDockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
       virtual void NotifyFloatingWindows(uint32_t dwFlags);
 
    };
 
 
 
-} // namepsce userbase
+} // namepsce user

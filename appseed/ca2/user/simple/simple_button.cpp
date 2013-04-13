@@ -4,7 +4,7 @@
 simple_button::simple_button(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
-   ::userbase::button(papp),
+   ::user::button(papp),
    m_brushBkg(allocer())
 {
    m_bFocus = true;
@@ -20,12 +20,12 @@ simple_button::~simple_button()
 
 void simple_button::_001OnDraw(::ca::graphics *pdc)
 {
-   ::userbase::button::_001OnDraw(pdc);
+   ::user::button::_001OnDraw(pdc);
 }
 
 void simple_button::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::button::install_message_handling(pinterface);
+   ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETFOCUS, pinterface, this, &simple_button::_001OnSetFocus);
    //IGUI_WIN_MSG_LINK(WM_CTLCOLOR + WM_REFLECT_BASE  , this, this, &simple_button::_001OnCtlColor);
 }
@@ -35,7 +35,7 @@ void simple_button::pre_subclass_window()
    PreSubClassWindow();
 
 
-   // trans ::userbase::button::pre_subclass_window();
+   // trans ::user::button::pre_subclass_window();
 }
 
 void simple_button::_001OnCtlColor(::ca::signal_object * pobj)

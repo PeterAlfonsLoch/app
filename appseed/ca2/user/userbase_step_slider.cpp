@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    step_slider::step_slider(sp(::ca::application) papp) :
@@ -206,4 +206,4 @@ namespace userbase
       m_bHover = rectClient.contains(pt) != FALSE;
    }
 
-} // namespace userbase
+} // namespace user

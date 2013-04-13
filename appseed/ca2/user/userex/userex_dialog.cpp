@@ -4,11 +4,11 @@
 
 dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    ca(puiParent->get_app()),
-   userbase::view(puiParent->get_app()),
+   user::view(puiParent->get_app()),
    user::scroll_view(puiParent->get_app()),
-   userbase::scroll_view(puiParent->get_app()),
+   user::scroll_view(puiParent->get_app()),
    user::form(puiParent->get_app()),
-   userbase::form_view(puiParent->get_app()),
+   user::form_view(puiParent->get_app()),
    html_form(puiParent->get_app()),
    html_form_view(puiParent->get_app()),
    form_view(puiParent->get_app())
@@ -22,11 +22,11 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
 
 dialog::dialog(sp(::ca::application) papp) :
    ca(papp),
-   userbase::view(papp),
+   user::view(papp),
    user::scroll_view(papp),
-   userbase::scroll_view(papp),
+   user::scroll_view(papp),
    user::form(papp),
-   userbase::form_view(papp),
+   user::form_view(papp),
    html_form(papp),
    html_form_view(papp),
    form_view(papp)

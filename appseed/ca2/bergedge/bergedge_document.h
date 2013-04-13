@@ -10,7 +10,7 @@ namespace bergedge
 
 
    class CLASS_DECL_ca2 document :
-      public ::userbase::document
+      public ::user::document
    {
    public:
 

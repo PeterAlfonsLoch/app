@@ -6,7 +6,7 @@
 // IDR ranges (NOTE: IDR_ values must be <32768)
 #define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
 
-namespace userbase
+namespace user
 {
 
    document_template::document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass) :
@@ -30,4 +30,4 @@ namespace userbase
    }
 #endif //DEBUG
 
-} // namespace userbase
+} // namespace user

@@ -140,7 +140,7 @@ namespace user
 
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class CLASS_DECL_ca2 tree_window :
@@ -153,4 +153,4 @@ namespace userbase
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
    };
 
-} // namespace userbase
+} // namespace user

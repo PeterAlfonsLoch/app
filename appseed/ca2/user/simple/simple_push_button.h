@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 SimplePushButton :
-   public ::userbase::button
+   public ::user::button
 {
 public:
 

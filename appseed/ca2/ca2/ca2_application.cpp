@@ -160,7 +160,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       if(!m_puinteraction->initialize())
          return false;
 
-      m_puserbase = new ::userbase::userbase();
+      m_puserbase = new ::user::user();
 
       m_puserbase->construct(this);
 
@@ -761,7 +761,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       close_all_documents(FALSE);
 
 
-      userbase()._001CloseAllDocuments(FALSE);
+      user()._001CloseAllDocuments(FALSE);
 
 
       // there are cases where destroying the documents may destroy the

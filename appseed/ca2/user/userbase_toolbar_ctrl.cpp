@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    tool_bar_control::~tool_bar_control()
@@ -1153,4 +1153,4 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user

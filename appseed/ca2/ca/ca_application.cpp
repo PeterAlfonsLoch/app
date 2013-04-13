@@ -1297,7 +1297,7 @@ finishedCa2ModuleFolder:;
 
       ASSERT(m_pRecentFileList->m_arrNames != ::null());
 
-      ::userbase::menu* pMenu = pcmdui->m_pMenu;
+      ::user::menu* pMenu = pcmdui->m_pMenu;
       if (m_pRecentFileList->m_strOriginal.is_empty() && pMenu != ::null())
          pMenu->GetMenuString(pcmdui->m_nID, m_pRecentFileList->m_strOriginal, MF_BYCOMMAND);
 
@@ -1313,7 +1313,7 @@ finishedCa2ModuleFolder:;
       if (pcmdui->m_pMenu == ::null())
          return;
 
-      ::userbase::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
+      ::user::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
 
       //if(pmenu == ::null())
       //{

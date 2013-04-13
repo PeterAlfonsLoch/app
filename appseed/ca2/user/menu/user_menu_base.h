@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class menu_item;
@@ -27,4 +27,4 @@ namespace userbase
       virtual void layout() = 0;
    };
 
-} // namespace userbase
+} // namespace user

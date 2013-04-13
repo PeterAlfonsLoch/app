@@ -6,18 +6,18 @@ namespace nature
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::userbase::view(papp),
-      ::userbase::tab_view(papp),
+      ::user::view(papp),
+      ::user::tab_view(papp),
       pane_tab_view(papp),
       place_holder_container(papp)
    {
 
       m_etranslucency      = TranslucencyPresent;
 
-      m_pdoctemplateAppearance = new ::userbase::single_document_template(
+      m_pdoctemplateAppearance = new ::user::single_document_template(
          get_app(),
          "nature/appearance",
-         System.type_info < ::userbase::document > (),
+         System.type_info < ::user::document > (),
          System.type_info < simple_child_frame > (),
          System.type_info < appearance_view > ());
 
@@ -78,12 +78,12 @@ namespace nature
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::userbase::menu_list_view) pview =  (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101).m_p);
+            sp(::user::menu_list_view) pview =  (view::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != ::null())
             {
-               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
+               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->LoadXmlMenu("idioma_nature_menu.xml");
                pmenuview->m_bAutoClose = false;
                pcreatordata->m_pdoc = get_document();
@@ -94,12 +94,12 @@ namespace nature
 
    /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
+            cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
             sp(::userex::pane_tab_view) pview = (CreateView(&cc, 101, this));
             if(pview != ::null())
             {
-               sp(::userbase::menu_list_view) pmenuview = (sp(::userbase::menu_list_view)) pview;
+               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
                pmenuview->m_wnd.m_bAutoClose = false;
                pcreatordata = new ViewData();
@@ -123,13 +123,13 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            sp(::userbase::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
+            sp(::user::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
             if(pdoc != ::null())
             {
                sp(::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
-                  sp(::userbase::frame_window) pframe = (pview->GetParentFrame());
+                  sp(::user::frame_window) pframe = (pview->GetParentFrame());
                   if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -170,7 +170,7 @@ namespace nature
       ::userex::pane_tab_view::on_show_view();
       if(m_pviewdata->m_id == nature::PaneViewIdioma)
       {
-         sp(::userbase::menu_list_view) pmenuview =  (m_pviewdata->m_pwnd.m_p);
+         sp(::user::menu_list_view) pmenuview =  (m_pviewdata->m_pwnd.m_p);
          pmenuview->m_pguieNotify = m_pviewdataOld == ::null() ? ::null() : (m_pviewdataOld->m_pwnd.m_p);
          pmenuview->m_uiMessage = WM_USER + 1122;
          pmenuview->TrackPopupMenu(pmenuview, GetParentFrame());

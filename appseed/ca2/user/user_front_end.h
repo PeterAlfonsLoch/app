@@ -8,11 +8,11 @@ typedef void * HHOOK ;
 #endif // defined(LINUX)
 
 
-namespace userbase
+namespace user
 {
    class menu;
 
-} // namespace userbase
+} // namespace user
 
 namespace user
 {
@@ -30,7 +30,7 @@ namespace user
          LPARAM   lparam);
 
    protected:
-      static ::userbase::menu *    s_pmenu;
+      static ::user::menu *    s_pmenu;
       static HHOOK            s_hhookMouse;
       static int32_t              s_iMouseHookCount;
    };

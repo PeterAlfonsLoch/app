@@ -4,7 +4,7 @@
 html_document::html_document(sp(::ca::application) papp) :
    ca(papp),
    ::ca::data_container_base(papp),
-   ::userbase::document(papp)
+   ::user::document(papp)
 {
 
 
@@ -15,7 +15,7 @@ bool html_document::on_new_document()
 
    ::database::client::initialize_data_client(Application.simpledb().get_data_server());
 
-   if (!::userbase::document::on_new_document())
+   if (!::user::document::on_new_document())
       return FALSE;
 
    update_all_views(::null(), 0);
@@ -34,12 +34,12 @@ html_document::~html_document()
 #ifdef DEBUG
 void html_document::assert_valid() const
 {
-   ::userbase::document::assert_valid();
+   ::user::document::assert_valid();
 }
 
 void html_document::dump(dump_context & dumpcontext) const
 {
-   ::userbase::document::dump(dumpcontext);
+   ::user::document::dump(dumpcontext);
 }
 #endif //DEBUG
 
@@ -135,7 +135,7 @@ void html_document::soft_reload()
 
 ::html::data * html_document::get_html_data()
 {
-   sp(::userbase::document) pdoc = (this);
+   sp(::user::document) pdoc = (this);
    if(pdoc->get_data() == ::null())
    {
       set_data(get_typed_view < html_form > ()->get_html_data());

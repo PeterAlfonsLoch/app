@@ -14,7 +14,7 @@ namespace nature
    public:
 
 
-      sp(::userbase::single_document_template)  m_ptemplate_html;
+      sp(::user::single_document_template)  m_ptemplate_html;
       database *                    m_pdatabase;
 
 

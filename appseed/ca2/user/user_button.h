@@ -47,10 +47,6 @@ namespace user
       visual::dib_sp          m_dib;
 
 
-      button(sp(::ca::application) papp);
-   public:
-      virtual ~button();
-
       virtual void ResizeToFit();
 
       virtual ::ca::font * _001GetFont();
@@ -60,7 +56,6 @@ namespace user
       virtual void _001OnDraw(::ca::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate)
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
       virtual void _001SetCheck(check::e_check check, bool bUser);
@@ -71,19 +66,19 @@ namespace user
       virtual bool _001IsPressed();
 
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _002OnDraw(::ca::graphics * pdc);
 
       virtual index get_hover();
 
       
-      virtual void ResizeToFit();
+//      virtual void ResizeToFit();
       virtual void _001Layout();
 
 
 
       virtual index hit_test(point pt, e_element & eelement);
 
-      virtual ::ca::font * _001GetFont();
+//      virtual ::ca::font * _001GetFont();
       void _001SetButtonText(const char * lpcszText);
       void _001SetButtonTextId(const char * lpcszText);
       string _001GetButtonText();

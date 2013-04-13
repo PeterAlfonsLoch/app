@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
 
@@ -46,4 +46,4 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnMouseMove)
    };
 
-} // namespace userbase
+} // namespace user

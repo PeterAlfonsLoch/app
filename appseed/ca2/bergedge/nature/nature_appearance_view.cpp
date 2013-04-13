@@ -7,8 +7,8 @@ namespace nature
    appearance_view::appearance_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::userbase::view(papp),
-      ::userbase::tab_view(papp),
+      ::user::view(papp),
+      ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
    {
@@ -32,12 +32,12 @@ namespace nature
 #ifdef DEBUG
    void appearance_view::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void appearance_view::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -82,12 +82,12 @@ namespace nature
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
    }
 
    void appearance_view::on_show_view()
    {
-      ::userbase::tab_view::on_show_view();
+      ::user::tab_view::on_show_view();
       simple_child_frame * pframe = GetTypedParent < simple_child_frame > ();
       switch(get_view_id())
       {

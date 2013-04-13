@@ -549,7 +549,7 @@ namespace user
 //      class point ptClient = point;
       ClientToScreen(&point);
       //ScreenToClient(&ptClient);
-   /*   ::userbase::menu menu;
+   /*   ::user::menu menu;
       Ex1TextFile file;
 
       sp(::ca::application) papp = ::ca::get_app();
@@ -569,9 +569,9 @@ namespace user
 
       if (menu.LoadMenu(get_app(), &node))
       {
-         //::userbase::menu* pPopup = (::userbase::menu_item *) menu.GetSubMenu(0);
+         //::user::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != ::null());
-         sp(::userbase::frame_window) pframe = (sp(::userbase::frame_window)) (sp(::ca::window)) GetParentFrame();
+         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(::ca::window)) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
             //(sp(::ca::window)) pframe);
@@ -959,9 +959,9 @@ namespace user
       _001RedrawWindow();
       m_bMouseDown = false;
 
-      ::userbase::menu menu(get_app());
+      ::user::menu menu(get_app());
       menu.LoadXmlMenu("system\\edit_focus_popup.xml");
-      ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
+      ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
       menuPopup.TrackPopupMenu(0, pmouse->m_pt.x, pmouse->m_pt.y, GetParentFrame());
 
       pmouse->set_lresult(1);

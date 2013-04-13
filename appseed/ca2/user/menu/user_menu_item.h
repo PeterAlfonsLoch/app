@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
    class menu_item_ptra;
@@ -57,4 +57,4 @@ namespace userbase
 
    };
 
-} // namespace userbase
+} // namespace user

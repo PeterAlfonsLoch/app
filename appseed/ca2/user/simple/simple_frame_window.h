@@ -11,14 +11,14 @@ namespace frame
 }
 
 
-namespace userbase
+namespace user
 {
 
 
    class control_bar;
 
 
-} // namespace userbase
+} // namespace user
 
 
 class BaseDockBar;
@@ -26,7 +26,7 @@ class BaseReBar;
 class BaseMiniDockFrameWnd;
 
 class CLASS_DECL_ca2 simple_frame_window :
-   virtual public ::userbase::frame_window,
+   virtual public ::user::frame_window,
    virtual public ::uinteraction::frame::CWorkSetDownUpInterface
 {
 public:
@@ -55,7 +55,7 @@ public:
    virtual ~simple_frame_window();
 
 
-   using ::userbase::frame_window::create;
+   using ::user::frame_window::create;
    virtual bool create(const char * lpszClassName,
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
@@ -79,7 +79,7 @@ public:
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(LPCRECT lpcrect);
    virtual void GetBorderRect(LPRECT lprect);
-   void ViewOnActivateFrame(sp(::userbase::view) pview, UINT user, sp(::user::interaction) pframe);
+   void ViewOnActivateFrame(sp(::user::view) pview, UINT user, sp(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual bool IsFullScreen();

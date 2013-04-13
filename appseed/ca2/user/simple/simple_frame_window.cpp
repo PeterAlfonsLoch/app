@@ -28,7 +28,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-// // BEGIN_MESSAGE_MAP(simple_frame_window, ::userbase::frame_window)
+// // BEGIN_MESSAGE_MAP(simple_frame_window, ::user::frame_window)
    //{{__MSG_MAP(simple_frame_window)
 /* xxx   ON_WM_DESTROY()
    ON_WM_SIZE()
@@ -48,7 +48,7 @@ simple_frame_window::~simple_frame_window()
 
 void simple_frame_window::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::frame_window::install_message_handling(pinterface);
+   ::user::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_NCACTIVATE     , pinterface, this, &simple_frame_window::_001OnNcActivate);
 #ifdef WINDOWSEX
@@ -327,13 +327,13 @@ void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext)
 {
 // trans   HICON hicon = GetIcon(false);
-   return ::userbase::frame_window::OnCreateClient(lpcs, pContext);
+   return ::user::frame_window::OnCreateClient(lpcs, pContext);
 }
 
 bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 {
 
-   if(!::userbase::frame_window::pre_create_window(cs))
+   if(!::user::frame_window::pre_create_window(cs))
       return FALSE;
 
 
@@ -352,17 +352,17 @@ void simple_frame_window::layout()
    }
    else
    {
-      ::userbase::frame_window::layout();
+      ::user::frame_window::layout();
    }
 }
 
-void simple_frame_window::ViewOnActivateFrame(sp(::userbase::view) pview, UINT user, sp(::user::interaction) pframe)
+void simple_frame_window::ViewOnActivateFrame(sp(::user::view) pview, UINT user, sp(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
    UNREFERENCED_PARAMETER(pframe);
 //   if(pview != ::null())
-//      pview->OnActivateFrame(WA_INACTIVE, (sp(::userbase::frame_window)) pframe);
+//      pview->OnActivateFrame(WA_INACTIVE, (sp(::user::frame_window)) pframe);
 }
 
 void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
@@ -561,7 +561,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(::ca::signal_object * po
 void simple_frame_window::ActivateFrame(int32_t nCmdShow)
 {
 
-   ::userbase::frame_window::ActivateFrame(nCmdShow);
+   ::user::frame_window::ActivateFrame(nCmdShow);
 }
 
 void simple_frame_window::GetBorderRect(LPRECT lprect)
@@ -680,7 +680,7 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
    }
    else
    {
-// trans      ::userbase::frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
+// trans      ::user::frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
    }
 
 }
@@ -821,7 +821,7 @@ void simple_frame_window::pre_translate_message(::ca::signal_object * pobj)
 #else
    //throw todo(get_app());
 #endif
-   return ::userbase::frame_window::pre_translate_message(pobj);
+   return ::user::frame_window::pre_translate_message(pobj);
 }
 
 
@@ -842,7 +842,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    }
 
-   ::userbase::frame_window::InitialFramePosition(bForceRestore);
+   ::user::frame_window::InitialFramePosition(bForceRestore);
 
    if(m_workset.GetAppearance() != ::null() && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
@@ -866,7 +866,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics
    else
    {
 
-      ::userbase::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
+      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
    }
 }
 
@@ -892,7 +892,7 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
       pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
       #endif
 
-      ::userbase::frame_window::_000OnDraw(pdc);
+      ::user::frame_window::_000OnDraw(pdc);
       #if TEST
 
       pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
@@ -964,13 +964,13 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
       pdc->SelectClipRgn(::null());
    }
    #endif
-   ::userbase::frame_window::_001OnDraw(pdc);
+   ::user::frame_window::_001OnDraw(pdc);
 }
 
 
 void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
 {
-   ::userbase::frame_window::on_set_parent(pguieParent);
+   ::user::frame_window::on_set_parent(pguieParent);
    if(m_pupdowntarget != ::null() && m_pupdowntarget->is_up_down_target())
    {
       // an updowntarget always show the frame for upping/downing
@@ -1010,7 +1010,7 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
    }
    else
    {
-      ::userbase::frame_window::GetClientRect(lprect);
+      ::user::frame_window::GetClientRect(lprect);
    }
 }
 
@@ -1092,7 +1092,7 @@ bool simple_frame_window::create(const char * lpszClassName,
          uint32_t dwExStyle,
          sp(::ca::create_context) pContext)
 {
-   return ::userbase::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
+   return ::user::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }
 
 

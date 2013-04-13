@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -9,7 +9,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 split_layout :
-      virtual public user::place_holder_container
+      virtual public ::user::place_holder_container
    {
    public:
 
@@ -110,7 +110,7 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user
 
 
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    const int32_t BaseWndMenuCmdUi = 117;
@@ -54,7 +54,7 @@ namespace userbase
    void menu_list_window::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pschema            = &::userbase::GetUfeSchema(get_app())->m_menu;
+      m_pschema            = &::user::GetUfeSchema(get_app())->m_menu;
    }
 
    void menu_list_window::_001OnDestroy(::ca::signal_object * pobj)
@@ -407,7 +407,7 @@ namespace userbase
       {
          DestroyWindow();
       }*/
-      ::userbase::menu_base::clear();
+      ::user::menu_base::clear();
    }
 
-} // namespace userbase
+} // namespace user

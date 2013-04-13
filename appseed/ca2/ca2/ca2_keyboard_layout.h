@@ -6,7 +6,7 @@ namespace ca2 // ca8 + cube
 
 
    class CLASS_DECL_ca2 keyboard_layout :
-      virtual public ::userbase::split_view,
+      virtual public ::user::split_view,
       virtual public ::user::form_callback,
       public ::user::list_data
    {
@@ -37,10 +37,10 @@ namespace ca2 // ca8 + cube
 
 
       keyboard_layout(const keyboard_layout & ) :
-         ::userbase::view(::null()),
+         ::user::view(::null()),
          ::user::place_holder_container(::null()),
-         ::userbase::split_layout(::null()),
-         ::userbase::split_view(::null()),
+         ::user::split_layout(::null()),
+         ::user::split_view(::null()),
          ::user::list_data(::null())
       {
       }

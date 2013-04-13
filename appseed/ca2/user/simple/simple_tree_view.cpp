@@ -3,7 +3,7 @@
 
 simple_tree_view::simple_tree_view(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::scroll_view(papp),
    user::tree(papp)
 {
@@ -15,7 +15,7 @@ simple_tree_view::~simple_tree_view()
 
 void simple_tree_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::view::install_message_handling(pinterface);
+   ::user::view::install_message_handling(pinterface);
    ::user::tree::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_tree_view::_001OnCreate);
 }
@@ -26,12 +26,12 @@ void simple_tree_view::install_message_handling(::ca::message::dispatch * pinter
 #ifdef DEBUG
 void simple_tree_view::assert_valid() const
 {
-   ::userbase::view::assert_valid();
+   ::user::view::assert_valid();
 }
 
 void simple_tree_view::dump(dump_context & dumpcontext) const
 {
-   ::userbase::view::dump(dumpcontext);
+   ::user::view::dump(dumpcontext);
 }
 #endif //DEBUG
 

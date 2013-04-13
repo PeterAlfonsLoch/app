@@ -1618,7 +1618,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   LRESULT window::OnMenuChar(UINT, UINT, ::userbase::menu*)
+   LRESULT window::OnMenuChar(UINT, UINT, ::user::menu*)
    {
       throw interface_only_exception(get_app());
    }
@@ -1933,12 +1933,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnInitMenu(::userbase::menu*)
+   void window::OnInitMenu(::user::menu*)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnInitMenuPopup(::userbase::menu*, UINT, bool)
+   void window::OnInitMenuPopup(::user::menu*, UINT, bool)
    {
       throw interface_only_exception(get_app());
    }

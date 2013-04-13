@@ -2,7 +2,7 @@
 
 simple_tab_view::simple_tab_view(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::interaction(papp), 
    ::user::tab(papp),
    place_holder_container(papp)
@@ -20,13 +20,13 @@ simple_tab_view::~simple_tab_view()
 #ifdef DEBUG
 void simple_tab_view::assert_valid() const
 {
-   ::userbase::view::assert_valid();
+   ::user::view::assert_valid();
 }
 
 #ifndef _WIN32_WCE
 void simple_tab_view::dump(dump_context & dumpcontext) const
 {
-   ::userbase::view::dump(dumpcontext);
+   ::user::view::dump(dumpcontext);
 }
 #endif
 #endif //DEBUG
@@ -45,7 +45,7 @@ void simple_tab_view::layout()
 
 void simple_tab_view::GetClientRect(LPRECT lprect)
 {
-   ::userbase::view::GetClientRect(lprect);
+   ::user::view::GetClientRect(lprect);
 }
 
 
@@ -69,7 +69,7 @@ void simple_tab_view::_001OnDraw(::ca::graphics * pdc)
 
 void simple_tab_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::view::install_message_handling(pinterface);
+   ::user::view::install_message_handling(pinterface);
    ::user::tab::install_message_handling(pinterface);
 }
 

@@ -85,8 +85,6 @@ namespace user
 
       virtual void _001OnInitialUpdate(::ca::signal_object * pobj);
 
-      combo_box(sp(::ca::application) papp);
-      virtual ~combo_box();
 
 
       virtual bool create(sp(::user::interaction) puiParent, id id);

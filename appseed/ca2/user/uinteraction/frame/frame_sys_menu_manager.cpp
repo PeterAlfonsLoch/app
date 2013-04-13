@@ -37,7 +37,7 @@ namespace frame
            {
 //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
-   /*            ::userbase::menu * pmenu = pwnd->GetSystemMenu(FALSE);
+   /*            ::user::menu * pmenu = pwnd->GetSystemMenu(FALSE);
             if(pmenu != ::null())
             {
                pmenu->TrackPopupMenu(
@@ -84,7 +84,7 @@ namespace frame
            {
 //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
-   /*            ::userbase::menu * pmenu = pwnd->GetSystemMenu(FALSE);
+   /*            ::user::menu * pmenu = pwnd->GetSystemMenu(FALSE);
             if(pmenu != ::null())
             {
                point pt(LOWORD(lparam), HIWORD(lparam));

@@ -74,7 +74,7 @@ static const char gen_ShellNewValueName[] = "NullFile";
 static const char gen_ShellNewValue[] = "";
 
 
-namespace userbase
+namespace user
 {
 
    document_manager::document_manager(sp(::ca::application) papp) :
@@ -170,6 +170,6 @@ namespace userbase
       }
    }
    */
-} // namespace userbase
+} // namespace user
 
 

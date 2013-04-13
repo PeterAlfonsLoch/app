@@ -7,7 +7,7 @@ namespace bergedge
    class pane_view;
 
    class CLASS_DECL_ca2 view :
-      virtual public ::userbase::scroll_view,
+      virtual public ::user::scroll_view,
       virtual public ::user::place_holder,
       virtual public gcom::backview::user::interaction
    {

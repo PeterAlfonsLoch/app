@@ -33,14 +33,14 @@ namespace nature
 
       SetRegistryKey("ca2core");
 
-      ::userbase::single_document_template* pDocTemplate;
-      pDocTemplate = new ::userbase::single_document_template(
+      ::user::single_document_template* pDocTemplate;
+      pDocTemplate = new ::user::single_document_template(
          this,
          "bergedge/frame",
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      userbase().add_document_template(pDocTemplate);
+      user().add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    tab_view_update_hint::tab_view_update_hint()
@@ -23,4 +23,4 @@ namespace userbase
       m_etype = e_type;
    }
 
-} // namespace userbase
+} // namespace user

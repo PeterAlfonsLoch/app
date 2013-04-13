@@ -178,3 +178,100 @@ public:
 };
 
 
+
+
+#pragma once
+
+
+namespace user
+{
+
+
+   class frame_window_interface;
+   class document;
+   class frame_window;
+
+
+} // namespace user
+
+
+
+struct PrintPreviewState;
+
+class CPrintDialog;     // forward reference (see afxdlgs.h)
+class BasePreviewView;     // forward reference (see afxpriv.h)
+class CSplitterWnd;     // forward reference (see afxext.h)
+class COleServerDoc;    // forward reference (see afxole.h)
+
+typedef uint32_t DROPEFFECT;
+class COleDataObject;   // forward reference (see afxole.h)
+
+namespace user
+{
+
+   class CLASS_DECL_ca2 view :
+      virtual public ::view
+   {
+   public:
+
+      view(sp(::ca::application) papp);
+      virtual ~view();
+
+      virtual void on_select();
+
+      // each view can display one or more documents but has only one document interface
+      //sp(::user::document) get_document() const;
+
+      virtual bool IsSelected(const ::ca::object* pDocItem) const; // support for OLE
+
+      // OLE scrolling support (used for drag/drop as well)
+      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
+      virtual bool OnScrollBy(size sizeScroll, bool bDoScroll = TRUE);
+
+      // OLE drag/drop support
+      virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
+         uint32_t dwKeyState, point point);
+      virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
+         uint32_t dwKeyState, point point);
+      virtual void OnDragLeave();
+      virtual bool OnDrop(COleDataObject* pDataObject,
+         DROPEFFECT dropEffect, point point);
+      virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
+         DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
+      virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);
+
+
+
+      virtual void OnActivateView(bool bActivate, sp(::view) pActivateView, sp(::view) pDeactiveView);
+      virtual void OnActivateFrame(UINT nState, sp(frame_window) pFrameWnd);
+
+      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+
+      virtual void dump(dump_context &) const;
+      virtual void assert_valid() const;
+
+
+
+      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+
+      virtual bool pre_create_window(CREATESTRUCT& cs);
+
+      DECL_GEN_SIGNAL(_001OnMouseActivate)
+      DECL_GEN_SIGNAL(_001OnUpdateSplitCmd)
+      DECL_GEN_SIGNAL(_001OnSplitCmd)
+      DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu)
+      DECL_GEN_SIGNAL(_001OnNextPaneCmd)
+
+      DECL_GEN_SIGNAL(_001OnFilePrint)
+      DECL_GEN_SIGNAL(_001OnFilePrintPreview)
+
+
+      DECL_GEN_SIGNAL(_001OnRButtonDown)
+      DECL_GEN_SIGNAL(_001OnLButtonDown)
+      DECL_GEN_SIGNAL(_001OnMButtonDown)
+
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   };
+
+
+} // namespace user

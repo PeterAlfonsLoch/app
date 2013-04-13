@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    image_manager::image_manager()
@@ -136,4 +136,4 @@ namespace userbase
    }
    */
 
-} // namespace userbase
+} // namespace user

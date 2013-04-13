@@ -7,10 +7,10 @@ namespace userex
 
    property_page::property_page(sp(::ca::application) papp) :
       ca(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::place_holder_container(papp),
       ::user::tab(papp),
-      ::userbase::tab_view(papp),
+      ::user::tab_view(papp),
       ::userex::pane_tab_view(papp)
    {
 

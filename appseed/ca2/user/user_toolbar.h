@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -9,7 +9,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 tool_bar :
-      public ::userbase::control_bar
+      public ::user::control_bar
    {
    public:
 
@@ -26,11 +26,11 @@ namespace userbase
       virtual ~tool_bar();
 
 
-      using ::userbase::control_bar::create;
+      using ::user::control_bar::create;
       bool create(sp(::user::interaction) pParentWnd,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
          UINT nID = __IDW_TOOLBAR);
-      using ::userbase::control_bar::CreateEx;
+      using ::user::control_bar::CreateEx;
 #ifdef WINDOWSEX
       bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
@@ -76,7 +76,7 @@ namespace userbase
       size CalcSimpleLayout();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
-      //virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
+      //virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       void set_owner(sp(::user::interaction) pOwnerWnd);
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
       virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
@@ -125,7 +125,7 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user
 
 
 

@@ -196,19 +196,19 @@ namespace bergedge
       System.factory().creatable < nature::view > (iCount);
       System.factory().creatable < nature::pane_view > (iCount);
       System.factory().creatable < nature::frame > (iCount);
-      m_ptemplate_bergedge    = new ::userbase::single_document_template(
+      m_ptemplate_bergedge    = new ::user::single_document_template(
          this,
          "bergedge/frame",
          System.type_info < document > (),
          System.type_info < frame > (),
          System.type_info < view > ());
-      m_ptemplate_platform    = new ::userbase::single_document_template(
+      m_ptemplate_platform    = new ::user::single_document_template(
          this,
          "bergedge/frame",
          System.type_info < platform::document > (),
          System.type_info < platform::frame > (),
          System.type_info < platform::pane_view > ());
-      m_ptemplate_nature      = new ::userbase::single_document_template(
+      m_ptemplate_nature      = new ::user::single_document_template(
          this,
          "bergedge/frame",
          System.type_info < nature::document > (),
@@ -809,7 +809,7 @@ alt1:
 
    }
 
-   bool bergedge::place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool bergedge::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

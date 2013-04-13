@@ -23,9 +23,6 @@ namespace cube
 
 
 
-#include "ca2/user/user.h"
-#include "ca2/uinteraction/uinteraction.h"
-#include "ca2/userbase/userbase.h"
 #include "ca2/html/html.h"
 #include "ca2/userex/userex.h"
 

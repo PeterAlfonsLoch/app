@@ -1,11 +1,11 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class CLASS_DECL_CA2_VEIEV tree_set :
-      virtual public ::userbase::view,
-      virtual public ::userbase::tree_set_interface
+      virtual public ::user::view,
+      virtual public ::user::tree_set_interface
    {
    public:
 
@@ -58,4 +58,4 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user

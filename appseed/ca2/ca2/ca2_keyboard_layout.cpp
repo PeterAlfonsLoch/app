@@ -8,9 +8,9 @@ namespace ca2 // ca8 + cube
    keyboard_layout::keyboard_layout(sp(::ca::application) papp) :
       ca(papp),
       ::user::list_data(papp),
-      ::userbase::split_layout(papp),
-      ::userbase::view(papp),
-      ::userbase::split_view(papp),
+      ::user::split_layout(papp),
+      ::user::view(papp),
+      ::user::split_view(papp),
       place_holder_container(papp)
    {
       m_pdoc   = ::null();

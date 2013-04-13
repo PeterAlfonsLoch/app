@@ -18,7 +18,7 @@ namespace ca2
       
       
       ::uinteraction::uinteraction      * m_puinteraction;
-      ::userbase::userbase              * m_puserbase;
+      ::user::user              * m_puserbase;
       ::userex::userex                  * m_puserex;
       ::filemanager::filemanager        * m_pfilemanager;
       ::mail::mail                      * m_pmail;
@@ -92,7 +92,7 @@ namespace ca2
 
       
       inline ::uinteraction::uinteraction          & uinteraction () { return *m_puinteraction  ; }
-      inline ::userbase::userbase                  & userbase     () { return *m_puserbase      ; }
+      inline ::user::user                  & user     () { return *m_puserbase      ; }
       inline ::userex::userex                      & userex       () { return *m_puserex        ; }
       inline ::filemanager::filemanager            & filemanager  () { return *m_pfilemanager   ; }
       inline ::mail::mail                          & mail         () { return *m_pmail          ; }

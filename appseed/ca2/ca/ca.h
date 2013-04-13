@@ -543,7 +543,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
-      namespace userbase
+      namespace user
       {
          class menu;                 // a menu
       }

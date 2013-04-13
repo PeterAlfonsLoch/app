@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 MetaButton :
-   public ::userbase::button,
+   public ::user::button,
    public ::uinteraction::frame::ControlBoxButton
 {
 public:

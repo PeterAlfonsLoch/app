@@ -36,7 +36,7 @@ public:
 
 
 class CLASS_DECL_ca2 simple_toolbar :
-   public ::userbase::control_bar
+   public ::user::control_bar
 {
 
 public:
@@ -84,7 +84,7 @@ public:
    virtual ~simple_toolbar();
 
 
-   using ::userbase::control_bar::create;
+   using ::user::control_bar::create;
    bool create(sp(::user::interaction) pParentWnd,
       uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       id nID = "__IDW_TOOLBAR");
@@ -156,7 +156,7 @@ public:
 //   bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
    void SetSizes(SIZE sizeButton, SIZE sizeImage);
 
-   void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
+   void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
    void TransparentEraseNonClient(::ca::graphics * pdc);

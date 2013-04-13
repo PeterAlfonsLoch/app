@@ -1,12 +1,12 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    scroll_view::scroll_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::scroll_view(papp)
    {
    }
@@ -21,4 +21,4 @@ namespace userbase
       ::user::scroll_view::install_message_handling(pinterface);
    }
 
-} // namespace userbase
+} // namespace user

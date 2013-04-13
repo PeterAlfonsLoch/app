@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
    single_document_template::single_document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass) :
       ca(papp),
       ::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass),
-      ::userbase::document_template(papp, pszMatter, pDocClass,   pFrameClass, pViewClass),
+      ::user::document_template(papp, pszMatter, pDocClass,   pFrameClass, pViewClass),
       ::single_document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
 
@@ -43,4 +43,4 @@ namespace userbase
 #endif //DEBUG
 
 
-} // namespace userbase
+} // namespace user

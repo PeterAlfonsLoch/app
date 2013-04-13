@@ -388,7 +388,7 @@ namespace user
          return;
       }*/
 
-      _001GetElementRect(pdrawitem, userbase::_list::ElementGroupImage);
+      _001GetElementRect(pdrawitem, user::_list::ElementGroupImage);
       if(pdrawitem->m_bOk)
       {
          pdrawitem->draw_group_image();
@@ -398,7 +398,7 @@ namespace user
 
       for(pdrawitem->m_iItem = 0; pdrawitem->m_iItem < nItem; pdrawitem->m_iItem++)
       {
-         _001GetElementRect(pdrawitem, userbase::_list::ElementGroupItemText);
+         _001GetElementRect(pdrawitem, user::_list::ElementGroupItemText);
          if(pdrawitem->m_bOk)
          {
             _001GetGroupText(pdrawitem);
@@ -631,14 +631,14 @@ namespace user
       }
 
       pdrawitem->m_iListItem = -1;
-      _001GetElementRect(pdrawitem, userbase::_list::ElementImage);
+      _001GetElementRect(pdrawitem, user::_list::ElementImage);
       if(pdrawitem->m_bOk)
       {
          _001GetItemImage(pdrawitem);
          pdrawitem->draw_image();
       }
       pdrawitem->m_iListItem = -1;
-      _001GetElementRect(pdrawitem, userbase::_list::ElementText);
+      _001GetElementRect(pdrawitem, user::_list::ElementText);
       if(pdrawitem->m_bOk)
       {
          _001GetItemText(pdrawitem);
@@ -1381,7 +1381,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, userbase::_list::EElement &eelement)
+   bool list::_001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, user::_list::EElement &eelement)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(iItem);
@@ -1407,7 +1407,7 @@ namespace user
       return true;
    }
 
-   bool list::_001DisplayHitTest(point point, index & iItem, index & iSubItem, index & iListItem, userbase::_list::EElement &eelement)
+   bool list::_001DisplayHitTest(point point, index & iItem, index & iSubItem, index & iListItem, user::_list::EElement &eelement)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(iItem);
@@ -1906,12 +1906,12 @@ namespace user
 
    }
 
-   void list::_001GetElementRect(::user::draw_list_item * pdrawitem, userbase::_list::EElement eelement)
+   void list::_001GetElementRect(::user::draw_list_item * pdrawitem, user::_list::EElement eelement)
    {
 
       if(m_bGroup && m_bLateralGroup &&
-        (eelement == userbase::_list::ElementGroupImage
-      || eelement == userbase::_list::ElementGroupItemText))
+        (eelement == user::_list::ElementGroupImage
+      || eelement == user::_list::ElementGroupItemText))
       {
          int32_t x = pdrawitem->m_rectGroup.left;
          int32_t iImageBottom = pdrawitem->m_rectGroup.top;
@@ -1927,7 +1927,7 @@ namespace user
             if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
             {
                m_pilGroup->get_image_info((int32_t) pdrawitem->m_iImage, &ii);
-               if(eelement == userbase::_list::ElementGroupImage)
+               if(eelement == user::_list::ElementGroupImage)
                {
                   pdrawitem->m_rectImage.left      = x;
                   pdrawitem->m_rectImage.right     = x + width(&ii.m_rect);
@@ -1942,7 +1942,7 @@ namespace user
                   iImageBottom += height(&ii.m_rect) + 2;
                }
             }
-            else if(eelement == userbase::_list::ElementGroupImage)
+            else if(eelement == user::_list::ElementGroupImage)
             {
                return_(pdrawitem->m_bOk, false);
             }
@@ -1953,11 +1953,11 @@ namespace user
 #endif
 
          }
-         else if(eelement == userbase::_list::ElementGroupImage)
+         else if(eelement == user::_list::ElementGroupImage)
          {
             return_(pdrawitem->m_bOk, false);
          }
-         if(eelement == userbase::_list::ElementGroupItemText)
+         if(eelement == user::_list::ElementGroupItemText)
          {
             pdrawitem->m_rectText.top       = (LONG) (pdrawitem->m_rectGroup.top + m_iItemHeight * pdrawitem->m_iItem);
             if(pdrawitem->m_rectText.top >= iImageBottom)
@@ -1982,13 +1982,13 @@ namespace user
             if(!pdrawitem->m_bOk)
                return;
          }
-         if(eelement == userbase::_list::ElementItem)
+         if(eelement == user::_list::ElementItem)
          {
             return_(pdrawitem->m_bOk, true);
          }
          if(m_eview == ViewIcon)
          {
-            if(eelement == userbase::_list::ElementImage)
+            if(eelement == user::_list::ElementImage)
             {
                int32_t iIconSize                  = m_columna[0].m_sizeIcon.cy;
                pdrawitem->m_rectImage.left      = pdrawitem->m_rectItem.left    + iIconSize / 2;
@@ -1997,7 +1997,7 @@ namespace user
                pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectImage.top   + iIconSize;
                return_(pdrawitem->m_bOk, true);
             }
-            else if(eelement == userbase::_list::ElementText)
+            else if(eelement == user::_list::ElementText)
             {
                int32_t iIconSize               = m_columna[0].m_sizeIcon.cy;
                pdrawitem->m_rectText.left    = pdrawitem->m_rectItem.left;
@@ -2018,7 +2018,7 @@ namespace user
 
          if(pdrawitem->m_iListItem == -1)
          {
-            if(eelement == userbase::_list::ElementSubItem)
+            if(eelement == user::_list::ElementSubItem)
             {
                return_(pdrawitem->m_bOk, true);
             }
@@ -2027,7 +2027,7 @@ namespace user
                _001GetItemImage(pdrawitem);
                if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
                {
-                  if(eelement == userbase::_list::ElementImage)
+                  if(eelement == user::_list::ElementImage)
                   {
                      pdrawitem->m_rectImage.left      = x;
                      pdrawitem->m_rectImage.right     = x + pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx;
@@ -2041,7 +2041,7 @@ namespace user
                      x += 2;
                   }
                }
-               else if(eelement == userbase::_list::ElementImage)
+               else if(eelement == user::_list::ElementImage)
                {
                   return_(pdrawitem->m_bOk, false);
                }
@@ -2057,7 +2057,7 @@ namespace user
                if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
                {
                   pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((int32_t) pdrawitem->m_iImage, &ii);
-                  if(eelement == userbase::_list::ElementImage)
+                  if(eelement == user::_list::ElementImage)
                   {
                      pdrawitem->m_rectImage.left      = x;
                      pdrawitem->m_rectImage.right     = x + width(&ii.m_rect);
@@ -2071,7 +2071,7 @@ namespace user
                      x += 2;
                   }
                }
-               else if(eelement == userbase::_list::ElementImage)
+               else if(eelement == user::_list::ElementImage)
                {
                   return_(pdrawitem->m_bOk, false);
                }
@@ -2084,11 +2084,11 @@ namespace user
 
 
             }
-            else if(eelement == userbase::_list::ElementImage)
+            else if(eelement == user::_list::ElementImage)
             {
                return_(pdrawitem->m_bOk, false);
             }
-            if(eelement == userbase::_list::ElementText)
+            if(eelement == user::_list::ElementText)
             {
                pdrawitem->m_rectText.left      = x;
                pdrawitem->m_rectText.right     = pdrawitem->m_rectSubItem.right;

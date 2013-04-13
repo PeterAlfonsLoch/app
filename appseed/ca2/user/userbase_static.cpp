@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -151,7 +151,7 @@ namespace userbase
 
    }
 
-   ::userbase::base_static::e_type base_static::get_type()
+   ::user::base_static::e_type base_static::get_type()
    {
       
       return m_etype;
@@ -159,7 +159,7 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 
 
 

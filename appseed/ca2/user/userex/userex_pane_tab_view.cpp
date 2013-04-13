@@ -7,8 +7,8 @@ namespace userex
 
    pane_tab_view::pane_tab_view(sp(::ca::application) papp) :
       ca(papp),
-      ::userbase::view(papp),
-      ::userbase::tab_view(papp),
+      ::user::view(papp),
+      ::user::tab_view(papp),
       ::user::tab(papp),
       place_holder_container(papp)
    {
@@ -25,19 +25,19 @@ namespace userex
 
    sp(::user::interaction) pane_tab_view::get_view_uie()
    {
-      return ::userbase::tab_view::get_view_uie();
+      return ::user::tab_view::get_view_uie();
    }
 
    id pane_tab_view::get_view_id()
    {
-      return ::userbase::tab_view::get_view_id();
+      return ::user::tab_view::get_view_id();
    }
 
    void pane_tab_view::GetTabClientRect(LPRECT lprect)
    {
       if(m_pviewdata == ::null() || m_pviewdata->m_pwnd == ::null() || m_pviewdata->m_iExtendOnParent == 0)
       {
-         ::userbase::tab_view::GetTabClientRect(lprect);
+         ::user::tab_view::GetTabClientRect(lprect);
       }
       else if(m_pviewdata->m_iExtendOnParent > 0)
       {
@@ -77,7 +77,7 @@ namespace userex
 
    void pane_tab_view::on_show_view()
    {
-      ::userbase::tab_view::on_show_view();
+      ::user::tab_view::on_show_view();
       ::user::view_creator::on_show_view();
       if(m_pviewdata != ::null() && m_pviewdata->m_id != "file_manager" && m_pviewdataOld != ::null() && m_pviewdataOld->m_id == "file_manager")
       {
@@ -143,7 +143,7 @@ namespace userex
 
    ::user::view_creator_data * pane_tab_view::ensure(id id)
    {
-      return ::userbase::tab_view::ensure(id);
+      return ::user::tab_view::ensure(id);
    }
 
 

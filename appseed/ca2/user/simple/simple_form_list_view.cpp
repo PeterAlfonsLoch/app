@@ -7,9 +7,9 @@ simple_form_list_view::simple_form_list_view(sp(::ca::application) papp) :
    ::user::form(papp), 
    ::ca::user::form(papp),
    ::user::form_list(papp),
-   ::userbase::form_list(papp),
+   ::user::form_list(papp),
    m_headerctrl(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::scroll_view(papp),
    ::user::list(papp)
 {
@@ -24,7 +24,7 @@ simple_form_list_view::~simple_form_list_view()
 
 void simple_form_list_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::view::install_message_handling(pinterface);
+   ::user::view::install_message_handling(pinterface);
    ::user::form_list::install_message_handling(pinterface);
 }
 
@@ -33,12 +33,12 @@ void simple_form_list_view::install_message_handling(::ca::message::dispatch * p
 #ifdef DEBUG
 void simple_form_list_view::assert_valid() const
 {
-   ::userbase::view::assert_valid();
+   ::user::view::assert_valid();
 }
 
 void simple_form_list_view::dump(dump_context & dumpcontext) const
 {
-   ::userbase::view::dump(dumpcontext);
+   ::user::view::dump(dumpcontext);
 }
 #endif //DEBUG
 
@@ -47,6 +47,6 @@ bool simple_form_list_view::pre_create_window(CREATESTRUCT& cs)
    
    cs.style |= WS_CLIPCHILDREN;
    
-   return ::userbase::view::pre_create_window(cs);
+   return ::user::view::pre_create_window(cs);
 }
 

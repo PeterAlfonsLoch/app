@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class menu_item;
@@ -61,4 +61,4 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user

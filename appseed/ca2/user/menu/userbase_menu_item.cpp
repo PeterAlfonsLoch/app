@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -154,5 +154,5 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 

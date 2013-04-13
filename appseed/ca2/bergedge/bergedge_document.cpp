@@ -8,7 +8,7 @@ namespace bergedge
    document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
-      ::userbase::document(papp)
+      ::user::document(papp)
    {
       m_pplatformdocument = ::null();
       m_pnaturedocument = ::null();
@@ -16,7 +16,7 @@ namespace bergedge
 
    bool document::on_new_document()
    {
-      if (!::userbase::document::on_new_document())
+      if (!::user::document::on_new_document())
          return FALSE;
 
    
@@ -33,12 +33,12 @@ namespace bergedge
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::userbase::document::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::userbase::document::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
    #endif //DEBUG
 

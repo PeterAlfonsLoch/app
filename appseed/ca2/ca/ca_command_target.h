@@ -198,7 +198,7 @@ protected:
 #include "user/user_check_interface.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -221,8 +221,8 @@ public:
    ::count m_iCount;        // last + 1 for iterating m_iIndex
 
    // if a menu item
-   ::userbase::menu *      m_pMenu;         // ::null() if not a menu
-   ::userbase::menu *      m_pSubMenu;      // sub containing menu item
+   ::user::menu *      m_pMenu;         // ::null() if not a menu
+   ::user::menu *      m_pSubMenu;      // sub containing menu item
                      // if a popup sub menu - ID is for first in popup
 
    // if from some other ::ca::window
@@ -234,7 +234,7 @@ public:
 
    
 
-   ::userbase::menu* m_pParentMenu;   // ::null() if parent menu not easily determined
+   ::user::menu* m_pParentMenu;   // ::null() if parent menu not easily determined
                      //  (probably a secondary popup menu)
 
 

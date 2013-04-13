@@ -255,19 +255,19 @@ namespace plane
       System.factory().creatable < nature::view > (iCount);
       System.factory().creatable < nature::pane_view > (iCount);
       System.factory().creatable < nature::frame > (iCount);
-      m_ptemplate_bergedge    = new ::userbase::single_document_template(
+      m_ptemplate_bergedge    = new ::user::single_document_template(
          this,
          "session/frame",
          System.type_info < document > (),
          System.type_info < frame > (),
          System.type_info < view > ());
-      m_ptemplate_platform    = new ::userbase::single_document_template(
+      m_ptemplate_platform    = new ::user::single_document_template(
          this,
          "session/frame",
          System.type_info < plane::document > (),
          System.type_info < plane::frame > (),
          System.type_info < plane::pane_view > ());
-      m_ptemplate_nature      = new ::userbase::single_document_template(
+      m_ptemplate_nature      = new ::user::single_document_template(
          this,
          "session/frame",
          System.type_info < nature::document > (),
@@ -967,7 +967,7 @@ namespace plane
 
    }
 
-/*   ::user::place_holder_ptra session::get_place_holder(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+/*   ::user::place_holder_ptra session::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -999,7 +999,7 @@ namespace plane
    }*/
 
    /*
-   bool session::place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

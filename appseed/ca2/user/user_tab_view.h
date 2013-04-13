@@ -1,13 +1,13 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class tab_drop_target_window;
    class single_document_template;
 
    class CLASS_DECL_ca2 tab_view : 
-      virtual public ::userbase::view,
+      virtual public ::user::view,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,
       virtual public ::user::view_container
@@ -99,4 +99,4 @@ namespace userbase
 
    };
 
-} // namespace userbase
+} // namespace user

@@ -35,10 +35,10 @@ namespace bergedge
       string_map < sp(::ca::application) >               m_mapApplication;
 
 
-      sp(::userbase::single_document_template)                         m_ptemplate_bergedge;
-      sp(::userbase::single_document_template)                         m_ptemplate_platform;
-      sp(::userbase::single_document_template)                         m_ptemplate_nature;
-      sp(::userbase::single_document_template)                         m_ptemplate_html;
+      sp(::user::single_document_template)                         m_ptemplate_bergedge;
+      sp(::user::single_document_template)                         m_ptemplate_platform;
+      sp(::user::single_document_template)                         m_ptemplate_nature;
+      sp(::user::single_document_template)                         m_ptemplate_html;
       sp(document)                                                     m_pbergedgedocument;
       sp(::platform::document)                                           m_pplatformdocument;
       sp(::nature::document)                                             m_pnaturedocument;
@@ -95,7 +95,7 @@ namespace bergedge
 
       virtual ::user::place_holder_ptra get_place_holder(sp(::frame_window) pmainframe, sp(::ca::create_context) pcontext);
 
-      virtual bool place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcontext);
+      virtual bool place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    const int32_t split_layout::m_iMarging = 5;
@@ -38,7 +38,7 @@ namespace userbase
       int32_t i;
       for(i = 0; i < iSplitBarCount; i++)
       {
-         ::userbase::split_bar & splitbar = m_splitbara.add_new();
+         ::user::split_bar & splitbar = m_splitbara.add_new();
          splitbar.m_iIndex = i;
          if(!splitbar.create(this))
             return false;
@@ -81,7 +81,7 @@ namespace userbase
 //         int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
          if(Session.is_mouse_button_pressed(::user::mouse_left_button))
          {
-            ::userbase::split_bar & splitbar = m_splitbara.element_at(iIndex);
+            ::user::split_bar & splitbar = m_splitbara.element_at(iIndex);
             splitbar.set_capture();
             m_iIndex = iIndex;
             m_iState = stateDragging;
@@ -512,7 +512,7 @@ namespace userbase
       for(i = 0; i < iSplitBarCount; i++)
       {
          m_splitbara.add_new();
-         ::userbase::split_bar & splitbar = m_splitbara.element_at(i);
+         ::user::split_bar & splitbar = m_splitbara.element_at(i);
          splitbar.m_iIndex = i;
          if(!splitbar.create(this))
             return false;
@@ -564,7 +564,7 @@ namespace userbase
       for(i = 0; i < iSplitBarCount; i++)
       {
          m_splitbara.add_new();
-         ::userbase::split_bar & splitbar = m_splitbara.element_at(i);
+         ::user::split_bar & splitbar = m_splitbara.element_at(i);
          splitbar.m_iIndex = i;
          if(!splitbar.create(this))
             return false;
@@ -674,7 +674,7 @@ namespace userbase
 //         int32_t yPos = splitRect.top + (int16_t) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
-            ::userbase::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
+            ::user::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
             pSplitBar->set_capture();
             m_iIndex = iSplitBar;
             m_iState = stateDragging;
@@ -797,7 +797,7 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 
 
 

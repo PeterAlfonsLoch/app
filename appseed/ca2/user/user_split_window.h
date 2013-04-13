@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca2 BaseSplitWnd :
-   virtual public ::userbase::split_layout
+   virtual public ::user::split_layout
 {
 public:
    BaseSplitWnd(sp(::ca::application) papp);

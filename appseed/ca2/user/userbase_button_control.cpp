@@ -5,7 +5,7 @@
 BaseButtonControl::BaseButtonControl(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
-   ::userbase::button(papp)
+   ::user::button(papp)
 {
    m_iClick = 0;
    m_pimagelistNormal = ::null();

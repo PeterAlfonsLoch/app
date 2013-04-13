@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
    class tool_cmd_ui :
@@ -30,7 +30,7 @@ namespace userbase
          { return (WORD*)(this+1); }
    };
 
-} // namespace userbase
+} // namespace user
 
 /*
 
@@ -58,7 +58,7 @@ namespace userbase
 class FrameWnd;
 class SimpleView;
 class CToolTipCtrl;
-class ::userbase::control_bar;
+class ::user::control_bar;
 
 
 CLASS_DECL_ca2 UINT _::ca::GetMouseScrollLines();

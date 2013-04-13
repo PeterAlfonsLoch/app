@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
    notify_icon::notify_icon(sp(::ca::application) papp) :
@@ -32,7 +32,7 @@ namespace userbase
 
       string strNotifyIcon;
 
-      strNotifyIcon.Format("userbase::notify_icon - %d", uiId);
+      strNotifyIcon.Format("user::notify_icon - %d", uiId);
 
       if(!create_message_window(strNotifyIcon))
          return false;
@@ -125,5 +125,5 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 

@@ -1,12 +1,12 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    bitmap_button::bitmap_button(sp(::ca::application) papp) :
       ca(papp),
       ::user::button(papp),
-      ::userbase::button(papp)
+      ::user::button(papp)
    {
       m_bHover          = false;
       m_bCommandEnable  = true;
@@ -175,7 +175,7 @@ namespace userbase
    {
       // Relay events from this button to the tool tip tool handler
       BaseToolTipRelayEvent(pobj);
-      return ::userbase::button::pre_translate_message(pobj);
+      return ::user::button::pre_translate_message(pobj);
    }
 
 
@@ -197,7 +197,7 @@ namespace userbase
       if(pobj->m_bRet)
          return;
 
-      return ::userbase::button::message_handler(pobj);
+      return ::user::button::message_handler(pobj);
    }
 
-} // namespace userbase
+} // namespace user

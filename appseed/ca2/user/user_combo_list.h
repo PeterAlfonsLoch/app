@@ -49,14 +49,9 @@ namespace user
 
       virtual index hit_test(point pt, e_element & eelement);
 
-          combo_list();
-      virtual ~combo_list();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
-
-
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _002OnDraw(::ca::graphics * pdc);
 
 
    };

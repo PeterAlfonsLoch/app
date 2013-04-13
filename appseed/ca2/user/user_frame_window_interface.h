@@ -16,7 +16,7 @@ namespace user
 
 
       bool                       m_bMakeVisible;
-      sp(::userbase::document)     m_pdoc;
+      sp(::user::document)     m_pdoc;
 
 
    };

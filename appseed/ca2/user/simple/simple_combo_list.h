@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 simple_combo_list : 
-   virtual public ::userbase::combo_list
+   virtual public ::user::combo_list
 {
 public:
 

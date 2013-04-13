@@ -56,21 +56,21 @@ namespace userex
       if(!::ca::section::initialize2())
          return false;
 
-      m_ptemplateForm = new ::userbase::multiple_document_template(
+      m_ptemplateForm = new ::user::multiple_document_template(
          get_app(),
          "system/form",
          System.type_info < form_document > (),
          System.type_info < form_frame > (),
          System.type_info < form_view > ());
 
-      m_ptemplateChildForm = new ::userbase::multiple_document_template(
+      m_ptemplateChildForm = new ::user::multiple_document_template(
          get_app(),
          "system/form",
          System.type_info < form_document > (),
          System.type_info < form_child_frame > (),
          System.type_info < form_view > ());
 
-      m_ptemplatePlaceHolder = new ::userbase::multiple_document_template(
+      m_ptemplatePlaceHolder = new ::user::multiple_document_template(
          get_app(),
          "system/form",
          System.type_info < simple_document > (),

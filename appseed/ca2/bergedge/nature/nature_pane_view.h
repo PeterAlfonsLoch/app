@@ -11,7 +11,7 @@ namespace nature
    public:
 
       
-      sp(::userbase::single_document_template) m_pdoctemplateAppearance;
+      sp(::user::single_document_template) m_pdoctemplateAppearance;
       ::ca2::keyboard_layout *             m_pkeyboardlayout;
 
 
@@ -19,7 +19,7 @@ namespace nature
       virtual ~pane_view();
 
 
-      using ::userbase::tab_view::on_show_view;
+      using ::user::tab_view::on_show_view;
       virtual void on_create_view(::user::view_creator_data * pdata);
       virtual void on_show_view() ;
 

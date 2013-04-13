@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class CLASS_DECL_ca2 tab_view_update_hint :
@@ -27,4 +27,4 @@ namespace userbase
 
    };
 
-} // namespace userbase
+} // namespace user

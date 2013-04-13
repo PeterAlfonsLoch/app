@@ -1,8 +1,7 @@
 #pragma once
 
-#include "userbase_menu_list_window.h"
 
-namespace userbase
+namespace user
 {
 
    class CLASS_DECL_ca2 menu_list_view : 
@@ -33,4 +32,4 @@ namespace userbase
 
    };
 
-} // namespace userbase
+} // namespace user

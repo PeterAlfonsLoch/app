@@ -14,9 +14,9 @@ namespace primitive
 #elif defined(_M_X64) // X64
 
 
-//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_size         , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_position     , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_offset       ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2, memory_size         , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2, memory_position     , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2, memory_offset       ,  int64_t)
 
 typedef uint64_t  memory_size;
 typedef uint64_t  memory_position;
@@ -25,9 +25,9 @@ typedef int64_t   memory_offset;
 
 #else
 
-//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_size         , uint32_t)
-//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_position     , uint32_t)
-//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_offset       ,  int32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2,   memory_size         , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2,   memory_position     , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca2,   memory_offset       ,  int32_t)
 
 typedef uint32_t  memory_size;
 typedef uint32_t  memory_position;

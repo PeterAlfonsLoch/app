@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -31,7 +31,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 status_bar :
-      public ::userbase::control_bar
+      public ::user::control_bar
    {
    public:
 
@@ -44,11 +44,11 @@ namespace userbase
       status_bar();
       virtual ~status_bar();
 
-      using ::userbase::control_bar::create;
+      using ::user::control_bar::create;
       virtual bool create(sp(::user::interaction) pParentWnd,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
-      using ::userbase::control_bar::CreateEx;
+      using ::user::control_bar::CreateEx;
       virtual bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
          uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
@@ -92,7 +92,7 @@ namespace userbase
       virtual void dump(dump_context & dumpcontext) const;
       void EnableDocking(uint32_t dwDockStyle);
    #endif
-      virtual void OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler);
+      virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
       __STATUSPANE* _GetPanePtr(int32_t nIndex);
@@ -115,7 +115,7 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user
 
 
 // Styles for status bar panes

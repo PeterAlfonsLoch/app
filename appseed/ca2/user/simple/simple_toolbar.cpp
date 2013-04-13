@@ -73,7 +73,7 @@ simple_toolbar::~simple_toolbar()
 
 void simple_toolbar::install_message_handling(::ca::message::dispatch * pdispatch)
 {
-   ::userbase::control_bar::install_message_handling(pdispatch);
+   ::user::control_bar::install_message_handling(pdispatch);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()
    IGUI_WIN_MSG_LINK(WM_CREATE         , pdispatch, this, &simple_toolbar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_toolbar::_001OnMouseMove);
@@ -86,7 +86,7 @@ void simple_toolbar::install_message_handling(::ca::message::dispatch * pdispatc
    IGUI_WIN_MSG_LINK(WM_MOUSELEAVE     , pdispatch, this, &simple_toolbar::_001OnMouseLeave);
 }
 
-// IMPLEMENT_DYNAMIC(simple_toolbar, ::userbase::control_bar)
+// IMPLEMENT_DYNAMIC(simple_toolbar, ::user::control_bar)
 
 
 bool simple_toolbar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id nID)
@@ -152,7 +152,7 @@ size simple_toolbar::CalcFixedLayout(bool bStretch, bool bHorz)
    }
    else
    {
-   return ::userbase::control_bar::CalcFixedLayout(bStretch, bHorz);
+   return ::user::control_bar::CalcFixedLayout(bStretch, bHorz);
    }*/
 }
 
@@ -345,7 +345,7 @@ void simple_toolbar::_001OnCreate(::ca::signal_object * pobj)
 }
 
 
-void simple_toolbar::OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler)
+void simple_toolbar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
 {
 
    SimpleToolCmdUI state(get_app());
@@ -1480,7 +1480,7 @@ void simple_toolbar::_001OnTimer(::ca::signal_object * pobj)
          _001Hover();
       }
 
-      // trans ::userbase::control_bar::OnTimer(ptimer->m_nIDEvent);
+      // trans ::user::control_bar::OnTimer(ptimer->m_nIDEvent);
 }
 
 void simple_toolbar::_001OnClick(int32_t iItem)
@@ -1661,7 +1661,7 @@ void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
    class rect rect;
    rect.null();
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
-   ::userbase::control_bar::CalcInsideRect(rect, bHorz);
+   ::user::control_bar::CalcInsideRect(rect, bHorz);
 
    // adjust non-client area for border space
    pnccalcsize->m_pparams->rgrc[0].left += rect.left;
@@ -2013,7 +2013,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
       sizeResult.cy -= rect.height();
       sizeResult.cx -= rect.width();
 
-      size size = ::userbase::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+      size size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
       sizeResult.cx = max(sizeResult.cx, size.cx);
       sizeResult.cy = max(sizeResult.cy, size.cy);
    }

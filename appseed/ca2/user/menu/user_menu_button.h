@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class menu_base;
@@ -45,4 +45,4 @@ namespace userbase
       virtual void _001OnDraw(::ca::graphics * pdc);
    };
 
-} // namespace userbase
+} // namespace user

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
    class split_layout;
@@ -44,6 +44,6 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user
 
 

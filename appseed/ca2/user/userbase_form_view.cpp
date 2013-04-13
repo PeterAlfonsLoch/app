@@ -1,14 +1,14 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    form_view::form_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::scroll_view(papp),
-      ::userbase::scroll_view(papp),
+      ::user::scroll_view(papp),
       ::user::form(papp)
    {
    }
@@ -19,7 +19,7 @@ namespace userbase
 
    void form_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::scroll_view::install_message_handling(pinterface);
+      ::user::scroll_view::install_message_handling(pinterface);
       ::user::form::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);
 
@@ -172,4 +172,4 @@ namespace userbase
    }
    */
 
-} // namespace userbase
+} // namespace user

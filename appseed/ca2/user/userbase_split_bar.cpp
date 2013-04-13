@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -194,4 +194,4 @@ namespace userbase
       pmouse->set_lresult(1);
    }
 
-} // namespace userbase
+} // namespace user

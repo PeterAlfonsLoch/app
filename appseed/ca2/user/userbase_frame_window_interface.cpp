@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -32,7 +32,7 @@ namespace userbase
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
       if(pfiu != ::null())
       {
-         sp(::userbase::frame_window) pframe = (this);
+         sp(::user::frame_window) pframe = (this);
          // if the frame does not have an active ::view, set to first pane
          sp(::view) pview = ::null();
          if (pframe->GetActiveView() == ::null())
@@ -78,7 +78,7 @@ namespace userbase
 
          }
 
-         sp(::userbase::document) pdoc = pfiu->m_pdoc;
+         sp(::user::document) pdoc = pfiu->m_pdoc;
          // update frame counts and frame title (may already have been visible)
          if(pdoc != ::null())
             pdoc->update_frame_counts();
@@ -415,7 +415,7 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 
 
 

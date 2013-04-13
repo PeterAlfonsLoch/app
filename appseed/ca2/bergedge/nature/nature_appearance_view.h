@@ -2,14 +2,14 @@
 
 
 
-namespace userbase
+namespace user
 {
 
 
    class single_document_template;
 
 
-} // namespace userbase
+} // namespace user
 
 
 class view;
@@ -32,7 +32,7 @@ namespace nature
       appearance_view(sp(::ca::application) papp);
 
 #if !core_level_1
-      using ::userbase::tab_view::on_show_view;
+      using ::user::tab_view::on_show_view;
 #endif
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);

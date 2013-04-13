@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class bitmap_button :
@@ -63,4 +63,4 @@ namespace userbase
          MAKEINTRESOURCE(nIDBitmapResourceHover)); }
 #endif
 
-} // namespace userbase
+} // namespace user

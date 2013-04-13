@@ -25,7 +25,7 @@ namespace bergedge
       pane_view(sp(::ca::application) papp);
       virtual ~pane_view();
 
-      using ::userbase::tab_view::on_show_view;
+      using ::user::tab_view::on_show_view;
       using ::bergedge::form_callback::on_update;
 
       void rotate();

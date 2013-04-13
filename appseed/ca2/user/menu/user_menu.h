@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class front_end;
@@ -62,7 +62,7 @@ namespace userbase
       int32_t                  m_iItemHeight;
       bool                 m_bAutoDelete;
       int32_t                  m_iHeaderHeight;
-      ::userbase::button    m_buttonClose;
+      ::user::button    m_buttonClose;
       id                   m_idSubMenu;
       int32_t                  m_iHoverSubMenu;
       uint32_t                m_dwOut;
@@ -79,4 +79,4 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnShowWindow)
    };
 
-} // namespace userbase
+} // namespace user

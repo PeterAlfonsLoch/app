@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
@@ -141,7 +141,7 @@ namespace userbase
    void button::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pschema   = &::userbase::GetUfeSchema(get_app())->m_button;
+      m_pschema   = &::user::GetUfeSchema(get_app())->m_button;
    }
 
    void button::ResizeToFit()
@@ -176,6 +176,6 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 
 

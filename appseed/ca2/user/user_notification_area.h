@@ -2,7 +2,7 @@
 
 
 
-namespace userbase
+namespace user
 {
 
 #ifdef WINDOWSEX
@@ -69,7 +69,7 @@ namespace userbase
    };
 
 
-} // namespace userbase
+} // namespace user
 
 
 

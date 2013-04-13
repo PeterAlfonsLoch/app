@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 simple_document :
-   virtual public ::userbase::document
+   virtual public ::user::document
 {
 public:
 

@@ -40,7 +40,7 @@ static const __COLORMAP gen_SysColorMap[] =
 
 
 
-namespace userbase
+namespace user
 {
 
    tool_bar::tool_bar()
@@ -168,7 +168,7 @@ namespace userbase
       throw todo(get_app());
 
 #endif
-      ::userbase::control_bar::set_owner(pOwnerWnd);
+      ::user::control_bar::set_owner(pOwnerWnd);
    }
 
    void tool_bar::SetSizes(SIZE sizeButton, SIZE sizeImage)
@@ -967,7 +967,7 @@ namespace userbase
          sizeResult.cy -= rect.height();
          sizeResult.cx -= rect.width();
 
-         size size = ::userbase::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+         size size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
          sizeResult.cx = max(sizeResult.cx, size.cx);
          sizeResult.cy = max(sizeResult.cy, size.cy);
       }
@@ -1150,7 +1150,7 @@ throw todo(get_app());
       class rect rect;
       rect.null();
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
-      ::userbase::control_bar::CalcInsideRect(rect, bHorz);
+      ::user::control_bar::CalcInsideRect(rect, bHorz);
 
       // adjust non-client area for border space
       pnccalcsize->m_pparams->rgrc[0].left += rect.left;
@@ -1200,7 +1200,7 @@ throw todo(get_app());
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
-      //::userbase::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
+      //::user::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pobj->previous();
       m_dwStyle = dwStyle;
 
@@ -1373,7 +1373,7 @@ throw todo(get_app());
    }
 
    /*
-   void tool_bar::OnUpdateCmdUI(sp(::userbase::frame_window) pTarget, bool bDisableIfNoHndler)
+   void tool_bar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
    {
       tool_cmd_ui state;
       state.m_pOther = this;
@@ -1415,7 +1415,7 @@ throw todo(get_app());
    #ifdef DEBUG
    void tool_bar::assert_valid() const
    {
-      // Note: ::userbase::control_bar::assert_valid is not called because it checks for
+      // Note: ::user::control_bar::assert_valid is not called because it checks for
       //  m_nCount and m_pData to be in sync, which they are not in tool_bar.
 
 /*      ASSERT(m_hbmImageWell == ::null() ||
@@ -1427,7 +1427,7 @@ throw todo(get_app());
 
    void tool_bar::dump(dump_context & dumpcontext) const
    {
-      ::userbase::control_bar::dump(dumpcontext);
+      ::user::control_bar::dump(dumpcontext);
 
 //      dumpcontext << "m_hbmImageWell = " << (UINT)m_hbmImageWell;
 //      dumpcontext << "\nm_hInstImageWell = " << (UINT)m_hInstImageWell;
@@ -1463,7 +1463,7 @@ throw todo(get_app());
    }
    #endif
 
-   // IMPLEMENT_DYNAMIC(tool_bar, ::userbase::control_bar)
+   // IMPLEMENT_DYNAMIC(tool_bar, ::user::control_bar)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -1561,4 +1561,4 @@ throw todo(get_app());
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 
-} // namespace userbase
+} // namespace user

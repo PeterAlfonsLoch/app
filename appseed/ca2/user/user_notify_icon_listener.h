@@ -1,6 +1,6 @@
 #pragma once
 
-namespace userbase
+namespace user
 {
 
    class CLASS_DECL_ca2 notify_icon_listener  
@@ -17,4 +17,4 @@ namespace userbase
 
    };
 
-} // namespace userbase
+} // namespace user

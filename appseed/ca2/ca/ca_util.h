@@ -9,8 +9,8 @@ template<class TYPE> void freePointer(TYPE * * pointer)
    *pointer = ::null();
 }
 
-CLASS_DECL_ca2 ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID, UINT nData);
-CLASS_DECL_ca2 ::userbase::menu *  FindPopupMenuFromID(::userbase::menu * pMenu, UINT nID);
+CLASS_DECL_ca2 ::user::menu *  FindPopupMenuFromID(::user::menu * pMenu, UINT nID, UINT nData);
+CLASS_DECL_ca2 ::user::menu *  FindPopupMenuFromID(::user::menu * pMenu, UINT nID);
 
 
 namespace ca

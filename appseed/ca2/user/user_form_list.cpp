@@ -126,7 +126,7 @@ namespace user
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      _001GetElementRect(&item, userbase::_list::ElementText);
+      _001GetElementRect(&item, user::_list::ElementText);
       if(item.m_bOk)
       {
          _001Update(pcontrol);
@@ -384,7 +384,7 @@ namespace user
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      //_001GetElementRect(&item, userbase::_list::ElementSubItem);
+      //_001GetElementRect(&item, user::_list::ElementSubItem);
       rectControl = item.m_rectSubItem;
       ClientToScreen(rectControl);
       rect64 rectForm;
@@ -526,7 +526,7 @@ namespace user
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      _001GetElementRect(&item, userbase::_list::ElementSubItem);
+      _001GetElementRect(&item, user::_list::ElementSubItem);
       rectControl = item.m_rectSubItem;
       class rect rect(rectControl);
       *lprect = rect;

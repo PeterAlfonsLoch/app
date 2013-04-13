@@ -204,7 +204,7 @@ void simple_menu_bar::_001OnCreate(::ca::signal_object * pobj)
    ASSERT(lpmfmh != ::null());
    lpmfmh->MessageFilterHook(this);*/
 
-   //m_menuhook.Install((sp(::userbase::frame_window)) (sp(::user::interaction))this);
+   //m_menuhook.Install((sp(::user::frame_window)) (sp(::user::interaction))this);
 
    SetFont(System.visual().font_central().GetMenuFont());
 
@@ -274,7 +274,7 @@ void simple_menu_bar::_001OnKeyDown(::ca::signal_object * pobj)
 
 
 
-/*VMSRESULT simple_menu_bar::CalcSize(::userbase::tool_bar_control & tbc, size & size)
+/*VMSRESULT simple_menu_bar::CalcSize(::user::tool_bar_control & tbc, size & size)
 {
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
@@ -348,7 +348,7 @@ void simple_menu_bar::_001OnMenuChar(::ca::signal_object * pobj)
    pobj->previous();
 }
 
-void simple_menu_bar::OnUpdateCmdUI(sp(::userbase::frame_window)pTarget, bool bDisableIfNoHndler)
+void simple_menu_bar::OnUpdateCmdUI(sp(::user::frame_window)pTarget, bool bDisableIfNoHndler)
 {
    UNREFERENCED_PARAMETER(pTarget);
    UNREFERENCED_PARAMETER(bDisableIfNoHndler);

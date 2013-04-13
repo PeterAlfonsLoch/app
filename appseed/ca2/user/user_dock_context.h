@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-class ::userbase::control_bar;
-class ::userbase::frame_window;
+class ::user::control_bar;
+class ::user::frame_window;
 
 /////////////////////////////////////////////////////////////////////////////
 // toolbar docking support
@@ -19,7 +19,7 @@ class BaseDockContext
 {
 public:
 // Construction
-   BaseDockContext(::userbase::control_bar* pBar);
+   BaseDockContext(::user::control_bar* pBar);
 
 // Attributes
    point m_ptLast;            // last mouse position during drag
@@ -33,8 +33,8 @@ public:
    rect m_rectFrameDragHorz;
    rect m_rectFrameDragVert;
 
-   ::userbase::control_bar* m_pBar;        // the toolbar that created this context
-   sp(::userbase::frame_window) m_pDockSite;     // the controlling frame of the ::userbase::control_bar
+   ::user::control_bar* m_pBar;        // the toolbar that created this context
+   sp(::user::frame_window) m_pDockSite;     // the controlling frame of the ::user::control_bar
    uint32_t m_dwDockStyle;        // allowable dock styles for bar
    uint32_t m_dwOverDockStyle;    // style of dock that rect is over
    uint32_t m_dwStyle;            // style of control bar

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    const int32_t BaseWndMenuTimer = 500;
@@ -285,9 +285,9 @@ namespace userbase
       {
          m_psubmenu->m_pmenuParent = ::null();
       }
-   //   if(userbase::GetUfe()->m_pmenu == this)
+   //   if(user::GetUfe()->m_pmenu == this)
      // {
-       //  userbase::GetUfe()->m_pmenu = ::null();
+       //  user::GetUfe()->m_pmenu = ::null();
       //}
       pobj->m_bRet = false;
    }
@@ -475,7 +475,7 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::create, pcreate, pobj);
-      m_pschema            = &::userbase::GetUfeSchema(get_app())->m_menu;
+      m_pschema            = &::user::GetUfeSchema(get_app())->m_menu;
       return;
    }
 
@@ -569,4 +569,4 @@ namespace userbase
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
    }
 
-} // namespace userbase
+} // namespace user

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace userbase
+namespace user
 {
 
    notify_icon_listener::notify_icon_listener()
@@ -44,4 +44,4 @@ namespace userbase
       UNREFERENCED_PARAMETER(uiNotifyIcon);
    }
 
-} // namespace userbase
+} // namespace user

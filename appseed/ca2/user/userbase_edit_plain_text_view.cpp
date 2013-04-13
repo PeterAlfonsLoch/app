@@ -1,16 +1,16 @@
 #include "framework.h"
 
 
-namespace userbase
+namespace user
 {
 
 
    edit_plain_text_view::edit_plain_text_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::scroll_view(papp),
-      ::userbase::edit_plain_text(papp)
+      ::user::edit_plain_text(papp)
    {
    }
 
@@ -62,6 +62,6 @@ namespace userbase
    }
 
 
-} // namespace userbase
+} // namespace user
 
 
