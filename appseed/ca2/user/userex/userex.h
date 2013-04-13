@@ -1,14 +1,7 @@
 #pragma once
 
 
-#include "ca2/userhtml/userhtml.h"
-
-
-namespace userex
-{
-   class application;
-} // namespace userex
-
+#include "user/userhtml/userhtml.h"
 
 
 
