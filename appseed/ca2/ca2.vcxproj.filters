@@ -12,14 +12,8 @@
     <Filter Include="Header Files\sockets">
       <UniqueIdentifier>{e8608cc9-9594-4203-aa0f-28c220ceb46e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\sqlite">
-      <UniqueIdentifier>{5c24f7cb-6f41-4b5c-ad00-a2ec3b4ff316}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\libcharguess">
       <UniqueIdentifier>{78719ab4-bf73-405b-97e7-3580f50b20c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sqlite">
-      <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\libcharguess">
       <UniqueIdentifier>{cffd6f11-bff6-44c5-8421-a7e9540ef339}</UniqueIdentifier>
@@ -35,12 +29,6 @@
     </Filter>
     <Filter Include="Source Files\ca">
       <UniqueIdentifier>{41b76268-c4ed-48ce-97fd-845e1543009c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\api">
-      <UniqueIdentifier>{f4d62481-a2f3-4b08-8f5c-d756a42385e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\api">
-      <UniqueIdentifier>{a8cff7bb-d987-4eca-92d1-4fd397166faf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\xml">
       <UniqueIdentifier>{623d17b6-f1a5-4d67-b426-95826061ff2b}</UniqueIdentifier>
@@ -81,14 +69,8 @@
     <Filter Include="Header Files\userpresence">
       <UniqueIdentifier>{36bee167-ded2-4a6f-9263-e784557c4aba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\simpledb">
-      <UniqueIdentifier>{700dad5b-3669-45be-ae72-19ee8d83251d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{c2502810-b053-4d32-a0c1-4543afc8d8d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multithreading">
-      <UniqueIdentifier>{dc821e0f-83a3-4c52-a289-9e29f4449647}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{5b5546fc-d46d-40b7-96c8-e72ea6a3e7df}</UniqueIdentifier>
@@ -102,38 +84,20 @@
     <Filter Include="Source Files\plane">
       <UniqueIdentifier>{99e9d965-4967-46db-a999-0ddfab7545f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\dynamic_source">
-      <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\dynamic_source">
-      <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\collection">
       <UniqueIdentifier>{87a9afa3-c917-4fcd-8a4c-8073497b4102}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\collection">
       <UniqueIdentifier>{26ded645-d5d2-47ee-8763-f9e07d83a489}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\visual">
-      <UniqueIdentifier>{f160075c-aa09-4d4b-accf-4c7b991a8069}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\planebase">
       <UniqueIdentifier>{07e1e9b7-67e0-4317-8878-5733270cee65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\simpledb">
-      <UniqueIdentifier>{6748dbeb-c727-4385-ac6a-84cf939743e3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\exception">
       <UniqueIdentifier>{139d5ed0-e56b-4ec1-96c2-d4b09348c58f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\colorertake5">
       <UniqueIdentifier>{8a38e78f-465e-47ab-b70f-0b7062bb1e0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\colorertake5">
-      <UniqueIdentifier>{902e2a28-7a1b-4420-a534-0811112883bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\userpresence">
-      <UniqueIdentifier>{84d321d5-017c-4ee8-8104-5366899ae216}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\install">
       <UniqueIdentifier>{9a44ef83-e039-418d-80ae-b351a512e239}</UniqueIdentifier>
@@ -162,21 +126,6 @@
     <Filter Include="Source Files\calculator">
       <UniqueIdentifier>{a9ca8a32-3516-4005-ba01-ad955d6d7363}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\calculator">
-      <UniqueIdentifier>{6341b23d-6013-4016-983f-e6a4a2341377}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\mail">
-      <UniqueIdentifier>{74451a67-d04b-45fc-b705-0be5a6b7c041}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\mail">
-      <UniqueIdentifier>{0890c350-9880-4f8c-9966-dd58d47196bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\javascript">
-      <UniqueIdentifier>{0607b27e-f608-4221-bdb6-e7f7182781d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\javascript">
-      <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\install">
       <UniqueIdentifier>{98c66eba-9fae-453f-90f5-fe1c90966d19}</UniqueIdentifier>
     </Filter>
@@ -185,12 +134,6 @@
     </Filter>
     <Filter Include="Source Files\windows">
       <UniqueIdentifier>{28399771-e26a-4693-b4d6-9f4e76256ac8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{a28da0a9-77ec-4f4c-8821-ad2d60cf8bad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{52a6b4e1-6649-4559-8e5c-c5ee16f1f5ae}</UniqueIdentifier>
@@ -426,26 +369,11 @@
     <Filter Include="Source Files\filesystem\userfs">
       <UniqueIdentifier>{b78cfb70-70c2-45ac-a1b5-f9bd4776ebbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\multithreading">
-      <UniqueIdentifier>{c058d61a-9c66-4e4d-bcc6-cedd9f28e292}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\api">
-      <UniqueIdentifier>{8ce7f905-15ff-4ea9-844d-259b244b2b43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows">
-      <UniqueIdentifier>{8c4d47f3-cd5a-48eb-95e4-2fcc0cc0769d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows\NewFilter1">
-      <UniqueIdentifier>{1bbe7c1e-9882-46a7-9aa2-46209146cc26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{9513e7e7-9f17-4f12-af08-cdee98c981ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\mail">
       <UniqueIdentifier>{9721fc36-6bfd-43d3-91ad-e009d9968e9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\mail\NewFilter1">
-      <UniqueIdentifier>{eefde010-314e-4bdf-87d0-18204a06c9a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\sockets">
       <UniqueIdentifier>{8a9d26f7-0148-47f4-9023-9188e6e21a48}</UniqueIdentifier>
@@ -531,6 +459,111 @@
     <Filter Include="Header Files\plane\session\nature">
       <UniqueIdentifier>{02345b3a-8867-4d24-9869-0a185803da4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\plane\session\platform">
+      <UniqueIdentifier>{091671e0-27a5-4746-b77e-cbcbc1100a4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane\session">
+      <UniqueIdentifier>{a2c3f075-11b9-422c-b4c9-20bd303821ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane\session\nature">
+      <UniqueIdentifier>{5e2726a9-38a8-4755-8cc5-6523dbf22b6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane\session\bergedge">
+      <UniqueIdentifier>{60167d82-2fe9-4ade-86a3-39b7cf6b41df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane\session\platform">
+      <UniqueIdentifier>{c7ddf572-a1fe-47dc-be4e-a7d03e932627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane\session\platform\NewFilter1">
+      <UniqueIdentifier>{64241a18-b0f2-4524-aa99-e205b37b14d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\mail">
+      <UniqueIdentifier>{fe61676c-0d0a-4d8f-9602-4968a54f1023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\usermail">
+      <UniqueIdentifier>{500e317b-ba38-45a5-9cbf-40d7c3effa13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math\calculator">
+      <UniqueIdentifier>{6341b23d-6013-4016-983f-e6a4a2341377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\colorertake5">
+      <UniqueIdentifier>{d94cc57f-21dd-4072-93e9-6c028286dfa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\colorertake5">
+      <UniqueIdentifier>{05e75cfa-9e7c-4415-aef7-c0ec73319f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{30cc58b3-f31d-478a-b8b9-87e89bbd75e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming\dynamic_source">
+      <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming\javascript">
+      <UniqueIdentifier>{0607b27e-f608-4221-bdb6-e7f7182781d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{cfd5fe12-0f39-4b56-a3db-8fa8689e58b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming\dynamic_source">
+      <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming\javascript">
+      <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\hi5">
+      <UniqueIdentifier>{393478fc-0a93-4485-a7e2-ec71d7aed97d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{6748dbeb-c727-4385-ac6a-84cf939743e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\sqlite">
+      <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userpresence">
+      <UniqueIdentifier>{84d321d5-017c-4ee8-8104-5366899ae216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\sqlite">
+      <UniqueIdentifier>{5c24f7cb-6f41-4b5c-ad00-a2ec3b4ff316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{700dad5b-3669-45be-ae72-19ee8d83251d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb\cfg">
+      <UniqueIdentifier>{5e6631e0-ce3c-4493-967b-477273efe14a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\api">
+      <UniqueIdentifier>{192ca103-fd43-4c09-b562-cdddde28d82b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\multithreading">
+      <UniqueIdentifier>{bafe58a1-067a-48e4-9409-820647c33f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\windows">
+      <UniqueIdentifier>{4e78959a-4e29-4cfb-8184-a549dce8fadd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\deepfish">
+      <UniqueIdentifier>{6202ee21-07f2-4224-962e-169066f82723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{a28da0a9-77ec-4f4c-8821-ad2d60cf8bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\multithreading">
+      <UniqueIdentifier>{c058d61a-9c66-4e4d-bcc6-cedd9f28e292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\api">
+      <UniqueIdentifier>{8ce7f905-15ff-4ea9-844d-259b244b2b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\windows">
+      <UniqueIdentifier>{8c4d47f3-cd5a-48eb-95e4-2fcc0cc0769d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\windows\NewFilter1">
+      <UniqueIdentifier>{1bbe7c1e-9882-46a7-9aa2-46209146cc26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os">
+      <UniqueIdentifier>{cdc5a44f-a86f-4733-9b61-8fc16259d054}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -598,12 +631,6 @@
     </ClInclude>
     <ClInclude Include="libcharguess\UTF8Prober.h">
       <Filter>Header Files\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite\sqlite.h">
-      <Filter>Header Files\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite\sqlite3.h">
-      <Filter>Header Files\sqlite</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive.h">
       <Filter>Header Files\primitive</Filter>
@@ -766,78 +793,6 @@
     </ClInclude>
     <ClInclude Include="userpresence\userpresence_user_presence.h">
       <Filter>Header Files\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\application.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\db_long_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\db_server.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\db_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\db_str_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\db_stra_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\DBFileSystemSize.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\file_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\im_post.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\mysql_database.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\mysql_result.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_base.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_manager.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_server.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_service.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_session.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_socket.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_socket_thread.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_table.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\sqlite_base.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\sqlite_set.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\veiev_post.h">
-      <Filter>Header Files\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\database.h">
       <Filter>Header Files\database</Filter>
@@ -1025,24 +980,6 @@
     <ClInclude Include="plane\plane_application.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="collection\collection_simple_template.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -1093,12 +1030,6 @@
     </ClInclude>
     <ClInclude Include="user\user_wait_message_dialog.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\memory_operator.h">
-      <Filter>Header Files\colorertake5</Filter>
     </ClInclude>
     <ClInclude Include="geoip\geoip.h">
       <Filter>Header Files\geoip</Filter>
@@ -1250,36 +1181,6 @@
     <ClInclude Include="user\user_job.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_element.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_parser.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_scanner.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_token.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_element.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_parser.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_scanner.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_token.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_value.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_calendar.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -1291,18 +1192,6 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_pop3.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\pop3_socket.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\simple_pop3.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail.h">
-      <Filter>Header Files\mail</Filter>
     </ClInclude>
     <ClInclude Include="user\user_data_exchange.h">
       <Filter>Header Files\user</Filter>
@@ -1394,18 +1283,6 @@
     <ClInclude Include="ca2\os_implementation.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_var.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -1425,13 +1302,13 @@
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\os.h">
-      <Filter>Header Files\os</Filter>
+      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="os\os_windows_defs.h">
-      <Filter>Header Files\os</Filter>
+      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="os\os_cross_windows.h">
-      <Filter>Header Files\os</Filter>
+      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="math\_double.h">
       <Filter>Header Files\math</Filter>
@@ -1726,33 +1603,6 @@
     </ClInclude>
     <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
       <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_string_to_integer.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include="api\api_integer_to_string.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_string.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_simple_mutex.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_simple_critical_section.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_rotate.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_muldiv64.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include=".\api\api_debug.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include="api\api.h">
-      <Filter>Header Files\api</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_align.h">
       <Filter>Header Files\primitive</Filter>
@@ -2297,164 +2147,11 @@
     <ClInclude Include="ca\ca_section.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_calculator.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\bsd\sockets_sockets.h">
       <Filter>Header Files\sockets\bsd</Filter>
     </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_colorertake5.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_base_editor.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_cregexp.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_default_error_handler.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_editor_listener.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_error_handler.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_error_handler_writer.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_exception.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_features.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_file_input_source.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_file_type.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_file_type_impl.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_file_writer.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_hrc_parser.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_hrc_parser_helpers.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_hrc_parser_impl.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_line_region.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_line_regions_compact_support.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_line_regions_support.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_line_source.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_logging.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_memory_chunks.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_memory_file.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_outline_item.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_outliner.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_pair_match.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_parsed_line_writer.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_parser_factory.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_parser_factory_exception.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_region.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_region_define.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_region_handler.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_region_mapper.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_region_mapper_impl.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_scheme.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_shared_input_source.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_string_buffer.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_styled_hrd_mapper.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_styled_region.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_console_viewer.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_hrd_mapper.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_lines.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_parser.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_parser_helpers.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_parser_impl.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_region.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_Writer.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_xmldom.h">
-      <Filter>Header Files\colorertake5</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\http_file.h">
       <Filter>Header Files\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_simpledb.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\simpledb_record.h">
-      <Filter>Header Files\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="plane\plane_system_gen_factory.h">
       <Filter>Header Files\plane</Filter>
@@ -3281,26 +2978,11 @@
     <ClInclude Include="uinteraction\frame\frame_work_set_listener_array.h">
       <Filter>Header Files\uinteraction\frame</Filter>
     </ClInclude>
-    <ClInclude Include="api\mktime.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_wstringtou.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="xml\xml_xmlite.h">
       <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="javascript\javascript.h">
-      <Filter>Header Files\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="javascript\javascript_functions.h">
-      <Filter>Header Files\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="javascript\javascript_tinyjs.h">
-      <Filter>Header Files\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="javascript\javascript_tinyjs_functions.h">
-      <Filter>Header Files\javascript</Filter>
     </ClInclude>
     <ClInclude Include="database\database_database.h">
       <Filter>Header Files\database</Filter>
@@ -4086,103 +3768,103 @@
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_condition.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_event.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_event_base.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_file_change_event.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_mutex.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_plain_service.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_service_base.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_service_status.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_thread_pool.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\multithreading\multithreading_waitable.h">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="os\api\api.h">
-      <Filter>Header Files\os\api</Filter>
+      <Filter>Header Files\base\api</Filter>
     </ClInclude>
     <ClInclude Include="os\api\api_debug.h">
-      <Filter>Header Files\os\api</Filter>
+      <Filter>Header Files\base\api</Filter>
     </ClInclude>
     <ClInclude Include="os\api\api_muldiv64.h">
-      <Filter>Header Files\os\api</Filter>
+      <Filter>Header Files\base\api</Filter>
     </ClInclude>
     <ClInclude Include="os\api\api_rotate.h">
-      <Filter>Header Files\os\api</Filter>
+      <Filter>Header Files\base\api</Filter>
     </ClInclude>
     <ClInclude Include="os\api\api_string.h">
-      <Filter>Header Files\os\api</Filter>
+      <Filter>Header Files\base\api</Filter>
     </ClInclude>
     <ClInclude Include="os\api\mktime.h">
-      <Filter>Header Files\os\api</Filter>
+      <Filter>Header Files\base\api</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\os.h">
-      <Filter>Header Files\os\windows</Filter>
+      <Filter>Header Files\base\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\os_defs.h">
-      <Filter>Header Files\os\windows</Filter>
+      <Filter>Header Files\base\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\os_library.h">
-      <Filter>Header Files\os\windows</Filter>
+      <Filter>Header Files\base\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\os_utils.h">
-      <Filter>Header Files\os\windows</Filter>
+      <Filter>Header Files\base\windows</Filter>
     </ClInclude>
     <ClInclude Include="net\usermail\mail.h">
       <Filter>Header Files\net\usermail</Filter>
@@ -4493,6 +4175,345 @@
     <ClInclude Include="plane\session\nature\nature_view.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
+    <ClInclude Include="plane\session\platform\platform.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_application.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_document.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_frame.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_pane_view.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_pane_view_update_hint.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_resource.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\session\platform\platform_view.h">
+      <Filter>Header Files\plane\session\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail_pop3.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\pop3_socket.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\simple_pop3.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_value.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_base_editor.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_cregexp.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_default_error_handler.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_editor_listener.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_error_handler.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_error_handler_writer.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_exception.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_features.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_file_input_source.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_file_type.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_file_type_impl.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_file_writer.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_helpers.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_impl.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_line_region.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_line_regions_compact_support.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_line_regions_support.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_line_source.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_logging.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_memory_chunks.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_memory_file.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_outline_item.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_outliner.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_pair_match.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_parsed_line_writer.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_parser_factory.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_parser_factory_exception.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_region.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_region_define.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_region_handler.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_region_mapper.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_region_mapper_impl.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_scheme.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_shared_input_source.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_string_buffer.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_styled_hrd_mapper.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_styled_region.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_lines.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_parser.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_parser_helpers.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_parser_impl.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_text_region.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_Writer.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
+      <Filter>Header Files\user\colorertake5</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_exit_exception.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_httpd_socket.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_library_class.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_script.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_script_cache.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_script_compiler.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_long_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_str_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_stra_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\DBFileSystemSize.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\file_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\im_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\mysql_database.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\mysql_result.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_base.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_manager.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_record.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_service.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_session.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket_thread.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_table.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\sqlite_base.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\sqlite_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\veiev_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlite\sqlite.h">
+      <Filter>Header Files\database\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlite\sqlite3.h">
+      <Filter>Header Files\database\sqlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -4714,57 +4735,6 @@
     <ClCompile Include="compress\rar\rar3_vm.cpp">
       <Filter>Source Files\compress\rar</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_core.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event_base.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_mutex.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_plain_service.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_service_base.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_waitable.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_application.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -4840,21 +4810,6 @@
     <ClCompile Include="plane\plane_application.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
     <ClCompile Include="collection\collection_numeric_array.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
@@ -4863,129 +4818,6 @@
     </ClCompile>
     <ClCompile Include="plane\plane_library.cpp">
       <Filter>Source Files\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_api.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_buffered_graphics.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_cursor.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_dib.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_fastblur.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_font.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_font_central.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_FreeImageFileProc.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_glyph.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_glyph_set.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_graphics_extension.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_icon.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_image_list.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_imaging.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_rgb_quad_array.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_visual.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_water_routine.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_application.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_database.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_dataset.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_db_server.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_file_set.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_file_system_size.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_im_post.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_long_set.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_manager.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_database.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_record_row.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_server.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_service.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_session.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_set.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_socket.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_socket_thread.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_sqlite_database.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_sqlite_dataset.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_str_set.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_stra_set.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_table.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_veiev_post.cpp">
-      <Filter>Source Files\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_debug.cpp">
       <Filter>Source Files\exception</Filter>
@@ -5087,7 +4919,7 @@
       <Filter>Source Files\colorertake5</Filter>
     </ClCompile>
     <ClCompile Include="userpresence\userpresence_user_presence.cpp">
-      <Filter>Source Files\userpresence</Filter>
+      <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
     <ClCompile Include="install\install_install.cpp">
       <Filter>Source Files\install</Filter>
@@ -5145,15 +4977,6 @@
     </ClCompile>
     <ClCompile Include="geoip\geoip_update.cpp">
       <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="javascript\javascript.cpp">
-      <Filter>Source Files\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="javascript\javascript_functions.cpp">
-      <Filter>Source Files\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="api\api_muldiv64.cpp">
-      <Filter>Source Files\api</Filter>
     </ClCompile>
     <ClCompile Include="plugin\plugin_history.cpp">
       <Filter>Source Files\plugin</Filter>
@@ -5224,15 +5047,6 @@
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="mail\mail_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_pop3_socket.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_var_allocation.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -5241,9 +5055,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_id_space.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_string.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -5266,18 +5077,6 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
     <ClCompile Include="windows\os_utils.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -5288,7 +5087,7 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="os\os_cross_windows.cpp">
-      <Filter>Source Files\os</Filter>
+      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="planebase\planebase_application.cpp">
       <Filter>Source Files\planebase</Filter>
@@ -5479,9 +5278,6 @@
     <ClCompile Include="exception\exception_last_error.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_sync_objec.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -5515,20 +5311,11 @@
     <ClCompile Include="compress\compress_writer_with_crc.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include=".\api\api_string.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
-    <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\javascript</Filter>
-    </ClCompile>
     <ClCompile Include="xml\xml_data.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_call_stack.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include=".\sqlite\sqlite3.cpp">
-      <Filter>Source Files\sqlite</Filter>
     </ClCompile>
     <ClCompile Include=".\exception\exception_invalid_argument.cpp">
       <Filter>Source Files\exception</Filter>
@@ -5580,9 +5367,6 @@
     </ClCompile>
     <ClCompile Include="exception\exception_error.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="collection\collection_stringa.cpp">
       <Filter>Source Files\collection</Filter>
@@ -5725,9 +5509,6 @@
     <ClCompile Include="crypto\crypto_md5.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_condition.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="collection\collection_string_list.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
@@ -5735,7 +5516,7 @@
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="userpresence\userpresence_userpresence.cpp">
-      <Filter>Source Files\userpresence</Filter>
+      <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_section.cpp">
       <Filter>Source Files\ca</Filter>
@@ -7450,6 +7231,390 @@
     <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\webserver</Filter>
     </ClCompile>
+    <ClCompile Include="plane\session\plane_session.cpp">
+      <Filter>Source Files\plane\session</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\platform\platform_application.cpp">
+      <Filter>Source Files\plane\session\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\platform\platform_document.cpp">
+      <Filter>Source Files\plane\session\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\platform\platform_frame.cpp">
+      <Filter>Source Files\plane\session\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\platform\platform_pane_view.cpp">
+      <Filter>Source Files\plane\session\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\platform\platform_pane_view_update_hint.cpp">
+      <Filter>Source Files\plane\session\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\platform\platform_view.cpp">
+      <Filter>Source Files\plane\session\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_document.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_form_callback.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_frame.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_interface.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_pane_view.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_pane_view_update_hint.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\bergedge\bergedge_view.cpp">
+      <Filter>Source Files\plane\session\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_appearance_view.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_application.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_database.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_document.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_frame.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_pane_view.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_pane_view_update_hint.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\session\nature\nature_view.cpp">
+      <Filter>Source Files\plane\session\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3_socket.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_format.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_objects.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_parsing.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_queries.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_session.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_socket.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_account.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_db_pop3.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_list_interface.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_mail.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_tree_data.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_tree_interface.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\mail_tree_item.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_error_handler_writer.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_exception.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_helpers.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_impl.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_line_regions_compact_support.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_line_regions_support.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_line_source.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_logging.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_outliner.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_parsed_line_writer.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_parser_factory.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_region_handler.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_region_mapper_impl.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_styled_hrd_mapper.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_hrd_mapper.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_script.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_httpd_socket.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_library_class.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_script.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_script_cache.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_script_compiler.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="net\hi5\hi5_net_twitter_authorization.cpp">
+      <Filter>Source Files\net\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="os\api\mktime.cpp">
+      <Filter>Source Files\base\api</Filter>
+    </ClCompile>
+    <ClCompile Include="os\api\api_string.cpp">
+      <Filter>Source Files\base\api</Filter>
+    </ClCompile>
+    <ClCompile Include="os\api\api_muldiv64.cpp">
+      <Filter>Source Files\base\api</Filter>
+    </ClCompile>
+    <ClCompile Include="os\api\api_debug.cpp">
+      <Filter>Source Files\base\api</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_waitable.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_wait_result.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_synch_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_sync_objec.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_socket_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_single_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_service_base.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_semaphore.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_retry_single_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_retry_multi_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_plain_service.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_mutex.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_multi_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_manual_reset_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_file_change_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_event_collection.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_critical_section.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_core.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\multithreading\multithreading_condition.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\os_utils.cpp">
+      <Filter>Source Files\base\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\os_resouce_string.cpp">
+      <Filter>Source Files\base\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\os_library_initialize.cpp">
+      <Filter>Source Files\base\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlite\sqlite3.cpp">
+      <Filter>Source Files\database\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_table.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_sqlite_dataset.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_sqlite_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_session.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_service.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_server.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_application.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">
@@ -7465,7 +7630,7 @@
       <Filter>Header Files\user</Filter>
     </None>
     <None Include="os\multithreading\multithreading.inl">
-      <Filter>Header Files\os\multithreading</Filter>
+      <Filter>Header Files\base\multithreading</Filter>
     </None>
   </ItemGroup>
 </Project>
