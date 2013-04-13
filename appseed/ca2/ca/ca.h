@@ -1617,7 +1617,7 @@ namespace lemon
 
 #include "math/calculator/calculator.h"
 #include "xml/xml.h"
-#include "sockets/sockets.h"
+#include "net/sockets/sockets.h"
 #include "user/colorertake5/colorertake5.h"
 
 #include "graphics/html/html.h"

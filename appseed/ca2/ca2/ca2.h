@@ -18,7 +18,7 @@
 
 #include "filesystem/filemanager/filemanager.h"
 #include "fontopus/fontopus.h"
-#include "mail/mail.h"
+#include "net/usermail/mail.h"
 
 
 #include "hi5/hi5.h"

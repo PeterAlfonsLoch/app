@@ -1,5 +1,12 @@
 #pragma once
    
+namespace user
+{
+
+   class printer;
+
+
+} // namespace user
 
 
 namespace plane
@@ -160,28 +167,12 @@ namespace plane
       virtual void dump(dump_context & context) const;
 
 
-      application();
-      application(const char * pszId);
-      virtual ~application();
-
       virtual void construct();
       virtual void construct(const char * pszId);
       
-      virtual bool initialize_instance();
-      virtual int32_t  exit_instance();
 
       virtual void _001OnFileNew();
-      virtual bool bergedge_start();
 
-
-      virtual bool is_serviceable();
-      virtual service_base * allocate_new_service();
-
-
-      virtual bool on_install();
-      virtual bool on_uninstall();
-
-      virtual int32_t run();
 
       virtual void on_request(sp(::ca::create_context) pcreatecontext);
 
@@ -191,41 +182,10 @@ namespace plane
 
       virtual sp(::planebase::application) assert_running(const char * pszAppdId);
 
-#pragma once
 
 
-namespace user
-{
-
-   class printer;
 
 
-} // namespace user
-
-
-namespace cubebase
-{
-
-
-   class CLASS_DECL_ca2 application : 
-      virtual public ::plane::application,
-      virtual public ::ca::smart_pointer < ::cubebase::application >
-   {
-   public:
-
-
-      application();
-      virtual ~application();
-
-
-      virtual bool initialize1();
-      virtual bool initialize();
-
-
-      sp(::ca::application) get_system();
-
-
-      virtual bool is_cube();
 
       
       virtual void CubeOnFactoryExchange();
@@ -252,22 +212,10 @@ namespace cubebase
       virtual ::ca::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
-      virtual ::fontopus::fontopus * create_fontopus();
-      virtual ::user::user * create_user();
-      virtual ::fs::fs * create_fs();
-      virtual ::html::html * create_html();
 
 
    };
 
-
-
-} // namespace cube
-
-
-
-
-   };
 
    CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
@@ -277,5 +225,8 @@ namespace cubebase
 
 
 } // namespace plane
+
+
+
 
 

@@ -212,9 +212,7 @@ namespace ca
       virtual bool set_main_init_data(main_init_data * pdata) = 0;
 
       virtual bool is_session() = 0;
-      virtual bool is_bergedge() = 0;
       virtual bool is_system() = 0;
-      virtual bool is_cube() = 0;
 
       virtual bool is_serviceable() = 0;
 
@@ -518,9 +516,6 @@ namespace ca
 
       virtual bool is_system();
       virtual bool is_session();
-
-      virtual bool is_cube();
-      virtual bool is_bergedge();
 
       virtual bool is_installing();
       virtual bool is_uninstalling();

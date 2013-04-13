@@ -35,7 +35,6 @@ namespace ca2
       virtual ~application();
 
 
-      using ::cubebase::application::construct;
       virtual void construct();
       
 

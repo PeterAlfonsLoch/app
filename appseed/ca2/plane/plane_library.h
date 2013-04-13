@@ -20,11 +20,6 @@ namespace plane
       virtual void get_extension_list(stringa & stra);
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
-            virtual void get_app_list(stringa & stra);
-
-      virtual void get_extension_list(stringa & stra);
-
-      virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
       virtual sp(::ca::application) get_new_app(const char * pszAppId);
 
