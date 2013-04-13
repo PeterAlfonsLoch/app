@@ -117,14 +117,14 @@ namespace filemanager
       m_ptemplateFs = new FileManagerTemplate(this);
       m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));
 
-      m_ptemplateForm = new ::userbase::multiple_document_template(
+      m_ptemplateForm = new ::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < file_manager_form_document > (),
          System.type_info < file_manager_form_child_frame > (),
          System.type_info < file_manager_form_view > ());
 
-      m_ptemplateOperation = new ::userbase::single_document_template(
+      m_ptemplateOperation = new ::user::single_document_template(
          get_app(),
          pszMatter,
          System.type_info < file_manager_operation_document > (),

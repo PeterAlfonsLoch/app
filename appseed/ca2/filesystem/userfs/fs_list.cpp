@@ -13,9 +13,9 @@ namespace fs
       user::list(papp),
       user::form(papp),
       ::ca::user::form(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       user::form_list(papp),
-      userbase::form_list(papp)
+      user::form_list(papp)
    {
 
       m_headerctrl.m_dataid = "veiev::list::header_ctrl";
@@ -158,7 +158,7 @@ namespace fs
    void list::_001OnCancelMode(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   // trans   ::userbase::view::OnCancelMode();
+   // trans   ::user::view::OnCancelMode();
 
       // TODO: add your message handler code here
 

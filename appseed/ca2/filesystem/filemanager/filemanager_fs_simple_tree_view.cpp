@@ -15,7 +15,7 @@ namespace filemanager
 
          tree_view::tree_view(sp(::ca::application) papp) :
             ca(papp),
-            ::userbase::view(papp),
+            ::user::view(papp),
             ::user::scroll_view(papp),
             ::user::tree(papp)
          {
@@ -38,12 +38,12 @@ namespace filemanager
          #ifdef DEBUG
          void tree_view::assert_valid() const
          {
-            ::userbase::view::assert_valid();
+            ::user::view::assert_valid();
          }
 
          void tree_view::dump(dump_context & dumpcontext) const
          {
-            ::userbase::view::dump(dumpcontext);
+            ::user::view::dump(dumpcontext);
          }
          #endif //DEBUG
 
@@ -211,7 +211,7 @@ namespace filemanager
 
          void tree_view::install_message_handling(::ca::message::dispatch * pdispatch)
          {
-            ::userbase::view::install_message_handling(pdispatch);
+            ::user::view::install_message_handling(pdispatch);
             ::user::tree::install_message_handling(pdispatch);
          }
 

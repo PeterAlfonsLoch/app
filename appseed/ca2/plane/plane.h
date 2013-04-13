@@ -31,7 +31,6 @@ namespace bergedge
 
 
 
-#include "planebase_application.h"
 
 
 namespace filehandler
@@ -72,8 +71,6 @@ class form_view;
 
 
 
-#include "plane/plane.h"
-
 
 
 
@@ -100,8 +97,6 @@ namespace bergedge
 
 
 
-#include "cubebase_application.h"
-
 
 
 
@@ -127,36 +122,8 @@ namespace bergedge
 #include "plane_system_primitive_string_format_spec.h"
 
 
+#include "plugin/plugin.h"
 
-
-
-
-
-#include "ca/plugin/plugin.h"
-
-
-
-
-
-
-#pragma once
-
-
-#include "ca2/ca2/ca2.h"
-
-
-#include "cube_application.h"
-
-
-#include "cube_library.h"
-
-
-#include "app/appseed/ca2/bergedge/bergedge.h"
-
-
-#include "cube_cube.h"
-
-
-
+#include "bergedge/bergedge.h"
 
 

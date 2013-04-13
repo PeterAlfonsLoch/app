@@ -3,9 +3,9 @@
 
 FileManagerLeftView::FileManagerLeftView(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::split_layout(papp),
-   ::userbase::view(papp),
-   ::userbase::split_view(papp),
+   ::user::split_layout(papp),
+   ::user::view(papp),
+   ::user::split_view(papp),
    place_holder_container(papp)
 {
 }
@@ -17,12 +17,12 @@ FileManagerLeftView::~FileManagerLeftView()
 #ifdef DEBUG
 void FileManagerLeftView::assert_valid() const
 {
-   ::userbase::split_view::assert_valid();
+   ::user::split_view::assert_valid();
 }
 
 void FileManagerLeftView::dump(dump_context & dumpcontext) const
 {
-   ::userbase::split_view::dump(dumpcontext);
+   ::user::split_view::dump(dumpcontext);
 }
 
 #endif //DEBUG

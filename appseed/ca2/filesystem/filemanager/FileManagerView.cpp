@@ -4,9 +4,9 @@
 
 FileManagerAView::FileManagerAView(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::split_layout(papp),
-   ::userbase::view(papp),
-   ::userbase::split_view(papp),
+   ::user::split_layout(papp),
+   ::user::view(papp),
+   ::user::split_view(papp),
    place_holder_container(papp)
 {
 }
@@ -18,12 +18,12 @@ FileManagerAView::~FileManagerAView()
 #ifdef DEBUG
 void FileManagerAView::assert_valid() const
 {
-   ::userbase::split_view::assert_valid();
+   ::user::split_view::assert_valid();
 }
 
 void FileManagerAView::dump(dump_context & dumpcontext) const
 {
-   ::userbase::split_view::dump(dumpcontext);
+   ::user::split_view::dump(dumpcontext);
 }
 
 #endif //DEBUG
@@ -237,9 +237,9 @@ void FileManagerAView::CreateViews()
 
 FileManagerView::FileManagerView(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::split_layout(papp),
-   ::userbase::view(papp),
-   ::userbase::split_view(papp),
+   ::user::split_layout(papp),
+   ::user::view(papp),
+   ::user::split_view(papp),
    place_holder_container(papp)
 {
    m_ppropform = ::null();
@@ -250,7 +250,7 @@ FileManagerView::~FileManagerView()
 }
 
 
- // BEGIN_MESSAGE_MAP(FileManagerView, ::userbase::split_view)
+ // BEGIN_MESSAGE_MAP(FileManagerView, ::user::split_view)
    //{{__MSG_MAP(FileManagerView)
    //}}__MSG_MAP
  // END_MESSAGE_MAP()
@@ -261,12 +261,12 @@ FileManagerView::~FileManagerView()
 #ifdef DEBUG
 void FileManagerView::assert_valid() const
 {
-   ::userbase::split_view::assert_valid();
+   ::user::split_view::assert_valid();
 }
 
 void FileManagerView::dump(dump_context & dumpcontext) const
 {
-   ::userbase::split_view::dump(dumpcontext);
+   ::user::split_view::dump(dumpcontext);
 }
 
 #endif //DEBUG

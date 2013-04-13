@@ -4,9 +4,9 @@
 FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::scroll_view(papp),
-   ::userbase::edit_plain_text_view(papp)
+   ::user::edit_plain_text_view(papp)
 {
 
    m_bVoidSync = false;

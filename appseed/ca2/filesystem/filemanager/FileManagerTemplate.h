@@ -18,14 +18,14 @@ namespace filemanager
 class FileManagerFileListCallback;
 
 
-namespace userbase
+namespace user
 {
 
 
    class multiple_document_template;
 
 
-} // namespace userbase
+} // namespace user
 
 
 class SimpleDialogBar;
@@ -64,10 +64,10 @@ public:
 
    string  m_strLevelUp;
 
-   sp(::userbase::multiple_document_template) m_pdoctemplateMain;
-   sp(::userbase::multiple_document_template) m_pdoctemplate;
-   sp(::userbase::multiple_document_template) m_pdoctemplateChild;
-   sp(::userbase::multiple_document_template) m_pdoctemplateChildList;
+   sp(::user::multiple_document_template) m_pdoctemplateMain;
+   sp(::user::multiple_document_template) m_pdoctemplate;
+   sp(::user::multiple_document_template) m_pdoctemplateChild;
+   sp(::user::multiple_document_template) m_pdoctemplateChildList;
 
    SimpleDialogBar *    m_pdialogbar;
 

@@ -23,7 +23,7 @@ namespace hi5
             string                                    m_strPin;
             string                                    m_strAuthorizationUrl;
             int32_t                                       m_iView;
-            sp(::userbase::single_document_template)    m_ptemplatePane;
+            sp(::user::single_document_template)    m_ptemplatePane;
             sp(::form_document)                           m_pdoc;
             sp(::userex::pane_tab_view)                   m_ptabview;
             sp(::form_document)                           m_pdocAuth;

@@ -5,7 +5,7 @@
 file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca::application) papp) :
    ca(papp),
    m_headerctrl(papp),
-   ::userbase::view(papp),
+   ::user::view(papp),
    ::user::scroll_view(papp),
    ::user::list(papp)
 {
@@ -17,7 +17,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca::appl
 
 void file_manager_operation_list_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::view::install_message_handling(pinterface);
+   ::user::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_manager_operation_list_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_list_view::_001OnCreate);
@@ -37,7 +37,7 @@ void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
 
 sp(file_manager_operation_document) file_manager_operation_list_view::get_document()
 {
-   return  (::userbase::view::get_document());
+   return  (::user::view::get_document());
 }
 
 void file_manager_operation_list_view::_001GetItemText(::user::list_item * pitem)

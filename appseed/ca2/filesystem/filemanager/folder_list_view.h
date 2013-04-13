@@ -2,7 +2,7 @@
 
 #include "guibase/data_key_list_data.h"
 
-class  CLASS_DECL_ca folder_list_view :
+class  CLASS_DECL_ca2 folder_list_view :
    virtual public SimpleListView,
    virtual public FileManagerViewInterface
 {

@@ -3,9 +3,9 @@
 
 file_manager_operation_view::file_manager_operation_view(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::split_layout(papp),
-   ::userbase::view(papp),
-   ::userbase::split_view(papp),
+   ::user::split_layout(papp),
+   ::user::view(papp),
+   ::user::split_view(papp),
    place_holder_container(papp)
 {
 }
@@ -48,7 +48,7 @@ void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
 
 void file_manager_operation_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::split_view::install_message_handling(pinterface);
+   ::user::split_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_manager_operation_view::_001OnMainPostMessage);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &file_manager_operation_view::_001OnDestroy);

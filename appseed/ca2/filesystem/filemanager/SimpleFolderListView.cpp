@@ -10,7 +10,7 @@ namespace filemanager
    SimpleFolderListView::SimpleFolderListView(sp(::ca::application) papp) :
       ca(papp),
       m_headerctrl(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
       SimpleFolderListInterface(papp)
@@ -31,14 +31,14 @@ namespace filemanager
 
    void SimpleFolderListView::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::view::install_message_handling(pinterface);
+      ::user::view::install_message_handling(pinterface);
       SimpleFolderListInterface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &SimpleFolderListView::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &SimpleFolderListView::_001OnCancelMode);
    }
 
 
-   // BEGIN_MESSAGE_MAP(SimpleFolderListView, ::userbase::view)
+   // BEGIN_MESSAGE_MAP(SimpleFolderListView, ::user::view)
    //{{__MSG_MAP(SimpleFolderListView)
    /*
    ON_WM_LBUTTONDBLCLK()
@@ -53,7 +53,7 @@ namespace filemanager
    void SimpleFolderListView::OnDraw(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      //sp(::userbase::document) pDoc = get_document();
+      //sp(::user::document) pDoc = get_document();
       // TODO: add draw code here
    }
 
@@ -63,12 +63,12 @@ namespace filemanager
 #ifdef DEBUG
    void SimpleFolderListView::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void SimpleFolderListView::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -116,7 +116,7 @@ namespace filemanager
    void SimpleFolderListView::_001OnCancelMode(::ca::signal_object * pobj) 
    {
       UNREFERENCED_PARAMETER(pobj);
-      // trans   ::userbase::view::OnCancelMode();
+      // trans   ::user::view::OnCancelMode();
 
       // TODO: add your message handler code here
 
@@ -127,7 +127,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
    }
 
 

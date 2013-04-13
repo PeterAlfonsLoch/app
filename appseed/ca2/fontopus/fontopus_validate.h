@@ -126,11 +126,8 @@ namespace fontopus
       string                                    m_strForm;
       string                                    m_strLicense;
       bool                                      m_bLicense;
-      ::user::network_configuration             m_netcfg;
-      ::user::keyboard_layout *                 m_pkeyboardlayout;
       bool                                      m_bInteractive;
       bool                                      m_bDeferRegistration;
-      int32_t                                   m_iView;
       sp(::user::single_document_template)    m_ptemplatePane;
       sp(::form_document)                           m_pdoc;
       sp(::userex::pane_tab_view)                 m_ptabview;
@@ -176,37 +173,37 @@ namespace fontopus
 
       virtual bool get_defer_registration();
 
-         validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
-         virtual ~validate();
+//         validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+  //       virtual ~validate();
 
 
-         virtual void get_mod(stringa & straHash, stringa & straSource);
-         virtual string calc_mod_hash();
-         virtual string calc_key_hash();
-         virtual string calc_ca2_hash();
+//         virtual void get_mod(stringa & straHash, stringa & straSource);
+         //virtual string calc_mod_hash();
+         //virtual string calc_key_hash();
+         //virtual string calc_ca2_hash();
          // return hash and check if hash is valid
-         virtual bool check_ca2_hash();
+//         virtual bool check_ca2_hash();
 
 
-         virtual void on_login_thread_response(::fontopus::e_result iAuth, const char * pszResponse);
+  //       virtual void on_login_thread_response(::fontopus::e_result iAuth, const char * pszResponse);
 
-         virtual void close_all();
-         virtual void show_and_request_auth();
-         virtual void ensure_main_document();
-         virtual void display_main_frame();
-         virtual void page1(const stringa & straMatter = stringa());
-         virtual void pageMessage(const stringa & stra, ::ca::property_set & set);
+//         virtual void close_all();
+  //       virtual void show_and_request_auth();
+    //     virtual void ensure_main_document();
+      //   virtual void display_main_frame();
+        // virtual void page1(const stringa & straMatter = stringa());
+         //virtual void pageMessage(const stringa & stra, ::ca::property_set & set);
 
          //virtual ::fontopus::user * get_user(const char * pszHost = ::null(), const char * pszSessid = ::null());
-         virtual auth * get_auth();
+         //virtual auth * get_auth();
          //virtual bool get_license(const char * pszId);
 
-         virtual void authentication_failed(::fontopus::e_result iAuth, const char * pszResponse);
-         virtual void authentication_succeeded();
+         //virtual void authentication_failed(::fontopus::e_result iAuth, const char * pszResponse);
+         //virtual void authentication_succeeded();
 
          virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
-         virtual void on_show_view();
+         //virtual void on_show_view();
 
       
          virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);

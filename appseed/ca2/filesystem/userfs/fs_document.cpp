@@ -8,7 +8,7 @@ namespace fs
    document::document(sp(::ca::application) papp) :
       ::ca::ca(papp),
       ::ca::data_container_base(papp),
-      userbase::document(papp),
+      user::document(papp),
       m_fsset(papp)
    {
    }
@@ -19,12 +19,12 @@ namespace fs
 
    void document::assert_valid() const
    {
-      ::userbase::document::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::userbase::document::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
 
    bool document::file_manager_browse(const char * pszFolder)

@@ -228,18 +228,6 @@
     <Filter Include="Header Files\uinteraction">
       <UniqueIdentifier>{7b1723c2-983b-474c-a941-f29af5eabad8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html">
-      <UniqueIdentifier>{c43858da-4044-43f2-a0fb-c26b3c36f9f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html">
-      <UniqueIdentifier>{dadb6cf8-e57e-4b5e-9704-f605e9dc8716}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\html_lite">
-      <UniqueIdentifier>{fc6557f4-4b1c-468d-b812-86459f2615de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\html_filter">
-      <UniqueIdentifier>{035aef71-7ddf-43c6-a344-94515dbfe70a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\plugin">
       <UniqueIdentifier>{215c0a8b-930f-43b6-80cc-529d0dd9ff61}</UniqueIdentifier>
     </Filter>
@@ -426,9 +414,6 @@
     <Filter Include="Source Files\user\uinteraction\frame">
       <UniqueIdentifier>{dca34ca8-c14a-4422-a164-706a0983c22e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\html">
-      <UniqueIdentifier>{054322ea-76b9-450f-b4cb-286a79210130}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{28024641-f58f-44d6-88a1-5d8e3b99563c}</UniqueIdentifier>
     </Filter>
@@ -464,6 +449,24 @@
     </Filter>
     <Filter Include="Source Files\filesystem\filemanager">
       <UniqueIdentifier>{fa7100a2-1362-4489-815c-c61082c5fee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\html">
+      <UniqueIdentifier>{04d449f2-468e-4e99-a4fb-6ca2c022a6d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\html\html_lite">
+      <UniqueIdentifier>{5c840a4c-8571-41ca-a7b9-ab8e30096f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\html">
+      <UniqueIdentifier>{e00bc797-7558-42cb-9649-9707bbb6a46a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\html\html_lite">
+      <UniqueIdentifier>{73260709-f3df-406c-bf0b-12546ba1db92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\userfs">
+      <UniqueIdentifier>{c96e507d-14eb-4254-b779-b12aad37446f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\userfs">
+      <UniqueIdentifier>{b78cfb70-70c2-45ac-a1b5-f9bd4776ebbb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1970,38 +1973,11 @@
     <ClInclude Include="uinteraction\uinteraction_frame.h">
       <Filter>Header Files\uinteraction</Filter>
     </ClInclude>
-    <ClInclude Include="html\html.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html_lite_html_attributes.h">
-      <Filter>Header Files\html\html_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html_lite_html_common.h">
-      <Filter>Header Files\html\html_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html_lite_html_entity_resolver.h">
-      <Filter>Header Files\html\html_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html_lite_html_reader.h">
-      <Filter>Header Files\html\html_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html_lite_html_tag.h">
-      <Filter>Header Files\html\html_filter</Filter>
-    </ClInclude>
-    <ClInclude Include=".\html\html_lite\html_lite.h">
-      <Filter>Header Files\html\html_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_html.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="xml\xml_data.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
     <ClInclude Include="xml\xml_xml.h">
       <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_file.h">
-      <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="collection\collection_queue.h">
       <Filter>Header Files\collection</Filter>
@@ -4013,6 +3989,162 @@
     <ClInclude Include="filesystem\filemanager\SimplePreviewInterface.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\html\html.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_attribute.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_base.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_border.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_box.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_cell.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_data.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_elemental.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_ex.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_file.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_font.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_form.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_html.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_html2.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_image.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_input_button.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_input_check_box.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_input_text.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_point.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_reader.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_signal.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_size.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_style.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_style_sheet.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_style_sheet_array.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_table.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_table_elemental.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_table_row.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_tag.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_text.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_value.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_lite\html_lite.h">
+      <Filter>Header Files\graphics\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_lite\html_lite_html_attributes.h">
+      <Filter>Header Files\graphics\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_lite\html_lite_html_common.h">
+      <Filter>Header Files\graphics\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_lite\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\graphics\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_lite\html_lite_html_reader.h">
+      <Filter>Header Files\graphics\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_lite\html_lite_html_tag.h">
+      <Filter>Header Files\graphics\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html2.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_document.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_fs.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_list.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_list_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_list_interface.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_list_item.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_list_item_array.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_main_view.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_tree.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_tree_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_tree_interface.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\fs_tree_item_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5041,26 +5173,8 @@
     <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="html\html_lite\html_lite_html_tag.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\html_lite_html_reader.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\html_lite_html_entity_resolver.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_html.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_file.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
     <ClCompile Include="xml\xml_data.cpp">
       <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include=".\html\html_lite\html_lite_html_attributes.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_call_stack.cpp">
       <Filter>Source Files\exception</Filter>
@@ -6864,6 +6978,129 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_lite\html_lite_html_attributes.cpp">
+      <Filter>Source Files\graphics\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_lite\html_lite_html_entity_resolver.cpp">
+      <Filter>Source Files\graphics\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_lite\html_lite_html_reader.cpp">
+      <Filter>Source Files\graphics\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_lite\html_lite_html_tag.cpp">
+      <Filter>Source Files\graphics\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_attribute.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_base.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_cell.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_data.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_elemental.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_file.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_font.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_form.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_html.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_html2.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_image.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_input_button.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_input_checkbox.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_input_text.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_reader.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_signal.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_style.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_style_sheet.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_style_sheet_array.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_table.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_table_elemental.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_table_row.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_tag.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_text.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_value.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_document.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_fs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_list.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_list_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_list_interface.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_list_item.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_list_item_array.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_main_view.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_tree.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_tree_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_tree_interface.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\fs_tree_item_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

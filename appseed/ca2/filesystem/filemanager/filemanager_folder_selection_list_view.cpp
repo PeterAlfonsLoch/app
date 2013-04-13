@@ -7,9 +7,9 @@
 
 folder_selection_list_view::folder_selection_list_view(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::split_layout(papp),
-   ::userbase::view(papp),
-   ::userbase::split_view(papp),
+   ::user::split_layout(papp),
+   ::user::view(papp),
+   ::user::split_view(papp),
    place_holder_container(papp),
    m_pdata(new filemanager::data(papp))
 {
@@ -21,7 +21,7 @@ folder_selection_list_view::~folder_selection_list_view()
 
 void folder_selection_list_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::split_view::install_message_handling(pinterface);
+   ::user::split_view::install_message_handling(pinterface);
 }
 
 

@@ -7,8 +7,8 @@
 FileManagerTabView::FileManagerTabView(sp(::ca::application) papp) :
    ca(papp),
    ::user::tab(papp),
-   ::userbase::view(papp),
-   ::userbase::tab_view(papp),
+   ::user::view(papp),
+   ::user::tab_view(papp),
    ::userex::pane_tab_view(papp),
    place_holder_container(papp)
 {
@@ -22,12 +22,12 @@ FileManagerTabView::~FileManagerTabView()
 #ifdef DEBUG
 void FileManagerTabView::assert_valid() const
 {
-   ::userbase::tab_view::assert_valid();
+   ::user::tab_view::assert_valid();
 }
 
 void FileManagerTabView::dump(dump_context & dumpcontext) const
 {
-   ::userbase::tab_view::dump(dumpcontext);
+   ::user::tab_view::dump(dumpcontext);
 }
 
 #endif //DEBUG
@@ -35,14 +35,14 @@ void FileManagerTabView::dump(dump_context & dumpcontext) const
 
 void FileManagerTabView::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::tab_view::install_message_handling(pinterface);
+   ::user::tab_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
 }
 
 void FileManagerTabView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   ::userbase::tab_view::on_update(pSender, lHint, phint);
+   ::user::tab_view::on_update(pSender, lHint, phint);
    if(phint != ::null())
    {
       if(base < FileManagerViewUpdateHint > :: bases(phint))

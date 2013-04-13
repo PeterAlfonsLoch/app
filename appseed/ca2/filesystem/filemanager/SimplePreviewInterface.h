@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 SimplePreviewInterface :
-      virtual public ::userbase::view,
+      virtual public ::user::view,
       virtual public FileManagerViewInterface
    {
    public:

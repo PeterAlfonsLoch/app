@@ -7,16 +7,16 @@ namespace fs
 
    main_view::main_view(sp(::ca::application) papp) :
       ca(papp),
-      ::userbase::split_layout(papp),
-      ::userbase::view(papp),
-      ::userbase::split_view(papp),
+      ::user::split_layout(papp),
+      ::user::view(papp),
+      ::user::split_view(papp),
       place_holder_container(papp)
    {
    }
 
    void main_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::split_view::install_message_handling(pinterface);
+      ::user::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &main_view::_001OnCreate);
    }
 
@@ -64,7 +64,7 @@ namespace fs
 
    sp(document) main_view::get_document()
    {
-      return  (::userbase::split_view::get_document());
+      return  (::user::split_view::get_document());
    }
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca folder_selection_list_view :
+class CLASS_DECL_ca2 folder_selection_list_view :
    virtual public BaseSplitView,
    virtual public FileManagerInterface
 {

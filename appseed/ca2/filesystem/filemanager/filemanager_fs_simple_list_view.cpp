@@ -16,9 +16,9 @@ namespace filemanager
             ::user::list(papp),
             ::user::form(papp),
             ::user::form_list(papp),
-            ::userbase::view(papp),
+            ::user::view(papp),
             ::ca::user::form(papp),
-            ::userbase::form_list(papp),
+            ::user::form_list(papp),
             simple_list_view(papp)
          {
             m_bKickActive = false;
@@ -609,10 +609,10 @@ namespace filemanager
             }
             else
             {
-            ::userbase::menu menu;
+            ::user::menu menu;
             if (menu.LoadMenu(IDR_POPUP_ALBUM))
             {
-            ::userbase::menu* pPopup = menu.GetSubMenu(0);
+            ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(

@@ -12,7 +12,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 application : 
-      public ::cubebase::application
+      public ::plane::application
    {
    public:
       

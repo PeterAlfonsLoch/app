@@ -35,7 +35,7 @@ void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_
 
 file_manager_operation_info_view::file_manager_operation_info_view(sp(::ca::application) papp) :
    ca(papp),
-   ::userbase::view(papp)
+   ::user::view(papp)
 {
    m_dAnime = 0.0;
 }
@@ -105,7 +105,7 @@ void file_manager_operation_info_view::OnFileOperationStep(int32_t iOperation, b
 
 sp(file_manager_operation_document) file_manager_operation_info_view::get_document()
 {
-   return  (::userbase::view::get_document());
+   return  (::user::view::get_document());
 }
 
 void file_manager_operation_info_view::_001OnTimer(::ca::signal_object * pobj)
@@ -124,17 +124,17 @@ void file_manager_operation_info_view::_001OnCreate(::ca::signal_object * pobj)
 
 void file_manager_operation_info_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
-   ::userbase::view::install_message_handling(pinterface);
+   ::user::view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_info_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_manager_operation_info_view::_001OnTimer);
 }
 
 void file_manager_operation_info_view::assert_valid() const
 {
-   ::userbase::view::assert_valid();
+   ::user::view::assert_valid();
 }
 void file_manager_operation_info_view::dump(dump_context & context) const
 {
-   ::userbase::view::dump(context);
+   ::user::view::dump(context);
 }
 

@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace userbase
+namespace user
 {
 
 
    class button;
 
 
-} // namespace userbase
+} // namespace user
 
 
 namespace fs

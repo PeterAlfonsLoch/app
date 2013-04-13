@@ -16,10 +16,10 @@ namespace filemanager
       ::ca::user::form(papp),
       ::user::form_list(papp),
       SimpleFileListInterface(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
-      ::userbase::form_list(papp),
+      ::user::form_list(papp),
       ::fs::list_interface(papp),
       ::fs::list(papp)
    {
@@ -53,7 +53,7 @@ namespace filemanager
 
    void SimpleFileListView::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::view::install_message_handling(pinterface);
+      ::user::view::install_message_handling(pinterface);
       SimpleFileListInterface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &SimpleFileListView::_001OnContextMenu);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFileListView::_001OnTimer);
@@ -69,12 +69,12 @@ namespace filemanager
    #ifdef DEBUG
    void SimpleFileListView::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void SimpleFileListView::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -340,16 +340,16 @@ namespace filemanager
       ::user::list::ScreenToClient(&ptClient);
         if(_001HitTest_(ptClient, iItem))
       {
-         ::userbase::menu menu(get_app());
+         ::user::menu menu(get_app());
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
             _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)));
             /*if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFolderPopup))
             {
-               ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
+               ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
                //ASSERT(pPopup != ::null());
-               sp(::userbase::frame_window) pframe = ( (GetParentFrame()));
+               sp(::user::frame_window) pframe = ( (GetParentFrame()));
                pframe->SetActiveView(this);
                menuPopup.set_app(get_app());
                menuPopup.TrackPopupMenu(
@@ -359,10 +359,10 @@ namespace filemanager
          }
          else if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFilePopup))
          {
-            ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
+            ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             //ASSERT(pPopup != ::null());
-            sp(::userbase::frame_window) pframe = (GetTopLevelFrame());
+            sp(::user::frame_window) pframe = (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
 
@@ -397,10 +397,10 @@ namespace filemanager
       }
       else
       {
-         ::userbase::menu menu(get_app());
+         ::user::menu menu(get_app());
          if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strPopup))
          {
-            ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
+            ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //ASSERT(pPopup != ::null());
             //sp(::frame_window) pframe = GetTopLevelFrame();
 
@@ -427,7 +427,7 @@ namespace filemanager
             }*/
 
 
-            sp(::userbase::frame_window) pframe = (GetTopLevelFrame());
+            sp(::user::frame_window) pframe = (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
 
@@ -442,7 +442,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
    }
 
    UINT c_cdecl SimpleFileListView::ThreadProcFileSize(LPVOID lpparam)
@@ -593,7 +593,7 @@ namespace filemanager
       GetSelected(itema);
       if(GetFileManagerDoc()->HandleDefaultFileManagerItemCmdMsg(pcmdmsg, itema))
          return TRUE;
-      return ::userbase::view::_001OnCmdMsg(pcmdmsg);
+      return ::user::view::_001OnCmdMsg(pcmdmsg);
    }
 
    void SimpleFileListView::_001OnShellCommand(::ca::signal_object * pobj)
@@ -659,7 +659,7 @@ namespace filemanager
       if(straCommand.get_size() > 0)
       {
          
-         ::userbase::menu menu(get_app());
+         ::user::menu menu(get_app());
          
          point ptCursor;
          
@@ -804,12 +804,12 @@ namespace filemanager
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
-         ::userbase::menu_button_cmd_ui * pcmdui1 = dynamic_cast < ::userbase::menu_button_cmd_ui * > (pcmdui->m_pcmdui);
+         ::user::menu_button_cmd_ui * pcmdui1 = dynamic_cast < ::user::menu_button_cmd_ui * > (pcmdui->m_pcmdui);
          if(pcmdui1 != ::null())
          {
-            ::userbase::menu_item_ptra * pitema = pcmdui1->m_pitema;
+            ::user::menu_item_ptra * pitema = pcmdui1->m_pitema;
 
-            ::userbase::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
+            ::user::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
             pitema->remove_at(pcmdui->m_pcmdui->m_iIndex);
 
 
@@ -830,7 +830,7 @@ namespace filemanager
             m_straOpenWith = stra;
             ::count iCount = stra.get_size();
 
-            sp(::userbase::menu_item) pmenuitem(new ::userbase::menu_item(get_app()));
+            sp(::user::menu_item) pmenuitem(new ::user::menu_item(get_app()));
             string str;
             for(int32_t i = 0; i < iCount; i++)
             {
@@ -872,7 +872,7 @@ namespace filemanager
       }
       else
       {
-         return ::userbase::view::_001OnUpdateCmdUi(pcmdui);
+         return ::user::view::_001OnUpdateCmdUi(pcmdui);
       }
    }
 
@@ -916,7 +916,7 @@ namespace filemanager
       }
       else
       {
-         return ::userbase::view::_001OnCommand(id);
+         return ::user::view::_001OnCommand(id);
       }
 
    }

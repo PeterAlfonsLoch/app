@@ -11,9 +11,9 @@ namespace fs
       ::user::list(papp),
       user::form(papp),
       ::ca::user::form(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       user::form_list(papp),
-      userbase::form_list(papp)
+      user::form_list(papp)
    {
 
       m_dataid          = "mail::list_interface";
@@ -290,7 +290,7 @@ namespace fs
 /*         if(m_iAnimate <= 0)
       {*/
          // Normal Drawing
-         ::userbase::form_list::_001OnDraw(pdc);
+         ::user::form_list::_001OnDraw(pdc);
 /*       }
       else
       {
@@ -725,17 +725,17 @@ namespace fs
 
    sp(document) list_interface::get_document()
    {
-      return  (::userbase::form_list::get_document());
+      return  (::user::form_list::get_document());
    }
 
    void list_interface::_001GetItemText(::user::list_item * pitem)
    {
-      return ::userbase::form_list::_001GetItemText(pitem);
+      return ::user::form_list::_001GetItemText(pitem);
    }
 
    void list_interface::_001GetItemImage(::user::list_item * pitem)
    {
-      return ::userbase::form_list::_001GetItemImage(pitem);
+      return ::user::form_list::_001GetItemImage(pitem);
    }
 
 

@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      sp(::userbase::single_document_template)    m_ptemplatePane;
+      sp(::user::single_document_template)    m_ptemplatePane;
       sp(::form_document)                           m_pdocGeneral;
       sp(form_view)                               m_pviewGeneral;
       sp(::userex::pane_tab_view)                 m_ptabview;

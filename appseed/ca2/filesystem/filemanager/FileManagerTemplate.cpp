@@ -144,28 +144,28 @@ sp(::filemanager::document) FileManagerTemplate::open_child_list(bool bMakeVisib
 void FileManagerTemplate::Initialize(int32_t iTemplate, const char * pszMatter)
 {
    m_iTemplate       = iTemplate;
-   m_pdoctemplateMain = new ::userbase::multiple_document_template(
+   m_pdoctemplateMain = new ::user::multiple_document_template(
       get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
       System.type_info < FileManagerTabView > ());
 
-   m_pdoctemplate = new ::userbase::multiple_document_template(
+   m_pdoctemplate = new ::user::multiple_document_template(
       get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerFrame > (),
       System.type_info < FileManagerAView > ());
 
-   m_pdoctemplateChild = new ::userbase::multiple_document_template(
+   m_pdoctemplateChild = new ::user::multiple_document_template(
       get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerChildFrame > (),
       System.type_info < FileManagerAView > ());
 
-   m_pdoctemplateChildList = new ::userbase::multiple_document_template(
+   m_pdoctemplateChildList = new ::user::multiple_document_template(
       get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),

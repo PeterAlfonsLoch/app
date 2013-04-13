@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_ca fontopus :
+   class CLASS_DECL_ca2 fontopus :
       virtual public ::ca::section
    {
    public:

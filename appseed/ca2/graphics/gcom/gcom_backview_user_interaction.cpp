@@ -15,7 +15,7 @@ namespace gcom
 
          interaction::interaction(sp(::ca::application) papp) :
             ca(papp),
-            ::userbase::view(papp),
+            ::user::view(papp),
             Interface(papp)
          {
             m_dwTimerStep = 0;

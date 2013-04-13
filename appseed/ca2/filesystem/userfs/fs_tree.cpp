@@ -218,10 +218,10 @@ namespace fs
       }
       else
       {
-         ::userbase::menu menu;
+         ::user::menu menu;
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiPopup))
          {
-            ::userbase::menu* pPopup = menu.GetSubMenu(0);
+            ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
             sp(::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(

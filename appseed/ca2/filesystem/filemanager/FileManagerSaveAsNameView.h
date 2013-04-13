@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 FileManagerSaveAsView :
-   virtual public ::userbase::edit_plain_text_view,
+   virtual public ::user::edit_plain_text_view,
    virtual public FileManagerViewInterface
 {
 public:

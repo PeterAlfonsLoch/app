@@ -12,9 +12,9 @@ namespace filemanager
 
          view::view(sp(::ca::application) papp) :
             ca(papp),
-            ::userbase::split_layout(papp),
-            ::userbase::view(papp),
-            ::userbase::split_view(papp),
+            ::user::split_layout(papp),
+            ::user::view(papp),
+            ::user::split_view(papp),
             place_holder_container(papp)
          {
          //   m_pinetsession = ::null();
@@ -29,19 +29,19 @@ namespace filemanager
 
          void view::install_message_handling(::ca::message::dispatch * pinterface)
          {
-            ::userbase::split_view::install_message_handling(pinterface);
+            ::user::split_view::install_message_handling(pinterface);
          }
 
 
          #ifdef DEBUG
          void view::assert_valid() const
          {
-            ::userbase::split_view::assert_valid();
+            ::user::split_view::assert_valid();
          }
 
          void view::dump(dump_context & dumpcontext) const
          {
-            ::userbase::split_view::dump(dumpcontext);
+            ::user::split_view::dump(dumpcontext);
          }
          #endif //DEBUG
 

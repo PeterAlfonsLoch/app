@@ -7,7 +7,7 @@ namespace filemanager
 
    SimplePreview::SimplePreview(sp(::ca::application) papp) :
       ca(papp),
-      ::userbase::view(papp),
+      ::user::view(papp),
       SimplePreviewInterface(papp)
    {
 
@@ -19,7 +19,7 @@ namespace filemanager
 
    void SimplePreview::install_message_handling(::ca::message::dispatch * pdispatch)
    {
-      ::userbase::view::install_message_handling(pdispatch);
+      ::user::view::install_message_handling(pdispatch);
       SimplePreviewInterface::install_message_handling(pdispatch);
    }
 

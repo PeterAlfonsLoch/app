@@ -6,7 +6,7 @@ class file_manager_operation_info_view;
 
 
 class CLASS_DECL_ca2 file_manager_operation_view :
-   public ::userbase::split_view
+   public ::user::split_view
 {
 public:
 

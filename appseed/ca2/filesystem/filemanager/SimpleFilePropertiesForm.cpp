@@ -8,7 +8,7 @@ namespace filemanager
    SimpleFilePropertiesForm::SimpleFilePropertiesForm(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_ptemplatePane = new ::userbase::single_document_template(
+      m_ptemplatePane = new ::user::single_document_template(
          papp,
          "system/auth",
          System.type_info < form_document > (),

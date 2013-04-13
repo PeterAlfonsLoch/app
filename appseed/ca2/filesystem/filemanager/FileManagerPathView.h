@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 FileManagerPathView :
-   virtual public ::userbase::edit_plain_text_view,
+   virtual public ::user::edit_plain_text_view,
    virtual public FileManagerViewInterface
 {
 public:

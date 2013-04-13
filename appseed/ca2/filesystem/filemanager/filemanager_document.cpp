@@ -36,7 +36,7 @@ namespace filemanager
    bool document::on_new_document()
    {
 
-      if (!::userbase::document::on_new_document())
+      if (!::user::document::on_new_document())
          return FALSE;
 
 
@@ -58,12 +58,12 @@ namespace filemanager
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::userbase::document::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::userbase::document::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -123,7 +123,7 @@ namespace filemanager
             return true;
          }
       }
-      return ::userbase::document::_001OnCommand(id);
+      return ::user::document::_001OnCommand(id);
    }
 
    bool document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
@@ -133,7 +133,7 @@ namespace filemanager
       FileManagerOnUpdateLevelUp(pcmdui);
       return true;
       }*/
-      return ::userbase::document::_001OnUpdateCmdUi(pcmdui);
+      return ::user::document::_001OnUpdateCmdUi(pcmdui);
    }
 
 
@@ -166,7 +166,7 @@ namespace filemanager
    }
    }
    }*/
-   /*   return ::userbase::document::_001OnCmdMsg(pcmdmsg);
+   /*   return ::user::document::_001OnCmdMsg(pcmdmsg);
    }
    */
 
