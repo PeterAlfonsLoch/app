@@ -7,7 +7,7 @@ namespace plane
 
 
    class CLASS_DECL_ca2 application : 
-      virtual public ::planebase::application,
+      virtual public ::ca2::application,
       virtual public ::database::client
 
    {
