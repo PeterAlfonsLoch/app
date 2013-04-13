@@ -1,7 +1,42 @@
 #pragma once
 
-
+#include "fs/fs.h"
 #include "dynamic_source/dynamic_source.h"
+
+#pragma once
+
+
+
+
+
+
+class service_base;
+
+
+namespace planebase
+{
+
+
+   class application;
+
+
+} // namespace planebase
+
+
+namespace bergedge
+{
+
+
+   class document;
+   class view;
+
+
+} // namespace bergedge
+
+
+
+
+#include "planebase_application.h"
 
 
 namespace filehandler
@@ -38,6 +73,41 @@ class form_view;
 
 
 
+#pragma once
+
+
+
+#include "plane/plane.h"
+
+
+
+
+
+namespace cube
+{
+
+
+   class system;
+
+
+} // namespace cube
+
+
+namespace bergedge
+{
+
+
+   class bergedge;
+
+
+} // namespace bergedge
+
+
+
+
+#include "cubebase_application.h"
+
+
 
 
 #include "plane_library.h"
@@ -68,6 +138,28 @@ class form_view;
 
 
 #include "ca/plugin/plugin.h"
+
+
+
+
+
+
+#pragma once
+
+
+#include "ca2/ca2/ca2.h"
+
+
+#include "cube_application.h"
+
+
+#include "cube_library.h"
+
+
+#include "app/appseed/ca2/bergedge/bergedge.h"
+
+
+#include "cube_cube.h"
 
 
 

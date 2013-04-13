@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "visual/visual.h"
+#include "graphics/visual/visual.h"
 
 
 namespace html

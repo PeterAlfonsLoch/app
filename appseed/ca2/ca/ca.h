@@ -62,7 +62,7 @@ namespace plane
 
 
 
-#include "api/api_rotate.h"
+#include "os/api/api_rotate.h"
 
 
 #define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
@@ -95,7 +95,7 @@ namespace plane
 #include "primitive/count.h"
 
 
-#include "api/api.h"
+#include "os/api/api.h"
 
 
 
@@ -242,10 +242,10 @@ class dump_context;
 #include "primitive/primitive_numeric_info.h"
 #include "ca_c_number.h"
 
-#include "multithreading/multithreading_wait_result.h"
+#include "os/multithreading/multithreading_wait_result.h"
 #include "primitive/datetime/datetime_duration.h"
 #include "ca_request_interface.h"
-#include "multithreading/multithreading_waitable.h"
+#include "os/multithreading/multithreading_waitable.h"
 #include "primitive/primitive.h"
 
 
@@ -343,7 +343,7 @@ class dump_context;
 #include "ca_interlocked_long.h"
 #include "ca_interlocked_long_pulse.h"
 
-#include "multithreading/multithreading.h"
+#include "os/multithreading/multithreading.h"
 
 #include "ca_data.h"
 #include "ca_data_container.h"
@@ -639,7 +639,7 @@ CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca::application) papp, ::ca::gra
 #include "ca_fixed_alloc.h"
 #include "ca_request_signal.h"
 
-#include "visual/visual_const.h"
+#include "graphics/visual/visual_const.h"
 
 #include "ca_var_array.h"
 
@@ -1615,12 +1615,12 @@ namespace lemon
 
 
 
-#include "calculator/calculator.h"
+#include "math/calculator/calculator.h"
 #include "xml/xml.h"
 #include "sockets/sockets.h"
 #include "colorertake5/colorertake5.h"
 
-#include "html/html.h"
+#include "graphics/html/html.h"
 
 
 #include "ca_definition.h"

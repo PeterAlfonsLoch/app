@@ -1,6 +1,9 @@
 #pragma once
 
 
+//#include "user/user_form_callback.h"
+
+
 namespace fontopus
 {
 
@@ -92,7 +95,8 @@ namespace fontopus
    class CLASS_DECL_ca2 validate :
       virtual public ::user::form_callback,
       virtual public ::user::view_creator,
-      virtual public login_thread_callback
+      virtual public login_thread_callback,
+      virtual public ::user::tab_callback
    {
    public:
 
@@ -126,6 +130,16 @@ namespace fontopus
       ::user::keyboard_layout *                 m_pkeyboardlayout;
       bool                                      m_bInteractive;
       bool                                      m_bDeferRegistration;
+      int32_t                                   m_iView;
+      sp(::user::single_document_template)    m_ptemplatePane;
+      sp(::form_document)                           m_pdoc;
+      sp(::userex::pane_tab_view)                 m_ptabview;
+      sp(::form_document)                           m_pdocAuth;
+      sp(::form_document)                           m_pdocMessage;
+      sp(form_view)                               m_pviewAuth;
+      ::ca2::network_configuration              m_netcfg;
+      ::ca2::keyboard_layout *                  m_pkeyboardlayout;
+      void *                                    m_pvOldWindow;
 
 
       validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
@@ -162,47 +176,6 @@ namespace fontopus
 
       virtual bool get_defer_registration();
 
-      
-  //    virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
-   };
-
-
-} // namespace user
-
-
-
-
-
-#pragma once
-
-
-namespace ca
-{
-
-
-   namespace fontopus
-   {
-
-
-      class CLASS_DECL_ca2 validate :
-         virtual public ::fontopus::validate,
-         virtual public ::user::tab_callback
-      {
-      public:
-
-
-         int32_t                                   m_iView;
-         sp(::user::single_document_template)    m_ptemplatePane;
-         sp(::form_document)                           m_pdoc;
-         sp(::userex::pane_tab_view)                 m_ptabview;
-         sp(::form_document)                           m_pdocAuth;
-         sp(::form_document)                           m_pdocMessage;
-         sp(form_view)                               m_pviewAuth;
-         ::ca2::network_configuration              m_netcfg;
-         ::ca2::keyboard_layout *                  m_pkeyboardlayout;
-         void *                                    m_pvOldWindow;
-         
-
          validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
          virtual ~validate();
 
@@ -238,13 +211,14 @@ namespace ca
       
          virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
 
-
-      };
-
-
-   } // namespace cube // ca8 + cube
+      
+  //    virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
+   };
 
 
-} // namespace ca
+} // namespace user
+
+
+
 
 
