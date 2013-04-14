@@ -34,8 +34,7 @@ void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_
 
 
 file_manager_operation_info_view::file_manager_operation_info_view(sp(::ca::application) papp) :
-   ca(papp),
-   ::user::view(papp)
+   ca(papp)
 {
    m_dAnime = 0.0;
 }

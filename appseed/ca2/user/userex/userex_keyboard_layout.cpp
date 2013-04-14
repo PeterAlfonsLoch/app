@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2 // ca8 + cube
+namespace userex // ca8 + cube
 {
 
 
@@ -9,7 +9,7 @@ namespace ca2 // ca8 + cube
       ca(papp),
       ::user::list_data(papp),
       ::user::split_layout(papp),
-      ::user::view(papp),
+      
       ::user::split_view(papp),
       place_holder_container(papp)
    {
@@ -187,7 +187,7 @@ namespace ca2 // ca8 + cube
    }
 
 
-} // namespace ca2 // ca8 + cube
+} // namespace userex // ca8 + cube
 
 
 

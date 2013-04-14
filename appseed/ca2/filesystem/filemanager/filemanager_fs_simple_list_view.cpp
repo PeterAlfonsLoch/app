@@ -16,9 +16,7 @@ namespace filemanager
             ::user::list(papp),
             ::user::form(papp),
             ::user::form_list(papp),
-            ::user::view(papp),
-            ::ca::user::form(papp),
-            ::user::form_list(papp),
+            
             simple_list_view(papp)
          {
             m_bKickActive = false;
@@ -188,7 +186,7 @@ namespace filemanager
          }
 
 
-         void list_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+         void list_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
@@ -602,7 +600,7 @@ namespace filemanager
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
-            sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
+            sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
             (sp(::ca::window)) pframe);
             }
@@ -614,7 +612,7 @@ namespace filemanager
             {
             ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
-            sp(::frame_window) pframe = GetParentFrame()->GetParentFrame();
+            sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
             (sp(::ca::window)) pframe);

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "filemanager/filemanager_folder_selection_list_view.h"
+#include "filesystem/filemanager/filemanager_folder_selection_list_view.h"
 
 namespace nature
 {
@@ -7,7 +7,7 @@ namespace nature
    appearance_view::appearance_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::user::view(papp),
+      
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
@@ -54,16 +54,16 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void appearance_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
       if(pHint != ::null())
       {
-         if(base <view_update_hint> :: bases(pHint))
+         if(base <::user::view_update_hint> :: bases(pHint))
          {
-            view_update_hint * puh = dynamic_cast < view_update_hint * > (pHint);
-            if(puh->m_etype == view_update_hint::TypeOpenDocument)
+            ::user::view_update_hint * puh = dynamic_cast < ::user::view_update_hint * > (pHint);
+            if(puh->m_etype == ::user::view_update_hint::TypeOpenDocument)
             {
                set_cur_tab_by_id(view_image_folder);
             }
@@ -105,9 +105,9 @@ namespace nature
 
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      filemanager::filemanager & filemanager = Cube.filemanager();
+      filemanager::filemanager & filemanager = System.filemanager();
       sp(folder_selection_list_view) pview;
-      pview =  (::view::create_view(
+      pview =  (::user::view::create_view(
          System.type_info < folder_selection_list_view > (),
          get_document(),
          this,

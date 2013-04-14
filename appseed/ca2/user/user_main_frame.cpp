@@ -49,7 +49,7 @@ namespace user
       //if(!m_bPlacing)
       //{
       //   keeper < bool > keepPlacing(&m_bPlacing, true, false, true);
-      //   Bergedge.place(this);
+      //   Session.place(this);
       //}
 
    }

@@ -29,6 +29,7 @@ namespace user
 
 
    class control_event;
+   class frame_window;
 
 
    class CLASS_DECL_ca2 interaction :
@@ -288,7 +289,7 @@ namespace user
          LPVOID lpParam = ::null());
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-      virtual sp(::frame_window) GetParentFrame();
+      virtual sp(::user::frame_window) GetParentFrame();
 
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
@@ -434,10 +435,10 @@ namespace user
       sp(interaction) get_child_by_name(const char * pszName, int32_t iLevel = -1);
       sp(interaction) get_child_by_id(id id, int32_t iLevel = -1);
 
-      virtual sp(::frame_window) EnsureParentFrame();
+      virtual sp(::user::frame_window) EnsureParentFrame();
       virtual sp(interaction) GetTopLevelParent();
       virtual sp(interaction) EnsureTopLevelParent();
-      virtual sp(::frame_window) GetTopLevelFrame();
+      virtual sp(::user::frame_window) GetTopLevelFrame();
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(::ca::signal_object * pobj);
 

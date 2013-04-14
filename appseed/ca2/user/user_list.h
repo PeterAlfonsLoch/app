@@ -19,22 +19,6 @@ namespace visual
 
 namespace user
 {
-   namespace _list
-   {
-      enum EElement
-      {
-         ElementItem,
-         ElementImage,
-         ElementText,
-         ElementSubItem,
-         ElementGroupImage,
-         ElementGroupItemText,
-      };
-   }
-}
-
-namespace user
-{
 
 
    class list_cache_interface;
@@ -268,6 +252,15 @@ namespace user
       };
 
 
+      enum EElement
+      {
+         ElementItem,
+         ElementImage,
+         ElementText,
+         ElementSubItem,
+         ElementGroupImage,
+         ElementGroupItemText,
+      };
 
 
       class range;
@@ -695,7 +688,7 @@ namespace user
       void _001GetGroupRect(draw_list_item * pitem);
       void _001GetItemRect(draw_list_item * pitem);
       void _001GetSubItemRect(draw_list_item * pitem);
-      void _001GetElementRect(draw_list_item * pitem, ::user::_list::EElement eelement);
+      void _001GetElementRect(draw_list_item * pitem, ::user::list::EElement eelement);
 
       virtual void _001OnColumnChange();
 
@@ -720,12 +713,12 @@ namespace user
 
       virtual ::count _001GetItemCount();
       virtual ::count _001GetGroupCount();
-      bool _001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, ::user::_list::EElement &eelement);
+      bool _001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, ::user::list::EElement &eelement);
       bool _001HitTest_(point point, index &iItem, index &iSubItem);
       bool _001HitTest_(POINT pt, index &iItemParam);
 
 
-      bool _001DisplayHitTest(point point, index &iItem, index &iSubItem, index &iListItem, ::user::_list::EElement &eelement);
+      bool _001DisplayHitTest(point point, index &iItem, index &iSubItem, index &iListItem, ::user::list::EElement &eelement);
       bool _001DisplayHitTest(point point, index &iItem, index &iSubItem);
       bool _001DisplayHitTest(POINT pt, index &iItemParam);
 

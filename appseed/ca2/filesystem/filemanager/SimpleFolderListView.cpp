@@ -10,7 +10,7 @@ namespace filemanager
    SimpleFolderListView::SimpleFolderListView(sp(::ca::application) papp) :
       ca(papp),
       m_headerctrl(papp),
-      ::user::view(papp),
+      
       ::user::scroll_view(papp),
       ::user::list(papp),
       SimpleFolderListInterface(papp)
@@ -72,7 +72,7 @@ namespace filemanager
    }
 #endif //DEBUG
 
-   void SimpleFolderListView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * phint) 
+   void SimpleFolderListView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);  
       if(phint != ::null())

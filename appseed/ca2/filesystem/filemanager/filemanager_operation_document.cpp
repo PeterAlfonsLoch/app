@@ -5,6 +5,7 @@ file_manager_operation_document::file_manager_operation_document(sp(::ca::applic
    ca(papp),
    m_thread(papp),
    ::ca::data_container_base(papp),
+   ::ca::data_container(papp),
    ::user::document(papp)
 {
    

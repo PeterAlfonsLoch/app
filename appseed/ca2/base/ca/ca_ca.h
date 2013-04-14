@@ -40,17 +40,12 @@ namespace plane
 #define Mathematics(papp) (Sys(papp).math())
 #define Math (Mathematics(this->m_papp))
 
-#define Cub(papp) (*Sys(papp).m_pcube)
-#define Cube (Cub(this->m_papp))
-
 #define Sess(papp) (*papp->m_psession)
 #define Session (Sess(this->m_papp))
 
-#define Berg(papp) (*Sess(papp).m_pbergedge)
-#define Bergedge (Berg(this->m_papp))
-
 
 class fixed_alloc_no_sync;
+
 
 namespace ca
 {

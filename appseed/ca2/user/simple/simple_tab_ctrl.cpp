@@ -5,6 +5,7 @@
 simple_tab_control::simple_tab_control(sp(::ca::application) papp):
    ca(papp),
    ::user::interaction(papp),
+   
    ::user::tab(papp),
    place_holder_container(papp)
 {

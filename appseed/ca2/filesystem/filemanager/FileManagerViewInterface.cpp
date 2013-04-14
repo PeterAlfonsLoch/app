@@ -24,7 +24,7 @@ sp(::filemanager::document) FileManagerViewInterface::GetFileManagerDoc()
    return  (m_pfilemanagerinterface);
 }
 
-void FileManagerViewInterface::on_update(sp(::view) psender, LPARAM lhint, ::ca::object * phint)
+void FileManagerViewInterface::on_update(sp(::user::view) psender, LPARAM lhint, ::ca::object * phint)
 { 
    UNREFERENCED_PARAMETER(psender);
    UNREFERENCED_PARAMETER(lhint);

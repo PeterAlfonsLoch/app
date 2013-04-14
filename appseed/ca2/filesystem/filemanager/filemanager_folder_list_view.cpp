@@ -4,12 +4,10 @@
 
 folder_list_view::folder_list_view(sp(::ca::application) papp) :
    ca(papp),
-   ::user::view(papp),
+   
    ::user::scroll_view(papp),
    ::user::list(papp),
    ::user::form(papp),
-   ::ca::user::form(papp),
-   ::user::form_list(papp),
    ::user::form_list(papp),
    simple_list_view(papp)
 {

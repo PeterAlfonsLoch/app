@@ -18,14 +18,14 @@ namespace user
    {
    public:
       // for creating new views
-      sp(::ca::type_info)         m_typeinfoNewView; // runtime class of ::view to create or ::null()
+      sp(::ca::type_info)         m_typeinfoNewView; // runtime class of ::user::view to create or ::null()
       sp(::user::document_interface)              m_pCurrentDoc;
       sp(::user::interaction)   m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
       sp(document_template)     m_pNewDocTemplate;
 
-      // for sharing ::view/frame state from the original ::view/frame
+      // for sharing ::user::view/frame state from the original ::user::view/frame
       sp(::user::interaction)   m_pLastView;
       sp(::user::interaction)   m_pCurrentFrame;
 

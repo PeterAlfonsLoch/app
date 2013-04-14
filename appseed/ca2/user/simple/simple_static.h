@@ -3,7 +3,7 @@
 class image_list;
 
 class CLASS_DECL_ca2 simple_static : 
-   public ::user::base_static
+   public ::user::static_control
 {
 public:
    bool                 m_bTransparent;

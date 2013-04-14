@@ -86,7 +86,7 @@ namespace gcom
 //         ::ca::bitmap            m_bmpBack;
 //         ::ca::bitmap            m_bmpBackOld;
 
-         // Back tools keep the final ::view background snapshot
+         // Back tools keep the final ::user::view background snapshot
 //         ::ca::graphics_sp               m_dcBuffer;
 //         ::ca::bitmap            m_bmpBuffer;
 //         ::ca::bitmap            m_bmpBufferOld;

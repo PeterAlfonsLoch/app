@@ -4,7 +4,7 @@
 FileManagerLeftView::FileManagerLeftView(sp(::ca::application) papp) :
    ca(papp),
    ::user::split_layout(papp),
-   ::user::view(papp),
+   
    ::user::split_view(papp),
    place_holder_container(papp)
 {
@@ -28,7 +28,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerLeftView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
+void FileManagerLeftView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != ::null())
@@ -73,7 +73,7 @@ void FileManagerLeftView::CreateViews()
 
    if(plist == ::null())
    {
-      System.simple_message_box(::null(), "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::user::view");
    }
    
    plist->m_bStatic = true;
@@ -86,7 +86,7 @@ void FileManagerLeftView::CreateViews()
 
    if(pmediaview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::user::view");
    }
 
    SetPane(1, pmediaview, false);

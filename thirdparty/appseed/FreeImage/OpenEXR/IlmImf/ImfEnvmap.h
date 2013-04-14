@@ -83,7 +83,7 @@ namespace Imf {
 enum Envmap
 {
     ENVMAP_LATLONG = 0,		// Latitude-longitude environment map
-    ENVMAP_CUBE = 1,		// Cube map
+    ENVMAP_CUBE = 1,		// System map
 
     NUM_ENVMAPTYPES		// Number of different environment map types
 };
@@ -159,7 +159,7 @@ namespace LatLongMap
 
 
 //--------------------------------------------------------------
-// Cube Map:
+// System Map:
 //
 // The environment is projected onto the six faces of an
 // axis-aligned cube.  The cube's faces are then arranged

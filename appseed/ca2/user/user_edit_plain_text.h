@@ -124,7 +124,7 @@ namespace user
       void key_to_char(WPARAM wparam, LPARAM lparam);
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
-      virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
+      virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::user::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
 

@@ -8,7 +8,7 @@ namespace nature
    view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::user::view(papp),
+      
       m_buttonKaraoke(papp),
       m_buttonDevEdge(papp),
       m_buttonNetShare(papp),
@@ -74,7 +74,7 @@ namespace nature
       return this;
    }
 
-   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);

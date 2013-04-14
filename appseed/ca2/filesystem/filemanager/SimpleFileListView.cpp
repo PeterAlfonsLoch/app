@@ -13,13 +13,11 @@ namespace filemanager
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
-      ::ca::user::form(papp),
       ::user::form_list(papp),
       SimpleFileListInterface(papp),
-      ::user::view(papp),
+      
       ::user::scroll_view(papp),
       ::user::list(papp),
-      ::user::form_list(papp),
       ::fs::list_interface(papp),
       ::fs::list(papp)
    {
@@ -79,7 +77,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFileListView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void SimpleFileListView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
 
       FileManagerViewInterface::on_update(pSender, lHint, phint);
@@ -402,7 +400,7 @@ namespace filemanager
          {
             ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //ASSERT(pPopup != ::null());
-            //sp(::frame_window) pframe = GetTopLevelFrame();
+            //sp(::user::frame_window) pframe = GetTopLevelFrame();
 
 
 
@@ -521,15 +519,15 @@ namespace filemanager
             GetSelectedFilePath(stra);
             if(stra.get_count() <= 0)
             {
-               Bergedge.m_varTopicFile.unset();
+               Session.m_varTopicFile.unset();
             }
             else if(stra.get_count() == 1)
             {
-               Bergedge.m_varTopicFile = stra[0];
+               Session.m_varTopicFile = stra[0];
             }
             else
             {
-               Bergedge.m_varTopicFile = stra;
+               Session.m_varTopicFile = stra;
             }
 
          }
@@ -663,7 +661,7 @@ namespace filemanager
          
          point ptCursor;
          
-         Bergedge.get_cursor_pos(&ptCursor);
+         Session.get_cursor_pos(&ptCursor);
       
          if(menu.create_menu(straCommand, straCommandTitle))
          {

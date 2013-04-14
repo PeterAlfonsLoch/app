@@ -26,7 +26,7 @@ namespace user
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual void on_update(::view * pSender, LPARAM lHint, base_object* pHint);
+      virtual void on_update(::user::view * pSender, LPARAM lHint, base_object* pHint);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
       // ::user::tree

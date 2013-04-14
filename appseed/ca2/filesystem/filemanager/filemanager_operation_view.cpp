@@ -4,7 +4,7 @@
 file_manager_operation_view::file_manager_operation_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::split_layout(papp),
-   ::user::view(papp),
+   
    ::user::split_view(papp),
    place_holder_container(papp)
 {
@@ -32,7 +32,7 @@ void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
    m_plistview = create_view < file_manager_operation_list_view > ();
    if(m_plistview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create transfer list ::view");
+      System.simple_message_box(::null(), "Could not create transfer list ::user::view");
    }
    SetPane(0, m_plistview, false);
 
@@ -40,7 +40,7 @@ void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
    m_pinfoview = create_view < file_manager_operation_info_view > ();
    if(m_pinfoview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create transfer information ::view");
+      System.simple_message_box(::null(), "Could not create transfer information ::user::view");
    }
    SetPane(1, m_pinfoview, false);
 
@@ -56,7 +56,7 @@ void file_manager_operation_view::install_message_handling(::ca::message::dispat
 
 sp(file_manager_operation_document) file_manager_operation_view::get_document()
 {
-   return  (::view::get_document());
+   return  (::user::view::get_document());
 }
 
 void file_manager_operation_view::_001OnMainPostMessage(::ca::signal_object * pobj)

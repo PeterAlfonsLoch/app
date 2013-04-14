@@ -10,6 +10,7 @@ namespace html
 
       cell::cell(sp(::ca::application) papp) :
          ca(papp),
+         
          user::scroll_view(papp),
          user::edit_plain_text(papp),
          ::html::impl::text(papp)

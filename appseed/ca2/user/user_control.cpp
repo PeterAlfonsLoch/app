@@ -186,7 +186,7 @@ namespace user
    void control::install_message_handling(::ca::message::dispatch * pdispatch)
    {
 
-      ::view::install_message_handling(pdispatch);
+      ::user::view::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
 
 #ifdef WINDOWS
@@ -585,7 +585,7 @@ namespace user
        // the style must be visible
        if (bVis)
        {
-           sp(frame_window) pTarget = pview->get_owner();
+           sp(::user::frame_window) pTarget = pview->get_owner();
            if (pTarget == ::null() || !pTarget->is_frame_window())
                pTarget = pview->GetParentFrame();
            if (pTarget != ::null())
@@ -595,7 +595,7 @@ namespace user
    }
 
 
-   void control_view_impl::BaseControlExOnUpdateCmdUI(sp(frame_window) pTarget, bool bDisableIfNoHndler)
+   void control_view_impl::BaseControlExOnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
    {
       sp(::user::interaction) pview = GetWnd();
 

@@ -5,8 +5,8 @@ namespace user
 
    menu_button::menu_button(sp(::ca::application) papp) :
       ::user::interaction(papp),
+      
       ::user::button(papp),
-      button(papp),
       ca(papp)
    {
       m_pitem = ::null();

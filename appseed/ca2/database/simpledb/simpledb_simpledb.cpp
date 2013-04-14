@@ -38,7 +38,7 @@ namespace simpledb
 
       if(!m_pserver->initialize())
       {
-         Application.user()->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+         Application.user()->simple_message_box(::null(), "Could not initialize simpledb.", MB_OK);
          return false;
       }
 
@@ -120,7 +120,7 @@ namespace simpledb
 
       if(!InitializeDataCentral())
       {
-         m_papp->m_pappThis->simple_message_box(NULL, "Could not initialize data central");
+         m_papp->m_pappThis->simple_message_box(::null(), "Could not initialize data central");
          return false;
       }
 

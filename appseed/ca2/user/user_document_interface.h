@@ -19,8 +19,8 @@ namespace user
       spa(document)                    m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
-      sp(document_template)              m_pdocumentemplate;
-      spa(::view)                      m_viewptra;
+      sp(document_template)            m_pdocumentemplate;
+      spa(::user::view)                m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
@@ -49,10 +49,10 @@ namespace user
       virtual bool is_new_document();
 
    // Operations
-      void add_view(sp(::view) pview);
-      void remove_view(sp(::view) pview);
+      void add_view(sp(::user::view) pview);
+      void remove_view(sp(::user::view) pview);
       virtual ::count get_view_count() const;
-      virtual sp(::view) get_view(index index = 0) const;
+      virtual sp(::user::view) get_view(index index = 0) const;
 
 
       template < class T >
@@ -88,7 +88,7 @@ namespace user
          return ::null();
       }
 
-      virtual sp(::view) get_typed_view(sp(::ca::type_info) info, index indexFind = 0);
+      virtual sp(::user::view) get_typed_view(sp(::ca::type_info) info, index indexFind = 0);
 
       virtual void show_all_frames(UINT nCmdShow);
 
@@ -96,21 +96,21 @@ namespace user
       class update
       {
       public:
-         sp(::view)         m_pSender;
+         sp(::user::view)         m_pSender;
          LPARAM         m_lHint;
          ::ca::object *  m_pHint;
       };
 
       // Update Views (simple update - DAG only)
-      void update_all_views(sp(::view) pSender, LPARAM lHint = 0L,
+      void update_all_views(sp(::user::view) pSender, LPARAM lHint = 0L,
          ::ca::object* pHint = ::null());
 
-      void send_update(sp(::view) pSender, LPARAM lHint = 0L,
+      void send_update(sp(::user::view) pSender, LPARAM lHint = 0L,
          ::ca::object* pHint = ::null());
 
    // Overridables
       // Special notifications
-      virtual void on_changed_view_list(single_lock * psl = ::null()); // after add or remove ::view
+      virtual void on_changed_view_list(single_lock * psl = ::null()); // after add or remove ::user::view
       virtual void delete_contents(); // delete doc items etc
 
       // File helpers
@@ -121,9 +121,9 @@ namespace user
       virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
-      virtual bool can_close_frame(sp(frame_window) pFrame);
+      virtual bool can_close_frame(sp(::user::frame_window) pFrame);
       virtual bool save_modified(); // return TRUE if ok to continue
-      virtual void pre_close_frame(sp(frame_window) pFrame);
+      virtual void pre_close_frame(sp(::user::frame_window) pFrame);
 
 
       virtual void dump(dump_context &) const;

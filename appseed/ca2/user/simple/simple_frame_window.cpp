@@ -97,9 +97,9 @@ void simple_frame_window::_001OnDestroy(::ca::signal_object * pobj)
 
    try
    {
-      if(&Bergedge != ::null())
+      if(&Session != ::null())
       {
-         Bergedge.remove_frame(this);
+         Session.remove_frame(this);
       }
    }
    catch(...)
@@ -636,9 +636,9 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       return;
    }
 
-   sp(::cube::application) papp = &Application;
+   sp(::plane::application) papp = &Application;
 
-   if(papp->is_cube() || papp->is_bergedge() || papp->is_session() || papp->is_system())
+   if(papp->is_system() || papp->is_session())
    {
 
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
@@ -647,7 +647,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       for(int32_t i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
 
-         sp(::cube::application) pappChild = &App(Sys(papp).m_appptra(i).m_p);
+         sp(::plane::application) pappChild = &App(Sys(papp).m_appptra(i).m_p);
 
          if(!pappChild->_001CloseApplicationByUser(this))
             return;

@@ -1,17 +1,14 @@
 #include "framework.h"
 
 
-namespace ca2 // ca8 + cube
+namespace userex // ca8 + cube
 {
 
 
    wait_message_dialog::wait_message_dialog(sp(::ca::application) papp) :
       ca(papp),
-      user::view(papp),
-      user::scroll_view(papp),
       user::scroll_view(papp),
       user::form(papp),
-      user::form_view(papp),
       html_form(papp),
       html_form_view(papp),
       form_view(papp),
@@ -99,6 +96,6 @@ namespace ca2 // ca8 + cube
    }
 
 
-} // namespace ca2 // ca8 + cube
+} // namespace userex // ca8 + cube
 
 

@@ -8,6 +8,7 @@ namespace bergedge
    document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
+      ::ca::data_container(papp),
       ::user::document(papp)
    {
       m_pplatformdocument = ::null();
@@ -68,10 +69,6 @@ namespace bergedge
       //pframe->SetWindowPos(0, 200, 200, 400, 400, SWP_SHOWWINDOW);
    }
 
-   ::bergedge::bergedge * document::get_bergedge()
-   {
-      return dynamic_cast < ::bergedge::bergedge * > (m_papp->m_psession->m_pbergedge);
-   }
 
 
 } // namespace bergedge

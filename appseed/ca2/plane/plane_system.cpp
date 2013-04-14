@@ -6,6 +6,7 @@
 #define new DEBUG_NEW
 #endif
 
+
 namespace plane
 {
 
@@ -134,11 +135,15 @@ namespace plane
       m_bLibCharGuess            = false;
       m_puserstr                 = ::null();
 
-      m_pcube                    = ::null();
-
       m_pparserfactory           = ::null();
 
       m_bLicense                 = false;
+
+      m_prunstartinstaller       = ::null();
+      m_bLicense                 = false;
+      m_strAppName               = "system";
+      m_strInstallToken          = "system";
+
 
    }
 
@@ -174,7 +179,7 @@ namespace plane
       m_bProcessInitialize          = true;
 
 
-      if(!::planebase::application::process_initialize())
+      if(!::plane::application::process_initialize())
          return false;
 
 
@@ -280,7 +285,7 @@ namespace plane
          return false;
 
 
-      if(!::planebase::application::initialize1())
+      if(!::plane::application::initialize1())
          return false;
 
 
@@ -506,7 +511,7 @@ namespace plane
    bool system::initialize3()
    {
 
-      if(!::planebase::application::initialize3())
+      if(!::plane::application::initialize3())
          return false;
 
       if(m_phistory == ::null())
@@ -531,7 +536,7 @@ namespace plane
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
-      if(!::planebase::application::initialize_instance())
+      if(!::plane::application::initialize_instance())
          return false;
 
       m_pbergedgemap = new ::plane::session::map;
@@ -572,7 +577,7 @@ namespace plane
          {
             try
             {
-               if(appptra[i].is_bergedge() || appptra[i].is_session() || appptra[i].is_system() || appptra[i].is_cube())
+               if(appptra[i].is_session() || appptra[i].is_system())
                {
                   appptra.remove_at(i);
                   continue;
@@ -681,7 +686,7 @@ namespace plane
       int32_t iRet = 0;
       try
       {
-         iRet = ::planebase::application::exit_instance();
+         iRet = ::plane::application::exit_instance();
       }
       catch(...)
       {
@@ -929,8 +934,7 @@ namespace plane
 
       appptra().add_unique(papp);
 
-      if(!papp->is_bergedge()
-      && !papp->is_session()
+      if(!papp->is_session()
       && !papp->is_system())
       {
 
@@ -1165,7 +1169,7 @@ namespace plane
       {
       }
 
-      ::planebase::application::finalize();
+      ::plane::application::finalize();
 
       try
       {
@@ -1631,10 +1635,10 @@ namespace plane
          strApplicationId = "bergedge";
 
       }
-      else if(strId == "app/ca2/cube")
+      else if(strId == "app/ca2/system")
       {
 
-         strApplicationId = "cube";
+         strApplicationId = "system";
 
       }
       else
@@ -1771,16 +1775,16 @@ namespace plane
 
 
    //////////////////////////////////////////////////////////////////////////////////////////////////
-   // System/Cube
+   // System/System
    //
-   sp(::document) system::hold(sp(::user::interaction) pui)
+   sp(::user::document) system::hold(sp(::user::interaction) pui)
    {
 
 
-      if(m_pcubeInterface != ::null())
-      {
-         return m_pcubeInterface->hold(pui);
-      }
+      //if(m_pcubeInterface != ::null())
+      //{
+        // return m_pcubeInterface->hold(pui);
+      //}
 
       return ::null();
 
@@ -1790,11 +1794,6 @@ namespace plane
    ::count system::get_monitor_count()
    {
 
-      if(m_pcubeInterface != ::null())
-      {
-         return m_pcubeInterface->get_monitor_count();
-      }
-
       return 0;
 
    }
@@ -1802,10 +1801,6 @@ namespace plane
    bool system::get_monitor_rect(index i, LPRECT lprect)
    {
 
-      if(m_pcubeInterface != ::null())
-      {
-         return m_pcubeInterface->get_monitor_rect(i, lprect);
-      }
 
 #ifdef WINDOWSEX
       if(i < 0 || i >= get_monitor_count())
@@ -1884,10 +1879,6 @@ namespace plane
    ::count system::get_desk_monitor_count()
    {
 
-      if(m_pcubeInterface != ::null())
-      {
-         return m_pcubeInterface->get_desk_monitor_count();
-      }
 
       return 0;
 
@@ -1895,11 +1886,6 @@ namespace plane
 
    bool system::get_desk_monitor_rect(index i, LPRECT lprect)
    {
-
-      if(m_pcubeInterface != ::null())
-      {
-         return m_pcubeInterface->get_desk_monitor_rect(i, lprect);
-      }
 
 
       return false;
@@ -2079,47 +2065,14 @@ retry:
          return true;
 
       }
-
-
 #endif
 
 
-      #include "framework.h"
 
-#ifdef WINDOWS
-#undef new
-#include <GdiPlus.h>
-#define new DEBUG_NEW
-#endif
-
-
-namespace cube
-{
-
-
-   cube::cube()
+   /*bool system::InitApplication()
    {
 
-
-      m_prunstartinstaller       = ::null();
-      m_bLicense                 = false;
-      m_strAppName               = "cube";
-      m_strInstallToken          = "cube";
-
-
-   }
-
-
-   cube::~cube()
-   {
-
-   }
-
-
-   bool cube::InitApplication()
-   {
-
-      if(!::cube::application::InitApplication())
+      if(!::plane::application::InitApplication())
          return FALSE;
 
       return TRUE;
@@ -2127,10 +2080,10 @@ namespace cube
    }
 
 
-   bool cube::process_initialize()
+   bool system::process_initialize()
    {
 
-      if(!::cube::application::process_initialize())
+      if(!::plane::application::process_initialize())
          return false;
 
       return true;
@@ -2138,23 +2091,11 @@ namespace cube
    }
 
 
-   bool cube::initialize()
+   bool system::initialize()
    {
 
 
-      if(!::cube::application::initialize())
-         return false;
-
-      return true;
-
-   }
-
-
-
-   bool cube::initialize1()
-   {
-
-      if(!::cube::application::initialize1())
+      if(!::plane::application::initialize())
          return false;
 
       return true;
@@ -2163,20 +2104,10 @@ namespace cube
 
 
 
-   bool cube::initialize3()
+   bool system::initialize1()
    {
 
-      if(!::cube::application::initialize3())
-         return false;
-
-      return true;
-
-   }
-
-   bool cube::initialize_instance()
-   {
-
-      if(!::cube::application::initialize_instance())
+      if(!::plane::application::initialize1())
          return false;
 
       return true;
@@ -2184,24 +2115,46 @@ namespace cube
    }
 
 
-   bool cube::bergedge_start()
+
+   bool system::initialize3()
    {
 
-      if(!::cube::application::bergedge_start())
+      if(!::plane::application::initialize3())
+         return false;
+
+      return true;
+
+   }
+
+   bool system::initialize_instance()
+   {
+
+      if(!::plane::application::initialize_instance())
+         return false;
+
+      return true;
+
+   }
+
+
+   bool system::bergedge_start()
+   {
+
+      if(!::plane::application::bergedge_start())
          return false;
 
       return true;
    }
 
 
-   int32_t cube::exit_instance()
+   int32_t system::exit_instance()
    {
 
       int32_t iRet = -1;
 
       try
       {
-         iRet = ::cube::application::exit_instance();
+         iRet = ::plane::application::exit_instance();
       }
       catch(...)
       {
@@ -2212,11 +2165,11 @@ namespace cube
       return iRet;
 
 
-   }
+   }*/
 
 
 
-   bergedge::bergedge * cube::query_bergedge(index iEdge)
+   /*sp(::plane::session) system::query_session(index iEdge)
    {
       sp(::plane::session) psession = ::null();
       if(m_pbergedgemap == ::null())
@@ -2225,11 +2178,11 @@ namespace cube
       {
          return ::null();
       }
-      return dynamic_cast < ::bergedge::bergedge * > (psession->m_pbergedge);
+      return dynamic_cast < ::sp(::plane::session) > (psession->m_pbergedge);
    }
 
 
-   bergedge::bergedge * cube::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::plane::session) system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
    {
       sp(::plane::session) psession = ::null();
       if(m_pbergedgemap == ::null())
@@ -2242,98 +2195,98 @@ namespace cube
          psession->m_iEdge = iEdge;
          m_pbergedgemap->set_at(iEdge, psession);
       }
-      return dynamic_cast < ::bergedge::bergedge * > (psession->m_pbergedge);
-   }
+      return dynamic_cast < ::sp(::plane::session) > (psession->m_pbergedge);
+   }*/
 
 
-   sp(::platform::document) cube::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::platform::document) system::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
+      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
       return pbergedge->get_platform();
    }
 
-   sp(::nature::document) cube::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::nature::document) system::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
+      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
       return pbergedge->get_nature();
    }
 
-   sp(::ca::application) cube::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   /*sp(::ca::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
+      sp(::plane::session) pbergedge = ge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
-   }
+   }*/
 
 
-   bool cube::set_history(::ca::history * phistory)
+   /*bool system::set_history(::ca::history * phistory)
    {
 
       UNREFERENCED_PARAMETER(phistory);
 
       return true;
 
-   }
+   }*/
 
 
 
-   void cube::register_bergedge_application(sp(::ca::application) papp)
-   {
+   //void system::register_bergedge_application(sp(::ca::application) papp)
+   //{
 
 
-      System.register_bergedge_application(papp);
+   //   System.register_bergedge_application(papp);
 
 
-   }
+   //}
 
-   void cube::unregister_bergedge_application(sp(::ca::application) papp)
-   {
+   //void system::unregister_bergedge_application(sp(::ca::application) papp)
+   //{
 
-      System.unregister_bergedge_application(papp);
-
-
-   }
+   //   System.unregister_bergedge_application(papp);
 
 
-
+   //}
 
 
 
-   bool cube::finalize()
-   {
-
-      bool bOk = false;
-
-      try
-      {
-         bOk = cube::application::finalize();
-      }
-      catch(...)
-      {
-      }
 
 
-      return bOk;
-   }
+
+   //bool system::finalize()
+   //{
+
+   //   bool bOk = false;
+
+   //   try
+   //   {
+   //      bOk = system::application::finalize();
+   //   }
+   //   catch(...)
+   //   {
+   //   }
 
 
-   void cube::on_request(sp(::ca::create_context) pcreatecontext)
-   {
-      ::bergedge::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-      pbergedge->request_create(pcreatecontext);
-   }
-
-   void cube::open_by_file_extension(index iEdge, const char * pszFileName)
-   {
-      System.get_session(iEdge)->open_by_file_extension(pszFileName);
-   }
+   //   return bOk;
+   //}
 
 
-   bool cube::base_support()
+   //void system::on_request(sp(::ca::create_context) pcreatecontext)
+   //{
+   //   ::sp(::plane::session) pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+   //   pbergedge->request_create(pcreatecontext);
+   //}
+
+   //void system::open_by_file_extension(index iEdge, const char * pszFileName)
+   //{
+   //   System.get_session(iEdge)->open_by_file_extension(pszFileName);
+   //}
+
+
+   bool system::base_support()
    {
       return true;
    }
 
-   index cube::get_new_bergedge(::ca::application_bias * pbiasCreation)
+   index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
    {
       index iNewEdge = m_iNewEdge;
       sp(::plane::session) psession;
@@ -2348,22 +2301,22 @@ namespace cube
    }
 
 
-   bool cube::is_system()
+   bool system::is_system()
    {
       return false;
    }
 
-   bool cube::is_cube()
+   bool system::is_system()
    {
       return true;
    }
 
-   bool cube::set_main_init_data(::ca::main_init_data * pdata)
+   bool system::set_main_init_data(::ca::main_init_data * pdata)
    {
 
       if(pdata == ::null())
       {
-         if(!::cube::application::set_main_init_data(pdata))
+         if(!::plane::application::set_main_init_data(pdata))
             return false;
          return true;
       }
@@ -2401,7 +2354,7 @@ namespace cube
          command()->add_line(strCommandLine);
       }
 
-      if(!::cube::application::set_main_init_data(pdata))
+      if(!::plane::application::set_main_init_data(pdata))
          return false;
 
       return true;
@@ -2409,13 +2362,13 @@ namespace cube
    }
 
 
-   sp(::ca::command_thread) cube::command_thread()
+   sp(::ca::command_thread) system::command_thread()
    {
 	   return m_pcommandthread;
    }
 
 
-   ::cube::cube * cube::get_cube()
+   ::system::system * system::get_cube()
    {
 
       return this;

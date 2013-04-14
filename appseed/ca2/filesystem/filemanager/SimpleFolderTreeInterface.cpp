@@ -7,6 +7,7 @@ namespace filemanager
 
    SimpleFolderTreeInterface::SimpleFolderTreeInterface(sp(::ca::application) papp) :
       ca(papp),
+      
       ::user::scroll_view(papp),
       ::fs::tree(papp),
       m_mutexMissinUpdate(papp)

@@ -51,14 +51,6 @@ namespace fontopus
 } // namespace fontopus
 
 
-namespace cube
-{
-
-   class application;
-
-}
-
-
 namespace fontopus
 {
 
@@ -160,7 +152,7 @@ namespace ca
       string                        m_strAppId;
       string                        m_strLibraryName;
       ::plane::application *        m_pappThis;
-      //::cube::application *         m_pappCube;
+      //::plane::application *         m_pappCube;
 
 
       virtual void construct() = 0;
@@ -217,6 +209,11 @@ namespace ca
       virtual void _001OnFileNew(::ca::signal_object * pobj) = 0;
 
       virtual void ShowWaitCursor(bool bShow = true) = 0;
+
+
+      virtual ::user::printer * get_printer(const char * pszDeviceName) = 0;
+
+
 
    };
 
@@ -414,9 +411,9 @@ namespace ca
       // SetRegistryKey() member function.
       const char *                  m_pszRegistryKey;
 
-      // Pointer to document_manager used to manage document templates
+      // Pointer to ::user::document_manager used to manage document templates
       // for this application instance.
-      sp(document_manager)            m_pdocmanager;
+      sp(::user::document_manager)            m_pdocmanager;
 
       // Support for Shift+F1 help mode.
 
@@ -1191,6 +1188,8 @@ namespace ca
 
       virtual int32_t send_simple_command(const char * psz, void * osdataSender);
       virtual int32_t send_simple_command(void * osdata, const char * psz, void * osdataSender);
+
+            virtual ::user::printer * get_printer(const char * pszDeviceName);
 
 
 

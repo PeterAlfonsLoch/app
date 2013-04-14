@@ -493,10 +493,10 @@ namespace user
 
 
       if(get_document() != ::null()
-      && ::view::get_data < document > () != ::null()
-      && dynamic_cast < plain_text_data * > (::view::get_data < document >()) != ::null())
+      && ::user::view::get_data < document > () != ::null()
+      && dynamic_cast < plain_text_data * > (::user::view::get_data < document >()) != ::null())
       {
-         set_plain_text_data(dynamic_cast < plain_text_data * > (::view::get_data < document > ()), false);
+         set_plain_text_data(dynamic_cast < plain_text_data * > (::user::view::get_data < document > ()), false);
       }
       else
       {
@@ -2173,7 +2173,7 @@ namespace user
     }
   }*/
 //  if (typeDescription == null || type == null){
-      sp(::view) pview =  (this);
+      sp(::user::view) pview =  (this);
    if (pview!= ::null())
    {
       sp(::user::document_interface) pdoc = pview->get_document();

@@ -125,7 +125,7 @@ namespace userex
       }
 
       pdoc = (m_ptemplateForm->open_document_file(createcontext));
-      sp(::view) pview = pdoc->get_view(0);
+      sp(::user::view) pview = pdoc->get_view(0);
       pdoc->get_html_data()->m_pform =  (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
@@ -167,14 +167,14 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
-      sp(::view) pview = pdoc->get_view(0);
+      sp(::user::view) pview = pdoc->get_view(0);
       pdoc->get_html_data()->m_pform =  (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
    }
 
 
-   sp(::document) userex::hold(sp(::user::interaction) pui)
+   sp(::user::document) userex::hold(sp(::user::interaction) pui)
    {
 
       sp(::ca::create_context) createcontext(allocer());

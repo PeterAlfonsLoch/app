@@ -24,11 +24,8 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
 html_view::html_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
-   ::user::view(papp),
    ::user::scroll_view(papp),
    ::user::form(papp),
-   ::user::scroll_view(papp),
-   ::user::form_view(papp),
    html_form(papp)
 {
 }
@@ -91,7 +88,7 @@ void html_view::_001OnInitialUpdate(::ca::signal_object * pobj)
 
 }
 
-void html_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
+void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);

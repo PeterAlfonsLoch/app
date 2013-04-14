@@ -7,13 +7,15 @@ namespace user
 
    form::form(sp(::ca::application) papp) :
       ca(papp),
-      ::user::interaction(papp)
+      ::user::interaction(papp),
+      ::user::scroll_view(papp)
    {
 
       m_bOnEditUpdate         = false;
       m_bOnLanguageChange     = false;
       m_pcallback             = ::null();
       m_bInitialized          = false;
+
    }
 
 
@@ -382,7 +384,7 @@ namespace user
    }
 
 
-   void form::_001OnUpdate(sp(::view) pviewSender, LPARAM lhint, ::ca::object* phint)
+   void form::_001OnUpdate(sp(::user::view) pviewSender, LPARAM lhint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);
@@ -683,6 +685,29 @@ namespace user
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
+
+
+   /*   InstallOnDrawInterface(pinterface);
+      VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
+      VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
+      VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(pinterface, this, _001OnHScroll);
+   //   VMSGEN_WINDOW_ON_PAINT_CONDITIONAL(pinterface, this, _001OnPaint);
+      VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(pinterface, this, _001OnLButtonDown);
+      VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(pinterface, this, _001OnLButtonUp);
+      VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
+      VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
+      //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
+      //IGUI_MSG_LINK(::ca::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+//      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
+  //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
+      // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
+      //IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
+
+   //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
+   //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
+//      IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
+  //    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
+
    }
 
    void form::_001GetSelection(
@@ -1095,7 +1120,7 @@ namespace user
       if(m_bInitialized)
          return true;
       _001InitializeFormPreData();
-   /*   sp(::view) pview = dynamic_cast <sp(::view)>(get_guie());
+   /*   sp(::user::view) pview = dynamic_cast <sp(::user::view)>(get_guie());
       if(pview != ::null())
       {
          if(pview->get_document() != ::null())
@@ -1183,6 +1208,21 @@ namespace user
       pcontrol->GetClientRect(lprect);
 
    }
+
+
+
+
+
+
+
+
+
+   
+   
+
+
+   
+
 
 
 } // namespace user

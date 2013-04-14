@@ -30,10 +30,8 @@ namespace platform
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-      ::user::view(papp),
-      ::user::scroll_view(papp),
+      
       ::user::form(papp),
-      ::user::form_view(papp),
       html_form(papp),
       html_form_view(papp),
       form_view(papp),
@@ -124,9 +122,9 @@ namespace platform
 #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view message handlers
+   // ::user::view message handlers
 
-   // vmpLightView.cpp : implementation of the ::view class
+   // vmpLightView.cpp : implementation of the ::user::view class
    //
 
 
@@ -137,7 +135,7 @@ namespace platform
       return form_view::pre_create_window(cs);
    }
    /////////////////////////////////////////////////////////////////////////////
-   // ::view printing
+   // ::user::view printing
 
    void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
@@ -160,7 +158,7 @@ namespace platform
       return this;
    }
 
-   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -302,9 +300,9 @@ namespace platform
                sp(::ca::create_context) cc(Application.command_central());
 
                cc->m_spCommandLine->m_strApp   = strApp;
-               cc->m_spCommandLine->m_varFile  = Bergedge.m_varTopicFile;
+               cc->m_spCommandLine->m_varFile  = Session.m_varTopicFile;
 
-               Bergedge.command()->request_create(cc);
+               Session.command()->request_create(cc);
             }
          }
       }
@@ -378,15 +376,15 @@ namespace platform
 
 
       class rect rectThumb;
-      if(&Bergedge != ::null())
+      if(&Session != ::null())
       {
-         Bergedge.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
+         Session.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
          {
             ::ca::dib_sp dib(allocer());
             dib->create(1920, 1080);
             keeper < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
-            Bergedge.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
+            Session.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
 
@@ -461,7 +459,7 @@ namespace platform
    {
       try
       {
-         Bergedge.user()->open_document_file(pcreatecontext);
+         Session.user()->open_document_file(pcreatecontext);
       }
       catch(...)
       {

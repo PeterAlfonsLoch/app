@@ -28,7 +28,6 @@ namespace user
       virtual void assert_valid() const;
 
 
-      virtual void reload_template();
 
    };
 

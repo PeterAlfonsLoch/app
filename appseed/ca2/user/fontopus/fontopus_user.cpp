@@ -44,7 +44,7 @@ namespace fontopus
    {
 
       if(get_app()->is_system()
-      || get_app()->is_cube())
+      || get_app()->is_system())
          return false;
 
 

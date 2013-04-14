@@ -8,6 +8,7 @@ namespace filemanager
 
    SimpleFolderListInterface::SimpleFolderListInterface(sp(::ca::application) papp) :
       ca(papp),
+      
       ::user::scroll_view(papp),
       ::user::list(papp)
    {

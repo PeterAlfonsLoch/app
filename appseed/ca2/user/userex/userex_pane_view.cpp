@@ -6,8 +6,7 @@ namespace userex
 
 
    pane_view::pane_view(sp(::ca::application) papp) :
-      ca(papp),
-      ::user::view(papp)
+      ca(papp)
    {
 
    }

@@ -125,7 +125,7 @@ namespace plane
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // System/Cube
+      // System/System
       //
       sp(::user::document) hold(sp(::user::interaction) pui);
 
@@ -137,10 +137,10 @@ namespace plane
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // Session/Bergedge
+      // Session/Session
       //
-      virtual ::bergedge::view * get_view();
-      virtual ::bergedge::document * get_document();
+      virtual sp(::bergedge::view) get_view();
+      virtual sp(::bergedge::document) get_document();
 
 
       virtual void fill_locale_schema(::ca::international::locale_schema & localeschema);
@@ -180,7 +180,7 @@ namespace plane
 
       sp(::ca::application) get_system();
 
-      virtual sp(::planebase::application) assert_running(const char * pszAppdId);
+      virtual sp(::plane::application) assert_running(const char * pszAppdId);
 
 
 
@@ -188,11 +188,6 @@ namespace plane
 
 
       
-      virtual void CubeOnFactoryExchange();
-
-
-      virtual ::user::printer * get_printer(const char * pszDeviceName);
-
 
 
       // ::ca::smart_pointer < ::cubebase::application >::oattrib

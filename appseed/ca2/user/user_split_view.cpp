@@ -5,7 +5,7 @@ namespace user
 
    split_view::split_view(sp(::ca::application) papp) :
       ca(papp),
-      ::user::view(papp),
+      
       split_layout(papp),
       place_holder_container(papp)
    {

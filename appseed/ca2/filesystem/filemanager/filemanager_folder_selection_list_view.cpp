@@ -8,7 +8,7 @@
 folder_selection_list_view::folder_selection_list_view(sp(::ca::application) papp) :
    ca(papp),
    ::user::split_layout(papp),
-   ::user::view(papp),
+   
    ::user::split_view(papp),
    place_holder_container(papp),
    m_pdata(new filemanager::data(papp))
@@ -69,7 +69,7 @@ void folder_selection_list_view::CreateViews()
 
    if(m_ptreeview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::user::view");
    }
 
    m_ptreeview->m_pfilemanagerinterface = this;
@@ -80,7 +80,7 @@ void folder_selection_list_view::CreateViews()
 
    if(m_plistview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::user::view");
    }
 
    m_plistview->m_pfilemanagerinterface = this;

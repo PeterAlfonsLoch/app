@@ -24,8 +24,8 @@ public:
 
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
    virtual bool pre_create_window(CREATESTRUCT& cs);
-   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
-   virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::user::view
+   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
 
    DECL_GEN_SIGNAL(_001OnInitialUpdate)

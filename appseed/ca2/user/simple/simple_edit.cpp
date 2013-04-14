@@ -4,6 +4,7 @@
 simple_edit::simple_edit(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
+   
    ::user::scroll_view(papp),
    ::user::edit_plain_text(papp)
 {

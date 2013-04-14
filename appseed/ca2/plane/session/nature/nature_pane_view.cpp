@@ -6,7 +6,7 @@ namespace nature
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::user::view(papp),
+      
       ::user::tab_view(papp),
       pane_tab_view(papp),
       place_holder_container(papp)
@@ -111,9 +111,9 @@ namespace nature
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  System.type_info < nature::view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < ::nature::view > ();
 
-            sp(::user::interaction) pview =  (view::create_view(System.type_info < nature::view > (), get_document(), this, 101).m_p);
+            sp(::user::interaction) pview =  (view::create_view(System.type_info < ::nature::view > (), get_document(), this, 101).m_p);
             if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
@@ -126,7 +126,7 @@ namespace nature
             sp(::user::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
             if(pdoc != ::null())
             {
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
                   sp(::user::frame_window) pframe = (pview->GetParentFrame());
@@ -142,7 +142,7 @@ namespace nature
 
       case PaneViewKeyboardLayout:
          {
-            m_pkeyboardlayout = create_view < ::ca2::keyboard_layout > ();
+            m_pkeyboardlayout = create_view < ::userex::keyboard_layout > ();
             m_pkeyboardlayout->CreateViews();
             pcreatordata->m_pdoc = m_pkeyboardlayout->m_pdoc;
             pcreatordata->m_pwnd = m_pkeyboardlayout;
@@ -177,7 +177,7 @@ namespace nature
       }
    }
 
-   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

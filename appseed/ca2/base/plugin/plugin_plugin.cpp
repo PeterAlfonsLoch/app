@@ -726,7 +726,7 @@ namespace plugin
                      }
                      if(!m_bApp)
                      {
-                        printf("Bergedge application is not initialized. Cannot start mplite.");
+                        printf("Session application is not initialized. Cannot start mplite.");
                         return;
                      }
                   }

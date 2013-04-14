@@ -5,7 +5,7 @@ namespace user
 
    bitmap_button::bitmap_button(sp(::ca::application) papp) :
       ca(papp),
-      ::user::button(papp),
+      
       ::user::button(papp)
    {
       m_bHover          = false;

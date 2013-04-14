@@ -6,12 +6,9 @@
 
 simple_printer_list_view::simple_printer_list_view(sp(::ca::application) papp) :
    ca(papp),
-   user::view(papp),
    user::scroll_view(papp),
    user::form(papp),
-   ::ca::user::form(papp),
    user::list(papp),
-   user::form_list(papp),
    user::form_list(papp),
    simple_list_view(papp),
    m_listdata(papp)
@@ -97,7 +94,7 @@ void simple_printer_list_view::_001OnClick(UINT nFlags, point point)
       item.m_iListItem = -1;
       m_listdata._001GetItemText(&item);
       ::user::print_job * pprintjob = new ::user::print_job(get_app());
-      pprintjob->m_phprinter = Cube.get_printer(item.m_strText);
+      pprintjob->m_phprinter = System.get_printer(item.m_strText);
       m_pview->collaborate(pprintjob);
       pprintjob->begin();
    }

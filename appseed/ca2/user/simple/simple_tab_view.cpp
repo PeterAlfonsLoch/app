@@ -2,7 +2,7 @@
 
 simple_tab_view::simple_tab_view(sp(::ca::application) papp) :
    ca(papp),
-   ::user::view(papp),
+   
    ::user::interaction(papp), 
    ::user::tab(papp),
    place_holder_container(papp)

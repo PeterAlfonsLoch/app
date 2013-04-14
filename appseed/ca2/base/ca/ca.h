@@ -543,17 +543,16 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
-      namespace user
-      {
-         class menu;                 // a menu
-      }
-
    class command_target;            // a target for ::fontopus::user commands
 
    namespace user
    {
+      class menu;                 // a menu
       class interaction;
       class edit_plain_text;            // Edit control
+      class view;            // a ::user::view on a document
+      class document_manager;      // document_template manager object
+      class frame_window;        // standard SDI frame
    } // namespace user
 
 
@@ -569,14 +568,12 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class CScrollBar;       // ScrollBar control
 
          // frame windows
-         class frame_window;        // standard SDI frame
             class CMDIFrameWnd; // standard MDI frame
             class CMDIChildWnd; // standard MDI child
             class CMiniFrameWnd;// half-height caption frame wnd
 
          // views on a document
-         class view;            // a ::view on a document
-            class CScrollView;  // a scrolling ::view
+            class CScrollView;  // a scrolling ::user::view
 
             namespace ca
             {
@@ -595,7 +592,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 class cmd_ui;           // Menu/button enabling
 //class CDataExchange;    // Data exchange and validation context
 //class CCommandLineInfo; // CommandLine parsing helper
-class document_manager;      // document_template manager object
 
 enum __HELP_TYPE
 {
@@ -714,7 +710,7 @@ protected:
 };
 */
 /////////////////////////////////////////////////////////////////////////////
-// document_manager
+// ::user::document_manager
 
 
 /*CLASS_DECL_ca2 bool __delete_reg_key(const char * lpszKey);
@@ -1012,8 +1008,8 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca_property.h
 
    //command_target
       //::ca::window
-         //::view
-            class CPreviewView;     // Print preview ::view
+         //::user::view
+            class CPreviewView;     // Print preview ::user::view
       //frame_window
          class COleCntrFrameWnd;
          //CMiniFrameWnd
@@ -1523,9 +1519,6 @@ CLASS_DECL_ca2 ::ca::byte_output_stream &  operator <<(::ca::byte_output_stream 
 class document_interface;
 
 
-class document_manager;
-
-
 class main_frame;
 
 
@@ -1589,14 +1582,6 @@ typedef ::ca::smart_pointer < file_system > file_system_sp;
 class Ex1FactoryImpl;
 
 
-
-namespace ca
-{
-
-
-   class file_manager_interface;
-
-} // namespace ca
 
 
 namespace lemon
@@ -1695,13 +1680,6 @@ namespace ca
 // Namespace ca8
 
 
-namespace cube // ca8 + cube
-{
-
-   class application;
-
-
-} // namespace cube // ca8 + cube
 
 
 #include "ca_compress.h"

@@ -8,7 +8,7 @@ namespace user
    edit_plain_text_view::edit_plain_text_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::user::view(papp),
+      
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp)
    {

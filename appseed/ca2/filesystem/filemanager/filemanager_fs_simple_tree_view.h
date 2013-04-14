@@ -41,14 +41,14 @@ namespace filemanager
          {
          public:
 
-            int32_t                             m_iIconFolderNormal;
-            int32_t                             m_iIconFolderSelected;
-            int32_t                             m_iIconArtistNormal;
-            int32_t                             m_iIconArtistSelected;
-            sp(::filemanager::fs::simple::view)   m_pserver;
-            FolderArray                         m_foldera; 
-            int64_t                             m_iParentFolder;
-            sp(::ca::simple_tree_data)          m_spdataFs;
+            int32_t                                m_iIconFolderNormal;
+            int32_t                                m_iIconFolderSelected;
+            int32_t                                m_iIconArtistNormal;
+            int32_t                                m_iIconArtistSelected;
+            sp(::filemanager::fs::simple::view)    m_pserver;
+            FolderArray                            m_foldera; 
+            int64_t                                m_iParentFolder;
+            sp(::ca::simple_tree_data)             m_spdataFs;
 
 
             tree_view(sp(::ca::application) papp);

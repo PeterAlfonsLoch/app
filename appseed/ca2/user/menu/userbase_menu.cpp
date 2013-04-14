@@ -91,7 +91,7 @@ namespace user
       const char * lpcsz = ::null();
 
       LPVOID lpvoid = ::null();
-      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, ::null(), ::null(), 0, rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
+      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, ::null(), ::null(), 0, rect(0, 0, 0, 0), Session.get_view(), id(), lpvoid))
          return false;
 
       set_owner(oswindowParent);

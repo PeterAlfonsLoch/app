@@ -52,7 +52,7 @@ namespace bergedge
 
       virtual void set_display(int32_t iDisplay);
 
-      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
    #ifdef DEBUG

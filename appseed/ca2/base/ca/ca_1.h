@@ -19,8 +19,8 @@ struct __SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
 
    //command_target
       //::ca::window
-         //::view
-            class CPreviewView;     // Print preview ::view
+         //::user::view
+            class CPreviewView;     // Print preview ::user::view
       //frame_window
          class COleCntrFrameWnd;
          //CMiniFrameWnd

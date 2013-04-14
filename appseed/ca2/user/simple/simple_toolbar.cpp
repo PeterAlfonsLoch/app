@@ -1409,7 +1409,7 @@ void simple_toolbar::_001OnLButtonUp(::ca::signal_object * pobj)
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
-      sp(frame_window) pTarget = (get_owner().m_p);
+      sp(::user::frame_window) pTarget = (get_owner().m_p);
       if (pTarget == ::null() || !pTarget->is_frame_window())
          pTarget = GetParentFrame();
       if (pTarget != ::null())

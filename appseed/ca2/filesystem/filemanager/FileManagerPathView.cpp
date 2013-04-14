@@ -4,7 +4,7 @@
 FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
    ca(papp),
    ::user::interaction(papp),
-   ::user::view(papp),
+   
    ::user::scroll_view(papp),
    ::user::edit_plain_text_view(papp)
 {
@@ -14,7 +14,7 @@ FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
 
 }
 
-void FileManagerPathView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerPathView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != ::null())

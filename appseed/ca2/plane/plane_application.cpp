@@ -1,6 +1,13 @@
 #include "framework.h"
 
 
+
+#if defined(LINUX) || defined(MACOS)
+#include <dlfcn.h>
+#endif
+
+
+
 namespace plane
 {
 
@@ -21,7 +28,7 @@ namespace plane
 
    }
 
-   application::application(const char * pszId)
+/*   application::application(const char * pszId)
    {
 
 
@@ -30,7 +37,7 @@ namespace plane
 
       construct(pszId);
 
-   }
+   }*/
 
    void application::construct(const char *pszId)
    {
@@ -108,7 +115,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::initialize_instance();
+      return ::ca::application::initialize_instance();
    }
 
    int32_t application::exit_instance()
@@ -119,7 +126,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::exit_instance();
+      return ::ca::application::exit_instance();
    }
 
    void application::_001OnFileNew()
@@ -130,7 +137,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      planebase::application::_001OnFileNew(::null());
+      ::ca::application::_001OnFileNew(::null());
    }
 
 
@@ -142,7 +149,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::bergedge_start();
+      return ::ca::application::bergedge_start();
    }
 
    bool application::on_install()
@@ -153,7 +160,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::on_install();
+      return ::ca::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -164,7 +171,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::on_uninstall();
+      return ::ca::application::on_uninstall();
    }
 
 
@@ -176,7 +183,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::on_request(pcreatecontext);
+      return ::ca::application::on_request(pcreatecontext);
 
 
    }
@@ -191,7 +198,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::is_serviceable();
+      return ::ca::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
@@ -202,7 +209,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return planebase::application::allocate_new_service();
+      return ::ca::application::allocate_new_service();
    }
 
 
@@ -214,7 +221,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::planebase::application::_001OpenDocumentFile(varFile);
+      return ::ca::application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -222,18 +229,18 @@ namespace plane
    int32_t application::run()
    {
 
-      return ::planebase::application::run();
+      return ::ca::application::run();
 
    }
 
 
 
 
-   sp(::planebase::application) application::assert_running(const char * pszAppId)
+   sp(::plane::application) application::assert_running(const char * pszAppId)
    {
 
 
-      sp(::planebase::application) papp = ::null();
+      sp(::plane::application) papp = ::null();
 
 
       try
@@ -339,174 +346,13 @@ namespace plane
 
    }
 
-#include "framework.h"
-
-#if defined(LINUX) || defined(MACOS)
-#include <dlfcn.h>
-#endif
 
 
-
-namespace cubebase
-{
-
-
-   application::application()
-   {
-   }
-
-   application::~application()
-   {
-   }
-
-   sp(::ca::application) application::get_system()
-   {
-      return new application();
-   }
 
 
 typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
-   void application::CubeOnFactoryExchange()
-   {
 
-   #ifdef WINDOWSEX
-
-      HMODULE hmodule = ::LoadLibraryA("os2.dll");
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
-
-   #elif defined(METROWIN)
-
-      HMODULE hmodule = ::LoadPackagedLibrary(L"os2.dll", 0);
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
-
-#elif defined(LINUX)
-
-      void * pdl = ::dlopen("libca2os2.so", RTLD_NOW | RTLD_GLOBAL);
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
-
-   #else
-
-      throw todo(this);
-
-      //return ::null(); // not implemented... yet!! you may start!!
-
-   #endif
-
-   }
-
-
-   bool application::initialize1()
-   {
-
-
-
-
-      if(is_cube())
-      {
-
-         CubeOnFactoryExchange();
-
-         ::ca::smart_pointer < ::cubebase::application >::create(allocer());
-
-         if(::ca::smart_pointer < ::cubebase::application >::is_null())
-            return false;
-
-      }
-
-
-
-
-      if(!::plane::application::initialize1())
-         return false;
-
-      if(m_psystem == ::null())
-         return false;
-
-      if(m_psession == ::null())
-         return false;
-
-      if(m_psystem->m_pcube == ::null() && !is_cube())
-      {
-
-         sp(::ca::application) papp            = System.create_application("application", "cube", true, ::null());
-         if(papp == ::null())
-            return false;
-
-         sp(::cube::cube) pcube                = papp;
-         if(pcube == ::null())
-         {
-            papp.release();
-            return false;
-         }
-
-         pcube->m_psystem                    = m_psystem;
-         pcube->m_psession                   = m_psession;
-         m_psystem->m_pcube                  = pcube;
-         m_psystem->m_pcubeInterface         = pcube;
-
-         //pcube->directrix()->consolidate(&m_psystem->directrix());
-
-         //if(!pcube->start_application(true, ::null()))
-         //   return false;
-
-      }
-
-      if(m_psession->m_pbergedge == ::null() && !is_cube() && !is_bergedge())
-      {
-
-         sp(::ca::application) papp            = System.create_application("application", "bergedge", true, ::null());
-         if(papp == ::null())
-            return false;
-
-         ::bergedge::bergedge * pbergedge    = dynamic_cast < ::bergedge::bergedge * > (papp.m_p);
-         if(pbergedge == ::null())
-         {
-            papp.release();
-            return false;
-         }
-
-         pbergedge->m_psystem                = m_psystem;
-         pbergedge->m_psession               = m_psession;
-         m_psession->m_pbergedge             = pbergedge;
-         m_psession->m_pbergedgeInterface    = pbergedge;
-
-         //if(!pbergedge->start_application(true, ::null()))
-         //   return false;
-
-      }
-
-
-      return true;
-
-   }
-
-   bool application::initialize()
-   {
-
-      if(!::plane::application::initialize())
-         return false;
-
-
-      return true;
-
-   }
-
-   bool application::is_cube()
-   {
-      return false;
-   }
-
-
-   ::user::printer * application::get_printer(const char * pszDeviceName)
-   {
-
-      return ::ca::smart_pointer < ::cubebase::application >::m_p->get_printer(pszDeviceName);
-
-   }
 
 
    ::ca::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
@@ -543,7 +389,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    ::user::user * application::create_user()
    {
 
-      return new ::ca::user::user();
+      return new ::user::user();
 
    }
 
@@ -559,12 +405,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    ::html::html * application::create_html()
    {
 
-      return new ::ca::html::html();
+      return new ::html::html();
 
    }
-
-
-} //namespace cube
 
 
 

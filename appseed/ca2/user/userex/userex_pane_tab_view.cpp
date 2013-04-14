@@ -7,7 +7,7 @@ namespace userex
 
    pane_tab_view::pane_tab_view(sp(::ca::application) papp) :
       ca(papp),
-      ::user::view(papp),
+      
       ::user::tab_view(papp),
       ::user::tab(papp),
       place_holder_container(papp)
@@ -180,10 +180,10 @@ namespace userex
             sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
             if(pdoc != ::null())
             {
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
-                  sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
+                  sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
                   if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -203,10 +203,10 @@ namespace userex
 
             if(pdoc != ::null())
             {
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
-                  sp(::frame_window) pframe = (sp(::frame_window)) pview->GetParentFrame();
+                  sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
                   if(pframe != ::null())
                   {
                      pcreatordata->m_pdoc = pdoc;

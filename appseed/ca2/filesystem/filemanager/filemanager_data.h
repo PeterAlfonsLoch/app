@@ -32,17 +32,17 @@ namespace filemanager
    public:
 
 
-      sp(::user::document_interface)     m_pdocumentSave;
-      ::ca::file_manager_interface *  m_pfilemanager;
-      sp(FileManagerInterface)           m_pmanager;
-      sp(FileManagerInterface)           m_pmanagerMain;
-      FileManagerCallbackInterface *   m_pcallback;
-      FileManagerTemplate *            m_ptemplate;
-      bool                             m_bTransparentBackground;
-      string                           m_strDISection;
-      sp(::user::place_holder)           m_pholderFileList;
-      sp(::user::interaction)            m_ptreeFileTreeMerge;
-      bool                             m_bSetBergedgeTopicFile;
+      sp(::user::document_interface)      m_pdocumentSave;
+      FileManagerCallbackInterface   *    m_pfilemanager;
+      sp(FileManagerInterface)            m_pmanager;
+      sp(FileManagerInterface)            m_pmanagerMain;
+      FileManagerCallbackInterface *      m_pcallback;
+      FileManagerTemplate *               m_ptemplate;
+      bool                                m_bTransparentBackground;
+      string                              m_strDISection;
+      sp(::user::place_holder)            m_pholderFileList;
+      sp(::user::interaction)             m_ptreeFileTreeMerge;
+      bool                                m_bSetBergedgeTopicFile;
 
       string                           m_strToolBar;
       string                           m_strToolBarSave;

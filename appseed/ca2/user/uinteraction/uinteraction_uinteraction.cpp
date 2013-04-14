@@ -95,14 +95,14 @@ namespace uinteraction
 
       }
 
-      sp(::uinteraction::interaction) pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
+      sp(::uinteraction::interaction) pinteraction = Session.m_mapUinteraction[pszUinteraction];
 
-      if(Bergedge.m_mapUinteraction[pszUinteraction] == ::null())
+      if(Session.m_mapUinteraction[pszUinteraction] == ::null())
       {
 
-         Bergedge.m_mapUinteraction[pszUinteraction] = Bergedge.uinteraction().get_new_uinteraction(pszUinteraction);
+         Session.m_mapUinteraction[pszUinteraction] = Session.uinteraction().get_new_uinteraction(pszUinteraction);
 
-         pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
+         pinteraction = Session.m_mapUinteraction[pszUinteraction];
 
       }
 

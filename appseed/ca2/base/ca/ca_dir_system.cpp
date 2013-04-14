@@ -1415,11 +1415,6 @@ ret:
             strRoot     = "app";
             strDomain   = "main";
          }
-         else if(papp->is_bergedge())
-         {
-            strRoot     = "app";
-            strDomain   = "bergedge";
-         }
          else
          {
             appmatter_locators(strRoot, strDomain, papp->m_pappThis->m_strLibraryName, papp->m_pappThis->m_strAppId);

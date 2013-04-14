@@ -8,6 +8,7 @@ namespace nature
    document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
+      ::ca::data_container(papp),
       ::user::document(papp)
    {
 
@@ -76,15 +77,15 @@ namespace nature
 
 
 
-   sp(::view) document::get_nature_view()
+   sp(::user::view) document::get_nature_view()
    {
-      return get_typed_view < ::view > ();
+      return get_typed_view < ::user::view > ();
    }
 
 
    sp(frame) document::get_nature_frame()
    {
-      sp(::view) pview = get_nature_view();
+      sp(::user::view) pview = get_nature_view();
       return (pview->GetTypedParent < frame >());
    }
 

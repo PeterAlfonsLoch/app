@@ -9,14 +9,12 @@ namespace filemanager
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
-      ::ca::user::form(papp),
-      ::user::form_list(papp),
       ::user::form_list(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
       ::fs::list_interface(papp),
       ::fs::list(papp),
-      ::user::view(papp),
+      
       m_gdibuffer(papp),
       m_mutex(papp)
    {

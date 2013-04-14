@@ -1133,7 +1133,7 @@ namespace user
          return m_pimpl->IsWindowEnabled();
    }
 
-   sp(::frame_window) interaction::GetTopLevelFrame()
+   sp(::user::frame_window) interaction::GetTopLevelFrame()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1805,7 +1805,7 @@ namespace user
       return oswindow_Parent;
    }
 
-   sp(::frame_window) interaction::EnsureParentFrame()
+   sp(::user::frame_window) interaction::EnsureParentFrame()
    {
       if(m_pimpl == ::null())
          return ::null();
@@ -1854,7 +1854,7 @@ namespace user
 
 
 
-   sp(::frame_window) interaction::GetParentFrame()
+   sp(::user::frame_window) interaction::GetParentFrame()
    {
       ASSERT_VALID(this);
 

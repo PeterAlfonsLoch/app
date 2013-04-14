@@ -7,11 +7,10 @@ namespace user
 
    form_list::form_list(sp(::ca::application) papp) :
       ca(papp),
-      form(papp),
       ::user::interaction(papp),
       ::user::form(papp),
-      scroll_view(papp),
-      list(papp)
+      ::user::scroll_view(papp),
+      ::user::list(papp)
    {
       m_iControlItem = -1;
       m_iControlSubItem = -1;
@@ -126,7 +125,7 @@ namespace user
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      _001GetElementRect(&item, user::_list::ElementText);
+      _001GetElementRect(&item, ::user::list::ElementText);
       if(item.m_bOk)
       {
          _001Update(pcontrol);
@@ -384,7 +383,7 @@ namespace user
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      //_001GetElementRect(&item, user::_list::ElementSubItem);
+      //_001GetElementRect(&item, ::user::list::ElementSubItem);
       rectControl = item.m_rectSubItem;
       ClientToScreen(rectControl);
       rect64 rectForm;
@@ -526,7 +525,7 @@ namespace user
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      _001GetElementRect(&item, user::_list::ElementSubItem);
+      _001GetElementRect(&item, ::user::list::ElementSubItem);
       rectControl = item.m_rectSubItem;
       class rect rect(rectControl);
       *lprect = rect;

@@ -429,6 +429,12 @@
     <Filter Include="Source Files\net\usernet">
       <UniqueIdentifier>{ba4e654a-2f15-420c-bcd1-131487cf377b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\filehandler">
+      <UniqueIdentifier>{bedfe935-f234-4ba5-8f14-641a757cb6c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filehandler">
+      <UniqueIdentifier>{4183440c-8293-4ed5-9ce0-b8fd8265f579}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -627,9 +633,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_window_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_window_map.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_window_util.h">
@@ -1127,9 +1130,6 @@
     <ClInclude Include="user\user_edit_plain_text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_form_callback2.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_form_list.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1140,9 +1140,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_front_end_schema.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_front_end2.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_inline.h">
@@ -1206,9 +1203,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_tree.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_user2.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_xfplayer_view_line.h">
@@ -1415,9 +1409,6 @@
     <ClInclude Include="user\user_image_manager.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_impl.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_main_frame.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1454,9 +1445,6 @@
     <ClInclude Include="user\user_notify_icon_listener.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\user_window_map.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\aaa_want_to_revemo_userbase_tree_set.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1470,9 +1458,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_statusbar.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_static.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_split_window.h">
@@ -4052,6 +4037,36 @@
     <ClInclude Include="base\ca\aaa_want_to_remove_ca_file_manager_interface.h">
       <Filter>Header Files\base\ca</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_handler.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_library.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_tree_data.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_tree_item_data.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_static_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tool_cmd_ui.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_map.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -4213,9 +4228,6 @@
     <ClCompile Include="plane\plane_library.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
-    <ClCompile Include="userpresence\userpresence_user_presence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
     <ClCompile Include="database\database_application.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
@@ -4264,9 +4276,6 @@
     <ClCompile Include="primitive\datetime\datetime_duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="plane\plane_session.cpp">
-      <Filter>Source Files\plane</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -4299,9 +4308,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_cross_windows.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_geometric_types.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -4429,9 +4435,6 @@
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="userpresence\userpresence_userpresence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_string_format.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -4507,13 +4510,7 @@
     <ClCompile Include="user\user_form_callback.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_form_callback2.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_form_list.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_form1.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_frame_window.cpp">
@@ -4630,9 +4627,6 @@
     <ClCompile Include="user\user_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_user2.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_view.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4738,9 +4732,6 @@
     <ClCompile Include="user\simple\simple_tree_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userbase_mini_dock_frame_window.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -4819,111 +4810,6 @@
     <ClCompile Include="user\userhtml\userhtml_view_update_hint.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="user\userbase_base_bitmap_buttonex.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_button.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_button_control.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_combo_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_combo_list.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_control_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_document.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_document_manager.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_document_template.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_edit_plain_text.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_elastic_slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_form_list.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_frame_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_frame_window_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_image_manager.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_main_frame.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_meta_button.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_multiple_document_template.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_notification_area.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_notify_icon.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_notify_icon_listener.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_single_document_template.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_split_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_split_layout.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_split_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_static.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_status_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_step_slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_tab_control.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_tool_cmd_ui.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_toolbar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_toolbar_ctrl.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_tree_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_userbase.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_util.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\menu\userbase_menu_list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
@@ -4941,30 +4827,6 @@
     </ClCompile>
     <ClCompile Include="user\menu\userbase_menu_item.cpp">
       <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_edit_plain_text_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_form_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_menu_list_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_scroll_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_split_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_tab_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_tab_view_update_hint.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userbase_view.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\uinteraction\uinteraction_frame.cpp">
       <Filter>Source Files\user\uinteraction</Filter>
@@ -5323,9 +5185,6 @@
     <ClCompile Include="graphics\html\html_html.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\html_html2.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\html\html_image.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
@@ -5617,9 +5476,6 @@
     <ClCompile Include="plane\session\bergedge\bergedge_frame.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_interface.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
     <ClCompile Include="plane\session\bergedge\bergedge_pane_view.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
@@ -5660,24 +5516,6 @@
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_format.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_objects.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_parsing.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_queries.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_session.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_socket.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
     <ClCompile Include="net\usermail\mail_account.cpp">
@@ -5764,13 +5602,7 @@
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
-    <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_script.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript_functions.cpp">
@@ -5957,9 +5789,6 @@
       <Filter>Source Files\base\api</Filter>
     </ClCompile>
     <ClCompile Include="base\api\api_string.cpp">
-      <Filter>Source Files\base\api</Filter>
-    </ClCompile>
-    <ClCompile Include="base\api\mktime.cpp">
       <Filter>Source Files\base\api</Filter>
     </ClCompile>
     <ClCompile Include="base\ca\ca.cpp">
@@ -6987,6 +6816,111 @@
     </ClCompile>
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
       <Filter>Source Files\net\usernet</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_tree_data.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_tree_item_data.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_button_control.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_bitmap_button.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_control_bar.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_edit_plain_text_view.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_elastic_slider.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_image_manager.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_main_frame.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_menu_list_view.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_meta_button.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_notification_area.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_notify_icon.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_notify_icon_listener.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_split_bar.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_split_layout.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_split_view.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_split_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_static_control.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_statusbar.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_step_slider.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_tab_view.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_tab_view_update_hint.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_tool_cmd_ui.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_toolbar.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_toolbar_ctrl.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_tree_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_util.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_view_update_hint.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

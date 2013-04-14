@@ -7,7 +7,7 @@
 FileManagerTabView::FileManagerTabView(sp(::ca::application) papp) :
    ca(papp),
    ::user::tab(papp),
-   ::user::view(papp),
+   
    ::user::tab_view(papp),
    ::userex::pane_tab_view(papp),
    place_holder_container(papp)
@@ -39,7 +39,7 @@ void FileManagerTabView::install_message_handling(::ca::message::dispatch * pint
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
 }
 
-void FileManagerTabView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    ::user::tab_view::on_update(pSender, lHint, phint);
@@ -147,7 +147,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       sp(file_manager_operation_document) pdoc =  (Application.filemanager().m_ptemplateOperation->open_document_file(createcontext));
       if(pdoc == ::null())
          return;
-      sp(::view) pview = pdoc->get_view(0);
+      sp(::user::view) pview = pdoc->get_view(0);
       //file_manager_form_view * poperationview = dynamic_cast < file_manager_form_view * > (pview);
       pcreatordata->m_pwnd = (pview->GetParentFrame());
       //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
@@ -179,9 +179,9 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          pdoc->get_filemanager_data()->m_pcallback = GetFileManager()->get_filemanager_data()->m_pcallback;
          pdoc->get_filemanager_data()->m_pmanager  = pdoc;
          pdoc->get_filemanager_data()->m_pmanagerMain  = GetFileManager();
-         pdoc->get_filemanager_data()->m_ptemplate = &Cube.filemanager().std();
-         pdoc->get_filemanager_data()->m_iTemplate = Cube.filemanager().std().m_iTemplate;
-         pdoc->get_filemanager_data()->m_iDocument = Cube.filemanager().std().m_iNextDocument++;
+         pdoc->get_filemanager_data()->m_ptemplate = &System.filemanager().std();
+         pdoc->get_filemanager_data()->m_iTemplate = System.filemanager().std().m_iTemplate;
+         pdoc->get_filemanager_data()->m_iDocument = System.filemanager().std().m_iNextDocument++;
          pdoc->get_filemanager_data()->m_bTransparentBackground = GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
          pdoc->get_filemanager_data()->m_ptemplate->m_strDISection.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_bFileSize = true;
@@ -189,7 +189,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
 
 
-         sp(::view) pview = pdoc->get_view(0);
+         sp(::user::view) pview = pdoc->get_view(0);
 
          sp(simple_frame_window) pwnd =  (pview->GetParentFrame());
 
@@ -224,7 +224,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       }
       if(pdoc == ::null())
          return;
-//      sp(::view) pview = pdoc->get_view(0);
+//      sp(::user::view) pview = pdoc->get_view(0);
       //pcreatordata->m_pwnd = (pview->GetParentFrame());
       //      sp(FileManagerChildFrame) pframe = (pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;

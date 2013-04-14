@@ -11,6 +11,7 @@ namespace filemanager
 
    SimpleFolderTreeView::SimpleFolderTreeView(sp(::ca::application) papp) :
       ca(papp),
+      
       ::user::scroll_view(papp),
       SimpleFolderTreeInterface(papp),
       m_headerctrl(papp)
@@ -39,7 +40,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFolderTreeView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void SimpleFolderTreeView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != ::null())
@@ -180,7 +181,7 @@ namespace filemanager
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
-            sp(::frame_window) pframe = GetTopLevelFrame();
+            sp(::user::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
 
@@ -219,7 +220,7 @@ namespace filemanager
          {
             ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
-            sp(::frame_window) pframe = GetTopLevelFrame();
+            sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
                (sp(::ca::window)) pframe);

@@ -6,7 +6,6 @@ namespace bergedge
 
 
    class document;
-   class bergedge;
 
 
 } // namespace bergedge

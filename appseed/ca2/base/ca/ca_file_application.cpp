@@ -47,7 +47,7 @@ namespace ca
 
       if(::ca::str::begins_ci_iws(strPath, "uifs://"))
       {
-         fontopus::user & user = AppUser(m_papp);
+         ::fontopus::user & user = AppUser(m_papp);
          return user.m_pifs->file_exists(strPath);
       }
 

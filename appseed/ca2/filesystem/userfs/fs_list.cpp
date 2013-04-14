@@ -12,9 +12,7 @@ namespace fs
       list_interface(papp),
       user::list(papp),
       user::form(papp),
-      ::ca::user::form(papp),
-      ::user::view(papp),
-      user::form_list(papp),
+      
       user::form_list(papp)
    {
 
@@ -108,7 +106,7 @@ namespace fs
    }
 #endif //DEBUG
 
-   void list::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * phint)
+   void list::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

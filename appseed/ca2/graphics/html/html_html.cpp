@@ -263,6 +263,22 @@ namespace html
       return m_entityresolver.resolveEntity(lpszEntity, strChar);
    }
 
+      bool html::initialize()
+      {
+
+         if(Application.is_system())
+         {
+            System.factory().creatable_small < html_document > ();
+            System.factory().creatable_small < html_child_frame > ();
+            System.factory().creatable_small < html_frame > ();
+            System.factory().creatable_small < html_view > ();
+            System.factory().creatable_small < ::html::data::image > ();
+            System.factory().creatable_small < ::html::data > ();
+         }
+
+         return true;
+
+      }
 
 } // namespace html
 

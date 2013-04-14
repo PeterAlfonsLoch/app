@@ -34,9 +34,9 @@ namespace fontopus
 
       bool bLicensed = false;
 
-      if(m_papp != ::null() && m_papp->m_psession != ::null() && m_papp->m_psession->m_pbergedge != ::null())
+      if(m_papp != ::null() && m_papp->m_psession != ::null())
       {
-         bLicensed = App(m_papp->m_psession->m_pbergedgeInterface).m_pfontopus->check_license(pszId, bInteractive);
+         bLicensed = Session.m_pfontopus->check_license(pszId, bInteractive);
       }
       else
       {

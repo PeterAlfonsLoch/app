@@ -4,18 +4,7 @@
 #include "base/ca/ca.h"
 
 
-
 class service_base;
-
-
-namespace planebase
-{
-
-
-   class application;
-
-
-} // namespace planebase
 
 
 namespace bergedge
@@ -29,10 +18,6 @@ namespace bergedge
 } // namespace bergedge
 
 
-
-
-
-
 namespace filehandler
 {
 
@@ -41,16 +26,6 @@ namespace filehandler
 
 
 } // namespace filehandler
-
-
-namespace bergedge
-{
-
-
-   class bergedge;
-
-
-} // namespace bergedge
 
 
 namespace html
@@ -64,39 +39,6 @@ namespace html
 
 
 class form_view;
-
-
-
-#pragma once
-
-
-
-
-
-
-
-namespace cube
-{
-
-
-   class system;
-
-
-} // namespace cube
-
-
-namespace bergedge
-{
-
-
-   class bergedge;
-
-
-} // namespace bergedge
-
-
-
-
 
 
 

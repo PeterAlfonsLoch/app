@@ -136,9 +136,9 @@ namespace hi5
                pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
                pframe->m_bblur_Background = true;
             }
-            if(&Bergedge != ::null() && Bergedge.get_document() != ::null() && Bergedge.get_document()->get_bergedge_view() != ::null())
+            if(&Session != ::null() && Session.get_document() != ::null() && Session.get_document()->get_bergedge_view() != ::null())
             {
-               Bergedge.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
+               Session.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
             }
             else
             {

@@ -9,6 +9,7 @@ namespace user
 
    menu_list_window::menu_list_window(sp(::ca::application) papp) :
       ca(papp),
+      
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -23,6 +24,7 @@ namespace user
 
    menu_list_window::menu_list_window(sp(::ca::application) papp, menu_item * pitem) :
       ca(papp),
+      
       menu_base(papp),
       m_buttonClose(papp)
    {

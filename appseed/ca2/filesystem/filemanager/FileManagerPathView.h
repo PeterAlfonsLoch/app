@@ -18,7 +18,7 @@ public:
 
 
    void _017Synchronize();
-   void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint);
+   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint);
 
 
 };

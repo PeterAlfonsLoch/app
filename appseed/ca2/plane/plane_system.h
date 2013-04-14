@@ -335,7 +335,7 @@ namespace plane
             ::visual::visual                    m_visual;
 
                   system(sp(::ca::application) papp = ::null());
-
+                  virtual ~system();
 
       //virtual int32_t main();
       virtual bool InitApplication();
@@ -369,11 +369,11 @@ namespace plane
       bool set_history(::ca::history * phistory);
 
 
-      virtual ::bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      virtual sp(::plane::session)             get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
       virtual sp(::platform::document)             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
       virtual sp(::nature::document)               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
 
-      virtual bergedge::bergedge *             query_bergedge(index iEdge);
+      virtual sp(::plane::session)             query_bergedge(index iEdge);
       virtual void on_request(sp(::ca::create_context) pcreatecontext);
       virtual sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
@@ -501,7 +501,7 @@ namespace plane
       virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
 
 
-      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+//      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
       sp(::plane::session) query_session(index iEdge);
 
 
@@ -609,7 +609,7 @@ namespace plane
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // System/Cube
+      // System/System
       //
       sp(::user::document) hold(sp(::user::interaction) pui);
 
@@ -632,6 +632,8 @@ namespace plane
 
       virtual void get_cursor_pos(LPPOINT lppoint);
 
+
+      virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
    };
 
@@ -738,56 +740,60 @@ bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutpu
 #include "base/collection/collection_lemon_array.h"
 
 
-
-template < class VIEW >
-inline sp(VIEW) view::create_view(::user::document_interface * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
-{
-   return create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast);
-}
-
-
-template < class VIEW >
-inline sp(VIEW) view::create_view(::user::interaction * pwndParent, id id, sp(::user::interaction) pviewLast)
-{
-   return create_view < VIEW > (::null(), pwndParent, id, pviewLast);
-}
-
-template < class VIEW >
-inline sp(VIEW) view::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
+namespace user
 {
 
-   VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
 
-   if(pview != ::null())
+   template < class VIEW >
+   inline sp(VIEW) view::create_view(::user::document_interface * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
-      pcreatordata->m_pdoc = get_document();
+      return create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast);
    }
 
-   return pview;
 
-}
+   template < class VIEW >
+   inline sp(VIEW) view::create_view(::user::interaction * pwndParent, id id, sp(::user::interaction) pviewLast)
+   {
+      return create_view < VIEW > (::null(), pwndParent, id, pviewLast);
+   }
 
+   template < class VIEW >
+   inline sp(VIEW) view::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
+   {
 
+      VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
 
-template < class DOCUMENT >
-::ca::data * view::get_data()
-{
-   ASSERT(this != ::null());
-   DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
-   if(pdocument == ::null())
-      return ::null();
-   return pdocument->get_data();
-}
+      if(pview != ::null())
+      {
+         pcreatordata->m_pdoc = get_document();
+      }
 
-template < class DOCUMENT >
-DOCUMENT * view::get_typed_document()
-{
-   if(m_spdocument.is_null())
-      return ::null();
-   return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
-}
+      return pview;
+
+   }
 
 
+
+   template < class DOCUMENT >
+   ::ca::data * view::get_data()
+   {
+      ASSERT(this != ::null());
+      DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
+      if(pdocument == ::null())
+         return ::null();
+      return pdocument->get_data();
+   }
+
+   template < class DOCUMENT >
+   DOCUMENT * view::get_typed_document()
+   {
+      if(m_spdocument.is_null())
+         return ::null();
+      return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
+   }
+
+
+} //   namespace user
 
 namespace xml
 {

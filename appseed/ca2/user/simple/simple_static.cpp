@@ -3,7 +3,8 @@
 
 simple_static::simple_static(sp(::ca::application) papp) :
    ca(papp),
-   ::user::base_static(papp),
+   
+   ::user::static_control(papp),
    m_brushBkg(allocer())
 {
    m_pimagelist = ::null();
@@ -31,7 +32,7 @@ void simple_static::pre_subclass_window()
 {
    PreSubClassWindow();
 
-   ::user::base_static::pre_subclass_window();
+   ::user::static_control::pre_subclass_window();
 }
 
 LRESULT simple_static::OnSetIcon(WPARAM wparam, LPARAM lparam)

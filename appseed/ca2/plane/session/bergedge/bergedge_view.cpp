@@ -8,8 +8,7 @@ namespace bergedge
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
-      ::user::view(papp),
-      ::user::scroll_view(papp),
+      
       gcom::backview::user::interaction(papp),
       gcom::backview::Interface(papp),
       m_dibV(papp),
@@ -54,7 +53,7 @@ namespace bergedge
 
    }
    /////////////////////////////////////////////////////////////////////////////
-   // ::view drawing
+   // ::user::view drawing
 
    void view::OnDraw(::ca::graphics * pdcScreen)
    {
@@ -62,7 +61,7 @@ namespace bergedge
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view diagnostics
+   // ::user::view diagnostics
 
    #ifdef DEBUG
    void view::assert_valid() const
@@ -77,14 +76,14 @@ namespace bergedge
    #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view message handlers
+   // ::user::view message handlers
 
-   // vmpLightView.cpp : implementation of the ::view class
+   // vmpLightView.cpp : implementation of the ::user::view class
    //
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view
+   // ::user::view
 
 
    bool view::pre_create_window(CREATESTRUCT& cs)
@@ -100,7 +99,7 @@ namespace bergedge
 
    }
 
-   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -199,7 +198,7 @@ namespace bergedge
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
-      if(!Bergedge.m_bShowPlatform)
+      if(!Session.m_bShowPlatform)
       {
          return;
       }
@@ -264,7 +263,7 @@ namespace bergedge
       }
       else if(ptimer->m_nIDEvent == 198477)
       {
-         Bergedge.check_topic_file_change();
+         Session.check_topic_file_change();
       }
 
    }
@@ -491,7 +490,7 @@ namespace bergedge
       {
          while(pui != ::null())
          {
-            sp(::cube::application) papp = ::null();
+            sp(::plane::application) papp = ::null();
             try
             {
                papp = &App(pui->get_app());

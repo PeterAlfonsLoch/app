@@ -67,6 +67,9 @@ namespace user
 }
 
 
+#include "user_window_map.h"
+
+
 #include "user_view.h"
 
 
@@ -334,7 +337,7 @@ namespace user
 #include "user_bitmap_button.h"
 #include "user_combo_box.h"
 #include "user_combo_list.h"
-#include "user_static.h"
+#include "user_static_control.h"
 
 #include "user_button_control.h"
 
@@ -342,6 +345,10 @@ namespace user
 #include "user_frame_window.h"
 //#include "user_mdi_frame_window.h"
 //#include "user_mdi_child_window.h"
+
+
+#include "user_tool_cmd_ui.h"
+
 
 #include "user_toolbar_control.h"
 

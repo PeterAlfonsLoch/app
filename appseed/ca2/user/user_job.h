@@ -14,7 +14,7 @@ namespace user
       // cascading ph - pointer holder - references would avoid this view
       // and other ph's referenced directly or indirectly by m_pview
       // to be deleted while the job is not finished or canceled.
-      sp(::view)        m_pview;
+      sp(::user::view)        m_pview;
 
       job(sp(::ca::application) papp);
       virtual ~job();

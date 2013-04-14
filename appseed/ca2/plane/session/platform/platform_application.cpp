@@ -18,7 +18,7 @@ namespace platform
    bool application::initialize_instance()
    {
 
-      if(!::cube::application::initialize_instance())
+      if(!::plane::application::initialize_instance())
          return false;
 
       filemanager().std().m_strLevelUp = "levelup";
@@ -30,7 +30,7 @@ namespace platform
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      user().add_document_template(pDocTemplate);
+      user()->add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
       return true;

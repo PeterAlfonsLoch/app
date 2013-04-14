@@ -116,7 +116,7 @@ namespace platform
          {
             OnHoverAction();
          }
-         Bergedge.get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x <= 0)
          {
             m_dwLastHover = ::get_tick_count();
@@ -250,14 +250,14 @@ namespace platform
 
    void frame::super_dock_on_bergedge()
    {
-      if(!Bergedge.m_bShowPlatform)
+      if(!Session.m_bShowPlatform)
       {
          return;
       }
       m_dwLastSuperDock = ::get_tick_count();
       rect rectDesktop;
 
-      sp(::user::interaction) puiParent = GetTypedParent < bergedge::view >();
+      sp(::user::interaction) puiParent = GetTypedParent < ::bergedge::view >();
       if(puiParent == ::null())
          puiParent = GetTypedParent < ::user::place_holder > ();
       if(puiParent == ::null())

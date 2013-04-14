@@ -31,6 +31,9 @@ namespace html
 
       virtual void construct(sp(::ca::application) papp);
 
+
+      virtual bool initialize();
+
       string special_chars(const char * psz);
       string entities(const char * psz);
       int32_t resolve_entity(const char * lpszEntity, string & strChar);

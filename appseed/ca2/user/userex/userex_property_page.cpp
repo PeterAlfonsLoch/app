@@ -7,7 +7,7 @@ namespace userex
 
    property_page::property_page(sp(::ca::application) papp) :
       ca(papp),
-      ::user::view(papp),
+      
       ::user::place_holder_container(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),

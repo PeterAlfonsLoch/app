@@ -32,7 +32,7 @@ BaseMenuCentral::~BaseMenuCentral()
 
 BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)
 {
-   return App(papp).user().get_menucentral();
+   return App(papp).user()->get_menucentral();
 }
 
 /*bool BaseMenuCentral::MenuV033CreateImageMap(UINT uiaMenuV003Map [][2])

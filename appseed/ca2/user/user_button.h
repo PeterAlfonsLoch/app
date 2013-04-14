@@ -54,6 +54,7 @@ namespace user
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _002OnDraw(::ca::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       virtual bool _001IsWindowEnabled();
@@ -66,7 +67,7 @@ namespace user
       virtual bool _001IsPressed();
 
 
-      void _002OnDraw(::ca::graphics * pdc);
+//      void _002OnDraw(::ca::graphics * pdc);
 
       virtual index get_hover();
 

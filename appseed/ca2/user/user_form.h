@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 form : 
-      virtual public control
+      virtual public scroll_view
    {
    public:
 
@@ -63,7 +63,7 @@ namespace user
 
       virtual void install_message_handling(::ca::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
-      virtual void _001OnUpdate(sp(::view) pviewSender, LPARAM lhint, ::ca::object* phint);
+      virtual void _001OnUpdate(sp(::user::view) pviewSender, LPARAM lhint, ::ca::object* phint);
       virtual void _001Update(sp(control) pcontrol);
       virtual void _001UpdateCheckBox(sp(control) pcontrol);
       virtual void _001UpdateComboBox(sp(control) pcontrol);

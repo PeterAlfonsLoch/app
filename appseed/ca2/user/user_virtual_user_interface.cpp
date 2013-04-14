@@ -573,7 +573,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-sp(::frame_window) virtual_user_interface::GetParentFrame()
+sp(::user::frame_window) virtual_user_interface::GetParentFrame()
 {
 
    ASSERT_VALID(this);
@@ -693,9 +693,9 @@ bool virtual_user_interface::IsWindowEnabled()
    return m_bEnabled && ((m_pguie == ::null() || m_pguie->get_parent() == ::null()) ? true : m_pguie->get_parent()->IsWindowEnabled());
 }
 
-sp(::frame_window) virtual_user_interface::EnsureParentFrame()
+sp(::user::frame_window) virtual_user_interface::EnsureParentFrame()
 {
-    sp(::frame_window)pFrameWnd = GetParentFrame();
+    sp(::user::frame_window)pFrameWnd = GetParentFrame();
     ENSURE_VALID(pFrameWnd);
     return pFrameWnd;
 }
@@ -1336,11 +1336,11 @@ id virtual_user_interface::GetDlgCtrlId()
 }
 
 
-sp(::frame_window) virtual_user_interface::GetTopLevelFrame()
+sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
 {
    ASSERT_VALID(this);
 
-   sp(::frame_window) pFrameWnd = ::null();
+   sp(::user::frame_window) pFrameWnd = ::null();
    if(m_pguie != this)
       pFrameWnd = m_pguie;
    else
@@ -1350,7 +1350,7 @@ sp(::frame_window) virtual_user_interface::GetTopLevelFrame()
 
    if (pFrameWnd != ::null())
    {
-      sp(::frame_window) pTemp;
+      sp(::user::frame_window) pTemp;
       while ((pTemp = pFrameWnd->GetParentFrame()) != ::null())
          pFrameWnd = pTemp;
    }

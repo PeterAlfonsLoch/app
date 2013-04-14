@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   bool base_static::create(sp(::user::interaction) pParentWnd, id id)
+   bool static_control::create(sp(::user::interaction) pParentWnd, id id)
    {
 
       return ::user::control::create(pParentWnd, id);
@@ -13,7 +13,7 @@ namespace user
    }
 
 
-   base_static::~base_static()
+   static_control::~static_control()
    {
 
       DestroyWindow();
@@ -26,7 +26,7 @@ namespace user
 #ifdef WINDOWSEX
 
 
-   void base_static::DrawItem(LPDRAWITEMSTRUCT)
+   void static_control::DrawItem(LPDRAWITEMSTRUCT)
    {
 
       ASSERT(FALSE);
@@ -37,7 +37,7 @@ namespace user
 #endif
 
 
-   bool base_static::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
+   bool static_control::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
       LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(message);
@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   base_static::base_static(sp(::ca::application) papp) :
+   static_control::static_control(sp(::ca::application) papp) :
       ca(papp)
    {
       
@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   void base_static::set_icon(::visual::icon * picon)
+   void static_control::set_icon(::visual::icon * picon)
    {
       
       if(picon == ::null())
@@ -76,7 +76,7 @@ namespace user
    }
 
 
-   ::visual::icon * base_static::get_icon()
+   ::visual::icon * static_control::get_icon()
    {
 
       return m_etype == type_icon ? m_picon : ::null();
@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   HENHMETAFILE base_static::SetEnhMetaFile(HENHMETAFILE hMetaFile)
+   HENHMETAFILE static_control::SetEnhMetaFile(HENHMETAFILE hMetaFile)
    {
 
       //ASSERT(IsWindow());
@@ -96,7 +96,7 @@ namespace user
    }
 
 
-   HENHMETAFILE base_static::GetEnhMetaFile()
+   HENHMETAFILE static_control::GetEnhMetaFile()
    {
 
       //ASSERT(IsWindow());
@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   void base_static::set_bitmap(::ca::bitmap * pbitmap)
+   void static_control::set_bitmap(::ca::bitmap * pbitmap)
    {
 
       
@@ -123,7 +123,7 @@ namespace user
    }
 
 
-   ::ca::bitmap * base_static::get_bitmap()
+   ::ca::bitmap * static_control::get_bitmap()
    {
 
       return m_etype == type_bitmap ? m_pbitmap : ::null();
@@ -131,7 +131,7 @@ namespace user
    }
 
 
-   void base_static::set_cursor(::visual::cursor * pcursor)
+   void static_control::set_cursor(::visual::cursor * pcursor)
    {
 
       if(pcursor == ::null())
@@ -144,14 +144,14 @@ namespace user
    }
 
 
-   ::visual::cursor *  base_static::get_cursor()
+   ::visual::cursor *  static_control::get_cursor()
    {
 
       return m_etype == type_cursor ? m_pcursor : ::null();
 
    }
 
-   ::user::base_static::e_type base_static::get_type()
+   ::user::static_control::e_type static_control::get_type()
    {
       
       return m_etype;

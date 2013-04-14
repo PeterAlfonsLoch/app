@@ -271,7 +271,7 @@ namespace user
       control_view_impl();
 
       virtual LRESULT BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM);
-      virtual void BaseControlExOnUpdateCmdUI(sp(::frame_window) pTarget, bool bDisableIfNoHndler);
+      virtual void BaseControlExOnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       virtual bool BaseControlExOnCommand(WPARAM wParam, LPARAM lParam) ;
       virtual sp(::user::interaction) GetWnd();
 

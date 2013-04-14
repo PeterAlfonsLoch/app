@@ -5,7 +5,6 @@ namespace user
 
    tab_view::tab_view(sp(::ca::application) papp) :
       ca(papp),
-      view(papp),
       ::user::tab(papp),
       place_holder_container(papp)
    {
@@ -41,7 +40,7 @@ namespace user
    }
 
 
-   void tab_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
 
       if(m_pviewcreator != ::null())
@@ -462,7 +461,7 @@ namespace user
       return m_pviewcreator;
    }
 
-   tab_drop_target_window::tab_drop_target_window(user::tab * ptab, int32_t iPane) :
+   tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, int32_t iPane) :
       ca(ptab->get_app())
    {
       m_ptab            = ptab;

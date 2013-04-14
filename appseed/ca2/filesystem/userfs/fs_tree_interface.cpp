@@ -7,6 +7,7 @@ namespace fs
 
    tree_interface::tree_interface(sp(::ca::application) papp) :
       ca(papp),
+      
       ::user::scroll_view(papp),
       ::user::tree(papp)
    {

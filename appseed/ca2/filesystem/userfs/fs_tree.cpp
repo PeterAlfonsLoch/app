@@ -7,6 +7,7 @@ namespace fs
 
    tree::tree(sp(::ca::application) papp) :
       ca(papp),
+      
       ::user::scroll_view(papp),
       ::fs::tree_interface(papp)
    {
@@ -40,7 +41,7 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
    }
 
-   void tree::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void tree::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -184,7 +185,7 @@ namespace fs
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
-            sp(::frame_window) pframe = GetTopLevelFrame();
+            sp(::user::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
 
@@ -223,7 +224,7 @@ namespace fs
          {
             ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != ::null());
-            sp(::frame_window) pframe = GetTopLevelFrame();
+            sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
                (sp(::ca::window)) pframe);

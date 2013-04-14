@@ -5,7 +5,7 @@
 file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca::application) papp) :
    ca(papp),
    m_headerctrl(papp),
-   ::user::view(papp),
+   
    ::user::scroll_view(papp),
    ::user::list(papp)
 {
@@ -79,7 +79,7 @@ void file_manager_operation_list_view::_001OnInitialUpdate(::ca::signal_object *
 }
 
 
-void file_manager_operation_list_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object * pHint)
+void file_manager_operation_list_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(pHint);

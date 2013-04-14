@@ -72,8 +72,8 @@ namespace ca
       // of the width from left to right.
       //
       // Output:
-      // -1 if the creation of the ::view failed.
-      // 0 if the creation of the ::view succeeded.
+      // -1 if the creation of the ::user::view failed.
+      // 0 if the creation of the ::user::view succeeded.
       //
       // Author:
       // Vanessa Testoni

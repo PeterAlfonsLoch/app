@@ -41,6 +41,8 @@ namespace fontopus
 
       virtual void on_user_login(::fontopus::user * puser);
 
+      virtual void on_request(sp(::ca::create_context) pcreatecontext);
+
    };
 
 

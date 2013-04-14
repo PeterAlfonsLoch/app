@@ -7,8 +7,7 @@ namespace filemanager
 
    SimplePreviewInterface::SimplePreviewInterface(sp(::ca::application) papp) :
       ::ca::ca(papp),
-      ::user::interaction(papp),
-      ::user::view(papp)
+      ::user::interaction(papp)
    {
 
    }

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 base_static :
+   class CLASS_DECL_ca2 static_control :
       virtual public ::user::control
    {
    public:
@@ -30,8 +30,8 @@ namespace user
       e_type                         m_etype;
 
 
-      base_static(sp(::ca::application) papp);
-      virtual ~base_static();
+      static_control(sp(::ca::application) papp);
+      virtual ~static_control();
 
 
       virtual bool create(sp(::user::interaction) puiParent, id id);

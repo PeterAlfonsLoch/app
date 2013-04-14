@@ -5,7 +5,7 @@
 FileManagerAView::FileManagerAView(sp(::ca::application) papp) :
    ca(papp),
    ::user::split_layout(papp),
-   ::user::view(papp),
+   
    ::user::split_view(papp),
    place_holder_container(papp)
 {
@@ -29,7 +29,7 @@ void FileManagerAView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerAView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != ::null())
@@ -99,7 +99,7 @@ void FileManagerAView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object*
                   FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView > ();
                   if(ptopview == ::null())
                   {
-                     System.simple_message_box(::null(), "Could not create folder tree ::view");
+                     System.simple_message_box(::null(), "Could not create folder tree ::user::view");
                   }
                   ptopview->m_pfilemanagerinterface = GetFileManager();
                   InsertPaneAt(0, ptopview, true);
@@ -156,7 +156,7 @@ void FileManagerAView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object*
 
                if(bSave && GetFileManagerDoc()->get_fs_data()->file_exists(strPath))
                {
-                  if(System.simple_message_box(Bergedge.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                  if(System.simple_message_box(Session.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                   {
                      bSave = false;
                   }
@@ -216,7 +216,7 @@ void FileManagerAView::CreateViews()
    FileManagerPathView * ptopview = create_view < FileManagerPathView > ();
    if(ptopview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::user::view");
    }
    SetPane(0, ptopview, false);
    //ptopview->CreateViews();
@@ -226,7 +226,7 @@ void FileManagerAView::CreateViews()
 
    if(pmediaview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::user::view");
    }
    SetPane(1, pmediaview, false);
    pmediaview->CreateViews();
@@ -238,7 +238,7 @@ void FileManagerAView::CreateViews()
 FileManagerView::FileManagerView(sp(::ca::application) papp) :
    ca(papp),
    ::user::split_layout(papp),
-   ::user::view(papp),
+   
    ::user::split_view(papp),
    place_holder_container(papp)
 {
@@ -273,7 +273,7 @@ void FileManagerView::dump(dump_context & dumpcontext) const
 
 
 
-void FileManagerView::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != ::null())
@@ -366,7 +366,7 @@ void FileManagerView::CreateViews()
 
    if(pleftview == ::null())
    {
-      System.simple_message_box(::null(), "Could not create folder tree ::view");
+      System.simple_message_box(::null(), "Could not create folder tree ::user::view");
    }
    SetPane(0, pleftview, false);
    pleftview->CreateViews();
@@ -375,7 +375,7 @@ void FileManagerView::CreateViews()
 
    if(m_pfilelist == ::null())
    {
-      System.simple_message_box(::null(), "Could not create file list ::view");
+      System.simple_message_box(::null(), "Could not create file list ::user::view");
    }
    SetPane(1, m_pfilelist, false);
 

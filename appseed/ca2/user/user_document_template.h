@@ -81,7 +81,7 @@ namespace user
       sp(::ca::type_info)         m_typeinfoFrame;       // class for creating new frames
       sp(::ca::type_info)         m_typeinfoView;        // class for creating new views
       //sp(::ca::type_info)       m_pOleFrameClass;    // class for creating in-place frame
-      //sp(::ca::type_info)       m_pOleViewClass;     // class for creating in-place ::view
+      //sp(::ca::type_info)       m_pOleViewClass;     // class for creating in-place ::user::view
 
       string                  m_strDocStrings;    // '\n' separated names
       // The ::user::document_interface names sub-strings are represented as _one_ string:
@@ -98,15 +98,15 @@ namespace user
       virtual void remove_document(sp(::user::document_interface) pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(frame_window) CreateOleFrame(sp(::ca::window) pParentWnd, sp(::user::document_interface) pDoc,
+      //sp(::user::frame_window) CreateOleFrame(sp(::ca::window) pParentWnd, sp(::user::document_interface) pDoc,
       //   bool bCreateView);
 
-      void update_all_views(sp(::view) pviewSender, LPARAM lhint, ::ca::object * puh);
+      void update_all_views(sp(::user::view) pviewSender, LPARAM lhint, ::ca::object * puh);
 
       virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
       virtual sp(::user::document_interface) create_new_document();
-      virtual sp(frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(frame_window) pOther, sp(::ca::create_context) pcreatecontext);
-      virtual void InitialUpdateFrame(sp(frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
+      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(::ca::create_context) pcreatecontext);
+      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
       virtual void request_create(sp(::ca::create_context) pcreatecontext) = 0;
@@ -130,6 +130,7 @@ namespace user
 
       static UINT s_on_open_document(LPVOID lpvoid);
 
+      virtual void reload_template();
 
    };
 

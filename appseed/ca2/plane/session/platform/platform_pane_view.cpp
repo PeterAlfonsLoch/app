@@ -6,7 +6,7 @@ namespace platform
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::user::view(papp),
+      
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
@@ -25,7 +25,7 @@ namespace platform
          IDR_ALBUM,
          System.type_info < MediaLibraryDoc > (),
          System.type_info < MediaLibraryChildFrame > (),
-         System.type_info < ::mplite::library::view > ());
+         System.type_info < ::mplite::library::user::view > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
       pdoctemplate = new ::user::single_document_template(
@@ -135,7 +135,7 @@ namespace platform
             }*/
       case platform::PaneViewDevEdge:
          {
-            sp(::user::view) pview = create_view < platform::view > ();
+            sp(::user::view) pview = create_view < ::platform::view > ();
             if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
@@ -148,7 +148,7 @@ namespace platform
             sp(::filemanager::document) pdoc = papp->filemanager().std().OpenChild(false, true);
             if(pdoc != ::null())
             {
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
                   sp(::user::frame_window) pframe = (pview->GetParentFrame());

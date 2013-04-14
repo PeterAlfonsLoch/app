@@ -203,7 +203,7 @@ namespace ca
 #endif
 
 
-   bool os::create_service(sp(::planebase::application) papp)
+   bool os::create_service(sp(::plane::application) papp)
    {
       
 
@@ -216,7 +216,7 @@ namespace ca
    }
 
 
-   bool os::remove_service(sp(::planebase::application) papp)
+   bool os::remove_service(sp(::plane::application) papp)
    {
 
 
@@ -229,7 +229,7 @@ namespace ca
    }
 
 
-   bool os::start_service(sp(::planebase::application) papp)
+   bool os::start_service(sp(::plane::application) papp)
    {
 
 
@@ -242,7 +242,7 @@ namespace ca
    }
 
 
-   bool os::stop_service(sp(::planebase::application) papp)
+   bool os::stop_service(sp(::plane::application) papp)
    {
 
 

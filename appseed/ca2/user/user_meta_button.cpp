@@ -4,7 +4,6 @@
 MetaButton::MetaButton(sp(::ca::application) papp) :
    ca(papp),
    ::user::button(papp),
-   ::user::button(papp),
    m_spregion(allocer())
 {
 

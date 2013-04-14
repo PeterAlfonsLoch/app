@@ -400,7 +400,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   sp(::frame_window) window::GetParentFrame()
+   sp(::user::frame_window) window::GetParentFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -430,7 +430,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   sp(::frame_window) window::GetTopLevelFrame()
+   sp(::user::frame_window) window::GetTopLevelFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -446,7 +446,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Scroll bar helpers
    //  hook for window functions
-   //    only works for derived class (eg: ::view) that override 'GetScrollBarCtrl'
+   //    only works for derived class (eg: ::user::view) that override 'GetScrollBarCtrl'
    // if the window doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
@@ -1015,7 +1015,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   sp(::frame_window) window::EnsureParentFrame()
+   sp(::user::frame_window) window::EnsureParentFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -2205,7 +2205,7 @@ namespace ca
       oswindow oswindow = hParent;
       if (oswindow == ::null())
       {
-    trans      sp(frame_window) pFrame = command_target::GetRoutingFrame_();
+    trans      sp(::user::frame_window) pFrame = command_target::GetRoutingFrame_();
          if (pFrame != ::null())
             oswindow = pFrame->GetSafeoswindow_();
          else

@@ -225,7 +225,7 @@ namespace user
 
 
 #include "user/user_buffer.h"
-#include "user/user_window_map.h"
+//#include "user/user_window_map.h"
 #include "base/ca/ca_keeper.h"
 #include "base/ca/ca_seekable.h"
 #include "base/ca/ca_reader.h"

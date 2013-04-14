@@ -15,7 +15,7 @@ namespace filemanager
 
          tree_view::tree_view(sp(::ca::application) papp) :
             ca(papp),
-            ::user::view(papp),
+            
             ::user::scroll_view(papp),
             ::user::tree(papp)
          {

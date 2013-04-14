@@ -161,9 +161,6 @@ namespace ca
       m_psystem            = ::null();
 
 
-      m_pappCube           = ::null();
-
-
       m_plemonarray              = new ::lemon::array(this);
          m_base64.set_app(this);
          m_pmath                    = new math::math(this);
@@ -258,16 +255,6 @@ namespace ca
    }
 
    bool application::is_session()
-   {
-      return false;
-   }
-
-   bool application::is_cube()
-   {
-      return false;
-   }
-
-   bool application::is_bergedge()
    {
       return false;
    }
@@ -797,7 +784,7 @@ finishedCa2ModuleFolder:;
    bool application::initialize_instance()
    {
 
-      if(!is_system() && !is_bergedge())
+      if(!is_system())
       {
          if(!check_exclusive())
             return false;
@@ -2761,7 +2748,7 @@ namespace ca
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::user::document_interface) pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument)
          // if ptemplate==::null() => all document templates
    {
       if(m_pfilemanager != ::null())
@@ -2870,7 +2857,7 @@ namespace ca
    {
       // just use frame_window::OnContextHelp implementation
    /* trans   m_bHelpMode = HELP_ACTIVE;
-      sp(frame_window) pMainWnd = (System.GetMainWnd());
+      sp(::user::frame_window) pMainWnd = (System.GetMainWnd());
       ENSURE_VALID(pMainWnd);
       ENSURE(pMainWnd->is_frame_window());
       pMainWnd->OnContextHelp();
@@ -3114,7 +3101,7 @@ namespace ca
       // check if notify hook installed
    /*xxx
       ASSERT_KINDOF(frame_window, pMainWnd);
-      sp(frame_window) pFrameWnd = (sp(frame_window))pMainWnd;
+      sp(::user::frame_window) pFrameWnd = (sp(::user::frame_window))pMainWnd;
       if (pFrameWnd->m_pNotifyHook != ::null())
          pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
    */
@@ -4195,7 +4182,7 @@ namespace ca
 
    void application::get_cursor_pos(LPPOINT lppoint)
    {
-      if(is_system() || is_cube())
+      if(is_system())
       {
          if(m_bSessionSynchronizedCursor)
          {
@@ -4206,7 +4193,7 @@ namespace ca
             *lppoint = m_ptCursor;
          }
       }
-      else if(is_session() || is_bergedge())
+      else if(is_session())
       {
          if(m_bSessionSynchronizedCursor)
          {
@@ -5050,7 +5037,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          catch(...)
          {
          }
-         bergedge_interface * pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca < bergedge_interface >();
+         sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca < ::plane::session >();
          if(pbergedge != ::null())
          {
             pbergedge->on_app_request_bergedge_callback(this);
@@ -5597,12 +5584,21 @@ ret:
       }*/
    }
 
-   void application::defer_add_document_template(sp(::document_template) ptemplate)
+   void application::defer_add_document_template(sp(::user::document_template) ptemplate)
    {
 
       throw interface_only_exception(get_app());
 
    }
+
+
+   ::user::printer * application::get_printer(const char * pszDeviceName)
+   {
+
+      return ::ca::smart_pointer < ::ca::application_base >::m_p->get_printer(pszDeviceName);
+
+   }
+
 
 
 } //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]

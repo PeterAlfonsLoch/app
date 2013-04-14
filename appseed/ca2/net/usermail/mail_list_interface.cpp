@@ -15,6 +15,7 @@ namespace mail
 
    list_interface::list_interface(sp(::ca::application) papp) :
       ca(papp),
+      
       ::user::scroll_view(papp),
       ::user::list(papp)
    {

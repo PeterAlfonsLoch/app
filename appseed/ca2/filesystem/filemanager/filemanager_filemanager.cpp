@@ -25,9 +25,6 @@ namespace filemanager
 
       set_data_server(Application.simpledb().get_data_server());
 
-      if(!file_manager_interface::initialize(get_app()))
-         return false;
-
       if(!FileManagerFileListCallback::initialize())
          return false;
 
@@ -77,7 +74,7 @@ namespace filemanager
    void filemanager::InitializeFileManager(const char * pszMatter)
    {
 
-      if(Application.is_cube())
+      if(Application.is_system())
       {
          System.factory().creatable_small < ::filemanager::document > ();
          System.factory().creatable_small < FileManagerChildFrame > ();
@@ -153,7 +150,7 @@ namespace filemanager
 
 
 
-   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate, sp(::user::document_interface) pdocument)
+   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument)
    {
 
       sp(::userex::pane_tab_view) ppanetabview = ::null();

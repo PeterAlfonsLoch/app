@@ -8,6 +8,7 @@ namespace filemanager
    document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
+      ::ca::data_container(papp),
       ::fs::document(papp)
    {
 
@@ -206,7 +207,7 @@ namespace filemanager
    void document::_001OnAddLocation(::ca::signal_object * pobj)
    {
 
-      update_all_views(::null(), ::view::hint_add_location, ::null());
+      update_all_views(::null(), ::user::view::hint_add_location, ::null());
 
       pobj->m_bRet = true;
 

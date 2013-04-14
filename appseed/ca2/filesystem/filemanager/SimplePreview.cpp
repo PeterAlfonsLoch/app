@@ -7,7 +7,7 @@ namespace filemanager
 
    SimplePreview::SimplePreview(sp(::ca::application) papp) :
       ca(papp),
-      ::user::view(papp),
+      
       SimplePreviewInterface(papp)
    {
 
@@ -24,7 +24,7 @@ namespace filemanager
    }
 
 
-   void SimplePreview::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint) 
+   void SimplePreview::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != ::null())

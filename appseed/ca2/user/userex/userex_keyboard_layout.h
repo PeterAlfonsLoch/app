@@ -37,7 +37,6 @@ namespace userex // ca8 + cube
 
 
       keyboard_layout(const keyboard_layout & ) :
-         ::user::view(::null()),
          ::user::place_holder_container(::null()),
          ::user::split_layout(::null()),
          ::user::split_view(::null()),

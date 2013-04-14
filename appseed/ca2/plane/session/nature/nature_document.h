@@ -18,7 +18,7 @@ namespace nature
       document(sp(::ca::application) papp);
       virtual ~document();
 
-      sp(::view)     get_nature_view();
+      sp(::user::view)     get_nature_view();
       sp(frame)    get_nature_frame();
       
 

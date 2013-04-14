@@ -140,10 +140,10 @@ namespace uinteraction
          size sizeMatch(0, 0);
          int32_t iMaxMonitor = -1;
          size sizeMax(0, 0);
-         for(int32_t iMonitor = 0; iMonitor < Cube.get_monitor_count(); iMonitor++)
+         for(int32_t iMonitor = 0; iMonitor < System.get_monitor_count(); iMonitor++)
          {
             rect rectParentClient;
-            Cube.get_monitor_rect(iMonitor, rectParentClient);
+            System.get_monitor_rect(iMonitor, rectParentClient);
             class rect rectIntersect;
             rectIntersect.intersect(rectParentClient, rectEvent);
             class size sizeIntersect;
@@ -184,7 +184,7 @@ namespace uinteraction
             else
             {
                class rect rect;
-               Cube.get_monitor_rect(0, rect);
+               System.get_monitor_rect(0, rect);
                rect.deflate(rect.width() / 4, rect.height() / 4);
                m_pworkset->GetWndDraw()->SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
             }

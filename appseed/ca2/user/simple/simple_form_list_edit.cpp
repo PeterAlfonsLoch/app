@@ -4,6 +4,7 @@
 simple_form_list_edit::simple_form_list_edit(sp(::ca::application) papp) :
     ca(papp),
    ::user::interaction(papp),
+   
    ::user::scroll_view(papp),
    ::user::edit_plain_text(papp)
 {

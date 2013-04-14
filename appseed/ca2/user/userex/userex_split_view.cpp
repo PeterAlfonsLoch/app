@@ -8,7 +8,7 @@ namespace userex
    split_view::split_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::split_layout(papp),
-      ::user::view(papp),
+      
       ::user::split_view(papp),
       place_holder_container(papp)
    {

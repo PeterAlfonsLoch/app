@@ -23,7 +23,7 @@ namespace plane
          index                   m_iEdge;
          string                  m_strApp;
          string                  m_strQuery;
-         ::plane::session *      m_pbergedgeParent;
+         sp(::plane::session)      m_pbergedgeParent;
          sp(::ca::application)   m_papp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
@@ -72,10 +72,10 @@ namespace plane
       sp(::user::single_document_template)                         m_ptemplate_platform;
       sp(::user::single_document_template)                         m_ptemplate_nature;
       sp(::user::single_document_template)                         m_ptemplate_html;
-      sp(::user::document)                                                     m_pbergedgedocument;
-      sp(::platform::document)                                           m_pplatformdocument;
-      sp(::nature::document)                                             m_pnaturedocument;
-      nature::database *                                             m_pdatabase;
+      sp(::bergedge::document)                           m_pbergedgedocument;
+      sp(::platform::document)                           m_pplatformdocument;
+      sp(::nature::document)                             m_pnaturedocument;
+      nature::database *                                 m_pdatabase;
 
 
       string_map < sp(::uinteraction::interaction) >     m_mapUinteraction;
@@ -121,7 +121,7 @@ namespace plane
 
       virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(sp(::frame_window) pmainframe, sp(::ca::create_context) pcontext);
+      virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca::create_context) pcontext);
 
       virtual bool place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcontext);
 
@@ -136,8 +136,8 @@ namespace plane
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
-      ::bergedge::document *            get_document();
-      ::bergedge::view *                get_view();
+      sp(::bergedge::document)            get_document();
+      sp(::bergedge::view)                get_view();
       sp(::platform::document)          get_platform();
       sp(::nature::document)            get_nature();
 
@@ -159,7 +159,6 @@ namespace plane
 
       sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
 
-      virtual bool is_bergedge();
 
       sp(::ca::application) get_current_application();
 
@@ -169,7 +168,7 @@ namespace plane
 
       virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
 
-      virtual ::plane::session * get_session();
+      virtual sp(::plane::session) get_session();
 
       virtual bool finalize();
 
@@ -182,6 +181,7 @@ namespace plane
       virtual ::visual::cursor * get_default_cursor();
 
       virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = ::null());
+      virtual bool open_by_file_extension(::ca::create_context * pcc);
 
       virtual bool is_session();
 
@@ -190,7 +190,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      sp(::planebase::application) start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext);
+      sp(::plane::application) start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext);
 
 
       virtual COLORREF get_default_color(uint64_t ui);

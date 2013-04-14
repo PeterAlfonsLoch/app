@@ -4,11 +4,8 @@
 
 dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    ca(puiParent->get_app()),
-   user::view(puiParent->get_app()),
-   user::scroll_view(puiParent->get_app()),
    user::scroll_view(puiParent->get_app()),
    user::form(puiParent->get_app()),
-   user::form_view(puiParent->get_app()),
    html_form(puiParent->get_app()),
    html_form_view(puiParent->get_app()),
    form_view(puiParent->get_app())
@@ -22,11 +19,8 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
 
 dialog::dialog(sp(::ca::application) papp) :
    ca(papp),
-   user::view(papp),
-   user::scroll_view(papp),
    user::scroll_view(papp),
    user::form(papp),
-   user::form_view(papp),
    html_form(papp),
    html_form_view(papp),
    form_view(papp)
@@ -63,7 +57,7 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 
    set["hold"] = false;
 
-   m_pdocument = Application.userex().create_form(this, ::null(), Bergedge.get_view(), set);
+   m_pdocument = Application.userex().create_form(this, ::null(), Session.get_view(), set);
    if(m_pdocument == ::null())
    {
       string str;
@@ -123,7 +117,7 @@ void dialog::EndModalLoop(id nResult)
 void dialog::on_position_parent_frame()
 {
    rect rectOpen;
-   Bergedge.get_screen_rect(rectOpen);
+   Session.get_screen_rect(rectOpen);
    int32_t iWidth = rectOpen.width();
    int32_t iHeight = rectOpen.height();
    rectOpen.deflate(iWidth / 5, iHeight / 5);

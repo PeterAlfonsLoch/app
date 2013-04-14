@@ -10,9 +10,7 @@ namespace fs
       ::user::scroll_view(papp),
       ::user::list(papp),
       user::form(papp),
-      ::ca::user::form(papp),
-      ::user::view(papp),
-      user::form_list(papp),
+      
       user::form_list(papp)
    {
 
