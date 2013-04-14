@@ -9,7 +9,7 @@ namespace nature
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::cube::application
+      virtual public ::plane::application
    {
    public:
 

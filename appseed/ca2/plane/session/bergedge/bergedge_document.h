@@ -26,8 +26,6 @@ namespace bergedge
       void set_platform(sp(::platform::document) pdoc);
       void set_nature(sp(::nature::document) pdoc);
 
-      ::bergedge::bergedge * get_bergedge();
-
       sp(view) get_bergedge_view();
       
       virtual bool on_new_document();

@@ -28,30 +28,10 @@ namespace plane
 
    class session;
    class system;
-   class cube;
+   //class cube;
 
 
 } // namespace plane
-
-
-namespace bergedge
-{
-
-
-   class bergedge;
-
-
-} // namespace bergedge
-
-
-namespace cube
-{
-
-
-   class cube;
-
-
-} // namespace cube
 
 
 #define CaSys(pca) (*pca->m_papp->m_psystem)
@@ -139,10 +119,6 @@ namespace ca
 
 
       ca & operator = (const ca & o);
-
-      
-      virtual ::bergedge::bergedge * get_bergedge();
-      virtual ::cube::cube * get_cube();
 
    };
 

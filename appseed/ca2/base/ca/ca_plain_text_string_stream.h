@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca_str_stream.h"
+#include "base/ca/ca_str_stream.h"
 
 
 class CLASS_DECL_ca2 _template_std_istringstream :

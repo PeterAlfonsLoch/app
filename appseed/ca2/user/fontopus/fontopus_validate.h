@@ -134,8 +134,8 @@ namespace fontopus
       sp(::form_document)                           m_pdocAuth;
       sp(::form_document)                           m_pdocMessage;
       sp(form_view)                               m_pviewAuth;
-      ::ca2::network_configuration              m_netcfg;
-      ::ca2::keyboard_layout *                  m_pkeyboardlayout;
+      ::usernet::network_configuration              m_netcfg;
+      sp(::userex::keyboard_layout)                  m_pkeyboardlayout;
       void *                                    m_pvOldWindow;
 
 

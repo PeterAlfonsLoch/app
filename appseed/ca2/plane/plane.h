@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/ca2/ca2.h"
+#include "base/ca/ca.h"
 
 
 
@@ -104,10 +104,10 @@ namespace bergedge
 #include "plane_application.h"
 
 
-#include "ca/bergedge/bergedge.h"
+#include "plane/session/bergedge/bergedge.h"
 
 
-#include "plane_session.h"
+#include "plane/session/plane_session.h"
 #include "plane_system.h"
 
 
@@ -122,8 +122,8 @@ namespace bergedge
 #include "plane_system_primitive_string_format_spec.h"
 
 
-#include "plugin/plugin.h"
+#include "base/plugin/plugin.h"
 
-#include "bergedge/bergedge.h"
+#include "plane/session/bergedge/bergedge.h"
 
 

@@ -32,9 +32,13 @@
 #include "userex_property_page.h"
 #include "userex_property_sheet.h"
 
+#include "userex_wait_message_dialog.h"
+#include "userex_message_box.h"
+#include "userex_keyboard_layout.h"
 
 
 #include "userex_userex.h"
+
 
 
 

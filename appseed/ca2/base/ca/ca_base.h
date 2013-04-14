@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "ca/ca_definition.h"
-#include "ca/ca_core.h"
+#include "base/ca/ca_definition.h"
+#include "base/ca/ca_core.h"
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2

@@ -1,11 +1,11 @@
 #pragma once
 
 
-class document;
-
-
 namespace user
 {
+
+
+   class document;
 
 
    class CLASS_DECL_ca2 document_interface :

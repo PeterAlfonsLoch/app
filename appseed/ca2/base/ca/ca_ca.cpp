@@ -69,16 +69,6 @@ namespace ca
       return *this;
    }
 
-   ::bergedge::bergedge * ca::get_bergedge()
-   {
-      return m_papp->m_psession->m_pbergedge;
-   }
-
-   ::cube::cube * ca::get_cube()
-   {
-      return m_papp->m_psystem->m_pcube;
-   }
-
    void ca::delete_this()
    {
       if(m_pfactoryitembase != ::null() && m_pfactoryitembase->m_pallocator)

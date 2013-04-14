@@ -38,7 +38,7 @@ namespace platform
          string                  m_strBrief;
          string                  m_strDescription;
          string                  m_strSrc;
-         ::userbase::button      m_button;
+         ::user::button      m_button;
          
       };
 

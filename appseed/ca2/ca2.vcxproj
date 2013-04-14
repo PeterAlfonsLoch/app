@@ -918,304 +918,443 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="base\api\api.h" />
+    <ClInclude Include="base\api\api_debug.h" />
+    <ClInclude Include="base\api\api_muldiv64.h" />
+    <ClInclude Include="base\api\api_rotate.h" />
+    <ClInclude Include="base\api\api_string.h" />
+    <ClInclude Include="base\api\mktime.h" />
+    <ClInclude Include="base\ca\aaa_want_to_remove_ca_raw_pointer.h" />
+    <ClInclude Include="base\ca\aaa_want_to_remove_ca_scoped_ptr.h" />
+    <ClInclude Include="base\ca\ca.h" />
+    <ClInclude Include="base\ca\ca_keyboard_layout.h" />
+    <ClInclude Include="base\ca\ca_message_box.h" />
+    <ClInclude Include="base\ca\ca_network_configuration.h" />
+    <ClInclude Include="base\ca\ca_wait_message_dialog.h" />
+    <ClInclude Include="base\ca\ca_0.h" />
+    <ClInclude Include="base\ca\ca_1.h" />
+    <ClInclude Include="base\ca\ca_allocate.h" />
+    <ClInclude Include="base\ca\ca_allocator.h" />
+    <ClInclude Include="base\ca\ca_application.h" />
+    <ClInclude Include="base\ca\ca_application_bias.h" />
+    <ClInclude Include="base\ca\ca_back_insert_iterator.h" />
+    <ClInclude Include="base\ca\ca_base.h" />
+    <ClInclude Include="base\ca\ca_base64.h" />
+    <ClInclude Include="base\ca\ca_base_enum.h" />
+    <ClInclude Include="base\ca\ca_bit.h" />
+    <ClInclude Include="base\ca\ca_bitl_decoder.h" />
+    <ClInclude Include="base\ca\ca_bitl_encoder.h" />
+    <ClInclude Include="base\ca\ca_bitmap.h" />
+    <ClInclude Include="base\ca\ca_bitm_decoder.h" />
+    <ClInclude Include="base\ca\ca_bitm_encoder.h" />
+    <ClInclude Include="base\ca\ca_brush.h" />
+    <ClInclude Include="base\ca\ca_bstr.h" />
+    <ClInclude Include="base\ca\ca_buffer.h" />
+    <ClInclude Include="base\ca\ca_buffered_file.h" />
+    <ClInclude Include="base\ca\ca_byte_serializable.h" />
+    <ClInclude Include="base\ca\ca_byte_stream.h" />
+    <ClInclude Include="base\ca\ca_byte_stream_memory_file.h" />
+    <ClInclude Include="base\ca\ca_c.h" />
+    <ClInclude Include="base\ca\ca_ca.h" />
+    <ClInclude Include="base\ca\ca_ch.h" />
+    <ClInclude Include="base\ca\ca_ch_class.h" />
+    <ClInclude Include="base\ca\ca_circular_buffer.h" />
+    <ClInclude Include="base\ca\ca_clustered_input_stream.h" />
+    <ClInclude Include="base\ca\ca_command.h" />
+    <ClInclude Include="base\ca\ca_command_line.h" />
+    <ClInclude Include="base\ca\ca_command_target.h" />
+    <ClInclude Include="base\ca\ca_command_thread.h" />
+    <ClInclude Include="base\ca\ca_common.h" />
+    <ClInclude Include="base\ca\ca_compare.h" />
+    <ClInclude Include="base\ca\ca_composite.h" />
+    <ClInclude Include="base\ca\ca_compress.h" />
+    <ClInclude Include="base\ca\ca_constraint.h" />
+    <ClInclude Include="base\ca\ca_contact_list.h" />
+    <ClInclude Include="base\ca\ca_copydesk.h" />
+    <ClInclude Include="base\ca\ca_core.h" />
+    <ClInclude Include="base\ca\ca_create_context.h" />
+    <ClInclude Include="base\ca\ca_cregexp.h" />
+    <ClInclude Include="base\ca\ca_cregexp_util.h" />
+    <ClInclude Include="base\ca\ca_crypt.h" />
+    <ClInclude Include="base\ca\ca_c_number.h" />
+    <ClInclude Include="base\ca\ca_data.h" />
+    <ClInclude Include="base\ca\ca_data_container.h" />
+    <ClInclude Include="base\ca\ca_data_listener.h" />
+    <ClInclude Include="base\ca\ca_datetime.h" />
+    <ClInclude Include="base\ca\ca_debug.h" />
+    <ClInclude Include="base\ca\ca_definition.h" />
+    <ClInclude Include="base\ca\ca_dib.h" />
+    <ClInclude Include="base\ca\ca_dir_application.h" />
+    <ClInclude Include="base\ca\ca_dir_system.h" />
+    <ClInclude Include="base\ca\ca_dynamic_buffer.h" />
+    <ClInclude Include="base\ca\ca_dynamic_buffered_writer.h" />
+    <ClInclude Include="base\ca\ca_edit.h" />
+    <ClInclude Include="base\ca\ca_edit_file.h" />
+    <ClInclude Include="base\ca\ca_email.h" />
+    <ClInclude Include="base\ca\ca_enum.h" />
+    <ClInclude Include="base\ca\ca_equals.h" />
+    <ClInclude Include="base\ca\ca_exception.h" />
+    <ClInclude Include="base\ca\ca_factory.h" />
+    <ClInclude Include="base\ca\ca_file.h" />
+    <ClInclude Include="base\ca\ca_file_application.h" />
+    <ClInclude Include="base\ca\ca_file_association.h" />
+    <ClInclude Include="base\ca\ca_file_composite.h" />
+    <ClInclude Include="base\ca\ca_file_exception.h" />
+    <ClInclude Include="base\ca\aaa_want_to_remove_ca_file_manager_interface.h" />
+    <ClInclude Include="base\ca\ca_file_set.h" />
+    <ClInclude Include="base\ca\ca_file_status.h" />
+    <ClInclude Include="base\ca\ca_file_stream.h" />
+    <ClInclude Include="base\ca\ca_file_system.h" />
+    <ClInclude Include="base\ca\ca_fixed_alloc.h" />
+    <ClInclude Include="base\ca\ca_flags.h" />
+    <ClInclude Include="base\ca\ca_folder_watch.h" />
+    <ClInclude Include="base\ca\ca_font.h" />
+    <ClInclude Include="base\ca\ca_fs_interface.h" />
+    <ClInclude Include="base\ca\ca_geometry.h" />
+    <ClInclude Include="base\ca\ca_go_thread.h" />
+    <ClInclude Include="base\ca\ca_graphics.h" />
+    <ClInclude Include="base\ca\ca_graphics_object.h" />
+    <ClInclude Include="base\ca\ca_graphics_path.h" />
+    <ClInclude Include="base\ca\ca_graphic_classes.h" />
+    <ClInclude Include="base\ca\ca_hash.h" />
+    <ClInclude Include="base\ca\ca_heap.h" />
+    <ClInclude Include="base\ca\ca_hex.h" />
+    <ClInclude Include="base\ca\ca_history.h" />
+    <ClInclude Include="base\ca\ca_http.h" />
+    <ClInclude Include="base\ca\ca_http_application.h" />
+    <ClInclude Include="base\ca\ca_http_get_socket.h" />
+    <ClInclude Include="base\ca\ca_http_system.h" />
+    <ClInclude Include="base\ca\ca_igui.h" />
+    <ClInclude Include="base\ca\ca_inline.h" />
+    <ClInclude Include="base\ca\ca_insert_iterator.h" />
+    <ClInclude Include="base\ca\ca_interlocked_long.h" />
+    <ClInclude Include="base\ca\ca_interlocked_long_pulse.h" />
+    <ClInclude Include="base\ca\ca_international.h" />
+    <ClInclude Include="base\ca\ca_international2.h" />
+    <ClInclude Include="base\ca\ca_international_locale_schema.h" />
+    <ClInclude Include="base\ca\ca_in_buffer.h" />
+    <ClInclude Include="base\ca\ca_io_temp_buffer.h" />
+    <ClInclude Include="base\ca\ca_ip_enum.h" />
+    <ClInclude Include="base\ca\ca_istring.h" />
+    <ClInclude Include="base\ca\ca_iterator.h" />
+    <ClInclude Include="base\ca\ca_job.h" />
+    <ClInclude Include="base\ca\ca_keeper.h" />
+    <ClInclude Include="base\ca\ca_keep_alive.h" />
+    <ClInclude Include="base\ca\ca_less.h" />
+    <ClInclude Include="base\ca\ca_library.h" />
+    <ClInclude Include="base\ca\ca_limited_input_stream.h" />
+    <ClInclude Include="base\ca\ca_limited_reader.h" />
+    <ClInclude Include="base\ca\ca_limited_writer.h" />
+    <ClInclude Include="base\ca\ca_listener.h" />
+    <ClInclude Include="base\ca\ca_live_object.h" />
+    <ClInclude Include="base\ca\ca_live_signal.h" />
+    <ClInclude Include="base\ca\ca_locked_in_stream.h" />
+    <ClInclude Include="base\ca\ca_log.h" />
+    <ClInclude Include="base\ca\ca_logic.h" />
+    <ClInclude Include="base\ca\ca_machine_event_central.h" />
+    <ClInclude Include="base\ca\ca_main.h" />
+    <ClInclude Include="base\ca\ca_main_init_data.h" />
+    <ClInclude Include="base\ca\ca_map_to_smart_pointer.h" />
+    <ClInclude Include="base\ca\ca_match.h" />
+    <ClInclude Include="base\ca\ca_math.h" />
+    <ClInclude Include="base\ca\ca_math_rng.h" />
+    <ClInclude Include="base\ca\ca_message.h" />
+    <ClInclude Include="base\ca\ca_message_window.h" />
+    <ClInclude Include="base\ca\ca_microtimer.h" />
+    <ClInclude Include="base\ca\ca_muldiv32.h" />
+    <ClInclude Include="base\ca\ca_oauth.h" />
+    <ClInclude Include="base\ca\ca_object.h" />
+    <ClInclude Include="base\ca\ca_opened_files.h" />
+    <ClInclude Include="base\ca\ca_os.h" />
+    <ClInclude Include="base\ca\ca_os_history.h" />
+    <ClInclude Include="base\ca\ca_os_implementation.h" />
+    <ClInclude Include="base\ca\ca_output_stream_flush_interface.h" />
+    <ClInclude Include="base\ca\ca_out_buffer.h" />
+    <ClInclude Include="base\ca\ca_palette.h" />
+    <ClInclude Include="base\ca\ca_parse.h" />
+    <ClInclude Include="base\ca\ca_patch.h" />
+    <ClInclude Include="base\ca\ca_pen.h" />
+    <ClInclude Include="base\ca\ca_pipe.h" />
+    <ClInclude Include="base\ca\ca_plain_text_serializable.h" />
+    <ClInclude Include="base\ca\ca_plain_text_stream.h" />
+    <ClInclude Include="base\ca\ca_plain_text_string_stream.h" />
+    <ClInclude Include="base\ca\ca_plex.h" />
+    <ClInclude Include="base\ca\ca_plex_heap.h" />
+    <ClInclude Include="base\ca\ca_port_forward.h" />
+    <ClInclude Include="base\ca\ca_print_job.h" />
+    <ClInclude Include="base\ca\ca_process.h" />
+    <ClInclude Include="base\ca\ca_process_data.h" />
+    <ClInclude Include="base\ca\ca_process_section.h" />
+    <ClInclude Include="base\ca\ca_profiler.h" />
+    <ClInclude Include="base\ca\ca_progress_interface.h" />
+    <ClInclude Include="base\ca\ca_property.h" />
+    <ClInclude Include="base\ca\ca_property_set.h" />
+    <ClInclude Include="base\ca\ca_raw_pointer.h" />
+    <ClInclude Include="base\ca\ca_reader.h" />
+    <ClInclude Include="base\ca\ca_reference.h" />
+    <ClInclude Include="base\ca\ca_region.h" />
+    <ClInclude Include="base\ca\ca_request_interface.h" />
+    <ClInclude Include="base\ca\ca_request_signal.h" />
+    <ClInclude Include="base\ca\ca_resource.h" />
+    <ClInclude Include="base\ca\ca_savings.h" />
+    <ClInclude Include="base\ca\ca_section.h" />
+    <ClInclude Include="base\ca\ca_seekable.h" />
+    <ClInclude Include="base\ca\ca_service.h" />
+    <ClInclude Include="base\ca\ca_session.h" />
+    <ClInclude Include="base\ca\ca_se_translator.h" />
+    <ClInclude Include="base\ca\ca_se_translator.want_to_remove.h" />
+    <ClInclude Include="base\ca\ca_signal.h" />
+    <ClInclude Include="base\ca\ca_signal_thread.h" />
+    <ClInclude Include="base\ca\ca_simple_thread.h" />
+    <ClInclude Include="base\ca\ca_simple_tree_data.h" />
+    <ClInclude Include="base\ca\ca_simple_tree_item_data.h" />
+    <ClInclude Include="base\ca\ca_size_count_writer.h" />
+    <ClInclude Include="base\ca\ca_smart_pointer1.h" />
+    <ClInclude Include="base\ca\ca_smart_pointer2.h" />
+    <ClInclude Include="base\ca\ca_smart_pointer_array.h" />
+    <ClInclude Include="base\ca\ca_smart_pointer_query.h" />
+    <ClInclude Include="base\ca\ca_sockets_address.h" />
+    <ClInclude Include="base\ca\ca_std_pair.h" />
+    <ClInclude Include="base\ca\ca_str.h" />
+    <ClInclude Include="base\ca\ca_str2.h" />
+    <ClInclude Include="base\ca\ca_stra.h" />
+    <ClInclude Include="base\ca\ca_stream.h" />
+    <ClInclude Include="base\ca\ca_stream2.h" />
+    <ClInclude Include="base\ca\ca_stream_base.h" />
+    <ClInclude Include="base\ca\ca_stream_binder.h" />
+    <ClInclude Include="base\ca\ca_string_tokenizer.h" />
+    <ClInclude Include="base\ca\ca_strn.h" />
+    <ClInclude Include="base\ca\ca_str_stream.h" />
+    <ClInclude Include="base\ca\ca_system.h" />
+    <ClInclude Include="base\ca\ca_system_exception.h" />
+    <ClInclude Include="base\ca\ca_template.h" />
+    <ClInclude Include="base\ca\ca_text_file.h" />
+    <ClInclude Include="base\ca\ca_thread.h" />
+    <ClInclude Include="base\ca\ca_timeout_file.h" />
+    <ClInclude Include="base\ca\ca_timer.h" />
+    <ClInclude Include="base\ca\ca_timer_callback.h" />
+    <ClInclude Include="base\ca\ca_timer_listener.h" />
+    <ClInclude Include="base\ca\ca_timer_window.h" />
+    <ClInclude Include="base\ca\ca_trace.h" />
+    <ClInclude Include="base\ca\ca_transfer_file.h" />
+    <ClInclude Include="base\ca\ca_tree.h" />
+    <ClInclude Include="base\ca\ca_tree_data.h" />
+    <ClInclude Include="base\ca\ca_tree_item.h" />
+    <ClInclude Include="base\ca\ca_tree_item_data.h" />
+    <ClInclude Include="base\ca\ca_twit.h" />
+    <ClInclude Include="base\ca\ca_types.h" />
+    <ClInclude Include="base\ca\ca_type_info.h" />
+    <ClInclude Include="base\ca\ca_url.h" />
+    <ClInclude Include="base\ca\ca_url_domain.h" />
+    <ClInclude Include="base\ca\ca_user.h" />
+    <ClInclude Include="base\ca\ca_util.h" />
+    <ClInclude Include="base\ca\ca_util1.h" />
+    <ClInclude Include="base\ca\ca_var.h" />
+    <ClInclude Include="base\ca\ca_variable_strict_compare.h" />
+    <ClInclude Include="base\ca\ca_var_array.h" />
+    <ClInclude Include="base\ca\ca_wait_cursor.h" />
+    <ClInclude Include="base\ca\ca_window.h" />
+    <ClInclude Include="base\ca\ca_window_draw.h" />
+    <ClInclude Include="base\ca\ca_writer.h" />
+    <ClInclude Include="base\ca\_ca_2.h" />
+    <ClInclude Include="base\collection\collection.h" />
+    <ClInclude Include="base\collection\collection_array.h" />
+    <ClInclude Include="base\collection\collection_attrib_map.h" />
+    <ClInclude Include="base\collection\collection_base_2array.h" />
+    <ClInclude Include="base\collection\collection_bitset.h" />
+    <ClInclude Include="base\collection\collection_bit_array.h" />
+    <ClInclude Include="base\collection\collection_comparable_array.h" />
+    <ClInclude Include="base\collection\collection_comparable_eq_array.h" />
+    <ClInclude Include="base\collection\collection_comparable_eq_list.h" />
+    <ClInclude Include="base\collection\collection_comparable_list.h" />
+    <ClInclude Include="base\collection\collection_comparable_primitive_array.h" />
+    <ClInclude Include="base\collection\collection_comparable_raw_array.h" />
+    <ClInclude Include="base\collection\collection_deque.h" />
+    <ClInclude Include="base\collection\collection_elements.h" />
+    <ClInclude Include="base\collection\collection_fifo_map.h" />
+    <ClInclude Include="base\collection\collection_id_array.h" />
+    <ClInclude Include="base\collection\collection_int_map.h" />
+    <ClInclude Include="base\collection\collection_key_sort_array.h" />
+    <ClInclude Include="base\collection\collection_lemon_array.h" />
+    <ClInclude Include="base\collection\collection_list.h" />
+    <ClInclude Include="base\collection\collection_logic_array.h" />
+    <ClInclude Include="base\collection\collection_map.h" />
+    <ClInclude Include="base\collection\collection_map_association.h" />
+    <ClInclude Include="base\collection\collection_map_to_smart_pointer.h" />
+    <ClInclude Include="base\collection\collection_numeric_array.h" />
+    <ClInclude Include="base\collection\collection_object_list.h" />
+    <ClInclude Include="base\collection\collection_packset.h" />
+    <ClInclude Include="base\collection\collection_pair.h" />
+    <ClInclude Include="base\collection\collection_pointer_list.h" />
+    <ClInclude Include="base\collection\collection_point_array.h" />
+    <ClInclude Include="base\collection\collection_primitive_array.h" />
+    <ClInclude Include="base\collection\collection_priority_queue.h" />
+    <ClInclude Include="base\collection\collection_queue.h" />
+    <ClInclude Include="base\collection\collection_raw_array.h" />
+    <ClInclude Include="base\collection\collection_rect_array.h" />
+    <ClInclude Include="base\collection\collection_simple_eq_array.h" />
+    <ClInclude Include="base\collection\collection_simple_object_array.h" />
+    <ClInclude Include="base\collection\collection_simple_pointer_array.h" />
+    <ClInclude Include="base\collection\collection_simple_template.h" />
+    <ClInclude Include="base\collection\collection_simple_typed_pointer_array.h" />
+    <ClInclude Include="base\collection\collection_smart_pointer_array.h" />
+    <ClInclude Include="base\collection\collection_sort.h" />
+    <ClInclude Include="base\collection\collection_sort_array.h" />
+    <ClInclude Include="base\collection\collection_sort_map.h" />
+    <ClInclude Include="base\collection\collection_spreadset.h" />
+    <ClInclude Include="base\collection\collection_strid_map.h" />
+    <ClInclude Include="base\collection\collection_stringa.h" />
+    <ClInclude Include="base\collection\collection_stringl.h" />
+    <ClInclude Include="base\collection\collection_string_array.h" />
+    <ClInclude Include="base\collection\collection_string_list.h" />
+    <ClInclude Include="base\collection\collection_string_map.h" />
+    <ClInclude Include="base\collection\collection_string_sort_array.h" />
+    <ClInclude Include="base\collection\collection_string_to_string_map.h" />
+    <ClInclude Include="base\collection\collection_template.h" />
+    <ClInclude Include="base\collection\collection_typed_pointer_array.h" />
+    <ClInclude Include="base\collection\collection_typed_pointer_list.h" />
+    <ClInclude Include="base\collection\collection_typed_pointer_map.h" />
+    <ClInclude Include="base\collection\collection_typed_ptr_array.h" />
+    <ClInclude Include="base\collection\collection_typed_ptr_list.h" />
+    <ClInclude Include="base\collection\collection_unique_array.h" />
+    <ClInclude Include="base\crypto\crypto.h" />
+    <ClInclude Include="base\crypto\crypto_aes.h" />
+    <ClInclude Include="base\crypto\crypto_aes_cbc.h" />
+    <ClInclude Include="base\crypto\crypto_aes_icm.h" />
+    <ClInclude Include="base\crypto\crypto_alg.h" />
+    <ClInclude Include="base\crypto\crypto_alloc.h" />
+    <ClInclude Include="base\crypto\crypto_auth.h" />
+    <ClInclude Include="base\crypto\crypto_cipher.h" />
+    <ClInclude Include="base\crypto\crypto_config.h" />
+    <ClInclude Include="base\crypto\crypto_c_crypto.h" />
+    <ClInclude Include="base\crypto\crypto_datatypes.h" />
+    <ClInclude Include="base\crypto\crypto_err.h" />
+    <ClInclude Include="base\crypto\crypto_gf2_8.h" />
+    <ClInclude Include="base\crypto\crypto_hmac.h" />
+    <ClInclude Include="base\crypto\crypto_hmac_sha1.h" />
+    <ClInclude Include="base\crypto\crypto_integers.h" />
+    <ClInclude Include="base\crypto\crypto_kernel.h" />
+    <ClInclude Include="base\crypto\crypto_kernel_compat.h" />
+    <ClInclude Include="base\crypto\crypto_key.h" />
+    <ClInclude Include="base\crypto\crypto_math.h" />
+    <ClInclude Include="base\crypto\crypto_md5.h" />
+    <ClInclude Include="base\crypto\crypto_null_auth.h" />
+    <ClInclude Include="base\crypto\crypto_null_cipher.h" />
+    <ClInclude Include="base\crypto\crypto_prng.h" />
+    <ClInclude Include="base\crypto\crypto_rand_source.h" />
+    <ClInclude Include="base\crypto\crypto_rdb.h" />
+    <ClInclude Include="base\crypto\crypto_rdbx.h" />
+    <ClInclude Include="base\crypto\crypto_sha1.h" />
+    <ClInclude Include="base\crypto\crypto_stat.h" />
+    <ClInclude Include="base\crypto\crypto_types.h" />
+    <ClInclude Include="base\crypto\crypto_ut_sim.h" />
+    <ClInclude Include="base\crypto\crypto_xfm.h" />
+    <ClInclude Include="base\exception\exception.h" />
+    <ClInclude Include="base\exception\exception_assert.h" />
+    <ClInclude Include="base\exception\exception_base.h" />
+    <ClInclude Include="base\exception\exception_call_stack.h" />
+    <ClInclude Include="base\exception\exception_debug.h" />
+    <ClInclude Include="base\exception\exception_debug_stream.h" />
+    <ClInclude Include="base\exception\exception_dump_context.h" />
+    <ClInclude Include="base\exception\exception_engine.h" />
+    <ClInclude Include="base\exception\exception_error.h" />
+    <ClInclude Include="base\exception\exception_exit.h" />
+    <ClInclude Include="base\exception\exception_hresult.h" />
+    <ClInclude Include="base\exception\exception_installing.h" />
+    <ClInclude Include="base\exception\exception_interface_only.h" />
+    <ClInclude Include="base\exception\exception_invalid_argument.h" />
+    <ClInclude Include="base\exception\exception_invalid_character.h" />
+    <ClInclude Include="base\exception\exception_invalid_handle.h" />
+    <ClInclude Include="base\exception\exception_invalid_index.h" />
+    <ClInclude Include="base\exception\exception_io.h" />
+    <ClInclude Include="base\exception\exception_last_error.h" />
+    <ClInclude Include="base\exception\exception_memory.h" />
+    <ClInclude Include="base\exception\exception_memory_state.h" />
+    <ClInclude Include="base\exception\exception_misc.h" />
+    <ClInclude Include="base\exception\exception_not_implemented.h" />
+    <ClInclude Include="base\exception\exception_not_installed.h" />
+    <ClInclude Include="base\exception\exception_not_licensed.h" />
+    <ClInclude Include="base\exception\exception_not_supported.h" />
+    <ClInclude Include="base\exception\exception_operation_canceled.h" />
+    <ClInclude Include="base\exception\exception_os.h" />
+    <ClInclude Include="base\exception\exception_overflow_error.h" />
+    <ClInclude Include="base\exception\exception_range_error.h" />
+    <ClInclude Include="base\exception\exception_resource.h" />
+    <ClInclude Include="base\exception\exception_runtime_error.h" />
+    <ClInclude Include="base\exception\exception_simple.h" />
+    <ClInclude Include="base\exception\exception_standard.h" />
+    <ClInclude Include="base\exception\exception_standard_translator.h" />
+    <ClInclude Include="base\exception\exception_temporary.h" />
+    <ClInclude Include="base\exception\exception_todo.h" />
+    <ClInclude Include="base\exception\exception_trap.h" />
+    <ClInclude Include="base\exception\exception_unhandled_report.h" />
+    <ClInclude Include="base\exception\exception_user.h" />
+    <ClInclude Include="base\exception\exception_vms.h" />
+    <ClInclude Include="base\exception\exception_void_implementation.h" />
+    <ClInclude Include="base\geoip\geoip.h" />
+    <ClInclude Include="base\geoip\geoip_city.h" />
+    <ClInclude Include="base\geoip\geoip_internal.h" />
+    <ClInclude Include="base\geoip\geoip_update.h" />
+    <ClInclude Include="base\geoip\global.h" />
+    <ClInclude Include="base\install\install.h" />
+    <ClInclude Include="base\install\install_install.h" />
+    <ClInclude Include="base\libcharguess\big5Prober.h" />
+    <ClInclude Include="base\libcharguess\charDistribution.h" />
+    <ClInclude Include="base\libcharguess\charguess.h" />
+    <ClInclude Include="base\libcharguess\charsetProber.h" />
+    <ClInclude Include="base\libcharguess\codingStateMachine.h" />
+    <ClInclude Include="base\libcharguess\config.h" />
+    <ClInclude Include="base\libcharguess\EscCharsetProber.h" />
+    <ClInclude Include="base\libcharguess\EUCJPProber.h" />
+    <ClInclude Include="base\libcharguess\EUCKRProber.h" />
+    <ClInclude Include="base\libcharguess\EUCTWProber.h" />
+    <ClInclude Include="base\libcharguess\GB2312Prober.h" />
+    <ClInclude Include="base\libcharguess\jpCntx.h" />
+    <ClInclude Include="base\libcharguess\Latin1Prober.h" />
+    <ClInclude Include="base\libcharguess\libcharguess.h" />
+    <ClInclude Include="base\libcharguess\MBCSGroupProber.h" />
+    <ClInclude Include="base\libcharguess\pkgInt.h" />
+    <ClInclude Include="base\libcharguess\SBCharsetProber.h" />
+    <ClInclude Include="base\libcharguess\SBCSGroupProber.h" />
+    <ClInclude Include="base\libcharguess\SJISProber.h" />
+    <ClInclude Include="base\libcharguess\types.h" />
+    <ClInclude Include="base\libcharguess\universal.h" />
+    <ClInclude Include="base\libcharguess\UTF8Prober.h" />
+    <ClInclude Include="base\multithreading\multithreading_file_change_event.h" />
+    <ClInclude Include="base\os\os.h" />
+    <ClInclude Include="base\os\os_cross_windows.h" />
+    <ClInclude Include="base\os\os_cross_windows_crt.h" />
+    <ClInclude Include="base\os\os_cross_windows_guid_def.h" />
+    <ClInclude Include="base\os\os_cross_windows_internals.h" />
+    <ClInclude Include="base\os\os_cross_windows_shared_memory.h" />
+    <ClInclude Include="base\os\os_cross_windows_time.h" />
+    <ClInclude Include="base\os\os_cross_windows_winnt.h" />
+    <ClInclude Include="base\windows\os.h" />
+    <ClInclude Include="base\windows\os_defs.h" />
+    <ClInclude Include="base\windows\os_library.h" />
+    <ClInclude Include="base\windows\os_utils.h" />
+    <ClInclude Include="base\xml\xml.h" />
+    <ClInclude Include="base\xml\xml_attr.h" />
+    <ClInclude Include="base\xml\xml_base_array.h" />
+    <ClInclude Include="base\xml\xml_data.h" />
+    <ClInclude Include="base\xml\xml_disp_option.h" />
+    <ClInclude Include="base\xml\xml_document.h" />
+    <ClInclude Include="base\xml\xml_edit.h" />
+    <ClInclude Include="base\xml\xml_entity.h" />
+    <ClInclude Include="base\xml\xml_enum.h" />
+    <ClInclude Include="base\xml\xml_exportable.h" />
+    <ClInclude Include="base\xml\xml_importable.h" />
+    <ClInclude Include="base\xml\xml_input_tree.h" />
+    <ClInclude Include="base\xml\xml_node.h" />
+    <ClInclude Include="base\xml\xml_output_tree.h" />
+    <ClInclude Include="base\xml\xml_parse_info.h" />
+    <ClInclude Include="base\xml\xml_property_exchange.h" />
+    <ClInclude Include="base\xml\xml_tree_base.h" />
+    <ClInclude Include="base\xml\xml_tree_schema.h" />
+    <ClInclude Include="base\xml\xml_var_exchange.h" />
+    <ClInclude Include="base\xml\xml_xml.h" />
+    <ClInclude Include="base\xml\xml_xmlite.h" />
     <ClInclude Include="ca2.h" />
-    <ClInclude Include="ca2\ca2.h" />
-    <ClInclude Include="ca2\ca2_application.h" />
-    <ClInclude Include="ca2\ca2_keyboard_layout.h" />
-    <ClInclude Include="ca2\ca2_message_box.h" />
-    <ClInclude Include="ca2\ca2_network_configuration.h" />
-    <ClInclude Include="ca2\ca2_wait_message_dialog.h" />
-    <ClInclude Include="ca2\os_implementation.h" />
-    <ClInclude Include="ca\ca.h" />
-    <ClInclude Include="ca\ca2_keep_alive.h" />
-    <ClInclude Include="ca\ca_0.h" />
-    <ClInclude Include="ca\ca_1.h" />
-    <ClInclude Include="ca\ca_allocate.h" />
-    <ClInclude Include="ca\ca_allocator.h" />
-    <ClInclude Include="ca\ca_application_interface.h" />
-    <ClInclude Include="ca\ca_back_insert_iterator.h" />
-    <ClInclude Include="ca\ca_base64.h" />
-    <ClInclude Include="ca\ca_base_enum.h" />
-    <ClInclude Include="ca\ca_bit.h" />
-    <ClInclude Include="ca\ca_bitl_decoder.h" />
-    <ClInclude Include="ca\ca_bitl_encoder.h" />
-    <ClInclude Include="ca\ca_bitm_decoder.h" />
-    <ClInclude Include="ca\ca_bitm_encoder.h" />
-    <ClInclude Include="ca\ca_bstr.h" />
-    <ClInclude Include="ca\ca_buffer.h" />
-    <ClInclude Include="ca\ca_buffered_file.h" />
-    <ClInclude Include="ca\ca_byte_serializable.h" />
-    <ClInclude Include="ca\ca_byte_stream.h" />
-    <ClInclude Include="ca\ca_byte_stream_memory_file.h" />
-    <ClInclude Include="ca\ca_c.h" />
-    <ClInclude Include="ca\ca_ch.h" />
-    <ClInclude Include="ca\ca_ch_class.h" />
-    <ClInclude Include="ca\ca_circular_buffer.h" />
-    <ClInclude Include="ca\ca_clustered_input_stream.h" />
-    <ClInclude Include="ca\ca_command.h" />
-    <ClInclude Include="ca\ca_command_line.h" />
-    <ClInclude Include="ca\ca_command_target.h" />
-    <ClInclude Include="ca\ca_command_thread.h" />
-    <ClInclude Include="ca\ca_common.h" />
-    <ClInclude Include="ca\ca_compare.h" />
-    <ClInclude Include="ca\ca_composite.h" />
-    <ClInclude Include="ca\ca_compress.h" />
-    <ClInclude Include="ca\ca_constraint.h" />
-    <ClInclude Include="ca\ca_contact_list.h" />
-    <ClInclude Include="ca\ca_copydesk.h" />
-    <ClInclude Include="ca\ca_core.h" />
-    <ClInclude Include="ca\ca_cregexp.h" />
-    <ClInclude Include="ca\ca_cregexp_util.h" />
-    <ClInclude Include="ca\ca_crypt.h" />
-    <ClInclude Include="ca\ca_c_number.h" />
-    <ClInclude Include="ca\ca_datetime.h" />
-    <ClInclude Include="ca\ca_debug.h" />
-    <ClInclude Include="ca\ca_definition.h" />
-    <ClInclude Include="ca\ca_dynamic_buffer.h" />
-    <ClInclude Include="ca\ca_dynamic_buffered_writer.h" />
-    <ClInclude Include="ca\ca_edit_file.h" />
-    <ClInclude Include="ca\ca_email.h" />
-    <ClInclude Include="ca\ca_equals.h" />
-    <ClInclude Include="ca\ca_factory.h" />
-    <ClInclude Include="ca\ca_file.h" />
-    <ClInclude Include="ca\ca_file_association.h" />
-    <ClInclude Include="ca\ca_file_composite.h" />
-    <ClInclude Include="ca\ca_file_exception.h" />
-    <ClInclude Include="ca\ca_file_manager_interface.h" />
-    <ClInclude Include="ca\ca_file_set.h" />
-    <ClInclude Include="ca\ca_file_status.h" />
-    <ClInclude Include="ca\ca_file_stream.h" />
-    <ClInclude Include="ca\ca_fixed_alloc.h" />
-    <ClInclude Include="ca\ca_flags.h" />
-    <ClInclude Include="ca\ca_folder_watch.h" />
-    <ClInclude Include="ca\ca_fs_interface.h" />
-    <ClInclude Include="ca\ca_geometry.h" />
-    <ClInclude Include="ca\ca_go_thread.h" />
-    <ClInclude Include="ca\ca_graphics_path.h" />
-    <ClInclude Include="ca\ca_graphic_classes.h" />
-    <ClInclude Include="ca\ca_application.h" />
-    <ClInclude Include="ca\ca_application_bias.h" />
-    <ClInclude Include="ca\ca_base.h" />
-    <ClInclude Include="ca\ca_edit.h" />
-    <ClInclude Include="ca\ca_enum.h" />
-    <ClInclude Include="ca\ca_file_application.h" />
-    <ClInclude Include="ca\ca_file_system.h" />
-    <ClInclude Include="ca\ca_hash.h" />
-    <ClInclude Include="ca\ca_heap.h" />
-    <ClInclude Include="ca\ca_hex.h" />
-    <ClInclude Include="ca\ca_http.h" />
-    <ClInclude Include="ca\ca_http_application.h" />
-    <ClInclude Include="ca\ca_http_get_socket.h" />
-    <ClInclude Include="ca\ca_http_system.h" />
-    <ClInclude Include="ca\ca_inline.h" />
-    <ClInclude Include="ca\ca_insert_iterator.h" />
-    <ClInclude Include="ca\ca_international.h" />
-    <ClInclude Include="ca\ca_international2.h" />
-    <ClInclude Include="ca\ca_international_locale_schema.h" />
-    <ClInclude Include="ca\ca_in_buffer.h" />
-    <ClInclude Include="ca\ca_io_temp_buffer.h" />
-    <ClInclude Include="ca\ca_ip_enum.h" />
-    <ClInclude Include="ca\ca_istring.h" />
-    <ClInclude Include="ca\ca_iterator.h" />
-    <ClInclude Include="ca\ca_keeper.h" />
-    <ClInclude Include="ca\ca_keep_alive.h" />
-    <ClInclude Include="ca\ca_less.h" />
-    <ClInclude Include="ca\ca_library.h" />
-    <ClInclude Include="ca\ca_limited_input_stream.h" />
-    <ClInclude Include="ca\ca_limited_reader.h" />
-    <ClInclude Include="ca\ca_limited_writer.h" />
-    <ClInclude Include="ca\ca_locked_in_stream.h" />
-    <ClInclude Include="ca\ca_logic.h" />
-    <ClInclude Include="ca\ca_machine_event_central.h" />
-    <ClInclude Include="ca\ca_main.h" />
-    <ClInclude Include="ca\ca_map_to_smart_pointer.h" />
-    <ClInclude Include="ca\ca_match.h" />
-    <ClInclude Include="ca\ca_math.h" />
-    <ClInclude Include="ca\ca_math_rng.h" />
-    <ClInclude Include="ca\ca_message.h" />
-    <ClInclude Include="ca\ca_microtimer.h" />
-    <ClInclude Include="ca\ca_muldiv32.h" />
-    <ClInclude Include="ca\ca_oauth.h" />
-    <ClInclude Include="ca\ca_object.h" />
-    <ClInclude Include="ca\ca_opened_files.h" />
-    <ClInclude Include="ca\ca_os_history.h" />
-    <ClInclude Include="ca\ca_os_implementation.h" />
-    <ClInclude Include="ca\ca_output_stream_flush_interface.h" />
-    <ClInclude Include="ca\ca_out_buffer.h" />
-    <ClInclude Include="ca\ca_parse.h" />
-    <ClInclude Include="ca\ca_patch.h" />
-    <ClInclude Include="ca\ca_pipe.h" />
-    <ClInclude Include="ca\ca_plain_text_serializable.h" />
-    <ClInclude Include="ca\ca_plain_text_stream.h" />
-    <ClInclude Include="ca\ca_plain_text_string_stream.h" />
-    <ClInclude Include="ca\ca_plex.h" />
-    <ClInclude Include="ca\ca_plex_heap.h" />
-    <ClInclude Include="ca\ca_port_forward.h" />
-    <ClInclude Include="ca\ca_process.h" />
-    <ClInclude Include="ca\ca_process_data.h" />
-    <ClInclude Include="ca\ca_process_section.h" />
-    <ClInclude Include="ca\ca_progress_interface.h" />
-    <ClInclude Include="ca\ca_property.h" />
-    <ClInclude Include="ca\ca_property_set.h" />
-    <ClInclude Include="ca\aaa_want_to_remove_ca_raw_pointer.h" />
-    <ClInclude Include="ca\ca_reader.h" />
-    <ClInclude Include="ca\ca_reference.h" />
-    <ClInclude Include="ca\ca_request_interface.h" />
-    <ClInclude Include="ca\ca_request_signal.h" />
-    <ClInclude Include="ca\ca_resource.h" />
-    <ClInclude Include="ca\ca_savings.h" />
-    <ClInclude Include="ca\aaa_want_to_remove_ca_scoped_ptr.h" />
-    <ClInclude Include="ca\ca_section.h" />
-    <ClInclude Include="ca\ca_seekable.h" />
-    <ClInclude Include="ca\ca_service.h" />
-    <ClInclude Include="ca\ca_session.h" />
-    <ClInclude Include="ca\ca_bitmap.h" />
-    <ClInclude Include="ca\ca_brush.h" />
-    <ClInclude Include="ca\ca_ca.h" />
-    <ClInclude Include="ca\ca_create_context.h" />
-    <ClInclude Include="ca\ca_data.h" />
-    <ClInclude Include="ca\ca_data_container.h" />
-    <ClInclude Include="ca\ca_data_listener.h" />
-    <ClInclude Include="ca\ca_dib.h" />
-    <ClInclude Include="ca\ca_dir_application.h" />
-    <ClInclude Include="ca\ca_dir_system.h" />
-    <ClInclude Include="ca\ca_exception.h" />
-    <ClInclude Include="ca\ca_font.h" />
-    <ClInclude Include="ca\ca_graphics.h" />
-    <ClInclude Include="ca\ca_graphics_object.h" />
-    <ClInclude Include="ca\ca_history.h" />
-    <ClInclude Include="ca\ca_igui.h" />
-    <ClInclude Include="ca\ca_interlocked_long.h" />
-    <ClInclude Include="ca\ca_interlocked_long_pulse.h" />
-    <ClInclude Include="ca\ca_job.h" />
-    <ClInclude Include="ca\ca_listener.h" />
-    <ClInclude Include="ca\ca_live_object.h" />
-    <ClInclude Include="ca\ca_live_signal.h" />
-    <ClInclude Include="ca\ca_log.h" />
-    <ClInclude Include="ca\ca_main_init_data.h" />
-    <ClInclude Include="ca\ca_message_window.h" />
-    <ClInclude Include="ca\ca_os.h" />
-    <ClInclude Include="ca\ca_palette.h" />
-    <ClInclude Include="ca\ca_pen.h" />
-    <ClInclude Include="ca\ca_print_job.h" />
-    <ClInclude Include="ca\ca_profiler.h" />
-    <ClInclude Include="ca\ca_region.h" />
-    <ClInclude Include="ca\ca_se_translator.h" />
-    <ClInclude Include="ca\ca_se_translator.want_to_remove.h" />
-    <ClInclude Include="ca\ca_signal.h" />
-    <ClInclude Include="ca\ca_signal_thread.h" />
-    <ClInclude Include="ca\ca_simple_thread.h" />
-    <ClInclude Include="ca\ca_simple_tree_data.h" />
-    <ClInclude Include="ca\ca_simple_tree_item_data.h" />
-    <ClInclude Include="ca\ca_size_count_writer.h" />
-    <ClInclude Include="ca\ca_smart_pointer1.h" />
-    <ClInclude Include="ca\ca_smart_pointer2.h" />
-    <ClInclude Include="ca\ca_smart_pointer_query.h" />
-    <ClInclude Include="ca\ca_sockets_address.h" />
-    <ClInclude Include="ca\ca_std_pair.h" />
-    <ClInclude Include="ca\ca_str.h" />
-    <ClInclude Include="ca\ca_str2.h" />
-    <ClInclude Include="ca\ca_stra.h" />
-    <ClInclude Include="ca\ca_stream.h" />
-    <ClInclude Include="ca\ca_stream2.h" />
-    <ClInclude Include="ca\ca_stream_base.h" />
-    <ClInclude Include="ca\ca_stream_binder.h" />
-    <ClInclude Include="ca\ca_string_tokenizer.h" />
-    <ClInclude Include="ca\ca_strn.h" />
-    <ClInclude Include="ca\ca_str_stream.h" />
-    <ClInclude Include="ca\ca_system.h" />
-    <ClInclude Include="ca\ca_system_exception.h" />
-    <ClInclude Include="ca\ca_template.h" />
-    <ClInclude Include="ca\ca_text_file.h" />
-    <ClInclude Include="ca\ca_thread.h" />
-    <ClInclude Include="ca\ca_timeout_file.h" />
-    <ClInclude Include="ca\ca_timer.h" />
-    <ClInclude Include="ca\ca_timer_callback.h" />
-    <ClInclude Include="ca\ca_timer_listener.h" />
-    <ClInclude Include="ca\ca_timer_window.h" />
-    <ClInclude Include="ca\ca_trace.h" />
-    <ClInclude Include="ca\ca_transfer_file.h" />
-    <ClInclude Include="ca\ca_tree.h" />
-    <ClInclude Include="ca\ca_tree_data.h" />
-    <ClInclude Include="ca\ca_tree_item.h" />
-    <ClInclude Include="ca\ca_tree_item_data.h" />
-    <ClInclude Include="ca\ca_twit.h" />
-    <ClInclude Include="ca\ca_types.h" />
-    <ClInclude Include="ca\ca_type_info.h" />
-    <ClInclude Include="ca\ca_url.h" />
-    <ClInclude Include="ca\ca_url_domain.h" />
-    <ClInclude Include="ca\ca_user.h" />
-    <ClInclude Include="ca\ca_util.h" />
-    <ClInclude Include="ca\ca_util1.h" />
-    <ClInclude Include="ca\ca_var.h" />
-    <ClInclude Include="ca\ca_variable_strict_compare.h" />
-    <ClInclude Include="ca\ca_var_array.h" />
-    <ClInclude Include="ca\ca_wait_cursor.h" />
-    <ClInclude Include="ca\ca_window.h" />
-    <ClInclude Include="ca\ca_window_draw.h" />
-    <ClInclude Include="ca\ca_writer.h" />
-    <ClInclude Include=".\collection\collection_base_2array.h" />
-    <ClInclude Include="collection\aaa_want_to_remove_xxx_collection_base_array.h" />
-    <ClInclude Include=".\collection\collection_bitset.h" />
-    <ClInclude Include=".\collection\collection_bit_array.h" />
-    <ClInclude Include="ca\_ca_2.h" />
-    <ClInclude Include="collection\collection.h" />
-    <ClInclude Include="collection\collection_attrib_map.h" />
-    <ClInclude Include="collection\collection_map_association.h" />
-    <ClInclude Include="collection\collection_deque.h" />
-    <ClInclude Include="collection\collection_fifo_map.h" />
-    <ClInclude Include="collection\collection_lemon_array.h" />
-    <ClInclude Include="collection\collection_int_map.h" />
-    <ClInclude Include="collection\collection_raw_array.h" />
-    <ClInclude Include="collection\collection_strid_map.h" />
-    <ClInclude Include="collection\collection_map_to_smart_pointer.h" />
-    <ClInclude Include="collection\collection_pair.h" />
-    <ClInclude Include="collection\collection_priority_queue.h" />
-    <ClInclude Include="collection\collection_queue.h" />
-    <ClInclude Include="collection\collection_simple_template.h" />
-    <ClInclude Include="collection\collection_smart_pointer_array.h" />
-    <ClInclude Include="collection\collection_sort_map.h" />
-    <ClInclude Include="collection\collection_string_map.h" />
-    <ClInclude Include="collection\collection_template.h" />
-    <ClInclude Include=".\collection\collection_comparable_array.h" />
-    <ClInclude Include=".\collection\collection_comparable_eq_array.h" />
-    <ClInclude Include=".\collection\collection_comparable_eq_list.h" />
-    <ClInclude Include=".\collection\collection_comparable_list.h" />
-    <ClInclude Include=".\collection\collection_comparable_primitive_array.h" />
-    <ClInclude Include=".\collection\collection_comparable_raw_array.h" />
-    <ClInclude Include=".\collection\collection_elements.h" />
-    <ClInclude Include=".\collection\collection_id_array.h" />
-    <ClInclude Include=".\collection\collection_key_sort_array.h" />
-    <ClInclude Include=".\collection\collection_list.h" />
-    <ClInclude Include=".\collection\collection_logic_array.h" />
-    <ClInclude Include=".\collection\collection_map.h" />
-    <ClInclude Include=".\collection\collection_numeric_array.h" />
-    <ClInclude Include=".\collection\collection_object_list.h" />
-    <ClInclude Include=".\collection\collection_packset.h" />
-    <ClInclude Include=".\collection\collection_pointer_list.h" />
-    <ClInclude Include=".\collection\collection_point_array.h" />
-    <ClInclude Include=".\collection\collection_primitive_array.h" />
-    <ClInclude Include="collection\collection_array.h" />
-    <ClInclude Include=".\collection\collection_rect_array.h" />
-    <ClInclude Include=".\collection\collection_simple_eq_array.h" />
-    <ClInclude Include=".\collection\collection_simple_object_array.h" />
-    <ClInclude Include=".\collection\collection_simple_pointer_array.h" />
-    <ClInclude Include=".\collection\collection_simple_typed_pointer_array.h" />
-    <ClInclude Include=".\collection\collection_sort.h" />
-    <ClInclude Include=".\collection\collection_sort_array.h" />
-    <ClInclude Include=".\collection\collection_spreadset.h" />
-    <ClInclude Include=".\collection\collection_stringa.h" />
-    <ClInclude Include=".\collection\collection_stringl.h" />
-    <ClInclude Include=".\collection\collection_string_array.h" />
-    <ClInclude Include=".\collection\collection_string_list.h" />
-    <ClInclude Include=".\collection\collection_string_sort_array.h" />
-    <ClInclude Include=".\collection\collection_string_to_string_map.h" />
-    <ClInclude Include=".\collection\collection_typed_pointer_array.h" />
-    <ClInclude Include=".\collection\collection_typed_pointer_list.h" />
-    <ClInclude Include=".\collection\collection_typed_pointer_map.h" />
-    <ClInclude Include=".\collection\collection_typed_ptr_array.h" />
-    <ClInclude Include=".\collection\collection_typed_ptr_list.h" />
-    <ClInclude Include=".\collection\collection_unique_array.h" />
     <ClInclude Include="compress\7z\7z.h" />
     <ClInclude Include="compress\7z\7zCompressionMode.h" />
     <ClInclude Include="compress\7z\7zDecode.h" />
@@ -1313,38 +1452,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\zip\zip.h" />
     <ClInclude Include="compress\zip\zipImpl.h" />
     <ClInclude Include="compress\zip\zip_internal.h" />
-    <ClInclude Include="crypto\crypto.h" />
-    <ClInclude Include="crypto\crypto_aes.h" />
-    <ClInclude Include="crypto\crypto_aes_cbc.h" />
-    <ClInclude Include="crypto\crypto_aes_icm.h" />
-    <ClInclude Include="crypto\crypto_alg.h" />
-    <ClInclude Include="crypto\crypto_alloc.h" />
-    <ClInclude Include="crypto\crypto_auth.h" />
-    <ClInclude Include="crypto\crypto_cipher.h" />
-    <ClInclude Include="crypto\crypto_config.h" />
-    <ClInclude Include="crypto\crypto_c_crypto.h" />
-    <ClInclude Include="crypto\crypto_datatypes.h" />
-    <ClInclude Include="crypto\crypto_err.h" />
-    <ClInclude Include="crypto\crypto_gf2_8.h" />
-    <ClInclude Include="crypto\crypto_hmac.h" />
-    <ClInclude Include="crypto\crypto_hmac_sha1.h" />
-    <ClInclude Include="crypto\crypto_integers.h" />
-    <ClInclude Include="crypto\crypto_kernel.h" />
-    <ClInclude Include="crypto\crypto_kernel_compat.h" />
-    <ClInclude Include="crypto\crypto_key.h" />
-    <ClInclude Include="crypto\crypto_math.h" />
-    <ClInclude Include="crypto\crypto_md5.h" />
-    <ClInclude Include="crypto\crypto_null_auth.h" />
-    <ClInclude Include="crypto\crypto_null_cipher.h" />
-    <ClInclude Include="crypto\crypto_prng.h" />
-    <ClInclude Include="crypto\crypto_rand_source.h" />
-    <ClInclude Include="crypto\crypto_rdb.h" />
-    <ClInclude Include="crypto\crypto_rdbx.h" />
-    <ClInclude Include="crypto\crypto_sha1.h" />
-    <ClInclude Include="crypto\crypto_stat.h" />
-    <ClInclude Include="crypto\crypto_types.h" />
-    <ClInclude Include="crypto\crypto_ut_sim.h" />
-    <ClInclude Include="crypto\crypto_xfm.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database1.h" />
     <ClInclude Include="database\database_application.h" />
@@ -1391,55 +1498,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="database\simpledb\veiev_post.h" />
     <ClInclude Include="database\sqlite\sqlite.h" />
     <ClInclude Include="database\sqlite\sqlite3.h" />
-    <ClInclude Include="exception\exception_assert.h" />
-    <ClInclude Include="exception\exception_base.h" />
-    <ClInclude Include="exception\exception_call_stack.h" />
-    <ClInclude Include="exception\exception_debug.h" />
-    <ClInclude Include="exception\exception_debug_stream.h" />
-    <ClInclude Include="exception\exception_dump_context.h" />
-    <ClInclude Include="exception\exception_error.h" />
-    <ClInclude Include="exception\exception.h" />
-    <ClInclude Include="exception\exception_exit.h" />
-    <ClInclude Include="exception\exception_installing.h" />
-    <ClInclude Include="exception\exception_invalid_handle.h" />
-    <ClInclude Include=".\exception\exception_invalid_index.h" />
-    <ClInclude Include="exception\exception_io.h" />
-    <ClInclude Include="exception\exception_last_error.h" />
-    <ClInclude Include="exception\exception_not_installed.h" />
-    <ClInclude Include="exception\exception_operation_canceled.h" />
-    <ClInclude Include="exception\exception_os.h" />
-    <ClInclude Include="exception\exception_overflow_error.h" />
-    <ClInclude Include="exception\exception_range_error.h" />
-    <ClInclude Include="exception\exception_runtime_error.h" />
-    <ClInclude Include="exception\exception_temporary.h" />
-    <ClInclude Include="exception\exception_todo.h" />
-    <ClInclude Include="exception\exception_trap.h" />
-    <ClInclude Include="exception\exception_void_implementation.h" />
-    <ClInclude Include="exception\exception_hresult.h" />
-    <ClInclude Include="exception\exception_interface_only.h" />
-    <ClInclude Include="exception\exception_invalid_argument.h" />
-    <ClInclude Include="exception\exception_memory.h" />
-    <ClInclude Include="exception\exception_memory_state.h" />
-    <ClInclude Include="exception\exception_misc.h" />
-    <ClInclude Include="exception\exception_not_implemented.h" />
-    <ClInclude Include="exception\exception_not_licensed.h" />
-    <ClInclude Include="exception\exception_not_supported.h" />
-    <ClInclude Include="exception\exception_resource.h" />
-    <ClInclude Include="exception\exception_standard.h" />
-    <ClInclude Include="exception\exception_standard_translator.h" />
-    <ClInclude Include="exception\exception_simple.h" />
-    <ClInclude Include="exception\exception_engine.h" />
-    <ClInclude Include="exception\exception_unhandled_report.h" />
-    <ClInclude Include="exception\exception_user.h" />
-    <ClInclude Include="exception\exception_vms.h" />
-    <ClInclude Include=".\exception\exception_invalid_character.h" />
-    <ClInclude Include="filehandler\filehandler.h" />
-    <ClInclude Include="filehandler\filehandler_handler.h" />
-    <ClInclude Include="filehandler\filehandler_library.h" />
-    <ClInclude Include="filehandler\filehandler_menu_library.h" />
-    <ClInclude Include="filehandler\filehandler_tree_data.h" />
-    <ClInclude Include="filehandler\filehandler_tree_interface.h" />
-    <ClInclude Include="filehandler\filehandler_tree_item_data.h" />
     <ClInclude Include="filesystem\filemanager\ContextMenu.h" />
     <ClInclude Include="filesystem\filemanager\filemanager.h" />
     <ClInclude Include="filesystem\filemanager\FileManagerCallbackInterface.h" />
@@ -1515,22 +1573,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\userfs\fs_tree_data.h" />
     <ClInclude Include="filesystem\userfs\fs_tree_interface.h" />
     <ClInclude Include="filesystem\userfs\fs_tree_item_data.h" />
-    <ClInclude Include="fontopus\fontopus.h" />
-    <ClInclude Include="fontopus\fontopus_application.h" />
-    <ClInclude Include="fontopus\fontopus_authentication_map.h" />
-    <ClInclude Include="fontopus\fontopus_contact_list.h" />
-    <ClInclude Include="fontopus\fontopus_license.h" />
-    <ClInclude Include="fontopus\fontopus_sockets_address.h" />
-    <ClInclude Include="fontopus\fontopus_user.h" />
-    <ClInclude Include="fontopus\fontopus_usera.h" />
-    <ClInclude Include="fontopus\fontopus_user_authentication.h" />
-    <ClInclude Include="fontopus\fontopus_user_set.h" />
-    <ClInclude Include="fontopus\fontopus_validate.h" />
-    <ClInclude Include="geoip\geoip.h" />
-    <ClInclude Include="geoip\geoip_city.h" />
-    <ClInclude Include="geoip\geoip_internal.h" />
-    <ClInclude Include="geoip\geoip_update.h" />
-    <ClInclude Include="geoip\global.h" />
     <ClInclude Include="graphics\gcom\gcom.h" />
     <ClInclude Include="graphics\gcom\gcom_BackView.h" />
     <ClInclude Include="graphics\gcom\gcom_BackViewEnum.h" />
@@ -1607,30 +1649,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\visual\visual_rgb_quad_array.h" />
     <ClInclude Include="graphics\visual\visual_visual.h" />
     <ClInclude Include="graphics\visual\visual_water_routine.h" />
-    <ClInclude Include="install\install.h" />
-    <ClInclude Include="install\install_install.h" />
-    <ClInclude Include="libcharguess\big5Prober.h" />
-    <ClInclude Include="libcharguess\charDistribution.h" />
-    <ClInclude Include="libcharguess\charguess.h" />
-    <ClInclude Include="libcharguess\charsetProber.h" />
-    <ClInclude Include="libcharguess\codingStateMachine.h" />
-    <ClInclude Include="libcharguess\config.h" />
-    <ClInclude Include="libcharguess\EscCharsetProber.h" />
-    <ClInclude Include="libcharguess\EUCJPProber.h" />
-    <ClInclude Include="libcharguess\EUCKRProber.h" />
-    <ClInclude Include="libcharguess\EUCTWProber.h" />
-    <ClInclude Include="libcharguess\GB2312Prober.h" />
-    <ClInclude Include="libcharguess\jpCntx.h" />
-    <ClInclude Include="libcharguess\Latin1Prober.h" />
-    <ClInclude Include="libcharguess\libcharguess.h" />
-    <ClInclude Include="libcharguess\MBCSGroupProber.h" />
-    <ClInclude Include="libcharguess\pkgInt.h" />
-    <ClInclude Include="libcharguess\SBCharsetProber.h" />
-    <ClInclude Include="libcharguess\SBCSGroupProber.h" />
-    <ClInclude Include="libcharguess\SJISProber.h" />
-    <ClInclude Include="libcharguess\types.h" />
-    <ClInclude Include="libcharguess\universal.h" />
-    <ClInclude Include="libcharguess\UTF8Prober.h" />
     <ClInclude Include="math\binary_operation.h" />
     <ClInclude Include="math\calculator\calculator.h" />
     <ClInclude Include="math\calculator\calculator_calculator.h" />
@@ -1730,12 +1748,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\usermail\mail_tree_data.h" />
     <ClInclude Include="net\usermail\mail_tree_interface.h" />
     <ClInclude Include="net\usermail\mail_tree_item_data.h" />
-    <ClInclude Include="os\api\api.h" />
-    <ClInclude Include="os\api\api_debug.h" />
-    <ClInclude Include="os\api\api_muldiv64.h" />
-    <ClInclude Include="os\api\api_rotate.h" />
-    <ClInclude Include="os\api\api_string.h" />
-    <ClInclude Include="os\api\mktime.h" />
+    <ClInclude Include="net\usernet\usernet.h" />
+    <ClInclude Include="net\usernet\usernet_network_configuration.h" />
     <ClInclude Include="os\multithreading\multithreading.h" />
     <ClInclude Include="os\multithreading\multithreading_condition.h" />
     <ClInclude Include="os\multithreading\multithreading_critical_section.h" />
@@ -1762,38 +1776,24 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_cross_windows.h" />
     <ClInclude Include="os\os_windows_defs.h" />
-    <ClInclude Include="os\windows\os.h" />
-    <ClInclude Include="os\windows\os_defs.h" />
-    <ClInclude Include="os\windows\os_library.h" />
-    <ClInclude Include="os\windows\os_utils.h" />
     <ClInclude Include="plane\plane.h" />
     <ClInclude Include="plane\plane_application.h" />
     <ClInclude Include="plane\plane_library.h" />
     <ClInclude Include="plane\plane_system_ca_factory.h" />
     <ClInclude Include="plane\plane_system_primitive_var.h" />
-    <ClInclude Include="plane\plane_session.h" />
     <ClInclude Include="plane\plane_system.h" />
     <ClInclude Include="plane\plane_system_allocate.h" />
     <ClInclude Include="plane\plane_system_ca_template.h" />
     <ClInclude Include="plane\plane_system_gen_str.h" />
     <ClInclude Include="plane\plane_system_gen_factory.h" />
     <ClInclude Include="plane\plane_system_template_trace.h" />
-    <ClInclude Include="plane\session\bergedge.h" />
     <ClInclude Include="plane\session\bergedge\bergedge.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_document.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_form_callback.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_frame.h" />
-    <ClInclude Include="plane\session\bergedge\bergedge_interface.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_pane_view.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_pane_view_update_hint.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_view.h" />
-    <ClInclude Include="plane\session\bergedge_document.h" />
-    <ClInclude Include="plane\session\bergedge_form_callback.h" />
-    <ClInclude Include="plane\session\bergedge_frame.h" />
-    <ClInclude Include="plane\session\bergedge_interface.h" />
-    <ClInclude Include="plane\session\bergedge_pane_view.h" />
-    <ClInclude Include="plane\session\bergedge_pane_view_update_hint.h" />
-    <ClInclude Include="plane\session\bergedge_view.h" />
     <ClInclude Include="plane\session\nature\nature.h" />
     <ClInclude Include="plane\session\nature\nature_appearance_view.h" />
     <ClInclude Include="plane\session\nature\nature_application.h" />
@@ -1812,14 +1812,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="plane\session\platform\platform_pane_view_update_hint.h" />
     <ClInclude Include="plane\session\platform\platform_resource.h" />
     <ClInclude Include="plane\session\platform\platform_view.h" />
-    <ClInclude Include="plugin\plugin.h" />
-    <ClInclude Include="plugin\plugin_gen.h" />
-    <ClInclude Include="plugin\plugin_history.h" />
-    <ClInclude Include="plugin\plugin_host_interaction.h" />
-    <ClInclude Include="plugin\plugin_instance.h" />
-    <ClInclude Include="plugin\plugin_plugin.h" />
-    <ClInclude Include="plugin\plugin_run_start_installer.h" />
-    <ClInclude Include="plugin\plugin_system.h" />
     <ClInclude Include=".\primitive\primitive_align.h" />
     <ClInclude Include=".\primitive\primitive_check.h" />
     <ClInclude Include=".\primitive\primitive_color.h" />
@@ -1876,95 +1868,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h" />
-    <ClInclude Include="sockets\bsd\asynch_dns\resolv_server.h" />
-    <ClInclude Include="sockets\bsd\asynch_dns\resolv_socket.h" />
-    <ClInclude Include="sockets\bsd\basic\address.h" />
-    <ClInclude Include="sockets\bsd\basic\ipv4_address.h" />
-    <ClInclude Include="sockets\bsd\basic\ipv6_address.h" />
-    <ClInclude Include="sockets\bsd\basic\listen_socket.h" />
-    <ClInclude Include="sockets\bsd\basic\net.h" />
-    <ClInclude Include="sockets\bsd\basic\sctp_socket.h" />
-    <ClInclude Include="sockets\bsd\basic\socket.h" />
-    <ClInclude Include="sockets\bsd\basic\sockets_ssl_client_context.h" />
-    <ClInclude Include="sockets\bsd\basic\sockets_ssl_client_context_map.h" />
-    <ClInclude Include="sockets\bsd\basic\socket_handler.h" />
-    <ClInclude Include="sockets\bsd\basic\socket_handler_base.h" />
-    <ClInclude Include="sockets\bsd\basic\stream_socket.h" />
-    <ClInclude Include="sockets\bsd\basic\sync_socket_handler.h" />
-    <ClInclude Include="sockets\bsd\basic\tcp_socket.h" />
-    <ClInclude Include="sockets\bsd\basic\tls_socket.h" />
-    <ClInclude Include="sockets\bsd\basic\udp_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_client_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_debug_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_get_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_post_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_put_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_request_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_session.h" />
-    <ClInclude Include="sockets\bsd\http\http_socket.h" />
-    <ClInclude Include="sockets\bsd\http\http_tunnel.h" />
-    <ClInclude Include="sockets\bsd\internal\SSLInitializer.h" />
-    <ClInclude Include="sockets\bsd\log\StdLog.h" />
-    <ClInclude Include="sockets\bsd\log\trace_log.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_base.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_base_client_socket.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_callback.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_client.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_event.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_request.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_response.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_server.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_socket.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_tcp_client_socket.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_transaction.h" />
-    <ClInclude Include="sockets\bsd\sip\sip_udp_client_socket.h" />
-    <ClInclude Include="sockets\bsd\smtp\smtpd_socket.h" />
-    <ClInclude Include="sockets\bsd\smtp\smtp_socket.h" />
-    <ClInclude Include="sockets\bsd\sockets.h" />
-    <ClInclude Include="sockets\bsd\sockets_sockets.h" />
-    <ClInclude Include="sockets\bsd\sockets_link_in_socket.h" />
-    <ClInclude Include="sockets\bsd\sockets_link_out_socket.h" />
-    <ClInclude Include="sockets\bsd\timer\Event.h" />
-    <ClInclude Include="sockets\bsd\timer\EventHandler.h" />
-    <ClInclude Include="sockets\bsd\timer\EventTime.h" />
-    <ClInclude Include="sockets\bsd\timer\IEventHandler.h" />
-    <ClInclude Include="sockets\bsd\timer\IEventOwner.h" />
-    <ClInclude Include="sockets\bsd\webserver\ajp13.h" />
-    <ClInclude Include="sockets\bsd\webserver\Ajp13Socket.h" />
-    <ClInclude Include="sockets\bsd\webserver\AjpBaseSocket.h" />
-    <ClInclude Include="sockets\bsd\webserver\httpd_socket.h" />
-    <ClInclude Include="sockets\bsd\webserver\http_base_socket.h" />
-    <ClInclude Include="sockets\bsd\webserver\http_cookie.h" />
-    <ClInclude Include="sockets\bsd\webserver\http_form.h" />
-    <ClInclude Include="sockets\bsd\webserver\http_request.h" />
-    <ClInclude Include="sockets\bsd\webserver\http_response.h" />
-    <ClInclude Include="sockets\bsd\webserver\http_transaction.h" />
-    <ClInclude Include="sockets\http_file.h" />
-    <ClInclude Include="sockets\http_memory_file.h" />
-    <ClInclude Include="sockets\sockets.h" />
-    <ClInclude Include="sockets\sockets_http_batch_file.h" />
-    <ClInclude Include="sockets\sockets_http_file.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="uinteraction\frame\frame.h" />
-    <ClInclude Include="uinteraction\frame\frame_appearance.h" />
-    <ClInclude Include="uinteraction\frame\frame_constants.h" />
-    <ClInclude Include="uinteraction\frame\frame_control_box_button.h" />
-    <ClInclude Include="uinteraction\frame\frame_dock_manager.h" />
-    <ClInclude Include="uinteraction\frame\frame_move_manager.h" />
-    <ClInclude Include="uinteraction\frame\frame_size_manager.h" />
-    <ClInclude Include="uinteraction\frame\frame_sys_menu_manager.h" />
-    <ClInclude Include="uinteraction\frame\frame_up_down_target.h" />
-    <ClInclude Include="uinteraction\frame\frame_work_set.h" />
-    <ClInclude Include="uinteraction\frame\frame_work_set_client_interface.h" />
-    <ClInclude Include="uinteraction\frame\frame_work_set_down_up_interface.h" />
-    <ClInclude Include="uinteraction\frame\frame_work_set_listener.h" />
-    <ClInclude Include="uinteraction\frame\frame_work_set_listener_array.h" />
-    <ClInclude Include="uinteraction\uinteraction.h" />
-    <ClInclude Include=".\uinteraction\uinteraction_interaction.h" />
-    <ClInclude Include="uinteraction\uinteraction_frame.h" />
-    <ClInclude Include="userpresence\userpresence.h" />
-    <ClInclude Include="userpresence\userpresence_userpresence.h" />
-    <ClInclude Include="userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\colorertake5\colorertake5.h" />
     <ClInclude Include="user\colorertake5\colorertake5_base_editor.h" />
     <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h" />
@@ -2014,6 +1918,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\colorertake5\colorertake5_text_region.h" />
     <ClInclude Include="user\colorertake5\colorertake5_Writer.h" />
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
+    <ClInclude Include="user\fontopus\fontopus.h" />
+    <ClInclude Include="user\fontopus\fontopus_authentication_map.h" />
+    <ClInclude Include="user\fontopus\fontopus_contact_list.h" />
+    <ClInclude Include="user\fontopus\fontopus_fontopus.h" />
+    <ClInclude Include="user\fontopus\fontopus_license.h" />
+    <ClInclude Include="user\fontopus\fontopus_user.h" />
+    <ClInclude Include="user\fontopus\fontopus_usera.h" />
+    <ClInclude Include="user\fontopus\fontopus_user_authentication.h" />
+    <ClInclude Include="user\fontopus\fontopus_user_set.h" />
+    <ClInclude Include="user\fontopus\fontopus_validate.h" />
     <ClInclude Include="user\menu\user_menu.h" />
     <ClInclude Include="user\menu\user_menu_base.h" />
     <ClInclude Include="user\menu\user_menu_button.h" />
@@ -2067,6 +1981,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\uinteraction\uinteraction_uinteraction.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user1.h" />
+    <ClInclude Include="user\userex\userex_keyboard_layout.h" />
+    <ClInclude Include="user\userex\userex_message_box.h" />
+    <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
     <ClInclude Include="user\user_bitmap_button.h" />
     <ClInclude Include="user\user_button_control.h" />
     <ClInclude Include="user\user_control_bar.h" />
@@ -2208,462 +2125,354 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user_xfplayer_view_line.h" />
     <ClInclude Include="user\user_xfplayer_view_lines.h" />
     <ClInclude Include="user\user_xfplayer_view_line_selection.h" />
-    <ClInclude Include="windows\os.h" />
-    <ClInclude Include="windows\os_defs.h" />
-    <ClInclude Include="windows\os_library.h" />
-    <ClInclude Include="windows\os_utils.h" />
-    <ClInclude Include="xml\xml_attr.h" />
-    <ClInclude Include="xml\xml_base_array.h" />
-    <ClInclude Include="xml\xml_data.h" />
-    <ClInclude Include="xml\xml_disp_option.h" />
-    <ClInclude Include="xml\xml_document.h" />
-    <ClInclude Include="xml\xml_edit.h" />
-    <ClInclude Include="xml\xml_entity.h" />
-    <ClInclude Include="xml\xml_enum.h" />
-    <ClInclude Include="xml\xml_exportable.h" />
-    <ClInclude Include="xml\xml_importable.h" />
-    <ClInclude Include="xml\xml_input_tree.h" />
-    <ClInclude Include="xml\xml_node.h" />
-    <ClInclude Include="xml\xml_output_tree.h" />
-    <ClInclude Include="xml\xml_parse_info.h" />
-    <ClInclude Include="xml\xml_property_exchange.h" />
-    <ClInclude Include="xml\xml_tree_base.h" />
-    <ClInclude Include="xml\xml_tree_schema.h" />
-    <ClInclude Include="xml\xml_var_exchange.h" />
-    <ClInclude Include="xml\xml.h" />
-    <ClInclude Include="xml\XMLite.h" />
-    <ClInclude Include="xml\xml_xml.h" />
-    <ClInclude Include="xml\xml_xmlite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bergedge\bergedge_bergedge.cpp" />
-    <ClCompile Include="bergedge\bergedge_document.cpp" />
-    <ClCompile Include="bergedge\bergedge_form_callback.cpp" />
-    <ClCompile Include="bergedge\bergedge_frame.cpp" />
-    <ClCompile Include="bergedge\bergedge_interface.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="bergedge\bergedge_pane_view.cpp" />
-    <ClCompile Include="bergedge\bergedge_pane_view_update_hint.cpp" />
-    <ClCompile Include="bergedge\bergedge_view.cpp" />
-    <ClCompile Include="bergedge\nature\nature_appearance_view.cpp" />
-    <ClCompile Include="bergedge\nature\nature_application.cpp" />
-    <ClCompile Include="bergedge\nature\nature_database.cpp" />
-    <ClCompile Include="bergedge\nature\nature_document.cpp" />
-    <ClCompile Include="bergedge\nature\nature_frame.cpp" />
-    <ClCompile Include="bergedge\nature\nature_pane_view.cpp" />
-    <ClCompile Include="bergedge\nature\nature_pane_view_update_hint.cpp" />
-    <ClCompile Include="bergedge\nature\nature_view.cpp" />
-    <ClCompile Include="ca2\ca2_application.cpp" />
-    <ClCompile Include="ca2\ca2_keyboard_layout.cpp" />
-    <ClCompile Include="ca2\ca2_message_box.cpp" />
-    <ClCompile Include="ca2\ca2_network_configuration.cpp" />
-    <ClCompile Include="ca2\ca2_wait_message_dialog.cpp" />
-    <ClCompile Include="calculator\calculator_calculator.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_element.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_parser.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_scanner.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_token.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_element.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_parser.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_scanner.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_value.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca.cpp" />
-    <ClCompile Include="ca\ca_allocation_base_ca.cpp" />
-    <ClCompile Include="ca\ca_allocation_ca_heap.cpp" />
-    <ClCompile Include="ca\ca_allocation_mid_big.cpp" />
-    <ClCompile Include="ca\ca_allocation_system_heap.cpp" />
-    <ClCompile Include="ca\ca_application.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application_bias.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_assert.cpp" />
-    <ClCompile Include="ca\ca_base64.cpp" />
-    <ClCompile Include="ca\ca_base_enum_static_debug.cpp" />
-    <ClCompile Include="ca\ca_bit.cpp" />
-    <ClCompile Include="ca\ca_bstr.cpp" />
-    <ClCompile Include="ca\ca_buffered_file.cpp" />
-    <ClCompile Include="ca\ca_byte_serializable.cpp" />
-    <ClCompile Include="ca\ca_byte_stream.cpp" />
-    <ClCompile Include="ca\ca_byte_stream_memory_file.cpp" />
-    <ClCompile Include="ca\ca_c.cpp" />
-    <ClCompile Include="ca\ca_ch.cpp" />
-    <ClCompile Include="ca\ca_checked.cpp" />
-    <ClCompile Include="ca\ca_ch_class.cpp" />
-    <ClCompile Include="ca\ca_circular_buffer.cpp" />
-    <ClCompile Include="ca\ca_clustered_input_stream.cpp" />
-    <ClCompile Include="ca\ca_cmdtarg.cpp" />
-    <ClCompile Include="ca\ca_command.cpp" />
-    <ClCompile Include="ca\ca_command_line.cpp" />
-    <ClCompile Include="ca\ca_command_target.cpp" />
-    <ClCompile Include="ca\ca_command_thread.cpp" />
-    <ClCompile Include="ca\ca_composite.cpp" />
-    <ClCompile Include="ca\ca_compress.cpp" />
-    <ClCompile Include="ca\ca_constraint.cpp" />
-    <ClCompile Include="ca\ca_copydesk.cpp" />
-    <ClCompile Include="ca\ca_cregexp.cpp" />
-    <ClCompile Include="ca\ca_cregexp_util.cpp" />
-    <ClCompile Include="ca\ca_crypt.cpp" />
-    <ClCompile Include="ca\ca_datetime.cpp" />
-    <ClCompile Include="ca\ca_Debug.cpp" />
-    <ClCompile Include="ca\ca_dynamic_buffered_writer.cpp" />
-    <ClCompile Include="ca\ca_edit.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_edit_file.cpp" />
-    <ClCompile Include="ca\ca_email.cpp" />
-    <ClCompile Include="ca\ca_factory.cpp" />
-    <ClCompile Include="ca\ca_file.cpp" />
-    <ClCompile Include="ca\ca_file_application.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_file_composite.cpp" />
-    <ClCompile Include="ca\ca_file_exception.cpp" />
-    <ClCompile Include="ca\ca_file_manager_interface.cpp" />
-    <ClCompile Include="ca\ca_file_set.cpp" />
-    <ClCompile Include="ca\ca_file_sssociation.cpp" />
-    <ClCompile Include="ca\ca_file_stream.cpp" />
-    <ClCompile Include="ca\ca_file_system.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_fixed_alloc.cpp" />
-    <ClCompile Include="ca\ca_flags.cpp" />
-    <ClCompile Include="ca\ca_folder_watch.cpp" />
-    <ClCompile Include="ca\ca_fs_interface.cpp" />
-    <ClCompile Include="ca\ca_geometry.cpp" />
-    <ClCompile Include="ca\ca_go_thread.cpp" />
-    <ClCompile Include="ca\ca_graphics_path.cpp" />
-    <ClCompile Include="ca\ca_hash.cpp" />
-    <ClCompile Include="ca\ca_hex.cpp" />
-    <ClCompile Include="ca\ca_http.cpp" />
-    <ClCompile Include="ca\ca_http_application.cpp" />
-    <ClCompile Include="ca\ca_http_get_socket.cpp" />
-    <ClCompile Include="ca\ca_http_system.cpp" />
-    <ClCompile Include="ca\ca_international.cpp" />
-    <ClCompile Include="ca\ca_international_locale_schema.cpp" />
-    <ClCompile Include="ca\ca_in_buffer.cpp" />
-    <ClCompile Include="ca\ca_io_temp_buffer.cpp" />
-    <ClCompile Include="ca\ca_ip_enum.cpp" />
-    <ClCompile Include="ca\ca_istring.cpp" />
-    <ClCompile Include="ca\ca_keeper.cpp" />
-    <ClCompile Include="ca\ca_library.cpp" />
-    <ClCompile Include="ca\ca_limited_input_stream.cpp" />
-    <ClCompile Include="ca\ca_limited_reader.cpp" />
-    <ClCompile Include="ca\ca_limited_writer.cpp" />
-    <ClCompile Include="ca\ca_locked_in_stream.cpp" />
-    <ClCompile Include="ca\ca_logic.cpp" />
-    <ClCompile Include="ca\ca_machine_event_central.cpp" />
-    <ClCompile Include="ca\ca_match.cpp" />
-    <ClCompile Include="ca\ca_math.cpp" />
-    <ClCompile Include="ca\ca_math_rng.cpp" />
-    <ClCompile Include="ca\ca_memory.cpp" />
-    <ClCompile Include="ca\ca_message.cpp" />
-    <ClCompile Include="ca\ca_microtimer.cpp" />
-    <ClCompile Include="ca\ca_nessie.cpp" />
-    <ClCompile Include="ca\ca_oauth.cpp" />
-    <ClCompile Include="ca\ca_object.cpp" />
-    <ClCompile Include="ca\ca_os_history.cpp" />
-    <ClCompile Include="ca\ca_output_string_stream.cpp" />
-    <ClCompile Include="ca\ca_out_buffer.cpp" />
-    <ClCompile Include="ca\ca_parse.cpp" />
-    <ClCompile Include="ca\ca_patch.cpp" />
-    <ClCompile Include="ca\ca_pipe.cpp" />
-    <ClCompile Include="ca\ca_plain_text_serializable.cpp" />
-    <ClCompile Include="ca\ca_plain_text_stream.cpp" />
-    <ClCompile Include="ca\ca_plex.cpp" />
-    <ClCompile Include="ca\ca_plex_heap.cpp" />
-    <ClCompile Include="ca\ca_pointer_holder.cpp" />
-    <ClCompile Include="ca\ca_pointer_interface.cpp" />
-    <ClCompile Include="ca\ca_pointer_keeper.cpp" />
-    <ClCompile Include="ca\ca_pointer_listener.cpp" />
-    <ClCompile Include="ca\ca_pointer_manager.cpp" />
-    <ClCompile Include="ca\ca_port_forward.cpp" />
-    <ClCompile Include="ca\ca_process.cpp" />
-    <ClCompile Include="ca\ca_process_section.cpp" />
-    <ClCompile Include="ca\ca_property.cpp" />
-    <ClCompile Include="ca\ca_reader.cpp" />
-    <ClCompile Include="ca\ca_request_interface.cpp" />
-    <ClCompile Include="ca\ca_request_signal.cpp" />
-    <ClCompile Include="ca\ca_resource.cpp" />
-    <ClCompile Include="ca\ca_savings.cpp" />
-    <ClCompile Include="ca\ca_section.cpp" />
-    <ClCompile Include="ca\ca_seekable.cpp" />
-    <ClCompile Include="ca\ca_service.cpp" />
-    <ClCompile Include="ca\ca_session.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_bitmap.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_brush.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_ca.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_create_context.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_data.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_data_container.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_data_listener.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dib.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir_application.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir_system.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_exception.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_font.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_graphics.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_graphics_object.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_history.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_interlocked_long.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_interlocked_long_pulse.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_job.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_live_object.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_live_signal.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_log.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_message_window.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_os.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_palette.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_pen.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_print_job.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_profiler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_region.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_signal.cpp" />
-    <ClCompile Include="ca\ca_signal_thread.cpp" />
-    <ClCompile Include="ca\ca_simple_thread.cpp" />
-    <ClCompile Include="ca\ca_simple_tree_data.cpp" />
-    <ClCompile Include="ca\ca_simple_tree_item_data.cpp" />
-    <ClCompile Include="ca\ca_size_count_writer.cpp" />
-    <ClCompile Include="ca\ca_smart_pointer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_str.cpp" />
-    <ClCompile Include="ca\ca_stream.cpp" />
-    <ClCompile Include="ca\ca_stream2.cpp" />
-    <ClCompile Include="ca\ca_stream_binder.cpp" />
-    <ClCompile Include="ca\ca_string_tokenizer.cpp" />
-    <ClCompile Include="ca\ca_strn.cpp" />
-    <ClCompile Include="ca\ca_str_stream.cpp" />
-    <ClCompile Include="ca\ca_system.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_text_file.cpp" />
-    <ClCompile Include="ca\ca_thread.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_timeout_file.cpp" />
-    <ClCompile Include="ca\ca_Timer.cpp" />
-    <ClCompile Include="ca\ca_TimerCallback.cpp" />
-    <ClCompile Include="ca\ca_TimerListener.cpp" />
-    <ClCompile Include="ca\ca_TimerWnd.cpp" />
-    <ClCompile Include="ca\ca_trace.cpp" />
-    <ClCompile Include="ca\ca_transfer_file.cpp" />
-    <ClCompile Include="ca\ca_tree.cpp" />
-    <ClCompile Include="ca\ca_tree_data.cpp" />
-    <ClCompile Include="ca\ca_tree_item.cpp" />
-    <ClCompile Include="ca\ca_tree_item_data.cpp" />
-    <ClCompile Include="ca\ca_twit.cpp" />
-    <ClCompile Include="ca\ca_type_info.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_url.cpp" />
-    <ClCompile Include="ca\ca_url_domain.cpp" />
-    <ClCompile Include="ca\ca_var.cpp" />
-    <ClCompile Include="ca\ca_variable_strict_compare.cpp" />
-    <ClCompile Include="ca\ca_var_array.cpp" />
-    <ClCompile Include="ca\ca_var_property_allocation.cpp" />
-    <ClCompile Include="ca\ca_wait_cursor.cpp" />
-    <ClCompile Include="ca\ca_window.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_window_draw.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_writer.cpp" />
-    <ClCompile Include="collection\collection_2d_array.cpp" />
-    <ClCompile Include="collection\collection_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_bit_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_class_sort_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_numeric_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_comparable_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_key_sort_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_map_misc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_object_list.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_pointer_list.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_point_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_rect_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_sort.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_stringa.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_stringl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_string_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_string_list.cpp" />
-    <ClCompile Include="collection\collection_string_sort_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\collection_string_to_string_map.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_colorertake5.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_base_editor.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_default_error_handler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_error_handler_writer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_exception.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_hrc_parser_helpers.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_hrc_parser_impl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_line_regions_compact_support.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_line_regions_support.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_line_source.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_logging.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_outliner.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_parsed_line_writer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_parser_factory.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_region_handler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_region_mapper_impl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_styled_hrd_mapper.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_hrd_mapper.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_lines.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_parser_helpers.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_parser_impl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="base\api\api_muldiv64.cpp" />
+    <ClCompile Include="base\api\api_string.cpp" />
+    <ClCompile Include="base\api\mktime.cpp" />
+    <ClCompile Include="base\ca\ca.cpp" />
+    <ClCompile Include="base\ca\ca_allocation_base_ca.cpp" />
+    <ClCompile Include="base\ca\ca_allocation_ca_heap.cpp" />
+    <ClCompile Include="base\ca\ca_allocation_mid_big.cpp" />
+    <ClCompile Include="base\ca\ca_allocation_system_heap.cpp" />
+    <ClCompile Include="base\ca\ca_application.cpp" />
+    <ClCompile Include="base\ca\ca_application_bias.cpp" />
+    <ClCompile Include="base\ca\ca_assert.cpp" />
+    <ClCompile Include="base\ca\ca_base64.cpp" />
+    <ClCompile Include="base\ca\ca_base_enum_static_debug.cpp" />
+    <ClCompile Include="base\ca\ca_bit.cpp" />
+    <ClCompile Include="base\ca\ca_bitmap.cpp" />
+    <ClCompile Include="base\ca\ca_brush.cpp" />
+    <ClCompile Include="base\ca\ca_bstr.cpp" />
+    <ClCompile Include="base\ca\ca_buffered_file.cpp" />
+    <ClCompile Include="base\ca\ca_byte_serializable.cpp" />
+    <ClCompile Include="base\ca\ca_byte_stream.cpp" />
+    <ClCompile Include="base\ca\ca_byte_stream_memory_file.cpp" />
+    <ClCompile Include="base\ca\ca_c.cpp" />
+    <ClCompile Include="base\ca\ca_ca.cpp" />
+    <ClCompile Include="base\ca\ca_ch.cpp" />
+    <ClCompile Include="base\ca\ca_checked.cpp" />
+    <ClCompile Include="base\ca\ca_ch_class.cpp" />
+    <ClCompile Include="base\ca\ca_circular_buffer.cpp" />
+    <ClCompile Include="base\ca\ca_clustered_input_stream.cpp" />
+    <ClCompile Include="base\ca\ca_cmdtarg.cpp" />
+    <ClCompile Include="base\ca\ca_command.cpp" />
+    <ClCompile Include="base\ca\ca_command_line.cpp" />
+    <ClCompile Include="base\ca\ca_command_target.cpp" />
+    <ClCompile Include="base\ca\ca_command_thread.cpp" />
+    <ClCompile Include="base\ca\ca_composite.cpp" />
+    <ClCompile Include="base\ca\ca_compress.cpp" />
+    <ClCompile Include="base\ca\ca_constraint.cpp" />
+    <ClCompile Include="base\ca\ca_copydesk.cpp" />
+    <ClCompile Include="base\ca\ca_create_context.cpp" />
+    <ClCompile Include="base\ca\ca_cregexp.cpp" />
+    <ClCompile Include="base\ca\ca_cregexp_util.cpp" />
+    <ClCompile Include="base\ca\ca_crypt.cpp" />
+    <ClCompile Include="base\ca\ca_data.cpp" />
+    <ClCompile Include="base\ca\ca_data_container.cpp" />
+    <ClCompile Include="base\ca\ca_data_listener.cpp" />
+    <ClCompile Include="base\ca\ca_datetime.cpp" />
+    <ClCompile Include="base\ca\ca_Debug.cpp" />
+    <ClCompile Include="base\ca\ca_dib.cpp" />
+    <ClCompile Include="base\ca\ca_dir_application.cpp" />
+    <ClCompile Include="base\ca\ca_dir_system.cpp" />
+    <ClCompile Include="base\ca\ca_dynamic_buffered_writer.cpp" />
+    <ClCompile Include="base\ca\ca_edit.cpp" />
+    <ClCompile Include="base\ca\ca_edit_file.cpp" />
+    <ClCompile Include="base\ca\ca_email.cpp" />
+    <ClCompile Include="base\ca\ca_exception.cpp" />
+    <ClCompile Include="base\ca\ca_factory.cpp" />
+    <ClCompile Include="base\ca\ca_file.cpp" />
+    <ClCompile Include="base\ca\ca_file_application.cpp" />
+    <ClCompile Include="base\ca\ca_file_composite.cpp" />
+    <ClCompile Include="base\ca\ca_file_exception.cpp" />
+    <ClCompile Include="base\ca\ca_file_set.cpp" />
+    <ClCompile Include="base\ca\ca_file_sssociation.cpp" />
+    <ClCompile Include="base\ca\ca_file_stream.cpp" />
+    <ClCompile Include="base\ca\ca_file_system.cpp" />
+    <ClCompile Include="base\ca\ca_fixed_alloc.cpp" />
+    <ClCompile Include="base\ca\ca_flags.cpp" />
+    <ClCompile Include="base\ca\ca_folder_watch.cpp" />
+    <ClCompile Include="base\ca\ca_font.cpp" />
+    <ClCompile Include="base\ca\ca_fs_interface.cpp" />
+    <ClCompile Include="base\ca\ca_geometry.cpp" />
+    <ClCompile Include="base\ca\ca_go_thread.cpp" />
+    <ClCompile Include="base\ca\ca_graphics.cpp" />
+    <ClCompile Include="base\ca\ca_graphics_object.cpp" />
+    <ClCompile Include="base\ca\ca_graphics_path.cpp" />
+    <ClCompile Include="base\ca\ca_hash.cpp" />
+    <ClCompile Include="base\ca\ca_hex.cpp" />
+    <ClCompile Include="base\ca\ca_history.cpp" />
+    <ClCompile Include="base\ca\ca_http.cpp" />
+    <ClCompile Include="base\ca\ca_http_application.cpp" />
+    <ClCompile Include="base\ca\ca_http_get_socket.cpp" />
+    <ClCompile Include="base\ca\ca_http_system.cpp" />
+    <ClCompile Include="base\ca\ca_interlocked_long.cpp" />
+    <ClCompile Include="base\ca\ca_interlocked_long_pulse.cpp" />
+    <ClCompile Include="base\ca\ca_international.cpp" />
+    <ClCompile Include="base\ca\ca_international_locale_schema.cpp" />
+    <ClCompile Include="base\ca\ca_in_buffer.cpp" />
+    <ClCompile Include="base\ca\ca_io_temp_buffer.cpp" />
+    <ClCompile Include="base\ca\ca_ip_enum.cpp" />
+    <ClCompile Include="base\ca\ca_istring.cpp" />
+    <ClCompile Include="base\ca\ca_job.cpp" />
+    <ClCompile Include="base\ca\ca_keeper.cpp" />
+    <ClCompile Include="base\ca\ca_library.cpp" />
+    <ClCompile Include="base\ca\ca_limited_input_stream.cpp" />
+    <ClCompile Include="base\ca\ca_limited_reader.cpp" />
+    <ClCompile Include="base\ca\ca_limited_writer.cpp" />
+    <ClCompile Include="base\ca\ca_live_object.cpp" />
+    <ClCompile Include="base\ca\ca_live_signal.cpp" />
+    <ClCompile Include="base\ca\ca_locked_in_stream.cpp" />
+    <ClCompile Include="base\ca\ca_log.cpp" />
+    <ClCompile Include="base\ca\ca_logic.cpp" />
+    <ClCompile Include="base\ca\ca_machine_event_central.cpp" />
+    <ClCompile Include="base\ca\ca_match.cpp" />
+    <ClCompile Include="base\ca\ca_math.cpp" />
+    <ClCompile Include="base\ca\ca_math_rng.cpp" />
+    <ClCompile Include="base\ca\ca_memory.cpp" />
+    <ClCompile Include="base\ca\ca_message.cpp" />
+    <ClCompile Include="base\ca\ca_message_window.cpp" />
+    <ClCompile Include="base\ca\ca_microtimer.cpp" />
+    <ClCompile Include="base\ca\ca_nessie.cpp" />
+    <ClCompile Include="base\ca\ca_oauth.cpp" />
+    <ClCompile Include="base\ca\ca_object.cpp" />
+    <ClCompile Include="base\ca\ca_os.cpp" />
+    <ClCompile Include="base\ca\ca_os_history.cpp" />
+    <ClCompile Include="base\ca\ca_output_string_stream.cpp" />
+    <ClCompile Include="base\ca\ca_out_buffer.cpp" />
+    <ClCompile Include="base\ca\ca_palette.cpp" />
+    <ClCompile Include="base\ca\ca_parse.cpp" />
+    <ClCompile Include="base\ca\ca_patch.cpp" />
+    <ClCompile Include="base\ca\ca_pen.cpp" />
+    <ClCompile Include="base\ca\ca_pipe.cpp" />
+    <ClCompile Include="base\ca\ca_plain_text_serializable.cpp" />
+    <ClCompile Include="base\ca\ca_plain_text_stream.cpp" />
+    <ClCompile Include="base\ca\ca_plex.cpp" />
+    <ClCompile Include="base\ca\ca_plex_heap.cpp" />
+    <ClCompile Include="base\ca\ca_pointer_holder.cpp" />
+    <ClCompile Include="base\ca\ca_pointer_interface.cpp" />
+    <ClCompile Include="base\ca\ca_pointer_keeper.cpp" />
+    <ClCompile Include="base\ca\ca_pointer_listener.cpp" />
+    <ClCompile Include="base\ca\ca_pointer_manager.cpp" />
+    <ClCompile Include="base\ca\ca_port_forward.cpp" />
+    <ClCompile Include="base\ca\ca_print_job.cpp" />
+    <ClCompile Include="base\ca\ca_process.cpp" />
+    <ClCompile Include="base\ca\ca_process_section.cpp" />
+    <ClCompile Include="base\ca\ca_profiler.cpp" />
+    <ClCompile Include="base\ca\ca_property.cpp" />
+    <ClCompile Include="base\ca\ca_reader.cpp" />
+    <ClCompile Include="base\ca\ca_region.cpp" />
+    <ClCompile Include="base\ca\ca_request_interface.cpp" />
+    <ClCompile Include="base\ca\ca_request_signal.cpp" />
+    <ClCompile Include="base\ca\ca_resource.cpp" />
+    <ClCompile Include="base\ca\ca_savings.cpp" />
+    <ClCompile Include="base\ca\ca_section.cpp" />
+    <ClCompile Include="base\ca\ca_seekable.cpp" />
+    <ClCompile Include="base\ca\ca_service.cpp" />
+    <ClCompile Include="base\ca\ca_session.cpp" />
+    <ClCompile Include="base\ca\ca_signal.cpp" />
+    <ClCompile Include="base\ca\ca_signal_thread.cpp" />
+    <ClCompile Include="base\ca\ca_simple_thread.cpp" />
+    <ClCompile Include="base\ca\ca_simple_tree_data.cpp" />
+    <ClCompile Include="base\ca\ca_simple_tree_item_data.cpp" />
+    <ClCompile Include="base\ca\ca_size_count_writer.cpp" />
+    <ClCompile Include="base\ca\ca_smart_pointer.cpp" />
+    <ClCompile Include="base\ca\ca_str.cpp" />
+    <ClCompile Include="base\ca\ca_stream.cpp" />
+    <ClCompile Include="base\ca\ca_stream2.cpp" />
+    <ClCompile Include="base\ca\ca_stream_binder.cpp" />
+    <ClCompile Include="base\ca\ca_string_tokenizer.cpp" />
+    <ClCompile Include="base\ca\ca_strn.cpp" />
+    <ClCompile Include="base\ca\ca_str_stream.cpp" />
+    <ClCompile Include="base\ca\ca_system.cpp" />
+    <ClCompile Include="base\ca\ca_text_file.cpp" />
+    <ClCompile Include="base\ca\ca_thread.cpp" />
+    <ClCompile Include="base\ca\ca_timeout_file.cpp" />
+    <ClCompile Include="base\ca\ca_Timer.cpp" />
+    <ClCompile Include="base\ca\ca_TimerCallback.cpp" />
+    <ClCompile Include="base\ca\ca_TimerListener.cpp" />
+    <ClCompile Include="base\ca\ca_TimerWnd.cpp" />
+    <ClCompile Include="base\ca\ca_trace.cpp" />
+    <ClCompile Include="base\ca\ca_transfer_file.cpp" />
+    <ClCompile Include="base\ca\ca_tree.cpp" />
+    <ClCompile Include="base\ca\ca_tree_data.cpp" />
+    <ClCompile Include="base\ca\ca_tree_item.cpp" />
+    <ClCompile Include="base\ca\ca_tree_item_data.cpp" />
+    <ClCompile Include="base\ca\ca_twit.cpp" />
+    <ClCompile Include="base\ca\ca_type_info.cpp" />
+    <ClCompile Include="base\ca\ca_url.cpp" />
+    <ClCompile Include="base\ca\ca_url_domain.cpp" />
+    <ClCompile Include="base\ca\ca_var.cpp" />
+    <ClCompile Include="base\ca\ca_variable_strict_compare.cpp" />
+    <ClCompile Include="base\ca\ca_var_array.cpp" />
+    <ClCompile Include="base\ca\ca_var_property_allocation.cpp" />
+    <ClCompile Include="base\ca\ca_wait_cursor.cpp" />
+    <ClCompile Include="base\ca\ca_window.cpp" />
+    <ClCompile Include="base\ca\ca_window_draw.cpp" />
+    <ClCompile Include="base\ca\ca_writer.cpp" />
+    <ClCompile Include="base\collection\collection_2d_array.cpp" />
+    <ClCompile Include="base\collection\collection_array.cpp" />
+    <ClCompile Include="base\collection\collection_bit_array.cpp" />
+    <ClCompile Include="base\collection\collection_class_sort_array.cpp" />
+    <ClCompile Include="base\collection\collection_comparable_array.cpp" />
+    <ClCompile Include="base\collection\collection_key_sort_array.cpp" />
+    <ClCompile Include="base\collection\collection_map_misc.cpp" />
+    <ClCompile Include="base\collection\collection_numeric_array.cpp" />
+    <ClCompile Include="base\collection\collection_object_list.cpp" />
+    <ClCompile Include="base\collection\collection_pointer_list.cpp" />
+    <ClCompile Include="base\collection\collection_point_array.cpp" />
+    <ClCompile Include="base\collection\collection_rect_array.cpp" />
+    <ClCompile Include="base\collection\collection_sort.cpp" />
+    <ClCompile Include="base\collection\collection_stringa.cpp" />
+    <ClCompile Include="base\collection\collection_stringl.cpp" />
+    <ClCompile Include="base\collection\collection_string_array.cpp" />
+    <ClCompile Include="base\collection\collection_string_list.cpp" />
+    <ClCompile Include="base\collection\collection_string_sort_array.cpp" />
+    <ClCompile Include="base\collection\collection_string_to_string_map.cpp" />
+    <ClCompile Include="base\crypto\crypto_ae_xfm.cpp" />
+    <ClCompile Include="base\crypto\crypto_cipher_aes.cpp" />
+    <ClCompile Include="base\crypto\crypto_cipher_aes_cbc.cpp" />
+    <ClCompile Include="base\crypto\crypto_cipher_aes_icm.cpp" />
+    <ClCompile Include="base\crypto\crypto_cipher_cipher.cpp" />
+    <ClCompile Include="base\crypto\crypto_cipher_null_cipher.cpp" />
+    <ClCompile Include="base\crypto\crypto_gf2_8.cpp" />
+    <ClCompile Include="base\crypto\crypto_hash_auth.cpp" />
+    <ClCompile Include="base\crypto\crypto_hash_hmac.cpp" />
+    <ClCompile Include="base\crypto\crypto_hash_null_auth.cpp" />
+    <ClCompile Include="base\crypto\crypto_hash_sha1.cpp" />
+    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_alloc.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_crypto_kernel.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_err.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_key.cpp" />
+    <ClCompile Include="base\crypto\crypto_math.cpp" />
+    <ClCompile Include="base\crypto\crypto_math_stat.cpp" />
+    <ClCompile Include="base\crypto\crypto_md5.cpp" />
+    <ClCompile Include="base\crypto\crypto_my_aes.cpp" />
+    <ClCompile Include="base\crypto\crypto_replay_rdb.cpp" />
+    <ClCompile Include="base\crypto\crypto_replay_rdbx.cpp" />
+    <ClCompile Include="base\crypto\crypto_replay_ut_sim.cpp" />
+    <ClCompile Include="base\crypto\crypto_rng_ctr_prng.cpp" />
+    <ClCompile Include="base\crypto\crypto_rng_prng.cpp" />
+    <ClCompile Include="base\crypto\crypto_rng_rand_source.cpp" />
+    <ClCompile Include="base\crypto\crypto_sha1.cpp" />
+    <ClCompile Include="base\exception\exception_archive.cpp" />
+    <ClCompile Include="base\exception\exception_archive_exception.cpp" />
+    <ClCompile Include="base\exception\exception_base.cpp" />
+    <ClCompile Include="base\exception\exception_call_stack.cpp" />
+    <ClCompile Include="base\exception\exception_debug.cpp" />
+    <ClCompile Include="base\exception\exception_dump.cpp" />
+    <ClCompile Include="base\exception\exception_dump_context.cpp" />
+    <ClCompile Include="base\exception\exception_dump_floating_point.cpp" />
+    <ClCompile Include="base\exception\exception_dump_output.cpp" />
+    <ClCompile Include="base\exception\exception_engine.cpp" />
+    <ClCompile Include="base\exception\exception_error.cpp" />
+    <ClCompile Include="base\exception\exception_exit.cpp" />
+    <ClCompile Include="base\exception\exception_hresult.cpp" />
+    <ClCompile Include="base\exception\exception_installing.cpp" />
+    <ClCompile Include="base\exception\exception_interface_only.cpp" />
+    <ClCompile Include="base\exception\exception_invalid_argument.cpp" />
+    <ClCompile Include="base\exception\exception_invalid_character.cpp" />
+    <ClCompile Include="base\exception\exception_invalid_handle.cpp" />
+    <ClCompile Include="base\exception\exception_invalid_index.cpp" />
+    <ClCompile Include="base\exception\exception_io.cpp" />
+    <ClCompile Include="base\exception\exception_last_error.cpp" />
+    <ClCompile Include="base\exception\exception_memory.cpp" />
+    <ClCompile Include="base\exception\exception_not_implemented.cpp" />
+    <ClCompile Include="base\exception\exception_not_installed.cpp" />
+    <ClCompile Include="base\exception\exception_not_licensed.cpp" />
+    <ClCompile Include="base\exception\exception_not_supported.cpp" />
+    <ClCompile Include="base\exception\exception_operation_canceled.cpp" />
+    <ClCompile Include="base\exception\exception_os.cpp" />
+    <ClCompile Include="base\exception\exception_overflow_error.cpp" />
+    <ClCompile Include="base\exception\exception_range_error.cpp" />
+    <ClCompile Include="base\exception\exception_resource.cpp" />
+    <ClCompile Include="base\exception\exception_runtime_error.cpp" />
+    <ClCompile Include="base\exception\exception_simple.cpp" />
+    <ClCompile Include="base\exception\exception_standard_translator.cpp" />
+    <ClCompile Include="base\exception\exception_temporary.cpp" />
+    <ClCompile Include="base\exception\exception_todo.cpp" />
+    <ClCompile Include="base\exception\exception_user.cpp" />
+    <ClCompile Include="base\exception\exception_VMSException.cpp" />
+    <ClCompile Include="base\exception\exception_void_implementation.cpp" />
+    <ClCompile Include="base\geoip\geoip.cpp" />
+    <ClCompile Include="base\geoip\geoip_city.cpp" />
+    <ClCompile Include="base\geoip\geoip_region_name.cpp" />
+    <ClCompile Include="base\geoip\geoip_time_zone.cpp" />
+    <ClCompile Include="base\geoip\geoip_update.cpp" />
+    <ClCompile Include="base\install\install_install.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_big5Prober.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_charDistribution.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_charguess.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_EscCharsetProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_EscSM.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_EUCJPProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_EUCKRProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_EUCTWProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_GB2312Prober.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_jpCntx.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_LangBulgarianModel.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_LangCyrillicModel.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_LangGreekModel.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_LangHungarianModel.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_LangThaiModel.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_Latin1Prober.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_MBCSGroupProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_MBCSSM.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_SBCharsetProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_SBCSGroupProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_SJISProber.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_universal.cpp" />
+    <ClCompile Include="base\libcharguess\libcharguess_UTF8Prober.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_condition.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_core.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_critical_section.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_event.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_event_base.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_event_collection.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_file_change_event.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_manual_reset_event.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_multi_lock.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_mutex.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_retry_multi_lock.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_retry_single_lock.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_semaphore.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_service_base.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_single_lock.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_socket_event.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_synch_lock.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_sync_objec.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="base\plugin\plugin_history.cpp" />
+    <ClCompile Include="base\plugin\plugin_host_interaction.cpp" />
+    <ClCompile Include="base\plugin\plugin_instance.cpp" />
+    <ClCompile Include="base\plugin\plugin_plugin.cpp" />
+    <ClCompile Include="base\plugin\plugin_run_start_installer.cpp" />
+    <ClCompile Include="base\plugin\plugin_system.cpp" />
+    <ClCompile Include="base\windows\os_library_initialize.cpp" />
+    <ClCompile Include="base\windows\os_utils.cpp" />
+    <ClCompile Include="base\xml\xml_attr.cpp" />
+    <ClCompile Include="base\xml\xml_base_array.cpp" />
+    <ClCompile Include="base\xml\xml_data.cpp" />
+    <ClCompile Include="base\xml\xml_disp_option.cpp" />
+    <ClCompile Include="base\xml\xml_document.cpp" />
+    <ClCompile Include="base\xml\xml_edit.cpp" />
+    <ClCompile Include="base\xml\xml_entity.cpp" />
+    <ClCompile Include="base\xml\xml_exportable.cpp" />
+    <ClCompile Include="base\xml\xml_importable.cpp" />
+    <ClCompile Include="base\xml\xml_input_tree.cpp" />
+    <ClCompile Include="base\xml\xml_node.cpp" />
+    <ClCompile Include="base\xml\xml_output_tree.cpp" />
+    <ClCompile Include="base\xml\xml_parse_info.cpp" />
+    <ClCompile Include="base\xml\xml_property_exchange.cpp" />
+    <ClCompile Include="base\xml\xml_tree_base.cpp" />
+    <ClCompile Include="base\xml\xml_tree_schema.cpp" />
+    <ClCompile Include="base\xml\xml_var_exchange.cpp" />
+    <ClCompile Include="base\xml\xml_xml.cpp" />
+    <ClCompile Include="base\xml\xml_xmlite.cpp" />
     <ClCompile Include="compress\7z\7zDecode.cpp" />
     <ClCompile Include="compress\7z\7zEncode.cpp" />
     <ClCompile Include="compress\7z\7zExtract.cpp" />
@@ -2817,33 +2626,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_ae_xfm.cpp" />
-    <ClCompile Include="crypto\crypto_cipher_aes.cpp" />
-    <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp" />
-    <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp" />
-    <ClCompile Include="crypto\crypto_cipher_cipher.cpp" />
-    <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp" />
-    <ClCompile Include="crypto\crypto_gf2_8.cpp" />
-    <ClCompile Include="crypto\crypto_hash_auth.cpp" />
-    <ClCompile Include="crypto\crypto_hash_hmac.cpp" />
-    <ClCompile Include="crypto\crypto_hash_null_auth.cpp" />
-    <ClCompile Include="crypto\crypto_hash_sha1.cpp" />
-    <ClCompile Include="crypto\crypto_hmac_sha1.cpp" />
-    <ClCompile Include="crypto\crypto_kernel_alloc.cpp" />
-    <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp" />
-    <ClCompile Include="crypto\crypto_kernel_err.cpp" />
-    <ClCompile Include="crypto\crypto_kernel_key.cpp" />
-    <ClCompile Include="crypto\crypto_math.cpp" />
-    <ClCompile Include="crypto\crypto_math_stat.cpp" />
-    <ClCompile Include="crypto\crypto_md5.cpp" />
-    <ClCompile Include="crypto\crypto_my_aes.cpp" />
-    <ClCompile Include="crypto\crypto_replay_rdb.cpp" />
-    <ClCompile Include="crypto\crypto_replay_rdbx.cpp" />
-    <ClCompile Include="crypto\crypto_replay_ut_sim.cpp" />
-    <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp" />
-    <ClCompile Include="crypto\crypto_rng_prng.cpp" />
-    <ClCompile Include="crypto\crypto_rng_rand_source.cpp" />
-    <ClCompile Include="crypto\crypto_sha1.cpp" />
     <ClCompile Include="database\database_application.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -2889,9 +2671,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\database_user_interaction.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\exception\exception_resource.cpp" />
-    <ClCompile Include=".\exception\exception_archive.cpp" />
-    <ClCompile Include=".\exception\exception_base.cpp" />
     <ClCompile Include="database\simpledb\simpledb_application.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
@@ -2918,47 +2697,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\simpledb\simpledb_table.cpp" />
     <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
     <ClCompile Include="database\sqlite\sqlite3.cpp" />
-    <ClCompile Include="exception\exception_call_stack.cpp" />
-    <ClCompile Include="exception\exception_debug.cpp" />
-    <ClCompile Include="exception\exception_dump.cpp" />
-    <ClCompile Include="exception\exception_dump_context.cpp" />
-    <ClCompile Include="exception\exception_dump_floating_point.cpp" />
-    <ClCompile Include="exception\exception_dump_output.cpp" />
-    <ClCompile Include=".\exception\exception_hresult.cpp" />
-    <ClCompile Include="exception\exception_error.cpp" />
-    <ClCompile Include="exception\exception_exit.cpp" />
-    <ClCompile Include="exception\exception_installing.cpp" />
-    <ClCompile Include="exception\exception_interface_only.cpp" />
-    <ClCompile Include=".\exception\exception_invalid_argument.cpp" />
-    <ClCompile Include="exception\exception_invalid_character.cpp" />
-    <ClCompile Include="exception\exception_invalid_handle.cpp" />
-    <ClCompile Include="exception\exception_invalid_index.cpp" />
-    <ClCompile Include="exception\exception_io.cpp" />
-    <ClCompile Include="exception\exception_last_error.cpp" />
-    <ClCompile Include=".\exception\exception_memory.cpp" />
-    <ClCompile Include="exception\exception_not_implemented.cpp" />
-    <ClCompile Include=".\exception\exception_not_licensed.cpp" />
-    <ClCompile Include=".\exception\exception_not_supported.cpp" />
-    <ClCompile Include="exception\exception_not_installed.cpp" />
-    <ClCompile Include="exception\exception_operation_canceled.cpp" />
-    <ClCompile Include="exception\exception_os.cpp" />
-    <ClCompile Include="exception\exception_overflow_error.cpp" />
-    <ClCompile Include="exception\exception_range_error.cpp" />
-    <ClCompile Include="exception\exception_runtime_error.cpp" />
-    <ClCompile Include="exception\exception_standard_translator.cpp" />
-    <ClCompile Include=".\exception\exception_simple.cpp" />
-    <ClCompile Include="exception\exception_engine.cpp" />
-    <ClCompile Include="exception\exception_temporary.cpp" />
-    <ClCompile Include="exception\exception_todo.cpp" />
-    <ClCompile Include="exception\exception_user.cpp" />
-    <ClCompile Include="exception\exception_VMSException.cpp" />
-    <ClCompile Include="exception\exception_void_implementation.cpp" />
-    <ClCompile Include="filehandler\filehandler_handler.cpp" />
-    <ClCompile Include="filehandler\filehandler_library.cpp" />
-    <ClCompile Include="filehandler\filehandler_menu_library.cpp" />
-    <ClCompile Include="filehandler\filehandler_tree_data.cpp" />
-    <ClCompile Include="filehandler\filehandler_tree_interface.cpp" />
-    <ClCompile Include="filehandler\filehandler_tree_item_data.cpp" />
     <ClCompile Include="filesystem\filemanager\FileManagerCallbackInterface.cpp" />
     <ClCompile Include="filesystem\filemanager\FileManagerChildFrame.cpp" />
     <ClCompile Include="filesystem\filemanager\FileManagerFileListCallback.cpp" />
@@ -3028,18 +2766,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\userfs\fs_tree_data.cpp" />
     <ClCompile Include="filesystem\userfs\fs_tree_interface.cpp" />
     <ClCompile Include="filesystem\userfs\fs_tree_item_data.cpp" />
-    <ClCompile Include="fontopus\fontopus_contact_list.cpp" />
-    <ClCompile Include="fontopus\fontopus_fontopus.cpp" />
-    <ClCompile Include="fontopus\fontopus_license.cpp" />
-    <ClCompile Include="fontopus\fontopus_user.cpp" />
-    <ClCompile Include="fontopus\fontopus_usera.cpp" />
-    <ClCompile Include="fontopus\fontopus_user_set.cpp" />
-    <ClCompile Include="fontopus\fontopus_validate.cpp" />
-    <ClCompile Include="geoip\geoip.cpp" />
-    <ClCompile Include="geoip\geoip_city.cpp" />
-    <ClCompile Include="geoip\geoip_update.cpp" />
-    <ClCompile Include="geoip\geoip_region_name.cpp" />
-    <ClCompile Include="geoip\geoip_time_zone.cpp" />
     <ClCompile Include="graphics\gcom\gcom_BackView.cpp" />
     <ClCompile Include="graphics\gcom\gcom_BackViewGraphics.cpp" />
     <ClCompile Include="graphics\gcom\gcom_BackViewHelper.cpp" />
@@ -3102,296 +2828,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp" />
     <ClCompile Include="graphics\visual\visual_visual.cpp" />
     <ClCompile Include="graphics\visual\visual_water_routine.cpp" />
-    <ClCompile Include="install\install_install.cpp" />
-    <ClCompile Include="libcharguess\libcharguess_big5Prober.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_charDistribution.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_charguess.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_EscCharsetProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_EscSM.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_EUCJPProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_EUCKRProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_EUCTWProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_GB2312Prober.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_jpCntx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_LangBulgarianModel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_LangCyrillicModel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_LangGreekModel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_LangHungarianModel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_LangThaiModel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_Latin1Prober.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_MBCSGroupProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_MBCSSM.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_SBCharsetProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_SBCSGroupProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_SJISProber.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_universal.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="libcharguess\libcharguess_UTF8Prober.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="math\binary_operation.cpp" />
+    <ClCompile Include="math\calculator\calculator_calculator.cpp" />
+    <ClCompile Include="math\calculator\datetime_element.cpp" />
+    <ClCompile Include="math\calculator\datetime_parser.cpp" />
+    <ClCompile Include="math\calculator\datetime_scanner.cpp" />
+    <ClCompile Include="math\calculator\datetime_token.cpp" />
+    <ClCompile Include="math\calculator\numeric_element.cpp" />
+    <ClCompile Include="math\calculator\numeric_parser.cpp" />
+    <ClCompile Include="math\calculator\numeric_scanner.cpp" />
+    <ClCompile Include="math\calculator\numeric_value.cpp" />
     <ClCompile Include="math\math.cpp" />
     <ClCompile Include="math\number.cpp" />
     <ClCompile Include="math\value.cpp" />
@@ -3475,36 +2921,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\usermail\mail_tree_data.cpp" />
     <ClCompile Include="net\usermail\mail_tree_interface.cpp" />
     <ClCompile Include="net\usermail\mail_tree_item.cpp" />
-    <ClCompile Include="os\api\api_debug.cpp" />
-    <ClCompile Include="os\api\api_muldiv64.cpp" />
-    <ClCompile Include="os\api\api_string.cpp" />
-    <ClCompile Include="os\api\mktime.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_condition.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_core.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_critical_section.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_event.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_event_base.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_event_collection.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_file_change_event.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_manual_reset_event.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_multi_lock.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_mutex.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_plain_service.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_retry_multi_lock.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_retry_single_lock.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_semaphore.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_service_base.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_single_lock.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_socket_event.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_synch_lock.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_sync_objec.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_waitable.cpp" />
-    <ClCompile Include="os\multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="os\os_cross_windows.cpp" />
-    <ClCompile Include="os\windows\os_library_initialize.cpp" />
-    <ClCompile Include="os\windows\os_resouce_string.cpp" />
-    <ClCompile Include="os\windows\os_utils.cpp" />
-    <ClCompile Include="planebase\planebase_application.cpp" />
     <ClCompile Include="plane\plane_application.cpp" />
     <ClCompile Include="plane\plane_session.cpp" />
     <ClCompile Include="plane\plane_library.cpp" />
@@ -3531,18 +2949,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="plane\session\platform\platform_pane_view.cpp" />
     <ClCompile Include="plane\session\platform\platform_pane_view_update_hint.cpp" />
     <ClCompile Include="plane\session\platform\platform_view.cpp" />
-    <ClCompile Include="platform\platform_application.cpp" />
-    <ClCompile Include="platform\platform_document.cpp" />
-    <ClCompile Include="platform\platform_frame.cpp" />
-    <ClCompile Include="platform\platform_pane_view.cpp" />
-    <ClCompile Include="platform\platform_pane_view_update_hint.cpp" />
-    <ClCompile Include="platform\platform_view.cpp" />
-    <ClCompile Include="plugin\plugin_history.cpp" />
-    <ClCompile Include="plugin\plugin_host_interaction.cpp" />
-    <ClCompile Include="plugin\plugin_instance.cpp" />
-    <ClCompile Include="plugin\plugin_plugin.cpp" />
-    <ClCompile Include="plugin\plugin_run_start_installer.cpp" />
-    <ClCompile Include="plugin\plugin_system.cpp" />
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
     <ClCompile Include="primitive\primitive_color.cpp" />
     <ClCompile Include="primitive\primitive_count.cpp" />
@@ -3631,6 +3037,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_contact_list.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_license.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_user.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_usera.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_user_set.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_validate.cpp" />
     <ClCompile Include="user\menu\userbase_menu.cpp" />
     <ClCompile Include="user\menu\userbase_menu_base.cpp" />
     <ClCompile Include="user\menu\userbase_menu_button.cpp" />
@@ -3729,9 +3142,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\userex\userex_form_update_hint.cpp" />
     <ClCompile Include="user\userex\userex_form_view.cpp" />
     <ClCompile Include="user\userex\userex_hour_list_view.cpp" />
+    <ClCompile Include="user\userex\userex_keyboard_layout.cpp" />
     <ClCompile Include="user\userex\userex_menu_document.cpp" />
     <ClCompile Include="user\userex\userex_menu_frame.cpp" />
     <ClCompile Include="user\userex\userex_menu_view.cpp" />
+    <ClCompile Include="user\userex\userex_message_box.cpp" />
+    <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp" />
     <ClCompile Include="user\userex\userex_minute_list_view.cpp" />
     <ClCompile Include="user\userex\userex_pane_split_view.cpp" />
     <ClCompile Include="user\userex\userex_pane_tab_view.cpp" />
@@ -3741,6 +3157,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\userex\userex_second_list_view.cpp" />
     <ClCompile Include="user\userex\userex_split_view.cpp" />
     <ClCompile Include="user\userex\userex_userex.cpp" />
+    <ClCompile Include="user\userex\userex_wait_message_dialog.cpp" />
     <ClCompile Include="user\userhtml\userhtml_child_frame.cpp" />
     <ClCompile Include="user\userhtml\userhtml_document.cpp" />
     <ClCompile Include="user\userhtml\userhtml_form.cpp" />
@@ -3824,31 +3241,11 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user_xfplayer_view_line.cpp" />
     <ClCompile Include="user\user_xfplayer_view_lines.cpp" />
     <ClCompile Include="user\user_xfplayer_view_line_selection.cpp" />
-    <ClCompile Include="windows\os_library_initialize.cpp" />
-    <ClCompile Include="windows\os_utils.cpp" />
-    <ClCompile Include="xml\xml_xml.cpp" />
-    <ClCompile Include="xml\xml_attr.cpp" />
-    <ClCompile Include="xml\xml_base_array.cpp" />
-    <ClCompile Include="xml\xml_data.cpp" />
-    <ClCompile Include="xml\xml_disp_option.cpp" />
-    <ClCompile Include="xml\xml_document.cpp" />
-    <ClCompile Include="xml\xml_edit.cpp" />
-    <ClCompile Include="xml\xml_entity.cpp" />
-    <ClCompile Include="xml\xml_exportable.cpp" />
-    <ClCompile Include="xml\xml_importable.cpp" />
-    <ClCompile Include="xml\xml_input_tree.cpp" />
-    <ClCompile Include="xml\xml_node.cpp" />
-    <ClCompile Include="xml\xml_output_tree.cpp" />
-    <ClCompile Include="xml\xml_parse_info.cpp" />
-    <ClCompile Include="xml\xml_property_exchange.cpp" />
-    <ClCompile Include="xml\xml_tree_base.cpp" />
-    <ClCompile Include="xml\xml_tree_schema.cpp" />
-    <ClCompile Include="xml\xml_var_exchange.cpp" />
-    <ClCompile Include="xml\xml_XMLite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="base\ca\ca.inl" />
+    <None Include="base\collection\collection.inl" />
     <None Include="ca.def" />
-    <None Include="ca\ca.inl" />
     <None Include="os\multithreading\multithreading.inl" />
     <None Include="user\interaction.inl" />
     <None Include="user\user_interaction.inl" />

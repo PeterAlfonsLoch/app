@@ -92,7 +92,7 @@ namespace user
       virtual void _001OnFileNew();
 
 
-      void defer_add_document_template(sp(::document_template) ptemplate);
+      void defer_add_document_template(sp(::user::document_template) ptemplate);
       
 
 

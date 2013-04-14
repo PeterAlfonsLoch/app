@@ -13,11 +13,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       m_puserex = ::null();
 
-      m_dir.set_app(this);
-      m_file.set_app(this);
-      m_http.set_app(this);
 
-      m_bIfs            = true;
       m_bLicense     = false;
 
    }
@@ -54,7 +50,7 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 
       m_dwAlive = ::get_tick_count();
 
-      if(!::cubebase::application::initialize1())
+      if(!::ca::application::initialize1())
          return false;
 
       m_dwAlive = ::get_tick_count();

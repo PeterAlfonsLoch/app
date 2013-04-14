@@ -178,7 +178,7 @@ public:
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
 
-#include "ca/ca_byte_serializable.h"
+#include "base/ca/ca_byte_serializable.h"
 
 #include "collection_primitive_array.h"
 #include "collection_numeric_array.h"
@@ -303,22 +303,22 @@ public:
 #include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "ca/ca_variable_strict_compare.h"
+#include "base/ca/ca_variable_strict_compare.h"
 
 #include "primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
-#include "ca/ca_var_array.h"
-#include "ca/ca_property.h"
+#include "base/ca/ca_var_array.h"
+#include "base/ca/ca_property.h"
 
 
 
 
-#include "ca/ca_signal.h"
-#include "ca/ca_property_set.h"
-#include "ca/ca_international2.h"
+#include "base/ca/ca_signal.h"
+#include "base/ca/ca_property_set.h"
+#include "base/ca/ca_international2.h"
 
 
 #include "collection_point_array.h"

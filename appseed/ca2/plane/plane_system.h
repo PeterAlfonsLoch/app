@@ -234,8 +234,8 @@ namespace plane
       virtual public ::ca::system
    {
    public:
-      plane::session::run_start_installer *        m_prunstartinstaller;
-      plane::session::map *                        m_pbergedgemap;
+      //plane::session::run_start_installer *        m_prunstartinstaller;
+      //plane::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
       class machine_event_central *                m_pmachineeventcentral;
 
@@ -247,8 +247,6 @@ namespace plane
       sp(mutex)                                    m_pmutexDc;
 #endif
       sp(::filehandler::handler)                   m_spfilehandler;
-      ::cube::cube *                               m_pcube;
-      sp(::plane::application)                     m_pcubeInterface;
 
 
       const str_pool                               m_cstrpool;
@@ -289,8 +287,8 @@ namespace plane
       string_to_string_map                         m_mapFontopusServer;
 
 
-      sp(plane::session::run_start_installer)      m_prunstartinstaller;
-      sp(plane::session::map)                      m_pbergedgemap;
+      sp(::plane::session::run_start_installer)      m_prunstartinstaller;
+      sp(::plane::session::map)                      m_pbergedgemap;
 
 
       sp(class ::ca::log)                          m_plog;
@@ -303,10 +301,6 @@ namespace plane
 
       fontopus::authentication_map                 m_authmap;
 
-
-      index                                        m_iNewEdge;
-
-      class machine_event_central *                m_pmachineeventcentral;
 
       // certain instantiators like npca2plugin and iexca2plugin rely
       // on the functionality of these variables cached information,
@@ -340,8 +334,7 @@ namespace plane
 
             ::visual::visual                    m_visual;
 
-      system();
-      virtual ~system();
+                  system(sp(::ca::application) papp = ::null());
 
 
       //virtual int32_t main();
@@ -372,7 +365,7 @@ namespace plane
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      using ::cube::application::process;
+      using ::plane::application::process;
       bool set_history(::ca::history * phistory);
 
 
@@ -385,36 +378,15 @@ namespace plane
       virtual sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
-      virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
 	   virtual sp(::ca::command_thread) command_thread();
 
 
 
-      system(sp(::ca::application) papp = ::null());
-      virtual ~system();
 
 
       //virtual int32_t main();
-      virtual bool InitApplication();
 
-      virtual bool process_initialize();
-
-      virtual bool initialize();
-      virtual bool initialize1();
-      virtual bool initialize3();
-
-      virtual bool initialize_instance();
-
-      virtual bool bergedge_start();
-
-      virtual bool finalize();
-      virtual int32_t exit_instance();
-
-      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = ::null());
-
-      virtual void register_bergedge_application(sp(::ca::application) papp);
-      virtual void unregister_bergedge_application(sp(::ca::application) papp);
 
       using ::plane::application::alloc;
       virtual sp(::ca::ca) alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
@@ -483,7 +455,6 @@ namespace plane
       ::ca::service                       & service();
       class ::machine_event_central       & machine_event_central();
       class ::ca::os                      & os();
-      using ::plane::application::process;
 #ifndef METROWIN
       ::ca::process_section               & process();
 #endif
@@ -513,13 +484,10 @@ namespace plane
       
 
 
-      virtual bool base_support();
 
       bool sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser = ::null(), ::http::cookies * pcookies = ::null());
 
-      DECL_GEN_SIGNAL(on_application_signal);
 
-      bool set_history(::ca::history * phistory);
 
 
       uint32_t guess_code_page(const char * pszText);
@@ -536,12 +504,6 @@ namespace plane
       sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
       sp(::plane::session) query_session(index iEdge);
 
-
-      void on_request(sp(::ca::create_context) pcreatecontext);
-
-      sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
-
-      void open_by_file_extension(index iEdge, const char * pszPathName);
 
       //static void register_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistener);
       //static void unregister_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistenerOld);
@@ -635,8 +597,6 @@ namespace plane
 
       virtual bool create_twf();
 
-      virtual bool is_system();
-
       virtual void discard_to_factory(sp(::ca::ca) pca);
 
       virtual bool verb();
@@ -648,12 +608,10 @@ namespace plane
       virtual bool map_application_library(const char * pszLibrary);
 
 
-      virtual bool set_main_init_data(::ca::main_init_data * pdata);
-
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/Cube
       //
-      sp(::document) hold(sp(::user::interaction) pui);
+      sp(::user::document) hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -661,7 +619,7 @@ namespace plane
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
-      virtual sp(::ca::command_thread) command_thread();
+      //virtual sp(::ca::command_thread) command_thread();
 
 
       virtual bool on_install();
@@ -777,7 +735,7 @@ bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutpu
 
 
 
-#include "ca/collection/collection_lemon_array.h"
+#include "base/collection/collection_lemon_array.h"
 
 
 

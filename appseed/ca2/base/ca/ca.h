@@ -61,8 +61,7 @@ namespace plane
 
 
 
-
-#include "os/api/api_rotate.h"
+#include "base/api/api_rotate.h"
 
 
 #define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
@@ -95,7 +94,7 @@ namespace plane
 #include "primitive/count.h"
 
 
-#include "os/api/api.h"
+#include "base/api/api.h"
 
 
 
@@ -234,7 +233,7 @@ class dump_context;
 #define new DEBUG_NEW
 
 
-#include "exception/exception.h"
+#include "base/exception/exception.h"
 
 
 
@@ -242,10 +241,10 @@ class dump_context;
 #include "primitive/primitive_numeric_info.h"
 #include "ca_c_number.h"
 
-#include "os/multithreading/multithreading_wait_result.h"
+#include "base/multithreading/multithreading_wait_result.h"
 #include "primitive/datetime/datetime_duration.h"
 #include "ca_request_interface.h"
-#include "os/multithreading/multithreading_waitable.h"
+#include "base/multithreading/multithreading_waitable.h"
 #include "primitive/primitive.h"
 
 
@@ -279,6 +278,7 @@ class dump_context;
 
 
 #include "primitive/primitive.h"
+
 
 #include "ca_object.h"
 
@@ -330,7 +330,7 @@ class dump_context;
 #include "ca_allocate.h"
 #include "ca_plex.h"
 
-#include "collection/collection.h"
+#include "base/collection/collection.h"
 
 
 #include "ca_plex_heap.h"
@@ -343,7 +343,7 @@ class dump_context;
 #include "ca_interlocked_long.h"
 #include "ca_interlocked_long_pulse.h"
 
-#include "os/multithreading/multithreading.h"
+#include "base/multithreading/multithreading.h"
 
 #include "ca_data.h"
 #include "ca_data_container.h"
@@ -584,11 +584,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
                class application;          // application base class
             } // namespace ca
 
-      class document_template;         // template for document creation
+//      class document_template;         // template for document creation
          class single_document_template;// SDI support
          class multiple_document_template; // MDI support
 
-      class document;            // main document abstraction
+//      class document;            // main document abstraction
 
 
 // Helper classes
@@ -755,7 +755,7 @@ struct __system_policies
    __system_policy_data *pData;
 };
 
-#include "ca_file_manager_interface.h"
+//#include "ca_file_manager_interface.h"
 
 
 
@@ -844,7 +844,7 @@ namespace windows
 
 
 
-#include "collection/collection_sort_array.h"
+#include "base/collection/collection_sort_array.h"
 
 
 #include "primitive/primitive_id_space.h"
@@ -898,7 +898,7 @@ namespace ca
 
 
 
-#include "os/os.h"
+#include "base/os/os.h"
 
 
 
@@ -992,11 +992,11 @@ namespace ca
 
 
 #include "zlib/zlib.h"
-#include "sqlite/sqlite.h"
+#include "database/sqlite/sqlite.h"
 
 
 
-#include "libcharguess/libcharguess.h"
+#include "base/libcharguess/libcharguess.h"
 
 
 
@@ -1435,11 +1435,11 @@ CLASS_DECL_ca2 char * ::ca::TaskStringW2A(const wchar_t * lpw);
 #include "ca_template.h"
 
 
-#include "collection/collection_base_2array.h"
-#include "collection/collection_string_array.h"
-#include "collection/collection_stringa.h"
-#include "collection/collection_stringl.h"
-#include "collection/collection_string_sort_array.h"
+#include "base/collection/collection_base_2array.h"
+#include "base/collection/collection_string_array.h"
+#include "base/collection/collection_stringa.h"
+#include "base/collection/collection_stringl.h"
+#include "base/collection/collection_string_sort_array.h"
 
 #include "ca_string_tokenizer.h"
 
@@ -1450,7 +1450,7 @@ CLASS_DECL_ca2 char * ::ca::TaskStringW2A(const wchar_t * lpw);
 //#include "ca_full_pointer.h"
 //#include "ca_time.h"
 #include "ca_byte_serializable.h"
-#include "collection/collection_stringa.h"
+#include "base/collection/collection_stringa.h"
 #include "ca_var.h"
 #include "ca_var_array.h"
 
@@ -1616,7 +1616,7 @@ namespace lemon
 
 
 #include "math/calculator/calculator.h"
-#include "xml/xml.h"
+#include "base/xml/xml.h"
 #include "net/sockets/sockets.h"
 #include "user/colorertake5/colorertake5.h"
 
@@ -1638,7 +1638,7 @@ namespace ca
 } // namespace ca
 
 
-#include "crypto/crypto.h"
+#include "base/crypto/crypto.h"
 
 
 #include "ca_file_application.h"
@@ -1655,7 +1655,7 @@ namespace ca
 #include "ca_machine_event_central.h"
 
 
-#include "install/install.h"
+#include "base/install/install.h"
 
 
 #include "ca_os.h"
@@ -1672,10 +1672,10 @@ namespace ca
 #include "ca_library.h"
 
 
-#include "xml/xml_data.h"
+#include "base/xml/xml_data.h"
 
 
-#include "filehandler/filehandler.h"
+#include "filesystem/filehandler/filehandler.h"
 
 
 
@@ -1685,7 +1685,7 @@ namespace ca
 
 
 #include "compress/compress.h"
-#include "javascript/javascript.h"
+#include "programming/javascript/javascript.h"
 
 // former ca - changed to ca on 2013-02-21
 ////////////////////////////////////////////////////////////////
@@ -1723,6 +1723,30 @@ namespace cube // ca8 + cube
 #include "ca_process_section.h"
 
 
+
+
+
+
+#include "programming/dynamic_source/dynamic_source.h"
+
+
+
+
+
+#include "graphics/html/html2.h"
+#include "user/userex/userex.h"
+
+
+
+#include "filesystem/filemanager/filemanager.h"
+
+#include "net/usernet/usernet.h"
+#include "user/fontopus/fontopus.h"
+#include "net/usermail/mail.h"
+
+
+#include "net/hi5/hi5_net.h"
+
 #include "ca_application.h"
 
 
@@ -1730,3 +1754,5 @@ namespace cube // ca8 + cube
 
 #include "ca_session.h"
 #include "ca_system.h"
+
+

@@ -11,6 +11,14 @@ namespace plane
       m_papp      = this;
       m_pappThis  = this;
 
+      m_dir.set_app(this);
+      m_file.set_app(this);
+      m_http.set_app(this);
+
+      m_bIfs            = true;
+
+
+
    }
 
    application::application(const char * pszId)

@@ -12,7 +12,7 @@ namespace nature
 
       
       sp(::user::single_document_template) m_pdoctemplateAppearance;
-      ::ca2::keyboard_layout *             m_pkeyboardlayout;
+      sp(::userex::keyboard_layout)             m_pkeyboardlayout;
 
 
       pane_view(sp(::ca::application) papp);

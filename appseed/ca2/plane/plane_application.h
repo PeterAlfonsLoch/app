@@ -14,13 +14,13 @@ namespace plane
 
 
    class CLASS_DECL_ca2 application : 
-      virtual public ::ca2::application,
+      virtual public ::ca::application,
       virtual public ::database::client
 
    {
    public:
 
-            sp(service_base)                    m_pservice;
+      sp(service_base)                    m_pservice;
       class ::ca::dir::application        m_dir;
       class ::ca::file_application        m_file;
       class ::ca::http::application       m_http;
@@ -127,7 +127,7 @@ namespace plane
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/Cube
       //
-      sp(::document) hold(sp(::user::interaction) pui);
+      sp(::user::document) hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);

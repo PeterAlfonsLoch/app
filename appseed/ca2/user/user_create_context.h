@@ -1,16 +1,15 @@
 #pragma once
 
 
-#include "ca/ca_type_info.h"
-
-
-class document;
-class document_template;
+#include "base/ca/ca_type_info.h"
 
 
 namespace user
 {
 
+
+   class document;
+   class document_template;
    class interaction;
 
 

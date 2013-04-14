@@ -11,8 +11,8 @@ struct timeval
 
 #endif
 
-CLASS_DECL_ca WINBOOL WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
-CLASS_DECL_ca WINBOOL WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
+CLASS_DECL_ca2 WINBOOL WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
+CLASS_DECL_ca2 WINBOOL WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
 #ifndef METROWIN
 WINBOOL FileTimeToSystemTime(const FILETIME *ft, LPSYSTEMTIME syst);
 #endif

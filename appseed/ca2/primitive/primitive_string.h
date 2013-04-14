@@ -901,14 +901,14 @@ namespace ca
 /// macro - number of elements in array
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
-#include "x/x_charcategory.h"
-#include "ca/ca_bit.h"
-#include "collection/collection_bit_array.h"
+#include "base/x/x_charcategory.h"
+#include "base/ca/ca_bit.h"
+#include "base/collection/collection_bit_array.h"
 
-#include "ca/ca_ch.h"
-#include "ca/ca_ch_class.h"
-#include "ca/ca_international.h"
-#include "ca/ca_str.h"
+#include "base/ca/ca_ch.h"
+#include "base/ca/ca_ch_class.h"
+#include "base/ca/ca_international.h"
+#include "base/ca/ca_str.h"
 
 inline bool id::operator == (const string & str) const
 {
@@ -1204,7 +1204,7 @@ simple_string( string_trait::GetDefaultManager() )
 }
 
 
-#include "ca/ca_str2.h"
+#include "base/ca/ca_str2.h"
 
 
 

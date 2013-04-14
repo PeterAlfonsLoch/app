@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "geoip/geoip.h"
+#include "base/geoip/geoip.h"
 
 
 #include "numeric_value.h"

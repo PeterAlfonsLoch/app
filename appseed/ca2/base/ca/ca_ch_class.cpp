@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "x/x_charcategory2.h"
-#include "x/x_charcategory_names.h"
+#include "base/x/x_charcategory2.h"
+#include "base/x/x_charcategory_names.h"
 
 
 int32_t gen_ch_class_reference_tables();

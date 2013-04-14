@@ -124,7 +124,7 @@ public:
 
    // friend classes that call protected view overridables
    friend class user::document_interface;
-   friend class document_template;
+//   friend class document_template;
    friend class CPreviewView;
    friend class frame_window;
    friend class CMDIFrameWnd;

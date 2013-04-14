@@ -22,7 +22,7 @@ namespace hi5
             m_bInteractive    = bInteractive;
             m_bAuth    = bAuth;
             m_strForm         = pszForm;
-            m_ptemplatePane   = new ::userbase::single_document_template(
+            m_ptemplatePane   = new ::user::single_document_template(
                papp,
                "system/auth",
                System.type_info < form_document > (),
@@ -169,7 +169,7 @@ namespace hi5
             {
             case 1:
                {
-                  m_pdocAuth = Cube.userex().create_child_form(this, pcreatordata->m_pholder);
+                  m_pdocAuth = System.userex().create_child_form(this, pcreatordata->m_pholder);
                   if(m_pdocAuth != ::null())
                   {
                      m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();

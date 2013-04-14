@@ -360,7 +360,7 @@ namespace bergedge
             break;
          case PaneViewConfiguration:
          {
-            sp(::form_document) pdoc = Cube.userex().create_form(this, this);
+            sp(::form_document) pdoc = System.userex().create_form(this, this);
             if(pdoc == ::null())
                return;
             m_pformOptions = pdoc->get_typed_view < form_view > ();
