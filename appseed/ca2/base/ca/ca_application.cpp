@@ -398,7 +398,7 @@ namespace ca
 
          {
 
-            void * handle = dlopen("libca2ca.so", RTLD_NOW);
+            void * handle = dlopen("libca2.so", RTLD_NOW);
 
             if(handle == ::null())
                return false;
@@ -5766,7 +5766,7 @@ ret:
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
-   
+
    void application::data_on_after_change(::ca::signal_object * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
@@ -5876,7 +5876,7 @@ ret:
 
    }
 
-    
+
 } //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]
 
 
