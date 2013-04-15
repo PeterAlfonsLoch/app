@@ -6,7 +6,7 @@
    {
 
 
-      class CLASS_DECL_ca ssl_client_context_map :
+      class CLASS_DECL_ca2 ssl_client_context_map :
          virtual public ::collection::string_map < sp(ssl_client_context) >
       {
       public:

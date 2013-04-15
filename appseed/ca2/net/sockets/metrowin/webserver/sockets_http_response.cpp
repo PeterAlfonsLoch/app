@@ -1,4 +1,4 @@
-#include "framework.h"
+include "framework.h"
 
 namespace http
 {
@@ -54,6 +54,6 @@ namespace http
    //   m_file = std::auto_ptr<IFile>(new MemFile);
    }
 
-} // namespace http 
+} // namespace http
 
 

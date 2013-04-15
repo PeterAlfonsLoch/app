@@ -5,9 +5,9 @@
    {
 
 
-      /** get http response to file or primitive::memory. 
+      /** get http response to file or primitive::memory.
       \ingroup http */
-      class CLASS_DECL_ca http_client_socket : 
+      class CLASS_DECL_ca2 http_client_socket :
          virtual public http_tunnel
       {
       public:
@@ -90,6 +90,6 @@
       };
 
 
-   } // namespace sockets 
+   } // namespace sockets
 
 

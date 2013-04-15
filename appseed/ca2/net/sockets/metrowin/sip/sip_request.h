@@ -4,7 +4,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_ca request : 
+   class CLASS_DECL_ca2 request :
       virtual public transaction
    {
    public:
@@ -37,7 +37,7 @@ namespace sip
       string m_null;
       http::memory_file m_file;
       http::form m_form;
-      
+
 
    }; // end of class
 

@@ -5,9 +5,9 @@ namespace http
 {
 
 
-   /** Parse/store a http query_string/form-data body. 
+   /** Parse/store a http query_string/form-data body.
       \ingroup webserver */
-   class CLASS_DECL_ca form :
+   class CLASS_DECL_ca2 form :
       virtual public ::ca::object
    {
    public:

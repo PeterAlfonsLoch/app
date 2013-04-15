@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket container class, event generator.
       \ingroup basic */
-      class CLASS_DECL_ca socket_handler : 
+      class CLASS_DECL_ca2 socket_handler :
          public socket_handler_base
       {
       protected:

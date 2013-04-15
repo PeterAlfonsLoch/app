@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca transaction :
+   class CLASS_DECL_ca2 transaction :
       virtual public ::radix::object
    {
    public:
@@ -13,7 +13,7 @@ namespace http
       transaction(const transaction & src);
       virtual ~transaction();
 
-      
+
 
       void SetAccept(const string & value);
       string Accept();
@@ -51,7 +51,7 @@ namespace http
       gen::property_set & headers();
       gen::property & header(const char * pszKey);
       gen::property & lowheader(const string & strLowKey);
-      
+
       gen::property_set & attrs();
       gen::property & attr(const char * psz);
       gen::property & lowattr(const string & strLowName);

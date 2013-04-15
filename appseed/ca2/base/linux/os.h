@@ -30,6 +30,6 @@ typedef ::ca::file * HFILE;
 #include "os_debug.h"
 
 
-CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode);
+CLASS_DECL_ca2 errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode);
 
 #include "os_multithreading.h"

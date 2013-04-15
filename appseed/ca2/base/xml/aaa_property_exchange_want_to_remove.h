@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_ca property_set_exchange :
+   class CLASS_DECL_ca2 property_set_exchange :
       virtual public exportable,
       virtual public importable,
       virtual public ::radix::object

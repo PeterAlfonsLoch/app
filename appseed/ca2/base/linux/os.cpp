@@ -125,7 +125,7 @@ CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 
 
 
-CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode)
+CLASS_DECL_ca2 errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode)
 {
    if(pFile == NULL)
    {

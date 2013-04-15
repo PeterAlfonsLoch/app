@@ -39,7 +39,7 @@ namespace gen
 }
 
 
-class CLASS_DECL_ca var
+class CLASS_DECL_ca2 var
 {
 public:
 
@@ -307,17 +307,17 @@ public:
    bool strict_different(int i) const;
    bool strict_different(bool b) const;
 
-   friend bool CLASS_DECL_ca strict_equal(const char * psz, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(const string & str, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(double d, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(int i, const var & var);
-   friend bool CLASS_DECL_ca strict_equal(bool b, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(const char * psz, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(const string & str, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(double d, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(int i, const var & var);
+   friend bool CLASS_DECL_ca2 strict_equal(bool b, const var & var);
 
-   friend bool CLASS_DECL_ca strict_different(const char * psz, const var & var);
-   friend bool CLASS_DECL_ca strict_different(const string & str, const var & var);
-   friend bool CLASS_DECL_ca strict_different(double d, const var & var);
-   friend bool CLASS_DECL_ca strict_different(int i, const var & var);
-   friend bool CLASS_DECL_ca strict_different(bool b, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(const char * psz, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(const string & str, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(double d, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(int i, const var & var);
+   friend bool CLASS_DECL_ca2 strict_different(bool b, const var & var);
 
    int compare(const var & var) const;
    int compare(const char * psz) const;
@@ -410,12 +410,12 @@ public:
    var operator - (unsigned long user) const;
    var operator - (double d) const;
 
-   friend var CLASS_DECL_ca operator - (int i, const var & var);
-   friend var CLASS_DECL_ca operator - (unsigned int user, const var & var);
-   friend var CLASS_DECL_ca operator - (long l, const var & var);
-   friend var CLASS_DECL_ca operator - (unsigned long ul, const var & var);
-   friend var CLASS_DECL_ca operator - (double d, const var & var);
-   friend var CLASS_DECL_ca operator - (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator - (int i, const var & var);
+   friend var CLASS_DECL_ca2 operator - (unsigned int user, const var & var);
+   friend var CLASS_DECL_ca2 operator - (long l, const var & var);
+   friend var CLASS_DECL_ca2 operator - (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca2 operator - (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator - (const var & var1, const var & var2);
 
    var operator + (int i) const;
    var operator + (unsigned int user) const;
@@ -423,12 +423,12 @@ public:
    var operator + (unsigned long user) const;
    var operator + (double d) const;
 
-   friend var CLASS_DECL_ca operator + (int i, const var & var);
-   friend var CLASS_DECL_ca operator + (unsigned int user, const var & var);
-   friend var CLASS_DECL_ca operator + (long l, const var & var);
-   friend var CLASS_DECL_ca operator + (unsigned long ul, const var & var);
-   friend var CLASS_DECL_ca operator + (double d, const var & var);
-   friend var CLASS_DECL_ca operator + (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator + (int i, const var & var);
+   friend var CLASS_DECL_ca2 operator + (unsigned int user, const var & var);
+   friend var CLASS_DECL_ca2 operator + (long l, const var & var);
+   friend var CLASS_DECL_ca2 operator + (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca2 operator + (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator + (const var & var1, const var & var2);
 
    var operator / (int i) const;
    var operator / (unsigned int user) const;
@@ -436,12 +436,12 @@ public:
    var operator / (unsigned long user) const;
    var operator / (double d) const;
 
-   friend var CLASS_DECL_ca operator / (int i, const var & var);
-   friend var CLASS_DECL_ca operator / (unsigned int user, const var & var);
-   friend var CLASS_DECL_ca operator / (long l, const var & var);
-   friend var CLASS_DECL_ca operator / (unsigned long ul, const var & var);
-   friend var CLASS_DECL_ca operator / (double d, const var & var);
-   friend var CLASS_DECL_ca operator / (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator / (int i, const var & var);
+   friend var CLASS_DECL_ca2 operator / (unsigned int user, const var & var);
+   friend var CLASS_DECL_ca2 operator / (long l, const var & var);
+   friend var CLASS_DECL_ca2 operator / (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca2 operator / (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator / (const var & var1, const var & var2);
 
    var operator * (int i) const;
    var operator * (unsigned int user) const;
@@ -449,12 +449,12 @@ public:
    var operator * (unsigned long user) const;
    var operator * (double d) const;
 
-   friend var CLASS_DECL_ca operator * (int i, const var & var);
-   friend var CLASS_DECL_ca operator * (unsigned int user, const var & var);
-   friend var CLASS_DECL_ca operator * (long l, const var & var);
-   friend var CLASS_DECL_ca operator * (unsigned long ul, const var & var);
-   friend var CLASS_DECL_ca operator * (double d, const var & var);
-   friend var CLASS_DECL_ca operator * (const var & var1, const var & var2);
+   friend var CLASS_DECL_ca2 operator * (int i, const var & var);
+   friend var CLASS_DECL_ca2 operator * (unsigned int user, const var & var);
+   friend var CLASS_DECL_ca2 operator * (long l, const var & var);
+   friend var CLASS_DECL_ca2 operator * (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca2 operator * (double d, const var & var);
+   friend var CLASS_DECL_ca2 operator * (const var & var1, const var & var2);
 
    var & operator -= (int i);
    var & operator -= (unsigned int user);
@@ -521,7 +521,7 @@ namespace gen
    {
 
 
-      inline CLASS_DECL_ca string         itoa(const var & var)
+      inline CLASS_DECL_ca2 string         itoa(const var & var)
       {
 
          if(!var.is_numeric())

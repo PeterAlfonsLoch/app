@@ -13,7 +13,7 @@ inline index BaseSortCompare(id f1, id f2)
 
 class mutex;
 
-class CLASS_DECL_ca id_space :
+class CLASS_DECL_ca2 id_space :
    virtual protected BaseSortArray < id, const id & >
 {
 public:

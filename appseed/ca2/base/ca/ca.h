@@ -72,7 +72,7 @@ namespace plane
 #ifdef WINDOWS
 #include <crtdbg.h>
 #else
-#include "api/api_debug.h"
+#include "base/api/api_debug.h"
 #endif
 
 
@@ -86,7 +86,7 @@ namespace plane
 
 #elif defined(LINUX)
 
-#include "ca/linux/os.h"
+#include "base/linux/os.h"
 
 #endif
 

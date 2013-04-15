@@ -84,12 +84,12 @@ namespace sockets
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    */
 
-   class CLASS_DECL_ca net :
+   class CLASS_DECL_ca2 net :
       public ::ca::object
    {
    private:
 
-      
+
       string            m_host; ///< local hostname
       ipaddr_t          m_ip; ///< local ip address
       string            m_addr; ///< local ip address in string format
@@ -101,7 +101,7 @@ namespace sockets
    public:
 
 
-      class CLASS_DECL_ca dns_cache_item
+      class CLASS_DECL_ca2 dns_cache_item
       {
       public:
 

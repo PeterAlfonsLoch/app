@@ -45,7 +45,7 @@ typedef ::ca::file * HFILE;
 
 
 
-CLASS_DECL_ca bool AmIBeingDebugged();
+CLASS_DECL_ca2 bool AmIBeingDebugged();
 
 #include "os_multithreading.h"
 

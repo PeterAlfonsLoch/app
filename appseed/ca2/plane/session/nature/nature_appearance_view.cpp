@@ -7,7 +7,7 @@ namespace nature
    appearance_view::appearance_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      
+
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
@@ -60,7 +60,7 @@ namespace nature
       UNREFERENCED_PARAMETER(lHint);
       if(pHint != ::null())
       {
-         if(base <::user::view_update_hint> :: bases(pHint))
+         if(base < ::user::view_update_hint > :: bases(pHint))
          {
             ::user::view_update_hint * puh = dynamic_cast < ::user::view_update_hint * > (pHint);
             if(puh->m_etype == ::user::view_update_hint::TypeOpenDocument)

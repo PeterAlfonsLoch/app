@@ -6,12 +6,12 @@ namespace http
 
    class form;
 
-   class CLASS_DECL_ca request : public transaction
+   class CLASS_DECL_ca2 request : public transaction
    {
    public:
 
 
-      
+
       string      m_strRequestUri;
       string      m_strQueryString;
       string      m_strHttpHost;
@@ -49,7 +49,7 @@ namespace http
       string m_null;
       http::memory_file m_file;
       http::form m_form;
-      
+
 
    }; // end of class
 

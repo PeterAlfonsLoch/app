@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 ::user::document_manager : 
+   class CLASS_DECL_ca2 document_manager :
       virtual public ::user::document_request_interface
    {
    public:

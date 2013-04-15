@@ -5,7 +5,7 @@ namespace xml
 
    class input_tree;
 
-   class CLASS_DECL_ca importable
+   class CLASS_DECL_ca2 importable
    {
    public:
 

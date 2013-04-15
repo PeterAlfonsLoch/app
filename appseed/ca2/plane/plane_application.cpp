@@ -192,7 +192,7 @@ namespace plane
 
    service_base * application::allocate_new_service()
    {
-      
+
       return ::null();
 
    }
@@ -1276,7 +1276,7 @@ exit_application:
       {
          try
          {
-            delete pcaapp;
+            pcaapp.release();
          }
          catch(...)
          {
@@ -1384,7 +1384,7 @@ exit_application:
 
          if(!on_uninstall())
             return false;
-         
+
          System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
 
       }
@@ -1848,7 +1848,7 @@ exit_application:
    bool application::initialize1()
    {
 
-      
+
 
 
       if(!is_system())
@@ -1866,10 +1866,10 @@ exit_application:
         (Application.directrix()->m_varTopicQuery.has_property("install")
       || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
       {
-         
+
          if(fontopus()->create_system_user("system") == ::null())
             return false;
-         
+
       }
 
       if(!::ca::application::initialize1())
@@ -1925,7 +1925,7 @@ exit_application:
 
       if(!m_pfontopus->initialize_instance())
          return false;
-      
+
 
       return true;
 

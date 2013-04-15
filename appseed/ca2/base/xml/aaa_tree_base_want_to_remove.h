@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_ca tree_base :
+   class CLASS_DECL_ca2 tree_base :
       virtual public ::radix::object
    {
    protected:

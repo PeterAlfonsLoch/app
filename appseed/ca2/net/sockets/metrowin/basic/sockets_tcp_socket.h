@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket implementation for TCP.
       \ingroup basic */
-      class CLASS_DECL_ca tcp_socket :
+      class CLASS_DECL_ca2 tcp_socket :
          virtual public stream_socket
       {
          /** \defgroup internal Internal utility */
@@ -96,7 +96,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          OUTPUT *m_obuf_top; ///< output buffer on top
          size_t m_transfer_limit;
          size_t m_output_length;
-         
+
          //static   SSLInitializer m_ssl_init;
 //         SSL_CTX *m_ssl_ctx; ///< ssl context
 //         SSL *m_ssl; ///< ssl 'socket'

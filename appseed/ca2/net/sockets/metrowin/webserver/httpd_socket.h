@@ -6,7 +6,7 @@ Copyright (C) 2001-2007  Anders Hedstrom (grymse@alhem.net)
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -37,9 +37,9 @@ namespace sockets
 {
 
    /** \defgroup webserver Webserver framework */
-   /** Web server socket framework. 
+   /** Web server socket framework.
       \ingroup webserver */
-   class CLASS_DECL_ca httpd_socket : public http_base_socket
+   class CLASS_DECL_ca2 httpd_socket : public http_base_socket
    {
    public:
       httpd_socket(socket_handler_base& );
@@ -48,23 +48,23 @@ namespace sockets
 
    protected:
       httpd_socket(const httpd_socket& s);
-      /** Decode and send a base64-encoded string. 
+      /** Decode and send a base64-encoded string.
          \param str64 Base64-encoded string
          \param type Mime type of content (content-type header) */
       void Send64(const string & str64, const string & type);
       string datetime2httpdate(const string & dt);
       string GetDate();
       void Reset();
-   
+
       virtual void InitSSLServer();
 
 
-   
+
    private:
       httpd_socket& operator=(const httpd_socket& s);
       size_t m_received;
       string m_http_date;
-   
+
    };
 
 

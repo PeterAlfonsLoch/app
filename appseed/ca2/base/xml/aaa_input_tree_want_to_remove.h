@@ -6,7 +6,7 @@ namespace xml
 class importable;
 class attribute_array;
 
-class CLASS_DECL_ca input_tree :
+class CLASS_DECL_ca2 input_tree :
    public tree_base
 {
 public:

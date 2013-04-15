@@ -53,7 +53,7 @@ LONG TIME_GetBias(void);
 #endif
 
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 #ifdef __CA__LIB
    #define CLASS_DECL_ca2
 #elif defined(__CA__DLL)
@@ -64,7 +64,7 @@ LONG TIME_GetBias(void);
 #else
    #define CLASS_DECL_ca2
 #endif
-
+*/
 
 
 #include "nodeapp/operational_system/bare_operational_system.h"

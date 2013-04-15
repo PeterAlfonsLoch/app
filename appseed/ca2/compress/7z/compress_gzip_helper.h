@@ -47,7 +47,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca gzip
+class CLASS_DECL_ca2 gzip
 {
 public:
 

@@ -5,7 +5,7 @@ namespace planebase
 {
 
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       virtual public ::fontopus::application
    {
    public:

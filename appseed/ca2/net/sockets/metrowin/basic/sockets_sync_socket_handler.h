@@ -6,7 +6,7 @@
    namespace sockets
    {
 
-      class CLASS_DECL_ca sync_socket_handler : 
+      class CLASS_DECL_ca2 sync_socket_handler :
          virtual public ::ca::object,
          public socket::callback
       {

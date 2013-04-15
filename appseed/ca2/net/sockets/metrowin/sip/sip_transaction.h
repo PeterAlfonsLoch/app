@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_ca transaction :
+   class CLASS_DECL_ca2 transaction :
       virtual public ::ca::object
    {
    public:

@@ -31,7 +31,7 @@ DWORD GetTickCount()
 
 
 /*
-CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode)
+CLASS_DECL_ca2 errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode)
 {
    if(pFile == NULL)
    {
@@ -54,7 +54,7 @@ CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char 
 
 
 
-CLASS_DECL_ca BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_ca2 BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    if(oswindow.window() == NULL || oswindow.window()->m_pthread == NULL)

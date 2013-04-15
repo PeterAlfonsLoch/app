@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -35,9 +35,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       class socket_handler_base;
 
-      /** Put http page. 
+      /** Put http page.
       \ingroup http */
-      class CLASS_DECL_ca http_put_socket : 
+      class CLASS_DECL_ca2 http_put_socket :
          virtual public http_client_socket
       {
       public:
@@ -50,7 +50,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
          http_put_socket(socket_handler_base&);
-         /** client constructor, 
+         /** client constructor,
          \param url_in = 'http://host:port/resource' */
          http_put_socket(socket_handler_base&,const string & url_in);
          ~http_put_socket();

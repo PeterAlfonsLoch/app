@@ -26,7 +26,7 @@ namespace sockets
    class link_out_socket;
 
 
-   class CLASS_DECL_ca link_in_socket : public tcp_socket
+   class CLASS_DECL_ca2 link_in_socket : public tcp_socket
    {
    public:
 

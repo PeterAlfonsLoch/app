@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_ca entity
+   class CLASS_DECL_ca2 entity
    {
    public:
 
@@ -17,11 +17,11 @@ namespace xml
       entity & operator = (const entity & entity);
    };
 
-   class CLASS_DECL_ca entities : 
+   class CLASS_DECL_ca2 entities :
       public base_array < entity >
    {
    public:
-      
+
       entity * get_entity( int entity );
       entity * get_entity(const char * pszEntity);
 
@@ -31,13 +31,13 @@ namespace xml
       int entity_to_ref( const char * str, char * estr, int estrlen );
 
       string ref_to_entity( const char * estr );
-      string entity_to_ref( const char * str );   
+      string entity_to_ref( const char * str );
 
       void add_entity(char chEntity, const char * pszReference);
 
    };
 
    string XRef2Entity( const char * estr );
-   string XEntity2Ref( const char * str );   
+   string XEntity2Ref( const char * str );
 
 } // namespace xml

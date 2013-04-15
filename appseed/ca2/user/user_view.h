@@ -225,7 +225,7 @@ namespace user
 //         virtual void install_message_handling(::ca::message::dispatch * pinterface);
    };
 
-   class ::user::view_update_hint :
+   class view_update_hint :
       virtual public ::ca::object
    {
    public:
@@ -234,7 +234,7 @@ namespace user
          TypeOpenDocument,
       };
    public:
-      ::user::view_update_hint(sp(::ca::application) papp);
+      view_update_hint(sp(::ca::application) papp);
       etype m_etype;
    };
 

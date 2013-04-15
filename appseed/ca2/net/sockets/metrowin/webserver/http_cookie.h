@@ -8,7 +8,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca cookie
+   class CLASS_DECL_ca2 cookie
    {
    public:
 
@@ -58,7 +58,7 @@ namespace http
 
 
 
-   class CLASS_DECL_ca cookies :
+   class CLASS_DECL_ca2 cookies :
       public array_ptr_alloc < cookie, cookie & >
    {
    public:
@@ -82,7 +82,7 @@ namespace http
          const char * pszKey,
          var var,
          int iExpire = 0,
-         const char * pszDomain = NULL, 
+         const char * pszDomain = NULL,
          const char * pszPath = NULL,
          bool bSecure = false);
       static string expire(time_t iExpire = 0);

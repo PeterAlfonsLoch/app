@@ -5,7 +5,7 @@
    {
 
 
-      class CLASS_DECL_ca sockets :
+      class CLASS_DECL_ca2 sockets :
          virtual public ::ca::section
       {
       public:
@@ -21,7 +21,7 @@
          resolv_socket::cache_t                       m_resolvcache;
          resolv_socket::timeout_t                     m_resolvtimeout;
          mutex                                        m_mutexResolvCache;
-         
+
 
 
          sockets();

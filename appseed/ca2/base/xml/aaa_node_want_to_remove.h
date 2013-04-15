@@ -5,13 +5,13 @@ namespace xml
 
    class document;
 
-   class CLASS_DECL_ca node :
+   class CLASS_DECL_ca2 node :
       virtual public ::radix::object,
       virtual public ex1::byte_serializable
    {
    public:
 
-      class CLASS_DECL_ca base_array :
+      class CLASS_DECL_ca2 base_array :
          virtual public array_app_alloc < node >
       {
       public:

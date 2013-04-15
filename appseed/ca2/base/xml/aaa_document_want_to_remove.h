@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_ca document :
+   class CLASS_DECL_ca2 document :
       public node,
       virtual public ::radix::object
    {
@@ -17,13 +17,13 @@ namespace xml
       parse_info                 m_parseinfo;
       string                     m_strLocation;
       string                     m_strData;
-    
+
 
       string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt);
       char * patch_entity_ref(const char * & pszXml, bool useExtEnt, ...);
 
       node * get_root();
-      
+
       char * load_location(const char * psz);
 
       char * load(const char * psz);
