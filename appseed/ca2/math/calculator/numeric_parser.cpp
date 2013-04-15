@@ -18,7 +18,7 @@ namespace calculator
 
    element * parser::new_node()
    {
-      return m_elementa.add_new();
+      return m_elementa(m_elementa.add(canew(::calculator::element)));
    }
 
    //element * parser::parse(const char * psz)
