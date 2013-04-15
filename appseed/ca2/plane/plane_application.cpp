@@ -214,7 +214,40 @@ namespace plane
    int32_t application::run()
    {
 
-      return ::ca::application::run();
+      if((command()->m_varTopicQuery.has_property("install")
+      || command()->m_varTopicQuery.has_property("uninstall"))
+      &&
+      ((is_session() && command()->m_varTopicQuery["session_start"] == "session")))
+      {
+      }
+      else if(!is_system() && !is_session())
+      {
+         if(command()->m_varTopicQuery.has_property("install")
+         || command()->m_varTopicQuery.has_property("uninstall"))
+         {
+         }
+         else if(command()->m_varTopicQuery.has_property("service"))
+         {
+            create_new_service();
+            ::service_base::serve(*m_pservice);
+         }
+         else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
+         {
+            create_new_service();
+            m_pservice->Start(0);
+            return ::ca::application::run();
+         }
+         else
+         {
+            return ::ca::application::run();
+         }
+      }
+      else
+      {
+         return ::ca::application::run();
+      }
+
+      return 0;
 
    }
 
@@ -1861,6 +1894,10 @@ exit_application:
          simpledb().set_keyboard_layout(::null(), false);
 
       }
+
+
+      if(!m_spuser->initialize2())
+         return false;
 
 
       return true;

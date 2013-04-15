@@ -91,7 +91,7 @@ void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
 
          ::ca::data::writing writing(get_html_data());
 
-         ::ca::client_graphics pdc(this);
+         ::ca::memory_graphics pdc(allocer());
          get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
 
@@ -368,7 +368,7 @@ void html_form::defer_implement()
    if(get_html_data()->m_box.area() <= 0.f)
       return;
 
-   ::ca::client_graphics pdc(this);
+   ::ca::memory_graphics pdc(allocer());
 
    get_html_data()->m_pguie = this;
    get_html_data()->m_pform = this;
@@ -389,7 +389,7 @@ void html_form::defer_layout()
    if(get_html_data()->m_box.area() <= 0.f)
       return;
 
-   ::ca::client_graphics pdc(this);
+   ::ca::memory_graphics pdc(allocer());
 
    get_html_data()->m_pguie = this;
    get_html_data()->m_pform = this;

@@ -4988,12 +4988,73 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          System.http().defer_auto_initialize_proxy_configuration();
       }
 
+
+
+      m_dwAlive = ::get_tick_count();
+
+      if(is_system())
+      {
+         System.factory().creatable_small < ::userex::keyboard_layout > ();
+      }
+
+//      if(!::cubebase::application::initialize())
+  //       return false;
+
+      m_puinteraction = new ::uinteraction::uinteraction();
+
+      m_puinteraction->construct(this);
+
+      if(!m_puinteraction->initialize())
+         return false;
+
+//      m_puserbase = new ::userbase::userbase();
+
+  //    m_puserbase->construct(this);
+
+    //  if(!m_puserbase->initialize())
+         //return false;
+
+      m_pfilemanager = new ::filemanager::filemanager();
+
+      ::ca::application::m_pfilemanager = m_pfilemanager;
+
+      m_pfilemanager->construct(this);
+
+      if(!m_pfilemanager->initialize())
+         return false;
+
+      m_pmail = new ::mail::mail();
+
+      m_pmail->construct(this);
+
+      if(!m_pmail->initialize())
+         return false;
+
+      m_dwAlive = ::get_tick_count();
+
+
+
+
+
+      m_dwAlive = ::get_tick_count();
+
+      //m_splicense(new class ::fontopus::license(this));
+
+
+      if(!is_system())
+      {
+         System.register_bergedge_application(this);
+      }
+
+
+      m_dwAlive = ::get_tick_count();
+
+      ensure_app_interest();
+
       application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
-
-
       return true;
    }
 
@@ -5587,7 +5648,7 @@ ret:
    void application::defer_add_document_template(sp(::user::document_template) ptemplate)
    {
 
-      throw interface_only_exception(get_app());
+      Application.user()->defer_add_document_template(ptemplate);
 
    }
 
@@ -5637,7 +5698,7 @@ ret:
    bool application::set_keyboard_layout(const char * pszPath, bool bUser)
    {
 
-      return user().keyboard().load_layout(pszPath, bUser);
+      return Application.user()->keyboard().load_layout(pszPath, bUser);
 
    }
 
@@ -5791,6 +5852,28 @@ ret:
 #else
       throw todo(get_app());
 #endif
+   }
+
+
+   void application::ensure_app_interest()
+   {
+
+#ifndef METROWIN
+
+      for(int32_t i = 0; i < m_straAppInterest.get_count(); i++)
+      {
+         if(m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
+         {
+            System.assert_running_local(m_straAppInterest[i]);
+         }
+      }
+
+#else
+
+      //throw todo(get_app());
+
+#endif
+
    }
 
     

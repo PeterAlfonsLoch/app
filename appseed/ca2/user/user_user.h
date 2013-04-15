@@ -1,13 +1,17 @@
 #pragma once
 
 
+class form_document;
+class form_view;
+
+
 namespace user
 {
 
 
    class keyboard;
    class front_end_schema;
-   class ::user::document_manager;
+   class document_manager;
    class document_template;
    class document;
 
@@ -19,6 +23,13 @@ namespace user
       virtual public ::database::client
    {
    public:
+
+
+
+      sp(::user::multiple_document_template)     m_ptemplateForm;
+      sp(::user::multiple_document_template)     m_ptemplateChildForm;
+      sp(::user::multiple_document_template)     m_ptemplatePlaceHolder;
+
 
 
       filemanager::_shell::ImageSet *        m_pshellimageset;
@@ -41,6 +52,7 @@ namespace user
       filemanager::_shell::ImageSet & shellimageset();
 
       virtual bool initialize1();
+      virtual bool initialize2();
       virtual bool initialize();
 
 
@@ -198,6 +210,12 @@ namespace user
    */
     
 
+
+      sp(::form_document)   create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::form_document)   create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::form_document)   create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::form_document)   create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::user::document) hold(sp(::user::interaction) pui);
 
    };
 

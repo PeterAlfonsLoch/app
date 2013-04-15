@@ -53,7 +53,7 @@ namespace user
       virtual bool _001IsFrameWnd();
 
 
-      virtual OleFrameHook * GetNotifyHook();
+      //virtual ::user::OleFrameHook * GetNotifyHook();
       virtual void NotifyFloatingWindows(uint32_t dwFlags);
 
       virtual string get_window_default_matter();

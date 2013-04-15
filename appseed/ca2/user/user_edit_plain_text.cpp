@@ -1931,7 +1931,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != ::null())
       {
-         sp(::ca::tree_item) pitemNew = insert_item(m_pdata, pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
+         sp(::ca::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != ::null())
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1939,7 +1939,7 @@ namespace user
       }
       else
       {
-         sp(::ca::tree_item) pitemNew = insert_item(m_pdata, pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
+         sp(::ca::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != ::null())
          {
             m_pdata->m_ptreeitem = pitemNew;

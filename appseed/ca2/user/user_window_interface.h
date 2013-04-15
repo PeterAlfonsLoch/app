@@ -59,6 +59,7 @@ namespace user
       bool                                m_bBackgroundBypass;
       ETranslucency                       m_etranslucency;
 
+      static window_interface * g_pwndLastLButtonDown;
 
 
 
@@ -121,7 +122,6 @@ namespace user
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual void _on_start_user_message_handler();
-      static window_interface * g_pwndLastLButtonDown;
 
 
       virtual void UpdateWindow();

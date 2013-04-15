@@ -16,7 +16,7 @@ namespace user
 
    bool network_configuration::initialize(sp(::user::interaction) puiParent)
    {
-      /*m_pdoc = System.userex().create_form(this, puiParent);
+      /*m_pdoc = System.user()->create_form(this, puiParent);
       if(m_pdoc != ::null())
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
@@ -29,7 +29,7 @@ namespace user
    bool network_configuration::initialize_child(sp(::user::interaction) puiParent)
    {
       /*
-      m_pdoc = System.userex().create_child_form(this, puiParent);
+      m_pdoc = System.user()->create_child_form(this, puiParent);
       if(m_pdoc != ::null())
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();

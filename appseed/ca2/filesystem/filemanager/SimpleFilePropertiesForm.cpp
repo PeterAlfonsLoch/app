@@ -61,7 +61,7 @@ namespace filemanager
       {
       case 1:
          {
-            m_pdocGeneral = System.userex().create_form(this, m_ptabview);
+            m_pdocGeneral = System.user()->create_form(this, m_ptabview);
             if(m_pdocGeneral != ::null())
             {
                m_pviewGeneral = m_pdocGeneral->get_typed_view < form_view > ();

@@ -28,7 +28,7 @@ namespace user
    {
       ::user::window_interface::install_message_handling(pinterface);
       ::user::interaction::install_message_handling(pinterface);
-      ::user::button::install_message_handling(pinterface);
+      //::user::button::install_message_handling(pinterface);
 
       //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
       USER_MESSAGE_LINK(message_create             , pinterface, this, &button::on_create);

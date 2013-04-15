@@ -37,10 +37,10 @@ namespace user
       UNREFERENCED_PARAMETER(lpcrect);
    }
 
-   ::OleFrameHook * frame_window_interface::GetNotifyHook()
+/*   ::user::OleFrameHook * frame_window_interface::GetNotifyHook()
    {
       return ::null();
-   }
+   }*/
 
    void frame_window_interface::NotifyFloatingWindows(uint32_t dwFlags)
    {
@@ -141,7 +141,7 @@ namespace user
 
    void frame_window_interface::install_message_handling(::ca::message::dispatch *pinterface)
    {
-      ::user::frame_window_interface::install_message_handling(pinterface);
+//      ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);
       IGUI_MSG_LINK(::ca::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
    }

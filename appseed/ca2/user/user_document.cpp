@@ -110,7 +110,7 @@ namespace user
    void document::on_alloc(sp(::ca::application) papp)
    {
 
-      ::user::document::on_alloc(papp);
+      //::user::document::on_alloc(papp);
       ::database::client::initialize_data_client(App(papp).simpledb().get_data_server());
 
    }

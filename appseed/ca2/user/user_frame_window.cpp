@@ -628,7 +628,7 @@ namespace user
          sp(::user::interaction) pWnd = GetDescendantWindow("pane_first");
          if (pWnd != ::null() && base < ::user::view > ::bases(pWnd))
          {
-            pview =  (pWnd.m_p);
+            pview =  pWnd;   
             SetActiveView(pview, FALSE);
          }
       }

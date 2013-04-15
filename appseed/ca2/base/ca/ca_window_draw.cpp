@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   bool window_draw::s_bRunning = false;
+   CLASS_DECL_ca2 bool window_draw::s_bRunning = false;
 
    window_draw::window_draw(sp(::ca::application) papp) :
       ca(papp),

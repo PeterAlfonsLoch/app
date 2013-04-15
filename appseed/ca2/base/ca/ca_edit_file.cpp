@@ -432,7 +432,7 @@ l1:
       sp(::ca::tree_item) pitemNew = ::null();
       if(m_ptreeitem != ::null() && m_ptreeitem->m_pnext != ::null())
       {
-         pitemNew = insert_item(this, pitem, RelativeFirstChild, m_ptreeitem);
+         pitemNew = insert_item_data(this, pitem, RelativeFirstChild, m_ptreeitem);
          if(pitemNew != ::null())
          {
             m_ptreeitem = pitemNew;
@@ -440,7 +440,7 @@ l1:
       }
       else
       {
-         pitemNew = insert_item(this, pitem, RelativeLastSibling, m_ptreeitem);
+         pitemNew = insert_item_data(this, pitem, RelativeLastSibling, m_ptreeitem);
          if(pitemNew != ::null())
          {
             m_ptreeitem = pitemNew;

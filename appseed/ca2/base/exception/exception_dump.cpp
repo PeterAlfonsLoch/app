@@ -1,4 +1,4 @@
 #include "framework.h"
 
 
-__DATADEF dump_context g_dumpcontext;
+CLASS_DECL_ca2 dump_context g_dumpcontext;

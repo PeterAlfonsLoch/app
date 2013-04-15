@@ -1364,9 +1364,6 @@
     <ClInclude Include="user\userex\userex_split_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_userex.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userhtml\userhtml.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
@@ -4795,9 +4792,6 @@
     <ClCompile Include="user\userex\userex_split_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_userex.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userhtml\userhtml_child_frame.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
@@ -6939,9 +6933,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ca.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="user\interaction.inl">
       <Filter>Header Files\user</Filter>
     </None>
@@ -6956,6 +6947,9 @@
     </None>
     <None Include="base\multithreading\multithreading.inl">
       <Filter>Header Files\base\multithreading</Filter>
+    </None>
+    <None Include="ca2.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

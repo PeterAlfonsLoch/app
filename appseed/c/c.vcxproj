@@ -360,6 +360,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"

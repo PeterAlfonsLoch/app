@@ -475,8 +475,8 @@ namespace ca
       //BaseIdSpaceStringKeyMap    m_strmapResource;
       //   id_space                   m_idspace;
       sp(::uinteraction::uinteraction) m_puinteraction;
-      sp(::user::user)              m_puserbase;
-      sp(::userex::userex) m_puserex;
+      //sp(::user::user)              m_puserbase;
+      //sp(::userex::userex) m_puserex;
       sp(::filemanager::filemanager) m_pfilemanager;
       sp(::mail::mail) m_pmail;
 #ifdef WINDOWSEX
@@ -1144,8 +1144,8 @@ namespace ca
 
       
       inline ::uinteraction::uinteraction          & uinteraction () { return *m_puinteraction  ; }
-      inline ::user::user                  & user     () { return *m_puserbase      ; }
-      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
+      ///inline ::user::user                  & user     () { return *m_puserbase      ; }
+//      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
       inline ::filemanager::filemanager            & filemanager  () { return *m_pfilemanager   ; }
       inline ::mail::mail                          & mail         () { return *m_pmail          ; }
 

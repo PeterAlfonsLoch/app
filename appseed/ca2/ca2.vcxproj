@@ -358,6 +358,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -2038,7 +2039,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\userex\userex_property_sheet.h" />
     <ClInclude Include="user\userex\userex_second_list_view.h" />
     <ClInclude Include="user\userex\userex_split_view.h" />
-    <ClInclude Include="user\userex\userex_userex.h" />
     <ClInclude Include="user\userhtml\userhtml.h" />
     <ClInclude Include="user\userhtml\userhtml_child_frame.h" />
     <ClInclude Include="user\userhtml\userhtml_document.h" />
@@ -3135,7 +3135,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\userex\userex_property_sheet.cpp" />
     <ClCompile Include="user\userex\userex_second_list_view.cpp" />
     <ClCompile Include="user\userex\userex_split_view.cpp" />
-    <ClCompile Include="user\userex\userex_userex.cpp" />
     <ClCompile Include="user\userex\userex_wait_message_dialog.cpp" />
     <ClCompile Include="user\userhtml\userhtml_child_frame.cpp" />
     <ClCompile Include="user\userhtml\userhtml_document.cpp" />
@@ -3225,7 +3224,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="base\ca\ca.inl" />
     <None Include="base\collection\collection.inl" />
     <None Include="base\multithreading\multithreading.inl" />
-    <None Include="ca.def" />
+    <None Include="ca2.def" />
     <None Include="user\interaction.inl" />
     <None Include="user\user_interaction.inl" />
   </ItemGroup>

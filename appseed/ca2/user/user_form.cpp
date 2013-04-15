@@ -665,6 +665,7 @@ namespace user
 
    void form::install_message_handling( ::ca::message::dispatch *pinterface)
    {
+      ::user::scroll_view::install_message_handling(pinterface);
    /*   InstallOnDrawInterface(pinterface);
       VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
       VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
