@@ -7,9 +7,7 @@ namespace user
 
    document::document(sp(::ca::application) papp) :
       ca(papp),
-      ::ca::data_container_base(papp),
-      ::ca::data_container(papp)
-
+      ::ca::data_container_base(papp)
    {
    
       m_pdocumentemplate = ::null();
@@ -70,7 +68,6 @@ namespace user
    }
 
 
-#ifdef DEBUG
    void document::dump(dump_context & dumpcontext) const
    {
       ::ca::object::dump(dumpcontext);
@@ -104,7 +101,6 @@ namespace user
          ASSERT_VALID(pview);
       }
    }
-#endif //DEBUG
 
 
    void document::on_alloc(sp(::ca::application) papp)

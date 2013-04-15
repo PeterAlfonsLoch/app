@@ -392,13 +392,13 @@ namespace ca
 
          if(strPath.is_empty())
          {
-            TRACE("planebase::file_application::get_file file with empty name!!");
+            TRACE("plane::file_application::get_file file with empty name!!");
             return spfile;
          }
 
          if((nOpenFlags & ::ca::file::mode_create) == 0 && !exists(strPath))
          {
-            TRACE("planebase::file_application::file does not exist!!");
+            TRACE("plane::file_application::file does not exist!!");
             return spfile;
          }
 

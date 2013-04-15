@@ -189,8 +189,6 @@ public:
 public:
    virtual ~command_target() = 0;
 
-protected:
-   friend class view;
 
 };
 

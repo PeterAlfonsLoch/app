@@ -4,8 +4,7 @@
 namespace ca
 {
 
-   data_container::data_container(sp(::ca::application) papp) :
-      ca(papp)
+   data_container::data_container()
    {
    }
    

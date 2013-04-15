@@ -8,7 +8,7 @@ namespace platform
    document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
-      ::ca::data_container(papp),
+      
       form_document(papp)
    {
       

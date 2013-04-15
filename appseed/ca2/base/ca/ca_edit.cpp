@@ -6,8 +6,7 @@ namespace ca
 
 
    base_edit::base_edit(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data_container(papp)
+      ca(papp)
    {
    }
 

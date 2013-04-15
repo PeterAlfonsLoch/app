@@ -1289,6 +1289,18 @@ exit_application:
 
    }
 
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // System/Cube
+   //
+   sp(::user::document) application::hold(sp(::user::interaction) pui)
+   {
+
+      return ::null();
+
+   }
+
+
    count application::get_monitor_count()
    {
 

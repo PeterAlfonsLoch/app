@@ -5007,7 +5007,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       if(!m_puinteraction->initialize())
          return false;
 
-//      m_puserbase = new ::userbase::userbase();
+//      m_puserbase = new ::user::user();
 
   //    m_puserbase->construct(this);
 

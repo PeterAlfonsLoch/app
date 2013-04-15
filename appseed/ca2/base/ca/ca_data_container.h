@@ -14,7 +14,7 @@ namespace ca
       sp(data)       m_spdata;
 
       
-      data_container(sp(::ca::application) papp);
+      data_container();
       virtual ~data_container();
 
 

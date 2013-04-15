@@ -37,7 +37,7 @@ namespace databaseuser
    };
 
 
-} // namespace userbase
+} // namespace user
 
 
 

@@ -6,8 +6,7 @@ namespace ca
 
 
    tree::tree(sp(::ca::application) papp) :
-      ca(papp),
-      data_container(papp)
+      ca(papp)
    {
 
       m_pitem = allocate_item(::null());
