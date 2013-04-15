@@ -171,6 +171,9 @@ namespace fontopus
 
       virtual void on_show_view();
 
+
+      virtual void save_authentication_info();
+
       virtual bool get_defer_registration();
 
 //         validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);

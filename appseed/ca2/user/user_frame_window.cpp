@@ -845,6 +845,10 @@ namespace user
 
    bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
+
+      if(m_workset._001OnCmdMsg(pcmdmsg))
+         return true;
+
       // pump through current ::user::view FIRST
       sp(::user::view) pview = GetActiveView();
       if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
@@ -1752,36 +1756,30 @@ namespace user
    // frame_window Diagnostics
 
 
-   void frame_window::assert_valid() const
-   {
-      ::user::frame_window_interface::assert_valid();
-      if (m_pViewActive != ::null())
-         ASSERT_VALID(m_pViewActive);
-   }
 
-   void frame_window::dump(dump_context & dumpcontext) const
-   {
-      ::user::frame_window_interface::dump(dumpcontext);
+   //void frame_window::dump(dump_context & dumpcontext) const
+   //{
+   //   ::user::frame_window_interface::dump(dumpcontext);
 
-      dumpcontext << "m_hAccelTable = " << (void *)m_hAccelTable;
-      dumpcontext << "\nm_nWindow = " << m_nWindow;
-      dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
-      dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
-      dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-      if (m_pViewActive != ::null())
-         dumpcontext << "\nwith active ::user::view: " << m_pViewActive.m_p;
-      else
-         dumpcontext << "\nno active ::user::view";
+   //   dumpcontext << "m_hAccelTable = " << (void *)m_hAccelTable;
+   //   dumpcontext << "\nm_nWindow = " << m_nWindow;
+   //   dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
+   //   dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
+   //   dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
+   //   if (m_pViewActive != ::null())
+   //      dumpcontext << "\nwith active ::user::view: " << m_pViewActive.m_p;
+   //   else
+   //      dumpcontext << "\nno active ::user::view";
 
-      dumpcontext << "\n";
-   }
+   //   dumpcontext << "\n";
+   //}
 
 
 
 
    bool frame_window::is_frame_window()
    {
-      return TRUE;
+      return true;
    }
 
    bool frame_window::IsTracking() const
@@ -2178,16 +2176,10 @@ namespace user
    {
       if(m_workset.BaseOnControlEvent(pevent))
          return true;
-      return ::frame_window::BaseOnControlEvent(pevent);
+      return ::user::frame_window_interface::BaseOnControlEvent(pevent);
    }
 
 
-   bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-   {
-      if(m_workset._001OnCmdMsg(pcmdmsg))
-         return true;
-      return ::frame_window::_001OnCmdMsg(pcmdmsg);
-   }
 
    void frame_window::_000OnDraw(::ca::graphics * pdc)
    {

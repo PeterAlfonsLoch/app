@@ -1320,7 +1320,28 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="base\libcharguess\types.h" />
     <ClInclude Include="base\libcharguess\universal.h" />
     <ClInclude Include="base\libcharguess\UTF8Prober.h" />
-    <ClInclude Include="base\multithreading\multithreading_file_change_event.h" />
+    <ClInclude Include="base\multithreading\multithreading.h" />
+    <ClInclude Include="base\multithreading\multithreading_condition.h" />
+    <ClInclude Include="base\multithreading\multithreading_critical_section.h" />
+    <ClInclude Include="base\multithreading\multithreading_event.h" />
+    <ClInclude Include="base\multithreading\multithreading_event_base.h" />
+    <ClInclude Include="base\multithreading\multithreading_event_collection.h" />
+    <ClInclude Include="base\multithreading\multithreading_manual_reset_event.h" />
+    <ClInclude Include="base\multithreading\multithreading_multi_lock.h" />
+    <ClInclude Include="base\multithreading\multithreading_mutex.h" />
+    <ClInclude Include="base\multithreading\multithreading_plain_service.h" />
+    <ClInclude Include="base\multithreading\multithreading_retry_multi_lock.h" />
+    <ClInclude Include="base\multithreading\multithreading_retry_single_lock.h" />
+    <ClInclude Include="base\multithreading\multithreading_semaphore.h" />
+    <ClInclude Include="base\multithreading\multithreading_service_base.h" />
+    <ClInclude Include="base\multithreading\multithreading_service_status.h" />
+    <ClInclude Include="base\multithreading\multithreading_single_lock.h" />
+    <ClInclude Include="base\multithreading\multithreading_socket_event.h" />
+    <ClInclude Include="base\multithreading\multithreading_synch_lock.h" />
+    <ClInclude Include="base\multithreading\multithreading_sync_object.h" />
+    <ClInclude Include="base\multithreading\multithreading_thread_pool.h" />
+    <ClInclude Include="base\multithreading\multithreading_waitable.h" />
+    <ClInclude Include="base\multithreading\multithreading_wait_result.h" />
     <ClInclude Include="base\os\os.h" />
     <ClInclude Include="base\os\os_cross_windows.h" />
     <ClInclude Include="base\os\os_cross_windows_crt.h" />
@@ -1454,6 +1475,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\zip\zip_internal.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database1.h" />
+    <ClInclude Include="database\databaseuser\databaseuser.h" />
+    <ClInclude Include="database\databaseuser\data_key_list_data.h" />
+    <ClInclude Include="database\databaseuser\list_data.h" />
     <ClInclude Include="database\database_application.h" />
     <ClInclude Include="database\database_base.h" />
     <ClInclude Include="database\database_change_event.h" />
@@ -1757,29 +1781,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\usermail\mail_tree_item_data.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
-    <ClInclude Include="os\multithreading\multithreading.h" />
-    <ClInclude Include="os\multithreading\multithreading_condition.h" />
-    <ClInclude Include="os\multithreading\multithreading_critical_section.h" />
-    <ClInclude Include="os\multithreading\multithreading_event.h" />
-    <ClInclude Include="os\multithreading\multithreading_event_base.h" />
-    <ClInclude Include="os\multithreading\multithreading_event_collection.h" />
-    <ClInclude Include="os\multithreading\multithreading_file_change_event.h" />
-    <ClInclude Include="os\multithreading\multithreading_manual_reset_event.h" />
-    <ClInclude Include="os\multithreading\multithreading_multi_lock.h" />
-    <ClInclude Include="os\multithreading\multithreading_mutex.h" />
-    <ClInclude Include="os\multithreading\multithreading_plain_service.h" />
-    <ClInclude Include="os\multithreading\multithreading_retry_multi_lock.h" />
-    <ClInclude Include="os\multithreading\multithreading_retry_single_lock.h" />
-    <ClInclude Include="os\multithreading\multithreading_semaphore.h" />
-    <ClInclude Include="os\multithreading\multithreading_service_base.h" />
-    <ClInclude Include="os\multithreading\multithreading_service_status.h" />
-    <ClInclude Include="os\multithreading\multithreading_single_lock.h" />
-    <ClInclude Include="os\multithreading\multithreading_socket_event.h" />
-    <ClInclude Include="os\multithreading\multithreading_synch_lock.h" />
-    <ClInclude Include="os\multithreading\multithreading_sync_object.h" />
-    <ClInclude Include="os\multithreading\multithreading_thread_pool.h" />
-    <ClInclude Include="os\multithreading\multithreading_waitable.h" />
-    <ClInclude Include="os\multithreading\multithreading_wait_result.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_cross_windows.h" />
     <ClInclude Include="os\os_windows_defs.h" />
@@ -2446,7 +2447,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="base\multithreading\multithreading_single_lock.cpp" />
     <ClCompile Include="base\multithreading\multithreading_socket_event.cpp" />
     <ClCompile Include="base\multithreading\multithreading_synch_lock.cpp" />
-    <ClCompile Include="base\multithreading\multithreading_sync_objec.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="base\multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="base\multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="base\plugin\plugin_history.cpp" />
     <ClCompile Include="base\plugin\plugin_host_interaction.cpp" />
@@ -2628,6 +2630,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
+    <ClCompile Include="database\databaseuser\database_list_data.cpp" />
     <ClCompile Include="database\database_application.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -2673,7 +2677,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\database_user_interaction.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_application.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
     <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
@@ -2762,18 +2765,18 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_document.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_fs.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_list.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_list_data.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_list_interface.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_list_item.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_list_item_array.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_main_view.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_tree.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_tree_data.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_tree_interface.cpp" />
-    <ClCompile Include="filesystem\userfs\fs_tree_item_data.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_document.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_fs.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_list.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_list_interface.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_tree.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_tree_data.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_tree_interface.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_tree_item_data.cpp" />
     <ClCompile Include="graphics\gcom\gcom_BackView.cpp" />
     <ClCompile Include="graphics\gcom\gcom_BackViewGraphics.cpp" />
     <ClCompile Include="graphics\gcom\gcom_BackViewHelper.cpp" />
@@ -3221,8 +3224,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   <ItemGroup>
     <None Include="base\ca\ca.inl" />
     <None Include="base\collection\collection.inl" />
+    <None Include="base\multithreading\multithreading.inl" />
     <None Include="ca.def" />
-    <None Include="os\multithreading\multithreading.inl" />
     <None Include="user\interaction.inl" />
     <None Include="user\user_interaction.inl" />
   </ItemGroup>

@@ -1104,7 +1104,7 @@ namespace ca
 
 
       //virtual bool is_serviceable();
-      virtual service_base * allocate_new_service();
+      //virtual service_base * allocate_new_service();
 
 
       //virtual bool on_install();
@@ -1182,7 +1182,7 @@ namespace ca
       //virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-      virtual void request_create(sp(::ca::create_context) pcreatecontext);
+      //virtual void request_create(sp(::ca::create_context) pcreatecontext);
 
 //      virtual void on_exclusive_instance_local_conflict();
 

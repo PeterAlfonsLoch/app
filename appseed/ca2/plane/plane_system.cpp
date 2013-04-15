@@ -1596,11 +1596,6 @@ namespace plane
       return true;
    }
 
-   bool system::is_system()
-   {
-      return true;
-   }
-
    uint32_t system::guess_code_page(const char * pszText)
    {
       if(!m_bLibCharGuess)
@@ -1702,7 +1697,7 @@ namespace plane
 
    }
 
-
+/*
    bool system::set_main_init_data(::ca::main_init_data * pdata)
    {
 
@@ -1752,7 +1747,7 @@ namespace plane
 
       return true;
 
-   }
+   }*/
 
    sp(::ca::type_info) system::get_type_info(const ::std_type_info & info)
    {
@@ -2281,30 +2276,25 @@ retry:
    //}
 
 
-   bool system::base_support()
-   {
-      return true;
-   }
-
-   index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
-   {
-      index iNewEdge = m_iNewEdge;
-      sp(::plane::session) psession;
-      while(m_pbergedgemap->Lookup(iNewEdge, psession))
-      {
-         iNewEdge++;
-      }
-      if(get_bergedge(iNewEdge, pbiasCreation) == ::null())
-         return -1;
-      m_iNewEdge = iNewEdge + 1;
-      return iNewEdge;
-   }
+   //index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
+   //{
+   //   index iNewEdge = m_iNewEdge;
+   //   sp(::plane::session) psession;
+   //   while(m_pbergedgemap->Lookup(iNewEdge, psession))
+   //   {
+   //      iNewEdge++;
+   //   }
+   //   if(get_bergedge(iNewEdge, pbiasCreation) == ::null())
+   //      return -1;
+   //   m_iNewEdge = iNewEdge + 1;
+   //   return iNewEdge;
+   //}
 
 
-   bool system::is_system()
-   {
-      return false;
-   }
+   //bool system::is_system()
+   //{
+   //   return false;
+   //}
 
    bool system::is_system()
    {
@@ -2362,18 +2352,85 @@ retry:
    }
 
 
-   sp(::ca::command_thread) system::command_thread()
+/*   sp(::ca::command_thread) system::command_thread()
    {
 	   return m_pcommandthread;
    }
+   */
 
-
-   ::system::system * system::get_cube()
+/*   ::system::system * system::get_cube()
    {
 
       return this;
 
    }
+   */
+   sp(::plane::session) system::query_bergedge(index iEdge)
+   {
+      sp(::plane::session) psession = ::null();
+      if(m_pbergedgemap == ::null())
+         return ::null();
+      if(!m_pbergedgemap->Lookup(iEdge, psession))
+      {
+         return ::null();
+      }
+      return psession;
+   }
+
+
+/*   sp(::plane::session) system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
+   {
+      sp(::plane::session) psession = ::null();
+      if(m_pbergedgemap == ::null())
+         return ::null();
+      if(!m_pbergedgemap->Lookup(iEdge, psession))
+      {
+         psession = (create_application("application", "session", true, pbiasCreation));
+         if(psession == ::null())
+            return ::null();
+         psession->m_iEdge = iEdge;
+         m_pbergedgemap->set_at(iEdge, psession);
+      }
+      return  psession;
+   }
+
+
+   sp(platform::document) system::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
+   {
+      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
+      return pbergedge->get_platform();
+   }
+
+   sp(nature::document) system::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
+   {
+      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
+      return pbergedge->get_nature();
+   }
+
+   sp(::ca::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   {
+      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreate);
+      return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
+   }
+   */
+
+   void application::assert_valid() const
+   {
+
+      ::ca::application::assert_valid();
+      //::database::server::assert_valid();
+
+   }
+
+
+   void application::dump(dump_context & context) const
+   {
+
+      ::ca::application::dump(context);
+      //::database::server::dump(context);
+
+   }
+
 
 
 

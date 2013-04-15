@@ -1084,7 +1084,7 @@ namespace fontopus
    //   m_puser = ::null();
    //}
 
-   void validate::authentication_succeeded()
+   void validate::save_authentication_info()
    {
       TRACE0("The authentication has succeeded.");
       string strUsername = m_loginthread.m_strUsername;
@@ -1118,12 +1118,6 @@ namespace fontopus
       }
       m_bLicense = true;
       m_puser = m_loginthread.m_puser;
-   }
-
-
-   validate::auth * validate::get_auth()
-   {
-      return ::null();
    }
 
 
@@ -1632,7 +1626,7 @@ namespace fontopus
    void validate::authentication_succeeded()
    {
 
-      ::fontopus::validate::authentication_succeeded();
+      save_authentication_info();
 
       if(m_ptabview != ::null())
       {
@@ -1665,6 +1659,25 @@ namespace fontopus
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;
    }
+
+
+     string validate::calc_ca2_hash()
+      {
+         if(m_loginthread.m_strCa2Hash.has_char())
+            return m_loginthread.m_strCa2Hash;
+         /*stringa straHash;
+         stringa straSource;
+         get_mod(straHash, straSource);
+         straHash.insert_at(0, m_loginthread.m_strUsername);
+   #if !core_level_1 && !core_level_2
+         ::SetDllDirectoryA(System.get_ca2_module_folder());
+   #endif*/
+         /*HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
+         SALT salt = (SALT) ::GetProcAddress(hmoduleSalt, "salt");
+         m_loginthread.m_strCa2Hash = salt(get_app(), straHash.implode(";"), straSource);*/
+         m_loginthread.m_strCa2Hash = "ca2_12n";
+         return m_loginthread.m_strCa2Hash;
+      }
 
 
 } // namespace fontopus

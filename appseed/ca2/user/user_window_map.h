@@ -23,17 +23,23 @@ namespace user
    class window_interface;
 
 
-   class CLASS_DECL_ca2 window_map
+   class CLASS_DECL_ca2 window_map :
+      virtual public ::ca::object
    {
    public:
-      window_map();
+
+
+      map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
+
+
+      window_map(sp(::ca::application) papp);
       virtual ~window_map();
 
+      
       ::user::window_interface * get(int_ptr iWindow);
 
 
       void set(int_ptr iWindow, const ::user::window_interface * pinterface);
-      map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
 
    };
 

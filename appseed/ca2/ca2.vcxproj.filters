@@ -435,6 +435,12 @@
     <Filter Include="Source Files\filesystem\filehandler">
       <UniqueIdentifier>{4183440c-8293-4ed5-9ce0-b8fd8265f579}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\database\databaseuser">
+      <UniqueIdentifier>{72da2568-655f-4675-9880-91c3173f76c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\databaseuser">
+      <UniqueIdentifier>{2467bbde-3b59-4994-9184-a1de9d6951e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -1993,75 +1999,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\userfs\fs_tree_item_data.h">
       <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_condition.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_event.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_event_base.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_file_change_event.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_mutex.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_plain_service.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_service_base.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_service_status.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_thread_pool.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\base\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="os\multithreading\multithreading_waitable.h">
-      <Filter>Header Files\base\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="net\usermail\mail.h">
       <Filter>Header Files\net\usermail</Filter>
@@ -3974,9 +3911,6 @@
     <ClInclude Include="base\windows\os_utils.h">
       <Filter>Header Files\base\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\multithreading\multithreading_file_change_event.h">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="user\fontopus\fontopus.h">
       <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
@@ -4066,6 +4000,81 @@
     </ClInclude>
     <ClInclude Include="user\user_window_map.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_condition.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_critical_section.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_event.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_event_base.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_event_collection.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_manual_reset_event.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_multi_lock.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_mutex.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_plain_service.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_retry_multi_lock.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_retry_single_lock.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_semaphore.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_service_base.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_service_status.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_single_lock.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_socket_event.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_sync_object.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_synch_lock.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_thread_pool.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_wait_result.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\multithreading\multithreading_waitable.h">
+      <Filter>Header Files\base\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\data_key_list_data.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\databaseuser.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\list_data.h">
+      <Filter>Header Files\database\databaseuser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5230,42 +5239,6 @@
     <ClCompile Include="graphics\html\html_value.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_document.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_fs.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_list.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_list_data.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_list_interface.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_list_item.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_list_item_array.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_main_view.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_tree.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_tree_data.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_tree_interface.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\fs_tree_item_data.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\http_file.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
@@ -5716,74 +5689,11 @@
     <ClCompile Include="database\simpledb\simpledb_database.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_application.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="base\windows\os_library_initialize.cpp">
       <Filter>Source Files\base\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\windows\os_utils.cpp">
       <Filter>Source Files\base\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_condition.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_core.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_critical_section.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_event.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_event_base.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_event_collection.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_file_change_event.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_manual_reset_event.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_multi_lock.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_mutex.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_plain_service.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_retry_multi_lock.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_retry_single_lock.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_semaphore.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_service_base.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_single_lock.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_socket_event.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_sync_objec.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_synch_lock.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="base\multithreading\multithreading_wait_result.cpp">
-      <Filter>Source Files\base\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="base\api\api_muldiv64.cpp">
       <Filter>Source Files\base\api</Filter>
@@ -6922,6 +6832,111 @@
     <ClCompile Include="user\user_view_update_hint.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_condition.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_core.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_critical_section.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_event_collection.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_file_change_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_manual_reset_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_multi_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_mutex.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_plain_service.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_retry_multi_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_retry_single_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_semaphore.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_service_base.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_single_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_socket_event.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_synch_lock.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_wait_result.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_waitable.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_document.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_fs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_interface.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree_interface.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree_item_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_list_data.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="base\multithreading\multithreading_sync_object.cpp">
+      <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">
@@ -6933,14 +6948,14 @@
     <None Include="user\user_interaction.inl">
       <Filter>Header Files\user</Filter>
     </None>
-    <None Include="os\multithreading\multithreading.inl">
-      <Filter>Header Files\base\multithreading</Filter>
-    </None>
     <None Include="base\ca\ca.inl">
       <Filter>Header Files\base\ca</Filter>
     </None>
     <None Include="base\collection\collection.inl">
       <Filter>Header Files\base\collection</Filter>
+    </None>
+    <None Include="base\multithreading\multithreading.inl">
+      <Filter>Header Files\base\multithreading</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -5599,7 +5599,203 @@ ret:
 
    }
 
+   ::count application::get_monitor_count()
+   {
+
+      return System.get_monitor_count();
+
+   }
 
 
+   bool application::get_monitor_rect(index iMonitor, LPRECT lprect)
+   {
+
+      return System.get_monitor_rect(iMonitor, lprect);
+
+   }
+
+
+   ::count application::get_desk_monitor_count()
+   {
+
+      return System.get_desk_monitor_count();
+
+   }
+
+
+
+   bool application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
+   {
+
+      return System.get_desk_monitor_rect(iMonitor, lprect);
+
+   }
+
+
+
+
+   bool application::set_keyboard_layout(const char * pszPath, bool bUser)
+   {
+
+      return user().keyboard().load_layout(pszPath, bUser);
+
+   }
+
+   string application::message_box(const char * pszMatter, ::ca::property_set & propertyset)
+   {
+      ::userex::message_box box(this);
+      box.show(pszMatter, &propertyset);
+      return box.m_strResponse;
+   }
+
+
+   int32_t application::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
+   {
+      UNREFERENCED_PARAMETER(pszMatter);
+      UNREFERENCED_PARAMETER(pt);
+      UNREFERENCED_PARAMETER(puie);
+      return 1;
+   }
+
+
+
+   bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
+   {
+      int64_t i64Size;
+      if(!get_fs_size(i64Size, pszPath, bPending))
+      {
+         strSize.Empty();
+         return false;
+      }
+      if(i64Size > 1024 * 1024 * 1024)
+      {
+         double d = (double) i64Size / (1024.0 * 1024.0 * 1024.0);
+         strSize.Format("%0.2f GB", d);
+      }
+      else if(i64Size > 1024 * 1024)
+      {
+         double d = (double) i64Size / (1024.0 * 1024.0);
+         strSize.Format("%0.1f MB", d);
+      }
+      else if(i64Size > 1024)
+      {
+         double d = (double) i64Size / (1024.0);
+         strSize.Format("%0.0f KB", d);
+      }
+      else if(i64Size > 0)
+      {
+         strSize.Format("1 KB");
+      }
+      else
+      {
+         strSize.Format("0 KB");
+      }
+      if(bPending)
+      {
+         strSize = "~" + strSize;
+      }
+      return true;
+   }
+
+   bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
+   {
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
+      if(pcentral == NULL)
+         return false;
+      return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
+   }
+
+   
+   void application::data_on_after_change(::ca::signal_object * pobj)
+   {
+      SCAST_PTR(::database::change_event, pchange, pobj);
+      if(pchange->m_key.m_idKey == "ca2")
+      {
+         if(pchange->m_key.m_idIndex  == "savings")
+         {
+            pchange->data_get(savings().m_eresourceflagsShouldSave);
+         }
+      }
+   }
+
+
+   void application::set_title(const char * pszTitle)
+   {
+
+      Session.set_app_title(m_strInstallType, m_strAppName, pszTitle);
+
+   }
+
+
+   bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
+   {
+
+      // attempt to save all documents
+      if(!save_all_modified())
+         return false;     // don't close it
+
+      // hide the application's windows before closing all the documents
+      HideApplication();
+
+      // close all documents first
+      close_all_documents(FALSE);
+
+
+      Application.user()->_001CloseAllDocuments(FALSE);
+
+
+      // there are cases where destroying the documents may destroy the
+      //  main ::ca::window of the application.
+      //bool b::ca::ContextIsDll = afxContextIsDLL;
+      //if (!b::ca::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
+      if(Application.user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+      {
+
+         post_thread_message(WM_QUIT, 0, 0);
+
+      }
+
+      return true;
+
+   }
+
+   int32_t application::send_simple_command(const char * psz, void * osdataSender)
+   {
+      string strApp;
+      stringa stra;
+      stra.add_tokens(psz, "::", true);
+      if(stra.get_size() > 0)
+      {
+         strApp = stra[0];
+         oswindow oswindow = get_ca2_app_wnd(strApp);
+         if(oswindow != NULL)
+         {
+            return send_simple_command((void *) oswindow, psz, osdataSender);
+         }
+      }
+      return -1;
+   }
+
+   int32_t application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
+   {
+#ifdef WINDOWSEX
+      ::oswindow oswindow = (::oswindow) osdata;
+      if(!::IsWindow(oswindow))
+         return -1;
+      COPYDATASTRUCT cds;
+      memset(&cds, 0, sizeof(cds));
+      cds.dwData = 198477;
+      cds.cbData = (uint32_t) strlen(psz);
+      cds.lpData = (PVOID) psz;
+      return (int32_t) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
+#else
+      throw todo(get_app());
+#endif
+   }
+
+    
 } //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]
+
+
+
 

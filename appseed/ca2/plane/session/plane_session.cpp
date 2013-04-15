@@ -1233,28 +1233,7 @@ alt1:
    }
    */
 
-   void session::get_screen_rect(LPRECT lprect)
-   {
 
-/*      if(m_pbergedgeInterface != ::null())
-      {
-
-         m_pbergedgeInterface->get_screen_rect(lprect);
-
-         return;
-
-      }*/
-
-
-/*      if(get_document() != ::null() && get_view() != ::null())
-      {
-         get_view()->GetWindowRect(lprect);
-      }
-      else
-      {*/
-         System.get_screen_rect(lprect);
-      /*}*/
-   }
 
    bool session::on_install()
    {
@@ -1270,44 +1249,12 @@ alt1:
 
       System.os().defer_register_ca2_plugin_for_mozilla();
 
-
+   
 
       return ::plane::application::on_install();
    }
 
 
-   void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
-   {
-
-      sp(::ca::application) papp = ::null();
-
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != ::null())
-      {
-
-/*         ::sessionsp(::pane_view) ppaneview = get_document()->get_typed_view < ::session::pane_view >();
-
-         if(ppaneview != ::null())
-         {
-
-            string strAppName(pszAppId);
-
-            ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
-
-            if(ppane != ::null())
-            {
-
-               ppane->m_strTitleEx = pszTitle;
-
-               ppaneview->layout();
-
-            }
-
-         }*/
-
-      }
-
-
-   }
 
 
    bool session::is_remote_session()
@@ -1754,7 +1701,7 @@ alt1:
 
    }
 
-   ::user::place_holder_ptra bergedge::get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca::create_context) pcreatecontext)
+   ::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1785,7 +1732,7 @@ alt1:
 
    }
 
-   bool bergedge::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1794,7 +1741,7 @@ alt1:
 
    }
 
-   void bergedge::get_screen_rect(LPRECT lprect)
+   void session::get_screen_rect(LPRECT lprect)
    {
       if(get_document() != ::null() && get_view() != ::null())
       {
@@ -1806,22 +1753,9 @@ alt1:
       }
    }
 
-   bool bergedge::on_install()
-   {
-
-      string strFormat;
-
-      string strSentinelPath;
-
-      strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
-
-      System.os().local_machine_set_run("ca app-sentinel", "\"" + strSentinelPath + "\"");
-
-      return platform::application::on_install();
-   }
 
 
-   void bergedge::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
+   void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
       sp(::ca::application) papp = ::null();
@@ -1854,7 +1788,16 @@ alt1:
    }
 
 
-   bool bergedge::initialize1()
+
+   sp(::plane::session) session::get_session()
+   {
+
+      return this;
+
+   }
+
+
+  bool session::initialize1()
    {
 
 
@@ -1867,35 +1810,18 @@ alt1:
 
    }
 
-   bool bergedge::initialize()
+
+     bool session::is_serviceable()
    {
 
-      if(!::platform::application::initialize())
-         return false;
 
-
-      return true;
+      return ::platform::application::is_serviceable();
 
 
    }
 
-   bool bergedge::os_native_bergedge_start()
-   {
 
-      return ::platform::application::os_native_bergedge_start();
-
-   }
-
-   int32_t bergedge::main()
-   {
-
-
-      return ::platform::application::main();
-
-
-   }
-
-   bool bergedge::on_uninstall()
+   bool session::on_uninstall()
    {
 
 
@@ -1912,14 +1838,6 @@ alt1:
       }
 
 
-      try
-      {
-         bOk2 = ::platform::application::on_uninstall();
-      }
-      catch(...)
-      {
-         bOk2 = false;
-      }
 
 
       return bOk1 && bOk2;
@@ -1927,16 +1845,16 @@ alt1:
 
    }
 
-   bool bergedge::is_serviceable()
+
+   bool session::os_native_bergedge_start()
    {
 
-
-      return ::platform::application::is_serviceable();
-
+      return ::platform::application::os_native_bergedge_start();
 
    }
 
-   service_base * bergedge::allocate_new_service()
+
+   service_base * session::allocate_new_service()
    {
 
 
@@ -1944,17 +1862,6 @@ alt1:
 
 
    }
-
-
-   sp(::plane::session) bergedge::get_session()
-   {
-
-      return this;
-
-   }
-
-
-
 
 
 } // namespace plane

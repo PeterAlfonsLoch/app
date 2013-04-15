@@ -51,9 +51,6 @@ namespace user
 
 
 
-      virtual void _002OnDraw(::ca::graphics * pdc);
-
-
    };
 
 

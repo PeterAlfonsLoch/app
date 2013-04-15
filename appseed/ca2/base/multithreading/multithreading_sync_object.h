@@ -9,7 +9,7 @@
  **   \author grymse@alhem.net
 **/
 
-class sync_object :
+class CLASS_DECL_ca2 sync_object :
    public ::ca::object
 {
 public:

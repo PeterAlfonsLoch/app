@@ -25,7 +25,7 @@ namespace user
       sp(::user::keyboard_focus)               m_pkeyboardfocus;
       ::user::mouse_focus *                  m_pmousefocusLButtonDown;
       ::user::mouse_focus *                  m_pmousefocusRButtonDown;
-      //class window_map *                     m_pwindowmap;
+      sp(::user::window_map)                     m_pwindowmap;
       ::user::keyboard *                     m_pkeyboard;
 
       ::user::front_end_schema *   m_pufeschema;
@@ -44,7 +44,7 @@ namespace user
       virtual bool initialize();
 
 
-      //class window_map & window_map();
+      class window_map & window_map();
 
 
       virtual sp(::user::keyboard_focus) get_keyboard_focus();

@@ -32,14 +32,14 @@ namespace user
    bool user::initialize1()
    {
 
-      /*if(m_papp->is_system())
+      if(m_papp->is_system())
       {
-         m_pwindowmap = new class ::user::window_map();
+         m_pwindowmap = new class ::user::window_map(get_app());
       }
       else
       {
          m_pwindowmap = System.user()->m_pwindowmap;
-      }*/
+      }
 
       m_pkeyboard = new ::user::keyboard(m_papp);
 
@@ -586,10 +586,10 @@ retry_license:
    }
 
 
-   /*class window_map & user::window_map()
+   class window_map & user::window_map()
    {
       return *m_pwindowmap;
-   }*/
+   }
 
 
    sp(::ca::type_info) user::controltype_to_typeinfo(::user::control::e_type e_type)

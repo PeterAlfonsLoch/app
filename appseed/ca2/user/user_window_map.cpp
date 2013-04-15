@@ -1,9 +1,12 @@
 #include "framework.h"
 
+
 namespace user
 {
 
-   window_map::window_map()
+
+   window_map::window_map(sp(::ca::application) papp) :
+      ca(papp)
    {
 
    }
