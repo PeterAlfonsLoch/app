@@ -272,32 +272,45 @@ namespace ca
       throw todo(::ca::get_thread_app());
 
 #else
-      DWORD dwExitCode;
+      int32_t iExitCode;
       bool bExited;
 
-      int32_t wpid = waitpid(m_iPid, (int32_t *) &dwExitCode, WNOHANG
+      int32_t wpid = waitpid(m_iPid, &iExitCode, WNOHANG
               #ifdef WCONTINUED
               | WCONTINUED
               #endif
               );
 
-      if(WIFEXITED(*puiExitCode))
+        if(wpid == -1)
+        return true;
+
+      if(WIFEXITED(iExitCode))
       {
-         *puiExitCode = WEXITSTATUS(*puiExitCode);
+          if(puiExitCode != NULL)
+          {
+         *puiExitCode = WEXITSTATUS(iExitCode);
+
+          }
          return true;
       }
-      else if(WIFSIGNALED(*puiExitCode))
+      else if(WIFSIGNALED(iExitCode))
       {
-         *puiExitCode = WTERMSIG(*puiExitCode);
+          if(puiExitCode != NULL)
+          {
+         *puiExitCode = WTERMSIG(iExitCode);
+          }
          return true;
       }
-      else if(WIFSTOPPED(*puiExitCode))
+      else if(WIFSTOPPED(iExitCode))
       {
-         *puiExitCode = WSTOPSIG(*puiExitCode);
+          if(puiExitCode != NULL)
+          {
+         *puiExitCode = WSTOPSIG(iExitCode);
+          }
          return true;
       }
 #ifdef WIFCONTINUED
-      else if(WIFCONTINUED(*puiExitCode))
+      else if(WIFCONTINUED(iExitCode))
       {
          return false;
       }
