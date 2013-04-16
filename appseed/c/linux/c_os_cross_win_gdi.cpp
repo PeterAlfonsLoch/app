@@ -177,6 +177,9 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
 
    Display * display = XOpenDisplay(NULL);
 
+   if(display == NULL)
+    return FALSE;
+
    XQueryPointer(display, DefaultRootWindow(display), &root_return, &child_return, &lpptCursor->x, &lpptCursor->y, &win_x_return, &win_y_return, & mask_return);
 
    XCloseDisplay(display);

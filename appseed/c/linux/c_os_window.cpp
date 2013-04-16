@@ -898,6 +898,9 @@ oswindow GetFocus()
 
    Display * pdisplay = XOpenDisplay(NULL);
 
+   if(pdisplay == NULL)
+   return ::null();
+
    Window window = None;
 
    int revert_to = 0;

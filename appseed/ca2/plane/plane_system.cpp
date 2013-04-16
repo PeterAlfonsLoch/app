@@ -1807,13 +1807,15 @@ namespace plane
 
 #elif defined(LINUX)
 
-      Display * d=XOpenDisplay(::null());
+      Display * d=XOpenDisplay(NULL);
 
+    if(d == NULL)
+    return false;
 
       //throw todo(get_app());
       lprect->left = 0;
-      lprect->top = 0;
       lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d));
+      lprect->top = 0;
       lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d));
 
 
@@ -1831,7 +1833,7 @@ namespace plane
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
 #endif
-      //return true;
+      return true;
       return false;
 
    }
