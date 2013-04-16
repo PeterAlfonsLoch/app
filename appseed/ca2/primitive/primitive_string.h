@@ -1015,6 +1015,8 @@ inline id::operator const char *() const
 
 inline string id::to_string() const
 {
+    if(this == NULL)
+    return "";
    if(m_chType == IDTYPE_TYPE_NULL)
    {
       return "";

@@ -476,6 +476,12 @@ namespace dynamic_source
 
 #endif
 
+
+#ifdef LINUX
+
+        Sleep(1984);
+
+#endif
       pscript->m_memfileError.Truncate(0);
       pscript->m_memfileError << "<pre>";
 
