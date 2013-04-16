@@ -291,7 +291,7 @@ namespace ca
          *puiExitCode = WEXITSTATUS(iExitCode);
 
           }
-         return true;
+         return false;
       }
       else if(WIFSIGNALED(iExitCode))
       {
@@ -299,7 +299,7 @@ namespace ca
           {
          *puiExitCode = WTERMSIG(iExitCode);
           }
-         return true;
+         return false;
       }
       else if(WIFSTOPPED(iExitCode))
       {
@@ -307,7 +307,7 @@ namespace ca
           {
          *puiExitCode = WSTOPSIG(iExitCode);
           }
-         return true;
+         return false;
       }
 #ifdef WIFCONTINUED
       else if(WIFCONTINUED(iExitCode))
