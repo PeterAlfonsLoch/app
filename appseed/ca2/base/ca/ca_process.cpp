@@ -229,11 +229,11 @@ namespace ca
    bool process::has_exited(uint32_t * puiExitCode)
    {
 
-      DWORD dwExitCode;
-      bool bExited;
 
 #ifdef WINDOWSEX
 
+      DWORD dwExitCode;
+      bool bExited;
 
 
       if(!GetExitCodeProcess(m_pi.hProcess, &dwExitCode))
@@ -260,12 +260,20 @@ namespace ca
 
       }
 
+      if(puiExitCode != ::null())
+      {
+
+      *puiExitCode = dwExitCode;
+      }
+      return bExited;
 
 #elif defined(METROWIN)
 
       throw todo(::ca::get_thread_app());
 
 #else
+      DWORD dwExitCode;
+      bool bExited;
 
       int32_t wpid = waitpid(m_iPid, (int32_t *) &dwExitCode, WNOHANG
               #ifdef WCONTINUED
@@ -273,18 +281,19 @@ namespace ca
               #endif
               );
 
-      if(wpid == -1)
+      if(WIFEXITED(*puiExitCode))
       {
-         // error has occurred / process unavailable
+         *puiExitCode = WEXITSTATUS(*puiExitCode);
          return true;
       }
-
-      bExited = WIFEXITED(dwExitCode) ||
-                      WIFSIGNALED(dwExitCode) ||
-                      WIFSTOPPED(dwExitCode);
-
-/*                      if
+      else if(WIFSIGNALED(*puiExitCode))
       {
+         *puiExitCode = WTERMSIG(*puiExitCode);
+         return true;
+      }
+      else if(WIFSTOPPED(*puiExitCode))
+      {
+         *puiExitCode = WSTOPSIG(*puiExitCode);
          return true;
       }
 #ifdef WIFCONTINUED
@@ -294,19 +303,12 @@ namespace ca
       }
 #endif
 
-  */
-
+      return false;
 
 
 
 #endif
 
-if(puiExitCode != ::null())
-{
-
-*puiExitCode = dwExitCode;
-}
-      return bExited;
 
    }
 
