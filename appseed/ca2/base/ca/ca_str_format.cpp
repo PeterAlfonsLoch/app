@@ -62,7 +62,15 @@ namespace ca
       void format(string_format * pformat, int32_t const & i)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from(i));
+         string str = ::ca::str::from(i);
+         if(pformat->m_bZeroPadding)
+         {
+            while(str.get_length() < pformat->m_iWidth)
+            {
+                str = "0" + str;
+            }
+         }
+         pformat->append(str);
 
       }
 

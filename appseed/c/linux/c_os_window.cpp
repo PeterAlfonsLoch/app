@@ -296,6 +296,8 @@ int32_t oswindow::store_name(const char * psz)
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
+   xdisplay d(display());
+
    return XStoreName(display(), window(), psz);
 
 }
@@ -309,6 +311,8 @@ int32_t oswindow::select_input(int32_t iInput)
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
+   xdisplay d(display());
+
    return XSelectInput(display(), window(), iInput);
 
 }
@@ -316,6 +320,8 @@ int32_t oswindow::select_input(int32_t iInput)
 
 int32_t oswindow::select_all_input()
 {
+
+   xdisplay d(display());
 
    return select_input(ExposureMask | ButtonPressMask);
 
@@ -329,6 +335,8 @@ int32_t oswindow::map_window()
    mutex_lock sl(user_mutex(), true);
 
    mutex_lock slOsWindow(*s_pmutex, true);
+
+   xdisplay d(display());
 
    return XMapWindow(display(), window());
 
@@ -466,6 +474,8 @@ oswindow oswindow::set_parent(oswindow oswindow)
    if(m_pdata == NULL)
       return ::ca::null();
 
+   xdisplay d(display());
+
    ::oswindow oswindowOldParent = get_parent();
 
    XReparentWindow(display(), window(), oswindow.window(), 0, 0);
@@ -480,6 +490,8 @@ bool oswindow::show_window(int32_t nCmdShow)
    mutex_lock sl(user_mutex(), true);
 
    mutex_lock slOsWindow(*s_pmutex, true);
+
+   xdisplay d(display());
 
    if(nCmdShow == SW_HIDE)
    {
@@ -583,6 +595,8 @@ long oswindow::get_state()
 
    mutex_lock sl(user_mutex(), true);
 
+   xdisplay d(display());
+
   static const long WM_STATE_ELEMENTS = 2L;
 
   unsigned long nitems = 0;
@@ -625,6 +639,7 @@ bool oswindow::is_window_visible()
 {
 
    mutex_lock sl(user_mutex(), true);
+   xdisplay d(display());
 
    XWindowAttributes attr;
    if(!XGetWindowAttributes(display(), window(), &attr))
@@ -706,21 +721,27 @@ void message_box_paint(cairo_surface_t * cs, stra_dup & stra, simple_array < boo
 
 void message_box_show_xlib(const char * lpText, const char * lpCaption)
 {
-	Display *dpy;
+
 	Window rootwin;
 	Window win;
 	XEvent e;
 	int32_t scr;
 	cairo_surface_t *cs;
 
-	if(!(dpy=XOpenDisplay(NULL))) {
+
+	xdisplay dpy;
+
+	dpy.open(NULL);
+
+	if(dpy== NULL)
+	{
 		fprintf(stderr, "ERROR: Could not open display\n");
 		return ;
 //		exit(1);
 	}
 
-	scr=DefaultScreen(dpy);
-	rootwin=RootWindow(dpy, scr);
+	scr         = dpy.default_screen();
+	rootwin     = RootWindow(dpy.m_pdisplay, scr);
 
 
 	simple_graphics g;
@@ -787,13 +808,13 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 	sz.cy += 100;
 
 
-	win=XCreateSimpleWindow(dpy, rootwin, 1, 1, sz.cx, sz.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
+	win=XCreateSimpleWindow(dpy.m_pdisplay, rootwin, 1, 1, sz.cx, sz.cy, 0, BlackPixel(dpy.m_pdisplay, scr), BlackPixel(dpy.m_pdisplay, scr));
 
 	XStoreName(dpy, win, lpCaption);
 	XSelectInput(dpy, win, ExposureMask|ButtonPressMask);
 	XMapWindow(dpy, win);
 
-	cs=cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), sz.cx, sz.cy);
+	cs = cairo_xlib_surface_create(dpy.m_pdisplay, win, DefaultVisual(dpy.m_pdisplay, 0), sz.cx, sz.cy);
 
 	while(1) {
 		XNextEvent(dpy, &e);
@@ -842,6 +863,8 @@ oswindow SetCapture(oswindow window)
    if(window.window() == NULL)
       return ::ca::null();
 
+   xdisplay d(window.display());
+
    if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
    {
 
@@ -861,10 +884,10 @@ WINBOOL ReleaseCapture()
 
    mutex_lock sl(user_mutex(), true);
 
-   if(GetCapture().display() == NULL)
-      return FALSE;
+   xdisplay d(g_oswindowCapture.display());
 
-   WINBOOL bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
+
+   WINBOOL bRet = XUngrabPointer(g_oswindowCapture.display(), CurrentTime) != FALSE;
 
    if(bRet)
       g_oswindowCapture = ::ca::null();
@@ -878,6 +901,8 @@ oswindow SetFocus(oswindow window)
 {
 
    mutex_lock sl(user_mutex(), true);
+
+   xdisplay display(window.display());
 
    if(!IsWindow(window))
       return ::ca::null();
@@ -896,7 +921,9 @@ oswindow GetFocus()
 
    mutex_lock sl(user_mutex(), true);
 
-   Display * pdisplay = XOpenDisplay(NULL);
+   xdisplay pdisplay;
+
+   pdisplay.open(NULL);
 
    if(pdisplay == NULL)
    return ::null();
@@ -907,7 +934,7 @@ oswindow GetFocus()
 
    bool bOk = XGetInputFocus(pdisplay, &window, &revert_to) != 0;
 
-   XCloseDisplay(pdisplay);
+    pdisplay.close();
 
    if(!bOk)
       return ::ca::null();
@@ -941,10 +968,14 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
    mutex_lock sl(user_mutex(), true);
 
+
+
+
    oswindow window = windowParam;
 
    if(window == NULL)
       return ::ca::null();
+      xdisplay d(window.display());
 
    if(iParentHood == GW_HWNDFIRST
    || iParentHood == GW_HWNDLAST
@@ -1057,6 +1088,9 @@ WINBOOL DestroyWindow(oswindow window)
    Display * pdisplay = window.display();
    Window win = window.window();
 
+         xdisplay d(pdisplay);
+
+
    oswindow::data * pdata = (oswindow::data *) (void *) window;
 
    pdata->m_bDestroying = true;
@@ -1094,8 +1128,6 @@ oswindow g_oswindowDesktop;
 bool c_xstart()
 {
 
-   if(!XInitThreads())
-      return false;
 
 
    Display * dpy = XOpenDisplay(NULL);

@@ -19,6 +19,9 @@
 	<File name="FreeImage/MultiPage.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="26121" topLine="907" />
 	</File>
+	<File name="FreeImage/PSDParser.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="5573" topLine="164" />
+	</File>
 	<File name="FreeImage/Plugin.cpp" open="0" top="0" tabpos="66">
 		<Cursor position="22158" topLine="757" />
 	</File>

@@ -133,3 +133,90 @@ Atom osdisplay::get_window_long_atom(int32_t nIndex)
    }
 
 }
+
+
+  xdisplay::xdisplay()
+  {
+      m_pdisplay    = NULL;
+      m_bOwn        = false;
+      m_bLocked     = false;
+  }
+
+  xdisplay::xdisplay(Display * pdisplay, bool bInitialLock)
+  {
+      m_pdisplay    = pdisplay;
+      m_bOwn        = false;
+      if(bInitialLock)
+        lock();
+  }
+
+  bool xdisplay::open(char * display_name, bool bInitialLock)
+  {
+      unlock();
+close();
+    m_pdisplay      = XOpenDisplay(display_name);
+    if(m_pdisplay == NULL)
+    return false;
+    m_bOwn          = true;
+    if(bInitialLock)
+        lock();
+        return true;
+  }
+
+  bool xdisplay::close()
+  {
+
+           if(!m_bOwn || m_pdisplay == NULL)
+            return false;
+
+         XCloseDisplay(m_pdisplay);
+         m_pdisplay = NULL;
+         m_bOwn = false;
+         return true;
+
+  }
+
+    xdisplay::~ xdisplay()
+    {
+        unlock();
+
+
+        close();
+
+    }
+
+
+void xdisplay::lock()
+    {
+if(m_pdisplay == NULL || m_bLocked)
+return;
+m_bLocked = true;
+XLockDisplay(m_pdisplay);
+
+    }
+
+void xdisplay::unlock()
+{
+
+    if(m_pdisplay == NULL || !m_bLocked)
+    return;
+    XUnlockDisplay(m_pdisplay);
+    m_bLocked = false;
+}
+
+
+
+
+Window xdisplay::default_root_window()
+{
+    if(m_pdisplay == NULL)
+    return None;
+    return DefaultRootWindow(m_pdisplay);
+}
+
+int xdisplay::default_screen()
+{
+    if(m_pdisplay == NULL)
+    return None;
+    return DefaultScreen(m_pdisplay);
+}

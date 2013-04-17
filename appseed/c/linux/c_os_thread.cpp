@@ -33,6 +33,9 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
          if(display == NULL)
             continue;
 
+
+         xdisplay d(display);
+
          XEvent e;
 
          if(XPending(display))

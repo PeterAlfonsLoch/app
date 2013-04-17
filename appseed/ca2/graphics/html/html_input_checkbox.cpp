@@ -22,17 +22,17 @@ namespace html
          {
             m_pcheckbox->create(pdata->m_pguie, 100);
             pdata->on_create_interaction(m_pcheckbox);
+             string strValue = pelemental->m_pbase->get_tag()->get_attr_value("value");
+             if(strValue.CompareNoCase("checked") == 0)
+             {
+                m_pcheckbox->_001SetCheck(check::checked, false);
+             }
+             else
+             {
+                m_pcheckbox->_001SetCheck(check::unchecked, false);
+             }
          }
          elemental::implement_phase1(pdata, pelemental);
-         string strValue = pelemental->m_pbase->get_tag()->get_attr_value("value");
-         if(strValue.CompareNoCase("checked") == 0)
-         {
-            m_pcheckbox->_001SetCheck(check::checked, false);
-         }
-         else
-         {
-            m_pcheckbox->_001SetCheck(check::unchecked, false);
-         }
 
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
          m_pcheckbox->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");

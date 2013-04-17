@@ -4568,11 +4568,12 @@ namespace ca
    {
 #if defined(METROWIN) || defined(MACOS)
       throw todo(this);
-#elif defined(LINUX)
+/*#elif defined(LINUX)
 
       mutex_lock sl(user_mutex(), true);
 
-      Display * pdisplay = XOpenDisplay(::null());
+      xdisplay pdisplay.
+      pdisplay.open(NULL) = XOpenDisplay(::null());
 
       oswindow window(pdisplay, DefaultRootWindow(pdisplay));
 
@@ -4580,7 +4581,7 @@ namespace ca
 
       return window_from_os_data(window);
 
-#else
+#else*/
       return window_from_os_data(::GetDesktopWindow());
 #endif
    }

@@ -1807,19 +1807,20 @@ namespace plane
 
 #elif defined(LINUX)
 
-      Display * d=XOpenDisplay(NULL);
 
-    if(d == NULL)
-    return false;
+      xdisplay  d;
+
+      if(!d.open(NULL))
+      return false;
+
 
       //throw todo(get_app());
       lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d));
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
       lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d));
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
 
 
-      XCloseDisplay(d);
 
 #elif defined(MACOS)
 

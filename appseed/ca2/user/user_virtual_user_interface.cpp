@@ -1048,7 +1048,7 @@ bool virtual_user_interface::DestroyWindow()
    if(m_pguie == ::null())
       return FALSE;
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
    try
    {
@@ -1059,11 +1059,11 @@ bool virtual_user_interface::DestroyWindow()
    }
 
 
-#else
+//#else
 
-   throw todo(get_app());
+  // throw todo(get_app());
 
-#endif
+//#endif
 
 
    m_bCreate = false;

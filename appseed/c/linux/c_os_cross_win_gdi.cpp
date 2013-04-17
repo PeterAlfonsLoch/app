@@ -175,14 +175,14 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
    int32_t win_y_return;
    uint32_t mask_return;
 
-   Display * display = XOpenDisplay(NULL);
+   xdisplay display;
+
+   display.open(NULL);
 
    if(display == NULL)
-    return FALSE;
+        return FALSE;
 
-   XQueryPointer(display, DefaultRootWindow(display), &root_return, &child_return, &lpptCursor->x, &lpptCursor->y, &win_x_return, &win_y_return, & mask_return);
-
-   XCloseDisplay(display);
+   XQueryPointer(display, display.default_root_window(), &root_return, &child_return, &lpptCursor->x, &lpptCursor->y, &win_x_return, &win_y_return, & mask_return);
 
    return TRUE;
 
@@ -196,7 +196,8 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
    mutex_lock sl(user_mutex(), true);
 
 
-   Display * display = XOpenDisplay(NULL);
+   xdisplay display(hwnd.display());
+
 
    int32_t value_mask = 0;
 
@@ -223,27 +224,27 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
       values.stack_mode = Above;
    }
 
-   XConfigureWindow(display, hwnd.window(), value_mask, &values);
+   XConfigureWindow(hwnd.display(), hwnd.window(), value_mask, &values);
 
    if(uFlags & SWP_SHOWWINDOW)
    {
-      XMapWindow(display, hwnd.window());
+      XMapWindow(hwnd.display(), hwnd.window());
    }
 
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
    {
       if(hwndInsertAfter.window() == ZORDER_TOP || hwndInsertAfter.window() == ZORDER_TOPMOST)
       {
-         XRaiseWindow(display, hwnd.window());
+         XRaiseWindow(hwnd.display(), hwnd.window());
       }
       else if(hwndInsertAfter.window() == ZORDER_BOTTOM)
       {
-         XLowerWindow(display, hwnd.window());
+         XLowerWindow(hwnd.display(), hwnd.window());
       }
 
    }
 
-   XCloseDisplay(display);
+   //XCloseDisplay(display);
 
    return 1;
 

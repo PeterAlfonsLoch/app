@@ -111,6 +111,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       m_bMouseDown = true;
+      pobj->m_bRet = true;
 
    }
    void check_box::_001OnLButtonUp(::ca::signal_object * pobj)
@@ -132,9 +133,9 @@ namespace user
    {
 
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
-      
+
       pmouse->m_ecursor = ::visual::cursor_text_select;
-      
+
 
    }
 

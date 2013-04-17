@@ -730,7 +730,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
 bool simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
 {
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
    if(m_eorientation == orientation_horizontal)
    {
       lpRect->left = lpRectClient->left + GetSystemMetrics(SM_CXHSCROLL);
@@ -745,15 +745,15 @@ bool simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPR
       lpRect->right = lpRectTrack->right;
       lpRect->bottom = lpRectTrack->top;
    }
-#else
-   throw todo(get_app());
-#endif
+//#else
+  // throw todo(get_app());
+//#endif
    return true;
 }
 
 bool simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
 {
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
    if(m_eorientation == orientation_horizontal)
    {
       lpRect->left = lpRectTrack->right;
@@ -768,9 +768,9 @@ bool simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPR
       lpRect->right = lpRectTrack->right;
       lpRect->bottom = lpRectClient->bottom - GetSystemMetrics(SM_CYVSCROLL);
    }
-#else
-   throw todo(get_app());
-#endif
+//#else
+  // throw todo(get_app());
+//#endif
    return true;
 }
 
