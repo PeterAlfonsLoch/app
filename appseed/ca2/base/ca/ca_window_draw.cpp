@@ -11,7 +11,7 @@ namespace ca
       m_eventFree(papp, TRUE, TRUE)
    {
       m_bProDevianMode                    = true;
-      m_iFramesPerSecond                  = 2;
+      m_iFramesPerSecond                  = 20;
       m_bRun                              = true;
    }
 

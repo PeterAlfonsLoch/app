@@ -1660,9 +1660,19 @@ alt1:
          return puiParent;
       }
 
-      if(!create_bergedge(pcreatecontext))
+
+      bool bCreateBergedge = false;
+
+      if(bCreateBergedge)
       {
-         return ::null();
+
+         if(!create_bergedge(pcreatecontext))
+         {
+            return ::null();
+
+
+         }
+
       }
 
 

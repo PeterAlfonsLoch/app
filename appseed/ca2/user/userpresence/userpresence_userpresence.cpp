@@ -24,8 +24,7 @@ namespace userpresence
 
 
 
-      if(!defer_initialize_user_presence())
-         return false;
+      defer_initialize_user_presence();
 
       return true;
 

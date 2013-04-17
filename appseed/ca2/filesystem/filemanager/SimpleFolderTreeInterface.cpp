@@ -649,14 +649,14 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != ::null())
          {
-            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
          }
          else
          {
-            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))

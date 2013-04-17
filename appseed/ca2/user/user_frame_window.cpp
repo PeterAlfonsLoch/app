@@ -854,7 +854,7 @@ namespace user
       if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
-      pview =  (this->get_child_by_id("pane_first").m_p);
+      pview =  get_child_by_id("pane_first");
       if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 

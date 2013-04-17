@@ -4580,8 +4580,8 @@ namespace ca
       XCloseDisplay(pdisplay);
 
       return window_from_os_data(window);
-
-#else*/
+      */
+#else
       return window_from_os_data(::GetDesktopWindow());
 #endif
    }
