@@ -761,7 +761,7 @@ namespace fs
 
    }
 
-   sp(::user::document) tree_interface::get_document()
+   sp(::fs::document) tree_interface::get_document()
    {
       return  (::user::tree::get_document());
    }

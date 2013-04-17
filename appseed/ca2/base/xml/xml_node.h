@@ -61,8 +61,8 @@ namespace xml
 
 
 
-      inline sp(::user::document) get_document() { return m_pdoc; }
-      inline const sp(::user::document) get_document() const { return m_pdoc; }
+      inline sp(::xml::document) get_document() { return m_pdoc; }
+      inline const sp(::xml::document) get_document() const { return m_pdoc; }
 
 
       virtual void set_name(const string & strName);

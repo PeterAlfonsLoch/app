@@ -12,13 +12,13 @@ namespace bergedge
    public:
 
 
-      sp(form_view)                               m_pformOptions;
+      sp(form_view)                             m_pformOptions;
       visual::dib_sp                            m_dibBk;
-      int32_t                                       m_iNewArea;
-      int32_t                                       m_iArea;
-      int32_t                                       m_iDisplay;
+      int32_t                                   m_iNewArea;
+      int32_t                                   m_iArea;
+      int32_t                                   m_iDisplay;
       filemanager::SimpleFilePropertiesForm *   m_ppropform;
-      ::fs::item_array                      m_itema;
+      ::fs::item_array                          m_itema;
 
 
 

@@ -23,7 +23,7 @@ namespace fs
 
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
-      sp(::user::document) get_document();
+      sp(::fs::document) get_document();
       virtual list_data * get_fs_list_data();
 
       virtual COLORREF get_background_color();

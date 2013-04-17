@@ -239,7 +239,7 @@ namespace command
          break;
       case PaneViewConfiguration:
       {
-         sp(form_document) pdoc = System.userex().create_form(this, this);
+         sp(form_document) pdoc = System.user()->create_form(this, this);
          if(pdoc == ::null())
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;

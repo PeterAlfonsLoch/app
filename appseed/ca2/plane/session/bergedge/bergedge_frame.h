@@ -16,18 +16,18 @@ namespace bergedge
    public:
       
       
-      string                     m_strAnimatedStatusBarText;
-      int32_t                        m_iAnimateStep;
-      image_list  *              m_pimagelist;
-      sp(::user::document)                 m_pdocument;
-      bool                       m_bHoverMouse;
+      string                        m_strAnimatedStatusBarText;
+      int32_t                       m_iAnimateStep;
+      image_list  *                 m_pimagelist;
+      sp(::bergedge::document)      m_pdocument;
+      bool                          m_bHoverMouse;
       uint32_t                      m_dwLastHover;
-      bool                       m_bTimerOn;
+      bool                          m_bTimerOn;
 
-      bool                       m_bMouseOver;
+      bool                          m_bMouseOver;
 
-      sp(view)                     m_pview;
-      sp(pane_view)                m_ppaneview;
+      sp(::bergedge::view)          m_pview;
+      sp(::bergedge::pane_view)     m_ppaneview;
 
 
       frame(sp(::ca::application) papp);

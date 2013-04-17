@@ -12,8 +12,6 @@ namespace user
 } // namespace user
 
 
-class view;
-
 namespace nature
 {
 

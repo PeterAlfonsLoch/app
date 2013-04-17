@@ -13,7 +13,7 @@ namespace bergedge
    {
    public:
 
-      sp(pane_view)    m_ppaneview;
+      sp(::bergedge::pane_view)    m_ppaneview;
 
       int32_t m_iV; 
       int32_t m_iVH;

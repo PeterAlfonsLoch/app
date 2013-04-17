@@ -22,7 +22,7 @@ namespace xml
       e_parse_error     m_eparseerror;         // [get] error code
       string            m_strError;          // [get] error string
 
-      sp(::user::document)        m_pdoc;
+      sp(::xml::document)        m_pdoc;
 
       parse_info(sp(::ca::application) papp);
    };

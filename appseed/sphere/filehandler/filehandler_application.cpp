@@ -47,7 +47,7 @@ namespace filehandler
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      user().add_document_template(pdoctemplate);
+      user()->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
 
