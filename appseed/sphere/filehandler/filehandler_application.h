@@ -12,7 +12,7 @@ namespace filehandler
 
 
       sp(pane_view)                                  m_ppaneview;      
-      sp(::userbase::single_document_template)       m_ptemplateMenu;
+      sp(::user::single_document_template)       m_ptemplateMenu;
 
 
       application();

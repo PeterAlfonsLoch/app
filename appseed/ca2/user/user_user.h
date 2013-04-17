@@ -164,7 +164,7 @@ namespace user
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual sp(document) open_document_file(var var);
+      virtual sp(::user::document) open_document_file(var var);
 
       // add a string to the recent file list. remove oldest string,
       // if no space left.

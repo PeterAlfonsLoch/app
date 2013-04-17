@@ -71,7 +71,7 @@ namespace bergedge
       virtual void OnDraw(::ca::graphics * pgraphics);
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      sp(document) get_document();
+      sp(::user::document) get_document();
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 

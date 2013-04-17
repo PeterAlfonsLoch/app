@@ -558,7 +558,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lpszCommand);
       /*string strCommand = lpszCommand;
-      sp(document) pDoc = ::null();
+      sp(::user::document) pDoc = ::null();
 
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line

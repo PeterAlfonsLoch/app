@@ -41,13 +41,13 @@ namespace filehandler
 
 
 
-      ::userbase::single_document_template* pdoctemplate = new ::userbase::single_document_template(
+      ::user::single_document_template* pdoctemplate = new ::user::single_document_template(
          this,
          "html/frame",
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      userbase().add_document_template(pdoctemplate);
+      user().add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
 

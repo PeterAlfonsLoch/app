@@ -150,7 +150,7 @@ namespace userstack
       System.factory().creatable < ::userstack::pane_view > (iCount);
       System.factory().creatable < ::userstack::frame > (iCount);
 
-      m_ptemplate_pane    = new ::userbase::single_document_template(
+      m_ptemplate_pane    = new ::user::single_document_template(
          this,
          "bergedge/frame",
          System.type_info < document > (),
@@ -317,7 +317,7 @@ namespace userstack
       }
    }
 
-/*   sp(::user::interaction) application::get_request_parent_ui(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
@@ -356,7 +356,7 @@ namespace userstack
 
 /*      if(pui == ::null() && m_bShowPlatform && m_pbergedge->get_document() != ::null())
       {
-         pui = Bergedge.get_document()->get_bergedge_view();
+         pui = Session.get_document()->get_bergedge_view();
       }
 
       return pui;
@@ -411,7 +411,7 @@ namespace userstack
 
    }
 
-   ::user::place_holder_ptra application::get_place_holder(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -442,7 +442,7 @@ namespace userstack
 
    }
 
-   bool application::place(sp(::userbase::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool application::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

@@ -11,7 +11,7 @@ namespace command
    public:
 
 
-      sp(::userbase::single_document_template)    m_ptemplateCommandMain;
+      sp(::user::single_document_template)    m_ptemplateCommandMain;
 
 
       application();

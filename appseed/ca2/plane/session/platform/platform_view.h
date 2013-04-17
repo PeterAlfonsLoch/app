@@ -117,7 +117,7 @@ namespace platform
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      sp(document) get_document();
+      sp(::user::document) get_document();
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 

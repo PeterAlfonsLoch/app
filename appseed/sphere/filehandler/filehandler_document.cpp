@@ -14,7 +14,7 @@ namespace filehandler
 
    bool document::on_new_document()
    {
-      if (!::userbase::document::on_new_document())
+      if (!::user::document::on_new_document())
          return FALSE;
 
 //      if(!get_data()->on_open_document("rtp://10.10.100.97:19847"))
@@ -43,12 +43,12 @@ namespace filehandler
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::userbase::document::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::userbase::document::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
    #endif //DEBUG
 

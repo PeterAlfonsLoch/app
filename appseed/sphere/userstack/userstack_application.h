@@ -22,8 +22,8 @@ namespace userstack
       string_map < sp(::ca::application) >               m_mapApplication;
                                                                      
       
-      sp(::userbase::single_document_template)                         m_ptemplate_main;
-      sp(::userbase::single_document_template)                         m_ptemplate_pane;
+      sp(::user::single_document_template)                         m_ptemplate_main;
+      sp(::user::single_document_template)                         m_ptemplate_pane;
                                                                      
                                                                      
       var                                                            m_varTopicFile;

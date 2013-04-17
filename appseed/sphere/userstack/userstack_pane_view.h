@@ -26,7 +26,7 @@ namespace userstack
       pane_view(sp(::ca::application) papp);
       virtual ~pane_view();
 
-      using ::userbase::tab_view::on_show_view;
+      using ::user::tab_view::on_show_view;
       using ::userstack::form_callback::on_update;
 
       void rotate();
@@ -53,7 +53,7 @@ namespace userstack
 
       virtual void set_display(int32_t iDisplay);
 
-      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
    #ifdef DEBUG

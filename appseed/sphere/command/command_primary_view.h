@@ -6,7 +6,7 @@ namespace command
 
 
    class CLASS_DECL_sphere primary_view :
-      public ::userbase::edit_plain_text_view
+      public ::user::edit_plain_text_view
    {
    public:
 
@@ -21,7 +21,7 @@ namespace command
 
 
       virtual void _001OnAfterChangeText();
-      void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint);
+      void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint);
 
 
       DECL_GEN_SIGNAL(_001OnUpdateEditCopy)

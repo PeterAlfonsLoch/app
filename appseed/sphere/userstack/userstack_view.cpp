@@ -9,8 +9,8 @@ namespace userstack
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-      ::userbase::view(papp),
-      ::userbase::scroll_view(papp),
+      
+      ::user::scroll_view(papp),
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
@@ -38,7 +38,7 @@ namespace userstack
 
    void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::view::install_message_handling(pinterface);
+      ::user::view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -64,12 +64,12 @@ namespace userstack
    #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -87,17 +87,17 @@ namespace userstack
    bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
    }
    void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
-      ::userbase::view::_001OnInitialUpdate(pobj);
+      ::user::view::_001OnInitialUpdate(pobj);
 
 
 
    }
 
-   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -107,7 +107,7 @@ namespace userstack
 
    void view::_001OnDestroy(::ca::signal_object * pobj)
    {
-      ::userbase::view::_001OnDestroy(pobj);
+      ::user::view::_001OnDestroy(pobj);
 
    }
 
@@ -170,7 +170,7 @@ namespace userstack
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
-      if(!Bergedge.m_bShowPlatform)
+      if(!Session.m_bShowPlatform)
       {
          return;
       }
@@ -208,12 +208,12 @@ namespace userstack
 
    void view::pre_translate_message(::ca::signal_object * pobj)
    {
-      ::userbase::view::pre_translate_message(pobj);
+      ::user::view::pre_translate_message(pobj);
    }
 
-   sp(document) view::get_document()
+   sp(::user::document) view::get_document()
    {
-      return  (::userbase::scroll_view::get_document());
+      return  (::user::scroll_view::get_document());
    }
 
    void view::_001OnTimer(::ca::signal_object * pobj)
@@ -234,7 +234,7 @@ namespace userstack
       }
       else if(ptimer->m_nIDEvent == 198477)
       {
-         Bergedge.check_topic_file_change();
+         Session.check_topic_file_change();
       }
 
    }
@@ -357,7 +357,7 @@ namespace userstack
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::userbase::scroll_view::layout();
+      ::user::scroll_view::layout();
       gcom::backview::user::interaction::layout();
    }*/
 

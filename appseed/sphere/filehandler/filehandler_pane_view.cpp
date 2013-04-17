@@ -10,8 +10,8 @@ namespace filehandler
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::userbase::view(papp),
-      ::userbase::tab_view(papp),
+      
+      ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
    {
@@ -24,15 +24,15 @@ namespace filehandler
       m_pviewdata              = ::null();
       m_pviewdataOld              = ::null();
 
-      /*   ::userbase::single_document_template* pdoctemplate;
-      pdoctemplate = new ::userbase::single_document_template(
+      /*   ::user::single_document_template* pdoctemplate;
+      pdoctemplate = new ::user::single_document_template(
       IDR_ALBUM,
       System.type_info < MediaLibraryDoc > (),
       System.type_info < MediaLibraryChildFrame > (),
       System.type_info < ::mplite::library::view > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
-      pdoctemplate = new ::userbase::single_document_template(
+      pdoctemplate = new ::user::single_document_template(
       IDR_ALBUM,
       System.type_info < OptionsDoc > (),
       System.type_info < OptionsChildFrame > (),
@@ -41,7 +41,7 @@ namespace filehandler
 
       m_pdoctemplateOptions = pdoctemplate;
 
-      pdoctemplate = new ::userbase::single_document_template(
+      pdoctemplate = new ::user::single_document_template(
       IDR_ALBUM,
       System.type_info < GoodMixerDoc > (),
       System.type_info < simple_child_frame > (),
@@ -61,12 +61,12 @@ namespace filehandler
 #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -87,7 +87,7 @@ namespace filehandler
    }
 
 
-   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -95,7 +95,7 @@ namespace filehandler
       POSITION pos = papp->m_ptemplate_html->get_document_count();
       while(pos != ::null())
       {
-      sp(::userbase::document) pdoc = papp->m_ptemplate_html->get_document(index);
+      sp(::user::document) pdoc = papp->m_ptemplate_html->get_document(index);
       pdoc->update_all_views(pSender, lHint, pHint);
       }*/
 
@@ -138,7 +138,7 @@ namespace filehandler
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
    }
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
@@ -177,11 +177,11 @@ namespace filehandler
             rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
             if(pdoc != ::null())
             {
-            sp(::view) pview = pdoc->get_view();
+            sp(::user::view) pview = pdoc->get_view();
             pview->on_update(::null(), 0, ::null());
             if(pview != ::null())
             {
-            sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+            sp(::user::frame_window) pframe =  (pview->GetParentFrame());
             if(pframe != ::null())
             {
             pcreatordata->m_pdoc = pdoc;
@@ -195,7 +195,7 @@ namespace filehandler
             cc.m_pCurrentDoc = get_document();
             cc.m_typeinfoNewView =  System.type_info < rtprx::view > ();
 
-            sp(::userbase::view) pview = (CreateView(&cc, 101, this));
+            sp(::user::view) pview = (CreateView(&cc, 101, this));
             if(pview != ::null())
             {
             pcreatordata = new ViewData();

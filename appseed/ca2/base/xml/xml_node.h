@@ -38,11 +38,11 @@ namespace xml
       string                  m_strValue;
 
 
-      node *                  m_pnodeParent;      // parent node
-      node::array        m_nodea;            // children pointer node array
+      sp(node)                m_pnodeParent;      // parent node
+      node::array             m_nodea;            // children pointer node array
       attr_array              m_attra;            // attr pointer array
       e_node                  m_etype;            // node type
-      sp(document)              m_pdoc;             // document
+      sp(::xml::document)     m_pdoc;             // document
 
 
 
@@ -61,8 +61,8 @@ namespace xml
 
 
 
-      inline sp(document) get_document() { return m_pdoc; }
-      inline const sp(document) get_document() const { return m_pdoc; }
+      inline sp(::user::document) get_document() { return m_pdoc; }
+      inline const sp(::user::document) get_document() const { return m_pdoc; }
 
 
       virtual void set_name(const string & strName);

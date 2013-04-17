@@ -8,10 +8,10 @@ namespace filehandler
    view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::userbase::view(papp),
+      
       ::user::scroll_view(papp),
-      ::userbase::scroll_view(papp),
-      ::userbase::form_view(papp),
+      ::user::scroll_view(papp),
+      
       ::user::form(papp),
       html_form(papp),
       html_form_view(papp),
@@ -198,7 +198,7 @@ namespace filehandler
 
          varRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
 
-         Bergedge.request(varRequest);
+         Session.request(varRequest);
          */
 
          sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
@@ -207,7 +207,7 @@ namespace filehandler
 
          createcontext->m_spCommandLine->m_varFile                = m_strName;
 
-         Bergedge.request_create(createcontext);
+         Session.request_create(createcontext);
 
          //varFile = createcontext->m_spCommandLine->m_varFile;
 

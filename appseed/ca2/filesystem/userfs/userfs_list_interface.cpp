@@ -721,7 +721,7 @@ namespace fs
    }
 
 
-   sp(document) list_interface::get_document()
+   sp(::user::document) list_interface::get_document()
    {
       return  (::user::form_list::get_document());
    }

@@ -6,7 +6,7 @@ namespace command
    class document;
 
    class CLASS_DECL_sphere view :
-      virtual public ::userbase::view,
+      virtual public ::user::view,
       virtual public ::user::interaction
    {
    public:
@@ -44,9 +44,9 @@ namespace command
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnRButtonUp)
-	   virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+	   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      sp(document) get_document();
+      sp(::user::document) get_document();
 
 	   DECL_GEN_SIGNAL(_001OnDestroy)
 	   DECL_GEN_SIGNAL(_001OnSize)

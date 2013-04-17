@@ -8,7 +8,7 @@ namespace calculator
    view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::userbase::view(papp)
+      ::user::view(papp)
    {
 
    }
@@ -23,7 +23,7 @@ namespace calculator
    void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
 
-      ::userbase::view::install_message_handling(pinterface);
+      ::user::view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -34,9 +34,9 @@ namespace calculator
 
       //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &view::_001OnTabClick);
       IGUI_WIN_MSG_LINK(WM_APP + 119      , this, this, &view::_001OnWavePlayerEvent);
-      //connect_command(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
-      //connect_command(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
-      //connect_command(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
+      //connect_command(ID_FILE_PRINT, ::user::view::OnFilePrint)
+      //connect_command(ID_FILE_PRINT_DIRECT, ::user::view::OnFilePrint)
+      //connect_command(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
       //  IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
       //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
@@ -48,12 +48,12 @@ namespace calculator
 #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::userbase::view::assert_valid();
+      ::user::view::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::userbase::view::dump(dumpcontext);
+      ::user::view::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -73,14 +73,14 @@ namespace calculator
 
       cs.style &= ~WS_EX_CLIENTEDGE;
 
-      return ::userbase::view::pre_create_window(cs);
+      return ::user::view::pre_create_window(cs);
 
    }
 
 
    void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
-      ::userbase::view::_001OnInitialUpdate(pobj);
+      ::user::view::_001OnInitialUpdate(pobj);
 
 
    }
@@ -90,7 +90,7 @@ namespace calculator
       return this;
    }
 
-   void view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -103,7 +103,7 @@ namespace calculator
    }
    void view::_001OnDestroy(::ca::signal_object * pobj)
    {
-      ::userbase::view::_001OnDestroy(pobj);
+      ::user::view::_001OnDestroy(pobj);
 
    }
 
@@ -190,10 +190,10 @@ namespace calculator
    }
 
 
-   sp(document) view::get_document()
+   sp(::user::document) view::get_document()
    {
 
-      return  (::userbase::view::get_document());
+      return  (::user::view::get_document());
 
    }
 

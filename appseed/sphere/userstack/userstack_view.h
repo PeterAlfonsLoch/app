@@ -10,7 +10,7 @@ namespace userstack
 
 
    class CLASS_DECL_sphere view :
-      virtual public ::userbase::scroll_view
+      virtual public ::user::scroll_view
    {
    public:
 
@@ -70,9 +70,9 @@ namespace userstack
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void OnDraw(::ca::graphics * pgraphics);
-      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      sp(document) get_document();
+      sp(::user::document) get_document();
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 

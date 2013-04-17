@@ -8,8 +8,8 @@ namespace command
    pane_view::pane_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::tab(papp),
-      ::userbase::view(papp),
-      ::userbase::tab_view(papp),
+      
+      ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
    {
@@ -28,12 +28,12 @@ namespace command
    #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-	   ::userbase::view::assert_valid();
+	   ::user::view::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-	   ::userbase::view::dump(dumpcontext);
+	   ::user::view::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -56,9 +56,9 @@ namespace command
 
    }
 
-   void pane_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
-      ::userbase::tab_view::on_update(pSender, lHint, pHint);
+      ::user::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
       {
          set_cur_tab_by_id(command::PaneViewPrimaryCommand);
@@ -130,7 +130,7 @@ namespace command
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-	   return ::userbase::view::pre_create_window(cs);
+	   return ::user::view::pre_create_window(cs);
    }
 
 
@@ -153,11 +153,11 @@ namespace command
                pdoc->Initialize(true);
                pdoc->update_all_views(::null(), 1234);
                pdoc->update_all_views(::null(), 123458);
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"));
                if(pview != ::null())
                {
-                  sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+                  sp(::user::frame_window) pframe =  (pview->GetParentFrame());
                   if(pframe != ::null())
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
@@ -171,7 +171,7 @@ namespace command
          break;
       case PaneViewPrimaryCommand:
          {
-            sp(::userbase::view) pview = create_view < primary_view > ();
+            sp(::user::view) pview = create_view < primary_view > ();
             if(pview != ::null())
             {
                pcreatordata->m_pdoc = get_document();
@@ -189,10 +189,10 @@ namespace command
                pdoc->Initialize(true);
                pdoc->update_all_views(::null(), 1234);
                pdoc->update_all_views(::null(), 123458);
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                if(pview != ::null())
                {
-                  sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+                  sp(::user::frame_window) pframe =  (pview->GetParentFrame());
                   if(pframe != ::null())
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
@@ -219,11 +219,11 @@ namespace command
                pdoc->Initialize(true);
                pdoc->update_all_views(::null(), 1234);
                pdoc->update_all_views(::null(), 123458);
-               sp(::view) pview = pdoc->get_view();
+               sp(::user::view) pview = pdoc->get_view();
                pdoc->FileManagerBrowse(Application.dir().userappdata("command\\3-action-launch"));
                if(pview != ::null())
                {
-                  sp(::userbase::frame_window) pframe =  (pview->GetParentFrame());
+                  sp(::user::frame_window) pframe =  (pview->GetParentFrame());
                   if(pframe != ::null())
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
@@ -239,11 +239,11 @@ namespace command
          break;
       case PaneViewConfiguration:
       {
-         sp(form_document) pdoc = Cube.userex().create_form(this, this);
+         sp(form_document) pdoc = System.userex().create_form(this, this);
          if(pdoc == ::null())
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;
-         sp(::view) pview = pdoc->get_typed_view < ::view > ();
+         sp(::user::view) pview = pdoc->get_typed_view < ::view > ();
          form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
@@ -276,7 +276,7 @@ namespace command
 
    void pane_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::userbase::view::install_message_handling(pinterface);
+      ::user::view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &pane_view::_001OnSize);

@@ -35,14 +35,14 @@ namespace command
       if(m_strId == "command")
       {
 
-	      ::userbase::single_document_template* pDocTemplate;
-	      pDocTemplate = new ::userbase::single_document_template(
+	      ::user::single_document_template* pDocTemplate;
+	      pDocTemplate = new ::user::single_document_template(
             this,
 		      "system/form",
 		      System.type_info < command::document > (),
 		      System.type_info < command::frame > (),
 		      System.type_info < command::pane_view > ());
-         userbase().add_document_template(pDocTemplate);
+         user().add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 
 

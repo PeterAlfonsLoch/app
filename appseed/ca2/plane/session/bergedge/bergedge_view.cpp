@@ -240,7 +240,7 @@ namespace bergedge
       ::user::view::pre_translate_message(pobj);
    }
 
-   sp(document) view::get_document()
+   sp(::user::document) view::get_document()
    {
       return  (::user::scroll_view::get_document());
    }

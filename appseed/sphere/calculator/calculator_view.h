@@ -8,7 +8,7 @@ namespace calculator
 
 
    class CLASS_DECL_sphere view :
-      virtual public ::userbase::view
+      virtual public ::user::view
    {
    public:
       view(sp(::ca::application) papp);
@@ -28,9 +28,9 @@ namespace calculator
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
-         virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+         virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
 
-      sp(document) get_document();
+      sp(::user::document) get_document();
 
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnSize)

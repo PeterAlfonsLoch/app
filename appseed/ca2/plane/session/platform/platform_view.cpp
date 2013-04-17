@@ -263,7 +263,7 @@ namespace platform
 
    }
 
-   sp(document) view::get_document()
+   sp(::user::document) view::get_document()
    {
       return  (form_view::get_document());
    }
@@ -327,7 +327,7 @@ namespace platform
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
-      //      sp(document) pdoc = get_document();
+      //      sp(::user::document) pdoc = get_document();
       class imaging & imaging = System.visual().imaging();
 
 

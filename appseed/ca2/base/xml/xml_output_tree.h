@@ -11,9 +11,9 @@ namespace xml
    public:
 
       // root xml node - document
-      sp(document) m_pdocument;
+      sp(::xml::document)     m_pdocument;
       // current xml node
-      node * m_pnode;
+      sp(node)                m_pnode;
 
 
       output_tree(sp(::ca::application) papp, tree_schema * pschema);

@@ -16,7 +16,7 @@ namespace filehandler
       void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
-      virtual void on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)

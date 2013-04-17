@@ -1291,7 +1291,7 @@ exit_application:
 
 
    //////////////////////////////////////////////////////////////////////////////////////////////////
-   // System/Cube
+   // System/System
    //
    sp(::user::document) application::hold(sp(::user::interaction) pui)
    {
@@ -1402,7 +1402,7 @@ exit_application:
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-   // Session/Bergedge
+   // Session/Session
    //
    sp(::bergedge::view) application::get_view()
    {

@@ -19,7 +19,7 @@ namespace xml
       friend class node;
 
 
-      node *   m_pnodeParent;
+      sp(node)    m_pnodeParent;
 
 
    public:

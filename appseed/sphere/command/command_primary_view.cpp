@@ -8,8 +8,8 @@ namespace command
    primary_view::primary_view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      ::userbase::view(papp),
-      ::userbase::edit_plain_text_view(papp),
+      
+      ::user::edit_plain_text_view(papp),
       ::user::scroll_view(papp)
    {
 
@@ -23,7 +23,7 @@ namespace command
 
    }
 
-   void primary_view::on_update(sp(::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void primary_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
    {
 
       UNREFERENCED_PARAMETER(pSender);
@@ -35,7 +35,7 @@ namespace command
    void primary_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
 
-      ::userbase::edit_plain_text_view::install_message_handling(pinterface);
+      ::user::edit_plain_text_view::install_message_handling(pinterface);
 	   IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &primary_view::_001OnContextMenu);
 
    }
@@ -195,9 +195,9 @@ namespace command
       SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
-      ::userbase::menu menu(get_app());
+      ::user::menu menu(get_app());
       menu.LoadXmlMenu("command\\popup_primary_verbing.xml");
-      ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
+      ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
       menuPopup.TrackPopupMenu(0, point.x, point.y, GetParentFrame());
 
    }

@@ -17,7 +17,7 @@ namespace fs
       DECL_GEN_SIGNAL(_001OnTimer)
 
 
-      sp(document) get_document();
+      sp(::user::document) get_document();
 
    };
 

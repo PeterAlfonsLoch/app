@@ -18,7 +18,7 @@ namespace fs
       document(sp(::ca::application) papp);
       virtual ~document();
 
-      sp(document)                                get_document();
+      sp(::user::document)                                get_document();
 
 
    //#ifdef DEBUG
