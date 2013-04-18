@@ -22,7 +22,7 @@ public:
 
       sp(T) & sp = array < ::ca::smart_pointer < T > >::add_new();
 
-      sp.create(this->get_app());
+      sp.create(allocer());
 
       return sp;
 
@@ -31,15 +31,7 @@ public:
 
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
-      UNREFERENCED_PARAMETER(nGrowBy);
-      while(nNewSize > this->get_size())
-      {
-         add_new();
-      }
-      if(this->get_size() > nNewSize)
-      {
-         this->array < ::ca::smart_pointer < T > >::set_size(nNewSize);
-      }
+      this->array < ::ca::smart_pointer < T > >::set_size(nNewSize);
       return this->get_size();
    }
 

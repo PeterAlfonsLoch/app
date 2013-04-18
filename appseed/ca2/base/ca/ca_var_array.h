@@ -9,7 +9,7 @@ class CLASS_DECL_ca2 var_array :
 public:
 
 
-   var_array();
+   var_array(::ca::application * papp = ::null());
    var_array(const stringa & stra);
    var_array(const int_array & inta);
    var_array(const ::ca::property_set & propset);

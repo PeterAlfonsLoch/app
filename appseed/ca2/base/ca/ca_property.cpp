@@ -154,6 +154,12 @@ namespace ca
       return empty_string();
    }
 
+   property::property(::ca::application * papp) :
+      ::ca::ca(papp)
+   {
+   }
+
+
    void property::get_value(var & value)
    {
       value = get_value();
@@ -1347,15 +1353,16 @@ namespace ca
       InitHashTable(64);
    }
 
-   property_array::property_array()
+   property_array::property_array(sp(::ca::application) papp) :
+      ::ca::ca(papp)
    {
       set_size(0, 64);
    }
 
 
-   property_set::property_set(sp(::ca::application) papp,
-      bool bAutoAdd, bool bMultiValue, bool bKeyCaseInsensitive) :
-   ca(papp)
+   property_set::property_set(sp(::ca::application) papp, bool bAutoAdd, bool bMultiValue, bool bKeyCaseInsensitive) :
+      ca(papp),
+      m_propertya(papp)
    {
       m_bAutoAdd = bAutoAdd;
       m_bMultiValue = bMultiValue;
@@ -2102,7 +2109,7 @@ namespace ca
       ::ca::str::consume_spaces(pszJson, 0, pszEnd);
       while(true)
       {
-         m_propertya.set_size(m_propertya.get_size() + 1);
+         m_propertya.add(canew(::ca::property));
          m_propertya.last_element()->parse_json(pszJson, pszEnd);
          m_map.set_at(m_propertya.last_element()->lowname(), m_propertya.get_upper_bound());
          ::ca::str::consume_spaces(pszJson, 0, pszEnd);

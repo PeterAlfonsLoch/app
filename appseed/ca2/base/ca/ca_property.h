@@ -122,6 +122,7 @@ namespace ca
       var               m_var;
 
 
+      property(::ca::application * papp);
       property();
       property(const property & prop);
       property(const char * pszName);
@@ -671,7 +672,7 @@ namespace ca
    public:
 
 
-      property_array();
+      property_array(sp(::ca::application) papp = ::null());
 
 
 

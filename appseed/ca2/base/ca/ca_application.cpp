@@ -470,6 +470,7 @@ finishedCa2ModuleFolder:;
       if(is_system())
       {
          System.factory().cloneable_large < int_array > ();
+         System.factory().cloneable_large < ::ca::property > ();
       }
 
 
