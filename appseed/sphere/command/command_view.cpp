@@ -7,8 +7,7 @@ namespace command
 
    view::view(sp(::ca::application) papp) :
       ca(papp),
-      ::user::interaction(papp),
-      ::user::view(papp)
+      ::user::interaction(papp)
    {
    }
 

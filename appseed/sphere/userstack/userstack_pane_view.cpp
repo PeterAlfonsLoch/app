@@ -206,7 +206,7 @@ namespace userstack
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-               sp(::ca::create_context) createcontext(get_app());
+               sp(::ca::create_context) createcontext(allocer());
                createcontext->m_spApplicationBias = pbiasCreate;
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 

@@ -243,7 +243,7 @@ namespace command
          if(pdoc == ::null())
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;
-         sp(::user::view) pview = pdoc->get_typed_view < ::view > ();
+         sp(::user::view) pview = pdoc->get_typed_view < ::user::view > ();
          form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";

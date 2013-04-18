@@ -8,10 +8,7 @@ namespace filehandler
    view::view(sp(::ca::application) papp) :
       ca(papp),
       ::user::interaction(papp),
-      
       ::user::scroll_view(papp),
-      ::user::scroll_view(papp),
-      
       ::user::form(papp),
       html_form(papp),
       html_form_view(papp),

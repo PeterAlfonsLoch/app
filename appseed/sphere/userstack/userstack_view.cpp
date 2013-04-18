@@ -9,8 +9,6 @@ namespace userstack
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-      
-      ::user::scroll_view(papp),
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
