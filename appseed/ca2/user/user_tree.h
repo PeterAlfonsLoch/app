@@ -108,6 +108,9 @@ namespace user
       void _001OnClick(UINT uiFlags, point point);
 
 
+      virtual void perform_click();
+
+
       virtual int32_t get_wheel_scroll_delta();
 
       virtual void _001OnUpdateScrollPosition();
