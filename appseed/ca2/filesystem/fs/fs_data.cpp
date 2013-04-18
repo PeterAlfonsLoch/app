@@ -15,6 +15,10 @@ namespace fs
       return false;
    }
 
+   bool data::fast_has_subdir(const char * pszPath)
+   {
+      return has_subdir(pszPath);
+   }
 
 
    string data::file_name(const char * pszPath)

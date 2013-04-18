@@ -28,7 +28,7 @@ namespace ca
    void request_interface::add_line_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
       sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      sp(::ca::create_context) createcontext(commandcentral);
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
       commandcentral->consolidate(createcontext);
@@ -39,7 +39,7 @@ namespace ca
    void request_interface::add_fork(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
       sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      sp(::ca::create_context) createcontext(commandcentral);
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
       commandcentral->consolidate(createcontext);
@@ -50,7 +50,7 @@ namespace ca
    void request_interface::add_fork_uri(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
       sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
-      sp(::ca::create_context) createcontext(commandcentral);
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
       commandcentral->consolidate(createcontext);
@@ -61,7 +61,8 @@ namespace ca
    void request_interface::request_file(var & varFile)
    {
 
-      sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
 
@@ -74,7 +75,8 @@ namespace ca
    void request_interface::request_file_query(var & varFile, var & varQuery)
    {
 
-      sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
       createcontext->m_spCommandLine->m_varQuery             = varQuery;
@@ -93,7 +95,8 @@ namespace ca
    void request_interface::request_command(sp(::ca::command_line) pcommandline)
    {
 
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca::command_thread) commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
+      sp(::ca::create_context) createcontext(canew(::ca::create_context(commandcentral)));
 
       createcontext->m_spCommandLine = pcommandline;
 

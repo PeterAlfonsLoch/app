@@ -171,6 +171,19 @@ namespace fs
 
    }
 
+ bool set::fast_has_subdir(const char * psz)
+   {
+      
+      ::fs::data * pdata = path_data(psz);
+
+      if(pdata != ::null())
+      {
+         return pdata->fast_has_subdir(psz);
+      }
+
+      return false;
+
+   }
 
    void set::get_ascendants_path(const char * psz, stringa & stra)
    {

@@ -1,8 +1,9 @@
 #pragma once
 
+typedef sort_array < int_ptr, int_ptr, array < int_ptr, int_ptr >, &numeric_compare < int_ptr > > sort_int_ptr_array;
 
 class CLASS_DECL_ca2 base_sort_serializable_int_ptr_array :
-   virtual public ::ca::byte_serializable_array < sort_array < int_ptr, int_ptr > >
+   virtual public ::ca::byte_serializable_array < sort_int_ptr_array >
 {
 
 
@@ -117,20 +118,20 @@ bool flags < ENUM > ::unsignalize_all()
 template < class ENUM >
 flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 {
-   sort_array < int_ptr, int_ptr >::copy(f);
+   sort_int_ptr_array::copy(f);
    return *this;
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return sort_array < int_ptr, int_ptr >::operator == (f);
+   return sort_int_ptr_array::operator == (f);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return sort_array < int_ptr, int_ptr >::operator != (f);
+   return sort_int_ptr_array::operator != (f);
 }
 
 template < class ENUM >

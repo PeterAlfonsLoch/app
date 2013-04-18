@@ -395,6 +395,37 @@ public:
    }
 
    template < class ARRAY >
+   smart_pointer_array & copy(const ARRAY & a)
+   {
+
+      if(&a == dynamic_cast < ARRAY * > (this))
+         return *this;
+
+      for(int i = 0; i < a.get_count(); i++)
+      {
+         this->add(a.operator[](i));
+      }
+
+      return *this;
+
+   }
+
+   smart_pointer_array & copy(const smart_pointer_array & a)
+   {
+
+      if(&a == this)
+         return *this;
+
+      for(int i = 0; i < a.get_count(); i++)
+      {
+         this->add(a(i));
+      }
+
+      return *this;
+
+   }
+
+   template < class ARRAY >
    smart_pointer_array & copy_ptra(ARRAY * pptra)
    {
 

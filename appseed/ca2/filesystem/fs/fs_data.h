@@ -37,6 +37,9 @@ namespace fs
       virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
       virtual ::ca::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
+
+      virtual bool fast_has_subdir(const char * pszPath);
+
    };
 
 

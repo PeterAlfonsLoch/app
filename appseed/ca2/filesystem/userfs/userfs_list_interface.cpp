@@ -144,7 +144,8 @@ namespace fs
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
-         if(get_document()->set().is_dir(straPath[i]))
+         string strPath = straPath[i];
+         if(get_document()->set().is_dir(strPath))
          {
             item.m_flags.signalize(::fs::FlagFolder);
          }

@@ -30,6 +30,7 @@ namespace fs
       virtual string file_name(const char * psz);
       virtual bool file_move(const char * pszDst, const char * pszSrc);
       virtual bool has_subdir(const char * psz);
+      virtual bool fast_has_subdir(const char * psz);
       virtual void get_ascendants_path(const char * psz, stringa & stra);
       virtual string eat_end_level(const char * psz, int32_t iLevel);
       virtual string dir_path(const char * pszPath1, const char * pszPath2);

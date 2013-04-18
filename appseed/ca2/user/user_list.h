@@ -508,6 +508,7 @@ namespace user
       flags < e_flag >              m_flags;
       icon_layout                   m_iconlayout;
       list_layout                   m_listlayout;
+      mutex                         m_mutex;
 
 
       index                         m_iTopIndex;

@@ -379,6 +379,8 @@ namespace filemanager
    bool SimpleFileListInterface::_001CreateImageListStep()
    {
 
+      single_lock sl(&m_mutex, true);
+
       if(m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_list_data()->m_itema.get_count())
       {
          if(m_bRestartCreateImageList)
@@ -910,14 +912,15 @@ namespace filemanager
             {
                iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
             }
-            if(get_fs_list_data()->m_itema.get_item(iStrict).IsFolder())
+            ::fs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
+            if(item.IsFolder())
             {
-               _017OpenFolder(new ::fs::item (get_fs_list_data()->m_itema.get_item(iStrict)));
+               _017OpenFolder(new ::fs::item (item));
                break;
             }
             else
             {
-               itema.add(new  ::fs::item (get_fs_list_data()->m_itema.get_item(iStrict)));
+               itema.add(new  ::fs::item (item));
             }
          }
       }

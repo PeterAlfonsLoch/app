@@ -13,14 +13,20 @@ public:
    bool           m_bInitialized;
 
 
-   string_map < uint32_t >   m_mapdirTimeout;
-   string_map < uint32_t >   m_mapfileTimeout;
+   string_map < uint32_t >    m_mapdirTimeout;
+   string_map < uint32_t >    m_mapfileTimeout;
+   string_map < uint32_t >    m_maplsTimeout;
+   strsp(stringa)             m_mapdirFile;
+   strsp(stringa)             m_mapdirFolder;
+   strsp(stringa)             m_mapdirFileName;
+   strsp(stringa)             m_mapdirFolderName;
 
 
    ifs(sp(::ca::application) papp, const char * pszRoot);
 
    
    virtual bool has_subdir(const char * pszPath);
+   virtual bool fast_has_subdir(const char * pszPath);
    virtual bool ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle);
    virtual bool is_dir(const char * pszPath);
    virtual void root_ones(stringa & stra);

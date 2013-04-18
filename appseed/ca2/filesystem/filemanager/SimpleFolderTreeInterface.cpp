@@ -480,13 +480,7 @@ namespace filemanager
 
       sp(::fs::tree_item_data) pitemFolder = ::null();
 
-      string strRawName1 = typeid(*pitemParent).name();
-      string strRawName2 = typeid(::fs::tree_item_data).name();
-      if(strRawName1 == strRawName2)
-      {
-         pitemFolder = (sp(::fs::tree_item_data)) pitemParent;
-      }
-
+      pitemFolder = pitemParent->m_pitemdata;
 
       if(pitemFolder != ::null() && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
@@ -611,10 +605,12 @@ namespace filemanager
             }
          }
 
-         /*      if(File::has_subfolder(straPath[i]))
+         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath))
          {
-         item.m_flags.signalize(filemanager::FlagHasSubFolder);
-         }*/
+            pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
+         }
+
+
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
 

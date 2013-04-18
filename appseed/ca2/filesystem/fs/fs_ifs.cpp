@@ -9,39 +9,71 @@ ifs::ifs(sp(::ca::application) papp, const char * pszRoot) :
    m_strRoot = pszRoot;
 }
 
+bool ifs::fast_has_subdir(const char * pszPath)
+{
+
+   uint32_t dwTimeout;
+
+   string strDir(pszPath);
+
+   ::ca::str::ends_eat(strDir, "/");
+   ::ca::str::ends_eat(strDir, "\\");
+
+   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   {
+
+      if(get_tick_count() < dwTimeout)
+      {
+
+         return m_mapdirFolder[strDir]->get_count() > 0;
+
+      }
+
+   }
+
+   return true;
+
+}
+
 bool ifs::has_subdir(const char * pszPath)
 {
 
-   defer_initialize();
+   uint32_t dwTimeout;
 
-   xml::document doc(get_app());
+   string strDir(pszPath);
 
-   string strUrl;
+   ::ca::str::ends_eat(strDir, "/");
+   ::ca::str::ends_eat(strDir, "\\");
 
-   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszPath);
+   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   {
 
-   string strSource;
+      if(get_tick_count() < dwTimeout)
+      {
 
-   strSource = Application.http().get(strUrl);
+         return m_mapdirFolder[strDir]->get_count() > 0;
 
-   if(strSource.is_empty())
-      return false;
+      }
 
-   if(!doc.load(strSource))
-      return false;
+   }
 
-   if(doc.get_root()->get_name() != "folder")
-      return false;
+   ls(pszPath, NULL, NULL);
 
-   sp(::xml::node) pnode = doc.get_child("folder");
 
-   if(pnode == ::null())
-      return false;
+   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   {
 
-   if(pnode->get_children_count("folder") <= 0)
-      return false;
+      if(get_tick_count() < dwTimeout)
+      {
 
-   return true;
+         return m_mapdirFolder[strDir]->get_count() > 0;
+
+      }
+
+   }
+
+
+   return false;
 
 }
 
@@ -54,6 +86,61 @@ void ifs::root_ones(stringa & stra)
 
 bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 {
+
+   uint32_t dwTimeout;
+
+   string strDir(pszDir);
+
+   ::ca::str::ends_eat(strDir, "/");
+   ::ca::str::ends_eat(strDir, "\\");
+
+   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   {
+      if(get_tick_count() < dwTimeout)
+      {
+         if(pstraPath  != NULL)
+         {
+            pstraPath->add(*m_mapdirFolder[strDir]);
+            pstraPath->add(*m_mapdirFile[strDir]);
+         }
+         if(pstraTitle  != NULL)
+         {
+            pstraTitle->add(*m_mapdirFolderName[strDir]);
+            pstraTitle->add(*m_mapdirFileName[strDir]);
+         }
+         return true;
+      }
+   }
+
+
+   //if(!is_dir(strDir))
+     // return false;
+
+
+   if(m_mapdirFolder[strDir].is_null())
+      m_mapdirFolder[strDir] = canew(stringa);
+   if(m_mapdirFolderName[strDir].is_null())
+      m_mapdirFolderName[strDir] = canew(stringa);
+   if(m_mapdirFile[strDir].is_null())
+      m_mapdirFile[strDir] = canew(stringa);
+   if(m_mapdirFileName[strDir].is_null())
+      m_mapdirFileName[strDir] = canew(stringa);
+
+
+   stringa & straDir          = *m_mapdirFolder[strDir];
+   stringa & straDirName      = *m_mapdirFolderName[strDir];
+   stringa & straFile         = *m_mapdirFile[strDir];
+   stringa & straFileName     = *m_mapdirFileName[strDir];
+
+
+   straDir.remove_all();
+   straDirName.remove_all();
+   straFile.remove_all();
+   straFileName.remove_all();
+
+
+
+
    
    try
    {
@@ -65,12 +152,14 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
       {
          throw string("uifs:// You have not logged in!");
       }
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
       return false;
    }
 
    xml::document doc(get_app());
 
    string strUrl;
+
    
    strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszDir);
 
@@ -79,13 +168,22 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
    strSource = Application.http().get(strUrl);
 
    if(strSource.is_empty())
+   {
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
       return false;
+   }
 
    if(!doc.load(strSource))
+   {
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
       return false;
+   }
 
    if(doc.get_root()->get_name() != "folder")
+   {
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
       return false;
+   }
 
    sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
@@ -99,14 +197,8 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strPath = dir_path(pszDir, strName);
          m_mapdirTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapfileTimeout.remove_key(strPath);
-         if(pstraPath != ::null())
-         {
-            pstraPath->add(strPath);
-         }
-         if(pstraTitle != ::null())
-         {
-            pstraTitle->add(strName);
-         }
+         straDir.add(strPath);
+         straDirName.add(strName);
       }
    }
 
@@ -123,16 +215,22 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strPath = dir_path(pszDir, strName);
          m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);
-         if(pstraPath != ::null())
-         {
-            pstraPath->add(strPath);
-         }
-         if(pstraTitle != ::null())
-         {
-            pstraTitle->add(strName);
-         }
+         straFile.add(strPath);
+         straFileName.add(strPath);
       }
    }
+   if(pstraPath != ::null())
+   {
+      pstraPath->add(straDir);
+      pstraPath->add(straFile);
+   }
+   if(pstraTitle != ::null())
+   {
+      pstraTitle->add(straDirName);
+      pstraTitle->add(straFileName);
+   }
+
+   m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
 
    return true;
 }

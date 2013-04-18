@@ -10,13 +10,25 @@ namespace fs
       ::ca::data(papp),
       ::fs::data(papp)
    {
+
       m_strRoot = pszRoot;
+
    }
 
 
    remote_native::~remote_native()
    {
+
    }
+
+
+   bool remote_native::fast_has_subdir(const char * pszPath)
+   {
+
+      return true;
+
+   }
+
 
    bool remote_native::has_subdir(const char * pszPath)
    {

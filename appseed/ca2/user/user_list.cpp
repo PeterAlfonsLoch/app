@@ -17,7 +17,8 @@ namespace user
    m_fontHover(allocer()),
    m_penFocused(allocer()),
    m_penHighlight(allocer()),
-   m_dcextension(papp)
+   m_dcextension(papp),
+   m_mutex(papp)
    {
       m_piaFilterIcon = new index_biunique();
       m_piaFilterList = new index_array();
@@ -165,6 +166,8 @@ namespace user
 
    void list::_001OnDraw(::ca::graphics *pdc)
    {
+
+      single_lock sl(&m_mutex, true);
 
       m_penFocused->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
 

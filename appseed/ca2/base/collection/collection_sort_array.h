@@ -96,6 +96,8 @@ public:
 
    bool operator != (const sort_array & a) const;
 
+   void copy(const BASE_ARRAY & src);
+
    using BASE_ARRAY::remove_all;
 
    using BASE_ARRAY::clear;
@@ -300,6 +302,15 @@ operator != (const sort_array & a) const
 
 }
 
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::copy(const BASE_ARRAY & src)
+{
+
+   BASE_ARRAY::copy(src);
+
+   m_indexmap.mark_dirty();
+
+}
 
 
 #define new DEBUG_NEW

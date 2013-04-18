@@ -172,6 +172,19 @@ namespace ca
          strPath.trim("\"'");
 
       }
+      else if(varFile.get_type() == var::type_stra)
+      {
+
+         if(varFile.stra().get_count() > 0)
+         {
+
+            strPath = varFile.stra()[0];
+
+         }
+
+         strPath.trim("\"'");
+
+      }
       else if(varFile.get_type() == var::type_propset)
       {
 
