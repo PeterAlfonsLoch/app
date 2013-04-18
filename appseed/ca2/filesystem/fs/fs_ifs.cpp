@@ -157,15 +157,21 @@ bool ifs::is_dir(const char * pszPath)
    defer_initialize();
 
 
+   string strPath(pszPath);
+
+   ::ca::str::ends_eat(strPath, "/");
+   ::ca::str::ends_eat(strPath, "\\");
+
+
    uint32_t dwTimeout;
 
-   if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
+   if(m_mapfileTimeout.Lookup(strPath, dwTimeout))
    {
       if(::get_tick_count() > dwTimeout)
       {
          stringa straPath;
          stringa straTitle;
-         ls(System.dir().name(pszPath), &straPath, &straTitle);
+         ls(System.dir().name(strPath), &straPath, &straTitle);
       }
       else
       {
@@ -173,14 +179,14 @@ bool ifs::is_dir(const char * pszPath)
       }
    }
 
-   if(m_mapdirTimeout.Lookup(pszPath, dwTimeout))
+   if(m_mapdirTimeout.Lookup(strPath, dwTimeout))
    {
       if(::get_tick_count() > dwTimeout)
       {
          stringa straPath;
          stringa straTitle;
-         ls(System.dir().name(pszPath), &straPath, &straTitle);
-         if(m_mapdirTimeout.Lookup(pszPath, dwTimeout))
+         ls(System.dir().name(strPath), &straPath, &straTitle);
+         if(m_mapdirTimeout.Lookup(strPath, dwTimeout))
          {
             return true;
          }
