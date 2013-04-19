@@ -22,8 +22,11 @@
 	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="17165" topLine="461" />
 	</File>
-	<File name="base/ca/ca_smart_pointer2.h" open="0" top="0" tabpos="3">
-		<Cursor position="1696" topLine="51" />
+	<File name="base/ca/ca_smart_pointer1.h" open="1" top="0" tabpos="5">
+		<Cursor position="3159" topLine="111" />
+	</File>
+	<File name="base/ca/ca_smart_pointer2.h" open="1" top="1" tabpos="6">
+		<Cursor position="3506" topLine="162" />
 	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
@@ -31,8 +34,8 @@
 	<File name="base/exception/exception_standard.h" open="0" top="0" tabpos="13">
 		<Cursor position="4148" topLine="133" />
 	</File>
-	<File name="base/exception/exception_standard_translator.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="17666" topLine="351" />
+	<File name="base/exception/exception_standard_translator.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="17687" topLine="351" />
 	</File>
 	<File name="base/linux/os.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3124" topLine="92" />
@@ -148,7 +151,7 @@
 	<File name="graphics/visual/visual.h" open="0" top="0" tabpos="2">
 		<Cursor position="33" topLine="0" />
 	</File>
-	<File name="net/sockets/bsd/basic/sockets_tcp_socket.cpp" open="1" top="0" tabpos="3">
+	<File name="net/sockets/bsd/basic/sockets_tcp_socket.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="39557" topLine="1318" />
 	</File>
 	<File name="net/sockets/metrowin/basic/aaa_sockets_ssl_client_context_map_want_to_remove.h" open="0" top="0" tabpos="36">
