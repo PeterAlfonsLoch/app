@@ -126,22 +126,25 @@ namespace exception
 
          memset(&m_saSeg, 0, sizeof(m_saSeg));
          sigemptyset(&m_saSeg.sa_mask);
-         sigaddset(&m_saSeg.sa_mask, SIGSEGV);
-         m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
+         //sigaddset(&m_saSeg.sa_mask, SIGSEGV);
+         //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
+         m_saSeg.sa_flags = SA_SIGINFO;
          m_saSeg.sa_sigaction = &translator::filter_sigsegv;
          sigaction(SIGSEGV, &m_saSeg, &m_saSegOld);
 
          memset(&m_saFpe, 0, sizeof(m_saFpe));
          sigemptyset(&m_saFpe.sa_mask);
-         sigaddset(&m_saFpe.sa_mask, SIGFPE);
-         m_saFpe.sa_flags = SA_NODEFER | SA_SIGINFO;
+         //sigaddset(&m_saFpe.sa_mask, SIGFPE);
+         //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
+         m_saSeg.sa_flags = SA_SIGINFO;
          m_saFpe.sa_sigaction = &translator::filter_sigfpe;
          sigaction(SIGFPE, &m_saFpe, &m_saFpeOld);
 
          memset(&m_saPipe, 0, sizeof(m_saPipe));
          sigemptyset(&m_saPipe.sa_mask);
-         sigaddset(&m_saPipe.sa_mask, SIGPIPE);
-         m_saPipe.sa_flags = SA_NODEFER | SA_SIGINFO;
+         //sigaddset(&m_saPipe.sa_mask, SIGPIPE);
+         //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
+         m_saSeg.sa_flags = SA_SIGINFO;
          m_saPipe.sa_sigaction = &translator::filter_sigpipe;
          sigaction(SIGPIPE, &m_saPipe, &m_saPipeOld);
 
@@ -352,7 +355,7 @@ namespace exception
       sigset_t set;
       sigemptyset(&set);
       sigaddset(&set, SIGSEGV);
-      sigprocmask(SIG_UNBLOCK, &set, ::null());
+      pthread_sigmask(SIG_UNBLOCK, &set, ::null());
 
       throw standard_access_violation(::null(), signal, psiginfo, pc);
 
@@ -361,10 +364,10 @@ namespace exception
    void translator::filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
-      sigset_t set;
-      sigemptyset(&set);
-      sigaddset(&set, SIGSEGV);
-      sigprocmask(SIG_UNBLOCK, &set, ::null());
+      //sigset_t set;
+      //sigemptyset(&set);
+      //sigaddset(&set, SIGSEGV);
+      //sigprocmask(SIG_UNBLOCK, &set, ::null());
 
       throw standard_sigfpe(::null(), signal, psiginfo, pc);
 

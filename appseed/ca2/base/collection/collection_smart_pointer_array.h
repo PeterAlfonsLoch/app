@@ -22,7 +22,7 @@ public:
 
       sp(T) & sp = array < ::ca::smart_pointer < T > >::add_new();
 
-      sp.create(allocer());
+      sp.create(this->allocer());
 
       return sp;
 

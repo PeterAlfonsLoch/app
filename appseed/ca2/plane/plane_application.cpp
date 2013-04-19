@@ -546,12 +546,13 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
       }
 
 #endif
+/*
 
       if(is_system())
       {
          translator::attach();
       }
-
+*/
       m_iReturnCode            = 0;
 
       m_dwAlive = ::get_tick_count();

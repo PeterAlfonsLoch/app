@@ -237,7 +237,9 @@ namespace ca
    class CLASS_DECL_ca2 thread :
       virtual public ::ca::thread_base,
       virtual public command_target,
+      #ifdef WINDOWS
       virtual public ::exception::translator,
+      #endif
       virtual public spa(::user::interaction),
       virtual public ::ca::live_object,
       virtual public event_base,

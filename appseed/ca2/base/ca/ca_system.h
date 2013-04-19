@@ -7,6 +7,9 @@ namespace ca
 
    class CLASS_DECL_ca2 system :
       virtual public ::ca::application
+      #ifdef LINUX
+      , virtual public ::exception::translator
+      #endif
    {
    public:
 

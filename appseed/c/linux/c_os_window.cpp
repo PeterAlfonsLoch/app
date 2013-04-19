@@ -1139,3 +1139,11 @@ bool c_xstart()
    return true;
 
 }
+
+
+
+oswindow GetDesktopWindow()
+{
+
+return g_oswindowDesktop;
+}
