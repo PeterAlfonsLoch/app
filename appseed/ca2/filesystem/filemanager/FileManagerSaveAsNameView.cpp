@@ -130,7 +130,12 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
       }
    }
 
-   GetFileManager()->m_strTopic = str;
+   if(GetFileManager().is_set())
+   {
+
+      GetFileManager()->m_strTopic = str;
+
+   }
 
 }
 

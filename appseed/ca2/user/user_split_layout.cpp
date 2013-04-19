@@ -38,7 +38,8 @@ namespace user
       int32_t i;
       for(i = 0; i < iSplitBarCount; i++)
       {
-         ::user::split_bar & splitbar = m_splitbara.add_new();
+         m_splitbara.add(canew(::user::split_bar(get_app())));
+         ::user::split_bar & splitbar = m_splitbara.last();
          splitbar.m_iIndex = i;
          if(!splitbar.create(this))
             return false;
@@ -48,6 +49,7 @@ namespace user
 
       for(i = 0; i < get_pane_count(); i++)
       {
+         m_panea(i) = canew(::user::split_layout::Pane(get_app()));
          m_panea[i].m_bFixedSize =  false;
          m_panea[i].m_pholder = get_new_place_holder();
       }

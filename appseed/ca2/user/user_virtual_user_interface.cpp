@@ -28,7 +28,6 @@ virtual_user_interface::virtual_user_interface(sp(::ca::application) papp) :
 
 virtual_user_interface::~virtual_user_interface()
 {
-   System.::ca::thread::remove(this);
 }
 
 ::ca::graphics * virtual_user_interface::GetDC()

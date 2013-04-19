@@ -57,6 +57,7 @@
 	<item code="key_semicolon" shift="1" value="Ç" />
 	<item code="key_comma" shift="1" value="&lt;" />
 	<item code="key_dot" shift="1" value="&gt;" />
+	<item code="key_space" value=" " />
 	<item code="53" key="191" value=";" />
 	<item code="53" key="191" shift="1" value=":" />
 	<item code="86" key="226" value="\\" />

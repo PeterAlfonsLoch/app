@@ -843,7 +843,7 @@ namespace user
          int32_t iTabHeight = 8;
          int32_t cx;
          int32_t cy;
-         ::ca::client_graphics pdc(this);
+         ::ca::memory_graphics pdc(allocer());
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -1193,7 +1193,7 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca::client_graphics pdc(this);
+         ::ca::memory_graphics pdc(allocer());
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 

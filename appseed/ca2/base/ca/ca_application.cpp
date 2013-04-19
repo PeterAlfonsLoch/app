@@ -5101,10 +5101,11 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          {
          }
          sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca < ::plane::session >();
-         if(pbergedge != ::null())
+         // todobergedge
+         /*if(pbergedge != ::null())
          {
             pbergedge->on_app_request_bergedge_callback(this);
-         }
+         }*/
          pcreatecontext->m_spCommandLine->m_eventReady.SetEvent();
 
       }
