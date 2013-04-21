@@ -845,8 +845,7 @@ namespace ca
       {
          if(m_psignal != ::null())
          {
-            delete m_psignal;
-            m_psignal = ::null();
+            m_psignal.release();
          }
       }
 

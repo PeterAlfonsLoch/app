@@ -236,7 +236,7 @@ namespace dynamic_source
             TRACE0("Error: Exception at script_manager::handle destroy pinstance");
          }
       }
-        
+
       try
       {
 
@@ -249,7 +249,7 @@ namespace dynamic_source
          TRACE0("Error: Exception at script_manager::handle pnetnodesocket->release");
 
       }
-   
+
    }
 
    bool script_manager::get_output_internal(::dynamic_source::script_instance * & pinstance, ::dynamic_source::script_instance * pinstanceParent, const string & strNameParam)
@@ -267,7 +267,7 @@ namespace dynamic_source
                }
             }
          }
-         return ::null();
+         return false;
       }
       pinstance = get(strName);
 
@@ -311,7 +311,7 @@ namespace dynamic_source
       }
 
       pinstance->run();
-      
+
       return true;
 
    }

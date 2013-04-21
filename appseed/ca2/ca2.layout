@@ -22,10 +22,13 @@
 	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="17165" topLine="461" />
 	</File>
-	<File name="base/ca/ca_smart_pointer1.h" open="1" top="0" tabpos="5">
+	<File name="base/ca/ca_process.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="4404" topLine="146" />
+	</File>
+	<File name="base/ca/ca_smart_pointer1.h" open="1" top="0" tabpos="3">
 		<Cursor position="3159" topLine="111" />
 	</File>
-	<File name="base/ca/ca_smart_pointer2.h" open="1" top="1" tabpos="6">
+	<File name="base/ca/ca_smart_pointer2.h" open="1" top="0" tabpos="4">
 		<Cursor position="3506" topLine="162" />
 	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">

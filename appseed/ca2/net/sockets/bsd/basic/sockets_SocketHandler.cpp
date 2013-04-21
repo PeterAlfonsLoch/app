@@ -116,7 +116,7 @@ namespace sockets
                {
                   try
                   {
-                     delete p;
+                     p.release();
                   }
                   catch(...)
                   {
@@ -456,7 +456,7 @@ namespace sockets
                   TRACE("Deleting and removing socket: %d\n", i);
                   try
                   {
-                     delete psocket;
+                     psocket.release();
                   }
                   catch(...)
                   {
@@ -703,7 +703,7 @@ namespace sockets
                {
                   if(p->GetSocket() != INVALID_SOCKET)
                   {
-                  
+
                      set(p -> GetSocket(), false, false, false);
 
                      // After DetachSocket(), all calls to Handler() will return a reference
@@ -982,7 +982,7 @@ namespace sockets
                   }
                }
             } while (again);
-            delete p;
+            p.release();
          }
       }
       return n;
