@@ -236,10 +236,23 @@ namespace dynamic_source
             TRACE0("Error: Exception at script_manager::handle destroy pinstance");
          }
       }
+        
+      try
+      {
 
+         pnetnodesocket->m_pinstanceCurrent.release();
+
+      }
+      catch(...)
+      {
+
+         TRACE0("Error: Exception at script_manager::handle pnetnodesocket->release");
+
+      }
+   
    }
 
-   script_instance * script_manager::get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strNameParam)
+   bool script_manager::get_output_internal(::dynamic_source::script_instance * & pinstance, ::dynamic_source::script_instance * pinstanceParent, const string & strNameParam)
    {
       string strName = ::ca::str::get_word(strNameParam, "?");
       if(strName.is_empty())
@@ -256,37 +269,51 @@ namespace dynamic_source
          }
          return ::null();
       }
-      script_instance * pinstance = get(strName);
-      if(pinstance != ::null())
+      pinstance = get(strName);
+
+      if(pinstance == ::null())
+         return false;
+
+      pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
+
+      pinstance->dinit();
+
+      if(pinstance->main_instance()->m_iDebug > 0)
       {
-         pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
-         pinstance->dinit();
-         if(pinstance->main_instance()->m_iDebug > 0)
+
+         pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
+
+         pinstance->m_strDebugThisScript = strName;
+
+         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
+
+         if(pdsscript != ::null())
          {
-            pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
-            pinstance->m_strDebugThisScript = strName;
-            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
-            if(pdsscript != ::null())
+
+            try
             {
-               try
+
+               if(pdsscript->m_memfileError.get_length() > 0)
                {
-                  if(pdsscript->m_memfileError.get_length() > 0)
-                  {
-                     pinstance->output_file() << pdsscript->m_memfileError;
-                  }
+
+                  pinstance->output_file() << pdsscript->m_memfileError;
+
                }
-               catch(...)
-               {
-               }
+
+            }
+            catch(...)
+            {
+
             }
 
          }
+
       }
-      if(pinstance != ::null())
-      {
-         pinstance->run();
-      }
-      return pinstance;
+
+      pinstance->run();
+      
+      return true;
+
    }
 
    void script_manager::LoadEnv()

@@ -34,8 +34,8 @@ namespace dynamic_source
       catch(...)
       {
       }
-      m_pscriptScriptInstance.release();
-      m_pscript.release();
+      //m_pscriptScriptInstance.release();
+//      m_pscript.release();
    }
 
 

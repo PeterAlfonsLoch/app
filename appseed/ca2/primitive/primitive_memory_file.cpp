@@ -324,7 +324,7 @@ namespace primitive
    ::primitive::memory_base * memory_file::create_memory()
    {
       
-      return new primitive::memory(this);
+      return canew(primitive::memory(this));
 
    }
 

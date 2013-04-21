@@ -212,7 +212,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
          bool m_b_enable_pool; ///< Connection pool enabled if true
          int32_t m_next_trigger_id; ///< Unique trigger id counter
-         map<int32_t, int32_t, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
+         map<int32_t, int32_t, sp(socket), sp(socket) > m_trigger_src; ///< mapping trigger id to source socket
          map<int32_t, int32_t, map<socket *, socket *, bool, bool>, map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
          bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
       };

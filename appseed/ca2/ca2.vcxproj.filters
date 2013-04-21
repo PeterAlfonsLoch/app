@@ -4073,6 +4073,9 @@
     <ClInclude Include="database\databaseuser\list_data.h">
       <Filter>Header Files\database\databaseuser</Filter>
     </ClInclude>
+    <ClInclude Include="base\collection\aaa_want_to_remove_xxx_collection_base_array.h">
+      <Filter>Header Files\base\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">

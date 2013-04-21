@@ -178,14 +178,17 @@ namespace ca
       UNREFERENCED_PARAMETER(nLevel);
       UNREFERENCED_PARAMETER(nLine);
       UNREFERENCED_PARAMETER(pszFileName);
-      single_lock sl(((log *)this)->m_pcsTrace, TRUE);
+      single_lock sl(((log *)this)->m_pcsTrace);
 
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
+
+      sl.lock();
       log * plog = (log *) this;
       ::ca::trace::category & category = plog->m_ptrace->m_map[dwCategory];
       if(category.m_estatus == ::ca::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
+      sl.unlock();
       string str;
       str.FormatV(pszFormat, args);
       va_end(args);
@@ -217,6 +220,7 @@ namespace ca
       string strTick;
       strTick.Format(" %011d ", ::get_tick_count() - g_dwFirstTick);
 
+      sl.lock();
       if(plog->m_pfile == ::null()
       || plog->m_iYear != time.GetYear()
       || plog->m_iMonth != time.GetMonth()

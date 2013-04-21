@@ -190,7 +190,7 @@ namespace dynamic_source
       script_instance * get(const string & strName);
       using ::ca::thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
-      script_instance * get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strName);
+      bool get_output_internal(::dynamic_source::script_instance * & pinstance, ::dynamic_source::script_instance * pinstanceParent, const string & strName);
       using thread::run;
       void run(const char * lpcszName);
 

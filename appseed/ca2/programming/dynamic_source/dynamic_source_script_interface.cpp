@@ -10,7 +10,7 @@ namespace dynamic_source
 
       if(get_app() != ::null())
       {
-         m_spmemoryfileFallback = new ::http::memory_file(get_app());
+         m_spmemoryfileFallback = canew(::http::memory_file(get_app()));
       }
       
       m_pinstanceMain      = ::null();
@@ -60,12 +60,12 @@ namespace dynamic_source
 
    bool script_interface::main_finalize()
    {
-      m_pinstanceMain      .release();
-      m_pinstanceParent    .release();
       m_pnetnodesocket     .release();
       m_pmanager           .release();
 
       m_pscript            .release();
+      m_pinstanceMain      .release();
+      m_pinstanceParent    .release();
 
       return true;
 

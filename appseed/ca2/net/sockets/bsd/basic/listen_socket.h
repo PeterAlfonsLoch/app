@@ -251,7 +251,7 @@ namespace sockets
             close_socket(a_s);
             return;
          }
-         socket *tmp = m_bHasCreate ? m_creator -> create() : new X(Handler());
+         sp(socket) tmp = m_bHasCreate ? m_creator -> create() : canew(X(Handler()));
          tmp->m_strCat = m_strCat;
          tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
          tmp -> SetIpv6( IsIpv6() );

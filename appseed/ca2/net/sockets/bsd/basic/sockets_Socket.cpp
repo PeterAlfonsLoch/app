@@ -784,7 +784,8 @@ namespace sockets
    void socket::DetachSocket()
    {
       SetDetached();
-      m_pThread = new socket_thread(this);
+      m_pThread = new socket_thread(this, true);
+      m_pThread->begin();
    }
 
 
@@ -824,12 +825,11 @@ namespace sockets
    }
 
 
-   socket::socket_thread::socket_thread(socket * p) :
+   socket::socket_thread::socket_thread(socket * p, bool bRefactorDummy) :
       ::ca::ca(p->get_app()),
       thread(p->get_app()),
       m_psocket(p)
    {
-      begin();
    }
 
    socket::socket_thread::socket_thread(const socket_thread& s) :

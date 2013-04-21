@@ -31,12 +31,12 @@ namespace sockets
          virtual public ::ca::thread
       {
       public:
-         socket_thread(socket * psocket);
+         socket_thread(socket * psocket, bool bCompileRefactoryDummy);
          ~socket_thread();
 
          virtual int32_t run();
          socket * GetSocket() const { return m_psocket; }
-         socket * m_psocket;
+         sp(socket) m_psocket;
 
       private:
          socket_thread(const socket_thread& s);
@@ -54,7 +54,7 @@ namespace sockets
          void SetSource(socket *x) { m_src = x; }
 
       private:
-         socket *m_src;
+         sp(socket) m_src;
       };
 
       enum e_status
@@ -64,9 +64,9 @@ namespace sockets
       };
 
 
-      SOCKET                  m_socket; ///< File descriptor
-      socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
-      ::primitive::memory_file        m_memfileInput;
+      SOCKET                     m_socket; ///< File descriptor
+      socket_handler_base &      m_handler; ///< Reference of socket_handler_base in control of this socket
+      ::primitive::memory_file   m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       callback *              m_pcallback;
@@ -80,7 +80,7 @@ namespace sockets
       int32_t                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
       bool                    m_bClose; ///< close and delete flag
-      socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      sp(socket)                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
       sp(::ca::file)             m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< set by SetTimeout
@@ -705,8 +705,8 @@ namespace sockets
    };
 
 
-   typedef map < SOCKET, SOCKET, socket *, socket * > socket_map;
-   typedef ::comparable_eq_list < socket * > socket_list;
+   typedef map < SOCKET, SOCKET, sp(socket), sp(socket) > socket_map;
+   typedef ::comparable_eq_list < sp(socket) > socket_list;
 
 
 } // namespace sockets

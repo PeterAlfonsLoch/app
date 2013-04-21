@@ -101,7 +101,7 @@ namespace sockets
          SOCKET s;
          while(pos != ::null())
          {
-            socket * p = ::null();
+            sp(socket) p = ::null();
             m_sockets.get_next_assoc(pos, s, p);
             if(p)
             {
@@ -161,7 +161,7 @@ namespace sockets
    }
 
 
-   void socket_handler::LogError(socket *p,const string & user_text,int32_t err,const string & sys_err,::ca::log::e_level t)
+   void socket_handler::LogError(socket * p,const string & user_text,int32_t err,const string & sys_err,::ca::log::e_level t)
    {
       if (m_stdlog)
       {
@@ -170,7 +170,7 @@ namespace sockets
    }
 
 
-   void socket_handler::add(socket *p)
+   void socket_handler::add(socket * p)
    {
       if (p -> GetSocket() == INVALID_SOCKET)
       {
@@ -181,11 +181,11 @@ namespace sockets
          }
          return;
       }
-      socket * plookup;
+      sp(socket) plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
-         LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::ca::log::level_fatal);
-         m_delete.add_tail(p);
+         LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::ca::log::level_info);
+         //m_delete.add_tail(p);
          return;
       }
       m_add[p -> GetSocket()] = p;
@@ -287,11 +287,11 @@ namespace sockets
          }
          POSITION pos = m_add.get_start_position();
          SOCKET s;
-         socket *p;
+         sp(socket) p;
          m_add.get_next_assoc(pos, s, p);
          //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int32_t)s, (int32_t)m_add.get_size(), (int32_t)ignore);
          //
-         socket *plookup;
+         sp(socket) plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
          {
             LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::ca::log::level_fatal);
@@ -303,14 +303,14 @@ namespace sockets
          }
          if (!p -> CloseAndDelete())
          {
-            stream_socket *scp = dynamic_cast<stream_socket *>(p);
+            sp(stream_socket)scp = (p);
             if (scp && scp -> Connecting()) // 'open' called before adding socket
             {
                set(s,false,true);
             }
             else
             {
-               tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
+               sp(tcp_socket)tcp = (p);
                bool bWrite = tcp ? tcp -> GetOutputLength() != 0 : false;
                if (p -> IsDisableRead())
                {
@@ -377,7 +377,7 @@ namespace sockets
 
                SOCKET s = ppair->m_element1;
 
-               class socket * psocket = ppair->m_element2;
+               sp(class socket) psocket = ppair->m_element2;
 
                TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number());
 //               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
@@ -387,7 +387,7 @@ namespace sockets
 
                if(psocket->Timeout(tnow))
                {
-                  stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
+                  sp(stream_socket) pstreamsocket = (psocket);
                   if(pstreamsocket != ::null() && pstreamsocket->Connecting())
                      psocket->OnConnectTimeout();
                   else
@@ -449,7 +449,7 @@ namespace sockets
                   FD_SET(i, &efds);
                   t = true;
                }
-               socket * psocket;
+               sp(socket) psocket;
                if (t && m_sockets.Lookup(i, psocket))
                {
                   TRACE("Bad fd in fd_set: %d\n", i);
@@ -477,7 +477,7 @@ namespace sockets
 		      FD_ZERO(&efds);
 
             SOCKET s;
-            socket * psocket;
+            sp(socket) psocket;
             POSITION pos = m_sockets.get_start_position();
             while(pos != ::null())
             {
@@ -562,7 +562,7 @@ namespace sockets
             SOCKET socket = m_fds.get_next(pos);;
             if (FD_ISSET(socket, &rfds))
             {
-               class socket * psocket = ::null();
+               sp(class socket) psocket = ::null();
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -583,7 +583,7 @@ namespace sockets
             }
             if (FD_ISSET(socket, &wfds))
             {
-               class socket * psocket = ::null();
+               sp(class socket) psocket = ::null();
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -604,13 +604,13 @@ namespace sockets
             }
             if(FD_ISSET(socket, &efds))
             {
-               class socket * psocket = ::null();
+               sp(class socket) psocket = ::null();
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   time_t tnow = time(::null());
                     if(psocket->Timeout(tnow))
                   {
-                     stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
+                     sp(stream_socket) pstreamsocket = (psocket);
                      if(pstreamsocket != ::null() && pstreamsocket->Connecting())
                         psocket->OnConnectTimeout();
                      else
@@ -640,14 +640,14 @@ namespace sockets
          for(; pos != ::null(); )
          {
             SOCKET socket = tmp.get_next(pos);
-            class socket * psocket = ::null();
+            sp(class socket) psocket = ::null();
             if(!m_sockets.Lookup(socket, psocket)) // not found
             {
                LogError(::null(), "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
             }
             if(psocket != ::null())
             {
-               tcp_socket *tcp = dynamic_cast<tcp_socket *>(psocket);
+               sp(tcp_socket)tcp = (psocket);
                if(tcp != ::null())
                {
                   if (tcp -> CallOnConnect() && psocket -> Ready() )
@@ -691,7 +691,7 @@ namespace sockets
          POSITION pos = m_fds_detach.get_head_position();
          for(; pos != ::null(); )
          {
-            socket *p = ::null();
+            sp(socket)p = ::null();
             SOCKET socket = m_fds_detach.get_next(pos);
             if(!m_sockets.Lookup(socket, p)) // found
             {
@@ -701,10 +701,26 @@ namespace sockets
             {
                if (p -> IsDetach())
                {
-                  set(p -> GetSocket(), false, false, false);
-                  // After DetachSocket(), all calls to Handler() will return a reference
-                  // to the new slave socket_handler running in the new thread.
-                  p -> DetachSocket();
+                  if(p->GetSocket() != INVALID_SOCKET)
+                  {
+                  
+                     set(p -> GetSocket(), false, false, false);
+
+                     // After DetachSocket(), all calls to Handler() will return a reference
+                     // to the new slave socket_handler running in the new thread.
+                     try
+                     {
+
+                        p -> DetachSocket();
+
+                     }
+                     catch(...)
+                     {
+
+                     }
+
+                  }
+
                   // Adding the file descriptor to m_fds_erase will now also remove the
                   // socket from the detach queue - tnx knightmad
                   m_fds_erase.add_tail(p -> GetSocket());
@@ -728,7 +744,7 @@ namespace sockets
             POSITION pos = tmp.get_head_position();
             for(; pos != ::null();)
             {
-               socket *p = ::null();
+               sp(socket)p = ::null();
                SOCKET socket = tmp.get_next(pos);
                if (!m_sockets.Lookup(socket, p)) // not found
                {
@@ -741,7 +757,7 @@ namespace sockets
                {
                   if (p -> Timeout(tnow))
                   {
-                     stream_socket *scp = dynamic_cast<stream_socket *>(p);
+                     sp(stream_socket)scp = (p);
                      if (scp && scp -> Connecting())
                         p -> OnConnectTimeout();
                      else
@@ -761,14 +777,14 @@ namespace sockets
          for(; pos != ::null();)
          {
             SOCKET socket = tmp.get_next(pos);
-            class socket *p = ::null();
+            sp(class socket)p = ::null();
             if(m_sockets.Lookup(socket, p))
             {
                LogError(::null(), "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
             }
             if (p)
             {
-               tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
+               sp(tcp_socket)tcp = (p);
                if(tcp != ::null())
                {
                   if(tcp -> RetryClientConnect())
@@ -803,7 +819,7 @@ namespace sockets
          while(pos != ::null())
          {
             SOCKET socket = tmp.get_next(pos);
-            class socket * p = ::null();
+            sp(class socket) p = ::null();
             if(!m_sockets.Lookup(socket, p)) // not found
             {
                if(!m_add.Lookup(socket, p))
@@ -815,7 +831,7 @@ namespace sockets
             {
                if (p -> CloseAndDelete() )
                {
-                  tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
+                  sp(tcp_socket)tcp = (p);
                   // new graceful tcp - flush and close timeout 5s
                   if (tcp && p -> IsConnected() && tcp -> GetFlushBeforeClose() &&
                      !tcp -> IsSSL() &&
@@ -900,8 +916,8 @@ namespace sockets
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
-         ::sockets::socket * psocket = ::null();
-         if(m_sockets.Lookup(socket, psocket))
+         sp(::sockets::socket) psocket = ::null();
+         /*if(m_sockets.Lookup(socket, psocket))
          {
             if(m_slave)
             {
@@ -915,9 +931,9 @@ namespace sockets
                   {
                   }
                }
-            }
+            }*/
             m_sockets.remove_key(socket);
-         }
+         //}
          check_max_fd = true;
       }
 
@@ -929,7 +945,7 @@ namespace sockets
       // remove add's that fizzed
       while(m_delete.get_size() > 0)
       {
-         socket * p = m_delete.remove_head();
+         sp(socket) p = m_delete.remove_head();
          p -> OnDelete();
          if (p -> DeleteByHandler()
             && !(m_slave ^ p -> IsDetached())
@@ -944,7 +960,7 @@ namespace sockets
                while(posSrc != ::null())
                {
                   int32_t id = 0;
-                  class socket *src = ::null();
+                  sp(class socket) src = ::null();
                   m_trigger_src.get_next_assoc(posSrc, id, src);
                   if (src == p)
                   {
@@ -973,13 +989,13 @@ namespace sockets
    }
 
 
-   bool socket_handler::Resolving(socket *p0)
+   bool socket_handler::Resolving(socket * p0)
    {
       return m_resolve_q.PLookup(p0) != ::null();
    }
 
 
-   bool socket_handler::Valid(socket *p0)
+   bool socket_handler::Valid(socket * p0)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != ::null())
@@ -1033,10 +1049,10 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve(socket *p,const string & host,port_t port)
+   int32_t socket_handler::Resolve(socket * p, const string & host,port_t port)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, host, port);
+      sp(resolv_socket) resolv = canew(resolv_socket(*this, p, host, port));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
@@ -1052,10 +1068,10 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve6(socket *p,const string & host,port_t port)
+   int32_t socket_handler::Resolve6(socket * p,const string & host,port_t port)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, host, port, true);
+      sp(resolv_socket) resolv = canew(resolv_socket(*this, p, host, port, true));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
@@ -1070,10 +1086,10 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve(socket *p,in_addr a)
+   int32_t socket_handler::Resolve(socket * p, in_addr a)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, a);
+      sp(resolv_socket) resolv = canew(resolv_socket(*this, p, a));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
@@ -1088,10 +1104,10 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve(socket *p,in6_addr& a)
+   int32_t socket_handler::Resolve(socket * p, in6_addr& a)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, a);
+      sp(resolv_socket) resolv = canew(resolv_socket(*this, p, a));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
@@ -1111,7 +1127,7 @@ namespace sockets
       if (!m_resolver)
       {
          m_resolver_port = port;
-         m_resolver = new resolv_server(get_app(), port);
+         m_resolver = canew(resolv_server(get_app(), port));
       }
    }
 
@@ -1166,7 +1182,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != ::null())
       {
-         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_element2);
+         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_element2.m_p);
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
@@ -1197,7 +1213,7 @@ namespace sockets
    }
 
 
-   void socket_handler::remove(socket *p)
+   void socket_handler::remove(socket * p)
    {
       bool b;
       if(m_resolve_q.Lookup(p, b))
@@ -1262,7 +1278,7 @@ namespace sockets
          POSITION pos = m_delete.get_head_position();
          while(pos != ::null())
          {
-            socket * p = m_delete.get_next(pos);
+            sp(socket) p = m_delete.get_next(pos);
             if(p->GetSocket() == s)
             {
                found = true;
@@ -1310,7 +1326,7 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::TriggerID(socket *src)
+   int32_t socket_handler::TriggerID(socket * src)
    {
       int32_t id = m_next_trigger_id++;
       m_trigger_src[id] = src;
@@ -1318,7 +1334,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Subscribe(int32_t id, socket *dst)
+   bool socket_handler::Subscribe(int32_t id, socket * dst)
    {
       if(m_trigger_src.PLookup(id) != ::null())
       {
@@ -1335,7 +1351,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Unsubscribe(int32_t id, socket *dst)
+   bool socket_handler::Unsubscribe(int32_t id, socket * dst)
    {
       if (m_trigger_src.PLookup(id) != ::null())
       {
@@ -1360,7 +1376,7 @@ namespace sockets
          map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
          while(ppair != ::null());
          {
-            socket * dst = ppair->m_element1;
+            sp(socket) dst = ppair->m_element1;
             if (Valid(dst))
             {
                dst->OnTrigger(id, data);

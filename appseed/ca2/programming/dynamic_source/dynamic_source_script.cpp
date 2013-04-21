@@ -451,7 +451,7 @@ namespace dynamic_source
       script_instance * pinstance;
       if(m_lpfnCreateInstance == ::null())
       {
-         pinstance = new script_instance(this);
+         pinstance = canew(script_instance(this));
       }
       else
       {

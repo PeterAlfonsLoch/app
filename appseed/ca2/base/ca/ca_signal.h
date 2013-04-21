@@ -110,7 +110,8 @@ namespace ca
 
    };
 
-   class CLASS_DECL_ca2 signal
+   class CLASS_DECL_ca2 signal :
+      virtual public ::ca::c
    {
    protected:
 
@@ -157,7 +158,7 @@ namespace ca
       template < class T >
       void connect(T * psignalizable, void (T::*pfn)(signal_object *))
       {
-         signal_delegate_instance < T > * pdelegate = new signal_delegate_instance < T >(psignalizable);
+         signal_delegate_instance < T > * pdelegate = canew(signal_delegate_instance < T >(psignalizable));
          pdelegate->m_pfn = pfn;
          m_delegatea.add(pdelegate);
          psignalizable->register_signal(this);

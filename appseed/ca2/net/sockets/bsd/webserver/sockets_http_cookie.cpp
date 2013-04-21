@@ -361,7 +361,7 @@ void cookies::parse_header(const char * psz)
             c.m_strNameLow = c.m_strName;
             c.m_strNameLow.make_lower();
             c.m_varValue = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
-            add(new class cookie(c));
+            add(canew(class cookie(c)));
          }
       }
       pszParam = pszParamEnd + 1;

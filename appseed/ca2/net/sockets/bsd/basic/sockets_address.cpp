@@ -8,7 +8,7 @@ namespace sockets
    address::address(sp(::ca::application) papp, const in_addr & a, int32_t iPort)
    {
 
-      m_pipv4 = new ipv4_address(papp, a, iPort);
+      m_pipv4 = canew(ipv4_address(papp, a, iPort));
 
    }
 
@@ -16,7 +16,7 @@ namespace sockets
    address::address(sp(::ca::application) papp, const in6_addr & a, int32_t iPort)
    {
 
-      m_pipv6 = new ipv6_address(papp, a, iPort);
+      m_pipv6 = canew(ipv6_address(papp, a, iPort));
 
    }
 
@@ -29,7 +29,7 @@ namespace sockets
          struct sockaddr_in6 *p = (struct sockaddr_in6 *)&sa;
          if(p -> sin6_family == AF_INET6)
          {
-            m_pipv6 = new ipv6_address(get_app(), p -> sin6_addr,ntohs(p -> sin6_port));
+            m_pipv6 = canew(ipv6_address(get_app(), p -> sin6_addr,ntohs(p -> sin6_port)));
             m_pipv6->SetFlowinfo(p -> sin6_flowinfo);
 #ifndef _WIN32
             m_pipv6->SetScopeId(p -> sin6_scope_id);
@@ -42,7 +42,7 @@ namespace sockets
          struct sockaddr_in *p = (struct sockaddr_in *)&sa;
          if (p -> sin_family == AF_INET)
          {
-            m_pipv4 = new ipv4_address(get_app(), p->sin_addr, ntohs(p->sin_port));
+            m_pipv4 = canew(ipv4_address(get_app(), p->sin_addr, ntohs(p->sin_port)));
             m_strServiceName = itoa_dup(p->sin_port);
          }
       }
@@ -132,11 +132,11 @@ namespace sockets
 
       if(address.m_pipv6 != ::null())
       {
-         m_pipv6 = new ipv6_address(*address.m_pipv6);
+         m_pipv6 = canew(ipv6_address(*address.m_pipv6));
       }
       else if(address.m_pipv4 != ::null())
       {
-         m_pipv4 = new ipv4_address(*address.m_pipv4);
+         m_pipv4 = canew(ipv4_address(*address.m_pipv4));
       }
 
       m_strServiceName      = address.m_strServiceName;

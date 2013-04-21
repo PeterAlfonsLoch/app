@@ -146,7 +146,8 @@ namespace ca
       {
       public:
 
-         class CLASS_DECL_ca2 HandlerItemBase
+         class CLASS_DECL_ca2 HandlerItemBase :
+            virtual public ::ca::c
          {
          public:
             virtual ~HandlerItemBase();
@@ -182,7 +183,7 @@ namespace ca
             UINT                 m_uiCode;
             UINT                 m_uiIdStart;
             UINT                 m_uiIdEnd;
-            ::ca::signal *       m_psignal;
+            sp(::ca::signal)     m_psignal;
 
             HandlerItemArray     m_handlera;
 
@@ -247,9 +248,9 @@ namespace ca
                psignal->m_uiIdStart       = uiIdStart;
                psignal->m_uiIdEnd         = uiIdEnd;
                psignal->m_eprototype      = GetMessagePrototype(message, 0);
-               psignal->m_psignal         = new ::ca::signal();
+               psignal->m_psignal         = canew(::ca::signal());
                psignal->m_psignal->connect(psignalizable, pfn);
-               HandlerItem <T> * pitem    = new HandlerItem<T>;
+               HandlerItem <T> * pitem    = canew(HandlerItem < T >);
                pitem->m_psignalizable     = psignalizable;
                psignal->m_handlera.add(pitem);
                m_signala.add(psignal);
@@ -261,7 +262,7 @@ namespace ca
                // If a matching Signal is found, connect to
                // this signal.
                psignal->m_psignal->connect(psignalizable, pfn);
-               HandlerItem <T> * pitem    = new HandlerItem<T>;
+               HandlerItem <T> * pitem    = canew(HandlerItem<T>);
                pitem->m_psignalizable     = psignalizable;
                psignal->m_handlera.add(pitem);
             }

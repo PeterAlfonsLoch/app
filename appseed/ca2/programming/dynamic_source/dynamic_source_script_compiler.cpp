@@ -660,7 +660,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance (dynamic_source::script * pscript)\r\n";
       strDest += "{\r\n";
-      strDest += "   return dynamic_cast < dynamic_source::script_instance * > (new " + m_pmanager->m_strNamespace + "_script(pscript));\r\n";
+      strDest += "   return dynamic_cast < dynamic_source::script_instance * > (canew(" + m_pmanager->m_strNamespace + "_script(pscript)));\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
       strDest += "void " + m_pmanager->m_strNamespace + "_script::run()\r\n";

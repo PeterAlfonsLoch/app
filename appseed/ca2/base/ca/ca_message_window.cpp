@@ -29,7 +29,7 @@ namespace ca
    bool message_window_simple_callback::initialize_message_window(const char * pszName)
    {
 
-      m_spuiMessage = new user::interaction(get_app());
+      m_spuiMessage = canew(user::interaction(get_app()));
 
       return m_spuiMessage->create_message_window(pszName, this);
 
