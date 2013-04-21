@@ -665,6 +665,10 @@ public:
    double_array();
    double_array(const double_array & array);
    virtual ~double_array();
+
+   virtual int64_t add_ref();
+   virtual int64_t release();
+
 };
 
 class CLASS_DECL_ca2 byte_array :
