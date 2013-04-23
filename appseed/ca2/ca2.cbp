@@ -1550,6 +1550,7 @@
 		<Unit filename="net/sockets/bsd/basic/sockets_SocketHandler.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_StreamSocket.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_address.cpp" />
+		<Unit filename="net/sockets/bsd/basic/sockets_listen_socket.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_net.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_ssl_client_context.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_ssl_client_context.h" />
@@ -1923,6 +1924,7 @@
 		<Unit filename="programming/dynamic_source/dynamic_source_script_interface.h" />
 		<Unit filename="programming/dynamic_source/dynamic_source_script_manager.cpp" />
 		<Unit filename="programming/dynamic_source/dynamic_source_script_manager.h" />
+		<Unit filename="programming/dynamic_source/dynamic_source_session.cpp" />
 		<Unit filename="programming/javascript/javascript.cpp" />
 		<Unit filename="programming/javascript/javascript.h" />
 		<Unit filename="programming/javascript/javascript_functions.cpp" />
