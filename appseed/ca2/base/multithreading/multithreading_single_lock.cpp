@@ -32,6 +32,7 @@ bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
       return FALSE;
    try
    {
+
       m_bAcquired = m_psyncobject->lock(durationTimeOut);
    }
    catch(...)

@@ -56,10 +56,9 @@ namespace ca
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(LPARAM lparam)
+   smart_pointer < T > ::smart_pointer(lparam lparam)
    {
-      m_p = (T *) lparam;
-      ::ca::add_ref(m_p);
+      m_p = (T *) lparam.m_lparam;
    }
 
    template < class T >
@@ -127,17 +126,17 @@ namespace ca
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator LPARAM ()
+   inline smart_pointer < T > ::operator lparam ()
    {
       ::ca::add_ref(m_p);
-      return (LPARAM) m_p;
+      return lparam(m_p);
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator LPARAM () const
+   inline smart_pointer < T > ::operator lparam () const
    {
       ::ca::add_ref(((smart_pointer *) this)->m_p);
-      return (LPARAM) m_p;
+      return lparam(m_p);
    }
 
 /*   template < class T >

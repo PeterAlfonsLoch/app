@@ -102,7 +102,10 @@ namespace sockets
 
    socket::~socket()
    {
-      Handler().remove(this);
+      if(&Handler() != ::null())
+      {
+         Handler().remove(this);
+      }
       if (m_socket != INVALID_SOCKET
           && !m_bRetain
          )
@@ -156,21 +159,30 @@ namespace sockets
    {
       if (m_socket == INVALID_SOCKET) // this could happen
       {
-         Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::ca::log::level_warning);
+         if(!is_null(Handler()))
+         {
+            Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::ca::log::level_warning);
+         }
          return 0;
       }
       int32_t n;
       if ((n = ::closesocket(m_socket)) == -1)
       {
-         // failed...
-         Handler().LogError(this, "close", Errno, StrError(Errno), ::ca::log::level_error);
+         if(!is_null(Handler()))
+         {
+            // failed...
+            Handler().LogError(this, "close", Errno, StrError(Errno), ::ca::log::level_error);
+         }
       }
-      Handler().set(m_socket, false, false, false); // remove from fd_set's
-      Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
-      Handler().AddList(m_socket, LIST_DETACH, false);
-      Handler().AddList(m_socket, LIST_TIMEOUT, false);
-      Handler().AddList(m_socket, LIST_RETRY, false);
-      Handler().AddList(m_socket, LIST_CLOSE, false);
+      if(!is_null(Handler()))
+      {
+         Handler().set(m_socket, false, false, false); // remove from fd_set's
+         Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
+         Handler().AddList(m_socket, LIST_DETACH, false);
+         Handler().AddList(m_socket, LIST_TIMEOUT, false);
+         Handler().AddList(m_socket, LIST_RETRY, false);
+         Handler().AddList(m_socket, LIST_CLOSE, false);
+      }
       m_socket = INVALID_SOCKET;
       return n;
    }
@@ -842,6 +854,10 @@ namespace sockets
 
    socket::socket_thread::~socket_thread()
    {
+      if(m_psocket.is_set())
+      {
+         m_psocket->m_psocketParent.release();
+      }
    }
 
 
@@ -851,18 +867,25 @@ namespace sockets
       h.SetSlave();
       h.add(m_psocket);
       m_psocket -> SetSlaveHandler(&h);
-      m_psocket -> OnDetached();
-      while (h.get_count() && get_run())
+      try
       {
-         try
+         m_psocket -> OnDetached();
+         while (h.get_count() && get_run())
          {
-            h.Select(30, 0);
-         }
-         catch(...)
-         {
-            break;
+            try
+            {
+               h.Select(30, 0);
+            }
+            catch(...)
+            {
+               break;
+            }
          }
       }
+      catch(...)
+      {
+      }
+      m_psocket->SetSlaveHandler(::null());
       return 0;
    }
 

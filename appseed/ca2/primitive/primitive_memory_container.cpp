@@ -111,7 +111,7 @@ namespace primitive
 
       if(m_spmemory.is_null())
       {
-         (const_cast < memory_container * > (this))->m_spmemory = (const_cast < memory_container * > (this))->create_memory();
+         m_spmemory = create_memory();
       }
 
       return m_spmemory;
@@ -121,7 +121,7 @@ namespace primitive
    ::primitive::memory_base * memory_container::create_memory()
    {
 
-      return new primitive::memory(this);
+      return canew(primitive::memory(this));
 
    }
 

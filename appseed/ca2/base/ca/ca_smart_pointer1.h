@@ -33,7 +33,7 @@ namespace ca
 
 
       smart_pointer();
-      smart_pointer(LPARAM lparam);
+      smart_pointer(lparam lparam);
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(smart_pointer < T > && t);
       smart_pointer(const allocatorsp & t);
@@ -88,8 +88,8 @@ namespace ca
       inline operator T * const () const;
       inline T * get_();
       inline const T * get_() const;
-      inline operator LPARAM ();
-      inline operator LPARAM () const;
+      inline operator lparam ();
+      inline operator lparam () const;
       //inline operator void * ();
       //inline operator void * () const;
 

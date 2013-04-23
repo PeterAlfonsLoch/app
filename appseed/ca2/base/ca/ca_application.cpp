@@ -480,35 +480,27 @@ finishedCa2ModuleFolder:;
       }
 
       ::ca::thread::s_bAllocReady = true;
-      if(::ca::thread_sp::m_p == ::null())
+
+      if(::ca::thread::m_p == ::null())
       {
-         ::ca::thread_sp::create(allocer());
-         ::ca::smart_pointer < application_base >::create(allocer());
-         ::ca::smart_pointer < application_base >::m_p->construct();
-         ::ca::smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
-         ::ca::add_ref(this);
-         ::ca::thread_sp::m_p = smart_pointer < application_base >::m_p->::ca::thread_sp::m_p;
-         ::ca::add_ref(smart_pointer < application_base >::m_p->::ca::thread_sp::m_p);
-         ::ca::thread_sp::m_p->set_p(this);
-         ::ca::add_ref(this);
+
+         ::ca::thread::m_p.create(allocer());
+         ::ca::thread::m_p->m_p = this;
+
       }
-      else
-      {
-         ::ca::smart_pointer < application_base >::create(allocer());
-         ::ca::smart_pointer < application_base >::m_p->construct();
-         ::ca::smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
-         ::ca::add_ref(this);
-         //smart_pointer < application_base >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
-         //::ca::add_ref(::ca::thread_sp::m_p);
-      }
+
+      ::ca::application_base::m_p.create(allocer());
+      ::ca::application_base::m_p->construct();
+      ::ca::application_base::m_p->::ca::application_base::m_p = this;
+
       if(::ca::get_thread() == ::null())
       {
          set_thread(dynamic_cast < ::ca::thread * > (this));
       }
       //m_pappDelete = this;
-      //::ca::thread_sp::m_p->m_pappDelete = this;
+      //::ca::thread::m_p->m_pappDelete = this;
 
-      if(!smart_pointer < application_base >::m_p->process_initialize())
+      if(!::ca::application_base::m_p->process_initialize())
             return false;
 
       return true;
@@ -664,7 +656,7 @@ finishedCa2ModuleFolder:;
 
 
 
-      if(!smart_pointer < application_base >::m_p->initialize1())
+      if(!::ca::application_base::m_p->initialize1())
          return false;
 
       return true;
@@ -675,7 +667,7 @@ finishedCa2ModuleFolder:;
    bool application::initialize2()
    {
 
-      if(!smart_pointer < application_base >::m_p->initialize2())
+      if(!::ca::application_base::m_p->initialize2())
          return false;
 
       application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize2);
@@ -693,7 +685,7 @@ finishedCa2ModuleFolder:;
       if(!signal.m_bOk)
          return false;
 
-      if(!smart_pointer < application_base >::m_p->initialize3())
+      if(!::ca::application_base::m_p->initialize3())
          return false;
 
       return true;
@@ -839,7 +831,7 @@ finishedCa2ModuleFolder:;
          return false;
       }
 
-      if(!smart_pointer < application_base >::m_p->initialize2())
+      if(!::ca::application_base::m_p->initialize2())
          return false;
 
       return ::ca::application::initialize2();
@@ -979,7 +971,7 @@ finishedCa2ModuleFolder:;
       try
       {
 
-         ::ca::thread         * pthread      = ::ca::thread_sp::detach();
+         ::ca::thread         * pthread      = ::ca::thread::m_p.detach();
 
          if(pthread != ::null())
          {
@@ -1013,7 +1005,7 @@ finishedCa2ModuleFolder:;
       try
       {
 
-         ::ca::application_base   * papp         = ::ca::smart_pointer < ::ca::application_base >::detach();
+         ::ca::application_base   * papp         = ::ca::application_base::m_p.detach();
 
          if(papp != ::null() && papp != this && !papp->is_system())
          {
@@ -3048,10 +3040,10 @@ namespace ca
    void application::ShowWaitCursor(bool bShow)
    {
 
-      if(::ca::smart_pointer < ::ca::application_base >::m_p == ::null())
+      if(::ca::application_base::m_p == ::null())
          return;
 
-      ::ca::smart_pointer < ::ca::application_base >::m_p->ShowWaitCursor(bShow);
+      ::ca::application_base::m_p->ShowWaitCursor(bShow);
 
    }
 
@@ -4249,12 +4241,12 @@ namespace ca
    // Temporary map management (locks temp map on current thread)
    void application::LockTempMaps()
    {
-      ::ca::smart_pointer < application_base >::m_p->LockTempMaps();
+      ::ca::application_base::m_p->LockTempMaps();
    }
 
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return ::ca::smart_pointer < application_base >::m_p->UnlockTempMaps(bDeleteTemp);
+      return ::ca::application_base::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    void application::TermThread(HINSTANCE hInstTerm)
@@ -4271,39 +4263,39 @@ namespace ca
 #ifdef METROWIN
    sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data(pdata);
+      return ::ca::application_base::m_p->window_from_os_data(pdata);
    }
 
    sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #else
    sp(::ca::window) application::window_from_os_data(void * pdata)
    {
 
-      if(::ca::smart_pointer < application_base >::m_p == ::null())
+      if(::ca::application_base::m_p == ::null())
          return ::null();
 
-      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data(pdata);
+      return ::ca::application_base::m_p->window_from_os_data(pdata);
 
    }
 
    sp(::ca::window) application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer < application_base >::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
 
    sp(::ca::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::ca::smart_pointer < application_base >::m_p->FindWindow(lpszClassName, lpszWindowName);
+      return ::ca::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
    sp(::ca::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca::smart_pointer < application_base >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+      return ::ca::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
    string application::get_local_mutex_name(const char * pszAppName)
@@ -4490,14 +4482,14 @@ namespace ca
 
       request_file_query(varFile, varQuery);
 
-      //::ca::smart_pointer < application_base >::m_p->_001OnFileNew();
+      //::ca::application_base::m_p->_001OnFileNew();
    }
 
 
    sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
 
-      return ::ca::smart_pointer < application_base >::m_p->_001OpenDocumentFile(varFile);
+      return ::ca::application_base::m_p->_001OpenDocumentFile(varFile);
 
    }
 
@@ -4505,7 +4497,7 @@ namespace ca
    void application::_001EnableShellOpen()
    {
 
-      ::ca::smart_pointer < application_base >::m_p->_001EnableShellOpen();
+      ::ca::application_base::m_p->_001EnableShellOpen();
 
    }
 
@@ -4513,7 +4505,7 @@ namespace ca
    bool application::_001OnDDECommand(const char * lpcsz)
    {
       throw not_implemented(get_app());
-      //return ::ca::smart_pointer < application_base >::m_p->_001OnDDECommand(lpcsz);
+      //return ::ca::application_base::m_p->_001OnDDECommand(lpcsz);
    }
 
 //   ::ca::file_system & application::file_system()
@@ -4527,7 +4519,7 @@ namespace ca
 
    string application::get_version()
    {
-      return ::ca::smart_pointer < application_base >::m_p->get_version();
+      return ::ca::application_base::m_p->get_version();
    }
 
 
@@ -4545,22 +4537,22 @@ namespace ca
    ::ca::thread * application::GetThread()
    {
 
-      if(::ca::smart_pointer < application_base >::m_p == ::null())
+      if(::ca::application_base::m_p == ::null())
          return ::null();
 
-      return ::ca::smart_pointer < application_base >::m_p->GetThread();
+      return ::ca::application_base::m_p->GetThread();
 
    }
 
 
    void application::set_thread(::ca::thread * pthread)
    {
-      ::ca::smart_pointer < application_base >::m_p->set_thread(pthread);
+      ::ca::application_base::m_p->set_thread(pthread);
    }
 
 /*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < application_base >::m_p->graphics_from_os_data(pdata);
+      return ::ca::application_base::m_p->graphics_from_os_data(pdata);
    }*/
 
 
@@ -4589,7 +4581,7 @@ namespace ca
 
    void application::SetCurrentHandles()
    {
-      ::ca::smart_pointer < application_base >::m_p->SetCurrentHandles();
+      ::ca::application_base::m_p->SetCurrentHandles();
    }
 
 
@@ -4597,24 +4589,24 @@ namespace ca
 
    void application::get_time(timeval *p)
    {
-      ::ca::smart_pointer < application_base >::m_p->get_time(p);
+      ::ca::application_base::m_p->get_time(p);
    }
 
 #endif
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ca::smart_pointer < application_base >::m_p->set_env_var(var, value);
+      ::ca::application_base::m_p->set_env_var(var, value);
    }
 
    uint32_t application::get_thread_id()
    {
-      return ::ca::smart_pointer < application_base >::m_p->get_thread_id();
+      return ::ca::application_base::m_p->get_thread_id();
    }
 
    bool application::set_main_init_data(::ca::main_init_data * pdata)
    {
-      return ::ca::smart_pointer < application_base >::m_p->set_main_init_data(pdata);
+      return ::ca::application_base::m_p->set_main_init_data(pdata);
    }
 
 
@@ -5082,7 +5074,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          // that should be treated as ::ca::command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
-         sp(::ca::create_context) pcreatecontext = (sp(::ca::create_context)) pbase->m_lparam;
+         sp(::ca::create_context) pcreatecontext(pbase->m_lparam);
          try
          {
             on_request(pcreatecontext);
@@ -5125,7 +5117,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    void application::_001CloseApplication()
    {
       set_run(false);
-      post_thread_message(WM_QUIT, 0, 0);
+      post_thread_message(WM_QUIT);
    }
 
 
@@ -5411,12 +5403,12 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       {
          if(!directrix()->m_varTopicQuery.has_property("session_start"))
          {
-            System.post_thread_message(WM_QUIT, 0, 0);
+            System.post_thread_message(WM_QUIT);
          }
       }
       else
       {
-         System.post_thread_message(WM_QUIT, 0, 0);
+         System.post_thread_message(WM_QUIT);
       }
 
 
@@ -5435,12 +5427,12 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       {
          if(!directrix()->m_varTopicQuery.has_property("session_start"))
          {
-            System.post_thread_message(WM_QUIT, 0, 0);
+            System.post_thread_message(WM_QUIT);
          }
       }
       else
       {
-         System.post_thread_message(WM_QUIT, 0, 0);
+         System.post_thread_message(WM_QUIT);
       }
 
       return true;
@@ -5574,9 +5566,9 @@ ret:
          peventReady->ResetEvent();
       }
 
-      ::ca::thread_sp::create(allocer());
-      //dynamic_cast < ::ca::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
-      dynamic_cast < ::ca::thread * > (::ca::thread_sp::m_p)->m_p = this;
+      ::ca::thread::m_p.create(allocer());
+      //dynamic_cast < ::ca::thread * > (papp->::ca::thread::m_p)->m_p = papp->::ca::thread::m_p;
+      ::ca::thread::m_p->m_p = this;
       if(pbias != ::null())
       {
          m_biasCalling = *pbias;
@@ -5659,7 +5651,7 @@ ret:
    ::user::printer * application::get_printer(const char * pszDeviceName)
    {
 
-      return ::ca::smart_pointer < ::ca::application_base >::m_p->get_printer(pszDeviceName);
+      return ::ca::application_base::m_p->get_printer(pszDeviceName);
 
    }
 
@@ -5815,7 +5807,7 @@ ret:
       if(Application.user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
-         post_thread_message(WM_QUIT, 0, 0);
+         post_thread_message(WM_QUIT);
 
       }
 

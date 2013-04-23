@@ -7,7 +7,7 @@ class int_map :
 {
 public:
 
-   int_map(::count nBlockSize = 10);
+   int_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
    int_map(const int_map & map);
 
 
@@ -16,13 +16,15 @@ public:
 };
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::count nBlockSize) :
-   map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::ca::application * papp, ::count nBlockSize) :
+   ::ca::ca(papp),
+   map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & intmap) :
+   ::ca::ca(intmap.get_app()),
    attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >(intmap)
 {
 }

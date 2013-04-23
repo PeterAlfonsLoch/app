@@ -1747,7 +1747,7 @@ class primitive::memory & var::memory()
    }
    if(m_sp.is_null())
    {
-      m_sp = new class primitive::memory();
+      m_sp = canew(class primitive::memory());
    }
    return *dynamic_cast < class primitive::memory * > (m_sp.m_p);
 }
@@ -1758,7 +1758,7 @@ stringa & var::stra()
 {
    if(m_etype != type_stra)
    {
-      stringa * pstra = new stringa();
+      sp(stringa) pstra = canew(stringa());
       pstra->add(*this);
       set_type(type_stra, false);
       ASSERT(m_sp.is_null());
@@ -1767,7 +1767,7 @@ stringa & var::stra()
    }
    else if(m_sp.is_null())
    {
-      m_pstra = new stringa();
+      m_pstra = canew(stringa());
       m_sp = m_pstra;
    }
    return *m_pstra;
@@ -1777,7 +1777,7 @@ int_array & var::inta()
 {
    if(m_etype != type_inta)
    {
-      int_array * pia =  new int_array();
+      int_array * pia =  canew(int_array());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
          pia->add((int32_t) at(i));
@@ -1789,7 +1789,7 @@ int_array & var::inta()
    }
    else if(m_sp.is_null())
    {
-      m_pia = new int_array();
+      m_pia = canew(int_array());
       m_sp = m_pia;
    }
    return *m_pia;
@@ -1799,7 +1799,7 @@ int64_array & var::int64a()
 {
    if(m_etype != type_int64a)
    {
-      int64_array * pia =  new int64_array();
+      int64_array * pia =  canew(int64_array());
       for(index i = 0; i < array_get_count(); i++)
       {
          pia->add(at(i).operator int64_t());
@@ -1811,7 +1811,7 @@ int64_array & var::int64a()
    }
    else if(m_sp.is_null())
    {
-      m_pia64 = new int64_array();
+      m_pia64 = canew(int64_array());
       m_sp = m_pia64;
    }
    return *dynamic_cast < int64_array * > (m_sp.m_p);
@@ -1863,7 +1863,7 @@ var_array & var::vara()
    }
    else if(m_etype != type_vara)
    {
-      var_array * pvara =  new var_array();
+      var_array * pvara =  canew(var_array());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
          pvara->add(at(i));
@@ -1875,7 +1875,7 @@ var_array & var::vara()
    }
    else if(m_sp.is_null())
    {
-      m_pvara = new var_array();
+      m_pvara = canew(var_array());
       m_sp = m_pvara;
    }
    return *m_pvara;
@@ -1904,7 +1904,7 @@ var_array var::vara() const
    }
    else if(m_etype != type_propset)
    {
-      ::ca::property_set * ppropset = new ::ca::property_set();
+      ::ca::property_set * ppropset = canew(::ca::property_set());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
          ppropset->add(::null(), at(i));
@@ -1917,7 +1917,7 @@ var_array var::vara() const
    }
    else if(m_sp.is_null())
    {
-      pset = new ::ca::property_set();
+      pset = canew(::ca::property_set());
       m_sp = pset;
       m_pset = pset;
    }
@@ -1946,7 +1946,7 @@ var_array var::vara() const
    }
    if(m_sp.is_null())
    {
-      m_pprop = new ::ca::property();
+      m_pprop = canew(::ca::property());
       m_sp = m_pprop;
    }
    return *dynamic_cast < ::ca::property * > (m_sp.m_p);

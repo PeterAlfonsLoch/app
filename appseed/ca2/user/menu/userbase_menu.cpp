@@ -540,7 +540,7 @@ namespace user
       }
       else
       {
-         LPRECT lprect = (LPRECT) pbase->m_lparam;
+         LPRECT lprect = (LPRECT) pbase->m_lparam.m_lparam;
          lprect->left      = m_ptTrack.x;
          lprect->top       = m_ptTrack.y;
          lprect->right     = lprect->left + m_size.cx;

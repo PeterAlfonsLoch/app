@@ -143,6 +143,7 @@ namespace user
       int32_t                                 m_iModalCount;
       bool                                m_bRectOk;
       sp(::plane::session)                  m_psession;
+      bool                                m_bMessageWindow;
 
 #ifdef WINDOWS
 

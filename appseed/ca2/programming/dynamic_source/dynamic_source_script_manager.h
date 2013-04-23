@@ -47,20 +47,6 @@ namespace dynamic_source
       };
 
       
-      class CLASS_DECL_ca2 session :
-         virtual public ::ca::object
-      {
-      public:
-
-
-         session();
-
-
-         mutex                   m_mutex;
-         ::ca::property_set       m_set;
-
-
-      };
 
       class CLASS_DECL_ca2 plugin_map_item :
          virtual public ::ca::ca
@@ -148,7 +134,7 @@ namespace dynamic_source
       int64_t                                   m_iDatabaseWaitTimeOut;
 
       mutex                                     m_mutexSession;
-      string_map < session >      m_mapSession;
+      strsp(session)                            m_mapSession;
       mutex                                     m_mutexMusicDbPool;
       mutex                                     m_mutexWayDbPool;
       script_cache *                            m_pcache;
@@ -184,7 +170,7 @@ namespace dynamic_source
       string include_expand_md5(const string & strPath);
       void set_include_expand_md5(const string & strPath, const string & strMd5);
 
-      session * get_session(mutex * & pmutex, const char * pszId);
+      sp(session) get_session(const char * pszId);
 
 
       script_instance * get(const string & strName);
@@ -242,6 +228,8 @@ namespace dynamic_source
       ::size get_image_size(const string & strFile);
       bool extract_image_size(const string & strFile, ::size * psize);
 
+
+      virtual void defer_clean_session();
 
    };
 

@@ -201,7 +201,7 @@ public:
    }
 
    void construct(::count nBlockSize = 10);
-   map(::count nBlockSize = 10);
+   map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
 
    ::count get_count() const;
@@ -227,6 +227,7 @@ public:
 
    // removing existing (key, ?) pair
    bool remove_key(ARG_KEY key);
+   inline bool remove_assoc(assoc * passoc);
    void erase(iterator it);
    ::count erase(const KEY & key);
    // the following funtion is available in a sort_map
@@ -314,6 +315,33 @@ public:
    //   void Serialize(CArchive&);
    void dump(dump_context &) const;
    void assert_valid() const;
+
+   template < class ARRAY >
+   bool remove_key_array(ARRAY a)
+   {
+
+      for(index i = 0; i < a.get_count(); i++)
+      {
+
+         remove_key(a[i]);
+
+      }
+
+   }
+
+   template < class ARRAY >
+   bool remove_assoc_array(ARRAY a)
+   {
+
+      for(index i = 0; i < a.get_count(); i++)
+      {
+
+         remove_assoc(a[i]);
+
+      }
+
+   }
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -389,7 +417,8 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::construct(::count nBlo
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(::count nBlockSize)
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(::ca::application * papp, ::count nBlockSize) :
+   ::ca::ca(papp)
 {
    construct(nBlockSize);
 }
@@ -676,9 +705,16 @@ VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::operator[](ARG_KEY k
 
       passoc = new_assoc(key);
 
+      if(m_ppassocHash[nHashBucket] != NULL)
+      {
+         m_ppassocHash[nHashBucket]->m_ppprevHash = &passoc->m_pnextHash;
+      }
+
       passoc->m_pnextHash        = m_ppassocHash[nHashBucket];
 
       m_ppassocHash[nHashBucket] = passoc;
+
+      passoc->m_ppprevHash       = &m_ppassocHash[nHashBucket];
 
    }
 
@@ -696,24 +732,32 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_key(ARG_KEY key
       return false;  // nothing in the table
 
    UINT nHashValue;
-   assoc** ppAssocPrev;
    nHashValue = HASH::HashKey(key);
-   ppAssocPrev = &m_ppassocHash[nHashValue%m_nHashTableSize];
-
-   assoc* passoc;
-   for (passoc = *ppAssocPrev; passoc != ::null(); passoc = passoc->m_pnextHash)
+   assoc * passoc = m_ppassocHash[nHashValue%m_nHashTableSize];
+   for(; passoc != ::null(); passoc = passoc->m_pnextHash)
    {
       if(EQUALS::CompareElements(&passoc->m_element1, key))
       {
-         // remove it
-         *ppAssocPrev = passoc->m_pnextHash;  // remove from list
-         free_assoc(passoc);
+         remove_assoc(passoc);
          return true;
       }
-      ppAssocPrev = &passoc->m_pnextHash;
    }
    return false;  // not found
 }
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_assoc(assoc * passoc)
+   // remove key - return TRUE if removed
+{
+   if(passoc->m_pnextHash != NULL)
+   {
+      passoc->m_pnextHash->m_ppprevHash = passoc->m_ppprevHash;
+   }
+   *passoc->m_ppprevHash = passoc->m_pnextHash;
+   free_assoc(passoc);
+   return true;
+}
+
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::count(const KEY & key) const

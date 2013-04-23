@@ -26,8 +26,8 @@
  */
 #include "framework.h"
 
-LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs() :
-   string_map < char, char >(55)
+LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(::ca::application * papp) :
+   string_map < char, char >(papp, 55)
 {
    /** C0 Controls and Basic Latin */
    (*this)["quot"]      = '\x22';

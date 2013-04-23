@@ -8,7 +8,7 @@ class string_map :
 public:
 
 
-   string_map(::count nBlockSize = 10);
+   string_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
    string_map(const string_map & map);
 
 
@@ -18,13 +18,15 @@ public:
 };
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(::count nBlockSize) :
-   map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(::ca::application * papp, ::count nBlockSize) :
+   ::ca::ca(papp),
+   map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(const string_map & map) :
+   ::ca::ca(map.get_app()),
    attrib_map < ::map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
 {
 }

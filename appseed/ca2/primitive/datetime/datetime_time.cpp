@@ -388,6 +388,20 @@ namespace datetime
       return( *this );
    }
 
+   ::datetime::time & time::operator+=(const  duration & duration ) throw()
+   {
+      m_time += duration.GetTimeSpan();
+
+      return( *this );
+   }
+
+   ::datetime::time & time::operator-=(const  duration & duration ) throw()
+   {
+      m_time -= duration.GetTimeSpan();
+
+      return( *this );
+   }
+
    ::datetime::time & time::operator+=( date_span span )
    {
       UNREFERENCED_PARAMETER(span);

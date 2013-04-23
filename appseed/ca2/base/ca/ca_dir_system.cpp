@@ -554,7 +554,7 @@ namespace ca
 
 
       system::is_dir_map::is_dir_map(sp(::ca::application) papp) :
-         string_map < is_dir >(256), // block size
+         string_map < is_dir >(papp, 256), // block size
          m_mutex(papp)
       {
          InitHashTable(16384, TRUE);

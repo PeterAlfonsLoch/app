@@ -9,7 +9,7 @@ class attrib_map :
 public:
 
 
-   attrib_map(int_ptr nBlockSize = 10);
+   attrib_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
    attrib_map(const attrib_map & map);
 
    attrib_map & operator = (const attrib_map & map);
@@ -19,13 +19,15 @@ public:
 
 
 template < class type_map >
-attrib_map < type_map >::attrib_map(int_ptr nBlockSize) :
-   type_map(nBlockSize)
+attrib_map < type_map >::attrib_map(::ca::application * papp, ::count nBlockSize) :
+   ::ca::ca(papp),
+   type_map(papp, nBlockSize)
 {
 }
 
 template < class type_map >
-attrib_map < type_map >::attrib_map(const attrib_map & attribmap)
+attrib_map < type_map >::attrib_map(const attrib_map & attribmap) :
+   ::ca::ca(attribmap.get_app())
 {
    operator = (attribmap);
 }

@@ -41,8 +41,8 @@ namespace gcom
 
       void Main::Shutdown()
       {
-         m_pthreadIdlePriority->post_thread_message(WM_QUIT, 0, 0);
-         m_pthreadHighestPriority->post_thread_message(WM_QUIT, 0, 0);
+         m_pthreadIdlePriority->post_thread_message(WM_QUIT);
+         m_pthreadHighestPriority->post_thread_message(WM_QUIT);
       }
 
       Main::~Main()
@@ -186,8 +186,8 @@ namespace gcom
       void Main::OnDestroy()
       {
          GetGraphics().OnDestroy();
-         m_pthreadIdlePriority->post_thread_message(WM_QUIT, 0 , 0);
-         m_pthreadHighestPriority->post_thread_message(WM_QUIT, 0 , 0);
+         m_pthreadIdlePriority->post_thread_message(WM_QUIT);
+         m_pthreadHighestPriority->post_thread_message(WM_QUIT);
 
 
       }

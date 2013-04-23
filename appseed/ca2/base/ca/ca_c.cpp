@@ -7,7 +7,8 @@ namespace ca
    c::c()
    {
 
-      m_countReference = 1;
+      m_countReference  = 1;
+      m_bHeap           = false;
 
    }
 

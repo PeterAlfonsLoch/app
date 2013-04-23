@@ -72,7 +72,7 @@ namespace plane
 
          sp(::ca::application) papp = (pcaapp);
 
-         papp->post_thread_message(WM_QUIT, 0, 0);
+         papp->post_thread_message(WM_QUIT);
       }
 
 
@@ -106,7 +106,7 @@ namespace plane
 
          m_mapApplication.get_next_assoc(pos, strId, papp);
 
-         papp->post_thread_message(WM_QUIT, 0, 0);
+         papp->post_thread_message(WM_QUIT);
 
       }
 

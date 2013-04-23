@@ -81,7 +81,7 @@ namespace ca
          m_papp->m_psystem->discard_to_factory(this);
       }
 //      else if(m_ulFlags & flag_heap_alloc)
-      else
+      else if(is_heap())
       {
          delete this;
       }

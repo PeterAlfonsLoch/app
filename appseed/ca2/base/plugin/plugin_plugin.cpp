@@ -871,7 +871,7 @@ namespace plugin
       try
       {
 
-         ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
+         ::ca::thread * pthread = m_psystem->::ca::thread::m_p;
 
          if(pthread->get_run())
          {

@@ -26,6 +26,7 @@ namespace user
 
       m_pui                   = this;
       m_psession              = ::null();
+      m_bMessageWindow        = false;
 
    }
 
@@ -51,12 +52,13 @@ namespace user
 
       m_pui                         = this;
       m_psession                    = ::null();
+      m_bMessageWindow              = false;
 
    }
 
    interaction::~interaction()
    {
-      try
+/*      try
       {
          single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
          try
@@ -117,11 +119,11 @@ namespace user
             {
             }
          }*/
-         m_pimpl.release();
+       /*  m_pimpl.release();
       }
       catch(...)
       {
-      }
+      }*/
 
 
 
@@ -390,13 +392,20 @@ namespace user
    void interaction::install_message_handling(::ca::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_CREATE               , pinterface, this, &interaction::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_CLOSE                , pinterface, this, &interaction::_001OnClose);
-      IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
-      IGUI_WIN_MSG_LINK(WM_DESTROY              , pinterface, this, &interaction::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_SIZE                 , pinterface, this, &interaction::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_MOVE                 , pinterface, this, &interaction::_001OnMove);
-      IGUI_WIN_MSG_LINK(WM_USER + 184           , pinterface, this, &interaction::_001OnUser184);
-      IGUI_WIN_MSG_LINK(WM_NCCALCSIZE           , pinterface, this, &interaction::_001OnNcCalcSize);
+      if(m_bMessageWindow)
+      {
+         //IGUI_WIN_MSG_LINK(WM_DESTROY              , pinterface, this, &interaction::_001OnDestroyMessageWindow);
+      }
+      else
+      {
+         IGUI_WIN_MSG_LINK(WM_CLOSE                , pinterface, this, &interaction::_001OnClose);
+         //IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
+         IGUI_WIN_MSG_LINK(WM_DESTROY              , pinterface, this, &interaction::_001OnDestroy);
+         IGUI_WIN_MSG_LINK(WM_SIZE                 , pinterface, this, &interaction::_001OnSize);
+         IGUI_WIN_MSG_LINK(WM_MOVE                 , pinterface, this, &interaction::_001OnMove);
+         IGUI_WIN_MSG_LINK(WM_USER + 184           , pinterface, this, &interaction::_001OnUser184);
+         IGUI_WIN_MSG_LINK(WM_NCCALCSIZE           , pinterface, this, &interaction::_001OnNcCalcSize);
+      }
       IGUI_WIN_MSG_LINK(message_simple_command  , pinterface, this, &interaction::_001OnSimpleCommand);
    }
 
@@ -472,6 +481,8 @@ namespace user
          pui->DestroyWindow();
       }
    }
+
+
 
    void interaction::_001OnSize(::ca::signal_object * pobj)
    {
@@ -683,7 +694,7 @@ namespace user
          GetFont()->m_strFontFamilyName = "Times New Roman";
       }
 
-      m_spmutex = new mutex(get_app());
+      m_spmutex = canew(mutex(get_app()));
       if(m_pimpl != ::null() && m_pimpl != this)
       {
          m_pimpl->m_spmutex = m_spmutex;
@@ -1850,6 +1861,37 @@ namespace user
    // for custom cleanup after WM_NCDESTROY
    void interaction::PostNcDestroy()
    {
+      
+      if(is_heap())
+      {
+
+         if(m_pimpl.is_set() && m_pimpl->m_pthread != ::null())
+         {
+            try
+            {
+               m_pimpl->m_pthread->m_pthread->remove(m_pimpl);
+            }
+            catch(...)
+            {
+            }
+         }
+
+         if(m_pthread != ::null())
+         {
+            try
+            {
+               m_pthread->m_pthread->remove(this);
+            }
+            catch(...)
+            {
+            }
+         }
+
+         m_pimpl.release();
+         m_pguie.release();
+
+      }
+
    }
 
 
@@ -2443,7 +2485,7 @@ ExitModal:
 
          }
          PostMessage(WM_NULL, 0, 0);
-         System.GetThread()->post_thread_message(WM_NULL, 0, 0);
+         System.GetThread()->post_thread_message(WM_NULL);
       }
    }
 
@@ -2460,13 +2502,13 @@ ExitModal:
          int32_t iLevel = m_iModalCount - 1;
          m_iModalCount = 0;
          PostMessage(WM_NULL, 0, 0);
-         System.GetThread()->post_thread_message(WM_NULL, 0, 0);
+         System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
             ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca::str::from(i) + ")").ca < ::ca::thread > ();
             try
             {
-               pthread->post_thread_message(WM_NULL, 0, 0);
+               pthread->post_thread_message(WM_NULL);
             }
             catch(...)
             {
@@ -2651,7 +2693,21 @@ ExitModal:
       if(m_pimpl == ::null())
          return false;
 
-      return m_pimpl->create_message_window(pszName, pcallback);
+      m_bMessageWindow = true;
+      m_pimpl->m_bMessageWindow = true;
+
+      m_pimpl->m_pguie = this;
+
+      if(!m_pimpl->create_message_window(pszName, pcallback))
+      {
+         m_pimpl->m_pguie->release();
+         m_pimpl->release();
+         return false;
+      }
+
+      
+      
+      return true;
 
    }
 

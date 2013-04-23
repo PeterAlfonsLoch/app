@@ -205,7 +205,11 @@ namespace ca
             Signal * GetSignalByMessage(UINT uiMessage, UINT uiCode, UINT uiIdStart, UINT uiIdEnd);
          };
 
+         
          dispatch();
+         virtual ~dispatch();
+
+
          virtual void _on_start_user_message_handler();
 
          virtual sp(::ca::application) calc_app();
@@ -242,7 +246,7 @@ namespace ca
             // If not found a existing Signal, create one
             if(psignal == ::null())
             {
-               psignal                    = new Signal;
+               psignal                    = canew(Signal);
                psignal->m_uiMessage       = message;
                psignal->m_uiCode          = uiCode;
                psignal->m_uiIdStart       = uiIdStart;
@@ -277,11 +281,11 @@ namespace ca
 
          virtual void _001ClearMessageHandling();
 
-         int32_t                  m_iHandling;
-         SignalArray          m_signala;
-         ::ca::signal          m_signalInstallMessageHandling;
-         manual_reset_event *   m_pevOk;
-         mutex            *    m_pmutex;
+         int32_t                    m_iHandling;
+         SignalArray                m_signala;
+         ::ca::signal               m_signalInstallMessageHandling;
+         sp(manual_reset_event)     m_pevOk;
+         sp(mutex)                  m_pmutex;
 
          virtual void _start_user_message_handler(::ca::signal_object * pobj);
 
@@ -296,8 +300,8 @@ namespace ca
          virtual bool OnWndMsgPosCreate();
 
 
-         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != ::null()) return m_pevOk; m_pevOk = new manual_reset_event(::null()); return m_pevOk; }
-         inline mutex * dispatch_mutex() { if(m_pmutex != ::null()) return m_pmutex; m_pmutex = new ::mutex(::null()); return m_pmutex; }
+         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != ::null()) return m_pevOk; m_pevOk = canew(manual_reset_event(::null())); return m_pevOk; }
+         inline mutex * dispatch_mutex() { if(m_pmutex != ::null()) return m_pmutex; m_pmutex = canew(::mutex(::null())); return m_pmutex; }
       };
 
 #undef new
@@ -311,7 +315,7 @@ namespace ca
             sp(::user::interaction)   m_pwnd;
             UINT                    m_uiMessage;
             WPARAM                  m_wparam;
-            LPARAM                  m_lparam;
+            lparam                  m_lparam;
             bool                    m_bConditional;
 
             base(sp(::ca::application) papp, ::ca::signal * psignal = ::null());

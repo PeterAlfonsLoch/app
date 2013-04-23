@@ -209,10 +209,17 @@ namespace ca
 
 
 #ifdef DEBUG
-#define DEBUG_NEW new(__FILE__, __LINE__)
+#define DEBUG_NOTE __FILE__
+#define DEBUG_NEW new(DEBUG_NOTE, __LINE__)
+#define THREAD_NOTE __get_thread_note()
+#define SET_THREAD_NOTE(x) __set_thread_note(x);
+#else
+#define SET_THREAD_NOTE(x) 
 #endif
 
 
+CLASS_DECL_ca2 vsstring __get_thread_note();
+CLASS_DECL_ca2 void __set_thread_note(const char * pszNote);
 
 
 

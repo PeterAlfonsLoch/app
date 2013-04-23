@@ -359,7 +359,7 @@ namespace user
 #ifdef WINDOWSEX
             if(pbase->m_uiMessage == WM_NOTIFY)
             {
-               NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam;
+               NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam.m_lparam;
                if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
                {
                   TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
@@ -673,7 +673,7 @@ namespace user
    void control_bar::_001OnSizeParent(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
-      __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*)pbase->m_lparam;
+      __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*) pbase->m_lparam.m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 
       if ((dwStyle & WS_VISIBLE) && (dwStyle & CBRS_ALIGN_ANY) != 0)

@@ -199,7 +199,7 @@ namespace gcom
                ASSERT(FALSE);
                return;
                  TRACE("thread::OnBackViewMessage WPARAM_BACKVIEW_IMAGELOADED\n");
-               load_image  * lploadimage = (load_image *) pbase->m_lparam;
+               load_image  * lploadimage = (load_image *) pbase->m_lparam.m_lparam;
                if(lploadimage != ::null())
                {
                   lploadimage->OnImageLoaded();
@@ -275,7 +275,7 @@ namespace gcom
          }
          else if(pbase->m_wparam == 6)
          {
-            LPSTRETCHIMAGESTRUCTURE lpsi = (LPSTRETCHIMAGESTRUCTURE) pbase->m_lparam;
+            LPSTRETCHIMAGESTRUCTURE lpsi = (LPSTRETCHIMAGESTRUCTURE) pbase->m_lparam.m_lparam;
               StretchImageAsync(lpsi, false);
             delete lpsi;
          }
@@ -301,7 +301,7 @@ namespace gcom
           }
           else if(pbase->m_wparam == 24)
           {
-              LPONSTRETCHIMAGESTRUCTURE lposi = (LPONSTRETCHIMAGESTRUCTURE) pbase->m_lparam;
+              LPONSTRETCHIMAGESTRUCTURE lposi = (LPONSTRETCHIMAGESTRUCTURE) pbase->m_lparam.m_lparam;
               OnImageStretched(lposi->m_pbitmap,
                   lposi->m_iUserData,
                   lposi->m_cx,
@@ -320,7 +320,7 @@ namespace gcom
             {
                try
                {
-                  ThreadProcLoadImage((LPVOID) pbase->m_lparam);
+                  ThreadProcLoadImage((LPVOID) pbase->m_lparam.m_lparam);
                }
                catch(...)
                {
@@ -329,7 +329,7 @@ namespace gcom
             break;
          case CommandPreTransitionImage:
             {
-               ThreadProcPreTransitionImage((LPVOID) pbase->m_lparam);
+               ThreadProcPreTransitionImage((LPVOID) pbase->m_lparam.m_lparam);
             }
             break;
          }

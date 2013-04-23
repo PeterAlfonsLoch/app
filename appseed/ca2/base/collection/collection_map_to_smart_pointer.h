@@ -8,15 +8,12 @@ class map_to_smart_pointer :
 public:
 
 
-   map_to_smart_pointer()
+   map_to_smart_pointer(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
+      ::ca::ca(papp),
+      map < TYPE, ARG_TYPE, ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & > (papp, nBlockSize)
    {
    }
 
-   map_to_smart_pointer(sp(::ca::application) papp) :
-      ::ca::ca(papp),
-      map < TYPE, ARG_TYPE, ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & >(papp)
-   {
-   }
 
 
    virtual ~map_to_smart_pointer()
@@ -33,14 +30,11 @@ class string_to_smart_pointer :
 public:
 
 
-   string_to_smart_pointer()
-   {
-   }
-
-   string_to_smart_pointer(sp(::ca::application) papp) :
+   string_to_smart_pointer(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
       ::ca::ca(papp),
-      string_map < ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & >(papp)
+      string_map < ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & > (papp, nBlockSize)
    {
+
    }
 
 

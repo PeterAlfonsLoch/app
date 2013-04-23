@@ -80,6 +80,9 @@ namespace datetime
       time& operator+=( time_span span ) NOTHROW;
       time& operator-=( time_span span ) NOTHROW;
 
+      time& operator+=( const duration & span ) NOTHROW;
+      time& operator-=( const duration & span ) NOTHROW;
+
       time_span operator-( time time ) const NOTHROW;
       time operator-( time_span span ) const NOTHROW;
       time operator+( time_span span ) const NOTHROW;

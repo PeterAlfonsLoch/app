@@ -92,7 +92,7 @@ namespace libcompress
       void CCoderMixer2MT::AddCoderCommon()
       {
          const CCoderStreamsInfo &c = _bindInfo.Coders[_coders.get_count()];
-         CCoder2 threadCoderInfo(get_app(), c.NumInStreams, c.NumOutStreams);
+         sp(CCoder2) threadCoderInfo(canew(CCoder2(get_app(), c.NumInStreams, c.NumOutStreams)));
          _coders.add(threadCoderInfo);
       }
 
@@ -209,7 +209,7 @@ namespace libcompress
 
             for (i = 0; i < _coders.get_count(); i++)
                if (i != _progressCoderIndex)
-                  _coders[i]->begin();
+                  _coders[i].begin();
 
             _coders[_progressCoderIndex].Code(progress);
 

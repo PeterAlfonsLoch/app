@@ -79,7 +79,7 @@ namespace user
    void frame_window_interface::_guserbaseOnInitialUpdate(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
-         FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
+         FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam.m_lparam;
       if(pfiu != ::null())
       {
          sp(::user::frame_window) pframe = (this);

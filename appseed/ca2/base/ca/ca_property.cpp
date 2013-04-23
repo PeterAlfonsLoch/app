@@ -1424,7 +1424,7 @@ namespace ca
    property * property_set::lowadd(const string & strLowName)
    {
 
-      sp(property) spproperty(new property());
+      sp(property) spproperty(canew(property()));
 
       spproperty->name()      = strLowName;
 

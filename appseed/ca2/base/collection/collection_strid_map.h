@@ -7,7 +7,7 @@ class strid_map :
 {
 public:
 
-   strid_map(::count nBlockSize = 256);
+   strid_map(::ca::application * papp = ::null(), ::count nBlockSize = 256);
    strid_map(const strid_map & map);
 
 
@@ -18,14 +18,16 @@ public:
 
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(::count nBlockSize) :
-   map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(::ca::application * papp, ::count nBlockSize) :
+   ::ca::ca(papp), 
+   map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
 
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(const strid_map & map) :
+   ::ca::ca(map.get_app()),
    attrib_map < ::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
 {
 }
@@ -106,5 +108,5 @@ public:
 
 
 
-
+#define stridsp(c) strid_map < sp(c) >
 

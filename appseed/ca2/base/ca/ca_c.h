@@ -13,6 +13,7 @@ namespace ca
 
 
       int64_t                    m_countReference;
+      bool                       m_bHeap;
 
 
       c();
@@ -28,6 +29,11 @@ namespace ca
          return m_countReference;
       }
 
+      inline bool is_heap()
+      {
+         return m_bHeap;
+      }
+
 
       virtual int64_t add_ref();
       virtual int64_t release();
@@ -37,7 +43,7 @@ namespace ca
    };
 
    template < class T >
-   T * dereference_no_delete(T * p) { p->m_countReference--; return p; }
+   T * dereference_no_delete(T * p) { p->m_bHeap = true; p->m_countReference--; return p; }
 
 
 
@@ -55,7 +61,7 @@ namespace ca
    {
       if(pca == ::null())
          return -1;
-      int64_t count = pca->::ca::c::release();
+      int64_t count = pca->release();
       pca = ::null();
       return count;
    }

@@ -52,7 +52,7 @@ namespace simpledb
             pthread->m_strIp = stra[i];
             pthread->m_iPort = 443;
             pthread->m_pservice = this;
-            pthread->post_thread_message(WM_APP, 0, 0);
+            pthread->post_thread_message(WM_APP);
          }
       }
 

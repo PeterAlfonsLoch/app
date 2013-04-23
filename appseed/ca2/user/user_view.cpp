@@ -546,7 +546,7 @@ namespace user
       SCAST_PTR(::ca::message::base, pbase, pobj)
          if(pbase->m_wparam == 0)
          {
-            ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam;
+            ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam.m_lparam;
             on_update(pupdate->m_pSender, pupdate->m_lHint, pupdate->m_pHint);
          }
    }

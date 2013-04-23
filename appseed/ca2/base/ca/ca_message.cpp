@@ -270,8 +270,17 @@ namespace ca
          m_pevOk(::null()),
          m_pmutex(::null())
       {
+
          m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
+
       }
+
+
+      dispatch::~dispatch()
+      {
+
+      }
+
 
       void dispatch::_user_message_handler(::ca::signal_object * pobj)
       {
@@ -544,11 +553,11 @@ namespace ca
 
       void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
-         m_pwnd         = pwnd;
-         m_uiMessage    = uiMessage;
-         m_wparam       = wparam;
-         m_lparam       = lparam;
-         m_plresult     = &lresult;
+         m_pwnd            = pwnd;
+         m_uiMessage       = uiMessage;
+         m_wparam          = wparam;
+         m_lparam          = lparam;
+         m_plresult        = &lresult;
       }
 
       void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
@@ -817,7 +826,7 @@ namespace ca
 
       oswindow command::get_oswindow()
       {
-         return (oswindow) m_lparam;
+         return (oswindow) m_lparam.m_lparam;
       }
 
 #endif
@@ -826,7 +835,7 @@ namespace ca
 
       LPNMHDR notify::get_lpnmhdr()
       {
-         return (LPNMHDR) m_lparam;
+         return (LPNMHDR) m_lparam.m_lparam;
       }
 
       int32_t notify::get_ctrl_id()

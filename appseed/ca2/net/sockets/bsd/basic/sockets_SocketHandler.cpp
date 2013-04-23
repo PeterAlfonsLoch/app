@@ -693,11 +693,7 @@ namespace sockets
          {
             sp(socket)p = ::null();
             SOCKET socket = m_fds_detach.get_next(pos);
-            if(!m_sockets.Lookup(socket, p)) // found
-            {
-               LogError(::null(), "GetSocket/handler/5", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level_warning);
-            }
-            if (p)
+            if(m_sockets.Lookup(socket, p) && p != ::null())
             {
                if (p -> IsDetach())
                {
@@ -723,12 +719,12 @@ namespace sockets
 
                   // Adding the file descriptor to m_fds_erase will now also remove the
                   // socket from the detach queue - tnx knightmad
-                  m_fds_erase.add_tail(p -> GetSocket());
+                  //m_fds_erase.add_tail(p -> GetSocket());
 
- //                 m_fds_detach.remove(socket);
-   //               m_fds.remove(socket);
-     //             m_sockets.remove_key(socket);
-       //           check_max_fd = true;
+                  m_fds_detach.remove(socket);
+                  m_fds.remove(socket);
+                  m_sockets.remove_key(socket);
+                  check_max_fd = true;
                }
             }
          }

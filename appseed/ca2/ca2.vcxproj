@@ -1874,6 +1874,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_instance.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_interface.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h" />
+    <ClInclude Include="programming\dynamic_source\dynamic_source_session.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -2864,6 +2865,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\sockets\bsd\basic\sockets_address.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_Ipv4Address.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_Ipv6Address.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_SctpSocket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp" />
@@ -2997,6 +2999,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_instance.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_interface.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp" />
+    <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />

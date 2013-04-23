@@ -242,8 +242,7 @@ namespace ca
       #endif
       virtual public spa(::user::interaction),
       virtual public ::ca::live_object,
-      virtual public event_base,
-      virtual public ::ca::thread_sp
+      virtual public event_base
    {
    public:
 		/// thread ID, used to ensure that the thread that calls one of the
@@ -256,6 +255,7 @@ namespace ca
       static bool    s_bAllocReady;
       mutex          m_mutex;
 
+      ::ca::thread_sp                     m_p;
       bool                                m_bRun;
       sp(user::interaction_ptr_array)     m_puiptra;
       sp(user::interaction::timer_array)  m_ptimera;
@@ -471,8 +471,8 @@ namespace ca
 
 //      virtual uint32_t SuspendThread();
       virtual uint32_t ResumeThread();
-      virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-      virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam);
+      virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
+      virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam = 0, lparam lParam = ::null());
 
       virtual bool PreInitInstance();
 

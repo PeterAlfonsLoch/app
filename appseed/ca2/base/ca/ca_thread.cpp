@@ -31,8 +31,8 @@ namespace ca
       set_app(papp);
       if(!s_bAllocReady)
          return;
-      ::ca::thread_sp::create(allocer());
-      m_p->set_p(this);
+      ::ca::thread::m_p.create(allocer());
+      m_p->m_p = this;
       m_p->construct();
 
    }
@@ -44,7 +44,7 @@ namespace ca
 
       construct();
 
-      ::ca::thread_sp::create(allocer());
+      ::ca::thread::m_p.create(allocer());
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
 
@@ -373,7 +373,7 @@ namespace ca
    }*/
 
 
-   bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
    {
       if(m_p == ::null())
          return false;
@@ -549,7 +549,7 @@ namespace ca
       return  m_p->ProcessMessageFilter(code, pobj);
    }
 
-   bool thread::post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, lparam lParam)
    {
       if(m_p != ::null())
       {

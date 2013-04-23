@@ -13,10 +13,7 @@ namespace dynamic_source
 
    UINT ThreadProcRsa(LPVOID lp);
 
-   script_manager::session::session() :
-      m_mutex(::ca::get_thread_app())
-   {
-   }
+  
 
    script_manager::plugin_map_item::plugin_map_item()
    {
@@ -589,12 +586,39 @@ namespace dynamic_source
    }
 
 
-   script_manager::session * script_manager::get_session(mutex * & pmutex, const char * pszId)
+   sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
       single_lock sl(&m_mutexSession, TRUE);
-      script_manager::session & session = m_mapSession[pszId];
-      pmutex = & session.m_mutex;
-      return &session;
+      sp(::dynamic_source::session) & psession = m_mapSession[pszId];
+      if(psession.is_null())
+      {
+         psession = canew(::dynamic_source::session(get_app()));
+         psession->m_timeAccess = ::datetime::time::get_current_time();
+      }
+      return psession;
+   }
+
+
+   void script_manager::defer_clean_session()
+   {
+      single_lock sl(&m_mutexSession, TRUE);
+      ::datetime::time time;
+      time = ::datetime::time::get_current_time();
+      time -= minutes(2);
+      strsp(session)::assoc * passoc = m_mapSession.PGetFirstAssoc();
+      strsp(session)::assoc * passocNext;
+      while(passoc != ::null())
+      {
+         passocNext = passoc->m_pnext;
+         if(passoc->m_element2->get_ref_count() <= 1)
+         {
+            if(passoc->m_element2->m_timeAccess < time)
+            {
+               m_mapSession.remove_assoc(passoc);
+            }
+         }
+         passoc = passocNext;
+      }
    }
 
 

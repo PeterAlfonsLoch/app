@@ -253,7 +253,7 @@ namespace plane
 
       spa(service_base)                            m_serviceptra;
 
-      strsp(::ca::type_info)                       m_typemap;
+      stridsp(::ca::type_info)                     m_typemap;
 
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
@@ -809,3 +809,5 @@ namespace xml
 
 
 } // namespace xml
+
+

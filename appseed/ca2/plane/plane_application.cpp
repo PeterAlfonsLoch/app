@@ -309,7 +309,7 @@ namespace plane
 
                try
                {
-                  papp->post_thread_message(WM_QUIT, 0, 0);
+                  papp->post_thread_message(WM_QUIT);
                }
                catch(...)
                {
@@ -423,7 +423,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    ::html::html * application::create_html()
    {
 
-      return new ::html::html();
+      return new ::html::html(this);
 
    }
 
@@ -542,7 +542,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::ca::thread_sp::m_p->get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::ca::thread::m_p->get_os_int(), TRUE);
       }
 
 #endif
@@ -778,7 +778,9 @@ run:
       {
       }
 
-      install_message_handling(System.GetThread()->::ca::smart_pointer < ::ca::thread > ::m_p);
+      ::ca::thread * pthread = System.GetThread();
+
+      install_message_handling(pthread->m_p);
 #if !defined(DEBUG) || defined(WINDOWS)
       try
       {
@@ -945,7 +947,7 @@ InitFailure:
       }
       try
       {
-         ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
+         ::ca::thread * pthread = ::ca::thread::m_p;
          if(pthread != ::null() && pthread->m_pbReady != ::null())
          {
             *pthread->m_pbReady = true;
@@ -1978,7 +1980,7 @@ exit_application:
          if(System.appptra().get_count() <= 1)
          {
 
-            System.post_thread_message(WM_QUIT, 0, 0);
+            System.post_thread_message(WM_QUIT);
 
          }
 

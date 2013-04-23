@@ -1164,11 +1164,11 @@ void virtual_user_interface::message_handler(::ca::signal_object * pobj)
    {
       if(m_pguie != this && m_pguie != ::null())
       {
-         m_pguie->BaseOnControlEvent((::user::control_event *) pbase->m_lparam);
+         m_pguie->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
       }
       else
       {
-         BaseOnControlEvent((::user::control_event *) pbase->m_lparam);
+         BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
       }
       return;
    }

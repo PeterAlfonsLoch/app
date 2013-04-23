@@ -54,20 +54,20 @@ namespace gcom
          switch(pbase->m_wparam)
          {
          case BackViewWparamImageChangeEvent:
-            GetMain().PulseEvent((e_event) pbase->m_lparam);
+            GetMain().PulseEvent((e_event) pbase->m_lparam.m_lparam);
             break;
          case BackViewWparamUpdateScreenRect:
-            BackViewUpdateScreen((LPCRECT) pbase->m_lparam, RDW_INVALIDATE);
-            delete ((LPRECT) pbase->m_lparam);
+            BackViewUpdateScreen((LPCRECT) pbase->m_lparam.m_lparam, RDW_INVALIDATE);
+            delete ((LPRECT) pbase->m_lparam.m_lparam);
             break;
          case BackViewWparamUpdateScreenBaseRectArray:
             if(((::get_tick_count() - d_dwLastBackViewUpdate) > 23))
             {
                d_dwLastBackViewUpdate = ::get_tick_count();
 
-               BackViewUpdateScreen(*((rect_array *) pbase->m_lparam), RDW_INVALIDATE);
+               BackViewUpdateScreen(*((rect_array *) pbase->m_lparam.m_lparam), RDW_INVALIDATE);
             }
-            delete (rect_array * ) pbase->m_lparam;
+            delete (rect_array * ) pbase->m_lparam.m_lparam;
             break;
          }
          pbase->set_lresult(0);

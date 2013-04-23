@@ -5,9 +5,9 @@ namespace colorertake5
 
    HRCParserImpl::HRCParserImpl(sp(::ca::application) papp) :
       ca(papp),
-      fileTypeHash(200),
-      schemeHash(4000),
-      regionNamesHash(1000)
+      fileTypeHash(papp, 200),
+      schemeHash(papp, 4000),
+      regionNamesHash(papp, 1000)
    {
       regionNamesVector.set_size(0, 200);
       fileTypeVector.set_size(0, 200);

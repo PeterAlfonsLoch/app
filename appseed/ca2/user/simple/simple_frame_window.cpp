@@ -369,7 +369,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
    SCAST_PTR(::ca::message::base, pbase, pobj);
-   MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam;
+   MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam.m_lparam;
    if (IsFullScreen())
    {
       lpMMI->ptMaxSize.y = m_FullScreenWindowRect.height();

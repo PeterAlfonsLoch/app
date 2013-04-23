@@ -14,6 +14,8 @@ public:
 
    inline int64_t get_total_milliseconds() const;
    inline int64_t total_milliseconds() const;
+   inline int64_t get_total_seconds() const;
+   inline int64_t total_seconds() const;
    inline bool is_pos_infinity() const;
    inline static duration infinite();
    inline static duration pos_infinity();
@@ -28,6 +30,9 @@ public:
 
 
    inline operator class os_lock_duration() const;
+
+   inline __time64_t GetTimeSpan() const;
+
 
 };
 
@@ -284,4 +289,20 @@ days::days(uint32_t dw) :
 days::days(double d) :
    hours(d * 24.0)
 {
+}
+
+inline __time64_t duration::GetTimeSpan() const
+{
+   return total_seconds();
+}
+
+
+inline __time64_t duration::get_total_seconds() const
+{
+   return (get_total_milliseconds() + 500) / 1000;
+}
+
+inline __time64_t duration::total_seconds() const
+{
+   return (total_milliseconds() + 500) / 1000;
 }

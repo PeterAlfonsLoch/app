@@ -77,7 +77,7 @@ namespace plugin
       }
       else if(pbase->m_wparam == 2)
       {
-         vsstring * pstrLink = (vsstring *) pbase->m_lparam;
+         vsstring * pstrLink = (vsstring *) pbase->m_lparam.m_lparam;
          string strLink(*pstrLink);
          ::ca::property_set setQuery(get_app());
          //setQuery.parse_url_query(strLink);

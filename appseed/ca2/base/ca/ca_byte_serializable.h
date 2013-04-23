@@ -115,7 +115,7 @@ namespace ca
    public:
 
 
-      byte_serializable_map(int_ptr nBlockSize = 10);
+      byte_serializable_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
       byte_serializable_map(const byte_serializable_map & map);
 
 
@@ -129,8 +129,8 @@ namespace ca
    };
 
    template < class type_map >
-   byte_serializable_map < type_map >::byte_serializable_map(int_ptr nBlockSize) :
-      type_map(nBlockSize)
+   byte_serializable_map < type_map >::byte_serializable_map(::ca::application * papp, ::count nBlockSize) :
+      type_map(papp, nBlockSize)
    {
    }
 

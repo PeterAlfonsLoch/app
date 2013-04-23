@@ -436,7 +436,7 @@ void FileSystemSizeWnd::_001OnCopyData(::ca::signal_object * pobj)
 
    SCAST_PTR(::ca::message::base, pbase, pobj);
 
-   COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam;
+   COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
    if(pstruct->dwData == 0)
    {
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;

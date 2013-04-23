@@ -642,7 +642,7 @@ namespace user
          pbase->m_bRet = true;
          return;
       }
-      pbase->set_lresult(SetPaneText(nIndex, (const char *)pbase->m_lparam) ? 0 : -1);
+      pbase->set_lresult(SetPaneText(nIndex, (const char *)pbase->m_lparam.m_lparam) ? 0 : -1);
       pbase->m_bRet = true;
    }
 
@@ -660,7 +660,7 @@ namespace user
          pbase->m_bRet = true;
          return;
       }
-      LPTSTR lpszDest = (LPTSTR)pbase->m_lparam;
+      LPTSTR lpszDest = (LPTSTR) pbase->m_lparam.m_lparam;
 
       int_ptr nLen = 0;
       int32_t nIndex = CommandToIndex(0); // use pane with ID zero

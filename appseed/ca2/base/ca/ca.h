@@ -16,6 +16,7 @@
 #endif
 
 
+extern CLASS_DECL_ca2 vsstring g_strNote;
 
 
 namespace plane

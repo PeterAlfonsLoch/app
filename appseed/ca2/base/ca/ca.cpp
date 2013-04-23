@@ -5,6 +5,10 @@
 #include <winspool.h>
 #endif
 
+
+CLASS_DECL_ca2 vsstring g_strNote;
+
+
 namespace ca
 {
 

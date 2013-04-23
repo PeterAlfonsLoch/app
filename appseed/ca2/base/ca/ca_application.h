@@ -140,18 +140,18 @@ namespace ca
 
    class CLASS_DECL_ca2 application_base :
       virtual public ::ca::live_object,
-      virtual public ::ca::thread,
-      virtual public ::ca::smart_pointer < ::ca::application_base >
+      virtual public ::ca::thread
    {
    public:
 
       // Running args (can be changed in initialize_instance)
       // Human-redable name of the application. Normally set in
       // constructor or retreived from __IDS_APP_TITLE.
-      string                        m_strAppName;
-      string                        m_strAppId;
-      string                        m_strLibraryName;
-      ::plane::application *        m_pappThis;
+      ::ca::smart_pointer < ::ca::application_base >  m_p;
+      string                                          m_strAppName;
+      string                                          m_strAppId;
+      string                                          m_strLibraryName;
+      ::plane::application *                          m_pappThis;
       //::plane::application *         m_pappCube;
 
 

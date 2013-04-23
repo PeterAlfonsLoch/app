@@ -101,7 +101,7 @@ http::cookie & cookies::cookie(const char * name)
    index iFind = find_cookie(name);
    if(iFind < 0)
    {
-      sp(class cookie) c(new class cookie);
+      sp(class cookie) c(canew(class cookie));
       c->m_strName = name;
       c->m_strNameLow = name;
       add(c);
@@ -123,7 +123,7 @@ http::cookie & cookies::lowcookie(const char * name)
       class cookie c;
       c.m_strName = name;
       c.m_strNameLow = name;
-      add(new class cookie(c));
+      add(canew(class cookie(c)));
       iFind = find_cookie(name);
       if(iFind < 0)
       {
@@ -136,7 +136,7 @@ http::cookie & cookies::lowcookie(const char * name)
 
 void cookies::add(const char * psz)
 {
-   sp(class cookie) cookie(new class cookie);
+   sp(class cookie) cookie(canew(class cookie));
    cookie->m_bSecure = false;
    //stringa stra;
    //stra.add_tokens(psz, ";", TRUE);
@@ -333,7 +333,7 @@ void cookies::parse_header(const char * psz)
             c.m_strNameLow = c.m_strName;
             c.m_strNameLow.make_lower();
             c.m_varValue.set_type(var::type_empty);
-            add(new class cookie(c));
+            add(canew(class cookie(c)));
          }
          else
          {
@@ -341,7 +341,7 @@ void cookies::parse_header(const char * psz)
             c.m_strNameLow = c.m_strName;
             c.m_strNameLow.make_lower();
             c.m_varValue = string(pszKeyEnd + 1);
-            add(new class cookie(c));
+            add(canew(class cookie(c)));
          }
          return;
       }
@@ -353,7 +353,7 @@ void cookies::parse_header(const char * psz)
             c.m_strNameLow = c.m_strName;
             c.m_strNameLow.make_lower();
             c.m_varValue.set_type(var::type_empty);
-            add(new class cookie(c));
+            add(canew(class cookie(c)));
          }
          else
          {

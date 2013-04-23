@@ -53,6 +53,60 @@ namespace ca
 #include "nodeapp/operational_system/_.h"
 
 
+class CLASS_DECL_c lparam
+{
+public:
+
+
+   LPARAM m_lparam;
+
+
+   lparam(LPARAM lparam = 0)
+   {
+      m_lparam = lparam;
+   }
+
+   lparam(const void * p)
+   {
+      m_lparam = (LPARAM) p;
+   }
+
+   lparam(const lparam & lparam)
+   {
+      m_lparam = lparam.m_lparam;
+   }
+
+   lparam(const ::ca::null &)
+   {
+      m_lparam = 0;
+   }
+
+   operator LPARAM &()
+   {
+      return m_lparam;
+   }
+
+   lparam & operator = (const lparam & lparam)
+   {
+      m_lparam = lparam.m_lparam;
+      return *this;
+   }
+
+   lparam & operator = (LPARAM lparam)
+   {
+      m_lparam = lparam;
+      return *this;
+   }
+
+   lparam & operator = (const ::ca::null &)
+   {
+      m_lparam = 0;
+      return *this;
+   }
+
+};
+
+
 #include "c/vms/vms.h"
 
 

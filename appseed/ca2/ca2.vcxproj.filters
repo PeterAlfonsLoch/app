@@ -4076,6 +4076,9 @@
     <ClInclude Include="base\collection\aaa_want_to_remove_xxx_collection_base_array.h">
       <Filter>Header Files\base\collection</Filter>
     </ClInclude>
+    <ClInclude Include="programming\dynamic_source\dynamic_source_session.h">
+      <Filter>Header Files\programming\dynamic_source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -6933,6 +6936,12 @@
     </ClCompile>
     <ClCompile Include="base\multithreading\multithreading_sync_object.cpp">
       <Filter>Source Files\base\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp">
+      <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

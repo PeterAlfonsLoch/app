@@ -14,6 +14,7 @@ public:
    map_association *                   m_pprev;
    map_association *                   m_pnext;
    map_association *                   m_pnextHash;
+   map_association **                  m_ppprevHash;
 
    map_association()
    {
