@@ -1353,7 +1353,7 @@ inline   string CLASS_DECL_ca2 operator+ (int64_t i1, const string & str2)
 inline bool string::operator==(const string & str) const
 {
 
-   return Compare(string(str)) == 0;
+   return get_length() == str.get_length() && Compare(str.m_pszData) == 0;
 
 }
 
@@ -1361,7 +1361,7 @@ inline bool string::operator==(const string & str) const
 inline bool string::operator==(const string_interface & str) const
 {
 
-   return operator == (string(str));
+   return get_length() == str.get_length() && operator == (string(str));
 
 }
 
