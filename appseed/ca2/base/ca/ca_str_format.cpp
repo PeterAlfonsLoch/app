@@ -222,6 +222,12 @@ namespace ca
 
       }
 
+      void format(string_format * pformat, lparam const & lparam)
+      {
+
+          ::ca::str::format(pformat, lparam.m_lparam);
+
+      }
 
    } // namespace str
 

@@ -2,7 +2,7 @@
 
 namespace ca
 {
-   
+
    exception::~exception()
    {
    }
@@ -20,9 +20,13 @@ namespace ca
 
 } // namespace ca
 
-
+#ifdef WINDOWS
 __declspec(thread) vsstring * t_pstrNote = NULL;
 __declspec(thread) BYTE t_pdataNote[sizeof(vsstring)];
+#else
+__thread vsstring * t_pstrNote = NULL;
+__thread BYTE t_pdataNote[sizeof(vsstring)];
+#endif
 
 CLASS_DECL_ca2 vsstring __get_thread_note()
 {

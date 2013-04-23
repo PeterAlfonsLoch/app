@@ -279,6 +279,8 @@ namespace ca
 
       void format(string_format * pformat, const calculator::value & val);
 
+      void format(string_format * pformat, const lparam & lparam);
+
 
 
       bool CLASS_DECL_ca2 simple_escaped(const string & str, strsize pos);

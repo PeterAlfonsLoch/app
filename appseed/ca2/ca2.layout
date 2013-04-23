@@ -22,14 +22,17 @@
 	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="17165" topLine="461" />
 	</File>
-	<File name="base/ca/ca_process.cpp" open="1" top="1" tabpos="7">
+	<File name="base/ca/ca_message.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="23683" topLine="830" />
+	</File>
+	<File name="base/ca/ca_process.cpp" open="1" top="1" tabpos="5">
 		<Cursor position="4404" topLine="146" />
 	</File>
 	<File name="base/ca/ca_smart_pointer1.h" open="1" top="0" tabpos="3">
 		<Cursor position="3159" topLine="111" />
 	</File>
 	<File name="base/ca/ca_smart_pointer2.h" open="1" top="0" tabpos="4">
-		<Cursor position="3506" topLine="162" />
+		<Cursor position="335" topLine="20" />
 	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
@@ -38,7 +41,7 @@
 		<Cursor position="4148" topLine="133" />
 	</File>
 	<File name="base/exception/exception_standard_translator.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="17687" topLine="351" />
+		<Cursor position="17662" topLine="351" />
 	</File>
 	<File name="base/linux/os.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3124" topLine="92" />
@@ -90,6 +93,15 @@
 	</File>
 	<File name="base/xml/aaa_tree_schema_want_to_remove.h" open="0" top="0" tabpos="17">
 		<Cursor position="58" topLine="0" />
+	</File>
+	<File name="base/xml/xml_attr.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="124" topLine="0" />
+	</File>
+	<File name="base/xml/xml_document.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="170" topLine="0" />
+	</File>
+	<File name="base/xml/xml_node.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="868" topLine="0" />
 	</File>
 	<File name="compress/7z/compress_archive.h" open="0" top="0" tabpos="18">
 		<Cursor position="7007" topLine="171" />
@@ -153,6 +165,9 @@
 	</File>
 	<File name="graphics/visual/visual.h" open="0" top="0" tabpos="2">
 		<Cursor position="33" topLine="0" />
+	</File>
+	<File name="net/sockets/bsd/basic/sockets_SocketHandler.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="32106" topLine="962" />
 	</File>
 	<File name="net/sockets/bsd/basic/sockets_tcp_socket.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="39557" topLine="1318" />
@@ -325,8 +340,8 @@
 	<File name="net/sockets/metrowin/webserver/webserver_httpd_socket.h" open="0" top="0" tabpos="91">
 		<Cursor position="1374" topLine="6" />
 	</File>
-	<File name="plane/plane_application.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="26462" topLine="940" />
+	<File name="plane/plane_application.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="26467" topLine="989" />
 	</File>
 	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="40902" topLine="1779" />
@@ -342,6 +357,12 @@
 	</File>
 	<File name="primitive/aaa_var_want_to_remove.h" open="0" top="0" tabpos="93">
 		<Cursor position="16719" topLine="488" />
+	</File>
+	<File name="primitive/primitive_string.h" open="1" top="0" tabpos="16">
+		<Cursor position="37810" topLine="1158" />
+	</File>
+	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="7509" topLine="277" />
 	</File>
 	<File name="user/user_document_manager.h" open="0" top="0" tabpos="95">
 		<Cursor position="65" topLine="0" />
