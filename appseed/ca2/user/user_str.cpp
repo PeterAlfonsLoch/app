@@ -10,7 +10,7 @@ namespace user
    {
       
 
-      m_plocaleschema = new ::ca::international::locale_schema(papp);
+      m_plocaleschema = canew(::ca::international::locale_schema(papp));
 
 
       m_pstr = ::null();
@@ -20,12 +20,6 @@ namespace user
 
    str_context::~str_context()
    {
-
-      if(m_plocaleschema != ::null())
-      {
-         delete m_plocaleschema;
-         m_plocaleschema = ::null();
-      }
 
    }
 
@@ -161,8 +155,8 @@ namespace user
 
       InitHashTable(64);
 
-      m_pschemaEn    = &(*this)["en"]["en"];
-      m_pschemaStd   = &(*this)["_std"]["_std"];
+      operator[]("en")["en"]     =  m_pschemaEn    =  canew(str_schema);
+      operator[]("_std")["_std"] =  m_pschemaStd   =  canew(str_schema);
 
 
    }
@@ -217,16 +211,6 @@ namespace user
 
       return true;
 
-/*      xml::node node(get_app());
-      node.load(Application.file().as_string(pszFileName));
-      for(int32_t i = 0; i < node.get_children_count(); i++)
-      {
-         add(
-            node.child_at(i)->get_attr("root"),
-            node.child_at(i)->get_attr("lang"),
-            node.child_at(i)->get_attr("style"),
-            node.child_at(i)->get_attr("target"));
-      }*/
    }
 
    
@@ -246,8 +230,6 @@ namespace user
    
       static ::id idEn("en");
       static ::id idStd("_std");
-
-//      ::ca::international::locale_schema * plocaleschema = ::null();
 
       string str;
       if(pcontext != ::null())
@@ -306,8 +288,6 @@ namespace user
       
       if(!idLocale.is_empty())
       {
-         //OutputDebugString("\n");
-         //OutputDebugString(idLocale);
          string str;
          str_locale * plocale = get_locale(idLocale);
          if(plocale != ::null())
@@ -315,7 +295,6 @@ namespace user
             
             if(!idSchema.is_empty() && idSchema != idLocale)
             {
-               //OutputDebugString(idSchema);
                str_schema * pschema = plocale->get_schema(idSchema);
                if(pschema != ::null())
                {
@@ -343,8 +322,6 @@ namespace user
 
       static ::id idEn("en");
       static ::id idStd("_std");
-
-//      ::ca::international::locale_schema * plocaleschema = ::null();
 
       string str;
       if(pcontext != ::null())
@@ -482,8 +459,6 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      ::ca::international::locale_schema * plocaleschema = ::null();
-
       string str;
       if(pcontext != ::null())
       {
@@ -552,8 +527,6 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      ::ca::international::locale_schema * plocaleschema = ::null();
-
       string str;
       if(pcontext != ::null())
       {
@@ -621,8 +594,6 @@ namespace user
 
       static ::id idEn("en");
       static ::id idStd("_std");
-
-//      ::ca::international::locale_schema * plocaleschema = ::null();
 
       string str;
       if(pcontext != ::null())

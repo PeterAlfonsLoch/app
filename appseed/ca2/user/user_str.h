@@ -27,7 +27,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 str_schema : 
-      public map < id, const ::id &, string, const string & >
+      public strid_map < string >
    {
    public:
 
@@ -41,7 +41,7 @@ namespace user
    };
 
    class CLASS_DECL_ca2 str_locale : 
-      public map < id, const ::id &, str_schema, const str_schema & >
+      public strid_map < str_schema >
    {
    public:
       
@@ -50,7 +50,7 @@ namespace user
 
       inline str_schema * get_schema(const ::id & idSchema)
       {
-         map < id, const ::id &, str_schema, const str_schema & >::pair * ppair = PLookup(idSchema);
+         strid_map < str_schema > ::pair * ppair = PLookup(idSchema);
          if(ppair == ::null())
             return ::null();
          return &ppair->m_element2;
@@ -64,13 +64,13 @@ namespace user
 
 
    class CLASS_DECL_ca2 str : 
-      public map < id, const ::id &, str_locale, const str_locale & >
+      public strid_map < str_locale >
    {
    public:
 
 
-      str_schema *                           m_pschemaEn;
-      str_schema *                           m_pschemaStd;
+      sp(str_schema)                      m_pschemaEn;
+      sp(str_schema)                      m_pschemaStd;
       
 
 
@@ -79,7 +79,7 @@ namespace user
 
       inline str_locale * get_locale(const ::id & idLocale)
       {
-         map < id, const ::id &, str_locale, const str_locale & >::pair * ppair = PLookup(idLocale);
+         strid_map < str_locale > ::pair * ppair = PLookup(idLocale);
          if(ppair == ::null())
             return ::null();
          return &ppair->m_element2;
@@ -114,21 +114,22 @@ namespace user
    public:
       
       
-      str *                                  m_pstr;
+      
+      sp(::ca::international::locale_schema)    m_plocaleschema;
+      
+      
+      sp(str)                                   m_pstr;
+
+      str_locale *                              m_plocale;
+      
+      str_schema *                              m_pschema;
+      str_schema *                              m_pschemaLocale;
+      str_schema *                              m_pschemaSchemaEn;
+      str_schema *                              m_pschemaSchemaStd;
 
       
-      ::ca::international::locale_schema *    m_plocaleschema;
 
-      str_locale *                           m_plocale;
-      
-      str_schema *                           m_pschema;
-      str_schema *                           m_pschemaLocale;
-      str_schema *                           m_pschemaSchemaEn;
-      str_schema *                           m_pschemaSchemaStd;
-
-      
-
-      comparable_array < str_schema * >      m_schemaptra;
+      comparable_array < str_schema * >         m_schemaptra;
       
 
 
