@@ -7,6 +7,9 @@
 	<File name="base/ca/ca_application.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="13114" topLine="455" />
 	</File>
+	<File name="base/ca/ca_c.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="504" topLine="0" />
+	</File>
 	<File name="base/ca/ca_c.h" open="0" top="0" tabpos="118">
 		<Cursor position="1304" topLine="60" />
 	</File>
@@ -15,6 +18,9 @@
 	</File>
 	<File name="base/ca/ca_factory.h" open="0" top="0" tabpos="12">
 		<Cursor position="2603" topLine="104" />
+	</File>
+	<File name="base/ca/ca_file_application.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="224" topLine="0" />
 	</File>
 	<File name="base/ca/ca_fixed_alloc.h" open="0" top="0" tabpos="9">
 		<Cursor position="1069" topLine="11" />
@@ -25,14 +31,23 @@
 	<File name="base/ca/ca_message.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="23683" topLine="830" />
 	</File>
+	<File name="base/ca/ca_plex_heap.h" open="1" top="0" tabpos="14">
+		<Cursor position="3596" topLine="126" />
+	</File>
 	<File name="base/ca/ca_process.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="4404" topLine="146" />
 	</File>
 	<File name="base/ca/ca_smart_pointer1.h" open="1" top="0" tabpos="3">
-		<Cursor position="3159" topLine="111" />
+		<Cursor position="4158" topLine="115" />
 	</File>
 	<File name="base/ca/ca_smart_pointer2.h" open="1" top="0" tabpos="4">
 		<Cursor position="335" topLine="20" />
+	</File>
+	<File name="base/ca/ca_str.cpp" open="1" top="0" tabpos="21">
+		<Cursor position="45858" topLine="1994" />
+	</File>
+	<File name="base/ca/ca_thread.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="14426" topLine="643" />
 	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
@@ -358,14 +373,23 @@
 	<File name="primitive/aaa_var_want_to_remove.h" open="0" top="0" tabpos="93">
 		<Cursor position="16719" topLine="488" />
 	</File>
+	<File name="primitive/primitive_simple_string.h" open="1" top="0" tabpos="15">
+		<Cursor position="25452" topLine="1043" />
+	</File>
 	<File name="primitive/primitive_string.h" open="1" top="0" tabpos="12">
 		<Cursor position="37810" topLine="1158" />
+	</File>
+	<File name="programming/dynamic_source/dynamic_source_script_compiler.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="3614" topLine="90" />
 	</File>
 	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="7509" topLine="277" />
 	</File>
 	<File name="user/user_document_manager.h" open="0" top="0" tabpos="95">
 		<Cursor position="65" topLine="0" />
+	</File>
+	<File name="user/user_interaction.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="70852" topLine="2808" />
 	</File>
 	<File name="user/user_single_document_template.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="2746" topLine="31" />
