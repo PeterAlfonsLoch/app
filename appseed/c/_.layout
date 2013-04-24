@@ -64,11 +64,8 @@
 	<File name="c/c_file.h" open="0" top="0" tabpos="11">
 		<Cursor position="2173" topLine="16" />
 	</File>
-	<File name="c/c_file_watcher.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="1841" topLine="23" />
-	</File>
-	<File name="c/c_file_watcher_thread.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="652" topLine="0" />
+	<File name="c/c_file_watcher_thread.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="535" topLine="0" />
 	</File>
 	<File name="c/c_file_watcher_thread.h" open="0" top="0" tabpos="1">
 		<Cursor position="49" topLine="0" />
@@ -80,7 +77,7 @@
 		<Cursor position="4014" topLine="125" />
 	</File>
 	<File name="c/c_heap.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1688" topLine="43" />
+		<Cursor position="1688" topLine="172" />
 	</File>
 	<File name="c/c_heap.h" open="0" top="0" tabpos="45">
 		<Cursor position="3075" topLine="69" />
@@ -127,17 +124,14 @@
 	<File name="c/c_simple_array.h" open="0" top="0" tabpos="2">
 		<Cursor position="3003" topLine="109" />
 	</File>
-	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="2413" topLine="136" />
+	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="19">
+		<Cursor position="2401" topLine="153" />
 	</File>
 	<File name="c/c_simple_event.h" open="0" top="0" tabpos="5">
 		<Cursor position="18" topLine="0" />
 	</File>
 	<File name="c/c_simple_list.h" open="0" top="0" tabpos="1">
 		<Cursor position="1352" topLine="0" />
-	</File>
-	<File name="c/c_simple_map.h" open="0" top="0" tabpos="6">
-		<Cursor position="7181" topLine="235" />
 	</File>
 	<File name="c/c_simple_memory.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1723" topLine="89" />
@@ -229,7 +223,7 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="140" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="0" top="0" tabpos="10">
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="637" topLine="21" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="15">
@@ -242,7 +236,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1649" topLine="84" />
+		<Cursor position="2704" topLine="143" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.h" open="0" top="0" tabpos="13">
 		<Cursor position="1270" topLine="0" />
@@ -259,8 +253,8 @@
 	<File name="linux/c_os_file.h" open="0" top="0" tabpos="16">
 		<Cursor position="123" topLine="0" />
 	</File>
-	<File name="linux/c_os_file_watcher.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="4249" topLine="136" />
+	<File name="linux/c_os_file_watcher.cpp" open="0" top="0" tabpos="24">
+		<Cursor position="4230" topLine="136" />
 	</File>
 	<File name="linux/c_os_file_watcher.h" open="0" top="0" tabpos="18">
 		<Cursor position="2348" topLine="35" />
@@ -349,8 +343,8 @@
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="23" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="10192" topLine="635" />
+	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="19146" topLine="1104" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />
