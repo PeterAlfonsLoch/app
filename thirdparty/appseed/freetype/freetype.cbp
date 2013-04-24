@@ -31,6 +31,31 @@
 					<Add directory="../../../stage/x86" />
 				</Linker>
 			</Target>
+			<Target title="memdleak">
+				<Option output="../../../../stage/x86/lib_ca2freetype.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../../stage/x86/" />
+				<Option object_output="../../../../time/intermediate/app/_ca2freetype" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../.." />
+					<Add directory="../../.." />
+					<Add directory="../../ca2" />
+					<Add directory="../../../nodeapp/linux" />
+					<Add directory="../../../nodeapp/linux/include" />
+					<Add directory="../../../.." />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-fPIC" />
