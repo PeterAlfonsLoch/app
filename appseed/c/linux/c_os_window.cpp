@@ -641,6 +641,9 @@ bool oswindow::is_window_visible()
    mutex_lock sl(user_mutex(), true);
    xdisplay d(display());
 
+   if(d.m_pdisplay == ::null())
+    return false;
+
    XWindowAttributes attr;
    if(!XGetWindowAttributes(display(), window(), &attr))
       return false;

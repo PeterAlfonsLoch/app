@@ -100,6 +100,10 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    Display * pdisplay = hwnd.display();
    Window window = hwnd.window();
 
+
+   if(pdisplay == ::null())
+    return FALSE;
+
    XWindowAttributes attrs;
 
 

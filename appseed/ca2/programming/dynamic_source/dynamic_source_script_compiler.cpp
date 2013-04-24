@@ -101,6 +101,7 @@ namespace dynamic_source
 #endif
       System.dir().mk(System.dir().ca2("stage/front"), get_app());
 
+#ifdef WINDOWS
       string vars1batSrc;
       string vars2batSrc;
       string vars1batDst;
@@ -123,6 +124,9 @@ namespace dynamic_source
       catch(...)
       {
       }
+
+#endif
+
 
 #ifdef METROWIN
 
