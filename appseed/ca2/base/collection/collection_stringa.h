@@ -43,7 +43,7 @@ public:
 
    string pop_random_element();
 
-   string pop(index i = 0);
+   string pop(index i = -1);
    void slice(stringa & stra, index index, ::count c = -1);
    void remove(index index, ::count count);
    void splice(const stringa & stra, index index, ::count c = -1);
