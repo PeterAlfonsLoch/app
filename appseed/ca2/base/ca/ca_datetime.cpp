@@ -210,13 +210,13 @@ namespace ca
    time_t datetime::mktime(int32_t iHour, int32_t iMinute, int32_t iSecond, int32_t iMonth, int32_t iDay, int32_t iYear)
    {
       struct tm tm;
-      memset(&tm, 0, sizeof(tm));
+      ZERO(tm);
       tm.tm_hour  = iHour;
       tm.tm_min   = iMinute;
       tm.tm_sec   = iSecond;
-      tm.tm_mon   = iMonth;
+      tm.tm_mon   = iMonth - 1;
       tm.tm_mday  = iDay;
-      tm.tm_year  = iYear;
+      tm.tm_year  = iYear - 1900;
       #ifdef WINDOWS
       return _mktime64(&tm);
       #else
