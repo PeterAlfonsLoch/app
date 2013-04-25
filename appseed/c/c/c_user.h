@@ -11,7 +11,8 @@ namespace ca
 } // namespace ca
 
 
-class hthread
+class hthread :
+    virtual public ::c::c
 {
 public:
 
@@ -21,7 +22,7 @@ public:
 
 
    hthread();
-   ~hthread();
+   virtual ~hthread();
 
 
 };

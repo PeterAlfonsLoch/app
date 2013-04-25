@@ -107,6 +107,8 @@
 		<Unit filename="c/c_async.h" />
 		<Unit filename="c/c_base64.cpp" />
 		<Unit filename="c/c_base64.h" />
+		<Unit filename="c/c_c.cpp" />
+		<Unit filename="c/c_c.h" />
 		<Unit filename="c/c_conv.cpp" />
 		<Unit filename="c/c_conv.h" />
 		<Unit filename="c/c_count.h" />
@@ -178,6 +180,8 @@
 		<Unit filename="c/c_simple_shell_launcher.h" />
 		<Unit filename="c/c_small_ipc_channel.cpp" />
 		<Unit filename="c/c_small_ipc_channel.h" />
+		<Unit filename="c/c_smart_pointer1.h" />
+		<Unit filename="c/c_smart_pointer2.h" />
 		<Unit filename="c/c_sprintf.cpp" />
 		<Unit filename="c/c_sprintf.h" />
 		<Unit filename="c/c_std_file.cpp" />

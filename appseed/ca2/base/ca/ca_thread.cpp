@@ -893,7 +893,7 @@ namespace ca
    void thread::Delete()
    {
 
-      ::ca::c::release();
+      release();
 
    }
 

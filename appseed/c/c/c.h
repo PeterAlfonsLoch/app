@@ -161,8 +161,8 @@ public:
 #include "c_wstringtovss.h"
 
 
-#include "c_smart_pointer1.h"
 #include "c_c.h"
+#include "c_smart_pointer1.h"
 #include "c_smart_pointer2.h"
 
 

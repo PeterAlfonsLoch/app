@@ -121,7 +121,7 @@ public:
 #undef new
       CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 #define new DEBUG_NEW
-      ::ca::dereference_no_delete(pt);
+      ::c::dereference_no_delete(pt);
       pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
@@ -151,7 +151,7 @@ public:
 #undef new
       CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
 #define new DEBUG_NEW
-      ::ca::dereference_no_delete(pt);
+      ::c::dereference_no_delete(pt);
       pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;

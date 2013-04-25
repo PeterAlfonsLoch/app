@@ -150,7 +150,6 @@
 		<Unit filename="base/ca/ca_byte_stream.h" />
 		<Unit filename="base/ca/ca_byte_stream_memory_file.cpp" />
 		<Unit filename="base/ca/ca_byte_stream_memory_file.h" />
-		<Unit filename="base/ca/ca_c.cpp" />
 		<Unit filename="base/ca/ca_c.h" />
 		<Unit filename="base/ca/ca_c_number.h" />
 		<Unit filename="base/ca/ca_ca.cpp" />

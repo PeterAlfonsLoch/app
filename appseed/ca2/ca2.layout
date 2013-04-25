@@ -22,10 +22,10 @@
 	<File name="base/ca/ca_compress.cpp" open="0" top="0" tabpos="107">
 		<Cursor position="1171" topLine="36" />
 	</File>
-	<File name="base/ca/ca_factory.h" open="0" top="0" tabpos="12">
-		<Cursor position="2603" topLine="104" />
+	<File name="base/ca/ca_factory.h" open="1" top="0" tabpos="8">
+		<Cursor position="3852" topLine="131" />
 	</File>
-	<File name="base/ca/ca_fixed_alloc.h" open="1" top="0" tabpos="1">
+	<File name="base/ca/ca_fixed_alloc.h" open="1" top="1" tabpos="1">
 		<Cursor position="4061" topLine="136" />
 	</File>
 	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
@@ -43,8 +43,14 @@
 	<File name="base/ca/ca_smart_pointer2.h" open="0" top="0" tabpos="4">
 		<Cursor position="335" topLine="20" />
 	</File>
+	<File name="base/ca/ca_thread.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="18025" topLine="873" />
+	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
+	</File>
+	<File name="base/collection/collection_numeric_array.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="4991" topLine="407" />
 	</File>
 	<File name="base/collection/collection_smart_pointer_array.h" open="1" top="0" tabpos="2">
 		<Cursor position="954" topLine="27" />
@@ -114,6 +120,9 @@
 	</File>
 	<File name="base/xml/xml_node.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="868" topLine="0" />
+	</File>
+	<File name="base/xml/xml_xml.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="50" topLine="0" />
 	</File>
 	<File name="compress/7z/compress_archive.h" open="0" top="0" tabpos="18">
 		<Cursor position="7007" topLine="171" />
@@ -370,14 +379,14 @@
 	<File name="primitive/aaa_var_want_to_remove.h" open="0" top="0" tabpos="93">
 		<Cursor position="16719" topLine="488" />
 	</File>
-	<File name="primitive/datetime/datetime_time.cpp" open="1" top="1" tabpos="6">
+	<File name="primitive/datetime/datetime_time.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="11428" topLine="435" />
 	</File>
 	<File name="primitive/primitive_simple_string.h" open="1" top="0" tabpos="5">
 		<Cursor position="29250" topLine="1187" />
 	</File>
 	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="24002" topLine="854" />
+		<Cursor position="7" topLine="0" />
 	</File>
 	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="12">
 		<Cursor position="37810" topLine="1158" />
@@ -390,6 +399,9 @@
 	</File>
 	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="0" tabpos="7">
 		<Cursor position="16713" topLine="589" />
+	</File>
+	<File name="programming/dynamic_source/dynamic_source_session.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="358" topLine="0" />
 	</File>
 	<File name="user/user_document_manager.h" open="0" top="0" tabpos="95">
 		<Cursor position="65" topLine="0" />

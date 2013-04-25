@@ -16,13 +16,13 @@ namespace dynamic_source
 
    int64_t session::release()
    {
-      
+
       if(get_ref_count() >= 2)
       {
          m_timeAccess = ::datetime::time::get_current_time();
       }
 
-      int64_t i = ::ca::c::release();
+      int64_t i = ::c::c::release();
 
       return i;
 

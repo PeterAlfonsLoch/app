@@ -16,13 +16,13 @@
 	<File name="crypto/bio/bss_sock.c" open="0" top="0" tabpos="0">
 		<Cursor position="4852" topLine="113" />
 	</File>
-	<File name="crypto/bn/bn_asm.c" open="1" top="0" tabpos="5">
+	<File name="crypto/bn/bn_asm.c" open="1" top="0" tabpos="1">
 		<Cursor position="4997" topLine="138" />
 	</File>
-	<File name="crypto/bn/bn_exp.c" open="1" top="0" tabpos="12">
+	<File name="crypto/bn/bn_exp.c" open="1" top="0" tabpos="3">
 		<Cursor position="23187" topLine="761" />
 	</File>
-	<File name="crypto/bn/bn_mont.c" open="1" top="0" tabpos="11">
+	<File name="crypto/bn/bn_mont.c" open="1" top="0" tabpos="2">
 		<Cursor position="7418" topLine="224" />
 	</File>
 	<File name="crypto/cmac/cm_ameth.c" open="0" top="0" tabpos="3">

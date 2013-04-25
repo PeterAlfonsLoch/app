@@ -142,18 +142,13 @@ static __thread HTHREAD currentThread = NULL;
 __thread os_thread * t_posthread = NULL;
 
 
-simple_map < HTHREAD, ThreadLocalData * > & all_thread_data()
-{
+static simple_array<DWORD> freeTlsIndices;
+static simple_map < HTHREAD, ThreadLocalData * > allthreaddata;
+static simple_mutex tlsdatamutex;
 
-   static simple_map < HTHREAD, ThreadLocalData * > * s_pallthreaddata = new simple_map < HTHREAD, ThreadLocalData * >();
-
-   return *s_pallthreaddata;
-
-}
 
 static DWORD nextTlsIndex = 0;
-static simple_array<DWORD> freeTlsIndices;
-static simple_mutex tlsAllocationLock;
+
 simple_mutex * os_thread::s_pmutex = new simple_mutex();
 simple_array < os_thread * > * os_thread::s_pptra = new simple_array < os_thread * > ();
 
@@ -377,7 +372,8 @@ WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority)
 
 DWORD WINAPI TlsAlloc()
 {
-   mutex_lock lock(tlsAllocationLock);
+
+   mutex_lock lock(tlsdatamutex);
 
    // Can we reuse a previously freed TLS slot?
    if (freeTlsIndices.get_count() > 0)
@@ -394,7 +390,8 @@ DWORD WINAPI TlsAlloc()
 
 WINBOOL WINAPI TlsFree(DWORD dwTlsIndex)
 {
-   mutex_lock lock(tlsAllocationLock);
+
+   mutex_lock lock(tlsdatamutex);
 
    //assert(dwTlsIndex < nextTlsIndex);
 /*   for(int32_t i = 0; i < freeTlsIndices.get_count(); i++)
@@ -414,7 +411,7 @@ WINBOOL WINAPI TlsFree(DWORD dwTlsIndex)
 
    // Zero the value for all threads that might be using this now freed slot.
 
-   POSITION pos = all_thread_data().get_start_position();
+   POSITION pos = allthreaddata.get_start_position();
    while( pos != NULL)
    {
 
@@ -422,7 +419,7 @@ WINBOOL WINAPI TlsFree(DWORD dwTlsIndex)
 
       ThreadLocalData * pdata;
 
-      all_thread_data().get_next_assoc(pos, hThread, pdata);
+      allthreaddata.get_next_assoc(pos, hThread, pdata);
 
       if(pdata->get_count() > dwTlsIndex)
       {
@@ -445,6 +442,15 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
    else
    {
+       threadData = allthreaddata[currentThread] ;
+       if(threadData)
+       {
+           currentThreadData = threadData;
+            if(threadData->get_count() > dwTlsIndex)
+            {
+                return threadData->element_at(dwTlsIndex);
+            }
+       }
       // Default value for unallocated slots.
       return NULL;
    }
@@ -452,7 +458,10 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 
 LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 {
-   ThreadLocalData* threadData = all_thread_data()[hthread];
+
+    mutex_lock lock(tlsdatamutex);
+
+   ThreadLocalData * threadData = allthreaddata[hthread];
 
    if (threadData && threadData->get_count() > dwTlsIndex)
    {
@@ -469,6 +478,7 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 
 WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
+
    ThreadLocalData* threadData = currentThreadData;
 
    if (!threadData)
@@ -478,9 +488,9 @@ WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
       {
             threadData = new ThreadLocalData;
 
-            mutex_lock lock(tlsAllocationLock);
+            mutex_lock lock(tlsdatamutex);
 
-            all_thread_data().set_at(currentThread, threadData);
+            allthreaddata.set_at(currentThread, threadData);
 
             currentThreadData = threadData;
 
@@ -502,7 +512,10 @@ WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 
 WINBOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
-   ThreadLocalData* threadData = all_thread_data()[hthread];
+
+    mutex_lock lock(tlsdatamutex);
+
+   ThreadLocalData * threadData = allthreaddata[hthread];
 
    if (!threadData)
    {
@@ -511,11 +524,8 @@ WINBOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
       {
             threadData = new ThreadLocalData;
 
-            mutex_lock lock(tlsAllocationLock);
+            allthreaddata.set_at(hthread, threadData);
 
-            all_thread_data().set_at(hthread, threadData);
-
-            currentThreadData = threadData;
       }
       catch (...)
       {
@@ -577,9 +587,9 @@ void WINAPI TlsShutdown()
 
 */
 
-      mutex_lock ml(tlsAllocationLock);
+      mutex_lock ml(tlsdatamutex);
 
-      all_thread_data().remove_key(currentThread);
+      allthreaddata.remove_key(currentThread);
 
       currentThreadData = NULL;
 
@@ -763,7 +773,7 @@ uint32_t os_thread::run()
    // Signal that the thread has completed.
    currentThread->m_pevent->set_event();
 
-   delete currentThread;
+   currentThread->release();
 
    return dwRet;
 
