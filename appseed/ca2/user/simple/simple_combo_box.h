@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 simple_combo_box :
-   public ::user::combo_box
+   virtual public ::user::combo_box
 {
 public:
 

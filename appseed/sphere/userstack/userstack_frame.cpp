@@ -250,7 +250,7 @@ namespace userstack
       {
 #ifdef WINDOWSEX
          int32_t iEdge = 0;
-         COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam;
+         COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
          if(pstruct->dwData == 1984)
          {
             ::primitive::memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
@@ -430,7 +430,7 @@ namespace userstack
 
       SCAST_PTR(::ca::message::base, pbase, pobj);
       
-      MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam;
+      MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam.m_lparam;
 
       pmsg->hwnd = get_safe_handle();
 
