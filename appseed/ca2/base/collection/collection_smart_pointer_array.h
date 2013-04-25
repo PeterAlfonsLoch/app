@@ -35,6 +35,18 @@ public:
       return this->get_size();
    }
 
+   ::count set_size_create(::count nNewSize, ::count nGrowBy = -1)
+   {
+      index i = this->get_size();
+      this->array < ::ca::smart_pointer < T > >::set_size(nNewSize);
+      ::count c = this->get_size();
+      for(; i < c; i++)
+      {
+         this->element_at(i).create(get_app());
+      }
+      return c;
+   }
+
 
    template < class DERIVED >
    DERIVED * get(index iStart = 0)
