@@ -474,7 +474,7 @@ namespace gcom
             ::ca::dib_sp spdib(allocer());
             OnCreateDib(spdib, iIndex);
             m_mapDib.set_at(iIndex, spdib);
-            ::ca::add_ref(spdib.m_p);
+            ::c::add_ref(spdib.m_p);
             return spdib;
          }
       }

@@ -41,7 +41,7 @@ namespace ca
    };
 
 
-   typedef smart_pointer < bitmap > bitmap_sp;
+   typedef ::c::smart_pointer < bitmap > bitmap_sp;
 
 
 } // namespace ca

@@ -349,7 +349,7 @@ namespace ca
       }
 
       template < class T >
-      property & operator =(const smart_pointer < T > & p)
+      property & operator =(const ::c::smart_pointer < T > & p)
       {
          get_value() = p.m_p;
          return *this;

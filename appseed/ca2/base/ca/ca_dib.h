@@ -193,7 +193,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 dib_sp :
-      public smart_pointer < dib >
+      public ::c::smart_pointer < dib >
    {
    public:
 
@@ -201,13 +201,13 @@ namespace ca
       {
       }
 
-      dib_sp(const smart_pointer < dib > & p) :
-         smart_pointer < dib > (p)
+      dib_sp(const ::c::smart_pointer < dib > & p) :
+         ::c::smart_pointer < dib > (p)
       {
       }
 
       dib_sp(allocatorsp allocer) :
-         smart_pointer < dib > (allocer)
+         ::c::smart_pointer < dib > (allocer)
       {
       }
 

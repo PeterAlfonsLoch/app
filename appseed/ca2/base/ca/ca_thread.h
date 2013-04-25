@@ -231,7 +231,7 @@ namespace ca
    class thread;
 
 
-   typedef smart_pointer < thread > thread_sp;
+   typedef ::c::smart_pointer < thread > thread_sp;
 
 
    class CLASS_DECL_ca2 thread :

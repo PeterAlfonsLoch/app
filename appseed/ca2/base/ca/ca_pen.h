@@ -65,7 +65,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 pen_sp :
-      virtual public smart_pointer < pen >
+      virtual public ::c::smart_pointer < pen >
    {
    public:
 
@@ -73,13 +73,13 @@ namespace ca
       {
       }
 
-      pen_sp(const smart_pointer < pen > & p) :
-         smart_pointer < pen > (p)
+      pen_sp(const ::c::smart_pointer < pen > & p) :
+         ::c::smart_pointer < pen > (p)
       {
       }
 
       pen_sp(allocatorsp allocer) :
-         smart_pointer < pen > (allocer)
+         ::c::smart_pointer < pen > (allocer)
       {
       }
 
@@ -87,7 +87,7 @@ namespace ca
 /*
       pen_sp(sp(::ca::application) papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
          int32_t nStyleCount = 0, const uint32_t* lpStyle = ::null()) :
-         smart_pointer < pen > (papp)
+         ::c::smart_pointer < pen > (papp)
       {
          m_p->construct(nPenStyle, nWidth, pLogBrush, nStyleCount, lpStyle);
       }

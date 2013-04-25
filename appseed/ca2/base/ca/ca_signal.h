@@ -111,7 +111,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 signal :
-      virtual public ::ca::c
+      virtual public ::c::c
    {
    protected:
 

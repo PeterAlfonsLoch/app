@@ -41,7 +41,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 tree_item :
-      public ::ca::c
+      public ::c::c
    {
    public:
 

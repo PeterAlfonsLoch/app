@@ -99,7 +99,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 region_sp :
-      public smart_pointer < region >
+      public ::c::smart_pointer < region >
    {
    public:
 
@@ -107,13 +107,13 @@ namespace ca
       {
       }
 
-      region_sp(const smart_pointer < region > & p) :
-         smart_pointer < region > (p)
+      region_sp(const ::c::smart_pointer < region > & p) :
+         ::c::smart_pointer < region > (p)
       {
       }
 
       region_sp(allocatorsp allocer) :
-         smart_pointer < region > (allocer)
+         ::c::smart_pointer < region > (allocer)
       {
       }
 

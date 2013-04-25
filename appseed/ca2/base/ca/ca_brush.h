@@ -57,7 +57,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 brush_sp :
-      virtual public smart_pointer < brush >
+      virtual public ::c::smart_pointer < brush >
    {
    public:
 
@@ -66,19 +66,19 @@ namespace ca
       {
       }
 
-      brush_sp(const smart_pointer < brush > & br) :
-         smart_pointer < brush > (br)
+      brush_sp(const ::c::smart_pointer < brush > & br) :
+         ::c::smart_pointer < brush > (br)
       {
       }
 
       brush_sp(allocatorsp allocer) :
-         smart_pointer < brush > (allocer)
+         ::c::smart_pointer < brush > (allocer)
       {
       }
 
       // create_solid
       brush_sp(allocatorsp allocer, COLORREF crColor) :
-         smart_pointer < brush > (allocer)
+         ::c::smart_pointer < brush > (allocer)
       {
          m_p->create_solid(crColor);
       }
@@ -86,13 +86,13 @@ namespace ca
 /*
       // CreateHatchBrush
       brush_sp(sp(::ca::application) papp, int32_t nIndex, COLORREF crColor) :
-         smart_pointer < brush > (papp)
+         ::c::smart_pointer < brush > (papp)
       {
          m_p->construct(nIndex, crColor);
       }
       // CreatePatternBrush
       brush_sp(sp(::ca::application) papp, bitmap * pbitmap) :
-         smart_pointer < brush > (papp)
+         ::c::smart_pointer < brush > (papp)
       {
          m_p->construct(pbitmap);
       }

@@ -77,7 +77,7 @@ namespace ca
    };
 
 
-   typedef smart_pointer < os > os_sp;
+   typedef ::c::smart_pointer < os > os_sp;
 
 
 } // namespace ca

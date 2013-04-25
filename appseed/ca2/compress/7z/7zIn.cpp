@@ -375,7 +375,7 @@ HRESULT CInArchive::Open(::ca::byte_input_stream *stream, const file_position *s
 
 void CInArchive::Close()
 {
-  ::ca::release(_stream.m_p);
+  ::c::release(_stream.m_p);
 }
 
 void CInArchive::ReadArchiveProperties(CInArchiveInfo & /* archiveInfo */)

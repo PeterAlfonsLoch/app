@@ -44,6 +44,6 @@ namespace ca
 
 
 
-   typedef smart_pointer < window_draw > window_draw_sp;
+   typedef ::c::smart_pointer < window_draw > window_draw_sp;
 
 } // namespace ca

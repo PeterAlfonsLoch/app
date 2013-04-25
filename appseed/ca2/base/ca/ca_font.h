@@ -72,7 +72,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 font_sp :
-      public smart_pointer < font >
+      public ::c::smart_pointer < font >
    {
    public:
 
@@ -80,13 +80,13 @@ namespace ca
       {
       }
 
-      font_sp(const smart_pointer < font > & p) :
-         smart_pointer < font > (p)
+      font_sp(const ::c::smart_pointer < font > & p) :
+         ::c::smart_pointer < font > (p)
       {
       }
 
       font_sp(allocatorsp allocer) :
-         smart_pointer < font > (allocer)
+         ::c::smart_pointer < font > (allocer)
       {
       }
 

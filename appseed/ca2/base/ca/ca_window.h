@@ -687,7 +687,7 @@ namespace ca
    };
 
 
-   typedef smart_pointer < window > window_sp;
+   typedef ::c::smart_pointer < window > window_sp;
 
 
 } // namespace ca

@@ -4,6 +4,16 @@
 #define sp(TYPE) ::c::smart_pointer < TYPE >
 
 
+namespace ca
+{
+
+
+      class allocatorsp;
+
+
+} // namespace ca
+
+
 // ::ca::null back link to operational system oswindow.h
 //
 //
@@ -16,9 +26,6 @@ namespace c
 {
 
 
-
-
-   class allocatorsp;
 
 
    template < class T >
@@ -36,8 +43,8 @@ namespace c
       smart_pointer(lparam lparam);
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(smart_pointer < T > && t);
-      smart_pointer(const allocatorsp & t);
-      smart_pointer(allocatorsp && t);
+      smart_pointer(const ::ca::allocatorsp & t);
+      smart_pointer(::ca::allocatorsp && t);
       smart_pointer(T * p);
       smart_pointer(void * p);
       smart_pointer(const ::ca::null &);
@@ -45,14 +52,14 @@ namespace c
       smart_pointer(T2 * p)
       {
          m_p = dynamic_cast < T * > (p);
-         if(m_p != ::null()) ::ca::add_ref(p);
+         if(m_p != ::null()) ::c::add_ref(p);
       }
 
       template < class T2 >
       smart_pointer(const T2 * p)
       {
          m_p = dynamic_cast < T * > ((T2 *) p);
-         if(m_p != ::null()) ::ca::add_ref(p);
+         if(m_p != ::null()) ::c::add_ref(p);
       }
 
       template < class T2 >
@@ -127,7 +134,7 @@ namespace c
          }
          if(pOld != ::null())
          {
-            ::ca::release(pOld);
+            ::c::release(pOld);
          }
          return *this;
       }
@@ -166,7 +173,7 @@ namespace c
 
 
       sp(T) clone() const;
-      void create(allocatorsp allocer);
+      void create(const ::ca::allocatorsp & allocer);
 
 
 

@@ -427,7 +427,7 @@ double_array::~double_array()
 
 int64_t double_array::add_ref()
 {
-   return c::add_ref();
+   return ::c::add_ref();
 }
 
 int64_t double_array::release()

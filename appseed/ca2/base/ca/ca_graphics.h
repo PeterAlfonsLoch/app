@@ -600,7 +600,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 graphics_sp :
-      public smart_pointer < graphics >
+      public ::c::smart_pointer < graphics >
    {
    public:
 
@@ -608,13 +608,13 @@ namespace ca
       {
       }
 
-      graphics_sp(const smart_pointer < graphics > & p) :
-         smart_pointer < graphics > (p)
+      graphics_sp(const ::c::smart_pointer < graphics > & p) :
+         ::c::smart_pointer < graphics > (p)
       {
       }
 
       graphics_sp(allocatorsp allocer) :
-         smart_pointer < graphics > (allocer)
+         ::c::smart_pointer < graphics > (allocer)
       {
       }
 

@@ -147,7 +147,7 @@ namespace ca
       public:
 
          class CLASS_DECL_ca2 HandlerItemBase :
-            virtual public ::ca::c
+            virtual public ::c::c
          {
          public:
             virtual ~HandlerItemBase();

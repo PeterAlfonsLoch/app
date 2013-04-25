@@ -143,8 +143,8 @@ namespace n7z
 
    void COutArchive::Close()
    {
-      ::ca::release(SeqStream.m_p);
-      ::ca::release(Stream.m_p);
+      ::c::release(SeqStream.m_p);
+      ::c::release(Stream.m_p);
    }
 
    HRESULT COutArchive::SkipPrefixArchiveHeader()

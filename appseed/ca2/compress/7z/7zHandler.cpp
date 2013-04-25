@@ -439,7 +439,7 @@ bool handler::IsEncrypted(uint32_t index1) const
 
 ::ca::HRes handler::Close()
 {
-::ca::release(_inStream.m_p);
+::c::release(_inStream.m_p);
   _db.clear();
   return S_OK;
 }

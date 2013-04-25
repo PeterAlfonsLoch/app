@@ -534,7 +534,7 @@ namespace n7z
 
    void CFolderOutStream2::ReleaseOutStream()
    {
-      ::ca::release(_outStream.m_p);
+      ::c::release(_outStream.m_p);
       _crcStreamSpec->ReleaseStream();
    }
 
@@ -1012,7 +1012,7 @@ namespace n7z
                }
 
                RINOK(threadDecoder.FosSpec->Init(db, db->FolderStartFileIndex[folderIndex], &extractStatuses, sbOutStream));
-               ::ca::release(sbOutStream.m_p);
+               ::c::release(sbOutStream.m_p);
 
                threadDecoder.InStream = inStream;
                threadDecoder.Folder = db->Folders(folderIndex);

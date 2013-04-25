@@ -1,23 +1,23 @@
 #pragma once
 
 
-namespace ca
+namespace c
 {
 
 
    template < class T >
-   void smart_pointer <T>::create(allocatorsp allocer)
+   void smart_pointer <T>::create(const ::ca::allocatorsp & allocer)
    {
       static class id idType = Sys(allocer->m_papp).type_info < T > ()->m_id;
       if(m_p != ::null())
-         ::ca::release(m_p);
+         ::c::release(m_p);
       sp(::ca::ca) pca = Sys(allocer->m_papp).alloc(allocer->m_papp, idType);
       if(pca.is_set())
       {
          m_p = dynamic_cast < T * >(pca.m_p);
          if(m_p != ::null())
          {
-            ::ca::add_ref(m_p);
+            ::c::add_ref(m_p);
          }
       }
    }
@@ -36,12 +36,12 @@ namespace ca
    void smart_pointer <T>::release()
    {
 
-      ::ca::release(m_p);
+      ::c::release(m_p);
 
    }
 
 
-} // namespace ca
+} // namespace c
 
 
 

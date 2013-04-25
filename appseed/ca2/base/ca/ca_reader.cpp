@@ -137,7 +137,7 @@ namespace ca
       if(m_spreader.is_set())
       {
          m_spreader->close();
-         ::ca::release(m_spreader.m_p);
+         ::c::release(m_spreader.m_p);
       }
    }
 

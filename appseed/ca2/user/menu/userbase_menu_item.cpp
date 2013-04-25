@@ -51,7 +51,7 @@ namespace user
             pitemNewChild->m_button._001SetButtonText(strCommandTitle);
          }
          add_item(pitemNewChild);
-         ::ca::release(pitemNewChild);
+         ::c::release(pitemNewChild);
       }
 
       return iItemCount > 0;
@@ -102,7 +102,7 @@ namespace user
             }
          }
          add_item(pitemNewChild);
-         ::ca::release(pitemNewChild);
+         ::c::release(pitemNewChild);
       }
 
       return true;

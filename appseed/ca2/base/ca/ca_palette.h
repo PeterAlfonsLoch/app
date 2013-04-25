@@ -31,7 +31,7 @@ namespace ca
    };
 
 
-   typedef smart_pointer < palette > palette_sp;
+   typedef ::c::smart_pointer < palette > palette_sp;
 
 
 } // namespace ca

@@ -146,7 +146,7 @@ namespace ca
       m_bInitializeProDevianMode = true;
 
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-      ::ca::add_ref(this);
+      ::c::add_ref(this);
 
       //_setmbcp(CP_UTF8);
 //      uint32_t dw = ::_getmbcp();
@@ -944,7 +944,7 @@ finishedCa2ModuleFolder:;
 
       /*try
       {
-         ::ca::release(smart_pointer <::ca::thread>::m_p);
+         ::c::release(::c::smart_pointer <::ca::thread>::m_p);
       }
       catch(...)
       {

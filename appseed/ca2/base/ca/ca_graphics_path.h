@@ -135,7 +135,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 graphics_path_sp :
-      public smart_pointer < graphics_path >
+      public ::c::smart_pointer < graphics_path >
    {
    public:
 
@@ -143,13 +143,13 @@ namespace ca
       {
       }
 
-      graphics_path_sp(const smart_pointer < graphics_path > & p) :
-         smart_pointer < graphics_path > (p)
+      graphics_path_sp(const ::c::smart_pointer < graphics_path > & p) :
+         ::c::smart_pointer < graphics_path > (p)
       {
       }
 
       graphics_path_sp(allocatorsp allocer) :
-         smart_pointer < graphics_path > (allocer)
+         ::c::smart_pointer < graphics_path > (allocer)
       {
       }
 

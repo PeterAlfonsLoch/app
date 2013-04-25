@@ -42,10 +42,7 @@ namespace plane
 
 
 #include "ca_enum.h"
-#include "ca_c.h"
-#include "ca_smart_pointer1.h"
 #include "ca_ca.h"
-#include "ca_smart_pointer2.h"
 #include "ca_live_object.h"
 #include "ca_log.h"
 

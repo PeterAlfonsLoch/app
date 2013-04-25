@@ -897,7 +897,7 @@ namespace xml
                if(pnode->m_strName.has_char())
                {
                   m_nodea.add(pnode);
-//                  ::ca::release(pnode);
+//                  ::c::release(pnode);
                }
                else
                {

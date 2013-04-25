@@ -109,7 +109,7 @@ namespace ca
 
       spallocator->m_papp = papp;
 
-      smart_pointer < allocator >::operator = (spallocator);
+      ::c::smart_pointer < allocator >::operator = (spallocator);
 
    }
 

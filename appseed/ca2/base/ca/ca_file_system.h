@@ -190,7 +190,7 @@ namespace ca
    };
 
 
-   typedef smart_pointer < file_system > file_system_sp;
+   typedef ::c::smart_pointer < file_system > file_system_sp;
 
 
 

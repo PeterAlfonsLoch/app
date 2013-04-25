@@ -52,7 +52,7 @@ namespace c
    smart_pointer < T > ::smart_pointer(T * p)
    {
       m_p = p;
-      ::ca::add_ref(m_p);
+      ::c::add_ref(m_p);
    }
 
    template < class T >
@@ -65,19 +65,19 @@ namespace c
    smart_pointer < T > ::smart_pointer(void * p)
    {
       m_p = (T *) p;
-      ::ca::add_ref(m_p);
+      ::c::add_ref(m_p);
    }
 
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(const allocatorsp & a)
+   smart_pointer < T > ::smart_pointer(const ::ca::allocatorsp & a)
    {
       m_p = ::null();
       create(a);
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(allocatorsp && a)
+   smart_pointer < T > ::smart_pointer(::ca::allocatorsp && a)
    {
       m_p = ::null();
       create(a);
@@ -128,28 +128,28 @@ namespace c
    template < class T >
    inline smart_pointer < T > ::operator lparam ()
    {
-      ::ca::add_ref(m_p);
+      ::c::add_ref(m_p);
       return lparam(m_p);
    }
 
    template < class T >
    inline smart_pointer < T > ::operator lparam () const
    {
-      ::ca::add_ref(((smart_pointer *) this)->m_p);
+      ::c::add_ref(((smart_pointer *) this)->m_p);
       return lparam(m_p);
    }
 
 /*   template < class T >
    inline smart_pointer < T > ::operator void * ()
    {
-      ::ca::add_ref(m_p);
+      ::c::add_ref(m_p);
       return (void *) m_p;
    }
 
    template < class T >
    inline smart_pointer < T > ::operator void * () const
    {
-      ::ca::add_ref(((smart_pointer *) this)->m_p);
+      ::c::add_ref(((smart_pointer *) this)->m_p);
       return (void *) m_p;
    }
 */
@@ -186,12 +186,12 @@ namespace c
          T * pOld = m_p;
          if(p != ::null())
          {
-            ::ca::add_ref(p);
+            ::c::add_ref(p);
          }
          m_p = p;
          if(pOld != ::null())
          {
-            ::ca::release(pOld);
+            ::c::release(pOld);
          }
       }
       return *this;

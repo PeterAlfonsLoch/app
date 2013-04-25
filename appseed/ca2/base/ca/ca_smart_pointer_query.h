@@ -83,4 +83,4 @@ inline ::ca::smart_pointer_query < T > ca_smart_pointer_query(::c::smart_pointer
 }
 
 
-#define spquery(smart_pointer) ::ca_smart_pointer_query(smart_pointer)
+#define spquery(sp) ::ca_smart_pointer_query(sp)

@@ -141,7 +141,7 @@ namespace n7z
          _decoders.remove_all();
          // _decoders2.clear();
 
-         ::ca::release(_mixerCoder.m_p);
+         ::c::release(_mixerCoder.m_p);
 
          if (_multiThread)
          {
