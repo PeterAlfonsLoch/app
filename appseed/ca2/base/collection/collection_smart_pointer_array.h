@@ -42,7 +42,7 @@ public:
       ::count c = this->get_size();
       for(; i < c; i++)
       {
-         this->element_at(i).create(get_app());
+         this->element_at(i).create(this->get_app());
       }
       return c;
    }
