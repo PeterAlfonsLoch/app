@@ -25,7 +25,7 @@
 	<File name="base/ca/ca_factory.h" open="0" top="0" tabpos="12">
 		<Cursor position="2603" topLine="104" />
 	</File>
-	<File name="base/ca/ca_fixed_alloc.h" open="1" top="1" tabpos="0">
+	<File name="base/ca/ca_fixed_alloc.h" open="1" top="0" tabpos="1">
 		<Cursor position="4061" topLine="136" />
 	</File>
 	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
@@ -46,10 +46,13 @@
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
 	</File>
+	<File name="base/collection/collection_smart_pointer_array.h" open="1" top="0" tabpos="2">
+		<Cursor position="954" topLine="27" />
+	</File>
 	<File name="base/exception/exception_standard.h" open="0" top="0" tabpos="13">
 		<Cursor position="4148" topLine="133" />
 	</File>
-	<File name="base/exception/exception_standard_translator.cpp" open="0" top="0" tabpos="1">
+	<File name="base/exception/exception_standard_translator.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="17662" topLine="351" />
 	</File>
 	<File name="base/linux/os.cpp" open="0" top="0" tabpos="4">
@@ -367,8 +370,14 @@
 	<File name="primitive/aaa_var_want_to_remove.h" open="0" top="0" tabpos="93">
 		<Cursor position="16719" topLine="488" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="0">
-		<Cursor position="29777" topLine="1187" />
+	<File name="primitive/datetime/datetime_time.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="11428" topLine="435" />
+	</File>
+	<File name="primitive/primitive_simple_string.h" open="1" top="0" tabpos="5">
+		<Cursor position="29250" topLine="1187" />
+	</File>
+	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="24002" topLine="854" />
 	</File>
 	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="12">
 		<Cursor position="37810" topLine="1158" />
@@ -379,8 +388,8 @@
 	<File name="programming/dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="30628" topLine="874" />
 	</File>
-	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="7509" topLine="277" />
+	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="16713" topLine="589" />
 	</File>
 	<File name="user/user_document_manager.h" open="0" top="0" tabpos="95">
 		<Cursor position="65" topLine="0" />
