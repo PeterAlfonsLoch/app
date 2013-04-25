@@ -38,7 +38,7 @@ namespace libcompress
 
       {
          ::count numProps = method.Props.get_count();
-         ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
+         ::c::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
          setCoderProperties = coder;
          if (setCoderProperties == ::null())
          {
@@ -65,7 +65,7 @@ namespace libcompress
                            if (reducedDictionarySize < value.uint32())
                               value = (uint64_t) reducedDictionarySize;
                }
-               ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
+               ::c::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
                setCoderProperties = coder;
                res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }
@@ -80,12 +80,12 @@ namespace libcompress
       }
 
       /*
-      ::ca::smart_pointer<::libcompress::write_coder_properties_interface> writeCoderProperties;
+      ::c::smart_pointer<::libcompress::write_coder_properties_interface> writeCoderProperties;
       coder->QueryInterface(IID_ICompressWriteCoderProperties, (void **)&writeCoderProperties);
       if (writeCoderProperties != ::null())
       {
       CSequentialOutStreamImp *outStreamSpec = new CSequentialOutStreamImp;
-      ::ca::smart_pointer<ISequentialOutStream> outStream(outStreamSpec);
+      ::c::smart_pointer<ISequentialOutStream> outStream(outStreamSpec);
       outStreamSpec->Init();
       RINOK(writeCoderProperties->WriteCoderProperties(outStream));
       size_t size = outStreamSpec->GetSize();

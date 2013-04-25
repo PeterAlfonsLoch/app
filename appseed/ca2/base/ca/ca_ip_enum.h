@@ -30,7 +30,7 @@ namespace ca
    };
 
 
-   typedef ::ca::smart_pointer < ip_enum > ip_enum_sp;
+   typedef ::c::smart_pointer < ip_enum > ip_enum_sp;
 
 
 } // namespace ca

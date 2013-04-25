@@ -3320,12 +3320,6 @@
     <ClInclude Include="base\ca\ca_smart_pointer_query.h">
       <Filter>Header Files\base\ca</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca\ca_smart_pointer1.h">
-      <Filter>Header Files\base\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca\ca_smart_pointer2.h">
-      <Filter>Header Files\base\ca</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca\ca_sockets_address.h">
       <Filter>Header Files\base\ca</Filter>
     </ClInclude>
@@ -5753,9 +5747,6 @@
       <Filter>Source Files\base\ca</Filter>
     </ClCompile>
     <ClCompile Include="base\ca\ca_byte_stream_memory_file.cpp">
-      <Filter>Source Files\base\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca\ca_c.cpp">
       <Filter>Source Files\base\ca</Filter>
     </ClCompile>
     <ClCompile Include="base\ca\ca_ca.cpp">

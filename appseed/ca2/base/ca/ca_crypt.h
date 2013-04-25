@@ -74,7 +74,7 @@ namespace ca
    };
 
 
-   typedef ::ca::smart_pointer < crypt > crypt_sp;
+   typedef ::c::smart_pointer < crypt > crypt_sp;
 
 
 } //   namespace ca

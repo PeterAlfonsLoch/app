@@ -34,7 +34,7 @@ namespace ca
    };
 
 
-   typedef ::ca::smart_pointer < file_set > file_set_sp;
+   typedef ::c::smart_pointer < file_set > file_set_sp;
 
 
 } // namespace ca

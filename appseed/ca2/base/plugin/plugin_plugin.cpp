@@ -975,7 +975,7 @@ namespace plugin
          if(bIsWindow)
          {
 
-            ::ca::smart_pointer < ::ca::message::base > spbase;
+            ::c::smart_pointer < ::ca::message::base > spbase;
 
             spbase = m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam);
 

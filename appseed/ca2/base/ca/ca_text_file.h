@@ -21,6 +21,6 @@ namespace ca
       }
    };
 
-   typedef ::ca::smart_pointer < text_file > text_file_sp;
+   typedef ::c::smart_pointer < text_file > text_file_sp;
 
 } // namespace ca

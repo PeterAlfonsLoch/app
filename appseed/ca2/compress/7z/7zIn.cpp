@@ -843,7 +843,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
 
     throw "should implement below";
     /*CBufPtrSeqOutStream *outStreamSpec = new CBufPtrSeqOutStream;
-    ::ca::smart_pointer<::ca::writer> outStream = outStreamSpec;
+    ::c::smart_pointer<::ca::writer> outStream = outStreamSpec;
     outStreamSpec->Init(data, unpackSize);
 
     HRESULT result = decoder.Decode(

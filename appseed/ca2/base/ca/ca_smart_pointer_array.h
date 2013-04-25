@@ -7,7 +7,7 @@ namespace ca
 
    template < class T >
    class smart_pointer_array :
-      virtual public array < ::ca::smart_pointer < T > >
+      virtual public array < ::c::smart_pointer < T > >
    {
    public:
 
@@ -17,15 +17,15 @@ namespace ca
 
       smart_pointer_array(::ca::application * papp) :
          ca(papp),
-         array < ::ca::smart_pointer < T > >(papp)
+         array < ::c::smart_pointer < T > >(papp)
       {
       }
 
 
-      ::ca::smart_pointer < T > & add_new()
+      ::c::smart_pointer < T > & add_new()
       {
 
-         array < ::ca::smart_pointer < T > >::add_new();
+         array < ::c::smart_pointer < T > >::add_new();
 
          last_element().create(get_app());
 
@@ -43,7 +43,7 @@ namespace ca
          }
          if(get_size() > nNewSize)
          {
-            array < ::ca::smart_pointer < T > >::set_size(nNewSize);
+            array < ::c::smart_pointer < T > >::set_size(nNewSize);
          }
          return get_size();
       }
@@ -189,65 +189,65 @@ namespace ca
       const T & operator[](index nIndex) const
       {
 
-         return *array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
+         return *array < ::c::smart_pointer < T > >::operator[](nIndex).m_p;
 
       }
 
       T & operator[](index nIndex)
       {
 
-         return *array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
+         return *array < ::c::smart_pointer < T > >::operator[](nIndex).m_p;
 
       }
 
-      const ::ca::smart_pointer < T > & sp_at(index nIndex) const
+      const ::c::smart_pointer < T > & sp_at(index nIndex) const
       {
 
-         return array < ::ca::smart_pointer < T > >::element_at(nIndex);
+         return array < ::c::smart_pointer < T > >::element_at(nIndex);
 
       }
 
 
-      ::ca::smart_pointer < T > & sp_at(index nIndex)
+      ::c::smart_pointer < T > & sp_at(index nIndex)
       {
 
-         return array < ::ca::smart_pointer < T > >::element_at(nIndex);
+         return array < ::c::smart_pointer < T > >::element_at(nIndex);
 
       }
 
 
-      const ::ca::smart_pointer < T > & first_sp(index n = 0) const
+      const ::c::smart_pointer < T > & first_sp(index n = 0) const
       {
 
-         return array < ::ca::smart_pointer < T > >::first_element(n);
+         return array < ::c::smart_pointer < T > >::first_element(n);
 
       }
 
 
-      ::ca::smart_pointer < T > & first_sp(index n = 0)
+      ::c::smart_pointer < T > & first_sp(index n = 0)
       {
 
-         return array < ::ca::smart_pointer < T > >::first_element(n);
+         return array < ::c::smart_pointer < T > >::first_element(n);
 
       }
 
 
-      const ::ca::smart_pointer < T > & last_sp(index n = 0) const
+      const ::c::smart_pointer < T > & last_sp(index n = 0) const
       {
 
-         return array < ::ca::smart_pointer < T > >::last_element(n);
+         return array < ::c::smart_pointer < T > >::last_element(n);
 
       }
 
 
-      ::ca::smart_pointer < T > & last_sp(index n = 0)
+      ::c::smart_pointer < T > & last_sp(index n = 0)
       {
 
-         return array < ::ca::smart_pointer < T > >::last_element(n);
+         return array < ::c::smart_pointer < T > >::last_element(n);
 
       }
 
-      const ::ca::smart_pointer < T > & operator() (index nIndex) const
+      const ::c::smart_pointer < T > & operator() (index nIndex) const
       {
 
          return sp_at(nIndex);
@@ -255,7 +255,7 @@ namespace ca
       }
 
 
-      ::ca::smart_pointer < T > & operator() (index nIndex)
+      ::c::smart_pointer < T > & operator() (index nIndex)
       {
 
          return sp_at(nIndex);

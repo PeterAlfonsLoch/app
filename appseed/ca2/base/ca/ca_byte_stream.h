@@ -12,7 +12,7 @@ namespace ca
 
    class file_exception;         // file exception
    class file;
-   typedef ::ca::smart_pointer < file > filesp;
+   typedef ::c::smart_pointer < file > filesp;
 
 
 } // namespace ca

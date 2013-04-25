@@ -399,10 +399,10 @@ bool handler::IsEncrypted(uint32_t index1) const
   #endif
   try
   {
-    ::ca::smart_pointer < ::libcompress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
+    ::c::smart_pointer < ::libcompress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
 
     #ifndef _NO_CRYPTO
-    ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
+    ::c::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
     if (openArchiveCallback)
     {
       getTextPassword = dynamic_cast < ::crypto::get_text_password_interface * > (openArchiveCallbackTemp.m_p);

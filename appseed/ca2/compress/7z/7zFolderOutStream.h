@@ -10,10 +10,10 @@ namespace n7z
       public ::libcompress::get_sub_stream_size_interface
    {
       ::libcompress::writer_with_crc *_crcStreamSpec;
-      ::ca::smart_pointer < ::ca::writer > _crcStream;
+      ::c::smart_pointer < ::ca::writer > _crcStream;
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
-      ::ca::smart_pointer < ::libcompress::archive_extract_callback_interface > _extractCallback;
+      ::c::smart_pointer < ::libcompress::archive_extract_callback_interface > _extractCallback;
       uint32_t _ref2Offset;
       uint32_t _startIndex;
       int32_t _currentIndex;

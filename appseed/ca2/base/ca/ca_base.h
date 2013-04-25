@@ -441,7 +441,7 @@ public:
    }
 
    template < class T2 >
-   inline static bool bases(const ::ca::smart_pointer < T2 > & sp) 
+   inline static bool bases(const ::c::smart_pointer < T2 > & sp) 
    {
       return dynamic_cast < T * > ((T2 *) sp.m_p) != ::null(); 
    }

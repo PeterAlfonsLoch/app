@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define sp(TYPE) ::ca::smart_pointer < TYPE >
+#define sp(TYPE) ::c::smart_pointer < TYPE >
 
 
 // ::ca::null back link to operational system oswindow.h
@@ -12,7 +12,7 @@
 // operational system null/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
-namespace ca
+namespace c
 {
 
 
@@ -174,7 +174,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace c
 
 
 

@@ -26,9 +26,9 @@ namespace n7z
       ::libcompress::coder_mixer::CCoderMixer2MT *_mixerCoderMTSpec;
       ::libcompress::coder_mixer::CCoderMixer2 *_mixerCoderCommon;
 
-      ::ca::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
-      array < ::ca::smart_pointer < ::ca::ca > > _decoders;
-      // smart_pointer_array<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
+      ::c::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
+      array < ::c::smart_pointer < ::ca::ca > > _decoders;
+      // smart_pointer_array<::c::smart_pointer<::libcompress::coder2_interface> > _decoders2;
    public:
       CDecoder(sp(::ca::application) papp,  bool multiThread);
       virtual ~CDecoder();

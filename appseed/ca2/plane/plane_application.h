@@ -190,7 +190,7 @@ namespace plane
       
 
 
-      // ::ca::smart_pointer < ::cubebase::application >::oattrib
+      // ::c::smart_pointer < ::cubebase::application >::oattrib
       // or any function needing it
       application & operator = (const application & app)
       {

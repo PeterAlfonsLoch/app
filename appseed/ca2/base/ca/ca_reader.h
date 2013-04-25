@@ -11,7 +11,7 @@ namespace ca
    class reader;
 
 
-   typedef ::ca::smart_pointer < reader > reader_sp;
+   typedef ::c::smart_pointer < reader > reader_sp;
 
 
    class CLASS_DECL_ca2 reader :

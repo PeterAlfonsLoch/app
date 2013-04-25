@@ -11,8 +11,8 @@ namespace libcompress
    {
    public:
 
-      ::ca::smart_pointer < ::ca::reader > _stream;
-      ::ca::smart_pointer < ::libcompress::get_sub_stream_size_interface > _getSubStreamSize;
+      ::c::smart_pointer < ::ca::reader > _stream;
+      ::c::smart_pointer < ::libcompress::get_sub_stream_size_interface > _getSubStreamSize;
       uint64_t _size;
 
       void Init(::ca::reader *stream)

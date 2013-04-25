@@ -94,7 +94,7 @@ namespace ca
 
    };
 
-   typedef ::ca::smart_pointer < file > filesp;
+   typedef ::c::smart_pointer < file > filesp;
 
    inline void file::SetFilePath(const char * lpszNewName)
    {

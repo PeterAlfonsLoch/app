@@ -116,7 +116,7 @@ namespace n7z
       for (int32_t j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
          ::ca::locked_reader *lockedStreamImpSpec = new ::ca::locked_reader;
-         ::ca::smart_pointer < ::ca::reader > lockedStreamImp = lockedStreamImpSpec;
+         ::c::smart_pointer < ::ca::reader > lockedStreamImp = lockedStreamImpSpec;
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
@@ -164,8 +164,8 @@ namespace n7z
             const CCoderInfo &coderInfo = folderInfo.Coders[i];
 
 
-            ::ca::smart_pointer < ::libcompress::coder_interface > decoder;
-            ::ca::smart_pointer < ::libcompress::coder2_interface > decoder2;
+            ::c::smart_pointer < ::libcompress::coder_interface > decoder;
+            ::c::smart_pointer < ::libcompress::coder2_interface > decoder2;
 
             if(FAILED(hr = ::libcompress::CreateCoder(
                codecsInfo, externalCodecs,
@@ -173,7 +173,7 @@ namespace n7z
             {
                return  hr;
             }
-            ::ca::smart_pointer < ::ca::object > decoderUnknown;
+            ::c::smart_pointer < ::ca::object > decoderUnknown;
             if (coderInfo.IsSimpleCoder())
             {
                if (decoder == ::null())
@@ -201,7 +201,7 @@ namespace n7z
 #endif
             }
             _decoders.add(decoderUnknown.m_p);
-            ::ca::smart_pointer < ::libcompress::set_codecs_info_interface > setCompressCodecsInfo;
+            ::c::smart_pointer < ::libcompress::set_codecs_info_interface > setCompressCodecsInfo;
             setCompressCodecsInfo = dynamic_cast < ::libcompress::set_codecs_info_interface * > (setCompressCodecsInfo.m_p);
             if (setCompressCodecsInfo)
             {
@@ -221,10 +221,10 @@ namespace n7z
       for (i = 0; i < numCoders; i++)
       {
          const CCoderInfo &coderInfo = folderInfo.Coders[i];
-//         ::ca::smart_pointer<::ca::ca> &decoder = _decoders[coderIndex];
+//         ::c::smart_pointer<::ca::ca> &decoder = _decoders[coderIndex];
 
          {
-            ::ca::smart_pointer < ::libcompress::set_decoder_properties2_interface > setDecoderProperties;
+            ::c::smart_pointer < ::libcompress::set_decoder_properties2_interface > setDecoderProperties;
             setDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
@@ -241,7 +241,7 @@ namespace n7z
 
          if (mtMode)
          {
-            ::ca::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
+            ::c::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
             setCoderMt = dynamic_cast < ::libcompress::set_coder_mt_interface * > (setCoderMt.m_p);
             if (setCoderMt)
             {
@@ -250,7 +250,7 @@ namespace n7z
          }
 
          {
-            ::ca::smart_pointer < ::crypto::set_password_interface > cryptoSetPassword;
+            ::c::smart_pointer < ::crypto::set_password_interface > cryptoSetPassword;
             cryptoSetPassword = dynamic_cast < ::crypto::set_password_interface * > (cryptoSetPassword.m_p);
             if (cryptoSetPassword)
             {

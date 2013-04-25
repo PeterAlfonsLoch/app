@@ -153,7 +153,7 @@ namespace libcompress
                                             _coders[outCoderIndex].OutStreams(outCoderStreamIndex));
 
             throw "implement below";
-            /*::ca::smart_pointer<::libcompress::set_buffer_size_interface> inSetSize, outSetSize;
+            /*::c::smart_pointer<::libcompress::set_buffer_size_interface> inSetSize, outSetSize;
             inSetSize = dynamic_cast < ::libcompress::set_buffer_size_interface * > (_coders[inCoderIndex].m_p);
             outSetSize = dynamic_cast < ::libcompress::set_buffer_size_interface * > (_coders[outCoderIndex].m_p);
             if (inSetSize && outSetSize)

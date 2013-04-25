@@ -11,7 +11,7 @@ namespace fs
    public:
 
 
-      ::ca::smart_pointer < sockets::http::file >  m_httpfile;
+      ::c::smart_pointer < sockets::http::file >  m_httpfile;
       ::primitive::memory_file                             m_memfile;
       var                                          m_varFile;
 

@@ -11,8 +11,8 @@ namespace n7z
       public ::libcompress::get_sub_stream_size_interface
    {
       ::libcompress::reader_with_crc *_inStreamWithHashSpec;
-      ::ca::smart_pointer < ::ca::reader > _inStreamWithHash;
-      ::ca::smart_pointer < ::libcompress::archive_update_callback_interface > _updateCallback;
+      ::c::smart_pointer < ::ca::reader > _inStreamWithHash;
+      ::c::smart_pointer < ::libcompress::archive_update_callback_interface > _updateCallback;
 
       bool _currentSizeIsDefined;
       bool _fileIsOpen;

@@ -30,7 +30,7 @@ namespace ca
 
    };
 
-   typedef ::ca::smart_pointer < resource > resource_sp;
+   typedef ::c::smart_pointer < resource > resource_sp;
 
 } // namespace ca
 

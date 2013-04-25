@@ -91,12 +91,12 @@ namespace n7z
    {
       inStream->seek(position, ::ca::seek_begin);
       ::ca::limited_reader *streamSpec = new ::ca::limited_reader;
-      ::ca::smart_pointer < ::ca::limited_reader > inStreamLimited(streamSpec);
+      ::c::smart_pointer < ::ca::limited_reader > inStreamLimited(streamSpec);
       streamSpec->SetStream(inStream);
       streamSpec->Init(size);
 
       ::libcompress::copy_coder *copyCoderSpec = new ::libcompress::copy_coder;
-      ::ca::smart_pointer < ::libcompress::coder_interface > copyCoder = copyCoderSpec;
+      ::c::smart_pointer < ::libcompress::coder_interface > copyCoder = copyCoderSpec;
       RINOK(copyCoder->Code(inStreamLimited, outStream, ::null(), ::null(), progress));
       return (copyCoderSpec->TotalSize == size ? S_OK : E_FAIL);
    }
@@ -490,10 +490,10 @@ namespace n7z
       public ::ca::writer
    {
       ::libcompress::writer_with_crc *_crcStreamSpec;
-      ::ca::smart_pointer < ::ca::writer > _crcStream;
+      ::c::smart_pointer < ::ca::writer > _crcStream;
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
-      ::ca::smart_pointer < ::ca::writer > _outStream;
+      ::c::smart_pointer < ::ca::writer > _outStream;
       uint32_t _startIndex;
       int32_t _currentIndex;
       bool _fileIsOpen;
@@ -615,16 +615,16 @@ namespace n7z
    {
    public:
       HRESULT Result;
-      ::ca::smart_pointer < ::ca::byte_input_stream > InStream;
+      ::c::smart_pointer < ::ca::byte_input_stream > InStream;
 
       CFolderOutStream2 *FosSpec;
-      ::ca::smart_pointer < ::ca::writer > Fos;
+      ::c::smart_pointer < ::ca::writer > Fos;
 
       uint64_t StartPos;
       const file_size *PackSizes;
       const CFolder *Folder;
 #ifndef _NO_CRYPTO
-      ::ca::smart_pointer < ::crypto::get_text_password_interface > GetTextPassword;
+      ::c::smart_pointer < ::crypto::get_text_password_interface > GetTextPassword;
 #endif
 
       ///DECL_EXTERNAL_CODECS_VARS
@@ -745,7 +745,7 @@ namespace n7z
       if (numSolidFiles == 0)
          numSolidFiles = 1;
       /*
-      ::ca::smart_pointer<::ca::byte_output_stream> outStream;
+      ::c::smart_pointer<::ca::byte_output_stream> outStream;
       RINOK(seqOutStream->QueryInterface(IID_IOutStream, (void **)&outStream));
       if (!outStream)
       return E_NOTIMPL;
@@ -847,7 +847,7 @@ namespace n7z
       RINOK(updateCallback->SetTotal(complexity));
 
       ::libcompress::local_progress *lps = new ::libcompress::local_progress;
-      ::ca::smart_pointer < ::libcompress::progress_info_interface > progress = lps;
+      ::c::smart_pointer < ::libcompress::progress_info_interface > progress = lps;
       lps->Init(updateCallback, true);
 
       CThreadDecoder threadDecoder(inStream->get_app());
@@ -1134,7 +1134,7 @@ namespace n7z
                numSubFiles = 1;
 
             CFolderInStream *inStreamSpec = new CFolderInStream;
-            ::ca::smart_pointer < ::ca::reader > solidInStream(inStreamSpec);
+            ::c::smart_pointer < ::ca::reader > solidInStream(inStreamSpec);
             inStreamSpec->Init(updateCallback, &indices[i], numSubFiles);
 
             CFolder folderItem;

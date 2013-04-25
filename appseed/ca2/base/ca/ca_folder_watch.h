@@ -35,6 +35,6 @@ namespace ca
    };
 
 
-   typedef ::ca::smart_pointer < folder_watch > folder_watch_sp;
+   typedef ::c::smart_pointer < folder_watch > folder_watch_sp;
 
 } // namespace ca

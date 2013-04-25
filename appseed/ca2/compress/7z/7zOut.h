@@ -116,10 +116,10 @@ namespace n7z
       HRESULT WriteFinishSignature();
       HRESULT WriteStartHeader(const CStartHeader &h);
       HRESULT WriteFinishHeader(const CFinishHeader &h);
-      ::ca::smart_pointer < ::ca::byte_output_stream > Stream;
+      ::c::smart_pointer < ::ca::byte_output_stream > Stream;
 
       COutArchive(sp(::ca::application) papp);
-      ::ca::smart_pointer < ::ca::writer > SeqStream;
+      ::c::smart_pointer < ::ca::writer > SeqStream;
       HRESULT Create(::ca::writer *stream, bool endMarker);
       void Close();
       HRESULT SkipPrefixArchiveHeader();

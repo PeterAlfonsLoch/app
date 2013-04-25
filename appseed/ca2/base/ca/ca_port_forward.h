@@ -106,7 +106,7 @@ namespace ca
    };
 
 
-   typedef ::ca::smart_pointer < port_forward > port_forward_sp;
+   typedef ::c::smart_pointer < port_forward > port_forward_sp;
 
 
 } // namespace ca

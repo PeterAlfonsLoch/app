@@ -9,7 +9,7 @@
 // operational system null/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
-namespace ca
+namespace c
 {
 
 
@@ -278,10 +278,10 @@ template < class T >
 
 
 
-} // namespace ca
+} // namespace c
 
 template < class T1, class T2 >
-bool operator ==(const T1  * t1, const ::ca::smart_pointer < T2 > & t2)
+bool operator ==(const T1  * t1, const ::c::smart_pointer < T2 > & t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
    if(pt1 != ::null())
@@ -297,7 +297,7 @@ bool operator ==(const T1  * t1, const ::ca::smart_pointer < T2 > & t2)
 }
 
 template < class T1, class T2 >
-bool operator ==(const ::ca::smart_pointer < T1 > & t1, const T2 * t2)
+bool operator ==(const ::c::smart_pointer < T1 > & t1, const T2 * t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > ((T2 *) t2);
    if(pt1 != ::null())
@@ -314,7 +314,7 @@ bool operator ==(const ::ca::smart_pointer < T1 > & t1, const T2 * t2)
 
 
 template < class T1, class T2 >
-bool operator ==(const ::ca::smart_pointer < T1 > & t1, const ::ca::smart_pointer < T2 > & t2)
+bool operator ==(const ::c::smart_pointer < T1 > & t1, const ::c::smart_pointer < T2 > & t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
    if(pt1 != ::null())
@@ -330,68 +330,68 @@ bool operator ==(const ::ca::smart_pointer < T1 > & t1, const ::ca::smart_pointe
 }
 
 template < class T1, class T2 >
-bool operator ==(T1 * t1, const ::ca::smart_pointer < T2 > & t2)
+bool operator ==(T1 * t1, const ::c::smart_pointer < T2 > & t2)
 {
    return operator == ((const T1 *) t1, t2);
 }
 
 
 template < class T1, class T2 >
-bool operator ==(const ::ca::smart_pointer < T1 > & t1, T2 * t2)
+bool operator ==(const ::c::smart_pointer < T1 > & t1, T2 * t2)
 {
    return operator == (t1,  (const T2 *) t2);
 }
 
 
 template < class T1, class T2 >
-bool operator !=(const T1 * t1, const ::ca::smart_pointer < T2 > & t2)
+bool operator !=(const T1 * t1, const ::c::smart_pointer < T2 > & t2)
 {
    return !operator == (t1, t2);
 }
 
 
 template < class T1, class T2 >
-bool operator !=(const ::ca::smart_pointer < T1 > & t1, const T2 * t2)
+bool operator !=(const ::c::smart_pointer < T1 > & t1, const T2 * t2)
 {
    return !operator == (t1, t2);
 }
 
 template < class T1, class T2 >
-bool operator !=(T1 * t1, const ::ca::smart_pointer < T2 > & t2)
+bool operator !=(T1 * t1, const ::c::smart_pointer < T2 > & t2)
 {
    return !operator == ((const T1 *) t1, t2);
 }
 
 
 template < class T1, class T2 >
-bool operator !=(const ::ca::smart_pointer < T1 > & t1, T2 * t2)
+bool operator !=(const ::c::smart_pointer < T1 > & t1, T2 * t2)
 {
    return !operator == (t1, (const T2 *) t2);
 }
 
 
 template < class T1, class T2 >
-bool operator !=(const ::ca::smart_pointer < T1 > & t1, const ::ca::smart_pointer < T2 > & t2)
+bool operator !=(const ::c::smart_pointer < T1 > & t1, const ::c::smart_pointer < T2 > & t2)
 {
    return !operator == (t1, t2);
 }
 
 //template < class T >
-//bool operator ==(const T * p, const ::ca::smart_pointer < T > & sp) { return p == sp.m_p; }
+//bool operator ==(const T * p, const ::c::smart_pointer < T > & sp) { return p == sp.m_p; }
 //template < class T >
-//bool operator !=(const T * p, const ::ca::smart_pointer < T > & sp) { return p != sp.m_p; }
+//bool operator !=(const T * p, const ::c::smart_pointer < T > & sp) { return p != sp.m_p; }
 template < class T >
-bool operator ==(LPARAM l, const ::ca::smart_pointer < T > & sp) { return ((T *) l) == sp.m_p; }
+bool operator ==(LPARAM l, const ::c::smart_pointer < T > & sp) { return ((T *) l) == sp.m_p; }
 template < class T >
-bool operator !=(LPARAM l, const ::ca::smart_pointer < T > & sp) { return ((T *) l) == sp.m_p; }
+bool operator !=(LPARAM l, const ::c::smart_pointer < T > & sp) { return ((T *) l) == sp.m_p; }
 /*template < class T >
-bool operator ==(void * p, const ::ca::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }
+bool operator ==(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }
 template < class T >
-bool operator !=(void * p, const ::ca::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
+bool operator !=(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
 template < class T >
-bool operator ==(const ::ca::null &, const ::ca::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
+bool operator ==(const ::ca::null &, const ::c::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
 template < class T >
-bool operator !=(const ::ca::null &, const ::ca::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
+bool operator !=(const ::ca::null &, const ::c::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
 
 
 

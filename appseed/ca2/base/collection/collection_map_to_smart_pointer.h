@@ -3,14 +3,14 @@
 
 template < class TYPE, class ARG_TYPE, class T >
 class map_to_smart_pointer :
-   virtual public map < TYPE, ARG_TYPE, ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & >
+   virtual public map < TYPE, ARG_TYPE, ::c::smart_pointer < T >, const ::c::smart_pointer < T > & >
 {
 public:
 
 
    map_to_smart_pointer(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
       ::ca::ca(papp),
-      map < TYPE, ARG_TYPE, ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & > (papp, nBlockSize)
+      map < TYPE, ARG_TYPE, ::c::smart_pointer < T >, const ::c::smart_pointer < T > & > (papp, nBlockSize)
    {
    }
 
@@ -25,14 +25,14 @@ public:
 
 template < class T >
 class string_to_smart_pointer :
-   virtual public string_map < ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & >
+   virtual public string_map < ::c::smart_pointer < T >, const ::c::smart_pointer < T > & >
 {
 public:
 
 
    string_to_smart_pointer(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
       ::ca::ca(papp),
-      string_map < ::ca::smart_pointer < T >, const ::ca::smart_pointer < T > & > (papp, nBlockSize)
+      string_map < ::c::smart_pointer < T >, const ::c::smart_pointer < T > & > (papp, nBlockSize)
    {
 
    }

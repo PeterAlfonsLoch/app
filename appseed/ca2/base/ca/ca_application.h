@@ -147,7 +147,7 @@ namespace ca
       // Running args (can be changed in initialize_instance)
       // Human-redable name of the application. Normally set in
       // constructor or retreived from __IDS_APP_TITLE.
-      ::ca::smart_pointer < ::ca::application_base >  m_p;
+      ::c::smart_pointer < ::ca::application_base >  m_p;
       string                                          m_strAppName;
       string                                          m_strAppId;
       string                                          m_strLibraryName;

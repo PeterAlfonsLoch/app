@@ -439,7 +439,7 @@ namespace userstack
 
          if(pmsg->message != WM_KICKIDLE)
          {
-            ::ca::smart_pointer < ::ca::message::base > spbase;
+            ::c::smart_pointer < ::ca::message::base > spbase;
             spbase = get_base(pmsg);
             pre_translate_message(spbase);
             if(!spbase->m_bRet)

@@ -89,7 +89,7 @@ namespace ca
 
 
       template < class TYPE >
-      bool replace_data(::ca::smart_pointer < TYPE > & data)
+      bool replace_data(::c::smart_pointer < TYPE > & data)
       {
          
          return replace_data(data.m_p);

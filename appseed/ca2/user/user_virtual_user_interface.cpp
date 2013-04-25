@@ -595,7 +595,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
 
 
 
-   ::ca::smart_pointer < ::ca::message::base > spbase;
+   ::c::smart_pointer < ::ca::message::base > spbase;
 
    spbase = get_base(m_pguie, uiMessage, wparam, lparam);
 
@@ -640,7 +640,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
 LRESULT virtual_user_interface::send_message(XEvent * pevent)
 {
 
-   ::ca::smart_pointer < ::ca::message::base > spbase;
+   ::c::smart_pointer < ::ca::message::base > spbase;
 
    spbase = get_base(pevent, m_pguie);
 

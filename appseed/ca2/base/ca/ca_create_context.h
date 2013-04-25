@@ -62,7 +62,7 @@ namespace ca
    class command_line;
 
    class CLASS_DECL_ca2 command_line_sp :
-      public ::ca::smart_pointer < command_line >
+      public ::c::smart_pointer < command_line >
    {
    public:
 
@@ -71,10 +71,10 @@ namespace ca
       command_line_sp(allocatorsp allocer);
 
 
-      using ::ca::smart_pointer < command_line >::operator =;
+      using ::c::smart_pointer < command_line >::operator =;
       inline command_line_sp & operator = (command_line * p)
       {
-         ::ca::smart_pointer < command_line >::operator =(p);
+         ::c::smart_pointer < command_line >::operator =(p);
          return *this;
       }
 

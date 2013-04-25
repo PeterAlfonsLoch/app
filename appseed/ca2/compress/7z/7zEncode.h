@@ -11,7 +11,7 @@ namespace n7z
       virtual public ::ca::object
    {
       ::libcompress::coder_mixer::CCoderMixer2MT *                 _mixerCoderSpec;
-      ::ca::smart_pointer < ::libcompress::coder2_interface >      _mixerCoder;
+      ::c::smart_pointer < ::libcompress::coder2_interface >      _mixerCoder;
 
       smart_pointer_array<CCoderInfo>                               _codersInfo;
 

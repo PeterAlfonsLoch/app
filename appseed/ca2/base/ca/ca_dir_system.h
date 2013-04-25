@@ -200,7 +200,7 @@ namespace ca
          virtual bool initialize();
       };
 
-      typedef ::ca::smart_pointer < system > system_sp;
+      typedef ::c::smart_pointer < system > system_sp;
 
 
    } // namespace dir

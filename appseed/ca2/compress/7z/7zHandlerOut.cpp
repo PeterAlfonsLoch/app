@@ -355,7 +355,7 @@ namespace n7z
       headerMethod.NumThreads = 1;
 #endif
 
-      ::ca::smart_pointer < ::crypto::get_text_password2_interface > getPassword2;
+      ::c::smart_pointer < ::crypto::get_text_password2_interface > getPassword2;
       getPassword2 = dynamic_cast < ::crypto::get_text_password2_interface * > (updateCallback);
 
       if (getPassword2)
@@ -413,7 +413,7 @@ namespace n7z
       COutArchive archive(get_app());
       CArchiveDatabase newDatabase;
 
-      ::ca::smart_pointer < ::crypto::get_text_password_interface > getPassword;
+      ::c::smart_pointer < ::crypto::get_text_password_interface > getPassword;
       getPassword = dynamic_cast < ::crypto::get_text_password_interface * > (updateCallback);
 
       ::ca::HRes res = Update(

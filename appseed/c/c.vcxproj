@@ -1033,6 +1033,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="c\c_async.h" />
     <ClInclude Include="c\c_base64.h" />
     <ClInclude Include="c\c.h" />
+    <ClInclude Include="c\c_c.h" />
     <ClInclude Include="c\c_conv.h" />
     <ClInclude Include="c\c_count.h" />
     <ClInclude Include="c\c_cpu_architecture.h" />
@@ -1041,6 +1042,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="c\c_logic.h" />
     <ClInclude Include="c\c_natural.h" />
     <ClInclude Include="c\c_net.h" />
+    <ClInclude Include="c\c_smart_pointer1.h" />
+    <ClInclude Include="c\c_smart_pointer2.h" />
     <ClInclude Include="c\c_string_to_integer.h" />
     <ClInclude Include="c\c_time.h" />
     <ClInclude Include="c\c_types.h" />
@@ -1157,6 +1160,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="crypt\nessie.cpp" />
     <ClCompile Include="crypt\whirpool.cpp" />
     <ClCompile Include="c\c_base64.cpp" />
+    <ClCompile Include="c\c_c.cpp" />
     <ClCompile Include="c\c_conv.cpp" />
     <ClCompile Include="c\c_cpu_architecture.cpp" />
     <ClCompile Include="c\c_debug.cpp" />

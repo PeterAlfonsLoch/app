@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace c
 {
    
    c::c()
@@ -53,7 +53,7 @@ namespace ca
 
 
   
-} // namespace ca
+} // namespace c
 
 
 

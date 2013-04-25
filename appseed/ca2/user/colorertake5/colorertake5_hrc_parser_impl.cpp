@@ -482,7 +482,7 @@ void HRCParserImpl::addScheme(sp(::xml::node)elem)
 
 void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, sp(::xml::node)elem)
 {
-   ::ca::smart_pointer < SchemeNode > next;
+   ::c::smart_pointer < SchemeNode > next;
    for(sp(::xml::node)tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
       if (tmpel->get_name().is_empty()) continue;
 

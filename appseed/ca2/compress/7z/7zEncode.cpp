@@ -65,8 +65,8 @@ namespace n7z
          const CMethodFull &methodFull = _options.Methods[i];
          CCoderInfo &encodingInfo = *_codersInfo.add_new();
          encodingInfo.MethodID = methodFull.Id;
-         ::ca::smart_pointer < ::libcompress::coder_interface > encoder;
-         ::ca::smart_pointer < ::libcompress::coder2_interface > encoder2;
+         ::c::smart_pointer < ::libcompress::coder_interface > encoder;
+         ::c::smart_pointer < ::libcompress::coder2_interface > encoder2;
 
 
          if(FAILED(hr = CreateCoder(
@@ -79,10 +79,10 @@ namespace n7z
          if (!encoder && !encoder2)
             return E_FAIL;
 
-         ::ca::smart_pointer < ::ca::object > encoderCommon = encoder ? (::ca::object *)encoder : (::ca::object *)encoder2;
+         ::c::smart_pointer < ::ca::object > encoderCommon = encoder ? (::ca::object *)encoder : (::ca::object *)encoder2;
 
          {
-            ::ca::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
+            ::c::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
             setCoderMt =   dynamic_cast < ::libcompress::set_coder_mt_interface * > (encoderCommon.m_p);
             if (setCoderMt)
             {
@@ -96,7 +96,7 @@ namespace n7z
             return hr;
 
          /*
-         ::ca::smart_pointer<ICryptoResetSalt> resetSalt;
+         ::c::smart_pointer<ICryptoResetSalt> resetSalt;
          encoderCommon.QueryInterface(IID_ICryptoResetSalt, (void **)&resetSalt);
          if (resetSalt != ::null())
          {
@@ -105,7 +105,7 @@ namespace n7z
          */
 
 #ifdef EXTERNAL_CODECS
-         ::ca::smart_pointer<ISetCompressCodecsInfo> setCompressCodecsInfo;
+         ::c::smart_pointer<ISetCompressCodecsInfo> setCompressCodecsInfo;
          encoderCommon.QueryInterface(IID_ISetCompressCodecsInfo, (void **)&setCompressCodecsInfo);
          if (setCompressCodecsInfo)
          {
@@ -113,7 +113,7 @@ namespace n7z
          }
 #endif
 
-         ::ca::smart_pointer < ::crypto::set_password_interface > cryptoSetPassword;
+         ::c::smart_pointer < ::crypto::set_password_interface > cryptoSetPassword;
          cryptoSetPassword = dynamic_cast < ::crypto::set_password_interface * > (encoderCommon.m_p);
 
          if (cryptoSetPassword)
@@ -174,7 +174,7 @@ namespace n7z
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          ::ca::temp_io_writer *tempBufferSpec = new ::ca::temp_io_writer;
-         ::ca::smart_pointer < ::ca::writer > tempBuffer = tempBufferSpec;
+         ::c::smart_pointer < ::ca::writer > tempBuffer = tempBufferSpec;
          tempBufferSpec->Init(inOutTempBuffers(i - 1));
          tempBuffers.add(tempBuffer);
          tempBufferSpecs.add(tempBufferSpec);
@@ -223,19 +223,19 @@ namespace n7z
       {
          CCoderInfo &encodingInfo = _codersInfo[i];
 
-         ::ca::smart_pointer < ::crypto::reset_init_vector_interface > resetInitVector;
+         ::c::smart_pointer < ::crypto::reset_init_vector_interface > resetInitVector;
          resetInitVector = dynamic_cast < ::crypto::reset_init_vector_interface * > (&_mixerCoderSpec->_coders[i]);
          if (resetInitVector != ::null())
          {
             resetInitVector->ResetInitVector();
          }
 
-         ::ca::smart_pointer < ::libcompress::write_coder_properties_interface >  writeCoderProperties;
+         ::c::smart_pointer < ::libcompress::write_coder_properties_interface >  writeCoderProperties;
          writeCoderProperties = dynamic_cast < ::libcompress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
          if (writeCoderProperties != ::null())
          {
             ::ca::dynamic_buffered_writer *outStreamSpec = new ::ca::dynamic_buffered_writer;
-            ::ca::smart_pointer < ::ca::writer > outStream(outStreamSpec);
+            ::c::smart_pointer < ::ca::writer > outStream(outStreamSpec);
             outStreamSpec->Init();
             writeCoderProperties->WriteCoderProperties(outStream);
             outStreamSpec->CopyToBuffer(encodingInfo.Props);

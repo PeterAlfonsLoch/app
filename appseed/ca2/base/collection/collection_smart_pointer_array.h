@@ -3,7 +3,7 @@
 
 template < class T >
 class smart_pointer_array :
-   virtual public array < ::ca::smart_pointer < T > >
+   virtual public array < ::c::smart_pointer < T > >
 {
 public:
 
@@ -13,14 +13,14 @@ public:
 
    smart_pointer_array(sp(::ca::application) papp) :
       ::ca::ca(papp),
-      array < ::ca::smart_pointer < T > >(papp)
+      array < ::c::smart_pointer < T > >(papp)
    {
    }
 
    sp(T) & add_new()
    {
 
-      sp(T) & sp = array < ::ca::smart_pointer < T > >::add_new();
+      sp(T) & sp = array < ::c::smart_pointer < T > >::add_new();
 
       sp.create(this->allocer());
 
@@ -31,14 +31,14 @@ public:
 
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
-      this->array < ::ca::smart_pointer < T > >::set_size(nNewSize);
+      this->array < ::c::smart_pointer < T > >::set_size(nNewSize);
       return this->get_size();
    }
 
    ::count set_size_create(::count nNewSize, ::count nGrowBy = -1)
    {
       index i = this->get_size();
-      this->array < ::ca::smart_pointer < T > >::set_size(nNewSize);
+      this->array < ::c::smart_pointer < T > >::set_size(nNewSize);
       ::count c = this->get_size();
       for(; i < c; i++)
       {
@@ -196,29 +196,29 @@ public:
    const T & operator[](index nIndex) const
    {
 
-      return *this->array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
+      return *this->array < ::c::smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
    T & operator[](index nIndex)
    {
 
-      return *this->array < ::ca::smart_pointer < T > >::operator[](nIndex).m_p;
+      return *this->array < ::c::smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
-   const ::ca::smart_pointer < T > & sp_at(index nIndex) const
+   const ::c::smart_pointer < T > & sp_at(index nIndex) const
    {
 
-      return this->array < ::ca::smart_pointer < T > >::element_at(nIndex);
+      return this->array < ::c::smart_pointer < T > >::element_at(nIndex);
 
    }
 
 
-   ::ca::smart_pointer < T > & sp_at(index nIndex)
+   ::c::smart_pointer < T > & sp_at(index nIndex)
    {
 
-      return this->array < ::ca::smart_pointer < T > >::element_at(nIndex);
+      return this->array < ::c::smart_pointer < T > >::element_at(nIndex);
 
    }
 
@@ -254,18 +254,18 @@ public:
 
    }
 
-   const ::ca::smart_pointer < T > & first_sp(index n = 0) const
+   const ::c::smart_pointer < T > & first_sp(index n = 0) const
    {
 
-      return this->array < ::ca::smart_pointer < T > >::first_element(n);
+      return this->array < ::c::smart_pointer < T > >::first_element(n);
 
    }
 
 
-   ::ca::smart_pointer < T > & first_sp(index n = 0)
+   ::c::smart_pointer < T > & first_sp(index n = 0)
    {
 
-      return this->array < ::ca::smart_pointer < T > >::first_element(n);
+      return this->array < ::c::smart_pointer < T > >::first_element(n);
 
    }
 
@@ -305,15 +305,15 @@ public:
    T * last_sp(index n = -1) const
    {
 
-      return this->array < ::ca::smart_pointer < T > >::last_element(n);
+      return this->array < ::c::smart_pointer < T > >::last_element(n);
 
    }
 
 
-   ::ca::smart_pointer < T > & last_sp(index n = -1)
+   ::c::smart_pointer < T > & last_sp(index n = -1)
    {
 
-      return this->array < ::ca::smart_pointer < T > >::last_element(n);
+      return this->array < ::c::smart_pointer < T > >::last_element(n);
 
    }
 
@@ -350,7 +350,7 @@ public:
    }
 
 
-   const ::ca::smart_pointer < T > & operator() (index nIndex) const
+   const ::c::smart_pointer < T > & operator() (index nIndex) const
    {
 
       return this->sp_at(nIndex);
@@ -358,7 +358,7 @@ public:
    }
 
 
-   ::ca::smart_pointer < T > & operator() (index nIndex)
+   ::c::smart_pointer < T > & operator() (index nIndex)
    {
 
       return this->sp_at(nIndex);

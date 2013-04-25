@@ -1110,8 +1110,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="base\ca\ca_simple_tree_data.h" />
     <ClInclude Include="base\ca\ca_simple_tree_item_data.h" />
     <ClInclude Include="base\ca\ca_size_count_writer.h" />
-    <ClInclude Include="base\ca\ca_smart_pointer1.h" />
-    <ClInclude Include="base\ca\ca_smart_pointer2.h" />
     <ClInclude Include="base\ca\ca_smart_pointer_array.h" />
     <ClInclude Include="base\ca\ca_smart_pointer_query.h" />
     <ClInclude Include="base\ca\ca_sockets_address.h" />
@@ -2153,7 +2151,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="base\ca\ca_byte_serializable.cpp" />
     <ClCompile Include="base\ca\ca_byte_stream.cpp" />
     <ClCompile Include="base\ca\ca_byte_stream_memory_file.cpp" />
-    <ClCompile Include="base\ca\ca_c.cpp" />
     <ClCompile Include="base\ca\ca_ca.cpp" />
     <ClCompile Include="base\ca\ca_ch.cpp" />
     <ClCompile Include="base\ca\ca_checked.cpp" />

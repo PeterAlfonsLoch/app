@@ -34,7 +34,7 @@ namespace ca
    };
 
 
-   typedef ::ca::smart_pointer < copydesk > copydesk_sp;
+   typedef ::c::smart_pointer < copydesk > copydesk_sp;
 
 
 } // namespace ca

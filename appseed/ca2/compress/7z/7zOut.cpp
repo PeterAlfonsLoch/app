@@ -564,7 +564,7 @@ namespace n7z
       UNREFERENCED_PARAMETER(packSizes);
       throw "implement below";
       //CBufInStream *streamSpec = new CBufInStream;
-      //::ca::smart_pointer<::ca::reader> stream = streamSpec;
+      //::c::smart_pointer<::ca::reader> stream = streamSpec;
       //streamSpec->Init(data, data.GetCapacity());
       CFolder & folderItem = folders.add_new();
       folderItem.UnpackCRCDefined = true;
