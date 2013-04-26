@@ -121,7 +121,7 @@
 	<File name="base/xml/xml_node.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="868" topLine="0" />
 	</File>
-	<File name="base/xml/xml_xml.cpp" open="1" top="0" tabpos="1">
+	<File name="base/xml/xml_xml.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="50" topLine="0" />
 	</File>
 	<File name="compress/7z/compress_archive.h" open="0" top="0" tabpos="18">

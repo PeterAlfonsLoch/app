@@ -17,6 +17,8 @@ namespace ca
          virtual public ::ca::object
       {
       private:
+
+
          double         dPi;
 //#if WINVER >= 0x500
 #ifdef WINDOWSEX
@@ -25,11 +27,16 @@ namespace ca
          HCRYPTKEY      hDuplicateKey;
 #endif
 //#endif
-         uint32_t          dwMode;
+         uint32_t       dwMode;
          BYTE           pbData[16];
          rng            m_rng;
 
+
       public:
+
+
+         mutex          m_mutex;
+
 
          math(sp(::ca::application) papp);
          virtual ~math();

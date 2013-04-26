@@ -29,7 +29,8 @@ namespace ca
 
 
       math::math(sp(::ca::application) papp) :
-         ca(papp)
+         ca(papp),
+         m_mutex(papp)
       {
          // initial rng seed
          dPi = atan(1.0) * 4.0;
@@ -186,28 +187,39 @@ namespace ca
 #endif
       }
 
+
       int32_t math::rand_max()
       {
+
          return 0xffffff;
+
       }
+
 
       uint32_t math::rnd()
       {
 
-         synch_lock lock(this);
+         single_lock lock(&m_mutex, true);
 
          static int32_t s_iRngReSeedCountDown = -1;
 
          if(s_iRngReSeedCountDown < 0)
          {
+
             s_iRngReSeedCountDown = random_context_entropy(19840, 8777);
+
             m_rng.seed(1984, random_context_entropy(19841511, 19770402));
+
          }
          else
          {
+
             s_iRngReSeedCountDown--;
+
          }
+
          return m_rng.get();
+
       }
 
 
