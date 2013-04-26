@@ -5,11 +5,6 @@
 #include <ctype.h>
 #endif
 
-bool is_ds_alpha(int c)
-{
-   return isalpha(c) || c == '#';
-}
-
 
 namespace dynamic_source
 {
@@ -1271,7 +1266,7 @@ namespace dynamic_source
          }
          else if(bInVar)
          {
-            if(isdigit(ch) || is_ds_alpha(ch) || ch == '_')
+            if(isdigit(ch) || isalpha(ch) || ch == '_')
             {
                if(bLow)
                {
@@ -1335,7 +1330,7 @@ namespace dynamic_source
                      }
                      ch = str[i];
                      string strToken;
-                     if(is_ds_alpha(ch) || ch == '_')
+                     if(isalpha(ch) || ch == '_')
                      {
                         strToken += ch;
                         i++;
@@ -1346,7 +1341,7 @@ namespace dynamic_source
                         return strResult;
                      }
                      ch = str[i];
-                     while(isdigit(ch) || is_ds_alpha(ch) || ch == '_')
+                     while(isdigit(ch) || isalpha(ch) || ch == '_')
                      {
                         strToken += ch;
                         i++;
@@ -1406,7 +1401,7 @@ namespace dynamic_source
             }
             else
             {
-               if(ch == '$' && (is_ds_alpha(chNext) || chNext == '_'))
+               if(ch == '$' && (isalpha(chNext) || chNext == '_'))
                {
                   bInVar = true;
                   //strResult += "\") + glowstr(\"";
@@ -1476,7 +1471,7 @@ namespace dynamic_source
             strResult += "'";
 
          }
-         else if(ch == '$' && (is_ds_alpha(chNext) || chNext == '_'))
+         else if(ch == '$' && (isalpha(chNext) || chNext == '_'))
          {
             if(bInVar)
             {
@@ -1636,6 +1631,18 @@ namespace dynamic_source
             }
             else
             {
+               if(ch == '\r' || ch == '\n')
+               {
+                   bNewLine = true;
+
+               }
+               else if(isspace(ch))
+               {
+               }
+               else
+               {
+                  bNewLine = false;
+               }
                if(bLow)
                {
                   strResult += (char) tolower(ch);
