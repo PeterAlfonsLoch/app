@@ -1636,7 +1636,7 @@ namespace dynamic_source
                    bNewLine = true;
 
                }
-               else if(isspace(ch))
+               else if(isspace((int) (unsigned char) ch))
                {
                }
                else
