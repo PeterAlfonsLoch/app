@@ -7,7 +7,10 @@
 #ifdef LINUX
 #include <sys/wait.h>
 #include <unistd.h>
+#include <spawn.h>
 #endif
+
+
 
 
 namespace ca
@@ -134,6 +137,15 @@ namespace ca
       throw todo(::ca::get_thread_app());
 
 #else
+
+    char * argv[] = {(char *) pszCmdLine, 0};
+
+
+    int status = posix_spawn(&m_iPid, pszCmdLine, NULL, NULL, argv, environ);
+
+    return status == 0;
+
+/*
    char *	cmd_line;
 
    cmd_line = (char *) ca2_alloc(strlen(pszCmdLine ) + 1 );
@@ -193,7 +205,8 @@ namespace ca
       return 0;
    }
    // in parent, success
-   return 1;
+   return 1;*/
+
 
 #endif
    }
