@@ -925,7 +925,7 @@ namespace ca
                return;
             string strError;
             strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-            throw strError;
+            throw io_exception(get_app(), strError);
          }
 #else
          if(remove(psz) != 0)
