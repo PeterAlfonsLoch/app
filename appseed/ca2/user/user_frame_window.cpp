@@ -727,9 +727,9 @@ namespace user
                0);
          }
       }
-      BringWindowToTop();
       ActivateTopParent();
       ActivateFrame();
+      //BringWindowToTop();
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1723,24 +1723,26 @@ namespace user
 
       if(get_parent() == ::null())
       {
-         // place the ::ca::window on top except for certain nCmdShow
-         if (nCmdShow != SW_HIDE &&
-            nCmdShow != SW_MINIMIZE && nCmdShow != SW_SHOWMINNOACTIVE &&
-            nCmdShow != SW_SHOWNA && nCmdShow != SW_SHOWNOACTIVATE)
-         {
-            // if no last active popup, it will return get_handle()
-            ::oswindow oswindow = get_handle();
-            ::oswindow oswindow_LastPop = ::GetLastActivePopup(oswindow);
 
-            //uint32_t dwStyle = ::GetWindowLong(oswindow_LastPop, GWL_STYLE);
-            if(oswindow_LastPop != (::oswindow) 1)
-            {
-               if(::IsWindow(oswindow_LastPop) && oswindow != oswindow_LastPop)
-               {
-                  ::BringWindowToTop(oswindow_LastPop);
-               }
-            }
+         // place the ::ca::window on top except for certain nCmdShow
+
+         if(
+            nCmdShow != SW_HIDE
+         && nCmdShow != SW_MINIMIZE
+         && nCmdShow != SW_SHOWMINNOACTIVE
+         && nCmdShow != SW_SHOWNA
+         && nCmdShow != SW_SHOWNOACTIVATE
+            )
+         {
+
+            oswindow oswindow = get_handle();
+
+            oswindow = ::GetLastActivePopup(oswindow);
+
+            ::BringWindowToTop(oswindow);
+
          }
+
       }
 
 #else

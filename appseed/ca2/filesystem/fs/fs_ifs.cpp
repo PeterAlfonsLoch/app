@@ -216,7 +216,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);
          straFile.add(strPath);
-         straFileName.add(strPath);
+         straFileName.add(strName);
       }
    }
    if(pstraPath != ::null())
