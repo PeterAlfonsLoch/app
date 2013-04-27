@@ -796,7 +796,7 @@ namespace sockets
    void socket::DetachSocket()
    {
       SetDetached();
-      m_pThread = new socket_thread(this, true);
+      m_pThread = canew(socket_thread(this, true));
       m_pThread->begin();
    }
 
@@ -859,6 +859,19 @@ namespace sockets
          m_psocket->m_psocketParent.release();
       }
    }
+
+
+   int64_t socket::socket_thread::add_ref()
+   {
+      return ::ca::thread::add_ref();
+   }
+
+
+   int64_t socket::socket_thread::release()
+   {
+      return ::ca::thread::release();
+   }
+
 
 
    int32_t socket::socket_thread::run()

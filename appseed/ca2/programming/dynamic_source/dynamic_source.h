@@ -4,6 +4,17 @@
 #include "filesystem/fs/fs.h"
 
 
+namespace dynamic_source
+{
+   
+   class script_instance;
+
+
+
+
+} // namespace dynamic_source
+
+
 #include "dynamic_source_exit_exception.h"
 #include "dynamic_source_session.h"
 

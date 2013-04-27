@@ -38,6 +38,10 @@ namespace sockets
          socket * GetSocket() const { return m_psocket; }
          sp(socket) m_psocket;
 
+
+         virtual int64_t add_ref();
+         virtual int64_t release();
+
       private:
          socket_thread(const socket_thread& s);
          socket_thread& operator=(const socket_thread& ) { return *this; }

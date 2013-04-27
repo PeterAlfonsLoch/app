@@ -23,6 +23,9 @@ namespace webserver
 namespace dynamic_source
 {
 
+   
+   CLASS_DECL_ca2 script_instance * get_seed_instance();
+
 
    class CLASS_DECL_ca2 script_manager :
       virtual public ::ca::thread,

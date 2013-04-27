@@ -6,8 +6,7 @@ int32_t g_idbchange;
 
 
 db_server::db_server(sp(::ca::application) papp) :
-   ca(papp),
-   ::ca::window_sp(allocer())
+   ca(papp)
 {
    m_pdb                = ::null();
    m_pSongsDirsSet      = ::null();
@@ -194,17 +193,17 @@ bool db_server::finalize()
 bool db_server::create_message_window()
 {
 
-   if(!m_p->IsWindow())
+   if(!IsWindow())
    {
       string strName = "::ca::fontopus::message_wnd::simpledb::db_server";
-      if(!m_p->create_message_window(strName))
+      if(!::user::interaction::create_message_window(strName))
       {
          return false;
       }
 
-      m_p->SetTimer(1258477, 484, ::null());
+      SetTimer(1258477, 484, ::null());
 
-      IGUI_WIN_MSG_LINK(WM_TIMER, m_p, this, &db_server::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_TIMER, m_pimpl, this, &db_server::_001OnTimer);
 
    }
 
@@ -215,9 +214,9 @@ bool db_server::create_message_window()
 
 bool db_server::destroy_message_window()
 {
-   if(m_p != ::null() && m_p->IsWindow())
+   if(IsWindow())
    {
-      return m_p->DestroyWindow() != FALSE;
+      return DestroyWindow() != FALSE;
    }
    return true;
 }

@@ -14,7 +14,6 @@ namespace dynamic_source
       int32_t                                      m_iCa2FetchMode;
 
       string                                       m_strLocale;
-      sp(dynamic_source::script_instance)          m_pinstanceCurrent;
 
 
       httpd_socket(::sockets::socket_handler_base& );

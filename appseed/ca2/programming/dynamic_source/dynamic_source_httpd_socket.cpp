@@ -15,8 +15,6 @@ namespace dynamic_source
       
       m_iCa2FetchMode      = 0;
 
-      m_pinstanceCurrent   = ::null();
-
    }
 
    httpd_socket::httpd_socket(const httpd_socket& s) :

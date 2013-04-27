@@ -13,7 +13,16 @@ namespace dynamic_source
 
    UINT ThreadProcRsa(LPVOID lp);
 
-  
+#ifdef WINDOWS
+   __declspec(thread) script_instance  * t_pinstanceSeed = NULL;
+#else
+   _thread script_instance  * t_pinstanceSeed = NULL;
+#endif
+
+   script_instance * get_seed_instance()
+   {
+      return t_pinstanceSeed;
+   }
 
    script_manager::plugin_map_item::plugin_map_item()
    {
@@ -156,22 +165,22 @@ namespace dynamic_source
    }
 
 
-   void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
+   void script_manager::handle(::dynamic_source::httpd_socket * pdssocket)
    {
       string strHead;
       script_instance * pinstance = get(m_strSeed);
-      pnetnodesocket->m_pinstanceCurrent = pinstance;
+      t_pinstanceSeed = pinstance;
       if(pinstance != ::null())
       {
-         pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
+         pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
          pinstance->m_strDebugThisScript = m_strSeed;
-         pinstance->initialize(pinstance, ::null(), pnetnodesocket, this);
+         pinstance->initialize(pinstance, ::null(), pdssocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
          {
             if(pinstance->get("debug_lib").is_set())
             {
-               pnetnodesocket->response().file() << m_pcompiler->m_memfileLibError;
+               pdssocket->response().file() << m_pcompiler->m_memfileLibError;
             }
          }
       }
@@ -232,19 +241,6 @@ namespace dynamic_source
          {
             TRACE0("Error: Exception at script_manager::handle destroy pinstance");
          }
-      }
-
-      try
-      {
-
-         pnetnodesocket->m_pinstanceCurrent.release();
-
-      }
-      catch(...)
-      {
-
-         TRACE0("Error: Exception at script_manager::handle pnetnodesocket->release");
-
       }
 
    }

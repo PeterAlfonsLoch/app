@@ -53,7 +53,7 @@ namespace dynamic_source
 
 
       virtual void on_initialize();
-      virtual void initialize(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pnetnodesocket, script_manager * pmanager);
+      virtual void initialize(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager);
       
       script_interface * main_instance()
       {

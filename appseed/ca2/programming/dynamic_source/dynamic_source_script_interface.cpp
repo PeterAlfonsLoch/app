@@ -91,12 +91,12 @@ namespace dynamic_source
    {
    }
     
-   void script_interface::initialize(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pnetnodesocket, script_manager * pmanager)
+   void script_interface::initialize(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager)
    {
       
       m_pinstanceMain      = pinterfaceMain;
       m_pinstanceParent    = pinterfaceParent;
-      m_pnetnodesocket     = pnetnodesocket;
+      m_pnetnodesocket     = pdssocket;
       m_pmanager           = pmanager;
       
       on_initialize();
