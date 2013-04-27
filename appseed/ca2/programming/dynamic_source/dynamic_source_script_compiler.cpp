@@ -657,7 +657,7 @@ namespace dynamic_source
       strDest += "class " + m_pmanager->m_strNamespace + "_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      strDest += "   " + m_pmanager->m_strNamespace + "_script(dynamic_source::script * pscript) : dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
+      strDest += "   " + m_pmanager->m_strNamespace + "_script(dynamic_source::script * pscript) : ca(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   virtual void run();\r\n";
       strDest += "};\r\n";
       strDest += "\r\n";
