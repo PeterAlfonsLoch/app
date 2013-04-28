@@ -261,7 +261,7 @@ namespace mysql
    var database::query_table_item(const char * table, const char * item, const char *where, var notfound)
    {
       string strSql;
-      strSql.Format("SELECT `$item` FROM `$table` WHERE $where", item, table, where);
+      strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
       return query_item(strSql, notfound);
    }
 

@@ -125,6 +125,13 @@ public:
    var(const ::ca::str_str_interface & set);
    var(const string_composite & composite);
    var(const ::ca::null & null);   var(const id & id);
+   template < class T >
+   var(const sp(T) & sp)
+   {
+      m_etype = type_new;
+      operator = (sp.m_p);
+   }
+
    ~var();
 
    e_type             m_etype;
@@ -273,14 +280,14 @@ public:
 
    strsize get_length() const;
 
-   template < class T >
+/*   template < class T >
    var & operator = (sp(T) p)
    {
       set_type(type_ca2, false);
       m_sp = p;
       return *this;
    }
-
+*/
    inline var & operator = (::ca::ca * p)
    {
       set_type(type_ca2, false);
@@ -324,6 +331,12 @@ public:
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
+
+   template < class T >
+   var & operator = (const sp(T) & sp)
+   {
+      return this->operator = (sp.m_p);
+   }
 
    template < class T >
    sp(T) ca()

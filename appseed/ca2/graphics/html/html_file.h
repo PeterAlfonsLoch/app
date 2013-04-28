@@ -13,9 +13,10 @@ namespace html
    {
    public:
 
+
       string                     m_strOptions;
       string                     m_strStyle;
-      ::user::str_context *      m_puistrcontext;
+      sp(::user::str_context)    m_puistrcontext;
 
 
       file();

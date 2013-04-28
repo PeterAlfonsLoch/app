@@ -168,7 +168,7 @@ namespace dynamic_source
    void script_manager::handle(::dynamic_source::httpd_socket * pdssocket)
    {
       string strHead;
-      script_instance * pinstance = get(m_strSeed);
+      sp(script_instance) pinstance = get(m_strSeed);
       t_pinstanceSeed = pinstance;
       if(pinstance != ::null())
       {
@@ -232,6 +232,18 @@ namespace dynamic_source
          try
          {
             pinstance->destroy();
+         }
+         catch(const ::ca::exception &)
+         {
+            TRACE0("Error: ::ca::exception at script_manager::handle destroy pinstance");
+         }
+         catch(...)
+         {
+            TRACE0("Error: Exception at script_manager::handle destroy pinstance");
+         }
+         try
+         {
+            pinstance.release();
          }
          catch(const ::ca::exception &)
          {

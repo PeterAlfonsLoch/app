@@ -313,7 +313,7 @@ namespace plane
 
       bool                                         m_bLibCharGuess;
 
-      ::user::str *                                m_puserstr;
+      sp(::user::str)                              m_puserstr;
 
       string_map < int_map < string, string >, const int_map < string, string > & >
          m_mapEnumToName;
