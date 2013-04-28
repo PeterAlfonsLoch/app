@@ -24,7 +24,7 @@ namespace filemanager
       id                                           m_idFileManager;
 
 
-      filemanager();
+      filemanager(::ca::application * papp);
       virtual ~filemanager();
 
       bool initialize();

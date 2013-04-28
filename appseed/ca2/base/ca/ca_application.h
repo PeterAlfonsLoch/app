@@ -343,6 +343,7 @@ namespace ca
 
 
       ::ca::signal                * m_psignal;
+      sp(::fs::fs)                        m_spfs;
 
       bool                          m_bInitializeProDevianMode;
       main_init_data *              m_pinitmaindata;
@@ -467,9 +468,9 @@ namespace ca
       ::ca::allocatorsp                m_allocer;
 
 
-      int32_t                              m_iResourceId;
+      int32_t                          m_iResourceId;
 
-      string_to_ptr         m_appmap;
+      string_to_ptr                    m_appmap;
 
       //BaseIdSpaceIntegerMap      m_imapResource;
       //BaseIdSpaceStringKeyMap    m_strmapResource;
@@ -477,14 +478,14 @@ namespace ca
       sp(::uinteraction::uinteraction) m_puinteraction;
       //sp(::user::user)              m_puserbase;
       //sp(::userex::userex) m_puserex;
-      sp(::filemanager::filemanager) m_pfilemanager;
-      sp(::mail::mail) m_pmail;
+      sp(::filemanager::filemanager)   m_pfilemanager;
+      sp(::usermail::usermail)         m_pusermail;
 #ifdef WINDOWSEX
-      array < MONITORINFO >          m_monitorinfoa;
-      array < MONITORINFO >          m_monitorinfoaDesk;
+      array < MONITORINFO >            m_monitorinfoa;
+      array < MONITORINFO >            m_monitorinfoaDesk;
 #endif
 
-      stringa m_straAppInterest;
+      stringa                          m_straAppInterest;
       string_map < oswindow, oswindow > m_mapAppInterest;
 
 
@@ -1147,7 +1148,7 @@ namespace ca
       ///inline ::user::user                  & user     () { return *m_puserbase      ; }
 //      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
       inline ::filemanager::filemanager            & filemanager  () { return *m_pfilemanager   ; }
-      inline ::mail::mail                          & mail         () { return *m_pmail          ; }
+      inline ::usermail::usermail                          & usermail         () { return *m_pusermail          ; }
 
       
       string message_box(const char * pszMatter, ::ca::property_set & propertyset);

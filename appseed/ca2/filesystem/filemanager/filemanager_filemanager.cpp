@@ -10,7 +10,9 @@ namespace filemanager
 {
 
 
-   filemanager::filemanager()
+   filemanager::filemanager(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
       m_ptemplateStd       = ::null();
 

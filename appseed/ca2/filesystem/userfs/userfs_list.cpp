@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -29,7 +29,7 @@ namespace fs
 
    void list::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::fs::list_interface::install_message_handling(pinterface);
+      ::userfs::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list::_001OnLButtonDblClk);
@@ -97,12 +97,12 @@ namespace fs
 #ifdef DEBUG
    void list::assert_valid() const
    {
-      ::fs::list_interface::assert_valid();
+      ::userfs::list_interface::assert_valid();
    }
 
    void list::dump(dump_context & dumpcontext) const
    {
-      ::fs::list_interface::dump(dumpcontext);
+      ::userfs::list_interface::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -167,8 +167,8 @@ namespace fs
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::fs::list_interface::pre_create_window(cs);
+      return ::userfs::list_interface::pre_create_window(cs);
    }
 
-} // namespace fs
+} // namespace userfs
 

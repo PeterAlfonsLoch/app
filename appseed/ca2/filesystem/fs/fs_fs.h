@@ -13,7 +13,7 @@ namespace fs
 
 
 
-      fs();
+      fs(::ca::application * papp);
       virtual ~fs();
 
       bool initialize();

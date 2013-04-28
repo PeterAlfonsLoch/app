@@ -5,7 +5,9 @@ namespace calculator
 {
 
 
-   calculator::calculator()
+   calculator::calculator(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
    
    }

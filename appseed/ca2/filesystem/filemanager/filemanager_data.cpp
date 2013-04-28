@@ -7,8 +7,8 @@ namespace filemanager
 
    data::data(sp(::ca::application) papp) :
       ca(papp),
-      ::fs::tree_data(papp),
-      ::fs::list_data(papp)
+      ::userfs::tree_data(papp),
+      ::userfs::list_data(papp)
    {
       m_iIconSize                = 16;
       m_bListText                = true;

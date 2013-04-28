@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 simple_button :
-   public ::user::button
+   virtual public ::user::button
 {
 public:
    

@@ -7,9 +7,8 @@ namespace filemanager
 
    SimpleFolderTreeInterface::SimpleFolderTreeInterface(sp(::ca::application) papp) :
       ca(papp),
-      
       ::user::scroll_view(papp),
-      ::fs::tree(papp),
+      ::userfs::tree(papp),
       m_mutexMissinUpdate(papp)
    {
       m_pdataitemCreateImageListStep = ::null();
@@ -232,7 +231,7 @@ namespace filemanager
       {
          wstrItem = wstraItem[i];
 
-         sp(::fs::tree_item_data) pitemNew = new ::fs::tree_item_data;
+         sp(::userfs::tree_item_data) pitemNew = canew(::userfs::tree_item_data);
 
          pitemNew->m_strPath = lpcsz;
          pitemNew->m_flags.signalize(::fs::FlagInZip);
@@ -337,7 +336,7 @@ namespace filemanager
 
       sp(::ca::tree_item) pitemBase;
 
-      sp(::fs::tree_item_data) pitemChild;
+      sp(::userfs::tree_item_data) pitemChild;
 
       string strNew;
 
@@ -405,7 +404,7 @@ namespace filemanager
             return;
          }
 
-         pitemChild = new ::fs::tree_item_data;
+         pitemChild = canew(::userfs::tree_item_data);
 
          pitemChild->m_pdata = get_fs_tree_data();
 
@@ -478,7 +477,7 @@ namespace filemanager
          GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }
 
-      sp(::fs::tree_item_data) pitemFolder = ::null();
+      sp(::userfs::tree_item_data) pitemFolder = ::null();
 
       pitemFolder = pitemParent->m_pitemdata;
 
@@ -532,7 +531,7 @@ namespace filemanager
       while(pitem != ::null())
       {
 
-         string strPathOld =  pitem->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath;
+         string strPathOld =  pitem->m_pitemdata.cast < ::userfs::tree_item_data > ()->m_strPath;
 
          strPathOld.trim_right("/\\");
 
@@ -554,7 +553,7 @@ namespace filemanager
       for(i = 0; i < straPath.get_size(); i++)
       {
 
-         pitemChild = new ::fs::tree_item_data;
+         pitemChild = canew(::userfs::tree_item_data);
 
          iChildCount++;
 
@@ -743,7 +742,7 @@ namespace filemanager
    {
       for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
       {
-         stra.add(( (m_itemptraSelected[0].m_pitemdata.cast < ::fs::tree_item_data > ()))->m_strPath);
+         stra.add(( (m_itemptraSelected[0].m_pitemdata.cast < ::userfs::tree_item_data > ()))->m_strPath);
       }
    }
 
@@ -794,7 +793,7 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::install_message_handling(::ca::message::dispatch *pinterface)
    {
-      ::fs::tree::install_message_handling(pinterface);
+      ::userfs::tree::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &SimpleFolderTreeInterface::_001OnMainPostMessage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFolderTreeInterface::_001OnTimer);
    }
@@ -881,9 +880,9 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::_001OnItemExpand(sp(::ca::tree_item) pitem)
    {
-      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item_data > ())
+      if(typeid(*pitem->m_pitemdata) == System.type_info < ::userfs::tree_item_data > ())
       {
-         _017UpdateList(pitem->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath, pitem, 1);
+         _017UpdateList(pitem->m_pitemdata.cast < ::userfs::tree_item_data > ()->m_strPath, pitem, 1);
       }
       else
       {
@@ -904,7 +903,7 @@ namespace filemanager
    void SimpleFolderTreeInterface::_001OnOpenItem(sp(::ca::tree_item) pitem)
    {
 
-      _017OpenFolder(new ::fs::item(*pitem->m_pitemdata.cast < ::fs::tree_item_data > ()));
+      _017OpenFolder(new ::fs::item(*pitem->m_pitemdata.cast < ::userfs::tree_item_data > ()));
 
    }
 

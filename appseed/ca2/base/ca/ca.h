@@ -820,6 +820,7 @@ namespace user
 
 
 #include "ca_section.h"
+#include "ca_section_container.h"
 
 
 // former ca
@@ -1718,7 +1719,7 @@ namespace ca
 
 #include "net/usernet/usernet.h"
 #include "user/fontopus/fontopus.h"
-#include "net/usermail/mail.h"
+#include "net/usermail/usermail.h"
 
 
 #include "net/hi5/hi5_net.h"

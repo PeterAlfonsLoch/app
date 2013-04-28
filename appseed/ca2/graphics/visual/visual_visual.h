@@ -42,7 +42,7 @@ namespace visual
 
 
 
-      visual();
+      visual(::ca::application * papp);
       virtual ~visual();
 
 

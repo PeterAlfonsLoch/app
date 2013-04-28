@@ -35,7 +35,7 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 SimpleFolderTreeInterface :
-      public ::fs::tree,
+      public ::userfs::tree,
       virtual public FileManagerViewInterface
    {
    public:

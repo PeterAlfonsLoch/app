@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace mail
+namespace usermail
 {
 
 

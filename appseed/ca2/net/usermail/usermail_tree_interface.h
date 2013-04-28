@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace mail
+namespace usermail
 {
 
 
    class CLASS_DECL_ca2 tree_interface :
       public ::user::tree,
-      public ::mail::tree_data
+      public ::usermail::tree_data
    {
    public:
       
@@ -22,6 +22,6 @@ namespace mail
    };
 
 
-} // namespace mail
+} // namespace usermail
 
 

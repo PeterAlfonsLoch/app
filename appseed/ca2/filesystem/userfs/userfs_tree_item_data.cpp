@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
    tree_item_data::tree_item_data()
@@ -32,7 +32,7 @@ namespace fs
 
    bool tree_item_data::is_folder() const
    {
-      return m_flags.is_signalized(FlagFolder);
+      return m_flags.is_signalized(::fs::FlagFolder);
    }
 
 
@@ -57,6 +57,6 @@ namespace fs
    }
 
 
-} // namespace fs
+} // namespace userfs
 
 

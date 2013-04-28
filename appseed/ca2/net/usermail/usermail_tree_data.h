@@ -1,6 +1,6 @@
 #pragma once
 
-namespace mail
+namespace usermail
 {
 
 
@@ -19,4 +19,4 @@ namespace mail
    };
 
 
-} // namespace mail
+} // namespace usermail

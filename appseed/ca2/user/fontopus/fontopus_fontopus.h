@@ -15,7 +15,7 @@ namespace fontopus
       user *         m_puser;
 
 
-      fontopus();
+      fontopus(::ca::application * papp);
       virtual ~fontopus();
 
 

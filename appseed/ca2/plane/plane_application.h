@@ -31,7 +31,7 @@ namespace plane
       bool                                m_bIfs;
       bool                                m_bUpdateMatterOnInstall;
       sp(user::user)                      m_spuser;
-      sp(::fs::fs)                        m_pfs;
+      sp(::userfs::userfs)                        m_spuserfs;
       sp(::fontopus::fontopus)            m_pfontopus;
       sp(::html::html)                    m_phtml;
       ::simpledb::simpledb                m_simpledb;
@@ -159,7 +159,7 @@ namespace plane
 
       virtual ::fontopus::fontopus * create_fontopus();
       virtual ::user::user * create_user();
-      virtual ::fs::fs * create_fs();
+      virtual ::userfs::userfs * create_userfs();
       virtual ::html::html * create_html();
 
 

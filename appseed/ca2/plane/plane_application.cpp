@@ -14,7 +14,8 @@ namespace plane
    void progress();
 
 
-   application::application()
+   application::application() :
+      m_simpledb(this)
    {
 
       m_papp      = this;
@@ -399,7 +400,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    ::fontopus::fontopus * application::create_fontopus()
    {
 
-      return new ::fontopus::fontopus();
+      return canew(::fontopus::fontopus(this));
 
    }
 
@@ -407,15 +408,15 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    ::user::user * application::create_user()
    {
 
-      return new ::user::user();
+      return canew(::user::user(this));
 
    }
 
 
-   ::fs::fs * application::create_fs()
+   ::userfs::userfs * application::create_userfs()
    {
 
-      return new ::ca::fs::fs();
+      return canew(::userfs::userfs(this));
 
    }
 
@@ -423,7 +424,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    ::html::html * application::create_html()
    {
 
-      return new ::html::html(this);
+      return canew(::html::html(this));
 
    }
 
@@ -1684,7 +1685,7 @@ exit_application:
          return false;
 
 
-      if(!m_pfs->initialize())
+      if(!m_spuserfs->initialize())
          return false;
 
 
@@ -1830,12 +1831,12 @@ exit_application:
 
       m_spuser->construct(this);
 
-      m_pfs = create_fs();
+      m_spuserfs = create_userfs();
 
-      if(m_pfs == ::null())
+      if(m_spuserfs == ::null())
          return false;
 
-      m_pfs->construct(this);
+      m_spuserfs->construct(this);
 
       m_phtml = create_html();
 

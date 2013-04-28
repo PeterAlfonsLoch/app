@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -32,15 +32,15 @@ namespace fs
    };
 
 
-} // namespace fs
+} // namespace userfs
 
 
 template < class T >
-T cast (::fs::list_item & item)
+T cast (::userfs::list_item & item)
 {
    return T(item);
 }
 
 
 template <>
-CLASS_DECL_ca2 ::fs::item cast < ::fs::item > (::fs::list_item & item);
+CLASS_DECL_ca2 ::fs::item cast < ::fs::item > (::userfs::list_item & item);

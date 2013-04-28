@@ -5,7 +5,9 @@ namespace user
 {
 
 
-   user::user()
+   user::user(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
       
       

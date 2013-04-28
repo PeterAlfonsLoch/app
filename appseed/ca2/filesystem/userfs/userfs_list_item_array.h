@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -39,7 +39,14 @@ namespace fs
       index find_item_by_path(const char * pszPath);
 
 
-      void arrange(e_arrange earrange);
+      void arrange(::fs::e_arrange earrange);
+
+
    };
 
-} // namespace fs
+
+} // namespace userfs
+
+
+
+

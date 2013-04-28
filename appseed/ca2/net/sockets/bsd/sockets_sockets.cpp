@@ -5,15 +5,20 @@ namespace sockets
 {
 
 
-   sockets::sockets() :
-      m_mutexHttpPostBoundary(get_app()),
-      m_mutexResolvCache(get_app())
+   sockets::sockets(::ca::application * papp) :
+     ca(papp),
+     ::ca::section(papp),
+      m_mutexHttpPostBoundary(papp),
+      m_mutexResolvCache(papp)
    {
 
       m_pajpbasesocketinit    = ::null();
 
    }
 
+   sockets::~sockets()
+   {
+   }
 
    bool sockets::initialize1()
    {

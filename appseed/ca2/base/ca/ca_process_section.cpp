@@ -7,7 +7,9 @@
 namespace ca
 {
 
-   process_section::process_section()
+   process_section::process_section(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
    }
 

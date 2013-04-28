@@ -34,7 +34,9 @@ namespace visual
 {
 
 
-   visual::visual()
+   visual::visual(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
       m_pimaging        = ::null();
       m_pfontcentral    = ::null();

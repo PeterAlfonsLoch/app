@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -43,7 +43,7 @@ namespace fs
    };
 
 
-} // namespace fs
+} // namespace userfs
 
 
 

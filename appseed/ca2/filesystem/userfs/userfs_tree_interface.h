@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -34,7 +34,7 @@ namespace fs
       void _001OnItemExpand(sp(::ca::tree_item) pitem);
       void _017UpdateList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel);
 
-      sp(::fs::document) get_document();
+      sp(::userfs::document) get_document();
       virtual sp(tree_data) get_fs_tree_data();
 
       virtual void _001InsertColumns();
@@ -74,7 +74,7 @@ namespace fs
 
       sp(::ca::tree_item) find_absolute(const char * lpcsz);
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
-      void arrange(e_arrange earrange);
+      void arrange(::fs::e_arrange earrange);
 
       DECL_GEN_SIGNAL(_001OnTimer)
 
@@ -89,6 +89,6 @@ namespace fs
    };
 
 
-} // namespace fs
+} // namespace userfs
 
 

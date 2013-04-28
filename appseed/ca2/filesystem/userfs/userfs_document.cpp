@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -37,7 +37,7 @@ namespace fs
 
 
 
-} // namespace filemanager
+} // namespace userfs
 
 
 

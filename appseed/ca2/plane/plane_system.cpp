@@ -15,7 +15,9 @@ namespace plane
       m_mutexDelete(this),
       m_http(this),
       m_net(this),
-      m_mutex(this)
+      m_mutex(this),
+      m_processsection(this),
+      m_visual(this)
    {
 
 #ifdef METROWIN
@@ -196,7 +198,7 @@ namespace plane
       m_spfile.create(allocer());
       m_spdir.create(allocer());
 
-      m_pxml = new ::xml::xml();
+      m_pxml = canew(::xml::xml(this));
 
       m_pxml->construct(this);
 

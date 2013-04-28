@@ -11,7 +11,7 @@ namespace ca
    public:
 
 
-      section();
+      section(::ca::application * papp);
       virtual ~section();
 
 

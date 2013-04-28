@@ -5,7 +5,9 @@ namespace fs
 {
 
 
-   fs::fs()
+   fs::fs(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
 
    }

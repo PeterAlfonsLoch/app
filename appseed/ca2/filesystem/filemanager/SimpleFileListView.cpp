@@ -15,11 +15,10 @@ namespace filemanager
       ::user::form(papp),
       ::user::form_list(papp),
       SimpleFileListInterface(papp),
-      
       ::user::scroll_view(papp),
       ::user::list(papp),
-      ::fs::list_interface(papp),
-      ::fs::list(papp)
+      ::userfs::list_interface(papp),
+      ::userfs::list(papp)
    {
 
       m_bFileSize = false;
@@ -993,7 +992,7 @@ namespace filemanager
 
    void SimpleFileListView::_001OnSpafy2(::ca::signal_object * pobj)
    {
-      ::fs::list_data * pdata = get_fs_list_data();
+      ::userfs::list_data * pdata = get_fs_list_data();
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
       stringa straSub;
@@ -1002,8 +1001,8 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < pdata->m_itema.get_count(); i++)
       {
-         if(::fs::list_interface::get_document()->set().is_dir(pdata->m_itema.get_item(i).m_strPath)
-            && ::fs::list_interface::get_document()->set().file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
+         if(::userfs::list_interface::get_document()->set().is_dir(pdata->m_itema.get_item(i).m_strPath)
+            && ::userfs::list_interface::get_document()->set().file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
             Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)

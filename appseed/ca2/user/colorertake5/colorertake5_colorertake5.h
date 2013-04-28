@@ -11,7 +11,7 @@ namespace colorertake5
    public:
 
 
-      colorertake5();
+      colorertake5(::ca::application * papp);
       virtual ~colorertake5();
 
 

@@ -24,7 +24,8 @@
          
 
 
-         sockets();
+         sockets(::ca::application * papp);
+         virtual ~sockets();
 
 
          bool initialize1();

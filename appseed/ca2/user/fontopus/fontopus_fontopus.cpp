@@ -5,7 +5,9 @@ namespace fontopus
 {
 
 
-   fontopus::fontopus()
+   fontopus::fontopus(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
       m_puser                    = ::null();
       m_pthreadCreatingUser      = ::null();

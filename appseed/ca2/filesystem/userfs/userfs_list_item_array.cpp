@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
    void list_item_array::base_list_item_array::SoftSwap(index i1, index i2)
@@ -68,11 +68,11 @@ namespace fs
       return -1;
    }
 
-   void list_item_array::arrange(e_arrange earrange)
+   void list_item_array::arrange(::fs::e_arrange earrange)
    {
       switch(earrange)
       {
-      case arrange_by_name:
+      case ::fs::arrange_by_name:
          m_pfnCompare = &list_item::CompareArrangeByName;
          break;
       default:
@@ -82,5 +82,8 @@ namespace fs
    }
 
 
-} // namespace fs
+} // namespace userfs
+
+
+
 

@@ -5,7 +5,9 @@ namespace uinteraction
 {
 
 
-   uinteraction::uinteraction()
+   uinteraction::uinteraction(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
 
    }

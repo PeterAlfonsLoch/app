@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 document :
-      public ::fs::document,
+      public ::userfs::document,
       virtual public FileManagerInterface
    {
    public:

@@ -1,10 +1,12 @@
 #pragma once
 
-namespace fs
+
+namespace userfs
 {
 
 
    class document;
+
 
    class CLASS_DECL_ca2 main_view :
       public ::user::split_view
@@ -22,6 +24,7 @@ namespace fs
    };
 
 
-} // namespace fs
+} // namespace userfs
+
 
 

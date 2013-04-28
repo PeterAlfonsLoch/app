@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace mail
+namespace usermail
 {
 
 
@@ -18,7 +18,7 @@ namespace mail
    sp(::ca::tree_item_data) tree_data::on_allocate_item()
    {
 
-      return canew(::mail::tree_item_data());
+      return canew(::usermail::tree_item_data());
 
    }
 

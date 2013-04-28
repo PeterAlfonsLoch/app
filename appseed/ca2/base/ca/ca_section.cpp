@@ -5,7 +5,8 @@ namespace ca
 {
 
 
-   section::section()
+   section::section(::ca::application * papp) :
+      ca(papp)
    {
 
    }

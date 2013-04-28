@@ -17,8 +17,6 @@ namespace fs
 
 
 class FileManagerTemplate;
-class CWStrArray;
-class CWStr;
 
 
 namespace filemanager
@@ -26,8 +24,8 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 data :
-      public ::fs::tree_data,
-      public ::fs::list_data
+      virtual public ::userfs::tree_data,
+      virtual public ::userfs::list_data
    {
    public:
 

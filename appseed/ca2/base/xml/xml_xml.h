@@ -10,11 +10,13 @@ namespace xml
    {
    public:
 
+      
       entities       m_entities;
       disp_option *  m_poptionDefault;
       parse_info *   m_pparseinfoDefault;
 
-      xml();
+
+      xml(::ca::application * papp);
       virtual ~xml();
 
       virtual bool initialize1();

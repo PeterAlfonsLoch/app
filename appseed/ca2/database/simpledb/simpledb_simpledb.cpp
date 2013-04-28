@@ -8,13 +8,19 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb()
+   simpledb::simpledb(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
 
       m_pserver      = NULL;
 
    }
 
+   simpledb::~simpledb()
+   {
+
+   }
 
    bool simpledb::InitializeDataCentral()
    {

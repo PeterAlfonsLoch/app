@@ -12,8 +12,8 @@ namespace filemanager
       ::user::form_list(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
-      ::fs::list_interface(papp),
-      ::fs::list(papp),
+      ::userfs::list_interface(papp),
+      ::userfs::list(papp),
       
       m_gdibuffer(papp),
       m_mutex(papp)
@@ -214,7 +214,7 @@ namespace filemanager
          data_set_DisplayToStrict();
       } */
 
-      return ::fs::list::_017UpdateList(lpcsz);
+      return ::userfs::list::_017UpdateList(lpcsz);
 
 
    }
@@ -317,7 +317,7 @@ namespace filemanager
       _001CreateImageList();*/
 
 
-      return ::fs::list::_017UpdateZipList(lpcsz);
+      return ::userfs::list::_017UpdateZipList(lpcsz);
 
    }
 
@@ -403,7 +403,7 @@ namespace filemanager
 
       if(pcolumn != ::null() && pcolumn->m_iSubItem == m_iNameSubItem)
       {
-         ::fs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t) m_iCreateImageListStep);
+         ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t) m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = System.user()->shellimageset().GetImage(
@@ -561,7 +561,7 @@ namespace filemanager
       if(m_bStatic)
          return ::user::list::_001GetItemText(pitem);
 
-      return ::fs::list::_001GetItemText(pitem);
+      return ::userfs::list::_001GetItemText(pitem);
 
       /*UNREFERENCED_PARAMETER(iListItem);
       if(iSubItem == m_iNameSubItemText)
@@ -603,7 +603,7 @@ namespace filemanager
 
    void SimpleFileListInterface::_001GetItemImage(::user::list_item * pitem)
    {
-      return ::fs::list::_001GetItemImage(pitem);
+      return ::userfs::list::_001GetItemImage(pitem);
 /*      if(iSubItem == m_iSelectionSubItem)
       {
          if(m_rangeSelection.has_item(iItem))
@@ -676,7 +676,7 @@ namespace filemanager
             {
                iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
             }
-            ::fs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
+            ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
             if(!item.IsFolder())
             {
                array.add(item.m_strPath);
@@ -693,7 +693,7 @@ namespace filemanager
       if(m_bStatic)
       {
 
-         ::fs::list_item item(get_app());
+         ::userfs::list_item item(get_app());
 
          stringa stra;
 
@@ -736,7 +736,7 @@ namespace filemanager
       }
 
 
-      ::fs::list_item folder(get_app());
+      ::userfs::list_item folder(get_app());
 
 //      HRESULT hr;
       string strPath = GetFileManagerItem().m_strPath;
@@ -912,7 +912,7 @@ namespace filemanager
             {
                iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
             }
-            ::fs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
+            ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
             if(item.IsFolder())
             {
                _017OpenFolder(new ::fs::item (item));
@@ -1120,7 +1120,7 @@ namespace filemanager
    bool SimpleFileListInterface::add_item(const char * pszPath, const char * pszTitle)
    {
 
-      ::fs::list_item item(get_app());
+      ::userfs::list_item item(get_app());
 
       item.m_strPath = pszPath;
 

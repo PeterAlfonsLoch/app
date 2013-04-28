@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -23,7 +23,7 @@ namespace fs
 
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
-      sp(::fs::document) get_document();
+      sp(::userfs::document) get_document();
       virtual list_data * get_fs_list_data();
 
       virtual COLORREF get_background_color();
@@ -36,18 +36,18 @@ namespace fs
 
 
 
-      void GetSelected(item_array & itema);
+      void GetSelected(::fs::item_array & itema);
 
       void _001OnInitializeForm(sp(::user::control) pcontrol);
       void _001OnButtonAction(sp(::user::control) pcontrol);
 
-      virtual void _017OpenFile(const item_array & itema);
+      virtual void _017OpenFile(const ::fs::item_array & itema);
       virtual void _017OpenFolder(sp(::fs::item)  item);
-      virtual void _017OpenFolder(const ::fs::list_item & item);
+      virtual void _017OpenFolder(const ::userfs::list_item & item);
       virtual void _017OpenSelected(bool bOpenFile);
       virtual void _017OpenContextMenuSelected();
       virtual void _017OpenContextMenuFolder(sp(::fs::item)  item);
-      virtual void _017OpenContextMenuFile(const item_array &itema);
+      virtual void _017OpenContextMenuFile(const ::fs::item_array &itema);
       virtual void _017OpenContextMenu();
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
@@ -81,5 +81,5 @@ namespace fs
    };
 
 
-} // namespace fs
+} // namespace userfs
 

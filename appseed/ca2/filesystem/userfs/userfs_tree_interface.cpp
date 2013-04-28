@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -19,7 +19,7 @@ namespace fs
       m_iAnimate = 0;
       m_bDelayedListUpdate = false;
 
-      set_data(new ::fs::tree_data(get_app()));
+      set_data(canew(::userfs::tree_data(get_app())));
 
    }
 
@@ -58,27 +58,27 @@ namespace fs
          GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }*/
 
-      sp(::fs::tree_item_data) pitemFolder = ::null();
+      sp(::userfs::tree_item_data) pitemFolder = ::null();
 
       string strRawName1 = typeid(*pitemParent->m_pitemdata.m_p).name();
-      string strRawName2 = typeid(::fs::tree_item_data).name();
+      string strRawName2 = typeid(::userfs::tree_item_data).name();
       if(strRawName1 == strRawName2)
       {
          pitemFolder = pitemParent;
       }
 
 
-      sp(::fs::tree_item_data) pitemChild;
+      sp(::userfs::tree_item_data) pitemChild;
       sp(::ca::tree_item) pitem;
       ::ca::tree_item_ptr_array ptraRemove;
 
-      if(pitemFolder != ::null() && pitemFolder->m_flags.is_signalized(FlagHasSubFolderUnknown))
+      if(pitemFolder != ::null() && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
          if(get_document()->set().has_subdir(pitemFolder->m_strPath))
          {
-            pitemFolder->m_flags.signalize(FlagHasSubFolder);
+            pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
          }
-         pitemFolder->m_flags.unsignalize(FlagHasSubFolderUnknown);
+         pitemFolder->m_flags.unsignalize(::fs::FlagHasSubFolderUnknown);
       }
 
       stringa straChildItem;
@@ -111,7 +111,7 @@ namespace fs
       for(i = 0; i < straPath.get_size(); i++)
       {
 
-         pitemChild = new ::fs::tree_item_data;
+         pitemChild = canew(::userfs::tree_item_data);
 
          pitemChild->m_pdata = ::ca::tree::get_data();
 
@@ -126,12 +126,12 @@ namespace fs
          {
             if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
             {
-               pitemChild->m_flags.signalize(FlagFolder);
+               pitemChild->m_flags.signalize(::fs::FlagFolder);
 
 
                pitemChild->m_iImage = m_iDefaultImage;
                pitemChild->m_iImageSelected = m_iDefaultImageSelected;
-               pitemChild->m_flags.signalize(FlagInZip);
+               pitemChild->m_flags.signalize(::fs::FlagInZip);
 
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != ::null())
@@ -165,7 +165,7 @@ namespace fs
          item.m_flags.signalize(filemanager::FlagHasSubFolder);
          }*/
 
-         pitemChild->m_flags.signalize(FlagFolder);
+         pitemChild->m_flags.signalize(::fs::FlagFolder);
          pitemChild->m_iImage = m_iDefaultImage;
          pitemChild->m_iImageSelected = m_iDefaultImageSelected;
 
@@ -175,14 +175,14 @@ namespace fs
             pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
-            pitemChild->m_flags.signalize(FlagHasSubFolderUnknown);
+            pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
          }
          else
          {
                pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
          }
 
-         if(pitemChild->m_flags.is_signalized(FlagHasSubFolder))
+         if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
             pitem->m_dwState |= ::ca::tree_item_state_expandable;
          }
@@ -198,7 +198,7 @@ namespace fs
          ptraRemove(j).release();
       }
 
-      arrange(arrange_by_name);
+      arrange(::fs::arrange_by_name);
 
       if(iChildCount == 0)
       {
@@ -362,10 +362,10 @@ namespace fs
       {
          wstrItem = wstraItem[i];
 
-         sp(::fs::tree_item_data) pitemNew = new ::fs::tree_item_data;
+         sp(::userfs::tree_item_data) pitemNew = canew(::userfs::tree_item_data);
 
          pitemNew->m_strPath = lpcsz;
-         pitemNew->m_flags.signalize(FlagInZip);
+         pitemNew->m_flags.signalize(::fs::FlagInZip);
 
          wstrExtraPath = wstrItem;
 
@@ -385,7 +385,7 @@ namespace fs
             if(wstraFolder.find_first(wstrFolder) >= 0)
                continue;
             wstraFolder.add(wstrFolder);
-            pitemNew->m_flags.signalize(FlagFolder);
+            pitemNew->m_flags.signalize(::fs::FlagFolder);
             pitemNew->m_strPath   = szPath;
             pitemNew->m_iImage     = -1;
             pitemNew->m_strName   = wstrFolder;
@@ -401,10 +401,10 @@ namespace fs
             str = szPath + wstrExtraPath;
             if(zip::Util().IsUnzipable(get_app(), str))
             {
-               pitemNew->m_flags.signalize(FlagFolder);
+               pitemNew->m_flags.signalize(::fs::FlagFolder);
             }
          }
-         if(pitemNew->m_flags.is_signalized(FlagFolder))
+         if(pitemNew->m_flags.is_signalized(::fs::FlagFolder))
          {
             pitemNew->m_iImage         = m_iDefaultImage;
             pitemNew->m_iImageSelected = m_iDefaultImageSelected;
@@ -497,7 +497,7 @@ namespace fs
    {
       for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
       {
-         stra.add(m_itemptraSelected(0)->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath);
+         stra.add(m_itemptraSelected(0)->m_pitemdata.cast < ::userfs::tree_item_data > ()->m_strPath);
       }
    }
 
@@ -598,9 +598,9 @@ namespace fs
 
    void tree_interface::_001OnItemExpand(sp(::ca::tree_item) pitem)
    {
-      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item_data > ())
+      if(typeid(*pitem->m_pitemdata) == System.type_info < ::userfs::tree_item_data > ())
       {
-         _017UpdateList(pitem->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath, pitem, 1);
+         _017UpdateList(pitem->m_pitemdata.cast < ::userfs::tree_item_data > ()->m_strPath, pitem, 1);
       }
       else
       {
@@ -621,7 +621,7 @@ namespace fs
    void tree_interface::_001OnOpenItem(sp(::ca::tree_item) pitem)
    {
       
-      _017OpenFolder(new ::fs::item(*pitem->m_pitemdata.cast < ::fs::tree_item_data > ()));
+      _017OpenFolder(canew(::fs::item(*pitem->m_pitemdata.cast < ::userfs::tree_item_data > ())));
 
    }
 
@@ -739,9 +739,9 @@ namespace fs
       while(pitem != ::null())
       {
          if(pitem->m_pitemdata != ::null()
-         && typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item_data > ())
+         && typeid(*pitem->m_pitemdata) == System.type_info < ::userfs::tree_item_data > ())
          {
-            string strTreeItem(pitem->m_pitemdata.cast < ::fs::tree_item_data > ()->m_strPath);
+            string strTreeItem(pitem->m_pitemdata.cast < ::userfs::tree_item_data > ()->m_strPath);
             strTreeItem.trim_right("\\/");
             if(strTreeItem.CompareNoCase(strPath) == 0)
                return pitem;
@@ -751,27 +751,27 @@ namespace fs
       return ::null();
    }
 
-   void tree_interface::arrange(e_arrange earrange)
+   void tree_interface::arrange(::fs::e_arrange earrange)
    {
 
-      if(earrange == arrange_by_name)
+      if(earrange == ::fs::arrange_by_name)
       {
          sort(tree_item_data::CompareArrangeByName);
       }
 
    }
 
-   sp(::fs::document) tree_interface::get_document()
+   sp(::userfs::document) tree_interface::get_document()
    {
       return  (::user::tree::get_document());
    }
 
-   sp(::fs::tree_data) tree_interface::get_fs_tree_data()
+   sp(::userfs::tree_data) tree_interface::get_fs_tree_data()
    {
       return ::ca::tree::get_tree_data();
    }
 
 
-} // namespace fs
+} // namespace userfs
 
 

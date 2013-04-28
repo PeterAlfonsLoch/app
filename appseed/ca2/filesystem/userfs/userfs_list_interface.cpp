@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -113,7 +113,7 @@ namespace fs
       iaDisplayToStrict = iconlayout.m_iaDisplayToStrict;
       index_biunique iaDisplayToStrictNew;
 
-      ::fs::list_item item(get_app());
+      ::userfs::list_item item(get_app());
 
       _001OnUpdateItemCount();
 
@@ -212,7 +212,7 @@ namespace fs
       }
       else
       {
-         get_fs_list_data()->m_itema.arrange(arrange_by_name);
+         get_fs_list_data()->m_itema.arrange(::fs::arrange_by_name);
       }
 
       _001CreateImageList();
@@ -456,7 +456,7 @@ namespace fs
       ASSERT(FALSE);
    }
 
-   void list_interface::_017OpenFolder(const ::fs::list_item &item )
+   void list_interface::_017OpenFolder(const ::userfs::list_item &item )
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);
@@ -572,7 +572,7 @@ namespace fs
       item.m_strName = pszTitle;
       if(get_document()->set().is_dir(pszPath))
       {
-         item.m_flags.signalize(FlagFolder);
+         item.m_flags.signalize(::fs::FlagFolder);
       }
       get_fs_list_data()->m_itema.add_item(item);
       _001OnUpdateItemCount();
@@ -722,7 +722,7 @@ namespace fs
    }
 
 
-   sp(::fs::document) list_interface::get_document()
+   sp(::userfs::document) list_interface::get_document()
    {
       return  (::user::form_list::get_document());
    }
@@ -837,6 +837,6 @@ namespace fs
 
 
 
-} // namespace fs
+} // namespace userfs
 
 

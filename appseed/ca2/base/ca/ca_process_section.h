@@ -42,7 +42,7 @@ namespace ca
       };
 
 
-      process_section();
+      process_section(::ca::application * papp);
       virtual ~process_section();
 
 

@@ -44,7 +44,7 @@ namespace user
 
 
 
-      user();
+      user(::ca::application * papp);
       virtual ~user();
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);

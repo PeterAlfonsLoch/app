@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 simple_form_list_view :
-   public ::user::form_list
+   virtual public ::user::form_list
 {
 public:
 

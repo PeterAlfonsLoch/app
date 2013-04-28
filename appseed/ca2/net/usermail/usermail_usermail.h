@@ -1,18 +1,18 @@
 #pragma once
 
 
-namespace mail
+namespace usermail
 {
 
 
-   class CLASS_DECL_ca2 mail : 
+   class CLASS_DECL_ca2 usermail : 
       virtual public ::ca::section
    {
    public:
       
 
-      mail();
-      virtual ~mail();
+      usermail(::ca::application * papp);
+      virtual ~usermail();
 
 
       bool initialize_instance();
@@ -24,6 +24,6 @@ namespace mail
    };
 
 
-} // namespace mail
+} // namespace usermail
 
 

@@ -11,7 +11,7 @@ namespace uinteraction
    public:
 
 
-      uinteraction();
+      uinteraction(::ca::application * papp);
       virtual ~uinteraction();
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -70,17 +70,17 @@ namespace fs
 
    bool list_item::IsFolder() const
    {
-      if(m_flags.is_signalized(FlagFolderEx001Calc))
-         return m_flags.is_signalized(FlagFolderEx001);
+      if(m_flags.is_signalized(::fs::FlagFolderEx001Calc))
+         return m_flags.is_signalized(::fs::FlagFolderEx001);
       else
       {
-         bool bFolderEx001 = m_flags.is_signalized(FlagFolder) || m_flags.is_signalized(FlagInZip);
-         const_cast < list_item * > (this)->m_flags.signalize(FlagFolderEx001Calc);
+         bool bFolderEx001 = m_flags.is_signalized(::fs::FlagFolder) || m_flags.is_signalized(::fs::FlagInZip);
+         const_cast < list_item * > (this)->m_flags.signalize(::fs::FlagFolderEx001Calc);
          if(bFolderEx001)
          {
-            const_cast < list_item * > (this)->m_flags.signalize(FlagFolderEx001);
+            const_cast < list_item * > (this)->m_flags.signalize(::fs::FlagFolderEx001);
          }
-         return m_flags.is_signalized(FlagFolderEx001);
+         return m_flags.is_signalized(::fs::FlagFolderEx001);
       }
    }
 
@@ -103,12 +103,12 @@ namespace fs
    }
 
 
-} // namespace fs
+} // namespace userfs
 
 
 
 template <> 
-::fs::item cast < ::fs::item > (::fs::list_item & item)
+::fs::item cast < ::fs::item > (::userfs::list_item & item)
 {
    ::fs::item itemT;
    itemT.m_strPath = item.m_strPath;

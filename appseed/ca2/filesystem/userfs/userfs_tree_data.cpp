@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
@@ -14,10 +14,10 @@ namespace fs
 
    sp(::ca::tree_item_data) tree_data::on_allocate_item()
    {
-      return canew(::fs::tree_item_data());
+      return canew(::userfs::tree_item_data());
    }
 
 
-} // namespace fs
+} // namespace userfs
 
 

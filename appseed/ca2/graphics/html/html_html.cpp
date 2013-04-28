@@ -7,6 +7,7 @@ namespace html
 
    html::html(::ca::application * papp) :
       ::ca::ca(papp),
+      ::ca::section(papp),
       m_entityresolver(papp)
    {
    

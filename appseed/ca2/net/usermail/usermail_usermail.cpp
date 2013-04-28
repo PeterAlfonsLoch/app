@@ -1,20 +1,22 @@
 #include "framework.h"
 
 
-namespace mail
+namespace usermail
 {
 
 
-   mail::mail()
+   usermail::usermail(::ca::application * papp) : 
+      ca(papp),
+      ::ca::section(papp)
    {
    }
 
-   mail::~mail()
+   usermail::~usermail()
    {
    }
 
 
-   bool mail::initialize_instance()
+   bool usermail::initialize_instance()
    {
 
       if(!::ca::section::initialize_instance())
@@ -24,7 +26,7 @@ namespace mail
       return true;
    }
 
-   int32_t mail::exit_instance()
+   int32_t usermail::exit_instance()
    {
       try
       {
@@ -37,9 +39,9 @@ namespace mail
    }
 
 
-   void mail::update_pop3_mail_lists()
+   void usermail::update_pop3_mail_lists()
    {
    }
 
 
-} // namespace mail
+} // namespace usermail

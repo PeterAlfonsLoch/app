@@ -1,15 +1,14 @@
 #include "framework.h"
 
 
-namespace fs
+namespace userfs
 {
 
 
    tree::tree(sp(::ca::application) papp) :
       ca(papp),
-      
       ::user::scroll_view(papp),
-      ::fs::tree_interface(papp)
+      ::userfs::tree_interface(papp)
    {
 
       m_etranslucency = TranslucencyPresent;
@@ -34,7 +33,7 @@ namespace fs
 
    void tree::install_message_handling(::ca::message::dispatch * pinterface)
    {
-      ::fs::tree_interface::install_message_handling(pinterface);
+      ::userfs::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &tree::_001OnLButtonDblClk);
@@ -237,7 +236,7 @@ namespace fs
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::fs::tree_interface::pre_create_window(cs);
+      return ::userfs::tree_interface::pre_create_window(cs);
    }
 
 
@@ -270,7 +269,7 @@ namespace fs
 
    bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
-      return ::fs::tree_interface::_001OnCmdMsg(pcmdmsg);
+      return ::userfs::tree_interface::_001OnCmdMsg(pcmdmsg);
    }
 
 
@@ -298,7 +297,7 @@ namespace fs
    }
 
 
-} // namespace fs
+} // namespace userfs
 
 
 

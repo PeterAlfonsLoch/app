@@ -1,7 +1,9 @@
 #pragma once
 
-namespace mail
+
+namespace usermail
 {
+
 
    class CLASS_DECL_ca2 list_interface :
       virtual public ::user::list
@@ -37,9 +39,11 @@ namespace mail
 
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
-      
-
 
    };
 
-} // namespace mail
+
+} // namespace usermail
+
+
+

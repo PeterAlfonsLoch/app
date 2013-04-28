@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace fs
+namespace userfs
 {
 
    class main_view;
@@ -39,5 +39,5 @@ namespace fs
    };
 
 
-} // namespace fs
+} // namespace userfs
 

@@ -39,6 +39,7 @@ namespace ca
 
 
    application::application() :
+      ca(this), // start m_papp as this for constructor referencing this app
       m_mutex(this),
       ::ca::thread(::null()),
       m_mutexMatterLocator(this),
@@ -500,6 +501,19 @@ finishedCa2ModuleFolder:;
       //m_pappDelete = this;
       //::ca::thread::m_p->m_pappDelete = this;
 
+
+      m_spfs = canew(::fs::fs(this));
+
+      if(m_spfs == ::null())
+         return false;
+
+      m_spfs->construct(this);
+
+
+      if(!m_spfs->initialize())
+         return false;
+
+
       if(!::ca::application_base::m_p->process_initialize())
             return false;
 
@@ -512,7 +526,7 @@ finishedCa2ModuleFolder:;
    {
 
 
-      m_psockets = new ::sockets::sockets();
+      m_psockets = canew(::sockets::sockets(this));
 
       m_psockets->construct(this);
 
@@ -526,7 +540,7 @@ finishedCa2ModuleFolder:;
       m_strMatterLocator = System.dir().appmatter_locator(this);
 
 
-      m_puserstrcontext = new ::user::str_context(this);
+      m_puserstrcontext = canew(::user::str_context(this));
       if(m_puserstrcontext == ::null())
          return false;
 
@@ -4885,7 +4899,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    bool application::initialize()
    {
 
-      m_pcalculator = new ::calculator::calculator();
+
+
+      m_pcalculator = new ::calculator::calculator(this);
 
       m_pcalculator->construct(this);
 
@@ -4893,7 +4909,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          return false;
 
 
-      m_pcolorertake5 = new ::colorertake5::colorertake5();
+      m_pcolorertake5 = new ::colorertake5::colorertake5(this);
 
       m_pcolorertake5->construct(this);
 
@@ -4994,7 +5010,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 //      if(!::cubebase::application::initialize())
   //       return false;
 
-      m_puinteraction = new ::uinteraction::uinteraction();
+      m_puinteraction = canew(::uinteraction::uinteraction(this));
 
       m_puinteraction->construct(this);
 
@@ -5008,7 +5024,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
     //  if(!m_puserbase->initialize())
          //return false;
 
-      m_pfilemanager = new ::filemanager::filemanager();
+      m_pfilemanager =canew(::filemanager::filemanager(this));
 
       ::ca::application::m_pfilemanager = m_pfilemanager;
 
@@ -5017,11 +5033,11 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       if(!m_pfilemanager->initialize())
          return false;
 
-      m_pmail = new ::mail::mail();
+      m_pusermail = canew(::usermail::usermail(this));
 
-      m_pmail->construct(this);
+      m_pusermail->construct(this);
 
-      if(!m_pmail->initialize())
+      if(!m_pusermail->initialize())
          return false;
 
       m_dwAlive = ::get_tick_count();

@@ -8,8 +8,7 @@ namespace filemanager
    document::document(sp(::ca::application) papp) :
       ca(papp),
       ::ca::data_container_base(papp),
-      
-      ::fs::document(papp)
+      ::userfs::document(papp)
    {
 
       command_signalid id;

@@ -19,7 +19,7 @@ namespace filemanager
 
 
    class SimpleFileListInterface :
-      virtual public ::fs::list,
+      virtual public ::userfs::list,
       virtual public FileManagerViewInterface
    {
    public:

@@ -7,6 +7,7 @@ namespace userpresence
 
    userpresence::userpresence(sp(::ca::application) papp) :
       ca(papp),
+      ::ca::section(papp),
       message_window_simple_callback(papp)
    {
 

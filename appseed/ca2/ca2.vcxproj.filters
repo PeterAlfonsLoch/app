@@ -1958,72 +1958,6 @@
     <ClInclude Include="graphics\html\html2.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_document.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_fs.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_list.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_list_data.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_list_interface.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_list_item.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_list_item_array.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_main_view.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_tree.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_tree_data.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_tree_interface.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\fs_tree_item_data.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_account.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_db_pop3.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_frame.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_list_interface.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_mail.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_tree_data.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_tree_interface.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\mail_tree_item_data.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\http_file.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
@@ -4073,6 +4007,75 @@
     <ClInclude Include="programming\dynamic_source\dynamic_source_session.h">
       <Filter>Header Files\programming\dynamic_source</Filter>
     </ClInclude>
+    <ClInclude Include="base\ca\ca_section_container.h">
+      <Filter>Header Files\base\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_account.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_db_pop3.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_frame.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_list_interface.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_tree_data.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_tree_interface.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_tree_item_data.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_usermail.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_document.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_userfs.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_interface.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_item.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_item_array.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_main_view.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_tree.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_tree_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_tree_interface.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_tree_item_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -5485,27 +5488,6 @@
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-    <ClCompile Include="net\usermail\mail_account.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\mail_db_pop3.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\mail_list_interface.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\mail_mail.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\mail_tree_data.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\mail_tree_interface.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\mail_tree_item.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
@@ -6886,9 +6868,6 @@
     <ClCompile Include="filesystem\userfs\userfs_document.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\userfs_fs.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
@@ -6933,6 +6912,33 @@
     </ClCompile>
     <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp">
       <Filter>Source Files\programming\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_account.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_db_pop3.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_list_interface.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_tree_data.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_tree_interface.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_tree_item.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_usermail.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="base\ca\ca_section_container.cpp">
+      <Filter>Source Files\base\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

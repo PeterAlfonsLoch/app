@@ -5,7 +5,9 @@ namespace xml
 {
 
 
-   xml::xml()
+   xml::xml(::ca::application * papp) :
+      ca(papp),
+      ::ca::section(papp)
    {
       
       m_poptionDefault     = ::null();
