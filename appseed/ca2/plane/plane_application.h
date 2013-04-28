@@ -207,6 +207,10 @@ namespace plane
       virtual ::ca::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
+      virtual void data_on_after_change(::ca::signal_object * pobj);
+
+
+
 
 
    };

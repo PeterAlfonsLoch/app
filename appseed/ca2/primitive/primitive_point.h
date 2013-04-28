@@ -21,7 +21,7 @@ public:
    // create from a size
    point(SIZE initSize) throw();
    // create from an LPARAM: x = LOWORD(dw) y = HIWORD(dw)
-   point(LPARAM dwPoint) throw();
+   point(const lparam & dwPoint) throw();
 
 
    operator POINT *() throw();

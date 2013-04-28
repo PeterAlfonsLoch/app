@@ -86,6 +86,12 @@ public:
       return m_lparam;
    }
 
+   template < typename T >
+   operator T * () const
+   {
+      return (T *) m_lparam;
+   }
+
    lparam & operator = (const lparam & lparam)
    {
       m_lparam = lparam.m_lparam;

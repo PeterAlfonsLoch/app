@@ -1597,7 +1597,7 @@ user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
    user::e_line_hit etest = hit_test(ptCursor, iChar);
    if(etest == ::user::line_hit_link)
    {
-      GetLink(strUrl, iChar);
+      GetCharLink(strUrl, iChar);
    }
    return etest;
 }

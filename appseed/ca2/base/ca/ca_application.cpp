@@ -5778,19 +5778,6 @@ ret:
    }
 
 
-   void application::data_on_after_change(::ca::signal_object * pobj)
-   {
-      SCAST_PTR(::database::change_event, pchange, pobj);
-      if(pchange->m_key.m_idKey == "ca2")
-      {
-         if(pchange->m_key.m_idIndex  == "savings")
-         {
-            pchange->data_get(savings().m_eresourceflagsShouldSave);
-         }
-      }
-   }
-
-
    void application::set_title(const char * pszTitle)
    {
 

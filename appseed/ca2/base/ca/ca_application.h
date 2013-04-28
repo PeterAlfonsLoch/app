@@ -1160,10 +1160,6 @@ namespace ca
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
       virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
    
-      virtual void data_on_after_change(::ca::signal_object * pobj);
-
-
-
       virtual void set_title(const char * pszTitle);
 
 
