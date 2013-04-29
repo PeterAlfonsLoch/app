@@ -49,14 +49,15 @@ public:
 
 
 
-class CLASS_DECL_ca2 strid_array
+class CLASS_DECL_ca2 strid_array :
+   virtual public ::ca::object
 {
 protected:
 
 
    index_array                      stackLowerBound;
    index_array                      stackUpperBound;
-   array < const char * >       m_idptra; // ordered as added
+   array < const char * >           m_idptra; // ordered as added
    index_array                      m_iaId; // ordered by id_cmp
 
    
@@ -68,10 +69,10 @@ protected:
 public:
 
    
-   mutex * m_pmutex;
+   sp(mutex) m_pmutex;
    
 
-   strid_array();
+   strid_array(bool bSynch);
    virtual ~strid_array();
 
    void add(const id & id);

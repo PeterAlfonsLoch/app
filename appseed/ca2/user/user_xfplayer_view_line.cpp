@@ -1567,7 +1567,7 @@ void XfplayerViewLine::PrepareURLLinks()
 
    string str;
 
-   while(cregexp_util::find(m_str, "(^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$)", 3, iStart, iEnd))
+   while(cregexp_util::find(m_str, "/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/", 3, &iStart, &iEnd))
    {
       m_straLink.add(m_str.Mid(iStart, iEnd - iStart));
       m_iaLinkStart.add(iStart);

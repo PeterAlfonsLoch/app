@@ -21,8 +21,8 @@ namespace ca
       ca(papp)
    {
       m_pmutex = new mutex(papp);
-      m_pstrida = new strid_array();
-      m_pstridaAllocator = new strid_array();
+      m_pstrida = new strid_array(true);
+      m_pstridaAllocator = new strid_array(true);
       m_bSimpleFactoryRequest = false;
    }
 

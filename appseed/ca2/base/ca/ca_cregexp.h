@@ -210,7 +210,8 @@ public:
 
     @ingroup cregexp
 */
-class CLASS_DECL_ca2 cregexp
+class CLASS_DECL_ca2 cregexp :
+   virtual public ::ca::object
 {
 public:
   /**

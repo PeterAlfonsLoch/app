@@ -273,10 +273,10 @@ namespace ca
 
 
    private:
-      mutex *                                                     m_pmutex;
-      strid_array *                                               m_pstrida;
+      sp(mutex)                                                   m_pmutex;
+      sp(strid_array)                                             m_pstrida;
       spa(factory_item_base)                                      m_itemptra;
-      strid_array *                                               m_pstridaAllocator;
+      sp(strid_array)                                             m_pstridaAllocator;
       spa(factory_allocator)                                      m_itemptraAllocator;
    };
 

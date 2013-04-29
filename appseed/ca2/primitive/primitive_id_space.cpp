@@ -320,9 +320,16 @@ bool id_space::find(const id & t, index & iIndex)
 
 
 
-strid_array::strid_array()
+strid_array::strid_array(bool bSynch)
 {
-   m_pmutex = new mutex(::ca::get_thread_app());
+   
+   if(bSynch)
+   {
+    
+      m_pmutex = canew(mutex(::ca::get_thread_app()));
+
+   }
+
 }
 
 // id_space is static, it goes aways only and with the application

@@ -85,6 +85,23 @@ void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, b
    }
 }
 
+
+void stringa::add_lines(const string & str)
+{
+
+   stringa straSeparator;
+
+   straSeparator.add("\r");
+
+   straSeparator.add("\n");
+
+   straSeparator.add("\r\n");
+
+   add_smallest_tokens(str, straSeparator, true, false);
+
+}
+
+
 void stringa::get_format_string(string & str, const char * lpcszSeparator) const
 {
    str.Empty();

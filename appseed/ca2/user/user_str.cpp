@@ -80,7 +80,7 @@ namespace user
 
          }
 
-         strid_array stridaFailedLocale;
+         strid_array stridaFailedLocale(false);
 
          for(int32_t i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
          {

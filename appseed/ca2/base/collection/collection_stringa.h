@@ -128,6 +128,7 @@ public:
    void get_format_string(string & str, const char * lpcszSeparator) const;
    void add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty);
    void add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator = FALSE);
+   void add_lines(const string & str);
 
 
    bool is_empty(::count countMinimum = 1);
