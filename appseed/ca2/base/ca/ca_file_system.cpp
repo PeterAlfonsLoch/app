@@ -1406,7 +1406,7 @@ namespace ca
 
       write_gen_string(spfile, ::null(), strVersion);
 
-      ::ca::filesp file2(get_app());
+      ::ca::filesp file2(allocer());
 
       ::primitive::memory_size iBufSize = 1024 * 1024;
 
