@@ -30,6 +30,8 @@ OutputDebugStringA(
 
 
     fprintf(stderr, "%s", lpOutputString);
+    fflush(stderr);
+    //printf("%s", lpOutputString);
 
 
 }
