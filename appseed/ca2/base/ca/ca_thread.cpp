@@ -21,6 +21,7 @@ namespace ca
 
    thread::thread(sp(::ca::application) papp) :
       ca(papp),
+      m_set(papp),
       m_mutex(papp)
    {
 
