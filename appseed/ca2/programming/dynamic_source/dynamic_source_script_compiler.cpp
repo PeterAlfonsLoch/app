@@ -1895,7 +1895,7 @@ namespace dynamic_source
          }
          string str = strSource.Left(iLen);
          //strDest += "   ds_print(unitext(\"";
-         strDest += "   ds_print(\"";
+         strDest += "\r\n   ds_print(\"";
          strDest += escape(str);
          //strDest += "\"));\r\n";
          strDest += "\");\r\n";
