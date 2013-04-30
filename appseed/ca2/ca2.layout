@@ -31,6 +31,12 @@
 	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="17165" topLine="461" />
 	</File>
+	<File name="base/ca/ca_math.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="619" topLine="14" />
+	</File>
+	<File name="base/ca/ca_math.h" open="1" top="0" tabpos="3">
+		<Cursor position="629" topLine="31" />
+	</File>
 	<File name="base/ca/ca_message.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="23683" topLine="830" />
 	</File>
@@ -45,6 +51,9 @@
 	</File>
 	<File name="base/ca/ca_thread.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="18025" topLine="873" />
+	</File>
+	<File name="base/ca/ca_url.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="4544" topLine="208" />
 	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
@@ -75,6 +84,9 @@
 	</File>
 	<File name="base/multithreading/multithreading_critical_section.cpp" open="0" top="0" tabpos="108">
 		<Cursor position="1215" topLine="58" />
+	</File>
+	<File name="base/multithreading/multithreading_waitable.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2630" topLine="135" />
 	</File>
 	<File name="base/os/os_cross_windows_time.cpp" open="0" top="0" tabpos="96">
 		<Cursor position="1787" topLine="47" />
@@ -382,8 +394,8 @@
 	<File name="primitive/datetime/datetime_time.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="11428" topLine="435" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="5">
-		<Cursor position="29250" topLine="1187" />
+	<File name="primitive/primitive_simple_string.h" open="1" top="1" tabpos="4">
+		<Cursor position="2740" topLine="136" />
 	</File>
 	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="7" topLine="0" />
