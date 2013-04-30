@@ -397,8 +397,8 @@
 	<File name="programming/dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="30628" topLine="874" />
 	</File>
-	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="16713" topLine="589" />
+	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="16644" topLine="579" />
 	</File>
 	<File name="programming/dynamic_source/dynamic_source_session.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="358" topLine="0" />

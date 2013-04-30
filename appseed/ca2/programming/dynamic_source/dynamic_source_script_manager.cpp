@@ -13,11 +13,7 @@ namespace dynamic_source
 
    UINT ThreadProcRsa(LPVOID lp);
 
-#ifdef WINDOWS
-   __declspec(thread) script_instance  * t_pinstanceSeed = NULL;
-#else
-   _thread script_instance  * t_pinstanceSeed = NULL;
-#endif
+   CLASS_DECL_THREAD script_instance  * t_pinstanceSeed = NULL;
 
    script_instance * get_seed_instance()
    {

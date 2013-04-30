@@ -67,6 +67,9 @@
 	<File name="ssl/s3_lib.c" open="0" top="0" tabpos="12">
 		<Cursor position="8051" topLine="152" />
 	</File>
+	<File name="ssl/ssl.h" open="1" top="0" tabpos="2">
+		<Cursor position="32539" topLine="781" />
+	</File>
 	<File name="ssl/ssl_locl.h" open="0" top="0" tabpos="11">
 		<Cursor position="22708" topLine="587" />
 	</File>
