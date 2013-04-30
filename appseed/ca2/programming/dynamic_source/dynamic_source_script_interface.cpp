@@ -73,7 +73,11 @@ namespace dynamic_source
 
    ::http::file & script_interface::output_file()
    {
-      if(m_pinstanceMain != ::null())
+      if(m_pinstanceMain == this)
+      {
+         return *((::http::file *) ::null());
+      }
+      else if(m_pinstanceMain != ::null())
       {
          return m_pinstanceMain->output_file();
       }
