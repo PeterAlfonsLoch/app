@@ -8,6 +8,8 @@ namespace datetime
    {
       static id idCalendarDay("calendar:day");
       static id idCalendarDays("calendar:days");
+      static id idCalendarWeek("calendar:week");
+      static id idCalendarWeeks("calendar:weeks");
       static id idCalendarYear("calendar:year");
       static id idCalendarYears("calendar:years");
       static id idCalendarHour("calendar:hour");
@@ -43,6 +45,12 @@ namespace datetime
                   || (pcontext != ::null() && pcontext->matches(idCalendarDays, strText1)))
                {
                   span.m_iDay = atoi(strNumber);
+               }
+               else if(strText1 == "week" || strText1 == "weeks"
+                  || (pcontext != ::null() && pcontext->matches(idCalendarWeek, strText1))
+                  || (pcontext != ::null() && pcontext->matches(idCalendarWeeks, strText1)))
+               {
+                  span.m_iDay = atoi(strNumber) * 7;
                }
                else if(strText1 == "hour" || strText1 == "hours" || strText1 == "hora" || strText1 == "horas"
                   || (pcontext != ::null() && pcontext->matches(idCalendarHour, strText1))

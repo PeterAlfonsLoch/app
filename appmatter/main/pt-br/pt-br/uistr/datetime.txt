@@ -53,5 +53,7 @@
 "calendar:hours" = "horas"
 "calendar:days" = "dias"
 "calendar:day" = "dia"
+"calendar:weeks" = "semanas"
+"calendar:week" = "semana"
 "calendar:year" = "ano"
 "calendar:years" = "anos"
