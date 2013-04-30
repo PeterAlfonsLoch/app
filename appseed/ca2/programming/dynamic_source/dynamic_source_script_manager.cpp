@@ -614,7 +614,13 @@ namespace dynamic_source
       while(passoc != ::null())
       {
          passocNext = passoc->m_pnext;
-         if(passoc->m_element2->get_ref_count() <= 1)
+         if(passoc->m_element2.is_null())
+         {
+
+            m_mapSession.remove_assoc(passoc);
+
+         }
+         else if(passoc->m_element2->get_ref_count() <= 1)
          {
             if(passoc->m_element2->m_timeAccess < time)
             {

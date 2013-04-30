@@ -13,8 +13,8 @@
 	<File name="base/ca/ca_allocation_system_heap.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="42" />
 	</File>
-	<File name="base/ca/ca_application.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="134094" topLine="5032" />
+	<File name="base/ca/ca_application.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="17633" topLine="532" />
 	</File>
 	<File name="base/ca/ca_c.h" open="0" top="0" tabpos="118">
 		<Cursor position="1304" topLine="60" />
@@ -22,14 +22,20 @@
 	<File name="base/ca/ca_compress.cpp" open="0" top="0" tabpos="107">
 		<Cursor position="1171" topLine="36" />
 	</File>
+	<File name="base/ca/ca_dir_system.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="29407" topLine="852" />
+	</File>
 	<File name="base/ca/ca_factory.h" open="0" top="0" tabpos="8">
 		<Cursor position="3852" topLine="131" />
 	</File>
 	<File name="base/ca/ca_fixed_alloc.h" open="0" top="0" tabpos="1">
 		<Cursor position="4061" topLine="136" />
 	</File>
-	<File name="base/ca/ca_log.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="469" topLine="0" />
+	<File name="base/ca/ca_international_locale_schema.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="509" topLine="20" />
+	</File>
+	<File name="base/ca/ca_log.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="17165" topLine="461" />
 	</File>
 	<File name="base/ca/ca_math.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="619" topLine="14" />
@@ -42,12 +48,6 @@
 	</File>
 	<File name="base/ca/ca_process.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="4404" topLine="146" />
-	</File>
-	<File name="base/ca/ca_property.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="26492" topLine="1469" />
-	</File>
-	<File name="base/ca/ca_property.h" open="1" top="0" tabpos="14">
-		<Cursor position="7474" topLine="211" />
 	</File>
 	<File name="base/ca/ca_smart_pointer1.h" open="0" top="0" tabpos="3">
 		<Cursor position="3159" topLine="111" />
@@ -64,14 +64,11 @@
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
 	</File>
-	<File name="base/collection/collection_map_association.h" open="1" top="0" tabpos="6">
-		<Cursor position="110" topLine="0" />
+	<File name="base/collection/collection_map.h" open="0" top="0" tabpos="13">
+		<Cursor position="18431" topLine="714" />
 	</File>
 	<File name="base/collection/collection_numeric_array.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="4991" topLine="407" />
-	</File>
-	<File name="base/collection/collection_pair.h" open="1" top="0" tabpos="3">
-		<Cursor position="69" topLine="0" />
 	</File>
 	<File name="base/collection/collection_smart_pointer_array.h" open="0" top="0" tabpos="2">
 		<Cursor position="954" topLine="27" />
@@ -79,17 +76,14 @@
 	<File name="base/exception/exception_standard.h" open="0" top="0" tabpos="13">
 		<Cursor position="4148" topLine="133" />
 	</File>
-	<File name="base/exception/exception_standard_translator.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="17973" topLine="351" />
+	<File name="base/exception/exception_standard_translator.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="17662" topLine="351" />
 	</File>
 	<File name="base/linux/os.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3124" topLine="92" />
 	</File>
 	<File name="base/linux/os.h" open="0" top="0" tabpos="3">
 		<Cursor position="337" topLine="0" />
-	</File>
-	<File name="base/linux/os_debug.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="947" topLine="6" />
 	</File>
 	<File name="base/macos/macos.h" open="0" top="0" tabpos="5">
 		<Cursor position="660" topLine="6" />
@@ -99,6 +93,12 @@
 	</File>
 	<File name="base/multithreading/multithreading_critical_section.cpp" open="0" top="0" tabpos="108">
 		<Cursor position="1215" topLine="58" />
+	</File>
+	<File name="base/multithreading/multithreading_mutex.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="3714" topLine="201" />
+	</File>
+	<File name="base/multithreading/multithreading_single_lock.cpp" open="0" top="0" tabpos="14">
+		<Cursor position="834" topLine="0" />
 	</File>
 	<File name="base/multithreading/multithreading_waitable.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2630" topLine="135" />
@@ -208,6 +208,9 @@
 	<File name="database/simpledb/simpledb.h" open="0" top="0" tabpos="8">
 		<Cursor position="32" topLine="0" />
 	</File>
+	<File name="database/simpledb/simpledb_manager.h" open="0" top="0" tabpos="17">
+		<Cursor position="870" topLine="17" />
+	</File>
 	<File name="database/simpledb/simpledb_mysql_database.cpp" open="0" top="0" tabpos="109">
 		<Cursor position="597" topLine="15" />
 	</File>
@@ -219,15 +222,6 @@
 	</File>
 	<File name="net/sockets/bsd/basic/sockets_tcp_socket.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="39557" topLine="1318" />
-	</File>
-	<File name="net/sockets/bsd/webserver/http_transaction.h" open="1" top="0" tabpos="13">
-		<Cursor position="1886" topLine="52" />
-	</File>
-	<File name="net/sockets/bsd/webserver/sockets_http_base_socket.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="1841" topLine="45" />
-	</File>
-	<File name="net/sockets/bsd/webserver/sockets_http_transaction.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="net/sockets/metrowin/basic/aaa_sockets_ssl_client_context_map_want_to_remove.h" open="0" top="0" tabpos="36">
 		<Cursor position="78" topLine="0" />
@@ -415,14 +409,20 @@
 	<File name="primitive/aaa_var_want_to_remove.h" open="0" top="0" tabpos="93">
 		<Cursor position="16719" topLine="488" />
 	</File>
+	<File name="primitive/datetime/datetime_duration.h" open="0" top="0" tabpos="15">
+		<Cursor position="2376" topLine="95" />
+	</File>
 	<File name="primitive/datetime/datetime_time.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="11428" topLine="435" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="1" top="1" tabpos="4">
-		<Cursor position="19167" topLine="812" />
+	<File name="primitive/primitive_id_space.cpp" open="0" top="0" tabpos="18">
+		<Cursor position="801" topLine="14" />
 	</File>
-	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="23819" topLine="843" />
+	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="4">
+		<Cursor position="2740" topLine="136" />
+	</File>
+	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="7" topLine="0" />
 	</File>
 	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="12">
 		<Cursor position="37810" topLine="1158" />
@@ -430,14 +430,11 @@
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="65499" topLine="3346" />
 	</File>
-	<File name="programming/dynamic_source/dynamic_source_httpd_socket.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="0" topLine="3" />
-	</File>
 	<File name="programming/dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="30628" topLine="874" />
 	</File>
-	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="17035" topLine="580" />
+	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="16271" topLine="579" />
 	</File>
 	<File name="programming/dynamic_source/dynamic_source_session.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="358" topLine="0" />
@@ -447,6 +444,12 @@
 	</File>
 	<File name="user/user_single_document_template.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="2746" topLine="31" />
+	</File>
+	<File name="user/user_str.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="2295" topLine="90" />
+	</File>
+	<File name="user/user_str.h" open="0" top="0" tabpos="9">
+		<Cursor position="3228" topLine="139" />
 	</File>
 	<File name="user/user_view.h" open="0" top="0" tabpos="94">
 		<Cursor position="8371" topLine="200" />

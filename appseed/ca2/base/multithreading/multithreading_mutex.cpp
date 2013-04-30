@@ -205,7 +205,24 @@ wait_result mutex::wait(const duration & duration)
    else
    {
 
-      while((dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout) || bFirst)
+       if(duration.is_pos_infinity())
+       {
+
+          irc = pthread_mutex_lock(&m_mutex);
+          if (!irc)
+          {
+               return wait_result(wait_result::Event0);
+          }
+          else
+          {
+               return wait_result(wait_result::Failure);
+
+          }
+
+       }
+        else
+    {
+      while((::get_tick_count() - start < dwTimeout) || bFirst)
       {
 
          bFirst = false;
@@ -236,6 +253,7 @@ wait_result mutex::wait(const duration & duration)
             }
           }
        }
+     }
    }
 
    return wait_result(wait_result::Timeout);

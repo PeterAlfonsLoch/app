@@ -86,7 +86,7 @@ int64_t duration::total_milliseconds() const
 
 bool duration::is_pos_infinity() const
 {
-   return operator == (pos_infinity());
+   return m_iSeconds == 0x7fffffffffffffffLL && m_iNanoseconds == 999999999;
 }
 
 duration duration::infinite()
@@ -96,7 +96,7 @@ duration duration::infinite()
 
 duration duration::pos_infinity()
 {
-   return duration(0x7fffffffffffffff, 1000000000, false);
+   return duration(0x7fffffffffffffffLL, 999999999, false);
 }
 
 duration duration::zero()
