@@ -1407,14 +1407,14 @@ namespace ca
       {
          string strNameLow = strName;
          strNameLow.make_lower();
-         m_propertya.add(new property(strName));
+         m_propertya.add(canew(property(strName)));
          m_map.set_at(strNameLow, m_propertya.get_upper_bound());
 //         m_propertya.last_element()->m_pset = this;
          return m_propertya.last_element();
       }
       else
       {
-         m_propertya.add(new property(strName));
+         m_propertya.add(canew(property(strName)));
          m_map.set_at(strName, m_propertya.get_upper_bound());
 //         m_propertya.last_element()->m_pset = this;
          return m_propertya.last_element();
@@ -1441,7 +1441,7 @@ namespace ca
    property * property_set::lowadd(const string & strLowName, const var & var)
    {
 
-      sp(property) spproperty(new property());
+      sp(property) spproperty(canew(property()));
 
       spproperty->name()      = strLowName;
 
@@ -1490,14 +1490,14 @@ namespace ca
       {
          string strNameLow = strName;
          strNameLow.make_lower();
-         m_propertya.add(new property(strName, var));
+         m_propertya.add(canew(property(strName, var)));
          m_map.set_at(strNameLow, m_propertya.get_upper_bound());
 //         m_propertya.last_element()->m_pset = this;
          return m_propertya.last_element();
       }
       else
       {
-         m_propertya.add(new property(strName, var));
+         m_propertya.add(canew(property(strName, var)));
          m_map.set_at(strName, m_propertya.get_upper_bound());
 //         m_propertya.last_element()->m_pset = this;
          return m_propertya.last_element();
@@ -2525,7 +2525,7 @@ namespace ca
          {
             string strKey = set.pair_set_interface_get_key(i);
             class var var = set.pair_set_interface_get_value(i);
-            m_propertya.add(new property(strKey, var));
+            m_propertya.add(canew(property(strKey, var)));
          }
          // WOULD ANALYZE each of the following members parameters for
          // auto discovery, calculation or leave as set.
@@ -2553,7 +2553,7 @@ namespace ca
          {
             string strKey = set.str_str_interface_get_key(i);
             class var var = set.str_str_interface_get_value(i);
-            m_propertya.add(new property(strKey, var));
+            m_propertya.add(canew(property(strKey, var)));
          }
          // WOULD ANALYZE each of the following members parameters for
          // auto discovery, calculation or leave as set.

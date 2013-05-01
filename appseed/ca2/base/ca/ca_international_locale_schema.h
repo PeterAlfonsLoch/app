@@ -52,6 +52,9 @@ namespace ca
 
          locale_schema & operator = (const locale_schema & ls);
 
+         virtual int64_t add_ref();
+         virtual int64_t release();
+
 
       };
 

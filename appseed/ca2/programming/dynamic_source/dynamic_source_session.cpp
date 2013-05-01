@@ -12,6 +12,11 @@ namespace dynamic_source
 
    session::~session()
    {
+      ::ca::international::locale_schema * pls = m_set["locale_schema"].ca < ::ca::international::locale_schema > ();
+      if(pls != ::null())
+      {
+         ::OutputDebugString("locale_schema.m_idLocale=" + pls->m_idLocale.str());
+      }
    }
 
    int64_t session::release()

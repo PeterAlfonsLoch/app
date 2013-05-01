@@ -696,6 +696,16 @@ restart:
 
       }
 
+      int64_t locale_schema::add_ref()
+      {
+         return ::ca::object::add_ref();
+      }
+       
+      int64_t locale_schema::release()
+      {
+         return ::ca::object::release();
+      }
+
 
    }  // namespace international
 
