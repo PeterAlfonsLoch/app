@@ -157,6 +157,7 @@ var::var(const string_composite & composite)
    operator = (composite);
 }
 
+
 var::var(const id & id)
 {
    m_etype = type_new;
@@ -1907,7 +1908,7 @@ var_array var::vara() const
       ::ca::property_set * ppropset = canew(::ca::property_set());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
-         ppropset->add(::null(), at(i));
+         ppropset->add(id(), at(i));
       }
       set_type(type_propset, false);
       //ASSERT(m_sp.is_null());
@@ -3610,10 +3611,10 @@ bool var::is_numeric() const
          return false;
 
       case type_id:
-         return m_id.is_number();
+         return false; // m_id.is_number(); // may be improved MBI
 
       case type_pid:
-         return m_pid->is_number();
+         return false; // m_pid->is_number(); // may be improved MBI
 
       case type_int64a:
          return false;

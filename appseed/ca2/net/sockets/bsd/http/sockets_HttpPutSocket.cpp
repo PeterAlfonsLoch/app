@@ -101,7 +101,7 @@ namespace sockets
       inheader("Host")                = GetUrlHost();
       if(m_content_type.has_char())
       {
-         outheader("Content-type")     = m_content_type;
+         outheader(__id(content_type))     = m_content_type;
       }
       inheader("Content-length")      = (int64_t) m_content_length;
       inheader("User-agent")          = MyUseragent();

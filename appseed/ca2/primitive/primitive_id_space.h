@@ -7,7 +7,7 @@ inline index BaseSortCompare(const id & id1, const id & id2)
 {
 
 
-   return (index) id_cmp(&id1, &id2);
+   return (index) (id1.m_pstr - id2.m_pstr);
 
 
 }
@@ -40,7 +40,7 @@ public:
    virtual ~id_space();
 
    
-   id operator()(const char * psz);
+   id operator()(const string & str);
    id operator()(int64_t i);
 
    

@@ -49,7 +49,7 @@
          /** For each header line this callback is executed.
          \param key Http header name
          \param value Http header value */
-         virtual void OnHeader(const string & key,const string & value, const string & lowvalue);
+         virtual void OnHeader(id idKey,const string & value);
          /** Callback fires when all http headers have been received. */
          virtual void OnHeaderComplete();
          /** Chunk of http body data recevied. */
@@ -60,6 +60,10 @@
          bool IsRequest();
 
          bool IsResponse();
+
+
+         virtual id key_id(string key);
+         virtual string id_key(id key);
 
          /** Send response prepared with calls to methods SetHttpVersion, SetStatus, SetStatusText,
          and AddResponseHeader. */
@@ -79,20 +83,16 @@
          /** Transfer coding 'chunked' */
          bool IsChunked() { return m_b_chunked; }
 
-         ::ca::property & inattr(const char * pszName);
-         ::ca::property & lowinattr(const string & strName);
+         ::ca::property & inattr(id idName);
          ::ca::property_set & inattrs();
 
-         ::ca::property & inheader(const char * pszName);
-         ::ca::property & lowinheader(const string & strName);
+         ::ca::property & inheader(id idName);
          ::ca::property_set & inheaders();
 
-         ::ca::property & outattr(const char * pszName);
-         ::ca::property & lowoutattr(const string & strName);
+         ::ca::property & outattr(id idName);
          ::ca::property_set & outattrs();
 
-         ::ca::property & outheader(const char * pszName);
-         ::ca::property & lowoutheader(const string & strName);
+         ::ca::property & outheader(id idName);
          ::ca::property_set & outheaders();
 
          http::request & request();
@@ -104,7 +104,7 @@
          /** Reset state of socket to sucessfully implement keep-alive. */
          virtual void Reset();
 
-         virtual bool http_filter_response_header(string & strKey, string & strValue);
+         virtual bool http_filter_response_header(id key, string & strValue);
 
          virtual void client_to_server(http_socket * psocket);
 
@@ -123,14 +123,9 @@
          return m_response;
       }
 
-      inline ::ca::property & http_socket::inattr(const char * pszName)
+      inline ::ca::property & http_socket::inattr(id idName)
       {
-         return m_request.attr(pszName);
-      }
-
-      inline ::ca::property & http_socket::lowinattr(const string & strName)
-      {
-         return m_request.lowattr(strName);
+         return m_request.attr(idName);
       }
 
       inline ::ca::property_set & http_socket::inattrs()
@@ -138,14 +133,9 @@
          return m_request.attrs();
       }
 
-      inline ::ca::property & http_socket::outattr(const char * pszName)
+      inline ::ca::property & http_socket::outattr(id idName)
       {
-         return m_response.attr(pszName);
-      }
-
-      inline ::ca::property & http_socket::lowoutattr(const string & strLowName)
-      {
-         return m_response.lowattr(strLowName);
+         return m_response.attr(idName);
       }
 
       inline ::ca::property_set & http_socket::outattrs()
@@ -153,14 +143,9 @@
          return m_response.attrs();
       }
 
-      inline ::ca::property & http_socket::inheader(const char * pszName)
+      inline ::ca::property & http_socket::inheader(id idName)
       {
-         return m_request.header(pszName);
-      }
-
-      inline ::ca::property & http_socket::lowinheader(const string & strName)
-      {
-         return m_request.lowheader(strName);
+         return m_request.header(idName);
       }
 
       inline ::ca::property_set & http_socket::inheaders()
@@ -168,14 +153,9 @@
          return m_request.headers();
       }
 
-      inline ::ca::property & http_socket::outheader(const char * pszName)
+      inline ::ca::property & http_socket::outheader(id idName)
       {
-         return m_response.header(pszName);
-      }
-
-      inline ::ca::property & http_socket::lowoutheader(const string & strName)
-      {
-         return m_response.lowheader(strName);
+         return m_response.header(idName);
       }
 
       inline ::ca::property_set & http_socket::outheaders()

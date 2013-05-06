@@ -113,68 +113,57 @@ namespace ca
    protected:
 
 
-      string            m_strName;
-      string            m_strNameLow;
+      id                m_idName; 
 
    public:
 
-      //property_set *    m_pset;
       var               m_var;
 
 
       property(::ca::application * papp);
       property();
       property(const property & prop);
-      property(const char * pszName);
-      property(index iIndex);
-      property(const char * pszName, var & var);
+      property(id strName);
+      property(id strName, var var);
+      property(property && prop)
+      {
+         m_idName.m_pstr = prop.m_idName.m_pstr;
+         *((var_data *) &m_var) = *((var_data*)&prop.m_var);
+         prop.m_var.m_sp.m_p = NULL;
+         prop.m_var.m_str.m_pszData = NULL;
+      }
       ~property()
       {
       }
 
-      inline string & name()
+      inline id name()
       {
-         return m_strName;
-      }
-      inline const string & name() const
-      {
-         return m_strName;
-      }
-      inline string & lowname()
-      {
-         return m_strNameLow;
-      }
-      inline const string & lowname() const
-      {
-         return m_strNameLow;
+         return m_idName;
       }
 
-      inline void set_name(const char * psz)
+      inline id name() const
       {
-         m_strName = psz;
-         m_strNameLow = m_strName;
-         m_strName.make_lower();
+         return m_idName;
       }
 
-      inline void set_name(const string & str)
+      inline void set_name(id id)
       {
-         m_strName = str;
-         m_strNameLow = m_strName;
-         m_strName.make_lower();
+         m_idName = id;
+      }
+
+      inline void set_name(string str)
+      {
+         m_idName = id(str);
       }
 
       inline void set_name(const var & var)
       {
-         m_strName = var.get_string();
-         m_strNameLow = m_strName;
-         m_strName.make_lower();
+         set_name(id(var.get_string()));
       }
 
       inline void set_name(const property & prop)
       {
-         m_strName = prop.get_value().get_string();
-         m_strNameLow = m_strName;
-         m_strName.make_lower();
+         set_name(id(prop.get_string()));
       }
 
       stringa & stra();
@@ -191,8 +180,8 @@ namespace ca
       string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
 
 
+      property & operator[](id idName);
       property & operator[](const char * pszName);
-      property & operator[](index iIndex);
 
       inline var & get_value()
       {
@@ -360,6 +349,19 @@ namespace ca
          get_value() = p;
          return *this;
       }
+
+      property & operator = (property && prop)
+      {
+         if(this != &prop)
+         {
+            m_idName.m_pstr = prop.m_idName.m_pstr;
+            *((var_data *) &m_var) = *((var_data*)&prop.m_var);
+            prop.m_var.m_sp.m_p = NULL;
+            prop.m_var.m_str.m_pszData = NULL;
+         }
+         return *this;
+      }
+
 
       template < class T >
       T * ca()
@@ -680,7 +682,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 property_map :
-      public string_to_intptr
+      public id_to_index
    {
    public:
 
@@ -701,6 +703,11 @@ namespace ca
       inline bool CLASS_DECL_ca2 begins(const ::ca::property & property, const char * lpcszPrefix) { return begins((const string &) property, lpcszPrefix); };
    }
 
+
+   inline property & property::operator[](const char * pszName)
+   {
+      return operator [](id(string(pszName)));
+   }
 
 } // namespace ca
 

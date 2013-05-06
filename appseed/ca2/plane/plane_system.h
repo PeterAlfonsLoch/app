@@ -31,10 +31,8 @@ namespace ca
 } // namespace ca
 
 
-#undef __str
-#define __str(x) (m_papp->m_psystem->m_cstrpool.str_##x)
 #undef __id
-#define __id(x) (m_papp->m_psystem->m_cstrpool.id_##x)
+#define __id(x) (m_papp->m_psystem->m_cidpool.id_##x)
 
 
 
@@ -42,9 +40,77 @@ namespace plane
 {
 
 
-   class CLASS_DECL_ca2 str_pool
+   class CLASS_DECL_ca2 id_pool
    {
    public:
+
+      id id_eu;
+      id id_uk;
+      id id_fi;
+      id id_gr;
+      id id_nl;
+      id id_be;
+      id id_it;
+      id id_cz;
+
+
+      id id_dk;
+      id id_en_uk;
+      id id_lu;
+      id id_ie;
+      id id_no;
+      id id_cy;
+      id id_su;
+      id id_lv;
+      id id_li;
+      id id_hu;
+      id id_sk;
+      id id_si;
+      id id_ro;
+      id id_kz;
+      id id_ru;
+      id id_pl;
+      id id_tr;
+      id id_ee;
+      id id_asia;
+      id id_vn;
+      id id_in;
+      id id_kg;
+      id id_kr;
+      id id_my;
+      id id_ph;
+      id id_sg;
+
+
+      id id_zh;
+      id id_sy;
+      id id_ps;
+      id id_ar;
+      id id_bo;
+      id id_cl;
+      id id_co;
+      id id_gs;
+      id id_py;
+      id id_uy;
+      id id_ve;
+      id id_amdesur;
+      id id_au;
+      id id_oceania;
+      id id_nz;
+      id id_tl;
+      id id_ug;
+      id id_sc;
+      id id_cm;
+      id id_za;
+      id id_africa;
+      id id_us;
+      id id_caribe;
+      id id_ht;
+      id id_cu;
+      id id_tc;
+      id id_centralam;
+      id id_bz;
+      id id_america;
 
       id id_cc;
       id id_se;
@@ -93,42 +159,47 @@ namespace plane
       id id_il;
 
 
-      string str_http_host;
-      string str_http_version;
-      string str_http_status_code;
-      string str_http_status;
-      string str_http_method;
-      string str_http_protocol;
-      string str_http_referer;
-      string str_https;
+      id id_http_host;
+      id id_http_version;
+      id id_http_status_code;
+      id id_http_status;
+      id id_http_method;
+      id id_http_protocol;
+      id id_http_referer;
+      id id_https;
 
-      string str_query_string;
+      id id_query_string;
 
-      string str_content_length;
-      string str_content_type;
-      string str_connection;
-      string str_location;
-      string str_set_cookie;
-      string str_cookie;
-      string str_cache_control;
-      string str_pragma;
-      string str_expires;
-      string str_host;
-      string str_referer;
+      id id_content_length;
+      id id_content_type;
+      id id_connection;
+      id id_location;
+      id id_set_cookie;
+      id id_cookie;
+      id id_cache_control;
+      id id_pragma;
+      id id_expires;
+      id id_host;
+      id id_referer;
 
-      string str_close;
+      id id_close;
 
-      string str_put;
+      id id_put;
 
-      string str_remote_addr;
-      string str_request_uri;
+      id id_remote_addr;
+      id id_request_uri;
 
-      string str_accept_encoding;
-      string str_content_encoding;
+      id id_accept_encoding;
+      id id_content_encoding;
+
+      id id_keep_alive;
+
+      id id_user_agent;
+      id id_from;
+      id id_accept_language;
 
 
-
-      str_pool()
+      id_pool()
       {
 
          reset();
@@ -138,7 +209,7 @@ namespace plane
 
       void reset() const
       {
-         (const_cast < str_pool * > (this))->_reset();
+         (const_cast < id_pool * > (this))->_reset();
       }
 
 
@@ -146,6 +217,75 @@ namespace plane
 
       void _reset()
       {
+
+
+         id_eu = "eu";
+         id_uk = "uk";
+         id_fi = "fi";
+         id_gr = "gr";
+         id_nl = "nl";
+         id_be = "be";
+         id_it = "it";
+         id_cz = "cz";
+
+         id_dk = "dk";
+         id_en_uk = "en-uk";
+         id_lu = "lu";
+         id_ie = "ie";
+         id_no = "no";
+         id_cy = "cy";
+         id_su = "su";
+         id_lv = "lv";
+         id_li = "li";
+         id_hu = "hu";
+         id_sk = "sk";
+         id_si = "si";
+         id_ro = "ro";
+         id_kz = "kz";
+         id_ru = "ru";
+         id_pl = "pl";
+         id_tr = "tr";
+         id_ee = "ee";
+         id_asia = "asia";
+         id_vn = "vn";
+         id_in = "in";
+         id_kg = "kg";
+         id_kr = "kr";
+         id_my = "my";
+         id_ph = "ph";
+         id_sg = "sg";
+
+
+         id_zh = "zh";
+         id_sy = "sy";
+         id_ps = "ps";
+         id_ar = "ar";
+         id_bo = "bo";
+         id_cl = "cl";
+         id_co = "co";
+         id_gs = "gs";
+         id_py = "py";
+         id_uy = "uy";
+         id_ve = "ve";
+         id_amdesur = "amdesur";
+         id_au = "au";
+         id_oceania = "oceania";
+         id_nz = "nz" ;
+         id_tl = "tl" ;
+         id_ug = "ug" ;
+         id_sc = "sc" ;
+         id_cm = "cm" ;
+         id_za = "za" ;
+         id_africa = "africa";
+         id_us = "us";
+         id_caribe = "caribe";
+         id_ht = "ht" ;
+         id_cu = "cu" ;
+         id_tc = "tc" ;
+         id_centralam = "centralam";
+         id_bz = "bz";
+         id_america = "america";
+
          id_cc = "cc";
          id_se = "se";
          id_sv_se = "sv-se";
@@ -191,38 +331,47 @@ namespace plane
          id_ae = "ae";
          id_il = "il";
 
-         str_http_host = "http_host";
-         str_http_version = "http_version";
-         str_http_status_code = "http_status_code";
-         str_http_status = "http_status";
-         str_http_method = "http_method";
-         str_http_protocol = "http_protocol";
-         str_http_referer = "http_referer";
-         str_https = "https";
 
-         str_query_string = "query_string";
 
-         str_content_length = "content-length";
-         str_content_type = "content-type";
-         str_connection = "connection";
-         str_location = "location";
-         str_set_cookie = "set-cookie";
-         str_cookie = "cookie";
-         str_cache_control = "cache-control";
-         str_pragma = "pragma";
-         str_expires = "expires";
-         str_host = "host";
-         str_referer = "referer";
+         id_http_host = "http_host";
+         id_http_version = "http_version";
+         id_http_status_code = "http_status_code";
+         id_http_status = "http_status";
+         id_http_method = "http_method";
+         id_http_protocol = "http_protocol";
+         id_http_referer = "http_referer";
+         id_https = "https";
 
-         str_close = "close";
+         id_query_string = "query_string";
 
-         str_put = "put";
+         id_content_length = "content-length";
+         id_content_type = "content-type";
+         id_connection = "connection";
+         id_location = "location";
+         id_set_cookie = "set-cookie";
+         id_cookie = "cookie";
+         id_cache_control = "cache-control";
+         id_pragma = "pragma";
+         id_expires = "expires";
+         id_host = "host";
+         id_referer = "referer";
 
-         str_remote_addr = "remote_addr";
-         str_request_uri = "request_uri";
+         id_close = "close";
 
-         str_accept_encoding = "accept-encoding";
-         str_content_encoding = "content-encoding";
+         id_put = "put";
+
+         id_remote_addr = "remote_addr";
+         id_request_uri = "request_uri";
+
+         id_accept_encoding = "accept-encoding";
+         id_content_encoding = "content-encoding";
+
+         id_keep_alive = "keep-alive";
+
+         id_user_agent = "user-agent";
+         id_from = "from";
+         id_accept_language = "accept-language";
+
 
       }
 
@@ -249,7 +398,7 @@ namespace plane
       sp(::filehandler::handler)                   m_spfilehandler;
 
 
-      const str_pool                               m_cstrpool;
+      const id_pool                                m_cidpool;
 
       spa(service_base)                            m_serviceptra;
 
@@ -332,10 +481,10 @@ namespace plane
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
 #endif
 
-            ::visual::visual                    m_visual;
+      ::visual::visual                    m_visual;
 
-                  system(sp(::ca::application) papp = ::null());
-                  virtual ~system();
+      system(sp(::ca::application) papp = ::null());
+      virtual ~system();
 
       //virtual int32_t main();
       virtual bool InitApplication();
@@ -379,7 +528,7 @@ namespace plane
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
-	   virtual sp(::ca::command_thread) command_thread();
+      virtual sp(::ca::command_thread) command_thread();
 
 
 
@@ -478,10 +627,10 @@ namespace plane
       ::colorertake5::ParserFactory    & parser_factory();
 
       static ::exception::engine       & eengine();
-            inline class ::visual::visual             & visual()     { return m_visual       ; }
+      inline class ::visual::visual             & visual()     { return m_visual       ; }
 
 
-      
+
 
 
 
@@ -501,7 +650,7 @@ namespace plane
       virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
 
 
-//      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      //      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
       sp(::plane::session) query_session(index iEdge);
 
 

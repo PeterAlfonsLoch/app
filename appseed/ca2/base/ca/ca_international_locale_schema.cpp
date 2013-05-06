@@ -56,13 +56,13 @@ namespace ca
          id idLocale2 = idLocale;
          id idSchema2 = idSchema;
 
-         if((idLocale2.is_empty() || !idLocale2.is_text()) && (idSchema2.is_empty() || !idSchema2.is_text()))
+         if((idLocale2.is_empty() ) && (idSchema2.is_empty() ))
             return false;
 
-         if(idLocale2.is_empty() || !idLocale2.is_text())
+         if(idLocale2.is_empty() )
             idLocale2 = m_idLocale;
 
-         if(idSchema2.is_empty() || !idSchema2.is_text())
+         if(idSchema2.is_empty() )
             idSchema2 = m_idSchema;
 
 

@@ -15,7 +15,7 @@ namespace http
       string      m_strRequestUri;
       string      m_strQueryString;
       string      m_strHttpHost;
-      string      m_strHttpMethod;
+      id          m_idHttpMethod;
 
 
 

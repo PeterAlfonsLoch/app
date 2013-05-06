@@ -700,23 +700,12 @@ void string_array::add(const ::ca::property & prop)
 
 void string_array::add(const id & id)
 {
-   if(id.is_text())
-   {
-      add((const char *) id);
-   }
-   else if(id.is_number())
-   {
-      add(::ca::str::from(id));
-   }
-   else if(id.is_empty())
-   {
-      add("");
-   }
-   else if(id.is_null())
+   if(id.is_null())
    {
    }
    else
    {
+      add(id);
    }
 }
 

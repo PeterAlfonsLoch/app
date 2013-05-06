@@ -433,6 +433,17 @@ namespace datetime
       return( time( m_time+span.GetTimeSpan() ) );
    }
 
+   ::datetime::time time::operator-(const duration & duration) const
+   {
+      return time(m_time - duration.GetTimeSpan());
+   }
+
+   ::datetime::time time::operator+(const duration & duration) const
+   {
+      return time(m_time - duration.GetTimeSpan());
+   }
+
+
    ::datetime::time time::operator-( date_span span ) const
    {
       UNREFERENCED_PARAMETER(span);

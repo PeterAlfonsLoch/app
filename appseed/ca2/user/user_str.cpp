@@ -87,8 +87,6 @@ namespace user
             
             ::id & idLocale = m_plocaleschema->m_idaLocale[i];
 
-            if(!idLocale.is_text())
-               continue;
 
             if(stridaFailedLocale.contains(idLocale))
                continue;
@@ -103,8 +101,6 @@ namespace user
 
             ::id & idSchema = m_plocaleschema->m_idaSchema[i];
 
-            if(!idSchema.is_text())
-               continue;
 
             str_schema * pschema = plocale->get_schema(idSchema);
 

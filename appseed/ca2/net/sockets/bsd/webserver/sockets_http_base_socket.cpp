@@ -40,15 +40,16 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
+   void http_base_socket::OnHeader(id key, const string & value)
    {
-      http_socket::OnHeader(key, value, lowvalue);
 
+      http_socket::OnHeader(key, value);
 
-      if(key == __str(content_length))
+      if(key == __id(content_length))
       {
          m_iContentLength = atoi(value);
       }
+
    }
 
 
@@ -64,26 +65,26 @@ namespace sockets
       {
          TRACE0( "Passthrought");
       }
-      if(m_request.headers().has_property("user-agent"))
+      if(m_request.headers().has_property(__id(user_agent)))
       {
 #ifndef DEBUG
-         ::OutputDebugString("user-agent: " + m_request.header("user-agent") + "\n");
+         ::OutputDebugString("user-agent: " + m_request.header(__id(user_agent)) + "\n");
 #endif
-         TRACE0("user-agent: " + m_request.header("user-agent") + "\n");
+         TRACE0("user-agent: " + m_request.header(__id(user_agent)) + "\n");
       }
-      if(m_request.headers().has_property("from"))
+      if(m_request.headers().has_property(__id(from)))
       {
 #ifndef DEBUG
-         ::OutputDebugString("from: " + m_request.header("from") + "\n");
+         ::OutputDebugString("from: " + m_request.header(__id(from)) + "\n");
 #endif
-         TRACE0("from: " + m_request.header("from") + "\n");
+         TRACE0("from: " + m_request.header(__id(from)) + "\n");
       }
-      if(m_request.headers().has_property("accept-language"))
+      if(m_request.headers().has_property(__id(accept_language)))
       {
 #ifndef DEBUG
-         ::OutputDebugString("accept-language: " + m_request.header("accept-language") + "\n");
+         ::OutputDebugString("accept-language: " + m_request.header(__id(accept_language)) + "\n");
 #endif
-         TRACE0("accept-language: " + m_request.header("accept-language") + "\n");
+         TRACE0("accept-language: " + m_request.header(__id(accept_language)) + "\n");
       }
       if (m_body_size_left > 0)
       {
@@ -145,29 +146,29 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__str(content_type)).get_string().find("text") >= 0
-      || outheader(__str(content_type)).get_string().find("javascript") >= 0)
+      if(outheader(__id(content_type)).get_string().find("text") >= 0
+      || outheader(__id(content_type)).get_string().find("javascript") >= 0)
       {
       
          on_compress();
 
       }
 
-      m_response.m_propertysetHeader.lowset(__str(content_length), (int64_t) m_response.file().get_size());
+      m_response.m_propertysetHeader.set(__id(content_length), (int64_t) m_response.file().get_size());
 
       for(int32_t i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.add(__str(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
+         m_response.m_propertysetHeader.add(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
 
       }
 
 /* 
 
-      if(m_response.m_propertysetHeader.low_has_property(__str(location)))
+      if(m_response.m_propertysetHeader.has_property(__id(location)))
       {
 
-         string strLocation = m_response.m_propertysetHeader.lowprop(__str(Location));
+         string strLocation = m_response.m_propertysetHeader.lowprop(__id(Location));
 
          m_response.m_propertysetHeader.remove_by_name("Location");
 
@@ -249,15 +250,15 @@ namespace sockets
    void http_base_socket::on_compress()
    {
        
-      if(lowinheader("accept-encoding").get_string().find("gzip") >= 0)
+      if(inheader("accept-encoding").get_string().find("gzip") >= 0)
       {
          
-         string str = lowoutheader(__str(content_type)).get_string();
+         string str = outheader(__id(content_type)).get_string();
 
          if(str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
        
-            m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
 
             ::primitive::memory_file file(get_app());

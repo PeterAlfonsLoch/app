@@ -7,7 +7,7 @@ namespace userex
 
    pane_tab_view::pane_tab_view(sp(::ca::application) papp) :
       ca(papp),
-      
+
       ::user::tab_view(papp),
       ::user::tab(papp),
       place_holder_container(papp)
@@ -67,7 +67,7 @@ namespace userex
                break;
             pguie = pguieNext;
          }
-//         int32_t i = max(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
+         //         int32_t i = max(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
          pguie = wnda(wnda.get_size() + m_pviewdata->m_iExtendOnParent);
          pguie->GetWindowRect(lprect);
          ScreenToClient(lprect);
@@ -150,68 +150,65 @@ namespace userex
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      if(pcreatordata->m_id.is_text())
+      ::ca::library * plibrary = ::null();
+      if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != ::null())
       {
-         ::ca::library * plibrary = ::null();
-         if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != ::null())
+         plibrary->on_create_view(pcreatordata);
+      }
+      else if(pcreatordata->m_id == "file_manager"
+         || pcreatordata->m_id == "left_file"
+         || pcreatordata->m_id == "right_file")
+      {
+
+         ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
+
+
+         pfilemanagerdata->m_id = pcreatordata->m_id;
+
+         if(oprop("file_manager_toolbar").is_set())
+            pfilemanagerdata->m_strToolBar = oprop("file_manager_toolbar");
+         else
+            pfilemanagerdata->m_strToolBar = "file_manager_toolbar.xml";
+
+         if(oprop("file_manager_toolbar_save").is_set())
+            pfilemanagerdata->m_strToolBarSave = oprop("file_manager_toolbar_save");
+         else
+            pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
+
+         sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
+         if(pdoc != ::null())
          {
-            plibrary->on_create_view(pcreatordata);
-         }
-         else if(pcreatordata->m_id == "file_manager"
-              || pcreatordata->m_id == "left_file"
-              || pcreatordata->m_id == "right_file")
-         {
-
-            ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
-
-
-            pfilemanagerdata->m_id = pcreatordata->m_id;
-
-            if(oprop("file_manager_toolbar").is_set())
-               pfilemanagerdata->m_strToolBar = oprop("file_manager_toolbar");
-            else
-               pfilemanagerdata->m_strToolBar = "file_manager_toolbar.xml";
-
-            if(oprop("file_manager_toolbar_save").is_set())
-               pfilemanagerdata->m_strToolBarSave = oprop("file_manager_toolbar_save");
-            else
-               pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
-
-            sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
-            if(pdoc != ::null())
+            sp(::user::view) pview = pdoc->get_view();
+            if(pview != ::null())
             {
-               sp(::user::view) pview = pdoc->get_view();
-               if(pview != ::null())
+               sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
+               if(pframe != ::null())
                {
-                  sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
-                  if(pframe != ::null())
-                  {
-                     pcreatordata->m_pdoc = pdoc;
-                  }
+                  pcreatordata->m_pdoc = pdoc;
                }
             }
          }
-         else if(pcreatordata->m_id == "tabbed_file_manager")
+      }
+      else if(pcreatordata->m_id == "tabbed_file_manager")
+      {
+
+         sp(::ca::create_context) cc(allocer());
+         cc->m_bTransparentBackground     = true;
+         cc->m_bMakeVisible               = true;
+         cc->m_puiParent                  = pcreatordata->m_pholder;
+
+         sp(::filemanager::document) pdoc = Application.filemanager().std().open(cc);
+
+         if(pdoc != ::null())
          {
-
-            sp(::ca::create_context) cc(allocer());
-            cc->m_bTransparentBackground     = true;
-            cc->m_bMakeVisible               = true;
-            cc->m_puiParent                  = pcreatordata->m_pholder;
-
-            sp(::filemanager::document) pdoc = Application.filemanager().std().open(cc);
-
-            if(pdoc != ::null())
+            sp(::user::view) pview = pdoc->get_view();
+            if(pview != ::null())
             {
-               sp(::user::view) pview = pdoc->get_view();
-               if(pview != ::null())
+               sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
+               if(pframe != ::null())
                {
-                  sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
-                  if(pframe != ::null())
-                  {
-                     pcreatordata->m_pdoc = pdoc;
-                     pcreatordata->m_pwnd = pframe;
-                  }
+                  pcreatordata->m_pdoc = pdoc;
+                  pcreatordata->m_pwnd = pframe;
                }
             }
          }
@@ -235,7 +232,7 @@ namespace userex
       ::user::tab::_001OnTabClose(iTab);
 
       if(GetParentFrame()->ContinueModal(0) && get_filemanager_document() != ::null()
-      && get_filemanager_document()->get_filemanager_data()->m_pdocumentSave != ::null())
+         && get_filemanager_document()->get_filemanager_data()->m_pdocumentSave != ::null())
       {
          GetParentFrame()->EndModalLoop("yes");
       }

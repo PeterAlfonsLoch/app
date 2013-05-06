@@ -50,7 +50,7 @@
          virtual void step();
 
          virtual void OnFirst();
-         virtual void OnHeader(const string &, const string &);
+         virtual void OnHeader(id idKey, const string &);
          virtual void OnHeaderComplete();
          virtual void OnData(const char * psz, size_t size);
 

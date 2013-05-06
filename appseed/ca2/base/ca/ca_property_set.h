@@ -4,7 +4,7 @@
 namespace ca
 {
 
-
+   // property set key is case insensitive
    class CLASS_DECL_ca2 property_set :
       public ::ca::object,
       public ::ca::byte_serializable
@@ -17,11 +17,10 @@ namespace ca
       signal               m_signal;
       bool                 m_bAutoAdd;
       bool                 m_bMultiValue;
-      bool                 m_bKeyCaseInsensitive;
 
 
 
-      property_set(sp(::ca::application) papp = ::null(), bool bAutoAdd = true, bool bMultiValue = false, bool bKeyCaseInsensitive = true);
+      property_set(::ca::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
       property_set(const property_set & set);
       property_set(const pair_set_interface & set);
       property_set(const str_str_interface & set);
@@ -33,18 +32,17 @@ namespace ca
 
 
 
-      property * add(const char * pszName);
-      property * lowadd(const string & strLowName);
-      property * lowadd(const string & strLowName, const var & var);
-      property * add(const char * pszName, var var);
-      property * set(const char * pszName, var var);
-      property * lowset(const string & strName, const var & var);
-      ::count remove_by_name(const char * pszName);
+      property * add(id idName);
+      property * add(id idName, var var);
+      property * set(id idName, var var);
+      property & defer_auto_add(id idName);
+      id get_new_id();
+      ::count remove_by_name(id idName);
       ::count remove_by_name(stringa & straName);
+      property & operator[](string strName);
+      property operator[](string strName) const;
       property & operator[](const char * pszName);
       property operator[](const char * pszName) const;
-      property & lowprop(const string & strName);
-      property lowprop(const string & strName) const;
       property & operator[](index iIndex);
       property operator[](index iIndex) const;
 #ifdef OS64BIT
@@ -53,8 +51,8 @@ namespace ca
 #endif
       property & operator[](const var & var);
       property operator[](const var & var) const;
-      property & operator[](const string & str);
-      property operator[](const string  & str) const;
+      property & operator[](id id);
+      property operator[](id id) const;
 
       property & at(index iId);
       property at(index iId) const;
@@ -95,49 +93,30 @@ namespace ca
       ::count remove_value(var var, ::count countMin = 0, ::count countMax = -1);
       ::count remove_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
-      bool has_property(const char * pszName) const;
-      bool has_property(const string & pszName) const;
+      bool has_property(id idName) const;
       bool has_property(string_interface & str) const;
-
-      bool low_has_property(const char * pszName) const;
-      bool low_has_property(const string & pszName) const;
-      bool low_has_property(string_interface & str) const;
 
       bool is_set_empty(::count countMinimum = 1) const;
       bool has_properties(::count countMinimum = 1) const;
 
-      const property * lowfind(const char * pszName) const;
-      const property * lowfind(const string & strName) const;
-      const property * lowfind(string_interface & str) const;
+      property * find(id idName) const;
+      property * find(string_interface & str) const;
 
-      property * lowfind(const char * pszName);
-      property * lowfind(const string & strName);
-      property * lowfind(string_interface & str);
-
-      const property * find(const char * pszName) const;
-      const property * find(string_interface & str) const;
-
-      property * find(const char * pszName);
-      property * find(string_interface & str);
-
-      index find_index(const char * pszName);
-      index find_index(string_interface & str);
-
-      index find_index(const char * pszName) const;
+      index find_index(id idName) const;
       index find_index(string_interface & str) const;
 
-      ::count unset(const char * pszName);
+      ::count unset(id idName);
 
-      bool is_new(const char * pszName) const;
+      bool is_new(id idName) const;
       bool is_new(string_interface & str) const;
 
-      bool is_null(const char * pszName) const;
+      bool is_null(id idName) const;
       bool is_null(string_interface & str) const;
 
-      bool is_new_or_null(const char * pszName) const;
+      bool is_new_or_null(id idName) const;
       bool is_new_or_null(string_interface & str) const;
 
-      bool is_empty(const char * pszName) const;
+      bool is_empty(id idName) const;
       bool is_empty(string_interface & str) const;
 
       void OnBeforePropertyChange(property * pproperty);
@@ -227,17 +206,34 @@ namespace ca
    }
 
 
-/*   inline property_map::pair * property_set::next(property_pair & pair)
+   inline property * property_set::add(id idName)
    {
-      return m_map.next(pair.m_ppair);
+      
+      if(idName.is_null())
+       idName = get_new_id();
+
+      m_propertya.add(canew(property(idName)));
+
+      m_map.set_at(idName, m_propertya.get_upper_bound());
+
+      return m_propertya.last_element();
+
    }
 
 
-   inline const property_map::pair * property_set::next(const_property_pair & pair) const
+   inline property * property_set::add(id idName, var var)
    {
-      return m_map.next(pair.m_ppair);
+      
+      if(idName.is_null())
+       idName = get_new_id();
+
+      m_propertya.add(canew(property(idName, var)));
+
+      m_map.set_at(idName, m_propertya.get_upper_bound());
+
+      return m_propertya.last_element();
+
    }
-   */
 
    class property_pair
    {
@@ -322,15 +318,10 @@ namespace ca
 
    };
 
-   inline bool property_set::has_property(const string & strName) const
+   inline bool property_set::has_property(id idName) const
    {
-      const property * pproperty = find(strName);
+      const property * pproperty = find(idName);
       return pproperty != ::null() && pproperty->m_var.m_etype != var::type_new;
-   }
-
-   inline bool property_set::has_property(const char * pszName) const
-   {
-      return has_property(string(pszName));
    }
 
    inline bool property_set::has_property(string_interface & str) const
@@ -338,70 +329,112 @@ namespace ca
       return has_property(string(str));
    }
 
-   inline bool property_set::low_has_property(const string & strName) const
+
+   inline property * property_set::set(id idName, var var)
    {
-      const property * pproperty = find(strName);
-      return pproperty != ::null() && pproperty->m_var.m_etype != var::type_new;
+      property * p = find(idName);
+      if(p != ::null())
+      {
+         p->get_value() = var;
+         return p;
+      }
+      else
+      {
+         return add(idName, var);
+      }
    }
 
-   inline bool property_set::low_has_property(const char * pszName) const
+
+   inline property property_set::operator[] (const char * pszKey) const
    {
-      return has_property(string(pszName));
+      return operator[](string(pszKey));
    }
 
-   inline bool property_set::low_has_property(string_interface & str) const
+   inline property & property_set::operator[] (const char * pszKey)
    {
-      return has_property(string(str));
+      return operator[](string(pszKey));
    }
 
-   inline property * property_set::lowfind(const string & strName)
+
+   inline property property_set::operator[](id idName) const
    {
-      ::ca::property_map::pair * ppair = m_map.PLookup(strName);
-      if(ppair == ::null())
+      return const_cast<property_set*>(this)->operator[](idName);
+   }
+
+   inline property & property_set::operator[](index iIndex)
+   {
+      return operator[](::ca::str::from(iIndex));
+   }
+
+   inline property property_set::operator[](index iIndex) const
+   {
+      return operator[](::ca::str::from(iIndex));
+   }
+
+   inline property & property_set::operator[](const var & var)
+   {
+      return operator[](string(var));
+   }
+
+   inline property property_set::operator[](const var & var) const
+   {
+      return operator[](string(var));
+   }
+
+   inline property property_set::operator[](string str) const
+   {
+      return operator[]((id) str);
+   }
+
+
+
+   inline property & property_set::operator[](string strName)
+   {
+      return operator[](id(strName));
+   }
+
+   inline property & property_set::operator[](id idName)
+   {
+      property * pproperty = find(idName);
+      if(pproperty != ::null())
+         return *pproperty;
+      return defer_auto_add(idName);
+   }
+
+
+
+
+
+   inline index property_set::find_index(id idName) const
+   {
+      const ::ca::property_map::pair * ppair = m_map.PLookup(idName);
+      if(ppair == NULL)
+         return -1;
+      return ppair->m_element2;
+   }
+
+   inline index property_set::find_index(string_interface & str) const
+   {
+      return find_index((const char *) string(str));
+   }
+
+
+   inline property * property_set::find(id idName) const
+   {
+
+      index i = find_index(idName);
+
+      if(i < 0)
          return ::null();
-      return &m_propertya[ppair->m_element2];
+
+      return &((property_set *) this)->m_propertya[i];
+
    }
 
-   inline property * property_set::lowfind(const char * pszName)
+   inline property * property_set::find(string_interface & str) const
    {
-      return lowfind(string(pszName));
+      return find((const char *) string(str));
    }
-
-   inline property * property_set::lowfind(string_interface & str)
-   {
-      return lowfind(string(str));
-   }
-
-   inline property * property_set::set(const char * pszName, var var)
-   {
-      property * p = find(pszName);
-      if(p != ::null())
-      {
-         p->get_value() = var;
-         return p;
-      }
-      else
-      {
-         return add(pszName, var);
-      }
-   }
-
-
-   inline property * property_set::lowset(const string & strName, const var & var)
-   {
-      property * p = lowfind(strName);
-      if(p != ::null())
-      {
-         p->get_value() = var;
-         return p;
-      }
-      else
-      {
-         return lowadd(strName, var);
-      }
-   }
-
-
 
 
 } // namespace ca
@@ -424,6 +457,16 @@ inline var var::last() const
       return operator[](array_get_upper_bound());
 }
 
+inline const var & var::operator[] (const char * pszKey) const
+{
+   return propset().operator[](pszKey).get_value();
+}
+
+inline var & var::operator[] (const char * pszKey)
+{
+   return propset().operator[](pszKey).get_value();
+}
+
 inline const var & var::operator[] (var varKey) const
 {
    return propset().operator[](varKey.get_string()).get_value();
@@ -444,17 +487,25 @@ inline var & var::operator[] (index iKey)
    return propset().operator[](iKey).get_value();
 }
 
-inline const var &  var::operator[] (const char * pszKey) const
+inline const var & var::operator[] (string strKey) const
 {
-   return propset().operator[](pszKey).get_value();
+   return propset().operator[](strKey).get_value();
 }
 
-inline var & var::operator[] (const char * pszKey)
+inline var & var::operator[] (id idKey)
 {
-   return propset().operator[](pszKey).get_value();
+   return propset().operator[](idKey).get_value();
 }
 
+inline const var & var::operator[] (id idKey) const
+{
+   return propset().operator[](idKey).get_value();
+}
 
+inline var & var::operator[] (string strKey)
+{
+   return propset().operator[](strKey).get_value();
+}
 
 inline ::ca::property_set ca_property_set()
 {
@@ -471,3 +522,5 @@ inline string & operator += (string & str, const ::ca::property & property)
    return str;
 
 }
+
+

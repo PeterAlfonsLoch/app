@@ -158,12 +158,21 @@ namespace sockets
       }
    }
 
+   id http_socket::key_id(string key)
+   {
+      return id(key);
+   }
+
+   string http_socket::id_key(id key)
+   {
+      return key.to_string();
+   }
 
    void http_socket::OnLine(const string & line)
    {
       if (m_bFirst)
       {
-         m_request.lowattr(__str(remote_addr)) = GetRemoteAddress().get_display_number();
+         m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
          {
 #ifdef WINDOWS
 
@@ -192,33 +201,33 @@ namespace sockets
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::ca::str::begins_ci(str, "http/")) // response
          {
-            m_response.lowattr(__str(http_version)) = str;
-            m_response.lowattr(__str(http_status_code)) = pa.getword();
-            m_response.lowattr(__str(http_status)) = pa.getrest();
+            m_response.attr(__id(http_version)) = str;
+            m_response.attr(__id(http_status_code)) = pa.getword();
+            m_response.attr(__id(http_status)) = pa.getrest();
             m_bResponse    = true;
             m_bRequest     = false;
          }
          else // request
          {
-            m_request.m_strHttpMethod = str;
-            m_request.m_strHttpMethod.make_lower();
-            m_request.lowattr(__str(http_method)) = m_request.m_strHttpMethod;
-            m_request.lowattr(__str(https)) = IsSSL();
+            str.make_lower();
+            m_request.m_idHttpMethod = str;
+            m_request.attr(__id(http_method)) = m_request.m_idHttpMethod;
+            m_request.attr(__id(https)) = IsSSL();
             if(IsSSL())
             {
-               m_request.lowattr(__str(http_protocol)) = "https";
+               m_request.attr(__id(http_protocol)) = "https";
             }
             else
             {
-               m_request.lowattr(__str(http_protocol)) = "http";
+               m_request.attr(__id(http_protocol)) = "http";
             }
             string strRequestUri = pa.getword();
             string strScript = System.url().get_script(strRequestUri);
             string strQuery = System.url().object_get_query(strRequestUri);
             m_request.m_strRequestUri = System.url().url_decode(strScript) + ::ca::str::has_char(strQuery, "?");
-            m_request.lowattr(__str(request_uri)) = m_request.m_strRequestUri;
-            m_request.lowattr(__str(http_version)) = pa.getword();
-            m_b_http_1_1 = ::ca::str::ends(m_request.lowattr(__str(http_version)), "/1.1");
+            m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
+            m_request.attr(__id(http_version)) = pa.getword();
+            m_b_http_1_1 = ::ca::str::ends(m_request.attr(__id(http_version)), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -241,18 +250,18 @@ namespace sockets
          }
          return;
       }
-      string key;
+      string strKey;
       string value;
-      string lowvalue;
       strsize iFind = line.find(':');
       if(iFind < 0)
       {
-         key = line;
+         strKey = line;
+         strKey.trim();
       }
       else
       {
-         key = line.Left(iFind);
-         key.trim();
+         strKey = line.Left(iFind);
+         strKey.trim();
          iFind++;
          while(isspace((uchar) line[iFind]) && iFind < line.get_length())
          {
@@ -264,25 +273,25 @@ namespace sockets
             iLen--;
          }
          value = line.Mid(iFind, iLen - iFind);
-         lowvalue = value;
-         lowvalue.make_lower();
       }
-      key.make_lower();
-      OnHeader(key, value, lowvalue);
-      if(key == __str(host))
+      strKey.make_lower();
+      id key = key_id(strKey);
+      OnHeader(key, value);
+      if(key == __id(host))
       {
-         m_request.m_strHttpHost = lowvalue;
-         m_request.lowattr(__str(http_host)) = lowvalue;
+         m_request.m_strHttpHost = value;
+         m_request.m_strHttpHost.make_lower();
+         m_request.attr(__id(http_host)) = m_request.m_strHttpHost;
       }
-      else if(key == __str(content_length))
+      else if(key == __id(content_length))
       {
          m_body_size_left = atol(value);
       }
-      else if(key == __str(connection))
+      else if(key == __id(connection))
       {
          if (m_b_http_1_1)
          {
-            if(lowvalue == __str(close))
+            if(value.CompareNoCase(__id(close)) == 0)
             {
                m_b_keepalive = false;
             }
@@ -293,7 +302,7 @@ namespace sockets
          }
          else
          {
-            if(::ca::str::equals_ci(value, "keep-alive"))
+            if(value.CompareNoCase(__id(keep_alive)) == 0)
             {
                m_b_keepalive = true;
             }
@@ -318,9 +327,9 @@ namespace sockets
    #endif
    }
 
-   bool http_socket::http_filter_response_header(string & strKey, string & strValue)
+   bool http_socket::http_filter_response_header(id key, string & strValue)
    {
-      UNREFERENCED_PARAMETER(strKey);
+      UNREFERENCED_PARAMETER(key);
       UNREFERENCED_PARAMETER(strValue);
       return true;
    }
@@ -332,12 +341,12 @@ namespace sockets
       //TRACE("SendResponse\n");
       string msg;
       string strLine;
-      string strVersion = m_response.lowattr(__str(http_version)).get_string();
-      string strStatusCode = m_response.lowattr(__str(http_status_code));
-      string strStatus = m_response.lowattr(__str(http_status));
+      string strVersion = m_response.attr(__id(http_version)).get_string();
+      string strStatusCode = m_response.attr(__id(http_status_code));
+      string strStatus = m_response.attr(__id(http_status));
       strLine = strVersion + " " + strStatusCode + " " + strStatus;
       msg = strLine + "\r\n";
-      string strHost = m_response.lowheader(__str(host));
+      string strHost = m_response.header(__id(host));
       if(strHost.has_char())
       {
          msg += "Host: " + strHost + "\r\n";
@@ -345,21 +354,21 @@ namespace sockets
       }
 
 
-      bool bContentLength = m_response.lowattr(__str(http_status_code)) != 304;
+      bool bContentLength = m_response.attr(__id(http_status_code)) != 304;
 
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");
 
       for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
-         string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
+         id key = m_response.m_propertysetHeader.m_propertya[i].name();
          string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
-         if(!http_filter_response_header(strKey, strValue))
+         if(!http_filter_response_header(key, strValue))
             continue;
-         if(strKey.CompareNoCase("host") == 0)
+         if(key == __id(host))
             continue;
 //         strLine = ;
-         msg += strKey + ": " + strValue + "\r\n";
+         msg += id_key(key) + ": " + strValue + "\r\n";
 //         TRACE0(strKey + ": " + strValue +  + "\n");
          //TRACE(strTrace + "\n");
       }
@@ -497,20 +506,20 @@ namespace sockets
    } // url_this
 
 
-   void http_socket::OnHeader(const string & key,const string & value, const string & lowalue)
+   void http_socket::OnHeader(id key,const string & value)
    {
       //http_socket::OnHeader(key, value);
-      /*if(key.CompareNoCase("user-agent") == 0)
+      /*if(key.CompareNoCase(__id(user_agent)) == 0)
       {
          TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
-      if(key == __str(cookie))
+      if(key == __id(cookie))
       {
          m_request.cookies().parse_header(value);
          m_response.cookies().parse_header(value);
       }
       else
-         m_request.lowheader(key) = value;
+         m_request.header(key) = value;
    }
 
 
@@ -519,11 +528,11 @@ namespace sockets
 
       if(IsRequest())
       {
-         m_body_size_left = atol(m_request.lowheader(__str(content_length)));
+         m_body_size_left = atol(m_request.header(__id(content_length)));
       }
       if(IsResponse())
       {
-         m_body_size_left = atol(m_response.lowheader(__str(content_length)));
+         m_body_size_left = atol(m_response.header(__id(content_length)));
       }
 
    }

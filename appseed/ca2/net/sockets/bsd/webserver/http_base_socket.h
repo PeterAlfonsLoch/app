@@ -38,7 +38,7 @@ namespace sockets
 
 
       void OnFirst();
-      void OnHeader(const string & key,const string & value, const string & lowvalue);
+      void OnHeader(id idKey, const string & value);
       void OnHeaderComplete();
       void OnData(const char *,size_t);
 

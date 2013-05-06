@@ -101,22 +101,26 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
+   void http_client_socket::OnHeader(id key,const string & value)
    {
+
       m_content += key + ": " + value + "\r\n";
+
       m_response.m_propertysetHeader[key] = value;
-      if (key == __str(content_length))
+
+      if (key == __id(content_length))
       {
          m_content_length = ::ca::str::to_int_ptr(value);
       }
-      else if (key == __str(content_type))
+      else if (key == __id(content_type))
       {
          m_content_type = value;
       }
-      else if (key == __str(set_cookie))
+      else if (key == __id(set_cookie))
       {
          m_response.m_cookies.add(value);
       }
+
    }
 
 

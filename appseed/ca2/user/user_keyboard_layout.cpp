@@ -1,27 +1,40 @@
 #include "framework.h"
 
+
 namespace user
 {
 
+
    keyboard_layout_id::keyboard_layout_id()
    {
+
    }
+
 
    keyboard_layout_id::keyboard_layout_id(const keyboard_layout_id & id)
    {
+
       operator = (id);
+
    }
+
 
    keyboard_layout_id & keyboard_layout_id::operator = (const keyboard_layout_id & id)
    {
+
       if(this != &id)
       {
+
          m_strName   = id.m_strName;
          m_strPath   = id.m_strPath;
          m_hkla      = id.m_hkla;
+
       }
+
       return *this;
+
    }
+
 
    bool keyboard_layout_id::operator <= (const keyboard_layout_id & layout) const
    {
@@ -66,29 +79,28 @@ namespace user
    keyboard_layout::keyboard_layout(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_setEscape.m_bKeyCaseInsensitive = false;
+
    }
 
-      void keyboard_layout::process_escape(sp(::xml::node) pnode, ::ca::property_set & set)
+   void keyboard_layout::process_escape(sp(::xml::node) pnode, ::ca::property_set & set)
+   {
+      for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
-         set.m_bKeyCaseInsensitive = false;
-         for(int32_t i = 0; i < pnode->get_children_count(); i++)
+         sp(::xml::node) pchild = pnode->child_at(i);
+         if(pchild->get_name().CompareNoCase("item") == 0)
          {
-            sp(::xml::node) pchild = pnode->child_at(i);
-            if(pchild->get_name().CompareNoCase("item") == 0)
+            string str = pchild->attr("char");
+            if(str.has_char())
             {
-               string str = pchild->attr("char");
-               if(str.has_char())
-               {
-                  set[str] = pchild->attr("value");
-               }
-            }
-            else if(pchild->get_name().CompareNoCase("escape") == 0)
-            {
-               process_escape(pchild, set[pnode->attr("value")].propset());
+               set[str] = pchild->attr("value");
             }
          }
+         else if(pchild->get_name().CompareNoCase("escape") == 0)
+         {
+            process_escape(pchild, set[pnode->attr("value")].propset());
+         }
       }
+   }
 
    bool keyboard_layout::load(const char * pszPath)
    {
@@ -116,29 +128,29 @@ namespace user
             {
                iMap |= 0x80000000;
             }
-/*            if(strChar.has_char())
+            /*            if(strChar.has_char())
             {
-               iChar = iMap | (int32_t)(uchar)(char)(strChar[0]);
-               if(strValue.has_char())
-               {
-                  m_mapChar[iChar] = strValue;
-               }
-               else
-               {
-                  m_mapChar[iChar] = "escape=" + strEscape;
-               }
+            iChar = iMap | (int32_t)(uchar)(char)(strChar[0]);
+            if(strValue.has_char())
+            {
+            m_mapChar[iChar] = strValue;
+            }
+            else
+            {
+            m_mapChar[iChar] = "escape=" + strEscape;
+            }
             }
             if(strKey.has_char())
             {
-               iKey = iMap | (int32_t)(atoi(strKey));
-               if(strValue.has_char())
-               {
-                  m_mapKey[iKey] = strValue;
-               }
-               else
-               {
-                  m_mapKey[iKey] = "escape=" + strEscape;
-               }
+            iKey = iMap | (int32_t)(atoi(strKey));
+            if(strValue.has_char())
+            {
+            m_mapKey[iKey] = strValue;
+            }
+            else
+            {
+            m_mapKey[iKey] = "escape=" + strEscape;
+            }
             }*/
             if(strCode.has_char())
             {
@@ -203,7 +215,7 @@ namespace user
             }
             else
             {
-                m_strEscape.Empty();
+               m_strEscape.Empty();
                return stra.implode("") + pszKey;
             }
          }

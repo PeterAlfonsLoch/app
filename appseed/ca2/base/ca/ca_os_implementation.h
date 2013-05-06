@@ -276,7 +276,7 @@ public:
    HRESULT GetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv);
 };
 
-CLASS_DECL_ca2 string __string_from_clsid(REFCLSID rclsid);
+CLASS_DECL_ca2 string __iding_from_clsid(REFCLSID rclsid);
 CLASS_DECL_ca2 bool __get_in_proc_server(const char * lpszCLSID, string & str);
 #endif // ___NO_OLE_SUPPORT
 

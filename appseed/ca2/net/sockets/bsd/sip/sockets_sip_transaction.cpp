@@ -1,35 +1,38 @@
 #include "framework.h"
 
+
 namespace sip
 {
+
 
    transaction::transaction(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_propertysetHeader.m_bKeyCaseInsensitive       = true;
-      m_propertysetAttribute.m_bKeyCaseInsensitive    = true;
+
    }
+
 
    transaction::transaction(const transaction & src) :
       ::ca::ca(src.get_app()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {
-      m_propertysetHeader.m_bKeyCaseInsensitive       = true;
-      m_propertysetAttribute.m_bKeyCaseInsensitive    = true;
+
    }
 
 
    // --------------------------------------------------------------------------------------
    transaction::~transaction()
    {
-   }
 
+   }
 
 
    ::ca::property & transaction::header(const char * pszKey)
    {
+
       return m_propertysetHeader[pszKey];
+
    }
 
 

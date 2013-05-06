@@ -54,24 +54,32 @@ namespace ca
       string query_remove(const char * pszQuery, const char * pszKey);
       string query_set(const char * pszQuery, const char * pszKey, var var);
       string query_set_param(const char * pszQuery, const char * pszKey, const string & strParam);
+      bool query_get_param(string & strValue, const string & strUrl, const string & strKey);
+      bool query_has_param(const string & strUrl, const string & strKey);
+      bool query_param_has_char(const string & strUrl, const string & strKey);
 
       var get_var(const char * pszQuery, const char * pszKey);
       var query_get_var(const char * pszQuery, const char * pszKey);
       string get_param(const char * pszQuery, const char * pszKey);
-      string query_get_param(const char * pszQuery, const char * pszKey);
+      string query_get_param(const string & strQuery, const string & strKey);
+      bool query_has_param_replace(string & strQuery, const string & strKey, const string & strValue);
       string __query_remove(const char * pszQuery, const char * pszAndKeyEqual);
+      bool get_param(string & strValue, const string & strUrl, const string & strKey);
+      bool has_param(const string & strUrl, const string & strKey);
+      bool param_has_char(const string & strUrl, const string & strKey);
+      bool has_param_replace(string & strUrl, const string & strKey, const string & strValue);
 
-      virtual bool locale_is_eu(const char * pszLocale);
-      virtual bool locale_is_asia(const char * pszLocale);
-      virtual bool locale_is_africa(const char * pszLocale);
-      virtual bool locale_is_america(const char * pszLocale);
-      virtual bool locale_is_caribe(const char * pszLocale);
-      virtual bool locale_is_middle_east(const char * pszLocale);
-      virtual bool locale_is_south_america(const char * pszLocale);
-      virtual bool locale_is_latin_america(const char * pszLocale);
-      virtual bool locale_is_north_america(const char * pszLocale);
-      virtual bool locale_is_central_america(const char * pszLocale);
-      virtual bool locale_is_oceania(const char * pszLocale);
+      virtual bool locale_is_eu(id pszLocale);
+      virtual bool locale_is_asia(id pszLocale);
+      virtual bool locale_is_africa(id pszLocale);
+      virtual bool locale_is_america(id pszLocale);
+      virtual bool locale_is_caribe(id pszLocale);
+      virtual bool locale_is_middle_east(id pszLocale);
+      virtual bool locale_is_south_america(id pszLocale);
+      virtual bool locale_is_latin_america(id pszLocale);
+      virtual bool locale_is_north_america(id pszLocale);
+      virtual bool locale_is_central_america(id pszLocale);
+      virtual bool locale_is_oceania(id pszLocale);
 
    };
 

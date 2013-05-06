@@ -366,24 +366,6 @@ namespace ca
       return str::ends_ci(var.get_string(), lpcszSuffix);
    }
 
-   bool str::ends_eat(string & str, const char * lpcszSuffix)
-   {
-
-      string strSuffix(lpcszSuffix);
-
-      strsize iLen = strSuffix.get_length();
-
-      if(str.Right(iLen) == lpcszSuffix)
-      {
-
-         str = str.Left(str.get_length() - iLen);
-         return true;
-
-      }
-
-      return false;
-
-   }
 
    bool str::ends_eat_ci(string & str, const char * lpcszSuffix)
    {
@@ -1109,10 +1091,10 @@ namespace ca
       bool bEndIsSeparator)
    {
 
-      if(psz == ::null())
-         return "";
+      if(psz == NULL)
+         return string();
 
-      if(pszSeparator == ::null())
+      if(pszSeparator == NULL)
       {
 
          if(bEndIsSeparator)
@@ -1121,12 +1103,11 @@ namespace ca
          }
          else
          {
-            return "";
+            return string();
          }
       }
-      string str(psz);
-      strsize iFind = str.find(pszSeparator);
-      if(iFind < 0)
+      const char * pszFind = strstr(psz, pszSeparator);
+      if(pszFind == NULL)
       {
          if(bEndIsSeparator)
          {
@@ -1134,16 +1115,16 @@ namespace ca
          }
          else
          {
-            return "";
+            return string();
          }
       }
       if(bWithSeparator)
       {
-         return str.Left(iFind + 1);
+         return string(psz, pszFind - psz + 1);
       }
       else
       {
-         return str.Left(iFind);
+         return string(psz, pszFind - psz);
       }
    }
 

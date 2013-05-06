@@ -73,8 +73,8 @@ public:
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == ::null())
             return false;
-         return pid->m_id.is_number()
-             && pid->m_id >= m_iStart
+         return 
+                pid->m_id >= m_iStart
              && pid->m_id <= m_iEnd;
       };
 

@@ -38,20 +38,29 @@ namespace ca
       UNREFERENCED_PARAMETER(len);
    }
 
-   void http_get_socket::OnHeader(const string & key, const string & value, const string & lowvalue)
+   void http_get_socket::OnHeader(id key, const string & value)
    {
-      ::sockets::http_get_socket::OnHeader(key, value, lowvalue);
-      if(key == __str(location))
+
+      ::sockets::http_get_socket::OnHeader(key, value);
+
+      if(key == __id(location))
       {
+
          m_strHeaderLocation = value;
+
       }
-      else if(key == __str(set_cookie))
+      else if(key == __id(set_cookie))
       {
+
          if(m_pcookies != ::null())
          {
+
             m_pcookies->add(value);
+
          }
+
       }
+
    }
 
    string http_get_socket::MyUseragent()

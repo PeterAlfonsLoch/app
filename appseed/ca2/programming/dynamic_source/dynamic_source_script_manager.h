@@ -138,6 +138,7 @@ namespace dynamic_source
 
       mutex                                     m_mutexSession;
       strsp(session)                            m_mapSession;
+      strsp(session)                            m_mapSessionExpiry;
       mutex                                     m_mutexMusicDbPool;
       mutex                                     m_mutexWayDbPool;
       script_cache *                            m_pcache;
@@ -179,7 +180,7 @@ namespace dynamic_source
       script_instance * get(const string & strName);
       using ::ca::thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
-      bool get_output_internal(::dynamic_source::script_instance * & pinstance, ::dynamic_source::script_instance * pinstanceParent, const string & strName);
+      bool get_output_internal(::dynamic_source::script_interface * & pinstance, ::dynamic_source::script_interface * pinstanceParent, const string & strName);
       using thread::run;
       void run(const char * lpcszName);
 

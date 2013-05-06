@@ -2,10 +2,18 @@
 
 
 
-id::id(const char * psz)
+#if defined(_LP64) || defined(_AMD64_)
+inline id & id::operator = (int32_t i)
 {
-   operator = (::ca::system::id(psz));
+   return operator = (::ca::system::id(::ca::str::from(i)));
 }
+#endif
+
+inline id & id::operator = (int_ptr i)
+{
+   return operator = (::ca::system::id(::ca::str::from(i)));
+}
+
 
 id::id(int_ptr i)
 {

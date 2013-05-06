@@ -5201,12 +5201,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    bool application::load_cached_string(string & str, id id, bool bLoadStringTable)
    {
       ::xml::document doc(this);
-      if(id.is_text())
+      if(!doc.load(id))
       {
-         if(!doc.load(id))
-         {
-            return load_cached_string_by_id(str, id, "", bLoadStringTable);
-         }
+         return load_cached_string_by_id(str, id, "", bLoadStringTable);
       }
       sp(::xml::node) pnodeRoot = doc.get_root();
       if(pnodeRoot->get_name() == "string")

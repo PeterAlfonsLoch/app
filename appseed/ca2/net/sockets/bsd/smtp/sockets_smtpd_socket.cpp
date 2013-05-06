@@ -58,9 +58,7 @@ namespace sockets
                   string key = pa.getword();
                   key.make_lower();
                   string value = pa.getrest();
-                  string lowvalue = value;
-                  lowvalue.make_lower();
-                  OnHeader(key, value, lowvalue);
+                  OnHeader(key, value);
                }
                m_header = false;
                OnHeaderComplete();
@@ -78,9 +76,7 @@ namespace sockets
                   string key = pa.getword();
                   key.make_lower();
                   string value = pa.getrest();
-                  string lowvalue = value;
-                  lowvalue.make_lower();
-                  OnHeader(key, value, lowvalue);
+                  OnHeader(key, value);
                }
                m_header_line = line;
             }

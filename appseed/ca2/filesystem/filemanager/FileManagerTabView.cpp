@@ -97,46 +97,41 @@ void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca:
 void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata)
 {
 
-   if(pcreatordata->m_id.is_text())
+   if(pcreatordata->m_id == "add_location"
+      || pcreatordata->m_id == "replace_name")
    {
-
-      if(pcreatordata->m_id == "add_location"
-         || pcreatordata->m_id == "replace_name")
+      sp(::ca::create_context) createcontext(allocer());
+      createcontext->m_bMakeVisible = false;
+      createcontext->m_puiParent = pcreatordata->m_pholder;
+      sp(file_manager_form_document) pdoc = Application.filemanager().m_ptemplateForm->open_document_file(createcontext);
+      if(pdoc == ::null())
+         return;
+      file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view > ();
+      file_manager_form_update_hint uh;
+      uh.m_etype = file_manager_form_update_hint::type_browse;
+      if(pcreatordata->m_id == "replace_name")
       {
-         sp(::ca::create_context) createcontext(allocer());
-         createcontext->m_bMakeVisible = false;
-         createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(file_manager_form_document) pdoc = Application.filemanager().m_ptemplateForm->open_document_file(createcontext);
-         if(pdoc == ::null())
-            return;
-         file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view > ();
-         file_manager_form_update_hint uh;
-         uh.m_etype = file_manager_form_update_hint::type_browse;
-         if(pcreatordata->m_id == "replace_name")
-         {
-            uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
-         }
-         else if(pcreatordata->m_id == "add_location")
-         {
-            uh.m_strForm = "filemanager_add_location_1.xhtml";
-         }
-         pdoc->update_all_views(::null(), 0, &uh);
-
-         uh.m_etype = file_manager_form_update_hint::type_get_form_view;
-         pdoc->update_all_views(::null(), 0, &uh);
-
-         uh.m_etype = file_manager_form_update_hint::type_after_browse;
-         pdoc->update_all_views(::null(), 0, &uh);
-
-
-         pformview->m_pfilemanagerinterface =  (m_pviewdata->m_pdoc);
-         //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
-         //pcreatordata->m_pwnd = (pformview->GetParentFrame());
-         //      file_manager_form_child_frame * pframe = dynamic_cast < file_manager_form_child_frame * >(pcreatordata->m_pwnd);
-         //pframe->m_iTabId = iId;
-         pcreatordata->m_pdoc = pdoc;
+         uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
       }
+      else if(pcreatordata->m_id == "add_location")
+      {
+         uh.m_strForm = "filemanager_add_location_1.xhtml";
+      }
+      pdoc->update_all_views(::null(), 0, &uh);
 
+      uh.m_etype = file_manager_form_update_hint::type_get_form_view;
+      pdoc->update_all_views(::null(), 0, &uh);
+
+      uh.m_etype = file_manager_form_update_hint::type_after_browse;
+      pdoc->update_all_views(::null(), 0, &uh);
+
+
+      pformview->m_pfilemanagerinterface =  (m_pviewdata->m_pdoc);
+      //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
+      //pcreatordata->m_pwnd = (pformview->GetParentFrame());
+      //      file_manager_form_child_frame * pframe = dynamic_cast < file_manager_form_child_frame * >(pcreatordata->m_pwnd);
+      //pframe->m_iTabId = iId;
+      pcreatordata->m_pdoc = pdoc;
    }
    else if(pcreatordata->m_id == 200000)
    {

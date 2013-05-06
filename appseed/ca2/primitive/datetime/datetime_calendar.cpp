@@ -147,15 +147,15 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
       int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
       rect rectDay;
       int32_t iDay;
-      pfile->print("<table cellpadding=\"0\" cellspacing=\"0\">");
+      pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
       if(pfile->m_strOptions.find("<no-week-bar-title>") < 0)
       {
-         pfile->print("<tr>");
+         pfile->raw_print("<tr>");
          if(pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
          {
-            pfile->print("<td>");
-            pfile->print("V");
-            pfile->print("</td>");
+            pfile->raw_print("<td>");
+            pfile->raw_print("V");
+            pfile->raw_print("</td>");
          }
          for(iWeekDay = 1; iWeekDay <= 7; iWeekDay++)
          {
@@ -166,11 +166,11 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
                if(iDayOfWeek > 7)
                   iDayOfWeek = 1;
             }
-            pfile->print("<td>");
+            pfile->raw_print("<td>");
             pfile->printf("%s", GetTinyWeekDay(pfile->str_context(), iDayOfWeek));
-            pfile->print("</td>");
+            pfile->raw_print("</td>");
          }
-         pfile->print("</tr>");
+         pfile->raw_print("</tr>");
       }
 
 
@@ -182,7 +182,7 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
       iDay = 1;
       for(int32_t iWeek = 1; iWeek <= iLineCount; iWeek++)
       {
-         pfile->print("<tr>");
+         pfile->raw_print("<tr>");
          if(pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
          {
             int32_t w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
@@ -194,9 +194,9 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
          w = atoi( ::datetime::time(iYear, iMonth, iDay, 0, 0, 0).Format("%U"));
       }
 
-            pfile->print("<td>");
-            pfile->print(::ca::str::from(w));
-            pfile->print("</td>");
+            pfile->raw_print("<td>");
+            pfile->raw_print(::ca::str::from(w));
+            pfile->raw_print("</td>");
          }
          for(int32_t iWeekDay = 1; iWeekDay <=7; iWeekDay++)
          {
@@ -206,7 +206,7 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
                iDayOfWeek++;
             }
 
-            pfile->print("<td>");
+            pfile->raw_print("<td>");
 
             if((!m_bRange &&
                iMonth == m_time.GetMonth()
@@ -216,12 +216,12 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
                ::datetime::time(iYear, iMonth, iDay, 23, 59, 59) >= m_time
                && ::datetime::time(iYear, iMonth, iDay, 0, 0, 0) <= m_timeEnd))
             {
-               pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-sel\">");
+               pfile->raw_print("<div class=\""+ pfile->m_strStyle + "calendar-sel\">");
             }
             else if((iWeek == 1 && iDayOfWeek < iFirstDayOfWeek) ||
                (iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek))
             {
-               pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-out-of-month-day\">");
+               pfile->raw_print("<div class=\""+ pfile->m_strStyle + "calendar-out-of-month-day\">");
             }
             else if((timeNow.GetDay() == iDay &&
                timeNow.GetMonth() == iMonth &&
@@ -231,17 +231,17 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
                iMonth == m_time.GetMonth() &&
                iYear == m_time.GetYear()))
             {
-               pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-today\">");
+               pfile->raw_print("<div class=\""+ pfile->m_strStyle + "calendar-today\">");
             }
             else
             {
                if(iDayOfWeek == 1 || iDayOfWeek == 8)
                {
-                  pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-sunday\">");
+                  pfile->raw_print("<div class=\""+ pfile->m_strStyle + "calendar-sunday\">");
                }
                else
                {
-                  pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-day\">");
+                  pfile->raw_print("<div class=\""+ pfile->m_strStyle + "calendar-day\">");
                }
             }
             if(iWeek == 1 && iDayOfWeek < iFirstDayOfWeek)
@@ -258,11 +258,11 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
                pfile->printf("%d", iDay);
                iDay++;
             }
-            pfile->print("</div></td>");
+            pfile->raw_print("</div></td>");
          }
-         pfile->print("</tr>");
+         pfile->raw_print("</tr>");
       }
-      pfile->print("</table>");
+      pfile->raw_print("</table>");
    }
    catch(...)
    {

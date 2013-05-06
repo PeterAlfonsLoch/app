@@ -34,6 +34,8 @@ public:
    inline __time64_t GetTimeSpan() const;
 
 
+
+
 };
 
 duration::duration()

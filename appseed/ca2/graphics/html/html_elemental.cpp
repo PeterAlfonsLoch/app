@@ -1803,7 +1803,7 @@ namespace html
          str += get_tag_name();
          for(int32_t i = 0; i < this->m_propertyset.m_propertya.get_size(); i++)
          {
-            if(m_propertyset.m_propertya[i].name().CompareNoCase("PropertyBody") == 0)
+            if(m_propertyset.m_propertya[i].name() == "PropertyBody")
                continue;
             str += " ";
             str += m_propertyset.m_propertya[i].name();

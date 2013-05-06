@@ -89,6 +89,12 @@ namespace ca
       return s_idspace;
    }
 
-
 } // namespace ca
+
+
+
+inline id::id(const char * psz)
+{
+   operator = (::ca::system::id(psz));
+}
 

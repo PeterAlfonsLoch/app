@@ -669,6 +669,62 @@ namespace ca
 
    }
 
+   bool url::get_param(string & strValue, const string & strUrl, const string & strKey)
+   {
+
+      strsize iPos = strUrl.find('?');
+
+      if(iPos < 0)
+         return false;
+      else
+         return query_get_param(strValue, strUrl.Mid(iPos + 1), strKey);
+
+   }
+
+   bool url::has_param(const string & strUrl, const string & strKey)
+   {
+
+      strsize iPos = strUrl.find('?');
+
+      if(iPos < 0)
+         return false;
+      else
+         return query_has_param(strUrl.Mid(iPos + 1), strKey);
+
+   }
+
+   bool url::param_has_char(const string & strUrl, const string & strKey)
+   {
+
+      strsize iPos = strUrl.find('?');
+
+      if(iPos < 0)
+         return false;
+      else
+         return query_param_has_char(strUrl.Mid(iPos + 1), strKey);
+   }
+
+   bool url::has_param_replace(string & strUrl, const string & strKey, const string & strValue)
+   {
+
+      strsize iPos = strUrl.find('?');
+
+      if(iPos < 0)
+         return false;
+      else
+      {
+
+         string strQuery = strUrl.Mid(iPos + 1);
+
+         if(!query_has_param_replace(strQuery, strKey, strValue))
+            return false;
+
+          strUrl = strUrl.Left(iPos + 1) + strQuery;
+
+          return true;
+      }
+   }
+
    string url::query_set(const char * pszQuery, const char * pszKey, var var)
    {
 
@@ -918,102 +974,288 @@ namespace ca
 
    }
 
-   string url::query_get_param(const char * pszQuery, const char * pszKey)
+   string url::query_get_param(const string & strQuery, const string & strKey)
    {
 
-      string strQuery(pszQuery);
-
-      string strKey(pszKey);
-
-      string strKeyEqual = strKey + "=";
-
-      string strAndKeyEqual = "&" + strKeyEqual;
-
       string strValue;
-
-      strsize iPos = 0;
-
-      if(::ca::str::begins(strQuery, strKeyEqual))
-      {
-         iPos = strQuery.find('&');
-         if(iPos < 0)
-         {
-            strValue = strQuery.Mid(strKeyEqual.get_length());
-         }
-         else
-         {
-            strValue = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
-         }
-         return strValue;
-      }
-
-      iPos = strQuery.find(strAndKeyEqual, iPos);
-      if(iPos < 0)
+      
+      if(!query_get_param(strValue, strQuery, strKey))
          return "";
-      strsize iEnd = strQuery.find('&', iPos + 1);
-      if(iEnd < 0)
-      {
-         strValue = strQuery.Mid(iPos + strKeyEqual.get_length());
-      }
-      else
-      {
-         strValue = strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length()));
-      }
 
       return strValue;
 
    }
 
-   bool url::locale_is_eu(const char * pszLocale)
+   bool url::query_get_param(string & strValue, const string & strQuery, const string & strKey)
    {
 
-      string strLocale(pszLocale);
+      strsize iCmp = strQuery.length() - strKey.length();
+      if(iCmp < 0)
+         return false;
 
-      ::ca::str::ends_eat_ci(strLocale, ".com");
-      ::ca::str::ends_eat_ci(strLocale, ".net");
-      ::ca::str::ends_eat_ci(strLocale, ".org");
+      if(strncmp(strQuery, strKey, strKey.length()) == 0)
+      {
+         if(iCmp == 0)
+         {
+            strValue = "";
+            return true;
+         }
+         else if(strQuery[strKey.length()] == '=')
+         {
+            strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            if(iFind2 > 0)
+            {
+               strValue = strQuery.Mid(strKey.length() + 1, iFind2 - (strKey.length() + 1));
+            }
+            else
+            {
+               strValue = strQuery.Mid(strKey.length() + 1);
+            }
+            return true;
+         }
 
-      ::ca::str::begins_eat_ci(strLocale, "co.");
-      ::ca::str::begins_eat_ci(strLocale, "or.");
-      ::ca::str::begins_eat_ci(strLocale, "ne.");
-      ::ca::str::begins_eat_ci(strLocale, "com.");
-      ::ca::str::begins_eat_ci(strLocale, "org.");
-      ::ca::str::begins_eat_ci(strLocale, "net.");
+      }
+
+      strsize iStart = strKey.length();
+
+      strsize iFind;
+
+      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      {
+         if(strQuery[iFind - 1] == '&')
+         {
+            if(strQuery.length() == (iFind + strKey.length()))
+            {
+               strValue = "";
+               return true;
+            }
+            else if(strQuery[iFind + strKey.length()] == '=')
+            {
+               strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               if(iFind2 > 0)
+               {
+                  strValue = strQuery.Mid(iFind + strKey.length() + 1, iFind2 - (iFind + strKey.length() + 1));
+               }
+               else
+               {
+                  strValue = strQuery.Mid(iFind + strKey.length() + 1);
+               }
+               return true;
+            }
+         }
+         iStart = iFind + strKey.length() + 1;
+      }
+
+      return false;
+
+   }
+
+   bool url::query_has_param(const string & strQuery, const string & strKey)
+   {
+
+      strsize iCmp = strQuery.length() - strKey.length();
+      if(iCmp < 0)
+         return false;
+
+      if(strncmp(strQuery, strKey, strKey.length()) == 0)
+      {
+         if(iCmp == 0)
+         {
+            return true;
+         }
+         else if(strQuery[strKey.length()] == '=')
+         {
+            return true;
+         }
+
+      }
+
+      strsize iStart = strKey.length();
+
+      strsize iFind;
+
+      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      {
+         if(strQuery[iFind - 1] == '&')
+         {
+            if(strQuery.length() == (iFind + strKey.length()))
+            {
+               return true;
+            }
+            else if(strQuery[iFind + strKey.length()] == '=')
+            {
+               return true;
+            }
+         }
+         iStart = iFind + strKey.length() + 1;
+      }
+
+      return false;
+   }
+
+   bool url::query_param_has_char(const string & strQuery, const string & strKey)
+   {
+
+      strsize iCmp = strQuery.length() - strKey.length();
+      if(iCmp < 0)
+         return false;
+
+      if(strncmp(strQuery, strKey, strKey.length()) == 0)
+      {
+         if(iCmp == 0)
+         {
+            return false;
+         }
+         else if(strQuery[strKey.length()] == '=')
+         {
+            strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            if(iFind2 > 0)
+            {
+               return (iFind2 - (strKey.length() + 1)) > 0;
+            }
+            else
+            {
+               return (strQuery.length() - (strKey.length() + 1)) > 0;
+            }
+            
+         }
+
+      }
+
+      strsize iStart = strKey.length();
+
+      strsize iFind;
+
+      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      {
+         if(strQuery[iFind - 1] == '&')
+         {
+            if(strQuery.length() == (iFind + strKey.length()))
+            {
+               return false;
+            }
+            else if(strQuery[iFind + strKey.length()] == '=')
+            {
+               strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               if(iFind2 > 0)
+               {
+                  return (iFind2 - (iFind + strKey.length() + 1)) > 0;
+               }
+               else
+               {
+                  return (strQuery.length() - (iFind + strKey.length() + 1)) > 0;
+               }
+            }
+         }
+         iStart = iFind + strKey.length() + 1;
+      }
+
+      return false;
+
+   }
+
+   bool url::query_has_param_replace(string & strQuery, const string & strKey, const string & strValue)
+   {
+
+      strsize iCmp = strQuery.length() - strKey.length();
+      if(iCmp < 0)
+         return false;
+
+      if(strncmp(strQuery, strKey, strKey.length()) == 0)
+      {
+         if(iCmp == 0)
+         {
+            strQuery += "=" + strValue;
+            return true;
+         }
+         else if(strQuery[strKey.length()] == '=')
+         {
+            strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            if(iFind2 > 0)
+            {
+               strQuery = strQuery.Left(strKey.length() + 1) + strValue + strQuery.Mid(iFind2);
+            }
+            else
+            {
+               strQuery = strQuery.Left(strKey.length() + 1) + strValue;
+            }
+            return true;
+         }
+
+      }
+
+      strsize iStart = strKey.length();
+
+      strsize iFind;
+
+      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      {
+         if(strQuery[iFind - 1] == '&')
+         {
+            if(strQuery.length() == (iFind + strKey.length()))
+            {
+               strQuery += "=" + strValue;
+               return true;
+            }
+            else if(strQuery[iFind + strKey.length()] == '=')
+            {
+               strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               if(iFind2 > 0)
+               {
+                  strQuery = strQuery.Left(iFind + strKey.length() + 1) + strValue + strQuery.Mid(iFind2);
+               }
+               else
+               {
+                  strQuery = strQuery.Left(iFind + strKey.length() + 1) + strValue;
+               }
+               return true;
+            }
+         }
+         iStart = iFind + strKey.length() + 1;
+      }
+
+      return false;
+
+   }
+
+   bool url::locale_is_eu(id idLocale)
+   {
+
 
       if(
-         strLocale == "eu"
-      || strLocale == "se"
-      || strLocale == "at"
-      || strLocale == "dk"
-      || strLocale == "en-uk"
-      || strLocale == "uk"
-      || strLocale == "fi"
-      || strLocale == "gr"
-      || strLocale == "de"
-      || strLocale == "nl"
-      || strLocale == "be"
-      || strLocale == "fr"
-      || strLocale == "it"
-      || strLocale == "pt"
-      || strLocale == "cz"
-      || strLocale == "lu"
-      || strLocale == "ie"
-      || strLocale == "no"
-      || strLocale == "cy"
-      || strLocale == "su"
-      || strLocale == "lv"
-      || strLocale == "li"
-      || strLocale == "hu"
-      || strLocale == "es"
-      || strLocale == "sk"
-      || strLocale == "cz"
-      || strLocale == "si"
-      || strLocale == "ro"
-      || strLocale == "kz"
-      || strLocale == "ru"
-      || strLocale == "pl"
-      || strLocale == "tr"
-      || strLocale == "ee")
+         idLocale == __id(eu)
+      || idLocale == __id(se)
+      || idLocale == __id(at)
+      || idLocale == __id(dk)
+      || idLocale == __id(en_uk)
+      || idLocale == __id(uk)
+      || idLocale == __id(fi)
+      || idLocale == __id(gr)
+      || idLocale == __id(de)
+      || idLocale == __id(nl)
+      || idLocale == __id(be)
+      || idLocale == __id(fr)
+      || idLocale == __id(it)
+      || idLocale == __id(pt)
+      || idLocale == __id(cz)
+      || idLocale == __id(lu)
+      || idLocale == __id(ie)
+      || idLocale == __id(no)
+      || idLocale == __id(cy)
+      || idLocale == __id(su)
+      || idLocale == __id(lv)
+      || idLocale == __id(li)
+      || idLocale == __id(hu)
+      || idLocale == __id(es)
+      || idLocale == __id(sk)
+      || idLocale == __id(cz)
+      || idLocale == __id(si)
+      || idLocale == __id(ro)
+      || idLocale == __id(kz)
+      || idLocale == __id(ru)
+      || idLocale == __id(pl)
+      || idLocale == __id(tr)
+      || idLocale == __id(ee))
       {
          return true;
       }
@@ -1022,29 +1264,27 @@ namespace ca
 
    }
 
-   bool url::locale_is_asia(const char * pszLocale)
+   bool url::locale_is_asia(id idLocale)
    {
 
-      string strLocale(pszLocale);
-
-      if(strLocale == "asia"
-      || strLocale == "cn"
-      || strLocale == "tw"
-      || strLocale == "vn"
-      || strLocale == "in"
-      || strLocale == "kg"
-      || strLocale == "kz"
-      || strLocale == "kr"
-      || strLocale == "my"
-      || strLocale == "ph"
-      || strLocale == "sg"
-      || strLocale == "su"
-      || strLocale == "ru"
-      || strLocale == "zh"
-      || strLocale == "hk"
-      || strLocale == "ja"
-      || strLocale == "jp"
-      || strLocale == "tr")
+      if(idLocale == __id(asia)
+      || idLocale == __id(cn)
+      || idLocale == __id(tw)
+      || idLocale == __id(vn)
+      || idLocale == __id(in)
+      || idLocale == __id(kg)
+      || idLocale == __id(kz)
+      || idLocale == __id(kr)
+      || idLocale == __id(my)
+      || idLocale == __id(ph)
+      || idLocale == __id(sg)
+      || idLocale == __id(su)
+      || idLocale == __id(ru)
+      || idLocale == __id(zh)
+      || idLocale == __id(hk)
+      || idLocale == __id(ja)
+      || idLocale == __id(jp)
+      || idLocale == __id(tr))
       {
          return true;
       }
@@ -1053,59 +1293,15 @@ namespace ca
 
    }
 
-   bool url::locale_is_middle_east(const char * pszLocale)
+   bool url::locale_is_middle_east(id idLocale)
    {
 
-      string strLocale(pszLocale);
+      string strLocale(idLocale);
 
-      if(strLocale == "sy"
-      || strLocale == "tr"
-      || strLocale == "il"
-      || strLocale == "ps")
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-
-
-   bool url::locale_is_south_america(const char * pszLocale)
-   {
-
-      string strLocale(pszLocale);
-
-      if(strLocale == "ar"
-      || strLocale == "bo"
-      || strLocale == "br"
-      || strLocale == "cl"
-      || strLocale == "co"
-      || strLocale == "ec"
-      || strLocale == "gs"
-      || strLocale == "pe"
-      || strLocale == "py"
-      || strLocale == "uy"
-      || strLocale == "ve"
-      || strLocale == "amdesur")
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-   bool url::locale_is_oceania(const char * pszLocale)
-   {
-
-      string strLocale(pszLocale);
-
-      if(strLocale == "au"
-      || strLocale == "oceania"
-      || strLocale == "nz"
-      || strLocale == "tl")
+      if(idLocale == __id(sy)
+      || idLocale == __id(tr)
+      || idLocale == __id(il)
+      || idLocale == __id(ps))
       {
          return true;
       }
@@ -1115,16 +1311,24 @@ namespace ca
    }
 
 
-   bool url::locale_is_africa(const char * pszLocale)
+
+   bool url::locale_is_south_america(id idLocale)
    {
 
-      string strLocale(pszLocale);
+      string strLocale(idLocale);
 
-      if(strLocale == "ug"
-      || strLocale == "sc"
-      || strLocale == "cm"
-      || strLocale == "za"
-      || strLocale == "africa" )
+      if(idLocale == __id(ar)
+      || idLocale == __id(bo)
+      || idLocale == __id(br)
+      || idLocale == __id(cl)
+      || idLocale == __id(co)
+      || idLocale == __id(ec)
+      || idLocale == __id(gs)
+      || idLocale == __id(pe)
+      || idLocale == __id(py)
+      || idLocale == __id(uy)
+      || idLocale == __id(ve)
+      || idLocale == __id(amdesur))
       {
          return true;
       }
@@ -1133,47 +1337,15 @@ namespace ca
 
    }
 
-   bool url::locale_is_latin_america(const char * pszLocale)
+   bool url::locale_is_oceania(id idLocale)
    {
 
-      string strLocale(pszLocale);
+      string strLocale(idLocale);
 
-      if(strLocale == "mx")
-      {
-         return true;
-      }
-
-      return locale_is_caribe(pszLocale) || locale_is_central_america(pszLocale) || locale_is_south_america(pszLocale);
-
-   }
-
-   bool url::locale_is_north_america(const char * pszLocale)
-   {
-
-      string strLocale(pszLocale);
-
-      if(strLocale == "mx"
-      || strLocale == "us"
-      || strLocale == "ca")
-      {
-         return true;
-      }
-
-      return false;
-
-   }
-
-   bool url::locale_is_caribe(const char * pszLocale)
-   {
-
-      string strLocale(pszLocale);
-
-      if(strLocale == "caribe")
-         return true;
-
-      if(strLocale == "ht"
-      || strLocale == "cu"
-      || strLocale == "tc")
+      if(idLocale == __id(au)
+      || idLocale == __id(oceania)
+      || idLocale == __id(nz)
+      || idLocale == __id(tl))
       {
          return true;
       }
@@ -1183,18 +1355,86 @@ namespace ca
    }
 
 
-   bool url::locale_is_central_america(const char * pszLocale)
+   bool url::locale_is_africa(id idLocale)
    {
 
-      string strLocale(pszLocale);
+      string strLocale(idLocale);
+
+      if(idLocale == __id(ug)
+      || idLocale == __id(sc)
+      || idLocale == __id(cm)
+      || idLocale == __id(za)
+      || idLocale == __id(africa) )
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+   bool url::locale_is_latin_america(id idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == __id(mx))
+      {
+         return true;
+      }
+
+      return locale_is_caribe(idLocale) || locale_is_central_america(idLocale) || locale_is_south_america(idLocale);
+
+   }
+
+   bool url::locale_is_north_america(id idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == __id(mx)
+      || idLocale == __id(us)
+      || idLocale == __id(ca))
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+   bool url::locale_is_caribe(id idLocale)
+   {
+
+      string strLocale(idLocale);
+
+      if(idLocale == __id(caribe))
+         return true;
+
+      if(idLocale == __id(ht)
+      || idLocale == __id(cu)
+      || idLocale == __id(tc))
+      {
+         return true;
+      }
+
+      return false;
+
+   }
+
+
+   bool url::locale_is_central_america(id idLocale)
+   {
+
+      string strLocale(idLocale);
 
       if(strLocale == "central_america")
          return true;
 
-      if(strLocale == "centralam")
+      if(idLocale == __id(centralam))
          return true;
 
-      if(strLocale == "bz")
+      if(idLocale == __id(bz))
       {
          return true;
       }
@@ -1203,19 +1443,19 @@ namespace ca
 
    }
 
-   bool url::locale_is_america(const char * pszLocale)
+   bool url::locale_is_america(id idLocale)
    {
 
-      string strLocale(pszLocale);
+      string strLocale(idLocale);
 
-      if(strLocale == "america")
+      if(idLocale == __id(america))
          return true;
 
       return
-         locale_is_central_america(pszLocale)
-      || locale_is_caribe(pszLocale)
-      || locale_is_south_america(pszLocale)
-      || locale_is_north_america(pszLocale);
+         locale_is_central_america(idLocale)
+      || locale_is_caribe(idLocale)
+      || locale_is_south_america(idLocale)
+      || locale_is_north_america(idLocale);
 
    }
 

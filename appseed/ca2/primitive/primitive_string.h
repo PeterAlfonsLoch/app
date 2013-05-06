@@ -912,53 +912,53 @@ namespace ca
 
 inline bool id::operator == (const string & str) const
 {
-   return !id_cmp(this, str);
+   return m_pstr == ::null() ? false : m_pstr->compare(str) == 0;
 }
 inline bool id::operator != (const string & str) const
 {
-   return id_cmp(this, str) != 0;
+   return m_pstr == ::null() ? true : m_pstr->compare(str) != 0;
 }
 inline bool id::operator < (const string & str) const
 {
-   return id_cmp(this, str) < 0;
+   return m_pstr == ::null() ? true : m_pstr->compare(str) < 0;
 }
 inline bool id::operator <= (const string & str) const
 {
-   return id_cmp(this, str) <= 0;
+   return m_pstr == ::null() ? true : m_pstr->compare(str) <= 0;
 }
 inline bool id::operator > (const string & str) const
 {
-   return id_cmp(this, str) > 0;
+   return m_pstr == ::null() ? false : m_pstr->compare(str) > 0;
 }
 inline bool id::operator >= (const string & str) const
 {
-   return id_cmp(this, str) >= 0;
+   return m_pstr == ::null() ? false : m_pstr->compare(str) >= 0;
 }
 
 
 inline bool id::operator == (const string_interface & str) const
 {
-   return !id_cmp(this, string(str));
+   return m_pstr == ::null() ? false : m_pstr->compare(string(str)) == 0;
 }
 inline bool id::operator != (const string_interface & str) const
 {
-   return id_cmp(this, string(str)) != 0;
+   return m_pstr == ::null() ? true : m_pstr->compare(string(str)) != 0;
 }
 inline bool id::operator < (const string_interface & str) const
 {
-   return id_cmp(this, string(str)) < 0;
+   return m_pstr == ::null() ? true : m_pstr->compare(string(str)) < 0;
 }
 inline bool id::operator <= (const string_interface & str) const
 {
-   return id_cmp(this, string(str)) <= 0;
+   return m_pstr == ::null() ? true : m_pstr->compare(string(str)) <= 0;
 }
 inline bool id::operator > (const string_interface & str) const
 {
-   return id_cmp(this, string(str)) > 0;
+   return m_pstr == ::null() ? false : m_pstr->compare(string(str)) > 0;
 }
 inline bool id::operator >= (const string_interface & str) const
 {
-   return id_cmp(this, string(str)) >= 0;
+   return m_pstr == ::null() ? false : m_pstr->compare(string(str)) >= 0;
 }
 
 
@@ -1015,30 +1015,8 @@ inline id::operator const char *() const
 
 inline string id::to_string() const
 {
-    if(this == NULL)
-    return "";
-   if(m_chType == IDTYPE_TYPE_NULL)
-   {
-      return "";
-   }
-   else if(m_chType == IDTYPE_TYPE_NUMBER)
-   {
-      return ::ca::str::from(m_i);
-   }
-   else if(m_chType == IDTYPE_TYPE_TEXT)
-   {
-      if(m_pstr == ::null())
-         throw "id string is null! Cannot convert to_string()";
-      return *m_pstr;
-   }
-   else
-   {
-      throw "unknow type or corrupt id";
-   }
+    return m_pstr == NULL ? string() : *m_pstr;
 }
-
-
-
 
 
 
@@ -1065,139 +1043,24 @@ inline string id::to_string() const
 
 inline bool id::is_empty() const
 {
-   return is_null() || (is_text() && (m_pstr == ::null() || m_pstr->is_empty()));
+   return is_null() || m_pstr->is_empty();
 }
 
-inline CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, const string & str)
-{
-   if(pid->is_null())
-   {
-      if(str.is_empty())
-      {
-         return 0;
-      }
-      else
-      {
-         return -1;
-      }
-   }
-   else if(pid->is_text())
-   {
-      if(str.is_empty())
-      {
-         return 1;
-      }
-      else if(id_is_text(str))
-      {
-         return pid->m_pstr->Compare(str);
-      }
-      else
-      {
-         return 1;
-      }
-   }
-   else // if(pid->is_number())
-   {
-      if(str.is_empty())
-      {
-         return 1;
-      }
-      else if(id_is_text(str))
-      {
-         return 1;
-      }
-      else
-      {
-         return pid->m_i - ::ca::str::to_int_ptr(str);
-      }
-   }
-}
 
-inline CLASS_DECL_ca2 int_ptr id_cmp(const id * pid, const char * psz)
-{
-   if(pid->is_null())
-   {
-      if(psz == ::null() ||*psz == '\0')
-      {
-         return 0;
-      }
-      else
-      {
-         return -1;
-      }
-   }
-   else if(pid->is_text())
-   {
-      if(psz == ::null() ||*psz == '\0')
-      {
-         return 1;
-      }
-      else if(id_is_text(psz))
-      {
-         return pid->m_pstr->Compare(psz);
-      }
-      else
-      {
-         return 1;
-      }
-   }
-   else // if(pid->is_number())
-   {
-      if(psz == ::null() ||*psz == '\0')
-      {
-         return 1;
-      }
-      else if(id_is_text(psz))
-      {
-         return 1;
-      }
-      else
-      {
-         return pid->m_i - ::ca::str::to_int_ptr(psz);
-      }
-   }
-}
 
 inline CLASS_DECL_ca2 int_ptr id_strcmp(const id * pid1, const id * pid2)
 {
-   char register chCompare = pid1->m_chType - pid2->m_chType;
-   if(chCompare != 0) return chCompare;
-   if(pid1->m_chType == IDTYPE_TYPE_TEXT)
-      return pid1->m_pstr->Compare(*pid2->m_pstr);
-   else
-      return pid1->m_i - pid2->m_i;
+   return pid1->m_pstr->Compare(*pid2->m_pstr);
 }
 
 inline void id::raw_set(const string * pstr)
 {
-   if(pstr == ::null())
-   {
-      m_chType = IDTYPE_TYPE_NULL;
-      m_i = 0;
-   }
-   else if(id_is_number(pstr->c_str()))
-   {
-      m_chType = IDTYPE_TYPE_NUMBER;
-      m_i = ::ca::str::to_int_ptr(*pstr);
-   }
-   else
-   {
-      m_chType = IDTYPE_TYPE_TEXT;
-      m_i = 0;
-      m_pstr = pstr;
-   }
+   m_pstr = pstr;
 }
 
 inline string id::str() const
 {
-   if(m_chType == IDTYPE_TYPE_TEXT)
-      return *m_pstr;
-   else if(m_chType == IDTYPE_TYPE_NUMBER)
-   {
-      return ::ca::str::from(m_i);
-   }
-   else
-      return "";
+   return m_pstr == ::null() ? string() : (const char *) *m_pstr;
 }
 
 inline   string::string() throw() :
@@ -1369,7 +1232,7 @@ inline bool string::operator==(const string_interface & str) const
 inline bool string::operator==(const char * psz) const
 {
 
-   return operator == (string(psz));
+   return strcmp(m_pszData, psz) == 0;
 
 }
 
@@ -1680,4 +1543,181 @@ inline string  & operator += (string & str, const ::id & id)
 
    return str;
 
+}
+
+
+inline bool id::operator == (const char * psz) const
+{
+   return m_pstr == ::null() ? psz == ::null() : m_pstr->compare(psz) == 0;
+}
+inline bool id::operator != (const char * psz) const
+{
+   return m_pstr == ::null() ? psz != ::null() : m_pstr->compare(psz) != 0;
+}
+inline bool id::operator < (const char * psz) const
+{
+   return m_pstr == ::null() ? psz != ::null() : m_pstr->compare(psz) < 0;
+}
+inline bool id::operator <= (const char * psz) const
+{
+   return m_pstr == ::null() ? true : m_pstr->compare(psz) <= 0;
+}
+inline bool id::operator > (const char * psz) const
+{
+   return m_pstr == ::null() ? false : m_pstr->compare(psz) > 0;
+}
+inline bool id::operator >= (const char * psz) const
+{
+   return m_pstr == ::null() ? psz == ::null() : m_pstr->compare(psz) >= 0;
+}
+
+
+#if defined(_LP64) || defined(_AMD64_)
+
+inline bool id::operator == (int32_t i) const
+{
+   return m_pstr == ::null() ? false : atoi(*m_pstr) == i;
+}
+inline bool id::operator != (int32_t i) const
+{
+   return m_pstr == ::null() ? true : atoi(*m_pstr) != i;
+}
+inline bool id::operator < (int32_t i) const
+{
+   return m_pstr == ::null() ? true : atoi(*m_pstr) < i;
+}
+inline bool id::operator <= (int32_t i) const
+{
+   return m_pstr == ::null() ? true : atoi(*m_pstr) <= i;
+}
+inline bool id::operator > (int32_t i) const
+{
+   return m_pstr == ::null() ? false : atoi(*m_pstr) > i;
+}
+inline bool id::operator >= (int32_t i) const
+{
+   return m_pstr == ::null() ? false : atoi(*m_pstr) >= i;;
+}
+#endif
+
+
+inline bool id::operator == (int_ptr i) const
+{
+   return m_pstr == ::null() ? false : atoi(*m_pstr) == i;
+}
+inline bool id::operator != (int_ptr i) const
+{
+   return m_pstr == ::null() ? true : atoi(*m_pstr) != i;
+}
+inline bool id::operator < (int_ptr i) const
+{
+   return m_pstr == ::null() ? true : atoi(*m_pstr) < i;
+}
+inline bool id::operator <= (int_ptr i) const
+{
+   return m_pstr == ::null() ? true : atoi(*m_pstr) <= i;
+}
+inline bool id::operator > (int_ptr i) const
+{
+   return m_pstr == ::null() ? false : atoi(*m_pstr) > i;
+}
+inline bool id::operator >= (int_ptr i) const
+{
+   return m_pstr == ::null() ? false : atoi(*m_pstr) >= i;
+}
+
+inline id::operator int64_t () const
+{
+   return m_pstr == ::null() ? 0x8000000000000000ll : atoi(*m_pstr);
+}
+
+//inline id::operator int_ptr()
+//{
+//   if(is_number())
+//      return m_i;
+//   else
+//      return 0;
+//}
+
+inline bool id::is_null() const
+{
+   return m_pstr == ::null();
+}
+
+inline bool id::has_char() const
+{
+   return !is_empty();
+}
+
+inline void id::Empty()
+{
+   m_pstr = ::null();
+}
+
+inline void id::clear()
+{
+   m_pstr = ::null();
+}
+
+
+
+namespace  ca
+{
+
+   namespace str
+   {
+
+      inline CLASS_DECL_ca2 bool ends_eat(string & str, const char * lpcszSuffix)
+      {
+
+         strsize iLen = strlen(lpcszSuffix);
+
+         if(iLen > str.length())
+            return false;
+
+         if(strncmp(&str[str.length() - iLen], lpcszSuffix, iLen) != 0)
+            return false;
+
+         str.Truncate(str.length() - iLen);
+         
+         return true;
+
+      }
+
+   } // namespace str
+
+} // namespace ca
+
+
+inline CLASS_DECL_ca2 string operator + (const id & id, const char * psz)
+{
+   
+   return id.to_string() + psz;
+
+}
+
+inline CLASS_DECL_ca2 string operator + (const char * psz, const id & id)
+{
+   
+   return psz + id.to_string();
+
+}
+
+inline int_ptr id::compare_ci(const char * psz)
+{
+   if(m_pstr == NULL)
+   {
+      if(psz == NULL)
+         return 0;
+      else
+         return -1;
+   }
+   else if(psz == NULL)
+   {
+      return 1;
+   }
+   else
+   {
+      return m_pstr->compare_no_case(psz);
+   }
 }

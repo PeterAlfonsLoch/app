@@ -8,8 +8,7 @@ namespace http
    transaction::transaction(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_propertysetHeader.m_bKeyCaseInsensitive       = true;
-      m_propertysetAttribute.m_bKeyCaseInsensitive    = true;
+
    }
 
    transaction::transaction(const transaction & src) :
@@ -17,8 +16,7 @@ namespace http
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {
-      m_propertysetHeader.m_bKeyCaseInsensitive       = true;
-      m_propertysetAttribute.m_bKeyCaseInsensitive    = true;
+
    }
 
 

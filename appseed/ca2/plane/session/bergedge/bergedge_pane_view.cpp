@@ -106,36 +106,33 @@ namespace bergedge
    {
       ::userex::pane_tab_view::on_show_view();
 //      sp(frame) pframe =  (GetParentFrame());
-      if(get_view_id().is_text())
+      string strId = get_view_id();
+      if(::ca::str::begins_eat(strId, "app:"))
       {
-         string strId = get_view_id();
-         if(::ca::str::begins_eat(strId, "app:"))
+         sp(::ca::application) pappTab;
+         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            sp(::ca::application) pappTab;
-            if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
-            {
-               Session.m_pappCurrent = pappTab;
-               Session.m_pappCurrent = pappTab;
-            }
-            sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
-            if(pframeApp != ::null())
-            {
-               pframeApp->WfiFullScreen(true, false);
-            }
+            Session.m_pappCurrent = pappTab;
+            Session.m_pappCurrent = pappTab;
          }
-         else if(strId == "::bergedge::pane_view_application")
+         sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
+         if(pframeApp != ::null())
          {
-            string strDirName;
-            strDirName.Format("application-%d", 0);
-            string strDir = Application.dir().userappdata("bergedge", strDirName);
-            sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
-            pdoc->FileManagerBrowse(strDir);
+            pframeApp->WfiFullScreen(true, false);
          }
-         else if(strId == "file_manager")
-         {
-   //         pframe->m_bAutoHideOnOutClick = false;
-            // pframe->ShowWindow(SW_MAXIMIZE);
-         }
+      }
+      else if(strId == "::bergedge::pane_view_application")
+      {
+         string strDirName;
+         strDirName.Format("application-%d", 0);
+         string strDir = Application.dir().userappdata("bergedge", strDirName);
+         sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
+         pdoc->FileManagerBrowse(strDir);
+      }
+      else if(strId == "file_manager")
+      {
+//         pframe->m_bAutoHideOnOutClick = false;
+         // pframe->ShowWindow(SW_MAXIMIZE);
       }
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
@@ -194,93 +191,88 @@ namespace bergedge
 
       ::plane::session & papp = Session;
 
-      if(pcreatordata->m_id.is_text())
+      string strId = pcreatordata->m_id;
+
+      if(::ca::str::begins_eat(strId, "app:"))
       {
-         string strId = pcreatordata->m_id;
-
-         if(::ca::str::begins_eat(strId, "app:"))
+         sp(::ca::application) pappTab;
+         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            sp(::ca::application) pappTab;
-            if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
-            {
 
-               ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
-               pbiasCreate->m_puiParent = pcreatordata->m_pholder;
+            ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+            pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-               sp(::ca::create_context) createcontext(allocer());
-               createcontext->m_spApplicationBias = pbiasCreate;
-               createcontext->m_spCommandLine->_001ParseCommandFork(strId);
+            sp(::ca::create_context) createcontext(allocer());
+            createcontext->m_spApplicationBias = pbiasCreate;
+            createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
-               string str;
-               str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
-               //MessageBox(::null(), str, str, MB_ICONEXCLAMATION);
-               Session.request_create(createcontext);
+            string str;
+            str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
+            //MessageBox(::null(), str, str, MB_ICONEXCLAMATION);
+            Session.request_create(createcontext);
 
-            }
-
-     		   string strIcon = App(Session.m_pappCurrent).dir().matter("mainframe/icon48.png");
-            pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-	   	   if(App(Session.m_pappCurrent).file().exists(strIcon))
-            {
-               ppane->m_dib.create(papp.allocer());
-               ppane->m_dib.load_from_file(strIcon);
-            }
-            else
-            {
-               ppane->m_istrTitleEx = pcreatordata->m_id;
-            }
-            layout();
          }
-         else if(strId == "::bergedge::pane_view_application")
+
+     		string strIcon = App(Session.m_pappCurrent).dir().matter("mainframe/icon48.png");
+         pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
+	   	if(App(Session.m_pappCurrent).file().exists(strIcon))
          {
-            pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-            sp(::filemanager::document) pdoc = papp.filemanager().std().open_child_list(false, true, this);
-            if(pdoc != ::null())
+            ppane->m_dib.create(papp.allocer());
+            ppane->m_dib.load_from_file(strIcon);
+         }
+         else
+         {
+            ppane->m_istrTitleEx = pcreatordata->m_id;
+         }
+         layout();
+      }
+      else if(strId == "::bergedge::pane_view_application")
+      {
+         pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
+         sp(::filemanager::document) pdoc = papp.filemanager().std().open_child_list(false, true, this);
+         if(pdoc != ::null())
+         {
+            pdoc->get_filemanager_data()->m_iIconSize = 48;
+            pdoc->get_filemanager_data()->m_bListText = true;
+            pdoc->get_filemanager_data()->m_bListSelection = false;
+            pdoc->get_filemanager_data()->m_bIconView = true;
+            pdoc->get_filemanager_data()->m_pcallback = this;
+            pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
+            pdoc->get_filemanager_data()->m_bPassBk = true;
+            pdoc->Initialize(true);
+            pdoc->update_all_views(::null(), 1234);
+            pdoc->update_all_views(::null(), 1234525);
+            sp(::user::view) pview = pdoc->get_view();
+            string strDirName;
+            strDirName.Format("application-%d", 0);
+            string strDir = Application.dir().userappdata("bergedge", strDirName);
+            POSITION pos = System.m_mapAppLibrary.get_start_position();
+            string strApp;
+            string strLibrary;
+            while(pos != ::null())
             {
-               pdoc->get_filemanager_data()->m_iIconSize = 48;
-               pdoc->get_filemanager_data()->m_bListText = true;
-               pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_bIconView = true;
-               pdoc->get_filemanager_data()->m_pcallback = this;
-               pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
-               pdoc->get_filemanager_data()->m_bPassBk = true;
-               pdoc->Initialize(true);
-               pdoc->update_all_views(::null(), 1234);
-               pdoc->update_all_views(::null(), 1234525);
-               sp(::user::view) pview = pdoc->get_view();
-               string strDirName;
-               strDirName.Format("application-%d", 0);
-               string strDir = Application.dir().userappdata("bergedge", strDirName);
-               POSITION pos = System.m_mapAppLibrary.get_start_position();
-               string strApp;
-               string strLibrary;
-               while(pos != ::null())
+               System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
+               if(::ca::str::begins_eat(strApp, "application:"))
                {
-                  System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-                  if(::ca::str::begins_eat(strApp, "application:"))
-                  {
-                     Application.file().put_contents(System.dir().path(strDir, strApp + ".ca"), "ca2prompt\n" + strApp);
-                  }
+                  Application.file().put_contents(System.dir().path(strDir, strApp + ".ca"), "ca2prompt\n" + strApp);
                }
-               pdoc->FileManagerBrowse(strDir);
-               if(pview != ::null())
+            }
+            pdoc->FileManagerBrowse(strDir);
+            if(pview != ::null())
+            {
+               sp(::user::frame_window) pframe = (pview->GetParentFrame());
+               if(pframe != ::null())
                {
-                  sp(::user::frame_window) pframe = (pview->GetParentFrame());
-                  if(pframe != ::null())
-                  {
-                     pcreatordata->m_pdoc = pdoc;
-                     pcreatordata->m_pwnd = pframe;
+                  pcreatordata->m_pdoc = pdoc;
+                  pcreatordata->m_pwnd = pframe;
 
 
-                  }
                }
             }
          }
       }
-      else if(pcreatordata->m_id.is_number())
+      else
       {
-
-
          switch(pcreatordata->m_id)
          {
          case PaneViewContextMenu:

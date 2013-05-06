@@ -439,7 +439,7 @@ namespace zip
 
       // find server name for this class ID
 
-      string strCLSID = __string_from_clsid(rclsid);
+      string strCLSID = __iding_from_clsid(rclsid);
       string strServer;
       if (!__get_in_proc_server(strCLSID, strServer))
          return REGDB_E_CLASSNOTREG;

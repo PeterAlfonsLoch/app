@@ -45,13 +45,11 @@ id_space::~id_space()
    }*/
 }
 
-id id_space::operator()(const char * psz)
+id id_space::operator()(const string & str)
 {
    
    single_lock sl(m_pmutex, TRUE);
    
-   string str(psz);
-
    id idSearch;
    idSearch.raw_set(&str);
    index iIndex = 0;
@@ -59,47 +57,21 @@ id id_space::operator()(const char * psz)
    if(find(idSearch, iIndex))
       return m_ida.element_at(m_iaStr.m_pData[iIndex]);
 
-   if(idSearch.is_text())
-   {
-      id id;
-      id.raw_set(new string(str));
-      m_ida.add(id);
-      m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
-      //sort();
-      return id;
-   }
-   else
-   {
-      m_ida.add(idSearch);
-      m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
-      //m_iaStr.add(m_ida.get_upper_bound());
-      //sort();
-      return idSearch;
-   }
+   id id;
+   id.raw_set(new string(str));
+   m_ida.add(id);
+   m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
+   //sort();
+   return id;
    
 }
 
 id id_space::operator()(int64_t i)
 {
 
-   single_lock sl(m_pmutex, TRUE);
+   return id_space::operator()(::ca::str::from(i));
 
-   id idSearch;
 
-   idSearch.raw_set((int_ptr) i);
-
-   index iIndex = 0;
-
-   if(find(idSearch, iIndex))
-      return m_ida.element_at(m_iaStr.m_pData[iIndex]);
-
-   m_ida.add(idSearch);
-
-   m_iaStr.add(m_ida.get_upper_bound());
-
-   sort();
-   
-   return idSearch;
    
 }
 
@@ -113,12 +85,8 @@ void id_space::sort()
    stackLowerBound.set_size(0, 1024);
    stackUpperBound.set_size(0, 1024);
 
-   register char chCompare;
    register id * pid1 = ::null();
    register id * pid2 = ::null();
-   register bool bSwap;
-   register bool bText;
-   register char ch;
 
    id * pida = m_ida.m_pData;
    index * pia = m_iaStr.m_pData;
@@ -146,8 +114,6 @@ void id_space::sort()
          {
             iM = pia[iMPos];
             pid1 = &pida[iM];
-            ch = pid1->m_chType;
-            bText = ch == IDTYPE_TYPE_TEXT;
          }
          while(true)
          {
@@ -158,25 +124,7 @@ void id_space::sort()
             // iUPos--;
             iU = pia[iUPos];
             pid2 = pida + iU;
-            chCompare = ch - pid2->m_chType;
-            bSwap = false;
-            if(chCompare > 0)
-               bSwap = true;
-            else if(chCompare == 0)
-            {
-               if(bText)
-               {
-                  if(strcmp(pid1->m_pstr->m_pszData, pid2->m_pstr->m_pszData) > 0)
-                     bSwap = true;
-               }
-               else
-               {
-                  if(pid1->m_i > pid2->m_i)
-                     bSwap = true;
-               }
-
-            }
-            if(!bSwap)
+            if(strcmp(pid1->m_pstr->m_pszData, pid2->m_pstr->m_pszData) > 0)
                iUPos--;
             else
             {
@@ -192,8 +140,6 @@ void id_space::sort()
          {
             iM = pia[iMPos];
             pid2 = &pida[iM];
-            ch = pid2->m_chType;
-            bText = ch == IDTYPE_TYPE_TEXT;
          }
          while(true)
          {
@@ -201,25 +147,7 @@ void id_space::sort()
                break;
             iL = pia[iLPos];
             pid1 = pida + iL;
-            chCompare = pid1->m_chType - ch;
-            bSwap = false;
-            if(chCompare > 0)
-               bSwap = true;
-            else if(chCompare == 0)
-            {
-               if(bText)
-               {
-                  if(strcmp(pid1->m_pstr->m_pszData, pid2->m_pstr->m_pszData) > 0)
-                     bSwap = true;
-               }
-               else
-               {
-                  if(pid1->m_i > pid2->m_i)
-                     bSwap = true;
-               }
-
-            }
-            if(!bSwap)
+            if(strcmp(pid1->m_pstr->m_pszData, pid2->m_pstr->m_pszData) > 0)
                iLPos++;
             else
             {
@@ -521,9 +449,6 @@ bool strid_array::find(const char * psz, index & iIndex) const
 void strid_array::add(const id & id)
 {
    
-   if(!id.is_text())
-      throw "strid_array only accept text ids";
-
    index iIndex;
 
    if(find(id, iIndex))
@@ -539,8 +464,6 @@ void strid_array::add(const id & id)
 bool strid_array::find(const id & id, index & iIndex) const
 {
    
-   if(!id.is_text())
-      return false;
 
    if(!find((const char *) id, iIndex))
       return false;

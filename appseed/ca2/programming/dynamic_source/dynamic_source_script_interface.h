@@ -30,9 +30,19 @@ namespace dynamic_source
       sp(script)                          m_pscript;
 
       int32_t                             m_iDebug;
+
+      var                                 m_varRet;
+
+      string                              m_strDebugRequestUri;
+      string                              m_strDebugThisScript;
+
       
       script_interface();
       virtual ~script_interface();
+
+
+      virtual void destroy();
+
 
       virtual void run();
 

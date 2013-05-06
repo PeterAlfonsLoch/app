@@ -49,12 +49,10 @@ namespace http
       string UserAgent();
 
       ::ca::property_set & headers();
-      ::ca::property & header(const char * pszKey);
-      ::ca::property & lowheader(const string & strLowKey);
+      ::ca::property & header(id idKey);
       
       ::ca::property_set & attrs();
-      ::ca::property & attr(const char * psz);
-      ::ca::property & lowattr(const string & strLowName);
+      ::ca::property & attr(id idKey);
 
 
       http::cookies & cookies();
@@ -73,14 +71,9 @@ namespace http
       return m_propertysetAttribute;
    }
 
-   inline ::ca::property & transaction::attr(const char * psz)
+   inline ::ca::property & transaction::attr(id idKey)
    {
-      return m_propertysetAttribute[psz];
-   }
-
-   inline ::ca::property & transaction::lowattr(const string & strLowName)
-   {
-      return m_propertysetAttribute.lowprop(strLowName);
+      return m_propertysetAttribute[idKey];
    }
 
    inline ::ca::property_set & transaction::headers()
@@ -88,14 +81,9 @@ namespace http
       return m_propertysetHeader;
    }
 
-   inline ::ca::property & transaction::header(const char * psz)
+   inline ::ca::property & transaction::header(id idKey)
    {
-      return m_propertysetHeader[psz];
-   }
-
-   inline ::ca::property & transaction::lowheader(const string & strLowKey)
-   {
-      return m_propertysetHeader.lowprop(strLowKey);
+      return m_propertysetHeader[idKey];
    }
 
    inline http::cookies & transaction::cookies()

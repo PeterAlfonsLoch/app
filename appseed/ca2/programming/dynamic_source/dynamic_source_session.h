@@ -11,15 +11,17 @@ namespace dynamic_source
    public:
 
 
-      mutex                      m_mutex;
-      ::ca::property_set         m_set;
-      ::datetime::time           m_timeAccess;
+      string                              m_strId;
+      mutex                               m_mutex;
+      ::ca::property_set                  m_set;
+      ::datetime::time                    m_timeExpiry;
+      ::dynamic_source::script_manager *  m_pmanager;
 
 
-      session(::ca::application * papp);
+      session(const string & strId, ::dynamic_source::script_manager * pmanager);
       virtual ~session();
 
-
+      virtual int64_t add_ref();
       virtual int64_t release();
 
 

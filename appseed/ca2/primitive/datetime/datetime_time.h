@@ -17,6 +17,11 @@ namespace datetime
    class CLASS_DECL_ca2 time_span
    {
    public:
+
+
+      __time64_t m_timeSpan;
+
+
       time_span() NOTHROW;
       time_span( __time64_t time ) NOTHROW;
       time_span(int64_t lDays, int32_t nHours, int32_t nMins, int32_t nSecs ) NOTHROW;
@@ -50,27 +55,27 @@ namespace datetime
       //   CArchive& Serialize64(CArchive& ar);
 #endif
 
-   private:
-      __time64_t m_timeSpan;
    };
 
    class CLASS_DECL_ca2 time
    {
-   private:
+   public:
+
 
       __time64_t m_time;
 
-   public:
+
       static time WINAPI get_current_time() NOTHROW;
       static bool WINAPI is_valid_FILETIME(const FILETIME& ft) NOTHROW;
 
+
       time() NOTHROW;
-      time( __time64_t time ) NOTHROW;
-      time( int32_t nYear, int32_t nMonth, int32_t nDay, int32_t nHour, int32_t nMin, int32_t nSec,
-         int32_t nDST = -1 );
-      time( WORD wDosDate, WORD wDosTime, int32_t nDST = -1 );
-      time( const SYSTEMTIME& st, int32_t nDST = -1 );
-      time( const FILETIME& ft, int32_t nDST = -1 );
+      time(__time64_t time) NOTHROW;
+      time(int32_t nYear, int32_t nMonth, int32_t nDay, int32_t nHour, int32_t nMin, int32_t nSec, int32_t nDST = -1);
+      time(WORD wDosDate, WORD wDosTime, int32_t nDST = -1);
+      time(const SYSTEMTIME& st, int32_t nDST = -1);
+      time(const FILETIME& ft, int32_t nDST = -1);
+
 
       time& operator=( __time64_t time ) NOTHROW;
 
@@ -89,6 +94,9 @@ namespace datetime
 
       time operator-( date_span span ) const;
       time operator+( date_span span ) const;
+
+      time operator-(const duration & duration) const;
+      time operator+(const duration & duration) const;
 
       bool operator==( time time ) const NOTHROW;
       bool operator!=( time time ) const NOTHROW;
@@ -377,3 +385,17 @@ namespace datetime
 dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
 dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
 
+inline CLASS_DECL_ca2 ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
+{
+   
+   return ::datetime::time_span(::datetime::time::get_current_time().m_time - duration.GetTimeSpan() - time.m_time);
+
+}
+
+
+inline CLASS_DECL_ca2 ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
+{
+
+   return ::datetime::time(duration.GetTimeSpan() + time.m_time);
+
+}

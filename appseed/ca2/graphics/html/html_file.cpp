@@ -19,8 +19,12 @@ namespace html
 
    void file::print(const string & str)
    {
-      UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      raw_print(str);
+   }
+
+   void file::raw_print(const string & str)
+   {
+      print(str);
    }
 
 #ifdef WINDOWS

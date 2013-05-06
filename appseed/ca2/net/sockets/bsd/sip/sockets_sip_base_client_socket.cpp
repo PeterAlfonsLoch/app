@@ -236,16 +236,15 @@ namespace sockets
          return;
       }
       ::ca::parse pa(line,":");
-      string key = pa.getword();
+      string strKey = pa.getword();
+      id key(strKey.make_lower());
       string value = pa.getrest();
-      string lowvalue = value;
-      lowvalue.make_lower();
-      OnHeader(key, value, lowvalue);
-      if(::ca::str::equals_ci(key, "content-length"))
+      OnHeader(key, value);
+      if(key == __id(content_length))
       {
          m_body_size_left = atol(value);
       }
-      if(::ca::str::equals_ci(key, "connection"))
+      if(key == __id(connection))
       {
          if (m_b_http_1_1)
          {
@@ -300,7 +299,7 @@ namespace sockets
       TRACE(strTrace + "\n");
       for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
-         strLine = m_response.m_propertysetHeader.m_propertya[i].name() +
+         strLine = m_response.m_propertysetHeader.m_propertya[i].name().to_string() +
                    ": " +
                    m_response.m_propertysetHeader.m_propertya[i].get_string();
          msg += strLine + "\r\n";
@@ -457,10 +456,10 @@ namespace sockets
       return m_response.headers();
    }
 
-   void sip_base_client_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
+   void sip_base_client_socket::OnHeader(id key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
-      TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+      TRACE("  (request)OnHeader %s: %s\n", (const char *) key.to_string(), (const char *) value);
       if(key == "cookie")
       {
          m_request.cookies().parse_header(value);

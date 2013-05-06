@@ -124,10 +124,14 @@ inline id & id::operator = (const var & var)
 
    if(var.is_null())
    {
-      m_chType = IDTYPE_TYPE_NULL;
+      m_pstr = ::null();
       return *this;
    }
-   if(var.is_integer())
+   else if(var.is_empty())
+   {
+      return operator =("");
+   }
+   else if(var.is_integer())
    {
       return operator = (var.intptr());
    }
@@ -150,9 +154,6 @@ inline id & id::operator = (const ::ca::property & prop)
 inline id::id(const var & var)
 {
 
-   m_i = 0;
-   m_chType = IDTYPE_TYPE_NULL;
-
-   *this = var.get_id();
+   m_pstr = var.get_id().m_pstr;
 
 }

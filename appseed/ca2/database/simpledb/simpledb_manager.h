@@ -29,7 +29,7 @@ namespace simpledb
       int64_t                       m_iDatabaseWaitTimeOut;
 
       mutex                         m_mutexSession;
-      string_map < session * > m_mapSession;
+      string_map < session * >      m_mapSession;
 
 
       manager(sp(::ca::application) papp);

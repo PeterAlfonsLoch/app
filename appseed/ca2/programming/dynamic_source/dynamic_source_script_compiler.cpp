@@ -1097,6 +1097,24 @@ namespace dynamic_source
 
    }
 
+   
+   void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower = true)
+   {
+      string strKey = strResult.Mid(iArroba);
+      if(bMakeKeyLower)
+      {
+         strKey.make_lower();
+      }
+      strsize iFind = straId.find_first(strKey);
+      if(iFind <= 0)
+      {
+         straId.add(strKey);
+         iFind = straId.get_upper_bound();
+      }
+      strResult = strResult.Left(iArroba) + " lscript_id" + ::ca::str::from(iFind);
+      iArroba = -1;
+   }
+
    string script_compiler::cppize2(const char * psz, bool bScript, stringa & straId)
    {
       string str(psz);
@@ -1112,8 +1130,11 @@ namespace dynamic_source
       bool bInSpec1Close = false;
       bool bInSpec2 = false;
       bool bInSpec2Close = false;
+      bool bServer = false;
+      strsize iServer = -1;
       strsize iBracket = 0;
       bool bInBrace = false;
+      strsize iVar = -1;
       strsize iIdLen;
       char ch;
       char chNext;
@@ -1178,7 +1199,7 @@ namespace dynamic_source
             }
             else if(ch == '=')
             {
-               strResult += ".propset().add(::null(), ";
+               strResult += ".propset().add(id(), ";
                bInSpec2 = false;
                bInSpec2Close = true;
                i++;
@@ -1188,6 +1209,51 @@ namespace dynamic_source
             else
             {
                ///erro
+            }
+         }
+         if(bServer)
+         {
+            if(isalpha(ch) || isdigit(ch) || ch == '.' || ch == ',' || ch == '-' || ch == '_')
+            {
+               if(iServer < 0)
+               {
+                  iServer = strResult.get_length();
+               }
+            }
+            else if(iServer >= 0)
+            {
+               bool bWaitQuote = true;
+               bool bWaitCloseBracket = false;
+               bServer = false;
+               add_var_id(strResult, iServer, straId);
+               strResult += "]";
+               while(i < iLen)
+               {
+                  ch = str[i];
+                  if(isspace(ch))
+                     i++;
+                  else if(bWaitQuote && (ch == '\'' || ch=='\"'))
+                  {
+                     bWaitQuote = false;
+                     bWaitCloseBracket = true;
+                     i++;
+                  }
+                  else if(bWaitCloseBracket && ch == ']')
+                  {
+                     i++;
+                     break;
+                  }
+                  else
+                  {
+                     throw simple_exception(get_app(), "invalid syntax.");
+                  }
+               }
+               continue;
+            }
+            else
+            {
+               i++;
+               continue;
             }
          }
          if(iBracket > 0 && ch == ']')
@@ -1248,14 +1314,7 @@ namespace dynamic_source
                }
                else if(ch == '@')
                {
-                  strsize iFind = straId.find_first(strResult.Mid(iArroba));
-                  if(iFind <= 0)
-                  {
-                     straId.add(strResult.Mid(iArroba));
-                     iFind = straId.get_upper_bound();
-                  }
-                  strResult = strResult.Left(iArroba) + " lscript_id" + ::ca::str::from(iFind);
-                  iArroba = -1;
+                  add_var_id(strResult, iArroba, straId);
                }
                else
                {
@@ -1286,7 +1345,9 @@ namespace dynamic_source
                   if(ch == '$')
                   {
                      bInVar = true;
-                     strResult += "\") + glowstr(\"";
+                     add_var_id(strResult, iVar, straId);
+                     strResult += ") + gstr(";
+                     iVar = strResult.length();
                      bLow = true;
                      i++;
                      continue;
@@ -1294,7 +1355,8 @@ namespace dynamic_source
                   else
                   {
                      //strResult += "\") + unitext(\"";
-                     strResult += "\") + \"";
+                     add_var_id(strResult, iVar, straId);
+                     strResult += ") + \"";
                      if(ch == '\"')
                      {
                         bInDoubleQuote = false;
@@ -1319,7 +1381,8 @@ namespace dynamic_source
                   if(ch == '[' && chNext != ']')
                   {
                      iBracket++;
-                     strResult += "\").propset()";
+                     add_var_id(strResult, iVar, straId);
+                     strResult += ").propset()";
                   }
                   else if(ch == '-' && chNext == '>')
                   {
@@ -1367,22 +1430,26 @@ namespace dynamic_source
                         }
                         if(ch == ')')
                         {
-                           strResult += "\").ca < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
+                           add_var_id(strResult, iVar, straId);
+                           strResult += ").ca < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
                         }
                         else
                         {
-                           strResult += "\").ca < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
+                           add_var_id(strResult, iVar, straId);
+                           strResult += ").ca < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
                            continue;
                         }
                      }
                      else
                      {
-                        strResult += "\").ca < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
+                        add_var_id(strResult, iVar, straId);
+                        strResult += ").ca < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
                      }
                   }
                   else
                   {
-                     strResult += "\")";
+                     add_var_id(strResult, iVar, straId);
+                     strResult += ")";
                   }
                }
                if(ch == ';')
@@ -1405,7 +1472,8 @@ namespace dynamic_source
                {
                   bInVar = true;
                   //strResult += "\") + glowstr(\"";
-                  strResult += "\" + glowstr(\"";
+                  strResult += "\" + gstr(";
+                  iVar = strResult.length();
                   bLow = true;
                }
                else if(ch == '{')
@@ -1477,12 +1545,15 @@ namespace dynamic_source
             {
                if(bInDoubleQuote)
                {
-                  strResult += "\") + glowstr(\"";
+                  add_var_id(strResult, iVar, straId);
+                  strResult += ") + gstr(";
+                  iVar = strResult.length();
                   bLow = true;
                }
                else
                {
-                  strResult += "\")"; // probably will generate compile error, leave to c++ compiler
+                  add_var_id(strResult, iVar, straId);
+                  strResult += ")"; // probably will generate compile error, leave to c++ compiler
                }
             }
             else
@@ -1491,44 +1562,51 @@ namespace dynamic_source
                if(bInDoubleQuote)
                {
                   //strResult += "\") + glowstr(\"";
-                  strResult += "\" + glowstr(\"";
+                  strResult += "\" + gstr(";
+                  iVar = strResult.length();
                   bLow = true;
                }
                else
                {
                   if(is_id(&str[i + 1], str.get_length() - i - 1, "_GET", 4,  iIdLen))
                   {
-                     strResult += "geta()";
+                     strResult += "geta()[";
                      bInVar = false;
-                     i += iIdLen;
+                     bServer = true;
+                     i += iIdLen + 1;
                   }
                   else if(is_id(&str[i + 1], str.get_length() - i - 1, "_POST", 5,  iIdLen))
                   {
-                     strResult += "posta()";
+                     strResult += "posta()[";
                      bInVar = false;
-                     i += iIdLen;
+                     bServer = true;
+                     i += iIdLen + 1;
                   }
                   else if(is_id(&str[i + 1], str.get_length() - i - 1, "_REQUEST", 8, iIdLen))
                   {
-                     strResult += "requesta()";
+                     strResult += "requesta()[";
                      bInVar = false;
-                     i += iIdLen;
+                     bServer = true;
+                     i += iIdLen + 1;
                   }
                   else if(is_id(&str[i + 1], str.get_length() - i - 1, "_SERVER", 7, iIdLen))
                   {
-                     strResult += "inattra()";
+                     strResult += "inattra()[";
                      bInVar = false;
-                     i += iIdLen;
+                     bServer = true;
+                     i += iIdLen + 1;
                   }
                   else if(is_id(&str[i + 1], str.get_length() - i - 1, "_COOKIE", 7, iIdLen))
                   {
-                     strResult += "cookies()";
+                     strResult += "cookies()[";
                      bInVar = false;
-                     i += iIdLen;
+                     bServer = true;
+                     i += iIdLen + 1;
                   }
                   else
                   {
-                     strResult += "glowprop(\"";
+                     strResult += "gprop(";
+                     iVar = strResult.length();
                      bLow = true;
                   }
                }

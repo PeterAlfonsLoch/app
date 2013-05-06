@@ -26,6 +26,8 @@ namespace html
 
       virtual void print(const string & str);
 
+      virtual void raw_print(const string & str);
+
 
 #ifdef WINDOWS
 

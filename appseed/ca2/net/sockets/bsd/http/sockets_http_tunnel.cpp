@@ -124,21 +124,30 @@ namespace sockets
          SendRequest();
       }
 
+
       void http_tunnel::OnFirst()
       {
+
       }
-      void http_tunnel::OnHeader(const string & strKey, const string & strValue)
+
+      void http_tunnel::OnHeader(id key, const string & strValue)
       {
-         inheader(strKey) = strValue;
+
+         inheader(key) = strValue;
+
       }
+
       void http_tunnel::OnHeaderComplete()
       {
+
          http_socket::OnHeaderComplete();
 
          m_bHeaders = true;
          m_fileBody.Truncate(0);
          m_fileBody.seek_to_begin();
+
       }
+
       void http_tunnel::OnData(const char * psz, size_t size)
       {
          m_fileBody.write(psz, size);

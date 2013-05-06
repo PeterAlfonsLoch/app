@@ -45,7 +45,7 @@ namespace ca
 
       inline static int_ptr CompareElements(const id * pElement1, const id * pElement2)
       {
-         return id_cmp(pElement1, pElement2);
+         return pElement1->m_pstr - pElement2->m_pstr;
       }
 
 

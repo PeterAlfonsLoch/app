@@ -20,7 +20,7 @@ namespace ca
 
 
       virtual void OnDataArrived(const char *, size_t len);
-      void OnHeader(const string & key,const string & value, const string & lowvalue);
+      void OnHeader(id idKey, const string & value);
 
       virtual string MyUseragent();
 

@@ -12,31 +12,14 @@ namespace ca
       inline CLASS_DECL_ca2 string         from(const id & id)
       {
 
-         if(id.is_null() || id.is_empty())
-            return "";
-
-         if(id.is_text())
-            return *id.m_pstr;
-
-         return from(id.m_i);
+         return id;
 
       }
 
       inline CLASS_DECL_ca2 string &       from(string & str, const id & id)
       {
 
-         if(id.is_null() || id.is_empty())
-         {
-            str.Empty();
-         }
-         else if(id.is_text())
-         {
-            str = *id.m_pstr;
-         }
-         else
-         {
-            from(str, id.m_i);
-         }
+         str = id;
 
          return str;
 

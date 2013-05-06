@@ -229,17 +229,19 @@ namespace ca
    byte_input_stream & byte_input_stream::operator >> (id & id)
    {
 
-      operator >> (id.m_chType);
+      bool bNull;
 
-      if(id.m_chType == IDTYPE_TYPE_TEXT)
+      operator >> (bNull);
+
+      if(bNull)
+         id.clear();
+      else
       {
          string str;
+
          *this >> str;
+
          id = str;
-      }
-      else if(id.m_chType == IDTYPE_TYPE_NUMBER)
-      {
-         operator >> (id.m_i);
       }
 
       return *this;
@@ -531,15 +533,14 @@ namespace ca
    byte_output_stream & byte_output_stream::operator << (const id & id)
    {
 
-      operator << (id.m_chType);
 
-      if(id.m_chType == IDTYPE_TYPE_TEXT)
+      bool bNull = id.is_null();
+
+      operator << (bNull);
+
+      if(!bNull)
       {
          *this << *id.m_pstr;
-      }
-      else if(id.m_chType == IDTYPE_TYPE_NUMBER)
-      {
-         operator << (id.m_i);
       }
 
       return *this;

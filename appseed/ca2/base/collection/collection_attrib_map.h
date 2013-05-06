@@ -55,3 +55,4 @@ attrib_map < type_map > & attrib_map < type_map >::operator = (const attrib_map 
 
 
 
+typedef attrib_map < ::map < id, id, index, index > > id_to_index;

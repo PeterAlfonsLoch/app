@@ -2013,15 +2013,12 @@ namespace user
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
          pane & pane = panea[i];
-         if(pane.m_id.is_text())
+         strPath = pane.m_id;
+         if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
          {
-            strPath = pane.m_id;
-            if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
+            if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
             {
-               if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
-               {
-                  stra.add(strPath);
-               }
+               stra.add(strPath);
             }
          }
       }
@@ -2046,15 +2043,12 @@ namespace user
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
          pane & pane = panea[i];
-         if(pane.m_id.is_text())
+         strPath = pane.m_id;
+         if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
          {
-            strPath = pane.m_id;
-            if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
+            if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
             {
-               if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
-               {
-                  stra.add(strPath);
-               }
+               stra.add(strPath);
             }
          }
       }

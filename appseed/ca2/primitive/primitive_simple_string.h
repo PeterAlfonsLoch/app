@@ -32,7 +32,7 @@ public:
 
    nil_string_data() NOTHROW
    {
-      pstringmanager = ::null();
+      pstringmanager = NULL;
       nRefs = 2;  // Never gets freed by string_manager
       nDataLength = 0;
       nAllocLength = 0;
@@ -42,7 +42,7 @@ public:
 
    void SetManager(string_manager * pMgr ) NOTHROW
    {
-//      ASSERT( pstringmanager == ::null() );
+//      ASSERT( pstringmanager == NULL );
       pstringmanager = pMgr;
    }
 
@@ -102,7 +102,7 @@ inline string_data * string_manager::allocate(strsize nChars, int32_t nCharSize 
    if(nChars < 0)
    {
 //      ASSERT(FALSE);
-      return ::null();
+      return NULL;
    }
    
    nDataBytes = (nChars+1)*nCharSize;
@@ -117,13 +117,13 @@ inline string_data * string_manager::allocate(strsize nChars, int32_t nCharSize 
    }
    catch(...)
    {
-      return ::null();
+      return NULL;
    }
 
    //__enable_memory_tracking(bEnable);
 
-   if (pData == ::null())
-      return ::null();
+   if (pData == NULL)
+      return NULL;
    pData->pstringmanager = this;
    pData->nRefs = 1;
    pData->nAllocLength = nChars;
@@ -141,7 +141,7 @@ inline void string_manager::Free(string_data * pData)
 
 inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int32_t nCharSize)
 {
-   string_data * pNewData = ::null();
+   string_data * pNewData = NULL;
    size_t nNewTotalSize;
    size_t nNewDataBytes;
    size_t nOldTotalSize;
@@ -152,7 +152,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    if(nChars < 0)
    {
 //      ASSERT(FALSE);
-      return ::null();
+      return NULL;
    }
    
    nNewDataBytes = (nChars+1)*nCharSize;
@@ -166,7 +166,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    {
 
       pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
-      //pNewData = (string_data *) ca2_realloc(pOldData, nNewTotalSize, 0, ::null(), 0);
+      //pNewData = (string_data *) ca2_realloc(pOldData, nNewTotalSize, 0, NULL, 0);
 
    }
    catch(...)
@@ -176,9 +176,9 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    //__enable_memory_tracking(bEnable);
 
 
-   if(pNewData == ::null())
+   if(pNewData == NULL)
    {
-      return ::null();
+      return NULL;
    }
 
    pNewData->nAllocLength = nChars;
@@ -413,19 +413,19 @@ public:
 
    void construct(string_manager * pstringmanager)
    {
-      ENSURE( pstringmanager != ::null() );
+      ENSURE( pstringmanager != NULL );
       string_data * pData = pstringmanager->GetNilString();
       attach( pData );
    }
 
    simple_string(const simple_string & strSrc, string_manager * pstringmanager  )
    {
-      if(&strSrc == ::null())
+      if(&strSrc == NULL)
       {
-         ENSURE( pstringmanager != ::null() );
+         ENSURE( pstringmanager != NULL );
 
          string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
-         if( pData == ::null() )
+         if( pData == NULL )
          {
             ThrowMemoryException();
          }
@@ -440,11 +440,11 @@ public:
 
    simple_string(const char * pszSrc,string_manager * pstringmanager )
    {
-      ENSURE( pstringmanager != ::null() );
+      ENSURE( pstringmanager != NULL );
 
       strsize nLength = StringLength( pszSrc );
       string_data* pData = pstringmanager->allocate( nLength, sizeof( char ) );
-      if( pData == ::null() )
+      if( pData == NULL )
       {
          ThrowMemoryException();
       }
@@ -458,16 +458,16 @@ public:
    }
    simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager )
    {
-      ENSURE( pstringmanager != ::null() );
+      ENSURE( pstringmanager != NULL );
 
-      if(pchSrc == ::null() && nLength != 0)
+      if(pchSrc == NULL && nLength != 0)
          throw invalid_argument_exception(::ca::get_thread_app());
 
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
 
       string_data * pData = pstringmanager->allocate( nLength, sizeof( char ) );
-      if( pData == ::null() )
+      if( pData == NULL )
       {
          ThrowMemoryException();
       }
@@ -481,8 +481,11 @@ public:
    }
    ~simple_string() NOTHROW
    {
-      string_data * pData = get_data();
-      pData->Release();
+      if(m_pszData != NULL)
+      {
+         string_data * pData = get_data();
+         pData->Release();
+      }
    }
 
    simple_string& operator=(const simple_string& strSrc )
@@ -679,7 +682,7 @@ public:
       if( !pOldData->IsLocked() )  // Don't reallocate a locked buffer that's shrinking
       {
          string_data* pNewData = pstringmanager->allocate( nLength, sizeof( char ) );
-         if( pNewData == ::null() )
+         if( pNewData == NULL )
          {
             set_length( nLength );
             return;
@@ -749,7 +752,7 @@ public:
    string_manager * GetManager() const NOTHROW
    {
       string_manager * pstringmanager = get_data()->pstringmanager;
-      return pstringmanager ? pstringmanager->Clone() : ::null();
+      return pstringmanager ? pstringmanager->Clone() : NULL;
    }
 
    const char * GetString() const NOTHROW
@@ -847,7 +850,7 @@ public:
          // string.  We detect this aliasing, and modify pszSrc to point
          // into the newly allocated buffer instead.
 
-         if(pszSrc == ::null())
+         if(pszSrc == NULL)
             throw invalid_argument_exception(::ca::get_thread_app());
 
          uint_ptr nOldLength = (uint_ptr) get_length();
@@ -946,7 +949,7 @@ public:
    NOINLINE static strsize __cdecl StringLength(const char * psz ) NOTHROW
    {
       strsize nLength = 0;
-      if( psz != ::null() )
+      if( psz != NULL )
       {
          const char* pch = psz;
          while( *pch != 0 )
@@ -990,7 +993,7 @@ private:
       string_data* pOldData = get_data();
       strsize nOldLength = pOldData->nDataLength;
       string_data* pNewData = pOldData->pstringmanager->Clone()->allocate( nLength, sizeof( char ) );
-      if( pNewData == ::null() )
+      if( pNewData == NULL )
       {
          ThrowMemoryException();
       }
@@ -1061,7 +1064,7 @@ private:
          return;
       }
       string_data* pNewData = pstringmanager->Reallocate( pOldData, nLength, sizeof( char ) );
-      if( pNewData == ::null() )
+      if( pNewData == NULL )
       {
          ThrowMemoryException();
       }
@@ -1083,7 +1086,7 @@ private:
 
    static string_data * __cdecl CloneData(string_data * pData )
    {
-      string_data * pNewData = ::null();
+      string_data * pNewData = NULL;
 
       string_manager * pNewStringMgr = pData->pstringmanager->Clone();
       if( !pData->IsLocked() && (pNewStringMgr == pData->pstringmanager) )
@@ -1094,7 +1097,7 @@ private:
       else
       {
          pNewData = pNewStringMgr->allocate( pData->nDataLength, sizeof( char ) );
-         if( pNewData == ::null() )
+         if( pNewData == NULL )
          {
             ThrowMemoryException();
          }
@@ -1129,7 +1132,7 @@ public:
 public:
    explicit string_buffer(simple_string& str ) THROWS :
    m_str( str ),
-      m_pszBuffer( ::null() ),
+      m_pszBuffer( NULL ),
 #ifdef DEBUG
       m_nBufferLength( str.get_length() ),
 #endif
@@ -1140,7 +1143,7 @@ public:
 
    string_buffer(simple_string & str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
    m_str( str ),
-      m_pszBuffer( ::null() ),
+      m_pszBuffer( NULL ),
 #ifdef DEBUG
       m_nBufferLength( nMinLength ),
 #endif

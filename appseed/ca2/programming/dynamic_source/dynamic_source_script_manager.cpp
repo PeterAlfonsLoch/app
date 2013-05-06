@@ -253,7 +253,7 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::get_output_internal(::dynamic_source::script_instance * & pinstance, ::dynamic_source::script_instance * pinstanceParent, const string & strNameParam)
+   bool script_manager::get_output_internal(::dynamic_source::script_interface * & pinstance, ::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
    {
       string strName = ::ca::str::get_word(strNameParam, "?");
       if(strName.is_empty())
@@ -561,7 +561,7 @@ namespace dynamic_source
 #else
 #define is_absolute_path(psz) (psz[0] == '/')
 #endif
-
+ 
    string script_manager::real_path(const string & str)
    {
 #ifdef WINDOWS
@@ -593,13 +593,35 @@ namespace dynamic_source
    sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
       single_lock sl(&m_mutexSession, TRUE);
-      sp(::dynamic_source::session) & psession = m_mapSession[pszId];
-      if(psession.is_null())
+
+      strsp(::dynamic_source::session)::pair * ppair = m_mapSession.PLookup(pszId);
+
+      if(ppair != NULL)
+         return ppair->m_element2;
+
+
+      ppair = m_mapSessionExpiry.PLookup(pszId);
+
+      if(ppair != NULL)
       {
-         psession = canew(::dynamic_source::session(get_app()));
-         psession->m_timeAccess = ::datetime::time::get_current_time();
+         
+         if(::datetime::time::get_current_time() < ppair->m_element2->m_timeExpiry)
+            return ppair->m_element2;
+
+         ppair->m_element2.m_p->~session();
+         
+         ::new(ppair->m_element2.m_p) session(pszId, this);
+
+         return ppair->m_element2;
+
       }
+
+      sp(::dynamic_source::session) psession = canew(::dynamic_source::session(pszId, this));
+
+      psession->m_timeExpiry= ::datetime::time::get_current_time() + minutes(2);
+
       return psession;
+
    }
 
 
@@ -608,8 +630,7 @@ namespace dynamic_source
       single_lock sl(&m_mutexSession, TRUE);
       ::datetime::time time;
       time = ::datetime::time::get_current_time();
-      time -= minutes(2);
-      strsp(session)::assoc * passoc = m_mapSession.PGetFirstAssoc();
+      strsp(session)::assoc * passoc = m_mapSessionExpiry.PGetFirstAssoc();
       strsp(session)::assoc * passocNext;
       while(passoc != ::null())
       {
@@ -622,13 +643,14 @@ namespace dynamic_source
          }
          else if(passoc->m_element2->get_ref_count() <= 1)
          {
-            if(passoc->m_element2->m_timeAccess < time)
+            if(passoc->m_element2->m_timeExpiry < time)
             {
                m_mapSession.remove_assoc(passoc);
             }
          }
          passoc = passocNext;
       }
+
    }
 
 

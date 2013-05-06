@@ -32,10 +32,8 @@ namespace ca
    class str_str_interface;
 }
 
-
-class CLASS_DECL_ca2 var
+struct CLASS_DECL_ca2 var_data
 {
-public:
 
    enum e_type
    {
@@ -74,6 +72,50 @@ public:
       type_char,
       type_byte,
    };
+
+   e_type             m_etype;
+   union
+   {
+      void               * m_p;
+      ::ca::para_return     m_parareturn;
+      bool                 m_b;
+      bool *               m_pb;
+      int32_t              m_i32;
+      uint32_t             m_ui32;
+      int64_t              m_i64;
+      uint64_t             m_ui64;
+      int32_t *            m_pi32;
+      uint32_t *           m_pui32;
+      int64_t *            m_pi64;
+      uint64_t *           m_pui64;
+      string *             m_pstr;
+      float                m_f;
+      double               m_d;
+      var *                m_pvar;
+      __time64_t           m_time;
+      FILETIME             m_filetime;
+      id *                 m_pid;
+      int_array *          m_pia;
+      stringa *            m_pstra;
+      int64_array *        m_pia64;
+      var_array *          m_pvara;
+      ::ca::property_set *  m_pset;
+      ::ca::property *      m_pprop;
+      uchar        m_uch;
+      char                 m_ch;
+   };
+   sp(::ca::ca)                     m_sp;
+   string                           m_str;
+   id                               m_id;
+
+};
+
+
+class CLASS_DECL_ca2 var :
+   public var_data
+{
+public:
+
 
    void set_type(e_type e_type, bool bConvert = true);
    e_type get_type() const;
@@ -125,6 +167,7 @@ public:
    var(const ::ca::str_str_interface & set);
    var(const string_composite & composite);
    var(const ::ca::null & null);   var(const id & id);
+   inline var(var && v);
    template < class T >
    var(const sp(T) & sp)
    {
@@ -134,39 +177,7 @@ public:
 
    ~var();
 
-   e_type             m_etype;
-   union
-   {
-      ::ca::para_return     m_parareturn;
-      bool                 m_b;
-      bool *               m_pb;
-      int32_t              m_i32;
-      uint32_t             m_ui32;
-      int64_t              m_i64;
-      uint64_t             m_ui64;
-      int32_t *            m_pi32;
-      uint32_t *           m_pui32;
-      int64_t *            m_pi64;
-      uint64_t *           m_pui64;
-      string *             m_pstr;
-      float                m_f;
-      double               m_d;
-      var *                m_pvar;
-      __time64_t           m_time;
-      FILETIME             m_filetime;
-      id *                 m_pid;
-      int_array *          m_pia;
-      stringa *            m_pstra;
-      int64_array *        m_pia64;
-      var_array *          m_pvara;
-      ::ca::property_set *  m_pset;
-      ::ca::property *      m_pprop;
-      uchar        m_uch;
-      char                 m_ch;
-   };
-   sp(::ca::ca)                     m_sp;
-   string                           m_str;
-   id                               m_id;
+   
 
    bool                             get_bool(bool bDefault = false)     const;
    int32_t                          int32(int32_t iDefault = 0)  const;
@@ -331,6 +342,7 @@ public:
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
+   inline var & operator = (var && v);
 
    template < class T >
    var & operator = (const sp(T) & sp)
@@ -434,10 +446,14 @@ public:
    var last() const;
    inline ::count get_count() const;
    const var & operator[] (var varKey) const;
+   const var & operator[] (string strKey) const;
    const var & operator[] (const char * pszKey) const;
+   const var & operator[] (id idKey) const;
    const var & operator[] (index iKey) const;
    var & operator[] (var varKey);
+   var & operator[] (string strKey);
    var & operator[] (const char * pszKey);
+   var & operator[] (id idKey);
    var & operator[] (index iKey);
    var at(index i) const;
    var at(index i);
@@ -739,4 +755,23 @@ inline string  & operator += (string & str, const var & var)
 
    return str;
 
+}
+
+inline var::var(var && v)
+{
+   *((var_data *) this) = *((var_data*)&v);
+   v.m_sp.m_p = NULL;
+   v.m_str.m_pszData = NULL;
+}
+
+
+inline var & var::operator = (var && v)
+{
+   if(this != &v)
+   {
+      *((var_data *) this) = *((var_data*)&v);
+      v.m_sp.m_p = NULL;
+      v.m_str.m_pszData = NULL;      
+   }
+   return *this;
 }

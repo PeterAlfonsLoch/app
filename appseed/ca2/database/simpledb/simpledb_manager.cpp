@@ -47,7 +47,7 @@ namespace simpledb
          return false;
       }
       psocket->response().file().write(memory.get_data(), memory.get_size());
-      psocket->outheader("Content-Type") = "application/x-ca-var";
+      psocket->outheader(__id(content_type)) = "application/x-ca-var";
       return true;
    }
 

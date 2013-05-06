@@ -29,6 +29,10 @@ namespace dynamic_source
    {
    }
 
+   void script_interface::destroy()
+   {
+   }
+
 
    void script_interface::run()
    {
