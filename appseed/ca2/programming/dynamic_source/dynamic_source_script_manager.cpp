@@ -589,7 +589,6 @@ namespace dynamic_source
 #endif
    }
 
-
    sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
       single_lock sl(&m_mutexSession, TRUE);
@@ -610,7 +609,9 @@ namespace dynamic_source
 
          ppair->m_element2.m_p->~session();
          
-         ::new(ppair->m_element2.m_p) session(pszId, this);
+#undef new
+       ::new(ppair->m_element2.m_p) ::dynamic_source::session(pszId, this);
+#define new DEBUG_NEW
 
          return ppair->m_element2;
 
