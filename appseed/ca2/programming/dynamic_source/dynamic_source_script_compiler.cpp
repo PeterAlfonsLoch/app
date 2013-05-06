@@ -654,6 +654,10 @@ namespace dynamic_source
          }
       }
       strDest += "\r\n";
+      strDest += "\r\n";
+      iPosId = strDest.get_length();
+      strDest += "\r\n";
+      strDest += "\r\n";
       strDest += "class " + m_pmanager->m_strNamespace + "_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
@@ -669,7 +673,6 @@ namespace dynamic_source
       strDest += "void " + m_pmanager->m_strNamespace + "_script::run()\r\n";
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
-      iPosId = strDest.get_length();
       straId.remove_all();
       while((iPos = strSource.find("<?", iStart)) >= 0)
       {
@@ -1064,6 +1067,13 @@ namespace dynamic_source
             strDest += "#include \""+str+".h\"\r\n";
          }
       }
+
+      strDest += "\r\n";
+      strDest += "\r\n";
+      strsize iPosId = strDest.get_length();
+      strDest += "\r\n";
+      strDest += "\r\n";
+
       strsize iStart = 0;
       strsize iPos = 0;
       strsize iLastEnd = 0;
@@ -1090,6 +1100,14 @@ namespace dynamic_source
       strDest += "\");\r\n";
       strDest += "//End parsed user script\r\n";
       strDest += "}\r\n";*/
+
+      string strId;
+      for(int32_t i = 0; i < straId.get_size(); i++)
+      {
+         strId += "static class id lscript_id" + ::ca::str::from(i) + "(\"" + straId[i] + "\");\r\n";
+      }
+
+      strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
       //Application.file().put_contents_utf8(lpcszDest, strDest);
       Application.file().put_contents(lpcszDest, strDest);
