@@ -46,6 +46,9 @@
 	<File name="base/ca/ca_message.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="23683" topLine="830" />
 	</File>
+	<File name="base/ca/ca_object.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="486" topLine="0" />
+	</File>
 	<File name="base/ca/ca_process.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="4404" topLine="146" />
 	</File>
@@ -418,8 +421,8 @@
 	<File name="primitive/primitive_id_space.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="801" topLine="14" />
 	</File>
-	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="4">
-		<Cursor position="2740" topLine="136" />
+	<File name="primitive/primitive_simple_string.h" open="1" top="0" tabpos="1">
+		<Cursor position="9997" topLine="441" />
 	</File>
 	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="7" topLine="0" />
