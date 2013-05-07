@@ -1060,7 +1060,7 @@ inline void id::raw_set(const string * pstr)
 
 inline string id::str() const
 {
-   return m_pstr == ::null() ? string() : (const char *) *m_pstr;
+   return m_pstr == ::null() ? string() : *m_pstr;
 }
 
 inline   string::string() throw() :
@@ -1679,7 +1679,7 @@ namespace  ca
             return false;
 
          str.Truncate(str.length() - iLen);
-         
+
          return true;
 
       }
@@ -1691,14 +1691,14 @@ namespace  ca
 
 inline CLASS_DECL_ca2 string operator + (const id & id, const char * psz)
 {
-   
+
    return id.to_string() + psz;
 
 }
 
 inline CLASS_DECL_ca2 string operator + (const char * psz, const id & id)
 {
-   
+
    return psz + id.to_string();
 
 }

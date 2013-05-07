@@ -394,6 +394,7 @@
 		<Unit filename="base/ca/ca_progress_interface.h" />
 		<Unit filename="base/ca/ca_property.cpp" />
 		<Unit filename="base/ca/ca_property.h" />
+		<Unit filename="base/ca/ca_property_set.cpp" />
 		<Unit filename="base/ca/ca_property_set.h" />
 		<Unit filename="base/ca/ca_raw_pointer.h" />
 		<Unit filename="base/ca/ca_reader.cpp" />

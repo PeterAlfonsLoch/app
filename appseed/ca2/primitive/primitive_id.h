@@ -176,5 +176,3 @@ inline id & id::operator = (const id & id)
    return *this;
 }
 
-
-
