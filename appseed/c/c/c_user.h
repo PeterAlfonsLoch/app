@@ -90,8 +90,8 @@ namespace user
 
 
       virtual LRESULT message_handler(LPMESSAGE lpmessage) = 0;
-      //virtual sp(interaction) get_parent() const = 0;
-      //virtual sp(interaction) set_parent(sp(interaction) pguieParent) = 0;
+      virtual sp(interaction) get_parent() const = 0;
+      virtual sp(interaction) set_parent(sp(interaction) pguieParent) = 0;
 #ifdef METROWIN
       virtual Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window() = 0;
 #endif
