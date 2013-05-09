@@ -440,6 +440,9 @@
     <ClInclude Include="c\c_smart_pointer2.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
+    <ClInclude Include="c\c_user.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

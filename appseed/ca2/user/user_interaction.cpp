@@ -166,6 +166,18 @@ namespace user
          return m_pimpl->get_parent();
    }
 
+   oswindow interaction::get_parent_handle() const
+   {
+
+      sp(interaction) puiparent = get_parent();
+
+      if(puiparent.is_null())
+         return ::null();
+
+      return puiparent->get_safe_handle();
+
+   }
+
    void interaction::set_timer(smart_pointer_array < timer_item > timera)
    {
       for(int32_t i = 0; i < timera.get_count(); i++)

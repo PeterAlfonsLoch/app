@@ -369,6 +369,7 @@ namespace user
       virtual window_interface * window_interface_get_parent() const;
       virtual sp(::user::interaction) get_parent() const;
       virtual sp(interaction) set_parent(sp(interaction) pguieParent);
+      virtual oswindow get_parent_handle() const;
 
       virtual id GetDlgCtrlId();
       virtual id SetDlgCtrlId(class id id);
