@@ -32,13 +32,6 @@ namespace c
       return Sys(m_p->m_papp).clone(m_p);
    }
 
-   template < class T >
-   void smart_pointer <T>::release()
-   {
-
-      ::c::release(m_p);
-
-   }
 
 
 } // namespace c
