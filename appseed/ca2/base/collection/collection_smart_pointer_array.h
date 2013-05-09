@@ -108,8 +108,6 @@ public:
    ::index find_first(const T * p, index iStart = 0, ::count nCount = -1)
    {
 
-      ::count c = 0;
-
       index iEnd;
 
       if(nCount < 0)
@@ -140,8 +138,6 @@ public:
 
    ::index find_first(const T * p, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1)
    {
-
-      ::count c = 0;
 
       index iEnd;
 

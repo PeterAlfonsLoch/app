@@ -178,12 +178,22 @@ namespace user
 
    }
 
+   sp(interaction) interaction::get_parent_base() const
+   {
+      return get_parent();
+   }
+   
    void interaction::set_timer(smart_pointer_array < timer_item > timera)
    {
       for(int32_t i = 0; i < timera.get_count(); i++)
       {
          SetTimer(timera[i].m_uiId, timera[i].m_uiElapse, ::null());
       }
+   }
+   
+   sp(interaction_base) interaction::set_parent(sp(interaction_base) pguieParent)
+   {
+      return set_parent(pguieParent);
    }
 
    sp(interaction) interaction::set_parent(sp(interaction) pguieParent)

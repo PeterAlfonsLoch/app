@@ -643,7 +643,7 @@ os_thread::~os_thread()
 
    mutex_lock ml(*s_pmutex);
 
-   for(int i = s_pptra->get_count() - 1; i >= 0; i--)
+   for(index i = s_pptra->get_count() - 1; i >= 0; i--)
    {
 
       if(s_pptra->element_at(i) == this)

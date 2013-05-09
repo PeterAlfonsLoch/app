@@ -276,6 +276,16 @@ template < class T >
       *m_p = *p.m_p;
    }
 
+    
+    // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
+    // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
+    template < class T >
+    void smart_pointer <T>::release()
+    {
+        
+        ::c::release(m_p);
+        
+    }
 
 
 } // namespace c

@@ -84,7 +84,7 @@ public:
    virtual ~os_thread();
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
    static void * thread_proc(void * pparam);
 

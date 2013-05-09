@@ -198,7 +198,7 @@ oswindow oswindow::get_parent()
    if(m_pdata == NULL)
       return ::ca::null();
    
-   return m_pdata->m_pui->get_parent();
+   return m_pdata->m_pui->get_parent_handle();
    
 }
 
@@ -216,13 +216,13 @@ oswindow oswindow::set_parent(oswindow oswindow)
    || oswindow.m_pdata->m_pui->m_pui == NULL)
    {
    
-      m_pdata->m_pui->set_parent(NULL);
+       m_pdata->m_pui->set_parent_base(::null());
       
    }
    else
    {
       
-      m_pdata->m_pui->set_parent(oswindow.m_pdata->m_pui->m_pui);
+      m_pdata->m_pui->set_parent_base(oswindow.m_pdata->m_pui);
       
    }
    

@@ -725,12 +725,12 @@ namespace plane
       template < class TYPE >
       void set_enum_name(const std_type_info & info, TYPE e, const char * psz)
       {
-         set_enum_name(sp(::ca::type_info)(info), (int32_t) e, psz);
+         set_enum_name(get_type_info(info), (int32_t) e, psz);
       }
       template < class TYPE >
       string get_enum_name(const std_type_info & info, TYPE e)
       {
-         return get_enum_name(sp(::ca::type_info)(info), (int32_t) e);
+         return get_enum_name(get_type_info(info), (int32_t) e);
       }
 
       template < class TYPE >

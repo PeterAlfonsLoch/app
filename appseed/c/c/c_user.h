@@ -80,7 +80,8 @@ namespace user
    class interaction;
 
 
-   class CLASS_DECL_c interaction_base
+    class CLASS_DECL_c interaction_base :
+        virtual public ::c::c
    {
    public:
 
@@ -90,8 +91,8 @@ namespace user
 
 
       virtual LRESULT message_handler(LPMESSAGE lpmessage) = 0;
-      virtual sp(interaction) get_parent() const = 0;
-      virtual sp(interaction) set_parent(sp(interaction) pguieParent) = 0;
+      virtual sp(interaction_base) get_parent_base() const = 0;
+      virtual sp(interaction_base) set_parent_base(sp(interaction_base) pguieParent) = 0;
       virtual oswindow get_parent_handle() const = 0;
 #ifdef METROWIN
       virtual Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window() = 0;

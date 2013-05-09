@@ -299,12 +299,12 @@ inline __time64_t duration::GetTimeSpan() const
 }
 
 
-inline __time64_t duration::get_total_seconds() const
+inline int64_t duration::get_total_seconds() const
 {
    return (get_total_milliseconds() + 500) / 1000;
 }
 
-inline __time64_t duration::total_seconds() const
+inline int64_t duration::total_seconds() const
 {
    return (total_milliseconds() + 500) / 1000;
 }
