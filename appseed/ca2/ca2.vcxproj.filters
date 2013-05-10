@@ -6943,6 +6943,9 @@
     <ClCompile Include="base\ca\ca_property_set.cpp">
       <Filter>Source Files\base\ca</Filter>
     </ClCompile>
+    <ClCompile Include="base\collection\collection_id_array.cpp">
+      <Filter>Source Files\base\collection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\interaction.inl">
