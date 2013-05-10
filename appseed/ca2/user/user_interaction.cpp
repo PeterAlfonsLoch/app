@@ -178,7 +178,7 @@ namespace user
 
    }
 
-   sp(interaction) interaction::get_parent_base() const
+   sp(interaction_base) interaction::get_parent_base() const
    {
       return get_parent();
    }
@@ -191,7 +191,7 @@ namespace user
       }
    }
    
-   sp(interaction_base) interaction::set_parent(sp(interaction_base) pguieParent)
+   sp(interaction_base) interaction::set_parent_base(sp(interaction_base) pguieParent)
    {
       return set_parent(pguieParent);
    }
