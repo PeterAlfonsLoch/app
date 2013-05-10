@@ -1703,6 +1703,15 @@ inline CLASS_DECL_ca2 string operator + (const char * psz, const id & id)
 
 }
 
+
+inline CLASS_DECL_ca2 string operator + (const string & str, const id & id)
+{
+
+   return str + id.to_string();
+
+}
+
+
 inline int_ptr id::compare_ci(const char * psz)
 {
    if(m_pstr == NULL)
