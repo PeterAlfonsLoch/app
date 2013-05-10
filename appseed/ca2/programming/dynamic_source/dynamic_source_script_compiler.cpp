@@ -10,6 +10,8 @@ namespace dynamic_source
 {
 
    string escape(const char * lpcsz);
+   
+   void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower = true);
 
 
    script_compiler::script_compiler(sp(::ca::application) papp) :
@@ -1116,7 +1118,7 @@ namespace dynamic_source
    }
 
    
-   void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower = true)
+   void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower)
    {
       string strKey = strResult.Mid(iArroba);
       if(bMakeKeyLower)

@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride);
+
+
 bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride)
 {
 

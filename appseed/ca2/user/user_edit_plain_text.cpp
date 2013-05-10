@@ -1,5 +1,9 @@
 ﻿#include "framework.h"
 
+string str_block(char ch, int32_t iSize);
+void str_fill(string & str, char ch);
+
+
    string str_block(char ch, int32_t iSize)
    {
       string str;

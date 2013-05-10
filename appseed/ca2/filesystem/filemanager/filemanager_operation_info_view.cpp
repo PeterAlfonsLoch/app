@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime);
+
+
 void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime)
 {
    int32_t iDeltaDark = 23;

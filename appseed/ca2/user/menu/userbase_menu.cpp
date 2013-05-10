@@ -88,7 +88,7 @@ namespace user
 
 //      const char * lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
 
-      const char * lpcsz = ::null();
+      //      const char * lpcsz = ::null();
 
       LPVOID lpvoid = ::null();
       if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, ::null(), ::null(), 0, rect(0, 0, 0, 0), Session.get_view(), id(), lpvoid))

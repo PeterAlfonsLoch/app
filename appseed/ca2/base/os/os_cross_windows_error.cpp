@@ -58,7 +58,7 @@
 #include "winerror.h"
 #include "wine/debug.h"*/
 
-WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
+//WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
 
 struct error_table
 {
@@ -67,50 +67,6 @@ struct error_table
     const DWORD *table;
 };
 
-static const struct error_table error_table[20];
-
-/**************************************************************************
- *           RtlNtStatusToDosErrorNoTeb (NTDLL.@)
- *
- * Convert an NTSTATUS code to a Win32 error code.
- *
- * PARAMS
- *  status [I] Nt error code to map.
- *
- * RETURNS
- *  The mapped Win32 error code, or ERROR_MR_MID_NOT_FOUND if there is no
- *  mapping defined.
- */
-ULONG WINAPI RtlNtStatusToDosErrorNoTeb( NTSTATUS status )
-{
-    const struct error_table *table = error_table;
-
-    if (!status || (status & 0x20000000)) return status;
-
-    /* 0xd... is equivalent to 0xc... */
-    if ((status & 0xf0000000) == 0xd0000000) status &= ~0x10000000;
-
-    while (table->start)
-    {
-        if (status < table->start) break;
-        if (status < table->end)
-        {
-            DWORD ret = table->table[status - table->start];
-            /* unknown entries are 0 */
-            if (!ret) goto no_mapping;
-            return ret;
-        }
-        table++;
-    }
-
-    /* now some special cases */
-    if (HIWORD(status) == 0xc001) return LOWORD(status);
-    if (HIWORD(status) == 0x8007) return LOWORD(status);
-
-no_mapping:
-    FIXME( "no mapping for %08x\n", status );
-    return ERROR_MR_MID_NOT_FOUND;
-}
 
 /**************************************************************************
  *           RtlNtStatusToDosError (NTDLL.@)
@@ -137,7 +93,7 @@ ULONG WINAPI RtlNtStatusToDosError( NTSTATUS status )
  */
 NTSTATUS WINAPI RtlGetLastNtStatus(void)
 {
-    return NtCurrentTeb()->LastStatusValue;
+    return (NTSTATUS) NtCurrentTeb()->LastStatusValue;
 }
 
 /**********************************************************************
@@ -153,7 +109,7 @@ NTSTATUS WINAPI RtlGetLastNtStatus(void)
  */
 DWORD WINAPI RtlGetLastWin32Error(void)
 {
-    return NtCurrentTeb()->LastErrorValue;
+    return (NTSTATUS) NtCurrentTeb()->LastErrorValue;
 }
 
 /**********************************************************************
@@ -163,7 +119,7 @@ NTSTATUS WINAPI NtRaiseHardError( NTSTATUS ErrorStatus, ULONG NumberOfParameters
                                   PUNICODE_STRING UnicodeStringParameterMask, PVOID *Parameters,
                                   HARDERROR_RESPONSE_OPTION ResponseOption, PHARDERROR_RESPONSE Response )
 {
-    FIXME(": stub. Errorstatus was %08x\n", ErrorStatus);
+  //  FIXME(": stub. Errorstatus was %08x\n", ErrorStatus);
     return STATUS_NOT_IMPLEMENTED;
 }
 
@@ -1514,26 +1470,70 @@ static const DWORD table_c0150001[39] =
    ERROR_SXS_FILE_HASH_MISSING             /* c0150027 (STATUS_SXS_FILE_HASH_MISSING) */
 };
 
+
 static const struct error_table error_table[] =
 {
-    { 0x00000102, 0x00000122, table_00000102 },
-    { 0x40000002, 0x40000026, table_40000002 },
-    { 0x40000370, 0x40000371, table_40000370 },
-    { 0x40020056, 0x40020057, table_40020056 },
-    { 0x400200af, 0x400200b0, table_400200af },
-    { 0x80000001, 0x80000028, table_80000001 },
-    { 0x80000288, 0x8000028a, table_80000288 },
-    { 0x80090300, 0x80090348, table_80090300 },
-    { 0x80092010, 0x80092014, table_80092010 },
-    { 0x80096004, 0x80096005, table_80096004 },
-    { 0x80130001, 0x80130006, table_80130001 },
-    { 0xc0000001, 0xc000019c, table_c0000001 },
-    { 0xc0000202, 0xc000038e, table_c0000202 },
-    { 0xc0020001, 0xc0020064, table_c0020001 },
-    { 0xc0030001, 0xc003000d, table_c0030001 },
-    { 0xc0030059, 0xc0030062, table_c0030059 },
-    { 0xc00a0001, 0xc00a0037, table_c00a0001 },
-    { 0xc0130001, 0xc0130017, table_c0130001 },
-    { 0xc0150001, 0xc0150028, table_c0150001 },
-    { 0, 0, NULL }  /* last entry */
+   { 0x00000102, 0x00000122, table_00000102 },
+   { 0x40000002, 0x40000026, table_40000002 },
+   { 0x40000370, 0x40000371, table_40000370 },
+   { 0x40020056, 0x40020057, table_40020056 },
+   { 0x400200af, 0x400200b0, table_400200af },
+   { 0x80000001, 0x80000028, table_80000001 },
+   { 0x80000288, 0x8000028a, table_80000288 },
+   { 0x80090300, 0x80090348, table_80090300 },
+   { 0x80092010, 0x80092014, table_80092010 },
+   { 0x80096004, 0x80096005, table_80096004 },
+   { 0x80130001, 0x80130006, table_80130001 },
+   { 0xc0000001, 0xc000019c, table_c0000001 },
+   { 0xc0000202, 0xc000038e, table_c0000202 },
+   { 0xc0020001, 0xc0020064, table_c0020001 },
+   { 0xc0030001, 0xc003000d, table_c0030001 },
+   { 0xc0030059, 0xc0030062, table_c0030059 },
+   { 0xc00a0001, 0xc00a0037, table_c00a0001 },
+   { 0xc0130001, 0xc0130017, table_c0130001 },
+   { 0xc0150001, 0xc0150028, table_c0150001 },
+   { 0, 0, NULL }  /* last entry */
 };
+
+/**************************************************************************
+ *           RtlNtStatusToDosErrorNoTeb (NTDLL.@)
+ *
+ * Convert an NTSTATUS code to a Win32 error code.
+ *
+ * PARAMS
+ *  status [I] Nt error code to map.
+ *
+ * RETURNS
+ *  The mapped Win32 error code, or ERROR_MR_MID_NOT_FOUND if there is no
+ *  mapping defined.
+ */
+ULONG WINAPI RtlNtStatusToDosErrorNoTeb( NTSTATUS status )
+{
+   const struct error_table *table = error_table;
+   
+   if (!status || (status & 0x20000000)) return status;
+   
+   /* 0xd... is equivalent to 0xc... */
+   if ((status & 0xf0000000) == 0xd0000000) status &= ~0x10000000;
+   
+   while (table->start)
+   {
+      if (status < table->start) break;
+      if (status < table->end)
+      {
+         DWORD ret = table->table[status - table->start];
+         /* unknown entries are 0 */
+         if (!ret) goto no_mapping;
+         return ret;
+      }
+      table++;
+   }
+   
+   /* now some special cases */
+   if (HIWORD(status) == 0xc001) return LOWORD(status);
+   if (HIWORD(status) == 0x8007) return LOWORD(status);
+   
+no_mapping:
+   //    FIXME( "no mapping for %08x\n", status );
+   return ERROR_MR_MID_NOT_FOUND;
+}

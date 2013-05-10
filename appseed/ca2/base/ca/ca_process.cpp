@@ -8,6 +8,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <spawn.h>
+#elif defined(MACOS)
+#include <sys/wait.h>
+#include <unistd.h>
+#include <spawn.h>
+extern char * const * environ;
 #endif
 
 
@@ -286,7 +291,7 @@ namespace ca
 
 #else
       int32_t iExitCode;
-      bool bExited;
+//      bool bExited;
 
       int32_t wpid = waitpid(m_iPid, &iExitCode, WNOHANG
               #ifdef WCONTINUED

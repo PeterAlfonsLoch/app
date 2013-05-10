@@ -58,3 +58,6 @@ oswindow SetCapture(oswindow window);
 WINBOOL ReleaseCapture();
 oswindow SetFocus(oswindow window);
 oswindow GetFocus();
+oswindow GetActiveWindow();
+oswindow SetActiveWindow(oswindow window);
+

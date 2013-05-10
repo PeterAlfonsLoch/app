@@ -91,7 +91,7 @@ public:
       if(contains(p))
          return false;
 
-      add(p);
+      this->add(p);
 
       return true;
 

@@ -4,6 +4,10 @@
 
 namespace user
 {
+   
+   
+   void DrawGripperElement001(::ca::graphics * pdc, int32_t ix, int32_t iy);
+   
 
    control_bar::control_bar()
    {

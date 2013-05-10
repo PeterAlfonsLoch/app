@@ -3321,7 +3321,7 @@ namespace ca
    sp(::user::interaction) application::get_active_guie()
    {
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
 
       return window_from_os_data(::GetActiveWindow());
 

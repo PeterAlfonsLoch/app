@@ -463,7 +463,7 @@ bool event::lock(const duration & durationTimeout)
 
       DWORD dwStart = get_tick_count();
 
-      DWORD dwTimeout = durationTimeout.get_total_milliseconds();
+      DWORD dwTimeout = (DWORD) durationTimeout.get_total_milliseconds();
       DWORD dwSleep = min(84, max(1, dwTimeout / 20));
 
 //      delay.tv_sec = durationTimeout.m_iSeconds;
@@ -474,8 +474,8 @@ bool event::lock(const duration & durationTimeout)
 
       int iSignal = m_iSignalId;
 
-int iError = 0;
-int iError2 = 0;
+//int iError = 0;
+//int iError2 = 0;
     while(!m_bSignaled && iSignal == m_iSignalId && get_tick_count() - dwStart < dwTimeout)
     {
       pthread_mutex_unlock(&m_mutex);

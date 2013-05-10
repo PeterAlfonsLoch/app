@@ -4,6 +4,8 @@
 namespace usermail
 {
 
+   
+   string normalize_datetime(const char * psz);
 
    db_pop3::db_pop3(sp(::ca::application) papp) :
       ca(papp),

@@ -147,7 +147,7 @@ find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
       return false;
    }
 
-   return binary_search(t, iIndex, fCompare, ((sort_array *) this)->defer_update(fCompare));
+   return this->binary_search(t, iIndex, fCompare, ((sort_array *) this)->defer_update(fCompare));
 
 
 }
@@ -176,7 +176,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
-   ::index i = sort_add(t, fCompare, defer_update(fCompare));
+   ::index i = this->sort_add(t, fCompare, defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 
@@ -202,7 +202,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
-   ::count c = sort_remove(t, fCompare, defer_update(fCompare));
+   ::count c = this->sort_remove(t, fCompare, defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 

@@ -5,6 +5,7 @@
 
 #define TEST 0
 
+uint32_t simple_frame_window_save_window_rect(void * pvoidParam);
 
 
 simple_frame_window::simple_frame_window(sp(::ca::application) papp) :

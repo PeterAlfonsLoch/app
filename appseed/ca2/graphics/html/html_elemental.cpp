@@ -2,6 +2,9 @@
 #include "float.h"
 
 
+void trim001(string & str);
+
+
 void trim001(string & str)
 {
    uchar uch;

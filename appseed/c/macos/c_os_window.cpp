@@ -328,3 +328,28 @@ oswindow GetFocus()
    
 }
 
+
+
+
+static oswindow g_oswindowActive;
+
+
+oswindow GetActiveWindow()
+{
+   return g_oswindowActive;
+}
+
+oswindow SetActiveWindow(oswindow window)
+{
+   
+   oswindow windowOld(g_oswindowActive);
+   
+   if(window.window() == NULL)
+      return ::ca::null();
+   
+   g_oswindowCapture = window;
+   
+   return ::ca::null();
+   
+}
+

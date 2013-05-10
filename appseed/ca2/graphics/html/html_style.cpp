@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+bool ishexdigit(char ch);
+
+
 bool ishexdigit(char ch)
 {
    if(ch >= '0' && ch <= '9')
