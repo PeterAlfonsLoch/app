@@ -1364,7 +1364,7 @@ namespace user
 
    void tab::install_message_handling(::ca::message::dispatch *pinterface)
    {
-      ::user::window_interface::install_message_handling(pinterface);
+      ::user::control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP   , pinterface, this, &tab::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE   , pinterface, this, &tab::_001OnMouseMove);

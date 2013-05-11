@@ -128,6 +128,10 @@ public:
    inline int_ptr compare_ci(const char * psz);
 
 
+   inline bool operator == (const ::ca::null & ) const { return is_null(); }
+   inline bool operator != (const ::ca::null & ) const { return !is_null(); }
+
+
 };
 
 

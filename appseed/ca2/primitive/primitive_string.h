@@ -1576,15 +1576,15 @@ inline bool id::operator >= (const char * psz) const
 
 inline bool id::operator == (int32_t i) const
 {
-   return m_pstr == ::null() ? false : atoi(*m_pstr) == i;
+   return m_pstr == ::null() ? i == 0 : atoi(*m_pstr) == i;
 }
 inline bool id::operator != (int32_t i) const
 {
-   return m_pstr == ::null() ? true : atoi(*m_pstr) != i;
+   return m_pstr == ::null() ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
 }
 inline bool id::operator < (int32_t i) const
 {
-   return m_pstr == ::null() ? true : atoi(*m_pstr) < i;
+   return m_pstr == ::null() ? i != 0 : atoi(*m_pstr) < i;
 }
 inline bool id::operator <= (int32_t i) const
 {
@@ -1596,7 +1596,7 @@ inline bool id::operator > (int32_t i) const
 }
 inline bool id::operator >= (int32_t i) const
 {
-   return m_pstr == ::null() ? false : atoi(*m_pstr) >= i;;
+   return m_pstr == ::null() ? i != 0 : atoi(*m_pstr) >= i;;
 }
 #endif
 
