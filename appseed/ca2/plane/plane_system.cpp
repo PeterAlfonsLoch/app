@@ -268,6 +268,8 @@ namespace plane
    bool system::initialize1()
    {
 
+      enum_display_monitors();
+
       m_visual.construct(this);
 
       if(!m_visual.initialize1())
@@ -1787,11 +1789,72 @@ namespace plane
 
    }
 
+   void system::enum_display_monitors()
+   {
+
+#ifdef WINDOWSEX
+
+      m_monitorinfoa.remove_all();
+
+      ::EnumDisplayMonitors(NULL, NULL, &system::monitor_enum_proc, (LPARAM) ( dynamic_cast < ::plane::system * > (this)));
+
+#else
+
+      // todo
+//      m_monitorinfoa.remove_all();
+
+
+#endif
+
+   }
+
+#ifdef WINDOWSEX
+   BOOL CALLBACK system::monitor_enum_proc(
+     HMONITOR hmonitor,
+     HDC hdcMonitor,
+     LPRECT lprcMonitor,
+     LPARAM dwData)
+   {
+      ::plane::system * papp = (::plane::system *) dwData;
+      papp->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
+      return TRUE; // to enumerate all
+   }
+#endif
+
+#ifdef WINDOWSEX
+   void system::monitor_enum(
+     HMONITOR hmonitor,
+     HDC hdcMonitor,
+     LPRECT lprcMonitor)
+   {
+      UNREFERENCED_PARAMETER(hdcMonitor);
+      UNREFERENCED_PARAMETER(lprcMonitor);
+      m_monitorinfoa.set_size(m_monitorinfoa.get_size() + 1);
+      memset(&m_monitorinfoa.last_element(), 0, sizeof(MONITORINFO));
+      m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
+      ::GetMonitorInfo(hmonitor, &m_monitorinfoa.last_element());
+      MONITORINFO mi = m_monitorinfoa.last_element();
+
+      TRACE0("application::monitor_enum\n");
+      TRACE("upper_bound %d\n", m_monitorinfoa.get_upper_bound());
+      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right, mi.rcMonitor.bottom);
+      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcWork.left, mi.rcWork.top, mi.rcWork.right, mi.rcWork.bottom);
+   }
+#endif
+
 
    ::count system::get_monitor_count()
    {
 
-      return 0;
+#ifdef WINDOWSEX
+
+      return m_monitorinfoa.get_count();
+
+#else
+
+      return 1;
+
+#endif
 
    }
 
@@ -1802,7 +1865,7 @@ namespace plane
 #ifdef WINDOWSEX
       if(i < 0 || i >= get_monitor_count())
          return false;
-//      *lprect = m_monitorinfoa[i].rcMonitor;
+      *lprect = m_monitorinfoa[i].rcMonitor;
 #elif defined(METROWIN)
 
       return System.get_window_rect(lprect);

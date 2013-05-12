@@ -789,6 +789,18 @@ namespace plane
 
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
+
+      void enum_display_monitors();
+
+#if defined(WINDOWS)
+
+      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
+
+      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor);
+
+#endif
+
+
    };
 
 
