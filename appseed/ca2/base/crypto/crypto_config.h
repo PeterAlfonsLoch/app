@@ -128,7 +128,7 @@
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
-/* Write errors to this sp(::ca::file)/
+/* Write errors to this file */
 /* #undef USE_ERR_REPORTING_FILE */
 
 /* Define to use syslog logging. */

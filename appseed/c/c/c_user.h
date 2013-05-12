@@ -23,6 +23,9 @@ public:
 
    hthread();
    virtual ~hthread();
+   
+   
+   void wait();
 
 
 };

@@ -1,5 +1,6 @@
 #include "framework.h"
 
+/*
 UINT HashKey(string & okey)
 {
    const char * key = okey;
@@ -8,7 +9,7 @@ UINT HashKey(string & okey)
       nHash = (nHash<<5) + nHash + *key++;
    return nHash;
 }
-
+*/
 
 
 /*
