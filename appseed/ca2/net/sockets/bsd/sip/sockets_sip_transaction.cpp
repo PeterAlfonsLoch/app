@@ -40,13 +40,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetAccept(const string & value)
    {
-      header("Accept") = value;
+      header(__id(accept)) = value;
    }
 
 
    string transaction::Accept()
    {
-      return header("Accept");
+      return header(__id(accept));
    }
 
 
@@ -96,13 +96,13 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetConnection(const string & value)
    {
-      header("Connection") = value;
+      header(__id(connection)) = value;
    }
 
 
    string transaction::Connection()
    {
-      return header("Connection");
+      return header(__id(connection));
    }
 
 

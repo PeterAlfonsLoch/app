@@ -177,7 +177,7 @@ namespace sockets
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
          m_b_complete = true;
-         if(outheader("Content-Encoding").compare_value_ci("gzip") == 0)
+         if(outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
          {
             System.compress().ungz(m_memoryfile);
          }

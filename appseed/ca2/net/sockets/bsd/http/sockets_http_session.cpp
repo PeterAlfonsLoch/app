@@ -63,7 +63,7 @@ namespace sockets
 
    void http_session::step()
    {
-      inheader("Connection") = "Keep-Alive";
+      inheader(__id(connection)) = "Keep-Alive";
       if(m_strMethod.CompareNoCase("GET") == 0)
       {
          http_get_socket::step();

@@ -20,6 +20,10 @@ namespace dynamic_source
       {
          ::OutputDebugString("locale_schema.m_idLocale=" + pls->m_idLocale.str());
       }
+      if(m_set.has_property("rsa_n"))
+      {
+         ::OutputDebugString("rsa_n");
+      }
    }
 
    int64_t session::add_ref()

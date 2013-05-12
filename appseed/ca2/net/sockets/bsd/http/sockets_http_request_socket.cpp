@@ -87,11 +87,11 @@ namespace sockets
    void http_request_socket::step()
    {
       m_request.attr("http_method") = m_strRequest;
-      //outheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      //outheader(__id(accept)) = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       //outheader("Accept-Language") = "en-us,en;q=0.5";
       //outheader("Accept-Encoding") = "gzip,deflate";
       //outheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      outheader("User-agent") = MyUseragent();
+      outheader(__id(user_agent)) = MyUseragent();
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
          outheader("Host") = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());

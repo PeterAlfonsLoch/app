@@ -424,7 +424,7 @@ namespace sockets
          strValue.trim();
          if(strValue.is_empty())
             continue;
-         msg += strKey + ": " + strValue + "\r\n";
+         msg += id_key(strKey) + ": " + strValue + "\r\n";
       }
       msg += "\r\n";
       Send( msg );

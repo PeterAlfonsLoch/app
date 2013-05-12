@@ -85,7 +85,7 @@ namespace sockets
          m_response.attr("http_status") = "OK";
 
          m_response.header("Content-length") = (int64_t) mem.get_size();
-         m_response.header("Content-type") = type;
+         m_response.header(__id(content_type)) = type;
    //      m_response.header("Last-modified") = m_start;
          SendResponse();
 

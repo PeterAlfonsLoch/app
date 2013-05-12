@@ -26,12 +26,12 @@ namespace http
 
    void transaction::SetAccept(const string & value)
    {
-      header("Accept") = value;
+      header(__id(accept)) = value;
    }
 
    string transaction::Accept()
    {
-      return header("Accept");
+      return header(__id(accept));
    }
 
    void transaction::SetAcceptCharset(const string & value)
@@ -66,12 +66,12 @@ namespace http
 
    void transaction::SetConnection(const string & value)
    {
-      header("Connection") = value;
+      header(__id(connection)) = value;
    }
 
    string transaction::Connection()
    {
-      return header("Connection");
+      return header(__id(connection));
    }
 
    void transaction::SetContentType(const string & value)

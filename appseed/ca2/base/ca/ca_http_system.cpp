@@ -775,15 +775,15 @@ retry:
             }
             if(pcookies != ::null() && pcookies->get_size() > 0)
             {
-               psession->request().header("Cookie") = pcookies->get_cookie_header();
+               psession->request().header(__id(cookie)) = pcookies->get_cookie_header();
             }
             if(puser != ::null() && puser->m_phttpcookies != ::null() && !(bool)set["disable_ca2_user_cookies"])
             {
-               psession->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
+               psession->request().header(__id(cookie)) = puser->m_phttpcookies->get_cookie_header();
             }
-            if(set.has_property("Cookie") && set["Cookie"].get_string().has_char())
+            if(set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
             {
-               psession->request().header("Cookie") = set["Cookie"];
+               psession->request().header(__id(cookie)) = set[__id(cookie)];
             }
 
             bool bPost;
@@ -878,7 +878,7 @@ retry:
 #endif
 
             string strCookie = psession->response().cookies().get_cookie_header();
-            set["Cookie"] = strCookie;
+            set[__id(cookie)] = strCookie;
 
             int32_t iStatusCode = psession->outattr("http_status_code");
 
@@ -1211,15 +1211,15 @@ retry:
          }
          if(pcookies != ::null() && pcookies->get_size() > 0)
          {
-            psocket->request().header("Cookie") = pcookies->get_cookie_header();
+            psocket->request().header(__id(cookie)) = pcookies->get_cookie_header();
          }
          if(puser != ::null() && puser->m_phttpcookies != ::null() && !(bool)set["disable_ca2_user_cookies"])
          {
-            psocket->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
+            psocket->request().header(__id(cookie)) = puser->m_phttpcookies->get_cookie_header();
          }
-         if(set.has_property("Cookie") && set["Cookie"].get_string().has_char())
+         if(set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
          {
-            psocket->request().header("Cookie") = set["Cookie"];
+            psocket->request().header(__id(cookie)) = set[__id(cookie)];
          }
          if(!psocket->m_bNoClose)
          {
@@ -1317,7 +1317,7 @@ retry:
 #endif
 
          string strCookie = psocket->response().cookies().get_cookie_header();
-         set["Cookie"] = strCookie;
+         set[__id(cookie)] = strCookie;
 
          if(pestatus != ::null())
          {

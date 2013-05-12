@@ -199,6 +199,9 @@ namespace plane
       id id_accept_language;
 
 
+      id id_accept;
+
+
       id_pool()
       {
 
@@ -372,6 +375,8 @@ namespace plane
          id_from = "from";
          id_accept_language = "accept-language";
 
+
+         id_accept = "accept";
 
       }
 

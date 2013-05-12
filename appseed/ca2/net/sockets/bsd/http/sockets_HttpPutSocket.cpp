@@ -104,8 +104,8 @@ namespace sockets
          outheader(__id(content_type))     = m_content_type;
       }
       inheader("Content-length")      = (int64_t) m_content_length;
-      inheader("User-agent")          = MyUseragent();
-      inheader("Connection")          = "close";
+      inheader(__id(user_agent))          = MyUseragent();
+      inheader(__id(connection))          = "close";
       SendRequest();
 
       if(m_file.is_set())
