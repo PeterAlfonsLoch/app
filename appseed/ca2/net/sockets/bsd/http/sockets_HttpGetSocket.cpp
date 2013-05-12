@@ -95,7 +95,7 @@ namespace sockets
 
 
       inheader(__id(user_agent)) = MyUseragent();
-      //outheader("Content-Length") = "0";
+      //outheader(__id(content_length)) = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
          inheader(__id(host)) = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());

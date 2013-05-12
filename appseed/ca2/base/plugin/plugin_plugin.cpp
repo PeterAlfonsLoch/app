@@ -550,7 +550,7 @@ namespace plugin
 
          headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
-         string strContentType = headers["Content-Type"];
+         string strContentType = headers[__id(content_type)];
 
          string str1;
 

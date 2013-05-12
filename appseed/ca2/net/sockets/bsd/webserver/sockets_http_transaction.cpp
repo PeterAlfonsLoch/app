@@ -76,22 +76,22 @@ namespace http
 
    void transaction::SetContentType(const string & value)
    {
-      header("Content-Type") = value;
+      header(__id(content_type)) = value;
    }
 
    string transaction::ContentType()
    {
-      return header("Content-Type");
+      return header(__id(content_type));
    }
 
    void transaction::SetContentLength(primitive::memory_size value)
    {
-      header("Content-Length") = value;
+      header(__id(content_length)) = value;
    }
 
    primitive::memory_size transaction::ContentLength()
    {
-      return atol(header("Content-Length"));
+      return atol(header(__id(content_length)));
    }
 
    void transaction::SetHost(const string & value)

@@ -357,7 +357,7 @@ namespace sockets
       bool bContentLength = m_response.attr(__id(http_status_code)) != 304;
 
       if(!bContentLength)
-         m_response.m_propertysetHeader.remove_by_name("Content-Length");
+         m_response.m_propertysetHeader.remove_by_name(__id(content_length));
 
       for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
