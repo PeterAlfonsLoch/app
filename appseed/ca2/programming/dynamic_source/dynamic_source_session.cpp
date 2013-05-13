@@ -29,18 +29,26 @@ namespace dynamic_source
    int64_t session::add_ref()
    {
 
-      if(get_ref_count() == 1)
+      if(get_ref_count() == 0)
       {
+         
+         ::c::c::add_ref();
 
          single_lock sl(&m_pmanager->m_mutexSession, true);
          
-         m_pmanager->m_mapSessionExpiry.remove_key(m_strId);
-
          m_pmanager->m_mapSession.set_at(m_strId, this);
 
-      }
+         m_pmanager->m_mapSessionExpiry.remove_key(m_strId);
 
-      return ::c::c::add_ref();
+         return m_countReference;
+
+      }
+      else
+      {
+      
+         return ::c::c::add_ref();
+
+      }
 
    }
 
@@ -62,7 +70,7 @@ namespace dynamic_source
 
       }
 
-      return ::c::c::release();
+      return ::c::c::dec_ref();
 
    }
 

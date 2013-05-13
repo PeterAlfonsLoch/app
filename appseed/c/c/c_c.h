@@ -36,6 +36,7 @@ namespace c
 
 
       virtual int64_t add_ref();
+      virtual int64_t dec_ref();
       virtual int64_t release();
 
 

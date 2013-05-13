@@ -26,14 +26,19 @@ namespace c
       #endif
    }
 
-
-   int64_t c::release()
+   int64_t c::dec_ref()
    {
-         #ifdef WINDOWS
+      #ifdef WINDOWS
       int64_t i = InterlockedDecrement64(&m_countReference);
       #else
       int64_t i =  __sync_sub_and_fetch(&m_countReference, 1);
       #endif
+      return i;
+   }
+
+   int64_t c::release()
+   {
+      int64_t i = dec_ref();
       if(i == 0)
       {
          delete_this();
