@@ -118,23 +118,20 @@ namespace userstack
    {
       ::userex::pane_tab_view::on_show_view();
 //      sp(frame) pframe =  (GetParentFrame());
-      if(get_view_id().is_text())
+      string strId = get_view_id();
+      if(::ca::str::begins_eat(strId, "app:"))
       {
-         string strId = get_view_id();
-         if(::ca::str::begins_eat(strId, "app:"))
+         sp(::ca::application) pappTab;
+         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            sp(::ca::application) pappTab;
-            if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
-            {
-               Session.m_pappCurrent = pappTab;
-               //Session.m_pappCurrent = pappTab;
-            }
-/*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
-            if(pframeApp != ::null())
-            {
-               pframeApp->WfiFullScreen(true, false);
-            }*/
+            Session.m_pappCurrent = pappTab;
+            //Session.m_pappCurrent = pappTab;
          }
+/*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
+         if(pframeApp != ::null())
+         {
+            pframeApp->WfiFullScreen(true, false);
+         }*/
       }
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
@@ -193,76 +190,69 @@ namespace userstack
 
       class sp(application) papp =  (get_app());
 
-      if(pcreatordata->m_id.is_text())
-      {
-         string strId = pcreatordata->m_id;
+      string strId = pcreatordata->m_id;
 
-         if(::ca::str::begins_eat(strId, "app:"))
+      if(::ca::str::begins_eat(strId, "app:"))
+      {
+         sp(::ca::application) pappTab;
+         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            sp(::ca::application) pappTab;
-            if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+
+            ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+            pbiasCreate->m_puiParent = pcreatordata->m_pholder;
+
+            sp(::ca::create_context) createcontext(allocer());
+            createcontext->m_spApplicationBias = pbiasCreate;
+            createcontext->m_spCommandLine->_001ParseCommandFork(strId);
+
+
+            string str;
+
+            if(papp->directrix()->m_varTopicQuery.has_property(strId))
             {
 
-               ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
-               pbiasCreate->m_puiParent = pcreatordata->m_pholder;
+               createcontext->m_spCommandLine->m_varQuery.propset().merge(papp->directrix()->m_varTopicQuery[(const char *) strId].propset());
 
-               sp(::ca::create_context) createcontext(allocer());
-               createcontext->m_spApplicationBias = pbiasCreate;
-               createcontext->m_spCommandLine->_001ParseCommandFork(strId);
-
-
-               string str;
-
-               if(papp->directrix()->m_varTopicQuery.has_property(strId))
+               if(papp->directrix()->m_varTopicQuery[(const char *) strId].has_property("file"))
                {
 
-                  createcontext->m_spCommandLine->m_varQuery.propset().merge(papp->directrix()->m_varTopicQuery[(const char *) strId].propset());
-
-                  if(papp->directrix()->m_varTopicQuery[(const char *) strId].has_property("file"))
-                  {
-
-                     createcontext->m_spCommandLine->m_varFile = papp->directrix()->m_varTopicQuery[(const char *) strId]["file"];
-
-                  }
+                  createcontext->m_spCommandLine->m_varFile = papp->directrix()->m_varTopicQuery[(const char *) strId]["file"];
 
                }
 
-               str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
-
-               createcontext->m_spCommandLine->m_eventReady.ResetEvent();
-
-               Session.on_request(createcontext);
-
-               createcontext->m_spCommandLine->m_eventReady.wait();
-
             }
 
-            sp(::ca::application) pappCurrent = Session.m_pappCurrent;
+            str = ::ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
 
-            Application.m_mapApplication[strId] = pappCurrent;
+            createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
-            string strTypeId = typeid(*pappCurrent).name();
+            Session.on_request(createcontext);
 
-     		   string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
-            pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
+            createcontext->m_spCommandLine->m_eventReady.wait();
 
-            pappCurrent = Session.m_pappCurrent;
-
-	   	   if(planeApp(pappCurrent).file().exists(strIcon))
-            {
-               ppane->m_dib.create(allocer());
-               ppane->m_dib.load_from_file(strIcon);
-            }
-            else
-            {
-               ppane->m_istrTitleEx = pcreatordata->m_id;
-            }
-            layout();
          }
-      }
-      else if(pcreatordata->m_id.is_number())
-      {
 
+         sp(::ca::application) pappCurrent = Session.m_pappCurrent;
+
+         Application.m_mapApplication[strId] = pappCurrent;
+
+         string strTypeId = typeid(*pappCurrent).name();
+
+     		string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
+         pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
+
+         pappCurrent = Session.m_pappCurrent;
+
+	   	if(planeApp(pappCurrent).file().exists(strIcon))
+         {
+            ppane->m_dib.create(allocer());
+            ppane->m_dib.load_from_file(strIcon);
+         }
+         else
+         {
+            ppane->m_istrTitleEx = pcreatordata->m_id;
+         }
+         layout();
       }
       ::userex::pane_tab_view::on_create_view(pcreatordata);
    }

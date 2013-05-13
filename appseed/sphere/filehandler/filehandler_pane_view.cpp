@@ -146,27 +146,22 @@ namespace filehandler
 
       //         sp(application) papp =  (( (GetParentFrame()))->get_app());
 
-      if(pcreatordata->m_id.is_text())
+      string strFile = pcreatordata->m_id;
+
+      if(::ca::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
 
-         string strFile = pcreatordata->m_id;
+         sp(::filehandler::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
 
-         if(::ca::str::begins_eat_ci(strFile, "default_file_handler://"))
-         {
+         pcreatordata->m_pwnd = pview;
 
-            sp(::filehandler::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
+         pcreatordata->m_pdoc = get_document();
 
-            pcreatordata->m_pwnd = pview;
+         pview->m_strName = strFile;
+         //pview->layout();
 
-            pcreatordata->m_pdoc = get_document();
-
-            pview->m_strName = strFile;
-            //pview->layout();
-
-         }
-
-         return;
       }
+
       switch(pcreatordata->m_id)
       {
       case pane_view_new:
