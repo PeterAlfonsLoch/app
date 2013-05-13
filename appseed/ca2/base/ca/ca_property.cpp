@@ -283,6 +283,7 @@ namespace ca
    {
       ::ca::str::consume_spaces(pszJson, 0, pszEnd);
       string str = ::ca::str::consume_quoted_value(pszJson, pszEnd);
+      str.make_lower();
       m_idName = str;
       ::ca::str::consume(pszJson, ":", 1, pszEnd);
       get_value().parse_json(pszJson, pszEnd);
