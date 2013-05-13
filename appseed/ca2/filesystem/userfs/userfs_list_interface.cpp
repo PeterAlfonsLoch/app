@@ -99,6 +99,9 @@ namespace userfs
 
    void list_interface::_017UpdateList(const char * lpcsz)
    {
+
+      ::ca::data::writing writing(get_fs_list_data());
+
       UNREFERENCED_PARAMETER(lpcsz);
       //UNREFERENCED_PARAMETER(lpsz);
       stringa straStrictOrder;
@@ -115,8 +118,6 @@ namespace userfs
 
       ::userfs::list_item item(get_app());
 
-      _001OnUpdateItemCount();
-
       string strParent = lpcsz;
 
       int32_t iMaxSize;
@@ -128,6 +129,8 @@ namespace userfs
       get_fs_list_data()->m_itema.m_itema.remove_all();
 
       m_straStrictOrder.remove_all();
+
+      _001OnUpdateItemCount();
 
       stringa straPath;
       stringa straTitle;

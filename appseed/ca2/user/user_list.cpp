@@ -167,6 +167,14 @@ namespace user
    void list::_001OnDraw(::ca::graphics *pdc)
    {
 
+      if(m_pdata != ::null())
+      {
+         if(m_pdata->is_in_use())
+         {
+            return;
+         }
+      }
+
       single_lock sl(&m_mutex, true);
 
       m_penFocused->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
@@ -658,7 +666,14 @@ namespace user
       if(m_pdata != ::null())
       {
          pitem->m_plist = this;
-         return m_pdata->_001GetItemImage(pitem);
+         try
+         {
+            return m_pdata->_001GetItemImage(pitem);
+         }
+         catch(...)
+         {
+            TRACE("_001GetItemImage exception");
+         }
       }
       /*LVITEM lvi;
       lvi.mask = LVIF_IMAGE;
