@@ -160,9 +160,6 @@
 	<File name="c/c_smart_pointer1.h" open="0" top="0" tabpos="13">
 		<Cursor position="4007" topLine="123" />
 	</File>
-	<File name="c/c_smart_pointer2.h" open="1" top="0" tabpos="13">
-		<Cursor position="357" topLine="17" />
-	</File>
 	<File name="c/c_std_file.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="90" topLine="0" />
 	</File>
@@ -232,8 +229,8 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="140" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="119" topLine="9" />
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="20">
+		<Cursor position="637" topLine="9" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="15">
 		<Cursor position="1704" topLine="53" />
