@@ -1265,7 +1265,8 @@ namespace dynamic_source
                   }
                   else
                   {
-                     throw simple_exception(get_app(), "invalid syntax.");
+                     strResult += ":*<invalid-syntax>*:";
+                     //throw simple_exception(get_app(), "invalid syntax.");
                   }
                }
                continue;
