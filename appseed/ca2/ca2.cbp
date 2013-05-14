@@ -414,6 +414,8 @@
 		<Unit filename="base/ca/ca_se_translator.want_to_remove.h" />
 		<Unit filename="base/ca/ca_section.cpp" />
 		<Unit filename="base/ca/ca_section.h" />
+		<Unit filename="base/ca/ca_section_container.cpp" />
+		<Unit filename="base/ca/ca_section_container.h" />
 		<Unit filename="base/ca/ca_seekable.cpp" />
 		<Unit filename="base/ca/ca_seekable.h" />
 		<Unit filename="base/ca/ca_service.cpp" />
