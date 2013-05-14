@@ -531,6 +531,7 @@
 		<Unit filename="base/collection/collection_deque.h" />
 		<Unit filename="base/collection/collection_elements.h" />
 		<Unit filename="base/collection/collection_fifo_map.h" />
+		<Unit filename="base/collection/collection_id_array.cpp" />
 		<Unit filename="base/collection/collection_id_array.h" />
 		<Unit filename="base/collection/collection_int_map.h" />
 		<Unit filename="base/collection/collection_key_sort_array.cpp" />

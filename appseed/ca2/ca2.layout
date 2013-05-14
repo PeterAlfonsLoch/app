@@ -58,8 +58,8 @@
 	<File name="base/ca/ca_smart_pointer2.h" open="0" top="0" tabpos="4">
 		<Cursor position="335" topLine="20" />
 	</File>
-	<File name="base/ca/ca_system.h" open="1" top="0" tabpos="2">
-		<Cursor position="2289" topLine="76" />
+	<File name="base/ca/ca_system.h" open="0" top="0" tabpos="2">
+		<Cursor position="2289" topLine="71" />
 	</File>
 	<File name="base/ca/ca_thread.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="18025" topLine="873" />
@@ -69,6 +69,9 @@
 	</File>
 	<File name="base/ca/ca_window.h" open="0" top="0" tabpos="115">
 		<Cursor position="4451" topLine="109" />
+	</File>
+	<File name="base/collection/collection_array.h" open="0" top="0" tabpos="4">
+		<Cursor position="11815" topLine="469" />
 	</File>
 	<File name="base/collection/collection_map.h" open="0" top="0" tabpos="13">
 		<Cursor position="18431" topLine="714" />
@@ -424,20 +427,20 @@
 	<File name="primitive/primitive_id.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="30" topLine="0" />
 	</File>
-	<File name="primitive/primitive_id.h" open="1" top="0" tabpos="1">
-		<Cursor position="4082" topLine="143" />
+	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="1">
+		<Cursor position="4082" topLine="138" />
 	</File>
 	<File name="primitive/primitive_id_space.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="801" topLine="14" />
 	</File>
 	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="1">
-		<Cursor position="9997" topLine="450" />
+		<Cursor position="12161" topLine="544" />
 	</File>
 	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="7" topLine="0" />
+		<Cursor position="23283" topLine="843" />
 	</File>
-	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="1">
-		<Cursor position="35564" topLine="1045" />
+	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="5">
+		<Cursor position="41668" topLine="1348" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="65499" topLine="3346" />
@@ -445,8 +448,11 @@
 	<File name="programming/dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="30628" topLine="874" />
 	</File>
-	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="16617" topLine="595" />
+	<File name="programming/dynamic_source/dynamic_source_script_interface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="546" topLine="0" />
+	</File>
+	<File name="programming/dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="8662" topLine="313" />
 	</File>
 	<File name="programming/dynamic_source/dynamic_source_session.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="358" topLine="0" />
