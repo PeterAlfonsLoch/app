@@ -76,6 +76,7 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,$$$ORIGIN" />
+			<Add option="-l_ca2zlib" />
 			<Add option="-Wl,-z,defs" />
 			<Add library="../../../../stage/x86/lib_ca2zlib.so" />
 			<Add directory="../../../../stage/x86" />
