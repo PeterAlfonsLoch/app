@@ -310,6 +310,12 @@ br_init (BrInitError *error)
 	return exe != NULL;
 }
 
+const char * g_psz_br_init_symbol = (const char *) NULL;
+
+void br_init_set_symbol(const char * psz)
+{
+    g_psz_br_init_symbol = psz;
+}
 
 /** Initialize the BinReloc library (for libraries).
  *
@@ -328,7 +334,7 @@ br_init (BrInitError *error)
 int32_t
 br_init_lib (BrInitError *error)
 {
-	exe = _br_find_exe_for_symbol ((const void *) "", error);
+	exe = _br_find_exe_for_symbol ((const void *) g_psz_br_init_symbol, error);
 	return exe != NULL;
 }
 

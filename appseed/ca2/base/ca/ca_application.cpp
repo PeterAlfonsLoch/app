@@ -410,6 +410,13 @@ namespace ca
 
             m_strCa2ModuleFolder = ::dir::name(plm->l_name);
 
+            if(m_strCa2ModuleFolder.is_empty() || m_strCa2ModuleFolder[0] != '/')
+            {
+
+                m_strCa2ModuleFolder = m_strModuleFolder;
+
+            }
+
             dlclose(handle);
 
 
