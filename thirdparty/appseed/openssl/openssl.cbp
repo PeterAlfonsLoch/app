@@ -82,7 +82,7 @@
 			<Add directory="crypto/modes" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath,\\$$ORIGIN" />
+			<Add option="-Wl,-rpath,$$$ORIGIN" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>

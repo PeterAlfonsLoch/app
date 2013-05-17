@@ -73,7 +73,7 @@
 			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath,\\$$ORIGIN" />
+			<Add option="-Wl,-rpath,$$$ORIGIN" />
 			<Add option="-Wl,-E" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
