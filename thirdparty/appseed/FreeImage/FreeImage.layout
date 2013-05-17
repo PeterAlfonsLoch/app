@@ -1,76 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="CacheFile.h" open="0" top="0" tabpos="1">
-		<Cursor position="173" topLine="0" />
+	<File name="FreeImage.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage.h" open="0" top="0" tabpos="2">
-		<Cursor position="26512" topLine="352" />
+	<File name="LibJPEG/cdjpeg.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/BitmapAccess.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="11615" topLine="334" />
+	<File name="FreeImage/ZLibInterface.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1908" topLine="24" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/Conversion32.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="7770" topLine="157" />
+	<File name="CacheFile.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/GetType.cpp" open="0" top="0" tabpos="65">
-		<Cursor position="1629" topLine="9" />
+	<File name="FreeImage/PluginBMP.cpp" open="0" top="0" tabpos="76" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/MultiPage.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="26121" topLine="907" />
+	<File name="FreeImage/GetType.cpp" open="0" top="0" tabpos="65" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/PSDParser.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="5573" topLine="164" />
+	<File name="LibJPEG/jconfig.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/Plugin.cpp" open="0" top="0" tabpos="66">
-		<Cursor position="22158" topLine="757" />
+	<File name="Utilities.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/PluginBMP.cpp" open="0" top="0" tabpos="76">
-		<Cursor position="27953" topLine="983" />
+	<File name="FreeImage/Plugin.cpp" open="0" top="0" tabpos="66" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/PluginDDS.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="13242" topLine="399" />
+	<File name="FreeImage/BitmapAccess.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="FreeImage/PluginEXR.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="19870" topLine="622" />
-	</File>
-	<File name="FreeImage/PluginGIF.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="40484" topLine="1265" />
-	</File>
-	<File name="FreeImage/PluginPNG.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="17898" topLine="546" />
-	</File>
-	<File name="FreeImage/ZLibInterface.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1119" topLine="0" />
-	</File>
-	<File name="FreeImageToolkit/Rescale.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1848" topLine="4" />
-	</File>
-	<File name="LibJPEG/cdjpeg.c" open="0" top="0" tabpos="10">
-		<Cursor position="559" topLine="0" />
-	</File>
-	<File name="LibJPEG/jconfig.h" open="0" top="0" tabpos="11">
-		<Cursor position="955" topLine="5" />
-	</File>
-	<File name="LibPNG/pngread.c" open="0" top="0" tabpos="0">
-		<Cursor position="5036" topLine="129" />
-	</File>
-	<File name="LibPNG/pngwutil.c" open="0" top="0" tabpos="0">
-		<Cursor position="50160" topLine="1543" />
-	</File>
-	<File name="LibTIFF/tif_pixarlog.c" open="0" top="0" tabpos="0">
-		<Cursor position="4289" topLine="66" />
-	</File>
-	<File name="LibTIFF/tif_zip.c" open="0" top="0" tabpos="0">
-		<Cursor position="2560" topLine="20" />
-	</File>
-	<File name="Metadata/TagLib.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="69029" topLine="1196" />
-	</File>
-	<File name="OpenEXR/IlmImf/ImfIO.h" open="0" top="0" tabpos="0">
-		<Cursor position="2109" topLine="21" />
-	</File>
-	<File name="Utilities.h" open="0" top="0" tabpos="1">
-		<Cursor position="8824" topLine="233" />
+	<File name="FreeImage/PSDParser.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
