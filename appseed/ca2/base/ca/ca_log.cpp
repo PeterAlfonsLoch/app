@@ -169,15 +169,30 @@ namespace ca
       print(psz);
    }
 
-
-
    void log::trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
    {
+
       if(!m_bTrace)
          return;
+
+      string str;
+
+      str.FormatV(pszFormat, args);
+
+      trace_str(pszFileName, nLine, dwCategory, nLevel, str);
+
+   }
+
+   void log::trace_str(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * psz) const
+   {
+
+      if(!m_bTrace)
+         return;
+
       UNREFERENCED_PARAMETER(nLevel);
       UNREFERENCED_PARAMETER(nLine);
       UNREFERENCED_PARAMETER(pszFileName);
+
       single_lock sl(((log *)this)->m_pcsTrace);
 
       //((log * )this)->print(pszFormat, args);
@@ -189,11 +204,8 @@ namespace ca
       if(category.m_estatus == ::ca::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       sl.unlock();
-      string str;
-      str.FormatV(pszFormat, args);
-      va_end(args);
       stringa stra;
-      stra.add_smallest_tokens(str, *plog->m_pstraSeparator, FALSE);
+      stra.add_smallest_tokens(psz, *plog->m_pstraSeparator, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(stra[i].get_length() > 200)

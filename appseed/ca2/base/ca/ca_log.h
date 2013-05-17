@@ -86,6 +86,7 @@ namespace ca
       virtual bool initialize(id id);
       virtual bool finalize();
 
+      void trace_str(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * psz) const;
       void trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args) const;
 
       void set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel);
@@ -119,7 +120,7 @@ namespace ca
 
    };
 
-   
+
 
 } // namespace ca
 

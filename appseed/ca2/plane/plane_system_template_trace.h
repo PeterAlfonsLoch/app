@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca2 trace_add_file_and_line 
+   class CLASS_DECL_ca2 trace_add_file_and_line
 #if defined(LINUX) || defined(MACOS)
       : public string_format_printer
 #endif
@@ -80,7 +80,7 @@ namespace ca
       void trace(void *, const char * psz)
       {
 
-         System.log().trace(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
+         System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
 
       }
 
