@@ -1630,7 +1630,13 @@ inline bool id::operator >= (int_ptr i) const
 
 inline id::operator int64_t () const
 {
-   return m_pstr == ::null() ? 0x8000000000000000ll : atoi(*m_pstr);
+   if(m_pstr == NULL)
+      return 0x8000000000000000ll;
+   const char * pszEnd = NULL;
+   int64_t iResult = atoi_dup(*m_pstr, &pszEnd);
+   if(pszEnd != NULL && pszEnd > m_pstr->c_str() && *pszEnd == '\0')
+      return iResult;
+   return 0x8000000000000000ll;
 }
 
 //inline id::operator int_ptr()
