@@ -36,7 +36,8 @@ XfplayerViewLine::XfplayerViewLine(sp(::ca::application) papp) :
 XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
    ::ca::ca(pContainer->get_app()),
    m_dibMain(pContainer->allocer()),
-   m_dcextension(pContainer->get_app())
+   m_dcextension(pContainer->get_app()),
+   m_font(allocer())
 {
    m_pContainer                  = pContainer;
    m_bEnhancedEmboss             = true;
@@ -60,7 +61,10 @@ XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
 }
 
 XfplayerViewLine::XfplayerViewLine(const XfplayerViewLine & line) :
-   m_dcextension(line.get_app())
+   ca(line.get_app()),
+   m_dibMain(allocer()),
+   m_dcextension(line.get_app()),
+   m_font(allocer())
 {
    operator = (line);
 }
@@ -977,7 +981,7 @@ XfplayerViewLine & XfplayerViewLine::operator = (const XfplayerViewLine & src)
    m_logfont                     = src.m_logfont;
    m_font                        = src.m_font;
    m_bEnhancedEmboss             = src.m_bEnhancedEmboss;
-   m_bCacheEmboss                = src.m_bCacheEmboss;
+   m_bCacheEmboss                = false;
    m_dBlend                      = src.m_dBlend;
    m_iIndex                      = src.m_iIndex;
    return *this;

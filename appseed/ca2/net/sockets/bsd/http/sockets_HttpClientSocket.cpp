@@ -152,7 +152,7 @@ namespace sockets
 
    void http_client_socket::OnDataComplete()
    {
-      if(m_bNoClose)
+      if(!m_bNoClose)
       {
          SetCloseAndDelete();
       }
