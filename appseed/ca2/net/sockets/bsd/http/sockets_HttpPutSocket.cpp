@@ -98,12 +98,12 @@ namespace sockets
 
       m_request.attr("http_method")    = "PUT";
       m_request.attr("http_version")   = "HTTP/1.1";
-      inheader("Host")                = GetUrlHost();
+      inheader(__id(host))                = GetUrlHost();
       if(m_content_type.has_char())
       {
          outheader(__id(content_type))     = m_content_type;
       }
-      inheader("Content-length")      = (int64_t) m_content_length;
+      inheader(__id(content_length))      = (int64_t) m_content_length;
       inheader(__id(user_agent))          = MyUseragent();
       inheader(__id(connection))          = "close";
       SendRequest();

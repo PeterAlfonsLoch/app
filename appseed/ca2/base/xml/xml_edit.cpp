@@ -5,6 +5,12 @@ namespace xml
 {
 
 
+   edit_item::edit_item(sp(::ca::application) papp) :
+      ca(papp)
+   {
+   }
+
+
    void edit_item::set_name(const sp(::xml::node) pnode)
    {
       

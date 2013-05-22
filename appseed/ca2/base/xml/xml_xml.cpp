@@ -26,6 +26,11 @@ namespace xml
    bool xml::initialize1()
    {
 
+      if(Application.is_system())
+      {
+         System.factory().cloneable_large < ::xml::edit_item > ();
+      }
+
       if(!::ca::section::initialize1())
          return false;
 

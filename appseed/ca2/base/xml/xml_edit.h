@@ -27,6 +27,9 @@ namespace xml
       string         m_strValue;
 
 
+      edit_item(sp(::ca::application) papp);
+
+
       void set_name(const sp(::xml::node) pnode);
       void set_value(const sp(::xml::node) pnode);
       void set_attr(const sp(::xml::node) pnode, const attr * pattr);

@@ -3248,9 +3248,6 @@
     <ClInclude Include="base\ca\ca_size_count_writer.h">
       <Filter>Header Files\base\ca</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca\ca_smart_pointer_array.h">
-      <Filter>Header Files\base\ca</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca\ca_smart_pointer_query.h">
       <Filter>Header Files\base\ca</Filter>
     </ClInclude>

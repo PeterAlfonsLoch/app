@@ -210,11 +210,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         //ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
 
          main.OnAfterImageLoaded();
@@ -378,8 +374,6 @@ namespace gcom
 
          recta.remove_all();
 
-
-
          Main & main = HelperGetMain();
 
          if(m_etypea[m_iType] == TransitionEffectVisual)
@@ -387,6 +381,8 @@ namespace gcom
             main.GetVisualEffect().RenderBuffer(recta);
             return;
          }
+
+         main.DeferCheckLayout();
 
          Interface & iface = main.GetInterface();
          rect rectClient;
@@ -399,21 +395,26 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
-//         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
+
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
+         
+         if(!sl1Back.lock(millis(184)))
+            return;
+         
+         if(!sl2Buffer.lock(millis(184)))
+            return;
+ 
          ::ca::graphics & dcBack = graphics.GetBackDC();
+
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+
          ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         HelperGetMain().DeferCheckLayout();
-
          ::ca::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-        ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+
          if(&dcBack == ::null() || dcBack.get_os_data() == ::null())
          {
             End();
@@ -425,10 +426,7 @@ namespace gcom
             return;
          }
 
-         if(!sl1Back.lock(millis(184)))
-            return;
-         if(!sl2Buffer.lock(millis(184)))
-            return;
+
          dcBack.SelectClipRgn(::null());
          dcBuffer.SelectClipRgn(::null());
 
@@ -1839,7 +1837,6 @@ namespace gcom
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
 
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
 

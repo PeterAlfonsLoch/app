@@ -152,32 +152,19 @@ namespace gcom
 
 
          rect rectClient = tool1.rectClient;
-//         int32_t cx = rectClient.width();
-//         int32_t cy = rectClient.height();
-//         class imaging & imaging = System.visual().imaging();
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
          ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-//         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -186,30 +173,12 @@ namespace gcom
          }
 
 
-//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
-//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
-//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
-//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
-
-
-
-
-
-
-
-//            ARGB(255, rand() * 255 / RAND_MAX,
-  //          rand() * 255 / RAND_MAX,
-    //        rand() * 255 / RAND_MAX);
-
-//         BYTE bA = 50;
 
 #ifdef WINDOWSEX
+
          GdiFlush();
+
 #endif
-
-         //double dmin = min(cx, cy);
-         //double dmax = max(cx, cy);abs
-
 
          pdib3->stretch_dib(pdibBuffer);
 
@@ -285,24 +254,12 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-
-
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
@@ -417,28 +374,12 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-
-
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
@@ -555,26 +496,12 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
@@ -833,14 +760,8 @@ namespace gcom
          m_rndgrowAngleOffsetLatency.maxlbound = 100;
          m_rndgrowAngleOffsetLatency.maxubound = 200;
 
-/*         ::ca::graphics & dcTransfer = graphics.GetBackDC();
-         pdibTransfer->stretch_dib(pdibBuffer);
-         if(main.GetWndInterface() == ::null())
-            return;
-         main.GetWndInterface()->BackViewFeedback(pdib2->get_graphics());
-         pdib1->stretch_dib(pdib2);*/
-
          m_dAngle = 0.0;
+
       }
 
       int32_t VisualEffect::GetEffectCount()
@@ -1099,24 +1020,12 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
@@ -1318,32 +1227,16 @@ namespace gcom
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
-//         class imaging & imaging = System.visual().imaging();
-
-
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -1351,11 +1244,6 @@ namespace gcom
             pdib3->create(cx1, cy1);
          }
 
-
-//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
-//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
-//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
-//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -1672,29 +1560,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -2086,29 +1960,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -2547,12 +2407,6 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
@@ -2667,25 +2521,16 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
          ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -2893,29 +2738,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -3971,11 +3802,7 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
 
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -4095,24 +3922,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-///         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -4553,29 +4371,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -4583,11 +4387,6 @@ namespace gcom
             pdib3->create(cx1, cy1);
          }
 
-
-//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
-//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
-//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
-//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -5029,25 +4828,16 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
          ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -5259,29 +5049,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-
-         //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
-
-         //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -5831,24 +5607,15 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int32_t cx1 = pdib1->cx;
          int32_t cy1 = pdib1->cy;
-//         int32_t cxm = cx1 / 2;
-//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {

@@ -1111,7 +1111,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="base\ca\ca_simple_tree_data.h" />
     <ClInclude Include="base\ca\ca_simple_tree_item_data.h" />
     <ClInclude Include="base\ca\ca_size_count_writer.h" />
-    <ClInclude Include="base\ca\ca_smart_pointer_array.h" />
     <ClInclude Include="base\ca\ca_smart_pointer_query.h" />
     <ClInclude Include="base\ca\ca_sockets_address.h" />
     <ClInclude Include="base\ca\ca_std_pair.h" />
