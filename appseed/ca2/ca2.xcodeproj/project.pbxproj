@@ -4516,11 +4516,11 @@
 		07A6D86C173C27EB009E6FB8 /* userpresence_user_presence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userpresence_user_presence.h; sourceTree = "<group>"; };
 		07A6D86D173C27EB009E6FB8 /* userpresence_userpresence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userpresence_userpresence.cpp; sourceTree = "<group>"; };
 		07A6D86E173C27EB009E6FB8 /* userpresence_userpresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userpresence_userpresence.h; sourceTree = "<group>"; };
-		07A6E1F1173C5E94009E6FB8 /* libca2ca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libca2ca.dylib; path = /ca2/app/appseed/ca2/build/Release/libca2ca.dylib; sourceTree = "<absolute>"; };
 		9A58847716A20D230061C610 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A58847916A20D360061C610 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A58847B16A20D480061C610 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		9A58847D16A20D5E0061C610 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9A8916841751D72100E531ED /* libca2ca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2ca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA5E6DB16F7C75E005C45CE /* libca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6E116F7C7E1005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freeimage.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freeimage.dylib"; sourceTree = "<group>"; };
 		9AA5E6E216F7C7E2005C45CE /* lib_ca2freetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freetype.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freetype.dylib"; sourceTree = "<group>"; };
@@ -7472,6 +7472,7 @@
 				07A6D5D7173C27E9009E6FB8 /* os_cross_windows_crt_debug.cpp */,
 				07A6D5D8173C27E9009E6FB8 /* os_shared_memory.h */,
 				07A6D693173C27E9009E6FB8 /* this_build_number.h */,
+				9A8916841751D72100E531ED /* libca2ca.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -8755,9 +8756,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9ACA760716F7CAAC00AA1CEE /* ca2ca */ = {
+		9ACA760716F7CAAC00AA1CEE /* libca2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9ACA7C9C16F7CAAC00AA1CEE /* Build configuration list for PBXNativeTarget "ca2ca" */;
+			buildConfigurationList = 9ACA7C9C16F7CAAC00AA1CEE /* Build configuration list for PBXNativeTarget "libca2" */;
 			buildPhases = (
 				9ACA760816F7CAAC00AA1CEE /* Sources */,
 				9ACA78D016F7CAAC00AA1CEE /* Frameworks */,
@@ -8767,9 +8768,9 @@
 			);
 			dependencies = (
 			);
-			name = ca2ca;
+			name = libca2;
 			productName = ca;
-			productReference = 07A6E1F1173C5E94009E6FB8 /* libca2ca.dylib */;
+			productReference = 9A8916841751D72100E531ED /* libca2ca.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -8793,7 +8794,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9ACA760716F7CAAC00AA1CEE /* ca2ca */,
+				9ACA760716F7CAAC00AA1CEE /* libca2 */,
 			);
 		};
 /* End PBXProject section */
@@ -9905,7 +9906,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9ACA7C9C16F7CAAC00AA1CEE /* Build configuration list for PBXNativeTarget "ca2ca" */ = {
+		9ACA7C9C16F7CAAC00AA1CEE /* Build configuration list for PBXNativeTarget "libca2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9ACA7C9D16F7CAAC00AA1CEE /* Debug */,
