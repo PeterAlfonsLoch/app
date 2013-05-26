@@ -47,7 +47,7 @@ namespace sockets
    private:
 
 
-      ::collection::list<Event *>   m_events;
+      ::list < Event *>   m_events;
       bool                          m_quit;
       tcp_socket *                  m_socket;
       port_t                        m_port;

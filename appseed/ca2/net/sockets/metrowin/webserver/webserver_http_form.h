@@ -33,7 +33,6 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      using ::ca::object::request;
       ::ca::relation_set & get();
       ::ca::relation_set & post();
       ::ca::relation_set & request();

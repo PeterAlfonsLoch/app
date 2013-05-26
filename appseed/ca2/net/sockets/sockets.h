@@ -12,6 +12,15 @@ typedef int32_t socklen_t;
 #include "http_memory_file.h"
 
 
+#include "webserver/webserver_http_form.h"
+#include "webserver/webserver_http_cookie.h"
+#include "webserver/webserver_http_transaction.h"
+#include "webserver/webserver_http_request.h"
+#include "webserver/webserver_http_response.h"
+
+
+
+
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets.h"
 #elif defined(METROWIN)

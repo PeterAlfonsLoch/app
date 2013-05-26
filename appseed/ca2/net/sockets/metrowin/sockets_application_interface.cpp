@@ -5,9 +5,10 @@ namespace sockets
 {
 
 
-   application_interface::application_interface() :
-      m_mutexHttpPostBoundary(get_app()),
-      m_mutexResolvCache(get_app())
+   sockets::sockets(sp(::ca::application) papp) :
+      ca(papp),
+      m_mutexHttpPostBoundary(papp),
+      m_mutexResolvCache(papp)
    {
 
       m_pajpbasesocketinit    = NULL;
@@ -15,40 +16,39 @@ namespace sockets
    }
 
 
-   void application_interface::on_application_signal(::radix::application_signal_object * papplicationsignal)
+   bool sockets::initialize1()
    {
-      if(papplicationsignal->m_esignal == ::ca::application_signal_initialize1)
+      if(App(dynamic_cast < ::ca::application * >(this)).is_system())
       {
-
-         if(App(dynamic_cast < ::ca::application * >(this)).is_system())
-         {
 
 /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
 
-            System.factory().creatable_small < ::http::memory_file > ();
+         System.factory().creatable_small < ::http::memory_file > ();
 /*            System.factory().cloneable_small < ::sockets::ipv4_address > ();
-            System.factory().cloneable_small < ::sockets::ipv6_address > ();*/
+         System.factory().cloneable_small < ::sockets::ipv6_address > ();*/
 
-            m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
-         }
-
-         m_countHttpPostBoundary = 0;
+         m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
       }
-      else if(papplicationsignal->m_esignal == ::ca::application_signal_finalize)
+
+      m_countHttpPostBoundary = 0;
+   }
+
+   bool sockets::finalize()
+   {
+
+      if(Application.is_system())
       {
-         if(Application.is_system())
+         if(m_pajpbasesocketinit != NULL)
          {
-            if(m_pajpbasesocketinit != NULL)
-            {
-               delete m_pajpbasesocketinit;
-               m_pajpbasesocketinit = NULL;
-            }
+            delete m_pajpbasesocketinit;
+            m_pajpbasesocketinit = NULL;
          }
       }
+
    }
 
 
-   void application_interface::http_config_proxy(const char * pszUrl, http_tunnel * psocket)
+   void sockets::http_config_proxy(const char * pszUrl, http_tunnel * psocket)
    {
       UNREFERENCED_PARAMETER(pszUrl);
       UNREFERENCED_PARAMETER(psocket);

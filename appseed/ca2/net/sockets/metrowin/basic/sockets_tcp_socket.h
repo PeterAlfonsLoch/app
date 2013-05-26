@@ -80,7 +80,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             size_t _q;
             char _buf[TCP_OUTPUT_CAPACITY];
          };
-         typedef ::collection::list<OUTPUT *> output_list;
+         typedef ::list < OUTPUT *> output_list;
 
       public:
 

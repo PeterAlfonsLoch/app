@@ -1041,6 +1041,9 @@
     <ClCompile Include="OpenEXR\IlmThread\IlmThreadSemaphore.cpp">
       <Filter>Source Files\OpenEXR\IImThread</Filter>
     </ClCompile>
+    <ClCompile Include="FreeImage\Utilities.cpp">
+      <Filter>Source Files\FreeImage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CacheFile.h">

@@ -95,10 +95,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          // -------------------------------------------------------------------------
          // socket stuff
          // -------------------------------------------------------------------------
-         /** add socket instance to socket ::collection::map. Removal is always automatic. */
+         /** add socket instance to socket ::map. Removal is always automatic. */
          virtual void add(socket *) = 0;
       private:
-         /** remove socket from socket ::collection::map, used by socket class. */
+         /** remove socket from socket ::map, used by socket class. */
          virtual void remove(socket *) = 0;
       public:
 

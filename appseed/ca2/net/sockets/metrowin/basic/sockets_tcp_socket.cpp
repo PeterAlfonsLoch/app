@@ -1326,7 +1326,7 @@ namespace sockets
       /* create our context*/
   /*    if(m_spsslclientcontext.is_null())
       {
-         ::collection::string_map < sp(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
+         ::string_map < sp(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
          if(clientcontextmap.PLookup(context) == NULL)
          {
             m_spsslclientcontext(new ssl_client_context(get_app(), pmethod));
@@ -1350,7 +1350,7 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
-    /*  static ::collection::string_map < SSL_CTX * > server_contexts;
+    /*  static ::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
          const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
@@ -1389,7 +1389,7 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
-/*      static ::collection::string_map < SSL_CTX * > server_contexts;
+/*      static ::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
          const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();

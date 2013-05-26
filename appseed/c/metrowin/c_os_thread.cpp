@@ -274,7 +274,7 @@ DWORD WINAPI ResumeThread(HANDLE hThread)
    try
    {
       
-      PendingThreadInfo& info = threadInfo->m_value;
+      PendingThreadInfo& info = threadInfo->m_element2;
 
       StartThread(info.m_pfn, info.m_pv, info.m_hCompletionEvent, info.m_iPriority);
 
@@ -306,7 +306,7 @@ BOOL WINAPI SetThreadPriority(HANDLE hThread, int iPriority)
    }
 
    // Store the new priority.
-   threadInfo->m_value.m_iPriority = iPriority;
+   threadInfo->m_element2.m_iPriority = iPriority;
 
    return true;
 }
@@ -544,20 +544,173 @@ int WINAPI GetThreadPriority(_In_ HANDLE hThread)
 
    }
 
-   return threadInfo->m_value.m_iPriority;
+   return threadInfo->m_element2.m_iPriority;
 
 }
 
 
 
+simple_mutex * os_thread::s_pmutex = ::null();
+simple_array < os_thread * > * os_thread::s_pptra = ::null();
+__declspec(thread) os_thread * t_posthread = NULL;
 
-os_thread::os_thread(uint32_t (* pfn)(void *), void * pv)
+os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
+{
+
+   m_pfn    = pfn;
+   m_pv     = pv;
+   m_bRun   = true;
+
+
+   mutex_lock ml(*s_pmutex);
+
+   s_pptra->add(this);
+
+}
+
+
+os_thread::~os_thread()
+{
+
+   mutex_lock ml(*s_pmutex);
+
+   for(index i = s_pptra->get_count() - 1; i >= 0; i--)
+   {
+
+      if(s_pptra->element_at(i) == this)
+      {
+
+         s_pptra->remove_at(i);
+
+      }
+
+   }
+
+}
+
+
+os_thread * os_thread::get()
+{
+
+   return t_posthread;
+
+}
+
+void os_thread::set(os_thread * posthread)
+{
+
+   t_posthread = posthread;
+
+}
+
+bool os_thread::get_run()
+{
+
+   return get()->m_bRun;
+
+}
+
+void os_thread::stop_all(uint32_t millisMaxWait)
+{
+
+   millisMaxWait = millisMaxWait;
+
+   uint32_t start = get_tick_count();
+
+   while(get_tick_count() - start < millisMaxWait)
+   {
+
+      {
+
+         mutex_lock ml(*s_pmutex);
+
+         for(int i = 0; i < s_pptra->get_count(); i++ )
+         {
+
+            s_pptra->element_at(i)->m_bRun = false;
+
+         }
+
+         if(s_pptra->get_count() <= 0)
+         {
+
+            break;
+
+         }
+
+      }
+
+      Sleep(184);
+
+   }
+
+
+}
+
+DWORD WINAPI os_thread::thread_proc(LPVOID lpparameter)
+{
+
+   os_thread * posthread = (os_thread *) lpparameter;
+
+   t_posthread = posthread;
+
+   uint32_t uiRet = posthread->run();
+
+   t_posthread = ::null();
+
+   delete posthread;
+
+   return uiRet;
+
+}
+
+
+uint32_t os_thread::run()
+{
+
+/*   Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   DWORD_PTR gdiplusToken                                      = NULL;
+   DWORD_PTR gdiplusHookToken                                  = NULL;
+
+   Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken, pgdiplusStartupInput, pgdiplusStartupOutput);
+
+   if(statusStartup != Gdiplus::Ok)
+   {
+
+      return -1;
+
+   }*/
+
+   //attach_thread_input_to_main_thread();
+
+   uint32_t dwRet = 0xffffffff;
+
+   try
+   {
+
+      dwRet = m_pfn(m_pv);
+
+   }
+   catch(...)
+   {
+   }
+
+//   Gdiplus::GdiplusShutdown(gdiplusToken);
+
+   return dwRet;
+
+}
+
+
+
+/*os_thread::os_thread(uint32_t (* pfn)(void *), void * pv)
 {
 
    m_pfn    = pfn;
    m_pv     = pv;
 
-}
+}*/
 
 
 uint32_t thread_proc_create_thread(void * lpparameter)
@@ -866,7 +1019,7 @@ CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread)
       return NULL;
 
 
-   return p->m_value;
+   return p->m_element2;
 
 }
 
@@ -881,7 +1034,7 @@ CLASS_DECL_c HANDLE WINAPI get_thread_handle(DWORD dw)
       return NULL;
 
 
-   return p->m_value;
+   return p->m_element2;
 
 }
 
@@ -923,8 +1076,7 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wPa
 
 ///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_ca bool set_thread_priority(int32_t priority);
-
+	CLASS_DECL_c bool set_thread_priority(int32_t priority)
 	{
       return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
 
@@ -934,7 +1086,7 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wPa
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
 
-	CLASS_DECL_ca int32_t thread_priority()
+	CLASS_DECL_c int32_t thread_priority()
 	{
 
       return ::GetThreadPriority(::GetCurrentThread());

@@ -265,7 +265,13 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="crypt\nessie.h" />
     <ClInclude Include="c\c.h" />
     <ClInclude Include="c\c_async.h" />
+    <ClInclude Include="c\c_c.h" />
+    <ClInclude Include="c\c_index.h" />
     <ClInclude Include="c\c_integer_to_string.h" />
+    <ClInclude Include="c\c_memory.h" />
+    <ClInclude Include="c\c_number.h" />
+    <ClInclude Include="c\c_smart_pointer1.h" />
+    <ClInclude Include="c\c_smart_pointer2.h" />
     <ClInclude Include="c\c_string_to_integer.h" />
     <ClInclude Include="c\c_base64.h" />
     <ClInclude Include="c\c_conv.h" />
@@ -314,6 +320,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="c\c_time.h" />
     <ClInclude Include="c\c_types.h" />
     <ClInclude Include="c\c_url.h" />
+    <ClInclude Include="c\c_user.h" />
     <ClInclude Include="c\c_verisimple_string.h" />
     <ClInclude Include="c\c_verisimple_wstring.h" />
     <ClInclude Include="c\c_vsstringtow.h" />
@@ -392,6 +399,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="crypt\whirpool.cpp" />
     <ClCompile Include="c\c.cpp" />
     <ClCompile Include="c\c_argcargv.cpp" />
+    <ClCompile Include="c\c_c.cpp" />
     <ClCompile Include="c\c_string_to_integer.cpp" />
     <ClCompile Include="c\c_base64.cpp" />
     <ClCompile Include="c\c_conv.cpp" />
@@ -433,6 +441,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="c\c_strx.cpp" />
     <ClCompile Include="c\c_template.cpp" />
     <ClCompile Include="c\c_url.cpp" />
+    <ClCompile Include="c\c_user.cpp" />
     <ClCompile Include="c\c_verisimple_string.cpp" />
     <ClCompile Include="c\c_verisimple_wstring.cpp" />
     <ClCompile Include="c\c_version.cpp" />

@@ -704,7 +704,7 @@ namespace sockets
       virtual void step();
    };
 
-   typedef ::collection::map < SOCKET, SOCKET, socket *, socket * > socket_map;
+   typedef ::map < SOCKET, SOCKET, socket *, socket * > socket_map;
    typedef ::comparable_eq_list < socket * > socket_list;
 
 } // namespace sockets

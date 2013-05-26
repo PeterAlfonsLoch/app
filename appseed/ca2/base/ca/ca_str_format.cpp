@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+#ifndef NO_VARIADIC_TEMPLATE
+
+
 namespace ca
 {
 
@@ -233,6 +236,9 @@ namespace ca
 
 
 } // namespace gen
+
+
+#endif
 
 
 

@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Log error to log class for print out / storage. */
          void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::ca::log::e_level elevel = ::ca_get_level_warning());
 
-         /** add socket instance to socket ::collection::map. Removal is always automatic. */
+         /** add socket instance to socket ::map. Removal is always automatic. */
          void add(socket *);
 
          /** get status of read/write/exception file descriptor set for a socket. */
@@ -175,8 +175,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void CheckSanity();
 
       public:
-         socket_map     m_sockets; ///< Active sockets ::collection::map
-         socket_map     m_add; ///< Sockets to be added to sockets ::collection::map
+         socket_map     m_sockets; ///< Active sockets ::map
+         socket_map     m_add; ///< Sockets to be added to sockets ::map
          socket_list    m_delete; ///< Sockets to be deleted (failed when add)
       protected:
          StdLog *m_stdlog; ///< Registered log class, or NULL
@@ -185,7 +185,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       private:
          void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-         /** remove socket from socket ::collection::map, used by socket class. */
+         /** remove socket from socket ::map, used by socket class. */
          void remove(socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
 //         fd_set m_rfds; ///< file descriptor set monitored for read events
@@ -210,11 +210,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_resolv_id; ///< Resolver id counter
          resolv_server *m_resolver; ///< Resolver thread pointer
          port_t m_resolver_port; ///< Resolver listen port
-         ::collection::map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
+         ::map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
          bool m_b_enable_pool; ///< Connection pool enabled if true
          int m_next_trigger_id; ///< Unique trigger id counter
-         ::collection::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
-         ::collection::map<int, int, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
+         ::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
+         ::map<int, int, ::map<socket *, socket *, bool, bool>, ::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
          bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
       };
 

@@ -2,7 +2,7 @@
 
 
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & memSalt)
+int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & memSalt)
 {
 
    UNREFERENCED_PARAMETER(memSalt);
@@ -15,11 +15,11 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
 
    storageDecrypt.set_os_stream_buffer(bufferOut);
 
-   return true;
+   return 1;
 
 }
 
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memSalt)
+int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memSalt)
 {
 
    UNREFERENCED_PARAMETER(memSalt);
@@ -32,6 +32,6 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
 
    storageEncrypt.set_os_stream_buffer(bufferOut);
 
-   return true;
+   return 1;
 
 }

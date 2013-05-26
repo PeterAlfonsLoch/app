@@ -139,7 +139,7 @@ namespace sockets
          }
 
          // only fields, no files, add urlencoding
-         /*for (std::collection::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
+         /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
          {
             string name = (*it).first;
             list<string>& ref = (*it).second;

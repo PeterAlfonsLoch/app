@@ -15755,7 +15755,7 @@ translate_out:
       }
    }
 
-   /* An base_array to ::collection::map all upper-case characters into their corresponding
+   /* An base_array to ::map all upper-case characters into their corresponding
    ** lower-case character.
    */
    SQLITE_PRIVATE const uchar sqlite3UpperToLower[] = {
@@ -18504,7 +18504,7 @@ translate_out:
    };
 
    /*
-   ** These hash tables ::collection::map inodes and file descriptors (really, lockKey and
+   ** These hash tables ::map inodes and file descriptors (really, lockKey and
    ** openKey structures) into lockInfo and openCnt structures.  Access to
    ** these hash tables must be protected by a mutex.
    */
@@ -21466,7 +21466,7 @@ afp_end_lock:
 
       ca2_free(zName);
 
-      /* If we succeeded in making the shared primitive::memory handle, ::collection::map it. */
+      /* If we succeeded in making the shared primitive::memory handle, ::map it. */
       if (pFile->hShared){
          pFile->shared = (winceLock*)MapViewOfFile(pFile->hShared,
             FILE_MAP_READ|FILE_MAP_WRITE, 0, 0, sizeof(winceLock));
@@ -23278,7 +23278,7 @@ afp_end_lock:
       void *pCodecArg;            /* First argument to xCodec() */
 #endif
       int32_t nHash;                  /* Size of the pager hash table */
-      PgHdr **aHash;              /* Hash table to ::collection::map page number to PgHdr */
+      PgHdr **aHash;              /* Hash table to ::map page number to PgHdr */
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
       Pager *pNext;               /* Doubly linked list of pagers on which */
       Pager *pPrev;               /* sqlite3_release_memory() will work */
@@ -28612,18 +28612,18 @@ stmt_begin_failed:
 #define WRITE_LOCK    2
 
    /*
-   ** These macros define the location of the pointer-::collection::map entry for a
+   ** These macros define the location of the pointer-::map entry for a
    ** database page. The first argument to each is the number of usable
    ** bytes on each page of the database (often 1024). The second is the
-   ** page number to look up in the pointer ::collection::map.
+   ** page number to look up in the pointer ::map.
    **
-   ** PTRMAP_PAGENO returns the database page number of the pointer-::collection::map
+   ** PTRMAP_PAGENO returns the database page number of the pointer-::map
    ** page that stores the required pointer. PTRMAP_PTROFFSET returns
-   ** the offset of the requested ::collection::map entry.
+   ** the offset of the requested ::map entry.
    **
-   ** If the pgno argument passed to PTRMAP_PAGENO is a pointer-::collection::map page,
+   ** If the pgno argument passed to PTRMAP_PAGENO is a pointer-::map page,
    ** then pgno is returned. So (pgno==PTRMAP_PAGENO(pgsz, pgno)) can be
-   ** used to test if pgno is a pointer-::collection::map page. PTRMAP_ISPAGE implements
+   ** used to test if pgno is a pointer-::map page. PTRMAP_ISPAGE implements
    ** this test.
    */
 #define PTRMAP_PAGENO(pBt, pgno) ptrmapPageno(pBt, pgno)
@@ -28631,18 +28631,18 @@ stmt_begin_failed:
 #define PTRMAP_ISPAGE(pBt, pgno) (PTRMAP_PAGENO((pBt),(pgno))==(pgno))
 
    /*
-   ** The pointer ::collection::map is a lookup table that identifies the parent page for
+   ** The pointer ::map is a lookup table that identifies the parent page for
    ** each child page in the database spfile->  The parent page is the page that
    ** contains a pointer to the child.  Every page in the database contains
    ** 0 or 1 parent pages.  (In this context 'database page' refers
-   ** to any page that is not part of the pointer ::collection::map itself.)  Each pointer ::collection::map
+   ** to any page that is not part of the pointer ::map itself.)  Each pointer ::map
    ** entry consists of a single byte 'type' and a 4 byte parent page number.
    ** The PTRMAP_XXX identifiers below are the valid types.
    **
-   ** The purpose of the pointer ::collection::map is to facility moving pages from one
+   ** The purpose of the pointer ::map is to facility moving pages from one
    ** position in the file to another as part of autovacuum.  When a page
    ** is moved, the pointer in its parent must be updated to point to the
-   ** new location.  The pointer ::collection::map is used to locate the parent page quickly.
+   ** new location.  The pointer ::map is used to locate the parent page quickly.
    **
    ** PTRMAP_ROOTPAGE: The database page is a root-page. The page-number is not
    **                  used in this case.
@@ -29427,7 +29427,7 @@ stmt_begin_failed:
 #ifndef SQLITE_OMIT_AUTOVACUUM
    /*
    ** Given a page number of a regular database page, return the page
-   ** number for the pointer-::collection::map page that contains the entry for the
+   ** number for the pointer-::map page that contains the entry for the
    ** input page number.
    */
    static Pgno ptrmapPageno(BtShared *pBt, Pgno pgno){
@@ -29443,21 +29443,21 @@ stmt_begin_failed:
    }
 
    /*
-   ** Write an entry into the pointer ::collection::map.
+   ** Write an entry into the pointer ::map.
    **
-   ** This routine updates the pointer ::collection::map entry for page number 'key'
+   ** This routine updates the pointer ::map entry for page number 'key'
    ** so that it maps to type 'eType' and parent page number 'pgno'.
    ** An error code is returned if something goes wrong, otherwise SQLITE_OK.
    */
    static int32_t ptrmapPut(BtShared *pBt, Pgno key, u8 eType, Pgno parent){
-      DbPage *pDbPage;  /* The pointer ::collection::map page */
-      u8 *pPtrmap;      /* The pointer ::collection::map data */
-      Pgno iPtrmap;     /* The pointer ::collection::map page number */
-      int32_t offset;       /* Offset in pointer ::collection::map page */
+      DbPage *pDbPage;  /* The pointer ::map page */
+      u8 *pPtrmap;      /* The pointer ::map data */
+      Pgno iPtrmap;     /* The pointer ::map page number */
+      int32_t offset;       /* Offset in pointer ::map page */
       int32_t rc;
 
       assert( sqlite3_mutex_held(pBt->mutex) );
-      /* The master-journal page number must never be used as a pointer ::collection::map page */
+      /* The master-journal page number must never be used as a pointer ::map page */
       assert( 0==PTRMAP_ISPAGE(pBt, PENDING_BYTE_PAGE(pBt)) );
 
       assert( pBt->autoVacuum );
@@ -29486,17 +29486,17 @@ stmt_begin_failed:
    }
 
    /*
-   ** Read an entry from the pointer ::collection::map.
+   ** Read an entry from the pointer ::map.
    **
-   ** This routine retrieves the pointer ::collection::map entry for page 'key', writing
+   ** This routine retrieves the pointer ::map entry for page 'key', writing
    ** the type and parent page number to *pEType and *pPgno respectively.
    ** An error code is returned if something goes wrong, otherwise SQLITE_OK.
    */
    static int32_t ptrmapGet(BtShared *pBt, Pgno key, u8 *pEType, Pgno *pPgno){
-      DbPage *pDbPage;   /* The pointer ::collection::map page */
-      int32_t iPtrmap;       /* Pointer ::collection::map page index */
-      u8 *pPtrmap;       /* Pointer ::collection::map page data */
-      int32_t offset;        /* Offset of entry in pointer ::collection::map */
+      DbPage *pDbPage;   /* The pointer ::map page */
+      int32_t iPtrmap;       /* Pointer ::map page index */
+      u8 *pPtrmap;       /* Pointer ::map page data */
+      int32_t offset;        /* Offset of entry in pointer ::map */
       int32_t rc;
 
       assert( sqlite3_mutex_held(pBt->mutex) );
@@ -29668,7 +29668,7 @@ stmt_begin_failed:
 #ifndef SQLITE_OMIT_AUTOVACUUM
    /*
    ** If the cell pCell, part of page pPage contains a pointer
-   ** to an overflow page, insert an entry into the pointer-::collection::map
+   ** to an overflow page, insert an entry into the pointer-::map
    ** for the overflow page.
    */
    static int32_t ptrmapPutOvflPtr(MemPage *pPage, u8 *pCell){
@@ -29685,7 +29685,7 @@ stmt_begin_failed:
    }
    /*
    ** If the cell with index iCell on page pPage contains a pointer
-   ** to an overflow page, insert an entry into the pointer-::collection::map
+   ** to an overflow page, insert an entry into the pointer-::map
    ** for the overflow page.
    */
    static int32_t ptrmapPutOvfl(MemPage *pPage, int32_t iCell){
@@ -30959,9 +30959,9 @@ trans_begun:
 #ifndef SQLITE_OMIT_AUTOVACUUM
 
    /*
-   ** Set the pointer-::collection::map entries for all children of page pPage. Also, if
+   ** Set the pointer-::map entries for all children of page pPage. Also, if
    ** pPage contains cells that point to overflow pages, set the pointer
-   ** ::collection::map entries for the overflow pages as well.
+   ** ::map entries for the overflow pages as well.
    */
    static int32_t setChildPtrmaps(MemPage *pPage){
       int32_t i;                             /* Counter var */
@@ -31074,8 +31074,8 @@ set_child_ptrmaps_out:
    static int32_t relocatePage(
       BtShared *pBt,           /* Btree */
       MemPage *pDbPage,        /* open page to move */
-      u8 eType,                /* Pointer ::collection::map 'type' entry for pDbPage */
-      Pgno iPtrPage,           /* Pointer ::collection::map 'page-no' entry for pDbPage */
+      u8 eType,                /* Pointer ::map 'type' entry for pDbPage */
+      Pgno iPtrPage,           /* Pointer ::map 'page-no' entry for pDbPage */
       Pgno iFreePage           /* The location to move pDbPage to */
       ){
          MemPage *pPtrPage;   /* The page that contains a pointer to pDbPage */
@@ -31098,12 +31098,12 @@ set_child_ptrmaps_out:
          pDbPage->pgno = iFreePage;
 
          /* If pDbPage was a btree-page, then it may have child pages and/or cells
-         ** that point to overflow pages. The pointer ::collection::map entries for all these
+         ** that point to overflow pages. The pointer ::map entries for all these
          ** pages need to be changed.
          **
          ** If pDbPage is an overflow page, then the first 4 bytes may store a
          ** pointer to a subsequent overflow page. If this is the case, then
-         ** the pointer ::collection::map needs to be updated for the subsequent overflow page.
+         ** the pointer ::map needs to be updated for the subsequent overflow page.
          */
          if( eType==PTRMAP_BTREE || eType==PTRMAP_ROOTPAGE ){
             rc = setChildPtrmaps(pDbPage);
@@ -31121,7 +31121,7 @@ set_child_ptrmaps_out:
          }
 
          /* Fix the database pointer on page iPtrPage that pointed at iDbPage so
-         ** that it points at iFreePage. Also fix the pointer ::collection::map entry for
+         ** that it points at iFreePage. Also fix the pointer ::map entry for
          ** iPtrPage.
          */
          if( eType!=PTRMAP_ROOTPAGE ){
@@ -31956,7 +31956,7 @@ create_cursor_exception:
    ** Given the page number of an overflow page in the database (parameter
    ** ovfl), this function finds the page number of the next page in the
    ** linked list of overflow pages. If possible, it uses the auto-vacuum
-   ** pointer-::collection::map data instead of reading the content of page ovfl to do so.
+   ** pointer-::map data instead of reading the content of page ovfl to do so.
    **
    ** If an error occurs an SQLite error code is returned. Otherwise:
    **
@@ -31991,7 +31991,7 @@ create_cursor_exception:
 
 #ifndef SQLITE_OMIT_AUTOVACUUM
          /* Try to find the next page in the overflow list using the
-         ** autovacuum pointer-::collection::map pages. Guess that the next page in
+         ** autovacuum pointer-::map pages. Guess that the next page in
          ** the overflow list is page number (ovfl+1). If that guess turns
          ** out to be wrong, fall back to loading the data of page
          ** number ovfl to determine the next page number.
@@ -32939,7 +32939,7 @@ create_cursor_exception:
             Pgno iTrunk;
             u8 searchList = 0; /* If the ca2_free-list must be searched for 'nearby' */
 
-            /* If the 'exact' parameter was true and a query of the pointer-::collection::map
+            /* If the 'exact' parameter was true and a query of the pointer-::map
             ** shows that the page 'nearby' is somewhere on the ca2_free-list, then
             ** the entire-list will be searched for that page.
             */
@@ -33122,11 +33122,11 @@ create_cursor_exception:
                }
             }
             if( pBt->autoVacuum && PTRMAP_ISPAGE(pBt, *pPgno) ){
-               /* If *pPgno refers to a pointer-::collection::map page, allocate two new pages
+               /* If *pPgno refers to a pointer-::map page, allocate two new pages
                ** at the end of the file instead of one. The first allocated page
-               ** becomes a new pointer-::collection::map page, the second is used by the caller.
+               ** becomes a new pointer-::map page, the second is used by the caller.
                */
-               TRACE(("ALLOCATE: %d from end of file (pointer-::collection::map page)\n", *pPgno));
+               TRACE(("ALLOCATE: %d from end of file (pointer-::map page)\n", *pPgno));
                assert( *pPgno!=PENDING_BYTE_PAGE(pBt) );
                (*pPgno)++;
                if( *pPgno==PENDING_BYTE_PAGE(pBt) ){ (*pPgno)++; }
@@ -33187,7 +33187,7 @@ end_allocate_page:
 #endif
 
 #ifndef SQLITE_OMIT_AUTOVACUUM
-      /* If the database supports auto-vacuum, write an entry in the pointer-::collection::map
+      /* If the database supports auto-vacuum, write an entry in the pointer-::map
       ** to indicate that the page is ca2_free.
       */
       if( pBt->autoVacuum ){
@@ -33346,7 +33346,7 @@ end_allocate_page:
             if( spaceLeft==0 ){
                int32_t isExact = 0;
 #ifndef SQLITE_OMIT_AUTOVACUUM
-               Pgno pgnoPtrmap = pgnoOvfl; /* Overflow page pointer-::collection::map entry page */
+               Pgno pgnoPtrmap = pgnoOvfl; /* Overflow page pointer-::map entry page */
                if( pBt->autoVacuum ){
                   do{
                      pgnoOvfl++;
@@ -33361,11 +33361,11 @@ end_allocate_page:
                rc = allocateBtreePage(pBt, &pOvfl, &pgnoOvfl, pgnoOvfl, isExact);
 #ifndef SQLITE_OMIT_AUTOVACUUM
                /* If the database supports auto-vacuum, and the second or subsequent
-               ** overflow page is being allocated, add an entry to the pointer-::collection::map
+               ** overflow page is being allocated, add an entry to the pointer-::map
                ** for that page now.
                **
                ** If this is the first overflow page, then write a partial entry
-               ** to the pointer-::collection::map. If we write nothing to this pointer-::collection::map slot,
+               ** to the pointer-::map. If we write nothing to this pointer-::map slot,
                ** then the optimistic overflow chain processing in clearCell()
                ** may misinterpret the uninitialised values and delete the
                ** wrong pages from the database.
@@ -33599,7 +33599,7 @@ end_allocate_page:
 #ifndef SQLITE_OMIT_AUTOVACUUM
             if( pPage->pBt->autoVacuum ){
                /* The cell may contain a pointer to an overflow page. If so, write
-               ** the entry for the overflow page into the pointer ::collection::map.
+               ** the entry for the overflow page into the pointer ::map.
                */
                CellInfo info;
                sqlite3BtreeParseCellPtr(pPage, pCell, &info);
@@ -33748,7 +33748,7 @@ end_allocate_page:
       put4byte(&pParent->aData[pParent->hdrOffset+8], pgnoNew);
 
 #ifndef SQLITE_OMIT_AUTOVACUUM
-      /* If this is an auto-vacuum database, update the pointer ::collection::map
+      /* If this is an auto-vacuum database, update the pointer ::map
       ** with entries for the new page, and any pointer from the
       ** cell on the page to an overflow page.
       */
@@ -34232,7 +34232,7 @@ end_allocate_page:
          assert( pNew->nOverflow==0 );
 
 #ifndef SQLITE_OMIT_AUTOVACUUM
-         /* If this is an auto-vacuum database, update the pointer ::collection::map entries
+         /* If this is an auto-vacuum database, update the pointer ::map entries
          ** that point to the siblings that were rearranged. These can be: left
          ** children of cells, the right-child of the page, or overflow pages
          ** pointed to by cells.
@@ -34306,7 +34306,7 @@ end_allocate_page:
             put4byte(findOverflowCell(pParent,nxDiv), pNew->pgno);
 #ifndef SQLITE_OMIT_AUTOVACUUM
             /* If this is an auto-vacuum database, and not a leaf-data tree,
-            ** then update the pointer ::collection::map with an entry for the overflow page
+            ** then update the pointer ::map with an entry for the overflow page
             ** that the cell just inserted points to (if any).
             */
             if( pBt->autoVacuum && !leafData ){
@@ -34847,7 +34847,7 @@ end_insert:
 
          /* Creating a new table may probably require moving an existing database
          ** to make room for the new tables root page. In case this page turns
-         ** out to be an overflow page, delete all overflow page-::collection::map caches
+         ** out to be an overflow page, delete all overflow page-::map caches
          ** held by open cursors.
          */
          invalidateAllOverflowCache(pBt);
@@ -34862,7 +34862,7 @@ end_insert:
          }
          pgnoRoot++;
 
-         /* The new root-page may not be allocated on a pointer-::collection::map page, or the
+         /* The new root-page may not be allocated on a pointer-::map page, or the
          ** PENDING_BYTE page.
          */
          while( pgnoRoot==PTRMAP_PAGENO(pBt, pgnoRoot) ||
@@ -34929,7 +34929,7 @@ end_insert:
             pRoot = pPageMove;
          }
 
-         /* Update the pointer-::collection::map and meta-data with the new root-page number. */
+         /* Update the pointer-::map and meta-data with the new root-page number. */
          rc = ptrmapPut(pBt, pgnoRoot, PTRMAP_ROOTPAGE, 0);
          if( rc ){
             releasePage(pRoot);
@@ -35337,15 +35337,15 @@ cleardatabasepage_out:
 
 #ifndef SQLITE_OMIT_AUTOVACUUM
    /*
-   ** Check that the entry in the pointer-::collection::map for page iChild maps to
+   ** Check that the entry in the pointer-::map for page iChild maps to
    ** page iParent, pointer type ptrType. If not, append an error message
    ** to pCheck.
    */
    static void checkPtrmap(
       IntegrityCk *pCheck,   /* Integrity check context */
       Pgno iChild,           /* Child page number */
-      u8 eType,              /* Expected pointer ::collection::map type */
-      Pgno iParent,          /* Expected pointer ::collection::map parent page number */
+      u8 eType,              /* Expected pointer ::map type */
+      Pgno iParent,          /* Expected pointer ::map parent page number */
       char *zContext         /* Context description (used for error msg) */
       ){
          int32_t rc;
@@ -35360,7 +35360,7 @@ cleardatabasepage_out:
 
          if( ePtrmapType!=eType || iPtrmapParent!=iParent ){
             checkAppendMsg(pCheck, zContext,
-               "Bad ptr ::collection::map entry key=%d expected=(%d,%d) got=(%d,%d)",
+               "Bad ptr ::map entry key=%d expected=(%d,%d) got=(%d,%d)",
                iChild, eType, iParent, ePtrmapType, iPtrmapParent);
          }
    }
@@ -35422,7 +35422,7 @@ cleardatabasepage_out:
 #ifndef SQLITE_OMIT_AUTOVACUUM
             else{
                /* If this database supports auto-vacuum and iPage is not the last
-               ** page in this overflow list, check that the pointer-::collection::map entry for
+               ** page in this overflow list, check that the pointer-::map entry for
                ** the following page matches iPage.
                */
                if( pCheck->pBt->autoVacuum && N>0 ){
@@ -35689,7 +35689,7 @@ cleardatabasepage_out:
             }
 #else
             /* If the database supports auto-vacuum, make sure no tables contain
-            ** references to pointer-::collection::map pages.
+            ** references to pointer-::map pages.
             */
             if( sCheck.anRef[i]==0 &&
                (PTRMAP_PAGENO(pBt, i)!=i || !pBt->autoVacuum) ){
@@ -35697,7 +35697,7 @@ cleardatabasepage_out:
             }
             if( sCheck.anRef[i]!=0 &&
                (PTRMAP_PAGENO(pBt, i)==i && pBt->autoVacuum) ){
-                  checkAppendMsg(&sCheck, 0, "Pointer ::collection::map page %d is referenced", i);
+                  checkAppendMsg(&sCheck, 0, "Pointer ::map page %d is referenced", i);
             }
 #endif
          }
@@ -68038,7 +68038,7 @@ end_of_vacuum:
    **
    ** For example, if the WHERE clause expression used these VDBE
    ** cursors:  4, 5, 8, 29, 57, 73.  Then the  ExprMaskSet structure
-   ** would ::collection::map those cursor numbers into bits 0 through 5.
+   ** would ::map those cursor numbers into bits 0 through 5.
    **
    ** Note that the mapping is not necessarily ordered.  In the example
    ** above, the mapping might go like this:  4->3, 5->1, 8->2, 29->0,
@@ -73895,7 +73895,7 @@ whereBeginNoMem:
    /*
    ** The charMap() macro maps alphabetic characters into their
    ** lower-case ASCII equivalent.  On ASCII machines, this is just
-   ** an upper-to-lower case ::collection::map.  On EBCDIC machines we also need
+   ** an upper-to-lower case ::map.  On EBCDIC machines we also need
    ** to adjust the encoding.  Only alphabetic characters and underscores
    ** need to be translated.
    */
@@ -76348,7 +76348,7 @@ error_out:
    ** wiki.
    */
    /* The full-text index is stored in a series of b+tree (-like)
-   ** structures called segments which ::collection::map terms to doclists.  The
+   ** structures called segments which ::map terms to doclists.  The
    ** structures are like b+trees in layout, but are constructed from the
    ** bottom up in optimal fashion and are not updatable.  Since trees
    ** are built from the bottom up, things will be described from the

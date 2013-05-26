@@ -285,7 +285,7 @@ namespace sockets
 #endif
 #endif
 
-#include "ca/ca_log.h"
+#include "base/ca/ca_log.h"
 
 #include "basic/sockets_address.h"
 //#include "basic/sockets_ssl_client_context.h"
@@ -309,12 +309,6 @@ namespace sockets
 
 
 
-
-#include "webserver/webserver_http_form.h"
-#include "webserver/webserver_http_cookie.h"
-#include "webserver/webserver_http_transaction.h"
-#include "webserver/webserver_http_request.h"
-#include "webserver/webserver_http_response.h"
 
 #include "http/http_socket.h"
 
@@ -372,5 +366,5 @@ namespace sockets
 
 #include "basic/sockets_net.h"
 
-#include "sockets_application_interface.h"
+#include "sockets_sockets.h"
 

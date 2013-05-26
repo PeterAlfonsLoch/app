@@ -366,7 +366,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if (p0 == ppair->m_value)
+         if (p0 == ppair->m_element2)
             return true;
          ppair = m_sockets.PGetNextAssoc(ppair);
       }
@@ -555,7 +555,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_value);
+         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_element2);
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
@@ -563,7 +563,7 @@ namespace sockets
    // %!             pools -> GetClientRemoteAddress() &&
                 pools -> GetClientRemoteAddress() == ad)
             {
-               m_sockets.remove_key(ppair->m_key);
+               m_sockets.remove_key(ppair->m_element1);
                pools -> SetRetain(); // avoid close in socket destructor
                return pools; // Caller is responsible that this socket is deleted
             }
@@ -746,7 +746,7 @@ namespace sockets
       if(m_trigger_src.PLookup(id) != NULL)
       {
          data.SetSource( m_trigger_src[id]);
-         ::collection::map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
+         ::map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
          while(ppair != NULL);
          {
             socket * dst = ppair->m_key;

@@ -453,6 +453,12 @@
     <ClCompile Include="metrowin\c_os_file_std.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="c\c_user.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_c.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -820,6 +826,27 @@
     </ClInclude>
     <ClInclude Include="cross\windows\windows_user.h">
       <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_index.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_memory.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_number.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_smart_pointer1.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_smart_pointer2.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_user.h">
+      <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -700,6 +700,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="FreeImage\Utilities.cpp" />
     <ClCompile Include="FreeImage\WuQuantizer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>

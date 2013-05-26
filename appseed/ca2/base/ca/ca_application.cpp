@@ -3147,7 +3147,7 @@ namespace ca
 
 #else
 
-      return MessageBox(m_psystem->m_pui, pszMessage, m_strAppName, fuStyle);
+      return MessageBox(m_psystem->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
 
 #endif
 
@@ -3337,7 +3337,7 @@ namespace ca
       if(frames().get_size() <= 0)
          return ::null();
 
-      return frames()[0];
+      return frames()(0);
 
 #endif
 

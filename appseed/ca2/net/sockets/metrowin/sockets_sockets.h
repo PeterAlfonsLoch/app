@@ -24,10 +24,13 @@
 
 
 
-         sockets();
+         sockets(sp(::ca::application) papp);
 
 
-         void on_application_signal(::ca::application_signal_object * papplicationsignal);
+         bool initialize1();
+         bool finalize();
+
+
          virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 
 
