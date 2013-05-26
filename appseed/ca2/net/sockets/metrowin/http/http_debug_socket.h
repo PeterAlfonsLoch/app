@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void Init();
 
          void OnFirst();
-         void OnHeader(const string & key,const string & value, const string & lowvalue);
+         void OnHeader(id key, const string & value);
          void OnHeaderComplete();
          void OnData(const char *,size_t);
          void OnDataComplete();

@@ -159,7 +159,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.lowattr(__str(remote_addr)) = GetRemoteAddress().get_display_number();
+         m_request.attr(__str(remote_addr)) = GetRemoteAddress().get_display_number();
          {
 #ifdef WINDOWS
 
@@ -188,9 +188,9 @@ namespace sockets
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::ca::str::begins_ci(str, "http/")) // response
          {
-            m_response.lowattr(__str(http_version)) = str;
-            m_response.lowattr(__str(http_status_code)) = pa.getword();
-            m_response.lowattr(__str(http_status)) = pa.getrest();
+            m_response.attr(__str(http_version)) = str;
+            m_response.attr(__str(http_status_code)) = pa.getword();
+            m_response.attr(__str(http_status)) = pa.getrest();
             m_bResponse    = true;
             m_bRequest     = false;
          }
@@ -198,23 +198,23 @@ namespace sockets
          {
             m_request.m_strHttpMethod = str;
             m_request.m_strHttpMethod.make_lower();
-            m_request.lowattr(__str(http_method)) = m_request.m_strHttpMethod;
-            m_request.lowattr(__str(https)) = IsSSL();
+            m_request.attr(__str(http_method)) = m_request.m_strHttpMethod;
+            m_request.attr(__str(https)) = IsSSL();
             if(IsSSL())
             {
-               m_request.lowattr(__str(http_protocol)) = "https";
+               m_request.attr(__str(http_protocol)) = "https";
             }
             else
             {
-               m_request.lowattr(__str(http_protocol)) = "http";
+               m_request.attr(__str(http_protocol)) = "http";
             }
             string strRequestUri = pa.getword();
             string strScript = System.url().get_script(strRequestUri);
             string strQuery = System.url().object_get_query(strRequestUri);
             m_request.m_strRequestUri = System.url().url_decode(strScript) + ::ca::str::has_char(strQuery, "?");
-            m_request.lowattr(__str(request_uri)) = m_request.m_strRequestUri;
-            m_request.lowattr(__str(http_version)) = pa.getword();
-            m_b_http_1_1 = ::ca::str::ends(m_request.lowattr(__str(http_version)), "/1.1");
+            m_request.attr(__str(request_uri)) = m_request.m_strRequestUri;
+            m_request.attr(__str(http_version)) = pa.getword();
+            m_b_http_1_1 = ::ca::str::ends(m_request.attr(__str(http_version)), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -265,20 +265,20 @@ namespace sockets
       }
       key.make_lower();
       OnHeader(key, value, lowvalue);
-      if(key == __str(host))
+      if(key == __id(host))
       {
          m_request.m_strHttpHost = lowvalue;
-         m_request.lowattr(__str(http_host)) = lowvalue;
+         m_request.attr(__id(http_host)) = lowvalue;
       }
-      else if(key == __str(content_length))
+      else if(key == __id(content_length))
       {
          m_body_size_left = atol(value);
       }
-      else if(key == __str(connection))
+      else if(key == __id(connection))
       {
          if (m_b_http_1_1)
          {
-            if(lowvalue == __str(close))
+            if(lowvalue == __id(close))
             {
                m_b_keepalive = false;
             }
@@ -328,9 +328,9 @@ namespace sockets
       //TRACE("SendResponse\n");
       string msg;
       string strLine;
-      strLine = m_response.lowattr(__str(http_version)).get_string() + " " + m_response.lowattr(__str(http_status_code)) + " " + m_response.lowattr(__str(http_status));
+      strLine = m_response.attr(__str(http_version)).get_string() + " " + m_response.attr(__str(http_status_code)) + " " + m_response.attr(__str(http_status));
       msg = strLine + "\r\n";
-      string strHost = m_response.lowheader(__str(host));
+      string strHost = m_response.lowheader(__id(host));
       if(strHost.has_char())
       {
          msg += "Host: " + strHost + "\r\n";
@@ -338,7 +338,7 @@ namespace sockets
       }
 
 
-      bool bContentLength = m_response.lowattr(__str(http_status_code)) != 304;
+      bool bContentLength = m_response.attr(__str(http_status_code)) != 304;
 
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");
@@ -512,11 +512,11 @@ namespace sockets
 
       if(IsRequest())
       {
-         m_body_size_left = atol(m_request.lowheader(__str(content_length)));
+         m_body_size_left = atol(m_request.lowheader(__id(content_length)));
       }
       if(IsResponse())
       {
-         m_body_size_left = atol(m_response.lowheader(__str(content_length)));
+         m_body_size_left = atol(m_response.lowheader(__id(content_length)));
       }
 
       if(m_bOnlyHeaders)

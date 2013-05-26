@@ -1,13 +1,14 @@
 #include "framework.h"
 
+
 namespace sip
 {
+
 
    transaction::transaction(::ca::application * papp) :
       ca(papp)
    {
-      m_propertysetHeader.m_bKeyCaseInsensitive       = true;
-      m_propertysetAttribute.m_bKeyCaseInsensitive    = true;
+
    }
 
    transaction::transaction(const transaction & src) :
@@ -15,8 +16,7 @@ namespace sip
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {
-      m_propertysetHeader.m_bKeyCaseInsensitive       = true;
-      m_propertysetAttribute.m_bKeyCaseInsensitive    = true;
+
    }
 
 

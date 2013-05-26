@@ -2006,11 +2006,10 @@
     <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_udp_client_socket.cpp" />
     <ClCompile Include="net\sockets\metrowin\smtp\sockets_smtpd_socket.cpp" />
     <ClCompile Include="net\sockets\metrowin\smtp\sockets_smtp_socket.cpp" />
-    <ClCompile Include="net\sockets\metrowin\sockets_application_interface.cpp" />
+    <ClCompile Include="net\sockets\metrowin\sockets_sockets.cpp" />
     <ClCompile Include="net\sockets\metrowin\sockets_include.cpp" />
     <ClCompile Include="net\sockets\metrowin\sockets_link_in_socket.cpp" />
     <ClCompile Include="net\sockets\metrowin\sockets_link_out_socket.cpp" />
-    <ClCompile Include="net\sockets\metrowin\sockets_sockets.cpp" />
     <ClCompile Include="net\sockets\metrowin\timer\sockets_Event.cpp" />
     <ClCompile Include="net\sockets\metrowin\timer\sockets_EventHandler.cpp" />
     <ClCompile Include="net\sockets\metrowin\timer\sockets_EventTime.cpp" />

@@ -598,10 +598,10 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if(ppair->m_value == p)
+         if(ppair->m_element2 == p)
          {
             LogError(p, "remove", -1, "socket destructor called while still in use", ::ca::log::level_warning);
-            m_sockets.remove_key(ppair->m_key);
+            m_sockets.remove_key(ppair->m_element1);
             return;
          }
          ppair = m_sockets.PGetNextAssoc(ppair);
@@ -609,10 +609,10 @@ namespace sockets
       socket_map::pair * ppair2 = m_add.PGetFirstAssoc();
       while(ppair2 != NULL)
       {
-         if (ppair2->m_value == p)
+         if (ppair2->m_element2 == p)
          {
             LogError(p, "remove", -2, "socket destructor called while still in use", ::ca::log::level_warning);
-            m_add.remove_key(ppair2->m_key);
+            m_add.remove_key(ppair2->m_element1);
             return;
          }
          ppair2 = m_add.PGetNextAssoc(ppair2);
@@ -749,7 +749,7 @@ namespace sockets
          ::map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
          while(ppair != NULL);
          {
-            socket * dst = ppair->m_key;
+            socket * dst = ppair->m_element1;
             if (Valid(dst))
             {
                dst->OnTrigger(id, data);

@@ -45,7 +45,7 @@ namespace sockets
       http_socket::OnHeader(key, value, lowvalue);
 
 
-      if(key == __str(content_length))
+      if(key == __id(content_length))
       {
          m_iContentLength = atoi(value);
       }
@@ -140,7 +140,7 @@ namespace sockets
 
       }
 
-      m_response.m_propertysetHeader.lowset(__str(content_length), (int64_t) m_response.file().get_size());
+      m_response.m_propertysetHeader.lowset(__id(content_length), (int64_t) m_response.file().get_size());
 
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {

@@ -6004,9 +6004,6 @@
     <ClCompile Include="net\sockets\metrowin\webserver\sockets_httpd_socket.cpp">
       <Filter>Source Files\net\sockets\metrowin\webserver</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sockets_application_interface.cpp">
-      <Filter>Source Files\net\sockets\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\metrowin\sockets_include.cpp">
       <Filter>Source Files\net\sockets\metrowin</Filter>
     </ClCompile>
@@ -6014,9 +6011,6 @@
       <Filter>Source Files\net\sockets\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\metrowin\sockets_link_out_socket.cpp">
-      <Filter>Source Files\net\sockets\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sockets_sockets.cpp">
       <Filter>Source Files\net\sockets\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\http_file.cpp">
@@ -6486,6 +6480,9 @@
     </ClCompile>
     <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp">
       <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\metrowin\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
