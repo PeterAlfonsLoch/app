@@ -16,7 +16,9 @@ namespace plane
       m_http(this),
       m_net(this),
       m_mutex(this),
+#ifndef METROWIN
       m_processsection(this),
+#endif
       m_visual(this)
    {
 

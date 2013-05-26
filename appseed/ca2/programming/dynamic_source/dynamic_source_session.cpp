@@ -18,11 +18,11 @@ namespace dynamic_source
       ::ca::international::locale_schema * pls = m_set["locale_schema"].ca < ::ca::international::locale_schema > ();
       if(pls != ::null())
       {
-         ::OutputDebugString("locale_schema.m_idLocale=" + pls->m_idLocale.str());
+         ::output_debug_string("locale_schema.m_idLocale=" + pls->m_idLocale.str());
       }
       if(m_set.has_property("rsa_n"))
       {
-         ::OutputDebugString("rsa_n");
+         ::output_debug_string("rsa_n");
       }
    }
 

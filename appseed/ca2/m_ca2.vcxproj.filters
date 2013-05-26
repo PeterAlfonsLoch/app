@@ -6145,9 +6145,6 @@
     <ClCompile Include="programming\javascript\javascript_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_script.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>

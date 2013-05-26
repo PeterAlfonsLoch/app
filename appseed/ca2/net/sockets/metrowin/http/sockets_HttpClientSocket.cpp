@@ -106,11 +106,11 @@ namespace sockets
       {
          m_content_length = atoi(value);
       }
-      else if (key == __str(content_type))
+      else if (key == __id(content_type))
       {
          m_content_type = value;
       }
-      else if (key == __str(set_cookie))
+      else if (key == __id(set_cookie))
       {
          m_response.m_cookies.add(value);
       }

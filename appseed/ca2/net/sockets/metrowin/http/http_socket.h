@@ -16,8 +16,8 @@ namespace sockets
 
 
 
-      http::request        m_request;
-      http::response       m_response;
+      ::http::request      m_request;
+      ::http::response     m_response;
 
       bool                 m_b_http_1_1;
       bool                 m_b_keepalive;
@@ -38,6 +38,9 @@ namespace sockets
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
 
+      string               m_strHttpMethod;
+
+
 
       http_socket(socket_handler_base& );
       ~http_socket();
@@ -51,7 +54,7 @@ namespace sockets
       /** For each header line this callback is executed.
       \param key Http header name
       \param value Http header value */
-      virtual void OnHeader(const string & key,const string & value, const string & lowvalue);
+      virtual void OnHeader(id key, const string & value);
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */

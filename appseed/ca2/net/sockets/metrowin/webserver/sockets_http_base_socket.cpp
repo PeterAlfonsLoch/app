@@ -40,15 +40,16 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
+   void http_base_socket::OnHeader(id key,const string & value)
    {
-      http_socket::OnHeader(key, value, lowvalue);
 
+      http_socket::OnHeader(key, value);
 
       if(key == __id(content_length))
       {
          m_iContentLength = atoi(value);
       }
+
    }
 
 
@@ -133,7 +134,7 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__str(content_type)).get_string().find("text") >= 0)
+      if(outheader(__id(content_type)).get_string().find("text") >= 0)
       {
       
          on_compress();
@@ -145,7 +146,7 @@ namespace sockets
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.add(__str(set_cookie), m_response.cookies().element_at(i).get_cookie_string());
+         m_response.m_propertysetHeader.add(__id(set_cookie), m_response.cookies().element_at(i).get_cookie_string());
 
       }
 
@@ -239,7 +240,7 @@ namespace sockets
       if(lowinheader("accept-encoding").get_string().find("gzip") >= 0)
       {
 
-         if(lowoutheader(__str(content_type)).get_string().find_ci("text") >= 0)
+         if(lowoutheader(__id(content_type)).get_string().find_ci("text") >= 0)
          {
        
             m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");

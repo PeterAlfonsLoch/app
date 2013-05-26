@@ -2105,7 +2105,6 @@
     <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
-    <ClCompile Include="programming\javascript\javascript_script.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />

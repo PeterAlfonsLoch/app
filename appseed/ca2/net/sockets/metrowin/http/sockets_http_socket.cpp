@@ -159,7 +159,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.attr(__str(remote_addr)) = GetRemoteAddress().get_display_number();
+         m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
          {
 #ifdef WINDOWS
 
@@ -188,9 +188,9 @@ namespace sockets
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::ca::str::begins_ci(str, "http/")) // response
          {
-            m_response.attr(__str(http_version)) = str;
-            m_response.attr(__str(http_status_code)) = pa.getword();
-            m_response.attr(__str(http_status)) = pa.getrest();
+            m_response.attr(__id(http_version)) = str;
+            m_response.attr(__id(http_status_code)) = pa.getword();
+            m_response.attr(__id(http_status)) = pa.getrest();
             m_bResponse    = true;
             m_bRequest     = false;
          }
@@ -213,8 +213,8 @@ namespace sockets
             string strQuery = System.url().object_get_query(strRequestUri);
             m_request.m_strRequestUri = System.url().url_decode(strScript) + ::ca::str::has_char(strQuery, "?");
             m_request.attr(__str(request_uri)) = m_request.m_strRequestUri;
-            m_request.attr(__str(http_version)) = pa.getword();
-            m_b_http_1_1 = ::ca::str::ends(m_request.attr(__str(http_version)), "/1.1");
+            m_request.attr(__id(http_version)) = pa.getword();
+            m_b_http_1_1 = ::ca::str::ends(m_request.attr(__id(http_version)), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -328,7 +328,7 @@ namespace sockets
       //TRACE("SendResponse\n");
       string msg;
       string strLine;
-      strLine = m_response.attr(__str(http_version)).get_string() + " " + m_response.attr(__str(http_status_code)) + " " + m_response.attr(__str(http_status));
+      strLine = m_response.attr(__id(http_version)).get_string() + " " + m_response.attr(__id(http_status_code)) + " " + m_response.attr(__id(http_status));
       msg = strLine + "\r\n";
       string strHost = m_response.lowheader(__id(host));
       if(strHost.has_char())
@@ -338,7 +338,7 @@ namespace sockets
       }
 
 
-      bool bContentLength = m_response.attr(__str(http_status_code)) != 304;
+      bool bContentLength = m_response.attr(__id(http_status_code)) != 304;
 
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");

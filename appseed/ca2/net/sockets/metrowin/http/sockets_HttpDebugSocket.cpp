@@ -80,7 +80,7 @@ namespace sockets
    }
 
 
-   void http_debug_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
+   void http_debug_socket::OnHeader(id key, const string & value)
    {
       if(key == __id(content_length))
          m_content_length = atoi(value);
