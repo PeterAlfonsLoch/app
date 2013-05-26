@@ -26,7 +26,7 @@ namespace sockets
 
       m_bOnlyHeaders = false;
       m_bNoClose = false;
-      m_request.attr("http_version") = "HTTP/1.1";
+      m_request.attr(__id(http_version)) = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
    }
@@ -395,12 +395,12 @@ namespace sockets
    {
       string msg;
       string strLine;
-      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("http_protocol") + "://" +  m_request.m_propertysetHeader["host"] +  m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      msg = m_request.attr(__id(http_method)).get_string() + " " + m_request.attr(__id(http_protocol)) + "://" +  m_request.m_propertysetHeader["host"] +  m_request.attr(__id(request_uri)).get_string() + " " + m_request.attr(__id(http_version)).get_string() + "\r\n";
 /*         msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
       }*/
       if(m_request.m_propertysetHeader["host"].get_string().has_char())
       {
-         strLine = "Host: " + m_request.m_propertysetHeader["host"];
+         strLine = "Host: " + m_request.m_propertysetHeader[__id(host)];
          msg += strLine + "\r\n";
       }
       for(int i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)

@@ -366,7 +366,7 @@ isTARGA20(FreeImageIO *io, fi_handle handle) {
 	io->seek_proc(handle, 0, SEEK_END);
 	const long eof = io->tell_proc(handle);
 	// read the signature
-   if(start_offset + eof - sizeofSig < 0)
+   if(start_offset + eof < sizeofSig)
       return FALSE;
 
 	io->seek_proc(handle, start_offset + eof - sizeofSig, SEEK_SET);

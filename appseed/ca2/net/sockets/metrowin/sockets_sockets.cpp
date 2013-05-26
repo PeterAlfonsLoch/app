@@ -19,7 +19,7 @@ namespace sockets
 
    bool sockets::initialize1()
    {
-      if(App(dynamic_cast < ::ca::application * >(this)).is_system())
+      if(Application.is_system())
       {
 
 /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
@@ -59,8 +59,9 @@ namespace sockets
    void sockets::http_config_proxy(const char * pszUrl, http_tunnel * psocket)
    {
       UNREFERENCED_PARAMETER(pszUrl);
-      UNREFERENCED_PARAMETER(psocket);
-      throw not_implemented(get_app());
+      //UNREFERENCED_PARAMETER(psocket);
+      //throw not_implemented(get_app());
+      psocket->m_bDirect = true;
    }
 
 

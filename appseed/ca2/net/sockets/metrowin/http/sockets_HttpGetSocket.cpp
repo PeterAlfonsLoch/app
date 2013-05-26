@@ -79,7 +79,7 @@ namespace sockets
 
    void http_get_socket::step()
    {
-      m_request.attr("http_method") = "GET";
+      m_request.attr(__id(http_method)) = "GET";
 
 
 
@@ -87,19 +87,19 @@ namespace sockets
       //inheader("Accept-Language") = "en-us,en;q=0.5";
       if(m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
       {
-         inheader("Accept-Encoding") = "gzip,deflate";
+         inheader(__id(accept_encoding)) = "gzip,deflate";
       }
       //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
 
 
 
-      inheader("User-Agent") = MyUseragent();
+      inheader(__id(user_agent)) = MyUseragent();
       //outheader("Content-Length") = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader("Host") = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());
+         inheader(__id(host)) = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());
       else
-         inheader("Host") = GetUrlHost();
+         inheader(__id(host)) = GetUrlHost();
       m_bExpectResponse = true;
       m_bExpectRequest = false;
       SendRequest();

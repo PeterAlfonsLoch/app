@@ -68,10 +68,10 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      m_request.attr("http_protocol")     = m_protocol;
-      outheader("host")                   = m_host;
-      m_request.attr("request_uri")       = strRequestUri;
-      m_response.attr("request_uri")      = strRequestUri;
+      m_request.attr(__id(http_protocol))     = m_protocol;
+      outheader(__id(host))                   = m_host;
+      m_request.attr(__id(request_uri))       = strRequestUri;
+      m_response.attr(__id(request_uri))      = strRequestUri;
 
       m_strUrl = strUrlParam;
 
@@ -92,9 +92,9 @@ namespace sockets
          Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca::log::level_fatal);
          SetCloseAndDelete();
       }
-      m_content = m_response.attr("http_version") + " " +
-                  m_response.attr("http_status_code") + " " +
-                  m_response.attr("http_status") + "\r\n";
+      m_content = m_response.attr(__id(http_version)) + " " +
+                  m_response.attr(__id(http_status_code)) + " " +
+                  m_response.attr(__id(http_status)) + "\r\n";
    }
 
 
@@ -195,7 +195,7 @@ namespace sockets
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
          m_b_complete = true;
-         if(outheader("Content-Encoding").compare_value_ci("gzip") == 0)
+         if(outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
          {
             System.compress().ungz(m_memoryfile);
          }
@@ -319,10 +319,10 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      m_request.attr("http_protocol")     = m_protocol;
-      outheader("host")                   = m_host;
-      m_request.attr("request_uri")       = strRequestUri;
-      m_response.attr("request_uri")      = strRequestUri;
+      m_request.attr(__id(http_protocol))     = m_protocol;
+      outheader(__id(host))                   = m_host;
+      m_request.attr(__id(request_uri))       = strRequestUri;
+      m_response.attr(__id(request_uri))      = strRequestUri;
 
       m_strUrl = strUrlParam;
 

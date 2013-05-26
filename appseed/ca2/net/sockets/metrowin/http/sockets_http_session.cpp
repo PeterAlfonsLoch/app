@@ -23,7 +23,7 @@ namespace sockets
       m_strHost                     = host;
       m_host                        = host;
 
-      inattr("http_protocol")       = protocol;
+      inattr(__id(http_protocol))       = protocol;
 
 
       m_strUrl                      = protocol + "://" + host;
@@ -45,10 +45,10 @@ namespace sockets
    {
       
       m_strMethod                   = pszMethod;
-      inattr("request_uri")         = pszRequest;
-      inattr("http_protocol")       = m_strProtocol;
+      inattr(__id(request_uri))         = pszRequest;
+      inattr(__id(http_protocol))       = m_strProtocol;
       m_strUrl                      = m_strProtocol + "://" + m_strHost + inattr("request_uri");
-      inattr("http_version")        = "HTTP/1.1";
+      inattr(__id(http_version))        = "HTTP/1.1";
       m_b_keepalive                 = true;
       m_content_ptr                 = 0;
 
@@ -63,7 +63,7 @@ namespace sockets
 
    void http_session::step()
    {
-      inheader("Connection") = "Keep-Alive";
+      inheader(__id(connection)) = "Keep-Alive";
       if(m_strMethod.CompareNoCase("GET") == 0)
       {
          http_get_socket::step();
