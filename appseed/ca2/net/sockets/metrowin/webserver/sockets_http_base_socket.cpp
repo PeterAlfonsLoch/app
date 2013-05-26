@@ -141,12 +141,12 @@ namespace sockets
 
       }
 
-      m_response.m_propertysetHeader.lowset(__id(content_length), (int64_t) m_response.file().get_size());
+      m_response.m_propertysetHeader.set(__id(content_length), (int64_t) m_response.file().get_size());
 
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.add(__id(set_cookie), m_response.cookies().element_at(i).get_cookie_string());
+         m_response.m_propertysetHeader.add(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
 
       }
 
@@ -237,13 +237,13 @@ namespace sockets
    void http_base_socket::on_compress()
    {
        
-      if(lowinheader("accept-encoding").get_string().find("gzip") >= 0)
+      if(inheader(__id(accept_encoding)).get_string().find("gzip") >= 0)
       {
 
-         if(lowoutheader(__id(content_type)).get_string().find_ci("text") >= 0)
+         if(outheader(__id(content_type)).get_string().find_ci("text") >= 0)
          {
        
-            m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
 
             ::primitive::memory_file file(get_app());

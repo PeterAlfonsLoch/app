@@ -410,6 +410,11 @@ public:
    // Reverse the string
    string& MakeReverse();
 
+   string lower() const;
+
+   string upper() const;
+
+
    // Convert the string to uppercase
    string uppered() const;
 
@@ -1737,4 +1742,20 @@ inline int_ptr id::compare_ci(const char * psz)
    {
       return m_pstr->compare_no_case(psz);
    }
+}
+
+
+
+inline string string::lower() const
+{
+
+   return string(*this).make_lower();
+
+}
+
+inline string string::upper() const
+{
+
+   return string(*this).make_lower();
+
 }

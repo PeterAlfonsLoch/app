@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace sockets
 {
+
 
    sip_base_client_socket::sip_base_client_socket(socket_handler_base& h) :
       ::ca::ca(h.get_app()),
@@ -520,7 +522,11 @@ namespace sockets
          // execute
          Execute();
       }*/
+
    }
 
 
 } // namespace sockets
+
+
+

@@ -38,8 +38,6 @@ namespace sockets
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
 
-      string               m_strHttpMethod;
-
 
 
       http_socket(socket_handler_base& );

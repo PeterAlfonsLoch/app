@@ -775,12 +775,12 @@ namespace sqlite3
       **          result.
       **
       ** {F12119} The [sqlite3_exec()] routine sets the 3rd parameter of its
-      **          callback to be an base_array of pointers to strings holding the
+      **          callback to be an array of pointers to strings holding the
       **          values for each column in the current result set row as
       **          obtained from [sqlite3_column_text()].
       **
       ** {F12122} The [sqlite3_exec()] routine sets the 4th parameter of its
-      **          callback to be an base_array of pointers to strings holding the
+      **          callback to be an array of pointers to strings holding the
       **          names of result columns as obtained from [sqlite3_column_name()].
       **
       ** {F12125} If the 3rd parameter to [sqlite3_exec()] is NULL then
@@ -1691,8 +1691,8 @@ namespace sqlite3
       ** numbers are obtained separately.  Let N be the number of rows
       ** and M be the number of columns.
       **
-      ** A result table is an base_array of pointers to zero-terminated
-      ** UTF-8 strings.  There are (N+1)*M elements in the base_array.
+      ** A result table is an array of pointers to zero-terminated
+      ** UTF-8 strings.  There are (N+1)*M elements in the array.
       ** The first M pointers point to zero-terminated strings that
       ** contain the names of the columns.
       ** The remaining entries all point to query results.  NULL
@@ -1717,7 +1717,7 @@ namespace sqlite3
       **
       ** There are two column (M==2) and three rows (N==3).  Thus the
       ** result table has 8 entries.  Suppose the result table is stored
-      ** in an base_array names azResult.  Then azResult holds this content:
+      ** in an array names azResult.  Then azResult holds this content:
       **
       ** <blockquote><pre>
       **        azResult&#91;0] = "Name";
@@ -1951,7 +1951,7 @@ namespace sqlite3
       ** <blockquote> SQLITE_MEMORY_SIZE=<i>NNN</i> </blockquote>
       **
       ** where <i>NNN</i> is an integer, then SQLite create a static
-      ** base_array of at least <i>NNN</i> bytes in size and use that base_array
+      ** array of at least <i>NNN</i> bytes in size and use that array
       ** for all of its dynamic primitive::memory allocation needs. {END}  Additional
       ** primitive::memory allocator options may be added in future releases.
       **
@@ -3878,7 +3878,7 @@ namespace sqlite3
       ** The xFunc (for scalar functions) or xStep (for aggregates) parameters
       ** to [sqlite3_create_function()] and [sqlite3_create_function16()]
       ** define callbacks that implement the SQL functions and aggregates.
-      ** The 4th parameter to these callbacks is an base_array of pointers to
+      ** The 4th parameter to these callbacks is an array of pointers to
       ** [sqlite3_value] objects.  There is one [sqlite3_value] object for
       ** each parameter to the SQL function.  These routines are used to
       ** extract values from the [sqlite3_value] objects.
@@ -5073,10 +5073,10 @@ namespace sqlite3
       ** {F12642} Duplicate extensions are detected so calling this routine multiple
       ** times with the same extension is harmless.
       **
-      ** {F12643} This routine stores a pointer to the extension in an base_array
+      ** {F12643} This routine stores a pointer to the extension in an array
       ** that is obtained from sqlite_malloc(). {END} If you run a primitive::memory leak
       ** checker on your program and it reports a leak because of this
-      ** base_array, then invoke [sqlite3_reset_auto_extension()] prior
+      ** array, then invoke [sqlite3_reset_auto_extension()] prior
       ** to shutdown to ca2_free the primitive::memory.
       **
       ** {F12644} Automatic extensions apply across all threads. {END}
@@ -5171,7 +5171,7 @@ namespace sqlite3
       ** inputs to xBestIndex and are read-only.  xBestIndex inserts its
       ** results into the **Outputs** fields.
       **
-      ** The aConstraint[] base_array records WHERE clause constraints of the
+      ** The aConstraint[] array records WHERE clause constraints of the
       ** form:
       **
       **         column OP expr
@@ -5186,7 +5186,7 @@ namespace sqlite3
       ** The optimizer automatically inverts terms of the form "expr OP column"
       ** and makes other simplifications to the WHERE clause in an attempt to
       ** get as many WHERE clause terms into the form shown above as possible.
-      ** The aConstraint[] base_array only reports WHERE clause terms in the correct
+      ** The aConstraint[] array only reports WHERE clause terms in the correct
       ** form that refer to the particular virtual table being queried.
       **
       ** Information about the ORDER BY clause is stored in aOrderBy[].
@@ -5919,7 +5919,7 @@ namespace sqlite3
       char copyKey;           /* True if copy of key made on insert */
       int32_t count;              /* Number of entries in this table */
       int32_t htsize;             /* Number of buckets in the hash table */
-      HashElem *first;        /* The first element of the base_array */
+      HashElem *first;        /* The first element of the array */
       struct _ht {            /* the hash table */
          int32_t count;               /* Number of entries with this hash */
          HashElem *chain;         /* Pointer to first entry with this hash */
@@ -6345,7 +6345,7 @@ namespace sqlite3
 
    /*
    ** A convenience macro that returns the number of elements in
-   ** an base_array.
+   ** an array.
    */
 #define ArraySize(X)    (sizeof(X)/sizeof(X[0]))
 
@@ -6649,7 +6649,7 @@ namespace sqlite3
       union {             /* forth parameter */
          int32_t i;                 /* Integer value if p4type==P4_INT32 */
          void *p;               /* Generic pointer */
-         char *z;               /* Pointer to data for string (char base_array) types */
+         char *z;               /* Pointer to data for string (char array) types */
          i64 *pI64;             /* Used when p4type is P4_INT64 */
          double *pReal;         /* Used when p4type is P4_REAL */
          FuncDef *pFunc;        /* Used when p4type is P4_FUNCDEF */
@@ -6709,7 +6709,7 @@ namespace sqlite3
 #define P4_KEYINFO_HANDOFF (-9)
 
    /*
-   ** The Vdbe.aColName base_array contains 5n Mem structures, where n is the
+   ** The Vdbe.aColName array contains 5n Mem structures, where n is the
    ** number of columns of data returned by the statement.
    */
 #define COLNAME_NAME     0
@@ -7466,7 +7466,7 @@ namespace sqlite3
    /*
    ** Each database file to be accessed by the system is an instance
    ** of the following structure.  There are normally two of these structures
-   ** in the sqlite.aDb[] base_array.  aDb[0] is the main database file and
+   ** in the sqlite.aDb[] array.  aDb[0] is the main database file and
    ** aDb[1] is the database file used to hold temporary tables.  Additional
    ** databases may be attached.
    */
@@ -7825,7 +7825,7 @@ namespace sqlite3
    ** comparisons.
    **
    ** Table.nCol is the number of columns in this table.  Table.aCol is a
-   ** pointer to an base_array of Column structures, one for each column.
+   ** pointer to an array of Column structures, one for each column.
    **
    ** If the table has an INTEGER PRIMARY KEY, then Table.iPKey is the index of
    ** the column that is that key.   Otherwise Table.iPKey is negative.  Note
@@ -8242,7 +8242,7 @@ namespace sqlite3
    /*
    ** The following structure describes the FROM clause of a SELECT statement.
    ** Each table or subquery in the FROM clause is a separate element of
-   ** the SrcList.a[] base_array.
+   ** the SrcList.a[] array.
    **
    ** With the addition of multiple database support, the following structure
    ** can also be used to describe a particular table such as the table that
@@ -11357,7 +11357,7 @@ zulu_time:
    **
    ** This version of the primitive::memory allocation subsystem omits all
    ** use of ca2_alloc().  All dynamically allocatable primitive::memory is
-   ** contained in a static base_array, mem.aPool[].  The size of this
+   ** contained in a static array, mem.aPool[].  The size of this
    ** fixed primitive::memory pool is SQLITE_MEMORY_SIZE bytes.
    **
    ** This version of the primitive::memory allocation subsystem is used if
@@ -12012,7 +12012,7 @@ zulu_time:
    **
    ** This version of the primitive::memory allocation subsystem omits all
    ** use of ca2_alloc().  All dynamically allocatable primitive::memory is
-   ** contained in a static base_array, mem.aPool[].  The size of this
+   ** contained in a static array, mem.aPool[].  The size of this
    ** fixed primitive::memory pool is SQLITE_POW2_MEMORY_SIZE bytes.
    **
    ** This version of the primitive::memory allocation subsystem is used if
@@ -12052,8 +12052,8 @@ zulu_time:
 
    /*
    ** A minimum allocation is an instance of the following structure.
-   ** Larger allocations are an base_array of these structures where the
-   ** size of the base_array is a power of 2.
+   ** Larger allocations are an array of these structures where the
+   ** size of the array is a power of 2.
    */
    typedef struct Mem5Block Mem5Block;
    struct Mem5Block {
@@ -15004,7 +15004,7 @@ zulu_time:
       Mem **apArg;        /* Arguments to currently executing user function */
       Mem *aColName;      /* Column names to return */
       int32_t nCursor;        /* Number of slots in apCsr[] */
-      Cursor **apCsr;     /* One element of this base_array for each open cursor */
+      Cursor **apCsr;     /* One element of this array for each open cursor */
       int32_t nVar;           /* Number of entries in aVar[] */
       Mem *aVar;          /* Values for the OP_Variable opcode. */
       char **azVar;       /* Name of variables */
@@ -15028,7 +15028,7 @@ zulu_time:
       int32_t nResColumn;         /* Number of columns in one row of the result set */
       char **azResColumn;     /* Values for one row of result */
       char *zErrMsg;          /* Error message written here */
-      Mem *pResultSet;        /* Pointer to an base_array of results */
+      Mem *pResultSet;        /* Pointer to an array of results */
       u8 explain;             /* True if EXPLAIN present on SQL command */
       u8 changeCntOn;         /* True to update the change-counter */
       u8 aborted;             /* True if ROLLBACK in another VM causes an abort */
@@ -15038,7 +15038,7 @@ zulu_time:
       int32_t nChange;            /* Number of db changes made since last reset */
       i64 startTime;          /* Time when query started - used for profiling */
       int32_t btreeMask;          /* Bitmask of db->aDb[] entries referenced */
-      BtreeMutexArray aMutex; /* An base_array of Btree used here and needing locks */
+      BtreeMutexArray aMutex; /* An array of Btree used here and needing locks */
       int32_t nSql;             /* Number of bytes in zSql */
       char *zSql;           /* Text of the SQL statement that generated this */
 #ifdef SQLITE_DEBUG
@@ -15755,7 +15755,7 @@ translate_out:
       }
    }
 
-   /* An base_array to ::map all upper-case characters into their corresponding
+   /* An array to ::map all upper-case characters into their corresponding
    ** lower-case character.
    */
    SQLITE_PRIVATE const uchar sqlite3UpperToLower[] = {
@@ -20836,7 +20836,7 @@ afp_end_lock:
       ** prefer that the randomness be increased by making use of the
       ** uninitialized space in zBuf - but valgrind errors tend to worry
       ** some users.  Rather than argue, it seems easier just to initialize
-      ** the whole base_array and silence valgrind, even if that means less randomness
+      ** the whole array and silence valgrind, even if that means less randomness
       ** in the random seed.
       **
       ** When testing, initializing zBuf[] to zero is all we do.  That means
@@ -27970,7 +27970,7 @@ stmt_begin_failed:
          **
          ** If the attempt to load the page into the page-cache fails, (due
          ** to a ca2_alloc() or IO failure), clear the bit in the pInJournal[]
-         ** base_array. Otherwise, if the page is loaded and written again in
+         ** array. Otherwise, if the page is loaded and written again in
          ** this transaction, it may be written to the database file before
          ** it is synced into the journal spfile-> This way, it may end up in
          ** the journal file twice, but that is not a problem.
@@ -28174,7 +28174,7 @@ stmt_begin_failed:
    ** not specified in the header.
    **
    ** Each btree pages is divided into three sections:  The header, the
-   ** cell pointer base_array, and the cell content area.  Page 1 also has a 100-byte
+   ** cell pointer array, and the cell content area.  Page 1 also has a 100-byte
    ** file header that occurs before the page header.
    **
    **      |----------------|
@@ -28183,7 +28183,7 @@ stmt_begin_failed:
    **      | page header    |   8 bytes for leaves.  12 bytes for interior nodes
    **      |----------------|
    **      | cell pointer   |   |  2 bytes per cell.  Sorted order.
-   **      | base_array          |   |  Grows downward
+   **      | array          |   |  Grows downward
    **      |                |   v
    **      |----------------|
    **      | unallocated    |
@@ -28209,8 +28209,8 @@ stmt_begin_failed:
    ** which is stored in the key size entry of the cell header rather than in
    ** the payload area.
    **
-   ** The cell pointer base_array begins on the first byte after the page header.
-   ** The cell pointer base_array contains zero or more 2-byte numbers which are
+   ** The cell pointer array begins on the first byte after the page header.
+   ** The cell pointer array contains zero or more 2-byte numbers which are
    ** offsets from the beginning of the page to the cell content in the cell
    ** content area.  The cell pointers occur in sorted order.  The system strives
    ** to keep ca2_free space after the last cell pointer so that new cells can
@@ -28233,7 +28233,7 @@ stmt_begin_failed:
    **      2     Bytes in this freeblock
    **
    ** Cells are of var length.  Cells are stored in the cell content area at
-   ** the end of the page.  Pointers to the cells are in the cell pointer base_array
+   ** the end of the page.  Pointers to the cells are in the cell pointer array
    ** that immediately follows the page header.  Cells is not necessarily
    ** contiguous or in order, but cell pointers are contiguous and in order.
    **
@@ -28979,7 +28979,7 @@ stmt_begin_failed:
    }
 
    /*
-   ** Enter the mutex of every btree in the base_array.  This routine is
+   ** Enter the mutex of every btree in the array.  This routine is
    ** called at the beginning of sqlite3VdbeExec().  The mutexes are
    ** exited at the end of the same function.
    */
@@ -29701,16 +29701,16 @@ stmt_begin_failed:
    ** Defragment the page given.  All Cells are moved to the
    ** end of the page and all ca2_free space is collected into one
    ** big FreeBlk that occurs in between the header and cell
-   ** pointer base_array and the cell content area.
+   ** pointer array and the cell content area.
    */
    static int32_t defragmentPage(MemPage *pPage){
       int32_t i;                     /* Loop counter */
       int32_t pc;                    /* Address of a i-th cell */
-      int32_t addr;                  /* Offset of first byte after cell pointer base_array */
+      int32_t addr;                  /* Offset of first byte after cell pointer array */
       int32_t hdr;                   /* Offset to the page header */
       int32_t size;                  /* Size of a cell */
       int32_t usableSize;            /* Number of usable bytes on a page */
-      int32_t cellOffset;            /* Offset to the cell pointer base_array */
+      int32_t cellOffset;            /* Offset to the cell pointer array */
       int32_t brk;                   /* Offset to the cell content area */
       int32_t nCell;                 /* Number of cells on the page */
       uchar *data;       /* The page data */
@@ -29802,7 +29802,7 @@ stmt_begin_failed:
          }
       }
 
-      /* Allocate primitive::memory from the gap in between the cell pointer base_array
+      /* Allocate primitive::memory from the gap in between the cell pointer array
       ** and the cell content area.
       */
       top = get2byte(&data[hdr+5]);
@@ -32087,7 +32087,7 @@ create_cursor_exception:
    ** If the BtCursor.isIncrblobHandle flag is set, and the current
    ** cursor entry uses one or more overflow pages, this function
    ** allocates space for and lazily popluates the overflow page-list
-   ** cache base_array (BtCursor.aOverflow). Subsequent calls use this
+   ** cache array (BtCursor.aOverflow). Subsequent calls use this
    ** cache to make seeking to the supplied offset more efficient.
    **
    ** Once an overflow page-list cache has been allocated, it may be
@@ -32155,10 +32155,10 @@ create_cursor_exception:
 
 #ifndef SQLITE_OMIT_INCRBLOB
             /* If the isIncrblobHandle flag is set and the BtCursor.aOverflow[]
-            ** has not been allocated, allocate it now. The base_array is sized at
+            ** has not been allocated, allocate it now. The array is sized at
             ** one entry for each overflow page in the overflow chain. The
             ** page number of the first overflow page is stored in aOverflow[0],
-            ** etc. A value of 0 in the aOverflow[] base_array means "not yet known"
+            ** etc. A value of 0 in the aOverflow[] array means "not yet known"
             ** (the cache is lazily populated).
             */
             if( pCur->isIncrblobHandle && !pCur->aOverflow ){
@@ -33989,7 +33989,7 @@ end_allocate_page:
 
       /*
       ** Load pointers to all cells on sibling pages and the divider cells
-      ** into the local apCell[] base_array.  Make copies of the divider cells
+      ** into the local apCell[] array.  Make copies of the divider cells
       ** into space obtained form aSpace[] and remove the the divider Cells
       ** from pParent.
       **
@@ -35605,7 +35605,7 @@ cleardatabasepage_out:
 #ifndef SQLITE_OMIT_INTEGRITY_CHECK
    /*
    ** This routine does a complete check of the given BTree spfile->  aRoot[] is
-   ** an base_array of pages numbers were each page number is the root page of
+   ** an array of pages numbers were each page number is the root page of
    ** a table.  nRoot is the number of entries in aRoot.
    **
    ** If everything checks out, this routine returns NULL.  If something is
@@ -35615,7 +35615,7 @@ cleardatabasepage_out:
    */
    SQLITE_PRIVATE char *sqlite3BtreeIntegrityCheck(
       Btree *p,     /* The btree to be checked */
-      int32_t *aRoot,   /* An base_array of root pages numbers for individual trees */
+      int32_t *aRoot,   /* An array of root pages numbers for individual trees */
       int32_t nRoot,    /* Number of entries in aRoot[] */
       int32_t mxErr,    /* Stop reporting errors after this many */
       int32_t *pnErr    /* Write number of errors seen to this var */
@@ -36272,7 +36272,7 @@ cleardatabasepage_out:
 
    /*
    ** Make the given Mem object either MEM_Short or MEM_Dyn so that bytes
-   ** of the Mem.z[] base_array can be modified.
+   ** of the Mem.z[] array can be modified.
    **
    ** Return SQLITE_OK on success or SQLITE_NOMEM if ca2_alloc fails.
    */
@@ -37265,10 +37265,10 @@ no_mem:
 #endif
 
    /*
-   ** Resize the Vdbe.aOp base_array so that it contains at least N
+   ** Resize the Vdbe.aOp array so that it contains at least N
    ** elements.
    **
-   ** If an out-of-primitive::memory error occurs while resizing the base_array,
+   ** If an out-of-primitive::memory error occurs while resizing the array,
    ** Vdbe.aOp and Vdbe.nOpAlloc remain unchanged (this is so that
    ** any opcodes already allocated can be correctly deallocated
    ** along with the rest of the Vdbe).
@@ -37408,7 +37408,7 @@ no_mem:
    **
    ** var *pMaxFuncArgs is set to the maximum value of any P2 argument
    ** to an OP_Function, OP_AggStep or OP_VFilter opcode. This is used by
-   ** sqlite3VdbeMakeReady() to size the Vdbe.apArg[] base_array.
+   ** sqlite3VdbeMakeReady() to size the Vdbe.apArg[] array.
    **
    ** This routine also does the following optimization:  It scans for
    ** instructions that might cause a statement rollback.  Such instructions
@@ -37540,7 +37540,7 @@ no_mem:
    /*
    ** Change the value of the P1 operand for a specific instruction.
    ** This routine is useful when a large program is loaded from a
-   ** static base_array using sqlite3VdbeAddOpList but we want to make a
+   ** static array using sqlite3VdbeAddOpList but we want to make a
    ** few minor changes to the program.
    */
    SQLITE_PRIVATE void sqlite3VdbeChangeP1(Vdbe *p, int32_t addr, int32_t val){
@@ -37655,7 +37655,7 @@ no_mem:
    /*
    ** Change the value of the P4 operand for a specific instruction.
    ** This routine is useful when a large program is loaded from a
-   ** static base_array using sqlite3VdbeAddOpList but we want to make a
+   ** static array using sqlite3VdbeAddOpList but we want to make a
    ** few minor changes to the program.
    **
    ** If n>=0 then the P4 operand is dynamic, meaning that a copy of
@@ -37902,7 +37902,7 @@ no_mem:
 #endif
 
    /*
-   ** Release an base_array of N Mem elements
+   ** Release an array of N Mem elements
    */
    static void releaseMemArray(Mem *p, int32_t N){
       if( p && N ){
@@ -38120,7 +38120,7 @@ no_mem:
 
          /* Set the magic to VDBE_MAGIC_RUN sooner rather than later. This
          * is because the call to resizeOpArray() below may shrink the
-         * p->aOp[] base_array to save primitive::memory if called when in VDBE_MAGIC_RUN
+         * p->aOp[] array to save primitive::memory if called when in VDBE_MAGIC_RUN
          * state.
          */
          p->magic = VDBE_MAGIC_RUN;
@@ -38243,7 +38243,7 @@ no_mem:
    **
    ** This routine will automatically close any cursors, lists, and/or
    ** sorters that were left open.  It also deletes the values of
-   ** variables in the aVar[] base_array.
+   ** variables in the aVar[] array.
    */
    static void Cleanup(Vdbe *p){
       int32_t i;
@@ -40485,7 +40485,7 @@ failed:
 
    /*
    ** create a mapping from var numbers to var names
-   ** in the Vdbe.azVar[] base_array, if such a mapping does not already
+   ** in the Vdbe.azVar[] array, if such a mapping does not already
    ** exist.
    */
    static void createVarMap(Vdbe *p){
@@ -41258,7 +41258,7 @@ failed:
                   ** generates two C files "opcodes.h" and "opcodes.c" by scanning this
                   ** file looking for lines that begin with "case OP_".  The opcodes.h files
                   ** will be filled with #defines that give unique integer values to each
-                  ** opcode and the opcodes.c file is filled with an base_array of strings where
+                  ** opcode and the opcodes.c file is filled with an array of strings where
                   ** each string is the symbolic name for the corresponding opcode.  If the
                   ** case statement is followed by a comment of the form "/# same as ... #/"
                   ** that comment is used to determine the particular value of the opcode.
@@ -45210,14 +45210,14 @@ op_column_out:
                                 ** This opcode invokes the corresponding xUpdate method. P2 values
                                 ** are contiguous primitive::memory cells starting at P3 to pass to the xUpdate
                                 ** invocation. The value in register (P3+P2-1) corresponds to the
-                                ** p2th element of the argv base_array passed to xUpdate.
+                                ** p2th element of the argv array passed to xUpdate.
                                 **
                                 ** The xUpdate method will do a DELETE or an INSERT or both.
                                 ** The argv[0] element (which corresponds to primitive::memory cell P3)
                                 ** is the rowid of a row to delete.  If argv[0] is NULL then no
                                 ** deletion occurs.  The argv[1] element is the rowid of the new
                                 ** row.  This can be NULL to have the virtual table select the new
-                                ** rowid for itself.  The subsequent elements in the base_array are
+                                ** rowid for itself.  The subsequent elements in the array are
                                 ** the values of columns in the new row.
                                 **
                                 ** If P2==1 then no insert is performed.  argv[0] is the rowid of
@@ -48723,7 +48723,7 @@ lookupname_end_2:
 
 
    /*
-   ** add a new element to the pAggInfo->aCol[] base_array.  Return the index of
+   ** add a new element to the pAggInfo->aCol[] array.  Return the index of
    ** the new element.  Return a negative number if ca2_alloc fails.
    */
    static int32_t addAggInfoColumn(sqlite3 *db, AggInfo *pInfo){
@@ -48741,7 +48741,7 @@ lookupname_end_2:
    }
 
    /*
-   ** add a new element to the pAggInfo->aFunc[] base_array.  Return the index of
+   ** add a new element to the pAggInfo->aFunc[] array.  Return the index of
    ** the new element.  Return a negative number if ca2_alloc fails.
    */
    static int32_t addAggInfoFunc(sqlite3 *db, AggInfo *pInfo){
@@ -48893,8 +48893,8 @@ lookupname_end_2:
 
    /*
    ** Analyze the given expression looking for aggregate functions and
-   ** for variables that need to be added to the pParse->aAgg[] base_array.
-   ** Make additional entries to the pParse->aAgg[] base_array as necessary.
+   ** for variables that need to be added to the pParse->aAgg[] array.
+   ** Make additional entries to the pParse->aAgg[] array as necessary.
    **
    ** This routine should only be called after the expression has been
    ** analyzed by sqlite3ExprResolveNames().
@@ -50127,7 +50127,7 @@ exit_begin_add_column:
             }
          }
 
-         /* Allocate the new entry in the db->aDb[] base_array and initialise the schema
+         /* Allocate the new entry in the db->aDb[] array and initialise the schema
          ** hash tables.
          */
          if( db->aDb==db->aDbStatic ){
@@ -50201,7 +50201,7 @@ exit_begin_add_column:
 
          /* If the file was opened successfully, read the schema for the new database.
          ** If this fails, or if opening the file failed, then close the file and
-         ** remove the entry from the db->aDb[] base_array. i.e. put everything back the way
+         ** remove the entry from the db->aDb[] array. i.e. put everything back the way
          ** we found it.
          */
          if( rc==SQLITE_OK ){
@@ -53548,7 +53548,7 @@ exit_create_index:
    }
 
    /*
-   ** Fill the Index.aiRowEst[] base_array with default information - information
+   ** Fill the Index.aiRowEst[] array with default information - information
    ** to be used when we have not run the ANALYZE command.
    **
    ** aiRowEst[0] is suppose to contain the number of elements in the index.
@@ -53648,24 +53648,24 @@ exit_drop_index:
    }
 
    /*
-   ** pArray is a pointer to an base_array of objects.  Each object in the
-   ** base_array is szEntry bytes in size.  This routine allocates a new
-   ** object on the end of the base_array.
+   ** pArray is a pointer to an array of objects.  Each object in the
+   ** array is szEntry bytes in size.  This routine allocates a new
+   ** object on the end of the array.
    **
    ** *pnEntry is the number of entries already in use.  *pnAlloc is
-   ** the previously allocated size of the base_array.  initSize is the
-   ** suggested initial base_array size allocation.
+   ** the previously allocated size of the array.  initSize is the
+   ** suggested initial array size allocation.
    **
    ** The index of the new entry is returned in *pIdx.
    **
-   ** This routine returns a pointer to the base_array of objects.  This
+   ** This routine returns a pointer to the array of objects.  This
    ** might be the same as the pArray parameter or it might be a different
-   ** pointer if the base_array was resized.
+   ** pointer if the array was resized.
    */
    SQLITE_PRIVATE void *sqlite3ArrayAllocate(
       sqlite3 *db,      /* Connection to notify of ca2_alloc failures */
       void *pArray,     /* Array of objects.  Might be reallocated */
-      int32_t szEntry,      /* Size of each object in the base_array */
+      int32_t szEntry,      /* Size of each object in the array */
       int32_t initSize,     /* Suggested initial allocation, in elements */
       int32_t *pnEntry,     /* Number of objects currently in use */
       int32_t *pnAlloc,     /* Current size of the allocation, in elements */
@@ -54396,7 +54396,7 @@ exit_drop_index:
    ** true, then create a new entry. Otherwise return NULL.
    **
    ** Each pointer stored in the sqlite3.aCollSeq hash table contains an
-   ** base_array of three CollSeq structures. The first is the collation sequence
+   ** array of three CollSeq structures. The first is the collation sequence
    ** prefferred for UTF-8, the second UTF-16le, and the third UTF-16be.
    **
    ** Stored immediately after the three collation sequences is a copy of
@@ -59274,7 +59274,7 @@ exec_out:
             return SQLITE_ERROR;
          }
 
-         /* Append the new shared library handle to the db->aExtension base_array. */
+         /* Append the new shared library handle to the db->aExtension array. */
          db->nExtension++;
          aHandle = (void **) sqlite3DbMallocZero(db, sizeof(handle)*db->nExtension);
          if( aHandle==0 ){
@@ -64424,7 +64424,7 @@ multi_select_end:
    ** routine is called recursively to handle the subquery.  For the recursive
    ** call, pParent will point to the outer query.  Because the subquery is
    ** the second element in a three-way join, the parentTab parameter will
-   ** be 1 (the 2nd value of a 0-indexed base_array.)
+   ** be 1 (the 2nd value of a 0-indexed array.)
    */
    SQLITE_PRIVATE int32_t sqlite3Select(
       Parse *pParse,         /* The parser context */
@@ -66370,7 +66370,7 @@ drop_trigger_cleanup:
 
          /* Resolve the column names in all the expressions of the
          ** of the UPDATE statement.  Also find the column index
-         ** for each column to be updated in the pChanges base_array.  For each
+         ** for each column to be updated in the pChanges array.  For each
          ** column to be updated, make sure we have authorization to change
          ** that column.
          */
@@ -66412,8 +66412,8 @@ drop_trigger_cleanup:
 #endif
          }
 
-         /* Allocate primitive::memory for the base_array aRegIdx[].  There is one entry in the
-         ** base_array for each index associated with table being updated.  Fill in
+         /* Allocate primitive::memory for the array aRegIdx[].  There is one entry in the
+         ** array for each index associated with table being updated.  Fill in
          ** the value with a register number for indices that are to be used
          ** and with zero for unused indices.
          */
@@ -67053,7 +67053,7 @@ update_cleanup:
          u32 meta;
          int32_t i;
 
-         /* This base_array determines which meta meta values are preserved in the
+         /* This array determines which meta meta values are preserved in the
          ** vacuum.  Even entries are the meta value number and odd entries
          ** are an increment to apply to the meta value after the vacuum.
          ** The increment is used to increase the schema cookie so that other
@@ -67572,12 +67572,12 @@ end_of_vacuum:
    }
 
    /*
-   ** add the virtual table pVtab to the base_array sqlite3.aVTrans[].
+   ** add the virtual table pVtab to the array sqlite3.aVTrans[].
    */
    static int32_t addToVTrans(sqlite3 *db, sqlite3_vtab *pVtab){
       const int32_t ARRAY_INCR = 5;
 
-      /* Grow the sqlite3.aVTrans base_array if required */
+      /* Grow the sqlite3.aVTrans array if required */
       if( (db->nVTrans%ARRAY_INCR)==0 ){
          sqlite3_vtab **aVTrans;
          int32_t nBytes = sizeof(sqlite3_vtab *) * (db->nVTrans + ARRAY_INCR);
@@ -67717,11 +67717,11 @@ end_of_vacuum:
 
    /*
    ** This function invokes either the xRollback or xCommit method
-   ** of each of the virtual tables in the sqlite3.aVTrans base_array. The method
+   ** of each of the virtual tables in the sqlite3.aVTrans array. The method
    ** called is identified by the second argument, "offset", which is
    ** the offset of the method to call in the sqlite3_module structure.
    **
-   ** The base_array is cleared after invoking the callbacks.
+   ** The array is cleared after invoking the callbacks.
    */
    static void callFinaliser(sqlite3 *db, sqlite3_intptr_t offset){
       int32_t i;
@@ -67742,7 +67742,7 @@ end_of_vacuum:
    /*
    ** If argument rc2 is not SQLITE_OK, then return it and do nothing.
    ** Otherwise, invoke the xSync method of all virtual tables in the
-   ** sqlite3.aVTrans base_array. Return the error code for the first error
+   ** sqlite3.aVTrans array. Return the error code for the first error
    ** that occurs, or SQLITE_OK if all xSync operations are successful.
    */
    SQLITE_PRIVATE int32_t sqlite3VtabSync(sqlite3 *db, int32_t rc2){
@@ -67773,7 +67773,7 @@ end_of_vacuum:
 
    /*
    ** Invoke the xRollback method of all virtual tables in the
-   ** sqlite3.aVTrans base_array. Then clear the base_array itself.
+   ** sqlite3.aVTrans array. Then clear the array itself.
    */
    SQLITE_PRIVATE int32_t sqlite3VtabRollback(sqlite3 *db){
       callFinaliser(db, (sqlite3_intptr_t)(&((sqlite3_module *)0)->xRollback));
@@ -67782,7 +67782,7 @@ end_of_vacuum:
 
    /*
    ** Invoke the xCommit method of all virtual tables in the
-   ** sqlite3.aVTrans base_array. Then clear the base_array itself.
+   ** sqlite3.aVTrans array. Then clear the array itself.
    */
    SQLITE_PRIVATE int32_t sqlite3VtabCommit(sqlite3 *db){
       callFinaliser(db, (sqlite3_intptr_t)(&((sqlite3_module *)0)->xCommit));
@@ -67795,7 +67795,7 @@ end_of_vacuum:
    ** not currently open, invoke the xBegin method now.
    **
    ** If the xBegin call is successful, place the sqlite3_vtab pointer
-   ** in the sqlite3.aVTrans base_array.
+   ** in the sqlite3.aVTrans array.
    */
    SQLITE_PRIVATE int32_t sqlite3VtabBegin(sqlite3 *db, sqlite3_vtab *pVtab){
       int32_t rc = SQLITE_OK;
@@ -67818,7 +67818,7 @@ end_of_vacuum:
          int32_t i;
 
 
-         /* If pVtab is already in the aVTrans base_array, return early */
+         /* If pVtab is already in the aVTrans array, return early */
          for(i=0; (i<db->nVTrans) && 0!=db->aVTrans[i]; i++){
             if( db->aVTrans[i]==pVtab ){
                return SQLITE_OK;
@@ -67953,7 +67953,7 @@ end_of_vacuum:
    typedef struct ExprMaskSet ExprMaskSet;
 
    /*
-   ** The query generator uses an base_array of instances of this structure to
+   ** The query generator uses an array of instances of this structure to
    ** help it analyze the subexpressions of the WHERE clause.  Each WHERE
    ** clause subexpression is separated from the others by an AND operator.
    **
@@ -68133,7 +68133,7 @@ end_of_vacuum:
    ** WARNING:  This routine might reallocate the space used to store
    ** WhereTerms.  All pointers to WhereTerms should be invalided after
    ** calling this routine.  Such pointers may be reinitialized by referencing
-   ** the pWC->a[] base_array.
+   ** the pWC->a[] array.
    */
    static int32_t whereClauseInsert(WhereClause *pWC, Expr *p, int32_t flags){
       WhereTerm *pTerm;
@@ -68178,7 +68178,7 @@ end_of_vacuum:
    ** does is make slot[] entries point to substructure within pExpr.
    **
    ** In the previous sentence and in the diagram, "slot[]" refers to
-   ** the WhereClause.a[] base_array.  This base_array grows as needed to contain
+   ** the WhereClause.a[] array.  This array grows as needed to contain
    ** all terms of the WHERE clause.
    */
    static void whereSplit(WhereClause *pWC, Expr *pExpr, int32_t op){
@@ -68216,7 +68216,7 @@ end_of_vacuum:
    ** There is one cursor per table in the FROM clause.  The number of
    ** tables in the FROM clause is limited by a test early in the
    ** sqlite3WhereBegin() routine.  So we know that the pMaskSet->ix[]
-   ** base_array will never overflow.
+   ** array will never overflow.
    */
    static void createMask(ExprMaskSet *pMaskSet, int32_t iCursor){
       assert( pMaskSet->n < ArraySize(pMaskSet->ix) );
@@ -69280,7 +69280,7 @@ or_not_possible:
          ** only valid if all tables referenced in expr occur to the left
          ** of the table containing column.
          **
-         ** The aConstraints[] base_array contains entries for all constraints
+         ** The aConstraints[] array contains entries for all constraints
          ** on the current table.  That way we only have to compute it once
          ** even though we might try to pick the best index multiple times.
          ** For each attempt at picking an index, the order of tables in the
@@ -70500,7 +70500,7 @@ or_not_possible:
                   int32_t start;
                   int32_t nEq = pLevel->nEq;
                   int32_t isMinQuery = 0;      /* If this is an optimized SELECT min(x) ... */
-                  int32_t regBase;             /* Base register of base_array holding constraints */
+                  int32_t regBase;             /* Base register of array holding constraints */
                   int32_t r1;
 
                   /* Generate code to evaluate all constraint terms using == or IN
@@ -70938,8 +70938,8 @@ whereBeginNoMem:
    **
    ** The formula above is for computing the action when the lookahead is
    ** a terminal symbol.  If the lookahead is a non-terminal (as occurs after
-   ** a reduce action) then the yy_reduce_ofst[] base_array is used in place of
-   ** the yy_shift_ofst[] base_array and YY_REDUCE_USE_DFLT is used in place of
+   ** a reduce action) then the yy_reduce_ofst[] array is used in place of
+   ** the yy_shift_ofst[] array and YY_REDUCE_USE_DFLT is used in place of
    ** YY_SHIFT_USE_DFLT.
    **
    ** The following are the tables generated in this section:
@@ -74946,7 +74946,7 @@ abort_parse:
 
       /* If a transaction is open, the ResetInternalSchema() call above
       ** will not have called the xDisconnect() method on any virtual
-      ** tables in the db->aVTrans[] base_array. The following sqlite3VtabRollback()
+      ** tables in the db->aVTrans[] array. The following sqlite3VtabRollback()
       ** call will do so. We need to do this before the check for active
       ** SQL statements below, as the v-table implementation may be storing
       ** some prepared statements internally.
@@ -76379,17 +76379,17 @@ error_out:
    **
    ** A DL_POSITIONS_OFFSETS doclist is stored like this:
    **
-   ** base_array {
+   ** array {
    **   varint docid;
-   **   base_array {                (position list for column 0)
+   **   array {                (position list for column 0)
    **     varint position;     (delta from previous position plus POS_BASE)
    **     varint startOffset;  (delta from previous startOffset)
    **     varint endOffset;    (delta from startOffset)
    **   }
-   **   base_array {
+   **   array {
    **     varint POS_COLUMN;   (marks start of position list for new column)
    **     varint column;       (index of new column)
-   **     base_array {
+   **     array {
    **       varint position;   (delta from previous position plus POS_BASE)
    **       varint startOffset;(delta from previous startOffset)
    **       varint endOffset;  (delta from startOffset)
@@ -76398,16 +76398,16 @@ error_out:
    **   varint POS_END;        (marks end of positions for this document.
    ** }
    **
-   ** Here, base_array { X } means zero or more occurrences of X, adjacent in
+   ** Here, array { X } means zero or more occurrences of X, adjacent in
    ** primitive::memory.  A "position" is an index of a token in the token stream
    ** generated by the tokenizer, while an "offset" is a byte offset,
    ** both based at 0.  Note that POS_END and POS_COLUMN occur in the
    ** same logical place as the position element, and act as sentinals
-   ** ending a position list base_array.
+   ** ending a position list array.
    **
    ** A DL_POSITIONS doclist omits the startOffset and endOffset
    ** information.  A DL_DOCIDS doclist omits both the position and
-   ** offset information, becoming an base_array of varint-encoded docids.
+   ** offset information, becoming an array of varint-encoded docids.
    **
    ** On-disk data is stored as type DL_DEFAULT, so we don't serialize
    ** the type.  Due to how deletion is implemented in the segmentation
@@ -76426,7 +76426,7 @@ error_out:
    ** char pTerm[nTerm];          (content of first term)
    ** varint nDoclist;            (length of term's associated doclist)
    ** char pDoclist[nDoclist];    (content of doclist)
-   ** base_array {
+   ** array {
    **                             (further terms are delta-encoded)
    **   varint nPrefix;           (length of prefix shared with previous term)
    **   varint nSuffix;           (length of unshared suffix)
@@ -76435,7 +76435,7 @@ error_out:
    **   char pDoclist[nDoclist];  (content of doclist)
    ** }
    **
-   ** Here, base_array { X } means zero or more occurrences of X, adjacent in
+   ** Here, array { X } means zero or more occurrences of X, adjacent in
    ** primitive::memory.
    **
    ** Leaf nodes are broken into blocks which are stored contiguously in
@@ -76472,7 +76472,7 @@ error_out:
    ** optional {
    **   varint nTerm;           (length of first term)
    **   char pTerm[nTerm];      (content of first term)
-   **   base_array {
+   **   array {
    **                                (further terms are delta-encoded)
    **     varint nPrefix;            (length of shared prefix with previous term)
    **     varint nSuffix;            (length of unshared suffix)
@@ -76480,7 +76480,7 @@ error_out:
    **   }
    ** }
    **
-   ** Here, optional { X } means an optional element, while base_array { X }
+   ** Here, optional { X } means an optional element, while array { X }
    ** means zero or more occurrences of X, adjacent in primitive::memory.
    **
    ** An interior node encodes n terms separating n+1 subtrees.  The
@@ -76637,7 +76637,7 @@ error_out:
       char keyClass;          /* HASH_INT, _POINTER, _STRING, _BINARY */
       char copyKey;           /* True if copy of key made on insert */
       int32_t count;              /* Number of entries in this table */
-      fts3HashElem *first;    /* The first element of the base_array */
+      fts3HashElem *first;    /* The first element of the array */
       int32_t htsize;             /* Number of buckets in the hash table */
       struct _fts3ht {        /* the hash table */
          int32_t count;               /* Number of entries with this hash */
@@ -76775,14 +76775,14 @@ error_out:
       int32_t iVersion;
 
       /*
-      ** create a new tokenizer. The values in the argv[] base_array are the
+      ** create a new tokenizer. The values in the argv[] array are the
       ** arguments passed to the "tokenizer" clause of the CREATE VIRTUAL
       ** TABLE statement that created the fts3 table. For example, if
       ** the following SQL is executed:
       **
       **   CREATE .. USING fts3( ... , tokenizer <tokenizer-name> arg1 arg2)
       **
-      ** then argc is set to 2, and the argv[] base_array contains pointers
+      ** then argc is set to 2, and the argv[] array contains pointers
       ** to the strings "arg1" and "arg2".
       **
       ** This method should return either SQLITE_OK (0), or an SQLite error
@@ -76792,7 +76792,7 @@ error_out:
       ** this callback. The caller will do so.
       */
       int32_t (*xCreate)(
-         int32_t argc,                           /* Size of argv base_array */
+         int32_t argc,                           /* Size of argv array */
          const char *const*argv,             /* Tokenizer argument strings */
          sqlite3_tokenizer **ppTokenizer     /* OUT: Created tokenizer */
          );
@@ -77757,7 +77757,7 @@ error_out:
       }
    }
 
-   /* Given an base_array of doclist readers, merge their doclist elements
+   /* Given an array of doclist readers, merge their doclist elements
    ** into out in sorted order (by docid), dropping elements from older
    ** readers when there is a duplicate docid.  pReaders is assumed to be
    ** ordered by age, oldest first.
@@ -78368,7 +78368,7 @@ error_out:
    ** the following structure. Each uint16_t which may match against
    ** document content is a term. Operators, like NEAR or OR, are
    ** not terms. Query terms are organized as a flat list stored
-   ** in the Query.pTerms base_array.
+   ** in the Query.pTerms array.
    **
    ** If the QueryTerm.nPhrase var is non-zero, then the QueryTerm
    ** is the first in a contiguous string of terms that are either part
@@ -78760,8 +78760,8 @@ error_out:
    }
 
    /* select * from %_content where docid = [iDocid]
-   * The caller must delete the returned base_array and all strings in it.
-   * null fields will be NULL in the returned base_array.
+   * The caller must delete the returned array and all strings in it.
+   * null fields will be NULL in the returned array.
    *
    * TODO: Perhaps we should return pointer/length strings here for consistency
    * with other code which uses pointer/length. */
@@ -79130,12 +79130,12 @@ error_out:
    /*
    ** Given a input string (which is really one of the argv[] parameters
    ** passed into xConnect or xCreate) split the string up into tokens.
-   ** Return an base_array of pointers to '\000' terminated strings, one string
+   ** Return an array of pointers to '\000' terminated strings, one string
    ** for each non-whitespace token.
    **
-   ** The returned base_array is terminated by a single NULL pointer.
+   ** The returned array is terminated by a single NULL pointer.
    **
-   ** Space to hold the returned base_array is obtained from a single
+   ** Space to hold the returned array is obtained from a single
    ** ca2_alloc and should be freed by passing the return value to ca2_free().
    ** The individual strings within the token list are all a part of
    ** the single primitive::memory allocation and will all be freed at once.
@@ -79336,8 +79336,8 @@ error_out:
          **             and snippet delimiters specification.
          */
 
-         /* Make a copy of the complete argv[][] base_array in a single allocation.
-         ** The argv[][] base_array is read-only and transient.  We can write to the
+         /* Make a copy of the complete argv[][] array in a single allocation.
+         ** The argv[][] array is read-only and transient.  We can write to the
          ** copy in order to modify things and the copy is persistent.
          */
          CLEAR(pSpec);
@@ -79356,7 +79356,7 @@ error_out:
          }
 
          /* Identify the column names and the tokenizer and delimiter arguments
-         ** in the argv[][] base_array.
+         ** in the argv[][] array.
          */
          pSpec->zDb = azArg[1];
          pSpec->zName = azArg[2];
@@ -79929,7 +79929,7 @@ out:
    }
 
    /*
-   ** Convert the information in the aMatch[] base_array of the snippet
+   ** Convert the information in the aMatch[] array of the snippet
    ** into the string zOffset[0..nOffset-1].
    */
    static void snippetOffsetText(Snippet *p){

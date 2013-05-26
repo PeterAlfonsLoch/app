@@ -32,10 +32,15 @@ namespace sockets
       }
 
       m_countHttpPostBoundary = 0;
+
+      return true;
+
    }
 
    bool sockets::finalize()
    {
+
+      bool bOk = true;
 
       if(Application.is_system())
       {
@@ -45,6 +50,8 @@ namespace sockets
             m_pajpbasesocketinit = NULL;
          }
       }
+
+      return bOk;
 
    }
 
