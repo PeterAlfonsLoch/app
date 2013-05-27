@@ -116,3 +116,10 @@ void cairo_keep::pulse()
 
 }
 
+
+void output_debug_string(const char * psz)
+{
+
+   OutputDebugString(psz);
+
+}
