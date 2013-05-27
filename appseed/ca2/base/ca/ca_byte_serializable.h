@@ -89,7 +89,7 @@ namespace ca
       ::count count;
       //istream >> count;
       istream.read_arbitrary(count);
-      this->set_size(count);
+      this->set_size_create(count);
       for(index index = 0; index < count; index++)
       {
          istream >> *this->element_at(index);

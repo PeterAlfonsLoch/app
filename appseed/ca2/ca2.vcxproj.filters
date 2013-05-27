@@ -441,6 +441,9 @@
     <Filter Include="Source Files\database\databaseuser">
       <UniqueIdentifier>{2467bbde-3b59-4994-9184-a1de9d6951e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\net\sockets\webserver">
+      <UniqueIdentifier>{ce6381e1-a521-4991-b17b-e1e5e4c9c04b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -5395,21 +5398,6 @@
     <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\webserver</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_cookie.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_form.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_request.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_response.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_transaction.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\webserver</Filter>
     </ClCompile>
@@ -6942,6 +6930,21 @@
     </ClCompile>
     <ClCompile Include="base\collection\collection_id_array.cpp">
       <Filter>Source Files\base\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_form.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_request.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_response.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
