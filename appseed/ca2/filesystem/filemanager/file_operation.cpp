@@ -272,7 +272,7 @@ bool file_operation::finish()
    }
    if(m_oswindowCallback != ::null())
    {
-      m_oswindowCallback->send_message(m_uiCallbackMessage, m_wparamCallback, 0);
+      m_oswindowCallback->send_message(m_uiCallbackMessage, m_wparamCallback);
    }
    return true;
 }

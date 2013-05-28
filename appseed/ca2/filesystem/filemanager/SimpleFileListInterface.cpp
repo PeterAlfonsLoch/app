@@ -629,7 +629,7 @@ namespace filemanager
       try
       {
          ::SetThreadPriority(
-               ::GetCurrentThread(),
+               ::get_current_thread(),
                THREAD_PRIORITY_ABOVE_NORMAL);
 
          SimpleFileListInterface * plist =

@@ -27,7 +27,7 @@ CLASS_DECL_c void set_main_thread(HANDLE hThread);
 CLASS_DECL_c void set_main_thread_id(UINT uiThread);
 
 
-CLASS_DECL_c HANDLE get_main_thread();
+CLASS_DECL_c HTHREAD get_main_thread();
 CLASS_DECL_c UINT   get_main_thread_id();
 
 

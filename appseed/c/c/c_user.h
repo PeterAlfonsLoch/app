@@ -32,7 +32,7 @@ public:
 
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    #define HTHREAD HANDLE
 
@@ -64,8 +64,9 @@ namespace ca
       virtual ~thread_base();
 
 
-      virtual HTHREAD get_os_handle() const = 0;
-      virtual int get_x_window_count() const = 0;
+      virtual HTHREAD get_os_handle() const;
+      virtual int get_x_window_count() const;
+      virtual void step_timer();
 
 
    };

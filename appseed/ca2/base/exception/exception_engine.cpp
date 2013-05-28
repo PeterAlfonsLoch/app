@@ -349,7 +349,7 @@ namespace exception
       bool r = StackWalk64(
          dwType,   // __in      uint32_t MachineType,
          hprocess,        // __in      HANDLE hProcess,
-         GetCurrentThread(),         // __in      HANDLE hThread,
+         get_current_thread(),         // __in      HANDLE hThread,
          m_pstackframe,                       // __inout   LP STACKFRAME64 StackFrame,
          m_pcontext,                  // __inout   PVOID ContextRecord,
          My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -362,7 +362,7 @@ namespace exception
       bool r = StackWalk64 (
       ,
       hprocess,
-      GetCurrentThread(),
+      get_current_thread(),
       m_pstackframe,
       m_pcontext,
       My_ReadProcessMemory,
@@ -931,7 +931,7 @@ retry_get_base:
       current_context context;
       memset(&context, 0, sizeof(current_context));
 
-      bool bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != FALSE;
+      bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_thread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != FALSE;
 
       _ASSERTE(bOk);
       _ASSERTE(context.thread);

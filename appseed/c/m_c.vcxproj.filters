@@ -459,6 +459,9 @@
     <ClCompile Include="c\c_c.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
+    <ClCompile Include="windows_thread.cpp">
+      <Filter>Source Files\cross\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

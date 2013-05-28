@@ -2,6 +2,9 @@
 #include <regex>
 
 
+extern CLASS_DECL_THREAD os_thread * t_posthread;
+extern CLASS_DECL_THREAD HTHREAD currentThread;
+
 /*
 CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 {
@@ -117,6 +120,9 @@ bool os_initialize()
    if(!initialize_primitive_trace())
       return FALSE;
 
+
+
+
 #ifndef METROWIN
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
@@ -220,6 +226,13 @@ bool main_initialize()
 
    }
    */
+
+   t_posthread = new os_thread(NULL, NULL);
+
+   t_posthread->m_bRun = true;
+
+   currentThread = new hthread();
+
 
    return TRUE;
 

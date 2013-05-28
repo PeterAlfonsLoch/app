@@ -61,7 +61,7 @@ public:
    virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
    virtual ::ca::font* GetFont();
 
-   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = ::null());
 
 #ifdef LINUX
 

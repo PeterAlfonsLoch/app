@@ -25,7 +25,7 @@ bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
    try
    {
 
-      m_item = item;
+      m_item = canew(::fs::item(item));
 
 
       OnFileManagerBrowse();

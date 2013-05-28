@@ -28,7 +28,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-    <ProjectGuid>{420D7AEB-CFCA-45DE-BB6E-95055DF28B9B}</ProjectGuid>
+    <ProjectGuid>{99892E42-0F2F-4B0F-AC18-5ABBC3968407}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>ca2</ProjectName>
     <RootNamespace>m_ca2</RootNamespace>

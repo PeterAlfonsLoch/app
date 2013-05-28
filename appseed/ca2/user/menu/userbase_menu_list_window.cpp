@@ -369,11 +369,11 @@ namespace user
             }
             if(base < ::user::place_holder > ::bases(get_parent()))
             {
-               get_parent()->get_parent()->send_message(m_uiMessage, 0, 0);
+               get_parent()->get_parent()->send_message(m_uiMessage);
             }
             else
             {
-               get_parent()->send_message(m_uiMessage, 0, 0);
+               get_parent()->send_message(m_uiMessage);
             }
          }
          else
@@ -390,11 +390,11 @@ namespace user
                   }
                   if(base < ::user::place_holder > ::bases(get_parent()))
                   {
-                     get_parent()->get_parent()->send_message(m_uiMessage, 0, 0);
+                     get_parent()->get_parent()->send_message(m_uiMessage);
                   }
                   else
                   {
-                     get_parent()->send_message(m_uiMessage, 0, 0);
+                     get_parent()->send_message(m_uiMessage);
                   }
                }
             }

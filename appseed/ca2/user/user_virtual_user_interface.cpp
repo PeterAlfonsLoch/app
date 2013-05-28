@@ -287,7 +287,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, 0);
 
-   send_message(WM_SIZE, 0, 0);
+   send_message(WM_SIZE);
 
    on_set_parent(pparent);
 
@@ -395,7 +395,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
       m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
 
-      send_message(WM_SIZE, 0, 0);
+      send_message(WM_SIZE);
 
    }
 
@@ -498,7 +498,7 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
 
    m_pguie->SetWindowPos(0, 0, 0, cs.cx, cs.cy, 0);
 
-   send_message(WM_SIZE, 0, 0);
+   send_message(WM_SIZE);
 
    on_set_parent(pparent);
 
@@ -590,7 +590,7 @@ sp(::user::frame_window) virtual_user_interface::GetParentFrame()
 }
 
 
-LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
 
 

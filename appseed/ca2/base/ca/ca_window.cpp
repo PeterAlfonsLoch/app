@@ -947,7 +947,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   LRESULT window::send_message(UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT window::send_message(UINT message, WPARAM wParam, lparam lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);

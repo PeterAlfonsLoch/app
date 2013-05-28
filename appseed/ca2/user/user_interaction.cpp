@@ -1084,7 +1084,7 @@ namespace user
       return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
    }
 
-   LRESULT interaction::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   LRESULT interaction::send_message(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
       if(m_pimpl == ::null())
          return FALSE;
@@ -1206,7 +1206,7 @@ namespace user
          if(pwnd == ::null())
             return ::ca::null();
 
-         return pwnd;
+         return pwnd.m_p;
 
       }
       catch(...)
@@ -2551,50 +2551,75 @@ ExitModal:
       }
    }
 
+
    bool interaction::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
+
       if(m_pimpl == ::null())
          return FALSE;
       else
          return m_pimpl->PostMessage(uiMessage, wparam, lparam);
+
    }
 
+
    // Timer Functions
-   uint_ptr interaction::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
+   uint_ptr interaction::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
    {
+
       if(m_pimpl == ::null())
          return 0;
       else
          return m_pimpl->SetTimer(nIDEvent, nElapse, lpfnTimer);
+
    }
+
 
    bool interaction::KillTimer(uint_ptr nIDEvent)
    {
+
       if(m_pimpl == ::null())
          return FALSE;
       else
          return m_pimpl->KillTimer(nIDEvent);
+
    }
 
 
    bool interaction::has_focus()
    {
+
       return System.get_focus_guie() == this;
+
    }
+
 
    sp(interaction) interaction::set_capture(sp(interaction) pinterface)
    {
+
       if(pinterface == ::null())
          pinterface = this;
+
       return GetTopLevelParent()->get_wnd()->set_capture(pinterface);
+
+   }
+
+   
+   sp(interaction) interaction::get_capture()
+   {
+
+      return get_wnd()->get_capture();
+
    }
 
 
    sp(interaction) interaction::release_capture()
    {
+
       return get_wnd()->release_capture();
+
    }
+
 
    void interaction::track_mouse_leave()
    {

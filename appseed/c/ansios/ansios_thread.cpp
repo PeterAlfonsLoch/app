@@ -199,30 +199,6 @@ static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD ht
 }
 
 
-hthread::hthread()
-{
-
-   m_pevent = new simple_event(false, true);
-   
-   m_pthread = NULL;
-
-}
-
-hthread::~hthread()
-{
-
-   delete m_pevent;
-
-}
-
-
-void hthread::wait()
-{
-   
-   m_pevent->wait();
-   
-}
-
 
 HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr cbStack, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, uint32_t dwCreationFlags, uint32_t * lpdwThreadId)
 {

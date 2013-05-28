@@ -4,7 +4,7 @@
 class hthread;
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 #define HTHREAD HANDLE
 

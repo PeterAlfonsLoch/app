@@ -331,7 +331,7 @@ namespace user
 
       virtual LRESULT send_message(::ca::message::base * pbase);
       virtual bool PostMessage(::ca::message::base * pbase);
-      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = ::null());
 
 #ifdef LINUX
 
@@ -377,6 +377,7 @@ namespace user
       virtual id SetDlgCtrlId(class id id);
 
       virtual sp(interaction) set_capture(sp(interaction) pinterface = ::null());
+      virtual sp(interaction) get_capture();
       virtual sp(interaction) release_capture();
 
       virtual bool has_focus();

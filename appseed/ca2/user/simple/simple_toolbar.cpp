@@ -396,7 +396,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
    size sizeResult(0,0);
 
    //   uint32_t dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
    int32_t buttonx, buttony;
 
@@ -565,7 +565,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
 
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
    simple_toolbar_item & item = m_itema[iItem];
 
@@ -861,7 +861,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    //   sp(::ca::application) papp = (get_app());
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
    simple_toolbar_item item;
 
@@ -930,7 +930,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
 
    rect rect;
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
    simple_toolbar_item & item = m_itema[iItem];
 
@@ -1237,7 +1237,7 @@ void simple_toolbar::layout()
             sizeText);
       }
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
       BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
 
@@ -1569,7 +1569,7 @@ void SimpleToolCmdUI::Enable(bool bOn)
    ASSERT(pToolBar != ::null());
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
    UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) & ~TBBS_DISABLED;
    if (!bOn)
    {
@@ -1686,7 +1686,7 @@ void simple_toolbar::_001OnNcHitTest(::ca::signal_object * pobj)
 int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 {
    int32_t nResult = 0;
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
    ASSERT(nCount > 0);
    ::ca::memory_graphics pdc(allocer());
     int32_t x = 0;
@@ -1897,7 +1897,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
       sizeResult = CalcSize(nCount);
 
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
       if (dwMode & LM_COMMIT)
       {
          ___CONTROLPOS* pControl = ::null();

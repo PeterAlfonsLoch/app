@@ -511,6 +511,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="spa\windows\spa_windows_boot.cpp" />
     <ClCompile Include="spa\windows\spa_windows_service.cpp" />
     <ClCompile Include="spa\windows\spa_windows_win.cpp" />
+    <ClCompile Include="windows_thread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def" />

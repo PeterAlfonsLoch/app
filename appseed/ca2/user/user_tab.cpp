@@ -1037,7 +1037,6 @@ namespace user
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
-      ScreenToClient(&point);
 
       index iPane = hit_test(point, m_eelement);
 
@@ -1066,7 +1065,6 @@ namespace user
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
-      ScreenToClient(&point);
 
       e_element eelement;
 
@@ -1096,7 +1094,6 @@ namespace user
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
-      ScreenToClient(&point);
       if(get_data()->m_iDragTab >= 0)
       {
          if(get_data()->m_pcallback != ::null())
@@ -1104,7 +1101,7 @@ namespace user
             get_data()->m_pcallback->_001DropTargetWindowRelay(this);
          }
       }
-      if(m_iHover < 0)
+/*      if(m_iHover < 0)
       {
          track_mouse_hover();
       }
@@ -1115,7 +1112,7 @@ namespace user
       {
          m_iHover = iHover;
          _001RedrawWindow();
-      }
+      }*/
 
    }
 
@@ -1289,6 +1286,7 @@ namespace user
 
    index tab::hit_test(point pt, e_element & eelement)
    {
+      ScreenToClient(&pt);
       rect rect;
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {

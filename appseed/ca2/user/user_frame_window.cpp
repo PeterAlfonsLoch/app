@@ -310,7 +310,7 @@ namespace user
       while (oswindow != ::null())
       {
 
-         if (oswindow->IsWindowEnabled() &&    ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL, 0, 0) == 0)
+         if (oswindow->IsWindowEnabled() &&    ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL) == 0)
          {
 
             oswindow->EnableWindow(FALSE);

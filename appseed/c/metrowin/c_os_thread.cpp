@@ -27,6 +27,7 @@ struct PendingThreadInfo
    void *            m_pv;
    HANDLE            m_hCompletionEvent;
    HANDLE            m_hSuspensionEvent;
+   HTHREAD           m_hthread;
    int               m_iPriority;
    
 
@@ -41,31 +42,21 @@ struct PendingThreadInfo
 };
 
 
-static simple_map<HANDLE, PendingThreadInfo> & pendingThreads()
+static simple_map<HTHREAD, PendingThreadInfo> & pendingThreads()
 {
 
-   static simple_map<HANDLE, PendingThreadInfo> * pts = new simple_map<HANDLE, PendingThreadInfo>();
+   static simple_map<HTHREAD, PendingThreadInfo> * pts = new simple_map<HTHREAD, PendingThreadInfo>();
 
    return *pts;
 
 }
 static simple_mutex pendingThreadsLock;
 
-static simple_mutex threadHandleLock;
-static simple_map < HANDLE, HANDLE > & thread_handle_map()
-{
-
-   static simple_map < HANDLE, HANDLE > * s_pmap = new simple_map < HANDLE, HANDLE >();
-
-   return *s_pmap;
-
-}
-
 static simple_mutex threadIdHandleLock;
-static simple_map < DWORD, HANDLE > & thread_id_handle_map()
+static simple_map < DWORD, HTHREAD > & thread_id_handle_map()
 {
 
-   static simple_map < DWORD, HANDLE > * s_pmap = new simple_map < DWORD, HANDLE >();
+   static simple_map < DWORD, HTHREAD > * s_pmap = new simple_map < DWORD, HTHREAD >();
 
    return *s_pmap;
 
@@ -73,10 +64,10 @@ static simple_map < DWORD, HANDLE > & thread_id_handle_map()
 
 
 static simple_mutex threadIdLock;
-static simple_map < HANDLE, DWORD > & thread_id_map()
+static simple_map < HTHREAD, DWORD > & thread_id_map()
 {
 
-   static simple_map < HANDLE, DWORD > * s_pmap = new simple_map < HANDLE, DWORD >();
+   static simple_map < HTHREAD, DWORD > * s_pmap = new simple_map < HTHREAD, DWORD >();
 
    return *s_pmap;
 
@@ -97,14 +88,14 @@ typedef simple_array<void*> ThreadLocalData;
 
 
 
-static __declspec(thread) ThreadLocalData* currentThreadData = nullptr;
-static __declspec(thread) DWORD currentThreadId = -1;
-static __declspec(thread) HANDLE currentThread = NULL;
+__declspec(thread) ThreadLocalData* currentThreadData = nullptr;
+__declspec(thread) DWORD currentThreadId = -1;
+__declspec(thread) HTHREAD currentThread = NULL;
 
-simple_map < HANDLE, ThreadLocalData * > & all_thread_data()
+simple_map < HTHREAD, ThreadLocalData * > & all_thread_data()
 {
 
-   static simple_map < HANDLE, ThreadLocalData * > * s_pallthreaddata = new simple_map < HANDLE, ThreadLocalData * >();
+   static simple_map < HTHREAD, ThreadLocalData * > * s_pallthreaddata = new simple_map < HTHREAD, ThreadLocalData * >();
 
    return *s_pallthreaddata;
 
@@ -128,25 +119,19 @@ static WorkItemPriority GetWorkItemPriority(int nPriority)
 
 
 // Helper shared between CreateThread and ResumeThread.
-static void StartThread(uint32_t (* pfn)(void *), void * pv, HANDLE completionEvent, int nPriority)
+static void StartThread(uint32_t (* pfn)(void *), void * pv, HTHREAD hthread, int nPriority)
 {
 
    auto workItemHandler = ref new WorkItemHandler([=](IAsyncAction^)
    {
 
-      mutex_lock mlThreadHandle(threadHandleLock);
-
-      currentThread =  thread_handle_map()[(HANDLE)completionEvent];
-
-      mlThreadHandle.unlock();
+      currentThread = hthread;
 
       mutex_lock mlThreadId(threadIdLock);
 
       currentThreadId =  thread_id_map()[currentThread];
 
       mlThreadId.unlock();
-
-      mlThreadHandle.unlock();
 
       // Run the user callback.
       try
@@ -159,8 +144,8 @@ static void StartThread(uint32_t (* pfn)(void *), void * pv, HANDLE completionEv
       TlsShutdown();
 
       // Signal that the thread has completed.
-      SetEvent(completionEvent);
-      CloseHandle(completionEvent);
+      hthread->m_pevent->set_event();
+      delete hthread;
 
    }, CallbackContext::Any);
 
@@ -168,7 +153,7 @@ static void StartThread(uint32_t (* pfn)(void *), void * pv, HANDLE completionEv
 }
 
 
-HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* pfn)(void *) , void * pv, uint32_t uiCreationFlags, uint32_t * puiId)
+HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* pfn)(void *) , void * pv, uint32_t uiCreationFlags, uint32_t * puiId)
 {
    // Validate parameters.
    assert(unusedThreadAttributes == nullptr);
@@ -177,7 +162,9 @@ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_pt
    //assert(unusedThreadId == nullptr);
 
    // Create a handle that will be signalled when the thread has completed.
-   HANDLE threadHandle = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
+   HTHREAD threadHandle = new hthread;
+   
+   //threadHandle->mCreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
 
    if (!threadHandle)
       return nullptr;
@@ -202,19 +189,13 @@ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_pt
    // Make a copy of the handle for internal use. This is necessary because
    // the caller is responsible for closing the handle returned by CreateThread,
    // and they may do that before or after the thread has finished running.
-   HANDLE completionEvent;
+   //HANDLE completionEvent;
 
-   if (!DuplicateHandle(GetCurrentProcess(), threadHandle, GetCurrentProcess(), &completionEvent, 0, false, DUPLICATE_SAME_ACCESS))
-   {
-      CloseHandle(threadHandle);
-      return nullptr;
-   }
-
-   mutex_lock mlThreadHandle(threadHandleLock);
-
-   thread_handle_map().set_at(completionEvent, threadHandle);
-
-   mlThreadHandle.unlock();
+   //if (!DuplicateHandle(GetCurrentProcess(), threadHandle->m_pevent->m_hEvent, GetCurrentProcess(), &completionEvent, 0, false, DUPLICATE_SAME_ACCESS))
+   //{
+     // CloseHandle(threadHandle);
+      //return nullptr;
+   //}
 
    try
    {
@@ -227,7 +208,8 @@ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_pt
 
          info.m_pfn                 = pfn;
          info.m_pv                  = pv;
-         info.m_hCompletionEvent    = completionEvent;
+         info.m_hthread             = threadHandle;
+         info.m_hCompletionEvent    = threadHandle->m_pevent->m_hEvent;
          info.m_hSuspensionEvent    = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
          info.m_iPriority           = 0;
 
@@ -240,7 +222,7 @@ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_pt
       else
       {
          // Start the thread immediately.
-         StartThread(pfn, pv, completionEvent, 0);
+         StartThread(pfn, pv, threadHandle, 0);
       }
 
       return threadHandle;
@@ -248,15 +230,14 @@ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_pt
    catch (...)
    {
       // Clean up if thread creation fails.
-      CloseHandle(threadHandle);
-      CloseHandle(completionEvent);
+      delete threadHandle;
 
       return nullptr;
    }
 }
 
 
-DWORD WINAPI ResumeThread(HANDLE hThread)
+DWORD WINAPI ResumeThread(HTHREAD hThread)
 {
    mutex_lock lock(pendingThreadsLock);
 
@@ -276,7 +257,7 @@ DWORD WINAPI ResumeThread(HANDLE hThread)
       
       PendingThreadInfo& info = threadInfo->m_element2;
 
-      StartThread(info.m_pfn, info.m_pv, info.m_hCompletionEvent, info.m_iPriority);
+      StartThread(info.m_pfn, info.m_pv, info.m_hthread, info.m_iPriority);
 
    }
    catch (...)
@@ -291,7 +272,7 @@ DWORD WINAPI ResumeThread(HANDLE hThread)
 }
 
 
-BOOL WINAPI SetThreadPriority(HANDLE hThread, int iPriority)
+BOOL WINAPI SetThreadPriority(HTHREAD hThread, int iPriority)
 {
    mutex_lock lock(pendingThreadsLock);
 
@@ -357,7 +338,7 @@ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
    while( pos != NULL)
    {
 
-      HANDLE hThread;
+      HTHREAD hThread;
 
       ThreadLocalData * pdata;
 
@@ -389,7 +370,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
 }
 
-LPVOID WINAPI TlsGetValue(HANDLE hthread, DWORD dwTlsIndex)
+LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
@@ -439,7 +420,7 @@ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
    return true;
 }
 
-BOOL WINAPI TlsSetValue(HANDLE hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
@@ -529,7 +510,7 @@ void WINAPI TlsShutdown()
 
 
 
-int WINAPI GetThreadPriority(_In_ HANDLE hThread)
+int WINAPI GetThreadPriority(_In_ HTHREAD hThread)
 {
 
    mutex_lock lock(pendingThreadsLock);
@@ -741,7 +722,7 @@ uint32_t thread_proc_create_thread(void * lpparameter)
 }
 
 
-HANDLE start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
+HTHREAD start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
 {
 
    UNREFERENCED_PARAMETER(iPriority);
@@ -750,7 +731,7 @@ HANDLE start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
 
 }
 
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t ( * pfn)(void *), void * pv, uint32_t uiFlags, uint32_t * lpuiId)
+HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t ( * pfn)(void *), void * pv, uint32_t uiFlags, uint32_t * lpuiId)
 {
 
    return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (void *) new os_thread(pfn, pv), uiFlags, lpuiId);
@@ -820,10 +801,10 @@ void thread_layer::wait_thread(uint32_t dwMillis)
 
 }
 
-static HANDLE g_hMainThread = NULL;
+static HTHREAD g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
 
-CLASS_DECL_c void set_main_thread(HANDLE hThread)
+CLASS_DECL_c void set_main_thread(HTHREAD hThread)
 {
 
    //   MSG msg;
@@ -850,7 +831,7 @@ CLASS_DECL_c void set_main_thread_id(UINT uiThread)
 }
 
 
-CLASS_DECL_c HANDLE get_main_thread()
+CLASS_DECL_c HTHREAD get_main_thread()
 {
    return g_hMainThread;
 
@@ -880,9 +861,9 @@ uint32_t thread_layer::proc(void * pv)
 
    thread_layer * player   = (thread_layer *) pv;
 
-   player->m_hthread       = ::GetCurrentThread();
+   player->m_hthread       = ::get_current_thread();
 
-   player->m_nId           = ::GetCurrentThreadId();
+   player->m_nId           = ::get_current_thread_id();
 
    return player->run();
 
@@ -905,12 +886,12 @@ mq * get_mq()
 
 }
 
-bool is_thread(HANDLE h)
+bool is_thread(HTHREAD h)
 {
-   return GetThreadId(h) != 0;
+   return get_thread_id(h) != 0;
 }
 
-mq * get_mq(HANDLE h)
+mq * get_mq(HTHREAD h)
 {
 
 
@@ -966,7 +947,17 @@ restart:
 
    ml.unlock();
 
-   pmq->m_eventNewMessage.wait();
+   while(!pmq->m_eventNewMessage.wait(84))
+   {
+
+      if(::get_current_thread() != NULL && ::get_current_thread()->m_pthread != NULL)
+      {
+
+         ::get_current_thread()->m_pthread->step_timer();
+
+      }
+
+   }
 
    ::ResetEvent(pmq->m_eventNewMessage.m_hEvent);
 
@@ -1008,7 +999,7 @@ CLASS_DECL_c BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT w
 
 
 
-CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread)
+CLASS_DECL_c DWORD WINAPI get_thread_id(HTHREAD Thread)
 {
 
    mutex_lock mlThreadId(threadIdLock);
@@ -1023,7 +1014,7 @@ CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread)
 
 }
 
-CLASS_DECL_c HANDLE WINAPI get_thread_handle(DWORD dw)
+CLASS_DECL_c HTHREAD WINAPI get_thread_handle(DWORD dw)
 {
 
    mutex_lock mlThreadIdHandle(threadIdHandleLock);
@@ -1042,7 +1033,7 @@ CLASS_DECL_c HANDLE WINAPI get_thread_handle(DWORD dw)
 CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
-   HANDLE h = ::get_thread_handle(idThread);
+   HTHREAD h = ::get_thread_handle(idThread);
 
    if(h == NULL)
       return FALSE;
@@ -1078,7 +1069,7 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wPa
 	///  \param		new priority
 	CLASS_DECL_c bool set_thread_priority(int32_t priority)
 	{
-      return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
+      return ( ::SetThreadPriority(::get_current_thread(), priority) != 0 );
 
 	}
 
@@ -1089,7 +1080,26 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wPa
 	CLASS_DECL_c int32_t thread_priority()
 	{
 
-      return ::GetThreadPriority(::GetCurrentThread());
+      return ::GetThreadPriority(::get_current_thread());
 
    }
 
+
+
+
+
+HTHREAD get_current_thread()
+{
+   
+   return currentThread;
+   
+}
+
+
+
+DWORD get_current_thread_id()
+{
+
+   return get_thread_id(get_current_thread());
+
+}

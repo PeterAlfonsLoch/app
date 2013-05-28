@@ -134,7 +134,7 @@ namespace ca
 
    #endif   // WINVER >= 0x0500
 
-      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
 
 #ifdef LINUX
 

@@ -156,9 +156,9 @@ namespace userfs
          {
          }
          item.m_iImage = -1;
-         item.m_strPath = straPath[i];
+         item.m_strPath = strPath;
          item.m_strName = straTitle[i];
-         m_straStrictOrder.add(straPath[i]);
+         m_straStrictOrder.add(strPath);
 
          get_fs_list_data()->m_itema.add_item(item);
 

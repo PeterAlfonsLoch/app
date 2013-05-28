@@ -156,7 +156,11 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
    if(m_bAutoWindowFrame)
    {
+#ifdef METROWIN
+      m_bWindowFrame = get_parent() == ::null() || dynamic_cast < ::ca::window * > (get_parent()->m_pimpl.m_p) != NULL;
+#else
       m_bWindowFrame = get_parent() == ::null();
+#endif
    }
 
    if(m_bWindowFrame)

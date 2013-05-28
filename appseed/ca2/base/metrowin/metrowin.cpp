@@ -60,7 +60,7 @@ CLASS_DECL_ca2 BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wPar
    if(oswindow.window() == NULL || oswindow.window()->m_pthread == NULL)
       return FALSE;
 
-   HANDLE h = oswindow.window()->m_pthread->get_os_handle();
+   HTHREAD h = (HTHREAD) oswindow.window()->m_pthread->get_os_handle();
 
    if(h == NULL)
       return FALSE;

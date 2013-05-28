@@ -2067,7 +2067,7 @@ namespace user
             else if(pdrawitem->m_pcolumnSubItemRect->m_pil != ::null())
             {
 
-#if defined(WINDOWSEX) ||  defined(LINUX)
+#if defined(WINDOWSEX) ||  defined(LINUX) || defined(METROWIN)
 
                ::image_list::info ii;
 
@@ -3652,7 +3652,7 @@ namespace user
       }
       else if(ptimer->m_nIDEvent == 12321)
       {
-#if defined(WINDOWSEX) || defined(LINUX)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
          KillTimer(ptimer->m_nIDEvent);
          index iItemSel;
          index iSubItemSel;

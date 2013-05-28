@@ -243,7 +243,7 @@ public:
 
 };
 
-CLASS_DECL_c mq * get_mq(HANDLE h);
+CLASS_DECL_c mq * get_mq(HTHREAD h);
 
 CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
@@ -253,7 +253,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
 
 #define PeekMessage PeekMessageW
 
-CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread);
+CLASS_DECL_c DWORD WINAPI get_thread_id(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
