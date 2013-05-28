@@ -692,6 +692,8 @@ namespace user
       }
       else
       {
+         pdc->SelectClipRgn(NULL);
+         pdc->set_alpha_mode(::ca::alpha_mode_set);
          pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
       }
 
