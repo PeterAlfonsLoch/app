@@ -145,7 +145,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>m_freetype.lib;kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
     </Link>
@@ -2320,6 +2320,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_FreeImage.vcxproj">
       <Project>{fced5042-9a2d-4e71-8022-129e8e5da36e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2freetype.vcxproj">
+      <Project>{ec95b149-a498-4c6c-92a0-ba563d88b8bd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\zlib\_m_ca2zlib.vcxproj">
       <Project>{84fbad70-591c-44fa-93c4-ee232b3a4b87}</Project>

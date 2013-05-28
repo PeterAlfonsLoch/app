@@ -17,7 +17,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FCED5042-9A2D-4E71-8022-129E8E5DA36E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>_freeimage</ProjectName>
+    <ProjectName>_ca2freeimage</ProjectName>
     <RootNamespace>_freeimage</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
