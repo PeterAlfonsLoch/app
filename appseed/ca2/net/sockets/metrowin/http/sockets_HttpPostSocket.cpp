@@ -165,7 +165,7 @@ namespace sockets
          m_request.attr(__id(http_method)) = "POST";
          m_request.attr(__id(http_version)) = "HTTP/1.1";
          string strHost = GetUrlHost();
-         inheader("Host") = strHost; // oops - this is actually a request header that we're adding..
+         inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
          string strUserAgent = MyUseragent();
          if(!(bool)m_request.attr("minimal_headers"))
          {

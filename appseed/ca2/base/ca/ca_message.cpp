@@ -652,7 +652,7 @@ namespace ca
 
          m_nFlags = HIWORD(lparam);
 
-         System.user()->keyboard().translate_os_key_message(this);
+         
 
       }
 

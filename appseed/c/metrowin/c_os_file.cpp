@@ -85,6 +85,7 @@ CLASS_DECL_c DWORD GetFileAttributes(const wchar_t * psz)
    WIN32_FILE_ATTRIBUTE_DATA data;
 
    zero(&data, sizeof(data));
+
    
    if(!::GetFileAttributesExW(psz, GetFileExInfoStandard, &data))
    {

@@ -32,7 +32,8 @@ namespace user
       m_fastblur(papp),
       m_dibBk(papp),
       ::ca::tree(papp),
-      ::ca::data_listener(papp)
+      ::ca::data_listener(papp),
+      m_keymessageLast(papp)
    {
 
       m_pdata              = ::null();
@@ -614,7 +615,7 @@ namespace user
             KillTimer(500);
             SetTimer(501, 300, ::null());
          }
-         key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
+         key_to_char(&m_keymessageLast);
       }
 
    }
@@ -684,10 +685,13 @@ namespace user
          }
       }
 
-      m_dwLastKeyWparam = pkey->m_nChar;
-      m_dwLastKeyLparam = pkey->m_lparam;
+
+      m_keymessageLast = *pkey;
+
+      //m_dwLastKeyWparam = pkey->m_nChar;
+      //m_dwLastKeyLparam = pkey->m_lparam;
       m_bKeyPressed     = true;
-      key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
+      key_to_char(&m_keymessageLast);
       pkey->m_bRet      = true;
    }
 
@@ -716,7 +720,7 @@ namespace user
 //      SCAST_PTR(::ca::message::key, pkey, pobj)
          if(m_bKeyPressed)
          {
-               //key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
+               //key_to_char(&m_keymessageLast);
          }
    }
 
@@ -756,13 +760,10 @@ namespace user
          ::user::interaction::_001OnChar(pbase);
       }
    }
-   void edit_plain_text::key_to_char(WPARAM wparam, LPARAM lparam)
+   void edit_plain_text::key_to_char(::ca::message::key * pkey)
    {
-      ::ca::message::key key(get_app());
+      ::ca::message::key & key = *pkey;
       LRESULT lresult = 0;
-      key.set(this, WM_CHAR, wparam, lparam, lresult);
-      key.m_nChar = wparam;
-      key.m_nFlags = HIWORD(lparam);
       if(
          key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
       || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol

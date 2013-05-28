@@ -18,8 +18,9 @@ namespace user
    public:
 
 
-      WPARAM                        m_dwLastKeyWparam;
-      LPARAM                        m_dwLastKeyLparam;
+      //WPARAM                        m_dwLastKeyWparam;
+      //LPARAM                        m_dwLastKeyLparam;
+      ::ca::message::key            m_keymessageLast;
 
 
 
@@ -121,7 +122,7 @@ namespace user
 
       virtual void pre_translate_message(::ca::signal_object * pobj);
 
-      void key_to_char(WPARAM wparam, LPARAM lparam);
+      void key_to_char(::ca::message::key * pkey);
 
       virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::user::view
