@@ -315,3 +315,13 @@ namespace ca
 
 
 
+HTHREAD get_current_thread()
+{
+   return ::GetCurrentThread();
+}
+
+
+DWORD get_current_thread_id()
+{
+   return ::GetCurrentThreadId();
+}

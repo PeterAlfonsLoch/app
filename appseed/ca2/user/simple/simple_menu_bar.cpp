@@ -59,7 +59,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
 
 
 #ifdef WINDOWSEX
-   send_message(TB_SETUNICODEFORMAT, 1, 0);
+   send_message(TB_SETUNICODEFORMAT, 1);
    string str;
 
    TBBUTTON tbb;

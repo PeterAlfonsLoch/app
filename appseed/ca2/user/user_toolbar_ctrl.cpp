@@ -282,7 +282,7 @@ namespace user
    bool tool_bar_control::IsButtonEnabled(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_ISBUTTONENABLED, nID, 0) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_ISBUTTONENABLED, nID) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -293,7 +293,7 @@ namespace user
    bool tool_bar_control::IsButtonChecked(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_ISBUTTONCHECKED, nID, 0) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_ISBUTTONCHECKED, nID) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -303,7 +303,7 @@ namespace user
    bool tool_bar_control::IsButtonPressed(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_ISBUTTONPRESSED, nID, 0) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_ISBUTTONPRESSED, nID) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -313,7 +313,7 @@ namespace user
    bool tool_bar_control::IsButtonHidden(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIDDEN, nID, 0) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIDDEN, nID) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -323,7 +323,7 @@ namespace user
    bool tool_bar_control::IsButtonIndeterminate(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_ISBUTTONINDETERMINATE, nID, 0) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -333,7 +333,8 @@ namespace user
    bool tool_bar_control::SetState(int32_t nID, UINT nState)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_SETSTATE, nID, MAKELPARAM(nState, 0)) != FALSE;
+      ASSERT(IsWindow()); 
+      return send_message( TB_SETSTATE, nID, (LPARAM) nState) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -343,7 +344,7 @@ namespace user
    int32_t tool_bar_control::GetState(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return (int32_t) send_message( TB_GETSTATE, nID, 0L);
+      ASSERT(IsWindow()); return (int32_t) send_message( TB_GETSTATE, nID);
 #else
       throw todo(get_app());
 #endif
@@ -373,7 +374,7 @@ namespace user
    bool tool_bar_control::DeleteButton(int32_t nIndex)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return send_message( TB_DELETEBUTTON, nIndex, 0) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_DELETEBUTTON, nIndex) != FALSE;
 #else
       throw todo(get_app());
 #endif
@@ -398,7 +399,7 @@ namespace user
    int32_t tool_bar_control::GetButtonCount()
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return (int32_t) send_message( TB_BUTTONCOUNT, 0, 0L);
+      ASSERT(IsWindow()); return (int32_t) send_message( TB_BUTTONCOUNT);
 
 #else
 
@@ -411,7 +412,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (UINT) send_message( TB_COMMANDTOINDEX, nID, 0L);
+   ASSERT(IsWindow()); return (UINT) send_message( TB_COMMANDTOINDEX, nID);
 
 #else
 
@@ -426,7 +427,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_CUSTOMIZE, 0, 0L);
+   ASSERT(IsWindow()); send_message( TB_CUSTOMIZE);
 
 #else
 
@@ -472,7 +473,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_BUTTONSTRUCTSIZE, nSize, 0L);
+   ASSERT(IsWindow()); send_message( TB_BUTTONSTRUCTSIZE, nSize);
 
 #else
 
@@ -518,7 +519,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_AUTOSIZE, 0, 0L);
+   ASSERT(IsWindow()); send_message( TB_AUTOSIZE);
 
 #else
 
@@ -534,7 +535,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pWnd.m_p, 0L);
+   ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pWnd.m_p);
 
 #else
 
@@ -566,7 +567,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int32_t) send_message( TB_GETROWS, 0, 0L);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_GETROWS);
 
 #else
 
@@ -598,7 +599,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (UINT) send_message( TB_GETBITMAPFLAGS, 0, 0L);
+   ASSERT(IsWindow()); return (UINT) send_message( TB_GETBITMAPFLAGS);
 
 #else
 
@@ -630,7 +631,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETEXTENDEDSTYLE, 0, 0L);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETEXTENDEDSTYLE);
 
 #else
 
@@ -662,7 +663,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (COLORREF) send_message( TB_GETINSERTMARKCOLOR, 0, 0);
+   ASSERT(IsWindow()); return (COLORREF) send_message( TB_GETINSERTMARKCOLOR);
 
 #else
 
@@ -695,7 +696,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETBUTTONSIZE, 0, 0L);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETBUTTONSIZE);
 
 #else
 
@@ -759,7 +760,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETSTYLE, 0, 0L);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETSTYLE);
 
 #else
 
@@ -775,7 +776,9 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (INT) send_message( TB_GETTEXTROWS, 0, 0L);
+      ASSERT(IsWindow()); 
+      
+      return (INT) send_message(TB_GETTEXTROWS);
 
 #else
 
@@ -807,7 +810,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID, 0) != FALSE;
+   ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID) != FALSE;
 
 #else
 
@@ -907,7 +910,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return send_message( TB_SETINDENT, iIndent, 0L) != FALSE;
+   ASSERT(IsWindow()); return send_message( TB_SETINDENT, iIndent) != FALSE;
 
 #else
 
@@ -920,7 +923,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return send_message( TB_SETMAXTEXTROWS, iMaxRows, 0L) != FALSE;
+   ASSERT(IsWindow()); return send_message( TB_SETMAXTEXTROWS, iMaxRows) != FALSE;
 
 #else
 
@@ -1009,7 +1012,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return send_message( TB_GETANCHORHIGHLIGHT, 0, 0) != FALSE;
+   ASSERT(IsWindow()); return send_message( TB_GETANCHORHIGHLIGHT) != FALSE;
 
 #else
 
@@ -1022,7 +1025,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor, 0) != FALSE;
+   ASSERT(IsWindow()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor) != FALSE;
 
 #else
 
@@ -1035,7 +1038,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int32_t) send_message( TB_GETHOTITEM, 0, 0);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_GETHOTITEM);
 
 #else
 
@@ -1048,7 +1051,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int32_t) send_message( TB_SETHOTITEM, nHot, 0);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_SETHOTITEM, nHot);
 
 #else
 

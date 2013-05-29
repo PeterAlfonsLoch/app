@@ -1942,7 +1942,7 @@ namespace user
       while (oswindow != ::null())
       {
          if(::user::is_descendant(pParent, oswindow))
-            oswindow->send_message(WM_FLOATSTATUS, dwFlags, 0);
+            oswindow->send_message(WM_FLOATSTATUS, dwFlags);
          oswindow = oswindow->GetWindow(GW_HWNDNEXT);
       }
 #else
