@@ -914,11 +914,11 @@ namespace ca
 
             if(bDir)
             {
-               strPath = System.http().get("http://"+Application.m_strFontopusServer+"/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://"+Application.m_strFontopusServer+"/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1128,11 +1128,11 @@ ret:
             
             if(bDir)
             {
-               strPath = System.http().get("http://east-server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://east-server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
