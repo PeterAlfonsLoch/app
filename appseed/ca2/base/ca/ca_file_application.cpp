@@ -227,66 +227,107 @@ namespace ca
          spfile = pinfile;
 
       }
-      else if(::ca::str::begins(strPath, Application.m_strMatterUrl) || ::ca::str::begins(strPath, Application.m_strMatterUrl))
+      else if(::ca::str::begins(strPath, "http://") || ::ca::str::begins(strPath, "https://"))
       {
 
-         string strFile(strPath);
-         if(::ca::str::ends(strPath, "en_us_international.xml"))
-         {
-            TRACE("Debug Here");
-         }
+         ::url_domain domain;
 
-         if(::ca::str::ends(strPath, "text_select.xml"))
-         {
-            TRACE("Debug Here");
-         }
+         domain.create(System.url().get_server(strPath));
 
-         if(::ca::str::ends(strPath, "arialuni.ttf"))
-         {
-            TRACE("Debug Here : arialuni.ttf");
-         }
-
-         strFile.replace("://", "_\\");
-         strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
-
-
-         if(m_papp->m_pappThis->m_file.exists(strFile))
+         if(domain.m_strRadix == "ca2" && ::ca::str::begins(System.url().get_object(strPath), "/matter/"))
          {
 
-            spfile.create(m_papp);
+            string strFile(strPath);
+            if(::ca::str::ends(strPath, "en_us_international.xml"))
+            {
+               TRACE("Debug Here");
+            }
 
-            try
+            if(::ca::str::ends(strPath, "text_select.xml"))
+            {
+               TRACE("Debug Here");
+            }
+
+            if(::ca::str::ends(strPath, "arialuni.ttf"))
+            {
+               TRACE("Debug Here : arialuni.ttf");
+            }
+
+            strFile.replace("://", "_\\");
+            strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
+
+
+            if(m_papp->m_pappThis->m_file.exists(strFile))
             {
 
-               if(spfile->open(strFile, nOpenFlags))
+               spfile.create(m_papp);
+
+               try
                {
-                  TRACE("from_exist_cache:\"" + strPath + "\"");
-                  return spfile;
+
+                  if(spfile->open(strFile, nOpenFlags))
+                  {
+                     TRACE("from_exist_cache:\"" + strPath + "\"");
+                     return spfile;
+
+                  }
+               }
+               catch(...)
+               {
 
                }
+
+               try
+               {
+
+                  spfile.release();
+
+               }
+               catch(...)
+               {
+               }
+
             }
-            catch(...)
+
+
+            var varQuery;
+
+            varQuery["disable_ca2_sessid"] = true;
+
+            if(m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
             {
 
+               spfile = new sockets::http::file(get_app());
+
+               if(!spfile->open(strPath, nOpenFlags))
+               {
+
+                  spfile.release();
+
+               }
+               else
+               {
+
+                  try
+                  {
+
+                     System.file().output(m_papp, strFile, &System.compress(), &::ca::compress::null, *spfile.m_p);
+
+                  }
+                  catch(...)
+                  {
+                  }
+
+
+                  spfile->seek_to_begin();
+
+               }
+
             }
 
-            try
-            {
-
-               spfile.release();
-
-            }
-            catch(...)
-            {
-            }
 
          }
-
-         var varQuery;
-
-         varQuery["disable_ca2_sessid"] = true;
-
-         if(m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
+         else
          {
 
             spfile = new sockets::http::file(get_app());
@@ -297,37 +338,6 @@ namespace ca
                spfile.release();
 
             }
-            else
-            {
-
-               try
-               {
-
-                  System.file().output(m_papp, strFile, &System.compress(), &::ca::compress::null, *spfile.m_p);
-
-               }
-               catch(...)
-               {
-               }
-
-
-               spfile->seek_to_begin();
-
-            }
-
-         }
-
-
-      }
-      else if(::ca::str::begins(strPath, "http://") || ::ca::str::begins(strPath, "https://"))
-      {
-
-         spfile = new sockets::http::file(get_app());
-
-         if(!spfile->open(strPath, nOpenFlags))
-         {
-
-            spfile.release();
 
          }
 

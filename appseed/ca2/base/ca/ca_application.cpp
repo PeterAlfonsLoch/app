@@ -541,6 +541,7 @@ finishedCa2ModuleFolder:;
          return false;
 
 
+/*
       if(is_system())
       {
          m_strFontopusServer     = System.get_fontopus_server("http://account.ca2.cc/get_fontopus", this, 8);
@@ -559,7 +560,7 @@ finishedCa2ModuleFolder:;
          m_strMatterUrl          = System.m_strMatterUrl;
          m_strMatterSecureUrl    = System.m_strMatterSecureUrl;
       }
-
+*/
 
 
       m_dwAlive = ::get_tick_count();
