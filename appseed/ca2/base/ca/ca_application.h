@@ -321,7 +321,9 @@ namespace ca
       ::calculator::calculator                                                                * m_pcalculator;
       ::sockets::sockets                                                                      * m_psockets;
       ::colorertake5::colorertake5                                                            * m_pcolorertake5;
-
+      string                                                                                    m_strFontopusServer;
+      string                                                                                    m_strMatterUrl;
+      string                                                                                    m_strMatterSecureUrl;
 
       string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
       string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;

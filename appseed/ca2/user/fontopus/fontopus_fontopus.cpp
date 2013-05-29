@@ -90,56 +90,22 @@ namespace fontopus
 
    user * fontopus::login(::ca::property_set & set)
    {
-      /*::ca::fontopus * papp;
-      if(m_puiInitialPlaceHolderContainer != ::null())
-      {
-      papp = m_puiInitialPlaceHolderContainer->m_papp;
-      }
-      else if(System.m_puiInitialPlaceHolderContainer != ::null())
-      {
-      papp = System.m_puiInitialPlaceHolderContainer->m_papp;
-      }
-      else
-      {
-      papp = this;
-      }*/
-      //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
 
       user * puser = ::null();
 
-      if(m_papp->m_pappThis->m_psession != ::null())
+      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
+      authuser.m_bDeferRegistration = true;
+      authuser.propset().merge(set);
+
+      if(set.has_property("ruri"))
       {
-
-         /*::ca::fontopus * papp;
-         if(m_puiInitialPlaceHolderContainer != ::null())
-         {
-         papp = m_puiInitialPlaceHolderContainer->m_papp;
-         }
-         else if(System.m_puiInitialPlaceHolderContainer != ::null())
-         {
-         papp = System.m_puiInitialPlaceHolderContainer->m_papp;
-         }
-         else
-         {
-         papp = this;
-         }*/
-         //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
-         class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
-         authuser.m_bDeferRegistration = true;
-         authuser.propset().merge(set);
-         if(set.has_property("ruri"))
-            return authuser.get_user(set["ruri"]);
-         else
-            return authuser.get_user();
-
+         puser = authuser.get_user(set["ruri"]);
       }
       else
       {
 
-         class validate authuser(m_papp->m_pappThis, "system\\user\\authenticate.xhtml", true);
-         authuser.m_bDeferRegistration = true;
-         authuser.propset().merge(set);
          puser = authuser.get_user();
+
 
       }
 

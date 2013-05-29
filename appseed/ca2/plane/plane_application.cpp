@@ -1924,6 +1924,8 @@ exit_application:
    bool application::initialize_instance()
    {
 
+
+
       if(!::ca::application::initialize_instance())
          return false;
 

@@ -201,7 +201,6 @@ namespace fontopus
 
          close_all();
 
-
          return m_puser;
       }
       else if(m_bInteractive)

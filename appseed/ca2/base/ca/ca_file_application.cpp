@@ -227,7 +227,7 @@ namespace ca
          spfile = pinfile;
 
       }
-      else if(::ca::str::begins(strPath, "http://matter.ca2.cc/") || ::ca::str::begins(strPath, "https://matter.ca2.cc/"))
+      else if(::ca::str::begins(strPath, Application.m_strMatterUrl) || ::ca::str::begins(strPath, Application.m_strMatterUrl))
       {
 
          string strFile(strPath);

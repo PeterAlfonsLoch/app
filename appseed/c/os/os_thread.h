@@ -141,3 +141,11 @@ public:
 };
 
 
+
+
+CLASS_DECL_c HTHREAD get_current_thread();
+CLASS_DECL_c DWORD get_current_thread_id();
+
+
+
+

@@ -914,11 +914,11 @@ namespace ca
 
             if(bDir)
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://"+Application.m_strFontopusServer+"/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://"+Application.m_strFontopusServer+"/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1120,7 +1120,7 @@ ret:
                strLocale         = pcontext->localeschema().m_idaLocale[i];
                strSchema         = pcontext->localeschema().m_idaSchema[i];
                strLs             = locale_schema_matter(papp, strLocale, strSchema);
-               straPath.add(path(strLs, str, str2));
+               straPath.add(path(strLs, str, str2, true));
             }
             
             strLs             = locale_schema_matter(papp, "en", "en");
@@ -1128,11 +1128,11 @@ ret:
             
             if(bDir)
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://east-server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://east-server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1520,21 +1520,21 @@ ret:
 
       string system::appmatter_locator(sp(::ca::application) papp)
       {
-#if defined(METROWIN) || defined(MACOS)
+/*#if defined(METROWIN) || defined(MACOS)
          string strRoot;
          string strDomain;
 
          appmatter_locators(strRoot, strDomain, papp);
 
-         return path("http://matter.ca2.cc/", path(strRoot, "appmatter", strDomain));
-#else
+         return path(Application.m_strMatterUrl, path(strRoot, "appmatter", strDomain));
+#else*/
          string strRoot;
          string strDomain;
 
          appmatter_locators(strRoot, strDomain, papp);
 
          return ca2(simple_path(strRoot, "appmatter", strDomain));
-#endif
+//#endif
 
       }
 

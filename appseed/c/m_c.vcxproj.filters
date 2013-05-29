@@ -851,6 +851,9 @@
     <ClInclude Include="c\c_user.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
+    <ClInclude Include="os\os_thread.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def">

@@ -41,8 +41,6 @@ CLASS_DECL_c HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttri
 CLASS_DECL_c DWORD WINAPI ResumeThread(HTHREAD hThread);
 CLASS_DECL_c WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
 CLASS_DECL_c int32_t WINAPI GetThreadPriority(HTHREAD hThread);
-CLASS_DECL_c HTHREAD get_current_thread();
-CLASS_DECL_c DWORD get_current_thread_id();
 
 
 CLASS_DECL_c VOID WINAPI Sleep(DWORD dwMilliseconds);

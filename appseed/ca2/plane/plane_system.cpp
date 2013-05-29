@@ -542,6 +542,8 @@ namespace plane
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
+
+
       if(!::plane::application::initialize_instance())
          return false;
 

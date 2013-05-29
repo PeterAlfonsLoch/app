@@ -347,6 +347,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="metrowin\c_os.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_process.h" />
+    <ClInclude Include="os\os_thread.h" />
     <ClInclude Include="simple_graphics\simple_graphics.h" />
     <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
     <ClInclude Include="simple_graphics\simple_graphics_second_phase.h" />
