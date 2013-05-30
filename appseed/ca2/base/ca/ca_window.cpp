@@ -1496,7 +1496,7 @@ namespace ca
    }
 
 
-   bool window::SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool window::SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);

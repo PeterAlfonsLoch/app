@@ -2554,7 +2554,7 @@ ExitModal:
    }
 
 
-   bool interaction::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   bool interaction::PostMessage(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
 
       if(m_pimpl == ::null())
@@ -3444,7 +3444,7 @@ restart:
    }
 
 
-   bool interaction::post_simple_command(e_simple_command ecommand, LPARAM lparam)
+   bool interaction::post_simple_command(e_simple_command ecommand, lparam lparam)
    {
 
       PostMessage(message_simple_command, (WPARAM) ecommand, lparam);

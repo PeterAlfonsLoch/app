@@ -143,9 +143,9 @@ namespace ca
 #endif
 
 
-      virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
 
-      virtual bool SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      virtual bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
       virtual bool SendChildNotifyLastMsg(LRESULT* pResult = ::null());
 
       virtual bool DragDetect(POINT pt) const;

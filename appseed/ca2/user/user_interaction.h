@@ -339,8 +339,8 @@ namespace user
 
 #endif
 
-      virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
-      virtual bool post_simple_command(e_simple_command ecommand, LPARAM lParam = 0);
+      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
+      virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = ::null());
 
       virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
