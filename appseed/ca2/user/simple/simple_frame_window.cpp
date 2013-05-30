@@ -281,7 +281,7 @@ void simple_frame_window::_001OnDisplayChange(::ca::signal_object * pobj)
 
    SCAST_PTR(::ca::message::base, pbase, pobj);
 
-   post_simple_command(simple_command_load_window_rect, FALSE);
+   post_simple_command(simple_command_load_window_rect, (LPARAM) FALSE);
 
    pobj->m_bRet = true;
 

@@ -2508,7 +2508,7 @@ ExitModal:
 #endif
 
          }
-         PostMessage(WM_NULL, 0, 0);
+         PostMessage(WM_NULL);
          System.GetThread()->post_thread_message(WM_NULL);
       }
    }
@@ -2525,7 +2525,7 @@ ExitModal:
       {
          int32_t iLevel = m_iModalCount - 1;
          m_iModalCount = 0;
-         PostMessage(WM_NULL, 0, 0);
+         PostMessage(WM_NULL);
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {

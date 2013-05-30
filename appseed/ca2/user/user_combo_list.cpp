@@ -463,7 +463,7 @@ namespace user
    void combo_list::_001OnClose(::ca::signal_object * pobj)
    {
 
-      PostMessage(WM_DESTROY, 0, 0);
+      PostMessage(WM_DESTROY);
 
    }
 

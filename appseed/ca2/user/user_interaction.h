@@ -330,7 +330,7 @@ namespace user
       virtual LRESULT Default();
 
       virtual LRESULT send_message(::ca::message::base * pbase);
-      virtual bool PostMessage(::ca::message::base * pbase);
+      virtual bool PostMessage(::ca::message::base & base);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = ::null());
 
 #ifdef LINUX

@@ -965,7 +965,7 @@ namespace ca
 
 #endif
 
-   bool window::PostMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool window::PostMessage(UINT message, WPARAM wParam, lparam lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
