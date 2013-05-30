@@ -10,7 +10,7 @@ namespace dynamic_source
 {
 
    string escape(const char * lpcsz);
-   
+
    void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower = true);
 
 
@@ -71,33 +71,33 @@ namespace dynamic_source
       //m_strSdk1 = "windows7.1sdk";
       m_strSdk1 = "110";
       string strPlat2;
-   #ifdef _M_X64
+#ifdef _M_X64
       m_strPlat1     = "64";
       strPlat2 = " /x64";
       m_strPlatform = "x64";
       m_strLibPlatform = "x64/";
-   #else
+#else
       m_strPlat1     = "";
       strPlat2 = " /x86";
       m_strPlatform = "x86";
       m_strLibPlatform = "";
-   #endif
+#endif
 
       //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
 #if defined(LINUX)
       prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash",
-               m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash");
+         m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash");
       prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bash",
-               m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bash");
+         m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bash");
       prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bash",
-               m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bash");
+         m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bash");
 #else
       prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
-               m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
+         m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
       prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
-               m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
+         m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
       prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
-               m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
+         m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 #endif
       System.dir().mk(System.dir().ca2("stage/front"), get_app());
 
@@ -231,16 +231,16 @@ namespace dynamic_source
       }
 
 
-    string strTime = m_strTime;
+      string strTime = m_strTime;
 
 
       pscript->m_strCppPath.Format(System.dir().path(m_strTime, "dynamic_source\\%s.cpp", false), strTransformName);
-   //#ifdef DEBUG
-      #ifdef LINUX
+      //#ifdef DEBUG
+#ifdef LINUX
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s%s.bat"), System.file().name_(strTransformName), strTransformName);
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".so", false));
-      #else
+#else
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
       strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));
@@ -253,62 +253,83 @@ namespace dynamic_source
       strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
       strSPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\" + m_pmanager->m_strNamespace + "_script.pch", false), strTransformName);
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".dll", false));
-      #endif
-   //#else
-     // pscript->m_strLibraryPath.Format(System.dir().stage("Release\\%s.dll"), strName);
-   //#endif
+#endif
+      //#else
+      // pscript->m_strLibraryPath.Format(System.dir().stage("Release\\%s.dll"), strName);
+      //#endif
 
       try
       {
-         System.file().del(strO);
+         if(Application.file().exists(strO))
+         {
+            System.file().del(strO);
+         }
       }
       catch(...)
       {
       }
-      #ifndef LINUX
+#ifndef LINUX
       try
       {
-         System.file().del(strP);
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-        System.file().del(strL);
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-        System.file().del(strE);
+         if(Application.file().exists(strP))
+         {
+            System.file().del(strP);
+         }
       }
       catch(...)
       {
       }
       try
       {
-        System.file().del(strDPCH);
+         if(Application.file().exists(strL))
+         {
+            System.file().del(strL);
+         }
       }
       catch(...)
       {
       }
       try
       {
-        System.file().del(strDVP);
+         if(Application.file().exists(strE))
+         {
+            System.file().del(strE);
+         }
       }
       catch(...)
       {
       }
       try
       {
-        System.file().del(strDVI);
+         if(Application.file().exists(strDPCH))
+         {
+            System.file().del(strDPCH);
+         }
       }
       catch(...)
       {
       }
-      #endif
+      try
+      {
+         if(Application.file().exists(strDVP))
+         {
+            System.file().del(strDVP);
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(Application.file().exists(strDVI))
+         {
+            System.file().del(strDVI);
+         }
+      }
+      catch(...)
+      {
+      }
+#endif
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
@@ -349,7 +370,7 @@ namespace dynamic_source
       Application.dir().mk(System.dir().name(pscript->m_strBuildBat));
       try
       {
-//         Application.file().copy(strDVI, strSVI, false);
+         //         Application.file().copy(strDVI, strSVI, false);
       }
       catch(...)
       {
@@ -411,15 +432,15 @@ namespace dynamic_source
       string strN = m_pmanager->m_strNetnodePath;
 
       string strBuildCmd;
-      #ifdef LINUX
+#ifdef LINUX
       strBuildCmd.Format(System.dir().ca2("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash"));
-      #else
-   //#ifdef DEBUG
+#else
+      //#ifdef DEBUG
       strBuildCmd.Format(System.dir().ca2("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
-   //#else
-     // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
-   //#endif
-   #endif
+      //#else
+      // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
+      //#endif
+#endif
       str = Application.file().as_string(strBuildCmd);
       str.replace("%ITEM_NAME%", strTransformName);
       str.replace("%ITEM_TITLE%", System.file().name_(strTransformName));
@@ -433,7 +454,7 @@ namespace dynamic_source
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetPath = pscript->m_strScriptPath;
-      #ifdef LINUX
+#ifdef LINUX
       ::ca::str::ends_eat_ci(strTargetPath, ".so");
 #else
       ::ca::str::ends_eat_ci(strTargetPath, ".dll");
@@ -484,7 +505,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-        Sleep(1984);
+      Sleep(1984);
 
 #endif
       pscript->m_memfileError.Truncate(0);
@@ -509,7 +530,7 @@ namespace dynamic_source
       pscript->m_memfileError << str;
       pscript->m_memfileError << "</pre>";
 
-      #ifndef LINUX
+#ifndef LINUX
 
       try
       {
@@ -572,7 +593,7 @@ namespace dynamic_source
 
 
 #else
-//      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+      //      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
 
       memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
       memset(&pscript->m_ftAccess, 0, sizeof(__time_t));
@@ -721,11 +742,11 @@ namespace dynamic_source
 
       string strN = m_pmanager->m_strNetnodePath;
 
-   //#ifdef DEBUG
+      //#ifdef DEBUG
       strTemplate = System.dir().path(strFolder, strSource, false );
-   //#else
-     // strTemplate = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
-   //#endif
+      //#else
+      // strTemplate = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
+      //#endif
       string str;
       str = Application.file().as_string(strTemplate);
       /*string strVars = getenv("VS100COMNTOOLS");
@@ -739,11 +760,11 @@ namespace dynamic_source
       string strDest = "stage\\front\\";
       strDest += lpcszDest;
       string strCmd;
-   //#ifdef DEBUG
+      //#ifdef DEBUG
       strCmd = System.dir().path(strFolder, strDest, false);
-   //#else
-     // strCmd = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
-   //#endif
+      //#else
+      // strCmd = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+      //#endif
       Application.dir().mk(System.dir().name(strCmd));
       Application.file().put_contents(strCmd, str);
       Application.dir().mk(System.dir().path(m_strTime, "dynamic_source\\", false));
@@ -859,15 +880,15 @@ namespace dynamic_source
       string strLib(System.file().name_(strName));
 
 
-   //#ifdef DEBUG
-   #ifdef LINUX
+      //#ifdef DEBUG
+#ifdef LINUX
       m_strLibraryPath = "/ca2/stage/x86/libnetnodelibrary.so";
-      #else
+#else
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
-      #endif
-   //#else
-     // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
-   //#endif
+#endif
+      //#else
+      // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
+      //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
       Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library", false), System.dir().name(strName), false));
@@ -889,15 +910,15 @@ namespace dynamic_source
          string str1;
          str1 = "library/source/" + strRel;
          string strCmd;
-   //#ifdef DEBUG
-   #ifdef LINUX
+         //#ifdef DEBUG
+#ifdef LINUX
          strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
-         #else
+#else
          strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
-         #endif
-   //#else
-     //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
-   //#endif
+#endif
+         //#else
+         //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+         //#endif
          string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%", str1);
          str.replace("%ITEM_DIR%", System.dir().name(str1));
@@ -908,10 +929,10 @@ namespace dynamic_source
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
-   #ifdef LINUX
+#ifdef LINUX
          strCmd = System.dir().ca2("stage\\front\\libc1.bash");
-         #else
-            strCmd = System.dir().ca2("stage\\front\\libc1.bat");
+#else
+         strCmd = System.dir().ca2("stage\\front\\libc1.bat");
          string vars1batSrc;
          string vars2batSrc;
          string vars1batDst;
@@ -973,24 +994,24 @@ namespace dynamic_source
          ::ca::str::ends_eat_ci(strRel, ".ds");
          strObjs += System.dir().path(
             System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library\\source", false),
-                                      #ifdef LINUX
+#ifdef LINUX
             strRel + ".o", false);
-            #else
+#else
             strRel + ".obj", false);
-            #endif
+#endif
          strObjs += " ";
       }
       string strCmd;
-   //#ifdef DEBUG
+      //#ifdef DEBUG
       strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
-                                       #ifdef LINUX
-                                       ".bash"));
-                                       #else
-                                       ".bat"));
-                                       #endif
-   //#else
-     // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
-   //#endif
+#ifdef LINUX
+         ".bash"));
+#else
+         ".bat"));
+#endif
+      //#else
+      // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+      //#endif
       string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%", "library" PATH_SEPARATOR + strName);
       str.replace("%ITEM_DIR%", "library");
@@ -1004,12 +1025,12 @@ namespace dynamic_source
       ::ca::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
       Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
-      #ifdef LINUX
+#ifdef LINUX
       Sleep(1984);
       strCmd = System.dir().ca2("stage\\front\\libl1.bash");
-      #else
+#else
       strCmd = System.dir().ca2("stage\\front\\libl1.bat");
-      #endif
+#endif
       Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
@@ -1117,7 +1138,7 @@ namespace dynamic_source
 
    }
 
-   
+
    void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower)
    {
       string strKey = strResult.Mid(iArroba);
@@ -1635,7 +1656,7 @@ namespace dynamic_source
          }
          else if(ch == ';')
          {
-   ch_comma:
+ch_comma:
             if(bInRet)
             {
                bInRet = false;
@@ -1691,7 +1712,7 @@ namespace dynamic_source
          }
          else
          {
-   ch_else:
+ch_else:
             if(bScript && is_id(&str[i], str.get_length() - i,  "return", 6,  iIdLen) && next_nonspace(str.Mid(i + iIdLen))[0] != ';')
             {
                bInRet = true;
@@ -1732,7 +1753,7 @@ namespace dynamic_source
             {
                if(ch == '\r' || ch == '\n')
                {
-                   bNewLine = true;
+                  bNewLine = true;
 
                }
                else if(isspace((int) (unsigned char) ch))
@@ -1923,7 +1944,7 @@ namespace dynamic_source
          stat(m_straLibSourcePath[i], &st);
 
          if(memcmp(&st.st_ctime, &m_ftaLibCreation[i], sizeof(__time_t)) != 0
-         || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
+            || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
          {
             m_bLastLibraryVersionCheck = false;
             m_dwLastLibraryVersionCheck = get_tick_count();

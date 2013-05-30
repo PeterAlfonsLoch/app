@@ -917,8 +917,7 @@ namespace ca
       void file_system::del(const char * psz)
       {
 #ifdef WINDOWS
-         if(!::DeleteFileW(
-            ::ca::international::utf8_to_unicode(psz)))
+         if(!::DeleteFileW(::ca::international::utf8_to_unicode(string("\\\\?\\") + psz)))
          {
             uint32_t dwError = ::GetLastError();
             if(dwError == 2) // the file does not exist, so delete "failed"
