@@ -380,6 +380,7 @@ namespace user
       virtual sp(interaction) get_capture();
       virtual sp(interaction) release_capture();
 
+
       virtual bool has_focus();
       virtual sp(interaction) SetFocus();
       virtual bool SetForegroundWindow();
