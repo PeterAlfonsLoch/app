@@ -479,7 +479,7 @@ namespace user
                   pui->_000OnMouse(pmouse);
                   if(pmouse->m_bRet)
                      return;
-                  pui->send_message(pmouse);
+                  pui->send(pmouse);
                   if(pmouse->get_lresult() != 0)
                      return;
                }

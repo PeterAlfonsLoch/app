@@ -56,7 +56,7 @@ namespace user
 
       sp(::user::interaction) pParentWnd = get_parent();
 
-      pParentWnd->send_message(pscroll);
+      pParentWnd->send(pscroll);
 
    }
 

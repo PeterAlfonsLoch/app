@@ -1072,7 +1072,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   LRESULT interaction::send_message(::ca::message::base * pbase)
+   LRESULT interaction::send(::ca::message::base * pbase)
    {
       message_handler(pbase);
       return pbase->get_lresult();
@@ -1081,7 +1081,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   bool interaction::PostMessage(::ca::message::base * pbase)
+   bool interaction::post(::ca::message::base * pbase)
    {
       return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
    }

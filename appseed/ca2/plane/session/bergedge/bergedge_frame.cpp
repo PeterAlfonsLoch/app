@@ -450,7 +450,7 @@ namespace bergedge
             pre_translate_message(spbase);
             if(!spbase->m_bRet)
             {
-               send_message(spbase);
+               send(spbase);
             }
 #else
             throw todo(get_app());

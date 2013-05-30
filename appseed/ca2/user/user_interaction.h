@@ -329,8 +329,8 @@ namespace user
       virtual uint32_t GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT send_message(::ca::message::base * pbase);
-      virtual bool PostMessage(::ca::message::base & base);
+      virtual LRESULT send(::ca::message::base * pbase);
+      virtual bool post(::ca::message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = ::null());
 
 #ifdef LINUX
