@@ -113,7 +113,7 @@ namespace ca
    protected:
 
 
-      id                m_idName; 
+      id                m_idName;
 
    public:
 
@@ -700,7 +700,7 @@ namespace ca
 
    namespace str
    {
-      inline bool CLASS_DECL_ca2 begins(const ::ca::property & property, const char * lpcszPrefix) { return begins((const string &) property, lpcszPrefix); };
+      inline bool CLASS_DECL_ca2 begins(const ::ca::property & property, const char * lpcszPrefix) { return begins(property.get_string(), lpcszPrefix); };
    }
 
 
