@@ -1654,6 +1654,15 @@ exit_application:
    {
 
 
+      if(!is_installing() && !is_uninstalling())
+      {
+
+         if(!user()->keyboard().initialize())
+            return false;
+
+         simpledb().set_keyboard_layout(::null(), false);
+
+      }
 
 
       if(m_bIfs)
@@ -1899,17 +1908,6 @@ exit_application:
 
 
       fill_locale_schema(*str_context()->m_plocaleschema);
-
-
-      if(!is_installing() && !is_uninstalling())
-      {
-
-         if(!user()->keyboard().initialize())
-            return false;
-
-         simpledb().set_keyboard_layout(::null(), false);
-
-      }
 
 
       if(!m_spuser->initialize2())
