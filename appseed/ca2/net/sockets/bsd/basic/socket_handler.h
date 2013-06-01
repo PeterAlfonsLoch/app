@@ -47,12 +47,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(sp(::ca::application) papp, StdLog *log = ::null());
+         socket_handler(sp(::ca::application) papp, StdLog *log = NULL);
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(sp(::ca::application) papp, mutex & mutex,StdLog *log = ::null());
+         socket_handler(sp(::ca::application) papp, mutex & mutex,StdLog *log = NULL);
 
          ~socket_handler();
 
@@ -178,7 +178,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          socket_map     m_add; ///< Sockets to be added to sockets map
          socket_list    m_delete; ///< Sockets to be deleted (failed when add)
       protected:
-         StdLog *m_stdlog; ///< Registered log class, or ::null()
+         StdLog *m_stdlog; ///< Registered log class, or NULL
          mutex * m_pmutex; ///< Thread safety mutex
          bool m_b_use_mutex; ///< mutex correctly initialized
 

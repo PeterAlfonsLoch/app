@@ -7,7 +7,7 @@ namespace database
 
    client::client()
    {
-      m_pdataserver = ::null();
+      m_pdataserver = NULL;
    }
 
 
@@ -18,7 +18,7 @@ namespace database
 
    bool client::set_data_server(server * pserver)
    {
-      if(pserver != ::null())
+      if(pserver != NULL)
       {
          pserver->add_client(this);
       }
@@ -29,7 +29,7 @@ namespace database
 
    client::~client()
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          try
          {
@@ -93,7 +93,7 @@ namespace database
       var & var,
       update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, var, puh);
       }
@@ -102,7 +102,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, int32_t i, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var(i);
          return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, var, puh);
@@ -112,7 +112,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, int64_t i, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var(i);
          return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, var, puh);
@@ -148,7 +148,7 @@ namespace database
 
    bool client::data_set(class id dataid, class id id, class id idIndex, const char * lpsz, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var;
          var = lpsz;
@@ -159,7 +159,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, const wchar_t * lpsz, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var;
          var = lpsz;
@@ -211,7 +211,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, ::ca::readable & readable, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, readable, puh);
       }
@@ -220,7 +220,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, ::ca::byte_serializable & obj, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_save(this, m_dataid, id, idIndex, obj, puh))
             return false;
@@ -231,7 +231,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, ::ca::byte_input_stream & istream, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, istream, puh);
       }
@@ -240,7 +240,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, ::ca::plain_text_serializable & obj, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_save(this, m_dataid, id, idIndex, obj, puh))
             return false;
@@ -251,7 +251,7 @@ namespace database
 
    bool client::data_set(class id id, class id idIndex, ::ca::plain_text_input_stream & istream, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, istream, puh);
       }
@@ -270,7 +270,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, var & var)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          return m_pdataserver->data_server_load(this, m_dataid, id, idIndex, var);
       }
@@ -279,7 +279,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, int32_t & i)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var;
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, var))
@@ -292,7 +292,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, int64_t & i)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var;
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, var))
@@ -310,7 +310,7 @@ namespace database
 
    bool client::data_get(class id dataid, class id id, class id idIndex, string & str)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          var var;
          if(!m_pdataserver->data_server_load(this, dataid, id, idIndex, var))
@@ -325,7 +325,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, ::ca::writable & writable)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, writable))
             return false;
@@ -336,7 +336,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, ::ca::byte_serializable & obj)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, obj))
             return false;
@@ -347,7 +347,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, ::ca::byte_output_stream & ostream)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, ostream))
             return false;
@@ -358,7 +358,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, ::ca::plain_text_serializable & obj)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, obj))
             return false;
@@ -369,7 +369,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, ::ca::plain_text_output_stream & ostream)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, ostream))
             return false;
@@ -380,7 +380,7 @@ namespace database
 
    bool client::data_pulse_change(class id id, class id idIndex, update_hint * puh)
    {
-      if(m_pdataserver != ::null())
+      if(m_pdataserver != NULL)
       {
          if(!m_pdataserver->data_pulse_change(this, m_dataid, id, idIndex, puh))
             return false;
@@ -399,7 +399,7 @@ namespace database
    {
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         this->element_at(i)->m_pdataserver = ::null();
+         this->element_at(i)->m_pdataserver = NULL;
       }
    }
 

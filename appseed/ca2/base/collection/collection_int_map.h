@@ -7,7 +7,7 @@ class int_map :
 {
 public:
 
-   int_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   int_map(::ca::application * papp = NULL, ::count nBlockSize = 10);
    int_map(const int_map & map);
 
 

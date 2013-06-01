@@ -199,7 +199,7 @@
 //		disp = OPEN_EXISTING;
 //	}
 //
-//	HANDLE hFile = CreateFile2(path, access, 0, disp, ::null());
+//	HANDLE hFile = CreateFile2(path, access, 0, disp, NULL);
 //	if (hFile == INVALID_HANDLE_VALUE)
 //		return 0;
 //
@@ -439,7 +439,7 @@
 //	HANDLE hFile = (HANDLE) ((_FILE*)str)->_base;
 //	int32_t textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
 //
-//   if(hFile == ::null())
+//   if(hFile == NULL)
 //      return 0;
 //
 //	// Text-mode translation is always ANSI!

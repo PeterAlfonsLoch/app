@@ -4,7 +4,7 @@
 vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 {
 
-   if(pszCommandLine == ::null())
+   if(pszCommandLine == NULL)
       return "";
 
    const char * psz = pszCommandLine;
@@ -32,7 +32,7 @@ vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr)
    
    const char * pszEnd = psz;
 
-   if(pszEndPtr != ::null())
+   if(pszEndPtr != NULL)
    {
       *pszEndPtr = pszEnd + 1;
    }
@@ -75,7 +75,7 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
    const char * pszValue = strstr_dup(pszCommandLine, strParam);
 
-   if(pszValue == ::null())
+   if(pszValue == NULL)
       return "";
 
    pszValue += strParam.length();
@@ -86,7 +86,7 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
       const char * pszValueEnd = strchr_dup(pszValue + 1, '"');
 
-      if(pszValueEnd == ::null())
+      if(pszValueEnd == NULL)
       {
          strValue = vsstring(pszValue);
       }
@@ -101,7 +101,7 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
       const char * pszValueEnd = strstr_dup(pszValue, " ");
 
-      if(pszValueEnd == ::null())
+      if(pszValueEnd == NULL)
       {
          strValue = vsstring(pszValue);
       }

@@ -262,7 +262,7 @@ typedef int boolean;
  * Undefining some of these symbols will produce a smaller but less capable
  * library.  Note that you can leave certain source files out of the
  * compilation/linking process if you've #undef'd the corresponding symbols.
- * (You may HAVE to do that if your compiler doesn't like null source files.)
+ * (You may HAVE to do that if your compiler doesn't like NULL source files.)
  */
 
 /* Capability options common to encoder and decoder: */

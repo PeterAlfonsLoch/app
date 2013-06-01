@@ -52,7 +52,7 @@ bool GetDrive( LPCTSTR pszDosName, string& csDrive, bool bDriveLetterOnly )
 // This Function install the driver and starts it
 HANDLE ExtractAndInstallDrv()
 {
-	SC_HANDLE hSCManager = OpenSCManager( ::null(), ::null(), SC_MANAGER_ALL_ACCESS );
+	SC_HANDLE hSCManager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
 	SC_HANDLE hService = OpenService( hSCManager , DRV_NAME, SERVICE_ALL_ACCESS);
 	string csPath;
 	if( 0 == hService )
@@ -107,7 +107,7 @@ HANDLE ExtractAndInstallDrv()
         
         if( !PathFileExists( csFilePath ))
         {
-            MessageBox(::null(), "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
+            MessageBox(NULL, "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
             return 0;
         }
 
@@ -115,7 +115,7 @@ HANDLE ExtractAndInstallDrv()
 
 		hService = CreateService( hSCManager, DRV_NAME, DRV_NAME, SERVICE_ALL_ACCESS,
 								  SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
-								  csFilePath, ::null(), ::null(), ::null(), ::null(), ::null() );
+								  csFilePath, NULL, NULL, NULL, NULL, NULL );
 		
 		if( 0 == hService )
 		{
@@ -125,7 +125,7 @@ HANDLE ExtractAndInstallDrv()
 		}
 	}
 
-	if( !StartService( hService, 0, ::null() ))
+	if( !StartService( hService, 0, NULL ))
 	{
       uint32_t dwLastError = GetLastError();
 		if(dwLastError  != ERROR_SERVICE_ALREADY_RUNNING )
@@ -159,7 +159,7 @@ HANDLE ExtractAndInstallDrv()
 bool StopAndUninstallDrv( HANDLE hDrvHandle )
 {
 	CloseHandle( hDrvHandle );
-	SC_HANDLE hSCManager = OpenSCManager( ::null(), ::null(), SC_MANAGER_ALL_ACCESS );
+	SC_HANDLE hSCManager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
 	SC_HANDLE hService = OpenService( hSCManager , DRV_NAME, SERVICE_ALL_ACCESS );
 	SERVICE_STATUS  stSrvStatus = {0};
 	ControlService( hService, SERVICE_CONTROL_STOP, &stSrvStatus );
@@ -192,7 +192,7 @@ bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
     }
 
     // Get the LUID for the privilege. 
-    if(LookupPrivilegeValue(::null(), pszPrivilege,
+    if(LookupPrivilegeValue(NULL, pszPrivilege,
                             &tkp.Privileges[0].Luid)) 
     {
         tkp.PrivilegeCount = 1;  // one privilege to set    
@@ -200,7 +200,7 @@ bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
 
         // set the privilege for this process. 
         AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
-                              (PTOKEN_PRIVILEGES)::null(), 0); 
+                              (PTOKEN_PRIVILEGES)NULL, 0); 
 
         if (GetLastError() != ERROR_SUCCESS)
            return FALSE;

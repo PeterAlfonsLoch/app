@@ -88,7 +88,7 @@ bool image_list::create(sp(image_list) pimagelist)
    m_spdib->create(bm.bmWidth, bm.bmHeight);
 
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SelectObject(bitmap);
    m_spdib->from(spgraphics);
    m_spdib->channel_mask(192, 255, 0, visual::rgba::channel_alpha);
@@ -164,9 +164,9 @@ int32_t image_list::add(::visual::icon * picon)
 
 
 #ifdef METROWIN
-   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, ::null(), 0);
+   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, NULL, 0);
 #else
-   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, ::null(), DI_IMAGE);
+   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, NULL, DI_IMAGE);
 #endif
 
    //::ca::dib_sp dibAlpha(get_app());
@@ -176,7 +176,7 @@ int32_t image_list::add(::visual::icon * picon)
    //dibAlpha->SetIconMask(picon, m_size.cx, m_size.cy);
 
  //  ::ca::graphics_sp dcAlpha;
-//   dcAlpha.CreateCompatibleDC(::null());
+//   dcAlpha.CreateCompatibleDC(NULL);
 //   dcAlpha.SelectObject(dibAlpha->m_hbitmap);
 
 /*  m_dcAlpha.BitBlt(
@@ -190,11 +190,11 @@ int32_t image_list::add(::visual::icon * picon)
    /*::ca::dib_sp dibIcon;
    dibIcon.create(m_size.cx, m_size.cy);
    ::ca::graphics_sp dcIcon;
-   dcIcon.CreateCompatibleDC(::null());
+   dcIcon.CreateCompatibleDC(NULL);
    dcIcon.SelectObject(dibIcon.m_hbitmap);
 
    DrawIconEx(dcIcon, 0, 0, hicon, m_size.cx, m_size.cy,
-      0, ::null(), DI_MASK);
+      0, NULL, DI_MASK);
 
    GdiFlush();
 
@@ -223,7 +223,7 @@ int32_t image_list::add_icon(const char * psz)
 
    int32_t iSize = min(m_size.cx, m_size.cy);
    
-   icon.m_picon = (void *) (HICON) ::LoadImage(::null(), psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+   icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
 
 #endif
 
@@ -266,7 +266,7 @@ int32_t image_list::add_file(const char * lpcsz)
 
 int32_t image_list::add_matter(const char * lpcsz, sp(::ca::application) papp)
 {
-   if(papp == ::null())
+   if(papp == NULL)
    {
       return add_file(System.dir().matter(&System, lpcsz));
    }
@@ -326,7 +326,7 @@ bool image_list::get_image_info(int32_t nImage, info * pinfo) const
    try
    {
 
-      ASSERT(pinfo != ::null());
+      ASSERT(pinfo != NULL);
 
       if(nImage < 0 || nImage >= get_image_count())
          return FALSE;
@@ -338,7 +338,7 @@ bool image_list::get_image_info(int32_t nImage, info * pinfo) const
       if(const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap().is_null())
          return FALSE;
 
-      if((HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data() == ::null())
+      if((HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data() == NULL)
          return FALSE;
 
       pinfo->m_rect.left      = nImage * m_size.cx;
@@ -346,7 +346,7 @@ bool image_list::get_image_info(int32_t nImage, info * pinfo) const
       pinfo->m_rect.top       = 0;
       pinfo->m_rect.bottom    = m_size.cy;
       pinfo->m_pdib           = ((image_list *) this)->m_spdib;
-//      pImageInfo->hbmMask           = ::null();
+//      pImageInfo->hbmMask           = NULL;
 
       return TRUE;
 

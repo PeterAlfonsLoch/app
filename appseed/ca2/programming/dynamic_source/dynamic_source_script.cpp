@@ -43,7 +43,7 @@ namespace dynamic_source
       script(papp),
       m_evCreationEnabled(papp)
    {
-      m_lpfnCreateInstance    = ::null();
+      m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;
       m_bCalcHasTempError     = false;
       m_evCreationEnabled.SetEvent();
@@ -86,10 +86,10 @@ namespace dynamic_source
       memset(&ftCreation, 0, sizeof(FILETIME));
       //memset(&ftAccess, 0, sizeof(FILETIME));
       memset(&ftModified, 0, sizeof(FILETIME));
-      HANDLE h = create_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+      HANDLE h = create_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
       try
       {
-         bMatches = GetFileTime(h, &ftCreation, ::null(), &ftModified) != FALSE;
+         bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified) != FALSE;
          if(bMatches)
          {
             bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
@@ -108,10 +108,10 @@ namespace dynamic_source
       memset(&ftCreation, 0, sizeof(FILETIME));
       //memset(&ftAccess, 0, sizeof(FILETIME));
       memset(&ftModified, 0, sizeof(FILETIME));
-      ::Windows::Storage::StorageFile ^ h = get_os_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+      ::Windows::Storage::StorageFile ^ h = get_os_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
       try
       {
-         bMatches = get_file_time(h, &ftCreation, ::null(), &ftModified) != FALSE;
+         bMatches = get_file_time(h, &ftCreation, NULL, &ftModified) != FALSE;
          if(bMatches)
          {
             bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
@@ -131,7 +131,7 @@ namespace dynamic_source
 
 //         memset(&ftAccess, 0, sizeof(__time_t));
 //         memset(&ftModified, 0, sizeof(__time_t));
-//         HANDLE h = ::CreateFile(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+//         HANDLE h = ::CreateFile(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       stat(m_strSourcePath, &st);
 //         ::CloseHandle(h);
@@ -280,7 +280,7 @@ namespace dynamic_source
          {
             m_memfileError << m_strScriptPath << ": does not exist.";
          }
-         m_lpfnCreateInstance = ::null();
+         m_lpfnCreateInstance = NULL;
          return;
       }
       if(m_library.is_closed())
@@ -326,7 +326,7 @@ namespace dynamic_source
          }
       }
       m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_script_instance");
-      if(m_lpfnCreateInstance == ::null())
+      if(m_lpfnCreateInstance == NULL)
       {
           TRACE("create_dynamic_source_script_instance error");
       }
@@ -378,7 +378,7 @@ namespace dynamic_source
 
          HMODULE hmodule = ::GetModuleHandleW(::ca::international::utf8_to_unicode("\\\\?\\" + strStagePath));
          bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ::ca::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
-         if(hmodule != ::null() && !::FreeLibrary(hmodule))
+         if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             uint32_t dwError = ::GetLastError();
             TRACE("ds_script::GetModuleHandle return bool(%d) Unload Error close Handle %s %d\r\n", b, strStagePath, dwError);
@@ -388,7 +388,7 @@ namespace dynamic_source
          ::ca::str::ends_eat_ci(strPdb, ".dll");
          strPdb += ".pdb";
          b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ::ca::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
-         if(hmodule != ::null() && !::FreeLibrary(hmodule))
+         if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             uint32_t dwError = ::GetLastError();
             TRACE("ds_script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
@@ -398,13 +398,13 @@ namespace dynamic_source
 
 #else
          void * p = dlopen(m_strScriptPath, RTLD_NOLOAD);
-         if(p != ::null() && !dlclose(p))
+         if(p != NULL && !dlclose(p))
          {
             TRACE("ds_script::%s Unload Error\r\n", m_strScriptPath.c_str());
          }
 #endif
 
-         m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) ::null();
+         m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) NULL;
       }
    }
 
@@ -419,7 +419,7 @@ namespace dynamic_source
    {
       single_lock sl(&m_mutex);
       if(!sl.lock(minutes(2)))
-         return ::null();
+         return NULL;
       if(ShouldBuild())
       {
          string str;
@@ -449,7 +449,7 @@ namespace dynamic_source
       }
 
       script_instance * pinstance;
-      if(m_lpfnCreateInstance == ::null())
+      if(m_lpfnCreateInstance == NULL)
       {
          pinstance = canew(script_instance(this));
       }

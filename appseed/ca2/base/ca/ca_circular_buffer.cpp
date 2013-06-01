@@ -92,7 +92,7 @@ namespace ca
 
    bool circular_buffer::remove(size_t l)
    {
-      return read(::null(), l);
+      return read(NULL, l);
    }
 
 

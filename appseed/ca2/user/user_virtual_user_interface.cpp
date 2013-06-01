@@ -8,7 +8,7 @@ virtual_user_interface::virtual_user_interface()
 {
 
    m_bCreate         = false;
-   m_pthread         = ::null();
+   m_pthread         = NULL;
    m_bEnabled        = true;
 
 }
@@ -20,7 +20,7 @@ virtual_user_interface::virtual_user_interface(sp(::ca::application) papp) :
 {
 
    m_bCreate         = false;
-   m_pthread         = ::null();
+   m_pthread         = NULL;
    m_bEnabled        = true;
 
 }
@@ -33,7 +33,7 @@ virtual_user_interface::~virtual_user_interface()
 ::ca::graphics * virtual_user_interface::GetDC()
 {
    ::ca::graphics_sp g(allocer());
-   g->CreateCompatibleDC(::null());
+   g->CreateCompatibleDC(NULL);
    return g.detach();
 }
 
@@ -78,13 +78,13 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
          m_rectParentClient.bottom  = pt.y + cy;
       }
    }
-   if(m_pguie != ::null())
+   if(m_pguie != NULL)
    {
       m_pguie->m_rectParentClient = m_rectParentClient;
    }
    lock.unlock();
    m_bRectOk = false;
-   if(m_pguie != ::null())
+   if(m_pguie != NULL)
    {
       m_pguie->m_bRectOk = false;
    }
@@ -127,11 +127,11 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
 
    if(!(nFlags & SWP_NOZORDER))
    {
-      if(get_parent() != ::null())
+      if(get_parent() != NULL)
       {
          if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
          {
-            single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex);
+            single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex);
             if(sl.lock(millis(84)))
             {
                index iFind = get_parent()->m_uiptraChild.find_first(m_pguie);
@@ -165,14 +165,14 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
 
 bool virtual_user_interface::create_message_window()
 {
-   if(m_pguieMessage == ::null())
+   if(m_pguieMessage == NULL)
    {
       /*guie_message_wnd * pwnd = new guie_message_wnd(get_app());
       pwnd->m_pguieForward = this;
       string strName = "::ca::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).name();
-      if(!pwnd->::ca::window::create(::null(), strName, 0,
-      rect(0, 0, 0, 0), ::ca::window::from_handle(HWND_MESSAGE), ::null()))
+      if(!pwnd->::ca::window::create(NULL, strName, 0,
+      rect(0, 0, 0, 0), ::ca::window::from_handle(HWND_MESSAGE), NULL))
       {
          delete pwnd;
          return false;
@@ -204,12 +204,12 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
    /*sp(::ca::window) pwndThis = (this);
-   if(pwndThis != ::null())
+   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
 #ifndef METROWIN
-   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == ::null())
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == NULL)
       return false;
 #endif
    //m_pimpl = new ::ca::window(get_app());
@@ -221,14 +221,14 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    sp(interaction) oswindow_T = oswindow_Parent;
    do
    {
-      if(oswindow_T->m_pwnd != ::null())
+      if(oswindow_T->m_pwnd != NULL)
          break;
       oswindow_Parent = oswindow_T;
    }
-   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != ::null());*/
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL);*/
 
-//   m_pwnd = ::null();
-  // m_pguie->m_pwnd = ::null();
+//   m_pwnd = NULL;
+  // m_pguie->m_pwnd = NULL;
 
    m_pguie->m_pimpl = this;
    if(pparent != this
@@ -258,14 +258,14 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 #else
 
-   cs.lpszClass         = ::null();
-   cs.lpszName          = ::null();
-   cs.hwndParent        = ::ca::null();
+   cs.lpszClass         = NULL;
+   cs.lpszName          = NULL;
+   cs.hwndParent        = NULL;
 
 #endif
 
-   //cs.hMenu = pparent->get_handle() == ::null() ? ::null() : (HMENU) iId;
-   cs.hMenu = ::null();
+   //cs.hMenu = pparent->get_handle() == NULL ? NULL : (HMENU) iId;
+   cs.hMenu = NULL;
 
 #ifdef WINDOWS
 
@@ -273,7 +273,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 #else
 
-   cs.hInstance = ::null();
+   cs.hInstance = NULL;
 
 #endif
 
@@ -314,11 +314,11 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
 //   sp(::ca::window) pwndThis = (this);
-/*   if(pwndThis != ::null())
+/*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == ::null())
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
@@ -327,14 +327,14 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    sp(interaction) oswindow_T = oswindow_Parent;
    do
    {
-      if(oswindow_T->m_pwnd != ::null())
+      if(oswindow_T->m_pwnd != NULL)
          break;
       oswindow_Parent = oswindow_T;
    }
-   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != ::null());*/
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL);*/
 
-//   m_pwnd = ::null();
-//   m_pguie->m_pwnd = ::null();
+//   m_pwnd = NULL;
+//   m_pguie->m_pwnd = NULL;
 
    m_pguie->m_pimpl = this;
    if(pparent != this
@@ -363,14 +363,14 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   cs.lpszClass   = ::null();
-   cs.lpszName    = ::null();
-   cs.hwndParent  = ::ca::null();
+   cs.lpszClass   = NULL;
+   cs.lpszName    = NULL;
+   cs.hwndParent  = NULL;
 
 #endif
 
-//   cs.hMenu = pparent->get_handle() == ::null() ? ::null() : (HMENU) iId;
-   cs.hMenu = ::null();
+//   cs.hMenu = pparent->get_handle() == NULL ? NULL : (HMENU) iId;
+   cs.hMenu = NULL;
 
 
 #ifdef WINDOWSEX
@@ -379,7 +379,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   cs.hInstance = ::null();
+   cs.hInstance = NULL;
 
 #endif
 
@@ -423,27 +423,27 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
 //   sp(::ca::window) pwndThis = (this);
-/*   if(pwndThis != ::null())
+/*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == ::null())
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie().m_p) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
-   //m_pimpl->create(::null(), ::null(), WS_CHILD | WS_VISIBLE, rect(0, 0, 0, 0), pparent, iId);
+   //m_pimpl->create(NULL, NULL, WS_CHILD | WS_VISIBLE, rect(0, 0, 0, 0), pparent, iId);
    /*sp(interaction) oswindow_Parent = pparent;
    sp(interaction) oswindow_T = oswindow_Parent;
    do
    {
-      if(oswindow_T->m_pwnd != ::null())
+      if(oswindow_T->m_pwnd != NULL)
          break;
       oswindow_Parent = oswindow_T;
    }
-   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != ::null());*/
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL);*/
 
-//   m_pwnd = ::null();
-//   m_pguie->m_pwnd = ::null();
+//   m_pwnd = NULL;
+//   m_pguie->m_pwnd = NULL;
 
    m_pguie->m_pimpl = this;
    if(pparent != this
@@ -459,8 +459,8 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
    //m_pguie->install_message_handling(dynamic_cast < ::ca::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
-   cs.lpszClass = ::null();
-   cs.lpszName = ::null();
+   cs.lpszClass = NULL;
+   cs.lpszName = NULL;
    cs.style = WS_CHILD | WS_VISIBLE;
    cs.x = 0;
    cs.y = 0;
@@ -477,8 +477,8 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
 
 #endif
 
-//   cs.hMenu = pparent->get_handle() == ::null() ? ::null() : (HMENU) iId;
-   cs.hMenu = ::null();
+//   cs.hMenu = pparent->get_handle() == NULL ? NULL : (HMENU) iId;
+   cs.hMenu = NULL;
 
 #ifdef WINDOWS
 
@@ -490,7 +490,7 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
 
 #endif
 
-   cs.lpCreateParams = (LPVOID) ::null();
+   cs.lpCreateParams = (LPVOID) NULL;
 
    m_pguie->pre_create_window(cs);
 
@@ -578,7 +578,7 @@ sp(::user::frame_window) virtual_user_interface::GetParentFrame()
    ASSERT_VALID(this);
 
    sp(::user::interaction) pParentWnd = get_parent();  // start with one parent up
-   while (pParentWnd != ::null())
+   while (pParentWnd != NULL)
    {
       if (base < ::user::interaction>::bases(pParentWnd))
       {
@@ -586,7 +586,7 @@ sp(::user::frame_window) virtual_user_interface::GetParentFrame()
       }
       pParentWnd = pParentWnd->get_parent();
    }
-   return ::null();
+   return NULL;
 }
 
 
@@ -602,7 +602,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, lpar
    try
    {
       sp(::user::interaction) pui = m_pguie;
-      while(pui != ::null())
+      while(pui != NULL)
       {
          try
          {
@@ -647,7 +647,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
    try
    {
       sp(::user::interaction) pui = m_pguie;
-      while(pui != ::null() && pui->get_parent() != ::null())
+      while(pui != NULL && pui->get_parent() != NULL)
       {
          try
          {
@@ -684,12 +684,12 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
 
 sp(::user::interaction) virtual_user_interface::SetFocus()
 {
-   return ::null();
+   return NULL;
 }
 
 bool virtual_user_interface::IsWindowEnabled()
 {
-   return m_bEnabled && ((m_pguie == ::null() || m_pguie->get_parent() == ::null()) ? true : m_pguie->get_parent()->IsWindowEnabled());
+   return m_bEnabled && ((m_pguie == NULL || m_pguie->get_parent() == NULL) ? true : m_pguie->get_parent()->IsWindowEnabled());
 }
 
 sp(::user::frame_window) virtual_user_interface::EnsureParentFrame()
@@ -740,11 +740,11 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
    __SIZEPARENTPARAMS layout;
-   sp(::user::interaction) oswindow_LeftOver = ::null();
+   sp(::user::interaction) oswindow_LeftOver = NULL;
 
    layout.bStretch = bStretch;
    layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
-   if (lpRectClient != ::null())
+   if (lpRectClient != NULL)
       layout.rect = *lpRectClient;    // starting rect comes from parameter
    else
    {
@@ -758,53 +758,53 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    if ((nFlags & ~reposNoPosLeftOver) != reposQuery)
       layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
    else
-      layout.hDWP = ::null(); // not actually doing layout
+      layout.hDWP = NULL; // not actually doing layout
 #endif
 
 
-   if(m_pguie != this && m_pguie != ::null())
+   if(m_pguie != this && m_pguie != NULL)
    {
-      for (sp(::user::interaction) oswindow_Child = m_pguie->GetTopWindow(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = m_pguie->GetTopWindow(); oswindow_Child != NULL;
          oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
          sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if(pWnd != ::null())
+         else if(pWnd != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
-      for (sp(::user::interaction) oswindow_Child = m_pguie->get_top_child(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = m_pguie->get_top_child(); oswindow_Child != NULL;
          oswindow_Child = oswindow_Child->under_sibling())
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
          sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if (pWnd != ::null())
+         else if (pWnd != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
    else
    {
-      for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
          oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
          sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if (pWnd != ::null())
+         else if (pWnd != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
-      for (sp(::user::interaction) oswindow_Child = m_pguie->get_top_child(); oswindow_Child != ::null();
+      for (sp(::user::interaction) oswindow_Child = m_pguie->get_top_child(); oswindow_Child != NULL;
          oswindow_Child = oswindow_Child->under_sibling())
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
          sp(::user::interaction) pWnd = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if (pWnd != ::null())
+         else if (pWnd != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
@@ -812,7 +812,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // if just getting the available rectangle, return it now...
    if ((nFlags & ~reposNoPosLeftOver) == reposQuery)
    {
-      ASSERT(lpRectParam != ::null());
+      ASSERT(lpRectParam != NULL);
       if (bStretch)
          ::CopyRect(lpRectParam, &layout.rect);
       else
@@ -825,13 +825,13 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    }
 
    // the rest is the client size of the left-over pane
-   if (nIDLeftOver != 0 && oswindow_LeftOver != ::null())
+   if (nIDLeftOver != 0 && oswindow_LeftOver != NULL)
    {
       sp(::user::interaction) pLeftOver = oswindow_LeftOver;
       // allow extra space as specified by lpRectBorder
       if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
       {
-         ASSERT(lpRectParam != ::null());
+         ASSERT(lpRectParam != NULL);
          layout.rect.left += lpRectParam->left;
          layout.rect.top += lpRectParam->top;
          layout.rect.right -= lpRectParam->right;
@@ -847,7 +847,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 
 #ifdef WINDOWSEX
    // move and resize all the windows at once!
-   if (layout.hDWP == ::null() || !::EndDeferWindowPos(layout.hDWP))
+   if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
 
 #endif
@@ -861,11 +861,11 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
    __SIZEPARENTPARAMS layout;
-   sp(::user::interaction) oswindow_LeftOver = ::null();
+   sp(::user::interaction) oswindow_LeftOver = NULL;
 
    layout.bStretch = bStretch;
    layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
-   if (lpRectClient != ::null())
+   if (lpRectClient != NULL)
       layout.rect = *lpRectClient;    // starting rect comes from parameter
    else
       GetClientRect(&layout.rect);    // starting rect comes from client rect
@@ -873,16 +873,16 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    if ((nFlags & ~reposNoPosLeftOver) != reposQuery)
       layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
    else
-      layout.hDWP = ::null(); // not actually doing layout
+      layout.hDWP = NULL; // not actually doing layout
 
-   for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != ::null();
+   for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
       oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
    {
       uint_ptr nIDC = __get_dialog_control_id_(oswindow_Child);
       sp(::user::interaction) pWnd = oswindow_Child;
       if (nIDC == nIDLeftOver)
          oswindow_LeftOver = oswindow_Child;
-      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != ::null())
+      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
          oswindow_Child->SendMessage( WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
 
@@ -893,14 +893,14 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       sp(::user::interaction) pWnd = oswindow_Child;
       if (nIDC == nIDLeftOver)
          oswindow_LeftOver = oswindow_Child;
-      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != ::null())
+      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
          oswindow_Child->SendMessage( WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
 
    // if just getting the available rectangle, return it now...
    if ((nFlags & ~reposNoPosLeftOver) == reposQuery)
    {
-      ASSERT(lpRectParam != ::null());
+      ASSERT(lpRectParam != NULL);
       if (bStretch)
          ::copy(lpRectParam, &layout.rect);
       else
@@ -913,13 +913,13 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    }
 
    // the rest is the client size of the left-over pane
-   if (nIDLeftOver != 0 && oswindow_LeftOver != ::null())
+   if (nIDLeftOver != 0 && oswindow_LeftOver != NULL)
    {
       sp(::user::interaction) pLeftOver = oswindow_LeftOver;
       // allow extra space as specified by lpRectBorder
       if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
       {
-         ASSERT(lpRectParam != ::null());
+         ASSERT(lpRectParam != NULL);
          layout.rect.left += lpRectParam->left;
          layout.rect.top += lpRectParam->top;
          layout.rect.right -= lpRectParam->right;
@@ -934,7 +934,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    }
 
    // move and resize all the windows at once!
-   if (layout.hDWP == ::null() || !::EndDeferWindowPos(layout.hDWP))
+   if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
 
 }
@@ -947,12 +947,12 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 
 #else
 
-   ASSERT(oswindow != ::null());
-   ASSERT(lpRect != ::null());
+   ASSERT(oswindow != NULL);
+   ASSERT(lpRect != NULL);
    ::oswindow oswindow_Parent = ::GetParent(oswindow);
-   ASSERT(oswindow_Parent != ::null());
+   ASSERT(oswindow_Parent != NULL);
 
-   if (lpLayout != ::null() && lpLayout->hDWP == ::null())
+   if (lpLayout != NULL && lpLayout->hDWP == NULL)
       return;
 
    // first check if the new rectangle is the same as the current
@@ -974,12 +974,12 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
       return;     // nothing to do
 
    // try to use DeferWindowPos for speed, otherwise use SetWindowPos
-   if (lpLayout != ::null())
+   if (lpLayout != NULL)
    {
 
 #ifdef WINDOWS
 
-      lpLayout->hDWP = ::DeferWindowPos(lpLayout->hDWP, oswindow, ::null(),
+      lpLayout->hDWP = ::DeferWindowPos(lpLayout->hDWP, oswindow, NULL,
          lpRect->left, lpRect->top,  lpRect->right - lpRect->left,
          lpRect->bottom - lpRect->top, SWP_NOACTIVATE|SWP_NOZORDER);
 
@@ -992,7 +992,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
    }
    else
    {
-      ::SetWindowPos(oswindow, ::ca::null(), lpRect->left, lpRect->top,
+      ::SetWindowPos(oswindow, NULL, lpRect->left, lpRect->top,
          lpRect->right - lpRect->left, lpRect->bottom - lpRect->top,
          SWP_NOACTIVATE|SWP_NOZORDER);
    }
@@ -1044,7 +1044,7 @@ bool virtual_user_interface::DestroyWindow()
    if(!m_bCreate)
       return FALSE;
 
-   if(m_pguie == ::null())
+   if(m_pguie == NULL)
       return FALSE;
 
 //#ifdef WINDOWS
@@ -1073,10 +1073,10 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-      single_lock sl(m_pthread == ::null() ? ::null() : &m_pthread->m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       try
       {
-         if(m_pthread != ::null())
+         if(m_pthread != NULL)
          {
             m_pthread->m_pthread->remove(m_pguie);
          }
@@ -1086,7 +1086,7 @@ bool virtual_user_interface::DestroyWindow()
       }
       try
       {
-         if(m_pthread != ::null())
+         if(m_pthread != NULL)
          {
             m_pthread->m_pthread->remove(this);
          }
@@ -1096,7 +1096,7 @@ bool virtual_user_interface::DestroyWindow()
       }
       try
       {
-         m_pthread = ::null();
+         m_pthread = NULL;
       }
       catch(...)
       {
@@ -1143,7 +1143,7 @@ sp(::user::interaction) virtual_user_interface::GetTopLevelParent()
    sp(::user::interaction) oswindow_Parent = this;
    sp(::user::interaction) oswindow_T;
 
-   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != ::null())
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL)
       oswindow_Parent = oswindow_T;
 
    return oswindow_Parent;
@@ -1154,7 +1154,7 @@ void virtual_user_interface::message_handler(::ca::signal_object * pobj)
 {
    SCAST_PTR(::ca::message::base, pbase, pobj);
    //LRESULT lresult = 0;
-   if(m_pguie != ::null())
+   if(m_pguie != NULL)
    {
       m_pguie->GuieProc(pobj);
       if(pobj->m_bRet)
@@ -1162,7 +1162,7 @@ void virtual_user_interface::message_handler(::ca::signal_object * pobj)
    }
    if(pbase->m_uiMessage == ::ca::message_event)
    {
-      if(m_pguie != this && m_pguie != ::null())
+      if(m_pguie != this && m_pguie != NULL)
       {
          m_pguie->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
       }
@@ -1180,14 +1180,14 @@ sp(::user::interaction) virtual_user_interface::set_parent(sp(::user::interactio
    if((pguieParent == this
    || pguieParent == m_pguie
    || pguieParent == m_pimpl)
-   && pguieParent != ::null())
+   && pguieParent != NULL)
    {
       return m_pparent;
    }
    sp(::user::interaction) pparentOld = m_pparent;
-   if(m_pparent != ::null())
+   if(m_pparent != NULL)
    {
-      if(m_pguie != ::null())
+      if(m_pguie != NULL)
       {
          m_pparent->m_uiptraChild.remove(m_pguie);
       }
@@ -1197,9 +1197,9 @@ sp(::user::interaction) virtual_user_interface::set_parent(sp(::user::interactio
       }
    }
    m_pparent = pguieParent;
-   if(pguieParent == ::null())
+   if(pguieParent == NULL)
       return pparentOld;
-   if(m_pguie != ::null())
+   if(m_pguie != NULL)
    {
       m_pparent->m_uiptraChild.add_unique(m_pguie);
    }
@@ -1215,7 +1215,7 @@ bool virtual_user_interface::IsWindow()
 {
    return
       m_bCreate
-   && m_pthread != ::null();
+   && m_pthread != NULL;
 }
 
 
@@ -1227,7 +1227,7 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 
       m_bVisible = true;
 
-      if(m_pguie != ::null())
+      if(m_pguie != NULL)
       {
 
          m_pguie->m_bVisible = true;
@@ -1240,7 +1240,7 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 
       m_bVisible = false;
 
-      if(m_pguie != ::null())
+      if(m_pguie != NULL)
       {
 
          m_pguie->m_bVisible = false;
@@ -1257,12 +1257,12 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 {
 
-   if(pFont == ::null())
+   if(pFont == NULL)
       return;
 
 #ifdef WINDOWS
 
-   //if(pFont->get_os_data() == ::null())
+   //if(pFont->get_os_data() == NULL)
      // return;
 
 #else
@@ -1318,7 +1318,7 @@ sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id)
       }
    }
 
-   return ::null();
+   return NULL;
 }
 
 
@@ -1339,18 +1339,18 @@ sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
 {
    ASSERT_VALID(this);
 
-   sp(::user::frame_window) pFrameWnd = ::null();
+   sp(::user::frame_window) pFrameWnd = NULL;
    if(m_pguie != this)
       pFrameWnd = m_pguie;
    else
       pFrameWnd = this;
-   if (pFrameWnd == ::null() || !pFrameWnd->is_frame_window())
+   if (pFrameWnd == NULL || !pFrameWnd->is_frame_window())
       pFrameWnd = GetParentFrame();
 
-   if (pFrameWnd != ::null())
+   if (pFrameWnd != NULL)
    {
       sp(::user::frame_window) pTemp;
-      while ((pTemp = pFrameWnd->GetParentFrame()) != ::null())
+      while ((pTemp = pFrameWnd->GetParentFrame()) != NULL)
          pFrameWnd = pTemp;
    }
    return pFrameWnd;
@@ -1378,9 +1378,9 @@ void virtual_user_interface::_001OnNcDestroy(::ca::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 
    sp(::user::interaction) puie = m_pguie;
-   m_pguie = ::null();
+   m_pguie = NULL;
    PostNcDestroy();
-   if(puie != ::null())
+   if(puie != NULL)
    {
       puie->PostNcDestroy();
    }
@@ -1388,15 +1388,15 @@ void virtual_user_interface::_001OnNcDestroy(::ca::signal_object * pobj)
 }
 
 
-void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
+void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
 {
 
    // walk through HWNDs to avoid creating temporary window objects
    // unless we need to call this function recursively
-   if(m_pguie == ::null())
+   if(m_pguie == NULL)
       return;
    sp(::user::interaction) pui = m_pguie->get_top_child();
-   while(pui != ::null())
+   while(pui != NULL)
    {
       try
       {
@@ -1436,7 +1436,7 @@ void virtual_user_interface::_001OnMove(::ca::signal_object * pobj)
 void virtual_user_interface::_001OnSize(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(m_pguie != ::null())
+   if(m_pguie != NULL)
    {
       m_pguie->layout();
    }
@@ -1447,11 +1447,11 @@ bool virtual_user_interface::IsWindowVisible()
 {
    if(!IsWindow())
       return FALSE;
-   if(m_pguie != ::null())
+   if(m_pguie != NULL)
    {
       if(!m_pguie->m_bVisible)
          return FALSE;
-      if(m_pguie->get_parent() != ::null() && !m_pguie->get_parent()->IsWindowVisible())
+      if(m_pguie->get_parent() != NULL && !m_pguie->get_parent()->IsWindowVisible())
          return FALSE;
    }
    if(!m_bVisible)
@@ -1460,9 +1460,9 @@ bool virtual_user_interface::IsWindowVisible()
 }
 
 
-bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
-   if(m_pthread != ::null())
+   if(m_pthread != NULL)
    {
       return m_pthread->m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
    }
@@ -1482,7 +1482,7 @@ bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM l
       GetWindowRect(rectWindow);
       get_wnd()->offset_view_port_org(rectWindow);
       pgraphics->SetViewportOrg(rectWindow.top_left());
-      pgraphics->SelectClipRgn(::null());
+      pgraphics->SelectClipRgn(NULL);
 
    }
 

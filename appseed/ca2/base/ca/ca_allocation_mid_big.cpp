@@ -76,10 +76,10 @@ void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew)
   if (address == 0)
     return ::MidAlloc(sizeNew);
   byte * pnew = (byte *) ::MidAlloc(sizeNew);
-  if(pnew == ::null())
+  if(pnew == NULL)
   {
      MidFree(address);
-     return ::null();
+     return NULL;
   }
   memcpy(pnew, address, min(sizeOld, sizeNew));
   MidFree(address);

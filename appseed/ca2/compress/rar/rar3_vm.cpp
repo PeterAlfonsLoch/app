@@ -106,13 +106,13 @@ namespace libcompress
             /* CMD_PRINT */ CF_OP0
          };
 
-         vm::vm(): Mem(::null()) {}
+         vm::vm(): Mem(NULL) {}
 
          bool vm::Create()
          {
-            if (Mem == ::null())
+            if (Mem == NULL)
                Mem = (byte *)::MyAlloc(kSpaceSize + 4);
-            return (Mem != ::null());
+            return (Mem != NULL);
          }
 
          vm::~vm()

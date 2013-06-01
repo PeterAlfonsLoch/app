@@ -17,7 +17,7 @@ FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
 void FileManagerPathView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != ::null())
+   if(phint != NULL)
    {
       if(base < FileManagerViewUpdateHint >::bases(phint))
       {
@@ -76,7 +76,7 @@ void FileManagerPathView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca
             }
          }
          file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
-         if(pmanageruh != ::null())
+         if(pmanageruh != NULL)
          {
             if(!pmanageruh->m_strFind.is_empty())
             {
@@ -96,7 +96,7 @@ void FileManagerPathView::_017Synchronize()
    if(m_bVoidSync)
       return;
 
-   if(GetFileManager() == ::null())
+   if(GetFileManager() == NULL)
       return;
 
    string strOld;
@@ -119,7 +119,7 @@ void FileManagerPathView::_001OnAfterChangeText()
 
    sp(FileManagerInterface) pmanager = GetFileManager();
 
-   if(pmanager == ::null())
+   if(pmanager == NULL)
       return;
 
    ::fs::data * pfsdata = pmanager->get_fs_data();

@@ -10,7 +10,7 @@ namespace user
       ::ca::data_container_base(papp)
    {
    
-      m_pdocumentemplate = ::null();
+      m_pdocumentemplate = NULL;
       m_bModified = FALSE;
       m_bAutoDelete = TRUE;       // default to auto delete document
       m_bEmbedded = FALSE;        // default to file-based document
@@ -38,7 +38,7 @@ namespace user
 
       ::ca::data_container::set_data(pdata);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
 
          add_data(pdata);
@@ -60,7 +60,7 @@ namespace user
          return TRUE;
 
       // otherwise check template
-      if (m_pdocumentemplate != ::null() &&
+      if (m_pdocumentemplate != NULL &&
          m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 

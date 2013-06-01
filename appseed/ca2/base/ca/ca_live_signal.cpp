@@ -20,7 +20,7 @@ namespace ca
    void live_signal::keep(live_object * pliveobject)
    {
 
-      if(pliveobject != ::null())
+      if(pliveobject != NULL)
       {
 
          add(pliveobject);
@@ -32,7 +32,7 @@ namespace ca
    void live_signal::unkeep(live_object * pliveobject)
    {
 
-      if(pliveobject != ::null())
+      if(pliveobject != NULL)
       {
 
          remove(pliveobject);

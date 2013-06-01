@@ -51,7 +51,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)
    }
 
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
    System.visual().imaging().CreateHueImageList(
       &spgraphics,
@@ -95,7 +95,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 
 
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
    class imaging & imaging = System.visual().imaging();
 
@@ -219,7 +219,7 @@ sp(image_list) BaseMenuCentral::MenuV033GetImageListHueLight()
 
 BaseMenuCentralContainer::BaseMenuCentralContainer()
 {
-   m_pmenucentral = ::null();
+   m_pmenucentral = NULL;
 }
 
 BaseMenuCentralContainer::~BaseMenuCentralContainer()
@@ -242,10 +242,10 @@ bool BaseMenuCentralContainer::initialize_central_container(sp(::ca::application
 
 bool BaseMenuCentralContainer::finalize_central_container()
 {
-   if(m_pmenucentral != ::null())
+   if(m_pmenucentral != NULL)
    {
       delete m_pmenucentral;
-      m_pmenucentral = ::null();
+      m_pmenucentral = NULL;
    }
    return true;
 }

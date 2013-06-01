@@ -24,7 +24,7 @@ namespace ca
             return dynamic_cast < DATA * > (pdata);
          }
          
-         return ::null();
+         return NULL;
 
       }
 
@@ -45,7 +45,7 @@ namespace ca
          return dynamic_cast < EDIT * > (pedit);
       }
          
-      return ::null();
+      return NULL;
 
    }
 

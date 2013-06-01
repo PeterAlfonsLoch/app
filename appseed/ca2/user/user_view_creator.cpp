@@ -7,26 +7,26 @@ namespace user
 
    view_creator_data::view_creator_data()
    {
-      m_pwnd               = ::null();
+      m_pwnd               = NULL;
       m_iExtendOnParent    = 0;
-      m_pdoc               = ::null();
-      m_pviewdata          = ::null();
-      m_pholder            = ::null();
+      m_pdoc               = NULL;
+      m_pviewdata          = NULL;
+      m_pholder            = NULL;
    }
 
    sp(::user::interaction)   view_creator_data::get_wnd()
    {
-      if(m_pwnd != ::null())
+      if(m_pwnd != NULL)
          return m_pwnd;
       try
       {
-         if(m_pholder != ::null() && m_pholder->m_uiptraHold.get_count() == 1)
+         if(m_pholder != NULL && m_pholder->m_uiptraHold.get_count() == 1)
             return m_pholder->m_uiptraHold(0);
       }
       catch(...)
       {
       }
-      return ::null();
+      return NULL;
    }
 
    view_creator_data * view_creator::get(id id)
@@ -36,13 +36,13 @@ namespace user
       {
          return pcreatordata;
       }
-      return ::null();
+      return NULL;
    }
 
 
    view_creator::view_creator()
    {
-      m_pviewcontainer           = ::null();
+      m_pviewcontainer           = NULL;
    }
 
    view_creator::~view_creator()
@@ -57,7 +57,7 @@ namespace user
    view_creator_data * view_creator::ensure(id id)
    {
       view_creator_data * pcreatordata = get(id);
-      if(pcreatordata != ::null())
+      if(pcreatordata != NULL)
          return pcreatordata;
       return create(id);
    }
@@ -73,7 +73,7 @@ namespace user
    view_creator_data * view_creator::create(id id)
    {
       view_creator_data * pcreatordata = allocate(id);
-      if(m_pviewcontainer != ::null())
+      if(m_pviewcontainer != NULL)
       {
          try
          {
@@ -128,7 +128,7 @@ namespace user
          if(e.m_id == id)
          {
             delete pcreatordata;
-            return ::null();
+            return NULL;
          }
          throw e;
       }
@@ -162,16 +162,16 @@ namespace user
 
    sp(::user::interaction) view_creator::get_view()
    {
-      if(m_pviewcontainer != ::null())
+      if(m_pviewcontainer != NULL)
       {
          m_pviewcontainer->get_view();
       }
-      return ::null();
+      return NULL;
    }
 
    id view_creator::get_view_id()
    {
-      if(m_pviewcontainer != ::null())
+      if(m_pviewcontainer != NULL)
       {
          return m_pviewcontainer->get_view_id();
       }
@@ -181,17 +181,17 @@ namespace user
    void view_creator::hide_all_except(id id)
    {
       view_map::pair * ppair = m_viewmap.PGetFirstAssoc();
-      while(ppair != ::null())
+      while(ppair != NULL)
       {
          if(id != ppair->m_element1)
          {
             try
             {
-               if(ppair->m_element2->m_pholder != ::null())
+               if(ppair->m_element2->m_pholder != NULL)
                {
                   ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
                }
-               else if(ppair->m_element2->m_pwnd != ::null())
+               else if(ppair->m_element2->m_pwnd != NULL)
                {
                   ppair->m_element2->m_pwnd->ShowWindow(SW_HIDE);
                }
@@ -227,12 +227,12 @@ namespace user
 
       id id;
 
-      while(pos != ::null())
+      while(pos != NULL)
       {
       
          m_viewmap.get_next_assoc(pos, id, pcreatordata);
 
-         if(pcreatordata->m_pdoc != ::null() && pcreatordata->m_pdoc != pdocument && (pSender == ::null() || pSender->get_document() != pcreatordata->m_pdoc))
+         if(pcreatordata->m_pdoc != NULL && pcreatordata->m_pdoc != pdocument && (pSender == NULL || pSender->get_document() != pcreatordata->m_pdoc))
          {
 
             pcreatordata->m_pdoc->update_all_views(pSender, lHint, pHint);

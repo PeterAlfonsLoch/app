@@ -46,7 +46,7 @@ public:
 
   /**
    * ParserFactory Constructor with explicit catalog path.
-   * @param catalogPath Path to catalog.xml spfile-> If ::null(),
+   * @param catalogPath Path to catalog.xml spfile-> If NULL,
    *        standard search method is used.
    * @throw ParserFactoryException If can't load specified catalog.
    */
@@ -104,7 +104,7 @@ public:
 
   /**
    * Returns currently used global error handler.
-   * If no error handler were installed, returns ::null().
+   * If no error handler were installed, returns NULL.
    */
   ErrorHandler *getErrorHandler(){
     return fileErrorHandler;

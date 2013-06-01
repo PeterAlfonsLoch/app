@@ -115,7 +115,7 @@ namespace ca
    public:
 
 
-      byte_serializable_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+      byte_serializable_map(::ca::application * papp = NULL, ::count nBlockSize = 10);
       byte_serializable_map(const byte_serializable_map & map);
 
 

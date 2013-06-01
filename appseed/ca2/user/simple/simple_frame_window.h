@@ -60,10 +60,10 @@ public:
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
             const RECT & rectParam = rect(0, 0, 0, 0),
-            sp(::user::interaction) pParentWnd = ::null(),        // != ::null() for popups
-            const char * lpszMenuName = ::null(),
+            sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
+            const char * lpszMenuName = NULL,
             uint32_t dwExStyle = 0,
-            sp(::ca::create_context) pContext = ::null());
+            sp(::ca::create_context) pContext = NULL);
 
 
 
@@ -91,7 +91,7 @@ public:
 
    virtual sp(::uinteraction::frame::frame) create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = ::null(), sp(::ca::create_context) pContext = ::null());
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::ca::create_context) pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);

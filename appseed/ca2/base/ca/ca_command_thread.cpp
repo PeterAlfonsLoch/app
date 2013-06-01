@@ -24,7 +24,7 @@ namespace ca
       sp(command) spcommand;
       while(m_ptra.get_size() > 0)
       {
-         spcommand = ::ca::null();
+         spcommand = NULL;
          sl.lock();
          try
          {
@@ -39,17 +39,17 @@ namespace ca
          if(spcommand.is_null())
             continue;
 
-         pcreatecontext = ::null();
+         pcreatecontext = NULL;
          try
          {
             pcreatecontext = spcommand;
          }
          catch(...)
          {
-            pcreatecontext = ::null();
+            pcreatecontext = NULL;
          }
 
-         if(pcreatecontext != ::null())
+         if(pcreatecontext != NULL)
          {
             try
             {
@@ -100,7 +100,7 @@ namespace ca
       try
       {
          sp(application) papp = get_app().cast < application > ();
-         if(papp != ::null())
+         if(papp != NULL)
          {
             papp->request_create(pline);
          }
@@ -142,7 +142,7 @@ namespace ca
    void command_thread::consolidate(sp(::ca::command_thread) pthread)
    {
 
-      if(pthread == ::null() || pthread == this)
+      if(pthread == NULL || pthread == this)
          return;
 
       if(!pthread->m_varTopicFile.is_empty())

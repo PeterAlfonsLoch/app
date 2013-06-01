@@ -73,7 +73,7 @@ hmac_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
 
   /* allocate primitive::memory for auth and hmac_ctx_t structures */
   pointer = (uint8_t*)crypto_alloc(sizeof(hmac_ctx_t) + sizeof(auth_t));
-  if (pointer == ::null())
+  if (pointer == NULL)
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -254,7 +254,7 @@ hmac_test_case_0 = {
   hmac_test_case_0_data,     /* data                     */
   20,                        /* octets in tag            */
   hmac_test_case_0_tag,      /* tag                      */
-  ::null()                       /* pointer to next testcase */
+  NULL                       /* pointer to next testcase */
 };
 
 /* end test case 0 */

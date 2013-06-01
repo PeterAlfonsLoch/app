@@ -60,8 +60,8 @@ namespace sockets
    public:
 
 
-      EventHandler(sp(::ca::application) papp, StdLog * = ::null());
-      EventHandler(sp(::ca::application) papp, mutex &,StdLog * = ::null());
+      EventHandler(sp(::ca::application) papp, StdLog * = NULL);
+      EventHandler(sp(::ca::application) papp, mutex &,StdLog * = NULL);
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

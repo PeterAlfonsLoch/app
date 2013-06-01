@@ -9,7 +9,7 @@ namespace ca
 
    void limited_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
-      if (processedSize != ::null())
+      if (processedSize != NULL)
          *processedSize = 0;
       if (size > _size)
       {
@@ -18,7 +18,7 @@ namespace ca
             _overflow = true;
             if (!_overflowIsAllowed)
                throw system_exception(get_app(), E_FAIL);
-            if (processedSize != ::null())
+            if (processedSize != NULL)
                *processedSize = size;
             return;
          }
@@ -27,7 +27,7 @@ namespace ca
       if (_stream)
          _stream->write(data, size, &size);
       _size -= size;
-      if (processedSize != ::null())
+      if (processedSize != NULL)
          *processedSize = size;
       return;
    }

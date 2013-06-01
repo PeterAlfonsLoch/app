@@ -52,7 +52,7 @@ namespace c
    template < class c_derived >
    inline int64_t add_ref(c_derived * pca)
    {
-      if(pca == ::null())
+      if(pca == NULL)
          return -1;
       return pca->add_ref();
    }
@@ -60,17 +60,17 @@ namespace c
    template < class c_derived >
    inline int64_t release(c_derived * & pca)
    {
-      if(pca == ::null())
+      if(pca == NULL)
          return -1;
       int64_t count = pca->release();
-      pca = ::null();
+      pca = NULL;
       return count;
    }
 
    template < class c_derived >
    inline int64_t ref_count(c_derived * pca)
    {
-      if(pca == ::null())
+      if(pca == NULL)
          return -1;
       return pca->get_ref_count();
    }
@@ -85,10 +85,10 @@ namespace c
    template <class t>
    inline void delptr(t *& p)
    {
-      if(p != ::null())
+      if(p != NULL)
       {
          delete p;
-         p = ::null();
+         p = NULL;
       }
    }
 

@@ -18,7 +18,7 @@ namespace user
       m_typeinfoDocument         = pDocClass;
       m_typeinfoFrame            = pFrameClass;
       m_typeinfoView             = pViewClass;
-      m_pAttachedFactory         = ::null();
+      m_pAttachedFactory         = NULL;
       m_bAutoDelete              = TRUE;   // usually allocated on the heap
 
       load_template();
@@ -45,7 +45,7 @@ namespace user
 
    void document_template::add_document(sp(::user::document_interface) pdocument)
    {
-      ASSERT(pdocument->m_pdocumentemplate == ::null());   // no template attached yet
+      ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
       Application.defer_add_document_template(this);
       pdocument->m_pdocumentemplate = this;
       pdocument->install_message_handling(pdocument);
@@ -54,14 +54,14 @@ namespace user
    void document_template::remove_document(sp(::user::document_interface) pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
-      pdocument->m_pdocumentemplate = ::null();
+      pdocument->m_pdocumentemplate = NULL;
    }
 
    document_template::Confidence document_template::MatchDocType(const char * lpszPathName,
       sp(::user::document_interface)& rpDocMatch)
    {
-      ASSERT(lpszPathName != ::null());
-      rpDocMatch = ::null();
+      ASSERT(lpszPathName != NULL);
+      rpDocMatch = NULL;
 
       // go through all documents
       ::count count = get_document_count();
@@ -104,14 +104,14 @@ namespace user
       {
          TRACE(::ca::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
          ASSERT(FALSE);
-         return ::null();
+         return NULL;
       }
       sp(::user::document_interface) pdocument = Application.alloc(m_typeinfoDocument);
-      if (pdocument == ::null())
+      if (pdocument == NULL)
       {
          TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
             m_typeinfoDocument->name());
-         return ::null();
+         return NULL;
       }
       pdocument->on_alloc(get_app());
       ASSERT_KINDOF(::user::document_interface, pdocument);
@@ -131,7 +131,7 @@ namespace user
       stacker < ::user::create_context > context(pcreatecontext->m_user);
       context->m_pCurrentFrame    = pOther;
       context->m_pCurrentDoc      = pdocument;
-      if(pcreatecontext->m_pviewAlloc != ::null())
+      if(pcreatecontext->m_pviewAlloc != NULL)
       {
          context->m_puiNew           = pcreatecontext->m_pviewAlloc;
       }
@@ -145,14 +145,14 @@ namespace user
       {
          TRACE(::ca::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_frame.\n");
          ASSERT(FALSE);
-         return ::null();
+         return NULL;
       }
       sp(::user::frame_window) pFrame = Application.alloc(m_typeinfoFrame);
-      if (pFrame == ::null())
+      if (pFrame == NULL)
       {
          TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
             m_typeinfoFrame->name());
-         return ::null();
+         return NULL;
       }
       ASSERT_KINDOF(frame_window, pFrame);
       pFrame->m_pdocumenttemplate = this;
@@ -167,7 +167,7 @@ namespace user
       {
          TRACE(::ca::trace::category_AppMsg, 0, "Warning: document_template couldn't create a frame.\n");
          // frame will be deleted in PostNcDestroy cleanup
-         return ::null();
+         return NULL;
       }
 
       // it worked !
@@ -179,24 +179,24 @@ namespace user
    bool bCreateView)
    {
    create_context context;
-   context.m_pCurrentFrame = ::null();
+   context.m_pCurrentFrame = NULL;
    context.m_pCurrentDoc = pdocument;
-   context.m_typeinfoNewView = bCreateView ? m_pOleViewClass : ::null();
+   context.m_typeinfoNewView = bCreateView ? m_pOleViewClass : NULL;
    context.m_pNewDocTemplate = this;
 
-   if (m_pOleFrameClass == ::null())
+   if (m_pOleFrameClass == NULL)
    {
    TRACE(::ca::trace::category_AppMsg, 0, "Warning: pOleFrameClass not specified for doc template.\n");
-   return ::null();
+   return NULL;
    }
 
    ASSERT(!m_strServerMatter.is_empty()); // must have a resource ID to load from
    sp(::user::frame_window) pFrame = (System.alloc(m_pOleFrameClass));
-   if (pFrame == ::null())
+   if (pFrame == NULL)
    {
    TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
    m_pOleFrameClass->name());
-   return ::null();
+   return NULL;
    }
 
    // create new from resource (OLE frames are created as child windows)
@@ -205,7 +205,7 @@ namespace user
    {
    TRACE(::ca::trace::category_AppMsg, 0, "Warning: document_template couldn't create an OLE frame.\n");
    // frame will be deleted in PostNcDestroy cleanup
-   return ::null();
+   return NULL;
    }
 
    // it worked !
@@ -280,7 +280,7 @@ namespace user
       if (m_typeinfoDocument)
          dumpcontext << "\nm_pDocClass = " << m_typeinfoDocument->name();
       else
-         dumpcontext << "\nm_pDocClass = ::null()";
+         dumpcontext << "\nm_pDocClass = NULL";
 
       if (dumpcontext.GetDepth() > 0)
       {

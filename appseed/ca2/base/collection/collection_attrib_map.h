@@ -9,7 +9,7 @@ class attrib_map :
 public:
 
 
-   attrib_map(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   attrib_map(::ca::application * papp = NULL, ::count nBlockSize = 10);
    attrib_map(const attrib_map & map);
 
    attrib_map & operator = (const attrib_map & map);
@@ -41,7 +41,7 @@ attrib_map < type_map > & attrib_map < type_map >::operator = (const attrib_map 
       this->remove_all();
       type_map::m_nBlockSize = attribmap.type_map::m_nBlockSize;
       const typename type_map::pair * ppair = attribmap.PGetFirstAssoc();
-      while(ppair != ::null())
+      while(ppair != NULL)
       {
          this->set_at(ppair->m_element1, ppair->m_element2);
          ppair  = attribmap.PGetNextAssoc(ppair);

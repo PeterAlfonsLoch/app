@@ -5,10 +5,10 @@ namespace calculator
 
    element::element()
    {
-      m_pparent   = ::null();
-      m_pelement1 = ::null();
-      m_pelement2 = ::null();
-      m_pelement3 = ::null();
+      m_pparent   = NULL;
+      m_pelement1 = NULL;
+      m_pelement2 = NULL;
+      m_pelement3 = NULL;
    }
 
    element::~element()
@@ -32,14 +32,14 @@ namespace calculator
       }
       else if(m_ptoken->value == token::addition)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return m_pelement1->get_value();
          else
             return m_pelement1->get_value() + m_pelement2->get_value();
       }
       else if(m_ptoken->value == token::subtraction)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return value() - m_pelement1->get_value();
          else
             return m_pelement1->get_value() - m_pelement2->get_value();
@@ -100,14 +100,14 @@ namespace calculator
       }
       else if(m_ptoken->value == token::addition)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return "(" + m_pelement1->get_expression() + ")";
          else
             return "(" + m_pelement1->get_expression() + " + " + m_pelement2->get_expression() + ")";
       }
       else if(m_ptoken->value == token::subtraction)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return "( - " + m_pelement1->get_expression() + ")";
          else
             return "(" + m_pelement1->get_expression() + " - " + m_pelement2->get_expression() + ")";

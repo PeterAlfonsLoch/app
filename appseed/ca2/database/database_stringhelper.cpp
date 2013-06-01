@@ -55,7 +55,7 @@ string str_helper::before(string s, bool &is_found)
    {
       if ((pos >= 0) && (!( (work_str[idx]>48 && work_str[idx]<58) || (work_str[idx]>64 && work_str[idx]<91) || (work_str[idx]>97 && work_str[idx]<123) || work_str[idx]==95 )))
          return work_str.Mid(0,pos); 
-      else //return (string)::null();
+      else //return (string)NULL;
       {
          string tmp(""); 
          return tmp;

@@ -102,7 +102,7 @@ enum SCRIPTVAR_FLAGS {
     SCRIPTVAR_DOUBLE      = 8,  // floating point double
     SCRIPTVAR_INTEGER     = 16, // integer number
     SCRIPTVAR_STRING      = 32, // string
-    SCRIPTVAR_NULL        = 64, // it seems null is its own data type
+    SCRIPTVAR_NULL        = 64, // it seems NULL is its own data type
 
     SCRIPTVAR_NATIVE      = 128, // to specify this is a native function
     SCRIPTVAR_NUMERICMASK = SCRIPTVAR_NULL |
@@ -209,8 +209,8 @@ public:
     CScriptVarLink *findChild(const string &childName); ///< Tries to find a child with the given name, may return 0
     CScriptVarLink *findChildOrCreate(const string &childName, int32_t varFlags=SCRIPTVAR_UNDEFINED); ///< Tries to find a child with the given name, or will create it with the given flags
     CScriptVarLink *findChildOrCreateByPath(const string &path); ///< Tries to find a child with the given path (separated by dots)
-    CScriptVarLink *addChild(const string &childName, CScriptVar *child=::null());
-    CScriptVarLink *addChildNoDup(const string &childName, CScriptVar *child=::null()); ///< add a child overwriting any with the same name
+    CScriptVarLink *addChild(const string &childName, CScriptVar *child=NULL);
+    CScriptVarLink *addChildNoDup(const string &childName, CScriptVar *child=NULL); ///< add a child overwriting any with the same name
     void removeChild(CScriptVar *child);
     void removeLink(CScriptVarLink *link); ///< Remove a specific link (this is faster than finding via a child)
     void removeAllChildren();

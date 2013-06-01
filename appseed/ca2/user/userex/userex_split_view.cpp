@@ -34,7 +34,7 @@ namespace userex
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
-      if(ppane->m_pholder == ::null())
+      if(ppane->m_pholder == NULL)
          return;
 
       pcreatordata->m_pviewdata = (void *) ppane;

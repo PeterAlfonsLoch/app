@@ -65,7 +65,7 @@ namespace userex
             //cc.m_typeinfoNewView = System.type_info < ::user::menu_list_view > ();
 
             sp(::user::view) pview = create_view < user::view > ();
-            if(pview != ::null())
+            if(pview != NULL)
             {
 //               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
    /* xxx           xml::node node(get_app());

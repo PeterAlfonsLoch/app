@@ -34,7 +34,7 @@
  * Decode a base64-encoded string.
  *
  * @param out      buffer for decoded data
- * @param in       null-terminated input string
+ * @param in       NULL-terminated input string
  * @param out_size size in bytes of the out buffer, must be at
  *                 least 3/4 of the length of in
  * @return         number of bytes written, or a negative value in case of
@@ -43,7 +43,7 @@
 int av_base64_decode(uint8_t *out, const char *in, int out_size);
 
 /**
- * Encode data to base64 and null-terminate.
+ * Encode data to base64 and NULL-terminate.
  *
  * @param out      buffer for encoded data
  * @param out_size size in bytes of the output buffer, must be at

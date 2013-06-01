@@ -12,9 +12,9 @@ namespace user
    sp(::user::document_interface) document_request_interface::open_document_file(sp(::ca::create_context) pcreatecontext)
    {
 
-      sp(::ca::create_context) cc(canew(::ca::create_context(Application.creation(), var(var::type_empty), true, ::null())));
+      sp(::ca::create_context) cc(canew(::ca::create_context(Application.creation(), var(var::type_empty), true, NULL)));
 
-      if(pcreatecontext == ::null())
+      if(pcreatecontext == NULL)
       {
          pcreatecontext = cc;
       }

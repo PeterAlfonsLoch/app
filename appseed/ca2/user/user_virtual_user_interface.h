@@ -49,7 +49,7 @@ public:
    void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
-   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = ::null());
+   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
 
 
    virtual bool DestroyWindow();
@@ -61,7 +61,7 @@ public:
    virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
    virtual ::ca::font* GetFont();
 
-   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = ::null());
+   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
 #ifdef LINUX
 
@@ -93,12 +93,12 @@ public:
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      sp(::ca::create_context) pContext = ::null());
+      sp(::ca::create_context) pContext = NULL);
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      LPVOID lpParam = ::null());
+      LPVOID lpParam = NULL);
 
 
    virtual sp(::user::frame_window) EnsureParentFrame();
@@ -118,9 +118,9 @@ public:
    DECL_GEN_SIGNAL(_001OnDestroy)
    DECL_GEN_SIGNAL(_001OnNcDestroy)
 
-   void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = true, bool bOnlyPerm = 0);
+   void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = true, bool bOnlyPerm = 0);
 
-   virtual bool PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+   virtual bool PostMessage(UINT uiMessage, WPARAM wparam, lparam lparam);
 
    virtual void set_view_port_org(::ca::graphics * pgraphics);
 

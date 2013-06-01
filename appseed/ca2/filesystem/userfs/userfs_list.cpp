@@ -111,7 +111,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
       UNREFERENCED_PARAMETER(phint);
-      /*if(phint != ::null())
+      /*if(phint != NULL)
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
          {

@@ -140,7 +140,7 @@ void _c_simple_message_loop()
 
    MESSAGE msg;
 
-	while(GetMessage(&msg, ::ca::null(), 0, 0))
+	while(GetMessage(&msg, NULL, 0, 0))
 	{
 
 		TranslateMessage(&msg);

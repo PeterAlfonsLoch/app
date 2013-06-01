@@ -48,7 +48,7 @@ namespace fontopus
 
       // if interactive flag is true, the function may interact with the user to authenticate her/him,
       // otherwise it fails to get sessid if it hasn't been previously cached during System instance lifetime.
-      string get_sessid(const char * pszRequestingParty = ::null(), bool bInteractive = true);
+      string get_sessid(const char * pszRequestingParty = NULL, bool bInteractive = true);
       void   set_sessid(const char * pszSessid, const char * pszRequestingParty);
 
       string get_ca2_server(const char * pszPrefix);

@@ -4,7 +4,7 @@
 /*
 
 
-fixed_string_log_interface * fixed_string_manager::s_pLog = ::null();
+fixed_string_log_interface * fixed_string_manager::s_pLog = NULL;
 
 
 fixed_string_manager::fixed_string_manager(string_data * pData,int32_t nChars, string_manager * pMgr) throw() :
@@ -28,12 +28,12 @@ string_data  * fixed_string_manager::allocate(strsize nChars, int32_t nCharSize 
    ASSUME( m_pData->nDataLength == 0 );
    if( nChars > m_pData->nAllocLength )
    {
-      if( s_pLog != ::null() )
+      if( s_pLog != NULL )
       {
          s_pLog->OnAllocateSpill( nChars, m_pData->nAllocLength, m_pData );
       }
       string_data * pData = m_pMgr->allocate( nChars, nCharSize );
-      if( pData != ::null() )
+      if( pData != NULL )
       {
          pData->pstringmanager = this;
          pData->nRefs = -1;  // Locked
@@ -73,7 +73,7 @@ string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nCh
    {
       pData->pstringmanager = m_pMgr;
       pNewData = m_pMgr->Reallocate( pData, nChars, nCharSize );
-      if( pNewData == ::null() )
+      if( pNewData == NULL )
       {
          pData->pstringmanager = this;
       }
@@ -86,14 +86,14 @@ string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nCh
    {
       if( nChars > pData->nAllocLength )
       {
-         if( s_pLog != ::null() )
+         if( s_pLog != NULL )
          {
             s_pLog->OnReallocateSpill( nChars, pData->nAllocLength, pData );
          }
          pNewData = m_pMgr->allocate( nChars, nCharSize );
-         if( pNewData == ::null() )
+         if( pNewData == NULL )
          {
-            return ::null();
+            return NULL;
          }
 
          // copy the string data
@@ -139,7 +139,7 @@ fixed_string_log::fixed_string_log() throw()
 }
 fixed_string_log::~fixed_string_log() throw()
 {
-   fixed_string_manager::s_pLog = ::null();
+   fixed_string_manager::s_pLog = NULL;
 }
 
 

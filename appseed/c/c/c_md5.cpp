@@ -80,7 +80,7 @@ uchar PADDING[64] =
  * This software was written by Alexander Peslyak in 2001.  No copyright is
  * claimed, and the software is hereby placed in the public domain.
  * In case this attempt to disclaim copyright and place the software in the
- * public domain is deemed null and void, then the software is
+ * public domain is deemed NULL and void, then the software is
  * Copyright (c) 2001 Alexander Peslyak and it is hereby released to the
  * general public under the following terms:
  *
@@ -398,7 +398,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, ::null());
+   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
    {
@@ -432,12 +432,12 @@ vsstring get_file_md5_by_map(const char * path)
 
    HANDLE hfilemap = CreateFileMappingFromApp(
       hfile,
-      ::null(),
+      NULL,
       PAGE_READONLY,
       dwSize,
-      ::null());
+      NULL);
 
-   if(hfilemap == ::null())
+   if(hfilemap == NULL)
    {
 
       CloseHandle(hfile);
@@ -452,7 +452,7 @@ vsstring get_file_md5_by_map(const char * path)
       0,
       0);
 
-   if(pview == ::null())
+   if(pview == NULL)
    {
 
       CloseHandle(hfile);
@@ -468,7 +468,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFileW(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, ::null(), OPEN_EXISTING, 0, ::null());
+   HANDLE hfile = ::CreateFileW(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
    {
@@ -503,13 +503,13 @@ vsstring get_file_md5_by_map(const char * path)
 
    HANDLE hfilemap = CreateFileMapping(
       hfile,
-      ::null(),
+      NULL,
       PAGE_READONLY,
       0,
       0,
-      ::null());
+      NULL);
 
-   if(hfilemap == ::null())
+   if(hfilemap == NULL)
    {
 
       CloseHandle(hfile);
@@ -526,7 +526,7 @@ vsstring get_file_md5_by_map(const char * path)
       0
       );
 
-   if(pview == ::null())
+   if(pview == NULL)
    {
 
       CloseHandle(hfile);
@@ -549,7 +549,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    int64_t dwSize = ::get_file_size(fd);
 
-   char * pview = (char *) mmap(::null(), dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
+   char * pview = (char *) mmap(NULL, dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
 
    if(pview == MAP_FAILED)
    {
@@ -628,7 +628,7 @@ vsstring get_file_md5_by_read(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
@@ -665,7 +665,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #ifdef WINDOWS
 
-      if(!::ReadFile(hfile, psz, min((int32_t) uiSize, iAlloc), &dwRead, ::null()))
+      if(!::ReadFile(hfile, psz, min((int32_t) uiSize, iAlloc), &dwRead, NULL))
       {
          break;
       }

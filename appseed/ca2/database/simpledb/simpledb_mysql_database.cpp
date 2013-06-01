@@ -8,12 +8,12 @@ namespace mysql
    database::database(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_pmysql = ::null();
+      m_pmysql = NULL;
    }
 
    database::~database()
    {
-      if(m_pmysql != ::null())
+      if(m_pmysql != NULL)
       {
          close();
       }
@@ -30,11 +30,11 @@ namespace mysql
       uint32_t uiFlags)
    {
       /* initialize connection handler */
-      m_pmysql = mysql_init (::null());
-      if(m_pmysql == ::null())
+      m_pmysql = mysql_init (NULL);
+      if(m_pmysql == NULL)
       {
          trace_error1("mysql_init() failed (probably out of primitive::memory)\n");
-       m_pmysql = ::null();
+       m_pmysql = NULL;
          return false;
       }
       if(mysql_real_connect(
@@ -45,11 +45,11 @@ namespace mysql
          pszDatabase,
          iPort,
          pszSocketName,
-         uiFlags) == ::null())
+         uiFlags) == NULL)
       {
          trace_error1( "mysql_real_connect() failed\n");
          mysql_close((MYSQL *) m_pmysql);
-         m_pmysql = ::null();
+         m_pmysql = NULL;
          return false;
       }
       mysql_query((MYSQL *) m_pmysql, "SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'");
@@ -59,7 +59,7 @@ namespace mysql
 
    bool database::close()
    {
-      if(m_pmysql == ::null())
+      if(m_pmysql == NULL)
          return false;
       for(int32_t i = 0; i < m_resultptra.get_count(); i++)
       {
@@ -69,7 +69,7 @@ namespace mysql
          }
       }
       mysql_close((MYSQL *) m_pmysql);
-      m_pmysql = ::null();
+      m_pmysql = NULL;
       return true;
    }
 
@@ -77,9 +77,9 @@ namespace mysql
    {
       string strPrefix(pszPrefix);
       string strFormat;
-      if(m_pmysql == ::null())
+      if(m_pmysql == NULL)
       {
-         strFormat = "mysql error => ::null() sql connection pointer";
+         strFormat = "mysql error => NULL sql connection pointer";
       }
       else
       {
@@ -103,23 +103,23 @@ namespace mysql
    result * database::query(const char * pszSql)
    {
       MYSQL_RES * pres;
-     if(m_pmysql == ::null())
+     if(m_pmysql == NULL)
      {
        trace_error1("Could not execute statement (0)");
-       return ::null();
+       return NULL;
      }
      try
      {
         if(mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
         {
           trace_error1("Could not execute statement");
-          return ::null();
+          return NULL;
         }
      }
      catch(...)
      {
        trace_error1("Could not execute statement (2)");
-       return ::null();
+       return NULL;
      }
       /* the statement succeeded; determine whether it returned data */
       pres = mysql_store_result ((MYSQL *) m_pmysql);
@@ -142,12 +142,12 @@ namespace mysql
             */
             m_iLastUsedTime = ::ca::profiler::micros();
             TRACE("Number of rows affected: %lu\n", (uint32_t) mysql_affected_rows ((MYSQL *) m_pmysql));
-            return new result(this, true, ::null());
+            return new result(this, true, NULL);
          }
          else /* an error occurred */
          {
             trace_error1 ("Could not retrieve result set");
-            return ::null();
+            return NULL;
          }
       }
    }
@@ -155,12 +155,12 @@ namespace mysql
    var database::query_item(const char * pszSql, var varDefault)
    {
       result * presult = query(pszSql);
-      if(presult == ::null())
+      if(presult == NULL)
          return varDefault;
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
-      if(row == ::null())
+      if(row == NULL)
          return varDefault;
-      else if(row[0] == ::null())
+      else if(row[0] == NULL)
          return ::var(::var::type_null);
       else
          return var(row[0]);
@@ -168,12 +168,12 @@ namespace mysql
    bool database::query_blob(primitive::memory_base & memory, const char * pszSql)
    {
       result * presult = query(pszSql);
-      if(presult == ::null())
+      if(presult == NULL)
          return false;
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
-      if(row == ::null())
+      if(row == NULL)
          return false;
-      else if(row[0] == ::null())
+      else if(row[0] == NULL)
          return false;
       else
       {
@@ -186,14 +186,14 @@ namespace mysql
    var database::query_items(const char * pszSql)
    {
       result * presult = query(pszSql);
-      if(presult == ::null())
+      if(presult == NULL)
          return ::var(::var::type_new);
       var a;
       MYSQL_ROW row;
       int32_t i = 0;
-      while((row = (MYSQL_ROW) presult->fetch_row()) != ::null())
+      while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
-         if(row[0] == ::null())
+         if(row[0] == NULL)
             a.propset().add(::ca::str::from(i), ::var(::var::type_null));
          else
             a.propset().add(::ca::str::from(i), var(row[0]));
@@ -204,16 +204,16 @@ namespace mysql
    var database::query_row(const char * pszSql)
    {
       result * presult = query(pszSql);
-      if(presult == ::null())
+      if(presult == NULL)
          return ::var(::var::type_new);
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
-      if(row == ::null())
+      if(row == NULL)
          return ::var(::var::type_new);
       var a;
       int32_t iNumFields = presult->num_fields();
       for(int32_t j = 0; j < iNumFields; j++)
       {
-         if(row[j] == ::null())
+         if(row[j] == NULL)
             a.propset().add(::ca::str::from(j), ::var(::var::type_null));
          else
             a.propset().add(::ca::str::from(j), var(row[j]));
@@ -223,7 +223,7 @@ namespace mysql
    var database::query_rows(const char * pszSql)
    {
       result * presult = query(pszSql);
-      if(presult == ::null())
+      if(presult == NULL)
          return ::var(::var::type_new);
       MYSQL_ROW row;
       var a;
@@ -238,7 +238,7 @@ namespace mysql
 
       int32_t i = 0;
 
-      while((row = (MYSQL_ROW) presult->fetch_row()) != ::null())
+      while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(i >= iNumRows)
          {
@@ -248,7 +248,7 @@ namespace mysql
          a.m_pvara->element_at(i).vara().set_size(iNumFields);
          for(int32_t j = 0; j < iNumFields; j++)
          {
-            if(row[j] == ::null())
+            if(row[j] == NULL)
                a.m_pvara->element_at(i).vara()[j].set_type(::var::type_null);
             else
                a.m_pvara->element_at(i).vara()[j] = row[j];
@@ -292,7 +292,7 @@ namespace mysql
          if(!query(strSql))
             return false;
       }
-      if(pszUser != ::null())
+      if(pszUser != NULL)
       {
          if(!query("UPDATE " + strTable + " SET `user` = '" + string(pszUser) + "' WHERE `id` = '" + strId + "'"))
             return false;
@@ -305,7 +305,7 @@ namespace mysql
    {
       string str;
       char * psz = str.GetBufferSetLength(iLen * 2 + 1);
-      if(psz == ::null())
+      if(psz == NULL)
          throw memory_exception(get_app());
       mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (unsigned long) iLen);
       str.ReleaseBuffer();

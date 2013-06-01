@@ -50,12 +50,12 @@ namespace file_watcher
 	file_watcher::~file_watcher()
 	{
       
-      if(m_pimpl != ::null())
+      if(m_pimpl != NULL)
       {
 
          delete m_pimpl;
 
-         m_pimpl = ::null();
+         m_pimpl = NULL;
 
       }
       

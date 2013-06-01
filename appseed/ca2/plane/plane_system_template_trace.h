@@ -117,7 +117,7 @@ namespace ca
       inline void __cdecl operator()(const char *pszFmt) const
       {
 
-         string_format format(this, &trace_add_file_and_line::trace, ::null());
+         string_format format(this, &trace_add_file_and_line::trace, NULL);
 
          format.printf(pszFmt);
 
@@ -127,7 +127,7 @@ namespace ca
       inline void __cdecl operator()(const char * pszFmt, const T & value, Args... args) const
       {
 
-         string_format format(this, &trace_add_file_and_line::trace, ::null());
+         string_format format(this, &trace_add_file_and_line::trace, NULL);
 
          format.printf(pszFmt, value, args...);
 

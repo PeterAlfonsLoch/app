@@ -114,11 +114,11 @@ namespace ca
          return (p->*lpfnOuput)(get(pszOutput, papp), istream);
       }
 
-      string time(sp(::ca::application) papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
-      string time_square(sp(::ca::application) papp, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
+      string time(sp(::ca::application) papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time_square(sp(::ca::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_log(sp(::ca::application) papp, const char * pszId);
 
-      virtual ::ca::filesp time_square_file(sp(::ca::application) papp, const char * pszPrefix = ::null(), const char * pszSuffix = ::null());
+      virtual ::ca::filesp time_square_file(sp(::ca::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       virtual ::ca::filesp get(const char * name, sp(::ca::application) papp);
 
       template < class T >

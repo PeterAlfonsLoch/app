@@ -17,7 +17,7 @@ namespace command
 	   if (!::user::document::on_new_document())
 		   return FALSE;
 
-      update_all_views(::null(), 0);
+      update_all_views(NULL, 0);
 
 
 	   return TRUE;
@@ -68,7 +68,7 @@ namespace command
       string str = Application.file().as_string(varFile);
    //  m_document.load(str);
       
-      update_all_views(::null(), 123);
+      update_all_views(NULL, 123);
 
       return TRUE;
 

@@ -157,7 +157,7 @@ namespace nature
    {
       if(iTab == 1)
       {
-         System.simple_message_box(::null(), "Playlist");
+         System.simple_message_box(NULL, "Playlist");
       }
    }
 

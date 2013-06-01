@@ -338,7 +338,7 @@ static int rsa_blinding_invert(BN_BLINDING *b, BIGNUM *f, BIGNUM *unblind,
 	{
 	/* For local blinding, unblind is set to NULL, and BN_BLINDING_invert_ex
 	 * will use the unblinding factor stored in BN_BLINDING.
-	 * If BN_BLINDING is shared between threads, unblind must be non-null:
+	 * If BN_BLINDING is shared between threads, unblind must be non-NULL:
 	 * BN_BLINDING_invert_ex will then use the local unblinding factor,
 	 * and will only read the modulus from BN_BLINDING.
 	 * In both cases it's safe to access the blinding without a lock.

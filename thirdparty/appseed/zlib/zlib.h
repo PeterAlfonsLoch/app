@@ -237,7 +237,7 @@ ZEXTERN int ZEXPORT deflateInit OF((z_streamp strm, int level));
      deflateInit returns Z_OK if success, Z_MEM_ERROR if there was not enough
    memory, Z_STREAM_ERROR if level is not a valid compression level, or
    Z_VERSION_ERROR if the zlib library version (zlib_version) is incompatible
-   with the version assumed by the caller (ZLIB_VERSION).  msg is set to null
+   with the version assumed by the caller (ZLIB_VERSION).  msg is set to NULL
    if there is no error message.  deflateInit does not perform any compression:
    this will be done by deflate().
 */
@@ -379,7 +379,7 @@ ZEXTERN int ZEXPORT inflateInit OF((z_streamp strm));
      inflateInit returns Z_OK if success, Z_MEM_ERROR if there was not enough
    memory, Z_VERSION_ERROR if the zlib library version is incompatible with the
    version assumed by the caller, or Z_STREAM_ERROR if the parameters are
-   invalid, such as a null pointer to the structure.  msg is set to null if
+   invalid, such as a NULL pointer to the structure.  msg is set to NULL if
    there is no error message.  inflateInit does not perform any decompression
    apart from possibly reading the zlib header if present: actual decompression
    will be done by inflate().  (So next_in and avail_in may be modified, but
@@ -580,7 +580,7 @@ ZEXTERN int ZEXPORT deflateInit2 OF((z_streamp strm,
    memory, Z_STREAM_ERROR if any parameter is invalid (such as an invalid
    method), or Z_VERSION_ERROR if the zlib library version (zlib_version) is
    incompatible with the version assumed by the caller (ZLIB_VERSION).  msg is
-   set to null if there is no error message.  deflateInit2 does not perform any
+   set to NULL if there is no error message.  deflateInit2 does not perform any
    compression: this will be done by deflate().
 */
 
@@ -807,7 +807,7 @@ ZEXTERN int ZEXPORT inflateInit2 OF((z_streamp strm,
      inflateInit2 returns Z_OK if success, Z_MEM_ERROR if there was not enough
    memory, Z_VERSION_ERROR if the zlib library version is incompatible with the
    version assumed by the caller, or Z_STREAM_ERROR if the parameters are
-   invalid, such as a null pointer to the structure.  msg is set to null if
+   invalid, such as a NULL pointer to the structure.  msg is set to NULL if
    there is no error message.  inflateInit2 does not perform any decompression
    apart from possibly reading the zlib header if present: actual decompression
    will be done by inflate().  (So next_in and avail_in may be modified, but
@@ -1346,8 +1346,8 @@ ZEXTERN int ZEXPORTVA gzprintf Z_ARG((gzFile file, const char *format, ...));
 
 ZEXTERN int ZEXPORT gzputs OF((gzFile file, const char *s));
 /*
-     Writes the given null-terminated string to the compressed file, excluding
-   the terminating null character.
+     Writes the given NULL-terminated string to the compressed file, excluding
+   the terminating NULL character.
 
      gzputs returns the number of characters written, or -1 in case of error.
 */
@@ -1357,10 +1357,10 @@ ZEXTERN char * ZEXPORT gzgets OF((gzFile file, char *buf, int len));
      Reads bytes from the compressed file until len-1 characters are read, or a
    newline character is read and transferred to buf, or an end-of-file
    condition is encountered.  If any characters are read or if len == 1, the
-   string is terminated with a null character.  If no characters are read due
+   string is terminated with a NULL character.  If no characters are read due
    to an end-of-file or len < 1, then the buffer is left untouched.
 
-     gzgets returns buf which is a null-terminated string, or it returns NULL
+     gzgets returns buf which is a NULL-terminated string, or it returns NULL
    for end-of-file or in case of error.  If there was an error, the contents at
    buf are indeterminate.
 */

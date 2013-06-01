@@ -241,11 +241,11 @@ namespace userfs
 
    /*void list_interface::_017OneLevelUp()
    {
-      if(m_lpiidlAbsolute == ::null())
+      if(m_lpiidlAbsolute == NULL)
          return;
 
       single_lock slBrowse(&m_csBrowse, TRUE);
-      LPMALLOC lpmalloc = ::null();
+      LPMALLOC lpmalloc = NULL;
       IShellFolder * lpsfDesktop;
       HRESULT hr;
 
@@ -473,15 +473,15 @@ namespace userfs
 
    void list_interface::_001OnInitializeForm(sp(::user::control) pcontrol)
    {
-      ASSERT(pcontrol != ::null());
-      if(pcontrol == ::null())
+      ASSERT(pcontrol != NULL);
+      if(pcontrol == NULL)
          return;
 
 /*      FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
       sp(BaseButtonControl) pbutton =  (pcontrol);
-      if(pcallback != ::null() && pbutton != ::null())
+      if(pcallback != NULL && pbutton != NULL)
       {
          pcallback->InitializeActionButton(((int32_t) pcontrol->descriptor().m_id) - 1000, pbutton);
       } */
@@ -494,7 +494,7 @@ namespace userfs
       /* FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
-      if(pcallback != ::null())
+      if(pcallback != NULL)
       {
          ::fs::item item;
          int32_t iItem = pcontrol->GetEditItem();
@@ -588,7 +588,7 @@ namespace userfs
       {
          return System.user()->shellimageset().GetImageList16();
       }
-      return ::null();
+      return NULL;
    }
 
    void list_interface::_001OnFileRename(::ca::signal_object * pobj)
@@ -620,7 +620,7 @@ namespace userfs
 //      SCAST_PTR(::ca::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == ::null())
+      if(pcentral == NULL)
          return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
@@ -709,7 +709,7 @@ namespace userfs
 
    COLORREF list_interface::get_background_color()
    {
-      //if(GetFileManager() != ::null() && GetFileManager()->get_filemanager_data()->is_saving())
+      //if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
       {
          return RGB(255, 177, 84);
       }
@@ -747,7 +747,7 @@ namespace userfs
 /*      icon_key iconkey;
       icon icon;
       for(POSITION pos = m_iconmap.get_start_position();
-         pos != ::null();
+         pos != NULL;
          m_iconmap.get_next_assoc(pos, iconkey, icon))
       {
          DestroyIcon(icon.m_hicon);
@@ -755,7 +755,7 @@ namespace userfs
 
       m_iCreateImageListStep = 0;
       m_bCreateImageList = true;
-      if(m_pcreateimagelistthread == ::null())
+      if(m_pcreateimagelistthread == NULL)
       {
          m_pcreateimagelistthread = new create_image_list_thread(get_app());
          m_pcreateimagelistthread->m_plist = this;
@@ -788,7 +788,7 @@ namespace userfs
    endloop:
       m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
       synch_lock lock(m_plist->m_pthread);
-      m_plist->m_pcreateimagelistthread = ::null();
+      m_plist->m_pcreateimagelistthread = NULL;
       return 0;
    }
 

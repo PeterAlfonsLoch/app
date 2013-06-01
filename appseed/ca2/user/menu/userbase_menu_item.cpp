@@ -126,7 +126,7 @@ namespace user
    menu_item * menu_item::find(id id)
    {
       if(!m_spitema.is_set())
-         return ::null();
+         return NULL;
       return m_spitema->find(id);
    }
 
@@ -147,10 +147,10 @@ namespace user
          if(pitem->m_id  == id)
             return pitem;
          pitemFind = pitem->find(id);
-         if(pitemFind != ::null())
+         if(pitemFind != NULL)
             return pitemFind;
       }
-      return ::null();
+      return NULL;
    }
 
 

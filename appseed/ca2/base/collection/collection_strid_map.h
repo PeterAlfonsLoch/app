@@ -7,7 +7,7 @@ class strid_map :
 {
 public:
 
-   strid_map(::ca::application * papp = ::null(), ::count nBlockSize = 256);
+   strid_map(::ca::application * papp = NULL, ::count nBlockSize = 256);
    strid_map(const strid_map & map);
 
 
@@ -80,8 +80,8 @@ public:
    T * get(string key)
    {
       T ** p = (T **) string_to_ptr::pget(key);
-      if(p == ::null())
-         return ::null();
+      if(p == NULL)
+         return NULL;
       else
          return (T*) *p;
    }

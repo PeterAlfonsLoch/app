@@ -674,7 +674,7 @@ namespace ca
    public:
 
 
-      property_array(sp(::ca::application) papp = ::null());
+      property_array(sp(::ca::application) papp = NULL);
 
 
 

@@ -41,7 +41,7 @@ namespace user
            return FALSE;   // need this one image
        }
        bool bAllLoaded = TRUE;
-       if (lpszBitmapResourceSel != ::null())
+       if (lpszBitmapResourceSel != NULL)
        {
            if (!m_bitmapSel.LoadBitmap(lpszBitmapResourceSel))
            {
@@ -49,17 +49,17 @@ namespace user
                bAllLoaded = FALSE;
            }
        }
-       if (lpszBitmapResourceFocus != ::null())
+       if (lpszBitmapResourceFocus != NULL)
        {
            if (!m_bitmapFocus.LoadBitmap(lpszBitmapResourceFocus))
                bAllLoaded = FALSE;
        }
-       if (lpszBitmapResourceDisabled != ::null())
+       if (lpszBitmapResourceDisabled != NULL)
        {
            if (!m_bitmapDisabled.LoadBitmap(lpszBitmapResourceDisabled))
                bAllLoaded = FALSE;
        }
-       if (lpszBitmapResourceHover != ::null())
+       if (lpszBitmapResourceHover != NULL)
        {
            if (!m_bitmapHover.LoadBitmap(lpszBitmapResourceHover))
                bAllLoaded = FALSE;
@@ -88,9 +88,9 @@ namespace user
 
    void bitmap_button::DrawItem(LPDRAWITEMSTRUCT lpDIS)
    {
-       ASSERT(lpDIS != ::null());
+       ASSERT(lpDIS != NULL);
        // must have at least the first bitmap loaded before calling DrawItem
-       ASSERT(m_bitmap.get_os_data() != ::null());     // required
+       ASSERT(m_bitmap.get_os_data() != NULL);     // required
 
       UpdateHover();
 
@@ -100,13 +100,13 @@ namespace user
       if(!IsControlCommandEnabled())
          state = ODS_DISABLED;
 
-       if ((state & ODS_SELECTED) && m_bitmapSel.get_os_data() != ::null())
+       if ((state & ODS_SELECTED) && m_bitmapSel.get_os_data() != NULL)
            pBitmap = &m_bitmapSel;
-      else if(m_bHover && ((state & ODS_DISABLED) == 0) && m_bitmapHover.get_os_data() != ::null())
+      else if(m_bHover && ((state & ODS_DISABLED) == 0) && m_bitmapHover.get_os_data() != NULL)
            pBitmap = &m_bitmapHover;
-       else if ((state & ODS_FOCUS) && m_bitmapFocus.get_os_data() != ::null())
+       else if ((state & ODS_FOCUS) && m_bitmapFocus.get_os_data() != NULL)
            pBitmap = &m_bitmapFocus;   // third image for focused
-       else if ((state & ODS_DISABLED) && m_bitmapDisabled.get_os_data() != ::null())
+       else if ((state & ODS_DISABLED) && m_bitmapDisabled.get_os_data() != NULL)
            pBitmap = &m_bitmapDisabled;   // last image for disabled
 
        throw not_implemented(get_app());
@@ -115,7 +115,7 @@ namespace user
        ::ca::graphics_sp memDC;
        memDC.CreateCompatibleDC(pgraphics);
        ::ca::bitmap* pOld = memDC.SelectObject(pBitmap);
-       if (pOld == ::null())
+       if (pOld == NULL)
            return;     // destructors will clean up
 
        rect rect;

@@ -355,11 +355,11 @@ CLASS_DECL__ int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * 
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
 #define _ASSERT_EXPR(expr, msg) \
         (void) ((!!(expr)) || \
-                (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, ::null(), msg)) || \
+                (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, NULL, msg)) || \
                 (_CrtDbgBreak(), 0))
 
 #ifndef _ASSERT
-#define _ASSERT(expr)   _ASSERT_EXPR((expr), ::null())
+#define _ASSERT(expr)   _ASSERT_EXPR((expr), NULL)
 #endif
 
 #ifndef _ASSERTE
@@ -385,78 +385,78 @@ should not have done so since it was not documented.
                 (_CrtDbgBreak(), 0))
 
 #define _RPT0(rptno, msg) \
-        _RPT_BASE((rptno, ::null(), 0, ::null(), "%s", msg))
+        _RPT_BASE((rptno, NULL, 0, NULL, "%s", msg))
 
 #define _RPTW0(rptno, msg) \
-        _RPT_BASE_W((rptno, ::null(), 0, ::null(), L"%s", msg))
+        _RPT_BASE_W((rptno, NULL, 0, NULL, L"%s", msg))
 
 #define _RPT1(rptno, msg, arg1) \
-        _RPT_BASE((rptno, ::null(), 0, ::null(), msg, arg1))
+        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1))
 
 #define _RPTW1(rptno, msg, arg1) \
-        _RPT_BASE_W((rptno, ::null(), 0, ::null(), msg, arg1))
+        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1))
 
 #define _RPT2(rptno, msg, arg1, arg2) \
-        _RPT_BASE((rptno, ::null(), 0, ::null(), msg, arg1, arg2))
+        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2))
 
 #define _RPTW2(rptno, msg, arg1, arg2) \
-        _RPT_BASE_W((rptno, ::null(), 0, ::null(), msg, arg1, arg2))
+        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2))
 
 #define _RPT3(rptno, msg, arg1, arg2, arg3) \
-        _RPT_BASE((rptno, ::null(), 0, ::null(), msg, arg1, arg2, arg3))
+        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3))
 
 #define _RPTW3(rptno, msg, arg1, arg2, arg3) \
-        _RPT_BASE_W((rptno, ::null(), 0, ::null(), msg, arg1, arg2, arg3))
+        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3))
 
 #define _RPT4(rptno, msg, arg1, arg2, arg3, arg4) \
-        _RPT_BASE((rptno, ::null(), 0, ::null(), msg, arg1, arg2, arg3, arg4))
+        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4))
 
 #define _RPTW4(rptno, msg, arg1, arg2, arg3, arg4) \
-        _RPT_BASE_W((rptno, ::null(), 0, ::null(), msg, arg1, arg2, arg3, arg4))
+        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4))
 
 #define _RPT5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-        _RPT_BASE((rptno, ::null(), 0, ::null(), msg, arg1, arg2, arg3, arg4, arg5))
+        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 
 #define _RPTW5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-        _RPT_BASE_W((rptno, ::null(), 0, ::null(), msg, arg1, arg2, arg3, arg4, arg5))
+        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 
 /* Reports with file/line info */
 
 #define _RPTF0(rptno, msg) \
-        _RPT_BASE((rptno, __FILE__, __LINE__, ::null(), "%s", msg))
+        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, "%s", msg))
 
 #define _RPTFW0(rptno, msg) \
-        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, ::null(), L"%s", msg))
+        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, L"%s", msg))
 
 #define _RPTF1(rptno, msg, arg1) \
-        _RPT_BASE((rptno, __FILE__, __LINE__, ::null(), msg, arg1))
+        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1))
 
 #define _RPTFW1(rptno, msg, arg1) \
-        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, ::null(), msg, arg1))
+        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1))
 
 #define _RPTF2(rptno, msg, arg1, arg2) \
-        _RPT_BASE((rptno, __FILE__, __LINE__, ::null(), msg, arg1, arg2))
+        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2))
 
 #define _RPTFW2(rptno, msg, arg1, arg2) \
-        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, ::null(), msg, arg1, arg2))
+        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2))
 
 #define _RPTF3(rptno, msg, arg1, arg2, arg3) \
-        _RPT_BASE((rptno, __FILE__, __LINE__, ::null(), msg, arg1, arg2, arg3))
+        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3))
 
 #define _RPTFW3(rptno, msg, arg1, arg2, arg3) \
-        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, ::null(), msg, arg1, arg2, arg3))
+        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3))
 
 #define _RPTF4(rptno, msg, arg1, arg2, arg3, arg4) \
-        _RPT_BASE((rptno, __FILE__, __LINE__, ::null(), msg, arg1, arg2, arg3, arg4))
+        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3, arg4))
 
 #define _RPTFW4(rptno, msg, arg1, arg2, arg3, arg4) \
-        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, ::null(), msg, arg1, arg2, arg3, arg4))
+        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3, arg4))
 
 #define _RPTF5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-        _RPT_BASE((rptno, __FILE__, __LINE__, ::null(), msg, arg1, arg2, arg3, arg4, arg5))
+        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 
 #define _RPTFW5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, ::null(), msg, arg1, arg2, arg3, arg4, arg5))
+        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 
 
 #if !defined(_CRT_PORTABLE) && !defined(LINUX)

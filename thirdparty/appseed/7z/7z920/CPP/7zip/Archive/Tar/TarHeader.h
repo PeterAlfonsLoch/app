@@ -81,14 +81,14 @@ namespace NFileHeader
       Each file name is preceded by either
         - 'Y' (file should be in this archive)
         - 'N' (file is a directory, or is not stored in the archive.)
-        Each file name is terminated by a null + an additional null after
+        Each file name is terminated by a NULL + an additional NULL after
         the last file name. */
 
   }
   // Further link types may be defined later.
 
   // The checksum field is filled with this while the checksum is computed.
-  extern const char *kCheckSumBlanks;//   = "        ";   // 8 blanks, no null
+  extern const char *kCheckSumBlanks;//   = "        ";   // 8 blanks, no NULL
 
   extern const char *kLongLink;  //   = "././@LongLink";
   extern const char *kLongLink2; //   = "@LongLink";
@@ -97,8 +97,8 @@ namespace NFileHeader
   namespace NMagic
   {
     extern const char *kUsTar; //   = "ustar"; // 5 chars
-    extern const char *kGNUTar; //  = "GNUtar "; // 7 chars and a null
-    extern const char *kEmpty; //  = "GNUtar "; // 7 chars and a null
+    extern const char *kGNUTar; //  = "GNUtar "; // 7 chars and a NULL
+    extern const char *kEmpty; //  = "GNUtar "; // 7 chars and a NULL
   }
 
 }

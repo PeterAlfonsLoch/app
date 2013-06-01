@@ -49,7 +49,7 @@ imaging::imaging(sp(::ca::application) papp) :
 
 imaging::~imaging()
 {
-   //    if(m_lpVoid != ::null())
+   //    if(m_lpVoid != NULL)
    //        free(m_lpVoid);
 }
 
@@ -67,7 +67,7 @@ imaging::~imaging()
 
       TRACELASTERROR();
 
-      return ::ca::null();
+      return NULL;
 
    }
 
@@ -113,17 +113,17 @@ imaging::~imaging()
    DIB_RGB_COLORS))
    {
    TRACELASTERROR();
-   return (::ca::bitmap *) ::null();
+   return (::ca::bitmap *) NULL;
    }
 
    //   LPVOID lpBits;
    //   BITMAPINFO *pbi = FreeImage_GetInfo(pFreeImage);
    //   HBITMAP hBitmap = ::CreateDIBSection(
-   //      ::null(),
+   //      NULL,
    //      pbi,
    //      DIB_RGB_COLORS,
    //      &lpBits,
-   //      ::null(),
+   //      NULL,
    //      0);
    //   memcpy(lpBits, FreeImage_GetBits(pFreeImage), pbi->bmiHeader.biSize);
    LPBITMAPINFO pbi = FreeImage_GetInfo(pFreeImage);
@@ -151,7 +151,7 @@ FIBITMAP * imaging::LoadImageFile(var varFile, sp(::ca::application) papp)
    ::primitive::memory_file memfile(get_app());
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
    if(memfile.get_size() <= 0)
-      return ::null();
+      return NULL;
    return LoadImageFile(&memfile);
 }
 
@@ -167,12 +167,12 @@ bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, sp(::ca::application)
 
    FIBITMAP * pfi = LoadImageFile(&memfile);
 
-   if(pfi == ::null())
+   if(pfi == NULL)
       return false;
 
    ::ca::graphics_sp spgraphics(allocer());
 
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
    if(!pdib->from(spgraphics, pfi, true))
       return false;
@@ -193,15 +193,15 @@ return LoadImageFile(ar.GetFile());
 FIBITMAP * imaging::LoadImageFile(sp(::ca::file) pfile)
 {
 
-   if(pfile == ::null())
-      return ::null();
+   if(pfile == NULL)
+      return NULL;
 
    FreeImageIO io;
    io.read_proc = __ReadProc2;
    io.seek_proc = __SeekProc2;
    io.tell_proc = __TellProc2;
    io.write_proc = __WriteProc2;
-   FIBITMAP *lpVoid = ::null();
+   FIBITMAP *lpVoid = NULL;
    try
    {
       FREE_IMAGE_FORMAT format;
@@ -246,14 +246,14 @@ io.write_proc  = ___Ex1File__WriteProc;
 
 FREE_IMAGE_FORMAT format;
 format = FreeImage_GetFileTypeFromHandle(&io, pfile ,16);
-FIBITMAP *pfi = ::null();
+FIBITMAP *pfi = NULL;
 if(true)
 {
 pfi = FreeImage_LoadFromHandle(format, &io, pfile);
 }
 
-if(pfi == ::null())
-return ::null();
+if(pfi == NULL)
+return NULL;
 
 BITMAPINFO * pbi = FreeImage_GetInfo(pfi);
 void * pData = FreeImage_GetBits(pfi);
@@ -261,9 +261,9 @@ void * pData = FreeImage_GetBits(pfi);
 
 HDC hdcSource = CreateDC(
 "DISPLAY",
-::null(),
-::null(),
-::null());
+NULL,
+NULL,
+NULL);
 
 HBITMAP hBitmapSource = ::CreateCompatibleBitmap(
 hdcSource,
@@ -282,7 +282,7 @@ DIB_RGB_COLORS))
 FreeImage_Unload(pfi);
 DeleteDC(hdcSource);
 delete_object(hBitmapSource);
-return ::null();
+return NULL;
 }
 
 FreeImage_Unload(pfi);
@@ -364,16 +364,16 @@ void EmbossedTextOut(
    sizeText = pdc->GetTextExtent(string(lpcsz, cb));
    rcText.left   = x;    rcText.right  = x+cx+sizeText.cx;
    rcText.top    = y;    rcText.bottom = y+cy+sizeText.cy;
-   //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, ::null());
+   //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, NULL);
    pdc->SetBkMode(TRANSPARENT);
-   //ExtTextOut(hDC, x-cx, y+cy, ::null(), &rcText, lpsz, cb, ::null());
-   //ExtTextOut(hDC, x-cx, y-cy, ::null(), &rcText, lpsz, cb, ::null());
-   //ExtTextOut(hDC, x+cx, y-cy, ::null(), &rcText, lpsz, cb, ::null());
-   //ExtTextOut(hDC, x+cx, y+cy, ::null(), &rcText, lpsz, cb, ::null());
-   pdc->ExtTextOut(x+cx, y+cy, 0, ::null(), lpcsz, (int) cb, ::null());
+   //ExtTextOut(hDC, x-cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
+   //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
+   //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
+   //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
+   pdc->ExtTextOut(x+cx, y+cy, 0, NULL, lpcsz, (int) cb, NULL);
    pdc->SetBkMode(TRANSPARENT);
    pdc->SetTextColor(crText);
-   if(!pdc->ExtTextOut(x, y, 0, ::null(), lpcsz, (int) cb, ::null()))
+   if(!pdc->ExtTextOut(x, y, 0, NULL, lpcsz, (int) cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
    }
@@ -399,7 +399,7 @@ void EmbossedTextOut(
 * anPosX[]                  - Will contain the X coordinates for each char
 * anPosY                    - Will contain the Y coordinate for the string
 *
-* Returns HFONT or ::null() if one could not be created
+* Returns HFONT or NULL if one could not be created
 *
 *****************************************************************************/
 /*HFONT CreateScaledFont(
@@ -611,7 +611,7 @@ bool imaging::GrayVRCP(
    {
    ::ca::bitmap * pbitmapOriginal = pdc->SelectObject(bitmapLocal);
 
-   if(pbitmapOriginal == ::null() ||
+   if(pbitmapOriginal == NULL ||
    pbitmapOriginal->get_os_data() ==
    pbitmap->get_os_data())
    {
@@ -838,21 +838,21 @@ bool imaging::Createcolor_blend_ImageList(
       if(!pil->create(pilParam))
          return false;
 
-      if(pil->m_spdib->get_graphics() == ::null())
+      if(pil->m_spdib->get_graphics() == NULL)
          return false;
 
-      if(pil->m_spdib->get_graphics()->get_os_data() == ::null())
+      if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
          return false;
 
       ::ca::graphics_sp spgraphics(allocer());
 
 #ifdef LINUX
 
-      spgraphics->CreateCompatibleDC(::null());
+      spgraphics->CreateCompatibleDC(NULL);
 
 #elif defined(WINDOWS)
 
-      spgraphics->CreateCompatibleDC(::null());
+      spgraphics->CreateCompatibleDC(NULL);
       spgraphics->SetMapMode(MM_TEXT);
 
 #else
@@ -1259,7 +1259,7 @@ bool imaging::GetDeviceContext24BitsCC(
 
    ::ca::bitmap * pbmpOld = pdc->SelectObject(spbmpTemp);
 
-   if(pbmpOld != ::null())
+   if(pbmpOld != NULL)
    {
       try
       {
@@ -1368,7 +1368,7 @@ int32_t cx = -1;
 int32_t cy = -1;
 
 ::ca::bitmap * pbmpOld = pdc->GetCurrentBitmap();
-if(pbmpOld == ::null())
+if(pbmpOld == NULL)
 {
 return false;
 }
@@ -1453,9 +1453,9 @@ try
 ::ca::bitmap * pbitmap = *ppbitmap;
 // this is a display spgraphics
 
-if(pbitmap->m_hObject == ::null())
+if(pbitmap->m_hObject == NULL)
 {
-pbitmap->CreateBitmap(cx + 100, cy + 100, 1, 24, ::null());
+pbitmap->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
 }
 else
 {
@@ -1465,7 +1465,7 @@ if(bm.bmWidth < cx ||
 bm.bmHeight  < cy)
 {
 pbitmap->delete_object();
-pbitmap->CreateBitmap(cx + 100, cy + 100, 1, 24, ::null());
+pbitmap->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
 }
 }
 
@@ -1784,12 +1784,12 @@ byte uchAlphaConstant,
 ::ca::dib_sp dibA;
 ::ca::dib_sp dibB;
 
-if(pdibA == ::null())
+if(pdibA == NULL)
 {
 dibA.create(allocer());
 pdibA = dibA;
 }
-if(pdibB == ::null())
+if(pdibB == NULL)
 {
 dibB.create(allocer());
 pdibB = dibB;
@@ -2158,9 +2158,9 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int32_t x, int32_t y, int32_t cx
    {
    // this is a display spgraphics
 
-   if(bitmapA->get_os_data() == ::null())
+   if(bitmapA->get_os_data() == NULL)
    {
-   bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, ::null());
+   bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
    }
    else
    {
@@ -2170,7 +2170,7 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int32_t x, int32_t y, int32_t cx
    if(bm.bmWidth < cx ||
    bm.bmHeight  < cy)
    {
-   bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, ::null());
+   bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
    }
    }
 
@@ -2372,7 +2372,7 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int32_t x, int32_t y, int32_t cx
 if(iSize > m_iSize)
 {
 m_lpVoid = malloc(iSize);
-if(m_lpVoid == ::null())
+if(m_lpVoid == NULL)
 {
 return false;
 }
@@ -2450,32 +2450,32 @@ void imaging::SavePng(const char * lpcszFile, FIBITMAP *dib, bool bUnload)
 FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 {
 
-   if(pbitmap == ::null())
-      return ::null();
+   if(pbitmap == NULL)
+      return NULL;
 
 
 #ifdef WINDOWSEX
 
-   HBITMAP hbitmap = ::null();
+   HBITMAP hbitmap = NULL;
 
    Gdiplus::Color colorBk(0, 0, 0, 0);
 
    ((Gdiplus::Bitmap *) (pbitmap.m_p->get_os_data()))->GetHBITMAP(colorBk, &hbitmap);
 
-   if(hbitmap == ::null())
-      return ::null();
+   if(hbitmap == NULL)
+      return NULL;
 
    // ...
    // the following code assumes that you have a valid HBITMAP loaded into the primitive::memory
    BITMAP bm;
    ::GetObject(hbitmap, sizeof(BITMAP), (char *) &bm);
    if(bm.bmWidth <= 0 || bm.bmHeight <= 0)
-      return ::null();
+      return NULL;
    FIBITMAP * fi = FreeImage_Allocate(bm.bmWidth, bm.bmHeight, bm.bmBitsPixel);
    // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
    // So we save these infos below. This is needed for palettized images only.
    int32_t nColors = FreeImage_GetColorsUsed(fi);
-   HDC hdc = ::CreateCompatibleDC(::null());
+   HDC hdc = ::CreateCompatibleDC(NULL);
 
    GetDIBits(hdc, (HBITMAP) hbitmap, 0, FreeImage_GetHeight(fi), FreeImage_GetBits(fi), FreeImage_GetInfo(fi), DIB_RGB_COLORS);
 
@@ -2501,8 +2501,8 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 ::ca::bitmap_sp imaging::FItoHBITMAP(FIBITMAP * pfibitmap, bool bUnloadFI)
 {
 
-   if(pfibitmap == ::null())
-      return ::ca::null();
+   if(pfibitmap == NULL)
+      return NULL;
 
    //   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
    // void * pData = FreeImage_GetBits(pfibitmap);
@@ -2513,7 +2513,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    //BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
 
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
    dib->from(spgraphics, pfibitmap, false);
 
@@ -2521,7 +2521,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    return dib->detach_bitmap();
 
    /*::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
    ::ca::dib_sp dibSource(get_app());
    dibSource->create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight);
@@ -2541,7 +2541,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    {
    FreeImage_Unload(pfibitmap);
    }
-   return ::null();
+   return NULL;
    }
 
    if(bUnloadFI)
@@ -2566,8 +2566,8 @@ return LoadImageSync(str);
 
    FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath, papp);
 
-   if(pfi == ::null())
-      return ::ca::null();
+   if(pfi == NULL)
+      return NULL;
 
    return FItoHBITMAP(pfi, true);
 
@@ -2651,7 +2651,7 @@ bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORR
    ClipSave(
       pdc,
       bitmapA,
-      ::null(),
+      NULL,
       &bm,
       rect,
       prgnClip);
@@ -2661,7 +2661,7 @@ bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORR
    ClipRestore(
       pdc,
       bitmapA,
-      ::null(),
+      NULL,
       &bm,
       rect,
       prgnClip);
@@ -2726,7 +2726,7 @@ bool imaging::color_blend(
 {
    //::ca::dib_sp spdib(allocer());
    //return color_blend(pdc, pt, size, cr, bA, spdib);
-   return color_blend(pdc, pt, size, cr, bA, ::null());
+   return color_blend(pdc, pt, size, cr, bA, NULL);
 }
 
 bool imaging::color_blend(
@@ -2765,7 +2765,7 @@ bool imaging::prepare_blend(::ca::dib * pdib, LPCRECT lpcrect, COLORREF cr, BYTE
 bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, BYTE bA, ::ca::dib * pdibWork)
 {
 
-   if(pdibWork == ::null())
+   if(pdibWork == NULL)
    {
       return false;
    }
@@ -2785,7 +2785,7 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
 
    pdibWork->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
 
-   pdibWork->mult_alpha(::null());
+   pdibWork->mult_alpha(NULL);
 
    bool bOk ;
    try
@@ -2799,7 +2799,7 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
 
    pdib->channel_from(visual::rgba::channel_alpha, pdibWork);
 
-   //dib->mult_alpha(::null());
+   //dib->mult_alpha(NULL);
 
 
 
@@ -2819,13 +2819,13 @@ bool imaging::ClipSave(
    ::ca::region * prgnClip)
 {
 
-   if(pdc == ::null())
+   if(pdc == NULL)
       return false;
 
-   if(pbitmap == ::null())
+   if(pbitmap == NULL)
       return false;
 
-   if(prgnClip == ::null())
+   if(prgnClip == NULL)
       return false;
 
 
@@ -2879,13 +2879,13 @@ bool imaging::ClipSave(
    //   }
    return true;
 
-   /*   if(pdc == ::null())
+   /*   if(pdc == NULL)
    return false;
 
-   if(pbitmap == ::null())
+   if(pbitmap == NULL)
    return false;
 
-   if(prgnClip == ::null())
+   if(prgnClip == NULL)
    return false;
 
 
@@ -2942,10 +2942,10 @@ bool imaging::ClipRestore(
 {
    UNREFERENCED_PARAMETER(pbitmapOld);
    UNREFERENCED_PARAMETER(pbmp);
-   if(pdc == ::null())
+   if(pdc == NULL)
       return false;
 
-   if(pbitmap == ::null())
+   if(pbitmap == NULL)
       return false;
 
    rect rectClipBox;
@@ -3003,15 +3003,15 @@ bool imaging::ClipRestore(
          pdc->SelectClipRgn(rgnClip);
       }
       else
-         pdc->SelectClipRgn(::null());
+         pdc->SelectClipRgn(NULL);
       return bOk;
    }
    return true;
 
-   /*   if(pdc == ::null())
+   /*   if(pdc == NULL)
    return false;
 
-   if(pbitmap == ::null())
+   if(pbitmap == NULL)
    return false;
 
    rect rectClipBox;
@@ -3055,7 +3055,7 @@ bool imaging::ClipRestore(
    pdc->SelectClipRgn(&rgnClip);
    }
    else
-   pdc->SelectClipRgn(::null());
+   pdc->SelectClipRgn(NULL);
    return bOk;*/
 //}
 
@@ -3068,10 +3068,10 @@ bool imaging::ClipSave(
    LPCRECT lpcrect)
 {
 
-   if(pdc == ::null())
+   if(pdc == NULL)
       return false;
 
-   if(pbitmap == ::null())
+   if(pbitmap == NULL)
       return false;
 
    ::ca::region_sp rgnClip(allocer());
@@ -3108,10 +3108,10 @@ bool imaging::ClipRestore(
    BITMAP * pbmp,
    LPCRECT lpcrect)
 {
-   if(pdc == ::null())
+   if(pdc == NULL)
       return false;
 
-   if(pbitmap == ::null())
+   if(pbitmap == NULL)
       return false;
 
    ::ca::region_sp rgnClip(allocer());
@@ -3156,7 +3156,7 @@ bool imaging::CreateBitmap(
 
    pdc->SelectObject(pbitmapOld);
    bool bCreate = true;
-   if(pbitmap->get_os_data() != ::null())
+   if(pbitmap->get_os_data() != NULL)
    {
       class size size = pbitmap->get_size();
       if(size.cx >= cx && size.cy >= cy)
@@ -3198,7 +3198,7 @@ bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap * pbitmapOld, ::ca:
 
    pdc->SelectObject(pbitmapOld);
    bool bCreate = true;
-   if(pbitmap->get_os_data() != ::null())
+   if(pbitmap->get_os_data() != NULL)
    {
       class size size = pbitmap->get_size();
       if(size.cx >= cx && size.cy >= cy)
@@ -3237,19 +3237,19 @@ HBITMAP
 imaging::LoadSysColorBitmap(::ca::graphics * pdcCompatible, HINSTANCE hInst, HRSRC hRsrc, bool bMono)
 {
 HGLOBAL hglb;
-if ((hglb = LoadResource(hInst, hRsrc)) == ::null())
-return ::null();
+if ((hglb = LoadResource(hInst, hRsrc)) == NULL)
+return NULL;
 
 LPBITMAPINFOHEADER lpBitmap = (LPBITMAPINFOHEADER)LockResource(hglb);
-if (lpBitmap == ::null())
-return ::null();
+if (lpBitmap == NULL)
+return NULL;
 
 // make copy of BITMAPINFOHEADER so we can modify the color table
 const int32_t nColorTableSize = 1 << lpBitmap->biBitCount;
 UINT nSize = lpBitmap->biSize + nColorTableSize * sizeof(RGBQUAD);
 LPBITMAPINFOHEADER lpBitmapInfo = (LPBITMAPINFOHEADER)::malloc(nSize);
-if (lpBitmapInfo == ::null())
-return ::null();
+if (lpBitmapInfo == NULL)
+return NULL;
 memcpy(lpBitmapInfo, lpBitmap, nSize);
 
 // color table is in RGBQUAD DIB format
@@ -3282,7 +3282,7 @@ int32_t nHeight = (int32_t)lpBitmapInfo->biHeight;
 HDC hDCScreen = pdcCompatible->get_os_data();
 HBITMAP hbm = ::CreateCompatibleBitmap(hDCScreen, nWidth, nHeight);
 
-if (hbm != ::null())
+if (hbm != NULL)
 {
 HDC hDCGlyphs = ::CreateCompatibleDC(hDCScreen);
 HBITMAP hbmOld = (HBITMAP)::SelectObject(hDCGlyphs, hbm);
@@ -3296,7 +3296,7 @@ lpBits, (LPBITMAPINFO)lpBitmapInfo, DIB_RGB_COLORS, SRCCOPY);
 SelectObject(hDCGlyphs, hbmOld);
 ::DeleteDC(hDCGlyphs);
 }
-//   ::ReleaseDC(::null(), hDCScreen);
+//   ::ReleaseDC(NULL, hDCScreen);
 
 // free copy of bitmap info struct and resource itself
 ::free(lpBitmapInfo);
@@ -3312,7 +3312,7 @@ int32_t cyout = cy + 30;
 
 pdc->SelectObject(pbitmapOld);
 bool bCreate = true;
-if(pbitmap->m_hObject != ::null())
+if(pbitmap->m_hObject != NULL)
 {
 if(!pbitmap->GetBitmap(pbmp))
 {
@@ -4881,7 +4881,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
 #ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
-   if(pbmpOld == ::null())
+   if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
@@ -5042,7 +5042,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
 #ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
-   if(pbmpOld == ::null())
+   if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
@@ -5875,23 +5875,23 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int32_t xDest, int32_t yDest, int
    int32_t cxDest = cx / iSize;
    int32_t cyDest = cy / iSize;
 
-   if(dibA->get_graphics()->get_os_data() == ::null())
+   if(dibA->get_graphics()->get_os_data() == NULL)
    {
    ::ca::graphics_sp dcScreen;
-   spgraphicsScreen->CreateDC("DISPLAY", ::null(), ::null(), ::null());
+   spgraphicsScreen->CreateDC("DISPLAY", NULL, NULL, NULL);
    dibA->get_graphics()->CreateCompatibleDC(&dcScreen);
    }
-   if(dibB->get_graphics()->get_os_data() == ::null())
+   if(dibB->get_graphics()->get_os_data() == NULL)
    {
    ::ca::graphics_sp dcScreen;
-   spgraphicsScreen->CreateDC("DISPLAY", ::null(), ::null(), ::null());
+   spgraphicsScreen->CreateDC("DISPLAY", NULL, NULL, NULL);
    dibB->get_graphics()->CreateCompatibleDC(&dcScreen);
    }
-   if(spbitmapB->m_hObject == ::null())
+   if(spbitmapB->m_hObject == NULL)
    {
    ::ca::graphics_sp dcScreen;
-   spgraphicsScreen->CreateDC("DISPLAY", ::null(), ::null(), ::null());
-   spbitmapB->CreateBitmap(cxDest + 100, cyDest + 100, 1, 32, ::null());
+   spgraphicsScreen->CreateDC("DISPLAY", NULL, NULL, NULL);
+   spbitmapB->CreateBitmap(cxDest + 100, cyDest + 100, 1, 32, NULL);
 
    }
    else
@@ -5903,7 +5903,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int32_t xDest, int32_t yDest, int
    bm.bmHeight  < cy)
    {
    spbitmapB->delete_object();
-   spbitmapB->CreateBitmap(cxDest + 100, cyDest + 100, 1, 32, ::null());
+   spbitmapB->CreateBitmap(cxDest + 100, cyDest + 100, 1, 32, NULL);
    }
    }
    dibB->get_graphics()->SelectObject(bitmapB);
@@ -6053,7 +6053,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int32_t xDest, int32_t yDest, int
 #ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
-   if(pbmpOld == ::null())
+   if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
@@ -6516,7 +6516,7 @@ bool imaging::alpha_pixelate(
 #ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
-   if(pbmpOld == ::null())
+   if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(allocer());
       graphicsMem->CreateCompatibleDC(pdcDst);
@@ -6877,7 +6877,7 @@ bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
 
    pdib->map();
 
-   if(pdib->get_data() == ::null())
+   if(pdib->get_data() == NULL)
    {
       pdib->unmap();
       return false;

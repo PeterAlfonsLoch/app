@@ -175,7 +175,7 @@ public:
 
    /**
     * Pointer to an ILiteHTMLReaderEvents based event handling object
-    * Default is ::null()
+    * Default is NULL
     *
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -207,7 +207,7 @@ public:
                              notifyCharacters |
                              notifyComment    );
 
-      m_pEventHandler = ::null();   // no event handler is associated
+      m_pEventHandler = NULL;   // no event handler is associated
    }
 
 public:
@@ -305,7 +305,7 @@ public:
     * is in progress.
     *
     * @param pNewHandler - pointer to an event handler.
-    *        This parameter can be ::null() also.
+    *        This parameter can be NULL also.
     *
     * @return pointer to the previous event handler
     * @since 1.0

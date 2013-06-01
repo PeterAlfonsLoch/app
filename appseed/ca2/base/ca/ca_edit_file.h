@@ -230,8 +230,8 @@ namespace ca
 
 
       edit_file(const edit_file & ) :
-         ::ca::tree(::null()),
-         ::ca::tree_data(::null())
+         ::ca::tree(NULL),
+         ::ca::tree_data(NULL)
       {
       }
 

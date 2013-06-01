@@ -159,7 +159,7 @@ SSL_SESSION *SSL_get1_session(SSL *ssl)
 	SSL_SESSION *sess;
 	/* Need to lock this all up rather than just use CRYPTO_add so that
 	 * somebody doesn't free ssl->session between when we check it's
-	 * non-null and when we up the reference count. */
+	 * non-NULL and when we up the reference count. */
 	CRYPTO_w_lock(CRYPTO_LOCK_SSL_SESSION);
 	sess = ssl->session;
 	if(sess)

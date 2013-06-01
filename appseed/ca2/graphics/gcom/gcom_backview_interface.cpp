@@ -95,7 +95,7 @@ namespace gcom
             ImageChangePostEvent(gcom::backview::event_timer);
          }
          //else
-//            if(GetWnd() != ::null())
+//            if(GetWnd() != NULL)
            // {
   //             GetWnd()->KillTimer(ptimer->m_nIDEvent);
             //}
@@ -247,16 +247,16 @@ namespace gcom
 
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
 
-         if(&dcTransfer == ::null())
+         if(&dcTransfer == NULL)
             return;
 
-         if(dcTransfer.get_os_data() == ::null())
+         if(dcTransfer.get_os_data() == NULL)
             return;
 
-         dcTransfer.SelectClipRgn(::null());
+         dcTransfer.SelectClipRgn(NULL);
 
          //dcTransfer.FillSolidRect(10, 10, 100, 100, ARGB(5, 10, 10, 10));
-         pdc->SelectClipRgn(::null());
+         pdc->SelectClipRgn(NULL);
 
          pdc->BitBlt(
             x, y,

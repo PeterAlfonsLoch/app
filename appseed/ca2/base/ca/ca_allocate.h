@@ -138,12 +138,12 @@ inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, in
 
 inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
 {
-   ::operator delete(pData, _NORMAL_BLOCK, ::null(), -1);
+   ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
 }
 
 inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
 {
-   ::operator delete(pData, _NORMAL_BLOCK, ::null(), -1);
+   ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
 }
 
 

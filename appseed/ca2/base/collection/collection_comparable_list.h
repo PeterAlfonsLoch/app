@@ -36,7 +36,7 @@ TYPE comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 maximum(TYPE maximum)
 {
    POSITION pos = this->get_head_position();
-   while(pos != ::null())
+   while(pos != NULL)
    {
       TYPE value = this->get_next(pos);
       if(value > maximum)

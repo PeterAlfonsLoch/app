@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-plex_heap_alloc_array::memdleak_block * plex_heap_alloc_array::s_pmemdleakList = ::null();
+plex_heap_alloc_array::memdleak_block * plex_heap_alloc_array::s_pmemdleakList = NULL;
 
 plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {
@@ -23,7 +23,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 {
 
    plex_heap* p = this;
-   while (p != ::null())
+   while (p != NULL)
    {
       BYTE* bytes = (BYTE*) p;
       plex_heap* pNext = p->pNext;
@@ -52,10 +52,10 @@ plex_heap_alloc_sync::plex_heap_alloc_sync(UINT nAllocSize, UINT nBlockSize)
 
    m_nAllocSize = nAllocSize;
    m_nBlockSize = nBlockSize;
-   m_pnodeFree = ::null();
-   m_pBlocks = ::null();
+   m_pnodeFree = NULL;
+   m_pBlocks = NULL;
    m_iFreeHitCount = 0;
-   m_pnodeLastBlock = ::null();
+   m_pnodeLastBlock = NULL;
 
 }
 
@@ -76,8 +76,8 @@ void plex_heap_alloc_sync::FreeAll()
    try
    {
       m_pBlocks->FreeDataChain();
-      m_pBlocks = ::null();
-      m_pnodeFree = ::null();
+      m_pBlocks = NULL;
+      m_pnodeFree = NULL;
    }
    catch(...)
    {
@@ -92,7 +92,7 @@ void plex_heap_alloc_sync::FreeAll()
 void plex_heap_alloc_sync::NewBlock()
 {
 
-   if (m_pnodeFree == ::null())
+   if (m_pnodeFree == NULL)
    {
       size_t nAllocSize = m_nAllocSize + 32;
 
@@ -109,7 +109,7 @@ void plex_heap_alloc_sync::NewBlock()
          m_pnodeFree = pNode;
       }
    }
-   ASSERT(m_pnodeFree != ::null());  // we must have something
+   ASSERT(m_pnodeFree != NULL);  // we must have something
 
 }
 
@@ -223,7 +223,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int32_t nBlockUse, co
 {
    plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
    memdleak_block * pblock;
-   if(palloc != ::null())
+   if(palloc != NULL)
    {
       pblock = (memdleak_block *) palloc->Alloc();
    }
@@ -240,9 +240,9 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int32_t nBlockUse, co
 
 
    mutex_lock lock(g_mutgen, true);
-   pblock->m_pprevious                 = ::null();
+   pblock->m_pprevious                 = NULL;
    pblock->m_pnext                     = s_pmemdleakList;
-   if(s_pmemdleakList != ::null())
+   if(s_pmemdleakList != NULL)
    {
       s_pmemdleakList->m_pprevious        = pblock;
    }
@@ -267,12 +267,12 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
    if(s_pmemdleakList == pblock)
    {
       s_pmemdleakList = pblock->m_pnext;
-      s_pmemdleakList->m_pprevious = ::null();
+      s_pmemdleakList->m_pprevious = NULL;
    }
    else
    {
       pblock->m_pprevious->m_pnext = pblock->m_pnext;
-      if(pblock->m_pnext != ::null())
+      if(pblock->m_pnext != NULL)
       {
          pblock->m_pnext->m_pprevious = pblock->m_pprevious;
       }
@@ -280,7 +280,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 
    ::free((void *) pblock->m_pszFileName);
 
-   if(palloc != ::null())
+   if(palloc != NULL)
    {
       return palloc->Free(pblock);
    }
@@ -305,12 +305,12 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    if(s_pmemdleakList == pblock)
    {
       s_pmemdleakList = pblock->m_pnext;
-      s_pmemdleakList->m_pprevious = ::null();
+      s_pmemdleakList->m_pprevious = NULL;
    }
    else
    {
       pblock->m_pprevious->m_pnext = pblock->m_pnext;
-      if(pblock->m_pnext != ::null())
+      if(pblock->m_pnext != NULL)
       {
          pblock->m_pnext->m_pprevious = pblock->m_pprevious;
       }
@@ -318,7 +318,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
    ::free((void *) pblock->m_pszFileName);
 
-   if(pallocOld == ::null() && pallocNew == ::null())
+   if(pallocOld == NULL && pallocNew == NULL)
    {
       pblock = (memdleak_block *) ::system_heap_realloc(pOld, nNewAllocSize + sizeof(memdleak_block));
    }
@@ -331,7 +331,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
       void * pNew;
 
-      if(pallocNew != ::null())
+      if(pallocNew != NULL)
       {
          pNew = pallocNew->Alloc();
       }
@@ -342,7 +342,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
       memcpy(pNew, pOld, min(nOldAllocSize + sizeof(memdleak_block), nNewAllocSize + sizeof(memdleak_block)));
 
-      if(pallocOld != ::null())
+      if(pallocOld != NULL)
       {
          pallocOld->Free(pOld);
       }
@@ -360,9 +360,9 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    pblock->m_iLine         = iLine;
 
 
-   pblock->m_pprevious                 = ::null();
+   pblock->m_pprevious                 = NULL;
    pblock->m_pnext                     = s_pmemdleakList;
-   if(s_pmemdleakList != ::null())
+   if(s_pmemdleakList != NULL)
    {
       s_pmemdleakList->m_pprevious        = pblock;
    }
@@ -390,7 +390,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
    ::count c = 0;
 
-   while(pblock != ::null())
+   while(pblock != NULL)
    {
 
       c++;
@@ -408,7 +408,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
    pblock = s_pmemdleakList;
 
-   while(pblock != ::null() && i < c)
+   while(pblock != NULL && i < c)
    {
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = strdup(pblock->m_pszFileName);

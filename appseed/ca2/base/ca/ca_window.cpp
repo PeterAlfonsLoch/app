@@ -142,7 +142,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window creation
 
-   bool window::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, sp(::user::interaction) pParentWnd, id id, LPVOID lpParam /* = ::null() */)
+   bool window::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, sp(::user::interaction) pParentWnd, id id, LPVOID lpParam /* = NULL */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -249,7 +249,7 @@ namespace ca
    // Default window implementation
 
 
-   LRESULT window::DefWindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam)
+   LRESULT window::DefWindowProc(UINT nMsg, WPARAM wParam, lparam lParam)
    {
       UNREFERENCED_PARAMETER(nMsg);
       UNREFERENCED_PARAMETER(wParam);
@@ -873,7 +873,7 @@ namespace ca
    sp(::user::interaction) window::get_parent() const
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -902,7 +902,7 @@ namespace ca
 
    // window
    /* window::operator oswindow() const
-   { return this == ::null() ? ::null() : get_handle(); }*/
+   { return this == NULL ? NULL : get_handle(); }*/
    bool window::operator==(const window& wnd) const
    {
       UNREFERENCED_PARAMETER(wnd);
@@ -1154,7 +1154,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::SendMessageToDescendants(UINT message, WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
+   void window::SendMessageToDescendants(UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -2129,7 +2129,7 @@ namespace ca
 
       // default routing for command messages (through closure table)
 
-      if (oswindow_Ctrl == ::null())
+      if (oswindow_Ctrl == NULL)
       {
       // zero IDs for normal commands are not allowed
       if (nID == 0)
@@ -2138,7 +2138,7 @@ namespace ca
       // make sure command has not become disabled before routing
       CTestCmdUI state;
       state.m_id = nID;
-      _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, ::null());
+      _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
       TRACE(::ca::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
@@ -2171,7 +2171,7 @@ namespace ca
       nCode);
       #endif
 
-      return _001OnCommand(nID, nCode, ::null(), ::null());*/
+      return _001OnCommand(nID, nCode, NULL, NULL);*/
       return FALSE;
    }
 
@@ -2203,17 +2203,17 @@ namespace ca
    {
       // get ::ca::window to start with
       oswindow oswindow = hParent;
-      if (oswindow == ::null())
+      if (oswindow == NULL)
       {
     trans      sp(::user::frame_window) pFrame = command_target::GetRoutingFrame_();
-         if (pFrame != ::null())
+         if (pFrame != NULL)
             oswindow = pFrame->GetSafeoswindow_();
          else
             oswindow = System.GetMainWnd()->GetSafeoswindow_();
       }
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
-      while (oswindow != ::null() && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
+      while (oswindow != NULL && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
          oswindow = ::GetParent;
 
       // determine toplevel ::ca::window to disable as well
@@ -2221,7 +2221,7 @@ namespace ca
       ::oswindow oswindow_Temp = oswindow;
       for (;;)
       {
-         if (oswindow_Temp == ::null())
+         if (oswindow_Temp == NULL)
             break;
          else
             oswindow_Top = oswindow_Temp;
@@ -2229,19 +2229,19 @@ namespace ca
       }
 
       // get last active popup of first non-child that was found
-      if (hParent == ::null() && oswindow != ::null())
+      if (hParent == NULL && oswindow != NULL)
          oswindow = ::GetLastActivePopup;
 
       // disable and store top level parent ::ca::window if specified
-      if (pWndTop != ::null())
+      if (pWndTop != NULL)
       {
-         if (oswindow_Top != ::null() && ::IsWindowEnabled(oswindow_Top) && oswindow_Top != oswindow)
+         if (oswindow_Top != NULL && ::IsWindowEnabled(oswindow_Top) && oswindow_Top != oswindow)
          {
             *pWndTop = oswindow_Top;
             ::EnableWindow(oswindow_Top, FALSE);
          }
          else
-            *pWndTop = ::null();
+            *pWndTop = NULL;
       }
 
       return oswindow;    // return the owner as oswindow
@@ -2295,12 +2295,12 @@ void CTestCmdUI::SetText(const char *)
 guie_message_wnd::guie_message_wnd(sp(::ca::application) papp) :
 ca(papp)
 {
-   m_pguieForward = ::null();
+   m_pguieForward = NULL;
 }
 
 void guie_message_wnd::message_handler(::ca::signal_object * pobj)
 {
-   if(m_pguieForward != ::null())
+   if(m_pguieForward != NULL)
    {
       return m_pguieForward->message_handler(pobj);
    }
@@ -2314,12 +2314,12 @@ void guie_message_wnd::message_handler(::ca::signal_object * pobj)
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
                                 sp(::user::interaction) oswindow, LPCRECT lpRect)
 {
-   ASSERT(oswindow != ::null());
-   ASSERT(lpRect != ::null());
+   ASSERT(oswindow != NULL);
+   ASSERT(lpRect != NULL);
    sp(::user::interaction) puiParent = oswindow->get_parent();
-   ASSERT(puiParent != ::null());
+   ASSERT(puiParent != NULL);
 
-   //if (lpLayout != ::null() && lpLayout->hDWP == ::null())
+   //if (lpLayout != NULL && lpLayout->hDWP == NULL)
      // return;
 
    // first check if the new rectangle is the same as the current

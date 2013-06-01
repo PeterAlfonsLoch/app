@@ -233,7 +233,7 @@ public:
   T Back() const { return _chars[_length - 1]; }
 
   // The minimum size of the character buffer in characters.
-  // This value does not include space for a null terminator.
+  // This value does not include space for a NULL terminator.
   T* GetBuffer(int minBufLength)
   {
     if (minBufLength >= _capacity)

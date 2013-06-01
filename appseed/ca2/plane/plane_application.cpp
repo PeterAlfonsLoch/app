@@ -48,7 +48,7 @@ namespace plane
       //   return;
       //m_strAppName.Empty();
       //m_strId.Empty();
-      if(pszId == ::null())
+      if(pszId == NULL)
       {
 #ifdef WINDOWSEX
          wstring wstr = ::GetCommandLineW();
@@ -120,7 +120,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      ::ca::application::_001OnFileNew(::null());
+      ::ca::application::_001OnFileNew(NULL);
    }
 
 
@@ -194,7 +194,7 @@ namespace plane
    service_base * application::allocate_new_service()
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -259,7 +259,7 @@ namespace plane
    {
 
 
-      sp(::plane::application) papp = ::null();
+      sp(::plane::application) papp = NULL;
 
 
       try
@@ -356,7 +356,7 @@ namespace plane
       catch(...)
       {
 
-         papp = ::null();
+         papp = NULL;
 
       }
 
@@ -388,9 +388,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
          string strMessage = e.get_message();
 
-         App(this).simple_message_box(::null(), strMessage, MB_OK);
+         App(this).simple_message_box(NULL, strMessage, MB_OK);
 
-         return ::ca::null();
+         return NULL;
 
       }
 
@@ -449,12 +449,12 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    bool application::create_new_service()
    {
 
-      if(m_pservice != ::null())
+      if(m_pservice != NULL)
          return false;
 
       m_pservice = allocate_new_service();
 
-      if(m_pservice == ::null())
+      if(m_pservice == NULL)
          return false;
 
       return true;
@@ -521,7 +521,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
    void application::defer_initialize_twf()
    {
-      if(System.m_ptwf == ::null() && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
+      if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
       {
          System.create_twf();
       }
@@ -539,7 +539,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
       MESSAGE msg;
 
       // Create Windows Message Queue
-      ::PeekMessageA(&msg, ::null(), 0, 0xffff, 0);
+      ::PeekMessageA(&msg, NULL, 0, 0xffff, 0);
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
@@ -572,9 +572,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 #endif
             if(!process_initialize())
             {
-               if (GetMainWnd() != ::null())
+               if (GetMainWnd() != NULL)
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
                goto InitFailure;
@@ -589,10 +589,10 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
          }
          catch(const ::ca::exception &)
          {
-            if (GetMainWnd() != ::null())
+            if (GetMainWnd() != NULL)
             {
                GetMainWnd()->DestroyWindow();
-               SetMainWnd(::null());
+               SetMainWnd(NULL);
             }
             goto InitFailure;
          }
@@ -604,9 +604,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 #endif
             if(!initialize_instance())
             {
-               if (GetMainWnd() != ::null())
+               if (GetMainWnd() != NULL)
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
 
@@ -636,9 +636,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
          {
             if(on_run_exception((::ca::exception &) e))
                goto run;
-            if(GetMainWnd() != ::null())
+            if(GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -652,13 +652,13 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
                catch(::ca::exception &)
                {
                }
-               SetMainWnd(::null());
+               SetMainWnd(NULL);
             }
             if(final_handle_exception((::ca::exception &) e))
                goto run;
-            if(GetMainWnd() != ::null())
+            if(GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -672,7 +672,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
                catch(::ca::exception &)
                {
                }
-               SetMainWnd(::null());
+               SetMainWnd(NULL);
             }
             try
             {
@@ -789,7 +789,7 @@ run:
          {
 #endif
             m_bReady = true;
-            if(m_peventReady != ::null())
+            if(m_peventReady != NULL)
                m_peventReady->SetEvent();
 #if !defined(DEBUG) || defined(WINDOWS)
          }
@@ -817,9 +817,9 @@ run:
          {
             if(on_run_exception((::ca::exception &) e))
                goto run;
-            if (GetMainWnd() != ::null())
+            if (GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -827,13 +827,13 @@ run:
                catch(::ca::exception &)
                {
                }
-               SetMainWnd(::null());
+               SetMainWnd(NULL);
             }
             if(final_handle_exception((::ca::exception &) e))
                goto run;
-            if (GetMainWnd() != ::null())
+            if (GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-::null() GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -847,7 +847,7 @@ run:
                catch(::ca::exception &)
                {
                }
-               SetMainWnd(::null());
+               SetMainWnd(NULL);
             }
             try
             {
@@ -940,7 +940,7 @@ InitFailure:
 #endif
       try
       {
-         if(m_peventReady != ::null())
+         if(m_peventReady != NULL)
             m_peventReady->SetEvent();
       }
       catch(...)
@@ -949,7 +949,7 @@ InitFailure:
       try
       {
          ::ca::thread * pthread = ::ca::thread::m_p;
-         if(pthread != ::null() && pthread->m_pbReady != ::null())
+         if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
          }
@@ -1134,8 +1134,8 @@ exit_application:
    sp(::ca::application) application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
    {
 
-      sp(::ca::application) pcaapp = ::null();
-      sp(::ca::application) papp = ::null();
+      sp(::ca::application) pcaapp = NULL;
+      sp(::ca::application) papp = NULL;
 
       string strId(pszId);
 
@@ -1144,7 +1144,7 @@ exit_application:
          ::plane::session * psession = new ::plane::session();
          pcaapp = psession;
          psession->construct();
-         if(m_psystem != ::null() && m_psystem->m_psession == ::null())
+         if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
             m_psystem->m_psession = psession;
          }
@@ -1176,23 +1176,23 @@ exit_application:
 
          pcaapp = System.get_new_app(this, pszType, strNewId);
 
-         if(pcaapp == ::null())
-            return ::null();
+         if(pcaapp == NULL)
+            return NULL;
 
          pcaapp->m_psession                          = m_psession;
 
          /*if(pcaapp->m_bService)
          {
-            App(pcaapp).m_puiInitialPlaceHolderContainer  = ::null();
+            App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
          }*/
-         if(m_psystem != ::null() && m_psystem->m_psession == ::null())
+         if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
             m_psystem->m_psession = m_psession;
          }
 
          sp(::ca::application) pgenapp =  (pcaapp);
 
-         if(pgenapp != ::null())
+         if(pgenapp != NULL)
          {
 
             if(strId == "bergedge"
@@ -1225,7 +1225,7 @@ exit_application:
 
       papp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
 
-      if(pbias != ::null())
+      if(pbias != NULL)
       {
          papp->propset().merge(pbias->m_set);
       }
@@ -1238,7 +1238,7 @@ exit_application:
 
 
 
-      if((papp == ::null() || papp->m_strAppId != strId)
+      if((papp == NULL || papp->m_strAppId != strId)
          &&
          (!Application.command()->m_varTopicQuery.has_property("install")
          && !Application.command()->m_varTopicQuery.has_property("uninstall")))
@@ -1257,7 +1257,7 @@ exit_application:
 
          throw installing_exception(get_app());
 
-         return ::null();
+         return NULL;
 
       }
 
@@ -1271,8 +1271,8 @@ exit_application:
 
       sp(::ca::application) pcaapp = instantiate_application(pszType, pszId, pbias);
 
-      if(pcaapp == ::null())
-         return ::null();
+      if(pcaapp == NULL)
+         return NULL;
 
       sp(::ca::application) papp = (pcaapp);
 
@@ -1285,7 +1285,7 @@ exit_application:
          catch(...)
          {
          }
-         return ::null();
+         return NULL;
       }
 
 
@@ -1300,7 +1300,7 @@ exit_application:
    sp(::user::document) application::hold(sp(::user::interaction) pui)
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -1411,14 +1411,14 @@ exit_application:
    sp(::bergedge::view) application::get_view()
    {
 
-      return ::null();
+      return NULL;
 
    }
 
    sp(::bergedge::document) application::get_document()
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -1540,7 +1540,7 @@ exit_application:
 
       primitive::memory mem(get_app());
 
-      if(psession == ::null())
+      if(psession == NULL)
       {
 
          while(true)
@@ -1548,9 +1548,9 @@ exit_application:
 
             ::ca::property_set setEmpty(get_app());
 
-            psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, ::null(), ::null());
+            psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, NULL, NULL);
 
-            if(psession != ::null())
+            if(psession != NULL)
                break;
 
             Sleep(184);
@@ -1660,14 +1660,14 @@ exit_application:
          if(!user()->keyboard().initialize())
             return false;
 
-         simpledb().set_keyboard_layout(::null(), false);
+         simpledb().set_keyboard_layout(NULL, false);
 
       }
 
 
       if(m_bIfs)
       {
-         if(&Session != ::null())
+         if(&Session != NULL)
          {
             if(m_spfsdata.is_null())
                m_spfsdata = new ::fs::set(this);
@@ -1680,9 +1680,6 @@ exit_application:
       }
 
       m_dwAlive = ::get_tick_count();
-
-      m_splicense = new class ::fontopus::license(this);
-
 
       if(!is_system())
       {
@@ -1802,10 +1799,10 @@ exit_application:
          }
          else
          {
-            user()->set_keyboard_layout(::null(), false);
+            user()->set_keyboard_layout(NULL, false);
          }
 
-         data_pulse_change("ca2", "savings", ::null());
+         data_pulse_change("ca2", "savings", NULL);
 
 
          App(this).fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1828,28 +1825,28 @@ exit_application:
 
       m_pfontopus = create_fontopus();
 
-      if(m_pfontopus == ::null())
+      if(m_pfontopus == NULL)
          return false;
 
       m_pfontopus->construct(this);
 
       m_spuser = create_user();
 
-      if(m_spuser == ::null())
+      if(m_spuser == NULL)
          return false;
 
       m_spuser->construct(this);
 
       m_spuserfs = create_userfs();
 
-      if(m_spuserfs == ::null())
+      if(m_spuserfs == NULL)
          return false;
 
       m_spuserfs->construct(this);
 
       m_phtml = create_html();
 
-      if(m_phtml == ::null())
+      if(m_phtml == NULL)
          return false;
 
       m_phtml->construct(this);
@@ -1861,6 +1858,9 @@ exit_application:
    bool application::initialize1()
    {
 
+
+
+      m_splicense = new class ::fontopus::license(this);
 
 
 
@@ -1875,12 +1875,12 @@ exit_application:
       }
 
 
-      if(fontopus()->m_puser == ::null() &&
+      if(fontopus()->m_puser == NULL &&
         (Application.directrix()->m_varTopicQuery.has_property("install")
       || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
       {
 
-         if(fontopus()->create_system_user("system") == ::null())
+         if(fontopus()->create_system_user("system") == NULL)
             return false;
 
       }
@@ -1890,6 +1890,14 @@ exit_application:
 
       if(!m_spuser->initialize1())
          return false;
+      if(!m_spuser->initialize2())
+         return false;
+
+      m_simpledb.construct(this);
+
+      if(!m_simpledb.initialize2())
+         return false;
+
 
       return true;
 
@@ -1901,17 +1909,11 @@ exit_application:
       if(!::ca::application::initialize2())
          return false;
 
-      m_simpledb.construct(this);
-
-      if(!m_simpledb.initialize2())
-         return false;
 
 
       fill_locale_schema(*str_context()->m_plocaleschema);
 
 
-      if(!m_spuser->initialize2())
-         return false;
 
 
       return true;

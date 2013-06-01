@@ -8,8 +8,8 @@ namespace usernet // ca8 + cube
    network_configuration::network_configuration(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_pdoc   = ::null();
-      m_pview  = ::null();
+      m_pdoc   = NULL;
+      m_pview  = NULL;
    }
 
    network_configuration::~network_configuration()
@@ -19,7 +19,7 @@ namespace usernet // ca8 + cube
    bool network_configuration::initialize(sp(::user::interaction) puiParent)
    {
       m_pdoc = System.user()->create_form(this, puiParent);
-      if(m_pdoc != ::null())
+      if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
          m_pview->m_pcallback = this;
@@ -31,7 +31,7 @@ namespace usernet // ca8 + cube
    bool network_configuration::initialize_child(sp(::user::interaction) puiParent)
    {
       m_pdoc = System.user()->create_child_form(this, puiParent);
-      if(m_pdoc != ::null())
+      if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
          m_pview->m_pcallback = this;

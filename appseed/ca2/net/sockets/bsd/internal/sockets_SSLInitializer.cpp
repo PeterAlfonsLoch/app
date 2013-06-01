@@ -53,7 +53,7 @@ void ssl_sigpipe_handle( int x ) {
 
    RAND_METHOD rand_meth;
 
-   ::plane::system * g_psystem = ::null();
+   ::plane::system * g_psystem = NULL;
 
    void rand_seed(const void * buf, int32_t num)
    {
@@ -98,7 +98,7 @@ void ssl_sigpipe_handle( int x ) {
 
       TRACE("SSLInitializer()\n");
 
-      bio_err = ::null();
+      bio_err = NULL;
       m_rand_size = 1024;
 
       g_psystem = &Sys(papp->m_psystem);

@@ -7,19 +7,19 @@ uint32_t c_inet_to_ui(const char * src)
    if(str_begins_ci_dup(src, "0x"))
    {
 
-      return (uint32_t) atoi64_dup(&src[2], ::null(), 16);
+      return (uint32_t) atoi64_dup(&src[2], NULL, 16);
 
    }
    else if(str_begins_dup(src, "0"))
    {
 
-      return (uint32_t) atoi64_dup(&src[1], ::null(), 16);
+      return (uint32_t) atoi64_dup(&src[1], NULL, 16);
 
    }
    else
    {
 
-      return (uint32_t) atoi64_dup(src, ::null(), 10);
+      return (uint32_t) atoi64_dup(src, NULL, 10);
 
    }
 
@@ -174,7 +174,7 @@ static const char *basis_hex = "0123456789abcdef";
 
 /*
 * V6AddrToString() returns a pointer to the buffer containing
-* the text string if the conversion succeeds, and ::null() otherwise.
+* the text string if the conversion succeeds, and NULL otherwise.
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
@@ -433,16 +433,16 @@ CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
 CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, int32_t cnt)
 {
 
-   if(dst == ::null())
-      return ::null();
+   if(dst == NULL)
+      return NULL;
 
    vsstring str = c_inet_ntop(af, src);
 
    if(str.is_empty())
-      return ::null();
+      return NULL;
 
    if(str.get_length() > cnt)
-      return ::null();
+      return NULL;
 
    strcpy(dst, str);
 

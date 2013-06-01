@@ -1124,7 +1124,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 				}
 			else
 				{
-				s2n(0,p);/*  null authenticator length	*/
+				s2n(0,p);/*  NULL authenticator length	*/
 				n+=2;
 				}
  

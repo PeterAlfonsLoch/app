@@ -16,19 +16,19 @@ namespace zip
       m_filefuncdef.zseek_file   = seek_file_func;
       m_filefuncdef.zclose_file  = close_file_func;
       m_filefuncdef.zerror_file  = testerror_file_func;
-      m_pfUnzip = ::null();
-      m_pfZip = ::null();
+      m_pfUnzip = NULL;
+      m_pfZip = NULL;
    }
 
    File::~File()
    {
-      if(m_pfUnzip != ::null())
+      if(m_pfUnzip != NULL)
       {
          unzClose(m_pfUnzip);
       }
-      if(m_pfZip != ::null())
+      if(m_pfZip != NULL)
       {
-         zipClose(m_pfZip, ::null());
+         zipClose(m_pfZip, NULL);
       }
    }
 

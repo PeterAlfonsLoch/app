@@ -48,7 +48,7 @@ PPEB GetPebAddress(HANDLE handleProcess)
    vsstring strError = get_display_error(dwStatus);
    if((dwStatus & 3) == 3)
    {
-      return ::null();
+      return NULL;
    }
    return pbi.PebBaseAddress;
 }
@@ -67,9 +67,9 @@ vsstring get_command_line(HANDLE handleProcess)
 
    PPEB ppeb = GetPebAddress(handleProcess);
 
-   PRTL_USER_PROCESS_PARAMETERS pparam1 = ::null();
+   PRTL_USER_PROCESS_PARAMETERS pparam1 = NULL;
 
-   if(!ReadProcessMemory(handleProcess, (PCHAR)&ppeb->ProcessParameters, &pparam1, sizeof(PRTL_USER_PROCESS_PARAMETERS), ::null()) || pparam1 == ::null())
+   if(!ReadProcessMemory(handleProcess, (PCHAR)&ppeb->ProcessParameters, &pparam1, sizeof(PRTL_USER_PROCESS_PARAMETERS), NULL) || pparam1 == NULL)
    {
       ::OutputDebugStringA("Could not read the address of ProcessParameters!\n");
       return "";
@@ -78,7 +78,7 @@ vsstring get_command_line(HANDLE handleProcess)
 
    _UNICODE_STRING ustrCommandLine;
 
-   if(!ReadProcessMemory(handleProcess, (PCHAR)&pparam1->CommandLine, &ustrCommandLine, sizeof(ustrCommandLine), ::null()))
+   if(!ReadProcessMemory(handleProcess, (PCHAR)&pparam1->CommandLine, &ustrCommandLine, sizeof(ustrCommandLine), NULL))
    {
       ::OutputDebugStringA("Could not read CommandLine!\n");
       return "";
@@ -87,7 +87,7 @@ vsstring get_command_line(HANDLE handleProcess)
    /* allocate memory to hold the command line */
    WCHAR * commandLineContents = (WCHAR *)_ca_alloc(ustrCommandLine.Length + sizeof(WCHAR));
    /* read the command line */
-   if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, ::null()))
+   if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, NULL))
    {
       ::OutputDebugStringA("Could not read the command line string!\n");
       return "";
@@ -119,7 +119,7 @@ namespace spa
       m_bMsDownload              = false;
       m_dAnime                   = 0.0;
       g_bInstalling              = false;
-      m_pwindow                  = ::null();
+      m_pwindow                  = NULL;
       m_dProgressStart           = 0.0;
       m_dProgressEnd             = 0.0;
       m_bInstallSet              = false;
@@ -129,10 +129,10 @@ namespace spa
       m_dProgress1               = -1.0;
       m_dProgress2               = -1.0;
       m_bShow                    = true;
-      m_oswindow                 = ::ca::null();
+      m_oswindow                 = NULL;
       m_bForceUpdatedBuild       = false;
       m_bSynch                   = true;
-      m_hmutexInstall            = ::null();
+      m_hmutexInstall            = NULL;
       m_bStarterStart            = false;
       m_strPlatform              = "";
 
@@ -156,7 +156,7 @@ namespace spa
 
       new_progress_end(0.1);
 
-      m_hmutexInstall = ::null();
+      m_hmutexInstall = NULL;
 
       //SECURITY_ATTRIBUTES MutexAttributes;
       //ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
@@ -170,10 +170,10 @@ namespace spa
       if ( bInitOk )
       {
       // give the security descriptor a Null Dacl
-      // done using the  "TRUE, (PACL)::null()" here
+      // done using the  "TRUE, (PACL)NULL" here
       bool bSetOk = SetSecurityDescriptorDacl( &SD,
       TRUE,
-      (PACL)::null(),
+      (PACL)NULL,
       FALSE );
       if ( bSetOk )
       {
@@ -181,7 +181,7 @@ namespace spa
       // to the security descriptor
       MutexAttributes.lpSecurityDescriptor = &SD;*/
       //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-      /*g_hmutexInstall = ::CreateMutex(::null(), FALSE, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
       trace("another instance of spa is already running");
@@ -271,7 +271,7 @@ RetryHost:
 #ifdef WINDOWSEX
          vsstring path;
          path.alloc(1024 * 4);
-         ::GetModuleFileNameA(::null(), (char *) (const char *) path, 1024 * 4);
+         ::GetModuleFileNameA(NULL, (char *) (const char *) path, 1024 * 4);
 #endif
 //         int32_t iRetryDeleteSpa = 0;
          vsstring strFile;
@@ -370,7 +370,7 @@ RetryHost:
          strBuild = str_replace_dup(m_strBuild, " ", "_");
          strBuild = str_replace_dup(strBuild, ":", "-");
          vsstring strIndexPath;
-         if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), false, -1, ::null(), -1, true))
+         if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), false, -1, NULL, -1, true))
          {
             trace("Failed to download file list!");
             trace("Going to retry host...");
@@ -413,7 +413,7 @@ RetryHost:
             ::OutputDebugStringA("\r\n");
          }
 
-         if(lpnodeVersion != ::null())
+         if(lpnodeVersion != NULL)
          {
 
             for(int32_t ui = 0; ui < lpnodeVersion->childs.get_count(); ui++)
@@ -484,7 +484,7 @@ RetryHost:
 
             bool bGet   = true;
 
-            if(lpnodeInstalled != ::null())
+            if(lpnodeInstalled != NULL)
             {
 
                for(int32_t ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
@@ -577,12 +577,12 @@ RetryHost:
                bAsk = true;
                bRestart = true;
                vsstring strPath = m_straTerminateProcesses.element_at(i);
-               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != ::null())
+               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
                }
-               else if(str_ends_ci_dup(strPath, ".exe")  && stristr_dup(strPath, "\\app-install.exe") != ::null())
+               else if(str_ends_ci_dup(strPath, ".exe")  && stristr_dup(strPath, "\\app-install.exe") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
@@ -601,16 +601,16 @@ RetryHost:
                str += strPath;
                str += "\"?";
                strCommand += str;
-               if(!bAsk || ::MessageBox(::null(), str, "need to terminate process to install", MB_ICONEXCLAMATION | MB_YESNO) == IDYES)
+               if(!bAsk || ::MessageBox(NULL, str, "need to terminate process to install", MB_ICONEXCLAMATION | MB_YESNO) == IDYES)
                {
                   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_TERMINATE | PROCESS_VM_READ, FALSE, dwa[i]);
-                  if(hProcess == ::null())
+                  if(hProcess == NULL)
                   {
                      ::CloseHandle(hProcess);
                      str = "Failed to open process for termination - ";
                      str += m_straTerminateProcesses.element_at(i);
                      str += ".";
-                     ::MessageBox(::null(), "Failed to open process for termination", str, MB_OK);
+                     ::MessageBox(NULL, "Failed to open process for termination", str, MB_OK);
 
                      return -1;
                   }
@@ -641,7 +641,7 @@ RetryHost:
                      str = "Timeout while waiting for process - ";
                      str += m_straTerminateProcesses.element_at(i);
                      str += " - to exit.";
-                     ::MessageBox(::null(), "Failed to open process for termination", str, MB_OK);
+                     ::MessageBox(NULL, "Failed to open process for termination", str, MB_OK);
                      return -1;
                   }
                   ::CloseHandle(hProcess);
@@ -658,9 +658,9 @@ RetryHost:
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            oswindow oswindowSpaBoot = ::FindWindow(::null(), "::ca2::spaboot:callback_window");
+            oswindow oswindowSpaBoot = ::FindWindow(NULL, "::ca2::spaboot:callback_window");
 
-            if(oswindowSpaBoot != ::null())
+            if(oswindowSpaBoot != NULL)
             {
                vsstring str = m_straRestartCommandLine.encode_v16();
                COPYDATASTRUCT cds;
@@ -726,7 +726,7 @@ RetryHost:
          {
             add_spa_start(m_strCommandLine);
 
-            if(::MessageBox(::ca::null(), "The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.", "spa - Restart Needed!!", MB_ICONEXCLAMATION | MB_YESNO)
+            if(::MessageBox(NULL, "The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.", "spa - Restart Needed!!", MB_ICONEXCLAMATION | MB_YESNO)
                == IDYES)
             {
                m_reboot();
@@ -1046,7 +1046,7 @@ RetryHost:
 
       }
 
-      if(m_pwindow != ::null())
+      if(m_pwindow != NULL)
       {
 
          m_pwindow->redraw();
@@ -1115,7 +1115,7 @@ RetryHost:
          {
             if(iLength != -1 && iLength == file_length_dup((dir2 + file2)))
             {
-               if(pszMd5 != ::null() && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0)
+               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0)
                {
                   return true;
                }
@@ -1131,7 +1131,7 @@ RetryHost:
 
       keep_true keepDownloadTrue(m_bMsDownload);
 
-      return ms_download_dup(url_in, (dir + file), false, false, ::null(), &::ms_download_callback, (void *) this);
+      return ms_download_dup(url_in, (dir + file), false, false, NULL, &::ms_download_callback, (void *) this);
 
    }
 
@@ -1246,7 +1246,7 @@ RetryHost:
          {
             if(iLength != -1 && iLength == file_length_dup(inplace))
             {
-               if(pszMd5 != ::null() && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5(inplace), pszMd5) == 0)
+               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5(inplace), pszMd5) == 0)
                {
 
                   trace_add(_unitext(" up-to-date c"));
@@ -1372,7 +1372,7 @@ RetryHost:
             }
             if(bOk)
             {
-               if(pszMd5 == ::null() || strlen_dup(pszMd5) == 0)
+               if(pszMd5 == NULL || strlen_dup(pszMd5) == 0)
                {
                   //trace("Patch MD5 Hash Verification : there is no MD5 Hash information to verify.");
                }
@@ -1476,7 +1476,7 @@ RetryHost:
                bOk = iLength == -1 || iLength == file_length_dup(inplace);
                if(bOk)
                {
-                  bOk = pszMd5 == ::null() || strlen_dup(pszMd5) == 0 || stricmp_dup(get_file_md5(inplace), pszMd5) == 0;
+                  bOk = pszMd5 == NULL || strlen_dup(pszMd5) == 0 || stricmp_dup(get_file_md5(inplace), pszMd5) == 0;
                   if(bOk)
                   {
                      break;
@@ -1749,7 +1749,7 @@ RetryHost:
       file = url.substr(oldpos + 1);
       if(lastfile.size() > 0)
          dir +=  lastfile + "\\";
-      if(pszMd5 != ::null())
+      if(pszMd5 != NULL)
       {
          if(file.substr(file.size() - 3, 3) == ".bz")
             return file + "." + pszMd5;
@@ -1852,11 +1852,11 @@ RetryHost:
          if(m_bOfflineInstall)
          {
             strStageGz = strUrl;
-            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, ::null());
+            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, NULL);
          }
          else
          {
-            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, ::null());
+            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, NULL);
          }
       }
       else
@@ -2014,7 +2014,7 @@ RetryHost:
       int32_t iCurrent;
       strUrl += ".bz";
       vsstring str;
-      if(!ca2_fy_url(str, strUrl, false, -1, ::null(), -1))
+      if(!ca2_fy_url(str, strUrl, false, -1, NULL, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
       char * pszFind1;
@@ -2026,17 +2026,17 @@ RetryHost:
             buf[strlen_dup(buf) - 1] = '\0';
          }
          pszFind1 = strstr_dup(buf, ",");
-         pszFind2 = ::null();
-         if(pszFind1 != ::null())
+         pszFind2 = NULL;
+         if(pszFind1 != NULL)
          {
             pszFind2 = strstr_dup(pszFind2 + 1, ",");
          }
-         if(pszFind1 != ::null())
+         if(pszFind1 != NULL)
          {
             *pszFind1 = '\0';
             pszFind1++;
          }
-         if(pszFind2 != ::null())
+         if(pszFind2 != NULL)
          {
             *pszFind2 = '\0';
             pszFind2++;
@@ -2081,7 +2081,7 @@ RetryHost:
          m_dProgress = d / ((double) stra_dup.get_count());
       }
       m_dProgress = 1.0;
-      if(m_pwindow != ::null())
+      if(m_pwindow != NULL)
       {
          m_pwindow->redraw();
       }
@@ -2124,7 +2124,7 @@ RetryHost:
          set_progress((double) i / (double) stra_dup.get_count());
       }
       m_dProgress = 1.0;
-      if(m_pwindow != ::null())
+      if(m_pwindow != NULL)
       {
          m_pwindow->redraw();
       }
@@ -2143,7 +2143,7 @@ RetryHost:
          {
             if(lpnode->childs[ui]->name == "index")
             {
-               if(lpnode->childs[ui]->GetAttr("start") != ::null())
+               if(lpnode->childs[ui]->GetAttr("start") != NULL)
                {
                   if(vsstring(lpnode->childs[ui]->GetAttrValue("start")).length() > 0)
                   {
@@ -2152,7 +2152,7 @@ RetryHost:
                      m_strApplicationId = get_command_line_param(m_strCommandLine, "app");
                   }
                }
-               if(lpnode->childs[ui]->GetAttr("build") != ::null())
+               if(lpnode->childs[ui]->GetAttr("build") != NULL)
                {
                   if(vsstring(lpnode->childs[ui]->GetAttrValue("build")).length() > 0)
                   {
@@ -2160,17 +2160,17 @@ RetryHost:
                      m_strBuildResource = vsstring(lpnode->childs[ui]->GetAttrValue("build"));
                   }
                }
-               if(lpnode->childs[ui]->GetAttr("type") != ::null())
+               if(lpnode->childs[ui]->GetAttr("type") != NULL)
                {
 #ifdef WINDOWSEX
                   if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
                      char buf[2048];
-                     ::GetModuleFileName(::null(), buf, sizeof(buf));
+                     ::GetModuleFileName(NULL, buf, sizeof(buf));
                      char * psz = strrchr_dup(buf, '\\');
                      vsstring str;
-                     if(psz == ::null())
+                     if(psz == NULL)
                      {
                         str = buf;
                      }
@@ -2244,27 +2244,27 @@ RetryHost:
             buf[strlen_dup(buf) - 1] = '\0';
          }
          pszFind1 = strstr_dup(buf, ",");
-         pszFind2 = ::null();
-         pszFind3 = ::null();
-         if(pszFind1 != ::null())
+         pszFind2 = NULL;
+         pszFind3 = NULL;
+         if(pszFind1 != NULL)
          {
             pszFind2 = strstr_dup(pszFind1 + 1, ",");
-            if(pszFind2 != ::null())
+            if(pszFind2 != NULL)
             {
                pszFind3 = strstr_dup(pszFind2 + 1, ",");
             }
          }
-         if(pszFind1 != ::null())
+         if(pszFind1 != NULL)
          {
             *pszFind1 = '\0';
             pszFind1++;
          }
-         if(pszFind2 != ::null())
+         if(pszFind2 != NULL)
          {
             *pszFind2 = '\0';
             pszFind2++;
          }
-         if(pszFind3 != ::null())
+         if(pszFind3 != NULL)
          {
             *pszFind3 = '\0';
             pszFind3++;
@@ -2273,20 +2273,20 @@ RetryHost:
          vsstring str2;
          strSpa = m_strInstall;
          strSpa += buf;
-         if(pszFind1 != ::null())
+         if(pszFind1 != NULL)
          {
             m_iProgressMode = 0;
             mapLen[(vsstring)(const char *) buf] = atoi_dup(pszFind1);
          }
          else
             mapLen[(vsstring)(const char *) buf] = -1;
-         if(pszFind2 != ::null())
+         if(pszFind2 != NULL)
          {
             mapMd5[(vsstring)(const char *) buf] = pszFind2;
          }
          else
             mapMd5[(vsstring)(const char *) buf] = "";
-         if(pszFind3 != ::null())
+         if(pszFind3 != NULL)
          {
             mapGzLen[(vsstring)(const char *) buf] = atoi_dup(pszFind3);
          }
@@ -2311,11 +2311,11 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher1(m_pwindow == ::null() ? ::ca::null() : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
 
-         simple_shell_launcher launcher2(m_pwindow == ::null() ? ::ca::null() : m_pwindow->m_oswindow, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher2.execute();
 
@@ -2337,7 +2337,7 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher(m_pwindow == ::null() ? ::ca::null() : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
          launcher.execute();
 
@@ -2401,7 +2401,7 @@ RetryHost:
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
-            ::MessageBox(m_pwindow == ::null() ? ::null() :m_pwindow->m_oswindow, "Error", "Error", MB_OK);
+            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_oswindow, "Error", "Error", MB_OK);
             #endif
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
@@ -2479,7 +2479,7 @@ RetryHost:
                }
             }
 
-            ::MessageBox(::ca::null(), str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
+            ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
 
          }
 
@@ -2524,14 +2524,14 @@ RetryHost:
 
       XNode node;
 
-      // MessageBox(::null(), "BegInstall", "Caption", MB_OK);
+      // MessageBox(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
       {
          vsstring strCa2sp = file_as_string_dup(m_strFile);
          if(strCa2sp.length() == 0)
          {
 #ifdef WINDOWSEX
-            strCa2sp = read_resource_as_string_dup(::null(), 1984, "CA2SP");
+            strCa2sp = read_resource_as_string_dup(NULL, 1984, "CA2SP");
 #else
             throw "TODO";
 #endif
@@ -2552,8 +2552,8 @@ RetryHost:
 
       /*
       char * pszStart = strstr_dup(lpCmdLine, "start=");
-      char * pszEnd = ::null();
-      if(pszStart != ::null())
+      char * pszEnd = NULL;
+      if(pszStart != NULL)
       {
       pszStart += strlen_dup("start=");
       pszEnd = pszStart;
@@ -2570,10 +2570,10 @@ RetryHost:
 
       //   char * pszStart;
 #ifdef WINDOWSEX
-      char * pszEnd = ::null();
+      char * pszEnd = NULL;
       char * lpCmdLine = ::GetCommandLine();
       char * pszLocale = strstr_dup((char *) lpCmdLine, "locale=");
-      if(pszLocale != ::null())
+      if(pszLocale != NULL)
       {
          pszLocale += strlen_dup("locale=");
          pszEnd = pszLocale;
@@ -2915,7 +2915,7 @@ RetryHost:
       }
 
 #if defined(WINDOWS)
-      if(m_pwindow != ::null())
+      if(m_pwindow != NULL)
       {
          m_pwindow->register_class(m_hinstance);
       }
@@ -2962,7 +2962,7 @@ RetryHost:
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
-         vsstring str = read_resource_as_string_dup(::null(), 1984, "CA2SP");
+         vsstring str = read_resource_as_string_dup(NULL, 1984, "CA2SP");
          XNode node;
          node.Load(str);
          ParseSpaIndex(node);
@@ -3054,7 +3054,7 @@ RetryHost:
             m_strInstallFilter = str.substr(iStart);
          }
       }
-      // MessageBox(::null(), "xxx", "yyy", MB_OK);
+      // MessageBox(NULL, "xxx", "yyy", MB_OK);
       i = str.find("install=");
       if(i != vsstring::npos)
       {
@@ -3115,8 +3115,8 @@ RetryHost:
       int32_t numchars;
       wparse_cmdline(
          lpwstr,
-         ::null(),
-         ::null(),
+         NULL,
+         NULL,
          &numargs,
          &numchars);
 
@@ -3175,10 +3175,10 @@ RetryHost:
       if ( bInitOk )
       {
       // give the security descriptor a Null Dacl
-      // done using the  "TRUE, (PACL)::null()" here
+      // done using the  "TRUE, (PACL)NULL" here
       bool bSetOk = SetSecurityDescriptorDacl( &SD,
       TRUE,
-      (PACL)::null(),
+      (PACL)NULL,
       FALSE );
       if ( bSetOk )
       {*/
@@ -3268,7 +3268,7 @@ RetryHost:
 
       pinstaller->m_bStarterStart = false;
 
-      ::create_thread(::null(), 0, spa::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
+      ::create_thread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
 
    }
 
@@ -3288,7 +3288,7 @@ RetryHost:
 
       m_bStarterStart = true;
 
-      ::create_thread(::null(), 0, spa::installer::thread_proc_run, (LPVOID) this, 0, 0);
+      ::create_thread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) this, 0, 0);
 
    }
 
@@ -3302,7 +3302,7 @@ RetryHost:
       node.Load(strContents);
       node.name = "spa";
       LPXNode lpnode = node.GetChildByAttr("start", "id", pszId);
-      if(lpnode == ::null())
+      if(lpnode == NULL)
       {
          lpnode = node.AppendChild("start");
          lpnode->AppendAttr("id", pszId);
@@ -3318,7 +3318,7 @@ RetryHost:
       node.Load(strContents);
       node.name = "spa";
       LPXNode lpnode = node.GetChildByAttr("start", "id", pszId);
-      if(lpnode != ::null())
+      if(lpnode != NULL)
       {
          node.RemoveChild(lpnode);
          file_put_contents_dup(strPath, node.GetXML());
@@ -3335,15 +3335,15 @@ RetryHost:
       if (!OpenProcessToken(GetCurrentProcess(),
          TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
          return false;
-      LookupPrivilegeValue(::null(), SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
+      LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
       tkp.PrivilegeCount = 1;
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) ::null(), 0);
+      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
       if (ExitWindowsEx(EWX_REBOOT, 0) == 0)
          return false;
       //reset the previlages
       tkp.Privileges[0].Attributes = 0;
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) ::null(), 0);
+      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
 #else
       throw "TODO?";
 #endif
@@ -3400,14 +3400,14 @@ RetryHost:
 #ifdef WINDOWSEX
 
       HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
-      if(hinstancePlugin == ::null())
+      if(hinstancePlugin == NULL)
          hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("iexca2.dll");
-      if(hinstancePlugin != ::null())
+      if(hinstancePlugin != NULL)
       {
          char szModulePath[MAX_PATH * 3];
          ::GetModuleFileNameA((HINSTANCE) hinstancePlugin , szModulePath, sizeof(szModulePath));
 
-         char * file = ::null();
+         char * file = NULL;
          ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, m_strPath.m_psz, &file);
          file[0] = '\0';
 
@@ -3468,9 +3468,9 @@ RetryHost:
       param += pszCommandLine;
 #if defined(WINDOWS)
       wchar_t * pwsz = new wchar_t[2048];
-      ::GetModuleFileNameW(::null(), pwsz, 2048);
+      ::GetModuleFileNameW(NULL, pwsz, 2048);
       wchar_t * pwszFullPath = new wchar_t[2048];
-      wchar_t * pwszFile = ::null();
+      wchar_t * pwszFile = NULL;
       ::GetFullPathNameW(pwsz, 2048, pwszFullPath, &pwszFile);
       char * psz = utf16_to_8(pwszFullPath);
       delete pwsz;
@@ -3484,7 +3484,7 @@ RetryHost:
       char * psz = br_find_exe("app-install");
 #endif
 
-      call_sync(psz, param, ::null(), SW_HIDE, -1, 84, ::null(), 0);
+      call_sync(psz, param, NULL, SW_HIDE, -1, 84, NULL, 0);
 
 #if defined(WINDOWS)
       _ca_free(psz, 0);
@@ -3522,7 +3522,7 @@ RetryHost:
       strFullCommandLine = strFullCommandLine + pszCommandLine;
 
 #ifdef WINDOWS
-      pfn_ca2_main(::GetModuleHandleA(::null()), ::null(), strFullCommandLine, SW_HIDE);
+      pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strFullCommandLine, SW_HIDE);
 #else
       pfn_ca2_main(strFullCommandLine, SW_HIDE);
 #endif

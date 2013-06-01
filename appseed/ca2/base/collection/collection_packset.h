@@ -40,7 +40,7 @@ get_item_count()
 {
    ::count count = 0;
    typename map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >::pair * p = this->PGetFirstAssoc();
-   while(p != ::null())
+   while(p != NULL)
    {
       count += p->m_element2.get_count();
       this->PGetNextAssoc(p);

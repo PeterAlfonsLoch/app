@@ -72,7 +72,7 @@ public:
    bool create(HDC hdc);
    bool from_entire_window(oswindow oswindow);
    bool from_window(oswindow oswindow);
-   bool from_window_paint(oswindow oswindow, LPRECT lprectPaint = ::null());
+   bool from_window_paint(oswindow oswindow, LPRECT lprectPaint = NULL);
    bool reference_os_data(Gdiplus::Graphics * pgraphics);
    operator Gdiplus::Graphics *() { return m_pgraphics; }
 

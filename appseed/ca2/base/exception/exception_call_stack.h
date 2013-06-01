@@ -40,7 +40,7 @@ public:
 
    void * m_caller_address;
 
-   call_stack(sp(::ca::application) papp, uint32_t uiSkip = 3, void * caller_address = ::null());
+   call_stack(sp(::ca::application) papp, uint32_t uiSkip = 3, void * caller_address = NULL);
 
 #else
 

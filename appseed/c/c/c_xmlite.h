@@ -84,7 +84,7 @@ typedef struct _tagParseInfo
 	vsstring		error_string;		// [get] error vsstring
 
 	LPXDoc		doc;
-	_tagParseInfo() { trim_value = false; entity_value = true; force_parse = false; entitys = xmllite_default_entities(); xml = ::null(); erorr_occur = false; error_pointer = ::null(); error_code = PIE_PARSE_WELFORMED; escape_value = '\\'; }
+	_tagParseInfo() { trim_value = false; entity_value = true; force_parse = false; entitys = xmllite_default_entities(); xml = NULL; erorr_occur = false; error_pointer = NULL; error_code = PIE_PARSE_WELFORMED; escape_value = '\\'; }
 }PARSEINFO,*LPPARSEINFO;
 CLASS_DECL_c PARSEINFO * xmllite_get_default_parse_info();
 
@@ -178,8 +178,8 @@ typedef  struct CLASS_DECL_c _tagXMLNode
 	// modify DOM
    size_t		GetChildCount();
 	LPXNode GetChild(index ui);
-	LPXNode CreateNode( LPCSTR name = ::null(), LPCSTR value = ::null() );
-	LPXNode	AppendChild( LPCSTR name = ::null(), LPCSTR value = ::null() );
+	LPXNode CreateNode( LPCSTR name = NULL, LPCSTR value = NULL );
+	LPXNode	AppendChild( LPCSTR name = NULL, LPCSTR value = NULL );
 	LPXNode	AppendChild( LPXNode node );
 	bool	RemoveChild( LPXNode node );
 	LPXNode DetachChild( LPXNode node );
@@ -192,8 +192,8 @@ typedef  struct CLASS_DECL_c _tagXMLNode
 
 	// modify attribute
 	LPXAttr GetAttr(index i );
-	LPXAttr CreateAttr( LPCSTR anem = ::null(), LPCSTR value = ::null() );
-	LPXAttr AppendAttr( LPCSTR name = ::null(), LPCSTR value = ::null() );
+	LPXAttr CreateAttr( LPCSTR anem = NULL, LPCSTR value = NULL );
+	LPXAttr AppendAttr( LPCSTR name = NULL, LPCSTR value = NULL );
 	LPXAttr	AppendAttr( LPXAttr attr );
 	bool	RemoveAttr( LPXAttr attr );
 	LPXAttr DetachAttr( LPXAttr attr );
@@ -215,9 +215,9 @@ typedef struct _tagXMLDocument : public XNode
 {
 	PARSEINFO	parse_info;
 
-	_tagXMLDocument() { parent = ::null(); doc = this; type = XNODE_DOC; }
+	_tagXMLDocument() { parent = NULL; doc = this; type = XNODE_DOC; }
 
-	LPSTR	Load( LPCSTR pszXml, LPPARSEINFO pi = ::null() );
+	LPSTR	Load( LPCSTR pszXml, LPPARSEINFO pi = NULL );
 	LPXNode	GetRoot();
 
 }XDoc, *LPXDoc;

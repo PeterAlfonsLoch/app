@@ -57,10 +57,10 @@ CLASS_DECL_ca2 errno_t fopen_s(FILE ** pFile, const char * pFileName, const char
 CLASS_DECL_ca2 BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
-   if(oswindow.window() == NULL || oswindow.window()->m_pthread == NULL)
+   if(oswindow->window() == NULL || oswindow->window()->m_pthread == NULL)
       return FALSE;
 
-   HTHREAD h = (HTHREAD) oswindow.window()->m_pthread->get_os_handle();
+   HTHREAD h = (HTHREAD) oswindow->window()->m_pthread->get_os_handle();
 
    if(h == NULL)
       return FALSE;

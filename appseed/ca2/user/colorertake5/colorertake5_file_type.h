@@ -37,7 +37,7 @@ public:
   virtual scheme *getBaseScheme() = 0;
 
   /** Enumerates all available parameters, defined in this file type.
-      @return Parameter name with index <code>idx</code> or <code>::null()</code>
+      @return Parameter name with index <code>idx</code> or <code>NULL</code>
       if index is too large.
   */
   virtual string enumerateParameters(int32_t idx) = 0;

@@ -39,21 +39,21 @@ typedef struct kiss_fft_state* kiss_fft_cfg;
  *
  *  Initialize a FFT (or IFFT) algorithm's cfg/state buffer.
  *
- *  typical usage:      kiss_fft_cfg mycfg=kiss_fft_alloc(1024,0,::null(),::null());
+ *  typical usage:      kiss_fft_cfg mycfg=kiss_fft_alloc(1024,0,NULL,NULL);
  *
  *  The return value from fft_alloc is a cfg buffer used internally
- *  by the fft routine or ::null().
+ *  by the fft routine or NULL.
  *
- *  If lenmem is ::null(), then kiss_fft_alloc will allocate a cfg buffer using malloc.
+ *  If lenmem is NULL, then kiss_fft_alloc will allocate a cfg buffer using malloc.
  *  The returned value should be free()d when done to avoid primitive::memory leaks.
  *
  *  The state can be placed in a ::fontopus::user supplied buffer 'mem':
- *  If lenmem is not ::null() and mem is not ::null() and *lenmem is large enough,
+ *  If lenmem is not NULL and mem is not NULL and *lenmem is large enough,
  *      then the function places the cfg in mem and the size used in *lenmem
  *      and returns mem.
  *
- *  If lenmem is not ::null() and ( mem is ::null() or *lenmem is not large enough),
- *      then the function returns ::null() and places the minimum cfg
+ *  If lenmem is not NULL and ( mem is NULL or *lenmem is not large enough),
+ *      then the function returns NULL and places the minimum cfg
  *      buffer size in *lenmem.
  * */
 

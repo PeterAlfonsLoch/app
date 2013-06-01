@@ -3335,7 +3335,7 @@ unsigned int avcodec_pix_fmt_to_codec_tag(enum PixelFormat pix_fmt);
  *
  * @param buf_size size in bytes of buf
  * @return the length of the string that would have been generated if
- * enough space had been available, excluding the trailing null
+ * enough space had been available, excluding the trailing NULL
  */
 size_t av_get_codec_tag_string(char *buf, size_t buf_size, unsigned int codec_tag);
 

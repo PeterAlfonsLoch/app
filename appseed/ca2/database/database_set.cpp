@@ -6,7 +6,7 @@ namespace database
    set::set()
    {
 
-     db = ::null();
+     db = NULL;
      haveError = active = false;
      frecno = 0;
      fbof = feof = true;
@@ -463,7 +463,7 @@ namespace database
      if ( n < field_count() && n >= 0)
        return fields_object[n].m_properties.name;
      else
-       return ::null();
+       return NULL;
    }
 
    ::count set::fieldSize(index n)

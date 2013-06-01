@@ -28,7 +28,7 @@ public:
 
    virtual void EndModalLoop(id nResult);
 
-   virtual bool show(const char * pszMatter = ::null(), ::ca::property_set * ppropertyset = ::null());
+   virtual bool show(const char * pszMatter = NULL, ::ca::property_set * ppropertyset = NULL);
 
    virtual void on_show(const char * pszMatter, ::ca::property_set * ppropertyset);
 

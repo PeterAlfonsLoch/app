@@ -66,6 +66,11 @@ public:
       m_lparam = lparam;
    }
 
+   lparam(int_ptr i)
+   {
+      m_lparam = (LPARAM) i;
+   }
+
    lparam(const void * p)
    {
       m_lparam = (LPARAM) p;
@@ -74,11 +79,6 @@ public:
    lparam(const lparam & lparam)
    {
       m_lparam = lparam.m_lparam;
-   }
-
-   lparam(const ::ca::null &)
-   {
-      m_lparam = 0;
    }
 
    operator LPARAM &()
@@ -101,12 +101,6 @@ public:
    lparam & operator = (LPARAM lparam)
    {
       m_lparam = lparam;
-      return *this;
-   }
-
-   lparam & operator = (const ::ca::null &)
-   {
-      m_lparam = 0;
       return *this;
    }
 
@@ -281,7 +275,7 @@ extern "C"
 }
 
 
-CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = ::null());
+CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
 CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 

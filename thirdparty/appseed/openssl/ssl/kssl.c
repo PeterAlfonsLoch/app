@@ -802,9 +802,9 @@ static void* kssl_calloc(size_t nmemb, size_t size)
 char
 *kstring(char *string)
         {
-        static char	*null = "[NULL]";
+        static char	*NULL = "[NULL]";
 
-	return ((string == NULL)? null: string);
+	return ((string == NULL)? NULL: string);
         }
 
 /*	Given KRB5 enctype (basically DES or 3DES),

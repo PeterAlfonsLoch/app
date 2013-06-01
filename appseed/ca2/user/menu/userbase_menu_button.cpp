@@ -9,7 +9,7 @@ namespace user
       ::user::button(papp),
       ca(papp)
    {
-      m_pitem = ::null();
+      m_pitem = NULL;
    }
 
    menu_button::~menu_button()
@@ -22,7 +22,7 @@ namespace user
       button::_001OnDraw(pdc);
       rect rectClient;
       m_pguie->GetClientRect(rectClient);
-      if(m_pitem != ::null() && m_pitem->m_bPopup)
+      if(m_pitem != NULL && m_pitem->m_bPopup)
       {
          ::ca::brush_sp br(get_app(), RGB(0, 0, 0));
          ::ca::pen_sp pen(allocer());
@@ -48,7 +48,7 @@ namespace user
    {
       rect rect;
       class rect rectClient;
-      if(m_pguie == ::null())
+      if(m_pguie == NULL)
          return;
       m_pguie->GetClientRect(rectClient);
 
@@ -69,7 +69,7 @@ namespace user
    void menu_button::_001DrawCheck(::ca::graphics * pdc)
    {
       UINT uiImage = 0xffffffffu;
-      if(m_pitem != ::null())
+      if(m_pitem != NULL)
       {
          uiImage = BaseMenuCentral::GetMenuCentral(get_app())->CommandToImage(m_pitem->m_id);
       }
@@ -126,7 +126,7 @@ namespace user
       m_bEnableChanged = TRUE;
       menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther.m_p);
       pbutton->_001EnableWindow(bOn != FALSE);
-      /*ASSERT(pToolBar != ::null());
+      /*ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);*/
 
@@ -149,7 +149,7 @@ namespace user
       ASSERT(echeck == check::checked || echeck == check::unchecked || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
       menu_button* pbutton = dynamic_cast < menu_button *  > (m_pOther.m_p);
       pbutton->_001SetCheck(echeck, true);
-   /*   ASSERT(pToolBar != ::null());
+   /*   ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
 

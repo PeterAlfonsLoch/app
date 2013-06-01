@@ -265,7 +265,7 @@ local unsigned char *h2b(const char *hex, unsigned *len)
             in[next++] = val & 0xff;    /* save the decoded byte */
             val = 1;                    /* start over */
         }
-    } while (*hex++);       /* go through the loop with the terminating null */
+    } while (*hex++);       /* go through the loop with the terminating NULL */
     if (len != NULL)
         *len = next;
     in = reallocf(in, next);
@@ -463,7 +463,7 @@ local unsigned pull(void *desc, unsigned char **buf)
 local int push(void *desc, unsigned char *buf, unsigned len)
 {
     buf += len;
-    return desc != Z_NULL;      /* force error if desc not null */
+    return desc != Z_NULL;      /* force error if desc not NULL */
 }
 
 /* cover inflateBack() up to common deflate data cases and after those */

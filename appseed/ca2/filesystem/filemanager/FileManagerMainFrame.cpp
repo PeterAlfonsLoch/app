@@ -29,7 +29,7 @@ bool FileManagerMainFrame::CreateBars()
 {
    sp(::filemanager::document) pdoc =  (GetActiveDocument());
    
-   ASSERT(pdoc != ::null());
+   ASSERT(pdoc != NULL);
    ASSERT(base < ::filemanager::document >::bases(pdoc));
 
    string strToolBar;

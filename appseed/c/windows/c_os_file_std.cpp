@@ -278,7 +278,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 	HANDLE hFile = (HANDLE) ((_FILE*)str)->_base;
 	int32_t textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
 
-   if(hFile == ::null())
+   if(hFile == NULL)
       return 0;
 
 	// Text-mode translation is always ANSI!

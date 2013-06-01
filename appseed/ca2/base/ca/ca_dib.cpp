@@ -66,7 +66,7 @@ namespace ca
    COLORREF * dib::get_data()
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -125,7 +125,7 @@ namespace ca
    bool dib::create(::ca::graphics * pdc)
    {
       ::ca::bitmap & bitmap = pdc->GetCurrentBitmap();
-      if(&bitmap == ::null())
+      if(&bitmap == NULL)
          return FALSE;
 
       throw not_implemented(get_app());
@@ -1600,7 +1600,7 @@ fill_last:
       {
 
          LPBYTE lpbAlloc = (LPBYTE) malloc((iRadius * iRadius) + 4);
-         LPBYTE lpb = ((LPBYTE) ::null()) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
+         LPBYTE lpb = ((LPBYTE) NULL) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
 
 
          int32_t x, y;
@@ -1760,7 +1760,7 @@ fill_last:
       {
 
          LPBYTE lpbAlloc = (LPBYTE) malloc((iRadius * iRadius) + 4);
-         LPBYTE lpb = ((LPBYTE) ::null()) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
+         LPBYTE lpb = ((LPBYTE) NULL) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
 
 
          int32_t x, y;
@@ -1865,7 +1865,7 @@ fill_last:
          picon,
          cx, cy,
          0,
-         ::null(),
+         NULL,
          DI_IMAGE | DI_MASK);
 
 #endif
@@ -1890,7 +1890,7 @@ fill_last:
          picon,
          cx, cy,
          0,
-         ::null(),
+         NULL,
          DI_IMAGE | DI_MASK);
 
 #endif
@@ -1912,7 +1912,7 @@ fill_last:
          picon,
          cx, cy,
          0,
-         ::null(),
+         NULL,
          DI_MASK);
 
 #endif
@@ -2209,7 +2209,7 @@ fill_last:
    void dib::FillByte(uchar uch)
    {
 
-      if(area() <= 0 || get_data() == ::null())
+      if(area() <= 0 || get_data() == NULL)
          return;
 
       memset(get_data(), uch, (::primitive::memory_size) (area() * sizeof(COLORREF)));

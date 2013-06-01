@@ -531,8 +531,8 @@ int WINAPI GetThreadPriority(_In_ HTHREAD hThread)
 
 
 
-simple_mutex * os_thread::s_pmutex = ::null();
-simple_array < os_thread * > * os_thread::s_pptra = ::null();
+simple_mutex * os_thread::s_pmutex = NULL;
+simple_array < os_thread * > * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
@@ -637,7 +637,7 @@ DWORD WINAPI os_thread::thread_proc(LPVOID lpparameter)
 
    uint32_t uiRet = posthread->run();
 
-   t_posthread = ::null();
+   t_posthread = NULL;
 
    delete posthread;
 
@@ -1030,7 +1030,7 @@ CLASS_DECL_c HTHREAD WINAPI get_thread_handle(DWORD dw)
 }
 
 
-CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
    HTHREAD h = ::get_thread_handle(idThread);
@@ -1048,11 +1048,13 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wPa
 
    MESSAGE msg;
 
-   //zero(&msg, sizeof(msg));
-
-   msg.message = Msg;
-   msg.wParam  = wParam;
-   msg.lParam  = lParam;
+   msg.oswindow   = NULL;
+   msg.message    = message;
+   msg.wParam     = wparam;
+   msg.lParam     = lparam;
+   msg.pt.x       = 0x80000000;
+   msg.pt.y       = 0x80000000;
+   msg.time       = -1;
 
    pmq->ma.add(msg);
 

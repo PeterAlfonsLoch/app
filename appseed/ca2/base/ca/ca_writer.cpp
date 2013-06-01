@@ -70,7 +70,7 @@ namespace ca
       ::primitive::memory_size uiSize = 0;
 
       char * buf = (char *) malloc(uiBufSize);
-      if(buf == ::null())
+      if(buf == NULL)
          throw "no primitive::memory";
       try
       {

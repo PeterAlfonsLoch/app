@@ -130,11 +130,11 @@ namespace sockets
       m_pipv4.release();
       m_pipv6.release();
 
-      if(address.m_pipv6 != ::null())
+      if(address.m_pipv6 != NULL)
       {
          m_pipv6 = canew(ipv6_address(*address.m_pipv6));
       }
-      else if(address.m_pipv4 != ::null())
+      else if(address.m_pipv4 != NULL)
       {
          m_pipv4 = canew(ipv4_address(*address.m_pipv4));
       }
@@ -149,15 +149,15 @@ namespace sockets
    bool address::operator == (const address & address) const
    {
 
-      if(m_pipv6 == ::null())
+      if(m_pipv6 == NULL)
       {
-         if(m_pipv4 == ::null())
+         if(m_pipv4 == NULL)
          {
             return false;
          }
          else
          {
-            if(address.m_pipv4 != ::null())
+            if(address.m_pipv4 != NULL)
             {
                if(!m_pipv4->IsEqual(*address.m_pipv4))
                   return false;
@@ -168,9 +168,9 @@ namespace sockets
             }
          }
       }
-      else if(m_pipv4 == ::null())
+      else if(m_pipv4 == NULL)
       {
-         if(address.m_pipv6 != ::null())
+         if(address.m_pipv6 != NULL)
          {
             if(!m_pipv6->IsEqual(*address.m_pipv6))
                return false;
@@ -189,9 +189,9 @@ namespace sockets
    string address::get_display_number() const
    {
 
-      if(m_pipv6 != ::null())
+      if(m_pipv6 != NULL)
          return m_pipv6->get_display_number();
-      else if(m_pipv4 != ::null())
+      else if(m_pipv4 != NULL)
          return m_pipv4->get_display_number();
       else
          return "";
@@ -202,9 +202,9 @@ namespace sockets
    string address::get_canonical_name() const
    {
 
-      if(m_pipv6 != ::null())
+      if(m_pipv6 != NULL)
          return m_pipv6->get_canonical_name();
-      else if(m_pipv4 != ::null())
+      else if(m_pipv4 != NULL)
          return m_pipv4->get_canonical_name();
       else
          return "";
@@ -287,10 +287,10 @@ namespace sockets
       try
       {
 
-         if(m_pipv6 != ::null())
+         if(m_pipv6 != NULL)
             return m_pipv6->IsValid();
 
-         if(m_pipv4 != ::null())
+         if(m_pipv4 != NULL)
             return m_pipv4->IsValid();
 
       }
@@ -349,11 +349,11 @@ namespace sockets
    int32_t address::GetFamily() const
    {
 
-      if(m_pipv4 != ::null() && m_pipv4->m_bValid)
+      if(m_pipv4 != NULL && m_pipv4->m_bValid)
       {
          return AF_INET;
       }
-      else if(m_pipv6 != ::null() && m_pipv6->m_bValid)
+      else if(m_pipv6 != NULL && m_pipv6->m_bValid)
       {
          return AF_INET6;
       }
@@ -367,17 +367,17 @@ namespace sockets
    const sockaddr * address::sa() const
    {
 
-      if(m_pipv4 != ::null() && m_pipv4->m_bValid)
+      if(m_pipv4 != NULL && m_pipv4->m_bValid)
       {
          return (sockaddr *) &m_pipv4->m_addr;
       }
-      else if(m_pipv6 != ::null() && m_pipv6->m_bValid)
+      else if(m_pipv6 != NULL && m_pipv6->m_bValid)
       {
          return (sockaddr *) &m_pipv6->m_addr;
       }
       else
       {
-         return ::null();
+         return NULL;
       }
 
    }
@@ -385,11 +385,11 @@ namespace sockets
    int32_t address::sa_len() const
    {
 
-      if(m_pipv4 != ::null() && m_pipv4->m_bValid)
+      if(m_pipv4 != NULL && m_pipv4->m_bValid)
       {
          return sizeof(m_pipv4->m_addr);
       }
-      else if(m_pipv6 != ::null() && m_pipv6->m_bValid)
+      else if(m_pipv6 != NULL && m_pipv6->m_bValid)
       {
          return sizeof(m_pipv6->m_addr);
       }

@@ -4,28 +4,28 @@
 blob::blob()
 { 
    m_sizet     = 0; 
-   m_pchData   = ::null(); 
+   m_pchData   = NULL; 
 }
 
 blob::~blob()
 {
-   if(m_pchData != ::null())
+   if(m_pchData != NULL)
    {
       _ca_free(m_pchData, 0); 
-      m_pchData = ::null();
+      m_pchData = NULL;
    }
 }
 
 
 void blob::read(HANDLE f)
 {
-   if(m_pchData != ::null())
+   if(m_pchData != NULL)
       _ca_free(m_pchData, 0);
    DWORD dwRead;
-   ::ReadFile(f, &m_sizet, sizeof(m_sizet), &dwRead, ::null());
+   ::ReadFile(f, &m_sizet, sizeof(m_sizet), &dwRead, NULL);
    if(m_sizet == 0)
    {
-      m_pchData = ::null();
+      m_pchData = NULL;
    }
    else
    {
@@ -34,7 +34,7 @@ void blob::read(HANDLE f)
       
       size_t sRead = 0;
 
-      while(::ReadFile(f, &m_pchData[sRead], 1024, &dwRead, ::null()))
+      while(::ReadFile(f, &m_pchData[sRead], 1024, &dwRead, NULL))
       {
          if(dwRead == 0)
             break;
@@ -47,13 +47,13 @@ void blob::read(HANDLE f)
 void blob::write(HANDLE f)
 {
    DWORD dwWritten;
-   ::WriteFile(f, &m_sizet, sizeof(m_sizet), &dwWritten, ::null());
+   ::WriteFile(f, &m_sizet, sizeof(m_sizet), &dwWritten, NULL);
    if(m_sizet > 0)
    {
       
       size_t sWritten = 0;
 
-      while(::WriteFile(f, &m_pchData[sWritten], 1024, &dwWritten, ::null()))
+      while(::WriteFile(f, &m_pchData[sWritten], 1024, &dwWritten, NULL))
       {
 
          if(dwWritten == 0)
@@ -83,13 +83,13 @@ machine_event_data::fixed::fixed()
 void machine_event_data::read(HANDLE f)
 {
    DWORD dwRead;
-   ::ReadFile(f, &m_fixed, sizeof(m_fixed), &dwRead, ::null());
+   ::ReadFile(f, &m_fixed, sizeof(m_fixed), &dwRead, NULL);
    m_blobCommand.read(f);
 }
 
 void machine_event_data::write(HANDLE f)
 {
    DWORD dwWritten;
-   ::WriteFile(f, &m_fixed, sizeof(m_fixed), &dwWritten, ::null());
+   ::WriteFile(f, &m_fixed, sizeof(m_fixed), &dwWritten, NULL);
    m_blobCommand.write(f);
 }

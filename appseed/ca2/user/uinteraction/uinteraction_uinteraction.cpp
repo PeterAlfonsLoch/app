@@ -36,16 +36,16 @@ namespace uinteraction
 #ifndef METROWIN
       if(!System.directrix()->m_varTopicQuery.has_property("install")
       && !System.directrix()->m_varTopicQuery.has_property("uninstall")
-      && !System.install().is(::null(), strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema))
+      && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema))
       {
 
-         throw not_installed(get_app(), ::null(), strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
+         throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
 
       }
 
 #endif
 
-      ::ca::library library(::null());
+      ::ca::library library(NULL);
 
       string strLibrary(strId);
 
@@ -65,23 +65,23 @@ namespace uinteraction
 #endif
 
       if(!library.open(get_app(), strLibrary, false))
-         return ::null();
+         return NULL;
 
       stringa stra;
 
       library.get_app_list(stra);
 
       if(stra.get_size() != 1) // a uinteraction OSLibrary should have one uinteraction
-         return ::null();
+         return NULL;
 
       string strAppId(stra[0]);
 
       if(strAppId.is_empty()) // trivial validity check
-         return ::null();
+         return NULL;
 
       sp(::uinteraction::interaction) pinteraction = library.get_new_uinteraction();
-      if(pinteraction == ::null())
-         return ::null();
+      if(pinteraction == NULL)
+         return NULL;
 
       return pinteraction;
 
@@ -90,7 +90,7 @@ namespace uinteraction
    sp(::uinteraction::interaction) uinteraction::get_uinteraction(const char * pszUinteraction)
    {
 
-      if(System.get_twf() == ::null())
+      if(System.get_twf() == NULL)
       {
 
          System.create_twf();
@@ -99,7 +99,7 @@ namespace uinteraction
 
       sp(::uinteraction::interaction) pinteraction = Session.m_mapUinteraction[pszUinteraction];
 
-      if(Session.m_mapUinteraction[pszUinteraction] == ::null())
+      if(Session.m_mapUinteraction[pszUinteraction] == NULL)
       {
 
          Session.m_mapUinteraction[pszUinteraction] = Session.uinteraction().get_new_uinteraction(pszUinteraction);
@@ -119,8 +119,8 @@ namespace uinteraction
 
       sp(::uinteraction::interaction) pinteraction = get_uinteraction(pszLibrary);
 
-      if(pinteraction == ::null())
-         return ::null();
+      if(pinteraction == NULL)
+         return NULL;
 
 
       return pinteraction->get_frame_schema(pszFrameSchemaName);

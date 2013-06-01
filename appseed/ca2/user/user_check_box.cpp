@@ -34,7 +34,7 @@ namespace user
       ev.m_puie = this;
       ev.m_eevent = ::user::event_set_check;
       ev.m_bUser = bUser;
-      if(get_form() != ::null())
+      if(get_form() != NULL)
       {
          get_form()->send_message(
             ::ca::message_event, 0, (LPARAM) &ev);

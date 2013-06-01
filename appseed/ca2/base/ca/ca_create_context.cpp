@@ -17,8 +17,8 @@ namespace ca
       m_bClientOnly                       = false;
       m_bOuterPopupAlertLike              = false;
       m_bHold                             = true;
-      m_pviewAlloc                        = ::null();
-      m_puiParent                         = ::null();
+      m_pviewAlloc                        = NULL;
+      m_puiParent                         = NULL;
       m_pthreadParent                     = Application.creation();
 
    }
@@ -36,8 +36,8 @@ namespace ca
       m_bClientOnly                       = false;
       m_bOuterPopupAlertLike              = false;
       m_bHold                             = true;
-      m_pviewAlloc                        = ::null();
-      m_puiParent                         = ::null();
+      m_pviewAlloc                        = NULL;
+      m_puiParent                         = NULL;
       common_construct();
 
    }
@@ -50,8 +50,8 @@ namespace ca
       m_pthreadParent(pthreadParent)
    {
 
-      m_pviewAlloc                        = ::null();
-      m_puiParent                         = ::null();
+      m_pviewAlloc                        = NULL;
+      m_puiParent                         = NULL;
       m_spCommandLine->m_varFile          = varFile;
       m_bMakeVisible                      = bMakeVisible;
       m_bTransparentBackground            = true;
@@ -68,8 +68,8 @@ namespace ca
       m_spApplicationBias(allocer()),
       m_spCommandLine(allocer())
    {
-      m_pviewAlloc                        = ::null();
-      m_puiParent                         = ::null();
+      m_pviewAlloc                        = NULL;
+      m_puiParent                         = NULL;
       m_bHold                             = true;
       operator = (createcontext);
    }

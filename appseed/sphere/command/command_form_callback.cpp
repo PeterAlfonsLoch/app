@@ -24,7 +24,7 @@ namespace command
    {
       UNREFERENCED_PARAMETER(pview);
       sp(::user::interaction) pguie =  (this);
-      if(pguie != ::null() && pguie->get_parent() != ::null())
+      if(pguie != NULL && pguie->get_parent() != NULL)
       {
          return pguie->get_parent()->BaseOnControlEvent(pevent);
       }

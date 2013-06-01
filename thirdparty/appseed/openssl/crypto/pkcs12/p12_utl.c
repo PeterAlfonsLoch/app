@@ -73,7 +73,7 @@ unsigned char *OPENSSL_asc2uni(const char *asc, int asclen, unsigned char **uni,
 		unitmp[i] = 0;
 		unitmp[i + 1] = asc[i>>1];
 	}
-	/* Make result double null terminated */
+	/* Make result double NULL terminated */
 	unitmp[ulen - 2] = 0;
 	unitmp[ulen - 1] = 0;
 	if (unilen) *unilen = ulen;

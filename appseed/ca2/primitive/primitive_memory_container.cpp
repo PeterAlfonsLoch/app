@@ -65,7 +65,7 @@ namespace primitive
          return;
       }
 
-      if(m_spmemory == ::null())
+      if(m_spmemory == NULL)
       {
          
          m_spmemory = new primitive::memory(this);
@@ -93,7 +93,7 @@ namespace primitive
 
    void memory_container ::allocate_internal(memory_size dwNewLength)
    {
-      if(m_spmemory == ::null())
+      if(m_spmemory == NULL)
       {
          m_spmemory = new primitive::memory(this);
          if(m_spmemory.is_null())
@@ -221,10 +221,10 @@ namespace primitive
    memory *          memory_container::detach_primitive_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != ::null())
-         return ::null();
+      if(pmemorybase != NULL)
+         return NULL;
       ::primitive::memory * pmemory = dynamic_cast < ::primitive::memory * > (pmemorybase);
-      if(pmemory != ::null())
+      if(pmemory != NULL)
       {
          return pmemory;
       }
@@ -237,10 +237,10 @@ namespace primitive
    shared_memory *   memory_container::detach_shared_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != ::null())
-         return ::null();
+      if(pmemorybase != NULL)
+         return NULL;
       ::primitive::shared_memory * psharedmemory = dynamic_cast < ::primitive::shared_memory * > (pmemorybase);
-      if(psharedmemory != ::null())
+      if(psharedmemory != NULL)
       {
          return psharedmemory;
       }
@@ -253,10 +253,10 @@ namespace primitive
    virtual_memory *  memory_container::detach_virtual_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != ::null())
-         return ::null();
+      if(pmemorybase != NULL)
+         return NULL;
       ::primitive::virtual_memory * pvirtualmemory = dynamic_cast < ::primitive::virtual_memory * > (pmemorybase);
-      if(pvirtualmemory != ::null())
+      if(pvirtualmemory != NULL)
       {
          return pvirtualmemory;
       }

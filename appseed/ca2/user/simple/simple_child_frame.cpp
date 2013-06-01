@@ -29,9 +29,9 @@ bool simple_child_frame::pre_create_window(CREATESTRUCT& cs)
 
 #ifdef WINDOWSEX
 
-   if(cs.hwndParent == ::null())
+   if(cs.hwndParent == NULL)
    {
-      if(System.m_pwndMain != ::null())
+      if(System.m_pwndMain != NULL)
       {
          cs.hwndParent = System.m_pwndMain->get_handle();
       }

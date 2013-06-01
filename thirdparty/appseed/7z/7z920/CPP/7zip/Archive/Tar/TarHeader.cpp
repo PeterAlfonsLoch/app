@@ -9,7 +9,7 @@ namespace NTar {
 namespace NFileHeader {
 
   // The checksum field is filled with this while the checksum is computed.
-  const char *kCheckSumBlanks = "        ";   // 8 blanks, no null
+  const char *kCheckSumBlanks = "        ";   // 8 blanks, no NULL
 
   const char *kLongLink = "././@LongLink";
   const char *kLongLink2 = "@LongLink";
@@ -18,8 +18,8 @@ namespace NFileHeader {
   namespace NMagic
   {
     const char *kUsTar  = "ustar"; // 5 chars
-    const char *kGNUTar = "GNUtar "; // 7 chars and a null
-    const char *kEmpty = "\0\0\0\0\0\0\0\0"; // 7 chars and a null
+    const char *kGNUTar = "GNUtar "; // 7 chars and a NULL
+    const char *kEmpty = "\0\0\0\0\0\0\0\0"; // 7 chars and a NULL
   }
 
 }}}

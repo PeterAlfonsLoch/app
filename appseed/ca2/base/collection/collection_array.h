@@ -29,7 +29,7 @@ public:
    iterator()
    {
    m_i = 0;
-   m_parray = ::null();
+   m_parray = NULL;
    }
 
    iterator(index i, array * parray)
@@ -113,7 +113,7 @@ public:
       iterator()
       {
          m_i = 0;
-         m_parray = ::null();
+         m_parray = NULL;
       }
 
       iterator(index i, array * parray)
@@ -203,7 +203,7 @@ public:
       const_iterator()
       {
          m_i = 0;
-         m_parray = ::null();
+         m_parray = NULL;
       }
 
       const_iterator(index i, const array * parray)
@@ -298,7 +298,7 @@ public:
 
 
 
-   array(sp(::ca::application) papp = ::null(), ::count nGrowBy = 32);
+   array(sp(::ca::application) papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
    array(ARG_TYPE t, ::count n = 1);
@@ -352,7 +352,7 @@ public:
    inline const TYPE & back(index n = -1) const;
 
 
-   // Direct Access to the element data (may return ::null())
+   // Direct Access to the element data (may return NULL)
    inline const TYPE* get_data() const;
    inline TYPE* get_data();
 
@@ -464,7 +464,7 @@ public:
    m_nSize        = a.m_nSize;
    m_nMaxSize     = a.m_nMaxSize;
 
-   a.m_pData      = ::null();
+   a.m_pData      = NULL;
 
    }
 
@@ -481,7 +481,7 @@ public:
          m_nSize        = a.m_nSize;
          m_nMaxSize     = a.m_nMaxSize;
 
-         a.m_pData      = null();
+         a.m_pData      = NULL;
 
       }
 
@@ -772,7 +772,7 @@ array<TYPE, ARG_TYPE>::array(sp(::ca::application) papp, ::count nGrowBy) :
 ca(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
 }
 
@@ -781,7 +781,7 @@ array<TYPE, ARG_TYPE>::array(const array <TYPE, ARG_TYPE> & a) :
 ca(a.get_app())
 {
    m_nGrowBy = 32;
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
    operator = (a);
 }
@@ -792,7 +792,7 @@ template<class TYPE, class ARG_TYPE>
 array<TYPE, ARG_TYPE>:: array(::count n)
 {
    m_nGrowBy = 32;
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
    set_size(n);
 }
@@ -801,7 +801,7 @@ template<class TYPE, class ARG_TYPE>
 array<TYPE, ARG_TYPE>::array(ARG_TYPE t, ::count n)
 {
    m_nGrowBy = 32;
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
    insert_at(0, t, n);
 }
@@ -811,7 +811,7 @@ template<class TYPE, class ARG_TYPE>
 array<TYPE, ARG_TYPE>::array(TYPE * ptypea, ::count n)
 {
    m_nGrowBy = 32;
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
    set_size(n);
    for(int i = 0; i < n; i++)
@@ -835,12 +835,12 @@ void array<TYPE, ARG_TYPE>::destroy()
 {
    ASSERT_VALID(this);
 
-   if (m_pData != ::null())
+   if (m_pData != NULL)
    {
       for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
       delete[] (BYTE*)m_pData;
-      m_pData     = ::null();
+      m_pData     = NULL;
       m_nSize     = 0;
       m_nMaxSize  = 0;
    }
@@ -876,16 +876,16 @@ template<class TYPE, class ARG_TYPE>
    if (nNewSize == 0)
    {
       // shrink to nothing
-      if (m_pData != ::null())
+      if (m_pData != NULL)
       {
          for( int32_t i = 0; i < m_nSize; i++ )
             (m_pData + i)->~TYPE();
          delete[] (BYTE*)m_pData;
-         m_pData = ::null();
+         m_pData = NULL;
       }
       m_nSize = m_nMaxSize = 0;
    }
-   else if (m_pData == ::null())
+   else if (m_pData == NULL)
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
@@ -1012,7 +1012,7 @@ void array<TYPE, ARG_TYPE>::free_extra()
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 #endif
-      TYPE* pNewData = ::null();
+      TYPE* pNewData = NULL;
       if (m_nSize != 0)
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
@@ -1141,11 +1141,11 @@ template<class TYPE, class ARG_TYPE>
 index array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, array * pNewArray)
 {
    ASSERT_VALID(this);
-   ASSERT(pNewArray != ::null());
+   ASSERT(pNewArray != NULL);
    ASSERT_VALID(pNewArray);
    ASSERT(nStartIndex >= 0);
 
-   if(pNewArray == ::null() || nStartIndex < 0)
+   if(pNewArray == NULL || nStartIndex < 0)
       throw invalid_argument_exception(get_app());
 
    if (pNewArray->get_size() > 0)
@@ -1180,7 +1180,7 @@ void array<TYPE, ARG_TYPE>::assert_valid() const
 {
    ::ca::object::assert_valid();
 
-   if (m_pData == ::null())
+   if (m_pData == NULL)
    {
       ASSERT(m_nSize == 0);
       ASSERT(m_nMaxSize == 0);

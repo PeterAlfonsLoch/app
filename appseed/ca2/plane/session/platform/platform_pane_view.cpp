@@ -12,13 +12,13 @@ namespace platform
       place_holder_container(papp)
    {
 
-      m_pviewdataOld = ::null();
+      m_pviewdataOld = NULL;
 
 
       m_etranslucency      = TranslucencyPresent;
 
-      m_pviewdata              = ::null();
-      m_pviewdataOld              = ::null();
+      m_pviewdata              = NULL;
+      m_pviewdataOld              = NULL;
 
    /*   ::user::single_document_template* pdoctemplate;
       pdoctemplate = new ::user::single_document_template(
@@ -107,7 +107,7 @@ namespace platform
     //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
             sp(::user::view) pview = (view::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
-            if(pview != ::null())
+            if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->LoadXmlMenu("mplite_popup_lyricview.xml");
@@ -123,7 +123,7 @@ namespace platform
             cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
             sp(::user::view) pview = (CreateView(&cc, 101, this));
-            if(pview != ::null())
+            if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
@@ -136,7 +136,7 @@ namespace platform
       case platform::PaneViewDevEdge:
          {
             sp(::user::view) pview = create_view < ::platform::view > ();
-            if(pview != ::null())
+            if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
                pcreatordata->m_pwnd = pview;
@@ -146,13 +146,13 @@ namespace platform
       case platform::PaneViewFileManager:
          {
             sp(::filemanager::document) pdoc = papp->filemanager().std().OpenChild(false, true);
-            if(pdoc != ::null())
+            if(pdoc != NULL)
             {
                sp(::user::view) pview = pdoc->get_view();
-               if(pview != ::null())
+               if(pview != NULL)
                {
                   sp(::user::frame_window) pframe = (pview->GetParentFrame());
-                  if(pframe != ::null())
+                  if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;

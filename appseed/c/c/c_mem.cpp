@@ -106,14 +106,14 @@ int32_t memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
 {
    if(iLen <= 0)
       return 0; // equal
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }

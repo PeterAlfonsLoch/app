@@ -43,7 +43,7 @@ namespace gcom
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
@@ -57,8 +57,8 @@ namespace gcom
 
          sl1Back.lock();
          sl2Buffer.lock();
-         dcBack.SelectClipRgn(::null());
-         dcBuffer.SelectClipRgn(::null());
+         dcBack.SelectClipRgn(NULL);
+         dcBuffer.SelectClipRgn(NULL);
 
          //m_iVisual = VisualEffectRotateEx5;
          m_iVisual = transitioneffect.m_iaVisual[transitioneffect.m_iVisual];
@@ -155,7 +155,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -254,7 +254,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -301,7 +301,7 @@ namespace gcom
 
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -374,7 +374,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -428,7 +428,7 @@ namespace gcom
 
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -496,7 +496,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -595,7 +595,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -691,7 +691,7 @@ namespace gcom
 
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
@@ -701,8 +701,8 @@ namespace gcom
 
          sl1Back.lock();
          sl2Buffer.lock();
-         dcBack.SelectClipRgn(::null());
-         dcBuffer.SelectClipRgn(::null());
+         dcBack.SelectClipRgn(NULL);
+         dcBuffer.SelectClipRgn(NULL);
 
          dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -1020,7 +1020,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -1128,7 +1128,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -1228,7 +1228,7 @@ namespace gcom
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -1360,7 +1360,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -1560,7 +1560,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -1734,7 +1734,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -1960,7 +1960,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -2139,7 +2139,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -2405,7 +2405,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -2521,7 +2521,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -2738,7 +2738,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -2934,7 +2934,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -3602,7 +3602,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
@@ -3706,7 +3706,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -3800,7 +3800,7 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
          Graphics & graphics = main.GetGraphics();
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 
@@ -3922,7 +3922,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -4371,7 +4371,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -4545,7 +4545,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -4828,7 +4828,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -5049,7 +5049,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -5245,7 +5245,7 @@ namespace gcom
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
-         //pdib3->get_graphics()->CreateCompatibleDC(::null());
+         //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
       //   pdib3->stretch_dib(pdibBuffer);
@@ -5607,7 +5607,7 @@ namespace gcom
          class imaging & imaging = System.visual().imaging();
 
 
-         ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);

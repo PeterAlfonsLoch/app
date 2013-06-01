@@ -12,15 +12,6 @@ namespace user
 } // namespace user
 
 
-class oswindow_data
-{
-public:
-
-   ::user::interaction_base * m_pui;
-
-};
-
-
 class oswindow_dataptra :
    public simple_array < oswindow_data * >
 {
@@ -37,9 +28,21 @@ oswindow_dataptra * g_oswindow_dataptra()
 }
 
 
+::user::interaction * oswindow_data::window()
+{
+
+   if(this == NULL)
+      return NULL;
+   
+   if(m_pui == NULL)
+      return NULL;
+
+   return m_pui->m_pui;
+
+}
 
 
-int oswindow::find(::user::interaction_base * pui)
+int oswindow_find(::user::interaction_base * pui)
 {
 
    for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
@@ -54,15 +57,16 @@ int oswindow::find(::user::interaction_base * pui)
 
 }
 
-oswindow_data * oswindow::get(::user::interaction_base * pui)
+
+oswindow oswindow_get(::user::interaction_base * pui)
 {
 
-   int_ptr iFind = find(pui);
+   int_ptr iFind = oswindow_find(pui);
 
    if(iFind >= 0)
       return g_oswindow_dataptra()->element_at(iFind);
 
-   ::oswindow_data * pdata = new oswindow_data;
+   oswindow pdata  = new oswindow_data;
 
    pdata->m_pui = pui;
 
@@ -72,76 +76,13 @@ oswindow_data * oswindow::get(::user::interaction_base * pui)
 
 }
 
-oswindow::oswindow(const ::ca::null & null)
+
+
+
+bool oswindow_remove(::user::interaction_base * pui)
 {
 
-   m_pdata = NULL;
-
-}
-
-oswindow::oswindow()
-{
-
-   m_pdata = NULL;
-
-}
-
-oswindow::oswindow(::user::interaction_base * pui)
-{
-
-   m_pdata = get(pui);
-
-}
-
-oswindow::oswindow(const oswindow & oswindow)
-{
-
-   m_pdata = oswindow.m_pdata;
-
-}
-
-oswindow::oswindow(const void * p)
-{
-
-   m_pdata = (oswindow_data *) p;
-
-}
-
-oswindow::oswindow(const LPARAM & lparam)
-{
-
-   m_pdata = (oswindow_data *) lparam;
-
-}
-
-oswindow::oswindow(const WPARAM & wparam)
-{
-
-   m_pdata = (oswindow_data *) wparam;
-
-}
-
-
-
-
-
-oswindow & oswindow::operator = (const oswindow & oswindow)
-{
-
-   m_pdata = oswindow.m_pdata;
-
-   return *this;
-
-}
-
-
-
-
-
-bool oswindow::remove(::user::interaction_base * pui)
-{
-
-   int_ptr iFind = find(pui);
+   int_ptr iFind = oswindow_find(pui);
 
    if(iFind < 0)
       return false;
@@ -154,21 +95,13 @@ bool oswindow::remove(::user::interaction_base * pui)
 
 
 
-
-::user::interaction * oswindow::window()
+Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(oswindow window)
 {
-   return m_pdata == NULL ? nullptr : (m_pdata->m_pui == NULL ? nullptr : m_pdata->m_pui->m_pui);
+
+   return window->m_pui->get_os_window();
+
 }
 
-::user::interaction * oswindow::window() const
-{
-   return m_pdata == NULL ? nullptr : (m_pdata->m_pui == NULL ? nullptr : m_pdata->m_pui->m_pui);
-}
-
-Platform::Agile<Windows::UI::Core::CoreWindow> oswindow::get_os_window()
-{
-   return m_pdata->m_pui->get_os_window();
-}
 
 static oswindow g_oswindowFocus;
 
@@ -180,16 +113,16 @@ CLASS_DECL_c oswindow WINAPI GetFocus()
 
 }
 
-CLASS_DECL_c oswindow WINAPI SetFocus(oswindow oswindow)
+CLASS_DECL_c oswindow WINAPI SetFocus(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldFocus = g_oswindowFocus;
 
-   g_oswindowFocus = oswindow;
+   g_oswindowFocus = __oswindow;
 
    // todo
-   //SendMessage(oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) oswindow)
+   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
 
    return oswindowOldFocus;
 
@@ -207,16 +140,16 @@ CLASS_DECL_c oswindow WINAPI GetCapture()
 
 }
 
-CLASS_DECL_c oswindow WINAPI SetCapture(oswindow oswindow)
+CLASS_DECL_c oswindow WINAPI SetCapture(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;
 
-   g_oswindowCapture = oswindow;
+   g_oswindowCapture = __oswindow;
 
    // todo
-   //SendMessage(oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) oswindow)
+   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
 
    return oswindowOldCapture;
 
@@ -228,11 +161,11 @@ CLASS_DECL_c oswindow WINAPI ReleaseCapture()
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;
 
-   g_oswindowCapture = ::ca::null();
+   g_oswindowCapture = NULL;
 
    // todo
-   //SendMessage(oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) oswindow)
+   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
 
    return oswindowOldCapture;
 

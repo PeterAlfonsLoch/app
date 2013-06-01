@@ -108,23 +108,23 @@ namespace xml
 
 
       // Load/Save XML
-      char *   load(const char * pszXml, parse_info * pi = ::null());
+      char *   load(const char * pszXml, parse_info * pi = NULL);
 
-      string get_xml(disp_option * opt = ::null());
-      string get_text(disp_option * opt = ::null());
+      string get_xml(disp_option * opt = NULL);
+      string get_text(disp_option * opt = NULL);
 
       bool consume(const char * & pszXml, const char * psz);
       bool consume_whitespaces(const char * & pszXml, int32_t iMinimumCount = 1);
 
-      char * LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo = ::null());
+      char * LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo = NULL);
 
       // internal load functions
-      char *   LoadAttributes( const char * pszAttrs, parse_info * pi = ::null());
-      char *   LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pi = ::null());
-      char *   LoadProcessingInstruction( const char * pszXml, parse_info * pi = ::null());
-      char *   LoadDocType( const char * pszXml, parse_info * pi = ::null());
-      char *   LoadComment( const char * pszXml, parse_info * pi = ::null());
-      char *   LoadCDATA( const char * pszXml, parse_info * pi = ::null());
+      char *   LoadAttributes( const char * pszAttrs, parse_info * pi = NULL);
+      char *   LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pi = NULL);
+      char *   LoadProcessingInstruction( const char * pszXml, parse_info * pi = NULL);
+      char *   LoadDocType( const char * pszXml, parse_info * pi = NULL);
+      char *   LoadComment( const char * pszXml, parse_info * pi = NULL);
+      char *   LoadCDATA( const char * pszXml, parse_info * pi = NULL);
 
 
 
@@ -152,7 +152,7 @@ namespace xml
       string                  get_child_simple_attr_path(node * pnode, const char * pszAttr);
       node *                  get_child(const char * name, index & iStartPosition);
       string                  get_child_value(const char * name);
-      string                  get_child_text(const char * name, disp_option * opt = ::null());
+      string                  get_child_text(const char * name, disp_option * opt = NULL);
       node::array        children(const char * name);
       node::array &      children();
 
@@ -174,8 +174,8 @@ namespace xml
       ::count get_children_count(const char * pszName);
       ::count get_children_count(const char * pszName, index iDepth);
       node *                  child_at(index i);
-      //node *                create_node( const char * name = ::null(), const char * value = ::null() );
-      node *                  add_child( const char * name = ::null(), const char * value = ::null() );
+      //node *                create_node( const char * name = NULL, const char * value = NULL );
+      node *                  add_child( const char * name = NULL, const char * value = NULL );
       node *                  add_child( node * node );
       bool                    remove_child( node * node );
       node *                  detach_child( node * node );
@@ -188,7 +188,7 @@ namespace xml
 
       // modify attr
       ::xml::attr *           attr_at( index i );
-      ::xml::attr *           add_attr(const char * pszName = ::null(), const var & var = ::var(::var::type_new));
+      ::xml::attr *           add_attr(const char * pszName = NULL, const var & var = ::var(::var::type_new));
       ::xml::attr *           add_attr(const ::xml::attr & attr);
       ::xml::attr *           set_attr(const char * pszName, const var & var = ::var(::var::type_new));
       bool                    remove_attr(::xml::attr * attr);

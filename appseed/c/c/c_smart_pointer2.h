@@ -1,12 +1,12 @@
 #pragma once
 
 
-// ::ca::null back link to operational system oswindow.h
+// ::ca::null_class back link to operational system oswindow.h
 //
 //
 //
 //
-// operational system null/void itself to a windowing service
+// operational system NULL/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
 namespace c
@@ -18,14 +18,14 @@ namespace c
    template < class T >
    smart_pointer < T > ::smart_pointer()
    {
-      m_p = ::null();
+      m_p = NULL;
    }
 
 
    template < class T >
    smart_pointer < T > ::smart_pointer(const smart_pointer < T > & t)
    {
-      m_p = ::null();
+      m_p = NULL;
       operator = (t);
    }
 
@@ -34,35 +34,33 @@ namespace c
    {
 
       m_p      = t.m_p;
-      t.m_p    = ::null();
+      t.m_p    = NULL;
 
    }
 
 
-
-
    template < class T >
-   smart_pointer < T > ::smart_pointer(const ::ca::null &)
+   inline smart_pointer < T > ::smart_pointer(int_ptr i)
    {
-      m_p = ::null();
+      m_p = (T *) i;
    }
 
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(T * p)
+   inline smart_pointer < T > ::smart_pointer(T * p)
    {
       m_p = p;
       ::c::add_ref(m_p);
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(lparam lparam)
+   inline smart_pointer < T > ::smart_pointer(lparam lparam)
    {
       m_p = (T *) lparam.m_lparam;
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(void * p)
+   inline smart_pointer < T > ::smart_pointer(void * p)
    {
       m_p = (T *) p;
       ::c::add_ref(m_p);
@@ -72,14 +70,14 @@ namespace c
    template < class T >
    smart_pointer < T > ::smart_pointer(const ::ca::allocatorsp & a)
    {
-      m_p = ::null();
+      m_p = NULL;
       create(a);
    }
 
    template < class T >
    smart_pointer < T > ::smart_pointer(::ca::allocatorsp && a)
    {
-      m_p = ::null();
+      m_p = NULL;
       create(a);
    }
 
@@ -169,13 +167,13 @@ namespace c
    template < class T >
    inline bool smart_pointer < T > ::is_null() const
    {
-      return m_p == ::null();
+      return m_p == NULL;
    }
 
    template < class T >
    inline bool smart_pointer < T > ::is_set() const
    {
-      return m_p != ::null();
+      return m_p != NULL;
    }
 
    template < class T >
@@ -184,12 +182,12 @@ namespace c
       if(m_p != p)
       {
          T * pOld = m_p;
-         if(p != ::null())
+         if(p != NULL)
          {
             ::c::add_ref(p);
          }
          m_p = p;
-         if(pOld != ::null())
+         if(pOld != NULL)
          {
             ::c::release(pOld);
          }
@@ -211,22 +209,11 @@ template < class T >
       {
 
          m_p      = t.m_p;
-         t.m_p    = ::null();
+         t.m_p    = NULL;
 
       }
 
       return *this;
-
-   }
-
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (const ::ca::null & )
-   {
-
-      if(is_set())
-         release();
-
-      return * this;
 
    }
 
@@ -241,6 +228,19 @@ template < class T >
       return * this;
 
    }
+
+   template < class T >
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (int_ptr i)
+   {
+
+      release();
+
+      m_p = (T *) i;
+
+      return * this;
+
+   }
+
 
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (void * p)
@@ -258,7 +258,7 @@ template < class T >
    inline T * smart_pointer < T > ::detach()
    {
       T * p = m_p;
-      m_p = ::null();
+      m_p = NULL;
       return p;
    }
 
@@ -266,7 +266,7 @@ template < class T >
    template < class T >
    void smart_pointer < T > ::oattrib(const sp(T) & p)
    {
-      if(p.m_p == ::null())
+      if(p.m_p == NULL)
       {
          release();
          return;
@@ -294,12 +294,12 @@ template < class T1, class T2 >
 bool operator ==(const T1  * t1, const ::c::smart_pointer < T2 > & t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
-   if(pt1 != ::null())
+   if(pt1 != NULL)
    {
       return pt1 == t1;
    }
    T2 * pt2 = dynamic_cast < T2 * > ((T1 *) t1);
-   if(pt2 != ::null())
+   if(pt2 != NULL)
    {
       return pt2 == t2.m_p;
    }
@@ -310,12 +310,12 @@ template < class T1, class T2 >
 bool operator ==(const ::c::smart_pointer < T1 > & t1, const T2 * t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > ((T2 *) t2);
-   if(pt1 != ::null())
+   if(pt1 != NULL)
    {
       return pt1 == t1.m_p;
    }
    T2 * pt2 = dynamic_cast < T2 * > (t1.m_p);
-   if(pt2 != ::null())
+   if(pt2 != NULL)
    {
       return pt2 == t2;
    }
@@ -327,12 +327,12 @@ template < class T1, class T2 >
 bool operator ==(const ::c::smart_pointer < T1 > & t1, const ::c::smart_pointer < T2 > & t2)
 {
    T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
-   if(pt1 != ::null())
+   if(pt1 != NULL)
    {
       return pt1 == t1.m_p;
    }
    T2 * pt2 = dynamic_cast < T2 * > (t1.m_p);
-   if(pt2 != ::null())
+   if(pt2 != NULL)
    {
       return pt2 == t2.m_p;
    }
@@ -399,9 +399,9 @@ bool operator ==(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) 
 template < class T >
 bool operator !=(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
 template < class T >
-bool operator ==(const ::ca::null &, const ::c::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
+inline bool operator ==(int_ptr i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
 template < class T >
-bool operator !=(const ::ca::null &, const ::c::smart_pointer < T > & sp) { return ((T *) 0) == sp.m_p; }
+inline bool operator !=(int_ptr i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
 
 
 

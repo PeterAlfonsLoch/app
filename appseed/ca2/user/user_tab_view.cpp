@@ -9,9 +9,9 @@ namespace user
       place_holder_container(papp)
    {
       get_data()->m_pcallback   = this;
-      m_pdroptargetwindow           = ::null();
-      m_pviewdata                   = ::null();
-      m_pviewdataOld                = ::null();
+      m_pdroptargetwindow           = NULL;
+      m_pviewdata                   = NULL;
+      m_pviewdataOld                = NULL;
       m_etranslucency               = TranslucencyPresent;
    }
 
@@ -43,7 +43,7 @@ namespace user
    void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
 
-      if(m_pviewcreator != ::null())
+      if(m_pviewcreator != NULL)
       {
 
          m_pviewcreator->on_update(get_document(), pSender, lHint, pHint);
@@ -59,7 +59,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
-      if(get_view_uie() != ::null())
+      if(get_view_uie() != NULL)
       {
          get_view_uie()->SetFocus();
       }
@@ -179,15 +179,15 @@ namespace user
 
    sp(::user::interaction) tab_view::_001GetTabWnd(int32_t iTab)
    {
-      if(m_pviewcreator == ::null())
-         return ::null();
-      if(m_pviewcreator->get(::user::tab::get_id_by_tab(iTab)) != ::null())
+      if(m_pviewcreator == NULL)
+         return NULL;
+      if(m_pviewcreator->get(::user::tab::get_id_by_tab(iTab)) != NULL)
       {
          return m_pviewcreator->get(::user::tab::get_id_by_tab(iTab))->m_pwnd;
       }
       else
       {
-         return ::null();
+         return NULL;
       }
    }
 
@@ -201,7 +201,7 @@ namespace user
       rect rect;
       rect = pinterface->get_data()->m_rectTabClient;
       pinterface->ClientToScreen(&rect);
-      m_pdroptargetwindow->CreateEx(0, ::null(), ::null(), 0, rect, ::null(), id());
+      m_pdroptargetwindow->CreateEx(0, NULL, NULL, 0, rect, NULL, id());
       System.add_frame(m_pdroptargetwindow);
       m_pdroptargetwindow->ShowWindow(SW_SHOW);
 
@@ -216,11 +216,11 @@ namespace user
    void tab_view::_001DropTargetWindowFinalize(::user::tab * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
-      if(m_pdroptargetwindow != ::null())
+      if(m_pdroptargetwindow != NULL)
       {
          //System.remove_frame(m_pdroptargetwindow);
          //m_pdroptargetwindow->DestroyWindow();
-         //m_pdroptargetwindow = ::null();
+         //m_pdroptargetwindow = NULL;
       }
    }
 
@@ -243,17 +243,17 @@ namespace user
 
       index iTab = ::user::tab::get_tab_by_id(id);
 
-      if(pcreatordata != ::null())
+      if(pcreatordata != NULL)
       {
          if(iTab >= 0)
          {
-            if(pcreatordata->m_pholder != ::null())
+            if(pcreatordata->m_pholder != NULL)
             {
                get_data()->m_panea[iTab].m_pholder = pcreatordata->m_pholder;
             }
-            else if(pcreatordata->m_pwnd != ::null())
+            else if(pcreatordata->m_pwnd != NULL)
             {
-               if(get_tab_holder(iTab) == ::null())
+               if(get_tab_holder(iTab) == NULL)
                {
                   get_data()->m_panea[iTab].m_pholder = hold(pcreatordata->m_pwnd);
                }
@@ -297,7 +297,7 @@ namespace user
          m_pviewcreator->m_viewmap[psplitview->get_pane_id(1)]->m_idSplit.is_empty();
          psplitview->ShowWindow(SW_HIDE);
          psplitview->ModifyStyle(WS_CHILD, 0, 0);
-         psplitview->set_parent(::null());
+         psplitview->set_parent(NULL);
          psplitview->DestroyWindow();
       }*/
       if(pcreatordata != m_pviewdata)
@@ -307,13 +307,13 @@ namespace user
          if(m_pviewdata->m_eflag.is_signalized(::user::view_creator_data::flag_hide_all_others_on_show))
          {
             ::user::view_creator::view_map::pair * ppair = m_pviewcreator->m_viewmap.PGetFirstAssoc();
-            while(ppair != ::null())
+            while(ppair != NULL)
             {
                try
                {
                   if(ppair->m_element2 != m_pviewdata)
                   {
-                     if(ppair->m_element2->m_pholder != ::null())
+                     if(ppair->m_element2->m_pholder != NULL)
                      {
                         ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
                      }
@@ -332,20 +332,20 @@ namespace user
       {
          layout();
       }
-      if(m_pviewdata != ::null())
+      if(m_pviewdata != NULL)
       {
-         if(m_pviewdata->m_pwnd != ::null())
+         if(m_pviewdata->m_pwnd != NULL)
          {
             m_pviewdata->m_pwnd->ShowWindow(SW_SHOW);
          }
       }
 
-      if(m_pviewcreator != ::null() && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
+      if(m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
       {
          m_pviewcreator->on_show_view();
       }
 
-      if(m_pviewdata != ::null() && m_pviewdata->m_pwnd != ::null())
+      if(m_pviewdata != NULL && m_pviewdata->m_pwnd != NULL)
       {
          m_pviewdata->m_pwnd->UpdateWindow();
          m_pviewdata->m_pwnd->SetFocus();
@@ -364,28 +364,28 @@ namespace user
 
    ::user::view_creator_data * tab_view::ensure(id id)
    {
-      if(m_pviewcreator == ::null())
-         return ::null();
+      if(m_pviewcreator == NULL)
+         return NULL;
       if(get_tab_by_id(id) == -1)
       {
          ::user::tab::add_tab("", id);
       }
       ::user::view_creator_data * pcreatordata = m_pviewcreator->::user::view_creator::ensure(id);
-      if(pcreatordata != ::null())
+      if(pcreatordata != NULL)
       {
-         /*if(pcreatordata->m_pwnd != ::null())
+         /*if(pcreatordata->m_pwnd != NULL)
          {
             pcreatordata->m_pwnd->set_parent(this);
-            pcreatordata->m_pwnd->ModifyStyle(0, WS_CHILD, ::null());
+            pcreatordata->m_pwnd->ModifyStyle(0, WS_CHILD, NULL);
          }*/
          pane * ppane = get_pane_by_id(id);
-         if(ppane != ::null())
+         if(ppane != NULL)
          {
             if(pcreatordata->m_strTitle.has_char())
             {
                ppane->m_istrTitleEx = pcreatordata->m_strTitle;
             }
-            if(ppane != ::null())
+            if(ppane != NULL)
             {
                ppane->m_pholder = pcreatordata->m_pholder;
             }
@@ -397,7 +397,7 @@ namespace user
 
    id tab_view::get_view_id()
    {
-      if(m_pviewdata == ::null())
+      if(m_pviewdata == NULL)
          return ::ca::system::idEmpty;
       return m_pviewdata->m_id;
    }
@@ -410,19 +410,19 @@ namespace user
    sp(::user::interaction) tab_view::get_view_uie()
    {
       ::user::view_creator_data * pcreatordata = get_view_creator_data();
-      if(pcreatordata == ::null())
-         return ::null();
-      if(pcreatordata->m_pwnd != ::null())
+      if(pcreatordata == NULL)
+         return NULL;
+      if(pcreatordata->m_pwnd != NULL)
          return pcreatordata->m_pwnd;
-      if(pcreatordata->m_pholder != ::null() && pcreatordata->m_pholder->m_uiptraHold.get_count() == 1)
+      if(pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraHold.get_count() == 1)
          return pcreatordata->m_pholder->m_uiptraHold(0);
-      return ::null();
+      return NULL;
    }
 
    sp(::user::document_interface) tab_view::get_view_document()
    {
-      if(m_pviewdata == ::null())
-         return ::null();
+      if(m_pviewdata == NULL)
+         return NULL;
       return m_pviewdata->m_pdoc;
    }
 
@@ -438,7 +438,7 @@ namespace user
    {
       if(!handle(pcmdmsg))
          return false;
-      if(get_view_uie() != ::null())
+      if(get_view_uie() != NULL)
          if(get_view_uie()->_001OnCmdMsg(pcmdmsg))
             return true;
       return view::_001OnCmdMsg(pcmdmsg);
@@ -449,7 +449,7 @@ namespace user
 
       m_pviewcreator = pviewcreator;
 
-      if(m_pviewcreator != ::null())
+      if(m_pviewcreator != NULL)
       {
          m_pviewcreator->m_pviewcontainer = this;
       }

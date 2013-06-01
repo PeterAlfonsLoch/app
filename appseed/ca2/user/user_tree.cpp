@@ -15,9 +15,9 @@ namespace user
    {
       m_bHoverStart = false;
 
-      m_pitemFirstVisible        = ::null();
+      m_pitemFirstVisible        = NULL;
       m_iFirstVisibleItemLevel   = 0;
-      m_pitemHover               = ::null();
+      m_pitemHover               = NULL;
       m_iClick                   = 0;
       m_iItemCount               = 0;
       m_crText                   = ARGB(255, 0, 0, 0);
@@ -27,7 +27,7 @@ namespace user
       m_iItemHeight              = 18;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
-      m_pimagelist               = ::null();
+      m_pimagelist               = NULL;
       m_uchHoverAlphaInit        = 0;
    }
 
@@ -41,9 +41,6 @@ namespace user
 
       if(pobj->previous())
          return;
-
-      class rect rect;
-      rect.null();
 
       if(IsWindowVisible())
       {
@@ -62,11 +59,11 @@ namespace user
 
    //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ::ca::tree_path & itempath, int32_t iValidateCount)
    //{
-   /*   if(m_pdatainterface001 != ::null())
+   /*   if(m_pdatainterface001 != NULL)
    {
    Carray < uint32_t, uint32_t > ida;
    Ex1TreeItemMetaData * pdata = _001StaticGetMetaData(itempath);
-   if(pdata == ::null())
+   if(pdata == NULL)
    return false;
    pdata->GetId001(ida);
    if(!m_pdatainterface001->_001GetItemData(itemdata, ida))
@@ -229,11 +226,11 @@ namespace user
       }
       else
       {
-         //      if(m_pgdibuffer != ::null()
+         //      if(m_pgdibuffer != NULL
          //         && !TwiHasTranslucency())
          {
             /*         ::ca::graphics * pdcBack = m_pgdibuffer->GetBuffer();
-            if(pdcBack != ::null())
+            if(pdcBack != NULL)
             {
             pdc->BitBlt(
             rectClient.left,
@@ -262,10 +259,10 @@ namespace user
             Session.get_default_color(COLOR_WINDOW),
             196);
             }*/
-            /*         if(m_pgdibuffer != ::null())
+            /*         if(m_pgdibuffer != NULL)
             {
             ::ca::graphics * pdcBack = m_pgdibuffer->GetBuffer();
-            if(pdcBack != ::null())
+            if(pdcBack != NULL)
             {
             pdcBack->BitBlt(
             rectClient.left,
@@ -312,7 +309,7 @@ namespace user
       index iIndex = 0;
 
 
-      for(;pitem != ::null(); pitem = pitem->get_item(::ca::TreeNavigationProperForward, &iLevel))
+      for(;pitem != NULL; pitem = pitem->get_item(::ca::TreeNavigationProperForward, &iLevel))
       {
          drawitemdata.m_pitem = pitem;
          drawitemdata.m_iItem = iItem;
@@ -386,7 +383,7 @@ namespace user
       if(m_uchHoverAlpha > 0)
       {
 
-         if(ptree != ::null() && pimagelistTree != ::null() && data.m_pitem->m_dwState & ::ca::tree_item_state_expandable)
+         if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ca::tree_item_state_expandable)
          {
 
             _001GetItemElementRect(rect, data, tree_element_expand_box);
@@ -457,7 +454,7 @@ namespace user
       }
 
 
-      if(pimagelistItem != ::null())
+      if(pimagelistItem != NULL)
       {
          int32_t iImage = (int32_t) data.m_pitem->get_image();
          if(iImage >= 0)
@@ -506,7 +503,7 @@ namespace user
 
    void tree::_001OnMouseLeave(::ca::signal_object * pobj)
    {
-      m_pitemHover = ::null();
+      m_pitemHover = NULL;
       _001RedrawWindow();
       pobj->m_bRet = true;
    }
@@ -533,7 +530,7 @@ namespace user
       sp(::ca::tree_item) pitem;
       ::user::e_tree_element eelement;
       pitem = _001HitTest(pmouse->m_pt, eelement);
-      if(pitem != ::null())
+      if(pitem != NULL)
       {
          if(eelement == tree_element_expand_box ||
             eelement == tree_element_image ||
@@ -573,7 +570,7 @@ namespace user
       m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
       m_ptLButtonUp = pmouse->m_pt;
       perform_click();
-      //SetTimer(TimerClick, 500, ::null());
+      //SetTimer(TimerClick, 500, NULL);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -590,7 +587,7 @@ namespace user
       ::user::e_tree_element eelement;
       ScreenToClient(&point);
       pitem = _001HitTest(point, eelement);
-      if(pitem != ::null())
+      if(pitem != NULL)
       {
          if(eelement == tree_element_expand_box ||
             eelement == tree_element_image ||
@@ -664,7 +661,7 @@ namespace user
    sp(::ca::window) pwnd = get_guie();
 
    window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
-   if(wndidNotify == ::null())
+   if(wndidNotify == NULL)
    wndidNotify = pwnd->get_parent()->GetSafeoswindow_();
    return wndidNotify;
    }*/
@@ -682,7 +679,7 @@ namespace user
       {
 
          //      Ex1TreeItemMetaData * pdata = _001HitTest(point);
-         //      if(pdata != ::null())
+         //      if(pdata != NULL)
          //      {
          //       m_pmetadataSelected = pdata;
          //   }
@@ -703,7 +700,7 @@ namespace user
       }
 
       if(iItem < 0)
-         return ::null();
+         return NULL;
 
 
       //   if(iItem >= _001StaticGetItemCount())
@@ -711,8 +708,8 @@ namespace user
       index iLevel;
       sp(::ca::tree_item) pitem = get_proper_item(iItem, &iLevel);
 
-      if(pitem == ::null())
-         return ::null();
+      if(pitem == NULL)
+         return NULL;
 
       index x = (int32_t) (pt. x - _001GetIndentation() * iLevel + m_scrollinfo.m_ptScroll.x);
       if(x >= 0 && x < 16)
@@ -797,7 +794,7 @@ namespace user
 
    void tree::_001SelectItem(sp(::ca::tree_item)pitem)
    {
-      if(pitem != ::null())
+      if(pitem != NULL)
       {
          pitem->set_selection();
       }
@@ -963,16 +960,16 @@ namespace user
       if(eelement != tree_element_image &&
          eelement != tree_element_text)
       {
-         pitem = ::null();
+         pitem = NULL;
       }
       if(pitem != m_pitemHover)
       {
          m_pitemHover = pitem;
          _001RedrawWindow();
       }
-      /*if(pitem != ::null())
+      /*if(pitem != NULL)
       {
-      SetTimer(TimerHover, 250, ::null());
+      SetTimer(TimerHover, 250, NULL);
       }
       else
       {
@@ -1012,7 +1009,7 @@ namespace user
       index iLevel = m_iFirstVisibleItemLevel;
       index iIndent  = _001GetIndentation();
       sp(::ca::tree_item) pitem = m_pitemFirstVisible;
-      if(pitem == ::null())
+      if(pitem == NULL)
          return iMaxWidth;
       for(int32_t i = 0; i < iCount; i++)
       {
@@ -1022,7 +1019,7 @@ namespace user
             iMaxWidth = iWidth;
          }
          pitem = pitem->get_item(::ca::TreeNavigationProperForward, &iLevel);
-         if(pitem == ::null())
+         if(pitem == NULL)
             break;
       }
       return iMaxWidth;
@@ -1048,7 +1045,7 @@ namespace user
    {
       index nOffset;
       if(_001GetItemHeight() == 0)
-         return ::null();
+         return NULL;
       nOffset = m_scrollinfo.m_ptScroll.y / _001GetItemHeight();
 
       sp(::ca::tree_item) pitem = get_base_item();
@@ -1059,7 +1056,7 @@ namespace user
       for(;;)
       {
          pitem = pitem->get_item(::ca::TreeNavigationProperForward, &iLevel);
-         if(pitem == ::null())
+         if(pitem == NULL)
             break;
          if(nOffset <= 0)
          {
@@ -1094,7 +1091,7 @@ namespace user
 
       sp(tree) ptree =  (pui.m_p);
 
-      if(!insert_item(::null(), ptree->get_base_item(), ::ca::RelativeLastChild, get_base_item()))
+      if(!insert_item(NULL, ptree->get_base_item(), ::ca::RelativeLastChild, get_base_item()))
          return false;
 
       m_treeptra.add(ptree);

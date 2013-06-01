@@ -95,7 +95,7 @@ CLASS_DECL_ca2 void ca2_heap_free_dbg(void * pvoid)
 
 
 
-static mutex * s_pmutexHeap = ::null();
+static mutex * s_pmutexHeap = NULL;
 
 CLASS_DECL_ca2 void set_heap_mutex(mutex * pmutex)
 {

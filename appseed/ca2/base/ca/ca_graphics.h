@@ -324,24 +324,24 @@ namespace ca
       virtual bool DrawIcon(POINT point, ::visual::icon * picon);
       virtual bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
       virtual bool DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
-         HBRUSH hBrush = ::null());
+         HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags,
-         ::ca::brush* pBrush = ::null());
+         ::ca::brush* pBrush = NULL);
 #ifdef WINDOWS
       virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         HBRUSH hBrush = ::null());
+         HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::ca::brush* pBrush = ::null());
+         ::ca::brush* pBrush = NULL);
 #endif
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = ::null());
+         bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::ca::brush* pBrush = ::null());
+         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::ca::brush* pBrush = NULL);
 #ifdef WINDOWSEX
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-         LPARAM lData, UINT nFlags, HBRUSH hBrush = ::null());
+         LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-         LPARAM lData, UINT nFlags, ::ca::brush* pBrush = ::null());
+         LPARAM lData, UINT nFlags, ::ca::brush* pBrush = NULL);
 #endif
    // Ellipse and Polygon Functions
       virtual bool Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3,
@@ -575,7 +575,7 @@ namespace ca
       virtual ::ca::brush * GetHalftoneBrush();
       virtual void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
-         ::ca::brush* pBrush = ::null(), ::ca::brush* pBrushLast = ::null());
+         ::ca::brush* pBrush = NULL, ::ca::brush* pBrushLast = NULL);
       virtual void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
       virtual void FillSolidRect(LPCRECT lpRect, COLORREF clr);
       virtual void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);

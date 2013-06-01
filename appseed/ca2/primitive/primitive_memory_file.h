@@ -42,7 +42,7 @@ namespace primitive
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
-      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = ::null(), void ** ppBufMax = ::null());
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
       void flush();
 

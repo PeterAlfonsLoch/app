@@ -114,7 +114,7 @@ int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t 
     if (lcflags & LOCALE_RETURN_NUMBER) ret = sizeof(uint32_t)/sizeof(WCHAR);
     else if (is_genitive_name_supported( lctype ) && *p)
     {
-        /* genitive form's stored after a null separator from a nominative */
+        /* genitive form's stored after a NULL separator from a nominative */
         for (i = 1; i <= *p; i++) if (!p[i]) break;
 
         if (i <= *p && (lcflags & LOCALE_RETURN_GENITIVE_NAMES))
@@ -523,7 +523,7 @@ INT get_registry_locale_info(LPCWSTR, LPWSTR, INT)
     if (!status)
     {
         ret = (size - info_size) / sizeof(WCHAR);
-        /* append terminating null if needed */
+        /* append terminating NULL if needed */
   /*      if (!ret || ((WCHAR *)info->Data)[ret-1])
         {
             if (ret < len || !buffer) ret++;

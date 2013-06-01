@@ -60,7 +60,7 @@ bool veiev_post::write(var rec)
 
 var veiev_post::last()
 {
-   if(m_pdataserver == ::null())
+   if(m_pdataserver == NULL)
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());
@@ -103,7 +103,7 @@ var veiev_post::current()
 
 var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 {
-   if(m_pdataserver == ::null())
+   if(m_pdataserver == NULL)
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());
@@ -145,7 +145,7 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 
 int64_t veiev_post::get_count()
 {
-   if(m_pdataserver == ::null())
+   if(m_pdataserver == NULL)
       return 0;
 
    single_lock slDatabase(db()->GetImplCriticalSection());

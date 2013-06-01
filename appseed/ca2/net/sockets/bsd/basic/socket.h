@@ -51,7 +51,7 @@ namespace sockets
       class TriggerData
       {
       public:
-         TriggerData() : m_src(::null()) {}
+         TriggerData() : m_src(NULL) {}
          virtual ~TriggerData() {}
 
          socket *GetSource() const { return m_src; }
@@ -182,7 +182,7 @@ namespace sockets
       * the "default" constructor with one socket_handler_base& as input parameter.
       */
       using ::ca::request_interface::create;
-      virtual socket *create() { return ::null(); }
+      virtual socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the socket.
       If the socket is detached, this is a reference to the slave sockethandler.
@@ -563,9 +563,9 @@ namespace sockets
       /** set flag indicating that this is a tcp_socket with incoming SSL connection. */
       void SetSSLServer(bool x = true);
       /** SSL; get pointer to ssl context structure. */
-      virtual SSL_CTX *GetSslContext() { return ::null(); }
+      virtual SSL_CTX *GetSslContext() { return NULL; }
       /** SSL; get pointer to ssl structure. */
-      virtual SSL *GetSsl() { return ::null(); }
+      virtual SSL *GetSsl() { return NULL; }
       //@}
       /** Enable ipv6 for this socket. */
       void SetIpv6(bool x = true);

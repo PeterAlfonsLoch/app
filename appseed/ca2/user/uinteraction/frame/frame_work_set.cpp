@@ -14,7 +14,7 @@ namespace frame
    WorkSet::WorkSet()
    {
 
-      m_pframeschema             = ::null();
+      m_pframeschema             = NULL;
 
       m_bSizingCapture           = false;
       m_bEnableMouse             = true;
@@ -22,18 +22,18 @@ namespace frame
       m_bFullScreenEnable        = false;
       m_bNotifyIconEnable        = false;
 
-      m_pappearance              = ::null();
-      m_pmovemanager             = ::null();
-      m_psizemanager             = ::null();
-      m_psystemmenumanager       = ::null();
-      m_pdockmanager             = ::null();
+      m_pappearance              = NULL;
+      m_pmovemanager             = NULL;
+      m_psizemanager             = NULL;
+      m_psystemmenumanager       = NULL;
+      m_pdockmanager             = NULL;
 
 
 
-      m_pwndRegion               = ::null();
-      m_pwndDraw                 = ::null();
-      m_pwndEvent                = ::null();
-      m_pwndCommand              = ::null();
+      m_pwndRegion               = NULL;
+      m_pwndDraw                 = NULL;
+      m_pwndEvent                = NULL;
+      m_pwndCommand              = NULL;
 
       m_bHoverModeOn             = false;
       m_bHoverActive             = false;
@@ -48,32 +48,32 @@ namespace frame
 
    WorkSet::~WorkSet()
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
        {
            delete m_pappearance;
-           m_pappearance = ::null();
+           m_pappearance = NULL;
        }
 
-       if(m_pmovemanager != ::null())
+       if(m_pmovemanager != NULL)
        {
            delete m_pmovemanager;
-           m_pmovemanager = ::null();
+           m_pmovemanager = NULL;
        }
 
-       if(m_psizemanager != ::null())
+       if(m_psizemanager != NULL)
        {
            delete m_psizemanager;
-           m_psizemanager = ::null();
+           m_psizemanager = NULL;
        }
-       if(m_psystemmenumanager != ::null())
+       if(m_psystemmenumanager != NULL)
        {
            delete m_psystemmenumanager;
-           m_psystemmenumanager = ::null();
+           m_psystemmenumanager = NULL;
        }
-      if(m_pdockmanager != ::null())
+      if(m_pdockmanager != NULL)
        {
            delete m_pdockmanager;
-           m_pdockmanager = ::null();
+           m_pdockmanager = NULL;
        }
    }
 
@@ -134,7 +134,7 @@ namespace frame
 
    void WorkSet::_001OnDraw(::ca::graphics *pdc)
    {
-      if(IsAppearanceEnabled() && m_pframeschema != ::null())
+      if(IsAppearanceEnabled() && m_pframeschema != NULL)
       {
          try
          {
@@ -165,13 +165,13 @@ namespace frame
    {
       if(bEnable)
       {
-         if(m_pappearance == ::null())
+         if(m_pappearance == NULL)
             m_pappearance = new appearance(this);
          m_pappearance->Enable(true);
       }
       else
       {
-         if(m_pappearance != ::null())
+         if(m_pappearance != NULL)
             m_pappearance->Enable(false);
       }
    }
@@ -199,7 +199,7 @@ namespace frame
 
    bool WorkSet::IsSizingEnabled()
    {
-       return m_bSizingEnabled && (m_pappearance == ::null() ||
+       return m_bSizingEnabled && (m_pappearance == NULL ||
            m_pappearance->GetAppearanceMode() != AppearanceFixedSize);
    }
 
@@ -210,7 +210,7 @@ namespace frame
 
    bool WorkSet::IsAppearanceEnabled()
    {
-      if(m_pappearance == ::null())
+      if(m_pappearance == NULL)
          return false;
       else
          return m_pappearance->IsEnabled();
@@ -219,33 +219,33 @@ namespace frame
 
    void WorkSet::GetRegionClientRect(LPRECT lprect)
    {
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
        //m_pappearance->GetWndClientRect(lprect);
       m_pframeschema->GetWndClientRect(lprect);
    }
 
    void WorkSet::GetDrawClientRect(LPRECT lprect)
    {
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
        //m_pappearance->GetWndClientRect(lprect);
       m_pframeschema->GetWndClientRect(lprect);
    }
 
    void WorkSet::SetAppearanceMode(EAppearanceMode nMode)
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
            m_pappearance->SetAppearanceMode(nMode);
    }
 
    EAppearanceMode WorkSet::GetAppearanceMode()
    {
-      ASSERT(m_pappearance != ::null());
+      ASSERT(m_pappearance != NULL);
       return m_pappearance->GetAppearanceMode();
    }
 
    void WorkSet::UpdateApperanceMode(bool bFullScreen)
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
            m_pappearance->UpdateAppearanceMode(bFullScreen);
 
    }
@@ -253,13 +253,13 @@ namespace frame
 
    void WorkSet::SetAppearanceMode()
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
            m_pappearance->SetAppearanceMode();
    }
 
    bool WorkSet::IsFullScreen()
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
            return m_pappearance->IsFullScreen();
        else
            return false;
@@ -287,29 +287,29 @@ namespace frame
       sp(::user::interaction)pwndCommand)
    {
 
-      if(m_pappearance == ::null())
+      if(m_pappearance == NULL)
       {
          m_pappearance                = new appearance(this);
       }
 
-      if(m_pmovemanager == ::null())
+      if(m_pmovemanager == NULL)
       {
          m_pmovemanager               = new MoveManager(this);
          m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
       }
 
-      if(m_psizemanager == ::null())
+      if(m_psizemanager == NULL)
       {
          m_psizemanager               = new SizeManager(this);
          m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
       }
 
-      if(m_psystemmenumanager == ::null())
+      if(m_psystemmenumanager == NULL)
       {
          m_psystemmenumanager         = new SysMenuManager(this);
       }
 
-      if(m_pdockmanager == ::null())
+      if(m_pdockmanager == NULL)
       {
          m_pdockmanager               = new DockManager();
       }
@@ -318,7 +318,7 @@ namespace frame
       m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
 
-      if(m_pwndRegion !=  ::null())
+      if(m_pwndRegion !=  NULL)
       {
          m_pwndRegion->KillTimer(16319);
       }
@@ -347,7 +347,7 @@ namespace frame
 
       m_pdockmanager->UpdateDocking();
 
-      pwndRegion->SetTimer(16319, 100, ::null());
+      pwndRegion->SetTimer(16319, 100, NULL);
 
       _001InstallEventHandling(dynamic_cast < ::ca::message::dispatch * >(pwndEvent->m_pimpl.m_p));
 
@@ -356,7 +356,7 @@ namespace frame
 
    /*void WorkSet::OnSizeRegion( UINT nType, int32_t cx, int32_t cy )
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
        {
            if(IsFullScreen())
            {
@@ -368,7 +368,7 @@ namespace frame
            }
            m_pappearance->OnSizeRegion(nType, cx, cy);
        }
-      if(m_pdockmanager != ::null())
+      if(m_pdockmanager != NULL)
       {
          m_pdockmanager->OnSize();
       }
@@ -379,9 +379,9 @@ namespace frame
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
           WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
-          if(pinterface == ::null())
+          if(pinterface == NULL)
              return false;
-          ASSERT(pinterface != ::null());
+          ASSERT(pinterface != NULL);
           frame::e_button ebutton = m_pframeschema->GetButtonId( (pevent->m_puie.m_p)->GetDlgCtrlId());
           switch(ebutton)
           {
@@ -417,10 +417,10 @@ namespace frame
    bool WorkSet::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       if(pcmdmsg->m_etype == BaseCmdMsg::type_command
-      && m_pwndCommand != ::null())
+      && m_pwndCommand != NULL)
       {
           WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
-          ASSERT(pinterface != ::null());
+          ASSERT(pinterface != NULL);
           ::uinteraction::frame::frame::e_button ebutton = m_pframeschema->GetButtonId(pcmdmsg->m_id);
           switch(ebutton)
           {
@@ -452,7 +452,7 @@ namespace frame
    void WorkSet::_001OnCommand(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
-      if(m_pframeschema == ::null())
+      if(m_pframeschema == NULL)
          pbase->m_bRet = false;
       else
          pbase->m_bRet = m_pframeschema->_000OnCommand(pbase->m_wparam, pbase->m_lparam, pbase->get_lresult());
@@ -479,12 +479,12 @@ namespace frame
       {
          TRACE("WorkSet::SetActiveFlag %d\n", fActive);
          m_pappearance->m_fActive = fActive;
-         //m_pappearance->GetDrawWindow()->RedrawWindow(::null(), ::null(), RDW_INVALIDATE | RDW_FRAME);
-         if(m_pframeschema != ::null())
+         //m_pappearance->GetDrawWindow()->RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_FRAME);
+         if(m_pframeschema != NULL)
          {
             m_pframeschema->OnActivate();
          }
-         if(GetDrawWindow() != ::null())
+         if(GetDrawWindow() != NULL)
          {
             GetDrawWindow()->_001RedrawWindow();
          }
@@ -493,13 +493,13 @@ namespace frame
 
    void WorkSet::SetAppearanceTransparency(EAppearanceTransparency nTransparency)
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
            m_pappearance->SetTransparency(nTransparency);
 
    }
    /*void WorkSet::SetAppearanceStyle(EAppearanceStyle nStyle)
    {
-       if(m_pappearance != ::null())
+       if(m_pappearance != NULL)
            m_pappearance->SetStyle(nStyle);
 
    }*/
@@ -693,12 +693,12 @@ namespace frame
    void WorkSet::layout()
    {
 
-      if(m_pframeschema != ::null())
+      if(m_pframeschema != NULL)
       {
          m_pframeschema->layout();
       }
 
-      if(m_pappearance != ::null())
+      if(m_pappearance != NULL)
       {
          m_pdockmanager->layout();
       }
@@ -713,7 +713,7 @@ namespace frame
 
    void WorkSet::OnDock()
    {
-      ASSERT(m_pdockmanager != ::null());
+      ASSERT(m_pdockmanager != NULL);
       EDock edock = m_pdockmanager->GetDockState();
       EGrip egripRemove = GripNone;
       MoveManager::EBorder eborderRemove = MoveManager::BorderNone;
@@ -806,7 +806,7 @@ namespace frame
 
    SizeManager * WorkSet::GetSizingManager()
    {
-      if(m_psizemanager == ::null())
+      if(m_psizemanager == NULL)
       {
          m_psizemanager = new SizeManager(this);
       }
@@ -815,13 +815,13 @@ namespace frame
 
    void WorkSet::SetDockMask(EDock emask)
    {
-      ASSERT(m_pdockmanager != ::null());
+      ASSERT(m_pdockmanager != NULL);
       m_pdockmanager->SetDockMask(emask);
    }
 
    void WorkSet::OnMove()
    {
-      if(m_pdockmanager != ::null())
+      if(m_pdockmanager != NULL)
       {
          m_pdockmanager->OnMove();
       }
@@ -829,7 +829,7 @@ namespace frame
 
    void WorkSet::OnMoving()
    {
-      if(m_pdockmanager != ::null())
+      if(m_pdockmanager != NULL)
       {
          m_pdockmanager->OnMoving();
       }
@@ -917,13 +917,13 @@ namespace frame
       if(pobj->m_bRet)
          return;
 
-      if(m_pappearance != ::null() &&
+      if(m_pappearance != NULL &&
          (!m_pappearance->IsFullScreen()
        || !m_pappearance->IsZoomed()
         ))
        {
            if(IsSizingEnabled() &&
-            m_psizemanager != ::null())
+            m_psizemanager != NULL)
            {
                m_psizemanager->message_handler(pwnd, pobj);
                if(pobj->m_bRet)
@@ -931,7 +931,7 @@ namespace frame
            }
 
            if(IsMovingEnabled() &&
-            m_pmovemanager != ::null())
+            m_pmovemanager != NULL)
            {
                m_pmovemanager->message_handler(pwnd, pobj);
                if(pobj->m_bRet)
@@ -941,7 +941,7 @@ namespace frame
            if(!m_pappearance->IsFullScreen())
            {
                if(IsSysMenuEnabled() &&
-                  m_psystemmenumanager != ::null())
+                  m_psystemmenumanager != NULL)
                {
                    m_psystemmenumanager->message_handler(pwnd, pobj);
                    if(pobj->m_bRet)
@@ -988,7 +988,7 @@ namespace frame
 
       sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
 
-      if(pActive == ::null())
+      if(pActive == NULL)
       {
 
       }
@@ -1000,7 +1000,7 @@ namespace frame
          return;
 
       }
-      else if(pActive->m_pguie != ::null() && (bool) pActive->m_pguie->oprop("combo_list"))
+      else if(pActive->m_pguie != NULL && (bool) pActive->m_pguie->oprop("combo_list"))
       {
 
          pactivate->m_bRet = true;
@@ -1041,7 +1041,7 @@ namespace frame
 
    /*void WorkSet::UpdateControlBox()
    {
-      if(m_pappearance != ::null())
+      if(m_pappearance != NULL)
       {
          m_pappearance->UpdateControlBox();
       }
@@ -1055,7 +1055,7 @@ namespace frame
    void WorkSet::WindowClose()
    {
       WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
-      ASSERT(pinterface != ::null());
+      ASSERT(pinterface != NULL);
       if(pinterface->WfiClose())
       {
          m_wfla.WFLOnClose(this, m_pwndRegion);
@@ -1088,7 +1088,7 @@ namespace frame
       UNREFERENCED_PARAMETER(nType);
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
-      if(m_pappearance != ::null())
+      if(m_pappearance != NULL)
       {
    //      m_pappearance->_001OnSize(nType, cx, cy);
       }
@@ -1109,7 +1109,7 @@ namespace frame
       IGUI_WIN_MSG_LINK(WM_COMMAND        , pdispatch, this, &WorkSet::_001OnCommand);
       IGUI_WIN_MSG_LINK(WM_MOVE           , pdispatch, this, &WorkSet::_001OnMove);
 
-   /*   if(m_pappearance != ::null())
+   /*   if(m_pappearance != NULL)
       {
          m_pappearance->InitializeMessageHandling(pinterface);
       }*/
@@ -1124,7 +1124,7 @@ namespace frame
          pmouse->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       m_pframeschema->_000OnLButtonDown(pmouse);
       if(pmouse->m_bRet)
       {
@@ -1140,7 +1140,7 @@ namespace frame
          pmouse->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
 //      point ptCursor = pmouse->m_pt;
       m_pframeschema->_000OnMouseMove(pmouse);
       if(pmouse->m_bRet)
@@ -1157,7 +1157,7 @@ namespace frame
          pmouse->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       m_pframeschema->_000OnLButtonUp(pmouse);
       if(pmouse->m_bRet)
       {
@@ -1173,7 +1173,7 @@ namespace frame
          pmouse->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       m_pframeschema->_000OnNcLButtonDown(pmouse);
       if(pmouse->m_bRet)
       {
@@ -1189,7 +1189,7 @@ namespace frame
          pmouse->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
 //      point pt(pmouse->m_pt);
 
       m_pframeschema->_000OnNcMouseMove(pmouse);
@@ -1208,7 +1208,7 @@ namespace frame
          pmouse->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       m_pframeschema->_000OnNcLButtonUp(pmouse);
       if(pmouse->m_bRet)
       {
@@ -1225,7 +1225,7 @@ namespace frame
          pnchittest->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       pnchittest->m_bRet = m_pframeschema->_000OnNcHitTest(pnchittest->m_pt, pnchittest->get_lresult());
    }
 
@@ -1238,7 +1238,7 @@ namespace frame
          ptimer->m_bRet = false;
          return;
       }
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       ptimer->m_bRet = m_pframeschema->_000OnTimer(ptimer->m_nIDEvent);
    }
 
@@ -1250,7 +1250,7 @@ namespace frame
          psize->m_bRet = false;
          return;
       }
-      if(m_pframeschema != ::null())
+      if(m_pframeschema != NULL)
       {
          psize->m_bRet = m_pframeschema->_000OnSize(psize->m_nType, psize->m_size.cx, psize->m_size.cy);
       }
@@ -1264,7 +1264,7 @@ namespace frame
          pmove->m_bRet = false;
          return;
       }
-      if(m_pframeschema != ::null())
+      if(m_pframeschema != NULL)
       {
          pmove->m_bRet = m_pframeschema->_000OnMove(pmove->m_pt.x, pmove->m_pt.y);
       }
@@ -1273,13 +1273,13 @@ namespace frame
 
    void WorkSet::_000OnBeforeSize(LPCRECT lpcrect)
    {
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       m_pframeschema->_000OnBeforeSize(lpcrect);
    }
 
    void WorkSet::OnNcCalcSize(LPRECT lprect)
    {
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       m_pframeschema->OnNcCalcSize(lprect);
    }
 
@@ -1287,7 +1287,7 @@ namespace frame
    // point should be in screen coordinates
    EHitTest WorkSet::hit_test(point ptCursor)
    {
-      ASSERT(m_pframeschema != ::null());
+      ASSERT(m_pframeschema != NULL);
       return m_pframeschema->_000HitTest(ptCursor);
    }
 

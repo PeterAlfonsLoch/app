@@ -47,7 +47,7 @@ namespace gcom
 
       Main::~Main()
       {
-         if(m_ptransitioneffect != ::null())
+         if(m_ptransitioneffect != NULL)
          {
             if(m_ptransitioneffect->m_bRun)
             {
@@ -57,12 +57,12 @@ namespace gcom
             {
                delete m_ptransitioneffect;
             }
-            m_ptransitioneffect = ::null();
+            m_ptransitioneffect = NULL;
          }
-         if(m_pvisualeffect != ::null())
+         if(m_pvisualeffect != NULL)
          {
             delete m_pvisualeffect;
-            m_pvisualeffect = ::null();
+            m_pvisualeffect = NULL;
          }
       }
 
@@ -164,14 +164,14 @@ namespace gcom
             return false;
 
          sp(::ca::application) papp = &System;
-         if(papp == ::null())
+         if(papp == NULL)
          {
-            // if main application is null, there's no reason
+            // if main application is NULL, there's no reason
             // for painting anything...
             return false;
          }
 
-         ASSERT(papp != ::null());
+         ASSERT(papp != NULL);
 
          //         ::ca::savings & savings = System.savings();
 
@@ -410,7 +410,7 @@ namespace gcom
 
       void Main::OnResize()
       {
-         //GetWnd().SetTimer(10001234, 100, ::null());
+         //GetWnd().SetTimer(10001234, 100, NULL);
          GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 4);
 
       }

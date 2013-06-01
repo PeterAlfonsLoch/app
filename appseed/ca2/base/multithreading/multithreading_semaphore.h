@@ -14,12 +14,12 @@ public:
 
 #endif
 
-   semaphore(sp(::ca::application) papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=::null(), LPSECURITY_ATTRIBUTES lpsaAttributes = ::null());
+   semaphore(sp(::ca::application) papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
    virtual ~semaphore();
 
 
    virtual bool unlock();
-   virtual bool unlock(LONG lCount, LPLONG lprevCount = ::null());
+   virtual bool unlock(LONG lCount, LPLONG lprevCount = NULL);
 
 };
 

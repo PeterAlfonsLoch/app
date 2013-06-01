@@ -29,7 +29,7 @@ namespace ca
    bool timeout_file::IsValid() const
    {
       single_lock sl((const_cast < timeout_file * > (this))->m_spmutex, TRUE);
-      return m_pfile != ::null();
+      return m_pfile != NULL;
    }
 
    file_position timeout_file::seek(file_offset lOff, ::ca::e_seek nFrom)
@@ -134,7 +134,7 @@ namespace ca
    ::primitive::memory_size timeout_file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
       single_lock sl(m_spmutex);
-      if(m_pfile == ::null())
+      if(m_pfile == NULL)
          return 0;
       ::primitive::memory_size uiRead = 0;
       ::primitive::memory_size uiReadNow = 0;

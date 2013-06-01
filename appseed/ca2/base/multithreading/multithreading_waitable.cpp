@@ -9,7 +9,7 @@
 waitable::waitable()
 {
 
-   m_pmutex = ::null();
+   m_pmutex = NULL;
 
 }
 
@@ -18,7 +18,7 @@ waitable::waitable(const waitable & objectSrc)
 
    UNREFERENCED_PARAMETER(objectSrc);
 
-   m_pmutex = ::null();
+   m_pmutex = NULL;
    
 }
 
@@ -27,12 +27,12 @@ waitable::waitable(const waitable & objectSrc)
 waitable::~waitable()
 {
 
-   if(m_pmutex != ::null())
+   if(m_pmutex != NULL)
    {
 
       delete m_pmutex;
 
-      m_pmutex = ::null();
+      m_pmutex = NULL;
 
    }
 
@@ -53,7 +53,7 @@ wait_result waitable::wait(const duration & duration )
 {
 
    
-   if(m_pmutex == ::null())
+   if(m_pmutex == NULL)
    {
 
       ((waitable *)this)->m_pmutex = new mutex(get_app());
@@ -110,7 +110,7 @@ CLASS_DECL_ca2 void sleep(const duration & duration)
 void * waitable::get_os_data() const
 {
    
-   if(m_pmutex == ::null())
+   if(m_pmutex == NULL)
    {
 
       ((waitable *)this)->m_pmutex = new mutex(get_app());
@@ -132,7 +132,7 @@ void waitable::lock()
 bool waitable::lock(const duration & duration)
 {
    
-   if(m_pmutex == ::null())
+   if(m_pmutex == NULL)
    {
 
       ((waitable *)this)->m_pmutex = new mutex(get_app());
@@ -165,7 +165,7 @@ bool waitable::lock(const duration & duration)
 bool waitable::unlock()
 {
    
-   if(m_pmutex == ::null())
+   if(m_pmutex == NULL)
       return false;
 
    bool bUnlocked = false;
@@ -202,7 +202,7 @@ bool waitable::is_locked() const
 {
 
    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-   ASSERT(dynamic_cast < critical_section * > ( const_cast < waitable * > (this)) == ::null());
+   ASSERT(dynamic_cast < critical_section * > ( const_cast < waitable * > (this)) == NULL);
 
    single_lock sl(const_cast < waitable * > (this));
 

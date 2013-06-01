@@ -488,7 +488,7 @@ namespace plane
 
       ::visual::visual                    m_visual;
 
-      system(sp(::ca::application) papp = ::null());
+      system(sp(::ca::application) papp = NULL);
       virtual ~system();
 
       //virtual int32_t main();
@@ -507,7 +507,7 @@ namespace plane
       virtual bool finalize();
       virtual int32_t exit_instance();
 
-      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = ::null());
+      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = NULL);
 
       virtual void register_bergedge_application(sp(::ca::application) papp);
       virtual void unregister_bergedge_application(sp(::ca::application) papp);
@@ -523,13 +523,13 @@ namespace plane
       bool set_history(::ca::history * phistory);
 
 
-      virtual sp(::plane::session)             get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
-      virtual sp(::platform::document)             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
-      virtual sp(::nature::document)               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      virtual sp(::plane::session)             get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual sp(::platform::document)             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual sp(::nature::document)               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
 
       virtual sp(::plane::session)             query_bergedge(index iEdge);
       virtual void on_request(sp(::ca::create_context) pcreatecontext);
-      virtual sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
+      virtual sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
@@ -559,8 +559,8 @@ namespace plane
       virtual void appa_set_locale(const char * pszLocale, bool bUser);
       virtual void appa_set_schema(const char * pszStyle, bool bUser);
 
-      virtual bool assert_running_global(const char * pszAppName, const char * pszId = ::null());
-      virtual bool assert_running_local(const char * pszAppName, const char * pszId = ::null());
+      virtual bool assert_running_global(const char * pszAppName, const char * pszId = NULL);
+      virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);
 
       virtual bool initialize_log(const char * pszId);
 
@@ -579,12 +579,12 @@ namespace plane
       virtual void on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info);
 
       // file & dir
-      virtual string matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = ::null());
-      virtual string dir_matter(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
       virtual string file_as_string(sp(::ca::application) papp, const char * pszPath);
-      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = ::null());
+      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
@@ -639,7 +639,7 @@ namespace plane
 
 
 
-      bool sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser = ::null(), ::http::cookies * pcookies = ::null());
+      bool sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser = NULL, ::http::cookies * pcookies = NULL);
 
 
 
@@ -655,7 +655,7 @@ namespace plane
       virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
 
 
-      //      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = ::null());
+      //      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
       sp(::plane::session) query_session(index iEdge);
 
 
@@ -920,7 +920,7 @@ namespace user
    template < class VIEW >
    inline sp(VIEW) view::create_view(::user::interaction * pwndParent, id id, sp(::user::interaction) pviewLast)
    {
-      return create_view < VIEW > (::null(), pwndParent, id, pviewLast);
+      return create_view < VIEW > (NULL, pwndParent, id, pviewLast);
    }
 
    template < class VIEW >
@@ -929,7 +929,7 @@ namespace user
 
       VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
 
-      if(pview != ::null())
+      if(pview != NULL)
       {
          pcreatordata->m_pdoc = get_document();
       }
@@ -943,10 +943,10 @@ namespace user
    template < class DOCUMENT >
    ::ca::data * view::get_data()
    {
-      ASSERT(this != ::null());
+      ASSERT(this != NULL);
       DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
-      if(pdocument == ::null())
-         return ::null();
+      if(pdocument == NULL)
+         return NULL;
       return pdocument->get_data();
    }
 
@@ -954,7 +954,7 @@ namespace user
    DOCUMENT * view::get_typed_document()
    {
       if(m_spdocument.is_null())
-         return ::null();
+         return NULL;
       return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
    }
 

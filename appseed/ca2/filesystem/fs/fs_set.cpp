@@ -56,7 +56,7 @@ namespace fs
       string strRoot;
       sp(::fs::data) pdata;
 
-      while(pos != ::null())
+      while(pos != NULL)
       {
          m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
          if(::ca::str::begins_ci(psz, strRoot))
@@ -65,24 +65,24 @@ namespace fs
          }
       }
       
-      return ::null();
+      return NULL;
 
    }
 
    bool set::ls(const char * psz, stringa * pstraPath, stringa * pstraTitle)
    {
 
-      if(psz == ::null() || strlen(psz) == 0)
+      if(psz == NULL || strlen(psz) == 0)
       {
          stringa straPath;
          root_ones(straPath);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {
-            if(pstraPath != ::null())
+            if(pstraPath != NULL)
             {
                pstraPath->add(straPath[i]);
             }
-            if(pstraTitle != ::null())
+            if(pstraTitle != NULL)
             {
                pstraTitle->add(file_name(straPath[i]));
             }
@@ -92,7 +92,7 @@ namespace fs
       
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->ls(psz, pstraPath, pstraTitle);
       }
@@ -106,7 +106,7 @@ namespace fs
       
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->is_dir(psz);
       }
@@ -121,7 +121,7 @@ namespace fs
 
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->file_name(psz);
       }
@@ -137,7 +137,7 @@ namespace fs
       ::fs::data * pdataDst = path_data(pszDst);
       ::fs::data * pdataSrc = path_data(pszSrc);
 
-      if(pdataDst != ::null() && pdataSrc == pdataDst)
+      if(pdataDst != NULL && pdataSrc == pdataDst)
       {
          return pdataDst->file_move(pszDst, pszSrc);
       }
@@ -162,7 +162,7 @@ namespace fs
       
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->has_subdir(psz);
       }
@@ -176,7 +176,7 @@ namespace fs
       
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->fast_has_subdir(psz);
       }
@@ -190,7 +190,7 @@ namespace fs
 
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          pdata->get_ascendants_path(psz, stra);
       }
@@ -203,7 +203,7 @@ namespace fs
       
       ::fs::data * pdata = path_data(psz);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->eat_end_level(psz, iLevel);
       }
@@ -218,7 +218,7 @@ namespace fs
 
       ::fs::data * pdata = path_data(pszPath1);
 
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          return pdata->dir_path(pszPath1, pszPath2);
       }

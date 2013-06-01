@@ -74,7 +74,7 @@ namespace sockets
 
       ::timeval tv;
 
-      gettimeofday(&tv, ::null());
+      gettimeofday(&tv, NULL);
       t = tv.tv_sec;
       t *= 1000000;
       t += tv.tv_usec;

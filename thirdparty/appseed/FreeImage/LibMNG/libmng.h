@@ -2449,7 +2449,7 @@ MNG_EXT mng_retcode MNG_DECL mng_updatemngsimplicity (mng_handle        hHandle,
 #define MNG_INVALIDINTERLACE (mng_retcode)1040 /* interlace method invalid    */
 #define MNG_NOTENOUGHIDAT    (mng_retcode)1041 /* ran out of compressed data  */
 #define MNG_PLTEINDEXERROR   (mng_retcode)1042 /* palette-index out-of-range  */
-#define MNG_NULLNOTFOUND     (mng_retcode)1043 /* couldn't find null-separator*/
+#define MNG_NULLNOTFOUND     (mng_retcode)1043 /* couldn't find NULL-separator*/
 #define MNG_KEYWORDNULL      (mng_retcode)1044 /* keyword cannot be empty     */
 #define MNG_OBJECTUNKNOWN    (mng_retcode)1045 /* the object can't be found   */
 #define MNG_OBJECTEXISTS     (mng_retcode)1046 /* the object already exists   */

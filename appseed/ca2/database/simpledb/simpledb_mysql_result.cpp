@@ -19,8 +19,8 @@ namespace mysql
    void * result::fetch_row()
    {
       MYSQL_ROW row;
-      if(m_pres == ::null())
-         return ::null();
+      if(m_pres == NULL)
+         return NULL;
       row = mysql_fetch_row((MYSQL_RES *) m_pres);
       if(mysql_errno ((MYSQL *) m_pdatabase->m_pmysql) != 0)
          m_pdatabase->trace_error1( "mysql_fetch_row() failed");
@@ -30,8 +30,8 @@ namespace mysql
    unsigned long * result::fetch_lengths()
    {
       unsigned long * lengths;
-      if(m_pres == ::null())
-         return ::null();
+      if(m_pres == NULL)
+         return NULL;
       lengths = mysql_fetch_lengths((MYSQL_RES *) m_pres);
       if(mysql_errno ((MYSQL *) m_pdatabase->m_pmysql) != 0)
          m_pdatabase->trace_error1( "mysql_fetch_row() failed");
@@ -59,7 +59,7 @@ namespace mysql
 
    bool result::free_result()
    {
-      if(m_pres != ::null())
+      if(m_pres != NULL)
       {
          mysql_free_result((MYSQL_RES *) m_pres);
       }

@@ -15,15 +15,15 @@ namespace userstack
    {
       m_iNewArea        = 0;
       m_iArea           = -1;
-      m_pviewdataOld    = ::null();
+      m_pviewdataOld    = NULL;
 
       m_etranslucency   = TranslucencyTotal;
 
-      m_pviewdata       = ::null();
-      m_pviewdataOld    = ::null();
+      m_pviewdata       = NULL;
+      m_pviewdataOld    = NULL;
 
       m_iDisplay        = -1;
-      m_ppropform       = ::null();
+      m_ppropform       = NULL;
       m_dataid          = "ca2::bergedge::pane_view";
 
       get_data()->m_matchanyRestore.add(new ::ca::match::prefix("app:"));
@@ -84,7 +84,7 @@ namespace userstack
       {
          set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
       }
-      if(pHint != ::null())
+      if(pHint != NULL)
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -98,7 +98,7 @@ namespace userstack
             }
          }
       }
-         if(pHint != ::null())
+         if(pHint != NULL)
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -128,7 +128,7 @@ namespace userstack
             //Session.m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
-         if(pframeApp != ::null())
+         if(pframeApp != NULL)
          {
             pframeApp->WfiFullScreen(true, false);
          }*/
@@ -168,9 +168,9 @@ namespace userstack
       {
 //         pframe->m_bAutoHideOnOutClick = true;
       }
-      /*if(m_pviewdataOld != ::null())
+      /*if(m_pviewdataOld != NULL)
       {
-         if(m_pviewdataOld->m_pwnd != ::null())
+         if(m_pviewdataOld->m_pwnd != NULL)
          {
             m_pviewdataOld->m_pwnd->ShowWindow(SW_HIDE);
          }
@@ -286,9 +286,9 @@ namespace userstack
       {
          int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
-            ::null(),
+            NULL,
             L"\"" + ::ca::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
-            ::null(),
+            NULL,
             L"\"" + ::ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
@@ -306,7 +306,7 @@ namespace userstack
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      Application.dir().rls(System.dir().commonprograms(), &straPath, ::null(), &straRelative);
+      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -315,7 +315,7 @@ namespace userstack
       }
       straRelative.remove_all();
       straPath.remove_all();
-      Application.dir().rls(System.dir().userprograms(::null()), &straPath, ::null(), &straRelative);
+      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -341,7 +341,7 @@ namespace userstack
       string strApp;
       string strLibrary;
 
-      while(pos != ::null())
+      while(pos != NULL)
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::ca::str::begins_eat(strApp, "application:"))
@@ -354,7 +354,7 @@ namespace userstack
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(Application.dir().userquicklaunch(), &straPath, ::null(), &straRelative);
+      System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -371,7 +371,7 @@ namespace userstack
       char buf[4096];
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
-         ::null(),
+         NULL,
          buf,
          CSIDL_COMMON_DESKTOPDIRECTORY,
          FALSE);
@@ -381,7 +381,7 @@ namespace userstack
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, ::null(), &straRelative);
+            Application.dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -392,7 +392,7 @@ namespace userstack
       }
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
-         ::null(),
+         NULL,
          buf,
          CSIDL_DESKTOPDIRECTORY,
          FALSE);
@@ -402,7 +402,7 @@ namespace userstack
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, ::null(), &straRelative);
+            Application.dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -518,7 +518,7 @@ namespace userstack
       {
 
 #ifndef METROWIN
-         simple_shell_launcher launcher(::ca::null(), ::null(), "control.exe", "desk.cpl", ::null(), SW_SHOWNORMAL);
+         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
 
          launcher.execute();
 #else

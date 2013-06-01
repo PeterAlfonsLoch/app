@@ -7,7 +7,7 @@ namespace ca
 
    install::install()
    {
-      m_hmutexBoot = ::null();
+      m_hmutexBoot = NULL;
    }
 
    install::~install()
@@ -42,7 +42,7 @@ namespace ca
 
       sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
-      if(lpnode == ::null())
+      if(lpnode == NULL)
       {
 
          lpnode = doc.get_root()->add_child("start");
@@ -85,7 +85,7 @@ namespace ca
 
       sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
-      if(lpnode != ::null())
+      if(lpnode != NULL)
       {
 
          doc.get_root()->remove_child(lpnode);
@@ -128,7 +128,7 @@ namespace ca
 
 #endif
 
-      if(lpnodeVersion == ::null())
+      if(lpnodeVersion == NULL)
       {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -145,7 +145,7 @@ namespace ca
 
       sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
 
-      if(lpnodeInstalled == ::null())
+      if(lpnodeInstalled == NULL)
       {
 
          lpnodeInstalled = lpnodeVersion->add_child("installed");
@@ -156,7 +156,7 @@ namespace ca
 
       sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
 
-      if(lpnodeType == ::null())
+      if(lpnodeType == NULL)
       {
 
          lpnodeType = lpnodeInstalled->add_child(pszType);
@@ -165,7 +165,7 @@ namespace ca
 
       sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
-      if(lpnode == ::null())
+      if(lpnode == NULL)
       {
 
          lpnode = lpnodeType->add_child(pszType);
@@ -186,7 +186,7 @@ namespace ca
 
       sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
-      if(lpnodeLocalization == ::null())
+      if(lpnodeLocalization == NULL)
       {
 
          lpnodeLocalization = lpnode->add_child("localization");
@@ -235,7 +235,7 @@ namespace ca
 
       }
 
-      if(doc.get_root() == ::null())
+      if(doc.get_root() == NULL)
          return false;
 
 
@@ -257,7 +257,7 @@ namespace ca
 
       sp(::xml::node) lpnodeVersion = doc.get_root()->get_child(pszVersion);
 
-      if(lpnodeVersion == ::null())
+      if(lpnodeVersion == NULL)
          return false;
 
       string strBuildNumber(pszBuild);
@@ -271,17 +271,17 @@ namespace ca
 
       sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuildNumber);
 
-      if(lpnodeInstalled == ::null())
+      if(lpnodeInstalled == NULL)
          return false;
       
       sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
       
-      if(lpnodeType == ::null())
+      if(lpnodeType == NULL)
          return false;
       
       sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
-      if(lpnode == ::null())
+      if(lpnode == NULL)
          return false;
 
       stringa straName;
@@ -296,7 +296,7 @@ namespace ca
 
       sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
-      if(lpnodeLocalization == ::null())
+      if(lpnodeLocalization == NULL)
          return false;
 
       return true;
@@ -350,13 +350,13 @@ namespace ca
 
       string strSpaIgnitionBaseUrl;
 
-      if(pszVersion != ::null() && !strcmp(pszVersion, "basis"))
+      if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
       {
 
           strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
       }
-      else if(pszVersion != ::null() && !strcmp(pszVersion, "stage"))
+      else if(pszVersion != NULL && !strcmp(pszVersion, "stage"))
       {
 
           strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";

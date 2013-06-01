@@ -9,7 +9,7 @@ namespace filemanager
    ContextMenu::ContextMenu()
    {
 #ifdef WINDOWSEX
-      m_pcontextmenu = ::null();
+      m_pcontextmenu = NULL;
 #endif
    }
 
@@ -21,14 +21,14 @@ namespace filemanager
    void ContextMenu::GetMessageString(UINT nID, string &rstrMessage)
    {
 #ifdef WINDOWSEX
-      if(m_pcontextmenu == ::null())
+      if(m_pcontextmenu == NULL)
          return;
       string & str = rstrMessage;
       LPTSTR lpsz = str.GetBuffer(1024);
       m_pcontextmenu->GetCommandString(
          nID - 0x1000,
          GCS_HELPTEXTA,
-         ::null(),
+         NULL,
          lpsz,
          1024);
       str.ReleaseBuffer();
@@ -38,14 +38,14 @@ namespace filemanager
    void ContextMenu::GetVerb(UINT nID, string & rwstrMessage)
    {
 #ifdef WINDOWSEX
-      if(m_pcontextmenu == ::null())
+      if(m_pcontextmenu == NULL)
          return;
       string & str = rwstrMessage;
       char * lpsz = str.GetBuffer(1024);
       m_pcontextmenu->GetCommandString(
          nID - 0x1000,
          GCS_VERBW,
-         ::null(),
+         NULL,
          (LPTSTR) lpsz,
          1024);
       str.ReleaseBuffer();
@@ -56,7 +56,7 @@ namespace filemanager
    void ContextMenu::OnCommand(UINT uiId)
    {
 #ifdef WINDOWSEX
-      if(m_pcontextmenu == ::null())
+      if(m_pcontextmenu == NULL)
          return;
 
       CMINVOKECOMMANDINFO info;
@@ -66,8 +66,8 @@ namespace filemanager
 
       info.cbSize = sizeof(info);
       info.fMask = CMIC_MASK_ASYNCOK;
-      info.lpParameters = ::null();
-      info.lpDirectory = ::null();
+      info.lpParameters = NULL;
+      info.lpDirectory = NULL;
       info.hwnd = System.GetMainWnd()->get_handle();
       info.lpVerb = MAKEINTRESOURCE(uiId - 0x1000);
       info.nShow = SW_SHOWNORMAL;

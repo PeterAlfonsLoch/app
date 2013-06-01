@@ -95,7 +95,7 @@ namespace ca
    template <class DERIVED >
    inline void add_ref(DERIVED * & pref)
    {
-      if(pref != ::null())
+      if(pref != NULL)
       {
          pref->add_ref();
       }
@@ -104,10 +104,10 @@ namespace ca
    template <class DERIVED >
    inline void release(DERIVED * & pref)
    {
-      if(pref != ::null())
+      if(pref != NULL)
       {
          pref->release();
-         pref = ::null();
+         pref = NULL;
       }
    }
 } // namespace ca
@@ -164,8 +164,8 @@ template < class DERIVED >
 index reference_array < DERIVED >::
 add(reference < DERIVED > * p)
 {
-   ASSERT(p != ::null());
-   if(p != ::null())
+   ASSERT(p != NULL);
+   if(p != NULL)
    {
       index idx = pointer_array < DERIVED >::add(p);
       p->add_ref();
@@ -178,8 +178,8 @@ template < class DERIVED >
 void reference_array < DERIVED >::
 set_at(int32_t iIndex, reference < DERIVED > * p)
 {
-   ASSERT(p != ::null());
-   if(p != ::null())
+   ASSERT(p != NULL);
+   if(p != NULL)
    {
       p->add_ref();
       pointer_array < DERIVED >::set_at(iIndex, p);
@@ -191,8 +191,8 @@ template < class DERIVED >
 ::count reference_array < DERIVED >::
 remove(reference < DERIVED > * p)
 {
-   ASSERT(p != ::null());
-   if(p != ::null())
+   ASSERT(p != NULL);
+   if(p != NULL)
    {
       ::count cnt = pointer_array < DERIVED >::remove(p);
       p->release();

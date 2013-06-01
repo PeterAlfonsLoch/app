@@ -257,7 +257,7 @@ namespace libcompress
       ::libcompress::coder2_interface * &coder2,
       bool encode)
    {
-      ::libcompress::filter_interface * filter = ::null();
+      ::libcompress::filter_interface * filter = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,
          methodId,
@@ -269,8 +269,8 @@ namespace libcompress
       method_id methodId,
       ::libcompress::coder_interface * &coder, bool encode)
    {
-//      ::libcompress::filter_interface * filter = ::null();
-      ::libcompress::coder2_interface * coder2 = ::null();
+//      ::libcompress::filter_interface * filter = NULL;
+      ::libcompress::coder2_interface * coder2 = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,
          methodId,
@@ -283,8 +283,8 @@ namespace libcompress
       ::libcompress::filter_interface * &filter,
       bool encode)
    {
-      ::libcompress::coder_interface * coder = ::null();
-      ::libcompress::coder2_interface * coder2 = ::null();
+      ::libcompress::coder_interface * coder = NULL;
+      ::libcompress::coder2_interface * coder2 = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,
          methodId,

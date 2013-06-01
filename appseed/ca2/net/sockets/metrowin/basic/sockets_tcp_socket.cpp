@@ -618,7 +618,9 @@ namespace sockets
             //int n = reader->UnconsumedBufferLength;
             Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
             reader->ReadBytes(ucha);
-            OnRead((char *) ucha->Data, ucha->Length);
+            ::primitive::memory mem;
+            mem.assign(ucha->Data, ucha->Length);
+            OnRead((char *) mem.get_data(), mem.get_size());
          }
          else
          {

@@ -8,7 +8,7 @@ typedef bool
     _In_ uint32_t dwFlag);
 
 
-LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = ::null();
+LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
 
 typedef  
 LSTATUS
@@ -22,7 +22,7 @@ LSTATUS
     LPDWORD pcbData
     );
 
-LPFN_RegGetValueW g_pfnRegGetValueW = ::null();
+LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
 
 
@@ -76,16 +76,16 @@ WinRegGetValueW(
     LPDWORD pcbData
     )
 {
-   if(g_pfnRegGetValueW != ::null())
+   if(g_pfnRegGetValueW != NULL)
    {
       return g_pfnRegGetValueW(hkey, lpSubKey, lpValue, dwFlags, pdwType, pvData, pcbData);
    }
    else
    {
-      LSTATUS lstatus = RegQueryValueExW(hkey, lpSubKey, ::null(), pdwType, (LPBYTE) pvData, pcbData);
+      LSTATUS lstatus = RegQueryValueExW(hkey, lpSubKey, NULL, pdwType, (LPBYTE) pvData, pcbData);
       if(lstatus == ERROR_SUCCESS)
       {
-         if(pvData != ::null() && (dwFlags & RRF_RT_REG_SZ) != 0 && *pdwType == REG_SZ)
+         if(pvData != NULL && (dwFlags & RRF_RT_REG_SZ) != 0 && *pdwType == REG_SZ)
          {
             ((WCHAR *)pvData)[*pcbData] = L'\0';
          }
@@ -96,8 +96,8 @@ WinRegGetValueW(
 
 
 
-Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = ::null();
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = ::null();
+Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
+Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
 DWORD_PTR                        g_gdiplusToken             = NULL;
 DWORD_PTR                        g_gdiplusHookToken         = NULL;
 
@@ -112,7 +112,7 @@ bool main_initialize()
    g_gdiplusToken             = NULL;
    g_gdiplusHookToken         = NULL;
 
-   //MessageBox(::null(), "Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+   //MessageBox(NULL, "Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 
    g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 
@@ -122,7 +122,7 @@ bool main_initialize()
    if(statusStartup != Gdiplus::Ok)
    {
       
-      MessageBox(::null(), "Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+      MessageBox(NULL, "Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
       
       return FALSE;
 
@@ -134,7 +134,7 @@ bool main_initialize()
    if(statusStartup != Gdiplus::Ok)
    {
       
-      MessageBox(::null(), "Gdiplus Failed to Hook. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+      MessageBox(NULL, "Gdiplus Failed to Hook. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
       
       return FALSE;
 
@@ -231,17 +231,17 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
 
    LPWSTR lpBuffer;
 
-   HMODULE Hand = ::null();
+   HMODULE Hand = NULL;
 
    if(!FormatMessageW(
       FORMAT_MESSAGE_ALLOCATE_BUFFER |
       FORMAT_MESSAGE_FROM_SYSTEM,
-      ::null(),
+      NULL,
       dwError,
       0,
       (LPWSTR) &lpBuffer,
       1,
-      ::null()))
+      NULL))
    {
 
       HMODULE Hand = ::LoadLibrary("NTDLL.DLL");
@@ -255,7 +255,7 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
          0,
          (LPWSTR) &lpBuffer,
          1,
-         ::null()))
+         NULL))
       {
          FreeLibrary(Hand);
          return "";
@@ -267,7 +267,7 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
 
    LocalFree(lpBuffer);
    
-   if(Hand != ::null())
+   if(Hand != NULL)
    {
       FreeLibrary(Hand);
    }

@@ -35,11 +35,11 @@ public:
    static index   match(string_array & stra, const char * lpcsz, const char * lpcszExp, bool bCaseInsensitive, strsize iSize);
    
 
-   static bool    find(string & strMatch, const string & str, const string & strExp, index iSubString, strsize * piStart = ::null(), strsize * piEnd = ::null());
-   static bool    find(string & strMatch, const string & str, cregexp * re, index iSubString, strsize * piStart = ::null(), strsize * piEnd = ::null());
+   static bool    find(string & strMatch, const string & str, const string & strExp, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
+   static bool    find(string & strMatch, const string & str, cregexp * re, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
 
-   static bool    find(const string & str, const string & strExp, index iSubString, strsize * piStart = ::null(), strsize * piEnd = ::null());
-   static bool    find(const string & str, cregexp * re, index iSubString, strsize * piStart = ::null(), strsize * piEnd = ::null());
+   static bool    find(const string & str, const string & strExp, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
+   static bool    find(const string & str, cregexp * re, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
 
    static bool    split(string_array & stra, index_array & iaStart, index_array & iaEnd, const string & str, const string & strExp, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
    static bool    split(string_array & stra, const string & str, const string & strExp, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);

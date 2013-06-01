@@ -180,7 +180,7 @@ namespace sockets
 
       SendResponse();
 
-      if(m_obuf_top == ::null())
+      if(m_obuf_top == NULL)
       {
          OnWriteComplete();
       }

@@ -4,10 +4,10 @@
 simple_ui::simple_ui()
 {
 
-   m_puiParent    = ::null();
+   m_puiParent    = NULL;
    m_bVisible     = true;
-   m_puiFocus     = ::null();
-   m_pplugin      = ::null();
+   m_puiFocus     = NULL;
+   m_pplugin      = NULL;
 
 }
 
@@ -19,7 +19,7 @@ simple_ui::~simple_ui()
 void simple_ui::set_parent(simple_ui * puiParent)
 {
 
-   if(m_puiParent != ::null() && m_puiParent != puiParent)
+   if(m_puiParent != NULL && m_puiParent != puiParent)
    {
 
       for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
@@ -39,7 +39,7 @@ void simple_ui::set_parent(simple_ui * puiParent)
 
    m_puiParent = puiParent;
 
-   if(m_puiParent != ::null())
+   if(m_puiParent != NULL)
    {
 
       m_puiParent->m_uiptra.add(this);
@@ -159,7 +159,7 @@ void simple_ui::on_mouse_move(int32_t x, int32_t y)
 void simple_ui::on_action(const char * pszId)
 {
 
-   if(m_puiParent != ::null())
+   if(m_puiParent != NULL)
    {
 
       m_puiParent->on_action(pszId);
@@ -230,7 +230,7 @@ void simple_ui::focus_next()
 void simple_ui::set_focus(simple_ui * pui)
 {
 
-   if(m_puiParent == ::null())
+   if(m_puiParent == NULL)
    {
 
       m_puiFocus = pui;
@@ -249,7 +249,7 @@ void simple_ui::set_focus(simple_ui * pui)
 simple_ui * simple_ui::get_focus()
 {
 
-   if(m_puiParent == ::null())
+   if(m_puiParent == NULL)
    {
 
       return m_puiFocus;
@@ -269,7 +269,7 @@ simple_ui * simple_ui::get_focus()
 bool simple_ui::is_visible()
 {
 
-   return m_bVisible && (m_puiParent == ::null() || m_puiParent->is_visible());
+   return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
 
 }
 
@@ -277,11 +277,11 @@ bool simple_ui::is_visible()
 ::hotplugin::plugin * simple_ui::get_plugin()
 {
 
-   if(m_pplugin != ::null())
+   if(m_pplugin != NULL)
       return m_pplugin;
 
-   if(m_puiParent == ::null())
-      return ::null();
+   if(m_puiParent == NULL)
+      return NULL;
 
    return m_puiParent->get_plugin();
 

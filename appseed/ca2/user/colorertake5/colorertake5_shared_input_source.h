@@ -40,7 +40,7 @@ public:
    * Opens it, if not yet opened.
    */
   const byte *getStream(){
-    if (stream == ::null()){
+    if (stream == NULL){
       stream = openStream();
     }
     return stream;

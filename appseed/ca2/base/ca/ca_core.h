@@ -36,22 +36,22 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Verify that a null-terminated string points to valid primitive::memory
+// Verify that a NULL-terminated string points to valid primitive::memory
 inline bool __is_valid_string(const wchar_t * psz, size_t nMaxLength = INT_MAX)
 {
 #ifdef WINDOWS
    (nMaxLength);
 #endif
-   return (psz != ::null());
+   return (psz != NULL);
 }
 
-// Verify that a null-terminated string points to valid primitive::memory
+// Verify that a NULL-terminated string points to valid primitive::memory
 inline bool __is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
 {
 #ifdef WINDOWS
    (nMaxLength);
 #endif
-   return (psz != ::null());
+   return (psz != NULL);
 }
 
 // Verify that a pointer points to valid primitive::memory
@@ -61,7 +61,7 @@ inline bool __is_valid_address(const void * p, size_t nBytes, bool bReadWrite = 
    (bReadWrite);
    (nBytes);
 #endif
-   return (p != ::null());
+   return (p != NULL);
 }
 
 /*template<typename T>
@@ -219,7 +219,7 @@ HRESULT Term() throw() { return S_OK; }
 /*template <typename _CharType>
 inline _CharType* gen_CharNext(const _CharType* p) throw()
 {
-ASSUME(p != ::null());   // Too expensive to check separately here
+ASSUME(p != NULL);   // Too expensive to check separately here
 if (*p == '\0')  // ::CharNextA won't increment if we're at a \0 already
 return const_cast<_CharType*>(p+1);
 else
@@ -234,10 +234,10 @@ return const_cast< wchar_t* >( p+1 );
 template<typename CharType>
 inline const CharType* gen_strchrT(const CharType* p, CharType ch) throw()
 {
-ASSERT(p != ::null());
-if(p==::null())
+ASSERT(p != NULL);
+if(p==NULL)
 {
-return ::null();
+return NULL;
 }
 while( *p != 0 )
 {
@@ -248,8 +248,8 @@ return p;
 p = gen_CharNext(p);
 }
 //strchr for '\0' should succeed - the while loop terminates
-// *p == 0, but ch also == 0, so ::null() terminator address is returned
-return (*p == ch) ? p : ::null();
+// *p == 0, but ch also == 0, so NULL terminator address is returned
+return (*p == ch) ? p : NULL;
 }
 //Ansi and Unicode versions of printf, used with templated CharType trait classes.
 #pragma warning(push)
@@ -282,7 +282,7 @@ return retval;
 
 inline bool gen_ConvertSystemTimeToVariantTime(const SYSTEMTIME& systimeSrc,double* pVarDtTm)
 {
-ENSURE(pVarDtTm!=::null());
+ENSURE(pVarDtTm!=NULL);
 //Convert using ::SystemTimeToVariantTime and store the result in pVarDtTm then
 //convert variant time back to system time and compare to original system time.
 bool ok = ::SystemTimeToVariantTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);

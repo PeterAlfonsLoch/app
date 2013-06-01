@@ -31,7 +31,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
 void FileManagerLeftView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != ::null())
+   if(phint != NULL)
    {
       if(base < FileManagerViewUpdateHint > :: bases(phint))
       {
@@ -47,7 +47,7 @@ void FileManagerLeftView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
                sp(FileManagerFrame) pframe = GetParentFrame();
-               if(pframe != ::null())
+               if(pframe != NULL)
                {
                   pframe->m_dataid = str;
                }
@@ -71,9 +71,9 @@ void FileManagerLeftView::CreateViews()
 
    filemanager::SimpleFileListView * plist = create_view < filemanager::SimpleFileListView >();
 
-   if(plist == ::null())
+   if(plist == NULL)
    {
-      System.simple_message_box(::null(), "Could not create folder tree ::user::view");
+      System.simple_message_box(NULL, "Could not create folder tree ::user::view");
    }
    
    plist->m_bStatic = true;
@@ -84,9 +84,9 @@ void FileManagerLeftView::CreateViews()
 
   filemanager:: SimpleFolderTreeView * pmediaview = create_view < filemanager::SimpleFolderTreeView > ();
 
-   if(pmediaview == ::null())
+   if(pmediaview == NULL)
    {
-      System.simple_message_box(::null(), "Could not create file list ::user::view");
+      System.simple_message_box(NULL, "Could not create file list ::user::view");
    }
 
    SetPane(1, pmediaview, false);

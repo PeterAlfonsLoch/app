@@ -84,7 +84,7 @@ namespace user
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
       virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);*/
 
-      virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = ::null());
+      virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
       //virtual void OnInitialUpdate(); // called first time after construct
       DECL_GEN_VSIGNAL(_001OnInitialUpdate) // called first time after construct
@@ -102,18 +102,18 @@ namespace user
 
 
 
-      sp(::user::interaction) create_view(::ca::type_info * info, sp(::user::document_interface) pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
-      static sp(::user::interaction) s_create_view(::ca::type_info * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = ::null());
+      sp(::user::interaction) create_view(::ca::type_info * info, sp(::user::document_interface) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(::ca::type_info * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
       static sp(::user::interaction) s_create_view(::ca::create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::document_interface * pdoc = ::null(), sp(::user::interaction) pwndParent = ::null(), ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
+      sp(VIEW) create_view(::user::document_interface * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::interaction * pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = ::null());
+      sp(VIEW) create_view(::user::interaction * pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = ::null());
+      sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = NULL);
 
 
       static sp(::user::document_interface) get_document(sp(::user::interaction) pguie);

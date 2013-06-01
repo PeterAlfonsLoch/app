@@ -67,7 +67,7 @@ index cregexp_util::match(string_array & stra, const char * lpcsz, const char * 
 bool cregexp_util::find(string & strMatch, const string & str, cregexp * pre, index iSubString, strsize  * piStart, strsize  * piEnd)
 {
    
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
    strsize iStart;
@@ -103,7 +103,7 @@ bool cregexp_util::find(string & strMatch, const string & str, const string & st
 
    pre = CompileExpression(strExp, false);
 
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
 
@@ -123,7 +123,7 @@ bool cregexp_util::find(const string & str, const string & strExp, index iSubStr
 
    pre = CompileExpression(strExp, false);
 
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
 
@@ -144,12 +144,12 @@ bool cregexp_util::find(const string & str, cregexp * re, index iSubString, strs
    
    strsize iEnd;
 
-   if(piStart != ::null())
+   if(piStart != NULL)
       iStart = *piStart;
    else
       iStart = 0;
 
-   if(piEnd != ::null())
+   if(piEnd != NULL)
       iEnd = *piEnd;
    else
       iEnd = str.get_length() - 1;
@@ -207,7 +207,7 @@ bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array
 
    pre = CompileExpression(strExp, false);
 
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
    bool bFound = split(stra, iaStart, iaEnd, str, pre, iLimit, bAddEmpty, bWithSeparator);
@@ -226,7 +226,7 @@ bool    cregexp_util::split(string_array & stra, const string & str, const strin
 
    pre = CompileExpression(strExp, false);
 
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
    bool bFound = split(stra, str, pre, iLimit, bAddEmpty, bWithSeparator);
@@ -240,7 +240,7 @@ bool    cregexp_util::split(string_array & stra, const string & str, const strin
 bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, cregexp * pre, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
    strsize iStart = 0;
@@ -293,7 +293,7 @@ bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array
 bool cregexp_util::split(string_array & stra, const string & str, cregexp * pre, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
-   if(pre == ::null())
+   if(pre == NULL)
       return false;
 
    strsize iStart = 0;
@@ -360,8 +360,8 @@ bool cregexp_util::add_tokens(string_array & stra, const char * lpszSubject, con
 
    pre = CompileExpression(lpszExpression, false);
 
-   ASSERT(pre != ::null());
-   if(pre == ::null())
+   ASSERT(pre != NULL);
+   if(pre == NULL)
       return false;
 
    pre->setPositionMoves(true);

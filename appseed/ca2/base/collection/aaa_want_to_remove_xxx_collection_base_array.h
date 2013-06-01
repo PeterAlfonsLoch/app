@@ -24,7 +24,7 @@ public:
       iterator()
       {
          m_i = 0;
-         m_parray = ::null();
+         m_parray = NULL;
       }
 
       iterator(index i, aaa_base_array * parray)
@@ -114,7 +114,7 @@ public:
       const_iterator()
       {
          m_i = 0;
-         m_parray = ::null();
+         m_parray = NULL;
       }
 
       const_iterator(index i, const aaa_base_array * parray)
@@ -203,12 +203,12 @@ public:
    };
 
 
-   aaa_base_array(sp(::ca::application) papp = ::null());
+   aaa_base_array(sp(::ca::application) papp = NULL);
    aaa_base_array(const aaa_base_array <TYPE, ARG_TYPE> & a);
    aaa_base_array(::count n, const TYPE & t = TYPE());
    aaa_base_array(TYPE * ptypea, ::count n)
    {
-      m_pData = ::null();
+      m_pData = NULL;
       m_nSize = m_nMaxSize = m_nGrowBy = 0;
       while(n > 0)
       {
@@ -241,7 +241,7 @@ public:
    const TYPE& element_at(index nIndex) const;
    TYPE& element_at(index nIndex);
 
-   // Direct Access to the element data (may return ::null())
+   // Direct Access to the element data (may return NULL)
    const TYPE* get_data() const;
    TYPE* get_data();
 
@@ -376,7 +376,7 @@ public:
 template<class TYPE, class ARG_TYPE>
 aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(const aaa_base_array<TYPE, ARG_TYPE> & a)
 {
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
    operator =(a);
 }
@@ -384,7 +384,7 @@ aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(const aaa_base_array<TYPE, ARG_TY
 template<class TYPE, class ARG_TYPE>
 aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(::count n, const TYPE & t)
 {
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
    while(n > 0)
    {
@@ -719,7 +719,7 @@ template<class TYPE, class ARG_TYPE>
 aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(sp(::ca::application) papp) :
    ca(papp)
 {
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
@@ -728,7 +728,7 @@ aaa_base_array<TYPE, ARG_TYPE>::~aaa_base_array()
 {
    ASSERT_VALID(this);
 
-   if (m_pData != ::null())
+   if (m_pData != NULL)
    {
       for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
@@ -752,16 +752,16 @@ template<class TYPE, class ARG_TYPE>
    if (nNewSize == 0)
    {
       // shrink to nothing
-      if (m_pData != ::null())
+      if (m_pData != NULL)
       {
          for( int32_t i = 0; i < m_nSize; i++ )
             (m_pData + i)->~TYPE();
          delete[] (BYTE*)m_pData;
-         m_pData = ::null();
+         m_pData = NULL;
       }
       m_nSize = m_nMaxSize = 0;
    }
-   else if (m_pData == ::null())
+   else if (m_pData == NULL)
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
@@ -868,7 +868,7 @@ void aaa_base_array<TYPE, ARG_TYPE>::free_extra()
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 #endif
-      TYPE* pNewData = ::null();
+      TYPE* pNewData = NULL;
       if (m_nSize != 0)
       {
 #undef new
@@ -1054,11 +1054,11 @@ insert_array_at(index nStartIndex, aaa_base_array* pNewArray)
       return insert_array_at(nStartIndex, &arrayCopy);
    }
    ASSERT_VALID(this);
-   ASSERT(pNewArray != ::null());
+   ASSERT(pNewArray != NULL);
    ASSERT_VALID(pNewArray);
    ASSERT(nStartIndex >= 0);
 
-   if(pNewArray == ::null() || nStartIndex < 0)
+   if(pNewArray == NULL || nStartIndex < 0)
       throw invalid_argument_exception(get_app());
 
    if (pNewArray->get_size() > 0)
@@ -1096,7 +1096,7 @@ void aaa_base_array<TYPE, ARG_TYPE>::assert_valid() const
 {
    ::ca::object::assert_valid();
 
-   if (m_pData == ::null())
+   if (m_pData == NULL)
    {
       ASSERT(m_nSize == 0);
       ASSERT(m_nMaxSize == 0);

@@ -6,7 +6,7 @@
 /*uint32_t ___ReadProc    (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    uint32_t dwRead;
-   if(ReadFile(handle, buffer, count * size, &dwRead, ::null()))
+   if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
    {
       return count;
    }
@@ -19,7 +19,7 @@
 uint32_t ___WriteProc   (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    uint32_t dwWritten;
-   if(WriteFile(handle, buffer, count * size, &dwWritten, ::null()))
+   if(WriteFile(handle, buffer, count * size, &dwWritten, NULL))
    {
       return count;
    }
@@ -36,20 +36,20 @@ int32_t      ___SeekProc    (fi_handle handle, long offset, int32_t origin)
       origin = FILE_CURRENT;
    else if(origin == SEEK_END)
       origin = FILE_END;
-   if(SetFilePointer(handle, offset, ::null(), origin) == 0xFFFFFFFF)
+   if(SetFilePointer(handle, offset, NULL, origin) == 0xFFFFFFFF)
       return -1;
    else
       return 0;
 }
 long     ___TellProc    (fi_handle handle)
 {
-   return SetFilePointer(handle, 0, ::null(), SEEK_CUR);
+   return SetFilePointer(handle, 0, NULL, SEEK_CUR);
 }
 
 uint32_t __ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    uint32_t dwRead;
-   if(ReadFile(handle, buffer, count * size, &dwRead, ::null()))
+   if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
    {
       return count;
    }
@@ -62,7 +62,7 @@ uint32_t __ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle hand
 uint32_t __WriteProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    uint32_t dwWritten;
-   if(WriteFile(handle, buffer, count * size, &dwWritten, ::null()))
+   if(WriteFile(handle, buffer, count * size, &dwWritten, NULL))
    {
       return count;
    }
@@ -79,14 +79,14 @@ int32_t __SeekProc (fi_handle handle, long offset, int32_t origin)
       origin = FILE_CURRENT;
    else if(origin == SEEK_END)
       origin = FILE_END;
-   if(SetFilePointer(handle, offset, ::null(), origin) == 0xFFFFFFFF)
+   if(SetFilePointer(handle, offset, NULL, origin) == 0xFFFFFFFF)
       return -1;
    else
       return 0;
 }
 long __TellProc (fi_handle handle)
 {
-   return SetFilePointer(handle, 0, ::null(), SEEK_CUR);
+   return SetFilePointer(handle, 0, NULL, SEEK_CUR);
 }*/
 
 uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)

@@ -50,7 +50,7 @@ namespace ca
       bool replace_data(TYPE * pdata)
       {
          
-         TYPE * pderived = ::null();
+         TYPE * pderived = NULL;
 
          for(index i = 0; i < m_spadata.get_count(); i++)
          {
@@ -66,7 +66,7 @@ namespace ca
 
             }
 
-            if(pderived != ::null())
+            if(pderived != NULL)
             {
 
                retry_single_lock rsl1(pderived->data_mutex(), millis(1), millis(1));

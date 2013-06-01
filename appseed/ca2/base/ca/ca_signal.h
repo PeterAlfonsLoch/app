@@ -25,7 +25,7 @@ namespace ca
 
 
 
-      signal_object(sp(::ca::application) papp = ::null());
+      signal_object(sp(::ca::application) papp = NULL);
       signal_object(signal * psignal);
       virtual ~signal_object();
 
@@ -124,7 +124,7 @@ namespace ca
          {
          };
          virtual void emit(signal_object * pobject) = 0;
-         virtual signalizable * get_signalizable() { return ::null();}
+         virtual signalizable * get_signalizable() { return NULL;}
       };
       template < class T >
       class signal_delegate_instance : public signal_delegate
@@ -152,7 +152,7 @@ namespace ca
       virtual ~signal();
 
       bool has_handler();
-      void emit(signal_object * pobject = ::null());
+      void emit(signal_object * pobject = NULL);
       void emit_previous(signal_object * pobject);
       void emit_all_previous(signal_object * pobject);
       template < class T >
@@ -169,7 +169,7 @@ namespace ca
          for(int32_t i = 0; i < m_delegatea.get_size(); i++)
          {
             signal_delegate_instance < T > * pdelegate = m_delegatea.typed_ptr_at < signal_delegate_instance < T > > (i);
-            if(pdelegate != ::null() && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
+            if(pdelegate != NULL && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
                return true;
          }
          return false;
@@ -289,7 +289,7 @@ namespace ca
          {
             signal * psignal = m_signala.GetSignalById(pid);
             // If not found a existing Signal, create one
-            if(psignal == ::null())
+            if(psignal == NULL)
             {
                psignal                    = new signal;
                psignal->m_pid             = pid->copy();
@@ -349,7 +349,7 @@ namespace ca
             return &signal;
          }
       }
-      return ::null();
+      return NULL;
    }
 
 

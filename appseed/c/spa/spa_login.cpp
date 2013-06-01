@@ -4,7 +4,7 @@
 
 spa_login::spa_login()
 {
-   m_pcallback = ::null();
+   m_pcallback = NULL;
 
    m_labelUser.set_parent(this);
    m_editUser.set_parent(this);
@@ -163,7 +163,7 @@ void spa_login::on_action(const char * pszId)
 void spa_login::start_login()
 {
 
-   ::create_thread(::null(), 0, &spa_login::thread_proc_login, (LPVOID) this, 0, 0);
+   ::create_thread(NULL, 0, &spa_login::thread_proc_login, (LPVOID) this, 0, 0);
 
 }
 
@@ -334,7 +334,7 @@ spa_login::e_result spa_login::login()
 
    }
 
-   //      char * psz = ::null();
+   //      char * psz = NULL;
    //    *psz = '2';
    return eresult;
 
@@ -359,7 +359,7 @@ void spa_login::login_result(e_result eresult)
    }
 
 
-   if(m_pcallback != ::null())
+   if(m_pcallback != NULL)
    {
 
       m_pcallback->login_result(eresult);

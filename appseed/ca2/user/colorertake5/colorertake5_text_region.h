@@ -45,19 +45,19 @@ public:
    * @throw exception If casing is not available.
    */
   static const TextRegion *cast(const RegionDefine *rd){
-    if (rd == ::null()) return ::null();
+    if (rd == NULL) return NULL;
     const TextRegion *tr = (const TextRegion *)(rd);
-    if (tr == ::null())  throw exception(::ca::get_thread_app(), string("Bad type cast exception into TextRegion"));
+    if (tr == NULL)  throw exception(::ca::get_thread_app(), string("Bad type cast exception into TextRegion"));
     return tr;
   }
 
   /**
    * Assigns region define with it's parent values.
-   * All fields are to be replaced, if they are ::null()-ed.
+   * All fields are to be replaced, if they are NULL-ed.
   */
   void assignParent(const RegionDefine *_parent){
     const TextRegion *parent = TextRegion::cast(_parent);
-    if (parent == ::null()) return;
+    if (parent == NULL) return;
     if (stext.is_empty() || etext.is_empty()){
       stext = parent->stext;
       etext = parent->etext;
@@ -73,7 +73,7 @@ public:
    * Do not assign region reference.
    */
   void setValues(const RegionDefine *_rd){
-    if (_rd == ::null()) return;
+    if (_rd == NULL) return;
     const TextRegion *rd = TextRegion::cast(_rd);
     stext = rd->stext;
     etext = rd->etext;

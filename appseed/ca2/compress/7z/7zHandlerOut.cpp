@@ -30,7 +30,7 @@ uint64_t ConvertStringToUInt64(const char *s, const char **end)
     char c = *s;
     if (c < '0' || c > '9')
     {
-      if (end != ::null())
+      if (end != NULL)
         *end = s;
       return result;
     }
@@ -222,7 +222,7 @@ namespace n7z
          db = &volume->Database;
       }
 #else
-      if (_inStream != ::null())
+      if (_inStream != NULL)
          db = &_db;
 #endif
 

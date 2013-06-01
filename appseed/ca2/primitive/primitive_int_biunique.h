@@ -6,7 +6,7 @@ class  biunique :
    public ::ca::byte_serializable
 {
 public:
-   biunique(sp(::ca::application) papp = ::null());
+   biunique(sp(::ca::application) papp = NULL);
 
    bool has_a(T a) const;
    bool has_b(T b) const;
@@ -347,7 +347,7 @@ void serialize_write(::ca::byte_output_stream & ostream, map < t1, t2, t3, t4 > 
    ::count count = m.get_count();
    typename map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
    ostream << count;
-   while(ppair != ::null())
+   while(ppair != NULL)
    {
       ostream << ppair->m_element1;
       ostream << ppair->m_element2;
@@ -415,7 +415,7 @@ void biunique < T, T_to_T > ::read(::ca::byte_input_stream & istream)
          T_to_T ab;
          serialize_read(istream, ab);
          typename T_to_T::pair * ppair = ab.PGetFirstAssoc();
-         while(ppair != ::null())
+         while(ppair != NULL)
          {
             set(ppair->m_element1, ppair->m_element2);
             ppair = ab.PGetNextAssoc(ppair);
@@ -446,7 +446,7 @@ T biunique < T, T_to_T > ::calc_max_a()
    typename T_to_T::pair * ppair =
       m_ab.PGetFirstAssoc();
    T iMaxA = -1;
-   while(ppair != ::null())
+   while(ppair != NULL)
    {
       if(ppair->m_element1 > iMaxA)
          iMaxA = ppair->m_element1;
@@ -461,7 +461,7 @@ T biunique < T, T_to_T > ::calc_max_b()
    typename T_to_T::pair * ppair =
       m_ba.PGetFirstAssoc();
    T iMaxB = -1;
-   while(ppair != ::null())
+   while(ppair != NULL)
    {
       if(ppair->m_element1 > iMaxB)
          iMaxB = ppair->m_element1;
@@ -476,14 +476,14 @@ class CLASS_DECL_ca2 index_biunique :
    public biunique < index >
 {
 public:
-   index_biunique(sp(::ca::application) papp = ::null());
+   index_biunique(sp(::ca::application) papp = NULL);
 };
 
 class CLASS_DECL_ca2 int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:
-   int_biunique(sp(::ca::application) papp = ::null());
+   int_biunique(sp(::ca::application) papp = NULL);
 
 };
 

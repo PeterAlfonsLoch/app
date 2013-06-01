@@ -88,9 +88,9 @@ extern auth_type_t hmac;
 crypto_kernel_t
 crypto_kernel = {
   crypto_kernel_state_insecure,    /* start off in insecure state */
-  ::null(),                            /* no cipher types yet         */
-  ::null(),                            /* no auth types yet           */
-  ::null()                             /* no debug modules yet        */
+  NULL,                            /* no cipher types yet         */
+  NULL,                            /* no auth types yet           */
+  NULL                             /* no debug modules yet        */
 };
 
 #define MAX_RNG_TRIALS 25
@@ -194,7 +194,7 @@ crypto_kernel_status() {
   printf("passed\n");
 
   /* for each cipher type, describe and test */
-  while(ctype != ::null()) {
+  while(ctype != NULL) {
     printf("cipher: %s\n", ctype->cipher_type->description);
     printf("  instance count: %d\n", ctype->cipher_type->ref_count);
     printf("  self-test: ");
@@ -208,7 +208,7 @@ crypto_kernel_status() {
   }
   
   /* for each auth type, describe and test */
-  while(atype != ::null()) {
+  while(atype != NULL) {
     printf("auth func: %s\n", atype->auth_type->description);
     printf("  instance count: %d\n", atype->auth_type->ref_count);
     printf("  self-test: ");
@@ -223,7 +223,7 @@ crypto_kernel_status() {
 
   /* describe each debug module */
   printf("debug modules loaded:\n");
-  while (dm != ::null()) {
+  while (dm != NULL) {
     printf("  %s ", dm->mod->name);  
     if (dm->mod->on)
       printf("(on)\n");
@@ -241,7 +241,7 @@ crypto_kernel_list_debug_modules() {
 
   /* describe each debug module */
   printf("debug modules loaded:\n");
-  while (dm != ::null()) {
+  while (dm != NULL) {
     printf("  %s ", dm->mod->name);  
     if (dm->mod->on)
       printf("(on)\n");
@@ -262,7 +262,7 @@ crypto_kernel_shutdown() {
    */
 
   /* walk down cipher type list, freeing primitive::memory */
-  while (crypto_kernel.cipher_type_list != ::null()) {
+  while (crypto_kernel.cipher_type_list != NULL) {
     kernel_cipher_type_t *ctype = crypto_kernel.cipher_type_list;
     crypto_kernel.cipher_type_list = ctype->next;
     debug_print(mod_crypto_kernel, 
@@ -272,7 +272,7 @@ crypto_kernel_shutdown() {
   }
 
   /* walk down authetication module list, freeing primitive::memory */
-  while (crypto_kernel.auth_type_list != ::null()) {
+  while (crypto_kernel.auth_type_list != NULL) {
      kernel_auth_type_t *atype = crypto_kernel.auth_type_list;
      crypto_kernel.auth_type_list = atype->next;
      debug_print(mod_crypto_kernel, 
@@ -282,7 +282,7 @@ crypto_kernel_shutdown() {
   }
 
   /* walk down debug module list, freeing primitive::memory */
-  while (crypto_kernel.debug_module_list != ::null()) {
+  while (crypto_kernel.debug_module_list != NULL) {
     kernel_debug_module_t *kdm = crypto_kernel.debug_module_list;
     crypto_kernel.debug_module_list = kdm->next;
     debug_print(mod_crypto_kernel, 
@@ -307,7 +307,7 @@ crypto_kernel_load_cipher_type(cipher_type_t *new_ct, cipher_type_id_t id) {
   err_status_t status;
 
   /* defensive coding */
-  if (new_ct == ::null())
+  if (new_ct == NULL)
     return err_status_bad_param;
 
   /* check cipher type by running self-test */
@@ -318,7 +318,7 @@ crypto_kernel_load_cipher_type(cipher_type_t *new_ct, cipher_type_id_t id) {
 
   /* walk down list, checking if this type is in the list already  */
   ctype = crypto_kernel.cipher_type_list;
-  while (ctype != ::null()) {
+  while (ctype != NULL) {
     if ((new_ct == ctype->cipher_type) || (id == ctype->id))
       return err_status_bad_param;    
     ctype = ctype->next;
@@ -327,7 +327,7 @@ crypto_kernel_load_cipher_type(cipher_type_t *new_ct, cipher_type_id_t id) {
   /* put new_ct at the head of the list */
   /* allocate primitive::memory */
   new_ctype = (kernel_cipher_type_t *) crypto_alloc(sizeof(kernel_cipher_type_t));
-  if (new_ctype == ::null())
+  if (new_ctype == NULL)
     return err_status_alloc_fail;
     
   /* set fields */
@@ -339,7 +339,7 @@ crypto_kernel_load_cipher_type(cipher_type_t *new_ct, cipher_type_id_t id) {
   crypto_kernel.cipher_type_list = new_ctype;    
 
   /* load debug module, if there is one present */
-  if (new_ct->debug != ::null())
+  if (new_ct->debug != NULL)
     crypto_kernel_load_debug_module(new_ct->debug);
   /* we could check for errors here */
 
@@ -352,7 +352,7 @@ crypto_kernel_load_auth_type(auth_type_t *new_at, auth_type_id_t id) {
   err_status_t status;
 
   /* defensive coding */
-  if (new_at == ::null())
+  if (new_at == NULL)
     return err_status_bad_param;
 
   /* check auth type by running self-test */
@@ -363,7 +363,7 @@ crypto_kernel_load_auth_type(auth_type_t *new_at, auth_type_id_t id) {
 
   /* walk down list, checking if this type is in the list already  */
   atype = crypto_kernel.auth_type_list;
-  while (atype != ::null()) {
+  while (atype != NULL) {
     if ((new_at == atype->auth_type) || (id == atype->id))
       return err_status_bad_param;    
     atype = atype->next;
@@ -372,7 +372,7 @@ crypto_kernel_load_auth_type(auth_type_t *new_at, auth_type_id_t id) {
   /* put new_at at the head of the list */
   /* allocate primitive::memory */
   new_atype = (kernel_auth_type_t *)crypto_alloc(sizeof(kernel_auth_type_t));
-  if (new_atype == ::null())
+  if (new_atype == NULL)
     return err_status_alloc_fail;
     
   /* set fields */
@@ -384,7 +384,7 @@ crypto_kernel_load_auth_type(auth_type_t *new_at, auth_type_id_t id) {
   crypto_kernel.auth_type_list = new_atype;    
 
   /* load debug module, if there is one present */
-  if (new_at->debug != ::null())
+  if (new_at->debug != NULL)
     crypto_kernel_load_debug_module(new_at->debug);
   /* we could check for errors here */
 
@@ -399,14 +399,14 @@ crypto_kernel_get_cipher_type(cipher_type_id_t id) {
   
   /* walk down list, looking for id  */
   ctype = crypto_kernel.cipher_type_list;
-  while (ctype != ::null()) {
+  while (ctype != NULL) {
     if (id == ctype->id)
       return ctype->cipher_type; 
     ctype = ctype->next;
   } 
 
-  /* haven't found the right one, indicate failure by returning ::null() */
-  return ::null();
+  /* haven't found the right one, indicate failure by returning NULL */
+  return NULL;
 }
 
 
@@ -438,14 +438,14 @@ crypto_kernel_get_auth_type(auth_type_id_t id) {
   
   /* walk down list, looking for id  */
   atype = crypto_kernel.auth_type_list;
-  while (atype != ::null()) {
+  while (atype != NULL) {
     if (id == atype->id)
       return atype->auth_type; 
     atype = atype->next;
   } 
 
-  /* haven't found the right one, indicate failure by returning ::null() */
-  return ::null();
+  /* haven't found the right one, indicate failure by returning NULL */
+  return NULL;
 }
 
 err_status_t
@@ -474,12 +474,12 @@ crypto_kernel_load_debug_module(debug_module_t *new_dm) {
   kernel_debug_module_t *kdm, *newkdm;
 
   /* defensive coding */
-  if (new_dm == ::null())
+  if (new_dm == NULL)
     return err_status_bad_param;
 
   /* walk down list, checking if this type is in the list already  */
   kdm = crypto_kernel.debug_module_list;
-  while (kdm != ::null()) {
+  while (kdm != NULL) {
     if (strncmp(new_dm->name, kdm->mod->name, 64) == 0)
       return err_status_bad_param;    
     kdm = kdm->next;
@@ -488,7 +488,7 @@ crypto_kernel_load_debug_module(debug_module_t *new_dm) {
   /* put new_dm at the head of the list */
   /* allocate primitive::memory */
   newkdm = (kernel_debug_module_t *)crypto_alloc(sizeof(kernel_debug_module_t));
-  if (newkdm == ::null())
+  if (newkdm == NULL)
     return err_status_alloc_fail;
     
   /* set fields */
@@ -507,7 +507,7 @@ crypto_kernel_set_debug_module(char *name, int32_t on) {
   
   /* walk down list, checking if this type is in the list already  */
   kdm = crypto_kernel.debug_module_list;
-  while (kdm != ::null()) {
+  while (kdm != NULL) {
     if (strncmp(name, kdm->mod->name, 64) == 0) {
       kdm->mod->on = on;
       return err_status_ok;

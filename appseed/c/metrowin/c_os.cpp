@@ -21,10 +21,10 @@ CLASS_DECL_c int MessageBox(oswindow window, const char * pszMessage, const char
 {
   
 
-  
-   ::wait(window.get_os_window()->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
-      {
-    Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+   ::wait(get_os_window(window)->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
+   {
+   
+      Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
 
 //UICommand^ continueCommand = ref new UICommand(
   //      "Try again", 

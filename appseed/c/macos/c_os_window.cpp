@@ -48,7 +48,7 @@ oswindow::data * oswindow::get(nswindow window)
 }
 
 
-oswindow::oswindow(const ::ca::null & null)
+oswindow::oswindow(const ::caNULL & NULL)
 {
 
    m_pdata = NULL;
@@ -196,7 +196,7 @@ oswindow oswindow::get_parent()
 {
    
    if(m_pdata == NULL)
-      return ::ca::null();
+      return NULL;
    
    return m_pdata->m_pui->get_parent_handle();
    
@@ -207,7 +207,7 @@ oswindow oswindow::set_parent(oswindow oswindow)
 {
    
    if(m_pdata == NULL)
-      return ::ca::null();
+      return NULL;
    
    ::oswindow oswindowOldParent = get_parent();
    
@@ -216,7 +216,7 @@ oswindow oswindow::set_parent(oswindow oswindow)
    || oswindow.m_pdata->m_pui->m_pui == NULL)
    {
    
-       m_pdata->m_pui->set_parent_base(::null());
+       m_pdata->m_pui->set_parent_base(NULL);
       
    }
    else
@@ -255,7 +255,7 @@ oswindow SetCapture(oswindow window)
    oswindow windowOld(g_oswindowCapture);
    
    if(window.window() == NULL)
-      return ::ca::null();
+      return NULL;
    
 /*   if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, 8CurrentTime) == GrabSuccess)
    {
@@ -266,7 +266,7 @@ oswindow SetCapture(oswindow window)
       
    }*/
    
-   return ::ca::null();
+   return NULL;
    
 }
 
@@ -282,7 +282,7 @@ WINBOOL ReleaseCapture()
    WINBOOL bRet = FALSE;
    
    if(bRet)
-      g_oswindowCapture = ::ca::null();
+      g_oswindowCapture = NULL;
    
    return bRet;
    
@@ -293,12 +293,12 @@ oswindow SetFocus(oswindow window)
 {
    
    if(!IsWindow(window))
-      return ::ca::null();
+      return NULL;
    
    oswindow windowOld = ::GetFocus();
    
 //   if(!XSetInputFocus(window.display(), window.window(), RevertToNone, CurrentTime))
-  //    return ::ca::null();
+  //    return NULL;
    
    return windowOld;
    
@@ -318,13 +318,13 @@ oswindow GetFocus()
    //XCloseDisplay(pdisplay);
    
 //   if(!bOk)
-  //    return ::ca::null();
+  //    return NULL;
    
   // if(window == None || window == PointerRoot)
-    //  return ::ca::null();
+    //  return NULL;
    
    //return oswindow::defer_get(window);
-   return ::ca::null();
+   return NULL;
    
 }
 
@@ -345,11 +345,11 @@ oswindow SetActiveWindow(oswindow window)
    oswindow windowOld(g_oswindowActive);
    
    if(window.window() == NULL)
-      return ::ca::null();
+      return NULL;
    
    g_oswindowCapture = window;
    
-   return ::ca::null();
+   return NULL;
    
 }
 

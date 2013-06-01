@@ -10,7 +10,7 @@ namespace platform
       simple_frame_window(papp),
       form_frame(papp)
    {
-      m_pimagelist         = ::null();
+      m_pimagelist         = NULL;
       m_iFrameData         = 10;
       m_dataid             = "ca2::platform::frame";
 
@@ -139,7 +139,7 @@ namespace platform
             else if(!m_bHideTimer && (::get_tick_count() - m_dwLastSuperDock) > 984)
             {
                m_bHideTimer = true;
-               SetTimer(1001, 500, ::null());
+               SetTimer(1001, 500, NULL);
             }
          }
          // OpenGL animation code goes here
@@ -218,7 +218,7 @@ namespace platform
       UNREFERENCED_PARAMETER(pobj);
       m_bMouseLeaveTimer = true;
       m_bHover = false;
-      SetTimer(4321875, 884, ::null());
+      SetTimer(4321875, 884, NULL);
    }
 
    void frame::_001OnCreate(::ca::signal_object * pobj)
@@ -258,11 +258,11 @@ namespace platform
       rect rectDesktop;
 
       sp(::user::interaction) puiParent = GetTypedParent < ::bergedge::view >();
-      if(puiParent == ::null())
+      if(puiParent == NULL)
          puiParent = GetTypedParent < ::user::place_holder > ();
-      if(puiParent == ::null())
+      if(puiParent == NULL)
          puiParent = get_parent();
-      if(puiParent == ::null())
+      if(puiParent == NULL)
       {
          // There is no place to dock on to.
          return;

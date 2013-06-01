@@ -9,10 +9,10 @@ namespace colorertake5
       CLR_TRACE("text_parser_impl", "constructor");
       cache = new parse_cache();
       clearCache();
-      lineSource = ::null();
-      regionHandler = ::null();
-      picked = ::null();
-      baseScheme = ::null();
+      lineSource = NULL;
+      regionHandler = NULL;
+      picked = NULL;
+      baseScheme = NULL;
    }
 
    text_parser_impl::~text_parser_impl()
@@ -27,9 +27,9 @@ namespace colorertake5
    void text_parser_impl::setFileType(file_type *type)
    {
 
-      baseScheme = ::null();
+      baseScheme = NULL;
 
-      if (type != ::null())
+      if (type != NULL)
          baseScheme = (scheme_impl*)(type->getBaseScheme());
 
       clearCache();
@@ -65,13 +65,13 @@ namespace colorertake5
 
       CLR_TRACE("text_parser_impl", "parse from=%d, num=%d", from, num);
       /* Check for initial bad conditions */
-      if (regionHandler == ::null())
+      if (regionHandler == NULL)
          return from;
 
-      if (lineSource == ::null())
+      if (lineSource == NULL)
          return from;
 
-      if (baseScheme == ::null())
+      if (baseScheme == NULL)
          return from;
 
 
@@ -82,7 +82,7 @@ namespace colorertake5
 
       /* Init cache */
       parent = cache;
-      forward = ::null();
+      forward = NULL;
       cache->scheme = baseScheme;
 
       if (mode == TPM_CACHE_READ || mode == TPM_CACHE_UPDATE)
@@ -90,7 +90,7 @@ namespace colorertake5
 
          parent = cache->searchLine(from, &forward);
 
-         if (parent != ::null())
+         if (parent != NULL)
          {
             CLR_TRACE("TPCache", "searchLine() parent:%s,%d-%d", parent->scheme->getName().c_str(), parent->sline, parent->eline);
          }
@@ -113,7 +113,7 @@ namespace colorertake5
             if (updateCache)
             {
                delete parent->children;
-               parent->children = ::null();
+               parent->children = NULL;
             }
         }
         else
@@ -121,7 +121,7 @@ namespace colorertake5
             if (updateCache)
             {
                delete forward->next;
-               forward->next = ::null();
+               forward->next = NULL;
             }
          }
          baseScheme = parent->scheme;
@@ -137,7 +137,7 @@ namespace colorertake5
          }
          else
          {
-            colorize(::null(), false);
+            colorize(NULL, false);
          };
 
          if (updateCache)
@@ -173,7 +173,7 @@ namespace colorertake5
       delete cache->children;
       cache->sline = 0;
       cache->eline = 0x7FFFFFF;
-      cache->children = cache->parent = cache->next = ::null();
+      cache->children = cache->parent = cache->next = NULL;
    };
 
    void text_parser_impl::breakParse()
@@ -184,7 +184,7 @@ namespace colorertake5
    void text_parser_impl::addRegion(index lno, strsize sx, strsize ex, class region* region)
    {
 
-      if (sx == -1 || region == ::null())
+      if (sx == -1 || region == NULL)
          return;
 
       regionHandler->addRegion(lno, str, sx, ex, region);
@@ -203,7 +203,7 @@ namespace colorertake5
 
       regionHandler->leaveScheme(lno, str, sx, ex, region, baseScheme);
 
-      if (region != ::null())
+      if (region != NULL)
          picked = region;
 
    }
@@ -344,12 +344,12 @@ namespace colorertake5
    {
 
       index i, re_result;
-      scheme_impl *ssubst = ::null();
+      scheme_impl *ssubst = NULL;
       SMatches match;
-      parse_cache *OldCacheF = ::null();
-      parse_cache *OldCacheP = ::null();
-      parse_cache *ResF = ::null();
-      parse_cache *ResP = ::null();
+      parse_cache *OldCacheF = NULL;
+      parse_cache *OldCacheP = NULL;
+      parse_cache *ResF = NULL;
+      parse_cache *ResP = NULL;
 
       CLR_TRACE("text_parser_impl", "searchRE: entered scheme \"%s\"", cscheme->getName().c_str());
 
@@ -412,14 +412,14 @@ namespace colorertake5
                   OldCacheF = forward->next;
                   OldCacheP = parent?parent:forward->parent;
                   parent = forward->next;
-                  forward = ::null();
+                  forward = NULL;
                }else{
                   forward = new parse_cache;
                   parent->children = forward;
                   OldCacheF = forward;
                   OldCacheP = parent;
                   parent = forward;
-                  forward = ::null();
+                  forward = NULL;
                };
                OldCacheF->parent = OldCacheP;
                OldCacheF->sline = gy+1;
@@ -463,8 +463,8 @@ namespace colorertake5
             if (updateCache){
                if (ogy == gy){
                   delete OldCacheF;
-                  if (ResF) ResF->next = ::null();
-                  else ResP->children = ::null();
+                  if (ResF) ResF->next = NULL;
+                  else ResP->children = NULL;
                   forward = ResF;
                   parent = ResP;
                }else{
@@ -510,8 +510,8 @@ namespace colorertake5
          if (clearLine != gy){
             clearLine = gy;
             str = lineSource->getLine(gy);
-            /*if (str == ::null()){
-               throw exception(string("::null() string passed into the parser: ")+::ca::str::from(gy));
+            /*if (str == NULL){
+               throw exception(string("NULL string passed into the parser: ")+::ca::str::from(gy));
                gy = gy2;
                break;
             };*/
@@ -547,7 +547,7 @@ namespace colorertake5
                gy = gy2;
                break;
             };
-            if (picked != ::null() && gx+11 <= matchend.s[0] && ((const char *)str)[gx] == 'C'){
+            if (picked != NULL && gx+11 <= matchend.s[0] && ((const char *)str)[gx] == 'C'){
                int32_t ci;
                static char id[] = "fnq%Qtrjhg";
                for(ci = 0; ci < 10; ci++) if (((const char *)str)[gx+1+ci] != id[ci]-5) break;

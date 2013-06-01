@@ -167,7 +167,7 @@ stat_test_runs(uint8_t *data) {
   }
 
   if (mod_stat.on) {
-    debug_print(mod_stat, "runs test", ::null());
+    debug_print(mod_stat, "runs test", NULL);
     for (i=0; i < 6; i++)
       debug_print(mod_stat, "  runs[]: %d", runs[i]);
     for (i=0; i < 6; i++)
@@ -335,7 +335,7 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
   debug_print(mod_stat, "stat: poker test: %f", poker);
     
   if ((poker < 2.16) || (poker > 46.17)) {
-    debug_print(mod_stat, "stat: failed poker test", ::null());
+    debug_print(mod_stat, "stat: failed poker test", NULL);
     return err_status_algo_fail;
   }
 
@@ -343,11 +343,11 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
   for (i=0; i < 6; i++) 
     if ((runs[i] < lo_value[i] ) || (runs[i] > hi_value[i])
     || (gaps[i] < lo_value[i] ) || (gaps[i] > hi_value[i])) {
-      debug_print(mod_stat, "stat: failed run/gap test", ::null());
+      debug_print(mod_stat, "stat: failed run/gap test", NULL);
       return err_status_algo_fail; 
     }
 
-  debug_print(mod_stat, "passed random stat test", ::null());
+  debug_print(mod_stat, "passed random stat test", NULL);
   return err_status_ok;
 }
 

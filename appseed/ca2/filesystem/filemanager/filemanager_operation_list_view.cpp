@@ -30,7 +30,7 @@ void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
 
 ::count file_manager_operation_list_view::_001GetItemCount()
 {
-   if(get_document() == ::null())
+   if(get_document() == NULL)
       return 0;
    return get_document()->m_thread.get_item_count();
 }
@@ -98,7 +98,7 @@ void file_manager_operation_list_view::on_update(sp(::user::view) pSender, LPARA
 void file_manager_operation_list_view::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
-   SetTimer(123, 500, ::null());
+   SetTimer(123, 500, NULL);
 }
 void file_manager_operation_list_view::_001OnTimer(::ca::signal_object * pobj)
 {

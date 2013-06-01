@@ -7,8 +7,8 @@ namespace visual
       ca(papp),
       m_spfont(allocer())
    {
-      m_pDC       = ::null();
-      m_pfontOld  = ::null();
+      m_pDC       = NULL;
+      m_pfontOld  = NULL;
    }
 
    font::~font()
@@ -47,7 +47,7 @@ namespace visual
       for(int32_t i = 0; i < iSize; i++)
       {
          lpglyph = GetGlyph(str[i]);
-         if(lpglyph != ::null())
+         if(lpglyph != NULL)
          {
             ptOffset.x += pdc->GetTextExtent(str.Left(i)).cx;
             lpglyph->DrawGlyph(
@@ -96,7 +96,7 @@ namespace visual
       for(strsize i = 0; i < iSize; i++)
       {
          lpglyph = GetGlyph(str[i]);
-         if(lpglyph != ::null())
+         if(lpglyph != NULL)
          {
             ptOffset = rectOffset.top_left();
             ptOffset.x += (long) ((lpiCharsPositions[iOffset + i] - lpiCharsPositions[iOffset]) * dRateX);
@@ -214,7 +214,7 @@ namespace visual
       mat2.eM22.fract = 0;
       GLYPHMETRICS gm;
 
-      uint32_t cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, ::null(), &mat2);
+      uint32_t cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, NULL, &mat2);
 
       if(cbBuffer == GDI_ERROR)
          return FALSE;
@@ -230,7 +230,7 @@ namespace visual
 
       LPTTPOLYGONHEADER lpPH = (LPTTPOLYGONHEADER) malloc(cbBuffer);
 
-      if(lpPH == ::null())
+      if(lpPH == NULL)
          return FALSE;
 
       m_pDC->GetGlyphOutline(user, GGO_NATIVE, &gm, cbBuffer, lpPH, &mat2);
@@ -249,8 +249,8 @@ namespace visual
 
    void font::SetDC(::ca::graphics * pgraphics)
    {
-      ASSERT(m_pDC == ::null());
-      ASSERT(pgraphics != ::null());
+      ASSERT(m_pDC == NULL);
+      ASSERT(pgraphics != NULL);
       m_pDC = pgraphics;
    }
 
@@ -261,14 +261,14 @@ namespace visual
 
    void font::ClearDC()
    {
-      m_pDC = ::null();
+      m_pDC = NULL;
    }
 
    void font::UnselectFont()
    {
-      ASSERT(m_pfontOld != ::null());
+      ASSERT(m_pfontOld != NULL);
       m_pDC->SelectObject(m_pfontOld);
-      m_pfontOld = ::null();
+      m_pfontOld = NULL;
    }
 
 
@@ -297,12 +297,12 @@ namespace visual
       bool             forceInsertion = FALSE;
       stringa *   p1DTokens;
 
-      ASSERT(p2DTokens != ::null());
+      ASSERT(p2DTokens != NULL);
       SelectFont();
       for(i = 0; i < p2DTokens->get_size(); i++)
       {
          p1DTokens = p2DTokens->operator ()(i);
-         ASSERT(p1DTokens != ::null());
+         ASSERT(p1DTokens != NULL);
          for(j = 0; j < p1DTokens->get_size(); j++)
          {
             str = p1DTokens->operator [](j);
@@ -419,7 +419,7 @@ namespace visual
 
       ::ca::graphics_sp spgraphics(allocer());
 
-      spgraphics->CreateCompatibleDC(::null());
+      spgraphics->CreateCompatibleDC(NULL);
 
       ::ca::font * pFontOld = spgraphics->SelectObject(m_spfont);
 
@@ -441,9 +441,9 @@ bool CLASS_DECL_ca2 TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpStrin
 
 #ifdef WINDOWSEX
 
-   if(lpString == ::null())
+   if(lpString == NULL)
    {
-      return ::TextOutW(hdc, x, y, ::null(), c) != FALSE;
+      return ::TextOutW(hdc, x, y, NULL, c) != FALSE;
 
    }
 
@@ -459,9 +459,9 @@ bool CLASS_DECL_ca2 TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpStrin
 
 /*
 
-   if(lpString == ::null())
+   if(lpString == NULL)
    {
-      return ::TextOut(hdc, x, y, ::null(), 0) != FALSE;
+      return ::TextOut(hdc, x, y, NULL, 0) != FALSE;
    }
 
    return ::TextOut(hdc, x, y, wstr, (int32_t) wstr.get_length()) != FALSE;
@@ -477,10 +477,10 @@ CLASS_DECL_ca2 bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_
 
 #ifdef WINDOWSEX
 
-   if(lpString == ::null())
+   if(lpString == NULL)
    {
 
-      return ::GetTextExtentPoint32W(hdc, ::null(), c, psizl) != FALSE;
+      return ::GetTextExtentPoint32W(hdc, NULL, c, psizl) != FALSE;
 
    }
 
@@ -504,10 +504,10 @@ CLASS_DECL_ca2 int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchTex
 
 #ifdef WINDOWSEX
 
-   if(lpchText == ::null())
+   if(lpchText == NULL)
    {
 
-      return ::DrawTextW(hdc, ::null(), cchText, lprc, format);
+      return ::DrawTextW(hdc, NULL, cchText, lprc, format);
 
    }
 

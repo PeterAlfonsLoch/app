@@ -43,7 +43,7 @@ namespace spa
 
       void PaintOpaqueBk(simple_graphics & g);
       void PaintTransparentBk(simple_graphics & g);
-      void OnPaint(simple_graphics & g, LPRECT lprect = ::null());
+      void OnPaint(simple_graphics & g, LPRECT lprect = NULL);
       void OnPaint();
       void PaintBk(simple_graphics & g);
 

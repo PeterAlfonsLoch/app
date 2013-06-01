@@ -54,7 +54,7 @@ void machine_event_central::command(sp(::xml::node) pnode)
    machine_event_data data;
    m_machineevent.read(&data);
    xml::document doc(get_app());
-   if(data.m_blobCommand.m_pchData != ::null())
+   if(data.m_blobCommand.m_pchData != NULL)
    {
       doc.load(data.m_blobCommand.m_pchData);
    }

@@ -12,7 +12,7 @@ namespace simpledb
       m_evCanInit(papp),
       m_evInitialized(papp)
    {
-      m_psocket = ::null();
+      m_psocket = NULL;
       m_evCanInit.ResetEvent();
       m_evInitialized.ResetEvent();
       m_bInitialized = false;
@@ -36,12 +36,12 @@ namespace simpledb
 
       /*   STARTUPINFO startupinfo;
       memset(&startupinfo, 0, sizeof(startupinfo));
-      if(!::CreateProcess(::null(), "netnoderewrite.exe",
-      ::null(),
-      ::null(),
+      if(!::CreateProcess(NULL, "netnoderewrite.exe",
+      NULL,
+      NULL,
       TRUE,
       0,
-      ::null(),
+      NULL,
       ".",
       &startupinfo,
       &m_pi))
@@ -107,7 +107,7 @@ namespace simpledb
                      string strMessage;
                      strMessage.Format("could not bind to address %s %d", m_strIp, m_iPort);
                      TRACE(strMessage);
-                     //System.simple_message_box(::null(), strMessage);
+                     //System.simple_message_box(NULL, strMessage);
                      return;
                   }
                   ::sockets::socket_handler::add(&ll);

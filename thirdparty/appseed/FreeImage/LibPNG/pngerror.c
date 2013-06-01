@@ -301,7 +301,7 @@ png_default_error(png_structp png_ptr, png_const_charp error_message)
 #  endif
    }
 #endif
-   /* Here if not setjmp support or if png_ptr is null. */
+   /* Here if not setjmp support or if png_ptr is NULL. */
    PNG_ABORT();
 #ifndef PNG_CONSOLE_IO_SUPPORTED
    error_message = error_message; /* Make compiler happy */

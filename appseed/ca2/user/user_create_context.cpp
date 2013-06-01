@@ -7,11 +7,11 @@ namespace user
 
    create_context::create_context()
    {
-      m_pCurrentDoc        = ::null();
-      m_pNewDocTemplate    = ::null();
-      m_pLastView          = ::null();
-      m_pCurrentFrame      = ::null();
-      m_puiNew             = ::null();
+      m_pCurrentDoc        = NULL;
+      m_pNewDocTemplate    = NULL;
+      m_pLastView          = NULL;
+      m_pCurrentFrame      = NULL;
+      m_puiNew             = NULL;
    }
 
 

@@ -7,7 +7,7 @@ namespace xml
    var_exchange::var_exchange(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_pvar = ::null();
+      m_pvar = NULL;
    }
 
    var_exchange::~var_exchange()
@@ -17,8 +17,8 @@ namespace xml
 
    void var_exchange::xml_export(class output_tree & xmlot)
    {
-      ASSERT(m_pvar != ::null());
-      if(m_pvar == ::null())
+      ASSERT(m_pvar != NULL);
+      if(m_pvar == NULL)
          return;
       node * pnode = xmlot.m_pnode;
       pnode->add_attr("type", (int32_t)m_pvar->get_type());
@@ -27,11 +27,11 @@ namespace xml
 
    void var_exchange::xml_import(class input_tree & xmlit)
    {
-      ASSERT(m_pvar != ::null());
-      if(m_pvar == ::null())
+      ASSERT(m_pvar != NULL);
+      if(m_pvar == NULL)
          return;
       node * pnode = xmlit.m_pnode;
-      if(pnode == ::null())
+      if(pnode == NULL)
       {
          // property Node not found;
          //ASSERT(FALSE);

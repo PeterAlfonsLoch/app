@@ -16,7 +16,7 @@ namespace ca
    }
 
 
-   void file_exception::Construct(int32_t cause, LONG lOsError, const char * pstrFileName /* = ::null() */)
+   void file_exception::Construct(int32_t cause, LONG lOsError, const char * pstrFileName /* = NULL */)
    {
 
       m_cause              = cause;
@@ -134,7 +134,7 @@ namespace ca
    bool file_exception::get_error_message(string & str, PUINT pnHelpContext)
    {
 
-     // if (pnHelpContext != ::null())
+     // if (pnHelpContext != NULL)
    //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
 
       string strMessage;
@@ -184,7 +184,7 @@ namespace ca
    bool file_exception::get_error_message(string & str, PUINT pnHelpContext) const
    {
 
-     // if (pnHelpContext != ::null())
+     // if (pnHelpContext != NULL)
    //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
 
       string strMessage;

@@ -8,7 +8,7 @@ namespace ca
    {
       m_plockedlong     = plockedlong;
       m_lLevel          = lLevel;
-      if(m_plockedlong != ::null())
+      if(m_plockedlong != NULL)
       {
          m_plockedlong->add(m_lLevel);
       }
@@ -16,7 +16,7 @@ namespace ca
       
    interlocked_long_pulse::~interlocked_long_pulse()
    {
-      if(m_plockedlong != ::null())
+      if(m_plockedlong != NULL)
       {
          m_plockedlong->subtract(m_lLevel);
       }

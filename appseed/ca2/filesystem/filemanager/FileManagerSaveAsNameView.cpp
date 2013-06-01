@@ -16,7 +16,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(sp(::ca::application) papp) :
 void FileManagerSaveAsView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
-   if(phint != ::null())
+   if(phint != NULL)
    {
       if(base < FileManagerViewUpdateHint >::bases(phint))
       {
@@ -74,7 +74,7 @@ void FileManagerSaveAsView::on_update(sp(::user::view) pSender, LPARAM lHint, ::
                }
             }
             file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
-            if(pmanageruh != ::null())
+            if(pmanageruh != NULL)
             {
                if(!pmanageruh->m_strFind.is_empty())
                {

@@ -30,9 +30,9 @@ namespace nature
       if(!m_bInitialized)
          return;
       m_bInitialized = false;
-      if(m_pimagefileset != ::null())
+      if(m_pimagefileset != NULL)
          delete m_pimagefileset;
-      m_pimagefileset = ::null();
+      m_pimagefileset = NULL;
    }
 
 

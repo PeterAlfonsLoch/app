@@ -164,27 +164,39 @@ var::var(const id & id)
    operator = (id);
 }
 
+
 var::~var()
 {
+
 }
 
 strsize var::get_length() const
 {
+
    return get_string().get_length();
+
 }
+
 
 void var::get_string(char * psz) const
 {
+
    ::ca::str::copy(psz, get_string());
+
 }
+
 
 var::e_type var::get_type() const
 {
+
    return m_etype;
+
 }
+
 
 class var & var::operator ++(int32_t)
 {
+
    switch(get_type())
    {
    case type_new:
@@ -858,14 +870,14 @@ void var::read(::ca::byte_input_stream & is)
             throw "object allocation is not implemented";
          }
          sp(::ca::byte_serializable) pserializable = m_sp;
-         if(pserializable != ::null())
+         if(pserializable != NULL)
          {
             pserializable->read(is);
          }
          else
          {
             sp(::ca::plain_text_serializable) pserializable = m_sp;
-            if(pserializable != ::null())
+            if(pserializable != NULL)
             {
                pserializable->read(is.m_spreader);
             }
@@ -930,14 +942,14 @@ void var::write(::ca::byte_output_stream & ostream)
          sp(::ca::type_info) info(Sys(ostream.get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
          sp(::ca::byte_serializable) pserializable = m_sp;
-         if(pserializable != ::null())
+         if(pserializable != NULL)
          {
             pserializable->write(ostream);
          }
          else
          {
             sp(::ca::plain_text_serializable) pserializable = m_sp;
-            if(pserializable != ::null())
+            if(pserializable != NULL)
             {
                pserializable->write(ostream.m_spwriter);
             }
@@ -1926,7 +1938,7 @@ var_array var::vara() const
    {
       pset = m_pset;
    }
-   if(pset != ::null() && papp != ::null())
+   if(pset != NULL && papp != NULL)
    {
       pset->set_app(papp);
    }
@@ -3401,11 +3413,11 @@ bool var::has_property(const char * pszName) const
    }
    else if(get_type() == type_ca2)
    {
-      if(ca < ::ca::property_set >() != ::null())
+      if(ca < ::ca::property_set >() != NULL)
       {
          return ca < ::ca::property_set >()->has_property(pszName);
       }
-      else if(ca < ::ca::property >() != ::null())
+      else if(ca < ::ca::property >() != NULL)
       {
          return ca < ::ca::property >()->name().CompareNoCase(pszName) == 0;
       }

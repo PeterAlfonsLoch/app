@@ -299,7 +299,7 @@ namespace user
    {
 
       //if(m_estyle == style_simply)
-      if(m_plist == ::null())
+      if(m_plist == NULL)
       {
 
          _001OnDrawSimply(pdc);
@@ -665,7 +665,7 @@ namespace user
 
 
 
-         if(m_plist != ::null())
+         if(m_plist != NULL)
          {
 
             m_plist->ShowWindow(SW_HIDE);
@@ -685,14 +685,14 @@ namespace user
    void combo_box::defer_create_combo_list()
    {
 
-      if(m_plist == ::null())
+      if(m_plist == NULL)
       {
 
          sp(::ca::ca) pca = Application.alloc(m_typeComboList);
 
          m_plist =  (pca);
 
-         if(m_plist == ::null())
+         if(m_plist == NULL)
          {
             pca.release();
             throw resource_exception(get_app());
@@ -705,7 +705,7 @@ namespace user
       if(!m_plist->IsWindow())
       {
 
-         if(!m_plist->CreateEx(0, ::null(), "combo_list", 0, rect(0, 0, 0, 0), ::null(), 0, ::null()))
+         if(!m_plist->CreateEx(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
          {
             m_plist.release();
             throw resource_exception(get_app());
@@ -842,7 +842,7 @@ namespace user
       {
       case WM_DRAWITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == ::null());       // no return value expected
+         ASSERT(pResult == NULL);       // no return value expected
          DrawItem((LPDRAWITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -850,7 +850,7 @@ namespace user
          break;
       case WM_MEASUREITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == ::null());       // no return value expected
+         ASSERT(pResult == NULL);       // no return value expected
          MeasureItem((LPMEASUREITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -858,7 +858,7 @@ namespace user
          break;
       case WM_COMPAREITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult != ::null());       // return value expected
+         ASSERT(pResult != NULL);       // return value expected
          *pResult = CompareItem((LPCOMPAREITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -866,7 +866,7 @@ namespace user
          break;
       case WM_DELETEITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == ::null());       // no return value expected
+         ASSERT(pResult == NULL);       // no return value expected
          DeleteItem((LPDELETEITEMSTRUCT)lParam);
 #else
          throw todo(get_app());
@@ -940,7 +940,7 @@ namespace user
 
       //ASSERT(IsWindow()); return (LPVOID)GetItemData(nIndex);
 
-      return ::null();
+      return NULL;
 
    }
 

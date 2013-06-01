@@ -71,7 +71,7 @@ namespace ca
       string strInternationalDate;
       strInternationalDate.Format("%d-%02d-%02d", year, month, day);
       int32_t i;
-      return strtotime(::null(), strInternationalDate, 0, i);
+      return strtotime(NULL, strInternationalDate, 0, i);
    }
 
    int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, int32_t iPath, int32_t & iPathCount)
@@ -199,7 +199,7 @@ namespace ca
    datetime::str::str(sp(::ca::application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
-      m_pdatetime = ::null();
+      m_pdatetime = NULL;
    }
 
    string datetime::str::get_gmt_date_time()

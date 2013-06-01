@@ -98,7 +98,7 @@ public:
 	int     _Length;
 	char    _OSType[4];	//! Photoshop always uses its signature, 8BIM
 	short   _ID;		//! Unique identifier. Image resource IDs on page 8
-	BYTE * _plName;		//! A pascal string, padded to make size even (a null name consists of two bytes of 0)
+	BYTE * _plName;		//! A pascal string, padded to make size even (a NULL name consists of two bytes of 0)
 	int     _Size;		//! Actual size of resource data. This does not include the Type, ID, Name or Size fields.
 
 public:

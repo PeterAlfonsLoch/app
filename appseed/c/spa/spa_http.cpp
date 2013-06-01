@@ -76,7 +76,7 @@ namespace spa
          uint32_t dw = ::GetLastError();
 	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
-	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, ::null(), dw, 0, lastErrorTxt, 1024, ::null());
+	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
          trace(vsstring(lastErrorTxt));
          trace("ms_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
 #endif

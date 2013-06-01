@@ -7,9 +7,9 @@
 
 void strcat_dup(char * dest, const char * cat)
 {
-   if(dest == ::null())
+   if(dest == NULL)
       return;
-   if(cat == ::null())
+   if(cat == NULL)
       return;
    strcat(dest, cat);
    /*while(*dest != 0)
@@ -32,14 +32,14 @@ int32_t stricmp(const char * sz1, const char * sz2)
 
 int32_t stricmp_dup(const char * sz1, const char * sz2)
 {
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }
@@ -57,14 +57,14 @@ int32_t stricmp_dup(const char * sz1, const char * sz2)
 
 int32_t strcmp_dup(const char * sz1, const char * sz2)
 {
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }
@@ -84,14 +84,14 @@ int32_t strnicmp_dup(const char * sz1, const char * sz2, ::count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }
@@ -112,14 +112,14 @@ int32_t strncmp_dup(const char * sz1, const char * sz2, ::count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }
@@ -149,7 +149,7 @@ char * strrchr_dup(char * szStart, char ch)
       if(*sz == ch)
          return sz;
    }
-   return ::null();
+   return NULL;
 
 }
 
@@ -190,7 +190,7 @@ char * strstr_dup(const char * src, const char * find)
          return (char *) src;
       src++;
    }
-   return ::null();
+   return NULL;
 }
 
 char * stristr_dup(const char * src, const char * find)
@@ -210,7 +210,7 @@ char * stristr_dup(const char * src, const char * find)
          return (char *) src;
       src++;
    }
-   return ::null();
+   return NULL;
 }
 
 char * strnstr_dup(const char * src, const char * find, int_ptr iLen)
@@ -218,7 +218,7 @@ char * strnstr_dup(const char * src, const char * find, int_ptr iLen)
    if(iLen == 0)
       return (char *) src;
    if(iLen > strlen_dup(find))
-      return ::null();
+      return NULL;
    int_ptr c;
    while(*src != '\0')
    {
@@ -237,7 +237,7 @@ char * strnstr_dup(const char * src, const char * find, int_ptr iLen)
          return (char *) src;
       src++;
    }
-   return ::null();
+   return NULL;
 }
 
 char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
@@ -245,7 +245,7 @@ char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
    if(iLen == 0)
       return (char *) src;
    if(iLen > strlen_dup(find))
-      return ::null();
+      return NULL;
    int_ptr c;
    while(*src != '\0')
    {
@@ -264,7 +264,7 @@ char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
          return (char *) src;
       src++;
    }
-   return ::null();
+   return NULL;
 }
 
 
@@ -427,29 +427,29 @@ void zero_pad(char * sz, ::count iPad)
 
 char * str_begins_inc_dup(const char * sz1, const char * prefix)
 {
-   if(sz1 == ::null())
-      return ::null();
-   if(prefix == ::null())
+   if(sz1 == NULL)
+      return NULL;
+   if(prefix == NULL)
       return (char *) sz1;
    while(*sz1 != '\0' && *prefix != '\0')
    {
       if(*sz1 != *prefix)
-         return ::null();
+         return NULL;
       sz1++;
       prefix++;
    }
    if(*prefix == '\0')
       return (char *) sz1;
    else
-      return ::null();
+      return NULL;
 }
 
 
 int32_t str_begins_dup(const char * sz1, const char * prefix)
 {
-   if(sz1 == ::null())
+   if(sz1 == NULL)
       return FALSE;
-   if(prefix == ::null())
+   if(prefix == NULL)
       return TRUE;
    while(*sz1 != '\0' && *prefix != '\0')
    {
@@ -463,9 +463,9 @@ int32_t str_begins_dup(const char * sz1, const char * prefix)
 
 int32_t str_begins_ci_dup(const char * sz1, const char * prefix)
 {
-   if(sz1 == ::null())
+   if(sz1 == NULL)
       return FALSE;
-   if(prefix == ::null())
+   if(prefix == NULL)
       return TRUE;
    while(*sz1 != '\0' && *prefix != '\0')
    {
@@ -557,14 +557,14 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
 
         /* A quoted program name is handled here. The handling is much
            simpler than for other arguments. Basically, whatever lies
-           between the leading double-quote and next one, or a terminal null
+           between the leading double-quote and next one, or a terminal NULL
            character is simply accepted. Fancier handling is not required
            because the program name must be a legal NTFS/HPFS file name.
            Note that the double-quote characters are not copied, nor do they
            contribute to numchars. */
         if ( *p == DQUOTECHAR ) {
             /* scan from just past the first double-quote through the next
-               double-quote, or up to a null, whichever comes first */
+               double-quote, or up to a NULL, whichever comes first */
             while ( (*(++p) != DQUOTECHAR) && (*p != NULCHAR) ) {
 
 /*#ifdef _MBCS
@@ -578,7 +578,7 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
                 if ( args )
                     *args++ = *p;
             }
-            /* append the terminating null */
+            /* append the terminating NULL */
             ++*numchars;
             if ( args )
                 *args++ = NULCHAR;
@@ -710,16 +710,16 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
 //#endif  /* _MBCS */
             }
 
-            /* null-terminate the argument */
+            /* NULL-terminate the argument */
 
             if (args)
                 *args++ = NULCHAR;          /* terminate string */
             ++*numchars;
         }
 
-        /* We put one last argument in -- a null ptr */
+        /* We put one last argument in -- a NULL ptr */
         if (argv)
-            *argv++ = ::null();
+            *argv++ = NULL;
         ++*numargs;
 }
 
@@ -731,14 +731,14 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
 
 CLASS_DECL_c char * strchr_dup(const char * sz, char ch)
 {
-   if(sz == ::null())
-      return ::null();
+   if(sz == NULL)
+      return NULL;
    while(true)
    {
       if(*sz == ch)
          return (char *) sz;
       if(*sz == '\0')
-         return ::null();
+         return NULL;
       sz++;
    }
 }
@@ -773,11 +773,11 @@ int32_t isspace_dup(int32_t ch)
 
 CLASS_DECL_c char * strpbrk_dup(char * sz, const char * szFind)
 {
-   char * pszRet = ::null();
+   char * pszRet = NULL;
    while(*szFind != '\0')
    {
       char * psz = strchr_dup(sz, *szFind);
-      if(psz != ::null() && (pszRet == ::null() || psz < pszRet))
+      if(psz != NULL && (pszRet == NULL || psz < pszRet))
       {
          pszRet = psz;
       }
@@ -833,19 +833,19 @@ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszTyp
 
    HRSRC hrsrc = ::FindResource(hinst, MAKEINTRESOURCE(nID), lpcszType);
 
-   if(hrsrc == ::null())
+   if(hrsrc == NULL)
 		return "";
 
    HGLOBAL hres = ::LoadResource(hinst, hrsrc);
 
-   if(hres == ::null())
+   if(hres == NULL)
 		return "";
 
    uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
-   char * psz = ::null();
+   char * psz = NULL;
 
-	if(hres != ::null())
+	if(hres != NULL)
    {
 
       UINT FAR* lpnRes = (UINT FAR*)::LockResource(hres);
@@ -869,12 +869,12 @@ CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts)
 {
   char *ret;
 
-  if (s1 == ::null())
+  if (s1 == NULL)
     s1 = *lasts;
   while(*s1 && strchr_dup(s2, *s1))
     ++s1;
   if(*s1 == '\0')
-    return ::null();
+    return NULL;
   ret = s1;
   while(*s1 && !strchr_dup(s2, *s1))
     ++s1;
@@ -896,8 +896,8 @@ CLASS_DECL_c char * strlwr(char * pszParam)
 
    char * psz = pszParam;
 
-   if(psz == ::null())
-      return ::null();
+   if(psz == NULL)
+      return NULL;
 
    while(*psz != '\0')
    {
@@ -917,8 +917,8 @@ CLASS_DECL_c char * strupr(char * pszParam)
 
    char * psz = pszParam;
 
-   if(psz == ::null())
-      return ::null();
+   if(psz == NULL)
+      return NULL;
 
    while(*psz != '\0')
    {
@@ -952,19 +952,19 @@ CLASS_DECL_c void zero_pad(vsstring & str, ::count iPad)
 const char * wildcard_next_stop(const char * pszCriteria)
 {
 
-   if(pszCriteria == ::null())
-      return ::null();
+   if(pszCriteria == NULL)
+      return NULL;
 
 
    const char * pszAsterisk = strstr_dup(pszCriteria, "*");
    const char * pszQuestion = strstr_dup(pszCriteria, "?");
 
-   if(pszAsterisk == ::null() && pszQuestion == ::null())
-      return ::null();
+   if(pszAsterisk == NULL && pszQuestion == NULL)
+      return NULL;
 
-   if(pszAsterisk == ::null())
+   if(pszAsterisk == NULL)
       return pszQuestion;
-   else if(pszQuestion == ::null())
+   else if(pszQuestion == NULL)
       return pszAsterisk;
    else if(pszAsterisk < pszQuestion)
       return pszAsterisk;
@@ -989,7 +989,7 @@ bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue)
 
       pszFind = wildcard_next_stop(pszCriteria);
 
-      if(pszFind == ::null())
+      if(pszFind == NULL)
          break;
 
       iLen = pszFind - pszCriteria;
@@ -1025,14 +1025,14 @@ bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue)
 
          pszStop = wildcard_next_stop(pszFind + 1);
 
-         if(pszStop == ::null())
+         if(pszStop == NULL)
             return true;
 
          iLen = pszStop - (pszFind + 1);
 
          pszValue = strnstr_dup(pszValue, pszFind + 1, iLen);
 
-         if(pszValue == ::null())
+         if(pszValue == NULL)
             return false;
 
          pszValue    = pszValue + iLen;
@@ -1067,7 +1067,7 @@ bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * pszValu
 
       pszFind = wildcard_next_stop(pszCriteria);
 
-      if(pszFind == ::null())
+      if(pszFind == NULL)
          break;
 
       iLen = pszFind - pszCriteria;
@@ -1103,14 +1103,14 @@ bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * pszValu
 
          pszStop = wildcard_next_stop(pszFind + 1);
 
-         if(pszStop == ::null())
+         if(pszStop == NULL)
             pszStop = pszFind + strlen_dup(pszFind);
 
          iLen = pszStop - (pszFind + 1);
 
          pszValue = strnistr_dup(pszValue, pszFind + 1, iLen);
 
-         if(pszValue == ::null())
+         if(pszValue == NULL)
             return false;
 
          pszValue       = pszValue + iLen;

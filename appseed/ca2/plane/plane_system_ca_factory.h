@@ -28,7 +28,7 @@ namespace ca
 
       sp(factory_allocator) pallocator = get_allocator(System.type_info <  T  > ()->name());
 
-      if(pallocator != ::null())
+      if(pallocator != NULL)
          return pallocator;
 
       pallocator = canew(factory_allocator_impl < T > (get_app(), iCount));

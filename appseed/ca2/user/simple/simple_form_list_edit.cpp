@@ -63,7 +63,7 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 sp(::user::interaction) simple_form_list_edit::GetNotifyWnd()
 {
    sp(::user::interaction) pwnd = get_owner();
-   if(pwnd != ::null())
+   if(pwnd != NULL)
       return pwnd;
    return ::user::interaction::get_parent();
 }

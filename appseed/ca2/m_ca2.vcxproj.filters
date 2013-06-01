@@ -3794,6 +3794,102 @@
     <ClInclude Include="plane\session\plane_session.h">
       <Filter>Header Files\plane\session</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\_id_space.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\aaa_var_want_to_remove.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\count.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_align.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_check.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_color.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_fixed_string.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_geometric_types.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_id.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_id_space.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_img.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_index.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_int_biunique.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_logic.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_base.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_container.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_file.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_natural.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_numeric_info.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_point.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_rectangle.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_scalar.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_shared_file.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_shared_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_simple_string.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_size.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_string_composite.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_string_format.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_string_interface.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_virtual_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_wstringtou.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">

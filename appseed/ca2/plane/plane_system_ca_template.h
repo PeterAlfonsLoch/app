@@ -9,13 +9,13 @@ namespace c
    void smart_pointer <T>::create(const ::ca::allocatorsp & allocer)
    {
       static class id idType = Sys(allocer->m_papp).type_info < T > ()->m_id;
-      if(m_p != ::null())
+      if(m_p != NULL)
          ::c::release(m_p);
       sp(::ca::ca) pca = Sys(allocer->m_papp).alloc(allocer->m_papp, idType);
       if(pca.is_set())
       {
          m_p = dynamic_cast < T * >(pca.m_p);
-         if(m_p != ::null())
+         if(m_p != NULL)
          {
             ::c::add_ref(m_p);
          }
@@ -25,10 +25,10 @@ namespace c
    template < class T >
    sp(T) smart_pointer <T>::clone() const
    {
-      if(m_p == ::null())
-         return ::null();
-      if(m_p->get_app() == ::null())
-         return ::null();
+      if(m_p == NULL)
+         return NULL;
+      if(m_p->get_app() == NULL)
+         return NULL;
       return Sys(m_p->m_papp).clone(m_p);
    }
 

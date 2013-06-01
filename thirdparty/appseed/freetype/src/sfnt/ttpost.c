@@ -69,7 +69,7 @@
   static const FT_String* const  tt_post_default_names[258] =
   {
     /*   0 */
-    ".notdef", ".null", "CR", "space", "exclam",
+    ".notdef", ".NULL", "CR", "space", "exclam",
     "quotedbl", "numbersign", "dollar", "percent", "ampersand",
     /*  10 */
     "quotesingle", "parenleft", "parenright", "asterisk", "plus",

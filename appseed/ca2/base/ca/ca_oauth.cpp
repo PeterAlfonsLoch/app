@@ -359,10 +359,10 @@ bool CSHA1::HashFile(char *szFileName)
    UINT_8 uData[SHA1_MAX_FILE_BUFFER];
    FILE *fIn;
 
-   if(szFileName == ::null()) return false;
+   if(szFileName == NULL) return false;
 
    fIn = fopen(szFileName, "rb");
-   if(fIn == ::null()) return false;
+   if(fIn == NULL) return false;
 
    fseek(fIn, 0, SEEK_END);
    ulFileSize = (unsigned long)ftell(fIn);
@@ -391,7 +391,7 @@ bool CSHA1::HashFile(char *szFileName)
       Update((UINT_8 *)uData, ulRest);
    }
 
-   fclose(fIn); fIn = ::null();
+   fclose(fIn); fIn = NULL;
    return true;
 }
 #endif
@@ -435,7 +435,7 @@ void CSHA1::ReportHash(char *szReport, unsigned char uReportType)
    unsigned char i;
    char szTemp[16];
 
-   if(szReport == ::null()) return;
+   if(szReport == NULL) return;
 
    if(uReportType == REPORT_HEX)
    {
@@ -824,14 +824,14 @@ namespace ca
       char szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       memset( szTime, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
-      srand((UINT) time( ::null() ) );
+      srand((UINT) time( NULL ) );
       sprintf( szRand, "%x", rand()%1000 );
 #ifdef WINDOWS
-      sprintf( szTime, "%ld", (int32_t) time( ::null() ) );
+      sprintf( szTime, "%ld", (int32_t) time( NULL ) );
 #elif defined __LP64
-      sprintf( szTime, "%ld", (int64_t) time( ::null() ) );
+      sprintf( szTime, "%ld", (int64_t) time( NULL ) );
 #else
-      sprintf( szTime, "%d", (int32_t) time( ::null() ) );
+      sprintf( szTime, "%d", (int32_t) time( NULL ) );
 #endif
 
       m_nonce = szTime;

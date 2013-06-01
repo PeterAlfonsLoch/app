@@ -33,7 +33,7 @@ namespace user
    void elastic_slider::_001OnCreate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      SetTimer(1, 50, ::null());
+      SetTimer(1, 50, NULL);
    }
 
    void elastic_slider::_001OnTimer(::ca::signal_object * pobj)

@@ -12,8 +12,8 @@ namespace user
       //::user::split_view(papp),
       //place_holder_container(papp)
    {
-      //m_pdoc   = ::null();
-      //m_pview  = ::null();
+      //m_pdoc   = NULL;
+      //m_pview  = NULL;
    }
 
    keyboard_layout_cfg::~keyboard_layout_cfg()
@@ -40,9 +40,9 @@ namespace user
       ::user::list_column column;
       column.m_iWidth = 584;
       m_plistview->_001InsertColumn(column);
-      if(m_plistview == ::null())
+      if(m_plistview == NULL)
       {
-         System.simple_message_box(::null(), "Could not create list view");
+         System.simple_message_box(NULL, "Could not create list view");
       }
 
 
@@ -58,7 +58,7 @@ namespace user
       }
 
       m_layoutida.quick_sort(true);
-      if(&System.user()->keyboard().layout() != ::null())
+      if(&System.user()->keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
@@ -85,7 +85,7 @@ namespace user
       m_plistview->_001OnUpdateItemCount();
       SetPane(0, m_plistview, false);
 
-      if(m_pdoc != ::null())
+      if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
          m_pview->m_pcallback = this;

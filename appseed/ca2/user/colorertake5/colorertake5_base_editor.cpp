@@ -13,16 +13,16 @@ namespace colorertake5
    base_editor::base_editor(sp(::ca::application) papp) :
    ca(papp)
    {
-      textParser = ::null();
-      lrSupport = ::null();
-      regionMapper = ::null();
+      textParser = NULL;
+      lrSupport = NULL;
+      regionMapper = NULL;
       validationProcess = false;
       internalRM = false;
    }
 
    base_editor::~base_editor()
    {
-      if(textParser != ::null())
+      if(textParser != NULL)
       {
          textParser->breakParse();
       }
@@ -30,16 +30,16 @@ namespace colorertake5
       while(validationProcess); /// @todo wait until validation is finished
       if(internalRM)
       {
-         if(regionMapper != ::null())
+         if(regionMapper != NULL)
          {
             delete regionMapper;
          }
       }
-      if(lrSupport != ::null())
+      if(lrSupport != NULL)
       {
          delete lrSupport;
       }
-      if(textParser != ::null())
+      if(textParser != NULL)
       {
          delete textParser;
       }
@@ -48,7 +48,7 @@ namespace colorertake5
    void base_editor::initialize(line_source *lineSource)
    {
       ParserFactory *parserFactory = &System.parser_factory();
-      if (parserFactory == ::null() || lineSource == ::null()){
+      if (parserFactory == NULL || lineSource == NULL){
          throw exception(get_app(), string("Bad base_editor constructor parameters"));
       }
       this->parserFactory = parserFactory;
@@ -60,7 +60,7 @@ namespace colorertake5
       textParser->setRegionHandler(this);
       textParser->setLineSource(lineSource);
 
-      lrSupport = ::null();
+      lrSupport = NULL;
 
       invalidLine = 0;
       changedLine = 0;
@@ -70,9 +70,9 @@ namespace colorertake5
       wSize = 20;
       lrSize = wSize*3;
       internalRM = false;
-      regionMapper = ::null();
+      regionMapper = NULL;
       regionCompact = false;
-      currentFileType = ::null();
+      currentFileType = NULL;
 
       breakParse = false;
       validationProcess = false;
@@ -85,7 +85,7 @@ namespace colorertake5
       def_PairStart = hrcParser->getRegion(("def:PairStart"));
       def_PairEnd = hrcParser->getRegion(("def:PairEnd"));
 
-      rd_def_Text = rd_def_HorzCross = rd_def_VertCross = ::null();
+      rd_def_Text = rd_def_HorzCross = rd_def_VertCross = NULL;
       eh = parserFactory->getErrorHandler();
    }
 
@@ -113,7 +113,7 @@ namespace colorertake5
 
    void base_editor::remapLRS(bool recreate)
    {
-      if (recreate || lrSupport == ::null())
+      if (recreate || lrSupport == NULL)
       {
          delete lrSupport;
          if (regionCompact)
@@ -130,8 +130,8 @@ namespace colorertake5
       lrSupport->setRegionMapper(regionMapper);
       lrSupport->setSpecialRegion(def_Special);
       invalidLine = 0;
-      rd_def_Text = rd_def_HorzCross = rd_def_VertCross = ::null();
-      if (regionMapper != ::null()){
+      rd_def_Text = rd_def_HorzCross = rd_def_VertCross = NULL;
+      if (regionMapper != NULL){
          rd_def_Text = regionMapper->getRegionDefine(string("def:Text"));
          rd_def_HorzCross = regionMapper->getRegionDefine(string("def:HorzCross"));
          rd_def_VertCross = regionMapper->getRegionDefine(string("def:VertCross"));
@@ -152,8 +152,8 @@ namespace colorertake5
    }
 
    file_type *base_editor::chooseFileType(string fileName){
-      if (lineSource == ::null()){
-         currentFileType = hrcParser->chooseFileType(fileName, ::null());
+      if (lineSource == NULL){
+         currentFileType = hrcParser->chooseFileType(fileName, NULL);
       }else{
          string textStart;
          strsize totalLength = 0;
@@ -202,10 +202,10 @@ namespace colorertake5
 
       LineRegion * lrStart = getLineRegions(lineNo);
 
-      if (lrStart == ::null())
-         return ::null();
+      if (lrStart == NULL)
+         return NULL;
 
-      LineRegion *pair = ::null();
+      LineRegion *pair = NULL;
       for(LineRegion *l1 = lrStart; l1; l1 = l1->next)
       {
          if ((l1->region->hasParent(def_PairStart) ||
@@ -214,14 +214,14 @@ namespace colorertake5
             pair = l1;
       }
 
-      if (pair != ::null())
+      if (pair != NULL)
       {
          PairMatch *pm = new PairMatch(pair, lineNo, pair->region->hasParent(def_PairStart));
          pm->setStart(pair);
          return pm;
       }
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -229,7 +229,7 @@ namespace colorertake5
    {
       UNREFERENCED_PARAMETER(lineNo);
       UNREFERENCED_PARAMETER(pos);
-      return ::null();
+      return NULL;
    }
 
    void base_editor::releasePairMatch(PairMatch *pm)
@@ -242,8 +242,8 @@ namespace colorertake5
       index lno;
       index end_line = getLastVisibleLine();
       PairMatch *pm = getPairMatch(lineNo, pos);
-      if (pm == ::null()){
-         return ::null();
+      if (pm == NULL){
+         return NULL;
       }
 
       lno = pm->sline;
@@ -253,7 +253,7 @@ namespace colorertake5
       while(true){
          if (pm->pairBalance > 0){
             pair = pair->next;
-            while(pair == ::null()){
+            while(pair == NULL){
                lno++;
                if (lno > end_line) break;
                pair = getLineRegions(lno);
@@ -291,8 +291,8 @@ namespace colorertake5
       index lno;
       index end_line = lineCount;
       PairMatch *pm = getPairMatch(lineNo, pos);
-      if (pm == ::null()){
-         return ::null();
+      if (pm == NULL){
+         return NULL;
       }
 
       lno = pm->sline;
@@ -302,7 +302,7 @@ namespace colorertake5
       while(true){
          if (pm->pairBalance > 0){
             pair = pair->next;
-            while(pair == ::null()){
+            while(pair == NULL){
                lno++;
                if (lno > end_line) break;
                pair = getLineRegions(lno);
@@ -342,7 +342,7 @@ namespace colorertake5
       * Backparse value check
       */
       if (backParse > 0 && lno - invalidLine > backParse)
-         return ::null();
+         return NULL;
 
       validate(lno, true);
 

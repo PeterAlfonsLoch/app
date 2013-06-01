@@ -5,17 +5,17 @@ namespace colorertake5
 
 
 RegionDefine *RegionMapperImpl::getRegionDefine(class region *region){
-  if (region == ::null()) return ::null();
-  RegionDefine *rd = ::null();
+  if (region == NULL) return NULL;
+  RegionDefine *rd = NULL;
   if (region->getID() < regionDefinesVector.get_size())
     rd = regionDefinesVector.element_at(region->getID());
-  if (rd != ::null()) return rd;
+  if (rd != NULL) return rd;
 
   if (regionDefinesVector.get_size() < region->getID()+1)
     regionDefinesVector.set_size(region->getID()*2);
 
   RegionDefine *rd_new = regionDefines[region->getName()];
-  if (rd_new != ::null()){
+  if (rd_new != NULL){
     regionDefinesVector.set_at(region->getID(), rd_new);
     return rd_new;
   };

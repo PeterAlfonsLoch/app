@@ -12,7 +12,7 @@ namespace platform
       form_document(papp)
    {
       
-      m_pbergedgedocument = ::null();
+      m_pbergedgedocument = NULL;
 
    }
 
@@ -21,7 +21,7 @@ namespace platform
       if (!::user::document::on_new_document())
          return FALSE;
 
-      update_all_views(::null(), 0);
+      update_all_views(NULL, 0);
 
 
       return TRUE;
@@ -87,8 +87,8 @@ namespace platform
       
       sp(pane_view) pview = get_platform_pane_view();
       
-      if(pview == ::null())
-         return ::null();
+      if(pview == NULL)
+         return NULL;
       
       sp(frame) pplatformframe = pview->GetTypedParent < frame >();
       

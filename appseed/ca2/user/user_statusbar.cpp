@@ -66,10 +66,8 @@ namespace user
 
       
       // create the oswindow
-      class rect rect;
-      rect.null();
 #ifdef WINDOWSEX
-      return ::user::interaction::create(STATUSCLASSNAME, ::null(), dwStyle, rect, pParentWnd, strId);
+      return ::user::interaction::create(STATUSCLASSNAME, ::null_rect(), dwStyle, rect, pParentWnd, strId);
 #else
       throw todo(get_app());
 #endif
@@ -89,7 +87,7 @@ namespace user
    {
       ASSERT_VALID(this);
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
-      //ASSERT(lpIDArray == ::null() ||
+      //ASSERT(lpIDArray == NULL ||
    //      __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
       ASSERT(IsWindow());
 
@@ -100,14 +98,14 @@ namespace user
 
       // copy initial data from indicator array
       bool bResult = TRUE;
-      //if (lpIDArray != ::null())
+      //if (lpIDArray != NULL)
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
          ::ca::graphics_sp spgraphicsScreen(allocer());
 
          throw todo(get_app());
-/*         HGDIOBJ hOldFont = ::null();
-         if (hFont != ::null())
+/*         HGDIOBJ hOldFont = NULL;
+         if (hFont != NULL)
             hOldFont = spgraphicsScreen->SelectObject(hFont);*/
 
          __STATUSPANE* pSBP = _GetPanePtr(0);
@@ -146,7 +144,7 @@ namespace user
             }
             ++pSBP;
          }
-//         if (hOldFont != ::null())
+//         if (hOldFont != NULL)
   //          spgraphicsScreen->SelectObject(hOldFont);
       //}
       UpdateAllPanes(TRUE, TRUE);
@@ -422,8 +420,8 @@ namespace user
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
-         ((lpszNewText == ::null() && pSBP->strText.is_empty()) ||
-          (lpszNewText != ::null() && pSBP->strText.Compare(lpszNewText) == 0)))
+         ((lpszNewText == NULL && pSBP->strText.is_empty()) ||
+          (lpszNewText != NULL && pSBP->strText.Compare(lpszNewText) == 0)))
       {
          // nothing to change
          return TRUE;
@@ -431,7 +429,7 @@ namespace user
 
       try
       {
-         if (lpszNewText != ::null())
+         if (lpszNewText != NULL)
             pSBP->strText = lpszNewText;
          else
             pSBP->strText.Empty();
@@ -473,13 +471,13 @@ namespace user
       {
          // os independence
          throw not_implemented(get_app());
-   /*      CClientDC spgraphics(::null());
+   /*      CClientDC spgraphics(NULL);
          HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
-         HGDIOBJ hOldFont = ::null();
-         if (hFont != ::null())
+         HGDIOBJ hOldFont = NULL;
+         if (hFont != NULL)
             hOldFont = spgraphics->SelectObject(hFont);
          VERIFY(spgraphics->GetTextMetrics(&tm));
-         if (hOldFont != ::null())
+         if (hOldFont != NULL)
             spgraphics->SelectObject(hOldFont);*/
       }
 
@@ -529,7 +527,7 @@ namespace user
       SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
-      rect.null();
+      rect.NULL();
       ::user::control_bar::CalcInsideRect(rect, TRUE);
       ASSERT(rect.top >= 2);
 
@@ -577,7 +575,7 @@ namespace user
    // trans   if (message != WM_DRAWITEM)
    //      return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
-      ASSERT(pResult == ::null());
+      ASSERT(pResult == NULL);
 #ifdef WINDOWSEX
       UNUSED(pResult); // unused in release builds
       DrawItem((LPDRAWITEMSTRUCT)lParam);
@@ -728,7 +726,7 @@ namespace user
    {
       m_bEnableChanged = TRUE;
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
-      ASSERT(pStatusBar != ::null());
+      ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -741,7 +739,7 @@ namespace user
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
    {
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
-      ASSERT(pStatusBar != ::null());
+      ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -759,7 +757,7 @@ namespace user
    void CStatusCmdUI::SetText(const char * lpszText)
    {
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
-      ASSERT(pStatusBar != ::null());
+      ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 

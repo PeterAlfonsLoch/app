@@ -38,7 +38,7 @@ bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
       if(str == "uifs:// You have not logged in!")
       {
          
-         Application.simple_message_box(::null(), "You have not logged in! Cannot access your User Intelligent File System - uifs://");
+         Application.simple_message_box(NULL, "You have not logged in! Cannot access your User Intelligent File System - uifs://");
          
          // assume can resume at least from this exception one time
          
@@ -138,7 +138,7 @@ void FileManagerInterface::FileManagerSaveCancel()
 
 ::fs::data * FileManagerInterface::get_fs_data()
 {
-   return ::null();
+   return NULL;
 }
 
 

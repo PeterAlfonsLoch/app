@@ -6,10 +6,10 @@ namespace user
 
 
    document_interface::document_interface() :
-      ::ca::data_container_base(::null()),
-      m_mutex(::null())
+      ::ca::data_container_base(NULL),
+      m_mutex(NULL)
    {
-      m_pdocumentemplate      = ::null();
+      m_pdocumentemplate      = NULL;
       m_bModified             = FALSE;
       m_bAutoDelete           = TRUE;       // default to auto delete document_interface
       m_bEmbedded             = FALSE;        // default to file-based document_interface
@@ -32,9 +32,9 @@ namespace user
       disconnect_views();
       ASSERT(m_viewptra.is_empty());
 
-      if (m_pdocumentemplate != ::null())
+      if (m_pdocumentemplate != NULL)
          m_pdocumentemplate->remove_document(this);
-      ASSERT(m_pdocumentemplate == ::null());     // must be detached
+      ASSERT(m_pdocumentemplate == NULL);     // must be detached
 
    }
 
@@ -91,7 +91,7 @@ namespace user
    void document_interface::on_changed_view_list(single_lock * psl)
    {
       single_lock sl(&m_mutex, false);
-      if(psl == ::null() || psl->m_psyncobject != &m_mutex)
+      if(psl == NULL || psl->m_psyncobject != &m_mutex)
          psl = &sl;
       psl->lock();
       // if no more views on the document_interface, delete ourself
@@ -110,7 +110,7 @@ namespace user
       // assumes 1 doc per frame
    {
       single_lock sl(&m_mutex, false);
-      if(psl == ::null() || psl->m_psyncobject != &m_mutex)
+      if(psl == NULL || psl->m_psyncobject != &m_mutex)
          psl = &sl;
       psl->lock();
       // walk all frames of views (mark and sweep approach)
@@ -124,7 +124,7 @@ namespace user
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
-            if (pFrame != ::null())
+            if (pFrame != NULL)
                pFrame->m_nWindow = -1;     // unknown
          }
       }
@@ -140,7 +140,7 @@ namespace user
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
-            if (pFrame != ::null() && pFrame->m_nWindow == -1)
+            if (pFrame != NULL && pFrame->m_nWindow == -1)
             {
                ASSERT_VALID(pFrame);
                // not yet counted (give it a 1 based number)
@@ -161,7 +161,7 @@ namespace user
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
-            if (pFrame != ::null() && pFrame->m_nWindow == iFrame)
+            if (pFrame != NULL && pFrame->m_nWindow == iFrame)
             {
                ASSERT_VALID(pFrame);
                if (nFrames == 1)
@@ -188,7 +188,7 @@ namespace user
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
          // assume frameless views are ok to close
-         if (pFrame != ::null())
+         if (pFrame != NULL)
          {
             // assumes 1 document_interface per frame
             ASSERT_VALID(pFrame);
@@ -217,7 +217,7 @@ namespace user
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca < ::ca::file > () != ::null())
+      else if(varFile.ca < ::ca::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->m_set["default_extension"];
       }
@@ -351,7 +351,7 @@ namespace user
    bool document_interface::do_save(var varFile, bool bReplace)
       // Save the document_interface data to a file
       // lpszPathName = path name where to save document_interface file
-      // if lpszPathName is ::null() then the ::fontopus::user will be prompted (SaveAs)
+      // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
       // note: lpszPathName can be different than 'm_strPathName'
       // if 'bReplace' is TRUE will change file name if successful (SaveAs)
       // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
@@ -362,7 +362,7 @@ namespace user
       if(newName.is_empty() || is_new_document())
       {
          sp(document_template) ptemplate = get_document_template();
-         ASSERT(ptemplate != ::null());
+         ASSERT(ptemplate != NULL);
 
          newName = m_strPathName;
          if (bReplace && (newName.is_empty() || is_new_document()))
@@ -441,7 +441,7 @@ namespace user
       string prompt;
       prompt = System.load_string("MessageBoxChangedFileAskToSave");
       prompt.replace("%1", name);
-      switch (Application.simple_message_box(::null(), prompt, MB_YESNOCANCEL))
+      switch (Application.simple_message_box(NULL, prompt, MB_YESNOCANCEL))
       {
       case IDCANCEL:
          return FALSE;       // don't continue
@@ -465,12 +465,12 @@ namespace user
 
    HMENU document_interface::GetDefaultMenu()
    {
-      return ::null();    // just use original default
+      return NULL;    // just use original default
    }
 
    HACCEL document_interface::GetDefaultAccelerator()
    {
-      return ::null();    // just use original default
+      return NULL;    // just use original default
    }
 
    void document_interface::report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault)
@@ -485,7 +485,7 @@ namespace user
          //   UINT nHelpContext = nIDPDefault;
          string prompt;
 
-         if (e != ::null())
+         if (e != NULL)
          {
             if (base < user_exception >::bases(e))
                return; // already reported
@@ -556,7 +556,7 @@ namespace user
          }
 
          //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
-         System.simple_message_box(::null(), prompt, MB_ICONEXCLAMATION);
+         System.simple_message_box(NULL, prompt, MB_ICONEXCLAMATION);
 
       }
       catch(...)
@@ -665,7 +665,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].ca < ::primitive::memory_file > () != ::null())
+         if(varFile["xmledit"].ca < ::primitive::memory_file > () != NULL)
          {
 
          }
@@ -698,7 +698,7 @@ namespace user
       // must close all views now (no prompting) - usually destroys this
    {
       single_lock sl(&m_mutex, false);
-      if(psl == ::null() || psl->m_psyncobject != &m_mutex)
+      if(psl == NULL || psl->m_psyncobject != &m_mutex)
          psl = &sl;
       psl->lock();
       // destroy all frames viewing this document_interface
@@ -712,7 +712,7 @@ namespace user
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
-         if(pFrame != ::null())
+         if(pFrame != NULL)
          {
             // and close it
             pre_close_frame(pFrame);
@@ -742,7 +742,7 @@ namespace user
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
-      ASSERT(pview->::user::view::get_document() == ::null()); // must not be already attached
+      ASSERT(pview->::user::view::get_document() == NULL); // must not be already attached
       if(m_viewptra.add_unique(pview))
       {
          pview->m_spdocument = this;
@@ -757,7 +757,7 @@ namespace user
       ASSERT(pview->::user::view::get_document() == this); // must be attached to us
       if(m_viewptra.remove(pview) > 0)
       {
-         pview->m_spdocument = ::ca::null();
+         pview->m_spdocument = NULL;
          on_changed_view_list();    // must be the last thing done to the document_interface
       }
    }
@@ -771,7 +771,7 @@ namespace user
    {
       single_lock sl(&((document_interface *) this)->m_mutex, true);
       if(index < 0 || index >= m_viewptra.get_count())
-         return ::null();
+         return NULL;
       sp(::user::view) pview = m_viewptra(index);
       ASSERT_KINDOF(::user::view, pview);
       return pview;
@@ -780,7 +780,7 @@ namespace user
    void document_interface::update_all_views(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
       // walk through all views
    {
-      ASSERT(pSender == ::null() || !m_viewptra.is_empty());
+      ASSERT(pSender == NULL || !m_viewptra.is_empty());
       // must have views if sent by one of them
 
       ::count count = get_view_count();
@@ -796,7 +796,7 @@ namespace user
    void document_interface::send_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
       // walk through all views
    {
-      ASSERT(pSender == ::null() || !m_viewptra.is_empty());
+      ASSERT(pSender == NULL || !m_viewptra.is_empty());
       // must have views if sent by one of them
 
       update * pupdate;
@@ -822,7 +822,7 @@ namespace user
       {
          sp(::user::view) pview = get_view(index);
          ASSERT_VALID(pview);
-         pview->_001OnInitialUpdate(::null());
+         pview->_001OnInitialUpdate(NULL);
       }
    }
 
@@ -835,7 +835,7 @@ namespace user
          return TRUE;
 
       // otherwise check template
-      if (m_pdocumentemplate != ::null() &&
+      if (m_pdocumentemplate != NULL &&
          m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
@@ -913,7 +913,7 @@ namespace user
                countFind++;
          }
       }
-      return ::null();
+      return NULL;
    }
 
 
@@ -930,18 +930,18 @@ namespace user
 
    // document_interface
    const string & document_interface::get_title() const
-   { ASSERT(this != ::null()); return m_strTitle; }
+   { ASSERT(this != NULL); return m_strTitle; }
    const string & document_interface::get_path_name() const
-   { ASSERT(this != ::null()); return m_strPathName; }
+   { ASSERT(this != NULL); return m_strPathName; }
    sp(document_template) document_interface::get_document_template() const
-   { ASSERT(this != ::null()); return m_pdocumentemplate; }
+   { ASSERT(this != NULL); return m_pdocumentemplate; }
    bool document_interface::is_modified()
-   { ASSERT(this != ::null()); return m_bModified; }
+   { ASSERT(this != NULL); return m_bModified; }
    void document_interface::set_modified_flag(bool bModified)
-   { ASSERT(this != ::null()); m_bModified = bModified; }
+   { ASSERT(this != NULL); m_bModified = bModified; }
    void document_interface::set_new(bool bNew)
    {
-      ASSERT(this != ::null());
+      ASSERT(this != NULL);
       m_bNew = bNew;
    }
 

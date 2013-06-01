@@ -703,7 +703,7 @@ typedef struct png_info_struct
    /* The tEXt, and zTXt chunks contain human-readable textual data in
     * uncompressed, compressed, and optionally compressed forms, respectively.
     * The data in "text" is an array of pointers to uncompressed,
-    * null-terminated C strings. Each chunk has a keyword that describes the
+    * NULL-terminated C strings. Each chunk has a keyword that describes the
     * textual data contained in that chunk.  Keywords are not required to be
     * unique, and the text string may be empty.  Any number of text chunks may
     * be in an image.
@@ -1202,7 +1202,7 @@ struct png_struct_def
    png_uint_16 num_palette PNG_DEPSTRUCT;   /* number of color entries in
                                                palette */
    png_uint_16 num_trans PNG_DEPSTRUCT;     /* number of transparency values */
-   png_byte chunk_name[5] PNG_DEPSTRUCT;    /* null-terminated name of current
+   png_byte chunk_name[5] PNG_DEPSTRUCT;    /* NULL-terminated name of current
                                                chunk */
    png_byte compression PNG_DEPSTRUCT;      /* file compression type
                                                (always 0) */

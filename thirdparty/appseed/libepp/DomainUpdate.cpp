@@ -135,7 +135,7 @@ namespace libepp
             auth_info_str = "<domain:authInfo>";
             if (authInfo.get_pw() == "\"\"") 
             {
-               auth_info_str += "<domain:null/>";
+               auth_info_str += "<domain:NULL/>";
             }
             else 
             {

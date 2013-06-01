@@ -42,14 +42,14 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-      if(m_pi.hProcess != INVALID_HANDLE_VALUE && m_pi.hProcess != ::null())
+      if(m_pi.hProcess != INVALID_HANDLE_VALUE && m_pi.hProcess != NULL)
       {
 
          CloseHandle(m_pi.hProcess);
 
       }
 
-      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != ::null())
+      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != NULL)
       {
 
          CloseHandle(m_pi.hThread);
@@ -105,20 +105,20 @@ namespace ca
          si.cb = sizeof(si);
          si.dwFlags = STARTF_USESHOWWINDOW;
          si.wShowWindow = SW_HIDE; */
-//         if(!::CreateProcess(::null(), (LPTSTR) (const char *) System.dir().appdata("production\\build.bat"), ::null(), ::null(), FALSE, CREATE_NEW_CONSOLE, ::null(), ::null(), &si, &pi))
+//         if(!::CreateProcess(NULL, (LPTSTR) (const char *) System.dir().appdata("production\\build.bat"), NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi))
       m_si.dwFlags |= STARTF_USESHOWWINDOW;
       m_si.wShowWindow = SW_HIDE;
 
 
 // create the child process.
 
-      bSuccess = CreateProcess(::null(),
+      bSuccess = CreateProcess(NULL,
          (char *)(const char *) szCmdline,     // command line
-         ::null(),          // process security attributes
-         ::null(),          // primary thread security attributes
+         NULL,          // process security attributes
+         NULL,          // primary thread security attributes
          TRUE,          // handles are inherited
          CREATE_NEW_CONSOLE,             // creation flags
-         ::null(),          // use parent's environment
+         NULL,          // use parent's environment
          pszDir,
          &m_si,  // STARTUPINFO pointer
          &m_pi) != FALSE;  // receives PROCESS_INFORMATION
@@ -155,7 +155,7 @@ namespace ca
 
    cmd_line = (char *) ca2_alloc(strlen(pszCmdLine ) + 1 );
 
-   if(cmd_line == ::null())
+   if(cmd_line == NULL)
             return 0;
 
    strcpy_dup(cmd_line, pszCmdLine);
@@ -177,26 +177,26 @@ namespace ca
       char		*pArg, *pPtr;
       char		*argv[1024 + 1];
       int32_t		 argc;
-      if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != ::null() )
+      if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
          pArg++;
       else
          pArg = exec_path_name;
       argv[0] = pArg;
       argc = 1;
 
-      if( cmd_line != ::null() && *cmd_line != '\0' )
+      if( cmd_line != NULL && *cmd_line != '\0' )
       {
          pArg = strtok_r_dup(cmd_line, " ", &pPtr);
-         while( pArg != ::null() )
+         while( pArg != NULL )
          {
             argv[argc] = pArg;
             argc++;
             if( argc >= 1024 )
                break;
-            pArg = strtok_r_dup(::null(), " ", &pPtr);
+            pArg = strtok_r_dup(NULL, " ", &pPtr);
          }
       }
-      argv[argc] = ::null();
+      argv[argc] = NULL;
 
       execv(exec_path_name, argv);
       free(cmd_line);
@@ -278,7 +278,7 @@ namespace ca
 
       }
 
-      if(puiExitCode != ::null())
+      if(puiExitCode != NULL)
       {
 
       *puiExitCode = dwExitCode;

@@ -92,7 +92,7 @@ namespace ca
       outStreamSpec->set_binder(this);
       outStream = outStreamSpec;
 
-      _data = ::null();
+      _data = NULL;
       _size = 0;
       ProcessedSize = 0;
 
@@ -143,7 +143,7 @@ namespace ca
             throw S_FALSE;
          }
       }
-      if (processedSize != ::null())
+      if (processedSize != NULL)
          *processedSize = size;
    }
 

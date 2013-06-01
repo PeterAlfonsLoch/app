@@ -29,15 +29,15 @@ void MetaButton::SetEllipseBrushs(
    ::ca::brush * pbrushDisabled)
 {
 
-   ASSERT(pbrush != ::null());
+   ASSERT(pbrush != NULL);
 
-   if(pbrush == ::null())
+   if(pbrush == NULL)
       return;
 
    m_brushEllipse             = *pbrush;
-   m_brushEllipseSel          = pbrushSel != ::null() ? *pbrushSel : (pbrushFocus != ::null() ? *pbrushFocus : *pbrush);
-   m_brushEllipseFocus        = pbrushFocus != ::null() ? *pbrushFocus : (pbrushSel != ::null() ? *pbrushSel : *pbrush);
-   m_brushEllipseDisabled     = pbrushDisabled != ::null() ? *pbrushDisabled : *pbrush;
+   m_brushEllipseSel          = pbrushSel != NULL ? *pbrushSel : (pbrushFocus != NULL ? *pbrushFocus : *pbrush);
+   m_brushEllipseFocus        = pbrushFocus != NULL ? *pbrushFocus : (pbrushSel != NULL ? *pbrushSel : *pbrush);
+   m_brushEllipseDisabled     = pbrushDisabled != NULL ? *pbrushDisabled : *pbrush;
 
 }
 
@@ -48,15 +48,15 @@ void MetaButton::SetEllipsePens(
    ::ca::pen * ppenDisabled)
 {
 
-   ASSERT(ppen != ::null());
+   ASSERT(ppen != NULL);
 
-   if(ppen == ::null())
+   if(ppen == NULL)
       return;
 
    m_penEllipse               = *ppen;
-   m_penEllipseSel            = ppenSel != ::null() ? *ppenSel : (ppenFocus != ::null() ? *ppenFocus : *ppen);
-   m_penEllipseFocus          = ppenFocus != ::null() ? *ppenFocus : (ppenSel != ::null() ? *ppenSel : *ppen);
-   m_penEllipseDisabled       = ppenDisabled != ::null() ? *ppenDisabled : *ppen;
+   m_penEllipseSel            = ppenSel != NULL ? *ppenSel : (ppenFocus != NULL ? *ppenFocus : *ppen);
+   m_penEllipseFocus          = ppenFocus != NULL ? *ppenFocus : (ppenSel != NULL ? *ppenSel : *ppen);
+   m_penEllipseDisabled       = ppenDisabled != NULL ? *ppenDisabled : *ppen;
 
 }
 
@@ -78,6 +78,8 @@ void MetaButton::SetTextColors(
 
 void MetaButton::_001OnDraw(::ca::graphics * pdc)
 {
+
+   //return;
 
    rect rectClient;
 
@@ -268,7 +270,7 @@ index MetaButton::hit_test(point point, e_element & eelement)
 
    }
 
-   if(m_spregion->get_os_data() == ::null())
+   if(m_spregion->get_os_data() == NULL)
    {
 
       eelement = element_none;

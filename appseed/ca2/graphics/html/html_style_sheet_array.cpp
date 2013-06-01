@@ -10,13 +10,13 @@ namespace html
 
    style * style_sheet_array::rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName)
    {
-      style * pstyle = ::null();
+      style * pstyle = NULL;
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
          style_sheet & sheet = this->element_at(i);
          pstyle = sheet.rfind(pszTag, pszClass, pszSubClass, pszName);
-         if(pstyle != ::null())
+         if(pstyle != NULL)
             break;
       }
       return pstyle;
@@ -25,13 +25,13 @@ namespace html
 
    style * style_sheet_array::rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f)
    {
-      style * pstyle = ::null();
+      style * pstyle = NULL;
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
          style_sheet & sheet = this->element_at(i);
          pstyle = sheet.rfind_border_width(pszTag, pszClass, pszSubClass, pszName, f);
-         if(pstyle != ::null())
+         if(pstyle != NULL)
             break;
       }
       return pstyle;
@@ -40,13 +40,13 @@ namespace html
 
    style * style_sheet_array::rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr)
    {
-      style * pstyle = ::null();
+      style * pstyle = NULL;
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
          style_sheet & sheet = this->element_at(i);
          pstyle = sheet.rfind_border_color(pszTag, pszClass, pszSubClass, pszName, cr);
-         if(pstyle != ::null())
+         if(pstyle != NULL)
             break;
       }
       return pstyle;
@@ -55,18 +55,18 @@ namespace html
 
    style * style_sheet_array::greater(style * pstyle1, style * pstyle2)
    {
-      if(pstyle1 == ::null())
+      if(pstyle1 == NULL)
       {
-         if(pstyle2 == ::null())
+         if(pstyle2 == NULL)
          {
-            return ::null();
+            return NULL;
          }
          else
          {
             return pstyle2;
          }
       }
-      else if(pstyle2 == ::null())
+      else if(pstyle2 == NULL)
       {
          return pstyle1;
       }
@@ -76,18 +76,18 @@ namespace html
       {
          const style_sheet & sheet = this->element_at(i);
          pstyle = sheet.greater(pstyle1, pstyle2);
-         if(pstyle != ::null())
+         if(pstyle != NULL)
             return pstyle;
       }
-      return ::null();
+      return NULL;
    }
 
 
    bool style_sheet_array::greater(style * & pstyleRet, index & iRet, var & varRet, style * pstyle1, index i1, const var & var1, style * pstyle2, index i2, const var & var2)
    {
-      if(pstyle1 == ::null())
+      if(pstyle1 == NULL)
       {
-         if(pstyle2 == ::null())
+         if(pstyle2 == NULL)
          {
             return false;
          }
@@ -99,7 +99,7 @@ namespace html
             return true;
          }
       }
-      else if(pstyle2 == ::null())
+      else if(pstyle2 == NULL)
       {
          pstyleRet   = pstyle1;
          iRet        = i1;

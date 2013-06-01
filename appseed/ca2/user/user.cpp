@@ -29,7 +29,7 @@ namespace user
          return pguie;
       }
       pguie.release();
-      return ::null();
+      return NULL;
    }
 
 
@@ -45,8 +45,8 @@ namespace user
    {
       // check for permanent-owned ::ca::window first
       sp(::user::interaction) pWnd = oswindow;
-      if(pWnd == ::null())
-         return ::null();
+      if(pWnd == NULL)
+         return NULL;
       return pWnd->get_owner();
    }
 
@@ -83,7 +83,7 @@ namespace user
             return TRUE;
 
          oswindow_Child = ::user::get_parent_owner(oswindow_Child);
-      } while (oswindow_Child != ::null());
+      } while (oswindow_Child != NULL);
 
       return FALSE;
    }

@@ -52,7 +52,7 @@ namespace ca
       if(m_bAutoAdd)
       {
          ::ca::property * pproperty = add(idName);
-         if(pproperty != ::null())
+         if(pproperty != NULL)
             return *pproperty;
       }
       throw simple_exception(get_app(), "property with specified name - and specified case sensitivity - does not exist and Auto add Flag is not set");
@@ -244,7 +244,7 @@ namespace ca
    ::count property_set::unset(id idName)
    {
       ::ca::property_map::pair * ppair = m_map.PLookup(idName);
-      if(ppair == ::null())
+      if(ppair == NULL)
          return 0;
       m_propertya.remove_at(ppair->m_element2);
       m_map.remove_key(ppair->m_element1);
@@ -256,7 +256,7 @@ namespace ca
    bool property_set::is_new(id idName) const
    {
       const property * pproperty = find(idName);
-      if(pproperty == ::null())
+      if(pproperty == NULL)
          return true;
       return pproperty->is_new();
    }
@@ -269,7 +269,7 @@ namespace ca
    bool property_set::is_null(id idName) const
    {
       const property * pproperty = find(idName);
-      if(pproperty == ::null())
+      if(pproperty == NULL)
          return true;
       return pproperty->is_null();
    }
@@ -282,7 +282,7 @@ namespace ca
    bool property_set::is_new_or_null(id idName) const
    {
       const property * pproperty = find(idName);
-      if(pproperty == ::null())
+      if(pproperty == NULL)
          return true;
       return pproperty->is_new_or_null();
    }
@@ -296,7 +296,7 @@ namespace ca
    bool property_set::is_empty(id idName) const
    {
       const property * pproperty = find(idName);
-      if(pproperty == ::null())
+      if(pproperty == NULL)
          return true;
       return pproperty->is_empty();
    }
@@ -304,7 +304,7 @@ namespace ca
    bool property_set::is_empty(string_interface & str) const
    {
       const property * pproperty = find((const char *) string(str));
-      if(pproperty == ::null())
+      if(pproperty == NULL)
          return true;
       return pproperty->is_empty();
    }
@@ -375,7 +375,7 @@ namespace ca
 
       const char * pszCmdLine =  pszCmdLineParam;
 
-      if(pszCmdLine == ::null())
+      if(pszCmdLine == NULL)
          return;
 
       string str;
@@ -569,10 +569,10 @@ namespace ca
 
    void property_set::parse_url_query(const char * pszUrl)
    {
-      if(pszUrl == ::null())
+      if(pszUrl == NULL)
          return;
       const char * pszUrlQuery = strchr(pszUrl, '?');
-      if(pszUrlQuery == ::null())
+      if(pszUrlQuery == NULL)
          return _parse_url_query(pszUrl);
       else
          return _parse_url_query(pszUrlQuery + 1);
@@ -580,7 +580,7 @@ namespace ca
 
    void property_set::_parse_url_query(const char * pszUrlQuery)
    {
-      if(pszUrlQuery == ::null())
+      if(pszUrlQuery == NULL)
          return;
       const char * pszParam = pszUrlQuery;
       const char * pszParamEnd;
@@ -590,9 +590,9 @@ namespace ca
       {
          pszParamEnd = strchr(pszParam, '&');
          pszKeyEnd   = strchr(pszParam, '=');
-         if(pszParamEnd == ::null())
+         if(pszParamEnd == NULL)
          {
-            if(pszKeyEnd == ::null())
+            if(pszKeyEnd == NULL)
             {
                strKey = System.url().url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
                _008Add(strKey, "");
@@ -607,7 +607,7 @@ namespace ca
          }
          else
          {
-            if(pszKeyEnd == ::null() || pszKeyEnd > pszParamEnd)
+            if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
             {
                strKey = System.url().url_decode(pszParam, pszParamEnd - pszParam);
                _008Add(strKey, "");

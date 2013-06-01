@@ -4,8 +4,8 @@
 extern char * g_MsDownloadBuffer;
 
 
-bool ms_download(const char * pszUrl, const char * pszFile, bool bUrlEncode = true, int32_t * piStatus = ::null());
-bool ms_download_progress(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode = true, int32_t * piStatus = ::null());
+bool ms_download(const char * pszUrl, const char * pszFile, bool bUrlEncode = true, int32_t * piStatus = NULL);
+bool ms_download_progress(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode = true, int32_t * piStatus = NULL);
 void dlr(uint32_t dwDownload);
 */
 

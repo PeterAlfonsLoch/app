@@ -12,7 +12,7 @@ namespace zip
 
    InFile::~InFile()
    {
-      if(get_zip_file() != ::null() && m_bCloseOnDelete)
+      if(get_zip_file() != NULL && m_bCloseOnDelete)
          close();
    }
 
@@ -20,7 +20,7 @@ namespace zip
    sp(::ca::file) InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
-      ASSERT(get_zip_file() != ::null());
+      ASSERT(get_zip_file() != NULL);
 
    /*   InFile* pFile = new InFile(hFileNull);
       HANDLE hFile;
@@ -34,7 +34,7 @@ namespace zip
       pFile->m_hFile = (UINT)hFile;
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
-      return ::null();
+      return NULL;
       //return new ::ca::filesp(this);
    }
 
@@ -200,11 +200,11 @@ namespace zip
          return false;
       if(unzGetCurrentFileInfo(get_zip_file()->m_pfUnzip,
                             &m_fi,
-                            ::null(),
+                            NULL,
                             0,
-                            ::null(),
+                            NULL,
                             0,
-                            ::null(),
+                            NULL,
                             0) != UNZ_OK)
          return false;
 
@@ -246,12 +246,12 @@ namespace zip
    ::primitive::memory_size InFile::read(void * lpBuf, ::primitive::memory_size nCount)
    {
    //   ASSERT_VALID(this);
-      ASSERT(get_zip_file() != ::null());
+      ASSERT(get_zip_file() != NULL);
 
       if (nCount == 0)
-         return 0;   // avoid Win32 "null-read"
+         return 0;   // avoid Win32 "NULL-read"
 
-      ASSERT(lpBuf != ::null());
+      ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, (uint_ptr) nCount));
 
       uint64_t iRead;
@@ -266,7 +266,7 @@ namespace zip
       UNREFERENCED_PARAMETER(lpBuf);
       UNREFERENCED_PARAMETER(nCount);
       //ASSERT_VALID(this);
-      ASSERT(get_zip_file() != ::null());
+      ASSERT(get_zip_file() != NULL);
 
       ASSERT(FALSE);
    }
@@ -274,7 +274,7 @@ namespace zip
    file_position InFile::seek(file_offset lOff, ::ca::e_seek nFrom)
    {
    //   ASSERT_VALID(this);
-      //ASSERT(get_zip_file() != ::null());
+      //ASSERT(get_zip_file() != NULL);
       //ASSERT(nFrom == ::ca::seek_begin || nFrom == ::ca::seek_end || nFrom == ::ca::seek_current);
       //ASSERT(::ca::seek_begin == FILE_BEGIN && ::ca::seek_end == FILE_END && ::ca::seek_current == FILE_CURRENT);
    /*typedef struct unz_file_pos_s
@@ -347,10 +347,10 @@ namespace zip
    void InFile::close()
    {
    //   ASSERT_VALID(this);
-      //ASSERT(get_zip_file() != ::null());
+      //ASSERT(get_zip_file() != NULL);
 
       bool bError = FALSE;
-      /*if(get_zip_file() != ::null())
+      /*if(get_zip_file() != NULL)
       {
          unzCloseCurrentFile(get_zip_file()->m_pf);
       }*/
@@ -386,7 +386,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    //   ASSERT_VALID(this);
-      ASSERT(get_zip_file() != ::null());
+      ASSERT(get_zip_file() != NULL);
       ASSERT(FALSE);
    }
 
@@ -418,13 +418,13 @@ namespace zip
       REFIID riid, LPVOID* ppv)
    {
       // find the object's class factory
-      LPCLASSFACTORY pf = ::null();
+      LPCLASSFACTORY pf = NULL;
       HRESULT hRes = GetClassObject(rclsid, IID_IClassFactory, (LPVOID*)&pf);
       if (FAILED(hRes))
          return hRes;
 
       // call it to create the instance
-      ASSERT(pf != ::null());
+      ASSERT(pf != NULL);
       hRes = pf->CreateInstance(pUnkOuter, riid, ppv);
 
       // let go of the factory
@@ -434,8 +434,8 @@ namespace zip
 
    HRESULT __COM::GetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
    {
-      *ppv = ::null();
-      HINSTANCE hInst = ::null();
+      *ppv = NULL;
+      HINSTANCE hInst = NULL;
 
       // find server name for this class ID
 
@@ -446,7 +446,7 @@ namespace zip
 
       // try to load it
       hInst = LoadLibrary(strServer);
-      if (hInst == ::null())
+      if (hInst == NULL)
          return REGDB_E_CLASSNOTREG;
 
    #pragma warning(disable:4191)
@@ -457,7 +457,7 @@ namespace zip
    #pragma warning(default:4191)
 
       // call it, if it worked
-      if (pfn != ::null())
+      if (pfn != NULL)
          return pfn(rclsid, riid, ppv);
       return CO_E_ERRORINDLL;
    }*/
@@ -512,7 +512,7 @@ namespace zip
 
 
    /*void vfxThrowFileException(int32_t cause, LONG lOsError,
-   //   const wchar_t * lpszFileName /* == ::null() */
+   //   const wchar_t * lpszFileName /* == NULL */
    /*{
    #ifdef DEBUG
       const char * lpsz;
@@ -521,7 +521,7 @@ namespace zip
       else
          lpsz = szUnknown;
       TRACE3("InFile exception: %hs, InFile %W, App error information = %ld.\n",
-         lpsz, (lpszFileName == ::null()) ? L"Unknown" : lpszFileName, lOsError);
+         lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
    #endif
       THROW(new FileException(cause, lOsError, lpszFileName));
    }*/
@@ -589,13 +589,13 @@ namespace zip
 
    bool InFile::IsOpened()
    {
-      return get_zip_file() != ::null();
+      return get_zip_file() != NULL;
    }
 
    File * InFile::get_zip_file()
    {
       if(m_filea.get_count() <= 0)
-         return ::null();
+         return NULL;
       else
          return m_filea.last_element();
    }
@@ -603,7 +603,7 @@ namespace zip
    const File * InFile::get_zip_file() const
    {
       if(m_filea.get_count() <= 0)
-         return ::null();
+         return NULL;
       else
          return m_filea.last_element();
    }
@@ -635,7 +635,7 @@ namespace zip
       zipfi.tmz_date.tm_mon  = status.m_ctime.GetGmtMonth();
       zipfi.tmz_date.tm_mday = status.m_ctime.GetGmtDay();
 
-      zipOpenNewFileInZip(get_zip_file()->m_pfZip, pszRelative, &zipfi, ::null(), 0, ::null(), 0, ::null(), Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      zipOpenNewFileInZip(get_zip_file()->m_pfZip, pszRelative, &zipfi, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
 
       ::primitive::memory mem(get_app());
 

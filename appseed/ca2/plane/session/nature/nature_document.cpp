@@ -20,7 +20,7 @@ namespace nature
          return FALSE;
 
 
-      update_all_views(::null(), 0);
+      update_all_views(NULL, 0);
 
 
       return TRUE;
@@ -70,7 +70,7 @@ namespace nature
       {
          System.sync_load_url(str, varFile, &ApplicationUser);
       }
-      update_all_views(::null(), 123);
+      update_all_views(NULL, 123);
       return TRUE;
    }
 

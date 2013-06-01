@@ -215,7 +215,7 @@ namespace user
       virtual bool _001IsPointInside(point64 pt);
 
       sp(Ex1FormInterfaceComboBox) GetComboBox();
-      static control Null();
+      control null() { return control(); }
       bool Validate(string & str);
       bool get_data(sp(::user::interaction) pwnd, var & var);
       void SetEditItem(index iItem);

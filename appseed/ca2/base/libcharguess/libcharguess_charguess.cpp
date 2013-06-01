@@ -44,7 +44,7 @@ const char* GuessChardet(const char *str)
    if (!det)
    {
       CharGuessInit();
-      return ::null();
+      return NULL;
    }
    det->Reset();
    det->HandleData(str, (uint32_t) strlen(str));

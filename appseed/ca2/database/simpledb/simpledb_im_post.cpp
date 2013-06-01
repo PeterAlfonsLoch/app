@@ -104,7 +104,7 @@ var im_post::get_since(var rec)
 
 var im_post::last(var user1, var user2)
 {
-   if(m_pdataserver == ::null())
+   if(m_pdataserver == NULL)
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());

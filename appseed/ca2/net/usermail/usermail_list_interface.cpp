@@ -19,7 +19,7 @@ namespace usermail
       ::user::scroll_view(papp),
       ::user::list(papp)
    {
-      m_paccount= ::null();
+      m_paccount= NULL;
       m_dataid = "mail::list_interface";
       m_pdata = new data(papp);
       m_pdata->m_plist = this;
@@ -89,7 +89,7 @@ namespace usermail
 
    void list_interface::data::update()
    {
-      if(m_plist->m_paccount == ::null())
+      if(m_plist->m_paccount == NULL)
          return;
       single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
       m_straId.remove_all();

@@ -8,7 +8,7 @@ class map_to_smart_pointer :
 public:
 
 
-   map_to_smart_pointer(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
+   map_to_smart_pointer(::ca::application * papp = NULL, ::count nBlockSize = 10) :
       ::ca::ca(papp),
       map < TYPE, ARG_TYPE, ::c::smart_pointer < T >, const ::c::smart_pointer < T > & > (papp, nBlockSize)
    {
@@ -30,7 +30,7 @@ class string_to_smart_pointer :
 public:
 
 
-   string_to_smart_pointer(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
+   string_to_smart_pointer(::ca::application * papp = NULL, ::count nBlockSize = 10) :
       ::ca::ca(papp),
       string_map < ::c::smart_pointer < T >, const ::c::smart_pointer < T > & > (papp, nBlockSize)
    {

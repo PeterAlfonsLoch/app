@@ -495,7 +495,7 @@ THE SOFTWARE.
       goto Bail;
     }
 
-    /* allocate one more byte so that we have a final null byte */
+    /* allocate one more byte so that we have a final NULL byte */
     if ( FT_NEW_ARRAY( strings, string_size + 1 ) )
       goto Bail;
 

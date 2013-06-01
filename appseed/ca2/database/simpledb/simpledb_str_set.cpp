@@ -8,14 +8,14 @@ db_str_set::db_str_set(db_server * pserver) :
    m_mutex(pserver->get_app())
 {
 
-   m_pqueue       = ::null();
+   m_pqueue       = NULL;
 
-   m_phttpsession = ::null();
+   m_phttpsession = NULL;
 
    m_pmysqldbUser = pserver->m_pmysqldbUser;
    m_strUser      = pserver->m_strUser;
 
-   if(!m_pdataserver->m_bRemote && m_pmysqldbUser == ::null())
+   if(!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL)
    {
       sp(::sqlite::base) pdb = db()->GetImplDatabase();
       //create string Table if necessary
@@ -78,7 +78,7 @@ db_str_set::sync_queue::sync_queue(sp(::ca::application) papp) :
    m_handler(papp),
    m_mutex(papp)
 {
-   m_phttpsession = ::null();
+   m_phttpsession = NULL;
 
 
 }
@@ -119,7 +119,7 @@ repeat:;
              goto repeat;
           }
 
-          if(Session.fontopus()->m_puser == ::null())
+          if(Session.fontopus()->m_puser == NULL)
           {
              sl.unlock();
              Sleep(1984 + 1977);
@@ -171,9 +171,9 @@ repeat:;
              sl.unlock();
 
 
-             m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, ::null(), &ApplicationUser, ::null(), &estatus);
+             m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-             if(m_phttpsession == ::null() || estatus != ::ca::http::status_ok)
+             if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
              {
                 Sleep(1984);
                 strApiServer = "";
@@ -195,7 +195,7 @@ repeat:;
    catch(...)
    {
    }
-   m_pset->m_pqueue = ::null();
+   m_pset->m_pqueue = NULL;
    return 0;
 }
 
@@ -225,7 +225,7 @@ bool db_str_set::remove(const char * lpKey)
 bool db_str_set::load(const char * lpKey, string & strValue)
 {
 
-   if(m_pdataserver == ::null())
+   if(m_pdataserver == NULL)
       return false;
 
    if(m_pdataserver->m_bRemote)
@@ -255,9 +255,9 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       strUrl = "https://api.ca2.cc/account/str_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, ::null(), &ApplicationUser, ::null(), &estatus);
+      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-      if(m_phttpsession == ::null() || estatus != ::ca::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
       {
          return false;
       }
@@ -274,7 +274,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
    }
 #ifndef METROWIN
-   else if(m_pmysqldbUser != ::null())
+   else if(m_pmysqldbUser != NULL)
    {
 
       try
@@ -330,12 +330,12 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 bool db_str_set::save(const char * lpKey, const char * lpcsz)
 {
 
-   if(m_pdataserver == ::null())
+   if(m_pdataserver == NULL)
       return false;
 
    if(!m_pdataserver->m_bRemote)
    {
-      if(db() == ::null())
+      if(db() == NULL)
          return false;
       single_lock slDatabase(db()->GetImplCriticalSection());
 
@@ -384,14 +384,14 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       return true;
    }
 #ifdef HAVE_MYSQL
-   else if(m_pmysqldbUser != ::null())
+   else if(m_pmysqldbUser != NULL)
    {
 
       string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', '" + m_pmysqldbUser->real_escape_string(lpcsz) + "')";
 
       TRACE(strSql);
 
-      return m_pmysqldbUser->query(strSql) != ::null();
+      return m_pmysqldbUser->query(strSql) != NULL;
 
    }
 #endif
@@ -399,7 +399,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    {
 
 
-      if(m_pqueue == ::null())
+      if(m_pqueue == NULL)
       {
 
          m_pqueue = new sync_queue(get_app());

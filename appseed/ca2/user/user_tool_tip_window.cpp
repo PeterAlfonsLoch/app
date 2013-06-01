@@ -39,7 +39,7 @@ namespace user
                   //ptool->BaseToolTipGetWnd()->ScreenToClient(&m_pt);
                   KillTimer(TimerShowDelayed);
                   HideTip();
-                  SetTimer(TimerShowDelayed, 500, ::null());
+                  SetTimer(TimerShowDelayed, 500, NULL);
                }
             }
          }
@@ -70,7 +70,7 @@ namespace user
       if(!GetToolText(iTool, m_strTip))
          return;
 
-      SetTimer(1, 5000, ::null());
+      SetTimer(1, 5000, NULL);
 
       rect rect;
       ::ca::client_graphics pdc(this);
@@ -320,12 +320,12 @@ namespace user
    bool tool_tip_window::create(sp(::user::interaction) pwnd, id id)
    {
       m_pwnd = pwnd;
-      if(m_font->get_os_data() != ::null())
+      if(m_font->get_os_data() != NULL)
       {
          return false;
       }
       m_font->create_point_font("Arial", 10.0);
-      return CreateEx(WS_EX_TOOLWINDOW, ::null(), ::null(), WS_POPUP, 0, 0, 0, 0, ::ca::null(), id) != 0;
+      return CreateEx(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, 0, 0, 0, 0, NULL, id) != 0;
    }
 
    ///////////////////////////////////////////////////////////
@@ -536,7 +536,7 @@ namespace user
 
    void tool_tip_window::CToolMap::AddTool(::user::tool_tip_tool * ptool)
    {
-      ASSERT(ptool != ::null());
+      ASSERT(ptool != NULL);
       set_at(ptool->BaseToolTipGetIndex(), ptool);
    }
 

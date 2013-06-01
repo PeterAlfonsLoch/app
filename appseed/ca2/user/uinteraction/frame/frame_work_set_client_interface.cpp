@@ -113,7 +113,7 @@ namespace frame
             if(!m_workset.IsFullScreenEnabled())
                return false;
 
-            if(m_workset.m_pappearance != ::null())
+            if(m_workset.m_pappearance != NULL)
             {
             
                m_workset.m_pappearance->SetAutomaticModeSwitching(false);
@@ -131,15 +131,15 @@ namespace frame
 
             WfiOnAfterFullScreen(bFullScreen);
          
-            if(m_workset.m_pappearance != ::null())
+            if(m_workset.m_pappearance != NULL)
             {
 
-               if(m_workset.GetAppearance()->m_pworkset != ::null() && m_workset.GetAppearance()->m_pworkset->m_pframeschema != ::null())
+               if(m_workset.GetAppearance()->m_pworkset != NULL && m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL)
                {
                
-                  ASSERT(m_workset.GetAppearance()->m_pworkset != ::null());
+                  ASSERT(m_workset.GetAppearance()->m_pworkset != NULL);
 
-                  ASSERT(m_workset.GetAppearance()->m_pworkset->m_pframeschema != ::null());
+                  ASSERT(m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL);
 
                   m_workset.GetAppearance()->m_pworkset->m_pframeschema->OnAppearanceModeChange();
 

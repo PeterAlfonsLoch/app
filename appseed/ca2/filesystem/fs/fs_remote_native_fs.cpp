@@ -56,7 +56,7 @@ namespace fs
 
       sp(::xml::node) pnode = doc.get_child("folder");
 
-      if(pnode == ::null())
+      if(pnode == NULL)
          return false;
 
       if(pnode->get_children_count("folder") <= 0)
@@ -111,7 +111,7 @@ namespace fs
 
       sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
-      if(pnode != ::null())
+      if(pnode != NULL)
       {
          for(int32_t i = 0; i < pnode->get_children_count(); i++)
          {
@@ -121,11 +121,11 @@ namespace fs
             string strPath = dir_path(pszDir, strName);
             m_mapdirTimeout[strPath] = ::get_tick_count() + (15 * 1000);
             m_mapfileTimeout.remove_key(strPath);
-            if(pstraPath != ::null())
+            if(pstraPath != NULL)
             {
                pstraPath->add(strPath);
             }
-            if(pstraTitle != ::null())
+            if(pstraTitle != NULL)
             {
                pstraTitle->add(strName);
             }
@@ -134,7 +134,7 @@ namespace fs
 
       pnode = doc.get_root()->get_child("file");
 
-      if(pnode != ::null())
+      if(pnode != NULL)
       {
          for(int32_t i = 0; i < pnode->get_children_count(); i++)
          {
@@ -145,11 +145,11 @@ namespace fs
             string strPath = dir_path(pszDir, strName);
             m_mapfileTimeout[strPath] = ::get_tick_count() + (15 * 1000);
             m_mapdirTimeout.remove_key(strPath);
-            if(pstraPath != ::null())
+            if(pstraPath != NULL)
             {
                pstraPath->add(strPath);
             }
-            if(pstraTitle != ::null())
+            if(pstraTitle != NULL)
             {
                pstraTitle->add(strName);
             }
@@ -165,7 +165,7 @@ namespace fs
 
       //xml::node node(get_app());
 
-      if(pszPath == ::null() || strlen(pszPath) == 0)
+      if(pszPath == NULL || strlen(pszPath) == 0)
       {
          return true;
       }

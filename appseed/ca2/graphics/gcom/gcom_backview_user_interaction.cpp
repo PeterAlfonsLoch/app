@@ -69,7 +69,7 @@ namespace gcom
             }
             if(data.is_signalized(InterfaceDataEnhancedMetaFile))
             {
-               data.m_henhmetafile = ::null();
+               data.m_henhmetafile = NULL;
             }
          }
 
@@ -111,7 +111,7 @@ namespace gcom
          void interaction::initialize_user_interaction()
          {
             sp(::simple_frame_window) pframe = GetTypedParent < ::simple_frame_window > ();
-            if(pframe != ::null() && pframe->m_workset.m_pframeschema != ::null())
+            if(pframe != NULL && pframe->m_workset.m_pframeschema != NULL)
             {
                color c;
                c.set_rgb(pframe->m_workset.m_pframeschema->get_border_main_body_color());

@@ -148,7 +148,7 @@ mymngerror(mng_handle mng, mng_int32 code, mng_int8 severity, mng_chunkid chunkt
 		return MNG_TRUE;
 	}
 	if(text) {
-		// text can be null depending on compiler options
+		// text can be NULL depending on compiler options
 		sprintf(msg, "Error reported by libmng (%d)\r\n\r\n%s", code, text);
 	} else {
 		sprintf(msg, "Error %d reported by libmng", code);

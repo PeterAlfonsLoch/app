@@ -22,7 +22,7 @@ namespace user
 
    ::ca::graphics * printer::create_graphics()
    {
-      return ::null();
+      return NULL;
    }
 
    bool printer::is_opened()

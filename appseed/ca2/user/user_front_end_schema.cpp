@@ -16,7 +16,7 @@ namespace user
    {
 
       ::ca::graphics_sp spgraphics(papp->allocer());
-      spgraphics->CreateCompatibleDC(::null());
+      spgraphics->CreateCompatibleDC(NULL);
 
       m_button.m_font->create_point_font("Arial", 11.0);
 
@@ -104,7 +104,7 @@ namespace user
       m_fontMarlett(papp->allocer())
    {
       ::ca::graphics_sp spgraphics(papp->allocer());
-      spgraphics->CreateCompatibleDC(::null());
+      spgraphics->CreateCompatibleDC(NULL);
 
       m_fontMarlett->create_point_font("Marlett", 11.0);
    }
@@ -118,10 +118,10 @@ namespace user
 
    front_end_schema::menu::~menu()
    {
-      //if(m_pschemaSysMenuButton != ::null())
+      //if(m_pschemaSysMenuButton != NULL)
       //{
       // delete m_pschemaSysMenuButton;
-      //m_pschemaSysMenuButton = ::null();
+      //m_pschemaSysMenuButton = NULL;
       //}
    }
 

@@ -550,3 +550,7 @@ public:
    void get_bounding_rect(const pointd_array & pointa);
 
 };
+
+
+inline CLASS_DECL_ca2 ::rect null_rect() { return ::rect(0, 0, 0, 0); }
+inline CLASS_DECL_ca2 ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }

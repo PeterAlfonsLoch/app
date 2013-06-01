@@ -38,7 +38,7 @@ namespace ca
 
       system::~system()
       {
-         if(m_pziputil != ::null())
+         if(m_pziputil != NULL)
          {
             delete m_pziputil;
          }
@@ -68,7 +68,7 @@ namespace ca
       string system::path(const string & strFolder, const string & strRelative)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), ::null(), 0, ::ca::is_url(strFolder));
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::ca::is_url(strFolder));
 
       }
 
@@ -82,7 +82,7 @@ namespace ca
 
       string system::path(const string & strFolder, const string & strRelative, const char * psz2)
       {
-         if(psz2 == ::null())
+         if(psz2 == NULL)
          {
             return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::ca::is_url(strFolder));
          }
@@ -96,7 +96,7 @@ namespace ca
       string system::path(const string & strFolder, const string & strRelative, bool bUrl)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), ::null(), 0, bUrl);
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, bUrl);
 
       }
 
@@ -382,7 +382,7 @@ namespace ca
          if(eextract != extract_none && papp->m_bZipIsDir && (::ca::str::ends_ci(lpcsz, ".zip") || ::ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, ::null(), pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return;
          }
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
@@ -396,7 +396,7 @@ namespace ca
          if(::ca::str::begins_ci(lpcsz, "http://") || ::ca::str::begins_ci(lpcsz, "https://"))
          {
             string str = App(papp).http().get(lpcsz);
-            if(pstraPath != ::null())
+            if(pstraPath != NULL)
             {
                pstraPath->add_tokens(str, "\n", false);
             }
@@ -404,7 +404,7 @@ namespace ca
          }
          if(papp->m_bZipIsDir && (::ca::str::ends_ci(lpcsz, ".zip") || ::ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, ::null(), pbaIsDir, piaSize);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
          }
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
@@ -425,7 +425,7 @@ namespace ca
       {
          if(eextract != extract_none && papp->m_bZipIsDir && (::ca::str::ends_ci(lpcsz, ".zip") || ::ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, ::null(), ::null(), eextract == extract_all ? extract_all : extract_none);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
             return;
          }
          else
@@ -591,7 +591,7 @@ namespace ca
 
          string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
 
-         if(ppair == ::null())
+         if(ppair == NULL)
             return false;
 
          if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
@@ -622,7 +622,7 @@ namespace ca
 
          string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
 
-         if(ppair == ::null())
+         if(ppair == NULL)
             return false;
 
          if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
@@ -1005,7 +1005,7 @@ namespace ca
          }
 
 
-         if(papp->m_psession != ::null() && papp->m_psession != papp &&
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
             (sp(::ca::application)) papp->m_psystem != (sp(::ca::application)) papp)
          {
             strPath = matter(papp->m_psession, stra, bDir);
@@ -1021,7 +1021,7 @@ namespace ca
             }
          }
 
-         if(papp->m_psystem != ::null() && papp->m_psystem != papp &&
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
             (sp(::ca::application)) papp->m_psystem != (sp(::ca::application)) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, stra, bDir);
@@ -1135,6 +1135,8 @@ ret:
                strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
+            strPath.trim();
+
             if(strPath.has_char())
                goto ret;
 
@@ -1195,7 +1197,7 @@ ret:
             }
 
 
-            if(papp->m_psession != ::null() && papp->m_psession != papp &&
+            if(papp->m_psession != NULL && papp->m_psession != papp &&
                (sp(::ca::application)) papp->m_psystem != (sp(::ca::application)) papp)
             {
                strPath = matter(papp->m_psession, str, str2);
@@ -1216,7 +1218,7 @@ ret:
 #endif
 
 
-         if(papp->m_psystem != ::null() && papp->m_psystem != papp &&
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
             (sp(::ca::application)) papp->m_psystem != (sp(::ca::application)) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);
@@ -1279,14 +1281,14 @@ ret:
          strPath = path(locale_schema_matter(papp, "se", "se"), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         if(papp->m_psession != ::null() && papp->m_psession != papp &&
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
             (sp(::ca::application)) papp->m_psystem != (sp(::ca::application)) papp)
          {
             strPath = matter(papp->m_psession, str, str2);
             if(System.file().exists(strPath, papp))
                return strPath;
          }
-         if(papp->m_psystem != ::null() && papp->m_psystem != papp &&
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
             (sp(::ca::application)) papp->m_psystem != (sp(::ca::application)) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);
@@ -1417,7 +1419,19 @@ ret:
          }
          else
          {
+            
             appmatter_locators(strRoot, strDomain, papp->m_pappThis->m_strLibraryName, papp->m_pappThis->m_strAppId);
+
+
+            if(strRoot.is_empty() || strDomain.is_empty())
+            {
+
+               strRoot     = "app";
+               strDomain   = "main";
+
+            }
+
+
          }
 
       }

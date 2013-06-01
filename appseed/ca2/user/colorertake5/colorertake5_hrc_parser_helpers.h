@@ -59,7 +59,7 @@ public:
   string virtSchemeName, substSchemeName;
 
   VirtualEntry(const char *scheme, const char *subst){
-    virtScheme = substScheme = ::null();
+    virtScheme = substScheme = NULL;
     virtSchemeName = (scheme);
     substSchemeName = (subst);
   };
@@ -132,7 +132,7 @@ protected:
 public:
   scheme_impl(const char *sn){
     schemeName = string(sn);
-    fileType = ::null();
+    fileType = NULL;
   };
   ~scheme_impl(){
     for (int32_t idx = 0; idx < nodes.get_size(); idx++)

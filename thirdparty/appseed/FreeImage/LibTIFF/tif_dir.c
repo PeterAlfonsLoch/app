@@ -380,7 +380,7 @@ _TIFFVSetField(TIFF* tif, ttag_t tag, va_list ap)
 			    va_arg(ap, uint16*), (unsigned int) (1L<<td->td_bitspersample));
 		break;
 	case TIFFTAG_REFERENCEBLACKWHITE:
-		/* XXX should check for null range */
+		/* XXX should check for NULL range */
 		_TIFFsetFloatArray(&td->td_refblackwhite, va_arg(ap, float*), 6);
 		break;
 	case TIFFTAG_INKNAMES:

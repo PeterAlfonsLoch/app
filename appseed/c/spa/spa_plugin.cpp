@@ -47,7 +47,7 @@ namespace spa
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
-      m_pbReady               = ::null();
+      m_pbReady               = NULL;
 
 #ifdef METROWIN
 
@@ -160,7 +160,7 @@ namespace spa
 
       bool bJob = false;
 
-      if(m_bRestartCa2 && m_phost != ::null())
+      if(m_bRestartCa2 && m_phost != NULL)
       {
 
          if(is_rx_tx_ok())
@@ -226,7 +226,7 @@ namespace spa
 
       }
 
-      if(m_bPendingStream && m_phost != ::null())
+      if(m_bPendingStream && m_phost != NULL)
       {
 
          if(m_phost->m_bStream)
@@ -364,29 +364,29 @@ namespace spa
 
 #endif
 
-         if(lpnodeVersion == ::null())
+         if(lpnodeVersion == NULL)
             goto install;
 
-         vsstring strBuild = get_latest_build_number(::null());
+         vsstring strBuild = get_latest_build_number(NULL);
 
          XNode * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 
-         if(lpnodeInstalled == ::null())
+         if(lpnodeInstalled == NULL)
             goto install;
 
          XNode * lpnodeType = lpnodeInstalled->GetChild(pszType);
 
-         if(lpnodeType == ::null())
+         if(lpnodeType == NULL)
             goto install;
 
          XNode * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
 
-         if(pnode == ::null())
+         if(pnode == NULL)
             goto install;
 
          lpnodeType->RemoveChild(pnode);
 
-         file_put_contents_dup(dir::appdata("spa_install.xml"), node.GetXML(::null()));
+         file_put_contents_dup(dir::appdata("spa_install.xml"), node.GetXML(NULL));
 
       }
 
@@ -448,8 +448,8 @@ install:
 
       //g.bit_blt(0, 0, cx, cy, gWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
 
-//      HFONT hfontOld = ::null();
-//      HFONT hfont = ::null();
+//      HFONT hfontOld = NULL;
+//      HFONT hfont = NULL;
 
       if(m_bLogin)
       {
@@ -683,7 +683,7 @@ install:
 
       DWORD dwRead;
 
-      HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+      HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;
 
@@ -694,7 +694,7 @@ install:
       if(hfile != INVALID_HANDLE_VALUE)
       {
 
-         int32_t iTell = ::SetFilePointer(hfile, 0, ::null(), SEEK_END);
+         int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
          iTell--;
          vsstring strLine;
          int32_t iSkip = 0;
@@ -707,8 +707,8 @@ install:
          {
             if(iTell > 0)
             {
-               ::SetFilePointer(hfile, iTell, ::null(), SEEK_SET);
-               if(!ReadFile(hfile, &ch,  1, &dwRead, ::null()))
+               ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
+               if(!ReadFile(hfile, &ch,  1, &dwRead, NULL))
                   break;
                if(dwRead <= 0)
                   break;
@@ -887,7 +887,7 @@ install:
 
          vsstring strPrompt;
 
-         if(m_phost->m_puchMemory != ::null())
+         if(m_phost->m_puchMemory != NULL)
          {
 
             strPrompt = vsstring((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);

@@ -43,7 +43,7 @@ namespace sockets
    {
 
       m_bNoClose        = false;
-      m_pfile           = ::null();
+      m_pfile           = NULL;
 
 
    }
@@ -78,7 +78,7 @@ namespace sockets
       m_request.attr("request_uri")       = strRequestUri;
       m_response.attr("request_uri")      = strRequestUri;
 
-      m_pfile = ::null();
+      m_pfile = NULL;
 
    }
 
@@ -162,7 +162,7 @@ namespace sockets
    {
       OnDataArrived(buf, len);
 
-      if(m_pfile != ::null())
+      if(m_pfile != NULL)
       {
          m_pfile->write(buf, len);
          return;
@@ -181,7 +181,7 @@ namespace sockets
          {
             System.compress().ungz(m_memoryfile);
          }
-         if(m_pfile != ::null())
+         if(m_pfile != NULL)
          {
             m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
          }
@@ -304,7 +304,7 @@ namespace sockets
 
       m_strUrl = strUrlParam;
 
-      m_pfile = ::null();
+      m_pfile = NULL;
    }
 
 } // namespace sockets

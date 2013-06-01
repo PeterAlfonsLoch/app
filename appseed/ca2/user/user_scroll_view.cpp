@@ -81,7 +81,7 @@ namespace user
 
       _001DeferCreateScrollBars();
 
-      if(m_pscrollbarHorz != ::null())
+      if(m_pscrollbarHorz != NULL)
       {
          if(m_scrollinfo.m_bHScroll)
          {
@@ -93,7 +93,7 @@ namespace user
          }
       }
 
-      if(m_pscrollbarVert != ::null())
+      if(m_pscrollbarVert != NULL)
       {
          if(m_scrollinfo.m_bVScroll)
          {
@@ -113,14 +113,14 @@ namespace user
 
       if(m_scrollinfo.m_bHScroll)
       {
-         if(m_pscrollbarHorz == ::null())
+         if(m_pscrollbarHorz == NULL)
             create_scroll_bar(scroll_bar::orientation_horizontal);
 
       }
 
       if(m_scrollinfo.m_bVScroll)
       {
-         if(m_pscrollbarVert == ::null())
+         if(m_pscrollbarVert == NULL)
             create_scroll_bar(scroll_bar::orientation_vertical);
       }
 
@@ -292,7 +292,7 @@ namespace user
 
       ::user::scroll_info si;
 
-      if(m_pscrollbarHorz != ::null())
+      if(m_pscrollbarHorz != NULL)
       {
          si.fMask       = SIF_ALL;
          si.nMin        = m_scrollinfo.m_rectMargin.left;
@@ -303,7 +303,7 @@ namespace user
          m_pscrollbarHorz->_001SetScrollInfo(&si);
       }
 
-      if(m_pscrollbarVert != ::null())
+      if(m_pscrollbarVert != NULL)
       {
          si.fMask       = SIF_ALL;
          si.nMin        = m_scrollinfo.m_rectMargin.top;
@@ -342,22 +342,18 @@ namespace user
 
       if(eorientation == scroll_bar::orientation_horizontal)
       {
-         if(m_pscrollbarHorz != ::null())
+         if(m_pscrollbarHorz != NULL)
             return;
       }
       else
       {
-         if(m_pscrollbarVert != ::null())
+         if(m_pscrollbarVert != NULL)
             return;
       }
 
       scroll_bar * pbar = new simple_scroll_bar(get_app());
 
-      class rect rectNull;
-
-      rectNull.null();
-
-      if(!pbar->create(eorientation, WS_CHILD | WS_VISIBLE, rectNull, this, 7000 + eorientation))
+      if(!pbar->create(eorientation, WS_CHILD | WS_VISIBLE, ::null_rect(), this, 7000 + eorientation))
       {
          delete pbar;
          return;

@@ -7,8 +7,8 @@ class string_manager;
 struct CLASS_DECL_ca2 string_data
 {
    string_manager * pstringmanager;  // string manager for this string_data
-   strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating null)
-   strsize nAllocLength;  // Length of allocated data in XCHARs (not including terminating null)
+   strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating NULL)
+   strsize nAllocLength;  // Length of allocated data in XCHARs (not including terminating NULL)
    long nRefs;     // Reference count: negative == locked
    // char data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual array of character data
 
@@ -1125,7 +1125,7 @@ public:
 
    enum
    {
-      AUTO_LENGTH = 0x01,  // Automatically determine the new length of the string at release.  The string must be null-terminated.
+      AUTO_LENGTH = 0x01,  // Automatically determine the new length of the string at release.  The string must be NULL-terminated.
          SET_LENGTH = 0x02,  // set the length of the string object at GetBuffer time
    };
 

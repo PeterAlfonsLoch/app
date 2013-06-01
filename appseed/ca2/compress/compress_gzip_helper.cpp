@@ -137,7 +137,7 @@ gzip::~gzip()
    int32_t gzip::destroy()
    {
       int32_t err = Z_OK;
-      if (m_zstream.state != ::null()) {
+      if (m_zstream.state != NULL) {
          err = deflateEnd(&(m_zstream));
       }
       if (m_z_err < 0) err = m_z_err;

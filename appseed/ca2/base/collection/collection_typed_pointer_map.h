@@ -7,7 +7,7 @@ class typed_pointer_map :
 {
 public:
 
-   typed_pointer_map(::ca::application * papp = ::null(), ::count nBlockSize = 10) :
+   typed_pointer_map(::ca::application * papp = NULL, ::count nBlockSize = 10) :
       ::ca::ca(papp),
       BASE_CLASS(papp, nBlockSize)
    {

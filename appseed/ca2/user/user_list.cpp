@@ -37,9 +37,9 @@ namespace user
 
       m_bSingleColumnMode        = false;
       m_bHeaderCtrl              = true;
-      m_pdata           = ::null();
-      m_pcache                   = ::null();
-      m_pheaderctrl              = ::null();
+      m_pdata           = NULL;
+      m_pcache                   = NULL;
+      m_pheaderctrl              = NULL;
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
@@ -84,8 +84,8 @@ namespace user
 
       //   m_iItemCount = 0;
 
-      m_pilGroup        = ::null();
-      m_pilGroupHover   = ::null();
+      m_pilGroup        = NULL;
+      m_pilGroupHover   = NULL;
 
 
       m_scrollinfo.m_rectMargin.left = -84;
@@ -129,13 +129,13 @@ namespace user
 
    bool list::CreateHeaderCtrl()
    {
-      if(m_pheaderctrl != ::null())
+      if(m_pheaderctrl != NULL)
       {
          if(!m_pheaderctrl->IsWindow())
          {
 #ifdef WINDOWSEX
             return m_pheaderctrl->create(
-               ::null(),
+               NULL,
                "",
                WS_CHILD
                | WS_VISIBLE
@@ -147,7 +147,7 @@ namespace user
                1023) != 0;
 #else
             return m_pheaderctrl->create(
-               ::null(),
+               NULL,
                "",
                WS_CHILD
                | WS_VISIBLE,
@@ -167,7 +167,7 @@ namespace user
    void list::_001OnDraw(::ca::graphics *pdc)
    {
 
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          if(m_pdata->is_in_use())
          {
@@ -249,8 +249,8 @@ namespace user
       m_pdrawlistitem->m_iSubItemRectSubItem    = -1;
       m_pdrawlistitem->m_iSubItemRectItem       = -1;
       m_pdrawlistitem->m_iSubItemRectColumn     = -1;
-      m_pdrawlistitem->m_pcolumnSubItemRect     = ::null();
-      m_pdrawlistitem->m_pcolumnWidth           = ::null();
+      m_pdrawlistitem->m_pcolumnSubItemRect     = NULL;
+      m_pdrawlistitem->m_pcolumnWidth           = NULL;
       m_pdrawlistitem->m_iWidthColumn           = -1;
       m_pdrawlistitem->m_iColumnWidth           = 0;
 
@@ -588,7 +588,7 @@ namespace user
       pdrawitem->m_iSubItemRectOrder      = -1;
       pdrawitem->m_iSubItemRectSubItem    = -1;
       pdrawitem->m_iSubItemRectColumn     = -1;
-      pdrawitem->m_pcolumnSubItemRect     = ::null();
+      pdrawitem->m_pcolumnSubItemRect     = NULL;
 
       for(pdrawitem->m_iOrder = 0; pdrawitem->m_iOrder < iColumnCount; pdrawitem->m_iOrder++)
       {
@@ -663,7 +663,7 @@ namespace user
 
    void list::_001GetItemImage(::user::list_item * pitem)
    {
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          pitem->m_plist = this;
          try
@@ -687,13 +687,13 @@ namespace user
    void list::_001GetItemText(::user::list_item * pitem)
    {
       pitem->m_bOk = false;
-      if(m_pcache != ::null())
+      if(m_pcache != NULL)
       {
          m_pcache->_001GetItemText(pitem);
          if(pitem->m_bOk)
             return;
       }
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          m_pdata->_001GetItemText(pitem);
       }
@@ -970,7 +970,7 @@ namespace user
       column.m_iControl = (UINT) -1;
       column.m_uiSmallBitmap = (UINT) -1;
       column.m_bIcon = false;
-      column.m_pil = ::null();
+      column.m_pil = NULL;
    }
 
    //
@@ -985,13 +985,13 @@ namespace user
       m_uiSmallBitmap            = (UINT) -1;
       m_iOrder                   = -1;
       m_bVisible                 = true;
-      m_pil                      = ::null();
+      m_pil                      = NULL;
       m_iControl                 = -1;
       m_bEditOnSecondClick       = false;
       m_bCustomDraw              = false;
       m_bIcon                    = false;
-      m_pil                      = ::null();
-      m_pilHover                 = ::null();
+      m_pil                      = NULL;
+      m_pilHover                 = NULL;
    }
    list_column::list_column(const list_column & column)
    {
@@ -1113,7 +1113,7 @@ namespace user
          {
             iItemWidth += iColumnWidth;
          }
-         if(pcolumn->m_pil != ::null()
+         if(pcolumn->m_pil != NULL
             && pcolumn->m_pil->get_image_count() > 0)
          {
             pcolumn->m_pil->get_image_info(0, &ii);
@@ -1257,7 +1257,7 @@ namespace user
 
    ::count list::_001GetItemCount()
    {
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          return m_pdata->_001GetItemCount();
       }
@@ -1268,7 +1268,7 @@ namespace user
 
    ::count list::_001GetGroupCount()
    {
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          return m_pdata->_001GetGroupCount();
       }
@@ -1934,7 +1934,7 @@ namespace user
          int32_t x = pdrawitem->m_rectGroup.left;
          int32_t iImageBottom = pdrawitem->m_rectGroup.top;
 
-         if(m_pilGroup != ::null())
+         if(m_pilGroup != NULL)
          {
 
 #ifdef WINDOWSEX
@@ -2064,7 +2064,7 @@ namespace user
                   return_(pdrawitem->m_bOk, false);
                }
             }
-            else if(pdrawitem->m_pcolumnSubItemRect->m_pil != ::null())
+            else if(pdrawitem->m_pcolumnSubItemRect->m_pil != NULL)
             {
 
 #if defined(WINDOWSEX) ||  defined(LINUX) || defined(METROWIN)
@@ -2415,7 +2415,7 @@ namespace user
                m_iItemFocus = iItem;
                _001DisplayHitTest(pt, m_iItemDrag);
                m_iItemDrop = m_iItemDrag;
-               SetTimer(12345678, 400, ::null());
+               SetTimer(12345678, 400, NULL);
                item_range itemrange;
                itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
@@ -2470,7 +2470,7 @@ namespace user
          m_iClick++;
          m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
          m_ptLButtonUp = pt;
-         SetTimer(12345679, 500, ::null());
+         SetTimer(12345679, 500, NULL);
          KillTimer(12345678);
       }
       pobj->m_bRet = true;
@@ -2513,7 +2513,7 @@ namespace user
          }
          m_uiRButtonUpFlags = (UINT) pmouse->m_nFlags;
          m_ptRButtonUp = pt;
-         SetTimer(8477, 500, ::null());
+         SetTimer(8477, 500, NULL);
       }
 
 
@@ -2528,11 +2528,11 @@ namespace user
       ::user::control_event ev;
       ev.m_puie = this;
       ev.m_eevent = ::user::event_list_clicked;
-      if(m_pformcallback != ::null())
+      if(m_pformcallback != NULL)
       {
-         m_pformcallback->BaseOnControlEvent(::null(), &ev);
+         m_pformcallback->BaseOnControlEvent(NULL, &ev);
       }
-      else if(get_form() != ::null())
+      else if(get_form() != NULL)
       {
          get_form()->send_message(
             ::ca::message_event, 0, (LPARAM) &ev);
@@ -2733,7 +2733,7 @@ namespace user
 
 
       /* trans window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
-      if(wndidNotify == ::null())
+      if(wndidNotify == NULL)
       wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
 
 
@@ -2893,7 +2893,7 @@ namespace user
          }
       }
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -2910,11 +2910,11 @@ namespace user
             }
             else
             {
-               return ::null();
+               return NULL;
             }
          }
       }
-      return ::null();
+      return NULL;
 
    }
 
@@ -2928,7 +2928,7 @@ namespace user
             return pcolumn;
          }
       }
-      return ::null();
+      return NULL;
    }
 
    list_column * list_column_array::GlobalOrderGetNext(index iKey)
@@ -2947,7 +2947,7 @@ namespace user
             return pcolumn;
          }
       }
-      return ::null();
+      return NULL;
 
    }
    list_column * list_column_array::_001GetNonVisible(index iKeyNonVisible)
@@ -2960,7 +2960,7 @@ namespace user
             return pcolumn;
          }
       }
-      return ::null();
+      return NULL;
 
    }
 
@@ -2995,12 +2995,12 @@ namespace user
    list_column_array::list_column_array(sp(::ca::application) papp) :
    ca(papp)
    {
-      m_plist = ::null();
+      m_plist = NULL;
    }
 
    void list_column_array::Initialize(list * plist)
    {
-      ASSERT(plist != ::null());
+      ASSERT(plist != NULL);
       m_plist = plist;
    }
 
@@ -3101,7 +3101,7 @@ namespace user
    index list_column_array::_001GetSubItemKey(index iSubItem)
    {
       list_column * pcolumn = _001GetBySubItem(iSubItem);
-      if(pcolumn == ::null())
+      if(pcolumn == NULL)
          return -1;
       return pcolumn->m_iKey;
    }
@@ -3174,13 +3174,13 @@ namespace user
       list_column * columnBPrevious = GlobalOrderGetPrevious(iKeyB);
       list_column * columnBNext = GlobalOrderGetNext(iKeyB);
 
-      if(columnA == ::null())
+      if(columnA == NULL)
          return;
 
-      if(columnB == ::null())
+      if(columnB == NULL)
          return;
 
-      if(columnAPrevious == ::null())
+      if(columnAPrevious == NULL)
       {
          m_iFirstGlobalOrderKey = iKeyB;
       }
@@ -3193,7 +3193,7 @@ namespace user
       }
 
 
-      if(columnBPrevious == ::null())
+      if(columnBPrevious == NULL)
       {
          m_iFirstGlobalOrderKey = iKeyA;
       }
@@ -3205,7 +3205,7 @@ namespace user
          }
       }
 
-      if(columnANext == ::null())
+      if(columnANext == NULL)
       {
          columnB->m_iNextGlobalOrderKey = -1;
       }
@@ -3221,7 +3221,7 @@ namespace user
          }
       }
 
-      if(columnBNext == ::null())
+      if(columnBNext == NULL)
       {
          columnA->m_iNextGlobalOrderKey = -1;
       }
@@ -3356,7 +3356,7 @@ namespace user
       while(true)
       {
          list_column * column = _001GetByKey(iNextKey);
-         if(column == ::null())
+         if(column == NULL)
             return -1;
          if(column->m_bVisible)
          {
@@ -3447,7 +3447,7 @@ namespace user
       DIDDXHeaderLayout(false);
       _001OnColumnChange();
       layout();
-      RedrawWindow(::null(), ::null(), RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
+      RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
    }
 
    void list::_001InsertColumns()
@@ -3482,7 +3482,7 @@ namespace user
       //   ::user::window_interface::PreSubClassWindow();
       if(IsWindowVisible())
       {
-         RedrawWindow(::null(), ::null(), RDW_INVALIDATE);
+         RedrawWindow(NULL, NULL, RDW_INVALIDATE);
       }
    }
 
@@ -3506,7 +3506,7 @@ namespace user
             return;
          }
 
-         if(m_pheaderctrl != ::null())
+         if(m_pheaderctrl != NULL)
          {
             if(!CreateHeaderCtrl())
             {
@@ -3517,8 +3517,8 @@ namespace user
          }
 
          class rect rect;
-         rect.null();
 
+         rect.null();
 
          layout();
 
@@ -3537,19 +3537,19 @@ namespace user
    void list::_001CreateImageList(list_column * pcolumn)
    {
 
-      if(pcolumn == ::null())
+      if(pcolumn == NULL)
          return;
 
       if(pcolumn->m_uiSmallBitmap == (UINT) -1 )
       {
          return;
       }
-      if(pcolumn->m_pil == ::null())
+      if(pcolumn->m_pil == NULL)
       {
          pcolumn->m_pil = new image_list(get_app());
       }
 //      sp(image_list) pil = column.m_pil;
-      //   if(pil != ::null())
+      //   if(pil != NULL)
       //      pil->DeleteImageList();
       throw not_implemented(get_app());
       /*if(!pil->create(
@@ -3582,7 +3582,7 @@ namespace user
 
                /* trans
                window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
-               if(wndidNotify == ::null())
+               if(wndidNotify == NULL)
                wndidNotify = pwnd->get_parent()->GetSafeoswindow_(); */
 
 //               LRESULT lresult = 0;
@@ -3621,7 +3621,7 @@ namespace user
 
             /* trans
             window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
-            if(wndidNotify == ::null())
+            if(wndidNotify == NULL)
             wndidNotify = pwnd->get_parent()->GetSafeoswindow_(); */
 
 //            LRESULT lresult = 0;
@@ -3800,7 +3800,7 @@ namespace user
       string str;
       str = m_dataid.get_id();
       str += ".headerctrl";
-      if(m_pheaderctrl != ::null())
+      if(m_pheaderctrl != NULL)
       {
          m_pheaderctrl->m_dataid = str;
       }
@@ -3922,7 +3922,7 @@ namespace user
 
    void list::CacheHint()
    {
-      if(m_pcache != ::null())
+      if(m_pcache != NULL)
       {
          int_ptr iItemCount = m_nDisplayCount;
          int_ptr iItemFirst = m_iTopIndex;
@@ -3999,7 +3999,7 @@ namespace user
       item.m_iItem = iItem;
       item.m_iSubItem = iSubItem;
       item.m_iListItem = -1;
-      if(pcolumn->m_pil != ::null())
+      if(pcolumn->m_pil != NULL)
       {
          _001GetItemImage(&item);
          if(item.m_bOk && item.m_iImage >= 0)
@@ -4034,7 +4034,7 @@ namespace user
    index list::_001ConfigIdToSubItem(const ::database::id & key)
    {
       list_column * column = m_columna._001GetByConfigId(key);
-      if(column == ::null())
+      if(column == NULL)
          return -1;
       return column->m_iSubItem;
    }
@@ -4042,7 +4042,7 @@ namespace user
    index list::_001ConfigIdToColumnKey(const ::database::id & key)
    {
       list_column * column = m_columna._001GetByConfigId(key);
-      if(column == ::null())
+      if(column == NULL)
          return -1;
       return column->m_iKey;
    }
@@ -4053,7 +4053,7 @@ namespace user
       if(iKey >= 0)
          return element_at(iKey);
       else
-         return ::null();
+         return NULL;
 
    }
 
@@ -4348,7 +4348,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      SetTimer(0xfffffffe, 50, ::null());
+      SetTimer(0xfffffffe, 50, NULL);
 
       m_scrollinfo.m_ptScroll.x = 0;
       m_scrollinfo.m_ptScroll.y = 0;
@@ -4640,7 +4640,7 @@ namespace user
 
    index list::_001Compare(index iItem1, index iItem2)
    {
-      CSortInfoItem * pitem = ::null();
+      CSortInfoItem * pitem = NULL;
       index iCompare = 0;
       for(index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
@@ -4649,7 +4649,7 @@ namespace user
          if(iCompare != 0)
             break;
       }
-      if(pitem == ::null())
+      if(pitem == NULL)
          return 0;
       else
       {
@@ -4808,7 +4808,7 @@ namespace user
             m_iMouseFlagEnter = pmouse->m_nFlags;
             m_iItemEnter = iItemEnter;
             m_iSubItemEnter = iSubItemEnter;
-            SetTimer(12321, 840, ::null());
+            SetTimer(12321, 840, NULL);
          }
       }
 
@@ -5236,11 +5236,11 @@ namespace user
       list_item(plist)
    {
 
-      m_prectClient              = ::null();
+      m_prectClient              = NULL;
 
       m_iWidthColumn             = -1;
       m_iColumnWidth             = 0;
-      m_pcolumnWidth             = ::null();
+      m_pcolumnWidth             = NULL;
 
       m_iItemRectItem            = -1;
 
@@ -5248,7 +5248,7 @@ namespace user
       m_iSubItemRectSubItem      = -1;
       m_iSubItemRectOrder        = -1;
       m_iSubItemRectColumn       = -1;
-      m_pcolumnSubItemRect       = ::null();
+      m_pcolumnSubItemRect       = NULL;
 
       m_iListItemRectItem        = -1;
       m_iListItemRectSubItem     = -1;
@@ -5259,7 +5259,7 @@ namespace user
 
    sp(image_list) draw_list_item::get_image_list()
    {
-      if(m_bListItemHover && m_pcolumn->m_pilHover != ::null())
+      if(m_bListItemHover && m_pcolumn->m_pilHover != NULL)
       {
          return m_pcolumn->m_pilHover;
       }
@@ -5383,7 +5383,7 @@ namespace user
 
    ::count list::_001GetGroupMetaItemCount(index iGroup)
    {
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          return m_pdata->_001GetGroupMetaItemCount(iGroup);
       }
@@ -5393,13 +5393,13 @@ namespace user
    void list::_001GetGroupText(list_item * pitem)
    {
       pitem->m_bOk = false;
-      if(m_pcache != ::null())
+      if(m_pcache != NULL)
       {
          m_pcache->_001GetGroupText(pitem);
          if(pitem->m_bOk)
             return;
       }
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
          m_pdata->_001GetGroupText(pitem);
       }
@@ -5498,7 +5498,7 @@ namespace user
    void list::_001OnDeleteRange(range & range)
    {
 
-      if(m_pdata != ::null())
+      if(m_pdata != NULL)
       {
 
          m_pdata->_001OnDeleteRange(range);

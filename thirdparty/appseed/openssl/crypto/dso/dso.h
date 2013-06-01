@@ -301,7 +301,7 @@ DSO_METHOD *DSO_METHOD_win32(void);
 /* If VMS is defined, use shared images. If not, return NULL. */
 DSO_METHOD *DSO_METHOD_vms(void);
 
-/* This function writes null-terminated pathname of DSO module
+/* This function writes NULL-terminated pathname of DSO module
  * containing 'addr' into 'sz' large caller-provided 'path' and
  * returns the number of characters [including trailing zero]
  * written to it. If 'sz' is 0 or negative, 'path' is ignored and

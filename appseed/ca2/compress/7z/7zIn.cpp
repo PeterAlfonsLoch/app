@@ -319,7 +319,7 @@ HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const 
   file_position curTestPos = _arhiveBeginStreamPosition;
   for (;;)
   {
-    if (searchHeaderSizeLimit != ::null())
+    if (searchHeaderSizeLimit != NULL)
       if (curTestPos - _arhiveBeginStreamPosition > *searchHeaderSizeLimit)
         break;
     do
@@ -808,7 +808,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   bool_array digestsDefined;
   array<uint32_t> digests;
 
-  ReadStreamsInfo(::null(),
+  ReadStreamsInfo(NULL,
     dataOffset,
     packSizes,
     packCRCsDefined,
@@ -849,7 +849,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     HRESULT result = decoder.Decode(
       EXTERNAL_CODECS_LOC_VARS
       _stream, dataStartPos,
-      &packSizes[packIndex], folder, outStream, ::null()
+      &packSizes[packIndex], folder, outStream, NULL
       #ifndef _NO_CRYPTO
       , getTextPassword, passwordIsDefined
       #endif

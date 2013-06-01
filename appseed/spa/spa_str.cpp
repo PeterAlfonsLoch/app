@@ -74,14 +74,14 @@ void __cdecl wparse_cmdline (
 
         /* A quoted program name is handled here. The handling is much
            simpler than for other arguments. Basically, whatever lies
-           between the leading double-quote and next one, or a terminal null
+           between the leading double-quote and next one, or a terminal NULL
            character is simply accepted. Fancier handling is not required
            because the program name must be a legal NTFS/HPFS file name.
            Note that the double-quote characters are not copied, nor do they
            contribute to numchars. */
         if ( *p == DQUOTEWCHAR ) {
             /* scan from just past the first double-quote through the next
-               double-quote, or up to a null, whichever comes first */
+               double-quote, or up to a NULL, whichever comes first */
             while ( (*(++p) != DQUOTEWCHAR) && (*p != NULWCHAR) ) {
 
 /*#ifdef _MBCS
@@ -95,7 +95,7 @@ void __cdecl wparse_cmdline (
                 if ( args )
                     *args++ = *p;
             }
-            /* append the terminating null */
+            /* append the terminating NULL */
             ++*numchars;
             if ( args )
                 *args++ = NULWCHAR;
@@ -227,14 +227,14 @@ void __cdecl wparse_cmdline (
 //#endif  /* _MBCS */
             }
 
-            /* null-terminate the argument */
+            /* NULL-terminate the argument */
 
             if (args)
                 *args++ = NULWCHAR;          /* terminate string */
             ++*numchars;
         }
 
-        /* We put one last argument in -- a null ptr */
+        /* We put one last argument in -- a NULL ptr */
         if (argv)
             *argv++ = NULL;
         ++*numargs;

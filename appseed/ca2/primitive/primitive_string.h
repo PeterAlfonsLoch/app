@@ -37,7 +37,7 @@ inline UINT _gen_GetConversionACP()
 /////////////////////////////////////////////////////////////////////////////
 
 
-#define IMPLEMENT_CONST_STRING_PTR(stringype, value, name) const const_fixed_string<stringype, sizeof(value)/sizeof(stringype::char)> _init##name ={    {::null(),      sizeof(value)/sizeof(stringype::char)-1,    sizeof(value)/sizeof(stringype::char)-1,    -1},         value   };   const stringype::char* const _value##name = _init##name.m_achData;   extern const stringype* const name = CONST_STRING_PTR(stringype, name);
+#define IMPLEMENT_CONST_STRING_PTR(stringype, value, name) const const_fixed_string<stringype, sizeof(value)/sizeof(stringype::char)> _init##name ={    {NULL,      sizeof(value)/sizeof(stringype::char)-1,    sizeof(value)/sizeof(stringype::char)-1,    -1},         value   };   const stringype::char* const _value##name = _init##name.m_achData;   extern const stringype* const name = CONST_STRING_PTR(stringype, name);
 #define DECLARE_CONST_STRING_PTR(stringype, name) extern const stringype* const name;
 #define CONST_STRING_PTR(stringype, name) reinterpret_cast<const stringype* const>(&_value##name)
 
@@ -549,7 +549,7 @@ public:
    void Format(const char * s)
    {
 
-      string_format format(this, &string::FormatPrinter, ::null());
+      string_format format(this, &string::FormatPrinter, NULL);
 
       format.printf(s);
 
@@ -559,7 +559,7 @@ public:
    void Format(const char *s, const T & value, Args... args)
    {
 
-      string_format format(this, &string::FormatPrinter, ::null());
+      string_format format(this, &string::FormatPrinter, NULL);
 
       format.printf(s, value, args...);
 
@@ -606,7 +606,7 @@ public:
    /*    bool load_string(HINSTANCE hInstance,strsize nID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
-   if( pImage == ::null() )
+   if( pImage == NULL )
    {
    return( FALSE );
    }
@@ -623,7 +623,7 @@ public:
    /*bool load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
-   if( pImage == ::null() )
+   if( pImage == NULL )
    {
    return( FALSE );
    }
@@ -861,7 +861,7 @@ inline strsize string::utf8_length() const
 
 inline strsize string_composite::get_length() const
 {
-   if(m_pstring != ::null())
+   if(m_pstring != NULL)
       return m_pstring->get_length();
    else
       return m_pinterface->get_length();
@@ -869,7 +869,7 @@ inline strsize string_composite::get_length() const
 
 inline void string_composite::get_string(char * psz) const
 {
-   if(m_pstring != ::null())
+   if(m_pstring != NULL)
       m_pstring->get_string(psz);
    else
       m_pinterface->get_string(psz);
@@ -877,7 +877,7 @@ inline void string_composite::get_string(char * psz) const
 
 inline void string_composite::set_string(const char * psz)
 {
-   if(m_pstring != ::null())
+   if(m_pstring != NULL)
       m_pstring->set_string(psz);
    else
       m_pinterface->set_string(psz);
@@ -917,53 +917,53 @@ namespace ca
 
 inline bool id::operator == (const string & str) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(str) == 0;
+   return m_pstr == NULL ? false : m_pstr->compare(str) == 0;
 }
 inline bool id::operator != (const string & str) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(str) != 0;
+   return m_pstr == NULL ? true : m_pstr->compare(str) != 0;
 }
 inline bool id::operator < (const string & str) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(str) < 0;
+   return m_pstr == NULL ? true : m_pstr->compare(str) < 0;
 }
 inline bool id::operator <= (const string & str) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(str) <= 0;
+   return m_pstr == NULL ? true : m_pstr->compare(str) <= 0;
 }
 inline bool id::operator > (const string & str) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(str) > 0;
+   return m_pstr == NULL ? false : m_pstr->compare(str) > 0;
 }
 inline bool id::operator >= (const string & str) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(str) >= 0;
+   return m_pstr == NULL ? false : m_pstr->compare(str) >= 0;
 }
 
 
 inline bool id::operator == (const string_interface & str) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(string(str)) == 0;
+   return m_pstr == NULL ? false : m_pstr->compare(string(str)) == 0;
 }
 inline bool id::operator != (const string_interface & str) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(string(str)) != 0;
+   return m_pstr == NULL ? true : m_pstr->compare(string(str)) != 0;
 }
 inline bool id::operator < (const string_interface & str) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(string(str)) < 0;
+   return m_pstr == NULL ? true : m_pstr->compare(string(str)) < 0;
 }
 inline bool id::operator <= (const string_interface & str) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(string(str)) <= 0;
+   return m_pstr == NULL ? true : m_pstr->compare(string(str)) <= 0;
 }
 inline bool id::operator > (const string_interface & str) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(string(str)) > 0;
+   return m_pstr == NULL ? false : m_pstr->compare(string(str)) > 0;
 }
 inline bool id::operator >= (const string_interface & str) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(string(str)) >= 0;
+   return m_pstr == NULL ? false : m_pstr->compare(string(str)) >= 0;
 }
 
 
@@ -1015,7 +1015,7 @@ inline string & string::operator = (const id & id)
 
 inline id::operator const char *() const
 {
-   return m_pstr == ::null() ? ::null() : (const char *) *m_pstr;
+   return m_pstr == NULL ? NULL : (const char *) *m_pstr;
 }
 
 inline string id::to_string() const
@@ -1065,7 +1065,7 @@ inline void id::raw_set(const string * pstr)
 
 inline string id::str() const
 {
-   return m_pstr == ::null() ? string() : *m_pstr;
+   return m_pstr == NULL ? string() : *m_pstr;
 }
 
 inline   string::string() throw() :
@@ -1553,27 +1553,27 @@ inline string  & operator += (string & str, const ::id & id)
 
 inline bool id::operator == (const char * psz) const
 {
-   return m_pstr == ::null() ? psz == ::null() : m_pstr->compare(psz) == 0;
+   return m_pstr == NULL ? psz == NULL : m_pstr->compare(psz) == 0;
 }
 inline bool id::operator != (const char * psz) const
 {
-   return m_pstr == ::null() ? psz != ::null() : m_pstr->compare(psz) != 0;
+   return m_pstr == NULL ? psz != NULL : m_pstr->compare(psz) != 0;
 }
 inline bool id::operator < (const char * psz) const
 {
-   return m_pstr == ::null() ? psz != ::null() : m_pstr->compare(psz) < 0;
+   return m_pstr == NULL ? psz != NULL : m_pstr->compare(psz) < 0;
 }
 inline bool id::operator <= (const char * psz) const
 {
-   return m_pstr == ::null() ? true : m_pstr->compare(psz) <= 0;
+   return m_pstr == NULL ? true : m_pstr->compare(psz) <= 0;
 }
 inline bool id::operator > (const char * psz) const
 {
-   return m_pstr == ::null() ? false : m_pstr->compare(psz) > 0;
+   return m_pstr == NULL ? false : m_pstr->compare(psz) > 0;
 }
 inline bool id::operator >= (const char * psz) const
 {
-   return m_pstr == ::null() ? psz == ::null() : m_pstr->compare(psz) >= 0;
+   return m_pstr == NULL ? psz == NULL : m_pstr->compare(psz) >= 0;
 }
 
 
@@ -1581,27 +1581,27 @@ inline bool id::operator >= (const char * psz) const
 
 inline bool id::operator == (int32_t i) const
 {
-   return m_pstr == ::null() ? i == 0 : atoi(*m_pstr) == i;
+   return m_pstr == NULL ? i == 0 : atoi(*m_pstr) == i;
 }
 inline bool id::operator != (int32_t i) const
 {
-   return m_pstr == ::null() ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
+   return m_pstr == NULL ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
 }
 inline bool id::operator < (int32_t i) const
 {
-   return m_pstr == ::null() ? i != 0 : atoi(*m_pstr) < i;
+   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) < i;
 }
 inline bool id::operator <= (int32_t i) const
 {
-   return m_pstr == ::null() ? true : atoi(*m_pstr) <= i;
+   return m_pstr == NULL ? true : atoi(*m_pstr) <= i;
 }
 inline bool id::operator > (int32_t i) const
 {
-   return m_pstr == ::null() ? false : atoi(*m_pstr) > i;
+   return m_pstr == NULL ? false : atoi(*m_pstr) > i;
 }
 inline bool id::operator >= (int32_t i) const
 {
-   return m_pstr == ::null() ? i != 0 : atoi(*m_pstr) >= i;;
+   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) >= i;;
 }
 
 #endif
@@ -1609,27 +1609,27 @@ inline bool id::operator >= (int32_t i) const
 
 inline bool id::operator == (int_ptr i) const
 {
-   return m_pstr == ::null() ? i == 0 : atoi(*m_pstr) == i;
+   return m_pstr == NULL ? i == 0 : atoi(*m_pstr) == i;
 }
 inline bool id::operator != (int_ptr i) const
 {
-   return m_pstr == ::null() ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
+   return m_pstr == NULL ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
 }
 inline bool id::operator < (int_ptr i) const
 {
-   return m_pstr == ::null() ? i != 0 : atoi(*m_pstr) < i;
+   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) < i;
 }
 inline bool id::operator <= (int_ptr i) const
 {
-   return m_pstr == ::null() ? true : atoi(*m_pstr) <= i;
+   return m_pstr == NULL ? true : atoi(*m_pstr) <= i;
 }
 inline bool id::operator > (int_ptr i) const
 {
-   return m_pstr == ::null() ? false : atoi(*m_pstr) > i;
+   return m_pstr == NULL ? false : atoi(*m_pstr) > i;
 }
 inline bool id::operator >= (int_ptr i) const
 {
-   return m_pstr == ::null() ? i != 0 : atoi(*m_pstr) >= i;;
+   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) >= i;;
 }
 
 
@@ -1654,7 +1654,7 @@ inline id::operator int64_t () const
 
 inline bool id::is_null() const
 {
-   return m_pstr == ::null();
+   return m_pstr == NULL;
 }
 
 inline bool id::has_char() const
@@ -1664,12 +1664,12 @@ inline bool id::has_char() const
 
 inline void id::Empty()
 {
-   m_pstr = ::null();
+   m_pstr = NULL;
 }
 
 inline void id::clear()
 {
-   m_pstr = ::null();
+   m_pstr = NULL;
 }
 
 

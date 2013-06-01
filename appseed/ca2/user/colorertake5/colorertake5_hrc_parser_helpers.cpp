@@ -7,10 +7,10 @@ namespace colorertake5
    int32_t kwCompareI(const void *e1, const void *e2);
 /*
 KeywordInfo::KeywordInfo(){
-  keyword = ::null();
+  keyword = NULL;
   ssShorter = -1;
   isSymbol = false;
-  region = ::null();
+  region = NULL;
 };
 void KeywordInfo::swapWith(KeywordInfo *kwi){
   string _keyword = keyword;
@@ -50,7 +50,7 @@ KeywordList::KeywordList(){
   num = 0;
   matchCase = false;
   minKeywordLength = 0;
-  kwList = ::null();
+  kwList = NULL;
   firstChar = new ::ca::ch_class();
 };
 KeywordList::~KeywordList(){
@@ -104,14 +104,14 @@ SchemeNode::SchemeNode()
 {
    virtualEntryVector.set_size(0, 5);
   type = SNT_EMPTY;
-  scheme = ::null();
-  kwList = ::null();
-  worddiv = ::null();
-  start = end = ::null();
+  scheme = NULL;
+  kwList = NULL;
+  worddiv = NULL;
+  start = end = NULL;
   lowPriority = 0;
 
   //!!regions cleanup
-  region = ::null();
+  region = NULL;
   memset(regions, 0, sizeof(regions));
   memset(regionsn, 0, sizeof(regionsn));
   memset(regione, 0, sizeof(regione));

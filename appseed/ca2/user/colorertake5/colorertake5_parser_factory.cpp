@@ -14,8 +14,8 @@ void ParserFactory::init()
    // metrowin todo
    return;
 #endif
-   hrcParser = ::null();
-   fileErrorHandler = ::null();
+   hrcParser = NULL;
+   fileErrorHandler = NULL;
    xml::document document(get_app());
    try
    {
@@ -33,13 +33,13 @@ void ParserFactory::init()
    }
 
    sp(::xml::node) catalog = document.get_root();
-   if(catalog == ::null() || catalog->get_name() != "catalog")
+   if(catalog == NULL || catalog->get_name() != "catalog")
    {
       throw ParserFactoryException(get_app(), string("bad catalog structure"));
    }
 
    sp(::xml::node) elem = catalog->first_child();
-   while(elem != ::null())
+   while(elem != NULL)
    {
       // hrc locations
       if (elem->get_type() == xml::node_element && elem->get_name() == "hrc-sets")
@@ -51,12 +51,12 @@ void ParserFactory::init()
             string str = Application.file().as_string(logLocation);
             colorer_logger_set_target(str);
          }
-         if (fileErrorHandler == ::null())
+         if (fileErrorHandler == NULL)
          {
             fileErrorHandler = new DefaultErrorHandler();
          }
          sp(::xml::node)loc = elem->first_child();
-         while(loc != ::null())
+         while(loc != NULL)
          {
             if(loc->get_type() == xml::node_element && loc->get_name() == "location")
             {
@@ -69,7 +69,7 @@ void ParserFactory::init()
       else if (elem->get_type() == xml::node_element && elem->get_name() == "hrd-sets")
       {
          sp(::xml::node)hrd = elem->first_child();
-         while(hrd != ::null())
+         while(hrd != NULL)
          {
             if(hrd->get_type() == xml::node_element && hrd->get_name() == "hrd")
             {
@@ -89,7 +89,7 @@ void ParserFactory::init()
                string_map<stringa> & hrdClass = hrdLocations[hrd_class];
                stringa & hrdLocV =  hrdClass[hrd_name];
                sp(::xml::node)loc = hrd->first_child();
-               while(loc != ::null())
+               while(loc != NULL)
                {
                   if(loc->get_type() == xml::node_element && loc->get_name() == "location")
                   {
@@ -114,7 +114,7 @@ ParserFactory::ParserFactory(sp(::ca::application) papp) :
    ca(papp)
 {
 
-  fileErrorHandler = ::null();
+  fileErrorHandler = NULL;
 
   keeper < bool > keepZipAsDir(&papp->m_bZipIsDir, true, papp->m_bZipIsDir, true);
 
@@ -128,7 +128,7 @@ ParserFactory::ParserFactory(sp(::ca::application) papp, string catalogPath) :
    ca(papp)
 {
 
-   fileErrorHandler = ::null();
+   fileErrorHandler = NULL;
 
    if(catalogPath.is_empty())
       this->catalogPath = searchPath();
@@ -157,7 +157,7 @@ const char *ParserFactory::getVersion()
 //};
 //string ParserFactory::enumerateHRDInstances(const string &classID, int32_t idx){
   //string_map<pointer_object<stringa>> *hash = hrdLocations.pget(classID);
-  //if (hash == ::null()) return "";
+  //if (hash == NULL) return "";
   //return hash->key(idx);
 //};
 string ParserFactory::getHRDescription(const string &classID, const string &nameID){
@@ -166,7 +166,7 @@ string ParserFactory::getHRDescription(const string &classID, const string &name
 
 HRCParser* ParserFactory::getHRCParser()
 {
-   if(hrcParser != ::null())
+   if(hrcParser != NULL)
       return hrcParser;
    hrcParser = new HRCParserImpl(get_app());
    hrcParser->setErrorHandler(fileErrorHandler);
@@ -240,31 +240,31 @@ text_parser *ParserFactory::createTextParser(){
 
 StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID)
 {
-  string_map<stringa> * hrdClass = ::null();
+  string_map<stringa> * hrdClass = NULL;
   if (classID.is_empty())
     hrdClass = hrdLocations.pget(("rgb"));
   else
     hrdClass = hrdLocations.pget(classID);
 
-  if (hrdClass == ::null())
+  if (hrdClass == NULL)
     throw ParserFactoryException(get_app(), string("can't find hrdClass '")+classID+"'");
 
-  stringa *hrdLocV = ::null();
+  stringa *hrdLocV = NULL;
   if (nameID.is_empty())
   {
-    char * hrd = ::null();
+    char * hrd = NULL;
 #ifndef METROWIN
     hrd = getenv("COLORER5HRD");
 #endif
     hrdLocV = (hrd) ? hrdClass->pget((hrd)) : hrdClass->pget(("default"));
-    if(hrdLocV == ::null())
+    if(hrdLocV == NULL)
     {
       hrdLocV = hrdClass->pget(("default"));
     }
   }
   else
     hrdLocV = hrdClass->pget(nameID);
-  if (hrdLocV == ::null())
+  if (hrdLocV == NULL)
     throw ParserFactoryException(get_app(), string("can't find hrdName '")+nameID+"'");
 
   StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
@@ -308,14 +308,14 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   // fixed class 'text'
   string_map<stringa> *hrdClass = hrdLocations.pget(("text"));
-  if (hrdClass == ::null()) throw ParserFactoryException(get_app(), string("can't find hrdClass 'text'"));
+  if (hrdClass == NULL) throw ParserFactoryException(get_app(), string("can't find hrdClass 'text'"));
 
-  stringa *hrdLocV = ::null();
+  stringa *hrdLocV = NULL;
   if (nameID.is_empty())
     hrdLocV = hrdClass->pget(("default"));
   else
     hrdLocV = hrdClass->pget(nameID);
-  if (hrdLocV == ::null())
+  if (hrdLocV == NULL)
     throw ParserFactoryException(get_app(), string("can't find hrdName '")+nameID+"'");
 
   TextHRDMapper *mapper = new TextHRDMapper(get_app());

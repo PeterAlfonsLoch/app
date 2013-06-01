@@ -112,7 +112,7 @@ namespace sip
       attr("server_port") = 0;
       attr("https") = false;*/
 
-   //   m_file = std::auto_ptr<IFile>(::null());
+   //   m_file = std::auto_ptr<IFile>(NULL);
       m_form.clear();
       m_cookies.remove_all();
       file().Truncate(0);

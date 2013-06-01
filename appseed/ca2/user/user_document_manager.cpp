@@ -25,7 +25,7 @@ static const char _vfxShellNewValueName[] = "NullFile";
 static const char _vfxShellNewValue[] = "";
 
 
-#define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? ::null() : (_cpc2)-1)
+#define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
@@ -33,7 +33,7 @@ static const char _vfxShellNewValue[] = "";
 int32_t iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
-bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = ::null());
+bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
 
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
@@ -110,13 +110,13 @@ namespace user
    // copy the string
    LPTSTR lpszKeyCopy = _tcsdup(lpszKey);
 
-   if(lpszKeyCopy == ::null())
+   if(lpszKeyCopy == NULL)
    return FALSE;
 
    LPTSTR lpszLast = lpszKeyCopy + lstrlen(lpszKeyCopy);
 
    // work until the end of the string
-   while (lpszLast != ::null())
+   while (lpszLast != NULL)
    {
    *lpszLast = '\0';
    lpszLast = _tcsdec(lpszKeyCopy, lpszLast);
@@ -152,7 +152,7 @@ namespace user
    __STATIC bool _API
    __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
    {
-   if (lpszValueName == ::null())
+   if (lpszValueName == NULL)
    {
    if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
    lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
@@ -195,7 +195,7 @@ namespace user
       __get_module_short_file_name(System.m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (int32_t nTemplateIndex = 1; pos != ::null(); nTemplateIndex++)
+      for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
       {
       sp(document_template) ptemplate = (sp(document_template))m_templateptra.get_next(pos);
 
@@ -285,7 +285,7 @@ namespace user
       __get_module_short_file_name(System.m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (int32_t nTemplateIndex = 1; pos != ::null(); nTemplateIndex++)
+      for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
       {
       sp(document_template) ptemplate = (sp(document_template))m_templateptra.get_next(pos);
 
@@ -298,7 +298,7 @@ namespace user
       {
       string strIconIndex;
       HICON hIcon = ::ExtractIcon(System.m_hInstance, strPathName, nTemplateIndex);
-      if (hIcon != ::null())
+      if (hIcon != NULL)
       {
       strIconIndex.Format(gen_IconIndexFmt, nTemplateIndex);
       DestroyIcon(hIcon);
@@ -444,7 +444,7 @@ namespace user
    ptemplate->GetDocString(strFilterName, document_template::filterName) &&
    !strFilterName.is_empty())
    {
-   if (pstrDefaultExt != ::null())
+   if (pstrDefaultExt != NULL)
    pstrDefaultExt->Empty();
 
    // add to filter
@@ -471,7 +471,7 @@ namespace user
    // Example:
    //    .jpg;.jpeg
    ASSERT(strExtension[0] == '.');
-   if ((pstrDefaultExt != ::null()) && pstrDefaultExt->is_empty())
+   if ((pstrDefaultExt != NULL) && pstrDefaultExt->is_empty())
    {
    // set the default extension
    *pstrDefaultExt = strExtension.Mid( 1 );  // skip the '.'
@@ -508,7 +508,7 @@ namespace user
    sp(document_template) document_manager::get_template(index index) const
    {
       if(index < 0 || index >= m_templateptra.get_count())
-         return ::null();
+         return NULL;
       return m_templateptra.element_at(index);
    }
 
@@ -558,7 +558,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lpszCommand);
       /*string strCommand = lpszCommand;
-      sp(::user::document) pDoc = ::null();
+      sp(::user::document) pDoc = NULL;
 
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
@@ -591,7 +591,7 @@ namespace user
       cmdInfo.m_varFile = strCommand.Left(i);
       strCommand = strCommand.Right(strCommand.get_length() - i);
 
-      //::ca::command_line* pOldInfo = ::null();
+      //::ca::command_line* pOldInfo = NULL;
       bool bRetVal = TRUE;
 
       // // If we were started up for DDE retrieve the Show state
@@ -695,7 +695,7 @@ namespace user
       pDoc = System.open_document_file(cmdInfo.m_varFile);
       //System.m_pCmdInfo = &cmdInfo;
       System.GetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
-      //System.m_pCmdInfo = ::null();
+      //System.m_pCmdInfo = NULL;
 
       // close the document if it wasn't open previously (based on doc count)
       if (get_document_count() > nOldCount)
@@ -717,7 +717,7 @@ namespace user
    {
    TRACE(::ca::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
    // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-   System.simple_message_box(::null(), "Failed to create document");
+   System.simple_message_box(NULL, "Failed to create document");
    return;
    }
 
@@ -729,11 +729,11 @@ namespace user
    return;     // none - cancel operation
    }
 
-   ASSERT(ptemplate != ::null());
+   ASSERT(ptemplate != NULL);
    ASSERT_KINDOF(document_template, ptemplate);
 
-   ptemplate->open_document_file(::null(), TRUE, System.m_puiInitialPlaceHolderContainer);
-   // if returns ::null(), the ::fontopus::user has already been alerted*/
+   ptemplate->open_document_file(NULL, TRUE, System.m_puiInitialPlaceHolderContainer);
+   // if returns NULL, the ::fontopus::user has already been alerted*/
    //   return TRUE;
    //}
 
@@ -745,11 +745,11 @@ namespace user
 
       sp(::ca::create_context) createcontext(allocer());
 
-      if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, ::null(), ::null()))
+      if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
 
       System.user()->open_document_file(createcontext);
-      // if returns ::null(), the ::fontopus::user has already been alerted
+      // if returns NULL, the ::fontopus::user has already been alerted
    }
 
 
@@ -797,8 +797,8 @@ namespace user
       // find the highest confidence
       ::count count = m_templateptra.get_count();
       document_template::Confidence bestMatch = document_template::noAttempt;
-      sp(document_template) pBestTemplate = ::null();
-      sp(::user::document_interface) pOpenDocument = ::null();
+      sp(document_template) pBestTemplate = NULL;
+      sp(::user::document_interface) pOpenDocument = NULL;
 
       /*char szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));
@@ -807,13 +807,13 @@ namespace user
       ++lpszFileName;
       ::ca::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
       LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
-      if (lpszLast != ::null())
+      if (lpszLast != NULL)
       *lpszLast = 0;*/
 
       //if( ::ca::FullPath(szPath, szTemp) == FALSE )
       //{
       //   ASSERT(FALSE);
-      //   return ::null(); // We won't open the file. ca API requires paths with
+      //   return NULL; // We won't open the file. ca API requires paths with
       // length < _MAX_PATH
       //}
 
@@ -828,7 +828,7 @@ namespace user
          ASSERT_KINDOF(document_template, ptemplate);
 
          document_template::Confidence match;
-         ASSERT(pOpenDocument == ::null());
+         ASSERT(pOpenDocument == NULL);
          match = ptemplate->MatchDocType(pcreatecontext->m_spCommandLine->m_varFile, pOpenDocument);
          if (match > bestMatch)
          {
@@ -839,21 +839,21 @@ namespace user
             break;      // stop here
       }
 
-      if (pOpenDocument != ::null())
+      if (pOpenDocument != NULL)
       {
          sp(::user::view) pview = pOpenDocument->get_view(0); // get first one
-         if(pview != ::null())
+         if(pview != NULL)
          {
             ASSERT_VALID(pview);
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
-            if (pFrame == ::null())
+            if (pFrame == NULL)
                TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
             else
             {
                pFrame->ActivateFrame();
 
-               if (pFrame->get_parent() != ::null())
+               if (pFrame->get_parent() != NULL)
                {
                   sp(::user::frame_window) pAppFrame;
                   if (pFrame != (pAppFrame = System.GetMainWnd()))
@@ -870,10 +870,10 @@ namespace user
          pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }
 
-      if (pBestTemplate == ::null())
+      if (pBestTemplate == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_OPEN_DOC);
-         System.simple_message_box(::null(), "failed to open document");
+         System.simple_message_box(NULL, "failed to open document");
          return;
       }
 
@@ -923,7 +923,7 @@ namespace user
    wchar_t * lpszLast = lpszKeyCopy + lstrlenW(lpszKeyCopy);
 
    // work until the end of the string
-   while (lpszLast != ::null())
+   while (lpszLast != NULL)
    {
    *lpszLast = '\0';
    lpszLast = _wcsdec(lpszKeyCopy, lpszLast);
@@ -959,7 +959,7 @@ namespace user
    __STATIC bool AFXAPI
    __set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName)
    {
-   if (lpszValueName == ::null())
+   if (lpszValueName == NULL)
    {
    if (::RegSetValueW(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
    lpszValue, lstrlenW(lpszValue) * sizeof(char)) != ERROR_SUCCESS)

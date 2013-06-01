@@ -4,12 +4,12 @@
 #define ROUND4(x) ROUND(x, 4)
 
 
-//CLASS_DECL_ca2 fixed_alloc_array * g_pfixedallocaWstring = ::null();
+//CLASS_DECL_ca2 fixed_alloc_array * g_pfixedallocaWstring = NULL;
 
 
 /*CLASS_DECL_ca2 fixed_alloc_array * new_wstring_manager()
 {
-   if(g_pfixedallocaWstring != ::null())
+   if(g_pfixedallocaWstring != NULL)
       return g_pfixedallocaWstring;
    fixed_alloc_array * pa = new fixed_alloc_array();
    bool bEnable = __enable_memory_tracking(FALSE);
@@ -70,13 +70,13 @@
 /*
 verisimple_wstring::verisimple_wstring()
 {
-   m_pwsz = ::null();
+   m_pwsz = NULL;
 }
 
 verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
 {
-   if(pwsz == ::null())
-      m_pwsz = ::null();
+   if(pwsz == NULL)
+      m_pwsz = NULL;
    else
    {
 //      m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
@@ -87,13 +87,13 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
 
 verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr)
 {
-   m_pwsz = ::null();
+   m_pwsz = NULL;
    operator = (wstr);
 }
 
 verisimple_wstring::~verisimple_wstring()
 {
-   if(m_pwsz != ::null())
+   if(m_pwsz != NULL)
    {
 //      g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
       ca2_free(m_pwsz, 0);
@@ -102,10 +102,10 @@ verisimple_wstring::~verisimple_wstring()
 
 wchar_t * verisimple_wstring::alloc(int32_t iCount)
 {
-   if(m_pwsz != ::null())
+   if(m_pwsz != NULL)
    {
       free(m_pwsz);
-      m_pwsz = ::null();
+      m_pwsz = NULL;
    }
    int32_t iAlloc = (iCount + 1) * sizeof(wchar_t);
    //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc(iAlloc);
@@ -116,7 +116,7 @@ wchar_t * verisimple_wstring::alloc(int32_t iCount)
 
 ::count verisimple_wstring::get_length()
 {
-   if(m_pwsz == ::null())
+   if(m_pwsz == NULL)
       return -1;
    return wcslen(m_pwsz);
 }
@@ -134,14 +134,14 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 {
    if(m_pwsz != pwsz)
    {
-      if(m_pwsz != ::null())
+      if(m_pwsz != NULL)
       {
          //g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
          ca2_free(m_pwsz, 0);
-         m_pwsz = ::null();
+         m_pwsz = NULL;
       }
-      if(pwsz == ::null())
-         m_pwsz = ::null();
+      if(pwsz == NULL)
+         m_pwsz = NULL;
       else
       {
          //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
@@ -163,11 +163,11 @@ wstringtou::wstringtou(string & str, int32_t iAllocCount)
 
 wstringtou::~wstringtou()
 {
-   if(m_pstringUtf8 != ::null())
+   if(m_pstringUtf8 != NULL)
    {
       ::ca::international::unicode_to_utf8(*m_pstringUtf8, m_pwsz);
    }
-   if(m_pwsz != ::null())
+   if(m_pwsz != NULL)
    {
       //g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
       wstring_data::free(m_pwsz);

@@ -20,7 +20,7 @@ namespace file_watcher
          while(true)
          {
 
-            if(PeekMessage(&msg, ::ca::null(), 0, 0, PM_REMOVE))
+            if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
             {
                switch(msg.message)
                {

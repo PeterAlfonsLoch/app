@@ -2,11 +2,11 @@
 
 
 #ifdef WINDOWS
-CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = ::null();
-CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = ::null();
-CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = ::null();
-CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = ::null();
-CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = ::null();
+CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = NULL;
+CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
+CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
+CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = NULL;
+CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = NULL;
 #else
 CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = &::_ca_alloc;
 CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_alloc_dbg;
@@ -31,7 +31,7 @@ void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, i
 
 void * ca2_realloc(void * pvoid, size_t nSize)
 {
-   return g_pfnca2_realloc(pvoid, nSize, 0, ::null(), -1);
+   return g_pfnca2_realloc(pvoid, nSize, 0, NULL, -1);
 }
 
 void * ca2_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
@@ -66,9 +66,9 @@ END_EXTERN_C
 simple_mutex & get_mutex_c_heap()
 {
 
-   static simple_mutex * s_pmutex = ::null();
+   static simple_mutex * s_pmutex = NULL;
 
-   if(s_pmutex == ::null())
+   if(s_pmutex == NULL)
    {
 
       s_pmutex = (simple_mutex *) malloc(sizeof(simple_mutex));
@@ -113,7 +113,7 @@ void * _ca_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * s
 {
    mutex_lock ml(get_mutex_c_heap());
    byte * p = (byte *) pvoid;
-   if(p == ::null())
+   if(p == NULL)
       return _ca_alloc(nSize);
    p -= (4 + 16);
    if(p[0] == 22)
@@ -144,7 +144,7 @@ void _ca_free(void * pvoid, int32_t iBlockType)
 {
    mutex_lock ml(get_mutex_c_heap());
    byte * p = (byte *) pvoid;
-   if(p == ::null())
+   if(p == NULL)
       return;
    p -= (4 + 16);
    if(p[0] == 22)
@@ -161,7 +161,7 @@ size_t _ca_msize(void * pvoid, int32_t iBlockType)
 {
    mutex_lock ml(get_mutex_c_heap());
    byte * p = (byte *) pvoid;
-   if(p == ::null())
+   if(p == NULL)
       return 0;
    p -= (4 + 16);
    if(p[0] == 22)
@@ -182,23 +182,23 @@ size_t _ca_msize(void * pvoid, int32_t iBlockType)
 
 void initialize_primitive_heap()
 {
-   if(g_pfnca2_alloc == ::null())
+   if(g_pfnca2_alloc == NULL)
    {
       g_pfnca2_alloc       = _ca_alloc;
    }
-   if(g_pfnca2_alloc_dbg == ::null())
+   if(g_pfnca2_alloc_dbg == NULL)
    {
       g_pfnca2_alloc_dbg   = _ca_alloc_dbg;
    }
-   if(g_pfnca2_realloc == ::null())
+   if(g_pfnca2_realloc == NULL)
    {
       g_pfnca2_realloc     = _ca_realloc;
    }
-   if(g_pfnca2_free == ::null())
+   if(g_pfnca2_free == NULL)
    {
       g_pfnca2_free        = _ca_free;
    }
-   if(g_pfnca2_msize == ::null())
+   if(g_pfnca2_msize == NULL)
    {
       g_pfnca2_msize       = _ca_msize;
    }

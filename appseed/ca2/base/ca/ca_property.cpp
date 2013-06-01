@@ -213,7 +213,7 @@ namespace ca
 
    property::property()
    {
-//      m_pset = ::null();
+//      m_pset = NULL;
    }
 
    property::property(const property & prop)
@@ -1480,7 +1480,7 @@ namespace ca
    string property_set::gen_eval(const char * psz)
    {
       string str;
-      ASSERT(psz != ::null());
+      ASSERT(psz != NULL);
       ASSERT(psz[0] == '$'); // until now accepts only one var
       ASSERT(strlen(psz) >= 2);
       str = operator [](&psz[1]);

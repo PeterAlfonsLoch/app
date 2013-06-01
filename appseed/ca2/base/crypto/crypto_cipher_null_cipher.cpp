@@ -1,7 +1,7 @@
 /*
  * null_cipher.c
  *
- * A null cipher implementation.  This cipher leaves the plaintext
+ * A NULL cipher implementation.  This cipher leaves the plaintext
  * unchanged.
  *
  * David A. McGrew
@@ -69,7 +69,7 @@ null_cipher_alloc(cipher_t **c, int32_t key_len) {
 
   /* allocate primitive::memory a cipher of type null_cipher */
   pointer = (uint8_t*)crypto_alloc(sizeof(null_cipher_ctx_t) + sizeof(cipher_t));
-  if (pointer == ::null())
+  if (pointer == NULL)
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -108,7 +108,7 @@ null_cipher_dealloc(cipher_t *c) {
 err_status_t
 null_cipher_init(null_cipher_ctx_t *ctx, const uint8_t *key) {
 
-  debug_print(mod_cipher, "initializing null cipher", ::null());
+  debug_print(mod_cipher, "initializing NULL cipher", NULL);
 
   return err_status_ok;
 }
@@ -125,18 +125,18 @@ null_cipher_encrypt(null_cipher_ctx_t *c,
 }
 
 char 
-null_cipher_description[] = "null cipher";
+null_cipher_description[] = "NULL cipher";
 
 cipher_test_case_t  
 null_cipher_test_0 = {
   0,                 /* octets in key            */
-  ::null(),              /* key                      */
+  NULL,              /* key                      */
   0,                 /* packet index             */
   0,                 /* octets in plaintext      */
-  ::null(),              /* plaintext                */
+  NULL,              /* plaintext                */
   0,                 /* octets in plaintext      */
-  ::null(),              /* ciphertext               */
-  ::null()               /* pointer to next testcase */
+  NULL,              /* ciphertext               */
+  NULL               /* pointer to next testcase */
 };
 
 
@@ -154,6 +154,6 @@ cipher_type_t null_cipher = {
   (char *)                      null_cipher_description,
   (int32_t)                         0,
   (cipher_test_case_t *)       &null_cipher_test_0,
-  (debug_module_t *)            ::null()
+  (debug_module_t *)            NULL
 };
 

@@ -11,8 +11,8 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    form_view(puiParent->get_app())
 {
    m_strMatter = pszMatter;
-   m_pdocument    = ::null();
-   m_pframe       = ::null();
+   m_pdocument    = NULL;
+   m_pframe       = NULL;
    m_ulFlags      &= ~::ca::ca::flag_auto_delete;
 }
 
@@ -25,22 +25,22 @@ dialog::dialog(sp(::ca::application) papp) :
    html_form_view(papp),
    form_view(papp)
 {
-   m_pdocument    = ::null();
-   m_pframe       = ::null();
+   m_pdocument    = NULL;
+   m_pframe       = NULL;
    m_ulFlags      &= ~::ca::ca::flag_auto_delete;
 }
 
 dialog::~dialog()
 {
-   if(m_pdocument != ::null())
+   if(m_pdocument != NULL)
    {
       m_pdocument->on_close_document();
-      m_pdocument = ::null();
+      m_pdocument = NULL;
    }
-   if(m_pframe != ::null())
+   if(m_pframe != NULL)
    {
 //      m_pframe->DestroyWindow();
-     // m_pframe = ::null();
+     // m_pframe = NULL;
    }
 }
 
@@ -48,7 +48,7 @@ dialog::~dialog()
 bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 {
 
-   if(pszMatter != ::null() && *pszMatter != '\0')
+   if(pszMatter != NULL && *pszMatter != '\0')
    {
       m_strMatter = pszMatter;
    }
@@ -57,8 +57,8 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 
    set["hold"] = false;
 
-   m_pdocument = Application.user()->create_form(this, ::null(), Session.get_view(), set);
-   if(m_pdocument == ::null())
+   m_pdocument = Application.user()->create_form(this, NULL, Session.get_view(), set);
+   if(m_pdocument == NULL)
    {
       string str;
       str.Format("Could not show dialog %s", pszMatter);
@@ -66,7 +66,7 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
       return false;
    }
 
-   if(ppropertyset != ::null())
+   if(ppropertyset != NULL)
    {
 
       m_pdocument->get_html_data()->m_propertyset = *ppropertyset;

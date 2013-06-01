@@ -23,12 +23,12 @@ namespace ca
       
       simple_chain()
       {
-         simple_chain < TYPE > ::m_pnext = ::null();
+         simple_chain < TYPE > ::m_pnext = NULL;
       }
 
       void chain(TYPE * p)
       {
-         if(simple_chain < TYPE > ::m_pnext == ::null())
+         if(simple_chain < TYPE > ::m_pnext == NULL)
          {
             simple_chain < TYPE > ::m_pnext = p;
          }
@@ -52,9 +52,9 @@ namespace ca
       TYPE * get_last()
       {
          TYPE * plast = simple_chain < TYPE > ::m_pnext;
-         if(plast == ::null())
-            return ::null();
-         while(plast->simple_chain < TYPE > ::m_pnext != ::null())
+         if(plast == NULL)
+            return NULL;
+         while(plast->simple_chain < TYPE > ::m_pnext != NULL)
          {
             plast = plast->simple_chain < TYPE > ::m_pnext;
          }

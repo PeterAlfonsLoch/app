@@ -1,7 +1,7 @@
 /*
- * null-cipher.h
+ * NULL-cipher.h
  *
- * header file for the null cipher
+ * header file for the NULL cipher
  *
  *
  * David A. McGrew

@@ -22,7 +22,7 @@ public:
 #endif
 
 
-   mutex(sp(::ca::application) papp, bool bInitiallyOwn = FALSE, const char * lpszName = ::null(), LPSECURITY_ATTRIBUTES lpsaAttribute = ::null());
+   mutex(sp(::ca::application) papp, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 
 protected:

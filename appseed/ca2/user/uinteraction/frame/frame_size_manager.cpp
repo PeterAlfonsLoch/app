@@ -13,7 +13,7 @@ namespace frame
       m_minSize(84, 84),
       m_minBorder(33, 33)
    {
-      ASSERT(pworkset != ::null());
+      ASSERT(pworkset != NULL);
       m_pworkset           = pworkset;
       m_ehittestMode       = HitTestNone;
       m_ehittestCursor     = HitTestNone;
@@ -383,10 +383,10 @@ namespace frame
          return;
 
       //      ::user::window_interface * ptwi = dynamic_cast<::user::window_interface *>(pwnd);
-      //      if(ptwi != ::null())
+      //      if(ptwi != NULL)
       if(true)
       {
-         //if(pwnd->get_parent() == ::null())
+         //if(pwnd->get_parent() == NULL)
          if(true)
          {
             m_pworkset->_000OnBeforeSize(rectWindow);
@@ -398,7 +398,7 @@ namespace frame
             pwnd->GetWindowRect(rectBefore);
             rect rectAfter = rectWindow;
             rect rectParentClient = rectAfter;
-            if(m_pworkset->GetWndDraw()->get_parent() != ::null())
+            if(m_pworkset->GetWndDraw()->get_parent() != NULL)
             {
                m_pworkset->GetWndDraw()->get_parent()->ScreenToClient(rectParentClient);
             }
@@ -562,7 +562,7 @@ namespace frame
          {
             bSize = false;
             sp(::user::interaction) pWndCapture = System.get_capture_uie();
-            if(pWndCapture == ::null() ||
+            if(pWndCapture == NULL ||
                pWndCapture->get_handle() != GetEventWindow()->get_handle())
             {
                EHitTest emode = hit_test(ptCursor);
@@ -590,7 +590,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -617,7 +617,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -637,7 +637,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -662,7 +662,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -683,7 +683,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -708,7 +708,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -728,7 +728,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }
@@ -753,7 +753,7 @@ namespace frame
             point pt;
             pt = ptCursor;
             sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
             }

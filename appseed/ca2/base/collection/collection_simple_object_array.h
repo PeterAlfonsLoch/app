@@ -24,7 +24,7 @@ public:
 
 	::ca::object*& ElementAt(int32_t nIndex);
 
-	// Direct Access to the element data (may return ::null())
+	// Direct Access to the element data (may return NULL)
 	const ::ca::object** GetData() const;
 	::ca::object** GetData();
 

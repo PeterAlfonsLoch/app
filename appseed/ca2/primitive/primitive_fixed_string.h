@@ -29,7 +29,7 @@ public:
 
    static fixed_string_log_interface * s_pLog;
 
-   fixed_string_manager(string_data * pData,int32_t nChars, string_manager * pMgr = ::null() ) throw();
+   fixed_string_manager(string_data * pData,int32_t nChars, string_manager * pMgr = NULL ) throw();
    virtual ~fixed_string_manager() throw();
 
    string_manager* GetBackupManager() const throw();

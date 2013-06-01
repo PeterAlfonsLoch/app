@@ -84,7 +84,7 @@ namespace n7z
 
    void CFolderOutStream::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
-      if (processedSize != ::null())
+      if (processedSize != NULL)
          *processedSize = 0;
       while (size != 0)
       {
@@ -97,7 +97,7 @@ namespace n7z
             data = (const byte *)data + cur;
             size -= cur;
             _rem -= cur;
-            if (processedSize != ::null())
+            if (processedSize != NULL)
                *processedSize += cur;
             if (_rem == 0)
             {
@@ -112,7 +112,7 @@ namespace n7z
             if (_currentIndex == _extractStatuses->get_count())
             {
                // we support partial extracting
-               if (processedSize != ::null())
+               if (processedSize != NULL)
                   *processedSize += size;
                break;
             }

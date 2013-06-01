@@ -50,7 +50,7 @@ osdisplay::data * osdisplay::get(Display * pdisplay)
 
 }
 
-osdisplay::osdisplay(const ::ca::null & null)
+osdisplay::osdisplay(const ::caNULL & NULL)
 {
 
    m_pdata = NULL;

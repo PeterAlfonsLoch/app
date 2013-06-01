@@ -37,10 +37,10 @@ namespace html
          while(true)
          {
             pelemental = pelemental->m_pparent;
-            if(pelemental == ::null())
-               return ::null();
+            if(pelemental == NULL)
+               return NULL;
             table * ptable = dynamic_cast < table * > (pelemental->m_pimpl);
-            if(ptable != ::null())
+            if(ptable != NULL)
                return ptable;
          }
       }
@@ -51,10 +51,10 @@ namespace html
          while(true)
          {
             pelemental = pelemental->m_pparent;
-            if(pelemental == ::null())
-               return ::null();
+            if(pelemental == NULL)
+               return NULL;
             table_row * prow = dynamic_cast < table_row * > (pelemental->m_pimpl);
-            if(prow != ::null())
+            if(prow != NULL)
                return prow;
          }
       }
@@ -92,7 +92,7 @@ namespace html
 
          point pointBound = pcellParent->get_bound_point();
          float l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
-         if(get_row() != ::null())
+         if(get_row() != NULL)
          {
             l = get_row()->get_bound_point().x;
             if(pcellParent->is_tag())
@@ -180,10 +180,10 @@ namespace html
          }
 
          table * ptable = get_table();
-         if(ptable == ::null())
+         if(ptable == NULL)
             return;
          table_row * prow = get_row();
-         if(prow == ::null())
+         if(prow == NULL)
             return;
 
 
@@ -211,7 +211,7 @@ namespace html
             // if first cell in this column has a width,
             // copy this cell width
             cell * pcellFirst = ptable->m_cellholdera[m_iColBeg][0].m_pcell;
-            if(pcellFirst != ::null() && pcellFirst->m_flags.is_signalized(FlagWidth))
+            if(pcellFirst != NULL && pcellFirst->m_flags.is_signalized(FlagWidth))
             {
                m_flags.signalize(FlagWidth);
                if(pcellFirst->m_flags.is_signalized(FlagWidthPercent))
@@ -297,10 +297,10 @@ namespace html
          }
 
          table * ptable = get_table();
-         if(ptable == ::null())
+         if(ptable == NULL)
             return;
          table_row * prow = get_row();
-         if(prow == ::null())
+         if(prow == NULL)
             return;
 
          ::html::impl::elemental::implement_phase2(pdata);
@@ -427,7 +427,7 @@ namespace html
       {
          index iMinCol = 0;
          table_row * prow = get_row();
-         if(prow != ::null())
+         if(prow != NULL)
          {
             for(int32_t i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
@@ -435,7 +435,7 @@ namespace html
                if(pelemental == m_pelemental)
                   break;
                cell * pcell = dynamic_cast < cell * > (pelemental->m_pimpl);
-               if(pcell != ::null())
+               if(pcell != NULL)
                {
                   iMinCol += pcell->m_iColSpan;
                }
@@ -458,7 +458,7 @@ namespace html
       cell::holder::holder()
       {
          
-         m_pcell  =   ::null();
+         m_pcell  =   NULL;
          m_iCol      = -1;
          m_iRow      = -1;
 
@@ -467,7 +467,7 @@ namespace html
       cell::holder::holder(int32_t iCol, int32_t iRow)
       {
 
-         m_pcell     = ::null();
+         m_pcell     = NULL;
          m_iCol      = iCol;
          m_iRow      = iRow;
 
@@ -489,7 +489,7 @@ namespace html
 
       bool cell::holder::is_null()
       {
-         return m_pcell == ::null();
+         return m_pcell == NULL;
       }
 
       cell::holder & cell::holder::operator = (const class holder & holder)
@@ -564,7 +564,7 @@ namespace html
 
          float cxMax;
 
-         if(get_table() != ::null())
+         if(get_table() != NULL)
          {
 
             ::count n = get_table()->m_columna.get_size();

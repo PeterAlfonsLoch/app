@@ -68,7 +68,7 @@ null_auth_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
 
   /* allocate primitive::memory for auth and null_auth_ctx_t structures */
   pointer = (uint8_t*)crypto_alloc(sizeof(null_auth_ctx_t) + sizeof(auth_t));
-  if (pointer == ::null())
+  if (pointer == NULL)
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -139,17 +139,17 @@ null_auth_start(null_auth_ctx_t *state) {
 auth_test_case_t
 null_auth_test_case_0 = {
   0,                                       /* octets in key            */
-  ::null(),                                    /* key                      */
+  NULL,                                    /* key                      */
   0,                                       /* octets in data           */ 
-  ::null(),                                    /* data                     */
+  NULL,                                    /* data                     */
   0,                                       /* octets in tag            */
-  ::null(),                                    /* tag                      */
-  ::null()                                     /* pointer to next testcase */
+  NULL,                                    /* tag                      */
+  NULL                                     /* pointer to next testcase */
 };
 
 /* end test case 0 */
 
-char null_auth_description[] = "null authentication function";
+char null_auth_description[] = "NULL authentication function";
 
 auth_type_t
 null_auth  = {

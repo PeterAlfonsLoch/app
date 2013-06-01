@@ -30,17 +30,17 @@ void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
    set_position_rate(0, 0.3);
 
    m_plistview = create_view < file_manager_operation_list_view > ();
-   if(m_plistview == ::null())
+   if(m_plistview == NULL)
    {
-      System.simple_message_box(::null(), "Could not create transfer list ::user::view");
+      System.simple_message_box(NULL, "Could not create transfer list ::user::view");
    }
    SetPane(0, m_plistview, false);
 
 
    m_pinfoview = create_view < file_manager_operation_info_view > ();
-   if(m_pinfoview == ::null())
+   if(m_pinfoview == NULL)
    {
-      System.simple_message_box(::null(), "Could not create transfer information ::user::view");
+      System.simple_message_box(NULL, "Could not create transfer information ::user::view");
    }
    SetPane(1, m_pinfoview, false);
 

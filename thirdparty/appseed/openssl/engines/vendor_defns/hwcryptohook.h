@@ -120,7 +120,7 @@ typedef struct {
  * size is the size of the buffer, and will not be modified.  If you
  * pass 0 for size you must pass 0 for buf, and nothing will be
  * recorded (just as if you passed 0 for the struct pointer).
- * Messages written to the buffer will always be null-terminated, even
+ * Messages written to the buffer will always be NULL-terminated, even
  * when truncated to fit within size bytes.
  *
  * The contents of the buffer are not defined if there is no error.
@@ -178,7 +178,7 @@ typedef struct {
    * nonzero integer (whose value will be visible in the error message
    * put in the buffer passed to the call).
    *
-   * If a callback is not available pass a null function pointer.
+   * If a callback is not available pass a NULL function pointer.
    *
    * The callbacks may not call down again into the crypto plugin.
    */
@@ -235,7 +235,7 @@ typedef struct {
                        HWCryptoHook_PassphraseContext *ppctx,
                        HWCryptoHook_CallerContext *cactx);
   /* Passphrases and the prompt_info, if they contain high-bit-set
-   * characters, are UTF-8.  The prompt_info may be a null pointer if
+   * characters, are UTF-8.  The prompt_info may be a NULL pointer if
    * no prompt information is available (it should not be an empty
    * string).  It will not contain text like `enter passphrase';
    * instead it might say something like `Operator Card for John
@@ -244,7 +244,7 @@ typedef struct {
    * buf points to a buffer in which to return the passphrase; on
    * entry *len_io is the length of the buffer.  It should be updated
    * by the callback.  The returned passphrase should not be
-   * null-terminated by the callback.
+   * NULL-terminated by the callback.
    */
   
   int (*getphystoken)(const char *prompt_info,
@@ -258,14 +258,14 @@ typedef struct {
    *
    * prompt_info is as before.  wrong_info is a description of the
    * currently inserted token(s) so that the user is told what
-   * something is.  wrong_info, like prompt_info, may be null, but
+   * something is.  wrong_info, like prompt_info, may be NULL, but
    * should not be an empty string.  Its contents should be
    * syntactically similar to that of prompt_info. 
    */
   
   /* Note that a single LoadKey operation might cause several calls to
    * getpassphrase and/or requestphystoken.  If requestphystoken is
-   * not provided (ie, a null pointer is passed) then the plugin may
+   * not provided (ie, a NULL pointer is passed) then the plugin may
    * not support loading keys for which authorisation by several cards
    * is required.  If getpassphrase is not provided then cards with
    * passphrases may not be supported.
@@ -294,13 +294,13 @@ typedef struct {
    * When a log message is generated, this callback is called.  It
    * should write a message to the relevant logging arrangements.
    *
-   * The message string passed will be null-terminated and may be of arbitrary
+   * The message string passed will be NULL-terminated and may be of arbitrary
    * length.  It will not be prefixed by the time and date, nor by the
    * name of the library that is generating it - if this is required,
    * the logmessage callback must do it.  The message will not have a
    * trailing newline (though it may contain internal newlines).
    *
-   * If a null pointer is passed for logmessage a default function is
+   * If a NULL pointer is passed for logmessage a default function is
    * used.  The default function treats logstream as a FILE* which has
    * been converted to a void*.  If logstream is 0 it does nothing.
    * Otherwise it prepends the date and time and library name and
@@ -426,7 +426,7 @@ int HWCryptoHook_RSALoadKey_t(HWCryptoHook_ContextHandle hwctx,
                               const HWCryptoHook_ErrMsgBuf *errors,
                               HWCryptoHook_PassphraseContext *ppctx);
 extern HWCryptoHook_RSALoadKey_t HWCryptoHook_RSALoadKey;
-/* The key_ident is a null-terminated string configured by the
+/* The key_ident is a NULL-terminated string configured by the
  * user via the application's usual configuration mechanisms.
  * It is provided to the user by the crypto provider's key management
  * system.  The user must be able to enter at least any string of between

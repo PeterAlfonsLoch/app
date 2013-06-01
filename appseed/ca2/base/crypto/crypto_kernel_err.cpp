@@ -69,7 +69,7 @@ err_reporting_init(const char *ident) {
 
 /* err_file is the FILE to which errors are reported */
 
-static FILE *err_file = ::null();
+static FILE *err_file = NULL;
 
 err_status_t
 err_reporting_init(const char *ident) {
@@ -87,7 +87,7 @@ err_reporting_init(const char *ident) {
 #elif defined(USE_ERR_REPORTING_FILE)
   /* open file for error reporting */
   err_file = fopen(ERR_REPORTING_FILE, "w");
-  if (err_file == ::null())
+  if (err_file == NULL)
     return err_status_init_fail;
 #endif
 
@@ -101,7 +101,7 @@ err_report(int32_t priority, const char *format, ...) {
   if (priority <= err_level) {
 
     va_start(args, format);
-    if (err_file != ::null()) {
+    if (err_file != NULL) {
       vfprintf(err_file, format, args);
      /*      fprintf(err_file, "\n"); */
     }

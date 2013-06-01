@@ -48,7 +48,7 @@ void simple_button::_001OnCtlColor(::ca::signal_object * pobj)
    }
    else
    {
-      pctlcolor->m_hbrush = ::null();
+      pctlcolor->m_hbrush = NULL;
    }
 }
 

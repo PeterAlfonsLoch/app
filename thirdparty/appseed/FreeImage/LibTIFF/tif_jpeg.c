@@ -2045,7 +2045,7 @@ TIFFInitJPEG(TIFF* tif, int scheme)
 #define SIZE_OF_JPEGTABLES 2000
 /*
 The following line assumes incorrectly that all JPEG-in-TIFF files will have
-a JPEGTABLES tag generated and causes null-filled JPEGTABLES tags to be written
+a JPEGTABLES tag generated and causes NULL-filled JPEGTABLES tags to be written
 when the JPEG data is placed with TIFFWriteRawStrip.  The field bit should be 
 set, anyway, later when actual JPEGTABLES header is generated, so removing it 
 here hopefully is harmless.

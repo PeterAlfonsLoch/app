@@ -249,7 +249,7 @@ hufCanonicalCodeTable (Int64 hcode[HUF_ENCSIZE])
 // Compute Huffman codes (based on frq input) and store them in frq:
 //	- code structure is : [63:lsb - 6:msb] | [5-0: bit length];
 //	- max code length is 58 bits;
-//	- codes outside the range [im-iM] have a null length (unused values);
+//	- codes outside the range [im-iM] have a NULL length (unused values);
 //	- original frequencies are destroyed;
 //	- encoding tables are used by hufEncode() and hufBuildDecTable();
 //

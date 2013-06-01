@@ -177,7 +177,7 @@ ID3D11Device * TlsGetD3D11Device()
 
    HRESULT hr = 
         D3D11CreateDevice(
-            nullptr,                    // specify null to use the default adapter
+            nullptr,                    // specify NULL to use the default adapter
             D3D_DRIVER_TYPE_HARDWARE,
             0,                          
             create,              // optionally set debug and Direct2D compatibility flags

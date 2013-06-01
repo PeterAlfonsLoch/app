@@ -162,9 +162,9 @@ namespace html
 
 
       data(const data & ) :
-         ::ca::data(::null()),
-         m_elemental(::null()),
-         m_uiptra(::null())
+         ::ca::data(NULL),
+         m_elemental(NULL),
+         m_uiptra(NULL)
       {
       }
 

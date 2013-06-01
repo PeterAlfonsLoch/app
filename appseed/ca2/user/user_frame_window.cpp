@@ -77,22 +77,22 @@ namespace user
 
       m_nWindow = -1;                 // unknown ::ca::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
-      m_lpfnCloseProc = ::null();
-      m_hMenuDefault = ::null();
-      m_hAccelTable = ::null();
+      m_lpfnCloseProc = NULL;
+      m_hMenuDefault = NULL;
+      m_hAccelTable = NULL;
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
-      m_hMenuAlt = ::null();
+      m_hMenuAlt = NULL;
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.null();
 
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = ::null();         // not in list yet
+      m_pNextFrameWnd = NULL;         // not in list yet
 
       m_bInRecalcLayout = FALSE;
       m_nShowDelay = -1;              // no delay pending
@@ -129,12 +129,12 @@ namespace user
 
    bool frame_window::LoadAccelTable(const char * lpszResourceName)
    {
-      ASSERT(m_hAccelTable == ::null());  // only do once
-      ASSERT(lpszResourceName != ::null());
+      ASSERT(m_hAccelTable == NULL);  // only do once
+      ASSERT(lpszResourceName != NULL);
 
       /*   HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_ACCELERATOR);
       m_hAccelTable = ::LoadAccelerators(hInst, lpszResourceName);*/
-      return (m_hAccelTable != ::null());
+      return (m_hAccelTable != NULL);
    }
 
    HACCEL frame_window::GetDefaultAccelerator()
@@ -143,7 +143,7 @@ namespace user
       HACCEL hAccelTable = m_hAccelTable;
       HACCEL hAccel;
       sp(::user::document_interface) pDoc = GetActiveDocument();
-      if (pDoc != ::null() && (hAccel = pDoc->GetDefaultAccelerator()) != ::null())
+      if (pDoc != NULL && (hAccel = pDoc->GetDefaultAccelerator()) != NULL)
          hAccelTable = hAccel;
 
       return hAccelTable;
@@ -151,7 +151,7 @@ namespace user
 
    void frame_window::pre_translate_message(::ca::signal_object * pobj)
    {
-      ENSURE_ARG(pobj != ::null());
+      ENSURE_ARG(pobj != NULL);
       // check for special cancel modes for combo boxes
       //if (pMsg->message == WM_LBUTTONDOWN || pMsg->message == WM_NCLBUTTONDOWN)
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
@@ -166,7 +166,7 @@ namespace user
       {
       // finally, translate the message
       HACCEL hAccel = GetDefaultAccelerator();
-      return hAccel != ::null() &&  ::TranslateAccelerator(get_handle(), hAccel, pMsg);
+      return hAccel != NULL &&  ::TranslateAccelerator(get_handle(), hAccel, pMsg);
       }*/
    }
 
@@ -249,7 +249,7 @@ namespace user
    if (lParam != 0)
    {
    application* pApp = &System;
-   if (pApp != ::null())
+   if (pApp != NULL)
    pApp->WinHelpInternal(lParam);
    return TRUE;
    }
@@ -272,7 +272,7 @@ namespace user
 
       sp(::user::frame_window) pFrameWnd = GetTopLevelFrame();
       ENSURE_VALID(pFrameWnd);
-      /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == ::null() &&
+      /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == NULL &&
       nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
       {
       // route as help
@@ -291,7 +291,7 @@ namespace user
 
    void frame_window::BeginModalState()
    {
-      //   ASSERT(get_handle() != ::null());
+      //   ASSERT(get_handle() != NULL);
       ASSERT(IsWindow());
 
       // allow stacking, but don't do anything
@@ -307,7 +307,7 @@ namespace user
       // disable all windows connected to this frame (and add them to the list)
       sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
 
-      while (oswindow != ::null())
+      while (oswindow != NULL)
       {
 
          if (oswindow->IsWindowEnabled() &&    ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL) == 0)
@@ -334,7 +334,7 @@ namespace user
       for(index nIndex = 0; nIndex < m_uiptraDisable.get_count(); nIndex++)
       {
 
-         ASSERT(m_uiptraDisable[nIndex] != ::null());
+         ASSERT(m_uiptraDisable[nIndex] != NULL);
 
          if (m_uiptraDisable[nIndex]->IsWindow())
             m_uiptraDisable[nIndex]->EnableWindow(TRUE);
@@ -352,10 +352,10 @@ namespace user
       // walk through all top-level windows
       throw not_implemented(get_app());
       /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
-      while (oswindow != ::null())
+      while (oswindow != NULL)
       {
       sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(oswindow);
-      if (pWnd != ::null() && get_handle() != oswindow && __is_descendant(this, pWnd))
+      if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
       uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       if (!bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
@@ -388,7 +388,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-         ::SetFocus(::null());
+         ::SetFocus(NULL);
 #else
 
          throw todo(get_app());
@@ -467,27 +467,27 @@ namespace user
    /*
    sp(::user::interaction) frame_window::CreateView(sp(::ca::create_context) pContext, UINT nID)
    {
-   // trans   ASSERT(get_handle() != ::null());
+   // trans   ASSERT(get_handle() != NULL);
    ASSERT(IsWindow());
-   ENSURE_ARG(pContext != ::null());
-   ENSURE_ARG(pContext->m_typeinfoNewView != ::null());
+   ENSURE_ARG(pContext != NULL);
+   ENSURE_ARG(pContext->m_typeinfoNewView != NULL);
 
    // Note: can be a ::user::interaction with PostNcDestroy self cleanup
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
-   if (pview == ::null())
+   if (pview == NULL)
    {
    TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
-   return ::null();
+   return NULL;
    }
    ASSERT_KINDOF(::user::interaction, pview);
 
    // views are always created with a border!
-   if (!pview->create(::null(), ::null(), __WS_DEFAULT_VIEW,
+   if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, pContext))
    {
    TRACE(::ca::trace::category_AppMsg, 0, "Warning: could not create ::user::view for frame.\n");
-   return ::null();        // can't continue without a ::user::view
+   return NULL;        // can't continue without a ::user::view
    }
 
    if (pview->GetExStyle() & WS_EX_CLIENTEDGE)
@@ -504,11 +504,11 @@ namespace user
    bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::ca::create_context) pContext)
    {
       // default create client will create a ::user::view if asked for it
-      if (pContext != ::null() &&
+      if (pContext != NULL &&
          (pContext->m_user->m_typeinfoNewView ||
-         pContext->m_user->m_puiNew != ::null()))
+         pContext->m_user->m_puiNew != NULL))
       {
-         if(::user::view::s_create_view(pContext, this, "pane_first") == ::null())
+         if(::user::view::s_create_view(pContext, this, "pane_first") == NULL)
             return FALSE;
       }
       return TRUE;
@@ -518,14 +518,14 @@ namespace user
    {
 
       ::ca::thread * pappthread = System.GetThread()->get_app_thread();
-      if(pappthread != ::null())
+      if(pappthread != NULL)
       {
-         if(pappthread->GetMainWnd() == ::null())
+         if(pappthread->GetMainWnd() == NULL)
          {
             pappthread->SetMainWnd(this);
          }
       }
-      if(Application.GetMainWnd() == ::null())
+      if(Application.GetMainWnd() == NULL)
       {
          Application.SetMainWnd(this);
       }
@@ -534,7 +534,7 @@ namespace user
          return;
 
       SCAST_PTR(::ca::message::create, pcreate, pobj)
-         ENSURE_ARG(pcreate->m_lpcreatestruct != ::null());
+         ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
       sp(::ca::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
       pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
       pcreate->m_bRet = pcreate->get_lresult() == -1;
@@ -590,14 +590,14 @@ namespace user
       }
 
       // save the default menu handle
-      //ASSERT(get_handle() != ::null());
+      //ASSERT(get_handle() != NULL);
       // trans m_hMenuDefault = ::GetMenu(get_handle());
-      m_hMenuDefault = ::null(); // trans
+      m_hMenuDefault = NULL; // trans
 
       // load accelerator resource
       LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
-      if (pContext == ::null())   // send initial update
+      if (pContext == NULL)   // send initial update
       SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
 
       return TRUE;*/
@@ -605,14 +605,14 @@ namespace user
 
    void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    {
-      if (hMenuAlt == ::null())
+      if (hMenuAlt == NULL)
       {
          // attempt to get default menu from ::user::document_interface
          sp(::user::document_interface) pDoc = GetActiveDocument();
-         if (pDoc != ::null())
+         if (pDoc != NULL)
             hMenuAlt = pDoc->GetDefaultMenu();
          // use default menu stored in frame if none from ::user::document_interface
-         if (hMenuAlt == ::null())
+         if (hMenuAlt == NULL)
             hMenuAlt = m_hMenuDefault;
       }
       // finally, set the menu
@@ -622,11 +622,11 @@ namespace user
    void frame_window::InitialUpdateFrame(sp(::user::document_interface) pDoc, bool bMakeVisible)
    {
       // if the frame does not have an active ::user::view, set to first pane
-      sp(::user::view) pview = ::null();
-      if (GetActiveView() == ::null())
+      sp(::user::view) pview = NULL;
+      if (GetActiveView() == NULL)
       {
          sp(::user::interaction) pWnd = GetDescendantWindow("pane_first");
-         if (pWnd != ::null() && base < ::user::view > ::bases(pWnd))
+         if (pWnd != NULL && base < ::user::view > ::bases(pWnd))
          {
             pview =  pWnd;   
             SetActiveView(pview, FALSE);
@@ -640,7 +640,7 @@ namespace user
       if (bMakeVisible)
       {
 
-         if(dynamic_cast < ::user::place_holder * > (get_parent().m_p) == ::null())
+         if(dynamic_cast < ::user::place_holder * > (get_parent().m_p) == NULL)
          {
 
             InitialFramePosition();
@@ -651,30 +651,30 @@ namespace user
          SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
 
          // give ::user::view a chance to save the focus (CFormView needs this)
-         if (pview != ::null())
+         if (pview != NULL)
             pview->OnActivateFrame(WA_INACTIVE, this);
 
          // finally, activate the frame
          // (send the default show command unless the main desktop ::ca::window)
          int32_t nCmdShow = -1;      // default
          ::ca::application* pApp = &System;
-         if (pApp != ::null() && pApp->GetMainWnd() == this)
+         if (pApp != NULL && pApp->GetMainWnd() == this)
          {
             nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
             pApp->m_nCmdShow = -1; // set to default after first time
          }
          ActivateFrame(nCmdShow);
-         if (pview != ::null())
+         if (pview != NULL)
             pview->OnActivateView(TRUE, pview, pview);
       }
 
       // update frame counts and frame title (may already have been visible)
-      if (pDoc != ::null())
+      if (pDoc != NULL)
          pDoc->update_frame_counts();
       on_update_frame_title(TRUE);
 
       sp(::user::place_holder) pholder = get_parent();
-      if(pholder != ::null())
+      if(pholder != NULL)
       {
          if(!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
             || !oprop("should_not_be_automatically_holded_on_initial_update_frame"))
@@ -695,7 +695,7 @@ namespace user
          rect rectWindow;
          GetWindowRect(rectWindow);
          rect rectDesktop;
-         if(get_parent() != ::null())
+         if(get_parent() != NULL)
          {
             get_parent()->GetClientRect(rectDesktop);
             get_parent()->ScreenToClient(rectWindow);
@@ -738,21 +738,21 @@ namespace user
    void frame_window::OnClose()
    {
       throw not_implemented(get_app());
-      /*if (m_lpfnCloseProc != ::null())
+      /*if (m_lpfnCloseProc != NULL)
       (*m_lpfnCloseProc)(this);
 
       // Note: only queries the active ::user::document_interface
       sp(::user::document_interface) pdocument = GetActiveDocument();
-      if (pdocument != ::null() && !pdocument->can_close_frame(this))
+      if (pdocument != NULL && !pdocument->can_close_frame(this))
       {
       // ::user::document_interface can't close right now -- don't close it
       return;
       }
       application* pApp = &System;
-      if (pApp != ::null() && pApp->GetMainWnd() == this)
+      if (pApp != NULL && pApp->GetMainWnd() == this)
       {
       // attempt to save all documents
-      if (pdocument == ::null() && !pApp->save_all_modified())
+      if (pdocument == NULL && !pApp->save_all_modified())
       return;     // don't close it
 
       // hide the application's windows before closing all the documents
@@ -764,7 +764,7 @@ namespace user
 
       // there are cases where destroying the documents may destroy the
       //  main ::ca::window of the application.
-      if (!afxContextIsDLL && pApp->GetMainWnd() == ::null())
+      if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
       {
       __post_quit_message(0);
       return;
@@ -773,11 +773,11 @@ namespace user
 
       // detect the case that this is the last frame on the ::user::document_interface and
       // shut down with on_close_document instead.
-      if (pdocument != ::null() && pdocument->m_bAutoDelete)
+      if (pdocument != NULL && pdocument->m_bAutoDelete)
       {
       bool bOtherFrame = FALSE;
       POSITION pos = pdocument->get_view_count();
-      while (pos != ::null())
+      while (pos != NULL)
       {
       sp(::user::view) pview = pdocument->get_view(pos);
       ENSURE_VALID(pview);
@@ -805,7 +805,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
       // reset menu to default before final shutdown
-      /* trans   if (m_hMenuDefault != ::null() && ::GetMenu(get_handle()) != m_hMenuDefault)
+      /* trans   if (m_hMenuDefault != NULL && ::GetMenu(get_handle()) != m_hMenuDefault)
       {
       ::SetMenu(get_handle(), m_hMenuDefault);
       ASSERT(::GetMenu(get_handle()) == m_hMenuDefault);
@@ -813,10 +813,10 @@ namespace user
 
       // Automatically quit when the main ::ca::window is destroyed.
       /* trans application* pApp = &System;
-      if (pApp != ::null() && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
+      if (pApp != NULL && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
       {
       // closing the main application ::ca::window
-      ::WinHelp(get_handle(), ::null(), HELP_QUIT, 0L);
+      ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);
 
       // will call PostQuitMessage in user::frame_window_interface::OnNcDestroy
       }*/
@@ -851,11 +851,11 @@ namespace user
 
       // pump through current ::user::view FIRST
       sp(::user::view) pview = GetActiveView();
-      if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
+      if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       pview =  get_child_by_id("pane_first");
-      if (pview != ::null() && pview->_001OnCmdMsg(pcmdmsg))
+      if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       // then pump through frame
@@ -864,17 +864,17 @@ namespace user
 
       // then pump through parent
       sp(::user::interaction) puiParent = get_parent();
-      if(puiParent != ::null() && puiParent->_001OnCmdMsg(pcmdmsg))
+      if(puiParent != NULL && puiParent->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       // last but not least, pump through cast
       ::ca::application* pApp = get_app();
-      if (pApp != ::null() && pApp->_001OnCmdMsg(pcmdmsg))
+      if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       sp(command_target_interface) pcommandtargetinterface = Application.user()->get_keyboard_focus();
 
-      if(pcommandtargetinterface != ::null())
+      if(pcommandtargetinterface != NULL)
       {
          if(pcommandtargetinterface->_001OnCmdMsg(pcmdmsg))
             return TRUE;
@@ -890,7 +890,7 @@ namespace user
    void frame_window::OnHScroll(UINT, UINT, CScrollBar*)
    {
       sp(::user::interaction) pActiveView = GetActiveView();
-      if (pActiveView != ::null())
+      if (pActiveView != NULL)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
          // trans pActiveView->SendMessage(WM_HSCROLL, pMsg->wParam, pMsg->lParam);
@@ -900,7 +900,7 @@ namespace user
    void frame_window::OnVScroll(UINT, UINT, CScrollBar*)
    {
       sp(::user::interaction) pActiveView = GetActiveView();
-      if (pActiveView != ::null())
+      if (pActiveView != NULL)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
          // trans      pActiveView->SendMessage(WM_VSCROLL, pMsg->wParam, pMsg->lParam);
@@ -923,9 +923,9 @@ namespace user
       if (pThread->GetMainWnd() == this)
       {
          sp(::user::view) pActiveView = GetActiveView();
-         if (pActiveView == ::null())
+         if (pActiveView == NULL)
             pActiveView = GetActiveFrame()->GetActiveView();
-         if (pActiveView != ::null())
+         if (pActiveView != NULL)
             pActiveView->OnActivateView(FALSE, pActiveView, pActiveView);
       }
 
@@ -947,7 +947,7 @@ namespace user
       // determine if ::ca::window should be active or not
       sp(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame().m_p;
 
-      if(pTopLevel == ::null())
+      if(pTopLevel == NULL)
          pTopLevel = this;
 
 
@@ -966,11 +966,11 @@ namespace user
 
       // get active ::user::view (use active frame if no active ::user::view)
       sp(::user::view) pActiveView = GetActiveView();
-      if (pActiveView == ::null())
+      if (pActiveView == NULL)
          pActiveView =  (GetActiveFrame()->GetActiveView());
 
       // when frame gets activated, re-activate current ::user::view
-      if (pActiveView != ::null())
+      if (pActiveView != NULL)
       {
          if (pactivate->m_nState != WA_INACTIVE && !pactivate->m_bMinimized)
             pActiveView->OnActivateView(TRUE, pActiveView, pActiveView);
@@ -1043,10 +1043,10 @@ namespace user
    {
 
       SetActiveWindow();      // activate us first !
-      UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, ::null(), 0);
+      UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
 
       ::user::user* puser = System.user();
-      ASSERT(puser != ::null());
+      ASSERT(puser != NULL);
       for (UINT iFile = 0; iFile < nFiles; iFile++)
       {
          char szFileName[_MAX_PATH];
@@ -1068,7 +1068,7 @@ namespace user
    bool frame_window::OnQueryEndSession()
    {
       ::ca::application* pApp = &System;
-      if (pApp != ::null() && pApp->GetMainWnd() == this)
+      if (pApp != NULL && pApp->GetMainWnd() == this)
          return pApp->save_all_modified();
 
       return TRUE;
@@ -1081,7 +1081,7 @@ namespace user
          return;
 
       ::ca::application* pApp = &System;
-      if (pApp != ::null() && pApp->GetMainWnd() == this)
+      if (pApp != NULL && pApp->GetMainWnd() == this)
       {
          pApp->close_all_documents(TRUE);
 
@@ -1100,7 +1100,7 @@ namespace user
 #ifdef WINDOWSEX
 
       ::ca::application* pApp = &System;
-      if (pApp != ::null() &&
+      if (pApp != NULL &&
          LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
          (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
          (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
@@ -1210,7 +1210,7 @@ namespace user
 
    sp(::user::view) frame_window::GetActiveView() const
    {
-      ASSERT(m_pViewActive == ::null() ||
+      ASSERT(m_pViewActive == NULL ||
          base < ::user::view >::bases(m_pViewActive));
       return m_pViewActive;
    }
@@ -1218,7 +1218,7 @@ namespace user
    void frame_window::SetActiveView(sp(::user::view) pViewNew, bool bNotify)
    {
 #ifdef DEBUG
-      if (pViewNew != ::null())
+      if (pViewNew != NULL)
       {
          //trans      ASSERT(IsChild(pViewNew));
          //trans      ASSERT_KINDOF(::user::view, pViewNew);
@@ -1232,16 +1232,16 @@ namespace user
       m_pViewActive.release();   // no active for the following processing
 
       // deactivate the old one
-      if (pViewOld != ::null())
+      if (pViewOld != NULL)
          pViewOld->OnActivateView(FALSE, pViewNew, pViewOld);
 
       // if the OnActivateView moves the active ::ca::window,
       //    that will veto this change
-      if (m_pViewActive != ::null())
+      if (m_pViewActive != NULL)
          return;     // already set
       m_pViewActive = pViewNew;
       // activate
-      if (pViewNew != ::null())
+      if (pViewNew != NULL)
       {
          if(bNotify)
          {
@@ -1258,7 +1258,7 @@ namespace user
    void frame_window::OnSetFocus(sp(::user::interaction) pOldWnd)
    {
       UNREFERENCED_PARAMETER(pOldWnd);
-      if (m_pViewActive != ::null())
+      if (m_pViewActive != NULL)
          m_pViewActive->SetFocus();
       /*trans else
       user::frame_window_interface::OnSetFocus(pOldWnd);
@@ -1269,9 +1269,9 @@ namespace user
    {
       ASSERT_VALID(this);
       sp(::user::view) pview = GetActiveView();
-      if (pview != ::null())
+      if (pview != NULL)
          return pview->get_document();
-      return ::null();
+      return NULL;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1289,7 +1289,7 @@ namespace user
       {
       // first newline terminates actual string
       lpsz = _tcschr(lpsz, '\n');
-      if (lpsz != ::null())
+      if (lpsz != NULL)
       *lpsz = '\0';
       }
       else
@@ -1314,9 +1314,9 @@ namespace user
       m_nFlags &= ~WF_NOPOPMSG;
 
       sp(::user::interaction) pMessageBar = GetMessageBar();
-      if (pMessageBar != ::null())
+      if (pMessageBar != NULL)
       {
-         const char * lpsz = ::null();
+         const char * lpsz = NULL;
          string strMessage;
 
          // set the message bar text
@@ -1328,7 +1328,7 @@ namespace user
          else if (wParam != 0)
          {
             // map SC_CLOSE to PREVIEW_CLOSE when in print preview mode
-            /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != ::null())
+            /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != NULL)
             wParam = __IDS_PREVIEW_CLOSE;*/
 
             // get message associated with the ID indicated by wParam
@@ -1340,7 +1340,7 @@ namespace user
 
          // update owner of the bar in terms of last message selected
          sp(::user::frame_window) pFrameWnd = pMessageBar->GetParentFrame();
-         if (pFrameWnd != ::null())
+         if (pFrameWnd != NULL)
          {
             pFrameWnd->m_nIDLastMessage = (UINT)wParam;
             pFrameWnd->m_nIDTracking = (UINT)wParam;
@@ -1400,10 +1400,10 @@ namespace user
 
 
       sp(::user::document_interface) pdocument = GetActiveDocument();
-      if (bAddToTitle && pdocument != ::null())
+      if (bAddToTitle && pdocument != NULL)
          UpdateFrameTitleForDocument(pdocument->get_title());
       else
-         UpdateFrameTitleForDocument(::null());
+         UpdateFrameTitleForDocument(NULL);
    }
 
    void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
@@ -1413,7 +1413,7 @@ namespace user
       if (GetStyle() & FWS_PREFIXTITLE)
       {
          // get name of currently active ::user::view
-         if (lpszDocName != ::null())
+         if (lpszDocName != NULL)
          {
             WindowText += lpszDocName;
 
@@ -1439,7 +1439,7 @@ namespace user
       {
          // get name of currently active ::user::view
          WindowText += m_strTitle;
-         if (lpszDocName != ::null())
+         if (lpszDocName != NULL)
          {
             WindowText += " - ";
             WindowText += lpszDocName;
@@ -1468,7 +1468,7 @@ namespace user
 
    void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
    {
-      ENSURE_ARG(pState != ::null());
+      ENSURE_ARG(pState != NULL);
       // default implementation changes control bars, menu and main pane ::ca::window
 
 
@@ -1488,14 +1488,14 @@ namespace user
       else
       {
          // Leaving Preview
-         m_lpfnCloseProc = ::null();
+         m_lpfnCloseProc = NULL;
 
          // shift original "pane_first" back to its rightful ID
          /*      sp(::user::interaction) oswindow = get_child_by_id(__IDW_PANE_SAVE);
-         if (oswindow != ::null())
+         if (oswindow != NULL)
          {
          sp(::user::interaction) oswindow_Temp = get_child_by_id("pane_first");
-         if (oswindow_Temp != ::null())
+         if (oswindow_Temp != NULL)
          __set_dialog_control_id_(oswindow_Temp, __IDW_PANE_SAVE);
          __set_dialog_control_id_(oswindow, "pane_first");
          }*/
@@ -1595,7 +1595,7 @@ namespace user
       switch (nBorderCmd)
       {
       case borderGet:
-         ASSERT(lpRectBorder != ::null());
+         ASSERT(lpRectBorder != NULL);
          RepositionBars(0, 0xffff, "pane_first", reposQuery,
             lpRectBorder);
          break;
@@ -1604,7 +1604,7 @@ namespace user
          return TRUE;
 
       case borderSet:
-         if (lpRectBorder == ::null())
+         if (lpRectBorder == NULL)
          {
             if (!m_rectBorder.is_null())
             {
@@ -1612,7 +1612,7 @@ namespace user
                m_rectBorder.null();
                return TRUE;
             }
-            // original rect is is_empty & lpRectBorder is ::null(), no recalc needed
+            // original rect is is_empty & lpRectBorder is NULL, no recalc needed
             return FALSE;
          }
          if (!::EqualRect(m_rectBorder, lpRectBorder))
@@ -1642,7 +1642,7 @@ namespace user
    bool frame_window::OnEraseBkgnd(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      if (m_pViewActive != ::null())
+      if (m_pViewActive != NULL)
          return TRUE;        // active ::user::view will erase/paint itself
       // for ::user::view-less frame just use the default background fill
       return TRUE;
@@ -1665,7 +1665,7 @@ namespace user
       oswindow hwFocus = ::GetFocus();
       const oswindow hwDesktop = ::GetDesktopWindow();
 
-      if (hwFocus == ::null())
+      if (hwFocus == NULL)
          lResult = send_message(WM_MOUSEWHEEL, (wParam << 16) | keyState, lParam);
       else
       {
@@ -1674,7 +1674,7 @@ namespace user
                (wParam << 16) | keyState, lParam);
             hwFocus = ::GetParent(hwFocus);
          }
-         while (lResult == 0 && hwFocus != ::null() && hwFocus != hwDesktop);
+         while (lResult == 0 && hwFocus != NULL && hwFocus != hwDesktop);
       }
 
 #else
@@ -1721,7 +1721,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      if(get_parent() == ::null())
+      if(get_parent() == NULL)
       {
 
          // place the ::ca::window on top except for certain nCmdShow
@@ -1768,7 +1768,7 @@ namespace user
    //   dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
    //   dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
    //   dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-   //   if (m_pViewActive != ::null())
+   //   if (m_pViewActive != NULL)
    //      dumpcontext << "\nwith active ::user::view: " << m_pViewActive.m_p;
    //   else
    //      dumpcontext << "\nno active ::user::view";
@@ -1796,7 +1796,7 @@ namespace user
    bool frame_window::ShowWindow(int32_t nCmdShow)
    {
       bool bResult = interaction::ShowWindow(nCmdShow);
-      if(get_parent() != ::null()
+      if(get_parent() != NULL
          && nCmdShow == SW_RESTORE)
       {
          InitialFramePosition(true);
@@ -1812,7 +1812,7 @@ namespace user
 #ifdef WINDOWS
 
       SCAST_PTR(::ca::message::base, pbase, pobj);
-      if(get_parent() == ::null())
+      if(get_parent() == NULL)
       {
          if(pbase->m_wparam == SC_RESTORE)
          {
@@ -1876,19 +1876,19 @@ namespace user
 
    void frame_window::CommonConstruct()
    {
-      // trans ASSERT(get_handle() == ::null());
+      // trans ASSERT(get_handle() == NULL);
 
       m_nWindow = -1;                 // unknown ::ca::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
-      m_lpfnCloseProc = ::null();
-      m_hMenuDefault = ::null();
-      m_hAccelTable = ::null();
+      m_lpfnCloseProc = NULL;
+      m_hMenuDefault = NULL;
+      m_hAccelTable = NULL;
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
-      m_hMenuAlt = ::null();
+      m_hMenuAlt = NULL;
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.null();
 #ifdef WINDOWSEX
@@ -1896,7 +1896,7 @@ namespace user
 #endif
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = ::null();         // not in list yet
+      m_pNextFrameWnd = NULL;         // not in list yet
 
       m_bInRecalcLayout = FALSE;
       m_nShowDelay = -1;              // no delay pending
@@ -1911,11 +1911,11 @@ namespace user
    void frame_window::NotifyFloatingWindows(uint32_t dwFlags)
    {
       ASSERT_VALID(this);
-      // trans   ASSERT(get_handle() != ::null());
+      // trans   ASSERT(get_handle() != NULL);
 
       // get top level parent frame ::ca::window first unless this is a child ::ca::window
       sp(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
-      ASSERT(pParent != ::null());
+      ASSERT(pParent != NULL);
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
          // update parent ::ca::window activation state
@@ -1939,7 +1939,7 @@ namespace user
       // then update the state of all floating windows owned by the parent
 #ifdef WINDOWSEX
       sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
-      while (oswindow != ::null())
+      while (oswindow != NULL)
       {
          if(::user::is_descendant(pParent, oswindow))
             oswindow->send_message(WM_FLOATSTATUS, dwFlags);
@@ -1985,7 +1985,7 @@ namespace user
    void frame_window::RemoveControlBar(::user::control_bar *pBar)
    {
       POSITION pos = m_listControlBars.find(pBar);
-      if (pos != ::null())
+      if (pos != NULL)
          m_listControlBars.remove_at(pos);
    }
 
@@ -2007,7 +2007,7 @@ namespace user
    void frame_window::_001OnQueryEndSession(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj);
-      if (&System != ::null() && System.GetMainWnd() == this)
+      if (&System != NULL && System.GetMainWnd() == this)
       {
          pbase->set_lresult(System.save_all_modified());
          pbase->m_bRet = true;
@@ -2024,7 +2024,7 @@ namespace user
    void frame_window::_001OnSetFocus(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      if (m_pViewActive != ::null())
+      if (m_pViewActive != NULL)
          m_pViewActive->SetFocus();
    }
 
@@ -2114,7 +2114,7 @@ namespace user
       }
       try
       {
-         if (m_pViewActive != ::null())
+         if (m_pViewActive != NULL)
             ASSERT_VALID(m_pViewActive);
       }
       catch(...)
@@ -2132,7 +2132,7 @@ namespace user
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
       dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-      if (m_pViewActive != ::null())
+      if (m_pViewActive != NULL)
          dumpcontext << "\nwith active ::user::view: " << m_pViewActive.m_p;
       else
          dumpcontext << "\nno active ::user::view";

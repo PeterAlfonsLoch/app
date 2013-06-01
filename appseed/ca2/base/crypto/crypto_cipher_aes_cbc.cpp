@@ -74,7 +74,7 @@ aes_cbc_alloc(cipher_t **c, int32_t key_len)
   /* allocate primitive::memory a cipher of type aes_icm */
   tmp = (sizeof(aes_cbc_ctx_t) + sizeof(cipher_t));
   pointer = (uint8_t*)crypto_alloc(tmp);
-  if (pointer == ::null()) 
+  if (pointer == NULL) 
     return err_status_alloc_fail;
 
   /* set pointers */
@@ -385,7 +385,7 @@ cipher_test_case_t aes_cbc_test_case_0 = {
   aes_cbc_test_case_0_plaintext,         /* plaintext                */
   32,                                    /* octets in ciphertext     */
   aes_cbc_test_case_0_ciphertext,        /* ciphertext               */
-  ::null()                                   /* pointer to next testcase */
+  NULL                                   /* pointer to next testcase */
 };
 
 

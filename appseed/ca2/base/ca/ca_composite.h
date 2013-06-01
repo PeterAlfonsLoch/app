@@ -30,10 +30,10 @@ namespace ca
    template < class TYPE >
    inline void sdel(TYPE * & pt)
    {
-      if(pt != ::null())
+      if(pt != NULL)
       {
          TYPE * ptCopy = pt;
-         pt = ::null();
+         pt = NULL;
          _sdel(ptCopy);
       }
    }
@@ -42,10 +42,10 @@ namespace ca
    template < class TYPE >
    inline void del(TYPE * & pt)
    {
-      if(pt != ::null())
+      if(pt != NULL)
       {
          TYPE * ptCopy = pt;
-         pt = ::null();
+         pt = NULL;
          ptCopy->delete_this();
       }
    }
@@ -87,7 +87,7 @@ namespace ca
    composite<TYPE>::~composite()
    {
       del<TYPE>(m_pptr);
-      m_pptr = ::null();
+      m_pptr = NULL;
    }
 
    template < class TYPE >

@@ -101,10 +101,10 @@ namespace libcompress
          sizePointers.remove_all();
          for(uint32_t i = 0; i < numItems; i++)
          {
-            if (srcSizes == 0 || srcSizes[i] == ::null())
+            if (srcSizes == 0 || srcSizes[i] == NULL)
             {
                sizes.add((file_size) 0);
-               sizePointers.add(::null());
+               sizePointers.add(NULL);
             }
             else
             {

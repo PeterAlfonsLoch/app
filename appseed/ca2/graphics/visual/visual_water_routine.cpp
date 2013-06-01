@@ -6,8 +6,8 @@ namespace visual
 
    water_routine::water_routine()
    {
-      m_iHeightField1 = ::null();
-      m_iHeightField2 = ::null();
+      m_iHeightField1 = NULL;
+      m_iHeightField2 = NULL;
 
       m_iWidth = 0;
       m_iHeight = 0;
@@ -21,19 +21,19 @@ namespace visual
    water_routine::~water_routine()
    {
       // Cleanup
-      if(m_iHeightField1 != ::null())
+      if(m_iHeightField1 != NULL)
          delete [] m_iHeightField1;
-      if(m_iHeightField2 != ::null())
+      if(m_iHeightField2 != NULL)
          delete [] m_iHeightField2;
 
-      m_iHeightField1 = ::null();
-      m_iHeightField2 = ::null();
+      m_iHeightField1 = NULL;
+      m_iHeightField2 = NULL;
    }
    void water_routine::create(int32_t iWidth,int32_t iHeight)
    {
-      if(m_iHeightField1 != ::null())
+      if(m_iHeightField1 != NULL)
          delete [] m_iHeightField1;
-      if(m_iHeightField2 != ::null())
+      if(m_iHeightField2 != NULL)
          delete [] m_iHeightField2;
 
       // create our height fields

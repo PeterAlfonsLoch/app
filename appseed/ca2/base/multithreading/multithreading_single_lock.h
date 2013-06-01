@@ -16,7 +16,7 @@ public:
 
    bool lock(const duration & duration = duration::infinite());
    bool unlock();
-   bool unlock(LONG lCount, LPLONG lPrevCount = ::null());
+   bool unlock(LONG lCount, LPLONG lPrevCount = NULL);
    bool IsLocked();
 
 

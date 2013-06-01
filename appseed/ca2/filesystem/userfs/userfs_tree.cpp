@@ -46,7 +46,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(lHint);
 
       //FileManagerViewInterface::on_update(pSender, lHint, phint);
-      if(phint != ::null())
+      if(phint != NULL)
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
          {
@@ -183,7 +183,7 @@ namespace userfs
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiFilePopup))
          {
             CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
-            ASSERT(pPopup != ::null());
+            ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetTopLevelFrame();
 
             pframe->SetActiveView(this);
@@ -191,11 +191,11 @@ namespace userfs
             //IContextMenu * pcontextmenu;
 
             hr = m_spshellfolder->GetUIObjectOf(
-               ::null(),
+               NULL,
                1,
                (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
                IID_IContextMenu,
-               ::null(),
+               NULL,
                (void **) &m_contextmenu.m_pcontextmenu);
 
 
@@ -222,7 +222,7 @@ namespace userfs
          if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiPopup))
          {
             ::user::menu* pPopup = menu.GetSubMenu(0);
-            ASSERT(pPopup != ::null());
+            ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
@@ -264,7 +264,7 @@ namespace userfs
 
    void tree::StartAnimation()
    {
-      SetTimer(1234567, 50, ::null());
+      SetTimer(1234567, 50, NULL);
    }
 
    bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)

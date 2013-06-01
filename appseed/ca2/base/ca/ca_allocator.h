@@ -55,9 +55,9 @@ public:
 
 	allocator() :
 		m_dwPageSize(0), 
-		m_hMap(::null()),
+		m_hMap(NULL),
 		m_bValid(false),
-		m_pProcess(::null()),
+		m_pProcess(NULL),
 		m_bSnapshot(false)
 	{
 	}

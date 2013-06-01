@@ -823,7 +823,7 @@ MNG_LOCAL mng_retcode create_chunk_storage (mng_datap       pData,
                   else
                   {
 #endif
-                                       /* don't forget to generate null terminator */
+                                       /* don't forget to generate NULL terminator */
                     MNG_ALLOC (pData, pWork, iRealsize+1);
 #if defined(MNG_INCLUDE_MPNG_PROPOSAL) || defined(MNG_INCLUDE_ANG_PROPOSAL)
                   }
@@ -842,7 +842,7 @@ MNG_LOCAL mng_retcode create_chunk_storage (mng_datap       pData,
                      {                 /* no decompression, so just copy */
 
                 mng_ptr pWork;
-                                       /* don't forget to generate null terminator */
+                                       /* don't forget to generate NULL terminator */
                 MNG_ALLOC (pData, pWork, iDatalen+1);
                 MNG_COPY (pWork, pTempdata, iDatalen);
 
@@ -2345,7 +2345,7 @@ READ_CHUNK (mng_read_iccp)
       MNG_ERROR (pData, MNG_INVALIDLENGTH);
   }
 
-  pTemp = find_null (pRawdata);        /* find null-separator */
+  pTemp = find_null (pRawdata);        /* find NULL-separator */
                                        /* not found inside input-data ? */
   if ((pTemp - pRawdata) > (mng_int32)iRawlen)
     MNG_ERROR (pData, MNG_NULLNOTFOUND);
@@ -2443,7 +2443,7 @@ READ_CHUNK (mng_read_iccp)
         if (pData->pGlobalProfile)     /* did we have a global profile ? */
           MNG_FREEX (pData, pData->pGlobalProfile, pData->iGlobalProfilesize);
 
-        pData->iGlobalProfilesize = 0; /* reset to null */
+        pData->iGlobalProfilesize = 0; /* reset to NULL */
         pData->pGlobalProfile     = MNG_NULL;
       }
       else
@@ -2480,7 +2480,7 @@ READ_CHUNK (mng_read_iccp)
       if (iRawlen)                     /* not empty ? */
       {
         if (!pBuf)                     /* hasn't been unpuzzled it yet ? */
-        {                              /* find null-separator */
+        {                              /* find NULL-separator */
           pTemp = find_null (pRawdata);
                                        /* not found inside input-data ? */
           if ((pTemp - pRawdata) > (mng_int32)iRawlen)
@@ -2559,7 +2559,7 @@ READ_CHUNK (mng_read_text)
   if (iRawlen < 2)                     /* length must be at least 2 */
     MNG_ERROR (pData, MNG_INVALIDLENGTH);
 
-  pTemp = find_null (pRawdata);        /* find the null separator */
+  pTemp = find_null (pRawdata);        /* find the NULL separator */
                                        /* not found inside input-data ? */
   if ((pTemp - pRawdata) > (mng_int32)iRawlen)
     MNG_ERROR (pData, MNG_NULLNOTFOUND);
@@ -2662,7 +2662,7 @@ READ_CHUNK (mng_read_ztxt)
   if (iRawlen < 3)                     /* length must be at least 3 */
     MNG_ERROR (pData, MNG_INVALIDLENGTH);
 
-  pTemp = find_null (pRawdata);        /* find the null separator */
+  pTemp = find_null (pRawdata);        /* find the NULL separator */
                                        /* not found inside input-data ? */
   if ((pTemp - pRawdata) > (mng_int32)iRawlen)
     MNG_ERROR (pData, MNG_NULLNOTFOUND);
@@ -2808,7 +2808,7 @@ READ_CHUNK (mng_read_itxt)
   if (iRawlen < 6)                     /* length must be at least 6 */
     MNG_ERROR (pData, MNG_INVALIDLENGTH);
 
-  pNull1 = find_null (pRawdata);       /* find the null separators */
+  pNull1 = find_null (pRawdata);       /* find the NULL separators */
   pNull2 = find_null (pNull1+3);
   pNull3 = find_null (pNull2+1);
                                        /* not found inside input-data ? */
@@ -3392,7 +3392,7 @@ READ_CHUNK (mng_read_splt)
 
   if (iRawlen)
   {
-    pTemp = find_null (pRawdata);      /* find null-separator */
+    pTemp = find_null (pRawdata);      /* find NULL-separator */
                                        /* not found inside input-data ? */
     if ((pTemp - pRawdata) > (mng_int32)iRawlen)
       MNG_ERROR (pData, MNG_NULLNOTFOUND);
@@ -4795,7 +4795,7 @@ READ_CHUNK (mng_read_fram)
   }
   else
   {
-    pTemp = find_null (pRawdata+1);    /* find null-separator */
+    pTemp = find_null (pRawdata+1);    /* find NULL-separator */
                                        /* not found inside input-data ? */
     if ((pTemp - pRawdata) > (mng_int32)iRawlen)
       pTemp  = pRawdata + iRawlen;     /* than remainder is name */
@@ -5528,7 +5528,7 @@ READ_CHUNK (mng_read_save)
 
           if ((pNull - pRawdata) > (mng_int32)iRawlen)
           {
-            iNamesize = iLen;          /* no null found; so end of SAVE */
+            iNamesize = iLen;          /* no NULL found; so end of SAVE */
             iLen      = 0;
           }
           else
@@ -5536,7 +5536,7 @@ READ_CHUNK (mng_read_save)
             iNamesize = pNull - pTemp; /* should be another entry */
             iLen     -= iNamesize;
 
-            if (!iLen)                 /* must not end with a null ! */
+            if (!iLen)                 /* must not end with a NULL ! */
               MNG_ERROR (pData, MNG_ENDWITHNULL);
           }
 
@@ -7607,7 +7607,7 @@ READ_CHUNK (mng_read_evnt)
 
         if ((pNull - pTemp) > (mng_int32)iLen)
         {
-          iNamesize = iLen;          /* no null found; so end of evNT */
+          iNamesize = iLen;          /* no NULL found; so end of evNT */
           iLen      = 0;
         }
         else
@@ -7615,7 +7615,7 @@ READ_CHUNK (mng_read_evnt)
           iNamesize = pNull - pTemp; /* should be another entry */
           iLen      = iLen - iNamesize - 1;
 
-          if (!iLen)                 /* must not end with a null ! */
+          if (!iLen)                 /* must not end with a NULL ! */
             MNG_ERROR (pData, MNG_ENDWITHNULL);
         }
 
@@ -7774,7 +7774,7 @@ READ_CHUNK (mng_read_evnt)
 
           if ((pNull - pTemp) > (mng_int32)iLen)
           {
-            iNamesize = iLen;          /* no null found; so end of evNT */
+            iNamesize = iLen;          /* no NULL found; so end of evNT */
             iLen      = 0;
           }
           else
@@ -7782,7 +7782,7 @@ READ_CHUNK (mng_read_evnt)
             iNamesize = pNull - pTemp; /* should be another entry */
             iLen      = iLen - iNamesize - 1;
 
-            if (!iLen)                 /* must not end with a null ! */
+            if (!iLen)                 /* must not end with a NULL ! */
               MNG_ERROR (pData, MNG_ENDWITHNULL);
           }
 
@@ -9659,7 +9659,7 @@ WRITE_CHUNK (mng_write_save)
 
     for (iX = 0; iX < pSAVE->iCount; iX++)
     {
-      if (iX)                          /* put separator null-byte, except the first */
+      if (iX)                          /* put separator NULL-byte, except the first */
       {
         *pTemp = 0;
         pTemp++;
@@ -10619,7 +10619,7 @@ WRITE_CHUNK (mng_write_evnt)
 
     for (iX = 0; iX < pEVNT->iCount; iX++)
     {
-      if (iX)                          /* put separator null-byte, except the first */
+      if (iX)                          /* put separator NULL-byte, except the first */
       {
         *pTemp = 0;
         pTemp++;

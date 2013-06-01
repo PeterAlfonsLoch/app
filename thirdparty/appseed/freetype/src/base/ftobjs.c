@@ -504,7 +504,7 @@
     else
       m_internal->transform_delta = *delta;
 
-    /* set transform_flags bit flag 1 if `delta' isn't the null vector */
+    /* set transform_flags bit flag 1 if `delta' isn't the NULL vector */
     if ( delta->x | delta->y )
       m_internal->transform_flags |= 2;
   }

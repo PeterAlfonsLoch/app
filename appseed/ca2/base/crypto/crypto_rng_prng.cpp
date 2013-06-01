@@ -98,7 +98,7 @@ x917_prng_get_octet_string(uint8_t *dest, uint32_t len) {
   x917_prng.octet_count += len;
   
   /* find out the time */
-  t = (uint32_t)time(::null());
+  t = (uint32_t)time(NULL);
   
   /* loop until we have output enough data */
   for (i=0; i < len/16; i++) {

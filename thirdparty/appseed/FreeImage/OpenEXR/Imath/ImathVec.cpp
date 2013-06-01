@@ -148,7 +148,7 @@ const Vec2<short> &
 Vec2<short>::normalizeExc () throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     normalizeOrThrow<short>(*this);
     return *this;
@@ -176,7 +176,7 @@ Vec2<short>
 Vec2<short>::normalizedExc () const throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     Vec2<short> v(*this);
     normalizeOrThrow<short>(v);
@@ -217,7 +217,7 @@ const Vec2<int> &
 Vec2<int>::normalizeExc () throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     normalizeOrThrow<int>(*this);
     return *this;
@@ -245,7 +245,7 @@ Vec2<int>
 Vec2<int>::normalizedExc () const throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     Vec2<int> v(*this);
     normalizeOrThrow<int>(v);
@@ -286,7 +286,7 @@ const Vec3<short> &
 Vec3<short>::normalizeExc () throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     normalizeOrThrow<short>(*this);
     return *this;
@@ -314,7 +314,7 @@ Vec3<short>
 Vec3<short>::normalizedExc () const throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     Vec3<short> v(*this);
     normalizeOrThrow<short>(v);
@@ -355,7 +355,7 @@ const Vec3<int> &
 Vec3<int>::normalizeExc () throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     normalizeOrThrow<int>(*this);
     return *this;
@@ -383,7 +383,7 @@ Vec3<int>
 Vec3<int>::normalizedExc () const throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     Vec3<int> v(*this);
     normalizeOrThrow<int>(v);
@@ -424,7 +424,7 @@ const Vec4<short> &
 Vec4<short>::normalizeExc () throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0) && (w == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     normalizeOrThrow<short>(*this);
     return *this;
@@ -452,7 +452,7 @@ Vec4<short>
 Vec4<short>::normalizedExc () const throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0) && (w == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     Vec4<short> v(*this);
     normalizeOrThrow<short>(v);
@@ -493,7 +493,7 @@ const Vec4<int> &
 Vec4<int>::normalizeExc () throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0) && (w == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     normalizeOrThrow<int>(*this);
     return *this;
@@ -521,7 +521,7 @@ Vec4<int>
 Vec4<int>::normalizedExc () const throw (Iex::MathExc)
 {
     if ((x == 0) && (y == 0) && (z == 0) && (w == 0))
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     Vec4<int> v(*this);
     normalizeOrThrow<int>(v);

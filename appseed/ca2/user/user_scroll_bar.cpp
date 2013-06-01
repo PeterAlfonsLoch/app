@@ -66,7 +66,7 @@ namespace user
 
       m_eorientation = eorientation;
 
-      return ::user::interaction::create(::null(), ::null(), dwStyle, rect, pParentWnd, nID);
+      return ::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID);
 
    }
 

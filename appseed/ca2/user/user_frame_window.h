@@ -75,10 +75,10 @@ namespace user
    class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
 
    /*struct create_context   // Creation information structure
-   // All fields are optional and may be ::null()
+   // All fields are optional and may be NULL
    {
    // for creating new views
-   sp(::ca::type_info) m_typeinfoNewView; // runtime class of ::user::view to create or ::null()
+   sp(::ca::type_info) m_typeinfoNewView; // runtime class of ::user::view to create or NULL
    sp(::user::document) m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)
@@ -131,7 +131,7 @@ namespace user
       bool (CALLBACK* m_lpfnCloseProc)(sp(::user::frame_window) pFrameWnd);
       UINT m_cModalStack;         // BeginModalState depth
       comparable_array < sp(::user::interaction), sp(::user::interaction) > m_uiptraDisable;       // windows disabled because of BeginModalState
-      HMENU m_hMenuAlt;           // menu to update to (::null() means default)
+      HMENU m_hMenuAlt;           // menu to update to (NULL means default)
       string m_strTitle;         // default title (original)
       bool m_bInRecalcLayout;     // avoid recursion in layout
       sp(::ca::type_info) m_pFloatingFrameClass;
@@ -149,16 +149,16 @@ namespace user
          const char * lpszWindowName,
          uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
          const RECT & rect = ::rect(0, 0, 0, 0),
-         sp(::user::interaction) pParentWnd = ::null(),        // != ::null() for popups
-         const char * lpszMenuName = ::null(),
+         sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
+         const char * lpszMenuName = NULL,
          uint32_t dwExStyle = 0,
-         sp(::ca::create_context) pContext = ::null());
+         sp(::ca::create_context) pContext = NULL);
 
       // dynamic creation - load frame and associated resources
       virtual bool LoadFrame(const char * pszMatter,
          uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-         sp(::user::interaction) pParentWnd = ::null(),
-         sp(::ca::create_context) pContext = ::null());
+         sp(::user::interaction) pParentWnd = NULL,
+         sp(::ca::create_context) pContext = NULL);
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
@@ -167,9 +167,9 @@ namespace user
       virtual sp(::user::document_interface) GetActiveDocument();
 
       // Active child ::user::view maintenance
-      sp(::user::view) GetActiveView() const;           // active ::user::view or ::null()
+      sp(::user::view) GetActiveView() const;           // active ::user::view or NULL
       void SetActiveView(sp(::user::view) pViewNew, bool bNotify = TRUE);
-      // active ::user::view or ::null(), bNotify == FALSE if focus should not be set
+      // active ::user::view or NULL, bNotify == FALSE if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
       virtual sp(::user::frame_window) GetActiveFrame();
@@ -360,11 +360,11 @@ namespace user
          friend class user;
 
       mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
-      uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = ::null()); // called by CDockContext
+      uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext
       void AddControlBar(::user::control_bar *pBar);
       void RemoveControlBar(::user::control_bar *pBar);
-      void DockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
-      void ReDockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = ::null());
+      void DockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
+      void ReDockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
       virtual void NotifyFloatingWindows(uint32_t dwFlags);
 
    };

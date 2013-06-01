@@ -145,7 +145,7 @@ namespace fs
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);
-      return ::ca::null();
+      return NULL;
    }
 
    ::ca::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags)
@@ -156,7 +156,7 @@ namespace fs
    bool data::file_exists(const char * pszPath)
    {
       stringa straTitle;
-      ls(eat_end_level(pszPath, 1), ::null(), &straTitle);
+      ls(eat_end_level(pszPath, 1), NULL, &straTitle);
       return straTitle.contains_ci(file_name(pszPath));
    }
 

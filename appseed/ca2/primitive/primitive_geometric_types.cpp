@@ -84,39 +84,51 @@ bool null(tagRECTD * prectDest)
 }
 bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2)
 {
+
    return
       prect1->left      == prect2->left &&
       prect1->top       == prect2->top &&
       prect1->right     == prect2->right &&
       prect1->bottom    == prect2->bottom;
+
 }
+
 
 bool inflate(tagRECTD * prect, double x, double y)
 {
+
    prect->left      -= x;
    prect->top       -= y;
    prect->right     += x;
    prect->bottom    += y;
-   return TRUE;
+   return true;
+
 }
+
 
 bool deflate(tagRECTD * prect, double x, double y)
 {
+
    prect->left      += x;
    prect->top       += y;
    prect->right     -= x;
    prect->bottom    -= y;
-   return TRUE;
+   return true;
+
 }
+
 
 bool offset(tagRECTD * prect, double x, double y)
 {
+
    prect->left      += x;
    prect->top       += y;
    prect->right     += x;
    prect->bottom    += y;
-   return TRUE;
+   return true;
+
 }
+
 
 bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 {
@@ -124,13 +136,14 @@ bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
    prect->right   = min(prect1->right  , prect2->right);
    if(prect->right > prect->left)
    {
-      return TRUE;
+      return true;
    }
    else
    {
-      return FALSE;
+      return false;
    }
 }
+
 
 bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 {
@@ -138,12 +151,12 @@ bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
    prect->bottom  = min(prect1->bottom , prect2->bottom);
    if(prect->top < prect->bottom)
    {
-      return TRUE;
+      return true;
    }
    else
    {
       null(prect);
-      return FALSE;
+      return false;
    }
 }
 
@@ -153,12 +166,12 @@ bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect
    if(x_intersect_rect(prect, prect1, prect2)
    && y_intersect_rect(prect, prect1, prect2))
    {
-      return TRUE;
+      return true;
    }
    else
    {
       null(prect);
-      return FALSE;
+      return false;
    }
 }
 
@@ -168,19 +181,19 @@ bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
    {
       if(is_empty(prect2))
       {
-         ::null(prect);
-         return FALSE;
+         null(prect);
+         return false;
       }
       else
       {
          *prect =* prect2;
-         return TRUE;
+         return true;
       }
    }
    else if(is_empty(prect2))
    {
       *prect = *prect1;
-      return TRUE;
+      return true;
    }
    prect->left    = min(prect1->left   , prect2->left);
    prect->right   = max(prect1->right  , prect2->right);
@@ -189,11 +202,11 @@ bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
    if(prect->right > prect->left &&
       prect->bottom > prect->top)
    {
-      return TRUE;
+      return true;
    }
    else
    {
-      return FALSE;
+      return false;
    }
 }
 
@@ -256,29 +269,39 @@ bool is_empty(const __rect64 * prect)
       && prect->top >= prect->bottom;
 }
 
+
 bool contains(const __rect64 * prect, point64 pt)
 {
+
    return
       pt.x >= prect->left && pt.x <= prect->right
       && pt.y >= prect->top && pt.y <= prect->bottom;
+
 }
 
 bool set(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
+
    prectDest->left      = x1;
    prectDest->top       = y1;
    prectDest->right     = x2;
    prectDest->bottom    = y2;
-   return TRUE;
+   return true;
+
 }
+
+
 bool null(__rect64 * prectDest)
 {
+
    prectDest->left      = 0;
    prectDest->top       = 0;
    prectDest->right     = 0;
    prectDest->bottom    = 0;
    return true;
+
 }
+
 bool is_equal(const __rect64 * prect1, const __rect64 * prect2)
 {
    return
@@ -290,44 +313,55 @@ bool is_equal(const __rect64 * prect1, const __rect64 * prect2)
 
 bool inflate(__rect64 * prect, int64_t x, int64_t y)
 {
+
    prect->left      -= x;
    prect->top       -= y;
    prect->right     += x;
    prect->bottom    += y;
-   return TRUE;
+   return true;
+
 }
 
 bool deflate(__rect64 * prect, int64_t x, int64_t y)
 {
+
    prect->left      += x;
    prect->top       += y;
    prect->right     -= x;
    prect->bottom    -= y;
-   return TRUE;
+   return true;
+
 }
+
 
 bool offset(__rect64 * prect, int64_t x, int64_t y)
 {
+
    prect->left      += x;
    prect->top       += y;
    prect->right     += x;
    prect->bottom    += y;
-   return TRUE;
+   return true;
+
 }
 
 bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 {
+   
    prect->left    = max(prect1->left   , prect2->left);
    prect->right   = min(prect1->right  , prect2->right);
+   
    if(prect->right > prect->left)
    {
-      return TRUE;
+      return true;
    }
    else
    {
-      return FALSE;
+      return false;
    }
+
 }
+
 
 bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 {
@@ -335,13 +369,14 @@ bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 
    prect->bottom  = min(prect1->bottom , prect2->bottom);
    if(prect->top < prect->bottom)
    {
-      return TRUE;
+      return true;
    }
    else
    {
       null(prect);
-      return FALSE;
+      return false;
    }
+
 }
 
 
@@ -350,14 +385,16 @@ bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect
    if(x_intersect_rect(prect, prect1, prect2)
    && y_intersect_rect(prect, prect1, prect2))
    {
-      return TRUE;
+      return true;
    }
    else
    {
       null(prect);
-      return FALSE;
+      return false;
    }
+
 }
+
 
 bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 {
@@ -365,8 +402,8 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
    {
       if(is_empty(prect2))
       {
-         ::null(prect);
-         return FALSE;
+         null(prect);
+         return false;
       }
       else
       {
@@ -377,7 +414,7 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
    else if(is_empty(prect2))
    {
       *prect = *prect1;
-      return TRUE;
+      return true;
    }
    prect->left    = min(prect1->left   , prect2->left);
    prect->right   = max(prect1->right  , prect2->right);
@@ -386,11 +423,11 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
    if(prect->right > prect->left &&
       prect->bottom > prect->top)
    {
-      return TRUE;
+      return true;
    }
    else
    {
-      return FALSE;
+      return false;
    }
 }
 

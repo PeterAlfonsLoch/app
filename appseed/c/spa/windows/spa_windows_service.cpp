@@ -57,8 +57,8 @@ int32_t remove_service()
 /*   STARTUPINFO si;
    PROCESS_INFORMATION pi;
    LPSTR lpsz = strdup_dup(("sc delete ca2_WinService_Spa_" + g_strVersionShift));
-   if(!::CreateProcess(::null(), lpsz, 
-      ::null(), ::null(), FALSE, 0, ::null(), ::null(), &si, &pi))
+   if(!::CreateProcess(NULL, lpsz, 
+      NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
       return 1;
    _ca_free(lpsz, 0);*/
 

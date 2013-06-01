@@ -14,8 +14,8 @@ namespace user
       m_iHover    = -1;
       m_bEnabled  = true;
       m_echeck    = check::unchecked;
-      m_pschema   = ::null();
-      m_pschema   = ::null();
+      m_pschema   = NULL;
+      m_pschema   = NULL;
    }
 
    button::~button()
@@ -49,7 +49,7 @@ namespace user
 
       rect rectClient;
       GetClientRect(rectClient);
-      if(m_pschema == ::null())
+      if(m_pschema == NULL)
       {
    
          pdc->SelectObject(_001GetFont());
@@ -137,11 +137,11 @@ namespace user
 
       if(hit_test(pmouse->m_pt, eelement) >= 0 && g_pwndLastLButtonDown == this)
       {
-         g_pwndLastLButtonDown = ::null();
+         g_pwndLastLButtonDown = NULL;
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::event_button_clicked;
-         if(get_form() != ::null())
+         if(get_form() != NULL)
          {
             get_form()->send_message(
                ::ca::message_event, 0, (LPARAM) &ev);
@@ -160,7 +160,7 @@ namespace user
    void button::_001OnMouseMove(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
-         if(get_form() == ::null())
+         if(get_form() == NULL)
          {
 
             e_element eelement;
@@ -196,7 +196,7 @@ namespace user
    void button::_001OnMouseLeave(::ca::signal_object * pobj)
    {
       SCAST_PTR(::ca::message::base, pbase, pobj)
-         if(get_form() == ::null())
+         if(get_form() == NULL)
          {
             index iOldHover = m_iHover;
             m_iHover = -1;
@@ -206,7 +206,7 @@ namespace user
                ::user::control_event ev;
                ev.m_puie = this;
                ev.m_eevent = ::user::event_mouse_leave;
-               if(get_parent() != ::null())
+               if(get_parent() != NULL)
                {
                   get_parent()->send_message(::ca::message_event, 0, (LPARAM) &ev);
                }
@@ -309,17 +309,17 @@ namespace user
       //SCAST_PTR(::ca::message::create, pcreate, pobj)
 
       sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
-      if(pframewindow != ::null())
+      if(pframewindow != NULL)
       {
-         if(pframewindow->GetTypedParent < ::simple_frame_window > () != ::null())
+         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
          {
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
          }
-         if(pframewindow->GetTypedParent < ::simple_frame_window > () != ::null())
+         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
          {
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
          }
-         if(pframewindow->m_workset.m_pframeschema == ::null())
+         if(pframewindow->m_workset.m_pframeschema == NULL)
          {
             m_pschema = &Application.user()->GetUfeSchema()->m_button;
          }
@@ -373,8 +373,8 @@ namespace user
    {
       
       if(!create(
-         ::null(),
-         ::null(),
+         NULL,
+         NULL,
          WS_VISIBLE | WS_CHILD, 
          rect(0, 0, 0, 0), 
          pdescriptor->m_pform, 
@@ -406,7 +406,7 @@ namespace user
 
    ::ca::font * button::_001GetFont()
    {
-      if(m_pschema == ::null())
+      if(m_pschema == NULL)
          return GetFont();
       return m_pschema->m_font;
    }
@@ -414,7 +414,7 @@ namespace user
    void button::_002OnDraw(::ca::graphics * pdc)
    {
 
-      if(m_pschema == ::null())
+      if(m_pschema == NULL)
          return;
 
 

@@ -194,7 +194,7 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		case FIDT_ASCII:	// 8-bit bytes w/ last byte null
+		case FIDT_ASCII:	// 8-bit bytes w/ last byte NULL
 		case FIDT_UNDEFINED:// 8-bit untyped data
 		default:
 		{

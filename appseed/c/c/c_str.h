@@ -105,7 +105,7 @@ CLASS_DECL_c char * utf16_to_8(const wchar_t * psz);
 
 inline size_t safe_strlen(const char * psz)
 {
-   if(psz == ::null() || *psz == '\0')
+   if(psz == NULL || *psz == '\0')
       return 0;
    return strlen_dup(psz);
 }

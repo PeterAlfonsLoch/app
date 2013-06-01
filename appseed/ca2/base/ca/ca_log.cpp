@@ -28,7 +28,7 @@ namespace ca
       m_pid             = new id;
       m_bLog            = true;
 
-      m_pfile           = ::null();
+      m_pfile           = NULL;
 
       m_bInitialized    = false;
 
@@ -115,7 +115,7 @@ namespace ca
             strCaption = "Assertion Failed";
 
             OutputDebugStringW(wstring(str));
-            /*if(MessageBox(::null(), str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
+            /*if(MessageBox(NULL, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+::ca::str::from(iLine)+"\"";
                ::system(strCmdLine);
@@ -213,7 +213,7 @@ namespace ca
             string & strLine = stra[i];
             const char * psz = strLine;
             int32_t j = 200;
-            while(*psz != ::null() && j >= 0 && !::ca::ch::is_space_char(psz))
+            while(*psz != NULL && j >= 0 && !::ca::ch::is_space_char(psz))
             {
                j--;
                psz = ::ca::str::utf8_inc(psz);
@@ -233,16 +233,16 @@ namespace ca
       strTick.Format(" %011d ", ::get_tick_count() - g_dwFirstTick);
 
       sl.lock();
-      if(plog->m_pfile == ::null()
+      if(plog->m_pfile == NULL
       || plog->m_iYear != time.GetYear()
       || plog->m_iMonth != time.GetMonth()
       || plog->m_iDay != time.GetDay())
       {
-         if(plog->m_pfile != ::null())
+         if(plog->m_pfile != NULL)
          {
             fflush(plog->m_pfile);
             fclose(plog->m_pfile);
-            plog->m_pfile = ::null();
+            plog->m_pfile = NULL;
          }
          int32_t iRetry = 0;
          retry:
@@ -277,7 +277,7 @@ namespace ca
                if(plog->m_pfile)
                {
                   fclose(plog->m_pfile);
-                  plog->m_pfile = ::null();
+                  plog->m_pfile = NULL;
                }
 
                iRetry++;
@@ -325,7 +325,7 @@ namespace ca
          return;
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(::null(), -1, dwCategory, nLevel, pszFormat, ptr);
+      trace_v(NULL, -1, dwCategory, nLevel, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -335,7 +335,7 @@ namespace ca
    {
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(::null(), -1, ::ca::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, ::ca::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -381,7 +381,7 @@ namespace ca
          return false;
       bool bOk = ::ca::log::finalize();
       fclose(m_pfile);
-      m_pfile = ::null();
+      m_pfile = NULL;
       m_bInitialized = false;
       return bOk;
    }
@@ -414,7 +414,7 @@ namespace ca
             string & strLine = stra[i];
             const char * psz = strLine;
             int32_t j = 200;
-            while(*psz != ::null() && j >= 0 && !::ca::ch::is_space_char(psz))
+            while(*psz != NULL && j >= 0 && !::ca::ch::is_space_char(psz))
             {
                j--;
                psz = ::ca::str::utf8_inc(psz);
@@ -524,7 +524,7 @@ namespace ca
          return;
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(::null(), -1, ::ca::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, ::ca::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -534,7 +534,7 @@ namespace ca
          return;
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(::null(), -1, dwCategory, nLevel, pszFormat, ptr);
+      trace_v(NULL, -1, dwCategory, nLevel, pszFormat, ptr);
       va_end(ptr);
    }*/
 

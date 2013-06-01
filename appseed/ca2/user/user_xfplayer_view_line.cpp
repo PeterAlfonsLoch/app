@@ -9,13 +9,13 @@ XfplayerViewLine::XfplayerViewLine(sp(::ca::application) papp) :
    m_dcextension(papp),
    m_font(allocer())
 {
-   m_pContainer                  = ::null();
+   m_pContainer                  = NULL;
    m_bEnhancedEmboss             = true;
    m_bCacheEmboss                = false;
    m_cr                          = ARGB(255, 255, 255, 255);
    m_crOutline                   = ARGB(255, 0, 0, 0);
    m_nFont                       = 0;
-   m_lpBitmapData                = ::null();
+   m_lpBitmapData                = NULL;
    m_bAutoSizeX                  = false;
    m_bAutoSizeY                  = false;
    m_iAlign                      = AlignLeft;
@@ -43,7 +43,7 @@ XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
    m_bEnhancedEmboss             = true;
    m_bCacheEmboss                = false;
    m_nFont                       = 0;
-   m_lpBitmapData                = ::null();
+   m_lpBitmapData                = NULL;
    m_bAutoSizeX                  = false;
    m_bAutoSizeY                  = false;
    m_iAlign                      = AlignLeft;
@@ -88,7 +88,7 @@ bool XfplayerViewLine::PrepareLine(
    strsize               iStr;
    strsize               iStrLen;
    string str(lpcsz);
-   ASSERT(pdc != ::null());
+   ASSERT(pdc != NULL);
    iStrLen = str.get_length();
    iChars = -1;
    m_str.Empty();
@@ -115,7 +115,7 @@ bool XfplayerViewLine::PrepareLine(
    int32_t               iStrLen;
     m_iIndent = 0;
    string str(lpcsz);
-   ASSERT(pdc != ::null());
+   ASSERT(pdc != NULL);
    pdc->SelectObject(pFont->GetFont());
    pFont->GetFont()->GetLogFont(&m_logfont);
    iStrLen = str.get_length();
@@ -392,7 +392,7 @@ bool XfplayerViewLine::to(
               }
            }
 
-           if(&rectaModified != ::null())
+           if(&rectaModified != NULL)
            {
               rect baserect;
               rgn.get_bounding_box(baserect);
@@ -745,7 +745,7 @@ void XfplayerViewLine::CalcCharsPositions(
    pdc->get_text_metrics(&tm);
   // lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
 
-  // if(m_font->get_os_data() != ::null())
+  // if(m_font->get_os_data() != NULL)
 //      m_font->delete_object();
 
    ///m_font->CreateFontIndirect(&lf);
@@ -844,7 +844,7 @@ void XfplayerViewLine::CalcCharsPositions(
    m_rectClient = rectClient;
    visual::font * pfont = pFont;
    ::ca::graphics * pdc = pdcForeground;
-   ASSERT(pfont != ::null());
+   ASSERT(pfont != NULL);
    rect rectPlacement;
    GetPlacement(rectPlacement);
    string wstrMain = m_str;
@@ -993,7 +993,7 @@ void XfplayerViewLine::Show(bool bShow)
     {
         m_bVisible = true;
         Invalidate();
-        if(m_pContainer != ::null())
+        if(m_pContainer != NULL)
         {
             m_pContainer->OnChildSetVisible(this, m_bVisible);
         }
@@ -1003,7 +1003,7 @@ void XfplayerViewLine::Show(bool bShow)
     {
         m_bVisible = false;
         Invalidate();
-        if(m_pContainer != ::null())
+        if(m_pContainer != NULL)
         {
             m_pContainer->OnChildSetVisible(this, m_bVisible);
         }
@@ -1148,7 +1148,7 @@ void XfplayerViewLine::Invalidate(LPCRECT lpcrect)
    rect rectPlacement;
    GetPlacement(rectPlacement);
    rect rect;
-   if(lpcrect == ::null())
+   if(lpcrect == NULL)
    {
       rect = rectPlacement;
    }
@@ -1166,7 +1166,7 @@ void XfplayerViewLine::Validate(LPCRECT lpcrect)
    rect rectPlacement;
    GetPlacement(rectPlacement);
    rect rect;
-   if(lpcrect == ::null())
+   if(lpcrect == NULL)
    {
       rect = rectPlacement;
    }
@@ -1270,12 +1270,12 @@ void XfplayerViewLine::EmbossedTextOut(
          1200,
          1000,
          1200,
-         ::null());
+         NULL);
       ::OffsetViewportOrgEx(
          (HDC)pdc->get_os_data(),
          iLeft + cx,
          iTop * cyInt,
-         ::null());
+         NULL);
       ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
 
       cxInt = -(size.cx * 1000 / 1200) / 2;
@@ -1285,12 +1285,12 @@ void XfplayerViewLine::EmbossedTextOut(
          1200,
          1000,
          1200,
-         ::null());
+         NULL);
       ::OffsetViewportOrgEx(
          (HDC)pdc->get_os_data(),
          iLeft + cx,
          iTop  + cyExt,
-         ::null());
+         NULL);
       ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
 
       //pdc->SelectObject(m_fontInt);
@@ -1343,14 +1343,14 @@ void XfplayerViewLine::EmbossedTextOut(
       iLen,
       &size);
 
-   if(m_dc1.get_os_data() == ::null())
+   if(m_dc1.get_os_data() == NULL)
    {
       m_dc1.CreateCompatibleDC(pdc);
 
    }
    m_dc1.SelectObject(pdc->GetCurrentFont());
 
-   if(m_bmp1.get_os_data() == ::null())
+   if(m_bmp1.get_os_data() == NULL)
    {
       m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
       m_dc1.SelectObject(m_bmp1);
@@ -1549,8 +1549,8 @@ void XfplayerViewLine::CacheEmboss(sp(::ca::application) papp, ::ca::graphics * 
 
 void XfplayerViewLine::SetFont(::ca::font * pfont)
 {
-   ASSERT(pfont != ::null());
-   if(m_font.m_p == ::null())
+   ASSERT(pfont != NULL);
+   if(m_font.m_p == NULL)
    {
       m_font.create(allocer());
    }
@@ -1894,7 +1894,7 @@ sp(::user::interaction) XfplayerViewLine::get_interaction()
 
 inline XfplayerViewLineSelection & XfplayerViewLine::GetSelection()
 {
-   if(m_pContainer == ::null())
+   if(m_pContainer == NULL)
       return m_selection;
    else
       return m_pContainer->GetSelection();

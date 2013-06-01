@@ -24,7 +24,7 @@ public:
 
    virtual void pre_translate_message(::ca::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::ca::create_context) pContext = ::null());
+   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::ca::create_context) pContext = NULL);
    virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::ca::graphics * pdc);

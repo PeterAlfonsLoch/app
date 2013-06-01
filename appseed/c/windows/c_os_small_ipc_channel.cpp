@@ -7,7 +7,7 @@ extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
 
 small_ipc_channel_base::small_ipc_channel_base()
 {
-   m_oswindow = ::null();
+   m_oswindow = NULL;
 }
 
 small_ipc_channel_base::~small_ipc_channel_base()
@@ -17,26 +17,26 @@ small_ipc_channel_base::~small_ipc_channel_base()
 bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 {
 
-   if(m_oswindow != ::null())
+   if(m_oswindow != NULL)
       close();
 
 
    int32_t jCount = 23;
    int32_t iCount;
 
-   if(plauncher != ::null())
+   if(plauncher != NULL)
       iCount = 11;
    else
       iCount = 2;
 
-   m_oswindow = ::null();
+   m_oswindow = NULL;
 
    for(int32_t i = 0; i < iCount; i++)
    {
       for(int32_t j = 0; j < jCount; j++)
       {
-         m_oswindow = ::FindWindow(::null(), pszKey);
-         if(m_oswindow != ::null())
+         m_oswindow = ::FindWindow(NULL, pszKey);
+         if(m_oswindow != NULL)
             break;
          if(i <= 0)
          {
@@ -44,9 +44,9 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
          }
          Sleep(884);
       }
-      if(m_oswindow != ::null())
+      if(m_oswindow != NULL)
          break;
-      if(plauncher != ::null())
+      if(plauncher != NULL)
       {
          plauncher->start();
       }
@@ -59,10 +59,10 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 bool small_ipc_tx_channel::close()
 {
 
-   if(m_oswindow == ::null())
+   if(m_oswindow == NULL)
       return true;
 
-   m_oswindow = ::null();
+   m_oswindow = NULL;
 
    m_strKey = "";
 
@@ -162,7 +162,7 @@ bool small_ipc_tx_channel::is_tx_ok()
 small_ipc_rx_channel::small_ipc_rx_channel()
 {
 
-   m_preceiver    = ::null();
+   m_preceiver    = NULL;
 
 }
 
@@ -177,7 +177,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 {
 
 
-   if(g_pfnChangeWindowMessageFilter != ::null())
+   if(g_pfnChangeWindowMessageFilter != NULL)
    {
       g_pfnChangeWindowMessageFilter(WM_COPYDATA, MSGFLT_ADD);
    }
@@ -186,15 +186,15 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 
    ATOM atom = register_class(hinstance);
 
-   m_oswindow = ::CreateWindowExA(0, "small_ipc_rx_channel_message_window_class", pszKey, 0, 0, 0, 0, 0, HWND_MESSAGE, ::null(), hinstance, ::null());
+   m_oswindow = ::CreateWindowExA(0, "small_ipc_rx_channel_message_window_class", pszKey, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, hinstance, NULL);
    
-   if(m_oswindow == ::null())
+   if(m_oswindow == NULL)
    {
       uint32_t dwLastError = ::GetLastError();
       return false;
    }
 
-   SetTimer(m_oswindow, 198477, 84, ::null());
+   SetTimer(m_oswindow, 198477, 84, NULL);
 
    SetWindowLongPtr(m_oswindow, GWLP_USERDATA, (LONG_PTR) this);
 
@@ -209,10 +209,10 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 bool small_ipc_rx_channel::destroy()
 {
 
-   if(m_oswindow != ::null())
+   if(m_oswindow != NULL)
    {
       ::DestroyWindow(m_oswindow);
-      m_oswindow = ::null();
+      m_oswindow = NULL;
    }
 
    return true;
@@ -234,28 +234,28 @@ void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, 
 void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage)
 {
 
-   if(m_preceiver != ::null())
+   if(m_preceiver != NULL)
    {
       m_preceiver->on_receive(prxchannel, pszMessage);
    }
 
    // ODOW - on date of writing : return ignored by this windows implementation
 
-   return ::null();
+   return NULL;
 
 }
 
 void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
 {
 
-   if(m_preceiver != ::null())
+   if(m_preceiver != NULL)
    {
       m_preceiver->on_receive(prxchannel, message, pdata, len);
    }
 
    // ODOW - on date of writing : return ignored by this windows implementation
 
-   return ::null();
+   return NULL;
 
 }
 
@@ -263,14 +263,14 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32
 void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
 {
 
-   if(m_preceiver != ::null())
+   if(m_preceiver != NULL)
    {
       m_preceiver->on_post(prxchannel, a, b);
    }
 
    // ODOW - on date of writing : return ignored by this windows implementation
 
-   return ::null();
+   return NULL;
 
 }
 
@@ -282,7 +282,7 @@ LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow oswindow, 
 
    small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) GetWindowLongPtr(oswindow, GWLP_USERDATA);
 
-   if(pchannel == ::null())
+   if(pchannel == NULL)
    {
 
       return ::DefWindowProcA(oswindow, message, wparam, lparam);
@@ -310,12 +310,12 @@ ATOM small_ipc_rx_channel::register_class(HINSTANCE hInstance)
 	wcex.cbClsExtra	   = 0;
 	wcex.cbWndExtra	   = 0;
 	wcex.hInstance		   = hInstance;
-	wcex.hIcon			   = ::null();
-	wcex.hCursor		   = LoadCursor(::null(), IDC_ARROW);
+	wcex.hIcon			   = NULL;
+	wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-   wcex.lpszMenuName	   = ::null();
+   wcex.lpszMenuName	   = NULL;
 	wcex.lpszClassName	= "small_ipc_rx_channel_message_window_class";
-	wcex.hIconSm		   = ::null();
+	wcex.hIconSm		   = NULL;
 
 	return RegisterClassEx(&wcex);
 }

@@ -152,7 +152,7 @@ namespace sockets
          socket(h),
          listen_socket_base(h),
          m_bHasCreate(false),
-         m_creator(::null())
+         m_creator(NULL)
       {
 
          if (use_creator)

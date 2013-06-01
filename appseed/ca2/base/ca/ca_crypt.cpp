@@ -111,17 +111,17 @@ namespace ca
        
 #elif defined(MACOS)
 
-      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(::null(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
 
       CFDataRef keyData = memSha1.get_os_cf_data();
 
-      CFErrorRef error = ::null();
+      CFErrorRef error = NULL;
 
       SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(error);
@@ -136,7 +136,7 @@ namespace ca
 
       SecTransformRef transform = SecEncryptTransformCreate(key, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(error);
@@ -153,7 +153,7 @@ namespace ca
 
       SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(transform);
@@ -174,7 +174,7 @@ namespace ca
 
       SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIv);
@@ -197,7 +197,7 @@ namespace ca
 
       SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIn);
@@ -222,7 +222,7 @@ namespace ca
 
       CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIn);
@@ -340,17 +340,17 @@ namespace ca
 
 #elif defined(MACOS)
 
-      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(::null(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
 
       CFDataRef keyData = memSha1.get_os_cf_data();
 
-      CFErrorRef error = ::null();
+      CFErrorRef error = NULL;
 
       SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(error);
@@ -365,7 +365,7 @@ namespace ca
 
       SecTransformRef transform = SecDecryptTransformCreate(key, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(error);
@@ -382,7 +382,7 @@ namespace ca
 
       SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(transform);
@@ -403,7 +403,7 @@ namespace ca
 
       SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIv);
@@ -426,7 +426,7 @@ namespace ca
 
       SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIn);
@@ -451,7 +451,7 @@ namespace ca
 
       CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIn);
@@ -554,7 +554,7 @@ namespace ca
       primitive::memory storageDecrypt;
       primitive::memory storageEncrypt;
       primitive::memory storageKey;
-      if(pszDecrypt == ::null() || strlen(pszDecrypt) == 0)
+      if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
       {
          strEncrypt = "";
          return 0;

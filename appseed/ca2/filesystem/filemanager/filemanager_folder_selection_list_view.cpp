@@ -67,9 +67,9 @@ void folder_selection_list_view::CreateViews()
 
    m_ptreeview = create_view  < filemanager::SimpleFolderTreeView > ();
 
-   if(m_ptreeview == ::null())
+   if(m_ptreeview == NULL)
    {
-      System.simple_message_box(::null(), "Could not create folder tree ::user::view");
+      System.simple_message_box(NULL, "Could not create folder tree ::user::view");
    }
 
    m_ptreeview->m_pfilemanagerinterface = this;
@@ -78,9 +78,9 @@ void folder_selection_list_view::CreateViews()
 
    m_plistview = create_view < folder_list_view > ();
 
-   if(m_plistview == ::null())
+   if(m_plistview == NULL)
    {
-      System.simple_message_box(::null(), "Could not create file list ::user::view");
+      System.simple_message_box(NULL, "Could not create file list ::user::view");
    }
 
    m_plistview->m_pfilemanagerinterface = this;
@@ -94,7 +94,7 @@ void folder_selection_list_view::OnFileManagerBrowse()
    {
       FileManagerViewUpdateHint uh;
       uh.set_type(FileManagerViewUpdateHint::TypeSynchronizeFolderSelection);
-      get_document()->update_all_views(::null(), 0, &uh);
+      get_document()->update_all_views(NULL, 0, &uh);
    }
 }
 

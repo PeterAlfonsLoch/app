@@ -164,12 +164,12 @@ void service_base::SetServiceStatus()
 
 #ifdef DEBUG
 
-    if(s_pservice != ::null())
+    if(s_pservice != NULL)
     {
 
 #endif
 
-        ASSERT(s_pservice != ::null());
+        ASSERT(s_pservice != NULL);
 
 #ifdef WINDOWSEX
 
@@ -219,7 +219,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
     // process terminate. The SCM will diligently log this event.
     //
 
-    ASSERT(s_pservice != ::null());
+    ASSERT(s_pservice != NULL);
 
     if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
     {
@@ -232,7 +232,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 
     s_pservice->m_handle = ::RegisterServiceCtrlHandler("", ServiceHandler);
 
-    if(s_pservice->m_handle == ::null())
+    if(s_pservice->m_handle == NULL)
     {
        throw last_error_exception(s_pservice->get_app());
     }
@@ -325,20 +325,20 @@ void service_base::call_server()
 
    m_bStopping = false;
 
-   os_thread * posthreadNew = ::null();
+   os_thread * posthreadNew = NULL;
 
-   if(::os_thread::get() == ::null())
-      ::os_thread::set(posthreadNew = new ::os_thread(::null(), ::null()));
+   if(::os_thread::get() == NULL)
+      ::os_thread::set(posthreadNew = new ::os_thread(NULL, NULL));
 
 
    serve();
 
 
-   if(posthreadNew != ::null())
+   if(posthreadNew != NULL)
    {
 
       delete posthreadNew;
-      ::os_thread::set(::null());
+      ::os_thread::set(NULL);
 
    }
 

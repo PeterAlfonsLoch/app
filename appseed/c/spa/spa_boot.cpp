@@ -16,7 +16,7 @@ int32_t app_install(const char * param)
    ::GetModuleFileNameA((HINSTANCE) ::GetModuleHandleA("npca2.dll"), szModulePath, sizeof(szModulePath));
 
    char path[MAX_PATH * 3];
-   char * file = ::null();
+   char * file = NULL;
    ::GetFullPathNameA(szModulePath, sizeof(path), path, &file);
    file[0] = '\0';
 

@@ -58,7 +58,7 @@ namespace database
       {
          UNREFERENCED_PARAMETER(pobj);
          //         SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
-         if(get_parent() == ::null())
+         if(get_parent() == NULL)
          {
 #if !core_level_1 && !core_level_2 && defined(WINDOWS)
             if(GetExStyle() && WS_EX_LAYERED)
@@ -228,7 +228,7 @@ namespace database
             memstream >> rectWindow;
 
             rect rectDesktop;
-            if(get_parent() != ::null())
+            if(get_parent() != NULL)
             {
                get_parent()->GetClientRect(rectDesktop);
                get_parent()->ScreenToClient(rectWindow);

@@ -18,8 +18,8 @@ fixed_alloc_no_sync::fixed_alloc_no_sync(UINT nAllocSize, UINT nBlockSize)
 
    m_nAllocSize = nAllocSize;
    m_nBlockSize = nBlockSize;
-   m_pnodeFree = ::null();
-   m_pBlocks = ::null();
+   m_pnodeFree = NULL;
+   m_pBlocks = NULL;
 }
 
 fixed_alloc_no_sync::~fixed_alloc_no_sync()
@@ -30,8 +30,8 @@ fixed_alloc_no_sync::~fixed_alloc_no_sync()
 void fixed_alloc_no_sync::FreeAll()
 {
    m_pBlocks->FreeDataChain();
-   m_pBlocks = ::null();
-   m_pnodeFree = ::null();
+   m_pBlocks = NULL;
+   m_pnodeFree = NULL;
 }
 
 void fixed_alloc_no_sync::NewBlock()
@@ -51,7 +51,7 @@ void fixed_alloc_no_sync::NewBlock()
       m_pnodeFree = pNode;
    }
 
-   ASSERT(m_pnodeFree != ::null());  // we must have something
+   ASSERT(m_pnodeFree != NULL);  // we must have something
 
 }
 
@@ -248,7 +248,7 @@ fixed_alloc_array::~fixed_alloc_array()
 void * fixed_alloc_array::alloc(size_t nAllocSize)
 {
    fixed_alloc * palloc = find(nAllocSize);
-   if(palloc != ::null())
+   if(palloc != NULL)
    {
       return palloc->Alloc();
    }
@@ -261,7 +261,7 @@ void * fixed_alloc_array::alloc(size_t nAllocSize)
 void fixed_alloc_array::free(void * p, size_t nAllocSize)
 {
    fixed_alloc * palloc = find(nAllocSize);
-   if(palloc != ::null())
+   if(palloc != NULL)
    {
       return palloc->Free(p);
    }
@@ -275,7 +275,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
 {
    fixed_alloc * pallocOld = find(nOldAllocSize);
    fixed_alloc * pallocNew = find(nNewAllocSize);
-   if(pallocOld == ::null() && pallocNew == ::null())
+   if(pallocOld == NULL && pallocNew == NULL)
    {
       return ca2_realloc(pOld, nNewAllocSize);
    }
@@ -286,14 +286,14 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    else
    {
 
-      void * pNew = pallocNew == ::null() ? ca2_alloc(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == NULL ? ca2_alloc(nNewAllocSize) : pallocNew->Alloc();
 
-      if(pNew == ::null())
-         return ::null();
+      if(pNew == NULL)
+         return NULL;
 
       memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
 
-      if(pallocOld != ::null())
+      if(pallocOld != NULL)
       {
          pallocOld->Free(pOld);
       }
@@ -324,5 +324,5 @@ fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
    if(iFound >= 0)
       return this->element_at(iFound);
    else
-      return ::null();
+      return NULL;
 }

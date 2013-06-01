@@ -18,7 +18,7 @@
          socket_handler       m_handler;
          int32_t                  m_iDefaultTimeout;
 
-         sync_socket_handler(sp(::ca::application) papp, StdLog *log = ::null());
+         sync_socket_handler(sp(::ca::application) papp, StdLog *log = NULL);
          virtual ~sync_socket_handler();
 
 

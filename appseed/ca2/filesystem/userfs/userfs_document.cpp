@@ -31,7 +31,7 @@ namespace userfs
    bool document::file_manager_browse(const char * pszFolder)
    {
       m_strFolder = pszFolder;
-      update_all_views(::null(), 123);
+      update_all_views(NULL, 123);
       return true;
    }
 

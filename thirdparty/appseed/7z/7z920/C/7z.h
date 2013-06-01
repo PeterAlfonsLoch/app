@@ -166,9 +166,9 @@ int SzArEx_GetFolderFullPackSize(const CSzArEx *p, uint32 folderIndex, UInt64 *r
 
 /*
 if dest == NULL, the return value specifies the required size of the buffer,
-  in 16-bit characters, including the null-terminating character.
+  in 16-bit characters, including the NULL-terminating character.
 if dest != NULL, the return value specifies the number of 16-bit characters that
-  are written to the dest, including the null-terminating character. */
+  are written to the dest, including the NULL-terminating character. */
 
 size_t SzArEx_GetFileNameUtf16(const CSzArEx *p, size_t fileIndex, UInt16 *dest);
 

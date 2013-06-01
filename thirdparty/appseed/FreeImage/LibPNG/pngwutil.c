@@ -78,7 +78,7 @@ png_write_sig(png_structp png_ptr)
 
 /* Write a PNG chunk all at once.  The type is an array of ASCII characters
  * representing the chunk name.  The array must be at least 4 bytes in
- * length, and does not need to be null terminated.  To be safe, pass the
+ * length, and does not need to be NULL terminated.  To be safe, pass the
  * pre-defined chunk names here, and if you need a new one, define it
  * where the others are defined.  The length is the length of the data.
  * All the data must be present.  If that is not possible, use the
@@ -1572,7 +1572,7 @@ png_write_pCAL(png_structp png_ptr, png_charp purpose, png_int_32 X0,
       (png_alloc_size_t)(nparams * png_sizeof(png_uint_32)));
 
    /* Find the length of each parameter, making sure we don't count the
-      null terminator for the last parameter. */
+      NULL terminator for the last parameter. */
    for (i = 0; i < nparams; i++)
    {
       params_len[i] = (png_uint_32) png_strlen((params[i]) + (i == nparams - 1 ? 0 : 1));

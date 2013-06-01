@@ -165,7 +165,7 @@ DEFINE_EXC (NoImplExc, BaseExc)  // Missing method exception e.g. from a
 				 // to lazy software people to get back
 				 // to work.
 
-DEFINE_EXC (NullExc, BaseExc) 	 // A pointer is inappropriately null.
+DEFINE_EXC (NullExc, BaseExc) 	 // A pointer is inappropriately NULL.
 
 DEFINE_EXC (TypeExc, BaseExc) 	 // An object is an inappropriate type,
 				 // i.e. a dynamnic_cast failed.

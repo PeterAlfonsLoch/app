@@ -160,7 +160,7 @@ oswindow::data * oswindow::get(Window window)
 }
 
 
-oswindow::oswindow(const ::ca::null & null)
+oswindow::oswindow(const ::caNULL & NULL)
 {
 
    m_pdata = NULL;
@@ -446,9 +446,9 @@ oswindow oswindow::get_parent()
    mutex_lock slOsWindow(*s_pmutex, true);
 
    if(m_pdata == NULL)
-      return ::ca::null();
+      return NULL;
 
-   return ::ca::null();
+   return NULL;
 
    Window root = 0;
    Window parent = 0;
@@ -472,13 +472,13 @@ oswindow oswindow::set_parent(oswindow oswindow)
    mutex_lock slOsWindow(*s_pmutex, true);
 
    if(m_pdata == NULL)
-      return ::ca::null();
+      return NULL;
 
    xdisplay d(display());
 
    ::oswindow oswindowOldParent = get_parent();
 
-   XReparentWindow(display(), window(), oswindow.window(), 0, 0);
+   XReparentWindow(display(), window(), oswindow->window(), 0, 0);
 
    return oswindowOldParent;
 
@@ -641,7 +641,7 @@ bool oswindow::is_window_visible()
    mutex_lock sl(user_mutex(), true);
    xdisplay d(display());
 
-   if(d.m_pdisplay == ::null())
+   if(d.m_pdisplay == NULL)
     return false;
 
    XWindowAttributes attr;
@@ -861,10 +861,10 @@ oswindow SetCapture(oswindow window)
    oswindow windowOld(g_oswindowCapture);
 
    if(window.display() == NULL)
-      return ::ca::null();
+      return NULL;
 
    if(window.window() == NULL)
-      return ::ca::null();
+      return NULL;
 
    xdisplay d(window.display());
 
@@ -877,7 +877,7 @@ oswindow SetCapture(oswindow window)
 
    }
 
-   return ::ca::null();
+   return NULL;
 
 }
 
@@ -893,7 +893,7 @@ WINBOOL ReleaseCapture()
    WINBOOL bRet = XUngrabPointer(g_oswindowCapture.display(), CurrentTime) != FALSE;
 
    if(bRet)
-      g_oswindowCapture = ::ca::null();
+      g_oswindowCapture = NULL;
 
    return bRet;
 
@@ -908,12 +908,12 @@ oswindow SetFocus(oswindow window)
    xdisplay display(window.display());
 
    if(!IsWindow(window))
-      return ::ca::null();
+      return NULL;
 
    oswindow windowOld = ::GetFocus();
 
    if(!XSetInputFocus(window.display(), window.window(), RevertToNone, CurrentTime))
-      return ::ca::null();
+      return NULL;
 
    return windowOld;
 
@@ -929,7 +929,7 @@ oswindow GetFocus()
    pdisplay.open(NULL);
 
    if(pdisplay == NULL)
-   return ::null();
+   return NULL;
 
    Window window = None;
 
@@ -940,10 +940,10 @@ oswindow GetFocus()
     pdisplay.close();
 
    if(!bOk)
-      return ::ca::null();
+      return NULL;
 
    if(window == None || window == PointerRoot)
-      return ::ca::null();
+      return NULL;
 
    return oswindow::defer_get(window);
 
@@ -977,7 +977,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
    oswindow window = windowParam;
 
    if(window == NULL)
-      return ::ca::null();
+      return NULL;
       xdisplay d(window.display());
 
    if(iParentHood == GW_HWNDFIRST
@@ -989,7 +989,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       window = ::GetParent(window);
 
       if(window == NULL)
-         return ::ca::null();
+         return NULL;
 
    }
 
@@ -1008,7 +1008,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       {
 
          if(pchildren == NULL)
-            return ::ca::null();
+            return NULL;
 
          window = ::oswindow(window.display(), pchildren[0]);
 
@@ -1018,7 +1018,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       {
 
          if(pchildren == NULL)
-            return ::ca::null();
+            return NULL;
 
          window = ::oswindow(window.display(), pchildren[ncount - 1]);
 
@@ -1029,7 +1029,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       {
 
          if(pchildren == NULL) // ????
-            return ::ca::null();
+            return NULL;
 
          int iFound = -1;
 
@@ -1043,13 +1043,13 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          }
 
          if(iFound < 0)
-            return ::ca::null();
+            return NULL;
 
          if(iParentHood == GW_HWNDNEXT)
          {
 
             if(iFound + 1 >= ncount)
-               return ::ca::null();
+               return NULL;
 
             window = ::oswindow(window.display(), pchildren[iFound - 1]);
 
@@ -1058,7 +1058,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          {
 
             if(iFound - 1 < 0)
-               return ::ca::null();
+               return NULL;
 
             window = ::oswindow(window.display(), pchildren[iFound - 1]);
 

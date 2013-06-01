@@ -9,10 +9,10 @@ namespace datetime
 
    element::element()
    {
-      m_pparent   = ::null();
-      m_pelement1 = ::null();
-      m_pelement2 = ::null();
-      m_pelement3 = ::null();
+      m_pparent   = NULL;
+      m_pelement1 = NULL;
+      m_pelement2 = NULL;
+      m_pelement3 = NULL;
    }
 
    element::~element()
@@ -28,14 +28,14 @@ namespace datetime
       }
       else if(m_ptoken->value == token::addition)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return m_pelement1->get_value(pcaapp, pcontext, iPath, iPathCount);
          else
             return m_pelement1->get_value(pcaapp, pcontext, iPath, iPathCount) + m_pelement2->get_value(pcaapp, pcontext, iPath, iPathCount);
       }
       else if(m_ptoken->value == token::subtraction)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return value() - m_pelement1->get_value(pcaapp, pcontext, iPath, iPathCount);
          else
             return m_pelement1->get_value(pcaapp, pcontext, iPath, iPathCount) - m_pelement2->get_value(pcaapp, pcontext, iPath, iPathCount);
@@ -97,14 +97,14 @@ namespace datetime
       }
       else if(m_ptoken->value == token::addition)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return "(" + m_pelement1->get_expression(pcaapp, pcontext, iPath, iPathCount) + ")";
          else
             return "(" + m_pelement1->get_expression(pcaapp, pcontext, iPath, iPathCount) + " + " + m_pelement2->get_expression(pcaapp, pcontext, iPath, iPathCount) + ")";
       }
       else if(m_ptoken->value == token::subtraction)
       {
-         if(m_pelement2 == ::null())
+         if(m_pelement2 == NULL)
             return "( - " + m_pelement1->get_expression(pcaapp, pcontext, iPath, iPathCount) + ")";
          else
             return "(" + m_pelement1->get_expression(pcaapp, pcontext, iPath, iPathCount) + " - " + m_pelement2->get_expression(pcaapp, pcontext, iPath, iPathCount) + ")";

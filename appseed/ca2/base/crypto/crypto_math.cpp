@@ -187,7 +187,7 @@ v32_dot_product(v32_t a, v32_t b) {
 }
 
 /**
- * _bit_string returns a ::null()-terminated character string suitable for
+ * _bit_string returns a NULL-terminated character string suitable for
  * printing
  */
 
@@ -205,7 +205,7 @@ octet_bit_string(uint8_t x) {
     else
       bit_string[index++] = '1';
 
-  bit_string[index++] = 0;  /** ::null() terminate string */
+  bit_string[index++] = 0;  /** NULL terminate string */
 
   return bit_string;
 }
@@ -221,7 +221,7 @@ v16_bit_string(v16_t x) {
       else
 	bit_string[index++] = '1';
   }
-  bit_string[index++] = 0;  /** ::null() terminate string */
+  bit_string[index++] = 0;  /** NULL terminate string */
   return bit_string;
 }
 
@@ -236,7 +236,7 @@ v32_bit_string(v32_t x) {
       else
 	bit_string[index++] = '1';
   }
-  bit_string[index++] = 0;  /** ::null() terminate string */
+  bit_string[index++] = 0;  /** NULL terminate string */
   return bit_string;
 }
 
@@ -251,7 +251,7 @@ v64_bit_string(const v64_t *x) {
       else
 	bit_string[index++] = '1';
   }
-  bit_string[index++] = 0;  /** ::null() terminate string */
+  bit_string[index++] = 0;  /** NULL terminate string */
   return bit_string;
 }
 
@@ -269,7 +269,7 @@ v128_bit_string(v128_t *x) {
       ++index;
     }
   }
-  bit_string[128] = 0; /** null terminate string */
+  bit_string[128] = 0; /** NULL terminate string */
 
   return bit_string;
 }
@@ -287,7 +287,7 @@ octet_hex_string(uint8_t x) {
   bit_string[0]  = nibble_to_hex_char(x >> 4);
   bit_string[1]  = nibble_to_hex_char(x & 0xF);
   
-  bit_string[2] = 0; /** null terminate string */
+  bit_string[2] = 0; /** NULL terminate string */
   return bit_string;
 }
 
@@ -307,7 +307,7 @@ octet_string_hex_string(const void *str, int32_t length) {
     bit_string[i]   = nibble_to_hex_char(*s >> 4);
     bit_string[i+1] = nibble_to_hex_char(*s++ & 0xF);
   }
-  bit_string[i] = 0; /** null terminate string */
+  bit_string[i] = 0; /** NULL terminate string */
   return bit_string;
 }
 
@@ -320,7 +320,7 @@ v16_hex_string(v16_t x) {
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] & 0xF);
   }
   
-  bit_string[j] = 0; /** null terminate string */
+  bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
 
@@ -333,7 +333,7 @@ v32_hex_string(v32_t x) {
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] & 0xF);
   }
   
-  bit_string[j] = 0; /** null terminate string */
+  bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
 
@@ -346,7 +346,7 @@ v64_hex_string(const v64_t *x) {
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] & 0xF);
   }
   
-  bit_string[j] = 0; /** null terminate string */
+  bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
 
@@ -359,7 +359,7 @@ v128_hex_string(v128_t *x) {
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] & 0xF);
   }
   
-  bit_string[j] = 0; /** null terminate string */
+  bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
 
@@ -374,7 +374,7 @@ char_to_hex_string(char *x, int32_t num_char) {
     bit_string[j++]  = nibble_to_hex_char(x[i] & 0xF);
   }
   
-  bit_string[j] = 0; /** null terminate string */
+  bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
 

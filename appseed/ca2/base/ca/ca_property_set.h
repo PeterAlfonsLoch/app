@@ -168,7 +168,7 @@ namespace ca
    public:
 
 
-      relation_set(sp(::ca::application) papp = ::null());
+      relation_set(sp(::ca::application) papp = NULL);
       virtual ~relation_set();
 
 
@@ -247,7 +247,7 @@ namespace ca
       property_pair(property_set & set) :
          m_set(set)
       {
-         m_ppair = ::null();
+         m_ppair = NULL;
       }
 
       ::ca::property * operator ->()
@@ -272,7 +272,7 @@ namespace ca
 
       bool operator ()()
       {
-         return m_set.m_map.next(m_ppair) != ::null();
+         return m_set.m_map.next(m_ppair) != NULL;
       }
 
 
@@ -292,7 +292,7 @@ namespace ca
          m_set(set)
 
       {
-         m_ppair = ::null();
+         m_ppair = NULL;
       }
 
       const ::ca::property * operator ->()
@@ -313,7 +313,7 @@ namespace ca
 
       bool operator ()()
       {
-         return m_set.m_map.next(m_ppair) != ::null();
+         return m_set.m_map.next(m_ppair) != NULL;
       }
 
    };
@@ -321,7 +321,7 @@ namespace ca
    inline bool property_set::has_property(id idName) const
    {
       const property * pproperty = find(idName);
-      return pproperty != ::null() && pproperty->m_var.m_etype != var::type_new;
+      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
    }
 
    inline bool property_set::has_property(string_interface & str) const
@@ -333,7 +333,7 @@ namespace ca
    inline property * property_set::set(id idName, var var)
    {
       property * p = find(idName);
-      if(p != ::null())
+      if(p != NULL)
       {
          p->get_value() = var;
          return p;
@@ -396,7 +396,7 @@ namespace ca
    inline property & property_set::operator[](id idName)
    {
       property * pproperty = find(idName);
-      if(pproperty != ::null())
+      if(pproperty != NULL)
          return *pproperty;
       return defer_auto_add(idName);
    }
@@ -425,7 +425,7 @@ namespace ca
       index i = find_index(idName);
 
       if(i < 0)
-         return ::null();
+         return NULL;
 
       return &((property_set *) this)->m_propertya[i];
 

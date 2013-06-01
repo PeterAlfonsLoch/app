@@ -53,7 +53,7 @@ namespace filehandler
       if(pobj->previous())
          return;
 
-      SetTimer(1984, 1984 + 1977, ::null());
+      SetTimer(1984, 1984 + 1977, NULL);
 
    }
 

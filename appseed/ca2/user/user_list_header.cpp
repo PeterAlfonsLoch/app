@@ -10,7 +10,7 @@ namespace user
       m_font(allocer()),
       m_dcextension(papp)
    {
-      m_plistctrlinterface = ::null();
+      m_plistctrlinterface = NULL;
       m_bTrack = false;
       m_bLButtonDown = false;
       m_bHover = false;

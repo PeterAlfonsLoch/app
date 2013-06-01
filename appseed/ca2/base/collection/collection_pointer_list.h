@@ -66,11 +66,11 @@ public:
 
 
 	// helper functions (note: O(n) speed)
-	POSITION find(void * searchValue, POSITION startAfter = ::null()) const;
+	POSITION find(void * searchValue, POSITION startAfter = NULL) const;
 						// defaults to starting at the HEAD
-						// return ::null() if not found
+						// return NULL if not found
 	POSITION find_index(index nIndex) const;
-						// get the 'nIndex'th element (may return ::null())
+						// get the 'nIndex'th element (may return NULL)
 
 // Implementation
 protected:
@@ -101,16 +101,16 @@ inline ::count pointer_list::get_size() const
 inline bool pointer_list::is_empty() const
    { return m_nCount == 0; }
 inline void *& pointer_list::get_head()
-   { ASSERT(m_pnodeHead != ::null());
+   { ASSERT(m_pnodeHead != NULL);
       return m_pnodeHead->data; }
 inline const void * pointer_list::get_head() const
-   { ASSERT(m_pnodeHead != ::null());
+   { ASSERT(m_pnodeHead != NULL);
       return m_pnodeHead->data; }
 inline void *& pointer_list::get_tail()
-   { ASSERT(m_pnodeTail != ::null());
+   { ASSERT(m_pnodeTail != NULL);
       return m_pnodeTail->data; }
 inline const void * pointer_list::get_tail() const
-   { ASSERT(m_pnodeTail != ::null());
+   { ASSERT(m_pnodeTail != NULL);
       return m_pnodeTail->data; }
 inline POSITION pointer_list::get_head_position() const
    { return (POSITION) m_pnodeHead; }
@@ -119,46 +119,46 @@ inline POSITION pointer_list::get_tail_position() const
 inline void *& pointer_list::get_next(POSITION& rPosition) // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->pNext;
       return pNode->data; }
 inline const void * pointer_list::get_next(POSITION& rPosition) const // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->pNext;
       return pNode->data; }
 inline void *& pointer_list::get_previous(POSITION& rPosition) // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->pPrev;
       return pNode->data; }
 inline const void * pointer_list::get_previous(POSITION& rPosition) const // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->pPrev;
       return pNode->data; }
 inline void *& pointer_list::get_at(POSITION position)
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       return pNode->data; }
 inline const void * pointer_list::get_at(POSITION position) const
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       return pNode->data; }
 inline void pointer_list::set_at(POSITION pos, void * newElement)
    { node* pNode = (node*) pos;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
-      if( pNode == ::null() )
+      if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       pNode->data = newElement; }

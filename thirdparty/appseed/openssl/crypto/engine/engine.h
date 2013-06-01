@@ -265,11 +265,11 @@ extern "C" {
 
 /* If an ENGINE supports its own specific control commands and wishes the
  * framework to handle the above 'ENGINE_CMD_***'-manipulation commands on its
- * behalf, it should supply a null-terminated array of ENGINE_CMD_DEFN entries
+ * behalf, it should supply a NULL-terminated array of ENGINE_CMD_DEFN entries
  * to ENGINE_set_cmd_defns(). It should also implement a ctrl() handler that
  * supports the stated commands (ie. the "cmd_num" entries as described by the
  * array). NB: The array must be ordered in increasing order of cmd_num.
- * "null-terminated" means that the last ENGINE_CMD_DEFN element has cmd_num set
+ * "NULL-terminated" means that the last ENGINE_CMD_DEFN element has cmd_num set
  * to zero and/or cmd_name set to NULL. */
 typedef struct ENGINE_CMD_DEFN_st
 	{

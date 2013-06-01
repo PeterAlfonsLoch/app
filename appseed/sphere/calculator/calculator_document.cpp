@@ -18,7 +18,7 @@ namespace calculator
       if (!::user::document::on_new_document())
          return FALSE;
 
-      update_all_views(::null(), 0);
+      update_all_views(NULL, 0);
 
 
       return TRUE;
@@ -68,7 +68,7 @@ namespace calculator
 
 
       string str = Application.file().as_string(varFile);
-      update_all_views(::null(), 123);
+      update_all_views(NULL, 123);
       return TRUE;
 
 

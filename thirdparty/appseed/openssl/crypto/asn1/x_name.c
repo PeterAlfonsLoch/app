@@ -328,7 +328,7 @@ static int x509_name_canon(OPENSSL_X509_NAME *a)
 		OPENSSL_free(a->canon_enc);
 		a->canon_enc = NULL;
 		}
-	/* Special case: empty OPENSSL_X509_NAME => null encoding */
+	/* Special case: empty OPENSSL_X509_NAME => NULL encoding */
 	if (sk_OPENSSL_X509_NAME_ENTRY_num(a->entries) == 0)
 		{
 		a->canon_enclen = 0;

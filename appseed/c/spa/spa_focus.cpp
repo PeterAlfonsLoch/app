@@ -1,9 +1,9 @@
 #include "framework.h"
 
-focus * g_pfocus = ::null();
+focus * g_pfocus = NULL;
 
 
 focus::focus()
 {
-   m_pnext = ::null();
+   m_pnext = NULL;
 }

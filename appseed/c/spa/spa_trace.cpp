@@ -4,7 +4,7 @@
 
 
 simple_mutex g_mutexTrace;
-stra_dup * g_pstraTrace = ::null();
+stra_dup * g_pstraTrace = NULL;
 HANDLE g_ftrace = INVALID_HANDLE_VALUE;
 vsstring g_strLastStatus;
 vsstring g_strLastGlsStatus;
@@ -25,14 +25,14 @@ void ensure_trace_file()
       // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
       vsstring str2 = "ensure_trace_file";
       DWORD dwWritten;
-      if(WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, ::null()))
+      if(WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL))
       {
          ::FlushFileBuffers(g_ftrace);
          return;
       }
    }
-   g_ftrace = ::create_file(dir::ca("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, ::null(), OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, ::null());
-   ::SetFilePointer(g_ftrace, 0, ::null(), FILE_END);
+   g_ftrace = ::create_file(dir::ca("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
 }
 
 
@@ -125,11 +125,11 @@ void on_trace(vsstring & str, vsstring & str2)
          SetWindowText(g_oswindow, str);
       }
    }*/
-   if(g_ftrace != ::null() && str2.length() > 0)
+   if(g_ftrace != NULL && str2.length() > 0)
    {
       DWORD dwWritten;
-      ::SetFilePointer(g_ftrace, 0, ::null(), SEEK_END);
-      WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, ::null());
+      ::SetFilePointer(g_ftrace, 0, NULL, SEEK_END);
+      WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL);
       ::FlushFileBuffers(g_ftrace);
    }
 
@@ -160,7 +160,7 @@ CLASS_DECL_c bool initialize_primitive_trace()
    
    g_pstraTrace = new stra_dup();
 
-   if(g_pstraTrace == ::null())
+   if(g_pstraTrace == NULL)
       return false;
 
    return true;
@@ -171,7 +171,7 @@ CLASS_DECL_c bool initialize_primitive_trace()
 CLASS_DECL_c void finalize_primitive_trace()
 {
 
-   if(g_pstraTrace != ::null())
+   if(g_pstraTrace != NULL)
    {
 
       delete g_pstraTrace;

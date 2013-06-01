@@ -17,7 +17,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
    if(::ca::str::begins_eat(strUrl, "ext://"))
    {
       Application.open_link(strUrl, lpszTargetFrameName);
-/*         simple_shell_launcher launcher(::null(), "open", strUrl, "", "", SW_SHOWNORMAL);
+/*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
 
       *pbCancel = true;
@@ -29,8 +29,8 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
       *pbCancel = true;
       return;
    }
-   if(get_html_data()->m_pform != ::null()
-      && get_html_data()->m_pform->m_pcallback != ::null()
+   if(get_html_data()->m_pform != NULL
+      && get_html_data()->m_pform->m_pcallback != NULL
       && get_html_data()->m_pform->m_pcallback != dynamic_cast < ::user::form_callback * > (this))
    {
       get_html_data()->m_pform->m_pcallback->OnBeforeNavigate2(get_html_data(), varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);

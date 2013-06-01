@@ -544,8 +544,8 @@ namespace ca
       template < class APP >
       APP & cast_app()
       {
-         if(this == ::null())
-            return (*(APP *) ::null());
+         if(this == NULL)
+            return (*(APP *) NULL);
          void * papp;
 #ifdef WINDOWS
          if(!app_map_lookup(typeid(APP).name(), papp))
@@ -765,7 +765,7 @@ namespace ca
 
          string str;
 
-         string_format format(&str, &::string::FormatPrinter, ::null());
+         string_format format(&str, &::string::FormatPrinter, NULL);
 
          format.printf(pszFormat, value, args...);
 
@@ -822,7 +822,7 @@ namespace ca
 
       // Retrieve a string value from INI file or registry.
       string GetProfileString(const char * lpszSection, const char * lpszEntry,
-      const char * lpszDefault = ::null());
+      const char * lpszDefault = NULL);
 
       // Sets a string value to INI file or registry.
       bool WriteProfileString(const char * lpszSection, const char * lpszEntry,
@@ -996,12 +996,12 @@ namespace ca
       int32_t GetResourceId(const id_space & pspace, const char * lpcszKey);*/
 
 
-      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = ::null());
-      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = ::null());
+      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
       virtual string file_as_string(const char * pszPath);
-      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = ::null());
+      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
@@ -1023,7 +1023,7 @@ namespace ca
 
       ::user::str_context * str_context();
 
-      //      virtual bool open_link(const char * pszLink, const char * pszTarget = ::null());
+      //      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
 
       // Temporary map management (locks temp map on current thread)
       virtual void LockTempMaps();
@@ -1211,12 +1211,12 @@ namespace ca
    {
 
       if(!contains_app(pszAppId))
-         return ::null();
+         return NULL;
 
       sp(::ca::application) papp = canew(APP());
 
-      if(papp == ::null())
-         return ::null();
+      if(papp == NULL)
+         return NULL;
 
       try
       {
@@ -1231,7 +1231,7 @@ namespace ca
          catch(...)
          {
          }
-         return ::null();
+         return NULL;
       }
 
       return papp;

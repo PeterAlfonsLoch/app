@@ -4,7 +4,7 @@
 sync_object::sync_object(const char * pstrName)
 {
 #ifdef WINDOWS
-   m_object = ::null();
+   m_object = NULL;
 #endif
 #ifdef DEBUG
    m_strName = pstrName;
@@ -14,10 +14,10 @@ sync_object::sync_object(const char * pstrName)
 sync_object::~sync_object()
 {
 #ifdef _WIN32
-   if (m_object != ::null())
+   if (m_object != NULL)
    {
       ::CloseHandle(m_object);
-      m_object = ::null();
+      m_object = NULL;
    }
 #endif
 }
@@ -82,7 +82,7 @@ void * sync_object::get_os_data() const
 #endif
 }
 
-bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=::null() */)
+bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)
 {
    return TRUE;
 }

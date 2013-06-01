@@ -99,7 +99,7 @@ bool multi_lock::unlock()
    return TRUE;
 }
 
-bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =::null() */)
+bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 {
    bool bGotOne = false;
    for (index i=0; i < m_objecta.get_count(); i++)
@@ -107,7 +107,7 @@ bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =::null() */)
       if (m_baLocked[i])
       {
          semaphore* pSemaphore = dynamic_cast < semaphore * > (m_syncobjectptra(i).m_p);
-         if (pSemaphore != ::null())
+         if (pSemaphore != NULL)
          {
             bGotOne = true;
             m_baLocked[i] = !m_syncobjectptra(i)->unlock(lCount, lpPrevCount);

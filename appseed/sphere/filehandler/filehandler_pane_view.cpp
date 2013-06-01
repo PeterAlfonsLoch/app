@@ -16,13 +16,13 @@ namespace filehandler
       place_holder_container(papp)
    {
 
-      m_pviewdataOld = ::null();
+      m_pviewdataOld = NULL;
 
 
       m_etranslucency      = TranslucencyPresent;
 
-      m_pviewdata              = ::null();
-      m_pviewdataOld              = ::null();
+      m_pviewdata              = NULL;
+      m_pviewdataOld              = NULL;
 
       /*   ::user::single_document_template* pdoctemplate;
       pdoctemplate = new ::user::single_document_template(
@@ -93,14 +93,14 @@ namespace filehandler
       UNREFERENCED_PARAMETER(lHint);
       /*   sp(::ca::application) papp =  (get_app());
       POSITION pos = papp->m_ptemplate_html->get_document_count();
-      while(pos != ::null())
+      while(pos != NULL)
       {
       sp(::user::document) pdoc = papp->m_ptemplate_html->get_document(index);
       pdoc->update_all_views(pSender, lHint, pHint);
       }*/
 
 
-      if(pHint != ::null())
+      if(pHint != NULL)
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -115,7 +115,7 @@ namespace filehandler
             }
          }
       }
-      if(pHint != ::null())
+      if(pHint != NULL)
       {
          if(base < pane_view_update_hint >::bases(pHint))
          {
@@ -170,14 +170,14 @@ namespace filehandler
             createcontext->m_bMakeVisible = true;
             createcontext->m_puiParent = this;
             rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
-            if(pdoc != ::null())
+            if(pdoc != NULL)
             {
             sp(::user::view) pview = pdoc->get_view();
-            pview->on_update(::null(), 0, ::null());
-            if(pview != ::null())
+            pview->on_update(NULL, 0, NULL);
+            if(pview != NULL)
             {
             sp(::user::frame_window) pframe =  (pview->GetParentFrame());
-            if(pframe != ::null())
+            if(pframe != NULL)
             {
             pcreatordata->m_pdoc = pdoc;
             pcreatordata->m_pwnd = pframe;
@@ -191,7 +191,7 @@ namespace filehandler
             cc.m_typeinfoNewView =  System.type_info < rtprx::view > ();
 
             sp(::user::view) pview = (CreateView(&cc, 101, this));
-            if(pview != ::null())
+            if(pview != NULL)
             {
             pcreatordata = new ViewData();
             pcreatordata->m_eview = eview;

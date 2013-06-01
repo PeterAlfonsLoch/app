@@ -45,7 +45,7 @@ namespace user
    // trans   if (message != WM_DRAWITEM)
          // return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
-      ASSERT(pResult == ::null());       // no return value expected
+      ASSERT(pResult == NULL);       // no return value expected
 #ifdef WINDOWSEX
       UNUSED(pResult); // unused in release builds
       DrawItem((LPDRAWITEMSTRUCT)lParam);
@@ -66,7 +66,7 @@ namespace user
    void static_control::set_icon(::visual::icon * picon)
    {
       
-      if(picon == ::null())
+      if(picon == NULL)
          return;
 
       m_etype = type_icon;
@@ -79,7 +79,7 @@ namespace user
    ::visual::icon * static_control::get_icon()
    {
 
-      return m_etype == type_icon ? m_picon : ::null();
+      return m_etype == type_icon ? m_picon : NULL;
 
    }
 
@@ -91,7 +91,7 @@ namespace user
 
       //return (HENHMETAFILE)send_message( STM_SETIMAGE, IMAGE_ENHMETAFILE, (LPARAM)hMetaFile);
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -103,7 +103,7 @@ namespace user
 
       //return (HENHMETAFILE)send_message( STM_GETIMAGE, IMAGE_ENHMETAFILE, 0L);
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -112,7 +112,7 @@ namespace user
    {
 
       
-      if(pbitmap == ::null())
+      if(pbitmap == NULL)
          return;
 
       m_etype = type_icon;
@@ -126,7 +126,7 @@ namespace user
    ::ca::bitmap * static_control::get_bitmap()
    {
 
-      return m_etype == type_bitmap ? m_pbitmap : ::null();
+      return m_etype == type_bitmap ? m_pbitmap : NULL;
 
    }
 
@@ -134,7 +134,7 @@ namespace user
    void static_control::set_cursor(::visual::cursor * pcursor)
    {
 
-      if(pcursor == ::null())
+      if(pcursor == NULL)
          return;
 
       m_etype = type_cursor;
@@ -147,7 +147,7 @@ namespace user
    ::visual::cursor *  static_control::get_cursor()
    {
 
-      return m_etype == type_cursor ? m_pcursor : ::null();
+      return m_etype == type_cursor ? m_pcursor : NULL;
 
    }
 

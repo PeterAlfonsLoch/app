@@ -13,7 +13,7 @@ namespace user
 
    sp(::user::interaction) view_container::get_view()
    {
-      return ::null();
+      return NULL;
    }
 
    id view_container::get_view_id()

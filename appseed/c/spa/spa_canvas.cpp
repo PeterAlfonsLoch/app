@@ -220,12 +220,12 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       if(rect.bottom - rect.top >= size.cy)
       {
 
-         HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+         HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 
          if(hfile != INVALID_HANDLE_VALUE)
          {
-            int32_t iTell = ::SetFilePointer(hfile, 0, ::null(), SEEK_END);
+            int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
             iTell--;
             vsstring strLine;
             int32_t iSkip = 0;
@@ -236,9 +236,9 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
             bool bStart = false;
             while(iTell > 0 && !bStart && !(bNormal && bBold))
             {
-               ::SetFilePointer(hfile, iTell, ::null(), SEEK_SET);
+               ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
                char ch;
-               if(!ReadFile(hfile, &ch,  1, &dwRead, ::null()))
+               if(!ReadFile(hfile, &ch,  1, &dwRead, NULL))
                   break;
                if(dwRead <= 0)
                   break;
@@ -308,18 +308,18 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
-         HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());
+         HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile != INVALID_HANDLE_VALUE)
          {
-            int32_t iTell = ::SetFilePointer(hfile, 0, ::null(), SEEK_END);
+            int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
             iTell--;
             vsstring strLine;
             int32_t iSkip = 0;
             while(iTell > 0 && iLine >= iLineMin)
             {
-               ::SetFilePointer(hfile, iTell, ::null(), SEEK_SET);
+               ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
                char ch;
-               if(!ReadFile(hfile, &ch,  1, &dwRead, ::null()))
+               if(!ReadFile(hfile, &ch,  1, &dwRead, NULL))
                   break;
                if(dwRead <= 0)
                   break;
@@ -442,8 +442,8 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
 
    LPDWORD lpdata;
 
-	m_hbm = CreateDIBSection ( ::null(), &m_Info, DIB_RGB_COLORS, (void **)&m_pdata, ::null(), ::null() );
-   m_hdc = ::CreateCompatibleDC(::null());
+	m_hbm = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)&m_pdata, NULL, NULL );
+   m_hdc = ::CreateCompatibleDC(NULL);
    ::SelectObject(m_hdc, m_hbm);
    FillSolidRect_dup(m_hdc, lpcrect, RGB(0, 0, 0));
 
@@ -455,7 +455,7 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
 
    ::SelectObject(m_hdc, hpen);
 
-   MoveToEx(m_hdc, m_rect.left, iMid, ::null());
+   MoveToEx(m_hdc, m_rect.left, iMid, NULL);
    LineTo(m_hdc, m_rect.right, iMid);
    ::DeleteObject(hpen);*/
 
@@ -508,8 +508,8 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
 
       LPDWORD lpdata;
 
-	   m_hbmZero = CreateDIBSection ( ::null(), &m_Info, DIB_RGB_COLORS, (void **)&m_pdataZero, ::null(), ::null() );
-      m_hdcZero = ::CreateCompatibleDC(::null());
+	   m_hbmZero = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)&m_pdataZero, NULL, NULL );
+      m_hdcZero = ::CreateCompatibleDC(NULL);
       m_hbmZeroOld = (HBITMAP) ::SelectObject(m_hdcZero, m_hbmZero);
       FillSolidRect_dup(m_hdcZero, lpcrect, RGB(0, 0, 0));
       #endif

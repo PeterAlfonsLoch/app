@@ -11,8 +11,8 @@ namespace bergedge
       
       ::user::document(papp)
    {
-      m_pplatformdocument = ::null();
-      m_pnaturedocument = ::null();
+      m_pplatformdocument = NULL;
+      m_pnaturedocument = NULL;
    }
 
    bool document::on_new_document()
@@ -21,7 +21,7 @@ namespace bergedge
          return FALSE;
 
    
-      update_all_views(::null(), 0);
+      update_all_views(NULL, 0);
 
       return TRUE;
    }

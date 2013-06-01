@@ -5,19 +5,19 @@ namespace ca
 
    history::history()
    {
-      m_phistory = ::null();
+      m_phistory = NULL;
    }
    
    history::history(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_phistory = ::null();
+      m_phistory = NULL;
    }
          
    
    bool history::hist(const char * psz)
    {
-      if(m_phistory != ::null())
+      if(m_phistory != NULL)
       {
          return m_phistory->hist(psz);
       }

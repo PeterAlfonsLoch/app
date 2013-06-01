@@ -500,7 +500,7 @@
         face->root.m_internal->incremental_interface->object,
         &glyph_data );
 
-      /* Set the control data to null - it is no longer available if   */
+      /* Set the control data to NULL - it is no longer available if   */
       /* loaded incrementally.                                         */
       t1glyph->control_data = 0;
       t1glyph->control_len  = 0;

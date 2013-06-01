@@ -6,7 +6,7 @@ namespace ca
    TimerCallback::TimerCallback()
    {
       m_bQueueModel = false;
-      m_ptimerwnd = ::null();
+      m_ptimerwnd = NULL;
        Enable();
    }
 
@@ -17,7 +17,7 @@ namespace ca
    void TimerCallback::Enable(bool bEnable)
    {
       m_bTimerCallbackEnable = bEnable;
-      if(m_ptimerwnd != ::null())
+      if(m_ptimerwnd != NULL)
       {
          m_ptimerwnd->EnableTimer(bEnable);
       }

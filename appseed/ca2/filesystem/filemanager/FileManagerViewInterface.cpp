@@ -2,7 +2,7 @@
 
 FileManagerViewInterface::FileManagerViewInterface()
 {
-   m_pfilemanagerinterface = ::null();
+   m_pfilemanagerinterface = NULL;
 }
 
 FileManagerViewInterface::~FileManagerViewInterface()
@@ -28,7 +28,7 @@ void FileManagerViewInterface::on_update(sp(::user::view) psender, LPARAM lhint,
 { 
    UNREFERENCED_PARAMETER(psender);
    UNREFERENCED_PARAMETER(lhint);
-   if(phint != ::null())
+   if(phint != NULL)
    {
       if(base < FileManagerViewUpdateHint > :: bases(phint))
       {
@@ -36,8 +36,8 @@ void FileManagerViewInterface::on_update(sp(::user::view) psender, LPARAM lhint,
          if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateViews)
          || puh->is_type_of(FileManagerViewUpdateHint::TypeInitialize))
          {
-            if(m_pfilemanagerinterface == ::null()
-               && (puh->m_pview == ::null() ||
+            if(m_pfilemanagerinterface == NULL
+               && (puh->m_pview == NULL ||
                    puh->m_pview == (this)))
             {
                m_pfilemanagerinterface = puh->m_pmanager;

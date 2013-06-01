@@ -18,7 +18,7 @@ namespace visual
       if(i >= 0)
          return &this->element_at(i);
       else
-         return ::null();
+         return NULL;
    }
 
    index glyph_set::find_first(UINT user)

@@ -115,7 +115,7 @@ int state_machine_churn(state_machine_t *machine)
 /* Called when the clean side of the SSL has lost its connection */
 int state_machine_close_clean(state_machine_t *machine)
 {
-	/* Well, first thing to do is null out the clean-side buffers - they're
+	/* Well, first thing to do is NULL out the clean-side buffers - they're
 	 * no use any more. */
 	buffer_close(&machine->clean_in);
 	buffer_close(&machine->clean_out);

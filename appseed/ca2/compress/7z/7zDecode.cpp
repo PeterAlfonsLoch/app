@@ -176,7 +176,7 @@ namespace n7z
             ::c::smart_pointer < ::ca::object > decoderUnknown;
             if (coderInfo.IsSimpleCoder())
             {
-               if (decoder == ::null())
+               if (decoder == NULL)
                   return E_NOTIMPL;
 
                decoderUnknown = (::ca::object *)decoder;
@@ -325,7 +325,7 @@ namespace n7z
          inStreamPointers.add(inStreams(i));
       spa(::ca::writer) outStreamPointers;
       outStreamPointers.add(outStream);
-      return _mixerCoder->Code(inStreamPointers, ::null(), outStreamPointers, ::null(), compressProgress);
+      return _mixerCoder->Code(inStreamPointers, NULL, outStreamPointers, NULL, compressProgress);
    }
 
 } // namespace n7z

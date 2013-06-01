@@ -22,8 +22,8 @@ bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint
    register byte * p2;
    int32_t wm         = w - 1;
    int32_t hm         = h - 1;
-   int32_t wr         = wm - radius - 1;
-   int32_t hr         = hm - radius - 1;
+   int32_t wr         = wm - radius;
+   int32_t hr         = hm - radius;
 //   int32_t div        = radius + radius + 1;
    int32_t * pix      = (int32_t *) pdata;
    byte * pb      = (byte *) pdata;

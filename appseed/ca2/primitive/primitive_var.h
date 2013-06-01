@@ -150,6 +150,7 @@ public:
    var(double d);
    var(const char * psz);
    var(string str);
+   var(const id & id);
    var(bool * pb);
    var(const ::datetime::time & time);
    var(const FILETIME & time);
@@ -166,7 +167,6 @@ public:
    var(const ::ca::pair_set_interface & set);
    var(const ::ca::str_str_interface & set);
    var(const string_composite & composite);
-   var(const ::ca::null & null);   var(const id & id);
    inline var(var && v);
    template < class T >
    var(const sp(T) & sp)
@@ -189,17 +189,17 @@ public:
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
    string                           to_r_string() const;
-   string                           get_string(const char * pszOnNull = ::null()) const;
-   string &                         get_ref_string(const char * pszOnNull = ::null());
+   string                           get_string(const char * pszOnNull = NULL) const;
+   string &                         get_ref_string(const char * pszOnNull = NULL);
    string                           to_string() const;
-   id                               get_id(const char * pszOnNull = ::null())   const;
-   id &                             get_ref_id(const char * pszOnNull = ::null());
+   id                               get_id(const char * pszOnNull = NULL)   const;
+   id &                             get_ref_id(const char * pszOnNull = NULL);
    class primitive::memory &        memory();
    stringa &                        stra();
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::ca::property_set &              propset(sp(::ca::application) papp = ::null());
+   ::ca::property_set &              propset(sp(::ca::application) papp = NULL);
    ::ca::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
@@ -353,10 +353,10 @@ public:
    template < class T >
    sp(T) ca()
    {
-      if(m_etype == type_pvar && m_pvar != ::null())
+      if(m_etype == type_pvar && m_pvar != NULL)
          return m_pvar->ca < T > ();
       if(m_etype != type_ca2)
-         return ::null();
+         return NULL;
       return m_sp;
    }
 
@@ -364,7 +364,7 @@ public:
    const sp(T) ca() const
    {
       if(m_etype != type_ca2)
-         return ::null();
+         return NULL;
       return m_sp;
    }
 

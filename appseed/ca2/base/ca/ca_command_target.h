@@ -26,7 +26,7 @@ public:
       virtual bool is_equal(::ca::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
-         if(pid == ::null())
+         if(pid == NULL)
             return false;
          return pid->m_id == m_id;
       };
@@ -34,7 +34,7 @@ public:
       virtual bool matches(::ca::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
-         if(pid == ::null())
+         if(pid == NULL)
             return false;
          return pid->m_id == m_id;
       };
@@ -63,7 +63,7 @@ public:
       virtual bool is_equal(::ca::signalid * pidParam)
       {
          command_signalrange * prange = dynamic_cast < command_signalrange * > (pidParam);
-         if(prange == ::null())
+         if(prange == NULL)
             return false;
          return prange->m_iStart == m_iStart && prange->m_iEnd == m_iEnd;
       };
@@ -71,7 +71,7 @@ public:
       virtual bool matches(::ca::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
-         if(pid == ::null())
+         if(pid == NULL)
             return false;
          return 
                 pid->m_id >= m_iStart
@@ -219,12 +219,12 @@ public:
    ::count m_iCount;        // last + 1 for iterating m_iIndex
 
    // if a menu item
-   ::user::menu *      m_pMenu;         // ::null() if not a menu
+   ::user::menu *      m_pMenu;         // NULL if not a menu
    ::user::menu *      m_pSubMenu;      // sub containing menu item
                      // if a popup sub menu - ID is for first in popup
 
    // if from some other ::ca::window
-   sp(::user::interaction)   m_pOther;         // ::null() if a menu or not a ::ca::window
+   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::ca::window
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;
@@ -232,7 +232,7 @@ public:
 
    
 
-   ::user::menu* m_pParentMenu;   // ::null() if parent menu not easily determined
+   ::user::menu* m_pParentMenu;   // NULL if parent menu not easily determined
                      //  (probably a secondary popup menu)
 
 

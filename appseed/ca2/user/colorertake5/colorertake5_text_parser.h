@@ -48,7 +48,7 @@ public:
   /**
    * Sets root scheme (filetype) of the text to parse.
    * @param type file_type, which contains reference to
-   * it's baseScheme. If parameter is ::null(), there will
+   * it's baseScheme. If parameter is NULL, there will
    * be no any kind of parse over the text.
    */
   virtual void setFileType(file_type *type) = 0;

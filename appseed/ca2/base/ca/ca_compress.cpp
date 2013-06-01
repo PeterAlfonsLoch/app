@@ -52,7 +52,7 @@ namespace ca
          return false;
       }
       gzFile file = gzdopen(fileUn, "rb");
-      if (file == ::null())
+      if (file == NULL)
       {
          TRACE("ungz gzopen error %s", lpcszGzFileCompressed);
          return false;
@@ -132,7 +132,7 @@ namespace ca
    {
       string str(lpcszUncompressed);
       FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
-      if (fileUn == ::null())
+      if (fileUn == NULL)
       {
          int32_t err;
          _get_errno(&err);
@@ -177,7 +177,7 @@ namespace ca
    bool compress::unbz(::ca::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
    {
       BZFILE * file = BZ2_bzopen(lpcszBzFileCompressed, "rb");
-      if (file == ::null())
+      if (file == NULL)
       {
          TRACE("unbz bzopen error %s", lpcszBzFileCompressed);
          return false;
@@ -268,7 +268,7 @@ namespace ca
          stringa straRelative;
          string strPath;
          ::ca::filesp file;
-         System.dir().rls(papp, psz, &straPath, ::null(), &straRelative);
+         System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {
             strPath = straPath[i];

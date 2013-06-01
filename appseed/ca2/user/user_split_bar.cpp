@@ -9,7 +9,7 @@ namespace user
       ca(papp)
    {
 
-      m_pparent                                 = ::null();
+      m_pparent                                 = NULL;
       m_dMinimumRate                            = 0.1;
       m_dMaximumRate                            = 0.9;
       m_dRate                                   = -1.0;
@@ -38,7 +38,7 @@ namespace user
    //   rect rect(0, 0, 0, 0);
       if(!::user::interaction::create(pparent, 0))
       {
-         System.simple_message_box(::null(), "Could not create Split Bar");
+         System.simple_message_box(NULL, "Could not create Split Bar");
          return FALSE;
       }
 

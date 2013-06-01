@@ -380,11 +380,11 @@ jinit_color_deconverter (j_decompress_ptr cinfo)
     break;
 
   default:
-    /* Permit null conversion to same output space */
+    /* Permit NULL conversion to same output space */
     if (cinfo->out_color_space == cinfo->jpeg_color_space) {
       cinfo->out_color_components = cinfo->num_components;
       cconvert->pub.color_convert = null_convert;
-    } else			/* unsupported non-null conversion */
+    } else			/* unsupported non-NULL conversion */
       ERREXIT(cinfo, JERR_CONVERSION_NOTIMPL);
     break;
   }

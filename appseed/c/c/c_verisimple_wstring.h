@@ -30,8 +30,8 @@ protected:
 public:
 
 
-   ::count m_iAllocation; // in chars "with null characters"
-   ::count m_iLength; // in chars without null character
+   ::count m_iAllocation; // in chars "with NULL characters"
+   ::count m_iLength; // in chars without NULL character
    wchar_t        m_wchFirst;
 
 
@@ -57,7 +57,7 @@ public:
 
    inline static void free(wchar_t * pwsz)
    {
-      if(pwsz == ::null())
+      if(pwsz == NULL)
          return;
       wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(count) - sizeof(count));
       if(pdata->m_iAllocation <= 0)
@@ -113,7 +113,7 @@ public:
 
    inline void attach(wstring_data * pdata)
    {
-      if(m_pwsz != ::null())
+      if(m_pwsz != NULL)
       {
          wstring_data::free(m_pwsz);
       }
@@ -133,11 +133,11 @@ public:
    verisimple_wstring & operator = (const char * psz);
 
 
-   inline operator const wchar_t * () const { return get_data()->m_iAllocation <= 0 ? ::null() : m_pwsz; }
-   inline operator const wchar_t * () { return get_data()->m_iAllocation <= 0 ? ::null() : m_pwsz; }
+   inline operator const wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
+   inline operator const wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
-   inline operator wchar_t * () const { return get_data()->m_iAllocation <= 0 ? ::null() : m_pwsz; }
-   inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? ::null() : m_pwsz; }
+   inline operator wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
+   inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
 #ifdef METROWIN
    inline operator Platform::String ^ () const { return ref new Platform::String(operator const wchar_t *()); }

@@ -39,7 +39,7 @@ class index_array;
    m_nSize        = a.m_nSize; \
    m_nMaxSize     = a.m_nMaxSize; \
    \
-   a.m_pData      = ::null(); \
+   a.m_pData      = NULL; \
    \
    } \
    \
@@ -55,7 +55,7 @@ class index_array;
          m_nSize        = a.m_nSize; \
          m_nMaxSize     = a.m_nMaxSize; \
          \
-         a.m_pData      = null(); \
+         a.m_pData      = NULL(); \
          \
       } \
       \
@@ -82,7 +82,7 @@ public:
 
    class_size(C * p) : m_p(p), m_c(-1) {}
 
-   class_size(C * p, ::count c) : m_p(::null()), m_c(c) {}
+   class_size(C * p, ::count c) : m_p(NULL), m_c(c) {}
 
    class_size(const class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
 
@@ -255,14 +255,14 @@ class CLASS_DECL_ca2 map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
-   map_word_to_ptr(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   map_word_to_ptr(::ca::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca2 map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
-   map_ptr_to_word(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   map_ptr_to_word(::ca::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -270,14 +270,14 @@ class CLASS_DECL_ca2 map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
-   map_ptr_to_ptr(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   map_ptr_to_ptr(::ca::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca2 map_word_to_ob :
    virtual public map < WORD, WORD, ::ca::object *, ::ca::object * >
 {
 public:
-   map_word_to_ob(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   map_word_to_ob(::ca::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -285,14 +285,14 @@ class CLASS_DECL_ca2 map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
-   map_string_to_ptr(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   map_string_to_ptr(::ca::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca2 map_string_to_ob :
    virtual public map < string, const string &, ::ca::object *, ::ca::object * >
 {
 public:
-   map_string_to_ob(::ca::application * papp = ::null(), ::count nBlockSize = 10);
+   map_string_to_ob(::ca::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 

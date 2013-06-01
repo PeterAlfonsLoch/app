@@ -27,7 +27,7 @@ namespace userstack
       m_i_winactionarea = 4;
       m_i_winactionarea_h = 49;
       m_i_winactionarea_w = 49;
-      m_ppaneview = ::null();
+      m_ppaneview = NULL;
    }
 
    view::~view()
@@ -131,7 +131,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 1977, ::null());
+      SetTimer(198477, 1977, NULL);
 
       sp(frame) pframe = GetTypedParent < frame > ();
 
@@ -156,8 +156,8 @@ namespace userstack
 
 
 
-      SetTimer(TimerBackView, 83, ::null());  // max. 12 fps
-      SetTimer(21977, 1984 * 11, ::null());  // max. 12 fps
+      SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
+      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
 
       check_apps();
 
@@ -189,7 +189,7 @@ namespace userstack
    {
       if(iTab == 1)
       {
-         System.simple_message_box(::null(), "Playlist");
+         System.simple_message_box(NULL, "Playlist");
       }
    }
 
@@ -289,11 +289,11 @@ namespace userstack
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
 #else
       throw todo(get_app());
 #endif
@@ -343,14 +343,14 @@ namespace userstack
    {
       rect rectClient;
       GetClientRect(rectClient);
-      if(m_ppaneview != ::null())
+      if(m_ppaneview != NULL)
       {
          m_ppaneview->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       }
       else
       {
          user::interaction * pui = get_top_child();
-         if(pui != ::null())
+         if(pui != NULL)
          {
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
@@ -375,18 +375,18 @@ namespace userstack
       user::interaction * pui = get_top_child();
       try
       {
-         while(pui != ::null())
+         while(pui != NULL)
          {
-            sp(::asphere::application) papp = ::null();
+            sp(::asphere::application) papp = NULL;
             try
             {
                papp = &App(pui->get_app());
             }
             catch(...)
             {
-               papp = ::null();
+               papp = NULL;
             }
-            if(papp != ::null() && m_papp != ::null() && m_papp->m_psession != ::null() &&  (papp) !=  (m_papp->m_psession))
+            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL &&  (papp) !=  (m_papp->m_psession))
             {
                try
                {
@@ -423,7 +423,7 @@ namespace userstack
       }
       try
       {
-         if(m_pimpl == ::null())
+         if(m_pimpl == NULL)
             return;
          (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)

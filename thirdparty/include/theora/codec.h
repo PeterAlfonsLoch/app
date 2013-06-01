@@ -314,10 +314,10 @@ typedef struct{
  * See <a href="http://www.theora.org/doc/Theora.pdf">the Theora
  *  specification</a>, Section 6.3.3 for details.
  *
- * In filling in this structure, th_decode_headerin() will null-terminate
+ * In filling in this structure, th_decode_headerin() will NULL-terminate
  *  the user_comment strings for safety.
  * However, the bitstream format itself treats them as 8-bit clean vectors,
- *  possibly containing null characters, and so the length array should be
+ *  possibly containing NULL characters, and so the length array should be
  *  treated as their authoritative length.
  */
 typedef struct th_comment{
@@ -327,7 +327,7 @@ typedef struct th_comment{
   int32_t   *comment_lengths;
   /**The total number of comment strings.*/
   int32_t    comments;
-  /**The null-terminated vendor string.
+  /**The NULL-terminated vendor string.
      This identifies the software used to encode the stream.*/
   char  *vendor;
 }th_comment;
@@ -530,24 +530,24 @@ extern void th_info_clear(th_info *_info);
 extern void th_comment_init(th_comment *_tc);
 /**Add a comment to an initialized #th_comment structure.
  * \note Neither th_comment_add() nor th_comment_add_tag() support
- *  comments containing null values, although the bitstream format does
+ *  comments containing NULL values, although the bitstream format does
  *  support them.
  * To add such comments you will need to manipulate the #th_comment
  *  structure directly.
  * \param _tc      The #th_comment struct to add the comment to.
- * \param _comment Must be a null-terminated UTF-8 string containing the
+ * \param _comment Must be a NULL-terminated UTF-8 string containing the
  *                  comment in "TAG=the value" form.*/
 extern void th_comment_add(th_comment *_tc, char *_comment);
 /**Add a comment to an initialized #th_comment structure.
  * \note Neither th_comment_add() nor th_comment_add_tag() support
- *  comments containing null values, although the bitstream format does
+ *  comments containing NULL values, although the bitstream format does
  *  support them.
  * To add such comments you will need to manipulate the #th_comment
  *  structure directly.
  * \param _tc  The #th_comment struct to add the comment to.
- * \param _tag A null-terminated string containing the tag  associated with
+ * \param _tag A NULL-terminated string containing the tag  associated with
  *              the comment.
- * \param _val The corresponding value as a null-terminated string.*/
+ * \param _val The corresponding value as a NULL-terminated string.*/
 extern void th_comment_add_tag(th_comment *_tc,char *_tag,char *_val);
 /**Look up a comment value by its tag.
  * \param _tc    An initialized #th_comment structure.

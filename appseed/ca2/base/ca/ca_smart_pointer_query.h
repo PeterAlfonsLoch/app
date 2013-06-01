@@ -23,7 +23,7 @@ namespace ca
 
          m_p      = q.m_p;
 
-         q.m_psp  = ::null();
+         q.m_psp  = NULL;
 
       }
 
@@ -34,7 +34,7 @@ namespace ca
 
          m_p      = q.m_p;
 
-         q.m_psp  = ::null();
+         q.m_psp  = NULL;
 
       }
 
@@ -44,14 +44,14 @@ namespace ca
 
          m_psp    = &sp;
 
-         m_p      = ::null();
+         m_p      = NULL;
 
       }
 
       virtual ~smart_pointer_query()
       {
 
-         if(m_psp != ::null())
+         if(m_psp != NULL)
          {
 
             (*m_psp) = m_p;

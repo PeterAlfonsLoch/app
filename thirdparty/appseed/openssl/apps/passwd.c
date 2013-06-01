@@ -224,7 +224,7 @@ int MAIN(int argc, char **argv)
 
 	if ((in == NULL) && (passwds == NULL))
 		{
-		/* build a null-terminated list */
+		/* build a NULL-terminated list */
 		static char *passwds_static[2] = {NULL, NULL};
 		
 		passwds = passwds_static;

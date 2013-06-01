@@ -157,7 +157,7 @@ namespace plane
 
       void on_request(sp(::ca::create_context) pcreatecontext);
 
-      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
+      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
 
       sp(::ca::application) get_current_application();
@@ -180,7 +180,7 @@ namespace plane
       virtual void set_default_cursor(::visual::e_cursor ecursor);
       virtual ::visual::cursor * get_default_cursor();
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = ::null());
+      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::ca::create_context * pcc);
 
       virtual bool is_session();

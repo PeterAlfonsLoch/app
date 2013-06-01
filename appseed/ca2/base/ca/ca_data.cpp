@@ -6,9 +6,9 @@ namespace ca
 
 
    data::writing::writing(data * pdata) :
-      interlocked_long_pulse(pdata != ::null() ? &pdata->m_lockedlongWriting : ::null(), 1)
+      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlongWriting : NULL, 1)
    {
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          if(pdata->m_lockedlongWriting == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
          {
@@ -22,9 +22,9 @@ namespace ca
    }
 
    data::saving::saving(data * pdata) :
-      interlocked_long_pulse(pdata != ::null() ? &pdata->m_lockedlongSaving : ::null(), 1)
+      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlongSaving : NULL, 1)
    {
-      if(pdata != ::null())
+      if(pdata != NULL)
       {
          if(pdata->m_lockedlongSaving == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
          {
@@ -39,7 +39,7 @@ namespace ca
 
    data::data(sp(::ca::application) papp) :
       ca(papp),
-      m_pmutex(::null())
+      m_pmutex(NULL)
    {
    }
 

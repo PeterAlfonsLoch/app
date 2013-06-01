@@ -19,7 +19,7 @@ int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & stor
    DataIn.pbData = (BYTE *) storageEncrypt.get_data();
    DataIn.cbData = (uint32_t) storageEncrypt.get_size();
 
-   wchar_t * lpwsz = ::null();
+   wchar_t * lpwsz = NULL;
 
    //--------------------------------------------------------------------
    //  begin protect phase. Note that the encryption key is created
@@ -27,12 +27,12 @@ int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & stor
 
    if(CryptUnprotectData(
       &DataIn,
-      ::null(), // A description string
+      NULL, // A description string
                                           // to be included with the
                                           // encrypted data.
       &DataSalt,                               // Optional entropy not used.
-      ::null(),                               // Reserved.
-      ::null(),                               // Pass ::null() for the
+      NULL,                               // Reserved.
+      NULL,                               // Pass NULL for the
                                           // prompt structure.
       0,
       &DataOut))
@@ -69,7 +69,7 @@ int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & stor
    DataIn.pbData = (BYTE *) storageDecrypt.get_data();
    DataIn.cbData = (uint32_t) storageDecrypt.get_size();
 
-//      wchar_t * lpwsz = ::null();
+//      wchar_t * lpwsz = NULL;
 
    //--------------------------------------------------------------------
    //  begin protect phase. Note that the encryption key is created
@@ -77,12 +77,12 @@ int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & stor
 
    if(CryptProtectData(
          &DataIn,
-         ::null(), // A description string
+         NULL, // A description string
                                              // to be included with the
                                              // encrypted data.
          &DataSalt,                               // Optional entropy not used.
-         ::null(),                               // Reserved.
-         ::null(),                               // Pass ::null() for the
+         NULL,                               // Reserved.
+         NULL,                               // Pass NULL for the
                                              // prompt structure.
          0,
          &DataOut))

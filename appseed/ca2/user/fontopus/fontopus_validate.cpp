@@ -45,7 +45,7 @@ namespace fontopus
       m_strForm               = pszForm;
       m_bDeferRegistration    = false;
       sp(::ca::application) pgenapp = (papp);
-      if(pgenapp != ::null())
+      if(pgenapp != NULL)
       {
          try
          {
@@ -62,17 +62,17 @@ namespace fontopus
          System.type_info < form_document > (),
          System.type_info < simple_main_frame > (),
          System.type_info < userex::pane_tab_view > ());
-      m_pauth           = ::null();
-      m_pviewAuth       = ::null();
-      m_pdocAuth        = ::null();
-      m_pdoc            = ::null();
-      m_ptabview        = ::null();
-      m_pvOldWindow     = ::null();
+      m_pauth           = NULL;
+      m_pviewAuth       = NULL;
+      m_pdocAuth        = NULL;
+      m_pdoc            = NULL;
+      m_ptabview        = NULL;
+      m_pvOldWindow     = NULL;
       m_bInteractive    = bInteractive;
       m_bAuth    = bAuth;
       m_strForm         = pszForm;
-      m_puser           = ::null();
-      m_pauth           = ::null();
+      m_puser           = NULL;
+      m_pauth           = NULL;
    }
 
    validate::~validate()
@@ -137,7 +137,7 @@ namespace fontopus
       straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
-         if(::ca::get_thread() != ::null() && ::ca::get_thread()->m_strWorkUrl.has_char())
+         if(::ca::get_thread() != NULL && ::ca::get_thread()->m_strWorkUrl.has_char())
          {
             strHost = ::ca::get_thread()->m_strWorkUrl;
          }
@@ -184,7 +184,7 @@ namespace fontopus
 
       m_loginthread.m_puser = Application.m_pfontopus->allocate_user();
 
-      if(pszSessId != ::null() && string(pszSessId).get_length() > 16)
+      if(pszSessId != NULL && string(pszSessId).get_length() > 16)
       {
          m_loginthread.m_puser->m_sessionidmap[strHost] = pszSessId;
       }
@@ -218,7 +218,7 @@ namespace fontopus
       else
       {
 
-         return ::null();
+         return NULL;
 
       }
 
@@ -395,7 +395,7 @@ namespace fontopus
       simple_thread(papp)
    {
       m_bOk                = false;
-      m_puser              = ::null();
+      m_puser              = NULL;
       m_bFontopusServer    = false;
    }
 
@@ -587,7 +587,7 @@ namespace fontopus
          }
 
       }
-      //      char * psz = ::null();
+      //      char * psz = NULL;
       //    *psz = '2';
       m_pcallback->on_login_thread_response(iAuth, strResponse);
       return TRUE;
@@ -710,7 +710,7 @@ namespace fontopus
 
             set["app"] = papp;
 
-            Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, ::null(), pestatus);
+            Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
 
          }
          catch(...)
@@ -755,7 +755,7 @@ namespace fontopus
 
 #ifdef MACOS
 
-      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(::null(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
 
@@ -767,11 +767,11 @@ namespace fontopus
 
       CFDataRef keyData = memKeyData.get_os_cf_data();
 
-      CFErrorRef error = ::null();
+      CFErrorRef error = NULL;
 
       SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(parameters);
@@ -786,7 +786,7 @@ namespace fontopus
 
       SecTransformRef transform = SecEncryptTransformCreate(key, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(parameters);
@@ -803,7 +803,7 @@ namespace fontopus
 
       SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(transform);
@@ -828,7 +828,7 @@ namespace fontopus
 
       SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIn);
@@ -851,7 +851,7 @@ namespace fontopus
 
       CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
 
-      if(error != ::null())
+      if(error != NULL)
       {
 
          CFRelease(dataIn);
@@ -996,7 +996,7 @@ namespace fontopus
 
       int32_t i = RSA_public_encrypt((int32_t) memIn.get_size(), (const uchar * ) (const char *) memIn.get_data(), memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
-      const char * psz = ERR_error_string(ERR_get_error(), ::null());
+      const char * psz = ERR_error_string(ERR_get_error(), NULL);
 
       TRACE(psz);
 
@@ -1041,7 +1041,7 @@ namespace fontopus
          m_puser->set_sessid(strSessId, strAuthUrl);
          set["app"] = papp;
          uint32_t dwTimeProfile1 = get_tick_count();
-         Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, ::null(), pestatus);
+         Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
          uint32_t dwTimeProfile2 = get_tick_count();
 
          TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
@@ -1080,7 +1080,7 @@ namespace fontopus
    //   ::ca::property_set propertyset;
    //   string strUsername = m_loginthread.m_strUsername;
    //   m_bLicense = false;
-   //   m_puser = ::null();
+   //   m_puser = NULL;
    //}
 
    void validate::save_authentication_info()
@@ -1123,12 +1123,12 @@ namespace fontopus
    void validate::close_all()
    {
 
-      if(m_ptabview != ::null())
+      if(m_ptabview != NULL)
       {
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
       }
 
-      if(m_ptemplatePane != ::null())
+      if(m_ptemplatePane != NULL)
       {
          m_ptemplatePane->close_all_documents(FALSE);
       }
@@ -1150,7 +1150,7 @@ namespace fontopus
 
       if(m_loginthread.m_strLicense.is_empty())
       {
-         m_pviewAuth->SetTimer(1984, 484, ::null());
+         m_pviewAuth->SetTimer(1984, 484, NULL);
       }
       ::ca::live_signal livesignal;
       livesignal.keep(get_app());
@@ -1164,7 +1164,7 @@ namespace fontopus
    void validate::ensure_main_document()
    {
 
-      if(m_pdoc != ::null())
+      if(m_pdoc != NULL)
          return;
 
       sp(::ca::create_context) createcontext(allocer());
@@ -1235,7 +1235,7 @@ namespace fontopus
 
          sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
          sp(text_interface) ptext =  (pguie.m_p);
-         if(ptext != ::null())
+         if(ptext != NULL)
          {
             ptext->_001SetText(m_loginthread.m_strUsername);
             if(m_loginthread.m_strUsername.is_empty())
@@ -1255,7 +1255,7 @@ namespace fontopus
    {
 
       rect rectOpen;
-      if(m_ptabview->GetParentFrame()->get_parent() == ::null())
+      if(m_ptabview->GetParentFrame()->get_parent() == NULL)
       {
 
          System.get_screen_rect(rectOpen);
@@ -1273,7 +1273,7 @@ namespace fontopus
       int32_t iHeight = rectOpen.height();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
       sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
-      if(pframe != ::null())
+      if(pframe != NULL)
       {
          pframe->m_bblur_Background = true;
       }
@@ -1285,7 +1285,7 @@ namespace fontopus
          TRACE("AttachedThreadInput");
       }
 #endif
-      /*      if(System.m_puiInitialPlaceHolderContainer != ::null())
+      /*      if(System.m_puiInitialPlaceHolderContainer != NULL)
       {
       System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
       }
@@ -1300,7 +1300,7 @@ namespace fontopus
          rectOpen.left, rectOpen.top,
          rectOpen.width(), rectOpen.height(),
          SWP_SHOWWINDOW);
-      /*         if(m_ptabview->GetTopLevelFrame()->get_parent() != ::null())
+      /*         if(m_ptabview->GetTopLevelFrame()->get_parent() != NULL)
       {
       try
       {
@@ -1356,7 +1356,7 @@ namespace fontopus
       case 1:
          {
             m_pdocAuth = System.user()->create_child_form(this, pcreatordata->m_pholder);
-            if(m_pdocAuth != ::null())
+            if(m_pdocAuth != NULL)
             {
                m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
                m_pviewAuth->m_pcallback = this;
@@ -1385,7 +1385,7 @@ namespace fontopus
          }
          break;
       }
-      if(pcreatordata->m_pwnd != ::null())
+      if(pcreatordata->m_pwnd != NULL)
       {
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }
@@ -1425,7 +1425,7 @@ namespace fontopus
          if(pevent->m_puie->m_id == "submit" ||
             pevent->m_eevent == ::user::event_enter_key)
          {
-            if(m_loginthread.get_os_data() != ::null())
+            if(m_loginthread.get_os_data() != NULL)
                return true;
             m_pviewAuth->KillTimer(1984);
             m_loginthread.oprop("defer_registration") = oprop("defer_registration");
@@ -1453,10 +1453,10 @@ namespace fontopus
                ptext->_001GetText(m_pauth->m_strPassword);
             }
             ::oswindow oswindowPrevious = (::oswindow) m_pvOldWindow;
-            if(oswindowPrevious != ::null())
+            if(oswindowPrevious != NULL)
             {
                sp(::user::interaction) puiPrevious = System.window_from_os_data(oswindowPrevious);
-               if(puiPrevious != ::null())
+               if(puiPrevious != NULL)
                {
                   if(puiPrevious->SetForegroundWindow())
                   {
@@ -1518,12 +1518,12 @@ namespace fontopus
       string strUsername = m_loginthread.m_strUsername;
 
       m_bLicense = false;
-      m_puser = ::null();
+      m_puser = NULL;
 
-      if(m_pdocAuth != ::null())
+      if(m_pdocAuth != NULL)
       {
 
-         m_pdocAuth->get_html_data()->m_puser = ::null();
+         m_pdocAuth->get_html_data()->m_puser = NULL;
 
       }
 
@@ -1627,7 +1627,7 @@ namespace fontopus
 
       save_authentication_info();
 
-      if(m_ptabview != ::null())
+      if(m_ptabview != NULL)
       {
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
       }

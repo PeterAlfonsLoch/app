@@ -169,7 +169,7 @@ static ERR_STRING_DATA RSA_str_reasons[]=
 {ERR_REASON(RSA_R_MODULUS_TOO_LARGE)     ,"modulus too large"},
 {ERR_REASON(RSA_R_NON_FIPS_RSA_METHOD)   ,"non fips rsa method"},
 {ERR_REASON(RSA_R_NO_PUBLIC_EXPONENT)    ,"no public exponent"},
-{ERR_REASON(RSA_R_NULL_BEFORE_BLOCK_MISSING),"null before block missing"},
+{ERR_REASON(RSA_R_NULL_BEFORE_BLOCK_MISSING),"NULL before block missing"},
 {ERR_REASON(RSA_R_N_DOES_NOT_EQUAL_P_Q)  ,"n does not equal p q"},
 {ERR_REASON(RSA_R_OAEP_DECODING_ERROR)   ,"oaep decoding error"},
 {ERR_REASON(RSA_R_OPERATION_NOT_ALLOWED_IN_FIPS_MODE),"operation not allowed in fips mode"},

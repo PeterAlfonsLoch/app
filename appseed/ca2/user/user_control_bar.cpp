@@ -17,18 +17,18 @@ namespace user
 
       // no elements contained in the control bar yet
    //   m_nCount = 0;
-      //m_pData = ::null();
+      //m_pData = NULL;
 
       // set up some default border spacings
       m_cxLeftBorder = m_cxRightBorder = 6;
       m_cxDefaultGap = 2;
       m_cyTopBorder = m_cyBottomBorder = 1;
       m_bAutoDelete = FALSE;
-      m_pguieOwner = ::null();
+      m_pguieOwner = NULL;
       m_nStateFlags = 0;
-      m_pDockSite = ::null();
-      m_pDockBar = ::null();
-      m_pDockContext = ::null();
+      m_pDockSite = NULL;
+      m_pDockBar = NULL;
+      m_pDockContext = NULL;
       m_dwStyle = 0;
       m_dwDockStyle = 0;
       m_nMRUWidth = 32767;
@@ -134,14 +134,14 @@ namespace user
    {
       ASSERT_VALID(this);
       ASSERT(nElements >= 0 && cbElement >= 0);
-      ASSERT(m_pData != ::null() || m_nCount == 0);
+      ASSERT(m_pData != NULL || m_nCount == 0);
 
       // allocate new data if necessary
-      void * pData = ::null();
+      void * pData = NULL;
       if (nElements > 0)
       {
          ASSERT(cbElement > 0);
-         if ((pData = calloc(nElements, cbElement)) == ::null())
+         if ((pData = calloc(nElements, cbElement)) == NULL)
             return FALSE;
       }
       free(m_pData);      // free old data
@@ -162,17 +162,17 @@ namespace user
       DestroyWindow();    // avoid PostNcDestroy problems
 
       // also done in OnDestroy, but done here just in case
-      if (m_pDockSite != ::null())
+      if (m_pDockSite != NULL)
          m_pDockSite->RemoveControlBar(this);
 
       // free docking context
    /*   BaseDockContext* pDockContext = m_pDockContext;
-      m_pDockContext = ::null();
+      m_pDockContext = NULL;
       delete pDockContext;*/
 
       // free array
    /*
-      if (m_pData != ::null())
+      if (m_pData != NULL)
       {
          ASSERT(m_nCount != 0);
          free(m_pData);
@@ -219,7 +219,7 @@ namespace user
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
-      VERIFY(SetTimer(nEvent, nTime, ::null()));
+      VERIFY(SetTimer(nEvent, nTime, NULL));
    }
 
    void control_bar::_001OnTimer(::ca::signal_object * pobj)
@@ -273,7 +273,7 @@ namespace user
    void control_bar::pre_translate_message(::ca::signal_object * pobj)
    {
       ASSERT_VALID(this);
-   //trans   ASSERT(get_handle() != ::null());
+   //trans   ASSERT(get_handle() != NULL);
 
       // allow tooltip messages to be filtered
       ::user::interaction::pre_translate_message(pobj);
@@ -309,12 +309,12 @@ namespace user
 
       // don't translate dialog messages when in Shift+F1 help mode
       sp(::user::frame_window) pFrameWnd = (GetTopLevelFrame());
-      if (pFrameWnd != ::null() && pFrameWnd->m_bHelpMode)
+      if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
       // since 'IsDialogMessage' will eat frame ::ca::window accelerators,
       //   we call all frame windows' pre_translate_message first
-      while (pOwner != ::null())
+      while (pOwner != NULL)
       {
          // allow owner & frames to translate before IsDialogMessage does
          pOwner->pre_translate_message(pobj);
@@ -420,10 +420,10 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
 
-      if (m_pDockSite != ::null())
+      if (m_pDockSite != NULL)
       {
          m_pDockSite->RemoveControlBar(this);
-         m_pDockSite = ::null();
+         m_pDockSite = NULL;
       }
 
    //   ::user::interaction::OnDestroy();
@@ -431,7 +431,7 @@ namespace user
 
    bool control_bar::DestroyWindow()
    {
-      /* trans if(get_handle() != ::null() && IsFloating())
+      /* trans if(get_handle() != NULL && IsFloating())
          return GetDockingFrame()->DestroyWindow();
       else */
          return ::user::interaction::DestroyWindow();
@@ -510,7 +510,7 @@ namespace user
       // erase parts not drawn
       //pdc->IntersectClipRect(rectWindow);
       //SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
-      pdc->SelectClipRgn(::null());
+      pdc->SelectClipRgn(NULL);
       class imaging & imaging = System.visual().imaging();
       imaging.color_blend(
          pdc,
@@ -553,11 +553,11 @@ namespace user
    {
       SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
-      if (m_pDockBar != ::null() )
-         //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, ::null()) == -1)
+      if (m_pDockBar != NULL )
+         //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, NULL) == -1)
       {
          // start the drag
-         ASSERT(m_pDockContext != ::null());
+         ASSERT(m_pDockContext != NULL);
          ClientToScreen(&pmouse->m_pt);
    //      m_pDockContext->StartDrag(pmouse->m_pt);
       }
@@ -614,9 +614,9 @@ namespace user
       if ((GetStyle() & WS_VISIBLE))
       {
          sp(::user::frame_window) pTarget = (get_owner().m_p);
-         if (pTarget == ::null() || !pTarget->is_frame_window())
+         if (pTarget == NULL || !pTarget->is_frame_window())
             pTarget = (GetParentFrame());
-         if (pTarget != ::null())
+         if (pTarget != NULL)
             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
       }
       pbase->set_lresult(0L);
@@ -634,7 +634,7 @@ namespace user
 
    uint32_t control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)
    {
-      ASSERT(lpLayout != ::null());
+      ASSERT(lpLayout != NULL);
 
       // resize and reposition this control bar based on styles
       uint32_t dwStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) |
@@ -735,7 +735,7 @@ namespace user
          rect.bottom = rect.top + size.cy;
 
          // only resize the ::ca::window if doing layout and not just rect query
-         if (lpLayout->hDWP != ::null())
+         if (lpLayout->hDWP != NULL)
             __reposition_window(lpLayout, this, &rect);
       }
       pbase->set_lresult(0);
@@ -1050,10 +1050,10 @@ namespace user
 
       sp(::user::frame_window) pFrameWnd = (GetParentFrame());
 
-      if (pFrameWnd == ::null())
+      if (pFrameWnd == NULL)
          pFrameWnd = m_pDockSite;
 
-      ASSERT(pFrameWnd != ::null());
+      ASSERT(pFrameWnd != NULL);
 
       ASSERT_KINDOF(::user::frame_window, pFrameWnd);
 

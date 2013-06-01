@@ -40,7 +40,7 @@ namespace html
       }
       else
       {
-         dSize = strtod(m_strSize, ::null());
+         dSize = strtod(m_strSize, NULL);
       }
 
 

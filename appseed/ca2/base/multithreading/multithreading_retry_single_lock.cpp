@@ -24,7 +24,7 @@ retry_single_lock::retry_single_lock(waitable * psyncobject, duration durationLo
 bool retry_single_lock::lock()
 {
 
-   if(m_psyncobject == ::null())
+   if(m_psyncobject == NULL)
       return FALSE;
 
    int32_t iRetry = 0;
@@ -54,7 +54,7 @@ bool retry_single_lock::lock()
 bool retry_single_lock::unlock()
 {
 
-   if(m_psyncobject == ::null())
+   if(m_psyncobject == NULL)
       return FALSE;
 
    if (m_bAcquired)

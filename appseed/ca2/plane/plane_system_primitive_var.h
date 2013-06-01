@@ -7,12 +7,6 @@ inline var::var()
 }
 
 
-inline var::var(const ::ca::null & null)
-{
-   m_etype = type_null;
-}
-
-
 inline var::var(e_type etype)
 {
    m_etype = etype;
@@ -124,7 +118,7 @@ inline id & id::operator = (const var & var)
 
    if(var.is_null())
    {
-      m_pstr = ::null();
+      m_pstr = NULL;
       return *this;
    }
    else if(var.is_empty())

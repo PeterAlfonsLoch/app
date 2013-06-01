@@ -45,7 +45,7 @@ static char id_str[MAX_INFO_STRLEN];
 #endif
 
 #ifndef O_BINARY
-/* win32 wants a binary flag to open(); this sets it to null
+/* win32 wants a binary flag to open(); this sets it to NULL
    on platforms that don't have it. */
 #define O_BINARY 0
 #endif

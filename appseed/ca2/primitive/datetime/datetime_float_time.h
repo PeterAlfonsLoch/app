@@ -51,7 +51,7 @@ namespace datetime
 
    inline WINBOOL convert_system_time_to_float_time(const SYSTEMTIME & systimeSrc, double * pVarDtTm)
    {
-	   ENSURE(pVarDtTm!=::null());
+	   ENSURE(pVarDtTm != NULL);
 	   //Convert using ::SystemTimeToVariantTime and store the result in pVarDtTm then
 	   //convert variant time back to system time and compare to original system time.
 	   WINBOOL ok = ::SystemTimeToFloatTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
@@ -360,7 +360,7 @@ namespace datetime
             }
          }
 
-         return (GetStatus() == null);
+         return (GetStatus() == NULL);
       }
 
       return false;
@@ -518,11 +518,11 @@ namespace datetime
 
 #ifdef WINDOWS
 
-      return float_time(::_time64(::null()));
+      return float_time(::_time64(NULL));
 
 #else
 
-      return float_time(::time(::null()));
+      return float_time(::time(NULL));
 
 #endif
 
@@ -781,7 +781,7 @@ valid : invalid;
             }
          }
 
-         return (GetStatus() == null);
+         return (GetStatus() == NULL);
 
       }
 
@@ -948,7 +948,7 @@ valid : invalid;
    inline bool float_time::ParseDateTime(const char * lpszDate, uint32_t dwFlags, LCID lcid) RELEASENOTHROW
    {
 
-      const char * pszDate = ( lpszDate == ::null() ) ? "" : lpszDate;
+      const char * pszDate = (lpszDate == NULL) ? "" : lpszDate;
 
       HRESULT hr;
 
@@ -989,8 +989,8 @@ valid : invalid;
 
    inline string float_time_span::Format(LPCTSTR pFormat) const
    {
-      // If null, return empty string
-      if (GetStatus() == null)
+      // If NULL, return empty string
+      if (GetStatus() == NULL)
          return _T("");
 
       CTimeSpan tmp(GetDays(), GetHours(), GetMinutes(), GetSeconds());
@@ -1002,8 +1002,8 @@ valid : invalid;
       uint32_t dwFlags,
       LCID lcid) const
    {
-      // If null, return empty string
-      if (GetStatus() == null)
+      // If NULL, return empty string
+      if (GetStatus() == NULL)
          return _T("");
 
       // If invalid, return DateTime global string
@@ -1031,10 +1031,10 @@ valid : invalid;
 
    inline string float_time::Format(LPCTSTR pFormat) const
    {
-      ATLENSURE_THROW(pFormat != ::null(), E_INVALIDARG);
+      ATLENSURE_THROW(pFormat != NULL, E_INVALIDARG);
 
-      // If null, return empty string
-      if(GetStatus() == null)
+      // If NULL, return empty string
+      if(GetStatus() == NULL)
          return _T("");
 
       // If invalid, return DateTime global string

@@ -17,7 +17,7 @@ namespace user
    }
    bool step_slider::create(sp(::user::interaction) pwndParent, id id)
    {
-      return ::user::interaction::create(::null(), ::null(), WS_CHILD, rect(0, 0, 0, 0), pwndParent, id) != FALSE;
+      return ::user::interaction::create(NULL, NULL, WS_CHILD, rect(0, 0, 0, 0), pwndParent, id) != FALSE;
    }
 
 
@@ -77,7 +77,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
-      SetTimer(1, 200, ::null());
+      SetTimer(1, 200, NULL);
       m_bHover = true;
       UpdateHover();
    }
@@ -86,7 +86,7 @@ namespace user
    void step_slider::_001OnDraw(::ca::graphics * pdc)
    {
       
-      if(m_pscalar == ::null())
+      if(m_pscalar == NULL)
          return;
 
       rect rectClient;

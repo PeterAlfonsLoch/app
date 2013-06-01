@@ -333,7 +333,7 @@ FT_BEGIN_HEADER
   /*      accessed with the macro `FT_FACE_LOOKUP_SERVICE'.                */
   /*                                                                       */
   /*    incremental_interface ::                                           */
-  /*      If non-null, the interface through which glyph data and metrics  */
+  /*      If non-NULL, the interface through which glyph data and metrics  */
   /*      are loaded incrementally for faces that do not provide all of    */
   /*      this data when first opened.  This field exists only if          */
   /*      @FT_CONFIG_OPTION_INCREMENTAL is defined.                        */
@@ -774,7 +774,7 @@ FT_BEGIN_HEADER
 #define FT_DEBUG_HOOK_TRUETYPE            0
 
 
-  /* Set this debug hook to a non-null pointer to force unpatented hinting */
+  /* Set this debug hook to a non-NULL pointer to force unpatented hinting */
   /* for all faces when both TT_USE_BYTECODE_INTERPRETER and               */
   /* TT_CONFIG_OPTION_UNPATENTED_HINTING are defined.  This is only used   */
   /* during debugging.                                                     */

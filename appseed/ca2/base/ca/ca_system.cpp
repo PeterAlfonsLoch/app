@@ -47,7 +47,7 @@ namespace ca
    sp(::ca::ca) system::clone(sp(::ca::ca) pca)
    {
       UNREFERENCED_PARAMETER(pca);
-      return ::null();
+      return NULL;
    }
 
 
@@ -58,13 +58,13 @@ namespace ca
    {
 /*      if(info == System.type_info < class ::ca::log > ())
       {
-         return new class ::ca::log(this); // ::null() log implementation
+         return new class ::ca::log(this); // NULL log implementation
       }*/
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
       on_allocation_error(papp, info);
-      return ::null();
+      return NULL;
    }
 
    sp(::ca::ca) system::alloc(sp(::ca::application) papp, sp(::ca::type_info) info)

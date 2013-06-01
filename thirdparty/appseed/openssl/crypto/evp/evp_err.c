@@ -184,7 +184,7 @@ static ERR_STRING_DATA EVP_str_reasons[]=
 {ERR_REASON(EVP_R_INVALID_OPERATION)     ,"invalid operation"},
 {ERR_REASON(EVP_R_IV_TOO_LARGE)          ,"iv too large"},
 {ERR_REASON(EVP_R_KEYGEN_FAILURE)        ,"keygen failure"},
-{ERR_REASON(EVP_R_MESSAGE_DIGEST_IS_NULL),"message digest is null"},
+{ERR_REASON(EVP_R_MESSAGE_DIGEST_IS_NULL),"message digest is NULL"},
 {ERR_REASON(EVP_R_METHOD_NOT_SUPPORTED)  ,"method not supported"},
 {ERR_REASON(EVP_R_MISSING_PARAMETERS)    ,"missing parameters"},
 {ERR_REASON(EVP_R_NO_CIPHER_SET)         ,"no cipher set"},

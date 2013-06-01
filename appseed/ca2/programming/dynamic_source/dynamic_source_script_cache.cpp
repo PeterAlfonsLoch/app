@@ -30,7 +30,7 @@ namespace dynamic_source
 
       strsp(script)::pair * ppair = m_map.PLookup(strName);
 
-      if(ppair != ::null())
+      if(ppair != NULL)
          return (script *) ppair->m_element2;
 
       sp(script) pscript = new ds_script(get_app());
@@ -58,7 +58,7 @@ namespace dynamic_source
 
       strsp(script)::pair * ppair = m_map.PLookup(strName);
 
-      if(ppair != ::null())
+      if(ppair != NULL)
       {
 
          ppair->m_element2 = pscript;
@@ -115,12 +115,12 @@ namespace dynamic_source
       sp(script) pscript;
       string strName;
       POSITION pos = m_map.get_start_position();
-      while(pos != ::null())
+      while(pos != NULL)
       {
          m_map.get_next_assoc(pos, strName, pscript);
 
          ds_script * pdsscript = dynamic_cast < ds_script * > (pscript.m_p);
-         if(pdsscript != ::null())
+         if(pdsscript != NULL)
          {
             pdsscript->m_bShouldBuild = true;
          }

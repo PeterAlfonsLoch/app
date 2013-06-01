@@ -14,7 +14,7 @@ namespace libcompress
 
    ::ca::HRes size_count_reader2::GetSubStreamSize(uint64_t subStream, uint64_t *value)
    {
-     if (_getSubStreamSize == ::null())
+     if (_getSubStreamSize == NULL)
        return E_NOTIMPL;
      return  _getSubStreamSize->GetSubStreamSize(subStream, value);
    }

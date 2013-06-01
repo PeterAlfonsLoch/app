@@ -1083,7 +1083,7 @@ int ssl3_get_server_certificate(SSL *s)
 	STACK_OF(X509) *sk=NULL;
 	SESS_CERT *sc;
 	EVP_PKEY *pkey=NULL;
-	int need_cert = 1; /* VRS: 0=> will allow null cert if auth == KRB5 */
+	int need_cert = 1; /* VRS: 0=> will allow NULL cert if auth == KRB5 */
 
 	n=s->method->ssl_get_message(s,
 		SSL3_ST_CR_CERT_A,
@@ -1182,11 +1182,11 @@ int ssl3_get_server_certificate(SSL *s)
 	 * certificate, which we don't include in s3_srvr.c */
 	x=sk_X509_value(sk,0);
 	sk=NULL;
- 	/* VRS 19990621: possible memory leak; sk=null ==> !sk_pop_free() @end*/
+ 	/* VRS 19990621: possible memory leak; sk=NULL ==> !sk_pop_free() @end*/
 
 	pkey=X509_get_pubkey(x);
 
-	/* VRS: allow null cert if auth == KRB5 */
+	/* VRS: allow NULL cert if auth == KRB5 */
 	need_cert = ((s->s3->tmp.new_cipher->algorithm_mkey & SSL_kKRB5) &&
 	            (s->s3->tmp.new_cipher->algorithm_auth & SSL_aKRB5))
 	            ? 0 : 1;
@@ -2393,7 +2393,7 @@ int ssl3_send_client_key_exchange(SSL *s)
 				}
 			else
 				{
-				s2n(0,p);/*  null authenticator length	*/
+				s2n(0,p);/*  NULL authenticator length	*/
 				n+=2;
 				}
  

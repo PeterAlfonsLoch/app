@@ -141,7 +141,7 @@ namespace sockets
 
    string httpd_socket::GetDate()
    {
-      time_t t = time(::null());
+      time_t t = time(NULL);
       struct tm tp;
    #ifdef _WIN32
       memcpy(&tp, localtime(&t), sizeof(tp));

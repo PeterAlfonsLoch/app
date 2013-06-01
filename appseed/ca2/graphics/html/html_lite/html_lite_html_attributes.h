@@ -24,7 +24,7 @@ public:
    string           m_strValue;
 
 
-   LiteHTMLElemAttr(const char * lpszAttribName = ::null(), const char * lpszAttribValue = ::null())
+   LiteHTMLElemAttr(const char * lpszAttribName = NULL, const char * lpszAttribValue = NULL)
    {
       Init();
       m_strName = lpszAttribName;
@@ -195,7 +195,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    operator double() const
-      { return (::strtod(m_strValue, ::null())); }
+      { return (::strtod(m_strValue, NULL)); }
 
    /**
     * Converts attribute value to signed int16_t
@@ -249,7 +249,7 @@ class LiteHTMLAttributes
 // Construction/Destruction
 public:
    LiteHTMLAttributes()
-      : m_parrAttrib(::null())
+      : m_parrAttrib(NULL)
    { }
 
    /**
@@ -261,28 +261,28 @@ public:
     * @author Gurmeet S. Kochar
     */
    LiteHTMLAttributes(LiteHTMLAttributes &rSource, bool bCopy = false)
-      : m_parrAttrib(::null())
+      : m_parrAttrib(NULL)
    {
       if (!bCopy)
       {
          m_parrAttrib = rSource.m_parrAttrib;
-         rSource.m_parrAttrib = ::null();
+         rSource.m_parrAttrib = NULL;
       }
       else
       {
          const ::count nElemCount = rSource.getCount();
          if (nElemCount)
          {
-            if ((m_parrAttrib = new CElemAttrArray) == ::null())
+            if ((m_parrAttrib = new CElemAttrArray) == NULL)
                throw memory_exception(::ca::get_thread_app());
 
-            LiteHTMLElemAttr   *pItem = ::null();
+            LiteHTMLElemAttr   *pItem = NULL;
             m_parrAttrib->set_size(nElemCount);
 
             /** DEEP COPY BEGIN */
             for (int32_t iElem = 0; iElem < nElemCount; iElem++)
             {
-               if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == ::null())
+               if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == NULL)
                {
                   removeAll();
                   throw memory_exception(::ca::get_thread_app());
@@ -290,7 +290,7 @@ public:
                }
 
                (*m_parrAttrib)[iElem] = pItem;
-               pItem = ::null();
+               pItem = NULL;
             }
             /** DEEP COPY END */
          }
@@ -315,7 +315,7 @@ public:
     */
    ::count getCount() const
    {
-      if (m_parrAttrib != ::null())
+      if (m_parrAttrib != NULL)
          return (m_parrAttrib->get_upper_bound() + 1);
       return (0);
    }
@@ -334,10 +334,10 @@ public:
    int32_t getIndexFromName(const char * lpszAttributeName) const
    {
       ASSERT(__is_valid_string(lpszAttributeName));
-      LiteHTMLElemAttr   *pItem = ::null();
+      LiteHTMLElemAttr   *pItem = NULL;
       for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
-         if ((pItem = (*m_parrAttrib)[iElem]) == ::null())   // just in case
+         if ((pItem = (*m_parrAttrib)[iElem]) == NULL)   // just in case
             continue;
 
          // perform a CASE-INSENSITIVE search
@@ -461,8 +461,8 @@ public:
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
-      LiteHTMLElemAttr   *pItem = ::null();
-      VERIFY(((*m_parrAttrib)[nIndex]) != ::null());
+      LiteHTMLElemAttr   *pItem = NULL;
+      VERIFY(((*m_parrAttrib)[nIndex]) != NULL);
       SAFE_DELETE_POINTER(pItem);
       return (true);
    }
@@ -475,10 +475,10 @@ public:
     */
    bool removeAll()
    {
-      LiteHTMLElemAttr   *pItem = ::null();
+      LiteHTMLElemAttr   *pItem = NULL;
       for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
-         VERIFY((pItem = (*m_parrAttrib)[iElem]) != ::null());
+         VERIFY((pItem = (*m_parrAttrib)[iElem]) != NULL);
          SAFE_DELETE_POINTER(pItem);
       }
       SAFE_DELETE_POINTER(m_parrAttrib);

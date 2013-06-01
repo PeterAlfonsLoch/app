@@ -60,7 +60,7 @@ namespace colorertake5
 
       /**
       * Background region define, which is used to
-      * fill transparent regions. If background is @c ::null(),
+      * fill transparent regions. If background is @c NULL,
       * then regions with transparent fields would leave these fields unfilled
       */
       void setBackground(RegionDefine* back);

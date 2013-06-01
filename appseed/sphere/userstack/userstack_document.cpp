@@ -18,7 +18,7 @@ namespace userstack
          return FALSE;
 
    
-      update_all_views(::null(), 0);
+      update_all_views(NULL, 0);
 
       return TRUE;
    }

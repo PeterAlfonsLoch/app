@@ -40,8 +40,8 @@ namespace ca
       int32_t  CLASS_DECL_ca2 compare_ci(const char * psz1, const char * psz2);
       bool CLASS_DECL_ca2 equals(const char * psz1, const char * psz2);
       bool CLASS_DECL_ca2 equals_ci(const char * psz1, const char * psz2);
-      string CLASS_DECL_ca2 equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = ::null());
-      string CLASS_DECL_ca2 equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = ::null());
+      string CLASS_DECL_ca2 equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
+      string CLASS_DECL_ca2 equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
 
 
 
@@ -109,7 +109,7 @@ namespace ca
       strsize CLASS_DECL_ca2 find_wwci(const char * pszFind, const char * psz, strsize iStart = 0);
       strsize CLASS_DECL_ca2 find_aww(const char * pszFind, const char * psz, strsize iStart = 0);
       strsize CLASS_DECL_ca2 find_awwci(const char * pszFind, const char * psz, strsize iStart = 0);
-      string CLASS_DECL_ca2 has_char(const char * pszIfHasChar, const char * pszBefore = ::null(), const char * pszAfter = ::null());
+      string CLASS_DECL_ca2 has_char(const char * pszIfHasChar, const char * pszBefore = NULL, const char * pszAfter = NULL);
       bool CLASS_DECL_ca2 has_upper(const char * psz);
       bool CLASS_DECL_ca2 has_lower(const char * psz);
       bool CLASS_DECL_ca2 has_digit(const char * psz);
@@ -117,7 +117,7 @@ namespace ca
       bool CLASS_DECL_ca2 has_one_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
       bool CLASS_DECL_ca2 has_all_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
       bool CLASS_DECL_ca2 has_all_v1(const char * psz);
-      string CLASS_DECL_ca2 if_null(const char * psz, const char * pszIfNull = ::null());
+      string CLASS_DECL_ca2 if_null(const char * psz, const char * pszIfNull = NULL);
 
 
       FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(uchar) *psz]; }

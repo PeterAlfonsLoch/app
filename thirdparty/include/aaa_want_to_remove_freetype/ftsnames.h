@@ -102,7 +102,7 @@ FT_BEGIN_HEADER
     FT_UShort  language_id;
     FT_UShort  name_id;
 
-    FT_Byte*   string;      /* this string is *not* null-terminated! */
+    FT_Byte*   string;      /* this string is *not* NULL-terminated! */
     FT_UInt    string_len;  /* in bytes */
 
   } FT_SfntName;
@@ -147,7 +147,7 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /* <Note>                                                                */
   /*    The `string' array returned in the `aname' structure is not        */
-  /*    null-terminated.  The application should deallocate it if it is no */
+  /*    NULL-terminated.  The application should deallocate it if it is no */
   /*    longer in use.                                                     */
   /*                                                                       */
   /*    Use @FT_Get_Sfnt_Name_Count to get the total number of available   */

@@ -14,7 +14,7 @@ namespace filemanager
       ca(papp),
       ::ca::section(papp)
    {
-      m_ptemplateStd       = ::null();
+      m_ptemplateStd       = NULL;
 
    }
 
@@ -137,7 +137,7 @@ namespace filemanager
    {
 
       item_action * pitemaction = dynamic_cast < item_action * > (this);
-      if(pitemaction != ::null())
+      if(pitemaction != NULL)
       {
          if(pitemaction->file_manager_open_file(pdata, itema))
             return;
@@ -155,8 +155,8 @@ namespace filemanager
    bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument)
    {
 
-      sp(::userex::pane_tab_view) ppanetabview = ::null();
-      if(pdocument->get_view() != ::null() && pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > () != ::null())
+      sp(::userex::pane_tab_view) ppanetabview = NULL;
+      if(pdocument->get_view() != NULL && pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > () != NULL)
       {
          ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > ();
          ppanetabview->set_cur_tab_by_id("file_manager");
@@ -222,7 +222,7 @@ namespace filemanager
 
       }
 
-      if(pszDefault != ::null() && strlen(pszDefault) > 0)
+      if(pszDefault != NULL && strlen(pszDefault) > 0)
       {
 
          strPath = pszDefault;

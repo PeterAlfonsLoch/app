@@ -114,7 +114,7 @@ namespace user
 
 
 
-      virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = ::null());
+      virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = NULL);
 #ifdef METROWIN
       virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow);
 #endif
@@ -204,8 +204,8 @@ namespace user
 
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
-      virtual void CenterWindow(sp(interaction) pAlternateOwner = ::null());
-      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = ::null());
+      virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -256,7 +256,7 @@ namespace user
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 #endif
 
-      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = ::null());
+      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
 
       virtual bool pre_create_window(CREATESTRUCT& cs);
@@ -271,23 +271,23 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca::create_context) pContext = ::null());
+         sp(::ca::create_context) pContext = NULL);
       using ::ca::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca::create_context) pContext = ::null());
+         sp(::ca::create_context) pContext = NULL);
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         LPVOID lpParam = ::null());
+         LPVOID lpParam = NULL);
       virtual bool create_window_ex(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         LPVOID lpParam = ::null());
+         LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
       virtual sp(::user::frame_window) GetParentFrame();
@@ -299,12 +299,12 @@ namespace user
 
 
 #ifdef WINDOWS
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = ::null(),
-         ::ca::region* prgnUpdate = ::null(),
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
+         ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = ::null(),
-         ::ca::region* prgnUpdate = ::null(),
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
+         ::ca::region* prgnUpdate = NULL,
          UINT flags = 0);
 #endif
 
@@ -331,7 +331,7 @@ namespace user
 
       virtual LRESULT send(::ca::message::base * pbase);
       virtual bool post(::ca::message::base * pbase);
-      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = ::null());
+      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
 #ifdef LINUX
 
@@ -339,8 +339,8 @@ namespace user
 
 #endif
 
-      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
-      virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = ::null());
+      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = NULL);
 
       virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
@@ -376,7 +376,7 @@ namespace user
       virtual id GetDlgCtrlId();
       virtual id SetDlgCtrlId(class id id);
 
-      virtual sp(interaction) set_capture(sp(interaction) pinterface = ::null());
+      virtual sp(interaction) set_capture(sp(interaction) pinterface = NULL);
       virtual sp(interaction) get_capture();
       virtual sp(interaction) release_capture();
 
@@ -436,7 +436,7 @@ namespace user
       virtual bool _001IsPointInside(point64 pt);
       virtual sp(interaction) _001FromPoint(point64 pt, bool bTestedIfParentVisible = false);
 
-      virtual void OnLinkClick(const char * psz, const char * pszTarget = ::null());
+      virtual void OnLinkClick(const char * psz, const char * pszTarget = NULL);
 
       sp(interaction) get_child_by_name(const char * pszName, int32_t iLevel = -1);
       sp(interaction) get_child_by_id(id id, int32_t iLevel = -1);
@@ -445,13 +445,13 @@ namespace user
       virtual sp(interaction) GetTopLevelParent();
       virtual sp(interaction) EnsureTopLevelParent();
       virtual sp(::user::frame_window) GetTopLevelFrame();
-      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
+      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(::ca::signal_object * pobj);
 
 
       virtual int32_t get_descendant_level(sp(::user::interaction) pui);
       virtual bool is_descendant(sp(::user::interaction) pui, bool bIncludeSelf = false);
-      virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = ::null());
+      virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
 
 #ifdef METROWIN
       virtual sp(::user::interaction) get_wnd() const;
@@ -467,7 +467,7 @@ namespace user
          reposNoPosLeftOver=0x8000
       };
 
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = ::null(), LPCRECT lpRectClient = ::null(), bool bStretch = TRUE);
+      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
       virtual sp(interaction) get_owner() const;
       virtual void set_owner(sp(interaction) pguie);
@@ -484,7 +484,7 @@ namespace user
 
       virtual sp(interaction) GetTopWindow();
 
-      virtual sp(interaction) get_next(bool bIgnoreChildren = false, int32_t * piLevel = ::null());
+      virtual sp(interaction) get_next(bool bIgnoreChildren = false, int32_t * piLevel = NULL);
 
       virtual sp(interaction) GetWindow(UINT nCmd);
       virtual sp(interaction) GetLastActivePopup();
@@ -494,7 +494,7 @@ namespace user
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();
 
-      virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
       virtual void message_handler(::ca::signal_object * pobj);
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(::ca::signal_object * pobj);
@@ -516,15 +516,15 @@ namespace user
          ASSERT_VALID(this);
 
          sp(interaction) pParentWnd = get_parent();  // start with one parent up
-         while (pParentWnd != ::null())
+         while (pParentWnd != NULL)
          {
-            if(dynamic_cast < T * > (pParentWnd.m_p) != ::null())
+            if(dynamic_cast < T * > (pParentWnd.m_p) != NULL)
             {
                return dynamic_cast < T * > (pParentWnd.m_p);
             }
             pParentWnd = pParentWnd->get_parent();
          }
-         return ::null();
+         return NULL;
       }
 
 
@@ -550,15 +550,15 @@ namespace user
       virtual e_type get_window_type();
 
 
-      virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
+      virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
    };
 
    inline oswindow interaction::get_safe_handle() const
    {
-      if(((byte *)this) < (byte *) (((byte *) ::null()) + (16 * 1024))) // consider invalid
+      if(((byte *)this) < (byte *) (((byte *) NULL) + (16 * 1024))) // consider invalid
       {
-         return ::ca::null();
+         return NULL;
       }
       return get_handle();
    }

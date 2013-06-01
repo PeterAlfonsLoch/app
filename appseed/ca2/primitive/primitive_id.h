@@ -127,11 +127,6 @@ public:
    inline int_ptr CompareNoCase(const char * psz) { return compare_ci(psz); }
    inline int_ptr compare_ci(const char * psz);
 
-
-   inline bool operator == (const ::ca::null & ) const { return is_null(); }
-   inline bool operator != (const ::ca::null & ) const { return !is_null(); }
-
-
 };
 
 
@@ -139,7 +134,9 @@ public:
 
 inline id::id()
 {
-   m_pstr = ::null();
+
+   m_pstr = NULL;
+
 }
 
 inline id::id(const id & id)

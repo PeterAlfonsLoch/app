@@ -5,14 +5,14 @@ namespace ca
 {
 
 
-   CLASS_DECL_ca2 PFN_get_thread g_pfn_get_thread = ::null();
-   CLASS_DECL_ca2 PFN_get_thread_state g_pfn_get_thread_state = ::null();
+   CLASS_DECL_ca2 PFN_get_thread g_pfn_get_thread = NULL;
+   CLASS_DECL_ca2 PFN_get_thread_state g_pfn_get_thread_state = NULL;
    bool thread::s_bAllocReady = false;
 
 
 
    thread::thread() :
-      m_mutex(::null())
+      m_mutex(NULL)
    {
 
       construct();
@@ -27,7 +27,7 @@ namespace ca
 
       construct();
 
-      if(papp == ::null())
+      if(papp == NULL)
          return;
       set_app(papp);
       if(!s_bAllocReady)
@@ -60,8 +60,8 @@ namespace ca
    thread * get_thread()
    {
 
-      if(g_pfn_get_thread == ::null())
-         return ::null();
+      if(g_pfn_get_thread == NULL)
+         return NULL;
 
       return g_pfn_get_thread();
 
@@ -73,8 +73,8 @@ namespace ca
 
       thread * pthread = get_thread();
 
-      if(pthread == ::null())
-         return ::null();
+      if(pthread == NULL)
+         return NULL;
 
       return pthread->get_app();
 
@@ -83,8 +83,8 @@ namespace ca
 
    thread_state * get_thread_state()
    {
-      if(g_pfn_get_thread_state == ::null())
-         return ::null();
+      if(g_pfn_get_thread_state == NULL)
+         return NULL;
       return g_pfn_get_thread_state();
    }
 
@@ -113,20 +113,20 @@ namespace ca
       m_dwAlive                     = ::get_tick_count();
       m_bReady                      = false;
       m_bRun                        = true;
-      m_pappDelete                  = ::null();
-      m_pbReady                     = ::null();
+      m_pappDelete                  = NULL;
+      m_pbReady                     = NULL;
       m_pthread = this;
 
-      m_pappDelete      = ::null();
-      m_pbReady         = ::null();
+      m_pappDelete      = NULL;
+      m_pbReady         = NULL;
       m_bReady          = false;
-/*      m_ptimera = ::null();
-      m_puieptra = ::null();
-      GetMainWnd() = ::null();
-      m_pActiveWnd = ::null();*/
+/*      m_ptimera = NULL;
+      m_puieptra = NULL;
+      GetMainWnd() = NULL;
+      m_pActiveWnd = NULL;*/
 
       // no HTHREAD until it is created
-      //      m_hThread = ::null();
+      //      m_hThread = NULL;
       //      m_nThreadID = 0;
 
       /*      ___THREAD_STATE* pState = __get_thread_state();
@@ -178,7 +178,7 @@ namespace ca
    bool thread::begin(::ca::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return false;
 
       return m_p->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -189,7 +189,7 @@ namespace ca
    bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return false;
 
       return m_p->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
@@ -376,7 +376,7 @@ namespace ca
 
    bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
    {
-      if(m_p == ::null())
+      if(m_p == NULL)
          return false;
 
       return m_p->post_thread_message(message, wParam, lParam);
@@ -552,7 +552,7 @@ namespace ca
 
    bool thread::post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, lparam lParam)
    {
-      if(m_p != ::null())
+      if(m_p != NULL)
       {
          return m_p->post_message(pguie, message, wParam, lParam);
       }
@@ -575,7 +575,7 @@ namespace ca
       try
       {
 
-         if(m_p == ::null())
+         if(m_p == NULL)
             return false;
 
          return m_p->on_run_exception(e);
@@ -622,7 +622,7 @@ namespace ca
 
    void thread::pre_translate_message(::ca::signal_object * pobj)
    {
-      if(m_p == ::null())
+      if(m_p == NULL)
          return;
       return m_p->pre_translate_message(pobj);
    }
@@ -646,7 +646,7 @@ namespace ca
    int32_t thread::exit_instance() // default will 'delete this'
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return -1;
 
       return m_p->exit_instance();
@@ -664,8 +664,8 @@ namespace ca
    sp(::user::interaction) thread::GetMainWnd()
    {
 
-      if(m_p == ::null())
-         return ::null();
+      if(m_p == NULL)
+         return NULL;
 
       return m_p->GetMainWnd();
 
@@ -690,7 +690,7 @@ namespace ca
 
       try
       {
-         if(m_p != ::null())
+         if(m_p != NULL)
          {
             m_p->remove(pui);
          }
@@ -702,13 +702,13 @@ namespace ca
       || pui->m_pguie == GetMainWnd()
       || pui->m_pimpl == GetMainWnd())
       {
-         SetMainWnd(::null());
+         SetMainWnd(NULL);
       }
 /*      try
       {
          if(pui->m_pthread == this)
          {
-            pui->m_pthread = ::null();
+            pui->m_pthread = NULL;
          }
       }
       catch(...)
@@ -716,11 +716,11 @@ namespace ca
       }
       try
       {
-         if(pui->m_pimpl != ::null() && pui->m_pimpl != pui)
+         if(pui->m_pimpl != NULL && pui->m_pimpl != pui)
          {
             if(pui->m_pimpl->m_pthread == this)
             {
-               pui->m_pimpl->m_pthread = ::null();
+               pui->m_pimpl->m_pthread = NULL;
             }
          }
       }
@@ -729,11 +729,11 @@ namespace ca
       }
       try
       {
-         if(pui->m_pguie != ::null() && pui->m_pguie != pui)
+         if(pui->m_pguie != NULL && pui->m_pguie != pui)
          {
             if(pui->m_pguie->m_pthread == this)
             {
-               pui->m_pguie->m_pthread = ::null();
+               pui->m_pguie->m_pthread = NULL;
             }
          }
       }
@@ -745,7 +745,7 @@ namespace ca
    ::count thread::get_ui_count()
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return 0;
 
       return m_p->get_ui_count();
@@ -756,8 +756,8 @@ namespace ca
    sp(::user::interaction) thread::get_ui(index iIndex)
    {
 
-      if(m_p == ::null())
-         return ::null();
+      if(m_p == NULL)
+         return NULL;
 
       return m_p->get_ui(iIndex);
 
@@ -767,7 +767,7 @@ namespace ca
    void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return;
 
       m_p->set_timer(pui, nIDEvent, nEllapse);
@@ -778,7 +778,7 @@ namespace ca
    void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return;
 
       m_p->unset_timer(pui, nIDEvent);
@@ -789,7 +789,7 @@ namespace ca
    void thread::set_auto_delete(bool bAutoDelete)
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return;
 
       m_p->set_auto_delete(bAutoDelete);
@@ -800,7 +800,7 @@ namespace ca
    void thread::set_run(bool bRun)
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return;
 
       m_p->set_run(bRun);
@@ -811,8 +811,8 @@ namespace ca
    event & thread::get_finish_event()
    {
 
-      if(m_p == ::null())
-         return *((event *) ::null());
+      if(m_p == NULL)
+         return *((event *) NULL);
 
       return m_p->get_finish_event();
 
@@ -822,7 +822,7 @@ namespace ca
    bool thread::get_run()
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return false;
 
       return m_p->get_run();
@@ -833,8 +833,8 @@ namespace ca
    ::ca::thread * thread::get_app_thread()
    {
 
-      if(m_p == ::null())
-         return ::null();
+      if(m_p == NULL)
+         return NULL;
 
       return m_p->get_app_thread();
 
@@ -844,8 +844,8 @@ namespace ca
    sp(::user::interaction) thread::get_active_ui()
    {
 
-      if(m_p == ::null())
-         return ::null();
+      if(m_p == NULL)
+         return NULL;
 
       return m_p->get_active_ui();
 
@@ -855,8 +855,8 @@ namespace ca
    sp(::user::interaction) thread::set_active_ui(sp(::user::interaction) pui)
    {
 
-      if(m_p == ::null())
-         return ::null();
+      if(m_p == NULL)
+         return NULL;
 
       return m_p->set_active_ui(pui);
 
@@ -865,7 +865,7 @@ namespace ca
    void thread::step_timer()
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return;
 
       return m_p->step_timer();
@@ -930,7 +930,7 @@ namespace ca
    int thread::get_x_window_count() const
    {
 
-      if(m_p == ::null())
+      if(m_p == NULL)
          return 0;
 
       return m_p->get_x_window_count();
@@ -947,7 +947,7 @@ namespace ca
 ::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   ASSERT(pfnThreadProc != ::null());
+   ASSERT(pfnThreadProc != NULL);
 
    ::ca::thread* pThread = new ::ca::thread(papp, pfnThreadProc, pParam);
    ASSERT_VALID(pThread);
@@ -955,7 +955,7 @@ namespace ca
    if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))
    {
       pThread->Delete();
-      return ::null();
+      return NULL;
    }
 
    return pThread;

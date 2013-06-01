@@ -110,7 +110,7 @@ namespace ca
 
       create_context(sp(::ca::application) papp);
       create_context(sp(::ca::command_thread) pthreadParent);
-      create_context(sp(::ca::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = ::null());
+      create_context(sp(::ca::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
       create_context(const create_context & createcontext);
       virtual ~create_context();
 

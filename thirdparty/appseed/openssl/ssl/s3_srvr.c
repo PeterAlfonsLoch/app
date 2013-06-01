@@ -3324,7 +3324,7 @@ int ssl3_send_server_certificate(SSL *s)
 		x=ssl_get_server_send_cert(s);
 		if (x == NULL)
 			{
-			/* VRS: allow null cert if auth == KRB5 */
+			/* VRS: allow NULL cert if auth == KRB5 */
 			if ((s->s3->tmp.new_cipher->algorithm_auth != SSL_aKRB5) ||
 			    (s->s3->tmp.new_cipher->algorithm_mkey & SSL_kKRB5))
 				{

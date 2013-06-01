@@ -200,5 +200,4 @@ CLASS_DECL_ca2 bool intersect(__rect64 * prect, const __rect64 * prect1, const _
 CLASS_DECL_ca2 bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 
 
-
 CLASS_DECL_ca2 bool deflate(LPRECT prect, LPCRECT lpcrect);

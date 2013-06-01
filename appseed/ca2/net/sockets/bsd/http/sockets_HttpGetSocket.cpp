@@ -86,7 +86,7 @@ namespace sockets
 
       //inheader(__id(accept)) = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       //inheader("Accept-Language") = "en-us,en;q=0.5";
-      if(m_pfile == ::null()) // by the time, inline gzip decompression not yet implemented
+      if(m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
       {
          inheader(__id(accept_encoding)) = "gzip,deflate";
       }

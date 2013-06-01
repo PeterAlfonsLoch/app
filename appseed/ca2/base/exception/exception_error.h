@@ -15,7 +15,7 @@ public:
    error_exception(sp(::ca::application) papp, const char * pszError);
    virtual ~error_exception();
 
-   virtual bool get_error_message(string & str, PUINT pnHelpContext = ::null());
+   virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
 
 
 };

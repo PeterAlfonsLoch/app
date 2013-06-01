@@ -267,7 +267,7 @@ typedef struct{
  * to case-insensitive ASCII. See the spec for details.
  *
  * In filling in this structure, theora_decode_header() will
- * null-terminate the user_comment strings for safety. However,
+ * NULL-terminate the user_comment strings for safety. However,
  * the bitstream format itself treats them as 8-bit clean,
  * and so the length array should be treated as authoritative
  * for their length.
@@ -276,7 +276,7 @@ typedef struct theora_comment{
   char **user_comments;         /**< An array of comment string vectors */
   int32_t   *comment_lengths;       /**< An array of corresponding string vector lengths in bytes */
   int32_t    comments;              /**< The total number of comment string vectors */
-  char  *vendor;                /**< The vendor string identifying the encoder, null terminated */
+  char  *vendor;                /**< The vendor string identifying the encoder, NULL terminated */
 
 } theora_comment;
 
@@ -706,11 +706,11 @@ extern void theora_comment_init(theora_comment *tc);
 /**
  * Add a comment to an initialized theora_comment structure
  * \param tc A previously initialized theora comment structure
- * \param comment A null-terminated string encoding the comment in the form
+ * \param comment A NULL-terminated string encoding the comment in the form
  *                "TAG=the value"
  *
  * Neither theora_comment_add() nor theora_comment_add_tag() support
- * comments containing null values, although the bitstream format
+ * comments containing NULL values, although the bitstream format
  * supports this. To add such comments you will need to manipulate
  * the theora_comment structure directly.
  **/
@@ -720,12 +720,12 @@ extern void theora_comment_add(theora_comment *tc, char *comment);
 /**
  * Add a comment to an initialized theora_comment structure.
  * \param tc A previously initialized theora comment structure
- * \param tag A null-terminated string containing the tag 
+ * \param tag A NULL-terminated string containing the tag 
  *            associated with the comment.
- * \param value The corresponding value as a null-terminated string
+ * \param value The corresponding value as a NULL-terminated string
  *
  * Neither theora_comment_add() nor theora_comment_add_tag() support
- * comments containing null values, although the bitstream format
+ * comments containing NULL values, although the bitstream format
  * supports this. To add such comments you will need to manipulate
  * the theora_comment structure directly.
  **/

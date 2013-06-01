@@ -38,19 +38,19 @@ namespace visual
       ca(papp),
       ::ca::section(papp)
    {
-      m_pimaging        = ::null();
-      m_pfontcentral    = ::null();
-      m_pvisualapi      = ::null();
+      m_pimaging        = NULL;
+      m_pfontcentral    = NULL;
+      m_pvisualapi      = NULL;
    }
 
    visual::~visual()
    {
-      if(m_pimaging != ::null())
+      if(m_pimaging != NULL)
       {
          delete m_pimaging;
       }
 
-      if(m_pvisualapi != ::null())
+      if(m_pvisualapi != NULL)
       {
          delete m_pvisualapi;
       }
@@ -90,7 +90,7 @@ namespace visual
 
       m_pfontcentral = new class font_central(get_app());
 
-      if(m_pfontcentral == ::null())
+      if(m_pfontcentral == NULL)
          return false;
 
       if(!m_pfontcentral->Initialize())
@@ -98,7 +98,7 @@ namespace visual
 
       m_pimaging = new class imaging(get_app());
 
-      if(m_pimaging == ::null())
+      if(m_pimaging == NULL)
          throw memory_exception(get_app());
       
       return true;
@@ -183,7 +183,7 @@ namespace visual
       }
       else
       {
-         return ::null();
+         return NULL;
       }
    }
 
@@ -196,7 +196,7 @@ namespace visual
       }
       else
       {
-         return ::null();
+         return NULL;
       }
    }
 
@@ -204,7 +204,7 @@ namespace visual
    cursor * visual::get_cursor(e_cursor ecursor)
    {
 
-      cursor * pcursor = ::null();
+      cursor * pcursor = NULL;
 
       if(m_cursormap.Lookup(ecursor, pcursor))
       {

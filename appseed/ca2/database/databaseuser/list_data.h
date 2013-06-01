@@ -29,7 +29,7 @@ namespace databaseuser
 
 
       list_data(const list_data & ) :
-         ::user::list_data(::null())
+         ::user::list_data(NULL)
       {
       }
 

@@ -97,7 +97,7 @@ namespace n7z
 
       ::libcompress::copy_coder *copyCoderSpec = new ::libcompress::copy_coder;
       ::c::smart_pointer < ::libcompress::coder_interface > copyCoder = copyCoderSpec;
-      RINOK(copyCoder->Code(inStreamLimited, outStream, ::null(), ::null(), progress));
+      RINOK(copyCoder->Code(inStreamLimited, outStream, NULL, NULL, progress));
       return (copyCoderSpec->TotalSize == size ? S_OK : E_FAIL);
    }
 
@@ -540,7 +540,7 @@ namespace n7z
 
    void CFolderOutStream2::OpenFile()
    {
-      _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream.m_p : ::null());
+      _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream.m_p : NULL);
       _crcStreamSpec->Init(true);
       _fileIsOpen = true;
       _rem = _db->Files[_startIndex + _currentIndex].get_count;
@@ -573,7 +573,7 @@ namespace n7z
    void CFolderOutStream2::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
    {
       HRESULT hr;
-      if (processedSize != ::null())
+      if (processedSize != NULL)
          *processedSize = 0;
       while (size != 0)
       {
@@ -586,7 +586,7 @@ namespace n7z
             data = (const byte *)data + cur;
             size -= cur;
             _rem -= cur;
-            if (processedSize != ::null())
+            if (processedSize != NULL)
                *processedSize += cur;
             if (_rem == 0)
             {
@@ -667,7 +667,7 @@ namespace n7z
             PackSizes,
             *Folder,
             Fos,
-            ::null()
+            NULL
 #ifndef _NO_CRYPTO
             , GetTextPassword, passwordIsDefined
 #endif
@@ -754,7 +754,7 @@ namespace n7z
       uint64_t startBlockSize = db != 0 ? db->ArchiveInfo.StartPosition: 0;
       if (startBlockSize > 0 && !options.RemoveSfxBlock)
       {
-         RINOK(WriteRange(inStream, seqOutStream, 0, startBlockSize, ::null()));
+         RINOK(WriteRange(inStream, seqOutStream, 0, startBlockSize, NULL));
       }
 
       array<int32_t> fileIndexToUpdateIndexMap;
@@ -903,7 +903,7 @@ namespace n7z
 
 #ifndef _NO_CRYPTO
 
-      CCryptoGetTextPassword *getPasswordSpec = ::null();
+      CCryptoGetTextPassword *getPasswordSpec = NULL;
       if (needEncryptedRepack)
       {
          getPasswordSpec = new CCryptoGetTextPassword;
@@ -1027,7 +1027,7 @@ namespace n7z
 
                RINOK(encoder.Encode(
                   codecsInfo, externalCodecs,
-                  sbInStream, ::null(), &inSizeForReduce, newFolder,
+                  sbInStream, NULL, &inSizeForReduce, newFolder,
                   archive.SeqStream, newDatabase.PackSizes, progress));
 
                throw "should implement below";
@@ -1142,7 +1142,7 @@ namespace n7z
             ::count startPackIndex = newDatabase.PackSizes.get_count();
             RINOK(encoder.Encode(
                codecsInfo, externalCodecs,
-               solidInStream, ::null(), &inSizeForReduce, folderItem,
+               solidInStream, NULL, &inSizeForReduce, folderItem,
                archive.SeqStream, newDatabase.PackSizes, progress));
 
             for (; startPackIndex < newDatabase.PackSizes.get_count(); startPackIndex++)

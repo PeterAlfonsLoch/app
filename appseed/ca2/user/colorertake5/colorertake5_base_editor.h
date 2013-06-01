@@ -24,9 +24,9 @@ namespace colorertake5
       * Initial constructor.
       * Creates uninitialized base editor functionality support.
       * @param pf ParserFactory, used as source of all created
-      *        parsers (HRC, HRD, Text parser). Can't be ::null().
+      *        parsers (HRC, HRD, Text parser). Can't be NULL.
       * @param lineSource Object, that provides parser with
-      *        text data in line-separated form. Can't be ::null().
+      *        text data in line-separated form. Can't be NULL.
       */
 
       base_editor(sp(::ca::application) papp);
@@ -160,7 +160,7 @@ namespace colorertake5
       * size of reparsed text is choosed according to information
       * about visible text range and modification events.
       * @todo If number of lines, to be reparsed is more, than backParse parameter,
-      * then method will return ::null(), until validate() method is called.
+      * then method will return NULL, until validate() method is called.
       */
       LineRegion *getLineRegions(index lno);
 

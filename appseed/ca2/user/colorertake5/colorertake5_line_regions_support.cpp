@@ -9,8 +9,8 @@ namespace colorertake5
    {
       lineCount = 0;
       firstLineNo = 0;
-      regionMapper = ::null();
-      special = ::null();
+      regionMapper = NULL;
+      special = NULL;
    }
 
    LineRegionsSupport::~LineRegionsSupport()
@@ -33,7 +33,7 @@ namespace colorertake5
       lineRegions.set_size(lineCount);
       for(index i = iOldLineCount; i < lineCount; i++)
       {
-         lineRegions[i] = ::null();
+         lineRegions[i] = NULL;
       }
       this->lineCount = lineCount;
    }
@@ -51,9 +51,9 @@ namespace colorertake5
          
          LineRegion *ln = lineRegions.element_at(idx);
          
-         lineRegions.set_at(idx, ::null());
+         lineRegions.set_at(idx, NULL);
          
-         while(ln != ::null())
+         while(ln != NULL)
          {
             LineRegion *lnn = ln->next;
             delete ln;
@@ -75,7 +75,7 @@ namespace colorertake5
    {
 
       if (!checkLine(lno))
-         return ::null();
+         return NULL;
 
       return lineRegions.element_at(getLineIndex(lno));
 
@@ -155,7 +155,7 @@ namespace colorertake5
 
       LineRegion *ln = getLineRegions(lno);
       
-      while(ln != ::null())
+      while(ln != NULL)
       {
          LineRegion *lnn = ln->next;
          delete ln;
@@ -165,7 +165,7 @@ namespace colorertake5
       LineRegion *lfirst = new LineRegion(*schemeStack.last_element());
       lfirst->start = 0;
       lfirst->end = -1;
-      lfirst->next = ::null();
+      lfirst->next = NULL;
       lfirst->prev = lfirst;
       lineRegions.set_at(getLineIndex(lno), lfirst);
       flowBackground = lfirst;
@@ -188,11 +188,11 @@ namespace colorertake5
       lnew->scheme = schemeStack.last_element()->scheme;
       if (region->hasParent(special))
          lnew->special = true;
-      if (regionMapper != ::null())
+      if (regionMapper != NULL)
       {
          RegionDefine *rd = regionMapper->getRegionDefine(region);
-         if (rd == ::null()) rd = schemeStack.last_element()->rdef;
-         if (rd != ::null())
+         if (rd == NULL) rd = schemeStack.last_element()->rdef;
+         if (rd != NULL)
          {
             lnew->rdef = rd->clone();
             lnew->rdef->assignParent(schemeStack.last_element()->rdef);
@@ -210,15 +210,15 @@ namespace colorertake5
       lr->scheme = scheme;
       lr->start = sx;
       lr->end = -1;
-      if (regionMapper != ::null())
+      if (regionMapper != NULL)
       {
          
          const RegionDefine *rd = regionMapper->getRegionDefine(region);
          
-         if (rd == ::null()) 
+         if (rd == NULL) 
             rd = schemeStack.last_element()->rdef;
 
-         if (rd != ::null())
+         if (rd != NULL)
          {
             lr->rdef = rd->clone();
             lr->rdef->assignParent(schemeStack.last_element()->rdef);
@@ -230,7 +230,7 @@ namespace colorertake5
       // ignoring out of cached interval lines
       if (!checkLine(lno)) return;
       // we must skip transparent regions
-      if (lr->region != ::null())
+      if (lr->region != NULL)
       {
          LineRegion *lr_add = new LineRegion(*lr);
          flowBackground->end = lr_add->start;
@@ -251,7 +251,7 @@ namespace colorertake5
       // ignoring out of cached interval lines
       if (!checkLine(lno)) return;
       // we have to skip transparent regions
-      if (scheme_region != ::null()){
+      if (scheme_region != NULL){
          LineRegion *lr = new LineRegion(*schemeStack.last_element());
          lr->start = ex;
          lr->end = -1;
@@ -266,10 +266,10 @@ namespace colorertake5
       
       LineRegion *lstart = getLineRegions(lno);
       
-      lr->next = ::null();
+      lr->next = NULL;
       lr->prev = lr;
 
-      if(lstart == ::null())
+      if(lstart == NULL)
       {
 
          lineRegions.set_at(getLineIndex(lno), lr);

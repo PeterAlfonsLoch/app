@@ -15,7 +15,7 @@ namespace sockets
       public:
 
          
-         file(sp(::ca::application) papp, mutex * pmutex = ::null());
+         file(sp(::ca::application) papp, mutex * pmutex = NULL);
          file(sp(::ca::application) papp, ::primitive::memory_file * pmemoryfileIn);
          virtual ~file();
 

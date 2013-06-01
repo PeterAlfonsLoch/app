@@ -54,7 +54,7 @@ void base_exception::Delete()
 bool base_exception::get_error_message(string & str, PUINT pnHelpContext)
 {
 
-   if (pnHelpContext != ::null())
+   if (pnHelpContext != NULL)
       *pnHelpContext = 0;
 
    str.Empty();
@@ -80,7 +80,7 @@ string base_exception::get_message(PUINT pnHelpContext)
 
 
 int32_t base_exception::ReportError(UINT nType /* = MB_OK */,
-   const char * pszMessageId /* = ::null() */)
+   const char * pszMessageId /* = NULL */)
 {
    string   strErrorMessage;
    int32_t     nDisposition;
@@ -89,13 +89,13 @@ int32_t base_exception::ReportError(UINT nType /* = MB_OK */,
    // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 
    if (get_error_message(strErrorMessage, &nHelpContext))
-      nDisposition = System.simple_message_box(::null(), strErrorMessage, nType);
+      nDisposition = System.simple_message_box(NULL, strErrorMessage, nType);
    else
    {
       if (pszMessageId == 0)
          //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
          pszMessageId = "Error message not available";
-      nDisposition = System.simple_message_box(::null(), pszMessageId, nType);
+      nDisposition = System.simple_message_box(NULL, pszMessageId, nType);
    }
    return nDisposition;
 }

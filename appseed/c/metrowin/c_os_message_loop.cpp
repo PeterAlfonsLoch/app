@@ -6,7 +6,7 @@ void _c_simple_message_loop()
 {
 
    MESSAGE msg;
-	while(GetMessage(&msg, ::ca::null(), 0, 0xffffffffu))
+	while(GetMessage(&msg, NULL, 0, 0xffffffffu))
 	{
       throw "todo";
 //		TranslateMessage(&msg);

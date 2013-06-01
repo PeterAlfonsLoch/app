@@ -24,7 +24,7 @@ namespace filemanager
    {
       m_itema = itema;
       if(itema.get_count() <= 0)
-         return ::null();
+         return NULL;
       sp(::ca::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
@@ -62,7 +62,7 @@ namespace filemanager
       case 1:
          {
             m_pdocGeneral = System.user()->create_form(this, m_ptabview);
-            if(m_pdocGeneral != ::null())
+            if(m_pdocGeneral != NULL)
             {
                m_pviewGeneral = m_pdocGeneral->get_typed_view < form_view > ();
                m_pviewGeneral->m_pcallback = this;
@@ -82,7 +82,7 @@ namespace filemanager
          }
          break;
       }
-      if(pcreatordata->m_pwnd != ::null())
+      if(pcreatordata->m_pwnd != NULL)
       {
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }

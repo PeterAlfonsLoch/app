@@ -57,7 +57,7 @@ namespace ca
    #ifdef WIN32
        QueryPerformanceCounter(&startCount);
    #else
-       gettimeofday(&startCount, ::null());
+       gettimeofday(&startCount, NULL);
    #endif
    }
 
@@ -74,7 +74,7 @@ namespace ca
    #ifdef WIN32
        QueryPerformanceCounter(&endCount);
    #else
-       gettimeofday(&endCount, ::null());
+       gettimeofday(&endCount, NULL);
    #endif
    }
 
@@ -94,7 +94,7 @@ namespace ca
        endTimeInMicroSec = endCount.QuadPart * (1000000.0 / frequency.QuadPart);
    #else
        if(!stopped)
-           gettimeofday(&endCount, ::null());
+           gettimeofday(&endCount, NULL);
 
        startTimeInMicroSec = (startCount.tv_sec * 1000000.0) + startCount.tv_usec;
        endTimeInMicroSec = (endCount.tv_sec * 1000000.0) + endCount.tv_usec;
@@ -141,7 +141,7 @@ namespace ca
 
    #else
 
-      gettimeofday(&endCount, ::null());
+      gettimeofday(&endCount, NULL);
 
       dTimeInMicroSec = (endCount.tv_sec * 1000000.0) + endCount.tv_usec;
 

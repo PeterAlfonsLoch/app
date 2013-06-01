@@ -14,7 +14,7 @@ namespace user
    {
       m_iControlItem = -1;
       m_iControlSubItem = -1;
-      m_pcontrolEdit = ::null();
+      m_pcontrolEdit = NULL;
 
 
       m_iOnClickClickCount    = 0;
@@ -59,7 +59,7 @@ namespace user
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
       sp(control) pcontrol = _001GetControlBySubItem(iSubItem);
-      if(pcontrol != ::null())
+      if(pcontrol != NULL)
       {
          if(pcontrol->descriptor().has_function(::user::control::function_action))
          {
@@ -67,7 +67,7 @@ namespace user
             {
 
 
-               g_pwndLastLButtonDown      = ::null();
+               g_pwndLastLButtonDown      = NULL;
 
                ::user::control_event ev;
                ev.m_puie                  = pcontrol;
@@ -110,10 +110,10 @@ namespace user
    sp(control) form_list::_001GetControlBySubItem(index iSubItem)
    {
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
-      if(pcolumn != ::null() && pcolumn->m_iControl >= 0)
+      if(pcolumn != NULL && pcolumn->m_iControl >= 0)
          return m_controldescriptorset[pcolumn->m_iControl].m_pcontrol;
       else
-         return ::null();
+         return NULL;
    }
 
    void form_list::_001PlaceControl(sp(control) pcontrol)
@@ -144,13 +144,13 @@ namespace user
    void form_list::_001SetEditControl(sp(control) pcontrol)
    {
 
-      if(pcontrol == ::null())
+      if(pcontrol == NULL)
       {
-         if(m_pcontrolEdit != ::null())
+         if(m_pcontrolEdit != NULL)
          {
             sp(class control) pcontrolEdit = m_pcontrolEdit;
             _001HideControl(pcontrolEdit);
-            m_pcontrolEdit = ::null();
+            m_pcontrolEdit = NULL;
          }
       }
       else
@@ -172,7 +172,7 @@ namespace user
 
       sp(control) pcontrol = _001GetEditControl();
 
-      if(pcontrol != ::null())
+      if(pcontrol != NULL)
       {
          _001PlaceControl(pcontrol);
       }
@@ -186,7 +186,7 @@ namespace user
 
       sp(control) pcontrol = _001GetEditControl();
 
-      if(pcontrol != ::null())
+      if(pcontrol != NULL)
       {
          _001PlaceControl(pcontrol);
       }
@@ -221,7 +221,7 @@ namespace user
 
       sp(control) pcontrol = m_controldescriptorset.get_control_by_id(wparam);
 
-      if(pcontrol == ::null())
+      if(pcontrol == NULL)
          return true;
 
       user::Notify * pnotify = (user::Notify *) lparam;
@@ -285,9 +285,9 @@ namespace user
 
    void form_list::_001HideEditingControls()
    {
-      if(_001GetEditControl() != ::null())
+      if(_001GetEditControl() != NULL)
       {
-         _001SetEditControl(::null());
+         _001SetEditControl(NULL);
       }
       for(int32_t i = 0; i < m_controldescriptorset.get_count(); i++)
       {
@@ -295,7 +295,7 @@ namespace user
          if(control.m_etype == type_edit
          || control.m_etype == type_edit_plain_text)
          {
-            if(control.m_pcontrol != ::null())
+            if(control.m_pcontrol != NULL)
             {
                control.m_pcontrol->ShowWindow(SW_HIDE);
             }
@@ -330,7 +330,7 @@ namespace user
       if(pdrawitem->m_pcolumn->m_bCustomDraw)
       {
          sp(control) pcontrol = _001GetControlBySubItem(pdrawitem->m_iSubItem);
-         if(pcontrol != ::null())
+         if(pcontrol != NULL)
          {
             pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
             control_keep controlkeep(this, pdrawitem->m_iItem, pdrawitem->m_iSubItem);
@@ -342,12 +342,12 @@ namespace user
 
    bool form_list::_001IsEditing()
    {
-      return m_pcontrolEdit != ::null();
+      return m_pcontrolEdit != NULL;
    }
 
    bool form_list::_001IsPointInside(sp(control) pcontrol, point64 point)
    {
-      if(pcontrol->m_pdescriptor != ::null())
+      if(pcontrol->m_pdescriptor != NULL)
       {
          if(pcontrol->m_pdescriptor->m_etype == type_edit
          || pcontrol->m_pdescriptor->m_etype == type_edit_plain_text)
@@ -404,7 +404,7 @@ namespace user
          if(m_columna[i].m_iControl >= 0 && m_columna[i].m_iControl < m_controldescriptorset.get_size())
          {
             class control::descriptor * pdescriptor = m_controldescriptorset.element_at(m_columna[i].m_iControl);
-            if(pdescriptor != ::null())
+            if(pdescriptor != NULL)
             {
                if(m_columna[i].m_iSubItem >= 0)
                {
@@ -433,8 +433,8 @@ namespace user
          if(_001DisplayHitTest(pt, iItem, iSubItem))
          {
             class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-            if(pcontrol != ::null()
-            && pcontrol->m_pcontrol != ::null()
+            if(pcontrol != NULL
+            && pcontrol->m_pcontrol != NULL
             && (pcontrol->m_etype == type_edit
              || pcontrol->m_etype == type_edit_plain_text)
             && !range.has_sub_item(iItem, iSubItem))
@@ -453,8 +453,8 @@ namespace user
          if(_001DisplayHitTest(pt, iItem, iSubItem))
          {
             class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-            if(pcontrol != ::null()
-            && pcontrol->m_pcontrol != ::null()
+            if(pcontrol != NULL
+            && pcontrol->m_pcontrol != NULL
             && !pcontrol->m_pcontrol->IsWindowVisible()
             && (pcontrol->m_etype == type_edit
              || pcontrol->m_etype == type_edit_plain_text))
@@ -465,11 +465,11 @@ namespace user
       }*/
       control_keep controlkeep(this, pt);
       sp(::user::interaction) pui = get_top_child();
-      sp(::user::interaction) puiBefore = ::null();
+      sp(::user::interaction) puiBefore = NULL;
       bool bError;
       try
       {
-         while(pui != ::null())
+         while(pui != NULL)
          {
             bError = false;
             try
@@ -513,7 +513,7 @@ namespace user
 
    void form_list::control_get_client_rect(sp(control) pcontrol, LPRECT lprect)
    {
-      if(pcontrol == ::null())
+      if(pcontrol == NULL)
       {
          SetRectEmpty(lprect);
          return;
@@ -545,7 +545,7 @@ namespace user
    bool form_list::BaseOnControlEvent(::user::control_event * pevent)
    {
       class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
-      if(pdescriptor != ::null())
+      if(pdescriptor != NULL)
       {
          pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
       }

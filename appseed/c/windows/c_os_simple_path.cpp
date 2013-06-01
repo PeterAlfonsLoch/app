@@ -15,12 +15,12 @@ os_simple_path::os_simple_path()
 os_simple_path::~os_simple_path()
 {
 
-   if(m_ppath != ::null())
+   if(m_ppath != NULL)
    {
          
       delete m_ppath;
          
-      m_ppath = ::null();
+      m_ppath = NULL;
 
    }
 

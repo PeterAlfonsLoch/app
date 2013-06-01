@@ -56,13 +56,13 @@ void simple_list_header_control::_001OnEndTrack(::ca::signal_object * pobj)
 #else
    throw todo(get_app());
 #endif
-   /*CTransparentWndInterface * ptwi = ::null();
+   /*CTransparentWndInterface * ptwi = NULL;
    get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
-   if(ptwi != ::null())
+   if(ptwi != NULL)
    {
       sp(::user::interaction) plist = dynamic_cast<sp(::user::interaction)>(ptwi);
-      if(plist != ::null())
+      if(plist != NULL)
       {
          plist->PostMessage(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
       }
@@ -84,13 +84,13 @@ void simple_list_header_control::_001OnTrack(::ca::signal_object * pobj)
    throw todo(get_app());
 #endif
 
-/*   CTransparentWndInterface * ptwi = ::null();
+/*   CTransparentWndInterface * ptwi = NULL;
    get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
-   if(ptwi != ::null())
+   if(ptwi != NULL)
    {
       sp(::user::interaction) plist = dynamic_cast<sp(::user::interaction)>(ptwi);
-      if(plist != ::null())
+      if(plist != NULL)
       {
          plist->PostMessage(::user::list::MESSAGE_COLUMNHEADERTRACK);
       }
@@ -125,17 +125,17 @@ void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
 #endif
 //   LPNMHEADER lpnmhd = (LPNMHEADER) pnotify->get_lpnmhdr();
    get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
-/*   CTransparentWndInterface * ptwi = ::null();
+/*   CTransparentWndInterface * ptwi = NULL;
    get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
-   if(ptwi != ::null())
+   if(ptwi != NULL)
    {
       sp(::user::interaction) plist = dynamic_cast<sp(::user::interaction)>(ptwi);
-      if(plist != ::null())
+      if(plist != NULL)
       {
          plist->PostMessage(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
       }*/
-/*      if(plist != ::null())
+/*      if(plist != NULL)
       {
          HDITEM hditem;
 
@@ -164,15 +164,15 @@ void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
 /*void simple_list_header_control::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 {
    LPNMHDDISPINFO lpdi = (LPNMHDDISPINFO) pNMHDR;
-   CTransparentWndInterface * ptwi = ::null();
+   CTransparentWndInterface * ptwi = NULL;
    CTransparentWndInterface::CGetProperty getp;
    getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
    get_parent()->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
    ptwi = getp.m_pinterface;
-   if(ptwi != ::null())
+   if(ptwi != NULL)
    {
       ::user::list * plist = dynamic_cast<::user::list *>(ptwi);
-      if(plist != ::null())
+      if(plist != NULL)
       {
          if(lpdi->mask & HDI_TEXT
             && lpdi->iItem >= 0 &&
@@ -210,7 +210,7 @@ void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
 
 bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, sp(::user::interaction)pwndParent, UINT nID)
 {
-   return ::user::interaction::create(::null(), ::null(), nStyle, *lpcrect, pwndParent, nID) != 0;
+   return ::user::interaction::create(NULL, NULL, nStyle, *lpcrect, pwndParent, nID) != 0;
 }
 
 

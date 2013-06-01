@@ -44,7 +44,7 @@ namespace nature
    //   m_datakeyWindow = VMSDATAKEY(WindowData);
 
       m_bWindowFrame    = true;
-      m_pimagelist      = ::null();
+      m_pimagelist      = NULL;
 
    }
 
@@ -167,7 +167,7 @@ namespace nature
       }
       else
       {
-         SetTimer(3, 500, ::null());
+         SetTimer(3, 500, NULL);
       }
    }
 

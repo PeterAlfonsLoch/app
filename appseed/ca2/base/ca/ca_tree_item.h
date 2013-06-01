@@ -69,14 +69,14 @@ namespace ca
       ::count get_proper_descendant_count();
       sp(tree_item) get_expandable_child(index iIndex);
       sp(tree_item) get_previous();
-      sp(tree_item) get_next(bool bChild = true, bool bParent = true, index * pindexLevel = ::null());
+      sp(tree_item) get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
 
 
       void sort_children(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &));
 
       static void swap_sibling(sp(tree_item) pitem1, sp(tree_item) pitem2);
 
-      sp(tree_item) get_item(ETreeNavigation enavigation, index * piLevelOffset = ::null());
+      sp(tree_item) get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
       sp(tree_item) get_item(ERelative erelative);
 
       virtual sp(tree_item) get_proper_item(index iIndex, index * piLevel);

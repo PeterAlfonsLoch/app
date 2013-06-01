@@ -27,7 +27,7 @@ public:
 
 
 
-   simple_mutex(const char * pszName = ::null(), bool bInitialLock = false);
+   simple_mutex(const char * pszName = NULL, bool bInitialLock = false);
    ~simple_mutex();
 
 

@@ -25,7 +25,7 @@ namespace frame
        
       SCAST_PTR(::ca::message::base, pbase, pobj);
 
-      if(m_pworkset->GetEventWindow() == ::null() || pbase->m_pwnd != m_pworkset->GetEventWindow())
+      if(m_pworkset->GetEventWindow() == NULL || pbase->m_pwnd != m_pworkset->GetEventWindow())
          return;
        if(pbase->m_uiMessage == WM_RBUTTONDOWN)
        {
@@ -38,7 +38,7 @@ namespace frame
 //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
    /*            ::user::menu * pmenu = pwnd->GetSystemMenu(FALSE);
-            if(pmenu != ::null())
+            if(pmenu != NULL)
             {
                pmenu->TrackPopupMenu(
                   lpMsg->pt.x, lpMsg->pt.y,
@@ -59,7 +59,7 @@ namespace frame
       {
       case WM_LBUTTONDBLCLK:
       {
-         point point((uint32_t)pbase->m_lparam);
+         point point(pbase->m_lparam);
          if(OnLButtonDblClk((UINT) pbase->m_wparam, point))
          {
             pbase->set_lresult(0);
@@ -85,7 +85,7 @@ namespace frame
 //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
    /*            ::user::menu * pmenu = pwnd->GetSystemMenu(FALSE);
-            if(pmenu != ::null())
+            if(pmenu != NULL)
             {
                point pt(LOWORD(lparam), HIWORD(lparam));
                pwnd->ClientToScreen(&pt);
@@ -104,8 +104,8 @@ namespace frame
    {
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(point);
-      if(m_pworkset == ::null()
-         || m_pworkset->m_pappearance == ::null())
+      if(m_pworkset == NULL
+         || m_pworkset->m_pappearance == NULL)
          return false;
       /*xxx appearance::EElement eelement;
       if(m_pworkset->m_pappearance->hit_test(point, eelement))

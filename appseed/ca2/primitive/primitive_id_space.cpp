@@ -15,7 +15,7 @@ id_space::~id_space()
 
    /*try
    {
-      if(m_pmutex != ::null())
+      if(m_pmutex != NULL)
       {
          delete m_pmutex;
       }
@@ -85,8 +85,8 @@ void id_space::sort()
    stackLowerBound.set_size(0, 1024);
    stackUpperBound.set_size(0, 1024);
 
-   register id * pid1 = ::null();
-   register id * pid2 = ::null();
+   register id * pid1 = NULL;
+   register id * pid2 = NULL;
 
    id * pida = m_ida.m_pData;
    index * pia = m_iaStr.m_pData;
@@ -268,7 +268,7 @@ strid_array::~strid_array()
 
    /*try
    {
-      if(m_pmutex != ::null())
+      if(m_pmutex != NULL)
       {
          delete m_pmutex;
       }

@@ -29,10 +29,10 @@ namespace user
 
       bool LoadBitmaps(
          const char * lpszBitmapResource,
-         const char * lpszBitmapResourceSel = ::null(),
-         const char * lpszBitmapResourceFocus = ::null(),
-         const char * lpszBitmapResourceDisabled = ::null(),
-         const char * lpszBitmapResourceHover = ::null());
+         const char * lpszBitmapResourceSel = NULL,
+         const char * lpszBitmapResourceFocus = NULL,
+         const char * lpszBitmapResourceDisabled = NULL,
+         const char * lpszBitmapResourceHover = NULL);
 
       void UpdateHover();
 

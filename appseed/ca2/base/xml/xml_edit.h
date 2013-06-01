@@ -67,7 +67,7 @@ namespace xml
 
 
       edit(const edit &) :
-         ::ca::edit < ::xml::document >(::null())
+         ::ca::edit < ::xml::document >(NULL)
       {
       }
 

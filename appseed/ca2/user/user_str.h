@@ -51,8 +51,8 @@ namespace user
       inline str_schema * get_schema(const ::id & idSchema)
       {
          strid_map < str_schema > ::pair * ppair = PLookup(idSchema);
-         if(ppair == ::null())
-            return ::null();
+         if(ppair == NULL)
+            return NULL;
          return &ppair->m_element2;
       }
 
@@ -80,8 +80,8 @@ namespace user
       inline str_locale * get_locale(const ::id & idLocale)
       {
          strid_map < str_locale > ::pair * ppair = PLookup(idLocale);
-         if(ppair == ::null())
-            return ::null();
+         if(ppair == NULL)
+            return NULL;
          return &ppair->m_element2;
       }
 

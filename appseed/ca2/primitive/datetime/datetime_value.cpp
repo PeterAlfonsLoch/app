@@ -41,31 +41,31 @@ namespace datetime
                value span;
                span.m_bSpan = true;
                if(strText1 == "day" || strText1 == "days" || strText1 == "dia" || strText1 == "dias"
-                  || (pcontext != ::null() && pcontext->matches(idCalendarDay, strText1))
-                  || (pcontext != ::null() && pcontext->matches(idCalendarDays, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarDay, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarDays, strText1)))
                {
                   span.m_iDay = atoi(strNumber);
                }
                else if(strText1 == "week" || strText1 == "weeks"
-                  || (pcontext != ::null() && pcontext->matches(idCalendarWeek, strText1))
-                  || (pcontext != ::null() && pcontext->matches(idCalendarWeeks, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarWeek, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarWeeks, strText1)))
                {
                   span.m_iDay = atoi(strNumber) * 7;
                }
                else if(strText1 == "hour" || strText1 == "hours" || strText1 == "hora" || strText1 == "horas"
-                  || (pcontext != ::null() && pcontext->matches(idCalendarHour, strText1))
-                  || (pcontext != ::null() && pcontext->matches(idCalendarHour, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarHour, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarHour, strText1)))
                {
                   span.m_iHour = atoi(strNumber);
                }
                else if(strText1 == "year" || strText1 == "years"
-                  || (pcontext != ::null() && pcontext->matches(idCalendarYear, strText1))
-                  || (pcontext != ::null() && pcontext->matches(idCalendarYears, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarYear, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarYears, strText1)))
                {
                   span.m_iYear = atoi(strNumber);
                }
                else if(strText1 == "now"
-                  || (pcontext != ::null() && pcontext->matches(idCalendarNow, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarNow, strText1)))
                {
                   throw "now cannot be span";
                }
@@ -164,7 +164,7 @@ namespace datetime
                atm.tm_mon = set["month"].int32() - 1;        // tm_mon is 0 based
                atm.tm_year = set["year"].int32() - 1900;     // tm_year is 1900 based
                atm.tm_isdst = -1;
-               /*time_t now = _time64(::null());
+               /*time_t now = _time64(NULL);
                time_t nowUtc = mktime(gmtime(&now));
                time_t tDiff = difftime(nowUtc, now);*/
 #ifdef WINDOWS
@@ -206,7 +206,7 @@ namespace datetime
       }
       if(!bBaseTime && (
          ::ca::str::begins_eat(str, "today") ||
-         (pcontext != ::null() && pcontext->begins_eat(str, "calendar:today"))))
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
@@ -214,7 +214,7 @@ namespace datetime
       }
       if(!bBaseTime &&(
          ::ca::str::begins_eat(str, "tomorrow") ||
-         (pcontext != ::null() && pcontext->begins_eat(str, "calendar:tomorrow"))))
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
@@ -223,7 +223,7 @@ namespace datetime
       }
       if(!bBaseTime &&(
          ::ca::str::begins_eat(str, "now") ||
-         (pcontext != ::null() && pcontext->begins_eat(str, "calendar:now"))))
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:now"))))
       {
          time = ::datetime::time::get_current_time();
          bBaseTime = true;
@@ -506,8 +506,8 @@ datetime::value operator + (const datetime::value & val1, const datetime::value 
    }
    else if((val1.m_bSpan && !val2.m_bSpan) || (val2.m_bSpan && !val1.m_bSpan))
    {
-      const datetime::value * pdate = ::null();
-      const datetime::value * pspan = ::null();
+      const datetime::value * pdate = NULL;
+      const datetime::value * pspan = NULL;
       if(val1.m_bSpan)
       {
          pdate = &val2;

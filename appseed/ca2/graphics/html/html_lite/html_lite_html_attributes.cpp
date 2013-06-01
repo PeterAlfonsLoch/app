@@ -74,7 +74,7 @@ uint_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char
       {
          ASSERT(lpszEnd != lpszBegin);
 
-         // only white-space characters, a null-character, an
+         // only white-space characters, a NULL-character, an
          // equal-sign, a greater-than symbol, or a forward-slash
          // can act as the separator between an attribute and its
          // value
@@ -192,7 +192,7 @@ uint_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char
 uint_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString, strsize iLen)
 {
 
-   CElemAttrArray      *pcoll = ::null();
+   CElemAttrArray      *pcoll = NULL;
    LiteHTMLElemAttr   oElemAttr;
    const uint_ptr         nStrLen = iLen;
    uint_ptr            nRetVal = 0U,
@@ -210,10 +210,10 @@ uint_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ch
       }
 
       // collection has not been instantiated until now?
-      if (pcoll == ::null())
+      if (pcoll == NULL)
       {
          // instantiate now
-         if ((pcoll = new CElemAttrArray) == ::null())
+         if ((pcoll = new CElemAttrArray) == NULL)
             // out of primitive::memory?
          {
             //            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of primitive::memory.\n");
@@ -233,7 +233,7 @@ uint_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ch
    while (nRetVal < nStrLen);
 
    // collection was never instantiated?
-   if (pcoll == ::null())
+   if (pcoll == NULL)
       goto LError;
    // collection is is_empty?
    if (pcoll->get_upper_bound() == -1)
@@ -243,7 +243,7 @@ uint_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ch
       goto LError;
 
    m_parrAttrib = pcoll;
-   pcoll = ::null();
+   pcoll = NULL;
    goto LCleanExit;   // success!
 
 LError:
@@ -261,15 +261,15 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const 
    ASSERT(__is_valid_string(lpszValue));
 
    LiteHTMLElemAttr   *pItem = new LiteHTMLElemAttr(lpszName, lpszValue);
-   if (pItem != ::null())
+   if (pItem != NULL)
    {
-      if (m_parrAttrib == ::null())
+      if (m_parrAttrib == NULL)
       {
-         if ((m_parrAttrib = new CElemAttrArray) == ::null())
+         if ((m_parrAttrib = new CElemAttrArray) == NULL)
          {
             SAFE_DELETE_POINTER(pItem);
             //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of primitive::memory.\n");
-            return (::null());
+            return (NULL);
          }
       }
 
@@ -425,7 +425,7 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      crTemp = (uint32_t) ::strtoul(m_strValue.Mid(1), ::null(), 16);
+      crTemp = (uint32_t) ::strtoul(m_strValue.Mid(1), NULL, 16);
 
    }
 

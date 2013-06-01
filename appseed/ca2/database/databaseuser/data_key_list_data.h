@@ -30,7 +30,7 @@ namespace databaseuser
 
 
       data_key_list_data(const data_key_list_data & ) :
-         ::user::list_data(::null())
+         ::user::list_data(NULL)
       {
       }
 

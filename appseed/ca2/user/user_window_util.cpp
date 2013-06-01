@@ -38,7 +38,7 @@ namespace user
       int32_t iOrder = 0;
       oswindow oswindowOrder = ::GetDesktopWindow();
       oswindowOrder = ::GetWindow(oswindowOrder, GW_CHILD);
-      while(oswindowOrder != ::null()
+      while(oswindowOrder != NULL
          && ::IsWindow(oswindowOrder))
       {
          add(oswindowOrder);
@@ -84,21 +84,21 @@ namespace user
 
    sp(::ca::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
-   while(pwndChild != ::null()
+   while(pwndChild != NULL
    && ::IsWindow(pwndChild->GetSafeoswindow_()))
    {
    pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
-   if(pwnd == ::null())
+   if(pwnd == NULL)
    {
-   CTransparentWndInterface * ptwi = ::null();
+   CTransparentWndInterface * ptwi = NULL;
    CTransparentWndInterface::CGetProperty getp;
    getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
    pwndChild->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
    ptwi = getp.m_pinterface;
-   if(ptwi != ::null())
+   if(ptwi != NULL)
    {
    pwnd = ptwi->TwiGetWnd();
-   if(pwnd != ::null())
+   if(pwnd != NULL)
    {
    wndpa2.add(pwnd);
    }
@@ -154,7 +154,7 @@ namespace user
 
    oswindow oswindowChild = ::GetWindow(oswindow, GW_HWNDFIRST);
 
-   while(oswindowChild != ::null()
+   while(oswindowChild != NULL
    && ::IsWindow(oswindowChild))
    {
    oswindowa2.add(oswindowChild);
@@ -190,7 +190,7 @@ namespace user
    if(!::IsWindow)
    return;
    oswindow oswindowChild = ::GetTopWindow;
-   while(oswindowChild != ::null())
+   while(oswindowChild != NULL)
    {
    oswindowa.add(oswindowChild);
    oswindowChild = ::GetWindow(oswindowChild, GW_HWNDNEXT);
@@ -255,13 +255,13 @@ namespace user
 
       ::oswindow oswindowChild = ::GetTopWindow(oswindow);
 
-      while(oswindowChild != ::null())
+      while(oswindowChild != NULL)
       {
          m_oswindowtreea.add_new();
          oswindow_tree & oswindowtreeChild = m_oswindowtreea.last_element();
          oswindowtreeChild.m_oswindow = oswindowChild;
          oswindowtreeChild.m_dwUser = 0;
-         oswindowtreeChild.m_pvoidUser = ::null();
+         oswindowtreeChild.m_pvoidUser = NULL;
          oswindowtreeChild.EnumDescendants();
          oswindowChild = ::GetWindow(oswindowChild, GW_HWNDNEXT);
       }
@@ -291,7 +291,7 @@ namespace user
    oswindow_tree::oswindow_tree()
    {
 
-      m_oswindow = ::ca::null();
+      m_oswindow = NULL;
 
    }
 
@@ -329,7 +329,7 @@ namespace user
 
    bool oswindow_tree::Array::remove(oswindow oswindow)
    {
-      if(oswindow == ::null())
+      if(oswindow == NULL)
          return true;
       int32_t i;
       for(i = 0; i < this->get_size();)
@@ -382,7 +382,7 @@ namespace user
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
    sp(::ca::window) pwndChild = pwnd->GetTopWindow();
-   while(pwndChild != ::null())
+   while(pwndChild != NULL)
    {
    wndpa.add(pwndChild);
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
@@ -404,7 +404,7 @@ namespace user
 
       ::oswindow oswindowChild = ::GetTopWindow(oswindow);
 
-      while(oswindowChild != ::null())
+      while(oswindowChild != NULL)
       {
 
          oswindowa.add(oswindowChild);
@@ -441,10 +441,10 @@ namespace user
 
    sp(::ca::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
-   while(pwndChild != ::null())
+   while(pwndChild != NULL)
    {
    pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
-   if(pwnd == ::null())
+   if(pwnd == NULL)
    {
    wndpa2.add(pwnd);
    }
@@ -480,7 +480,7 @@ namespace user
 
    for(int32_t i = 0; i < wndpa.get_size();)
    {
-   if(wndpa[i]->get_parent() != ::null())
+   if(wndpa[i]->get_parent() != NULL)
    {
    wndpa.remove_at(i);
    }
@@ -500,7 +500,7 @@ namespace user
 #ifndef METROWIN
       rect rectMajor;
       ::oswindow oswindowParent = ::GetParent(oswindow);
-      if(oswindowParent == ::null())
+      if(oswindowParent == NULL)
       {
 
 #ifdef WINDOWSEX
@@ -531,7 +531,7 @@ namespace user
 
       ::ClientToScreen(oswindow, &rect.bottom_right());
 
-      if(oswindowParent != ::null())
+      if(oswindowParent != NULL)
       {
 
          ::ScreenToClient(oswindowParent, &rect.top_left());
@@ -597,14 +597,14 @@ namespace user
    {
    // walk through HWNDs to avoid creating temporary ::ca::window objects
    // unless we need to call this function recursively
-   for (oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != ::null();
+   for (oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != NULL;
    oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
    {
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
    sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(oswindow_Child);
-   if (pWnd != ::null())
+   if (pWnd != NULL)
    {
    // call ::ca::window proc directly since it is a C++ ::ca::window
    __call_window_procedure(pWnd, pWnd->m_oswindow_, message, wParam, lParam);
@@ -615,7 +615,7 @@ namespace user
    // send message with Windows SendMessage API
    ::SendMessage(oswindow_Child, message, wParam, lParam);
    }
-   if (bDeep && ::GetTopWindow(oswindow_Child) != ::null())
+   if (bDeep && ::GetTopWindow(oswindow_Child) != NULL)
    {
    // send to child windows after parent
    SendMessageToDescendants(oswindow_Child, message, wParam, lParam,
@@ -632,7 +632,7 @@ namespace user
 
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
-      for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != ::null(); oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
+      for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
@@ -643,7 +643,7 @@ namespace user
          {
          }
 
-         if (bDeep && ::GetTopWindow(oswindow_Child) != ::null())
+         if (bDeep && ::GetTopWindow(oswindow_Child) != NULL)
          {
 
             // send to child windows after parent
@@ -713,7 +713,7 @@ namespace user
 
 #if !defined(METROWIN) && !defined(MACOS)
 //      int32_t iOrder = 0;
-      ::oswindow oswindowOrder = ::ca::null();
+      ::oswindow oswindowOrder = NULL;
       try
       {
          oswindowOrder = ::GetWindow(oswindow, GW_HWNDFIRST);
@@ -725,7 +725,7 @@ namespace user
 
       int32_t iOrder = 0;
 
-      while(oswindowOrder != ::null() && ::IsWindow(oswindowOrder))
+      while(oswindowOrder != NULL && ::IsWindow(oswindowOrder))
       {
 
          if(oswindow == oswindowOrder)
@@ -758,7 +758,7 @@ namespace user
       ia.remove_all();
       while(true)
       {
-         if(oswindow == ::null() || !::IsWindow(oswindow))
+         if(oswindow == NULL || !::IsWindow(oswindow))
             break;
          iOrder = GetZOrder(oswindow);
          if(iOrder == 0x7fffffff)
@@ -780,7 +780,7 @@ namespace user
    if(!::IsWindow)
    return;
    oswindow oswindowChild = ::GetTopWindow;
-   while(oswindowChild != ::null())
+   while(oswindowChild != NULL)
    {
    oswindowa.add(oswindowChild);
    oswindowChild = ::GetWindow(oswindowChild, GW_HWNDNEXT);
@@ -869,7 +869,7 @@ namespace user
       while(true)
       {
          oswindowDescendant = ::GetParent(oswindowDescendant);
-         if(oswindowDescendant == ::null())
+         if(oswindowDescendant == NULL)
             return false;
          if(oswindowDescendant == oswindowAscendant)
             return true;
@@ -888,7 +888,7 @@ namespace user
             return this->element_at(i);
          }
       }
-      return ::null();
+      return NULL;
    }
 
    sp(::user::interaction) interaction_ptr_array::find_first(oswindow oswindow)
@@ -904,7 +904,7 @@ namespace user
          }
       }
 
-      return ::null();
+      return NULL;
 
    }
 

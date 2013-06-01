@@ -138,7 +138,7 @@ void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       set_capture();
       ScrollLineA();
-      SetTimer(100, 300, ::null());
+      SetTimer(100, 300, NULL);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -146,7 +146,7 @@ void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
    {
       set_capture();
       ScrollLineB();
-      SetTimer(200, 300, ::null());
+      SetTimer(200, 300, NULL);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -156,7 +156,7 @@ void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
       {
          set_capture();
          ScrollPageA();
-         SetTimer(300, 300, ::null());
+         SetTimer(300, 300, NULL);
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
@@ -167,7 +167,7 @@ void simple_scroll_bar::_001OnLButtonDown(::ca::signal_object * pobj)
       {
          set_capture();
          ScrollPageB();
-         SetTimer(400, 300, ::null());
+         SetTimer(400, 300, NULL);
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
@@ -192,7 +192,7 @@ void simple_scroll_bar::_001OnLButtonUp(::ca::signal_object * pobj)
    KillTimer(410);
    pmouse->m_bRet = false;
 
-   if((pcandidate != ::null() && pcandidate == this) || m_bTracking)
+   if((pcandidate != NULL && pcandidate == this) || m_bTracking)
    {
       System.release_capture_uie();
       bool bWasTracking = m_bTracking;
@@ -516,7 +516,7 @@ void simple_scroll_bar::_001OnTimer(::ca::signal_object * pobj)
    {
    case 100:
       KillTimer(ptimer->m_nIDEvent);
-      SetTimer(110, 10, ::null());
+      SetTimer(110, 10, NULL);
    case 110:
       ScrollLineA();
       if(m_scrollinfo.nPos == m_scrollinfo.nMin)
@@ -526,7 +526,7 @@ void simple_scroll_bar::_001OnTimer(::ca::signal_object * pobj)
       break;
    case 200:
       KillTimer(ptimer->m_nIDEvent);
-      SetTimer(210, 10, ::null());
+      SetTimer(210, 10, NULL);
    case 210:
       ScrollLineB();
       if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -536,7 +536,7 @@ void simple_scroll_bar::_001OnTimer(::ca::signal_object * pobj)
       break;
    case 300:
       KillTimer(ptimer->m_nIDEvent);
-      SetTimer(310, 10, ::null());
+      SetTimer(310, 10, NULL);
    case 310:
       GetCursorPos(&point);
       ScreenToClient(&point);
@@ -557,7 +557,7 @@ void simple_scroll_bar::_001OnTimer(::ca::signal_object * pobj)
       break;
    case 400:
       KillTimer(ptimer->m_nIDEvent);
-      SetTimer(410, 10, ::null());
+      SetTimer(410, 10, NULL);
    case 410:
       GetCursorPos(&point);
       ScreenToClient(&point);
@@ -812,7 +812,7 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 
    m_penDraw->create_solid(pdc, 1, ARGB(255, 0, 0, 0));
 
-   pdc->SelectClipRgn(::null());
+   pdc->SelectClipRgn(NULL);
 
    rect rectClient;
 

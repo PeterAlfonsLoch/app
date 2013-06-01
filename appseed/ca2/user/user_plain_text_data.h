@@ -94,8 +94,8 @@ namespace user
    private:
 
       plain_text_data(const plain_text_data & ) :
-         m_editfile(::null()),
-         ::ca::tree_data(::null())
+         m_editfile(NULL),
+         ::ca::tree_data(NULL)
       {
       }
 

@@ -40,7 +40,7 @@ namespace libcompress
          ::count numProps = method.Props.get_count();
          ::c::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
          setCoderProperties = coder;
-         if (setCoderProperties == ::null())
+         if (setCoderProperties == NULL)
          {
             if (numProps != 0)
                return E_INVALIDARG;
@@ -82,7 +82,7 @@ namespace libcompress
       /*
       ::c::smart_pointer<::libcompress::write_coder_properties_interface> writeCoderProperties;
       coder->QueryInterface(IID_ICompressWriteCoderProperties, (void **)&writeCoderProperties);
-      if (writeCoderProperties != ::null())
+      if (writeCoderProperties != NULL)
       {
       CSequentialOutStreamImp *outStreamSpec = new CSequentialOutStreamImp;
       ::c::smart_pointer<ISequentialOutStream> outStream(outStreamSpec);

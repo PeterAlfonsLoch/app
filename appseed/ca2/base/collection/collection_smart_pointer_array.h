@@ -52,7 +52,7 @@ public:
    DERIVED * get(index iStart = 0)
    {
 
-      DERIVED * pderived = ::null();
+      DERIVED * pderived = NULL;
 
       for(index i = iStart; i < this->get_count(); i++)
       {
@@ -68,12 +68,12 @@ public:
 
          }
 
-         if(pderived != ::null())
+         if(pderived != NULL)
             return pderived;
 
       }
 
-      return ::null();
+      return NULL;
 
    }
 

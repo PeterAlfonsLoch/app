@@ -1697,7 +1697,7 @@ int av_add_index_entry(AVStream *st, int64_t pos, int64_t timestamp,
 /**
  * Split a URL string into components.
  *
- * The pointers to buffers for storing individual components may be null,
+ * The pointers to buffers for storing individual components may be NULL,
  * in order to ignore that component. Buffers for components not found are
  * set to empty strings. If the port is not found, it is set to a negative
  * value.

@@ -10,8 +10,8 @@ namespace xml
       ::ca::section(papp)
    {
       
-      m_poptionDefault     = ::null();
-      m_pparseinfoDefault  = ::null();
+      m_poptionDefault     = NULL;
+      m_pparseinfoDefault  = NULL;
 
 
    }

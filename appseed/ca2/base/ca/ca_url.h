@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   bool CLASS_DECL_ca2 is_url(const char * pszCandidate, const char ** ppszRequest = ::null());
+   bool CLASS_DECL_ca2 is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
 
 
    class CLASS_DECL_ca2 url :

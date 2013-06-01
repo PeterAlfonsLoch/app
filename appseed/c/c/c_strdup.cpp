@@ -4,7 +4,7 @@
 
 void strcpy_dup(char * dest, const char * cpy)
 {
-   if(cpy != ::null() && dest != ::null())
+   if(cpy != NULL && dest != NULL)
    {
       strcpy(dest, cpy);
    }
@@ -25,7 +25,7 @@ void wcsncpy_dup(wchar_t * dest, const wchar_t * cpy, ::count iLen)
 
 ::count strlen_dup(const char * str)
 {
-   if(str == ::null())
+   if(str == NULL)
       return 0;
    return strlen(str);
 /*   const char * pszEnd = str;

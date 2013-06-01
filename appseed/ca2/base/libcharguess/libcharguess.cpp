@@ -36,12 +36,12 @@ const char * LibCharGuess::GuessCharset(const char * lpsz)
 
 uint32_t LibCharGuess::GuessCodePage(const char * lpsz)
 {
-   if(lpsz == ::null())
+   if(lpsz == NULL)
       return 0;
 
    const char * lpszCharset = GuessCharset(lpsz);
 
-   if(lpszCharset == ::null())
+   if(lpszCharset == NULL)
    {
       return 0;
    }

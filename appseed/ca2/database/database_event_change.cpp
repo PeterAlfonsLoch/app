@@ -5,24 +5,24 @@ namespace database
 {
 
    change_event::change_event() :
-      m_pvar(::null())
+      m_pvar(NULL)
    {
-      m_pserver = ::null();
-      m_puh = ::null();
+      m_pserver = NULL;
+      m_puh = NULL;
       m_bOk = true;
    }
 
    change_event::change_event(var & var) :
       m_pvar(&var)
    {
-      m_pserver = ::null();
-      m_puh = ::null();
+      m_pserver = NULL;
+      m_puh = NULL;
       m_bOk = true;
    }
 
    bool change_event::data_get(::ca::byte_serializable & obj)
    {
-      if(m_pserver != ::null())
+      if(m_pserver != NULL)
       {
          return m_pserver->data_server_load(
             m_key.m_pclient,

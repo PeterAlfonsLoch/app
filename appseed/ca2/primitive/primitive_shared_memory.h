@@ -19,7 +19,7 @@ namespace primitive
 
 
       shared_memory(const memory_base & memory);
-      shared_memory(memory_container * pmsc = ::null(), memory_size dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
+      shared_memory(memory_container * pmsc = NULL, memory_size dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
       shared_memory(memory_container * pmsc, void * pMemory, memory_size dwSize);
       shared_memory(const void *, memory_size iCount);
       virtual ~shared_memory();

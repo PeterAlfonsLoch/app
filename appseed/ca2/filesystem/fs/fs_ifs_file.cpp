@@ -77,7 +77,7 @@ void ifs_file::set_file_data()
    string strUrl;
 
 
-   if(m_varFile["xmledit"].ca < ::primitive::memory_file > () != ::null())
+   if(m_varFile["xmledit"].ca < ::primitive::memory_file > () != NULL)
    {
 
       strUrl = "http://file.veriwell.net/ifs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);

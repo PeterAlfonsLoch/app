@@ -3,8 +3,8 @@
 
 
 
-simple_mutex * os_thread::s_pmutex = ::null();
-simple_array < os_thread * > * os_thread::s_pptra = ::null();
+simple_mutex * os_thread::s_pmutex = NULL;
+simple_array < os_thread * > * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
@@ -109,7 +109,7 @@ DWORD WINAPI os_thread::thread_proc(LPVOID lpparameter)
 
    uint32_t uiRet = posthread->run();
 
-   t_posthread = ::null();
+   t_posthread = NULL;
 
    delete posthread;
 
@@ -161,7 +161,7 @@ HANDLE start_thread(uint32_t (* pfn)(void *), void * pv, int32_t iPriority)
 
    UNREFERENCED_PARAMETER(iPriority);
 
-   return create_thread(::null(), 0, pfn, pv, 0, ::null());
+   return create_thread(NULL, 0, pfn, pv, 0, NULL);
 
 }
 
@@ -189,7 +189,7 @@ int32_t thread_layer::run()
    while(true)
    {
 
-      if(!PeekMessage(&msg, ::null(), 0, 0xffffffffu, TRUE))
+      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
       {
 
          if(!on_idle())
@@ -230,7 +230,7 @@ void thread_layer::wait_thread(uint32_t dwMillis)
 
 }
 
-static HANDLE g_hMainThread = ::null();
+static HANDLE g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
 
 CLASS_DECL_c void set_main_thread(HANDLE hThread)
@@ -238,7 +238,7 @@ CLASS_DECL_c void set_main_thread(HANDLE hThread)
    
    MSG msg;
 
-   PeekMessage(&msg, ::null(), 0, 0xffffffff, FALSE);
+   PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
 
    g_hMainThread = hThread;
 
@@ -249,7 +249,7 @@ CLASS_DECL_c void set_main_thread_id(UINT uiThread)
    
    MSG msg;
 
-   PeekMessage(&msg, ::null(), 0, 0xffffffff, FALSE);
+   PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
 
    g_uiMainThread = uiThread;
 
@@ -272,7 +272,7 @@ CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
 
    MSG msg;
 
-   PeekMessage(&msg, ::null(), 0, 0xffffffff, FALSE);
+   PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
    
    AttachThreadInput(::GetCurrentThreadId(), get_main_thread_id(), bAttach ? TRUE : FALSE);
 

@@ -97,7 +97,7 @@ namespace zip
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
       enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
-      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = ::null(), void ** ppBufMax = ::null());
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
 
    private:

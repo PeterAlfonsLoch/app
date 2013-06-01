@@ -36,7 +36,7 @@ namespace sockets
 
    EventHandler::EventHandler(sp(::ca::application) papp, StdLog *p) :
       ca(papp),
-      socket_handler(papp, p), m_quit(false), m_socket(::null())
+      socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
    }
 
@@ -44,7 +44,7 @@ namespace sockets
    EventHandler::EventHandler(sp(::ca::application) papp, mutex & m,StdLog *p) :
       ca(papp),
       socket_handler(papp, m, p),
-      m_quit(false), m_socket(::null())
+      m_quit(false), m_socket(NULL)
    {
    }
 
@@ -52,7 +52,7 @@ namespace sockets
    EventHandler::~EventHandler()
    {
       POSITION pos = m_events.get_head_position();
-      while(pos != ::null())
+      while(pos != NULL)
       {
          Event * pe = m_events.get_next(pos);
          pe -> GetFrom() -> SetHandlerInvalid();
@@ -67,7 +67,7 @@ namespace sockets
       if (!m_events.get_size())
          return false;
       POSITION pos = m_events.get_head_position();
-      if(pos != ::null())
+      if(pos != NULL)
       {
          Event * pe = m_events.get_next(pos);
          EventTime now;
@@ -88,29 +88,29 @@ namespace sockets
    {
       EventTime now;
       POSITION pos = m_events.get_head_position();
-      while(pos != ::null())
+      while(pos != NULL)
       {
          Event * pe = m_events.get_next(pos);
          if(!(pe->get_time() < now))
             break;
          socket * s = dynamic_cast<socket *>(pe->GetFrom());
          /*
-         s == ::null()    This is another object implementing 'IEventOwner' and not a socket.
-         s != ::null()    This is a socket implementing IEventOwner, and we can check that the
+         s == NULL    This is another object implementing 'IEventOwner' and not a socket.
+         s != NULL    This is a socket implementing IEventOwner, and we can check that the
                  object instance still is valid using socket_handler::Valid.
          */
          if (!s || (s && Valid(s)))
          {
             pe ->GetFrom()->OnEvent(pe->GetID());
          }
-         for (pos = m_events.get_head_position(); pos != ::null(); )
+         for (pos = m_events.get_head_position(); pos != NULL; )
          {
             Event * pe2 = m_events.get_next(pos);
             if(pe2 == pe)
                break;
          }
          delete pe;
-         if(pos != ::null())
+         if(pos != NULL)
             m_events.remove_at(pos);
          pos = m_events.get_head_position();
       }
@@ -121,7 +121,7 @@ namespace sockets
    {
       Event * peNew = new Event(from, sec, usec);
       POSITION pos = m_events.get_head_position();
-      while(pos != ::null())
+      while(pos != NULL)
       {
          Event * pe = m_events.get_next(pos);
          if(!(*pe < *peNew))
@@ -143,7 +143,7 @@ namespace sockets
       {
          repeat = false;
          POSITION pos = m_events.get_head_position();
-         for(; pos != ::null();)
+         for(; pos != NULL;)
          {
             Event * pe = m_events.get_next(pos);
             if(pe->GetFrom() == from)
@@ -185,7 +185,7 @@ namespace sockets
    void EventHandler::RemoveEvent(IEventOwner *from, long eid)
    {
       POSITION pos = m_events.get_head_position();
-      for(; pos != ::null(); )
+      for(; pos != NULL; )
       {
          Event * pe = m_events.get_next(pos);
          if(from == pe->GetFrom() && eid == pe->GetID())

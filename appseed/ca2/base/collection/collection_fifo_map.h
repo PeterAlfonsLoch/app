@@ -33,7 +33,7 @@ public:
       iterator()
       {
          m_i      = 0;
-         m_pmap   = ::null();
+         m_pmap   = NULL;
       }
 
       iterator(const iterator & iterator)
@@ -66,7 +66,7 @@ public:
 
       iterator & operator ++ ()
       {
-         if(m_i != 0 && m_pmap != ::null())
+         if(m_i != 0 && m_pmap != NULL)
          {
             m_i++;
             if(m_i > m_pmap->m_ptra.get_size())
@@ -79,7 +79,7 @@ public:
 
       iterator operator ++ (int32_t)
       {
-         if(m_i != 0 && m_pmap != ::null())
+         if(m_i != 0 && m_pmap != NULL)
          {
             m_i++;
             if(m_i > m_pmap->m_ptra.get_size())
@@ -208,7 +208,7 @@ public:
 
    pair * next(pair * & ppair)
    {
-      if(ppair == ::null())
+      if(ppair == NULL)
       {
          ppair = PGetFirstAssoc();
       }
@@ -221,7 +221,7 @@ public:
 
    const pair * next(const pair * & ppair) const
    {
-      if(ppair == ::null())
+      if(ppair == NULL)
       {
          ppair = PGetFirstAssoc();
       }
@@ -235,8 +235,8 @@ public:
 
    void set(fifo_map & fifo_map)
    {
-      pair * ppair = ::null();
-      while(fifo_map.next(ppair) != ::null())
+      pair * ppair = NULL;
+      while(fifo_map.next(ppair) != NULL)
       {
          set_at(ppair->m_element1, ppair->m_element2);
       }
@@ -285,7 +285,7 @@ inline void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::set_at(ARG_KEY
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 inline POSITION fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::get_start_position() const
-{ return (m_ptra.get_count() == 0) ? ::null() : BEFORE_START_POSITION; }
+{ return (m_ptra.get_count() == 0) ? NULL : BEFORE_START_POSITION; }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 const typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair* fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::PGetFirstAssoc() const
@@ -294,7 +294,7 @@ const typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair* fifo_
    ASSERT_VALID(this);
 
    if(m_ptra.get_count() <= 0)
-      return ::null();
+      return NULL;
 
    return m_ptra[0];
 
@@ -305,7 +305,7 @@ typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair* fifo_map < 
 {
 
    if(m_ptra.get_count() <= 0)
-      return ::null();
+      return NULL;
 
    return m_ptra[0];
 
@@ -385,7 +385,7 @@ bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::Lookup(ARG_KEY key, V
 
    pair * passoc = PLookup(key);
 
-   if (passoc == ::null())
+   if (passoc == NULL)
       return false;
 
    rValue = passoc->m_element2;
@@ -401,7 +401,7 @@ const typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair* fifo_
    index i;
 
    if(!find_key(key, i))
-      return ::null();
+      return NULL;
 
    return m_ptra[i];
 
@@ -417,7 +417,7 @@ typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair* fifo_map < 
    index i;
 
    if(!find_key(key, i))
-      return ::null();
+      return NULL;
 
    return m_ptra[i];
 
@@ -432,7 +432,7 @@ VALUE * fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pget(ARG_KEY key)
    if(p)
       return &p->m_element2;
    else
-      return ::null();
+      return NULL;
 
 }
 
@@ -444,14 +444,14 @@ VALUE& fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::operator[](ARG_KEY 
 
    pair * ppair = PLookup(key);
 
-   if(ppair == ::null())
+   if(ppair == NULL)
    {
 
       add_key(key);
 
       ppair = PLookup(key);
 
-      ASSERT(ppair != ::null());
+      ASSERT(ppair != NULL);
 
    }
 
@@ -483,7 +483,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 ::index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_pair(pair * ppair) const
 {
 
-   if(ppair == ::null())
+   if(ppair == NULL)
       return m_ptra.get_size();
 
    if(ppair == (pair *) (uint_ptr) -1)
@@ -631,7 +631,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 ::count fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::count(const KEY & key) const
 {
 
-   return this->PLookup(key) != ::null() ? 1 : 0;
+   return this->PLookup(key) != NULL ? 1 : 0;
 
 }
 
@@ -639,7 +639,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::has(const KEY & key) const
 {
 
-   return this->PLookup(key) != ::null();
+   return this->PLookup(key) != NULL;
 
 }
 
@@ -647,7 +647,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::contains(const KEY & key) const
 {
 
-   return this->PLookup(key) != ::null();
+   return this->PLookup(key) != NULL;
 
 }
 
@@ -668,7 +668,7 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase(iterator first,
    if(iFirst < 0)
       return;
 
-   if(last.m_ppair == ::null())
+   if(last.m_ppair == NULL)
       iFirst = 0;
    else
       iFirst = m_ptra.find(first.m_ppair);
@@ -728,7 +728,7 @@ const typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair*
    if(iRet >= m_ptra.get_count())
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -753,7 +753,7 @@ typename fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair*
    if(iRet >= m_ptra.get_count())
    {
 
-      return ::null();
+      return NULL;
 
    }
 
@@ -766,7 +766,7 @@ VALUE fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE > ::
    get(ARG_KEY argkey, ARG_VALUE valueDefault)
 {
    pair * ppair = PLookup(argkey);
-   if(ppair == ::null())
+   if(ppair == NULL)
       return valueDefault;
    else
       return ppair->m_element2;
@@ -784,7 +784,7 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::dump(dump_context & d
       // Dump in format "[key] -> value"
 
       const pair * ppair = PGetFirstAssoc();
-      while (ppair != ::null())
+      while (ppair != NULL)
       {
          ppair = PGetNextAssoc(ppair);
          dumpcontext << "\n\t[";
@@ -1055,8 +1055,8 @@ public:
    T * get(string key)
    {
       T ** p = (T **) string_to_ptr::pget(key);
-      if(p == ::null())
-         return ::null();
+      if(p == NULL)
+         return NULL;
       else
          return (T*) *p;
    }

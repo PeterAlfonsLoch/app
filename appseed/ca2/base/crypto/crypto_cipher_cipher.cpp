@@ -95,14 +95,14 @@ cipher_type_self_test(const cipher_type_t *ct) {
    * check to make sure that we have at least one test case, and
    * return an error if we don't - we need to be paranoid here
    */
-  if (test_case == ::null())
+  if (test_case == NULL)
     return err_status_cant_check;
 
   /*
    * loop over all test cases, perform known-answer tests of both the
    * encryption and decryption functions
    */  
-  while (test_case != ::null()) {
+  while (test_case != NULL) {
 
     /* allocate cipher */
     status = cipher_type_alloc(ct, &c, test_case->key_length_octets);
@@ -112,7 +112,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
     /*
      * test the encrypt function 
      */
-    debug_print(mod_cipher, "testing encryption", ::null());    
+    debug_print(mod_cipher, "testing encryption", NULL);    
     
     /* initialize cipher */
     status = cipher_init(c, test_case->key, direction_encrypt);
@@ -179,7 +179,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
     /*
      * test the decrypt function
      */
-    debug_print(mod_cipher, "testing decryption", ::null());    
+    debug_print(mod_cipher, "testing decryption", NULL);    
 
     /* re-initialize cipher for decryption */
     status = cipher_init(c, test_case->key, direction_decrypt);
@@ -249,7 +249,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
     
     /* 
      * the cipher passed the test case, so move on to the next test
-     * case in the list; if ::null(), we'l proceed to the next test
+     * case in the list; if NULL, we'l proceed to the next test
      */   
     test_case = test_case->next_test_case;
     ++case_num;
@@ -382,8 +382,8 @@ cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials
   uint32_t len = octets_in_buffer;
 
   enc_buf = (uchar*) crypto_alloc(octets_in_buffer);
-  if (enc_buf == ::null())
-    return 0;  /* indicate bad parameters by returning null */
+  if (enc_buf == NULL)
+    return 0;  /* indicate bad parameters by returning NULL */
   
   /* time repeated trials */
   v128_set_to_zero(&nonce);

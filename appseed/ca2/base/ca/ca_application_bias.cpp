@@ -28,7 +28,7 @@ namespace ca
    {
       m_set["SessionSynchronizedInput"]      = true;
       m_set["NativeWindowFocus"]             = true;
-      m_puiParent                            = ::null();
+      m_puiParent                            = NULL;
    }
 
    application_bias::application_bias(sp(::ca::application) papp) :
@@ -36,7 +36,7 @@ namespace ca
    {
       m_set["SessionSynchronizedInput"]      = true;
       m_set["NativeWindowFocus"]             = true;
-      m_puiParent                            = ::null();
+      m_puiParent                            = NULL;
    }
 
    application_bias::application_bias(const application_bias & bias)

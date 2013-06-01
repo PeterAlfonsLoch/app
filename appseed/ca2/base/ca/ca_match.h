@@ -43,7 +43,7 @@ namespace ca
          ::string      m_str;
 
 
-         string(const char * psz = ::null());
+         string(const char * psz = NULL);
 
 
          virtual bool matches(const var & var) const;
@@ -58,7 +58,7 @@ namespace ca
       public:
 
 
-         ci_string(const char * psz = ::null());
+         ci_string(const char * psz = NULL);
 
 
          virtual bool matches(const var & var) const;
@@ -73,7 +73,7 @@ namespace ca
       public:
 
 
-         prefix(const char * psz = ::null());
+         prefix(const char * psz = NULL);
 
 
          virtual bool matches(const var & var) const;
@@ -88,7 +88,7 @@ namespace ca
       public:
 
 
-         ci_prefix(const char * psz = ::null());
+         ci_prefix(const char * psz = NULL);
 
 
          virtual bool matches(const var & var) const;
@@ -103,7 +103,7 @@ namespace ca
       public:
 
 
-         suffix(const char * psz = ::null());
+         suffix(const char * psz = NULL);
 
 
          virtual bool matches(const var & var) const;
@@ -118,7 +118,7 @@ namespace ca
       public:
 
 
-         ci_suffix(const char * psz = ::null());
+         ci_suffix(const char * psz = NULL);
 
 
          virtual bool matches(const var & var) const;

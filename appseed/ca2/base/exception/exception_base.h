@@ -23,11 +23,11 @@ public:
    void Delete();  // use to delete exception in 'catch' block
 
 
-   virtual bool get_error_message(string & str, PUINT pnHelpContext = ::null());
-   virtual string get_message(PUINT pnHelpContext = ::null());
+   virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
+   virtual string get_message(PUINT pnHelpContext = NULL);
 
 
-   virtual int32_t ReportError(UINT nType = MB_OK, const char * pszMessageID = ::null());
+   virtual int32_t ReportError(UINT nType = MB_OK, const char * pszMessageID = NULL);
 
 
    void operator delete(void * pbData);

@@ -9,7 +9,7 @@ namespace ca
 
    // special runtime-class structure for ::object (no base class)
    /*const struct sp(::ca::type_info) object::classbase_object =
-   { "::object", sizeof(::object), 0xffff, ::null(), ::null(), ::null() };*/
+   { "::object", sizeof(::object), 0xffff, NULL, NULL, NULL };*/
    /*
    sp(::ca::type_info) object::GetRuntimeClass() const
    {
@@ -21,7 +21,7 @@ namespace ca
    { 
 /*      try
       {
-         if(::ca::get_thread_state() != ::null())
+         if(::ca::get_thread_state() != NULL)
          {
             ::ca::get_thread_state()->m_heapitema.set_heap_alloc(this);
          }
@@ -35,11 +35,11 @@ namespace ca
    object::object(const object& objectSrc)
    {
 	   
-	   m_psetObject = ::null();
+	   m_psetObject = NULL;
 
       /*try
       {
-         if(::ca::get_thread_state() != ::null())
+         if(::ca::get_thread_state() != NULL)
          {
             ::ca::get_thread_state()->m_heapitema.set_heap_alloc(this);
          }
@@ -53,7 +53,7 @@ namespace ca
    void object::common_construct()
    {
 
-      m_psetObject = ::null();
+      m_psetObject = NULL;
 
    }
    
@@ -63,7 +63,7 @@ namespace ca
       try
       {
 
-         if(m_psetObject != ::null())
+         if(m_psetObject != NULL)
          {
 
             delete m_psetObject;
@@ -83,10 +83,10 @@ namespace ca
    object & object::operator=(const object & objectSrc)
    {
 
-      if(objectSrc.m_psetObject != ::null())
+      if(objectSrc.m_psetObject != NULL)
       {
 
-         if(m_psetObject == ::null())
+         if(m_psetObject == NULL)
          {
             
             m_psetObject = new ::ca::property_set(get_app());
@@ -103,7 +103,7 @@ namespace ca
 
    void object::assert_valid() const
    {
-      ASSERT(this != ::null());
+      ASSERT(this != NULL);
    }
 
 
@@ -178,7 +178,7 @@ namespace ca
    ::ca::property_set & object::propset()
    {
 
-      if(m_psetObject == ::null())
+      if(m_psetObject == NULL)
       {
 
          m_psetObject = new ::ca::property_set(get_app());
@@ -232,9 +232,9 @@ namespace ca
 //#ifdef DEBUG
 void assert_valid_object(const ::ca::object * pOb, const char * lpszFileName, int32_t nLine)
 {
-   if (pOb == ::null())
+   if (pOb == NULL)
    {
-//      TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with ::null() pointer.\n");
+//      TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape

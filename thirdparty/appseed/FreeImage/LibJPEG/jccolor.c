@@ -357,7 +357,7 @@ jinit_color_converter (j_compress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_color_converter));
   cinfo->cconvert = (struct jpeg_color_converter *) cconvert;
-  /* set start_pass to null method until we find out differently */
+  /* set start_pass to NULL method until we find out differently */
   cconvert->pub.start_pass = null_method;
 
   /* Make sure input_components agrees with in_color_space */
@@ -449,7 +449,7 @@ jinit_color_converter (j_compress_ptr cinfo)
       ERREXIT(cinfo, JERR_CONVERSION_NOTIMPL);
     break;
 
-  default:			/* allow null conversion of JCS_UNKNOWN */
+  default:			/* allow NULL conversion of JCS_UNKNOWN */
     if (cinfo->jpeg_color_space != cinfo->in_color_space ||
 	cinfo->num_components != cinfo->input_components)
       ERREXIT(cinfo, JERR_CONVERSION_NOTIMPL);

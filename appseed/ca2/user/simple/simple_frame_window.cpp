@@ -18,9 +18,9 @@ simple_frame_window::simple_frame_window(sp(::ca::application) papp) :
    m_bCustomFrameBefore    = true;
    m_bWindowFrame          = true;
    m_bLayered              = true;
-//   m_hdcOpenGL             = ::null();
-//   m_hglrc                 = ::null();
-   m_pframeschema          = ::null();
+//   m_hdcOpenGL             = NULL;
+//   m_hglrc                 = NULL;
+   m_pframeschema          = NULL;
 
 }
 
@@ -87,7 +87,7 @@ void simple_frame_window::_001OnDestroy(::ca::signal_object * pobj)
 {
    try
    {
-      if(m_papp != ::null() && &Application != ::null())
+      if(m_papp != NULL && &Application != NULL)
       {
          Application.remove_frame(this);
       }
@@ -98,7 +98,7 @@ void simple_frame_window::_001OnDestroy(::ca::signal_object * pobj)
 
    try
    {
-      if(&Session != ::null())
+      if(&Session != NULL)
       {
          Session.remove_frame(this);
       }
@@ -109,7 +109,7 @@ void simple_frame_window::_001OnDestroy(::ca::signal_object * pobj)
 
    try
    {
-      if(m_papp != ::null() && m_papp->m_psystem != ::null() && &System != ::null())
+      if(m_papp != NULL && m_papp->m_psystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }
@@ -145,10 +145,10 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
    sp(::user::place_holder) pplaceholder = get_parent();
 
-   if(pplaceholder != ::null())
+   if(pplaceholder != NULL)
    {
       sp(::user::place_holder_container) pcontainer = pplaceholder->get_parent();
-      if(pcontainer != ::null())
+      if(pcontainer != NULL)
       {
          pcontainer->on_hold(this, pplaceholder);
       }
@@ -157,11 +157,12 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
    if(m_bAutoWindowFrame)
    {
 #ifdef METROWIN
-      m_bWindowFrame = get_parent() == ::null() || dynamic_cast < ::ca::window * > (get_parent()->m_pimpl.m_p) != NULL;
+      m_bWindowFrame = get_parent() == NULL || dynamic_cast < ::ca::window * > (get_parent()->m_pimpl.m_p) != NULL;
 #else
-      m_bWindowFrame = get_parent() == ::null();
+      m_bWindowFrame = get_parent() == NULL;
 #endif
    }
+
 
    if(m_bWindowFrame)
    {
@@ -178,7 +179,7 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
 // trans      HICON hicon = GetIcon(false);
 
-        sp(::uinteraction::frame::frame) pinteractionframe = ::null();
+        sp(::uinteraction::frame::frame) pinteractionframe = NULL;
 
         try
         {
@@ -199,7 +200,7 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
       //frame::FrameSchema * pschema = dynamic_cast < ::frame::FrameSchema * > (pinteractionframe);
 
-      if(pinteractionframe != ::null() && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
+      if(pinteractionframe != NULL && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
       {
 
          pinteractionframe->set_style("BlueRedPurple");
@@ -208,28 +209,28 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
 
       /*{
          frame::FrameSchemaHardCoded001 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded001 * > (pschema);
-         if(pschemaSpec != ::null() && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
+         if(pschemaSpec != NULL && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
          {
             pschemaSpec->SetStyle(frame::FrameSchemaHardCoded001::StyleBlueRedPurple);
          }
       }
       {
          frame::FrameSchemaHardCoded002 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded002 * > (pschema);
-         if(pschemaSpec != ::null() && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
+         if(pschemaSpec != NULL && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
          {
             pschemaSpec->SetStyle(frame::FrameSchemaHardCoded002::StyleBlueRedPurple);
          }
       }
       {
          frame::FrameSchemaHardCoded005 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded005 * > (pschema);
-         if(pschemaSpec != ::null() && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
+         if(pschemaSpec != NULL && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
          {
             pschemaSpec->SetStyle(frame::FrameSchemaHardCoded005::StyleBlueRedPurple);
          }
       }
       {
          frame::FrameSchemaHardCoded008 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded008 * > (pschema);
-         if(pschemaSpec != ::null() && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
+         if(pschemaSpec != NULL && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
          {
             pschemaSpec->SetStyle(frame::FrameSchemaHardCoded008::StyleBlueRedPurple);
          }
@@ -294,14 +295,14 @@ void simple_frame_window::_001OnDisplayChange(::ca::signal_object * pobj)
 void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if((m_workset.GetMovingManager() == ::null() ||
-      m_workset.GetSizingManager() == ::null()) || (!m_workset.GetMovingManager()->IsMoving()
+   if((m_workset.GetMovingManager() == NULL ||
+      m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
    && !m_workset.GetSizingManager()->IsSizing()))
    {
       _001RedrawWindow();
    }
 
-   if(does_display_match() && dynamic_cast < simple_child_frame * > (this) == ::null())
+   if(does_display_match() && dynamic_cast < simple_child_frame * > (this) == NULL)
    {
       __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
    }
@@ -312,8 +313,8 @@ void simple_frame_window::_001OnSize(::ca::signal_object * pobj)
 void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if((m_workset.GetMovingManager() == ::null() ||
-      m_workset.GetSizingManager() == ::null()) || (!m_workset.GetMovingManager()->IsMoving()
+   if((m_workset.GetMovingManager() == NULL ||
+      m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
    && !m_workset.GetSizingManager()->IsSizing()))
    {
       _001RedrawWindow();
@@ -321,7 +322,7 @@ void simple_frame_window::_001OnMove(::ca::signal_object * pobj)
 
 
 
-   if(does_display_match() && dynamic_cast < simple_child_frame * > (this) == ::null())
+   if(does_display_match() && dynamic_cast < simple_child_frame * > (this) == NULL)
    {
       __begin_thread(get_app(), ::simple_frame_window_save_window_rect, this);
 
@@ -351,6 +352,7 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 
 void simple_frame_window::layout()
 {
+   
    if(m_bWindowFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
    {
       m_workset.layout();
@@ -359,6 +361,7 @@ void simple_frame_window::layout()
    {
       ::user::frame_window::layout();
    }
+
 }
 
 void simple_frame_window::ViewOnActivateFrame(sp(::user::view) pview, UINT user, sp(::user::interaction) pframe)
@@ -366,7 +369,7 @@ void simple_frame_window::ViewOnActivateFrame(sp(::user::view) pview, UINT user,
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
    UNREFERENCED_PARAMETER(pframe);
-//   if(pview != ::null())
+//   if(pview != NULL)
 //      pview->OnActivateFrame(WA_INACTIVE, (sp(::user::frame_window)) pframe);
 }
 
@@ -410,7 +413,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
 
       id idKey;
       sp(::user::interaction) pbar;
-      while(pos != ::null())
+      while(pos != NULL)
       {
           m_toolbarmap.get_next_assoc(pos, idKey, pbar);
           try
@@ -428,8 +431,8 @@ void simple_frame_window::_001OnGetMinMaxInfo(::ca::signal_object * pobj)
 
 void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 {
-   /*oswindow oswindowTrayWindow = ::null();
-   if(get_parent() == ::null())
+   /*oswindow oswindowTrayWindow = NULL;
+   if(get_parent() == NULL)
    {
       oswindowTrayWindow = FindWindowA("Shell_traywnd", "");
    }*/
@@ -444,7 +447,7 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 
       rect rectDesktop;
 
-      if(get_parent() != ::null())
+      if(get_parent() != NULL)
       {
          get_parent()->GetClientRect(rectDesktop);
       }
@@ -460,7 +463,7 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 
       m_FullScreenWindowRect = rectDesktop;
 
-      //if(get_parent() == ::null())
+      //if(get_parent() == NULL)
       {
          SetWindowPos(
             ZORDER_TOP,
@@ -601,7 +604,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       pobj->m_bRet = true;
       return;
    }
-   else if(GetTopLevelFrame() != ::null()
+   else if(GetTopLevelFrame() != NULL
    && (GetTopLevelFrame()->m_iModalCount > 0))
    {
       GetTopLevelFrame()->EndModalLoop(IDOK);
@@ -615,8 +618,8 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       ShowWindow(SW_HIDE);
       return;
    }
-   else if(GetTopLevelFrame() != ::null()
-   && GetTopLevelFrame()->m_pimpl != ::null()
+   else if(GetTopLevelFrame() != NULL
+   && GetTopLevelFrame()->m_pimpl != NULL
    && (GetTopLevelFrame()->m_pimpl->m_iModalCount > 0))
    {
       GetTopLevelFrame()->m_pimpl->EndModalLoop(IDOK);
@@ -624,7 +627,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
       return;
    }
 
-   if(get_wnd() != ::null()
+   if(get_wnd() != NULL
    && get_wnd()->m_iModalCount > 0)
    {
       get_wnd()->EndModalLoop(IDOK);
@@ -635,7 +638,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
    pobj->m_bRet = true;
    // Note: only queries the active document
    sp(::user::document_interface) pdocument = GetActiveDocument();
-   if (pdocument != ::null() && !pdocument->can_close_frame(this))
+   if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
       // document can't close right now -- don't close it
       return;
@@ -679,7 +682,7 @@ void simple_frame_window::_001OnClose(::ca::signal_object * pobj)
 void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
 {
    UNREFERENCED_PARAMETER(bCalcValidRects);
-   if(m_workset.IsEnabled() && m_workset.m_pframeschema != ::null())
+   if(m_workset.IsEnabled() && m_workset.m_pframeschema != NULL)
    {
       m_workset.OnNcCalcSize(&lpncsp->rgrc[0]);
    }
@@ -741,24 +744,24 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    const char * lpszTitle = m_strTitle;
 
-   if(pParentWnd == ::null())
+   if(pParentWnd == NULL)
       pParentWnd = Application.get_request_parent_ui(this, pContext);
 
    dwDefaultStyle &= ~WS_VISIBLE;
 
-   if (!CreateEx(0L, ::null(), lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
+   if (!CreateEx(0L, NULL, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }
 
 /* trans   // save the default menu handle
-   ASSERT(get_handle() != ::null());
+   ASSERT(get_handle() != NULL);
    m_hMenuDefault = ::GetMenu(get_handle()); */
 
    // load accelerator resource
 //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
-   if (pContext == ::null())   // send initial update
+   if (pContext == NULL)   // send initial update
       SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
 
    return TRUE;
@@ -849,7 +852,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    ::user::frame_window::InitialFramePosition(bForceRestore);
 
-   if(m_workset.GetAppearance() != ::null() && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
+   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
 
       WfiRestore();
@@ -890,7 +893,7 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
    if(!Session.savings().is_trying_to_save(::ca::resource_processing)
    && !Session.savings().is_trying_to_save(::ca::resource_display_bandwidth)
    && !Session.savings().is_trying_to_save(::ca::resource_memory))
-   //&& (get_parent() != ::null() || (this->GetExStyle() & WS_EX_LAYERED) != 0))
+   //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
       #if TEST
 
@@ -922,7 +925,11 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
 
 void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
 {
-   #ifndef LINUX
+
+   single_lock sl(m_pmutex, true);
+
+#ifndef LINUX
+
    if(m_bblur_Background)
    {
       class imaging & imaging = System.visual().imaging();
@@ -966,17 +973,20 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
                SRCCOPY);
          }
       }
-      pdc->SelectClipRgn(::null());
+      pdc->SelectClipRgn(NULL);
    }
-   #endif
+
+#endif
+   
    ::user::frame_window::_001OnDraw(pdc);
+
 }
 
 
 void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
 {
    ::user::frame_window::on_set_parent(pguieParent);
-   if(m_pupdowntarget != ::null() && m_pupdowntarget->is_up_down_target())
+   if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
    {
       // an updowntarget always show the frame for upping/downing
       if(!m_bWindowFrame)
@@ -991,7 +1001,7 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
    }
    else
    {
-      if(pguieParent != ::null())
+      if(pguieParent != NULL)
       {
          m_bCustomFrameBefore = m_bWindowFrame;
          m_bWindowFrame = false;
@@ -1009,7 +1019,7 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
 
 void simple_frame_window::GetClientRect(LPRECT lprect)
 {
-   if(m_bWindowFrame && m_pframeschema != ::null() && !WfiIsFullScreen())
+   if(m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen())
    {
       m_pframeschema->GetWndClientRect(lprect);
    }
@@ -1030,7 +1040,7 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
 {
    sp(::user::interaction) pui = m_toolbarmap[idToolBar];
    simple_toolbar * ptoolbar;
-   if(pui != ::null())
+   if(pui != NULL)
    {
       ptoolbar = dynamic_cast < simple_toolbar * > (pui.m_p);
    }
@@ -1041,7 +1051,7 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
       pui = ptoolbar;
       m_toolbarmap.set_at(idToolBar, pui);
    }
-   if(ptoolbar != ::null())
+   if(ptoolbar != NULL)
    {
       ptoolbar->LoadXmlToolBar(Application.file().as_string(Application.dir().matter(pszToolBar)));
       layout();
@@ -1064,7 +1074,7 @@ void simple_frame_window::_001OnUser184(::ca::signal_object * pobj)
 bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
 {
    return
-      m_pupdowntarget != ::null()
+      m_pupdowntarget != NULL
    && m_pupdowntarget->is_up_down_target()
    && m_pupdowntarget->up_down_target_is_down();
 }
@@ -1072,7 +1082,7 @@ bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
 bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
 {
    return
-      m_pupdowntarget != ::null()
+      m_pupdowntarget != NULL
    && m_pupdowntarget->is_up_down_target()
    && m_pupdowntarget->up_down_target_is_up();
 }
@@ -1092,7 +1102,7 @@ bool simple_frame_window::create(const char * lpszClassName,
          const char * lpszWindowName,
          uint32_t dwStyle,
          const RECT& rect,
-         sp(::user::interaction) pParentWnd,        // != ::null() for popups
+         sp(::user::interaction) pParentWnd,        // != NULL for popups
          const char * lpszMenuName,
          uint32_t dwExStyle,
          sp(::ca::create_context) pContext)

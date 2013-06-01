@@ -19,7 +19,7 @@ bool html_document::on_new_document()
    if (!::user::document::on_new_document())
       return FALSE;
 
-   update_all_views(::null(), 0);
+   update_all_views(NULL, 0);
 
 
    return TRUE;
@@ -91,7 +91,7 @@ bool html_document::on_open_document(var varFile)
 
 
 
-   if(get_html_data()->m_pform == ::null())
+   if(get_html_data()->m_pform == NULL)
       return false;
 
 
@@ -107,7 +107,7 @@ bool html_document::on_open_document(var varFile)
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;
    uh.m_strUrl = varFile;
-   update_all_views(::null(), 0, &uh);
+   update_all_views(NULL, 0, &uh);
 
 
    data_set("LastOpenedFile", get_path_name());
@@ -131,13 +131,13 @@ void html_document::soft_reload()
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;
    uh.m_strUrl = get_path_name();
-   update_all_views(::null(), 0, &uh);
+   update_all_views(NULL, 0, &uh);
 }
 
 ::html::data * html_document::get_html_data()
 {
    sp(::user::document) pdoc = (this);
-   if(pdoc->get_data() == ::null())
+   if(pdoc->get_data() == NULL)
    {
       set_data(get_typed_view < html_form > ()->get_html_data());
       get_html_data()->m_pcallback = this;
@@ -168,7 +168,7 @@ bool html_document::_001OnCommand(id id)
 
 #ifndef METROWIN
 
-      simple_shell_launcher launcher(::ca::null(), "open", get_path_name(), ::null(), System.dir().name(get_path_name()), SW_SHOWNORMAL);
+      simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
 
       launcher.execute();
 

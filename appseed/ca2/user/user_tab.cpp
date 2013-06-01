@@ -48,7 +48,7 @@ namespace user
       m_spdata = new data(papp);
       get_data()->m_panea.set_app(papp);
       get_data()->m_iHeightAddUp = 0;
-      get_data()->m_pcallback    = ::null();
+      get_data()->m_pcallback    = NULL;
       get_data()->m_bCreated     = false;
       get_data()->m_iTabHeight   = 16;
       get_data()->m_iTabWidth    = 48;
@@ -67,7 +67,7 @@ namespace user
 
 
       ::ca::graphics_sp spgraphics(allocer());
-      spgraphics->CreateCompatibleDC(::null());
+      spgraphics->CreateCompatibleDC(NULL);
 
 
       get_data()->m_font->create_point_font("Lucida Sans Unicode", 10);
@@ -95,7 +95,7 @@ namespace user
          return false;
       }*/
    //   pane.m_pcontainer = pcontainer;
-     // pane.m_typeinfo = ::null();
+     // pane.m_typeinfo = NULL;
      /* pane.m_iImage = -1;
 
       get_data()->m_panea.add(pane);
@@ -133,7 +133,7 @@ namespace user
 
       ppane->m_id               = id;
       ppane->m_dib.release();
-      ppane->m_pholder          = ::null();
+      ppane->m_pholder          = NULL;
 
       get_data()->m_panea.add(ppane);
 
@@ -187,7 +187,7 @@ namespace user
 
       pane * ppane = new pane(get_app());
 
-      if(ppane == ::null())
+      if(ppane == NULL)
          return false;
 
       ppane->m_bVisible    = bVisible;
@@ -198,7 +198,7 @@ namespace user
          id = get_data()->m_panea.get_size();
 
       ppane->m_id          = id;
-      ppane->m_pholder     = ::null();
+      ppane->m_pholder     = NULL;
       ppane->m_dib.create(allocer());
       ppane->m_dib.load_from_file(pszImage);
 
@@ -243,6 +243,10 @@ namespace user
 
    void tab::_001OnDraw(::ca::graphics * pdc)
    {
+
+      
+      //return;
+
 
       get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
 
@@ -928,7 +932,7 @@ namespace user
          int32_t iTabHeight = 16;
          int32_t cy;
          ::ca::graphics_sp graphics(allocer());
-         graphics->CreateCompatibleDC(::null());
+         graphics->CreateCompatibleDC(NULL);
          ::ca::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
@@ -945,7 +949,7 @@ namespace user
 
             m_dcextension.GetTextExtent(pdc, str, size);
 
-            if(pane.m_dib.m_p != ::null())
+            if(pane.m_dib.m_p != NULL)
             {
                size.cy = max(size.cy, pane.m_dib->size().cy);
             }
@@ -1012,7 +1016,7 @@ namespace user
 
       sp(place_holder) pholder = get_tab_holder(iPane);
 
-      if(pholder != ::null())
+      if(pholder != NULL)
       {
 
          rect rectChild;
@@ -1053,7 +1057,7 @@ namespace user
          else if(iPane != iSel)
          {
             get_data()->m_iDragTab = iPane;
-            SetTimer(5432187, 1230, ::null());
+            SetTimer(5432187, 1230, NULL);
             pmouse->m_bRet = true;
             pmouse->set_lresult(1);
          }
@@ -1096,7 +1100,7 @@ namespace user
       class point point = pmouse->m_pt;
       if(get_data()->m_iDragTab >= 0)
       {
-         if(get_data()->m_pcallback != ::null())
+         if(get_data()->m_pcallback != NULL)
          {
             get_data()->m_pcallback->_001DropTargetWindowRelay(this);
          }
@@ -1218,9 +1222,9 @@ namespace user
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
          ::ca::graphics_sp graphics(allocer());
-         graphics->CreateCompatibleDC(::null());
+         graphics->CreateCompatibleDC(NULL);
 
-         //HDC hdc = ::CreateCompatibleDC(::null());
+         //HDC hdc = ::CreateCompatibleDC(NULL);
          //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
          //delete pg;
          //::DeleteDC(hdc);
@@ -1307,15 +1311,15 @@ namespace user
    sp(::ca::window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
-      return ::null();
+      return NULL;
 
 #else
       sp(::ca::window) pwnd;
-   //   if((pwnd = m_pguie->get_owner()) != ::null())
+   //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
-      if((pwnd = m_pguie->get_parent()->get_wnd()) != ::null())
+      if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
          return pwnd;
-      return ::null();
+      return NULL;
 #endif
    }
 
@@ -1390,7 +1394,7 @@ namespace user
    }
 
    tab::pane::pane() :
-      m_istrTitleEx(::null())
+      m_istrTitleEx(NULL)
    {
    }
 
@@ -1400,7 +1404,7 @@ namespace user
    {
       m_bVisible     = true;
       m_bPermanent   = false;
-      m_pholder      = ::null();
+      m_pholder      = NULL;
    }
 
    tab::pane::pane(const pane & pane) :
@@ -1459,7 +1463,7 @@ namespace user
             return element_at(i);
          }
       }
-      return ::null();
+      return NULL;
    }
 
    ::count tab::pane_array::get_visible_count()
@@ -1488,7 +1492,7 @@ namespace user
 
    void tab::_001SetTabCallback(tab_callback * pcallback)
    {
-      if(get_data()->m_pcallback != ::null())
+      if(get_data()->m_pcallback != NULL)
       {
          delete get_data()->m_pcallback;
       }
@@ -1516,7 +1520,7 @@ namespace user
 
    bool tab::_001IsAddTab(::index iPane)
    {
-      if(get_data()->m_pcallback != ::null())
+      if(get_data()->m_pcallback != NULL)
       {
          return get_data()->m_pcallback->_001IsAddTab(this, iPane);
       }
@@ -1528,7 +1532,7 @@ namespace user
 
    void tab::_001OnTabClick(::index iPane)
    {
-      if(get_data()->m_pcallback != ::null())
+      if(get_data()->m_pcallback != NULL)
       {
          get_data()->m_pcallback->_001OnTabClick(this, iPane);
       }
@@ -1540,7 +1544,7 @@ namespace user
 
    void tab::_001OnTabClose(::index iPane)
    {
-      if(get_data()->m_pcallback != ::null())
+      if(get_data()->m_pcallback != NULL)
       {
          get_data()->m_pcallback->_001OnTabClose(this, iPane);
       }
@@ -1553,7 +1557,7 @@ namespace user
    bool tab::show_tab_by_id(id id, bool bShow)
    {
       pane * ppane = get_pane_by_id(id);
-      if(ppane == ::null())
+      if(ppane == NULL)
          return false;
 
       ppane->m_bVisible = bShow;
@@ -1565,7 +1569,7 @@ namespace user
    bool tab::show_tab(::index iTab, bool bShow)
    {
       pane * ppane = get_pane(iTab, !bShow);
-      if(ppane == ::null())
+      if(ppane == NULL)
          return !bShow;
 
       ppane->m_bVisible = bShow;
@@ -1579,23 +1583,23 @@ namespace user
    sp(::user::interaction) tab::get_tab_window(::index iPane, bool bVisible)
    {
       sp(place_holder) pholder = get_tab_holder(iPane, bVisible);
-      if(pholder == ::null())
-         return ::null();
+      if(pholder == NULL)
+         return NULL;
       return pholder->get_ui();
    }
 
    sp(::user::place_holder) tab::get_tab_holder(::index iPane, bool bVisible)
    {
       pane * ppane = get_pane(iPane, bVisible);
-      if(ppane == ::null())
-         return ::null();
+      if(ppane == NULL)
+         return NULL;
       return ppane->m_pholder;
    }
 
    tab::pane * tab::get_pane(::index iPane, bool bVisible)
    {
       if(iPane < 0 || iPane >= get_data()->m_panea.get_count())
-         return ::null();
+         return NULL;
       if(bVisible)
       {
          for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
@@ -1612,7 +1616,7 @@ namespace user
                }
             }
          }
-         return ::null();
+         return NULL;
       }
       else
       {
@@ -1623,12 +1627,12 @@ namespace user
 
    void tab::_001SelectTab(::index iPane)
    {
-      if(get_tab_holder(_001GetSel()) != ::null())
+      if(get_tab_holder(_001GetSel()) != NULL)
       {
          get_tab_holder(_001GetSel())->ShowWindow(SW_HIDE);
       }
       _001SetSel(iPane);
-      if(get_tab_holder(_001GetSel()) != ::null())
+      if(get_tab_holder(_001GetSel()) != NULL)
       {
          get_tab_holder(_001GetSel())->ShowWindow(SW_SHOW);
       }
@@ -1637,7 +1641,7 @@ namespace user
 
    void tab::on_show_view()
    {
-      if(get_data()->m_pcallback != ::null() && dynamic_cast < ::user::tab * > (get_data()->m_pcallback) != this)
+      if(get_data()->m_pcallback != NULL && dynamic_cast < ::user::tab * > (get_data()->m_pcallback) != this)
       {
          get_data()->m_pcallback->_001OnShowTab(this);
       }
@@ -1756,7 +1760,7 @@ namespace user
       {
       }
 
-      m_spcreatecontext = (sp(::ca::create_context)) ::null();
+      m_spcreatecontext = (sp(::ca::create_context)) NULL;
 
    }
 
@@ -1833,7 +1837,7 @@ namespace user
 
    void tab::_001OnDropTab(::index iPane, e_position eposition)
    {
-      if(get_data()->m_pcallback != ::null())
+      if(get_data()->m_pcallback != NULL)
       {
          get_data()->m_pcallback->_001OnDropTab(iPane, eposition);
       }
@@ -1842,7 +1846,7 @@ namespace user
 
    sp(::user::interaction) tab::get_view_uie()
    {
-      return ::null();
+      return NULL;
    }
 
 
@@ -1857,7 +1861,7 @@ namespace user
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
-         if(get_data()->m_pcallback != ::null())
+         if(get_data()->m_pcallback != NULL)
          {
             get_data()->m_pcallback->_001DropTargetWindowInitialize(this);
          }
@@ -1924,7 +1928,7 @@ namespace user
 //      int32_t iSize;
       try
       {
-         while(pui != ::null())
+         while(pui != NULL)
          {
             try
             {
@@ -1989,17 +1993,17 @@ namespace user
 
    void tab::get_text_id(stringa & stra)
    {
-      get_presuffixed_ci_id(stra, ::null(), ::null());
+      get_presuffixed_ci_id(stra, NULL, NULL);
    }
 
    void tab::get_prefixed_ci_id(stringa & stra, const char * pszPrefix)
    {
-      get_presuffixed_ci_id(stra, pszPrefix, ::null());
+      get_presuffixed_ci_id(stra, pszPrefix, NULL);
    }
 
    void tab::get_suffixed_ci_id(stringa & stra, const char * pszSuffix)
    {
-      get_presuffixed_ci_id(stra, ::null(), pszSuffix);
+      get_presuffixed_ci_id(stra, NULL, pszSuffix);
    }
 
    void tab::get_presuffixed_ci_id(stringa & stra, const char * pszPrefix, const char * pszSuffix)
@@ -2024,12 +2028,12 @@ namespace user
 
    void tab::get_begins_ci_eat_id(stringa & stra, const char * pszPrefix)
    {
-      get_begins_ends_ci_eat_id(stra, pszPrefix, ::null());
+      get_begins_ends_ci_eat_id(stra, pszPrefix, NULL);
    }
 
    void tab::get_ends_ci_eat_id(stringa & stra, const char * pszSuffix)
    {
-      get_begins_ends_ci_eat_id(stra, ::null(), pszSuffix);
+      get_begins_ends_ci_eat_id(stra, NULL, pszSuffix);
    }
 
    void tab::get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffix)

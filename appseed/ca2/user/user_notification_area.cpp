@@ -15,11 +15,11 @@ namespace user
    // notification_area
 
    notification_area::notification_area() :
-      m_hfontHidden(::null()),
-      m_hfontRegular(::null())
+      m_hfontHidden(NULL),
+      m_hfontRegular(NULL)
    {
       // TODO: add construction code here
-      m_pil16 = ::null();
+      m_pil16 = NULL;
    }
 
    notification_area::~notification_area()
@@ -61,10 +61,10 @@ namespace user
 
       m_pil16->remove_all();
 
-      if(m_oswindowTray == ::null())
+      if(m_oswindowTray == NULL)
       {
          m_oswindowTray = FindTrayToolbarWindow();
-         if(m_oswindowTray == ::null())
+         if(m_oswindowTray == NULL)
          {
             return;
          }
@@ -259,18 +259,18 @@ namespace user
 
    oswindow FindTrayToolbarWindow()
    {
-      oswindow oswindow = ::ca::null();
+      oswindow oswindow = NULL;
 #ifdef WINDOWSEX
-      oswindow = ::FindWindow("Shell_TrayWnd", ::null());
-      if(oswindow != ::null())
+      oswindow = ::FindWindow("Shell_TrayWnd", NULL);
+      if(oswindow != NULL)
       {
-         oswindow = ::FindWindowEx(oswindow,::null(),"TrayNotifyWnd", ::null());
-         if(oswindow != ::null())
+         oswindow = ::FindWindowEx(oswindow,NULL,"TrayNotifyWnd", NULL);
+         if(oswindow != NULL)
          {
-            oswindow = ::FindWindowEx(oswindow,::null(),"SysPager", ::null());
-            if(oswindow != ::null())
+            oswindow = ::FindWindowEx(oswindow,NULL,"SysPager", NULL);
+            if(oswindow != NULL)
             {
-               oswindow = ::FindWindowEx(oswindow, ::null(),"ToolbarWindow32", ::null());
+               oswindow = ::FindWindowEx(oswindow, NULL,"ToolbarWindow32", NULL);
             }
          }
       }

@@ -213,7 +213,7 @@ template <class T> class Vec2
 
     //----------------------------------------------------------------
     // Length and normalization:  If v.length() is 0.0, v.normalize()
-    // and v.normalized() produce a null vector; v.normalizeExc() and
+    // and v.normalized() produce a NULL vector; v.normalizeExc() and
     // v.normalizedExc() throw a NullVecExc.
     // v.normalizeNonNull() and v.normalizedNonNull() are slightly
     // faster than the other normalization routines, but if v.length()
@@ -425,7 +425,7 @@ template <class T> class Vec3
 
     //----------------------------------------------------------------
     // Length and normalization:  If v.length() is 0.0, v.normalize()
-    // and v.normalized() produce a null vector; v.normalizeExc() and
+    // and v.normalized() produce a NULL vector; v.normalizeExc() and
     // v.normalizedExc() throw a NullVecExc.
     // v.normalizeNonNull() and v.normalizedNonNull() are slightly
     // faster than the other normalization routines, but if v.length()
@@ -607,7 +607,7 @@ template <class T> class Vec4
 
     //----------------------------------------------------------------
     // Length and normalization:  If v.length() is 0.0, v.normalize()
-    // and v.normalized() produce a null vector; v.normalizeExc() and
+    // and v.normalized() produce a NULL vector; v.normalizeExc() and
     // v.normalizedExc() throw a NullVecExc.
     // v.normalizeNonNull() and v.normalizedNonNull() are slightly
     // faster than the other normalization routines, but if v.length()
@@ -1213,7 +1213,7 @@ Vec2<T>::normalizeExc () throw (Iex::MathExc)
     T l = length();
 
     if (l == 0)
-	throw NullVecExc ("Cannot normalize null vector.");
+	throw NullVecExc ("Cannot normalize NULL vector.");
 
     x /= l;
     y /= l;
@@ -1250,7 +1250,7 @@ Vec2<T>::normalizedExc () const throw (Iex::MathExc)
     T l = length();
 
     if (l == 0)
-	throw NullVecExc ("Cannot normalize null vector.");
+	throw NullVecExc ("Cannot normalize NULL vector.");
 
     return Vec2 (x / l, y / l);
 }
@@ -1705,7 +1705,7 @@ Vec3<T>::normalizeExc () throw (Iex::MathExc)
     T l = length();
 
     if (l == 0)
-	throw NullVecExc ("Cannot normalize null vector.");
+	throw NullVecExc ("Cannot normalize NULL vector.");
 
     x /= l;
     y /= l;
@@ -1744,7 +1744,7 @@ Vec3<T>::normalizedExc () const throw (Iex::MathExc)
     T l = length();
 
     if (l == 0)
-	throw NullVecExc ("Cannot normalize null vector.");
+	throw NullVecExc ("Cannot normalize NULL vector.");
 
     return Vec3 (x / l, y / l, z / l);
 }
@@ -2110,7 +2110,7 @@ Vec4<T>::normalizeExc () throw (Iex::MathExc)
     T l = length();
 
     if (l == 0)
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     x /= l;
     y /= l;
@@ -2151,7 +2151,7 @@ Vec4<T>::normalizedExc () const throw (Iex::MathExc)
     T l = length();
 
     if (l == 0)
-        throw NullVecExc ("Cannot normalize null vector.");
+        throw NullVecExc ("Cannot normalize NULL vector.");
 
     return Vec4 (x / l, y / l, z / l, w / l);
 }

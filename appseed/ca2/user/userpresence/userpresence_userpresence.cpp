@@ -90,9 +90,9 @@ namespace userpresence
       }
 
 
-      m_spuiMessage->SetTimer(1984, 1000, ::null());
+      m_spuiMessage->SetTimer(1984, 1000, NULL);
 
-      if(ApplicationUser.m_ppresence == ::null())
+      if(ApplicationUser.m_ppresence == NULL)
       {
          presence * ppresence = new presence(get_app());
          ppresence->report_activity();
@@ -123,11 +123,16 @@ namespace userpresence
          return true;
       }
 
-      m_spuiMessage->KillTimer(1984);
+      if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
+      {
+      
+         m_spuiMessage->KillTimer(1984);
+
+      }
 
       finalize_message_window();
 
-      if(ApplicationUser.m_ppresence != ::null())
+      if(ApplicationUser.m_ppresence != NULL)
       {
          ApplicationUser.m_ppresence.release();
       }
@@ -166,12 +171,12 @@ namespace userpresence
 
          SCAST_PTR(::ca::message::timer, ptimer, pobj);
 
-         if(&ApplicationUser != ::null())
+         if(&ApplicationUser != NULL)
          {
 
             presence * ppresence = ApplicationUser.m_ppresence;
 
-            if(ptimer->m_nIDEvent == 1984 && ppresence != ::null())
+            if(ptimer->m_nIDEvent == 1984 && ppresence != NULL)
             {
 
                ppresence->defer_pulse_user_presence();

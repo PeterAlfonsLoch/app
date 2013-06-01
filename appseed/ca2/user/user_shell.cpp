@@ -18,10 +18,10 @@ namespace filemanager
 
       int32_t _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == ::null())
+         if(lpiidl == NULL)
             return 0;
          LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
-         LPSHITEMID  lpshiidLast = ::null();
+         LPSHITEMID  lpshiidLast = NULL;
          USHORT cb;
          int32_t iLen = 0;
          while(true)
@@ -45,24 +45,24 @@ namespace filemanager
 
       if(hr != S_OK)
       {
-         return ::null();
-//         System.simple_message_box(::null(), "Failed to open desktop folder!");
+         return NULL;
+//         System.simple_message_box(NULL, "Failed to open desktop folder!");
       }
 
       if(SUCCEEDED(hr))
       {
-         IShellFolder * lpsfParent = ::null();
+         IShellFolder * lpsfParent = NULL;
 
          LPITEMIDLIST lpiidlParent = _017ItemIDListGetFolderParent(lpiidlChild);
 
-         if(lpiidlParent == ::null())
+         if(lpiidlParent == NULL)
          {
             return lpsfDesktop;
          }
 
          hr = lpsfDesktop->BindToObject(
             lpiidlParent,
-            ::null(),
+            NULL,
             IID_IShellFolder,
             (void **) &lpsfParent);
 
@@ -81,15 +81,15 @@ namespace filemanager
          ASSERT(FALSE);
       }
 
-      return ::null();
+      return NULL;
    }
 
       LPITEMIDLIST _017ItemIDListDup(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == ::null())
-            return ::null();
+         if(lpiidl == NULL)
+            return NULL;
 
-         LPMALLOC lpmalloc = ::null();
+         LPMALLOC lpmalloc = NULL;
          HRESULT hr;
 
          hr = SHGetMalloc(&lpmalloc);
@@ -110,7 +110,7 @@ namespace filemanager
 
       int32_t _017ItemIDListIHash(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == ::null())
+         if(lpiidl == NULL)
             return 0;
 
          int32_t iLen = _017ItemIDListGetLen(lpiidl);
@@ -138,7 +138,7 @@ namespace filemanager
       LPITEMIDLIST _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl)
       {
 
-         LPMALLOC lpmalloc = ::null();
+         LPMALLOC lpmalloc = NULL;
          HRESULT hr;
 
          hr = SHGetMalloc(&lpmalloc);
@@ -162,10 +162,10 @@ namespace filemanager
       LPITEMIDLIST _017ItemIDListGetLast(LPITEMIDLIST lpiidl)
       {
 
-   if(lpiidl == ::null())
-            return ::null();
+   if(lpiidl == NULL)
+            return NULL;
 
-         LPMALLOC lpmalloc = ::null();
+         LPMALLOC lpmalloc = NULL;
          HRESULT hr;
          hr = SHGetMalloc(&lpmalloc);
 
@@ -184,7 +184,7 @@ namespace filemanager
          int32_t iCount = *((USHORT *) lpshiidLast);
 
          if(iCount == 0)
-            return ::null();
+            return NULL;
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iCount + 2);
@@ -220,10 +220,10 @@ namespace filemanager
 
       LPITEMIDLIST _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == ::null())
-            return ::null();
+         if(lpiidl == NULL)
+            return NULL;
 
-         LPMALLOC lpmalloc = ::null();
+         LPMALLOC lpmalloc = NULL;
          HRESULT hr;
          hr = SHGetMalloc(&lpmalloc);
 
@@ -242,7 +242,7 @@ namespace filemanager
          ::count iCount = ((LPBYTE)lpshiidLast) - ((LPBYTE) lpiidl);
 
          if(iCount == 0)
-            return ::null();
+            return NULL;
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iCount + 2);
@@ -258,11 +258,11 @@ namespace filemanager
 
         bool _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2)
       {
-         if(lpiidl1 == ::null() && lpiidl2 == ::null())
+         if(lpiidl1 == NULL && lpiidl2 == NULL)
          {
             return true;
          }
-         if(lpiidl1 == ::null() || lpiidl2 == ::null())
+         if(lpiidl1 == NULL || lpiidl2 == NULL)
          {
             return false;
          }
@@ -297,7 +297,7 @@ namespace filemanager
       void _017ItemIDListParsePath(LPITEMIDLIST * lpiidl, const char * lpcsz)
       {
          HRESULT hr;
-         LPMALLOC lpmalloc = ::null();
+         LPMALLOC lpmalloc = NULL;
          IShellFolder * lpsfDesktop;
          hr = SHGetMalloc(&lpmalloc);
 
@@ -312,8 +312,8 @@ namespace filemanager
          try
          {
             hr = lpsfDesktop->ParseDisplayName(
-               ::null(),
-               ::null(),
+               NULL,
+               NULL,
                (wchar_t *) (const wchar_t *) wstr,
                &ulEaten,
                lpiidl,
@@ -330,7 +330,7 @@ namespace filemanager
 
       void _017ItemIDListFree( LPITEMIDLIST lpiidl)
       {
-         LPMALLOC lpmalloc = ::null();
+         LPMALLOC lpmalloc = NULL;
 
       SHGetMalloc(&lpmalloc);
 
@@ -451,9 +451,9 @@ namespace filemanager
       string wstrMask(wstrBase);
       wstrMask += "*.*";
       wstring wstr = ::ca::international::utf8_to_unicode(lpcszPath);
-      HANDLE h = ::FindFirstFileExW(wstr, FindExInfoStandard, &fd, FindExSearchNameMatch, ::null(), 0);
+      HANDLE h = ::FindFirstFileExW(wstr, FindExInfoStandard, &fd, FindExSearchNameMatch, NULL, 0);
 
-      if(h == ::null())
+      if(h == NULL)
          return;
 
       while(true)
@@ -602,7 +602,7 @@ namespace filemanager
 
       single_lock sl(&m_mutex, true);
 
-      if(lpsf == ::null())
+      if(lpsf == NULL)
          return 0x80000000;
       int32_t iType;
       switch(eicon)
@@ -635,8 +635,8 @@ namespace filemanager
       string strPath;
       int32_t iImage = 0x80000000;
 
-      HICON hicon16 = ::null();
-      HICON hicon48 = ::null();
+      HICON hicon16 = NULL;
+      HICON hicon48 = NULL;
       HRESULT hrIconLocation;
       HRESULT hrExtract;
       ImageKey imagekey;
@@ -660,7 +660,7 @@ namespace filemanager
       SHFILEINFO shfi16;
       SHFILEINFO shfi48;
 
-      IExtractIcon * lpiextracticon = ::null();
+      IExtractIcon * lpiextracticon = NULL;
 
       /*EFolder efolder = GetFolderType(wszFilePath);
       if(efolder !)
@@ -688,7 +688,7 @@ namespace filemanager
          1,
          (LPCITEMIDLIST *) &lpiidlChild,
          IID_IExtractIcon,
-         ::null(),
+         NULL,
          (void **) &lpiextracticon)))
       {
          if(SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
@@ -719,12 +719,12 @@ namespace filemanager
       {
          string strTarget;
          //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data))
-         if(System.os().resolve_link(strTarget, strFilePath, ::null()))
+         if(System.os().resolve_link(strTarget, strFilePath, NULL))
          {
 
             wstring wstr = ::ca::international::utf8_to_unicode(strTarget);
 
-            LPITEMIDLIST lpiidl2 = ::null();
+            LPITEMIDLIST lpiidl2 = NULL;
 
             uint32_t dwAttrib = 0;
 
@@ -736,10 +736,10 @@ namespace filemanager
             {
                hr = SHParseDisplayName(
                   wstr,
-                  ::null(),
+                  NULL,
                   &lpiidl2,
                   0,
-                  ::null());
+                  NULL);
             }
             catch(...)
             {
@@ -754,7 +754,7 @@ namespace filemanager
                lpsf,
                lpiidl2,
                lpiidlChild2,
-               ::null(),
+               NULL,
                eicon);
 
             _017ItemIDListFree(lpiidlParent2);
@@ -810,13 +810,13 @@ namespace filemanager
                   | SHGFI_LARGEICON);
             }
             iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
-            IImageList * pil = ::null();
+            IImageList * pil = NULL;
             SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
-            if(pil != ::null())
+            if(pil != NULL)
             {
                HICON hicon48;
                pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
-               if(hicon48 == ::null())
+               if(hicon48 == NULL)
                {
                   m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                }
@@ -842,7 +842,7 @@ namespace filemanager
          {
             try
             {
-               hicon16 = ::null();
+               hicon16 = NULL;
                strPath.Truncate(0);
                strPath.free_extra();
                strPath = imagekey.m_strPath;
@@ -854,7 +854,7 @@ namespace filemanager
                try
                {
                   if((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
-                     && lpiextracticon != ::null()
+                     && lpiextracticon != NULL
                      && (NOERROR == (hrExtract = lpiextracticon->Extract(
                      strPath,
                      iIcon,
@@ -867,11 +867,11 @@ namespace filemanager
                      iImage = m_pil16->add_icon_os_data(hicon16);
 /*                     HMODULE hmodule = ::LoadLibrary(strPath);
                      HICON hicon48_2;
-                     if(hmodule != ::null())
+                     if(hmodule != NULL)
                      {
                         hicon48_2 = (HICON) ::LoadImage(hmodule, MAKEINTRESOURCE(iIcon), IMAGE_ICON, 48, 48, LR_LOADTRANSPARENT);
                      }
-                     if(hicon48_2 != ::null())
+                     if(hicon48_2 != NULL)
                      {
                         m_pil48Hover->add_icon_os_data(hicon48_2);
                      }
@@ -917,13 +917,13 @@ namespace filemanager
                         | SHGFI_LARGEICON);
                      hicon48 = shfi48.hIcon;
                      iImage = m_pil16->add_icon_os_data(hicon16);
-                     IImageList * pil = ::null();
+                     IImageList * pil = NULL;
                      SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
-                     if(pil != ::null())
+                     if(pil != NULL)
                      {
                         HICON hicon48;
                         pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
-                        if(hicon48 == ::null())
+                        if(hicon48 == NULL)
                         {
                            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                         }
@@ -952,7 +952,7 @@ namespace filemanager
                         &hicon16,
                         1);
                   }
-                  if(hicon16 == ::null())
+                  if(hicon16 == NULL)
                   {
                         SHGetFileInfo(
                            "foo",
@@ -964,7 +964,7 @@ namespace filemanager
                            | SHGFI_SMALLICON);
                      hicon16 = shfi16.hIcon;
                   }
-                  if(hicon48 == ::null())
+                  if(hicon48 == NULL)
                   {
                         SHGetFileInfo(
                            "foo",
@@ -977,13 +977,13 @@ namespace filemanager
                      hicon48 = shfi48.hIcon;
                   }
                   iImage = m_pil16->add_icon_os_data(hicon16);
-                  IImageList * pil = ::null();
+                  IImageList * pil = NULL;
                   SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
-                  if(pil != ::null())
+                  if(pil != NULL)
                   {
                      HICON hicon48;
                      pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
-                     if(hicon48 == ::null())
+                     if(hicon48 == NULL)
                      {
                         m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                      }
@@ -1011,7 +1011,7 @@ namespace filemanager
          }
       }
 
-      if(lpiextracticon != ::null())
+      if(lpiextracticon != NULL)
       {
          lpiextracticon->Release();
       }
@@ -1033,7 +1033,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-      if(pszPath == ::null())
+      if(pszPath == NULL)
          return 0x80000000;
 
       string strPath(pszPath);
@@ -1057,8 +1057,8 @@ namespace filemanager
 
 
 
-      HICON hicon16 = ::null();
-      HICON hicon48 = ::null();
+      HICON hicon16 = NULL;
+      HICON hicon48 = NULL;
 //      HRESULT hrIconLocation;
 //      HRESULT hrExtract;
       ImageKey imagekey;
@@ -1167,7 +1167,7 @@ namespace filemanager
 
       single_lock sl(&m_mutex, true);
 
-      if(lpsf == ::null())
+      if(lpsf == NULL)
          return false;
       int32_t iType;
       switch(eicon)
@@ -1200,8 +1200,8 @@ namespace filemanager
       string strPath;
    //   int32_t iImage = 0x80000000;
 
-      HICON hicon16 = ::null();
-      HICON hicon48 = ::null();
+      HICON hicon16 = NULL;
+      HICON hicon48 = NULL;
       HRESULT hrIconLocation;
       HRESULT hrExtract;
       ImageKey imagekey;
@@ -1225,7 +1225,7 @@ namespace filemanager
       SHFILEINFO shfi16;
       SHFILEINFO shfi48;
 
-      IExtractIcon * lpiextracticon = ::null();
+      IExtractIcon * lpiextracticon = NULL;
 
       /*EFolder efolder = GetFolderType(wszFilePath);
       if(efolder !)
@@ -1253,7 +1253,7 @@ namespace filemanager
          1,
          (LPCITEMIDLIST *) &lpiidlChild,
          IID_IExtractIcon,
-         ::null(),
+         NULL,
          (void **) &lpiextracticon)))
       {
          if(SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
@@ -1328,7 +1328,7 @@ namespace filemanager
          {
             try
             {
-               hicon16 = ::null();
+               hicon16 = NULL;
                strPath.Truncate(0);
                strPath.free_extra();
                strPath = imagekey.m_strPath;
@@ -1340,7 +1340,7 @@ namespace filemanager
                try
                {
                   if((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
-                     && lpiextracticon != ::null()
+                     && lpiextracticon != NULL
                      && (NOERROR == (hrExtract = lpiextracticon->Extract(
                      strPath,
                      iIcon,
@@ -1394,7 +1394,7 @@ namespace filemanager
                         &hicon16,
                         1);
                   }
-                  if(hicon16 == ::null())
+                  if(hicon16 == NULL)
                   {
                         SHGetFileInfo(
                            "foo",
@@ -1406,7 +1406,7 @@ namespace filemanager
                            | SHGFI_SMALLICON);
                      hicon16 = shfi16.hIcon;
                   }
-                  if(hicon48 == ::null())
+                  if(hicon48 == NULL)
                   {
                         SHGetFileInfo(
                            "foo",
@@ -1427,7 +1427,7 @@ namespace filemanager
             }
          }
 
-      if(lpiextracticon != ::null())
+      if(lpiextracticon != NULL)
       {
          lpiextracticon->Release();
       }
@@ -1491,8 +1491,8 @@ namespace filemanager
          {
             str.trim();
 #ifdef WINDOWSEX
-            HICON hicon16 = (HICON) ::LoadImage(::null(), Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(::null(), Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
             System.visual().imaging().Createcolor_blend_ImageList(
@@ -1635,7 +1635,7 @@ index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
    while(*pcsidl != -1)
    {
       if(SUCCEEDED(SHGetSpecialFolderLocation(
-         ::null(),
+         NULL,
          *pcsidl,
          &ppidl)))
       {
@@ -1676,12 +1676,12 @@ void Shell::GetAscendants(
    LPITEMIDLIST lpiidl,
    array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
 {
-   if(lpiidl == ::null())
+   if(lpiidl == NULL)
       return;
    for(;;)
    {
       lpiidl = _shell::_017ItemIDListGetFolderParent(lpiidl);
-      if(lpiidl == ::null())
+      if(lpiidl == NULL)
          break;
       lpiidla.add(lpiidl);
    }
@@ -1689,7 +1689,7 @@ void Shell::GetAscendants(
 
 void Shell::Free(array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
 {
-   LPMALLOC lpmalloc = ::null();
+   LPMALLOC lpmalloc = NULL;
 
    SHGetMalloc(&lpmalloc);
 

@@ -3,7 +3,7 @@
 CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch);
 CLASS_DECL_c void installer_call_sync(const char * path, const char * param);
 
-CLASS_DECL_c char * szSpabootInstall = ::null();
+CLASS_DECL_c char * szSpabootInstall = NULL;
 
 
 int32_t installer(const char * param)
@@ -55,7 +55,7 @@ CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch
    
    spa::installer::launcher launcher;
 
-   if(!txchannel.open("ca2/spaboot_install", bLaunch ? &launcher : ::null())) 
+   if(!txchannel.open("ca2/spaboot_install", bLaunch ? &launcher : NULL)) 
       return false;
 
    txchannel.send(psz, false);

@@ -137,7 +137,7 @@ int __getopt_initialized;
    in which the last option character we returned was found.
    This allows us to pick up the scan where we left off.
 
-   If this is zero, or a null string, it means resume the scan
+   If this is zero, or a NULL string, it means resume the scan
    by advancing to the next ARGV-element.  */
 
 static char *nextchar;
@@ -570,7 +570,7 @@ _getopt_internal (argc, argv, optstring, longopts, longind, long_only)
 	}
 
       /* The special ARGV-element `--' means premature end of options.
-	 Skip it like a null option,
+	 Skip it like a NULL option,
 	 then exchange with previous non-options as if it were an option,
 	 then skip everything else like a non-option.  */
 

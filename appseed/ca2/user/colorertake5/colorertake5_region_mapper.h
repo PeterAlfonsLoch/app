@@ -12,7 +12,7 @@ public:
   /**
    * Searches mapped region define value.
    * @return region define, associated with passed @c region
-   * parameter, or ::null() if nothing found
+   * parameter, or NULL if nothing found
    */
   virtual RegionDefine *getRegionDefine(class region *region) = 0;
 

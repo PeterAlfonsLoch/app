@@ -13,7 +13,7 @@ SimplePushButton::SimplePushButton(sp(::ca::application) papp) :
    m_cr =  RGB(70, 200, 110);
    m_bPush = false;
    m_bHover = false;
-   m_pcolorschema = ::null();
+   m_pcolorschema = NULL;
 }
 
 SimplePushButton::~SimplePushButton()
@@ -74,7 +74,7 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 
    COLORREF cr;
 
-   if(m_pcolorschema != ::null())
+   if(m_pcolorschema != NULL)
    {
       if(IsPushed())
       {
@@ -186,7 +186,7 @@ void SimplePushButton::_001OnCreate(::ca::signal_object * pobj)
 {
    pobj->previous();
 
-   SetTimer(16384, 100, ::null());
+   SetTimer(16384, 100, NULL);
 }
 
 void SimplePushButton::_001OnDestroy(::ca::signal_object * pobj)
@@ -276,7 +276,7 @@ void SimplePushButton::TransitionEffectStart()
    m_bTransitionEffect = true;
    m_iStepCount = 27;
    m_iStep = 0;
-   SetTimer(3, 20, ::null());
+   SetTimer(3, 20, NULL);
 }
 
 void SimplePushButton::SetColorSchema(ColorSchema *pschema)

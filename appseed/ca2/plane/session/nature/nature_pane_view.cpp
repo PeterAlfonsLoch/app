@@ -81,7 +81,7 @@ namespace nature
     //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
             sp(::user::menu_list_view) pview =  (view::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
-            if(pview != ::null())
+            if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->LoadXmlMenu("idioma_nature_menu.xml");
@@ -97,7 +97,7 @@ namespace nature
             cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
             sp(::userex::pane_tab_view) pview = (CreateView(&cc, 101, this));
-            if(pview != ::null())
+            if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
                pmenuview->m_wnd.LoadMenu(IDR_POPUP_LYRICVIEW);
@@ -114,7 +114,7 @@ namespace nature
     //        cc.m_typeinfoNewView =  System.type_info < ::nature::view > ();
 
             sp(::user::interaction) pview =  (view::create_view(System.type_info < ::nature::view > (), get_document(), this, 101).m_p);
-            if(pview != ::null())
+            if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
                pcreatordata->m_pwnd = pview;
@@ -124,13 +124,13 @@ namespace nature
       case PaneViewAppearance:
          {
             sp(::user::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
-            if(pdoc != ::null())
+            if(pdoc != NULL)
             {
                sp(::user::view) pview = pdoc->get_view();
-               if(pview != ::null())
+               if(pview != NULL)
                {
                   sp(::user::frame_window) pframe = (pview->GetParentFrame());
-                  if(pframe != ::null())
+                  if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
@@ -171,7 +171,7 @@ namespace nature
       if(m_pviewdata->m_id == nature::PaneViewIdioma)
       {
          sp(::user::menu_list_view) pmenuview =  (m_pviewdata->m_pwnd.m_p);
-         pmenuview->m_pguieNotify = m_pviewdataOld == ::null() ? ::null() : (m_pviewdataOld->m_pwnd.m_p);
+         pmenuview->m_pguieNotify = m_pviewdataOld == NULL ? NULL : (m_pviewdataOld->m_pwnd.m_p);
          pmenuview->m_uiMessage = WM_USER + 1122;
          pmenuview->TrackPopupMenu(pmenuview, GetParentFrame());
       }

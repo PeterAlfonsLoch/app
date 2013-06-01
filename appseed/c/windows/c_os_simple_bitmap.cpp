@@ -6,14 +6,14 @@
 simple_bitmap::simple_bitmap()
 {
    
-   m_pbitmap = ::null();
+   m_pbitmap = NULL;
 
 }
 
 simple_bitmap::~simple_bitmap()
 {
    
-   if(m_pbitmap != ::null())
+   if(m_pbitmap != NULL)
    {
 
       destroy();
@@ -25,7 +25,7 @@ simple_bitmap::~simple_bitmap()
 bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF ** ppdata)
 {
 
-   if(m_pbitmap != ::null())
+   if(m_pbitmap != NULL)
    {
       
       destroy();
@@ -37,7 +37,7 @@ bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF
 
    m_memory.allocate(4 * m_size.cx * m_size.cy);
 
-   if(m_memory.get_data() == ::null())
+   if(m_memory.get_data() == NULL)
    {
       m_size.cx = 0;
       m_size.cy = 0;
@@ -46,7 +46,7 @@ bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF
 
    m_pbitmap = new Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx * 4, PixelFormat32bppARGB, (BYTE *) m_memory.get_data());
 
-   if(m_pbitmap == ::null())
+   if(m_pbitmap == NULL)
    {
       m_memory.allocate(0);
       m_size.cx = 0;
@@ -54,7 +54,7 @@ bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF
       return FALSE;
    }
 
-   if(ppdata != ::null())
+   if(ppdata != NULL)
    {
       *ppdata = (COLORREF *) m_memory.get_data(); 
    }
@@ -67,7 +67,7 @@ bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF
 bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, simple_graphics & g)
 {
 
-   if(m_pbitmap != ::null())
+   if(m_pbitmap != NULL)
    {
       
       destroy();
@@ -79,7 +79,7 @@ bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, s
 
    m_memory.attach(pdata, m_size.cx * m_size.cy * 4);
 
-   if(m_memory.get_data() == ::null())
+   if(m_memory.get_data() == NULL)
    {
       m_size.cx = 0;
       m_size.cy = 0;
@@ -88,7 +88,7 @@ bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, s
 
    m_pbitmap = new Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx * 4, PixelFormat32bppARGB, (BYTE *) m_memory.get_data());
 
-   if(m_pbitmap == ::null())
+   if(m_pbitmap == NULL)
    {
       m_memory.allocate(0);
       m_size.cx = 0;
@@ -105,7 +105,7 @@ bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, s
 bool simple_bitmap::destroy()
 {
    
-   if(m_pbitmap == ::null())
+   if(m_pbitmap == NULL)
       return true;
 
    bool bOk = true;
@@ -123,7 +123,7 @@ bool simple_bitmap::destroy()
 
    }
 
-   m_pbitmap = ::null();
+   m_pbitmap = NULL;
 
    if(!bOk)
       return false;

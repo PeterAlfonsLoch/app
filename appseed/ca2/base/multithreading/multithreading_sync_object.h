@@ -34,7 +34,7 @@ public:
    virtual wait_result wait(const duration & durationTimeout);
 
    virtual bool unlock() = 0;
-   virtual bool unlock(LONG /* lCount */, LPLONG /* lpPrevCount=::null() */);
+   virtual bool unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */);
 
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;

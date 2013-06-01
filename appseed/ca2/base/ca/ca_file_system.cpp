@@ -205,9 +205,9 @@ namespace ca
       string file_system::time(sp(::ca::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
       {
          mutex_lock lockMachineEvent(
-            (&System.machine_event_central() != ::null()) ?
+            (&System.machine_event_central() != NULL) ?
                System.machine_event_central().m_machineevent.m_mutex
-               : *((simple_mutex *) ::null()), true);
+               : *((simple_mutex *) NULL), true);
          int32_t iIncLevel = -1;
          string str;
          string strPrefix(pszPrefix);
@@ -224,7 +224,7 @@ namespace ca
            if(!System.dir().is(str, papp))
               throw "time square dir does not exist";
            straTitle.remove_all();
-            System.dir().ls(papp, str, ::null(), &straTitle);
+            System.dir().ls(papp, str, NULL, &straTitle);
             if(i < iMaxLevel)
             {
                int32_t iMax = filterex_time_square("", straTitle);
@@ -255,7 +255,7 @@ namespace ca
             }
             else // if i == iMaxLevel
             {
-               System.dir().ls(papp, str, ::null(), &straTitle);
+               System.dir().ls(papp, str, NULL, &straTitle);
                int32_t iMax = filterex_time_square(pszPrefix, straTitle);
                if(iMax == -1)
                {
@@ -338,7 +338,7 @@ namespace ca
       string file_system::as_string(var varFile, var & varQuery, sp(::ca::application) papp)
       {
          primitive::memory storage;
-         if(varFile.ca < ::ca::file > () != ::null())
+         if(varFile.ca < ::ca::file > () != NULL)
          {
             storage.FullLoad(*varFile.ca < ::ca::file >());
          }
@@ -375,6 +375,12 @@ namespace ca
                   return "";
                ::ca::property_set post;
                ::ca::property_set headers;
+
+               ::url_domain domain;
+
+               domain.create(System.url().get_server(strFilePath));
+
+
                if(varQuery.has_property("post"))
                {
                   post = varQuery["post"].propset();
@@ -385,13 +391,13 @@ namespace ca
                }
                if(varQuery.propset()["disable_ca2_sessid"])
                {
-                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), ::null(), ::null());
+                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
                else if(varQuery.propset()["optional_ca2_sessid"])
                {
-                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), ::null(), ::null());
+                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
-               else if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
+               else if(domain.m_strRadix == "ca2" && strFilePath.contains("/matter/"))
                {
                   try
                   {
@@ -403,7 +409,7 @@ namespace ca
                }
                else
                {
-                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), ::null(), &AppUser(papp));
+                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
                }
                varQuery["out_headers"] = headers;
             }
@@ -529,7 +535,7 @@ namespace ca
 
       bool file_system::put_contents(var varFile, const char * lpcszContents, sp(::ca::application) papp)
       {
-         if(lpcszContents == ::null())
+         if(lpcszContents == NULL)
          {
             return put_contents(varFile, "", 0, papp);
          }
@@ -868,7 +874,7 @@ namespace ca
          }
 #elif defined(METROWIN)
 
-         ::Windows::Storage::StorageFile ^ file = get_os_file(psz,  0, 0, ::null(), OPEN_EXISTING, 0, ::null());
+         ::Windows::Storage::StorageFile ^ file = get_os_file(psz,  0, 0, NULL, OPEN_EXISTING, 0, NULL);
 
          if(file == nullptr)
             throw "file::file_system::move Could not move file, could not open source file";
@@ -983,7 +989,7 @@ namespace ca
       bool file_system::exists(const char * pszPath, sp(::ca::application) papp)
       {
 
-         return exists(pszPath, ::null(), papp);
+         return exists(pszPath, NULL, papp);
 
       }
 
@@ -1039,7 +1045,7 @@ namespace ca
       bool file_system::exists(const string & strPath, sp(::ca::application) papp)
       {
 
-         return exists(strPath, ::null(), papp);
+         return exists(strPath, NULL, papp);
 
       }
 
@@ -1161,7 +1167,7 @@ namespace ca
       void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::ca::application) papp)
       {
          stringa straTitle;
-         System.dir().ls(papp, pszContext, ::null(), &straTitle);
+         System.dir().ls(papp, pszContext, NULL, &straTitle);
          string strOld;
          string strNew;
          string strFail;
@@ -1193,7 +1199,7 @@ namespace ca
          }
          if(strFail.has_char())
          {
-            Application.simple_message_box(::null(), strFail);
+            Application.simple_message_box(NULL, strFail);
          }
       }
 
@@ -1385,7 +1391,7 @@ namespace ca
    {
       stringa stra;
       stringa straRelative;
-      System.dir().rls(papp, pszDir, &stra, ::null(), &straRelative);
+      System.dir().rls(papp, pszDir, &stra, NULL, &straRelative);
       dtf(pszFile, stra, straRelative, papp);
    }
 
@@ -1403,7 +1409,7 @@ namespace ca
 
       ::crypto::md5::context ctx(get_app());
 
-      write_gen_string(spfile, ::null(), strVersion);
+      write_gen_string(spfile, NULL, strVersion);
 
       ::ca::filesp file2(allocer());
 
@@ -1426,9 +1432,9 @@ namespace ca
          }
          else if(System.dir().is(stra[i], get_app()))
             continue;
-         write_n_number(spfile, ::null(), 1);
+         write_n_number(spfile, NULL, 1);
          iPos = spfile->get_position();
-         write_gen_string(spfile, ::null(), strMd5);
+         write_gen_string(spfile, NULL, strMd5);
          ctx.reset();
          write_gen_string(spfile, &ctx, straRelative[i]);
          if(!file2->open(stra[i], ::ca::file::mode_read | ::ca::file::type_binary))
@@ -1441,11 +1447,11 @@ namespace ca
          }
          spfile->seek(iPos, ::ca::seek_begin);
          strMd5 = ctx.to_hex();
-         write_gen_string(spfile, ::null(), strMd5);
+         write_gen_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
 
       }
-      write_n_number(spfile, ::null(), 2);
+      write_n_number(spfile, NULL, 2);
    }
 
    void file_system::ftd(const char * pszDir, const char * pszFile, sp(::ca::application) papp)
@@ -1454,7 +1460,7 @@ namespace ca
       ::ca::filesp spfile = App(papp).file().get_file(pszFile, ::ca::file::mode_read  | ::ca::file::type_binary);
       if(spfile.is_null())
          throw "failed";
-      read_gen_string(spfile, ::null(), strVersion);
+      read_gen_string(spfile, NULL, strVersion);
       int64_t n;
       string strRelative;
       string strMd5;
@@ -1470,10 +1476,10 @@ namespace ca
       {
          while(true)
          {
-            read_n_number(spfile, ::null(), n);
+            read_n_number(spfile, NULL, n);
             if(n == 2)
                break;
-            read_gen_string(spfile, ::null(), strMd5);
+            read_gen_string(spfile, NULL, strMd5);
             ctx.reset();
             read_gen_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
@@ -1507,7 +1513,7 @@ namespace ca
 
       pfile->write((const char *) str, str.get_length());
 
-      if(pctx != ::null())
+      if(pctx != NULL)
       {
 
          pctx->update((const char *) str, (int32_t) str.get_length());
@@ -1533,7 +1539,7 @@ namespace ca
          else
             break;
 
-         if(pctx != ::null())
+         if(pctx != NULL)
          {
             pctx->update(&ch, 1);
          }
@@ -1543,7 +1549,7 @@ namespace ca
       if(ch != 'n')
          throw "failed";
 
-      if(pctx != ::null())
+      if(pctx != NULL)
       {
          pctx->update(&ch, 1);
       }
@@ -1557,7 +1563,7 @@ namespace ca
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
       pfile->write((const char *) str, str.get_length());
-      if(pctx != ::null())
+      if(pctx != NULL)
       {
          pctx->update((const char *) str, (int32_t) str.get_length());
       }
@@ -1569,7 +1575,7 @@ namespace ca
       read_n_number(pfile, pctx, iLen);
       LPSTR lpsz = str.GetBufferSetLength((strsize) (iLen + 1));
       pfile->read(lpsz, (primitive::memory_size) iLen);
-      if(pctx != ::null())
+      if(pctx != NULL)
       {
          int64_t iProcessed = 0;
          while(iLen - iProcessed > 0)
@@ -1637,7 +1643,7 @@ HANDLE OnlyGetDrv()
 
         if( !PathFileExists( csFilePath ))
         {
-            MessageBox(::null(), "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
+            MessageBox(NULL, "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
             return 0;
         }
 
@@ -1669,7 +1675,7 @@ extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Fi
 		// Extract the driver from the resource and install it.
 		//HANDLE hDriver = ExtractAndInstallDrv();
       //HANDLE hDriver = OnlyGetDrv();
-      HANDLE hDriver = ::null();
+      HANDLE hDriver = NULL;
 		GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = 0;
 		if(  !hDriver )
 		{
@@ -1883,7 +1889,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 			ADDRESS_INFO stAddress;
 			stAddress.pAddress = sh.pAddress;
 			DWORD dwReturn = 0;
-			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, ::null() ) != FALSE;
+			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL ) != FALSE;
 
 
 			if( bSuccess && stHandle.tcFileName[0] != 0 &&

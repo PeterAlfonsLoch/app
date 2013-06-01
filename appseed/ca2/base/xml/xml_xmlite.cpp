@@ -20,7 +20,7 @@ namespace xml
             return (char *)psz;
          psz++;
       }
-      return ::null();
+      return NULL;
    }
 
    //========================================================
@@ -78,15 +78,15 @@ namespace xml
    {
       int32_t len = 0;
       char * pch = srt;
-      if( end==::null() ) end = (char *)sizeof(long);
-      char * prev_escape = ::null();
+      if( end==NULL ) end = (char *)sizeof(long);
+      char * prev_escape = NULL;
       while( pch && *pch && pch<end )
       {
-         if( escape != 0 && *pch == escape && prev_escape == ::null() )
+         if( escape != 0 && *pch == escape && prev_escape == NULL )
             prev_escape = pch;
          else
          {
-            prev_escape = ::null();
+            prev_escape = NULL;
             len++;
          }
          pch++;
@@ -106,15 +106,15 @@ namespace xml
    CLASS_DECL_ca2 void _tcsecpy(char * psz, int32_t escape, char * srt, char * end)
    {
       char * pch = srt;
-      if( end==::null() ) end = (char *)sizeof(long);
-      char * prev_escape = ::null();
+      if( end==NULL ) end = (char *)sizeof(long);
+      char * prev_escape = NULL;
       while( pch && *pch && pch<end )
       {
-         if( escape != 0 && *pch == escape && prev_escape == ::null() )
+         if( escape != 0 && *pch == escape && prev_escape == NULL )
             prev_escape = pch;
          else
          {
-            prev_escape = ::null();
+            prev_escape = NULL;
             *psz++ = *pch;
          }
 
@@ -136,14 +136,14 @@ namespace xml
    CLASS_DECL_ca2 char * _tcsepbrk( const char * psz, const char * chset, int32_t escape )
    {
       char * pch = (char *)psz;
-      char * prev_escape = ::null();
+      char * prev_escape = NULL;
       while( pch && *pch )
       {
-         if( escape != 0 && *pch == escape && prev_escape == ::null() )
+         if( escape != 0 && *pch == escape && prev_escape == NULL )
             prev_escape = pch;
          else
          {
-            prev_escape = ::null();
+            prev_escape = NULL;
             if( strchr( chset, *pch ) )
                return (char *)pch;
          }
@@ -164,17 +164,17 @@ namespace xml
    CLASS_DECL_ca2 int32_t _tcsenicmp( const char * psz, const char * str, strsize len, int32_t escape )
    {
       char * pch = (char *)psz;
-      char * prev_escape = ::null();
+      char * prev_escape = NULL;
       char * des = (char *)str;
       int32_t i = 0;
 
       while( pch && *pch && i < len )
       {
-         if( escape != 0 && *pch == escape && prev_escape == ::null() )
+         if( escape != 0 && *pch == escape && prev_escape == NULL )
             prev_escape = pch;
          else
          {
-            prev_escape = ::null();
+            prev_escape = NULL;
             if( tolower(*pch) != tolower(des[i]) )
                break;
             i++;
@@ -202,17 +202,17 @@ namespace xml
    CLASS_DECL_ca2 char * _tcsenistr( const char * psz, const char * str, strsize len, int32_t escape )
    {
       char * pch = (char *)psz;
-      char * prev_escape = ::null();
+      char * prev_escape = NULL;
       //char * des = (char *)str;
       //int32_t i = 0;
 
       while( pch && *pch )
       {
-         if( escape != 0 && *pch == escape && prev_escape == ::null() )
+         if( escape != 0 && *pch == escape && prev_escape == NULL )
             prev_escape = pch;
          else
          {
-            prev_escape = ::null();
+            prev_escape = NULL;
             if( _tcsenicmp( pch, str, len, escape ) == 0 )
                return (char *)pch;
          }

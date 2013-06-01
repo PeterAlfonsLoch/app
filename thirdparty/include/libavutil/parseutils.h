@@ -90,7 +90,7 @@ int av_parse_video_rate(AVRational *rate, const char *str);
  * If the alpha component is not specified then 0xff is assumed.
  * The string "random" will result in a random color.
  * @param slen length of the initial part of color_string containing the
- * color. It can be set to -1 if color_string is a null terminated string
+ * color. It can be set to -1 if color_string is a NULL terminated string
  * containing nothing else than the color.
  * @return >= 0 in case of success, a negative value in case of
  * failure (for example if color_string cannot be parsed).

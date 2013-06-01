@@ -8,7 +8,7 @@ namespace sockets
       m_handler(papp, plog),
       m_file(papp)
    {
-      m_psocket            = ::null();
+      m_psocket            = NULL;
       m_iDefaultTimeout    = 60;
    }
 
@@ -18,7 +18,7 @@ namespace sockets
 
    void sync_socket_handler::handle(socket * psocket)
    {
-      if(m_psocket != ::null())
+      if(m_psocket != NULL)
          throw simple_exception(get_app()); // busy
       m_psocket = psocket;
       m_psocket->m_pcallback = this;

@@ -32,7 +32,7 @@ vsstring dir::appdata(const char * lpcsz)
    memset_dup(buf, 0, sizeof(buf));
    
    SHGetSpecialFolderPath(
-      ::null(),
+      NULL,
       buf,
       CSIDL_COMMON_APPDATA,
       FALSE);
@@ -78,9 +78,9 @@ vsstring dir::userappdata(const char * lpcsz)
 
 #ifdef WINDOWSEX
    
-   wchar_t * buf = ::null();
+   wchar_t * buf = NULL;
    
-   SHGetKnownFolderPath(FOLDERID_LocalAppDataLow, 0, ::null(), &buf);
+   SHGetKnownFolderPath(FOLDERID_LocalAppDataLow, 0, NULL, &buf);
 
    char * psz = utf16_to_8(buf);
 

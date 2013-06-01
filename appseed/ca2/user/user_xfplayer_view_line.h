@@ -172,8 +172,8 @@ public:
 
 
    bool IsVisible();
-   void Validate(LPCRECT lpcrect = ::null());
-   void Invalidate(LPCRECT lpcrect = ::null());
+   void Validate(LPCRECT lpcrect = NULL);
+   void Invalidate(LPCRECT lpcrect = NULL);
    //void AddVmsFont(visual::font * pfont);
    //int32_t GetVmsFontCount();
    void SetPlacement(LPCRECT lpcrect);

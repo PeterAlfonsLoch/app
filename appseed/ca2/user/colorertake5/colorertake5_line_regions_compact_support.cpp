@@ -12,13 +12,13 @@ namespace colorertake5
    void LineRegionsCompactSupport::addLineRegion(index lno, LineRegion *ladd)
    {
       LineRegion *lstart = getLineRegions(lno);
-      //  LineRegion *fnormal = ::null();
-      ladd->next = ::null();
+      //  LineRegion *fnormal = NULL;
+      ladd->next = NULL;
       ladd->prev = ladd;
 
       if (ladd->special){
          // adds last and returns
-         if (lstart == ::null()){
+         if (lstart == NULL){
             lineRegions.set_at(getLineIndex(lno), ladd);
          }else{
             ladd->prev = lstart->prev;
@@ -27,7 +27,7 @@ namespace colorertake5
          };
          return;
       };
-      if (lstart == ::null()){
+      if (lstart == NULL){
          lineRegions.set_at(getLineIndex(lno), ladd);
          return;
       };
@@ -53,7 +53,7 @@ namespace colorertake5
          // add last
          if (ln->start < ladd->start && !ln->next){
             ln->next = ladd;
-            ladd->next = ::null();
+            ladd->next = NULL;
             ladd->prev = ln;
             lstart->prev = ladd;
             break;
@@ -75,7 +75,7 @@ namespace colorertake5
             ln1->prev = ladd;
             ln1->next = ladd->next;
             if (ladd->next) ladd->next->prev = ln1;
-            if (ln1->next == ::null()) lstart->prev = ln1;
+            if (ln1->next == NULL) lstart->prev = ln1;
             ladd->next = ln1;
             ln1->start = ladd->end;
             if (ladd->prev == flowBackground) flowBackground = ln1;

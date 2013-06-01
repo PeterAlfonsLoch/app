@@ -6,7 +6,7 @@ namespace xml
    property_set_exchange::property_set_exchange(sp(::ca::application) papp) :
       ca(papp)
    {
-      m_ppropertyset = ::null();
+      m_ppropertyset = NULL;
    }
 
    property_set_exchange::~property_set_exchange()
@@ -17,8 +17,8 @@ namespace xml
 
    void property_set_exchange::xml_export(class output_tree & xmlot)
    {
-      ASSERT(m_ppropertyset != ::null());
-      if(m_ppropertyset == ::null())
+      ASSERT(m_ppropertyset != NULL);
+      if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
       for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
@@ -31,8 +31,8 @@ namespace xml
 
    void property_set_exchange::xml_import(class input_tree & xmlit)
    {
-      ASSERT(m_ppropertyset != ::null());
-      if(m_ppropertyset == ::null())
+      ASSERT(m_ppropertyset != NULL);
+      if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
       for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)

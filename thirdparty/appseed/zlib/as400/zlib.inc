@@ -96,7 +96,7 @@
      D  zs_next_out                    *                                        Output buffer ptr
      D  zs_avail_out                 10U 0                                      Room left @ next_out
      D  zs_total_out                 10U 0                                      Total bytes written
-     D  zs_msg                         *                                        Last errmsg or null
+     D  zs_msg                         *                                        Last errmsg or NULL
      D  zs_state                       *                                        Internal state
      D  zs_zalloc                      *   procptr                              Int. state allocator
      D  zs_free                        *   procptr                              Int. state dealloc.

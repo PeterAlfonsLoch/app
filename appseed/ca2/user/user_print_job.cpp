@@ -27,7 +27,7 @@ namespace user
          throw "printer not opened";
       }
 
-      if(m_pview == ::null())
+      if(m_pview == NULL)
       {
          throw "a view should collaborate";
       }

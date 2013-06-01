@@ -5,7 +5,7 @@ namespace ca
 
 
    TimerWnd::TimerWnd() :
-      m_evFree(::null(), FALSE, TRUE)
+      m_evFree(NULL, FALSE, TRUE)
    {
       EnableTimer();
    }
@@ -13,10 +13,10 @@ namespace ca
    TimerWnd::~TimerWnd()
    {
 
-   //    if(m_pTimerCallbackFinal != ::null())
+   //    if(m_pTimerCallbackFinal != NULL)
      //  {
        //    m_pTimerCallbackFinal->m_evTimerWndDeleted.SetEvent();
-         //  m_pTimerCallbackFinal = ::null();
+         //  m_pTimerCallbackFinal = NULL;
        //}
    }
 
@@ -41,7 +41,7 @@ namespace ca
    ///    m_pTimerCallbackFinal = m_pTimerCallback;
        rect rect(0, 0, 0, 0);
        
-       return ::ca::window::CreateEx(0,::null(), "Timer Window", 0, rect, ::null(), id());
+       return ::ca::window::CreateEx(0,NULL, "Timer Window", 0, rect, NULL, id());
    }
 
    void TimerWnd::OnTimer(UINT nIDEvent)
@@ -74,7 +74,7 @@ namespace ca
 
 #endif
 
-       if(m_bEnable && m_pTimerCallback != ::null())
+       if(m_bEnable && m_pTimerCallback != NULL)
            if(m_pTimerCallback->IsEnabled())
            {
    //         if(m_pTimerCallback->WishesQueueModel())
@@ -114,7 +114,7 @@ namespace ca
 
    void TimerWnd::OnDestroy()
    {
-       m_pTimerCallback = ::null();
+       m_pTimerCallback = NULL;
    //   ::ca::window::OnDestroy();
 
        //m_pTimerCallbackFinal = m_pTimerCallback;

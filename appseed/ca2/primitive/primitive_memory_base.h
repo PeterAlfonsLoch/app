@@ -221,7 +221,7 @@ namespace primitive
       else
       {
          ASSERT(FALSE);
-         return ::null();
+         return NULL;
       }*/
 
    }
@@ -234,7 +234,7 @@ namespace primitive
       else
       {
          ASSERT(FALSE);
-         return ::null();
+         return NULL;
       }*/
 
    }
@@ -296,14 +296,14 @@ namespace primitive
 
    inline void memory_base::copy_from(const memory_base *pstorage)
    {
-      ASSERT(pstorage != ::null());
+      ASSERT(pstorage != NULL);
       allocate(pstorage->get_size());
       memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
    }
 
    inline void memory_base::copy_from(const simple_memory *pstorage)
    {
-      ASSERT(pstorage != ::null());
+      ASSERT(pstorage != NULL);
       allocate(pstorage->get_size());
       memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
    }
@@ -333,7 +333,7 @@ namespace primitive
    inline void memory_base::remove_offset()
    {
 
-      if(m_pbStorage == ::null() || m_pbComputed == ::null() || m_iOffset <= 0)
+      if(m_pbStorage == NULL || m_pbComputed == NULL || m_iOffset <= 0)
          return;
 
       memmove(m_pbStorage, m_pbComputed, m_cbStorage);
@@ -346,7 +346,7 @@ namespace primitive
 
    inline memory_base & memory_base::operator = (const memory_base & s)
    {
-      if(&s == ::null())
+      if(&s == NULL)
       {
          allocate(0);
       }
@@ -359,7 +359,7 @@ namespace primitive
 
    inline memory_base & memory_base::operator = (const simple_memory & s)
    {
-      if(&s == ::null() || s.get_data() == ::null())
+      if(&s == NULL || s.get_data() == NULL)
       {
          allocate(0);
       }
@@ -373,7 +373,7 @@ namespace primitive
 
    inline memory_base & memory_base::operator += (const memory_base & s)
    {
-      if(&s != ::null())
+      if(&s != NULL)
       {
          append(s);
       }
@@ -842,7 +842,7 @@ namespace primitive
 
    inline memory_base & memory_base::reverse()
    {
-      if(this->get_data() != ::null())
+      if(this->get_data() != NULL)
       {
          ::mem_reverse(this->get_data(), this->get_size());
       }

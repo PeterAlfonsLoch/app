@@ -44,10 +44,10 @@
                    Added skipping of blocks when not executing
    Version 0.14 :  Added parsing of more number types
                    Added parsing of string defined with '
-                   Changed nil to null as per spec, added 'undefined'
+                   Changed nil to NULL as per spec, added 'undefined'
                    Now set variables with the correct scope, and treat unknown
                               as 'undefined' rather than failing
-                   Added proper (I hope) handling of null and undefined
+                   Added proper (I hope) handling of NULL and undefined
                    Added === check
    Version 0.15 :  Fix for possible memory leaks
    Version 0.16 :  Removal of un-needed findRecursive calls
@@ -385,7 +385,7 @@ string CScriptLex::getTokenStr(int32_t token) {
         case LEX_R_VAR : return "var";
         case LEX_R_TRUE : return "true";
         case LEX_R_FALSE : return "false";
-        case LEX_R_NULL : return "null";
+        case LEX_R_NULL : return "NULL";
         case LEX_R_UNDEFINED : return "undefined";
         case LEX_R_NEW : return "new";
     }
@@ -444,7 +444,7 @@ void CScriptLex::getNextToken() {
         else if (tkStr=="var") tk = LEX_R_VAR;
         else if (tkStr=="true") tk = LEX_R_TRUE;
         else if (tkStr=="false") tk = LEX_R_FALSE;
-        else if (tkStr=="null") tk = LEX_R_NULL;
+        else if (tkStr=="NULL") tk = LEX_R_NULL;
         else if (tkStr=="undefined") tk = LEX_R_UNDEFINED;
         else if (tkStr=="new") tk = LEX_R_NEW;
     } else if (isNumeric(currCh)) { // Numbers
@@ -957,7 +957,7 @@ double CScriptVar::getDouble() {
 const string &CScriptVar::getString() {
     /* Because we can't return a string that is generated on demand.
      * I should really just use char* :) */
-    static string s_null = "null";
+    static string s_null = "NULL";
     static string s_undefined = "undefined";
     if (isInt()) {
       char buffer[32];
@@ -1216,7 +1216,7 @@ string CScriptVar::getParsableString() {
   if (isString())
     return getJSString(getString());
   if (isNull())
-      return "null";
+      return "NULL";
   return "undefined";
 }
 
@@ -1481,7 +1481,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
     }
     l->match(')');
     // setup a return variable
-    CScriptVarLink *returnVar = ::null();
+    CScriptVarLink *returnVar = NULL;
     // execute function!
     // add the function's execute space to the symbol table so we can recurse
     CScriptVarLink *returnVarLink = functionRoot->addChild(TINYJS_RETURN_VAR);
@@ -2194,7 +2194,7 @@ CScriptVarLink *tinyjs::findInScopes(const string &childName) {
       CScriptVarLink *v = scopes[s]->findChild(childName);
       if (v) return v;
     }
-    return ::null();
+    return NULL;
 
 }
 

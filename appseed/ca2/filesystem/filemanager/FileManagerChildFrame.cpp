@@ -25,10 +25,10 @@ void FileManagerChildFrame::install_message_handling(::ca::message::dispatch * p
 bool FileManagerChildFrame::CreateBars()
 {
    sp(::filemanager::document) pdoc =  (GetActiveDocument());
-   if(pdoc == ::null())
+   if(pdoc == NULL)
       return false;
    
-   ASSERT(pdoc != ::null());
+   ASSERT(pdoc != NULL);
    ASSERT(base < ::filemanager::document >::bases(pdoc));
 
    DestroyBars();
@@ -92,7 +92,7 @@ void FileManagerChildFrame::OnChangeEditSearch()
 
    sp(::user::document_interface) pdoc = GetActiveDocument();
 
-   if(pdoc != ::null())
+   if(pdoc != NULL)
    {
       FileManagerViewUpdateHint uh;
       uh.set_type(FileManagerViewUpdateHint::TypeFilter);
@@ -108,7 +108,7 @@ void FileManagerChildFrame::_001OnCreate(::ca::signal_object * pobj)
       return;
    
 
-   m_hMenuDefault = ::null();
+   m_hMenuDefault = NULL;
    
    
 }
@@ -123,7 +123,7 @@ void FileManagerChildFrame::_001OnAppLanguage(::ca::signal_object * pobj)
 void FileManagerChildFrame::GetSelected(::fs::item_array &itema)
 {
    sp(::filemanager::SimpleFileListInterface) plistinterface = GetActiveView();
-   if(plistinterface != ::null())
+   if(plistinterface != NULL)
    {
       plistinterface->GetSelected(itema);
    }

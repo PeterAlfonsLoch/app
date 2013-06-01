@@ -182,7 +182,7 @@ element * parser::expr(element * pelement1)
       }
 
       syntax_error("missing number or ending parenthesis");
-      return ::null();
+      return NULL;
    }
 
    void parser::expect(char value)

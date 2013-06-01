@@ -5,8 +5,8 @@ namespace user
 
    image_manager::image_manager()
    {
-      m_pimagelist            = ::null();
-      m_pimagelistDisable     = ::null();
+      m_pimagelist            = NULL;
+      m_pimagelistDisable     = NULL;
    }
 
    image_manager::~image_manager()
@@ -43,7 +43,7 @@ namespace user
       }
 
       System.visual().imaging().CreateGrayVRCPImageList(
-         ::null(),
+         NULL,
          &GetImageListDisable(),
          &GetImageList());*/
 

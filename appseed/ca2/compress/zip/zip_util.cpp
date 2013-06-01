@@ -56,7 +56,7 @@ namespace zip
       }
 
       unz_file_info fi;
-      if(pf != ::null())
+      if(pf != NULL)
       {
          while(true)
          {
@@ -71,9 +71,9 @@ namespace zip
                &fi,
                szTitle,
                _MAX_PATH,
-               ::null(), // extra Field
+               NULL, // extra Field
                0,
-               ::null(), // comment
+               NULL, // comment
                0);
             string strTitle(szTitle);
             if(strRemain != strTitle && ((strRemain.is_empty() &&
@@ -82,25 +82,25 @@ namespace zip
             {
                if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
-                  if(pstraPath != ::null())
+                  if(pstraPath != NULL)
                   {
                      pstraPath->add(strLastZip + ":" + strRemain + strTitle);
                   }
-                  if(pstraTitle != ::null())
+                  if(pstraTitle != NULL)
                   {
                      pstraTitle->add(strTitle);
                   }
-                  if(pstraRelative != ::null())
+                  if(pstraRelative != NULL)
                   {
                      pstraRelative->add(strRemain + strTitle);
                   }
-                  if(pbaIsDir != ::null())
+                  if(pbaIsDir != NULL)
                   {
                      pbaIsDir->add(::ca::str::ends(szTitle, "/")
                                 || ::ca::str::ends(szTitle, "\\")
                                 || ::ca::str::ends(szTitle, ".zip"));
                   }
-                  if(piaSize != ::null())
+                  if(piaSize != NULL)
                   {
                      piaSize->add(fi.uncompressed_size);
                   }
@@ -119,7 +119,7 @@ namespace zip
       stringa straPath;
       stringa straTitle;
       array < bool, bool > baIsDir;
-      ls(papp, lpcsz, false, &straPath, &straTitle, ::null(), &baIsDir);
+      ls(papp, lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
 
       string strPath;
 
@@ -128,7 +128,7 @@ namespace zip
          if(baIsDir[i])
          {
             strPath = straPath[i];
-            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != ::null())
+            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
             {
                pstraTitle->add(straTitle[i]);
             }
@@ -136,7 +136,7 @@ namespace zip
          else
          {
             strPath = Sys(papp).dir().name(straPath[i]);
-            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != ::null())
+            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
             {
                pstraTitle->add(Sys(papp).dir().name(straTitle[i]));
             }
@@ -223,7 +223,7 @@ namespace zip
       string wstrFolder;
       stringa wstraFolder;
       string wstrZip;
-      if(pf != ::null())
+      if(pf != NULL)
       {
          while(true)
          {
@@ -239,12 +239,12 @@ namespace zip
 
                unzGetCurrentFileInfo(
                   pf,
-                  ::null(),
+                  NULL,
                   szTitle,
                   _MAX_PATH,
-                  ::null(), // extra Field
+                  NULL, // extra Field
                   0,
-                  ::null(), // comment
+                  NULL, // comment
                   0);
 
                str = szTitle;
@@ -273,7 +273,7 @@ namespace zip
 
    bool Util::exists(sp(::ca::application) papp, const char * pszPath)
    {
-      return extract(papp, pszPath, ::null());
+      return extract(papp, pszPath, NULL);
    }
 
    bool Util::extract(sp(::ca::application) papp, const char * lpszFileName, const char * lpszExtractFileName)
@@ -286,7 +286,7 @@ namespace zip
          return false;
       }
 
-      if(lpszExtractFileName == ::null())
+      if(lpszExtractFileName == NULL)
          return true;
 
       ::ca::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::defer_create_directory);
@@ -319,7 +319,7 @@ namespace zip
 
 
       unz_file_info fi;
-      if(pf != ::null())
+      if(pf != NULL)
       {
          while(true)
          {
@@ -331,9 +331,9 @@ namespace zip
                &fi,
                szTitle,
                _MAX_PATH,
-               ::null(), // extra Field
+               NULL, // extra Field
                0,
-               ::null(), // comment
+               NULL, // comment
                0);
             string strTitle(szTitle);
             if(::ca::str::ends(szTitle, "/") || ::ca::str::ends(szTitle, "\\"))

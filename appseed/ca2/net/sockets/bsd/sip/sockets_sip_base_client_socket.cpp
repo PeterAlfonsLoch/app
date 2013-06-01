@@ -182,7 +182,7 @@ namespace sockets
 #else
 
             timeval t;
-            gettimeofday(&t, ::null());
+            gettimeofday(&t, NULL);
             m_iFirstTime = t.tv_sec * 1000 * 1000 + t.tv_usec;
 
 #endif

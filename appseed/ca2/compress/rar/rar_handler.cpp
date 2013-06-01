@@ -66,36 +66,36 @@ namespace rar
 
    static const stat_prop_stg kProps[] =
    {
-      { ::null(), ::libcompress::kpidPath, var::type_string},
-      { ::null(), ::libcompress::kpidIsDir, var::type_bool},
-      { ::null(), ::libcompress::kpidSize, var::type_uint64},
-      { ::null(), ::libcompress::kpidPackSize, var::type_uint64},
-      { ::null(), ::libcompress::kpidMTime, var::type_filetime},
-      { ::null(), ::libcompress::kpidCTime, var::type_filetime},
-      { ::null(), ::libcompress::kpidATime, var::type_filetime},
-      { ::null(), ::libcompress::kpidAttrib, var::type_uint32},
+      { NULL, ::libcompress::kpidPath, var::type_string},
+      { NULL, ::libcompress::kpidIsDir, var::type_bool},
+      { NULL, ::libcompress::kpidSize, var::type_uint64},
+      { NULL, ::libcompress::kpidPackSize, var::type_uint64},
+      { NULL, ::libcompress::kpidMTime, var::type_filetime},
+      { NULL, ::libcompress::kpidCTime, var::type_filetime},
+      { NULL, ::libcompress::kpidATime, var::type_filetime},
+      { NULL, ::libcompress::kpidAttrib, var::type_uint32},
 
-      { ::null(), ::libcompress::kpidEncrypted, var::type_bool},
-      { ::null(), ::libcompress::kpidSolid, var::type_bool},
-      { ::null(), ::libcompress::kpidCommented, var::type_bool},
-      { ::null(), ::libcompress::kpidSplitBefore, var::type_bool},
-      { ::null(), ::libcompress::kpidSplitAfter, var::type_bool},
-      { ::null(), ::libcompress::kpidCRC, var::type_uint32},
-      { ::null(), ::libcompress::kpidHostOS, var::type_string},
-      { ::null(), ::libcompress::kpidMethod, var::type_string},
-      { ::null(), ::libcompress::kpidUnpackVer, var::type_byte}
+      { NULL, ::libcompress::kpidEncrypted, var::type_bool},
+      { NULL, ::libcompress::kpidSolid, var::type_bool},
+      { NULL, ::libcompress::kpidCommented, var::type_bool},
+      { NULL, ::libcompress::kpidSplitBefore, var::type_bool},
+      { NULL, ::libcompress::kpidSplitAfter, var::type_bool},
+      { NULL, ::libcompress::kpidCRC, var::type_uint32},
+      { NULL, ::libcompress::kpidHostOS, var::type_string},
+      { NULL, ::libcompress::kpidMethod, var::type_string},
+      { NULL, ::libcompress::kpidUnpackVer, var::type_byte}
    };
 
    static const stat_prop_stg kArcProps[] =
    {
-      { ::null(), ::libcompress::kpidCharacts, var::type_string},
-      { ::null(), ::libcompress::kpidSolid, var::type_bool},
-      { ::null(), ::libcompress::kpidNumBlocks, var::type_uint32},
-      // { ::null(), ::libcompress::kpidEncrypted, var::type_bool},
-      { ::null(), ::libcompress::kpidIsVolume, var::type_bool},
-      { ::null(), ::libcompress::kpidNumVolumes, var::type_uint32},
-      { ::null(), ::libcompress::kpidPhySize, var::type_uint64}
-      // { ::null(), ::libcompress::kpidCommented, var::type_bool}
+      { NULL, ::libcompress::kpidCharacts, var::type_string},
+      { NULL, ::libcompress::kpidSolid, var::type_bool},
+      { NULL, ::libcompress::kpidNumBlocks, var::type_uint32},
+      // { NULL, ::libcompress::kpidEncrypted, var::type_bool},
+      { NULL, ::libcompress::kpidIsVolume, var::type_bool},
+      { NULL, ::libcompress::kpidNumVolumes, var::type_uint32},
+      { NULL, ::libcompress::kpidPhySize, var::type_uint64}
+      // { NULL, ::libcompress::kpidCommented, var::type_bool}
    };
 
    IMP_IInArchive_Props
@@ -349,8 +349,8 @@ namespace rar
    HRESULT handler::Open2(::ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       {
-         ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = ::null();
-         ::crypto::get_text_password_interface * getTextPassword = ::null();
+         ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
+         ::crypto::get_text_password_interface * getTextPassword = NULL;
 //         ::libcompress::archive_open_callback_interface * openArchiveCallbackWrap = openCallback;
 
          CVolumeName seqName;
@@ -405,7 +405,7 @@ namespace rar
             if (openCallback)
             {
                totalBytes += endPos;
-               RINOK(openCallback->SetTotal(::null(), &totalBytes));
+               RINOK(openCallback->SetTotal(NULL, &totalBytes));
             }
 
             rar::input_file archive;
@@ -509,7 +509,7 @@ namespace rar
 
    ::ca::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
    {
-      ::crypto::get_text_password_interface * getTextPassword = ::null();
+      ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
          // censoredTotalPacked = 0,
          importantTotalUnPacked = 0;
@@ -563,13 +563,13 @@ namespace rar
       ::libcompress::filter_coder *filterStreamSpec = new ::libcompress::filter_coder;
       ::ca::reader * filterStream = filterStreamSpec;
 
-      ::crypto::rar20::decoder *rar20CryptoDecoderSpec = ::null();
-      ::libcompress::filter_interface * rar20CryptoDecoder = ::null();
-      ::crypto::rar29::decoder *rar29CryptoDecoderSpec = ::null();
-      ::libcompress::filter_interface * rar29CryptoDecoder = ::null();
+      ::crypto::rar20::decoder *rar20CryptoDecoderSpec = NULL;
+      ::libcompress::filter_interface * rar20CryptoDecoder = NULL;
+      ::crypto::rar29::decoder *rar29CryptoDecoderSpec = NULL;
+      ::libcompress::filter_interface * rar29CryptoDecoder = NULL;
 
-      folder_reader * folderInStreamSpec = ::null();
-      ::ca::reader * folderInStream = ::null();
+      folder_reader * folderInStreamSpec = NULL;
+      ::ca::reader * folderInStream = NULL;
 
       ::libcompress::local_progress *lps = new ::libcompress::local_progress;
       ::libcompress::progress_info_interface * progress = lps;

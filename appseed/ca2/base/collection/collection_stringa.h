@@ -10,7 +10,7 @@ class CLASS_DECL_ca2 stringa :
 public:
 
 
-   stringa(sp(::ca::application) papp = ::null());
+   stringa(sp(::ca::application) papp = NULL);
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);
@@ -91,13 +91,13 @@ public:
    // csstidy: Same as explode, but not within a string
    stringa & csstidy_explode_ws(char sep, const char * psz);
 
-   void implode(string & rwstr, const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
-   string implode(const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
-   void reverse_implode(string & rwstr, const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
-   string reverse_implode(const char * lpcszSeparator = ::null(), index iStart = 0, ::count iCount = -1) const;
+   void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
+   string implode(const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
+   void reverse_implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
+   string reverse_implode(const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
 
-   void surround(const char * pszPrefix = ::null(), const char * pszSuffix = ::null(), index iStart = 0, ::count iCount = -1);
-   string surround_and_implode(const char * lpcszSeparator = ::null(), const char * pszPrefix = ::null(), const char * pszSuffix = ::null(), index iStart = 0, ::count iCount = -1);
+   void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, ::count iCount = -1);
+   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, ::count iCount = -1);
 
    comparable_array < id > get_comparable_ida() const;
 

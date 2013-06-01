@@ -12,7 +12,7 @@ namespace sockets
       m_mutexResolvCache(papp)
    {
 
-      m_pajpbasesocketinit    = ::null();
+      m_pajpbasesocketinit    = NULL;
 
    }
 
@@ -50,10 +50,10 @@ namespace sockets
     
       if(Application.is_system())
       {
-         if(m_pajpbasesocketinit != ::null())
+         if(m_pajpbasesocketinit != NULL)
          {
             delete m_pajpbasesocketinit;
-            m_pajpbasesocketinit = ::null();
+            m_pajpbasesocketinit = NULL;
          }
       }
 

@@ -1135,7 +1135,7 @@ namespace ca
    void twit::prepareStandardParams()
    {
       /* Restore any custom request we may have */
-      //       curl_easy_setopt( m_curlHandle, CURLOPT_CUSTOMREQUEST, ::null() );
+      //       curl_easy_setopt( m_curlHandle, CURLOPT_CUSTOMREQUEST, NULL );
 
 
       /* Prepare username and password for twitter */
@@ -1300,7 +1300,7 @@ namespace ca
       /* Copy base URL */
       string outUrl = baseUrl;
 
-      if(userInfo != ::null() && strlen(userInfo)  > 0)
+      if(userInfo != NULL && strlen(userInfo)  > 0)
       {
          /* Append username to the URL */
          if( isUserId )
@@ -1355,7 +1355,7 @@ namespace ca
          ::ca::property_set headers;
          ::ca::property_set post;
          ::ca::property_set set(get_app());
-         int64_t iTime = ::time(::null());
+         int64_t iTime = ::time(NULL);
          if( m_oauth.getOAuthHeader( eOAuthHttpPost,"https://twitter.com/oauth/request_token", set, headers ) )
          {
             if( performPost( "https://twitter.com/oauth/request_token", headers, post ) )

@@ -29,7 +29,7 @@ public:
 
    wait_result lock(bool bWaitForAll = TRUE, uint32_t dwWakeMask = 0);
    bool unlock();
-   bool unlock(LONG lCount, LPLONG lPrevCount = ::null());
+   bool unlock(LONG lCount, LPLONG lPrevCount = NULL);
    bool IsLocked(index dwItem);
 
 

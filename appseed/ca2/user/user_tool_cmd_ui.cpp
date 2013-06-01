@@ -25,7 +25,7 @@ namespace user
    {
       m_bEnableChanged = TRUE;
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
-      ASSERT(pToolBar != ::null());
+      ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
@@ -51,7 +51,7 @@ namespace user
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
-      ASSERT(pToolBar != ::null());
+      ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 

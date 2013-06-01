@@ -15,15 +15,15 @@ namespace platform
 
    view::run::run()
    {
-      m_papp = ::null();
-      m_pview = ::null();
-      m_plink = ::null();
+      m_papp = NULL;
+      m_pview = NULL;
+      m_plink = NULL;
    }
 
    view::link::link(sp(::ca::application) papp) :
       m_button(papp)
    {
-      m_prun = ::null();
+      m_prun = NULL;
    }
 
    view::view(sp(::ca::application) papp) :
@@ -194,7 +194,7 @@ namespace platform
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 230, ::null());
+      SetTimer(198477, 230, NULL);
 
 
       //FIBITMAP * pfi;
@@ -207,7 +207,7 @@ namespace platform
       //::ca::savings & savings = System.savings();
       //if(
 
-      const char * pszSessionName = ::null();
+      const char * pszSessionName = NULL;
 
 #ifndef METROWIN
 
@@ -216,7 +216,7 @@ namespace platform
 #endif
 
       bool bConsole = false;
-      if(pszSessionName != ::null())
+      if(pszSessionName != NULL)
       {
          if(strcmp(pszSessionName, "Console") == 0)
          {
@@ -233,7 +233,7 @@ namespace platform
          m_dibBk->Fill(0, 84, 84, 77);
       }
 
-      SetTimer(21977, 1984 * 11, ::null());  // max. 12 fps
+      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
 
       check_apps();
 
@@ -376,7 +376,7 @@ namespace platform
 
 
       class rect rectThumb;
-      if(&Session != ::null())
+      if(&Session != NULL)
       {
          Session.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
@@ -481,11 +481,11 @@ namespace platform
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(::null(), "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -519,7 +519,7 @@ namespace platform
    UINT c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
    {
       show_window * pshow = (show_window *) lpparam;
-      if(pshow != ::null())
+      if(pshow != NULL)
          pshow->show();
       delete pshow;
       return 0;
@@ -713,7 +713,7 @@ namespace platform
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(::null(), ::null(), System.dir().ca2("cast\\spaadmin.exe"), ::null(), ::null(), SW_SHOW);
+         simple_shell_launcher launcher(NULL, NULL, System.dir().ca2("cast\\spaadmin.exe"), NULL, NULL, SW_SHOW);
 
          launcher.execute();
 
@@ -770,8 +770,8 @@ namespace platform
 
 
       simple_shell_launcher launcher(
-      ::null(),
-      ::null(),
+      NULL,
+      NULL,
       System.dir().ca2("spaadmin.exe"),
       " uninstall _set_windesk",
       System.dir().ca2(""),
@@ -838,7 +838,7 @@ namespace platform
       {
       SwitchArea(iHitArea);
       m_dw3003Time = ::get_tick_count();
-      SetTimer(3003, 300, ::null());
+      SetTimer(3003, 300, NULL);
 
       }
       else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))

@@ -297,7 +297,7 @@ namespace sockets
       
       sp(socket) listen_socket_base::create_listen_socket()
       {
-         return ::null();
+         return NULL;
       }
 
 } // namespace sockets

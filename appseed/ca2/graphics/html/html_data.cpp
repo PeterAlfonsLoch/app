@@ -20,27 +20,27 @@ namespace html
       ::ca::data(papp),
       m_imagea(papp),
       m_uiptra(papp),
-      m_elemental(::null())
+      m_elemental(NULL)
    {
       m_elemental.m_pdata        = this;
-      m_pcookies                 = ::null();
-      m_puser                    = ::null();
-      m_pform                    = ::null();
+      m_pcookies                 = NULL;
+      m_puser                    = NULL;
+      m_pform                    = NULL;
       m_bEdit                    = false;
-      m_pguie                    = ::null();
+      m_pguie                    = NULL;
       m_bImplemented             = false;
       m_bImplement               = false;
       m_bLayout                  = false;
-      m_ptag                     = ::null();
-      m_pcallback                = ::null();
+      m_ptag                     = NULL;
+      m_pcallback                = NULL;
    }
 
    data::~data()
    {
-      if(m_ptag != ::null())
+      if(m_ptag != NULL)
       {
          delete m_ptag;
-         m_ptag = ::null();
+         m_ptag = NULL;
       }
    }
 
@@ -87,7 +87,7 @@ namespace html
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-family", "link", this, pelemental, font.m_strFamily))
          {
-            pelemental->m_style.get_text("font-family", ::null(), this, pelemental, font.m_strFamily);
+            pelemental->m_style.get_text("font-family", NULL, this, pelemental, font.m_strFamily);
          }
       }
       if(!pelemental->m_pimpl->m_bHover
@@ -96,7 +96,7 @@ namespace html
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-size", "link", this, pelemental, font.m_strSize))
          {
-            pelemental->m_style.get_text("font-size", ::null(), this, pelemental, font.m_strSize);
+            pelemental->m_style.get_text("font-size", NULL, this, pelemental, font.m_strSize);
          }
       }
       if(!pelemental->m_pimpl->m_bHover
@@ -105,7 +105,7 @@ namespace html
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-weight", "link", this, pelemental, font.m_strWeight))
          {
-            pelemental->m_style.get_text("font-weight", ::null(), this, pelemental, font.m_strWeight);
+            pelemental->m_style.get_text("font-weight", NULL, this, pelemental, font.m_strWeight);
          }
       }
       if(pelemental->m_pimpl->m_bHover
@@ -114,7 +114,7 @@ namespace html
          if(pelemental->m_pimpl->has_link()
             && !pelemental->m_style.get_text("text-decoration", "link", this, pelemental, font.m_strTextDecoration))
          {
-            pelemental->m_style.get_text("text-decoration", ::null(), this, pelemental, font.m_strTextDecoration);
+            pelemental->m_style.get_text("text-decoration", NULL, this, pelemental, font.m_strTextDecoration);
          }
       }
       font.m_strFamily.trim();
@@ -137,14 +137,14 @@ namespace html
    {
       ::ca::data::writing writing(this);
       m_elemental.m_propertyset.clear();
-      m_elemental.m_pbase = ::null();
+      m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
       for(int32_t i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
       {
          delete m_elemental.m_elementalptra[i];
       }
       m_elemental.m_elementalptra.remove_all();
-      m_elemental.m_pimpl = ::null();
+      m_elemental.m_pimpl = NULL;
       m_bImplemented = false;
    }
 
@@ -162,14 +162,14 @@ namespace html
       ::html::reader reader;
       htmlreader.setEventHandler(&reader);
       htmlreader.read(psz);
-      if(m_ptag != ::null())
+      if(m_ptag != NULL)
       {
          delete m_ptag;
       }
       m_ptag = reader.detach_main_tag();
-      if(m_ptag == ::null())
+      if(m_ptag == NULL)
       {
-         m_ptag = new tag(::null());
+         m_ptag = new tag(NULL);
          value * pvalue = new value(m_ptag);
          m_ptag->baseptra().add(pvalue);
          pvalue->set_value(" ");
@@ -206,10 +206,10 @@ namespace html
 
          user::keyboard_focus * pfocus = Application.user()->get_keyboard_focus();
 
-         if(pfocus != ::null())
+         if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();
 
-         if(pfocus != ::null())
+         if(pfocus != NULL)
             Application.user()->set_keyboard_focus(pfocus);
 
          pkey->m_bRet = true;
@@ -348,7 +348,7 @@ namespace html
    void data::on_image_loaded(image * pimage)
    {
       UNREFERENCED_PARAMETER(pimage);
-      if(m_pguie != ::null())
+      if(m_pguie != NULL)
       {
          m_pguie->PostMessage(message_on_image_loaded);
       }
@@ -368,7 +368,7 @@ namespace html
 
    bool data::open_link(const char * pszPath)
    {
-      if(m_pform != ::null() && m_pform->get_document() != ::null())
+      if(m_pform != NULL && m_pform->get_document() != NULL)
       {
          return m_pform->get_document()->on_open_document(pszPath);
       }
@@ -402,7 +402,7 @@ restart:
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca < ::ca::file > () != ::null())
+      else if(varFile.ca < ::ca::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + ".html";
       }
@@ -421,14 +421,14 @@ restart:
          0,
          0,
          ba,
-         ::null(),
+         NULL,
          &bCancel);
       if(bCancel)
          return FALSE;
       if(m_strUser.get_length() > 0)
       {
-         ::fontopus::user * puser = m_puser != ::null() ? m_puser : &ApplicationUser;
-         ASSERT(puser != ::null());
+         ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
+         ASSERT(puser != NULL);
          string data;
          ::ca::property_set post;
          ::ca::property_set headers;
@@ -499,8 +499,8 @@ restart:
          }
          strPathName = strCandidate;
 /*         string strPath(lpszPathName);
-         ::fontopus::user * puser = m_puser != ::null() ? m_puser : &ApplicationUser;
-         if(puser != ::null() && puser->m_strSessid.has_char())
+         ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
+         if(puser != NULL && puser->m_strSessid.has_char())
          {
             System.url().string_set(strPath, "sessid", puser->m_strSessid);
          }*/
@@ -528,11 +528,11 @@ restart:
 
    void data::OnBeforeNavigate2(var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
    {
-      if(m_pcallback != ::null())
+      if(m_pcallback != NULL)
       {
          m_pcallback->OnBeforeNavigate2(this, varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
       }
-      else if(m_pform != ::null())
+      else if(m_pform != NULL)
       {
          m_pform->OnBeforeNavigate2(varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
       }

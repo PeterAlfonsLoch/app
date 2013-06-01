@@ -145,14 +145,14 @@ namespace user
          return;
 
       // if ok, wire in the current ::user::document_interface
-      ASSERT(::user::view::get_document() == ::null());
+      ASSERT(::user::view::get_document() == NULL);
       sp(::ca::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
 
       // A ::user::view should be created in a given context!
-      if (pContext != ::null() && pContext->m_user->m_pCurrentDoc != ::null())
+      if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
       {
          pContext->m_user->m_pCurrentDoc->add_view(this);
-         ASSERT(::user::view::get_document() != ::null());
+         ASSERT(::user::view::get_document() != NULL);
       }
       else
       {
@@ -166,8 +166,8 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
       sp(::user::frame_window) pFrame = GetParentFrame();
-      if (pFrame != ::null() && pFrame->GetActiveView() == this)
-         pFrame->SetActiveView(::null());    // deactivate during death
+      if (pFrame != NULL && pFrame->GetActiveView() == this)
+         pFrame->SetActiveView(NULL);    // deactivate during death
       //   ::user::interaction::OnDestroy();
    }
 
@@ -186,7 +186,7 @@ namespace user
 
    void view::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
    {
-      /* trans   ENSURE_ARG(lpClientRect != ::null());
+      /* trans   ENSURE_ARG(lpClientRect != NULL);
       if (nAdjustType != 0)
       {
       // allow for special client-edge style
@@ -229,7 +229,7 @@ namespace user
       if(base < ::user::view > ::bases(get_parent()))
       {
          pwndex = (get_parent().m_p);
-         if(pwndex != ::null())
+         if(pwndex != NULL)
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
                return TRUE;
@@ -237,7 +237,7 @@ namespace user
       }
 
       // then pump through document
-      if (::user::view::get_document() != ::null())
+      if (::user::view::get_document() != NULL)
       {
          if(::user::view::get_document()->_001OnCmdMsg(pcmdmsg))
             return TRUE;
@@ -247,7 +247,7 @@ namespace user
             && pview != get_parent())
          {
             pwndex = (pview);
-            if(pwndex != ::null())
+            if(pwndex != NULL)
             {
                if(pwndex->::user::interaction::_001OnCmdMsg(pcmdmsg))
                   return TRUE;
@@ -274,20 +274,20 @@ namespace user
    sp(::user::document_interface) view::get_document(sp(::user::interaction) pguie)
    {
       sp(::user::view) pview =  (pguie.m_p);
-      if(pview != ::null())
-         return ::null();
+      if(pview != NULL)
+         return NULL;
       return pview->get_document();
    }
 
    void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      on_update(::null(), 0, ::null());        // initial update
+      on_update(NULL, 0, NULL);        // initial update
    }
 
    void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
    {
-      if(pHint != ::null())
+      if(pHint != NULL)
       {
          if(base < ::user::view_update_hint > ::bases(pHint))
          {
@@ -367,7 +367,7 @@ namespace user
    return nResult;   // frame does not want to activate
 
    sp(::user::frame_window) pParentFrame = GetParentFrame();
-   if (pParentFrame != ::null())
+   if (pParentFrame != NULL)
    {
    // eat it if this will cause activation
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
@@ -455,26 +455,26 @@ namespace user
       // trans   if (GetStyle() & ((nBar == SB_HORZ) ? WS_HSCROLL : WS_VSCROLL))
       //   {
       // it has a regular windows style scrollbar (no control)
-      //      return ::null();
+      //      return NULL;
       //   }
 
 
-      return ::null();
+      return NULL;
    }
 
 
    void view::OnUpdateSplitCmd(cmd_ui* pCmdUI)
    {
       UNREFERENCED_PARAMETER(pCmdUI);
-      /*ENSURE_ARG(pCmdUI != ::null());
+      /*ENSURE_ARG(pCmdUI != NULL);
       CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
-      pCmdUI->Enable(pSplitter != ::null() && !pSplitter->IsTracking());*/
+      pCmdUI->Enable(pSplitter != NULL && !pSplitter->IsTracking());*/
    }
 
    bool view::OnSplitCmd(UINT)
    {
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
-      if (pSplitter == ::null())
+      if (pSplitter == NULL)
       return FALSE;
 
       ASSERT(!pSplitter->IsTracking());
@@ -488,7 +488,7 @@ namespace user
       /*ASSERT(pCmdUI->m_nID == ID_NEXT_PANE ||
       pCmdUI->m_nID == ID_PREV_PANE);
       CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
-      pCmdUI->Enable(pSplitter != ::null() &&
+      pCmdUI->Enable(pSplitter != NULL &&
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
 
@@ -496,7 +496,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
-      if (pSplitter == ::null())
+      if (pSplitter == NULL)
       return FALSE;
 
       ASSERT(nID == ID_NEXT_PANE || nID == ID_PREV_PANE);
@@ -527,7 +527,7 @@ namespace user
    {
       ::user::interaction::dump(dumpcontext);
 
-      if (((view *) this)->::user::view::get_document() != ::null())
+      if (((view *) this)->::user::view::get_document() != NULL)
          dumpcontext << "with ::user::document_interface: ";
       else
          dumpcontext << "with no ::user::document_interface\n";
@@ -565,7 +565,7 @@ namespace user
 
       cc->m_pLastView          = pviewLast;
 
-      if(pdoc == ::null())
+      if(pdoc == NULL)
       {
          cc->m_pCurrentDoc        = get_document();
       }
@@ -574,7 +574,7 @@ namespace user
          cc->m_pCurrentDoc = pdoc;
       }
 
-      if(pwndParent == ::null())
+      if(pwndParent == NULL)
       {
          pwndParent = this;
       }
@@ -613,19 +613,19 @@ namespace user
    sp(::user::interaction) view::s_create_view(::ca::create_context * pContext, sp(::user::interaction) pwndParent, id id)
    {
 
-      // trans   ASSERT(pwndParent->get_handle() != ::null());
+      // trans   ASSERT(pwndParent->get_handle() != NULL);
       // trans   ASSERT(::IsWindow(pwndParent->get_handle()));
 
-      ASSERT(pContext != ::null());
+      ASSERT(pContext != NULL);
 
-      ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != ::null());
+      ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
 
 
       sp(::ca::application) papp = pwndParent->get_app();
 
       sp(::user::interaction) pguie;
 
-      if(pContext->m_user->m_puiNew != ::null())
+      if(pContext->m_user->m_puiNew != NULL)
       {
 
          pguie =  (pContext->m_user->m_puiNew.m_p);
@@ -636,10 +636,10 @@ namespace user
 
          // Note: can be a ::user::interaction with PostNcDestroy self cleanup
          pguie = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
-         if (pguie == ::null())
+         if (pguie == NULL)
          {
             //         TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n", pContext->m_typeinfoNewView.name());
-            return ::null();
+            return NULL;
          }
 
       }
@@ -647,19 +647,19 @@ namespace user
       ASSERT_KINDOF(::user::interaction, pguie);
 
       // views are always created with a border!
-      if (!pguie->create(::null(), ::null(), WS_VISIBLE | WS_CHILD, rect(0,0,0,0), pwndParent, id, pContext))
+      if (!pguie->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0,0,0,0), pwndParent, id, pContext))
       {
 
          //TRACE0("Warning: could not create ::user::view for frame.\n");
-         return ::null();        // can't continue without a ::user::view
+         return NULL;        // can't continue without a ::user::view
 
       }
 
 
       sp(::user::view) pview =  (pguie.m_p);
-      if(pview != ::null())
+      if(pview != NULL)
       {
-         pview->_001OnInitialUpdate(::null());
+         pview->_001OnInitialUpdate(NULL);
       }
       /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
@@ -670,15 +670,15 @@ namespace user
       }*/
 
 
-      if(pguie != ::null())
+      if(pguie != NULL)
       {
 
-         if(pguie->get_parent() != ::null())
+         if(pguie->get_parent() != NULL)
          {
 
             sp(::user::place_holder) pholder = pguie->get_parent();
 
-            if(pholder != ::null())
+            if(pholder != NULL)
             {
 
                pholder->hold(pguie);
@@ -699,7 +699,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       //   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
-      if(GetParentFrame() != ::null())
+      if(GetParentFrame() != NULL)
       {
 
          GetParentFrame()->SetActiveView(this);
@@ -723,7 +723,7 @@ namespace user
 
    sp(::user::document_interface) view::get_document() const
    {
-      ASSERT(this != ::null());
+      ASSERT(this != NULL);
       return ((::user::view *) this)->m_spdocument;
    }
 
@@ -732,7 +732,7 @@ namespace user
    {
       {
          ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
-         if(puserjob != ::null())
+         if(puserjob != NULL)
          {
             puserjob->m_pview = this;
          }
@@ -772,7 +772,7 @@ namespace user
    void view::defer_draw_view(::ca::graphics * pdc)
    {
 
-      if(get_document() == ::null())
+      if(get_document() == NULL)
          return;
 
       spa(::ca::data) spadata;
@@ -843,7 +843,7 @@ retry:
 
    /*void view::_001OnInitialUpdate(::ca::signal_object * pobj)
    {
-   on_update(::null(), 0, ::null());        // initial update
+   on_update(NULL, 0, NULL);        // initial update
    }*/
 
 /*   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * pHint)
@@ -877,7 +877,7 @@ retry:
       }
 
       sp(::user::frame_window) pParentFrame = (GetParentFrame());
-      if (pParentFrame != ::null())
+      if (pParentFrame != NULL)
       {
          // eat it if this will cause activation
          ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
@@ -905,7 +905,7 @@ retry:
    void view::on_select()
    {
       sp(::user::frame_window) pParentFrame = (GetParentFrame());
-      if (pParentFrame != ::null())
+      if (pParentFrame != NULL)
       {
          // eat it if this will cause activation
          /*      ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
@@ -1020,29 +1020,29 @@ retry:
    sp(::user::interaction) view::CreateView(sp(::ca::create_context) pContext, UINT nID)
    {
    ASSERT(IsWindow());
-   ASSERT(pContext != ::null());
-   ASSERT(pContext->m_typeinfoNewView != ::null());
+   ASSERT(pContext != NULL);
+   ASSERT(pContext->m_typeinfoNewView != NULL);
 
    // Note: can be a ::user::interaction with PostNcDestroy self cleanup
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
-   if (pview == ::null())
+   if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
-   return ::null();
+   return NULL;
    }
    ASSERT_KINDOF(::user::interaction, pview);
 
    // views are always created with a border!
-   if (!pview->create(::null(), ::null(), __WS_DEFAULT_VIEW,
+   if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, (sp(::ca::create_context)) pContext))
    {
    TRACE0("Warning: could not create ::user::view for frame.\n");
-   return ::null();        // can't continue without a ::user::view
+   return NULL;        // can't continue without a ::user::view
    }
 
    sp(::user::view) pview =  (pview);
-   pview->_001OnInitialUpdate(::null());
+   pview->_001OnInitialUpdate(NULL);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::user::view is
@@ -1057,28 +1057,28 @@ retry:
    /*sp(::user::interaction) view::CreateView(sp(::ca::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
    {
    ASSERT(pwndParent->IsWindow());
-   ASSERT(pContext != ::null());
-   ASSERT(pContext->m_typeinfoNewView != ::null());
+   ASSERT(pContext != NULL);
+   ASSERT(pContext->m_typeinfoNewView != NULL);
 
    // Note: can be a ::ca::window with PostNcDestroy self cleanup
    sp(::ca::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
-   if (pview == ::null())
+   if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
-   return ::null();
+   return NULL;
    }
    ASSERT_KINDOF(::ca::window, pview);
 
    // views are always created with a border!
-   if (!pview->create(::null(), ::null(), __WS_DEFAULT_VIEW,
+   if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), pwndParent, nID, (sp(::ca::create_context)) pContext))
    {
    TRACE0("Warning: could not create ::user::view for frame.\n");
-   return ::null();        // can't continue without a ::user::view
+   return NULL;        // can't continue without a ::user::view
    }
 
-   ( (pview))->_001OnInitialUpdate(::null());
+   ( (pview))->_001OnInitialUpdate(NULL);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::user::view is

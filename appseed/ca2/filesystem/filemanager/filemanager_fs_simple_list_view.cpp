@@ -190,7 +190,7 @@ namespace filemanager
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
-            if(phint == ::null())
+            if(phint == NULL)
             {
                _001UpdateColumns();
             }
@@ -398,7 +398,7 @@ namespace filemanager
                if(m_buildhelper.m_iStep >= m_buildhelper.m_iDisplayItemCount)
                {
                KillTimer(1123);
-               SetTimer(1124, 50, ::null());
+               SetTimer(1124, 50, NULL);
                m_buildhelper.m_bActive = false;
                break;
                }
@@ -513,12 +513,12 @@ namespace filemanager
          if(bDisplayOnly)
          {
          m_buildhelper.m_bActive = true;
-         SetTimer(1123, 50, ::null());
+         SetTimer(1123, 50, NULL);
          }
          else
          {
          m_buildhelper.m_bActive = true;
-         SetTimer(1124, 50, ::null());
+         SetTimer(1124, 50, NULL);
          }
          }*/
 
@@ -540,9 +540,9 @@ namespace filemanager
                RedrawWindow();
                //FillTask * ptask = (FillTask *) lparam;
 
-               //if(ptask != ::null())
+               //if(ptask != NULL)
                {
-                  // SetTimer(ptask->m_uiTimer, 50, ::null());
+                  // SetTimer(ptask->m_uiTimer, 50, NULL);
 
                   //delete ptask;
                }
@@ -581,7 +581,7 @@ namespace filemanager
             m_bKickActive = true;
 
 
-            SetTimer(123654, 700, ::null());
+            SetTimer(123654, 700, NULL);
 
          }
 
@@ -599,7 +599,7 @@ namespace filemanager
             if (menu.LoadMenu(IDR_POPUP_ALBUM_ITEM))
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
-            ASSERT(pPopup != ::null());
+            ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
             (sp(::ca::window)) pframe);
@@ -611,7 +611,7 @@ namespace filemanager
             if (menu.LoadMenu(IDR_POPUP_ALBUM))
             {
             ::user::menu* pPopup = menu.GetSubMenu(0);
-            ASSERT(pPopup != ::null());
+            ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
@@ -633,7 +633,7 @@ namespace filemanager
             }
             else
             {
-               System.simple_message_box(::null(), "error"); // simple parsing error check
+               System.simple_message_box(NULL, "error"); // simple parsing error check
                return;
             }
 
@@ -749,7 +749,7 @@ namespace filemanager
 
          ::count list_view::_001GetItemCount()
          {
-            /*if(get_document() != ::null())
+            /*if(get_document() != NULL)
             {
             return get_document()->GetSongCount();
             }

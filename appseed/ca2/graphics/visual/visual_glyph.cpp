@@ -356,7 +356,7 @@ namespace visual
       // Loop until we have processed the entire buffer of contours.
       // The buffer may contain one or more contours that begin with
       // a TTPOLYGONHEADER. We have them all when we the end of the buffer.
-      //while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size) && pt != ::null())
+      //while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size) && pt != NULL)
       while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size))
       {
          if (lpHeader->dwType == TT_POLYGON_TYPE)
@@ -473,8 +473,8 @@ namespace visual
    void glyph::clear()
    {
 
-      //   m_lpBodyData = ::null();
-      //   m_lpOutlineData  = ::null();
+      //   m_lpBodyData = NULL;
+      //   m_lpOutlineData  = NULL;
 
 #ifdef WINDOWSEX
 

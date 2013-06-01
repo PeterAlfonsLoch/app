@@ -60,7 +60,7 @@ mktime_dup(struct tm *tm)
   struct tm *ltm;               /* Local time. */
   time_t loctime;               /* The time_t value of local time. */
   time_t then;                  /* The time to return. */
-  long tzoffset_adj;            /* timezone-adjustment `remainder' */
+  time_t tzoffset_adj;            /* timezone-adjustment `remainder' */
   int32_t bailout_cnt;              /* counter of tries for tz correction */
   int32_t save_isdst;               /* Copy of the tm->isdst input value */
 

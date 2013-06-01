@@ -885,7 +885,7 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 			goto err;
 			}
 		len = (long) buf.length;
-		/* Append a final null to string */
+		/* Append a final NULL to string */
 		if (!BUF_MEM_grow_clean(&buf, len + 1))
 			{
 			ASN1err(ASN1_F_ASN1_D2I_EX_PRIMITIVE,

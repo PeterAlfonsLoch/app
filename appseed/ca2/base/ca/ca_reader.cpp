@@ -52,7 +52,7 @@ namespace ca
       resPos = 1;
       for (;;)
       {
-         if (limit != ::null())
+         if (limit != NULL)
             if (resPos > *limit)
                throw simple_exception(get_app());
          do
@@ -92,7 +92,7 @@ namespace ca
       ::primitive::memory_size uiSize = 0;
 
       char * buf = (char *) malloc((::primitive::memory_size)uiBufSize);
-      if(buf == ::null())
+      if(buf == NULL)
          throw "no primitive::memory";
       try
       {

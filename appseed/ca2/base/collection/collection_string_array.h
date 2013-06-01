@@ -37,7 +37,7 @@ public:
    string & element_at(index nIndex);
    const string & element_at(index nIndex) const;
 
-   index add_new(const char * psz = ::null(), index i = -1);
+   index add_new(const char * psz = NULL, index i = -1);
    string & new_element(index i = -1);
 
    string & first_element(index count = 0);
@@ -93,8 +93,8 @@ public:
    void insert_at(index nStartIndex, const string_array & NewArray);
 
    void quick_sort(
-      void swap(void * lpVoidSwapArg, const index, const index) = ::null(),
-      void * lpvoidSwapArg = ::null(),
+      void swap(void * lpVoidSwapArg, const index, const index) = NULL,
+      void * lpvoidSwapArg = NULL,
       bool bNoCase = false);
 
    void get_quick_sort_ci(index_array & ia);

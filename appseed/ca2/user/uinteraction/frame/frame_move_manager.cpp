@@ -15,7 +15,7 @@ namespace uinteraction
       MoveManager::MoveManager(WorkSet * pworkset) :
          ::ca::ca(pworkset->get_app())
       {
-         ASSERT(pworkset != ::null());
+         ASSERT(pworkset != NULL);
          m_pworkset           = pworkset;
          m_bMoving            = false;
          m_bPendingMove       = false;
@@ -40,7 +40,7 @@ namespace uinteraction
          class point ptCursor = pmouse->m_pt;
 
          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
-         if(pinterface == ::null())
+         if(pinterface == NULL)
             pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
 
 
@@ -91,7 +91,7 @@ namespace uinteraction
             return false;
          pmouse->m_bRet = true;
          sp(::user::interaction) puieCapture = System.get_capture_uie();
-         if(puieCapture == ::null())
+         if(puieCapture == NULL)
          {
 #ifdef LINUX
             // for safety in Linux
@@ -103,7 +103,7 @@ namespace uinteraction
          sp(::user::interaction) puieEventWindow = GetEventWindow();
          if(puieCapture != puieEventWindow)
          {
-            if(puieCapture != ::null()
+            if(puieCapture != NULL
                && puieCapture == GetEventWindow())
             {
                TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
@@ -177,7 +177,7 @@ namespace uinteraction
             // to a more visible position in the monitor iMaxMonitor with greatest
             // area.
             sp(simple_frame_window) pframe =  (m_pworkset->GetWndDraw().m_p);
-            if(pframe != ::null())
+            if(pframe != NULL)
             {
                pframe->InitialFramePosition(true);
             }
@@ -205,7 +205,7 @@ namespace uinteraction
          if(bMove && rectWindow.top_left() != pt)
          {
             class point ptMove = pt;
-            if(GetMoveWindow()->get_parent() != ::null())
+            if(GetMoveWindow()->get_parent() != NULL)
             {
                GetMoveWindow()->get_parent()->ScreenToClient(&ptMove);
             }
@@ -213,7 +213,7 @@ namespace uinteraction
          }
 
          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
-         if(pinterface == ::null())
+         if(pinterface == NULL)
             pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
 
          pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
@@ -238,7 +238,7 @@ namespace uinteraction
          ASSERT(FALSE);
          return false;
          /*
-         if(GetEventWindow() == ::null() ||
+         if(GetEventWindow() == NULL ||
          lpMsg->oswindow != GetEventWindow()->get_handle())
          return false;
          if(lpMsg->message == WM_LBUTTONDOWN)
@@ -248,7 +248,7 @@ namespace uinteraction
          rect rectWindow;
          GetMoveWindow()->GetWindowRect(rectWindow);
          sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
-         if(pWndParent != ::null())
+         if(pWndParent != NULL)
          {
          pWndParent->ScreenToClient(rectWindow);
          }
@@ -262,7 +262,7 @@ namespace uinteraction
          {
          sp(::user::interaction) pWndCapture = uieApplication.get_capture_uie();
          if(!m_bMoving ||
-         pWndCapture == ::null() ||
+         pWndCapture == NULL ||
          pWndCapture->get_handle() != GetEventWindow()->get_handle())
          return false;
          if(lpMsg->message == WM_MOUSEMOVE &&
@@ -279,7 +279,7 @@ namespace uinteraction
          GetEventWindow()->GetWindowRect(rectWindow);
          bool bMove = true;
          sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
-         if(pWndParent != ::null())
+         if(pWndParent != NULL)
          {
          pWndParent->ScreenToClient(rectWindow);
          rect rectParentClient;
@@ -340,7 +340,7 @@ namespace uinteraction
          ::GetWindowRgn(oswindow, hrgn);
          //      HRGN hrgnNew = ::CreateRectRgn(0, 0, 0, 0);;
          /*      ::CombineRgn(hrgnNew, (HRGN)g_rgnTotal->get_os_data(), hrgn, RGN_AND);
-         ::RedrawWindow(oswindow, ::null(), ::null(), RDW_INVALIDATE);
+         ::RedrawWindow(oswindow, NULL, NULL, RDW_INVALIDATE);
          ::CombineRgn((HRGN)g_rgnTotal->get_os_data(),( HRGN)g_rgnTotal->get_os_data(), hrgnNew, ::ca::region::combine_exclude);
          ::DeleteObject(hrgn);
          ::DeleteObject(hrgnNew);*/
@@ -351,10 +351,10 @@ namespace uinteraction
          else
          return TRUE;*/
          /*sp(::user::interaction) pwnd = ::user::interaction::from_handle;
-         if(pwnd == ::null())
+         if(pwnd == NULL)
          return TRUE;
          //HICON hicon = pwnd->GetIcon(FALSE);
-         //if(hicon == ::null())
+         //if(hicon == NULL)
          //{
          //hicon = pwnd->GetIcon(TRUE);
          //}
@@ -365,7 +365,7 @@ namespace uinteraction
          && !(iStyleEx & WS_EX_TOOLWINDOW)
          &&((iStyleEx & WS_EX_APPWINDOW)
          || (!(iStyle & WS_CHILD)
-         && pwnd->get_owner() == ::null())))
+         && pwnd->get_owner() == NULL)))
          {
          if(!pview->m_areaa.Contains(pwnd->GetSafeoswindow_(), pview->m_iArea))
          pview->m_areaa[pview->m_iArea].m_oswindowa.add(pwnd->GetSafeoswindow_());
@@ -384,7 +384,7 @@ namespace uinteraction
          if(!m_bPendingMove)
          {
          m_bPendingMove = true;
-         GetEventWindow()->SetTimer(0x08000000 - 1, s_dwMoveTime, ::null());
+         GetEventWindow()->SetTimer(0x08000000 - 1, s_dwMoveTime, NULL);
          }
          return;
          }*/
@@ -403,16 +403,16 @@ namespace uinteraction
          //   TRACE("rectClipBox.bottom: %d\n", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.bottom);
          /*sp(::user::interaction)  pParentWnd  = m_pWndMoving->get_parent();
          rect rectWindow;
-         if(pParentWnd != ::null())
+         if(pParentWnd != NULL)
          {
          m_pWndMoving->GetWindowRect(rectWindow);
          pParentWnd->ScreenToClient(rectWindow);
 
          }*/
 
-         ASSERT(GetEventWindow() != ::null());
+         ASSERT(GetEventWindow() != NULL);
          sp(::user::interaction) pwndParent = GetEventWindow()->get_parent();
-         if(pwndParent != ::null())
+         if(pwndParent != NULL)
          {
             EDock edock = m_pworkset->GetDockManager()->GetDockState();
             if(edock != DockNone)
@@ -472,7 +472,7 @@ namespace uinteraction
             rect rectWindow;
             GetMoveWindow()->GetWindowRect(rectWindow);
             sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(rectWindow);
             }
@@ -488,10 +488,10 @@ namespace uinteraction
             sp(::user::interaction) pWndCapture = System.get_capture_uie();
             TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie().m_p);
             if(!m_bMoving ||
-               pWndCapture == ::null() ||
+               pWndCapture == NULL ||
                pWndCapture->get_handle() != GetEventWindow()->get_handle())
             {
-               if(pWndCapture != ::null()
+               if(pWndCapture != NULL
                   && pWndCapture->get_handle() == GetEventWindow()->get_handle())
                {
                   System.release_capture_uie();
@@ -516,9 +516,9 @@ namespace uinteraction
             GetEventWindow()->GetWindowRect(rectWindow);
             bool bMove = true;
             sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
-            if(pWndParent == ::null())
+            if(pWndParent == NULL)
                pWndParent = System.get_desktop_window();
-            if(pWndParent != ::null())
+            if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(rectWindow);
                rect rectParentClient;

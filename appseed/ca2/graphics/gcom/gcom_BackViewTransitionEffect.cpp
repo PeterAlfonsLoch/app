@@ -20,7 +20,7 @@ namespace gcom
          m_bRun = true;
          m_eventThreadExit.ResetEvent();
          m_bDestroy = false;
-         m_pthreadRunStep = ::null();
+         m_pthreadRunStep = NULL;
          m_tool001.m_iStep = 0;
          m_bTransitionStepRunActive = false;
          m_bTransitionStepPostActive = false;
@@ -415,22 +415,22 @@ namespace gcom
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
 
-         if(&dcBack == ::null() || dcBack.get_os_data() == ::null())
+         if(&dcBack == NULL || dcBack.get_os_data() == NULL)
          {
             End();
             return;
          }
-         if(dcBuffer.get_os_data() == ::null())
+         if(dcBuffer.get_os_data() == NULL)
          {
             End();
             return;
          }
 
 
-         dcBack.SelectClipRgn(::null());
-         dcBuffer.SelectClipRgn(::null());
+         dcBack.SelectClipRgn(NULL);
+         dcBuffer.SelectClipRgn(NULL);
 
-         if(bitmapBuffer.get_os_data() == ::null())
+         if(bitmapBuffer.get_os_data() == NULL)
          {
             End();
             return;
@@ -497,11 +497,11 @@ namespace gcom
                   ::ca::region_sp rgnClip(allocer());
                   rgnClip->create_polygon(pointa, 4, ::ca::fill_mode_winding);
 
-                  //dcBack.SelectClipRgn(::null());
+                  //dcBack.SelectClipRgn(NULL);
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(&rectUpdate, pointa, 4);
 
-                  /*               if(lprect != ::null())
+                  /*               if(lprect != NULL)
                   {
                   *lprect = rectUpdate;
                }*/
@@ -520,7 +520,7 @@ namespace gcom
                      rectUpdate.left, rectUpdate.top,
                      rectUpdate.width(), rectUpdate.height(),
                      SRCCOPY);*/
-                  dcBack.SelectClipRgn(::null());
+                  dcBack.SelectClipRgn(NULL);
                   recta.add(rectUpdate);
                }
             }
@@ -552,7 +552,7 @@ namespace gcom
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(rectUpdate, pointa, 6);
 
-                  /*               if(lprect != ::null())
+                  /*               if(lprect != NULL)
                   {
                   *lprect = rectUpdate;
                      }*/
@@ -563,7 +563,7 @@ namespace gcom
                      &dcBuffer,
                      rectUpdate.left, rectUpdate.top,
                      SRCCOPY);
-                  dcBack.SelectClipRgn(::null());
+                  dcBack.SelectClipRgn(NULL);
                }
                recta.add(rectUpdate);
             }
@@ -624,7 +624,7 @@ namespace gcom
                   {
                      rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
                   }
-                  /*               if(lprect != ::null())
+                  /*               if(lprect != NULL)
                   {
                   *lprect = rectUpdate;
                      }*/
@@ -651,7 +651,7 @@ namespace gcom
                         &dcBuffer,
                         rectUpdate.left, rectUpdate.top,
                         SRCCOPY);
-                     dcBack.SelectClipRgn(::null());
+                     dcBack.SelectClipRgn(NULL);
                   }
                   else
                   {
@@ -812,7 +812,7 @@ namespace gcom
                   {
                      rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
                   }
-                  /*            if(lprect != ::null())
+                  /*            if(lprect != NULL)
                   {
                   *lprect = rectUpdate;
                }*/
@@ -1241,7 +1241,7 @@ namespace gcom
                   rectBound.height(),
                   SRCCOPY);
 
-               dcBack.SelectClipRgn(::null());
+               dcBack.SelectClipRgn(NULL);
 
                recta.add(rect);
             }
@@ -1280,7 +1280,7 @@ namespace gcom
                   rect.width(),
                   rect.height(),
                   SRCCOPY);
-               dcBack.SelectClipRgn(::null());
+               dcBack.SelectClipRgn(NULL);
                recta.add(rectClient);
             }
             break;
@@ -1639,7 +1639,7 @@ namespace gcom
 
 
                   /*dc2.BitBlt(0, 0, wWindow, hWindow, pdib1->get_graphics(), 0, 0, SRCCOPY);
-                  dc2.BitBlt(0, 0, wWindow, hWindow, ::null(), 0, 0, DSTINVERT);
+                  dc2.BitBlt(0, 0, wWindow, hWindow, NULL, 0, 0, DSTINVERT);
 
                   dc3.FillSolidRect(0, 0, wWindow, hWindow, 0xff000000);
                   dc2.BitBlt(0, 0, wWindow, hWindow, &dc3, 0, 0, SRCAND);*/
@@ -1723,7 +1723,7 @@ namespace gcom
                SRCCOPY);
 
          }
-         dcTransfer.SelectClipRgn(::null());
+         dcTransfer.SelectClipRgn(NULL);
       }
 
       int32_t TransitionEffect::CalcRepeatCount()
@@ -1775,7 +1775,7 @@ namespace gcom
 
       void TransitionEffect::OnNoPrecisionThousandMillisTimer()
       {
-         if(m_pthreadRunStep == ::null())
+         if(m_pthreadRunStep == NULL)
             m_pthreadRunStep = CreateRunStepThread();
       }
 
@@ -1823,7 +1823,7 @@ namespace gcom
       ::ca::thread * TransitionEffect::CreateRunStepThread()
       {
 
-         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca::thread_priority_normal, 0, 0, ::null());
+         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca::thread_priority_normal, 0, 0, NULL);
 
       }
 
@@ -1833,7 +1833,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         //ASSERT(graphics.GetBufferDC().get_os_data() != ::null());
+         //ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
 
@@ -1850,7 +1850,7 @@ namespace gcom
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
 
-         if(&dcTransfer != ::null() && dcTransfer.get_os_data() != ::null())
+         if(&dcTransfer != NULL && dcTransfer.get_os_data() != NULL)
          {
             dcFrame1.BitBlt(0, 0, cx, cy, &dcTransfer, 0, 0, SRCCOPY);
          }
@@ -1867,7 +1867,7 @@ namespace gcom
       UINT c_cdecl TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
-         srand((uint32_t) time(::null()));
+         srand((uint32_t) time(NULL));
          manual_reset_event event(peffect->get_app());
 
          event.ResetEvent();
@@ -1908,7 +1908,7 @@ namespace gcom
                      max(natural(iResolution), peffect->m_dwDelay),
                      iResolution,  // 5 ms resolution
                      (LPTIMECALLBACK) (HANDLE) event,
-                     ::null(),
+                     NULL,
                      TIME_ONESHOT | TIME_CALLBACK_EVENT_SET);*/
 
                   event.wait(millis(5));
@@ -1935,7 +1935,7 @@ namespace gcom
          {
             try
             {
-               peffect->m_pthreadRunStep = ::null();
+               peffect->m_pthreadRunStep = NULL;
             }
             catch(...)
             {

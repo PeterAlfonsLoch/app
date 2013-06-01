@@ -9,10 +9,10 @@ namespace fontopus
       ca(papp),
       ::ca::section(papp)
    {
-      m_puser                    = ::null();
-      m_pthreadCreatingUser      = ::null();
-      m_puser                    = ::null();
-      m_pthreadCreatingUser      = ::null();
+      m_puser                    = NULL;
+      m_pthreadCreatingUser      = NULL;
+      m_puser                    = NULL;
+      m_pthreadCreatingUser      = NULL;
    }  
 
 
@@ -42,14 +42,14 @@ namespace fontopus
    user * fontopus::create_current_user()
    {
       ::ca::property_set set(get_app());
-      if(m_puser == ::null())
+      if(m_puser == NULL)
       {
          int32_t iRetry = 3;
-         ::fontopus::user * puser = ::null();
+         ::fontopus::user * puser = NULL;
          while(iRetry > 0)
          {
             puser = login(set);
-            if(puser != ::null())
+            if(puser != NULL)
                break;
             //bool bOk = false;
             //string strSection;
@@ -60,18 +60,18 @@ namespace fontopus
             //::DeleteFile(System.dir().path(strDir, "00002"));
             iRetry--;
          }
-         if(puser == ::null())
+         if(puser == NULL)
          {
-            //System.simple_message_box(::null(), "<h1>You have not logged in!</h1><h2>Exiting</h2>");
+            //System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
             TRACE("<error>You have not logged in! Exiting!</error>");
             throw string("You have not logged in! Exiting!");
-            return ::null();
+            return NULL;
          }
          m_puser = create_user(puser);
          System.userset().add(m_puser);
 
 
-         if(m_puser != ::null() 
+         if(m_puser != NULL 
             && !::ca::str::begins(m_puser->m_strLogin, "system")
             && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
             && !::ca::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
@@ -91,7 +91,7 @@ namespace fontopus
    user * fontopus::login(::ca::property_set & set)
    {
 
-      user * puser = ::null();
+      user * puser = NULL;
 
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
       authuser.m_bDeferRegistration = true;
@@ -116,11 +116,11 @@ namespace fontopus
    bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
           /*::ca::fontopus * papp;
-      if(m_puiInitialPlaceHolderContainer != ::null())
+      if(m_puiInitialPlaceHolderContainer != NULL)
       {
       papp = m_puiInitialPlaceHolderContainer->m_papp;
       }
-      else if(System.m_puiInitialPlaceHolderContainer != ::null())
+      else if(System.m_puiInitialPlaceHolderContainer != NULL)
       {
       papp = System.m_puiInitialPlaceHolderContainer->m_papp;
       }
@@ -131,7 +131,7 @@ namespace fontopus
       //class validate authuser(papp, psz);
       class validate authuser(get_app(), psz);
       validate::auth * pauth = authuser.get_auth();
-      if(pauth == ::null())
+      if(pauth == NULL)
          return false;
       else
       {
@@ -145,7 +145,7 @@ namespace fontopus
 
    void fontopus::logout()
    {
-      if(m_puser != ::null())
+      if(m_puser != NULL)
       {
          try
          {
@@ -163,7 +163,7 @@ namespace fontopus
          }
          delete m_puser;
       }
-      m_puser = ::null();
+      m_puser = NULL;
    }
 
 
@@ -199,12 +199,12 @@ namespace fontopus
 
       user * puserNew = create_user(m_puser);
 
-      if(puserNew == ::null())
+      if(puserNew == NULL)
       {
 
          delete m_puser;
 
-         m_puser = ::null();
+         m_puser = NULL;
 
       }
 
@@ -218,42 +218,42 @@ namespace fontopus
    {
       if(m_papp->m_pappThis->is_session())
       {
-         if(m_puser == ::null())
+         if(m_puser == NULL)
          {
             if(m_pthreadCreatingUser == ::ca::get_thread())
-               return ::null();
-            if(m_pthreadCreatingUser != ::null())
+               return NULL;
+            if(m_pthreadCreatingUser != NULL)
             {
-               while(m_pthreadCreatingUser != ::null())
+               while(m_pthreadCreatingUser != NULL)
                {
                   Sleep(84);
                }
-               if(m_puser != ::null())
+               if(m_puser != NULL)
                   return m_puser;
-               return ::null();
+               return NULL;
             }
-            keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), ::null(), true);
+            keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), NULL, true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {
                delete puser;
-               m_puser = ::null();
-               return ::null();
+               m_puser = NULL;
+               return NULL;
             }
             m_puser = puser;
          }
-         if(m_puser != ::null())
+         if(m_puser != NULL)
          {
-            if(m_puser->m_pifs == ::null())
+            if(m_puser->m_pifs == NULL)
             {
                m_puser->create_ifs();
             }
          }
          return m_puser;
       }
-      else if(m_papp == ::null() || m_papp->m_psession == ::null())
+      else if(m_papp == NULL || m_papp->m_psession == NULL)
       {
-         return ::null();
+         return NULL;
       }
       else
       {
@@ -294,9 +294,9 @@ namespace fontopus
 
          sp(::ca::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
-         if(papp == ::null())
+         if(papp == NULL)
          {
-            Application.simple_message_box(::null(), "deepfish subsystem - responsible for running background applications - could not be started");
+            Application.simple_message_box(NULL, "deepfish subsystem - responsible for running background applications - could not be started");
          }
 
       }
@@ -323,10 +323,10 @@ namespace fontopus
          {
             setLogin["ruri"] = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
          }
-         ::fontopus::user * puser = ::null();
+         ::fontopus::user * puser = NULL;
          while(true)
          {
-            if((puser = login(setLogin)) != ::null())
+            if((puser = login(setLogin)) != NULL)
                break;
          }
          if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())

@@ -6,7 +6,7 @@ namespace ca
 
    str_stream_base_impl::str_stream_base_impl()
    {
-      m_pstr = ::null();
+      m_pstr = NULL;
       m_dwPos = 0;
    }
 

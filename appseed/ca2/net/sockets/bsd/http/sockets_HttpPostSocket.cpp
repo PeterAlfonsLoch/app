@@ -211,7 +211,7 @@ namespace sockets
       // files
       {
          POSITION pos = m_mapFiles.get_start_position();
-         for(; pos != ::null(); )
+         for(; pos != NULL; )
          {
             string name;
             string filename;
@@ -265,7 +265,7 @@ namespace sockets
       // send files
       {
          POSITION pos = m_mapFiles.get_start_position();
-         for(; pos != ::null();)
+         for(; pos != NULL;)
          {
             string name;
             string filename;

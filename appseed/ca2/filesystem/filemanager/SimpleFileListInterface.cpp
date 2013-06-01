@@ -22,7 +22,7 @@ namespace filemanager
       m_bRestartCreateImageList = false;
       m_bStatic = false;
       m_bPendingSize = false;
-      m_pcreateimagelistthread = ::null();
+      m_pcreateimagelistthread = NULL;
    }
 
    SimpleFileListInterface::~SimpleFileListInterface()
@@ -76,7 +76,7 @@ namespace filemanager
 
       m_straFileSize.remove_all();
       ::fs::list_item item;
-      get_fs_list_data()->m_itema.clear(::null());
+      get_fs_list_data()->m_itema.clear(NULL);
       _001OnUpdateItemCount();*/
       /*
 
@@ -224,7 +224,7 @@ namespace filemanager
    {
 /*      ::fs::list_item item;
 
-      get_fs_list_data()->m_itema.clear(::null(), ::null());
+      get_fs_list_data()->m_itema.clear(NULL, NULL);
       _001OnUpdateItemCount();
 
       string szPath(lpcsz);
@@ -329,7 +329,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
       for(POSITION pos = m_iconmap.get_start_position();
-         pos != ::null();
+         pos != NULL;
          m_iconmap.get_next_assoc(pos, iconkey, icon))
       {
          DestroyIcon(icon.m_hicon);
@@ -338,7 +338,7 @@ namespace filemanager
 
       m_iCreateImageListStep = 0;
       m_bCreateImageList = true;
-      if(m_pcreateimagelistthread == ::null())
+      if(m_pcreateimagelistthread == NULL)
       {
          m_pcreateimagelistthread = new create_image_list_thread(get_app());
          m_pcreateimagelistthread->m_plist = this;
@@ -371,7 +371,7 @@ namespace filemanager
    endloop:
       m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
       synch_lock lock(m_plist->m_pthread->m_pthread);
-      m_plist->m_pcreateimagelistthread = ::null();
+      m_plist->m_pcreateimagelistthread = NULL;
       return 0;
 
    }
@@ -401,7 +401,7 @@ namespace filemanager
 
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(m_iNameSubItem);
 
-      if(pcolumn != ::null() && pcolumn->m_iSubItem == m_iNameSubItem)
+      if(pcolumn != NULL && pcolumn->m_iSubItem == m_iNameSubItem)
       {
          ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t) m_iCreateImageListStep);
 
@@ -409,7 +409,7 @@ namespace filemanager
          item.m_iImage = System.user()->shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
-            ::null(),
+            NULL,
             _shell::IconNormal,
             get_document()->set().is_dir(item.m_strPath));
 
@@ -441,7 +441,7 @@ namespace filemanager
       FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
-      if(pcallback != ::null())
+      if(pcallback != NULL)
       {
          iCount = pcallback->GetActionButtonCount();
       }
@@ -547,8 +547,8 @@ namespace filemanager
          m_iSizeSubItem = i;
          column.m_sizeIcon.cx          = 0;
          column.m_sizeIcon.cy          = 0;
-         column.m_pilHover             = ::null();
-         column.m_pil                  = ::null();
+         column.m_pilHover             = NULL;
+         column.m_pil                  = NULL;
          _001AddColumn(column);
       }
 
@@ -636,7 +636,7 @@ namespace filemanager
             (SimpleFileListInterface *) lpParameter;
          plist->m_bCreateImageList = true;
          ::user::list_column & column = plist->m_columna.GetBySubItem(1);
-   //      if(column.m_pil->GetSafeHandle() != ::null())
+   //      if(column.m_pil->GetSafeHandle() != NULL)
    //         column.m_pil->DeleteImageList();
          plist->_001CreateImageList(column);
          return 0;
@@ -732,7 +732,7 @@ namespace filemanager
 
       if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
       {
-         SetTimer(198477, 230, ::null());
+         SetTimer(198477, 230, NULL);
       }
 
 
@@ -740,7 +740,7 @@ namespace filemanager
 
 //      HRESULT hr;
       string strPath = GetFileManagerItem().m_strPath;
-//      LPMALLOC lpmalloc = ::null();
+//      LPMALLOC lpmalloc = NULL;
 //      IShellFolder * lpsfDesktop;
 
 
@@ -752,11 +752,11 @@ namespace filemanager
 
    /*void SimpleFileListInterface::_017OneLevelUp()
    {
-      if(m_lpiidlAbsolute == ::null())
+      if(m_lpiidlAbsolute == NULL)
          return;
 
       single_lock slBrowse(&m_csBrowse, TRUE);
-      LPMALLOC lpmalloc = ::null();
+      LPMALLOC lpmalloc = NULL;
       IShellFolder * lpsfDesktop;
       HRESULT hr;
 
@@ -1009,15 +1009,15 @@ namespace filemanager
 
    void SimpleFileListInterface::_001OnInitializeForm(sp(::user::control) pcontrol)
    {
-      ASSERT(pcontrol != ::null());
-      if(pcontrol == ::null())
+      ASSERT(pcontrol != NULL);
+      if(pcontrol == NULL)
          return;
 
       FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
       sp(BaseButtonControl) pbutton =  (pcontrol);
-      if(pcallback != ::null() && pbutton != ::null())
+      if(pcallback != NULL && pbutton != NULL)
       {
          pcallback->InitializeActionButton(((int32_t) pcontrol->descriptor().m_id) - 1000, pbutton);
       }
@@ -1029,7 +1029,7 @@ namespace filemanager
       FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
-      if(pcallback != ::null())
+      if(pcallback != NULL)
       {
          ::fs::item item;
          index iItem = pcontrol->GetEditItem();
@@ -1148,7 +1148,7 @@ namespace filemanager
       {
          return System.user()->shellimageset().GetImageList16();
       }
-      return ::null();
+      return NULL;
    }
 
    void SimpleFileListInterface::_001OnFileRename(::ca::signal_object * pobj)
@@ -1180,7 +1180,7 @@ namespace filemanager
 //      SCAST_PTR(::ca::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == ::null())
+      if(pcentral == NULL)
          return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
@@ -1203,7 +1203,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(bClear);
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if(pcentral == ::null())
+      if(pcentral == NULL)
          return;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       single_lock sl(pset->m_table.m_pmutex, TRUE);
@@ -1283,7 +1283,7 @@ namespace filemanager
 
    COLORREF SimpleFileListInterface::get_background_color()
    {
-      if(GetFileManager() != ::null() && GetFileManager()->get_filemanager_data()->is_saving())
+      if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
       {
          return RGB(255, 177, 84);
       }

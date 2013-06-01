@@ -256,13 +256,13 @@ FT_BEGIN_HEADER
    *
    * @fields:
    *   get_glyph_data ::
-   *     The function to get glyph data.  Must not be null.
+   *     The function to get glyph data.  Must not be NULL.
    *
    *   free_glyph_data ::
-   *     The function to release glyph data.  Must not be null.
+   *     The function to release glyph data.  Must not be NULL.
    *
    *   get_glyph_metrics ::
-   *     The function to get glyph metrics.  May be null if the font does
+   *     The function to get glyph metrics.  May be NULL if the font does
    *     not provide overriding glyph metrics.
    *
    */

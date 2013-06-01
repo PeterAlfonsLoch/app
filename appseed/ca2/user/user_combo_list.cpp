@@ -10,7 +10,7 @@ namespace user
 
       oprop("combo_list") = true;
 
-      m_pcombo = ::null();
+      m_pcombo = NULL;
 
    }
 
@@ -39,7 +39,7 @@ namespace user
    void combo_list::_001OnDraw(::ca::graphics * pdc)
    {
 
-      if(m_pcombo == ::null())
+      if(m_pcombo == NULL)
          return;
 
       if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
@@ -228,7 +228,7 @@ namespace user
       ::ca::graphics_sp pdc(((combo_list *) this)->allocer());
 
 
-      pdc->CreateCompatibleDC(::null());
+      pdc->CreateCompatibleDC(NULL);
 
       ::ca::dib_sp tameshi(((combo_list *) this)->allocer());
 

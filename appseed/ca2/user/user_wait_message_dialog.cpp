@@ -11,10 +11,10 @@ wait_message_dialog::wait_message_dialog(sp(::ca::application) papp) :
 
 wait_message_dialog::~wait_message_dialog()
 {
-   /*if(m_pdocument != ::null())
+   /*if(m_pdocument != NULL)
    {
       m_pdocument->on_close_document();
-      m_pdocument = ::null();
+      m_pdocument = NULL;
    }*/
 }
 
@@ -25,7 +25,7 @@ void wait_message_dialog::on_show(const char * pszMatter, ::ca::property_set & p
    if(m_dwDelay > 0)
    {
       //m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int32_t) (m_dwDelay / 1000);
-      //m_pdocument->get_view()->SetTimer(5432175, 584, ::null());
+      //m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
    }
    m_dwStartTime = ::get_tick_count();
 }
@@ -74,7 +74,7 @@ void wait_message_dialog::on_timer_soft_reload(uint32_t dwTimeout)
    string str;
    str.Format("%d", (int32_t) ((m_dwDelay - dwTimeout) / 1000));
 /*   html::elemental * pelemental = m_pdocument->get_html_data()->get_element_by_id("timeout");
-   if(pelemental != ::null())
+   if(pelemental != NULL)
    {
       pelemental->set_string(str);
       m_pframe->layout();

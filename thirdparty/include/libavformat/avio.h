@@ -284,7 +284,7 @@ int avio_get_str(AVIOContext *pb, int maxlen, char *buf, int buflen);
 
 /**
  * Read a UTF-16 string from pb and convert it to UTF-8.
- * The reading will terminate when either a null or invalid character was
+ * The reading will terminate when either a NULL or invalid character was
  * encountered or maxlen bytes have been read.
  * @return number of bytes read (is always <= maxlen)
  */

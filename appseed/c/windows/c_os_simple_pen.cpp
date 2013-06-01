@@ -6,7 +6,7 @@
 simple_pen::simple_pen()
 {
    
-   m_ppen      = ::null();
+   m_ppen      = NULL;
 
    m_bDelete   = false;
 
@@ -16,7 +16,7 @@ simple_pen::simple_pen()
 simple_pen::~simple_pen()
 {
    
-   if(m_ppen != ::null())
+   if(m_ppen != NULL)
    {
 
       destroy();
@@ -31,7 +31,7 @@ bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth)
 
    UNREFERENCED_PARAMETER(g);
 
-   if(m_ppen != ::null())
+   if(m_ppen != NULL)
    {
 
       destroy();
@@ -40,7 +40,7 @@ bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth)
 
    m_ppen = new Gdiplus::Pen(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)), (float) iWidth);
 
-   if(m_ppen == ::null())
+   if(m_ppen == NULL)
       return false;
 
    m_bDelete = true;
@@ -52,7 +52,7 @@ bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth)
 bool simple_pen::destroy()
 {
  
-   if(m_ppen == ::null())
+   if(m_ppen == NULL)
       return true;
 
    bool bOk = true;
@@ -77,7 +77,7 @@ bool simple_pen::destroy()
 
    m_bDelete = false;
    
-   m_ppen = ::null();
+   m_ppen = NULL;
 
    if(!bOk)
       return false;
@@ -91,7 +91,7 @@ bool simple_pen::destroy()
 simple_pen & simple_pen::operator = (const simple_pen & pen)
 {
 
-   if(m_ppen != ::null())
+   if(m_ppen != NULL)
    {
 
       destroy();

@@ -193,7 +193,7 @@ int MessageBoxA(oswindow hwnd, const char * message, const char * header, unsign
                                   message_ref, //message text
                                   button1, //default "ok" text in button
                                   button2, //alternate button title
-                                  button3, //other button title, null--> no other button
+                                  button3, //other button title, NULL--> no other button
                                   &result //response flags
                                   );
    

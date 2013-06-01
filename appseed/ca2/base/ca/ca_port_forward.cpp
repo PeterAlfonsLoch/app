@@ -240,7 +240,7 @@ namespace ca
    }
 
 
-   HRESULT port_forward::ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks /* =::null() */ )
+   HRESULT port_forward::ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks /* =NULL */ )
    {
 	   // check if we are already listening
       UNREFERENCED_PARAMETER(pCallbacks);
@@ -285,7 +285,7 @@ namespace ca
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
-	   ::MessageBox(::ca::null(), tempStr, "Change Detected in Number of Port Mappings", MB_OK | MB_ICONEXCLAMATION);
+	   ::MessageBox(NULL, tempStr, "Change Detected in Number of Port Mappings", MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }
@@ -299,7 +299,7 @@ namespace ca
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-	   ::MessageBox(::ca::null(), tempStr, "Change Detected in External IP Address", MB_OK | MB_ICONEXCLAMATION);
+	   ::MessageBox(NULL, tempStr, "Change Detected in External IP Address", MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }

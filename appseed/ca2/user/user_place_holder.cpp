@@ -61,7 +61,7 @@ namespace user
    bool place_holder::hold(sp(::user::interaction) pui)
    {
 
-      if(pui == ::null())
+      if(pui == NULL)
          return false;
 
       if(m_uiptraHold.contains(pui))
@@ -123,13 +123,13 @@ namespace user
 
    bool place_holder::create(sp(::user::place_holder_container) pcontainer, id id)
    {
-      return ::database::user::interaction::create(::null(), ::null(), WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), pcontainer, id) != FALSE;
+      return ::database::user::interaction::create(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), pcontainer, id) != FALSE;
    }
 
    sp(interaction) place_holder::get_ui()
    {
       if(m_uiptraHold.get_count() <= 0)
-         return ::null();
+         return NULL;
       return m_uiptraHold(0);
    }
 

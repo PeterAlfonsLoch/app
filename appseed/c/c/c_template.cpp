@@ -4,7 +4,7 @@
 template<> UINT simple_HashKey<const char *> (const char * key)
 {
    
-   if(key == ::null()) 
+   if(key == NULL) 
       return 0;
 
    UINT nHash = 0;
@@ -19,7 +19,7 @@ template<> UINT simple_HashKey<const char *> (const char * key)
 template<> UINT simple_HashKey<const wchar_t *> (const wchar_t * key)
 {
    
-   if(key == ::null()) 
+   if(key == NULL) 
       return 0;
 
    UINT nHash = 0;

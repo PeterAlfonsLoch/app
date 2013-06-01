@@ -10,12 +10,12 @@ namespace ca
    ca::ca()
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
-//      m_papp               = 0; // ::null()
+//      m_papp               = 0; // NULL
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
       //m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
-//      m_pptraListener      = ::null();
-  //    m_pptraListened      = ::null();
-      m_pfactoryitembase   = ::null();
+//      m_pptraListener      = NULL;
+  //    m_pptraListened      = NULL;
+      m_pfactoryitembase   = NULL;
    }
 
    ca::ca(const ca & o) :
@@ -24,9 +24,9 @@ namespace ca
       m_ulFlags            = o.m_ulFlags;
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
       //m_countReference     = 0; // do create a "perambulator" phantom, add_ref to "instantiate"
-    //  m_pptraListener      = ::null();
-      //m_pptraListened      = ::null();
-      m_pfactoryitembase   = ::null();
+    //  m_pptraListener      = NULL;
+      //m_pptraListened      = NULL;
+      m_pfactoryitembase   = NULL;
    }
 
    ca::ca(sp(::ca::application) papp) :
@@ -34,9 +34,9 @@ namespace ca
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
       //m_countReference     = 1; // avoid creating a "perambulator" phantom
-//      m_pptraListener      = ::null();
-  //    m_pptraListened      = ::null();
-      m_pfactoryitembase   = ::null();
+//      m_pptraListener      = NULL;
+  //    m_pptraListened      = NULL;
+      m_pfactoryitembase   = NULL;
    }
 
    ca::~ca()
@@ -71,7 +71,7 @@ namespace ca
 
    void ca::delete_this()
    {
-      if(m_pfactoryitembase != ::null() && m_pfactoryitembase->m_pallocator)
+      if(m_pfactoryitembase != NULL && m_pfactoryitembase->m_pallocator)
       {
 
          m_pfactoryitembase->m_pallocator->discard(this);
@@ -89,7 +89,7 @@ namespace ca
 
    sp(::ca::ca) ca::clone()
    {
-      if(m_pfactoryitembase != ::null())
+      if(m_pfactoryitembase != NULL)
          return m_pfactoryitembase->clone(this);
       else
          return m_papp->m_psystem->clone(this);

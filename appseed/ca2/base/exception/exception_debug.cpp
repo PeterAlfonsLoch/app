@@ -141,7 +141,7 @@ bool EnforceFilter( bool bEnforce )
 
    HMODULE hLib = GetModuleHandle( "kernel32.dll" );
 
-   if( hLib == ::null() )
+   if( hLib == NULL )
    {
       ErrCode = GetLastError();
       _ASSERTE( !"GetModuleHandle(kernel32.dll) failed." );
@@ -207,19 +207,19 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, uint32_t size )
 
    if( pTarget == 0 )
    {
-      _ASSERTE( !"Target address is null." );
+      _ASSERTE( !"Target address is NULL." );
       return false;
    }
 
    if( pSource == 0 )
    {
-      _ASSERTE( !"Source address is null." );
+      _ASSERTE( !"Source address is NULL." );
       return false;
    }
 
    if( size == 0 )
    {
-      _ASSERTE( !"Source size is null." );
+      _ASSERTE( !"Source size is NULL." );
       return false;
    }
 

@@ -84,7 +84,7 @@ namespace userstack
 
       void on_request(sp(::ca::create_context) pcreatecontext);
 
-      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = ::null());
+      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
       sp(::ca::application) get_current_application();
 

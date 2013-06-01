@@ -57,9 +57,9 @@ public:
       @throw exception If casing is not available.
   */
   static const StyledRegion *cast(const RegionDefine *rd){
-    if (rd == ::null()) return ::null();
+    if (rd == NULL) return NULL;
     const StyledRegion *sr = (const StyledRegion *)(rd);
-    if (sr == ::null()) throw exception(::ca::get_thread_app(), string("Bad type cast exception into StyledRegion"));
+    if (sr == NULL) throw exception(::ca::get_thread_app(), string("Bad type cast exception into StyledRegion"));
     return sr;
   }
   /** Completes region define with it's parent values.
@@ -68,7 +68,7 @@ public:
   */
   void assignParent(const RegionDefine *_parent){
     const StyledRegion *parent = StyledRegion::cast(_parent);
-    if (parent == ::null()) return;
+    if (parent == NULL) return;
     if (!bfore){
       fore = parent->fore;
       bfore = parent->bfore;

@@ -47,14 +47,14 @@ public:
    void UpdateWndRgn();
    void SetEllipsePens(
         ::ca::pen * ppen,
-        ::ca::pen * ppenSel = ::null(),
-        ::ca::pen * ppenFocus = ::null(),
-        ::ca::pen * ppenDisabled = ::null());
+        ::ca::pen * ppenSel = NULL,
+        ::ca::pen * ppenFocus = NULL,
+        ::ca::pen * ppenDisabled = NULL);
    void SetEllipseBrushs(
         ::ca::brush * pbrush,
-        ::ca::brush * pbrushSel = ::null(),
-        ::ca::brush * pbrushFocus = ::null(),
-        ::ca::brush * pbrushDisabled = ::null());
+        ::ca::brush * pbrushSel = NULL,
+        ::ca::brush * pbrushFocus = NULL,
+        ::ca::brush * pbrushDisabled = NULL);
    void SetTextColors(
         COLORREF cr,
         COLORREF crSel,

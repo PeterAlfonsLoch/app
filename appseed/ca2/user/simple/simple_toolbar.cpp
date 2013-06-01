@@ -48,10 +48,10 @@ ca(papp),
    m_etranslucency = TranslucencyPresent;
 
    m_iButtonPressItem      = -1;
-   //m_pimagelist            = ::null();
-   //m_pimagelistHue         = ::null();
-   //m_pimagelistBlend       = ::null();
-   //m_pimagelistHueLight    = ::null();
+   //m_pimagelist            = NULL;
+   //m_pimagelistHue         = NULL;
+   //m_pimagelistBlend       = NULL;
+   //m_pimagelistHueLight    = NULL;
    //   m_bInternalImageList    = true;
 
    m_bTransparentBackground = true;
@@ -122,10 +122,7 @@ bool simple_toolbar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtr
 #endif
 
 
-   // create the oswindow
-   class rect rect;
-   rect.null();
-   if (!::user::interaction::create(::null(), ::null(), dwStyle, rect, pParentWnd, nID))
+   if (!::user::interaction::create(NULL, NULL, dwStyle, ::null_rect(), pParentWnd, nID))
       return FALSE;
 
    // sync up the sizes
@@ -368,7 +365,7 @@ void simple_toolbar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisab
          // allow reflections
          //if (::user::interaction::_001OnCommand(0,
          //   MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
-         //   &state, ::null()))
+         //   &state, NULL))
          //   continue;
 
          // allow the toolbar itself to have update handlers
@@ -799,20 +796,20 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
 bool simple_toolbar::LoadToolBar(const char * lpszResourceName)
 {
 ASSERT_VALID(this);
-ASSERT(lpszResourceName != ::null());
+ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
 HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
 HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
-if (hRsrc == ::null())
+if (hRsrc == NULL)
 return FALSE;
 
 HGLOBAL hGlobal = LoadResource(hInst, hRsrc);
-if (hGlobal == ::null())
+if (hGlobal == NULL)
 return FALSE;
 
 tool_bar_data* m_itema = (tool_bar_data*)LockResource(hGlobal);
-if (m_itema == ::null())
+if (m_itema == NULL)
 return FALSE;
 ASSERT(m_itema->wVersion == 1);
 
@@ -1044,7 +1041,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
 {
 ASSERT_VALID(this);
 ASSERT(nIDCount >= 1);  // must be at least one of them
-ASSERT(lpIDArray == ::null() ||
+ASSERT(lpIDArray == NULL ||
 __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
 // delete all existing buttons
@@ -1055,7 +1052,7 @@ VERIFY(DefWindowProc(TB_DELETEBUTTON, 0, 0));
 TBBUTTON button;
 memset(&button, 0, sizeof(TBBUTTON));
 button.iString = -1;
-if (lpIDArray != ::null())
+if (lpIDArray != NULL)
 {
 // add new buttons to the common control
 int32_t iImage = 0;
@@ -1140,12 +1137,12 @@ void simple_toolbar::SetSizes(SIZE sizeButton, SIZE sizeImage)
 bool simple_toolbar::LoadBitmap(const char * lpszResourceName)
 {
 ASSERT_VALID(this);
-ASSERT(lpszResourceName != ::null());
+ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
 HINSTANCE hInstImageWell = ::ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
-if (hRsrcImageWell == ::null())
+if (hRsrcImageWell == NULL)
 return FALSE;
 
 // load the bitmap
@@ -1219,7 +1216,7 @@ void simple_toolbar::layout()
    GetClientRect(rectClient);
    class size sizeText;
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
@@ -1410,9 +1407,9 @@ void simple_toolbar::_001OnLButtonUp(::ca::signal_object * pobj)
          pmouse->set_lresult(1);
       }
       sp(::user::frame_window) pTarget = (get_owner().m_p);
-      if (pTarget == ::null() || !pTarget->is_frame_window())
+      if (pTarget == NULL || !pTarget->is_frame_window())
          pTarget = GetParentFrame();
-      if (pTarget != ::null())
+      if (pTarget != NULL)
          pTarget->SendMessageToDescendants(WM_IDLEUPDATECMDUI);
       m_iButtonPressItem = -1;
       _001RedrawWindow();
@@ -1454,7 +1451,7 @@ void simple_toolbar::_001Hover(point pt, bool bRedraw)
       //      }
       //    else
       //  {
-      //   SetTimer(TIMER_HOVER, 50, ::null());
+      //   SetTimer(TIMER_HOVER, 50, NULL);
       //}
 
       if(bRedraw)
@@ -1493,15 +1490,15 @@ void simple_toolbar::_001DiscardImageList()
 {
    /*   if(m_bInternalImageList)
    {
-   if(m_pimagelist != ::null())
+   if(m_pimagelist != NULL)
    {
    delete m_pimagelist;
-   m_pimagelist = ::null();
+   m_pimagelist = NULL;
    }
    }
    else
    {
-   m_pimagelist = ::null();
+   m_pimagelist = NULL;
    }*/
 }
 
@@ -1517,12 +1514,12 @@ void simple_toolbar::_001SetImageList(sp(image_list) pimagelist)
 void simple_toolbar::_001OnImageListAttrib()
 {
    /*
-   if(m_pimagelistHue == ::null())
+   if(m_pimagelistHue == NULL)
    {
    m_pimagelistHue = new image_list();
    }
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateDC("DISPLAY", ::null(), ::null(), ::null());
+   spgraphics->CreateDC("DISPLAY", NULL, NULL, NULL);
    System.visual().imaging().CreateHueImageList(
    &spgraphics,
    m_pimagelistHue,
@@ -1530,7 +1527,7 @@ void simple_toolbar::_001OnImageListAttrib()
    RGB(192, 192, 180),
    0.50);
 
-   if(m_pimagelistBlend == ::null())
+   if(m_pimagelistBlend == NULL)
    {
    m_pimagelistBlend = new image_list();
    }
@@ -1540,7 +1537,7 @@ void simple_toolbar::_001OnImageListAttrib()
    RGB(255, 255, 240),
    64);
 
-   if(m_pimagelistHueLight == ::null())
+   if(m_pimagelistHueLight == NULL)
    {
    m_pimagelistHueLight = new image_list();
    }
@@ -1566,7 +1563,7 @@ void SimpleToolCmdUI::Enable(bool bOn)
 {
    m_bEnableChanged = TRUE;
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
-   ASSERT(pToolBar != ::null());
+   ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
@@ -1593,7 +1590,7 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
       || echeck == check::unchecked
       || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
-   ASSERT(pToolBar != ::null());
+   ASSERT(pToolBar != NULL);
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 
@@ -1659,7 +1656,7 @@ void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
    SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
-   rect.null();
+   rect.NULL();
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
    ::user::control_bar::CalcInsideRect(rect, bHorz);
 
@@ -1861,7 +1858,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
       ASSERT(dwMode & LM_HORZ);
 
    int32_t nCount;
-   //TBBUTTON* m_itema = ::null();
+   //TBBUTTON* m_itema = NULL;
    size sizeResult(0,0);
 
    nCount = _001GetItemCount();
@@ -1900,7 +1897,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
       if (dwMode & LM_COMMIT)
       {
-         ___CONTROLPOS* pControl = ::null();
+         ___CONTROLPOS* pControl = NULL;
          int32_t nControlCount = 0;
          bool bIsDelayed = m_bDelayedButtonLayout;
          m_bDelayedButtonLayout = FALSE;
@@ -1985,7 +1982,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             for (int32_t i = 0; i < nControlCount; i++)
             {
                /* xxx sp(::user::interaction) pWnd = get_child_by_id(pControl[i].strId);
-               if (pWnd != ::null())
+               if (pWnd != NULL)
                {
                rect rect;
                pWnd->GetWindowRect(&rect);
@@ -2017,8 +2014,11 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
       sizeResult.cx = max(sizeResult.cx, size.cx);
       sizeResult.cy = max(sizeResult.cy, size.cy);
    }
+
    return sizeResult;
+
 }
+
 
 void simple_toolbar::GetButtonText(int32_t i, string &str)
 {
@@ -2028,7 +2028,7 @@ void simple_toolbar::GetButtonText(int32_t i, string &str)
 
 /*size simple_toolbar::CalcSize(TBBUTTON* m_itema, int32_t nCount)
 {
-ASSERT(m_itema != ::null() && nCount > 0);
+ASSERT(m_itema != NULL && nCount > 0);
 
 point cur(0,0);
 size sizeResult(0,0);

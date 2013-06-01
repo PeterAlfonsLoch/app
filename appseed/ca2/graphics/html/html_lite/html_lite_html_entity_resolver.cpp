@@ -145,7 +145,7 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
    char   chTemp = 0;
 
    // entity references always end with a semi-colon ';'
-   if (lpszEnd == ::null())
+   if (lpszEnd == NULL)
       return (0);
 
    // skip leading white-space characters
@@ -175,7 +175,7 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
          if (ca == 16)
             lpszBegin++;
 
-         uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, ::null(), ca);
+         uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, NULL, ca);
          strChar = ::ca::str::uni_to_utf8(ulNum);
          return (int32_t) (lpszEnd - lpszEntity + 1);
       }

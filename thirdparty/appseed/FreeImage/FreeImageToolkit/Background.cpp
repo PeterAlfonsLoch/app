@@ -181,7 +181,7 @@ GetPaletteIndex(FIBITMAP *dib, const RGBQUAD *color, int options, FREE_IMAGE_COL
  itself has no transparency. The this argument is not changed, if the function
  fails. 
  @return Returns TRUE on success, FALSE otherwise. This function fails if any of
- the color arguments is a null pointer.
+ the color arguments is a NULL pointer.
  */
 static BOOL
 GetAlphaBlendedColor(const RGBQUAD *bgcolor, const RGBQUAD *fgcolor, RGBQUAD *blended) {

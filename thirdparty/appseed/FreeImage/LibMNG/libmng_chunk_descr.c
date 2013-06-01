@@ -2817,7 +2817,7 @@ MNG_C_SPECIALFUNC (mng_special_iccp)
 
       if (((mng_iccpp)pChunk)->bEmpty) /* empty chunk ? */
       {
-        pData->iGlobalProfilesize = 0; /* reset to null */
+        pData->iGlobalProfilesize = 0; /* reset to NULL */
         pData->pGlobalProfile     = MNG_NULL;
       }
       else
@@ -4187,7 +4187,7 @@ MNG_F_SPECIALFUNC (mng_save_entries)
 
       if ((pNull - pRawdata) > (mng_int32)iRawlen)
       {
-        iNamesize = iLen;          /* no null found; so end of SAVE */
+        iNamesize = iLen;          /* no NULL found; so end of SAVE */
         iLen      = 0;
       }
       else
@@ -4195,7 +4195,7 @@ MNG_F_SPECIALFUNC (mng_save_entries)
         iNamesize = (mng_uint32) (pNull - pTemp); /* should be another entry */
         iLen     -= iNamesize;
 
-        if (!iLen)                 /* must not end with a null ! */
+        if (!iLen)                 /* must not end with a NULL ! */
           MNG_ERROR (pData, MNG_ENDWITHNULL);
       }
 
@@ -5223,7 +5223,7 @@ MNG_F_SPECIALFUNC (mng_evnt_entries)
 
       if ((pNull - pRawdata) > (mng_int32)iRawlen)
       {
-        iNamesize = iRawlen;           /* no null found; so end of evNT */
+        iNamesize = iRawlen;           /* no NULL found; so end of evNT */
         iRawlen   = 0;
       }
       else
@@ -5231,7 +5231,7 @@ MNG_F_SPECIALFUNC (mng_evnt_entries)
         iNamesize = pNull - pRawdata;  /* should be another entry */
         iRawlen   = iRawlen - iNamesize - 1;
 
-        if (!iRawlen)                  /* must not end with a null ! */
+        if (!iRawlen)                  /* must not end with a NULL ! */
           MNG_ERROR (pData, MNG_ENDWITHNULL);
       }
 

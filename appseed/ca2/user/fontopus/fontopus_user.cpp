@@ -9,15 +9,15 @@ namespace fontopus
       ca(papp)
    {
 
-      m_ppresence       = ::null();
+      m_ppresence       = NULL;
       m_phttpcookies    = new ::http::cookies();
-      m_pifs            = ::null();
+      m_pifs            = NULL;
 
    }
 
    user::~user()
    {
-      if(m_phttpcookies != ::null())
+      if(m_phttpcookies != NULL)
          delete m_phttpcookies;
    }
 
@@ -31,7 +31,7 @@ namespace fontopus
    bool user::initialize()
    {
 
-      if(&Session == ::null())
+      if(&Session == NULL)
          return true;
 
       Session.userpresence().defer_initialize_user_presence();
@@ -53,7 +53,7 @@ namespace fontopus
          return false;
 
       
-      if(m_pifs != ::null())
+      if(m_pifs != NULL)
       {
          return true;
       }
@@ -97,11 +97,11 @@ restart:
                string strSender;
                string strBody;
                sp(::xml::node) pnodeSender = pnodeMessage->get_child("sender");
-               if(pnodeSender != ::null())
+               if(pnodeSender != NULL)
                   strSender = pnodeSender->get_value();
 //               int32_t iLength = strSender.get_length();
                sp(::xml::node) pnodeBody = pnodeMessage->get_child("body");
-               if(pnodeBody != ::null())
+               if(pnodeBody != NULL)
                {
                   strBody = pnodeBody->get_value();
                   if(pnodeMessage->get_name() == "message")
@@ -127,7 +127,7 @@ restart:
 
    string user::get_sessid(const char * pszText, bool bInteractive)
    {
-      if(pszText == ::null())
+      if(pszText == NULL)
       {
          pszText = "https://account.ca2.cc/";
       }
@@ -144,7 +144,7 @@ restart:
          return strSessId;
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
       user * puser = authuser.get_user(pszText);
-      if(puser == ::null())
+      if(puser == NULL)
          strSessId = "not_auth";
       else
       {
@@ -161,7 +161,7 @@ restart:
 
    void user::set_sessid(const char * pszSessid, const char * pszText)
    {
-      if(pszText == ::null())
+      if(pszText == NULL)
       {
          pszText = "https://account.ca2.cc/";
       }

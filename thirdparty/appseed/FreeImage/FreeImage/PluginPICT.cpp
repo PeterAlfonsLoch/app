@@ -1017,7 +1017,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						WORD len = Read16( io, handle );
 
 						if (len == 0x000a) {
-							/* null rgn */
+							/* NULL rgn */
 							ReadRect( io, handle, &clipRect );
 						} else {
 							io->seek_proc(handle, len - 2, SEEK_CUR);

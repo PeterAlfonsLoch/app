@@ -538,7 +538,7 @@ FT_BEGIN_HEADER
    *
    * @note:
    *   This function flushes all nodes from the cache corresponding to this
-   *   `face_id', with the exception of nodes with a non-null reference
+   *   `face_id', with the exception of nodes with a non-NULL reference
    *   count.
    *
    *   Such nodes are however modified internally so as to never appear

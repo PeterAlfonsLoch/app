@@ -24,7 +24,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 template<class TYPE>
 void SerializeElements(CArchive& ar, TYPE* pElements, ::count nCount)
 {
-   ENSURE(nCount == 0 || pElements != ::null());
+   ENSURE(nCount == 0 || pElements != NULL);
    ASSERT(nCount == 0 ||
       __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE)));
 
@@ -69,11 +69,11 @@ template<class TYPE>
 void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements, 
    ::count nCount)
 {
-   ENSURE(nCount == 0 || pElements != ::null());
+   ENSURE(nCount == 0 || pElements != NULL);
    ASSERT((nCount == 0) || 
       (__is_valid_address(pElements, nCount*sizeof(TYPE))));
 
-   if (nCount == 0 || pElements == ::null())
+   if (nCount == 0 || pElements == NULL)
    {
       return;
    }
@@ -94,7 +94,7 @@ void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 template<class TYPE>
 void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)
 {
-   ENSURE(nCount == 0 || pElements != ::null());
+   ENSURE(nCount == 0 || pElements != NULL);
    ASSERT(nCount == 0 ||
       __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE), FALSE));
 #ifdef WINDOWS
@@ -114,7 +114,7 @@ void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nC
 template<class TYPE>
 void SerializeElements(CArchive& ar, TYPE* pElements, ::count nCount)
 {
-   ENSURE(nCount == 0 || pElements != ::null());
+   ENSURE(nCount == 0 || pElements != NULL);
    ASSERT(nCount == 0 ||
       __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE)));
 
@@ -159,11 +159,11 @@ template<class TYPE>
 void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements, 
    ::count nCount)
 {
-   ENSURE(nCount == 0 || pElements != ::null());
+   ENSURE(nCount == 0 || pElements != NULL);
    ASSERT((nCount == 0) || 
       (__is_valid_address(pElements, nCount*sizeof(TYPE))));
 
-   if (nCount == 0 || pElements == ::null())
+   if (nCount == 0 || pElements == NULL)
    {
       return;
    }
@@ -186,7 +186,7 @@ void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 template<class TYPE, class ARG_TYPE>
 bool CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
 {
-	ENSURE(pElement1 != ::null() && pElement2 != ::null());
+	ENSURE(pElement1 != NULL && pElement2 != NULL);
 	ASSERT(__is_valid_address(pElement1, sizeof(TYPE), FALSE));
 	ASSERT(__is_valid_address(pElement2, sizeof(ARG_TYPE), FALSE));
 

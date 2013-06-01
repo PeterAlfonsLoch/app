@@ -40,7 +40,7 @@ namespace html
 
          tag * ptag = m_pelemental->get_tag();
 
-         if(ptag != ::null())
+         if(ptag != NULL)
          {
 
             if(ptag->get_attr_value("border").has_char())

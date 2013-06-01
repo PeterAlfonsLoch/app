@@ -91,7 +91,7 @@ namespace ca
       single_lock sl(m_pmutex, TRUE);
       sp(factory_allocator) pallocator = get_allocator(typeid(*pobject).name());
       sl.unlock();
-      if(pallocator == ::null())
+      if(pallocator == NULL)
       {
          if(::is_debugger_attached())
             __debug_break();
@@ -150,13 +150,13 @@ namespace ca
       }
       catch(...)
       {
-         return ::null();
+         return NULL;
       }
 
       index iFind;
 
       if(!m_pstridaAllocator->find(id, iFind))
-         return ::null();
+         return NULL;
 
       return m_itemptraAllocator(iFind);
 
@@ -174,7 +174,7 @@ namespace ca
 
       single_lock slInfo(info->m_spmutex, TRUE);
 
-      if(info->m_pfactoryitem != ::null())
+      if(info->m_pfactoryitem != NULL)
       {
 
          if(m_bSimpleFactoryRequest)
@@ -188,7 +188,7 @@ namespace ca
       index iFind;
 
       if(!m_pstrida->find(info->m_id, iFind))
-         return ::null();
+         return NULL;
 
       factory_item_base * pitem = m_itemptra.element_at(iFind);
 
@@ -209,13 +209,13 @@ namespace ca
 
       single_lock sl(m_pmutex, TRUE);
 
-      if(pobject == ::null())
-         return ::null();
+      if(pobject == NULL)
+         return NULL;
 
       index iFind;
 
       if(!m_pstrida->find((id) typeid(*pobject).name(), iFind))
-         return ::null();
+         return NULL;
 
       factory_item_base * pitem = m_itemptra.element_at(iFind);
 

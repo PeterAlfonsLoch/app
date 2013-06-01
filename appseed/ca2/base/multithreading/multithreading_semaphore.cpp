@@ -18,14 +18,14 @@ semaphore::semaphore(sp(::ca::application) papp, LONG lInitialCount, LONG lMaxCo
 #ifdef WINDOWS
 
    m_object = ::CreateSemaphoreExW(lpsaAttributes, lInitialCount, lMaxCount, ::ca::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
-   if (m_object == ::null())
+   if (m_object == NULL)
       throw resource_exception(papp);
 #else
 
 
    m_lMaxCount    = lMaxCount;
 
-   if(pstrName != ::null() && *pstrName != '\0')
+   if(pstrName != NULL && *pstrName != '\0')
    {
 
       string strPath = "/ca2/time/ftok/event/" + string(pstrName);
@@ -55,7 +55,7 @@ semaphore::~semaphore()
 {
 }
 
-bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =::null() */)
+bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 {
 
 #ifdef WINDOWS
@@ -68,7 +68,7 @@ bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =::null() */)
 
    semctl(static_cast < int32_t > (m_object), 0, GETVAL, semctl_arg);
 
-   if(lpPrevCount !=  ::null())
+   if(lpPrevCount !=  NULL)
    {
 
       *lpPrevCount = semctl_arg.val;
@@ -95,7 +95,7 @@ bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =::null() */)
 bool semaphore::unlock()
 {
 
-   return unlock(1, ::null());
+   return unlock(1, NULL);
 
 }
 

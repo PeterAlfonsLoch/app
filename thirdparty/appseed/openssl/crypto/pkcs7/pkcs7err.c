@@ -129,7 +129,7 @@ static ERR_STRING_DATA PKCS7_str_reasons[]=
 {ERR_REASON(PKCS7_R_ERROR_ADDING_RECIPIENT),"error adding recipient"},
 {ERR_REASON(PKCS7_R_ERROR_SETTING_CIPHER),"error setting cipher"},
 {ERR_REASON(PKCS7_R_INVALID_MIME_TYPE)   ,"invalid mime type"},
-{ERR_REASON(PKCS7_R_INVALID_NULL_POINTER),"invalid null pointer"},
+{ERR_REASON(PKCS7_R_INVALID_NULL_POINTER),"invalid NULL pointer"},
 {ERR_REASON(PKCS7_R_MIME_NO_CONTENT_TYPE),"mime no content type"},
 {ERR_REASON(PKCS7_R_MIME_PARSE_ERROR)    ,"mime parse error"},
 {ERR_REASON(PKCS7_R_MIME_SIG_PARSE_ERROR),"mime sig parse error"},

@@ -116,7 +116,7 @@ namespace visual
    void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpsz, size & size)
    {
       /*string str(lpwsz);
-      if(pdc == ::null())
+      if(pdc == NULL)
          return;
       ::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
@@ -182,7 +182,7 @@ namespace visual
       while(true)
       {
          lpszFind = wcschr(lpcsz + iStart, L'&');
-         if(lpszFind == ::null())
+         if(lpszFind == NULL)
             break;
          iIndex = (int32_t)(lpsz - m_pchData);
          if(iIndex + 1 >= iLen)
@@ -218,7 +218,7 @@ namespace visual
       if(::copy(rect, lpRect))
       {
 
-         ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, ::null(), 0, ::null());
+         ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
 
       }
 
@@ -238,7 +238,7 @@ namespace visual
 
       ::SetBkColor(hdc, clr);
 
-      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, ::null(), 0, ::null());
+      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
 
 #else
 
@@ -258,7 +258,7 @@ namespace visual
 
       rect rect(x, y, x + cx, y + cy);
 
-      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, ::null(), 0, ::null());
+      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
 
 #else
 
@@ -412,7 +412,7 @@ namespace visual
 
       if(iUnderline >= 0)
       {
-         if(pfontUnderline == ::null())
+         if(pfontUnderline == NULL)
          {
             fontUnderline.create(allocer());
             pfontUnderline = fontUnderline;

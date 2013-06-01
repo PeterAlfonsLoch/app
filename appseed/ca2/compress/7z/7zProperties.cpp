@@ -22,9 +22,9 @@ namespace n7z
 
    CPropMap kPropMap[] =
    {
-   { NID::kName, { ::null(), ::libcompress::kpidPath, var::type_string } },
-   { NID::kSize, { ::null(), ::libcompress::kpidSize, var::type_uint64 } },
-   { NID::kPackInfo, { ::null(),::libcompress:: kpidPackSize, var::type_uint64 } },
+   { NID::kName, { NULL, ::libcompress::kpidPath, var::type_string } },
+   { NID::kSize, { NULL, ::libcompress::kpidSize, var::type_uint64 } },
+   { NID::kPackInfo, { NULL,::libcompress:: kpidPackSize, var::type_uint64 } },
 
    #ifdef _MULTI_PACK
    { 100, { L"Pack0", kpidPackedSize0, var::type_uint64 } },
@@ -34,21 +34,21 @@ namespace n7z
    { 104, { L"Pack4", kpidPackedSize4, var::type_uint64 } },
    #endif
 
-   { NID::kCTime, { ::null(), ::libcompress::kpidCTime, var::type_filetime } },
-   { NID::kMTime, { ::null(), ::libcompress::kpidMTime, var::type_filetime } },
-   { NID::kATime, { ::null(), ::libcompress::kpidATime, var::type_filetime } },
-   { NID::kWinAttributes, { ::null(), ::libcompress::kpidAttrib, var::type_uint32 } },
-   { NID::kStartPos, { ::null(), ::libcompress::kpidPosition, var::type_uint32 } },
+   { NID::kCTime, { NULL, ::libcompress::kpidCTime, var::type_filetime } },
+   { NID::kMTime, { NULL, ::libcompress::kpidMTime, var::type_filetime } },
+   { NID::kATime, { NULL, ::libcompress::kpidATime, var::type_filetime } },
+   { NID::kWinAttributes, { NULL, ::libcompress::kpidAttrib, var::type_uint32 } },
+   { NID::kStartPos, { NULL, ::libcompress::kpidPosition, var::type_uint32 } },
 
-   { NID::kCRC, { ::null(), ::libcompress::kpidCRC, var::type_uint32 } },
+   { NID::kCRC, { NULL, ::libcompress::kpidCRC, var::type_uint32 } },
 
-   { NID::kAnti, { ::null(), ::libcompress::kpidIsAnti, var::type_bool } }
+   { NID::kAnti, { NULL, ::libcompress::kpidIsAnti, var::type_bool } }
 
    #ifndef _SFX
    ,
-   { 97, { ::null(),::libcompress::kpidEncrypted, var::type_bool } },
-   { 98, { ::null(),::libcompress::kpidMethod, var::type_string } },
-   { 99, { ::null(),::libcompress::kpidBlock, var::type_uint32 } }
+   { 97, { NULL,::libcompress::kpidEncrypted, var::type_bool } },
+   { 98, { NULL,::libcompress::kpidMethod, var::type_string } },
+   { 99, { NULL,::libcompress::kpidBlock, var::type_uint32 } }
    #endif
    };
 

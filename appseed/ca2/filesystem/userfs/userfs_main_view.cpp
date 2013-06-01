@@ -46,7 +46,7 @@ namespace userfs
 //      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
       layout();
-      SetTimer(123, 1000, ::null());
+      SetTimer(123, 1000, NULL);
 
 
    }

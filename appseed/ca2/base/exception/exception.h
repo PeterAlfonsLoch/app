@@ -128,7 +128,7 @@ CLASS_DECL_ca2 bool __enable_memory_leak_override(bool bEnable);
 // A failure hook returns whether to permit allocation
 typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
 
-// set new hook, return old (never ::null())
+// set new hook, return old (never NULL)
 CLASS_DECL_ca2 __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 
 #include "exception_memory_state.h"
@@ -305,16 +305,16 @@ inline void c_cdecl __trace(...) { }
 #define ENSURE(cond)      ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
 
-// Debug ASSERT_VALIDs then throws. Retail throws if pOb is ::null()
+// Debug ASSERT_VALIDs then throws. Retail throws if pOb is NULL
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
 #define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw invalid_argument_exception(::ca::get_thread_app()) )
 
 #define ASSERT_POINTER(p, type) \
-   ASSERT(((p) != ::null()) && __is_valid_address((p), sizeof(type), FALSE))
+   ASSERT(((p) != NULL) && __is_valid_address((p), sizeof(type), FALSE))
 
 #define ASSERT_NULL_OR_POINTER(p, type) \
-   ASSERT(((p) == ::null()) || __is_valid_address((p), sizeof(type), FALSE))
+   ASSERT(((p) == NULL) || __is_valid_address((p), sizeof(type), FALSE))
 
 
 #ifdef __GNUC__

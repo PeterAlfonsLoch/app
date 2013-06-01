@@ -32,8 +32,8 @@ namespace ca
 
       sp(tree_item_data) pdata = on_allocate_item();
 
-      if(pdata == ::null())
-         return ::null();
+      if(pdata == NULL)
+         return NULL;
 
       m_itemdataptra.add(pdata);
 

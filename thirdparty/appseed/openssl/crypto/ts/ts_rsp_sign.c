@@ -976,7 +976,7 @@ TS_RESP_set_genTime_with_precision(ASN1_GENERALIZEDTIME *asn1_time,
 			  tm->tm_hour, tm->tm_min, tm->tm_sec);
 	if (precision > 0)
 	{
-		/* Add fraction of seconds (leave space for dot and null). */
+		/* Add fraction of seconds (leave space for dot and NULL). */
 		BIO_snprintf(p, 2 + precision, ".%ld", usec);
 		/* We cannot use the snprintf return value, 
 		   because it might have been truncated. */
@@ -1000,7 +1000,7 @@ TS_RESP_set_genTime_with_precision(ASN1_GENERALIZEDTIME *asn1_time,
 		/* p points to either the dot or the last non-zero digit. */
 		if (*p != '.') ++p;
 		}
-	/* Add the trailing Z and the terminating null. */
+	/* Add the trailing Z and the terminating NULL. */
 	*p++ = 'Z';
 	*p++ = '\0';
 

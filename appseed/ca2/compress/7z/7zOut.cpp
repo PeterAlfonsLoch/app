@@ -573,7 +573,7 @@ namespace n7z
       throw "uncomment below if implement above";
       /*  RINOK(encoder.Encode(
       codecsInfo, externalCodecs,
-      stream, ::null(), &dataSize64, folderItem, SeqStream, packSizes, ::null()))*/
+      stream, NULL, &dataSize64, folderItem, SeqStream, packSizes, NULL))*/
       //folders.add(folderItem);
       return S_OK;
    }

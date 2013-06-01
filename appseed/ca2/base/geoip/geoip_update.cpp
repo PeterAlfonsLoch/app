@@ -881,7 +881,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
       if (db_info == NULL) {
          GeoIP_delete(gi);
          if (verbose == 1)
-            GeoIP_printf(f,"FAIL null\n");
+            GeoIP_printf(f,"FAIL NULL\n");
          return GEOIP_SANITY_INFO_FAIL;
       }
       if (strstr(db_info, "MaxMind") == NULL) {

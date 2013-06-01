@@ -9,7 +9,7 @@ device_context::device_context()
    m_display   = NULL;
    m_d         = 0;
    m_gc        = NULL;
-   m_hwnd      = ::ca::null();
+   m_hwnd      = NULL;
 
 
 
@@ -101,7 +101,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    Window window = hwnd.window();
 
 
-   if(pdisplay == ::null())
+   if(pdisplay == NULL)
     return FALSE;
 
    XWindowAttributes attrs;

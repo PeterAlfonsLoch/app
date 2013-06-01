@@ -30,7 +30,7 @@ namespace filemanager
 
       
       folder_list_data(const folder_list_data & ) :
-         ::user::list_data(::null())
+         ::user::list_data(NULL)
       {
       }
 

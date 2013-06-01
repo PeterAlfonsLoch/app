@@ -133,7 +133,7 @@ namespace simpledb
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System.m_simpledb.db().data_load(::null(), "netnodec", GetLocalAddress().get_display_number(), ::database::id());
+      m_strCat = System.m_simpledb.db().data_load(NULL, "netnodec", GetLocalAddress().get_display_number(), ::database::id());
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
@@ -167,7 +167,7 @@ namespace simpledb
          }
       }
       string strRelative;
-      if(pszRelative != ::null())
+      if(pszRelative != NULL)
       {
          strRelative = string(pszRelative);
       }
@@ -232,7 +232,7 @@ namespace simpledb
       {
          return false;
       }
-      if(prangea == ::null() || prangea->get_count() == 0)
+      if(prangea == NULL || prangea->get_count() == 0)
       {
          response().file() << spfile;
       }

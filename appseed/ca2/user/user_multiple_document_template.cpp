@@ -37,7 +37,7 @@ namespace user
    sp(::user::document_interface) multiple_document_template::get_document(index index) const
    {
       if(index < 0 || index >= m_docptra.get_count())
-         return ::null();
+         return NULL;
       return m_docptra.element_at(index);
    }
 
@@ -62,27 +62,27 @@ namespace user
    void multiple_document_template::request_create(sp(::ca::create_context) pcreatecontext)
    {
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) ::null();
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) NULL;
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
       //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::user::view > ();
       sp(::user::document_interface) pdocument = create_new_document();
-      if (pdocument == ::null())
+      if (pdocument == NULL)
       {
-         TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned ::null().\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(::null(), "failed to create user::document_interface");
+         System.simple_message_box(NULL, "failed to create user::document_interface");
          return;
       }
 
       bool bAutoDelete = pdocument->m_bAutoDelete;
       pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
-      sp(::user::frame_window) pFrame = create_new_frame(pdocument, ::null(), pcreatecontext);
+      sp(::user::frame_window) pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
       pdocument->m_bAutoDelete = bAutoDelete;
-      if (pFrame == ::null())
+      if (pFrame == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(::null(), "Failed to create user::document_interface");
+         System.simple_message_box(NULL, "Failed to create user::document_interface");
          pdocument.release();       // explicit delete on error
          return;
       }
@@ -133,7 +133,7 @@ namespace user
 
       ::user::view_update_hint uh(get_app());
       uh.m_etype = ::user::view_update_hint::TypeOpenDocument;
-      pdocument->update_all_views(::null(), 0, &uh);
+      pdocument->update_all_views(NULL, 0, &uh);
 
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 

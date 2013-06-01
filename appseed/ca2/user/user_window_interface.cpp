@@ -19,7 +19,7 @@
 namespace user
 {
 
-   CLASS_DECL_ca2 window_interface * window_interface::g_pwndLastLButtonDown = ::null();
+   CLASS_DECL_ca2 window_interface * window_interface::g_pwndLastLButtonDown = NULL;
 
 
 
@@ -27,7 +27,7 @@ namespace user
       m_rectParentClient(0, 0, 0, 0)
    {
       m_bVoidPaint               = false;
-      m_pguie                    = ::null();
+      m_pguie                    = NULL;
       m_etranslucency            = TranslucencyNone;
       m_bBackgroundBypass        = false;
    }
@@ -38,7 +38,7 @@ namespace user
       m_rectParentClient(0, 0, 0, 0)
    {
       m_bVoidPaint               = false;
-      m_pguie                    = ::null();
+      m_pguie                    = NULL;
       m_etranslucency            = TranslucencyNone;
       m_bBackgroundBypass        = false;
    }
@@ -78,7 +78,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lprect);
-   //   TwfRender(pdc, GetSafeoswindow_(), lprect, ::null(), true);
+   //   TwfRender(pdc, GetSafeoswindow_(), lprect, NULL, true);
    }
 
 
@@ -135,7 +135,7 @@ namespace user
 
       oswindow oswindowParam = oswindowtree.m_oswindow;
 
-      if(oswindowParam == ::null())
+      if(oswindowParam == NULL)
       {
          return false;
       }
@@ -170,12 +170,12 @@ namespace user
 
 
       window_interface * pwndi = dynamic_cast<window_interface *>(pwnd);
-      if(pwndi == ::null())
+      if(pwndi == NULL)
       {
          single_lock sl(m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
          if(m_papp->s_ptwf->m_wndinterfacemap.Lookup(oswindowParam, pwndi))
          {
-            if(pwndi != ::null())
+            if(pwndi != NULL)
             {
                pwnd = pwndi->get_guie();
             }
@@ -204,11 +204,11 @@ namespace user
 
       pdc->SetViewportOrg(rectWindow.left, rectWindow.top);
 
-      if(pwndi != ::null())
+      if(pwndi != NULL)
       {
          if(!pwndi->_001IsTransparent())
          {
-            if(pwndi != ::null())
+            if(pwndi != NULL)
             {
                m_papp->s_ptwf->m_twrenderclienttool.FastClear();
                pwndi->TwiRenderClient(m_papp->s_ptwf->m_twrenderclienttool);
@@ -227,7 +227,7 @@ namespace user
             (bWin4 ? WM_PRINT : WM_PAINT),
             (WPARAM)(pdc->m_hDC),
             (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));
-         //::RedrawWindow(oswindowParam, ::null(), rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
+         //::RedrawWindow(oswindowParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
       }
 
 
@@ -235,7 +235,7 @@ namespace user
 
       uint32_t dwTimeOut = get_tick_count();
    //   TRACE("// Average Window Rendering time\n");
-   //   TRACE("// Window Class: %s\n", (pwnd!=::null()) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
+   //   TRACE("// Window Class: %s\n", (pwnd!=NULL) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
    //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
    //   TRACE("// \n");
 
@@ -251,7 +251,7 @@ namespace user
 
    window_interface * window_interface::window_interface_get_parent() const
    {
-      return ::null();
+      return NULL;
    }
 
 
@@ -269,13 +269,13 @@ namespace user
 
    void window_interface::_001RedrawWindow()
    {
-      if(&System == ::null())
+      if(&System == NULL)
          return;
 
       // Currently does not redraw upon coercive request
       // Only prodevian or netshare redraw
 
-      if(System.get_twf() != ::null() )
+      if(System.get_twf() != NULL )
       {
          if(!System.get_twf()->m_bProDevianMode)
          {
@@ -369,8 +369,8 @@ namespace user
          return OptimizeThis;
       }
 
-      window_interface * pwndi = ::null();
-      if(pwndi == ::null())
+      window_interface * pwndi = NULL;
+      if(pwndi == NULL)
       {
          single_lock sl(&m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
          if(!m_papp->s_ptwf->m_wndinterfacemap.Lookup(oswindow, pwndi))
@@ -384,7 +384,7 @@ namespace user
          }
       }
 
-      if(pwndi != ::null() && !pwndi->_001HasTranslucency())
+      if(pwndi != NULL && !pwndi->_001HasTranslucency())
       {
          rect rectClient;
          ::GetClientRect(oswindow, rectClient);
@@ -507,12 +507,12 @@ namespace user
 #ifdef METROWIN
    sp(::user::interaction) window_interface::get_wnd() const
    {
-      return ::null();
+      return NULL;
    }
 #else
    sp(::ca::window) window_interface::get_wnd() const
    {
-      return ::null();
+      return NULL;
    }
 #endif
 
@@ -549,7 +549,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(bErase);
       //ASSERT(::IsWindow(GetHandle()));
-      //::InvalidateRect(GetHandle(), ::null(), bErase);
+      //::InvalidateRect(GetHandle(), NULL, bErase);
    }
 
    bool window_interface::Redraw(rect_array & recta)
@@ -583,7 +583,7 @@ namespace user
       lprect->top    += (LONG) m_rectParentClient.top;
       lprect->bottom += (LONG) m_rectParentClient.top;
 
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lprect);
       }
@@ -593,7 +593,7 @@ namespace user
    {
       lppoint->x     += (LONG) m_rectParentClient.left;
       lppoint->y     += (LONG) m_rectParentClient.top;
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lppoint);
       }
@@ -607,7 +607,7 @@ namespace user
       lprect->top    += m_rectParentClient.top;
       lprect->bottom += m_rectParentClient.top;
 
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lprect);
       }
@@ -617,7 +617,7 @@ namespace user
    {
       lppoint->x     += m_rectParentClient.left;
       lppoint->y     += m_rectParentClient.top;
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lppoint);
       }
@@ -631,7 +631,7 @@ namespace user
       lprect->top    -= (LONG) m_rectParentClient.top;
       lprect->bottom -= (LONG) m_rectParentClient.top;
 
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lprect);
       }
@@ -641,7 +641,7 @@ namespace user
    {
       lppoint->x     -= (LONG) m_rectParentClient.left;
       lppoint->y     -= (LONG) m_rectParentClient.top;
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lppoint);
       }
@@ -655,7 +655,7 @@ namespace user
       lprect->top    -= m_rectParentClient.top;
       lprect->bottom -= m_rectParentClient.top;
 
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lprect);
       }
@@ -665,7 +665,7 @@ namespace user
    {
       lppoint->x     -= m_rectParentClient.left;
       lppoint->y     -= m_rectParentClient.top;
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lppoint);
       }
@@ -698,7 +698,7 @@ namespace user
    void window_interface::GetWindowRect(__rect64 * lprect)
    {
       *lprect = m_rectParentClient;
-      if(window_interface_get_parent() != ::null())
+      if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lprect);
       }

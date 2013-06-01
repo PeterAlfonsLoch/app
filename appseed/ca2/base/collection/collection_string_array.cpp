@@ -26,7 +26,7 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 
 string_array::string_array()
 {
-   m_pData = ::null();
+   m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
@@ -53,10 +53,10 @@ void string_array::set_size(::count nNewSize, ::count nGrowBy)
 
       _DestructElements(m_pData, m_nSize);
       delete[] (BYTE*)m_pData;
-      m_pData = ::null();
+      m_pData = NULL;
       m_nSize = m_nMaxSize = 0;
    }
-   else if (m_pData == ::null())
+   else if (m_pData == NULL)
    {
       // create one with exact size
 #ifdef SIZE_T_MAX
@@ -182,7 +182,7 @@ void string_array::free_extra()
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX/sizeof(string)); // no overflow
 #endif
-      string* pNewData = ::null();
+      string* pNewData = NULL;
       if (m_nSize != 0)
       {
          pNewData = (string*) new BYTE[m_nSize * sizeof(string)];
@@ -301,7 +301,7 @@ void string_array::remove_at(index nIndex, ::count nCount)
 void string_array::insert_at(index nStartIndex, const string_array & NewArray)
 {
    ASSERT_VALID(this);
-   ASSERT(&NewArray != ::null());
+   ASSERT(&NewArray != NULL);
 //   ASSERT_KINDOF(string_array, &NewArray);
    ASSERT_VALID(&NewArray);
    ASSERT(nStartIndex >= 0);
@@ -360,7 +360,7 @@ void string_array::assert_valid() const
 {
    ::ca::object::assert_valid();
 
-   if (m_pData == ::null())
+   if (m_pData == NULL)
    {
       ASSERT(m_nSize == 0);
       ASSERT(m_nMaxSize == 0);
@@ -412,7 +412,7 @@ void string_array::quick_sort(
                   t = get_at(iMPos);
                   set_at(iMPos, get_at(iUPos));
                   set_at(iUPos, t);
-                  if(swap != ::null())
+                  if(swap != NULL)
                   {
                      swap(lpvoidSwapArg, iUPos, iMPos);
                   }
@@ -435,7 +435,7 @@ void string_array::quick_sort(
                   t = get_at(iLPos);
                   set_at(iLPos, get_at(iMPos));
                   set_at(iMPos, t);
-                  if(swap != ::null())
+                  if(swap != NULL)
                   {
                      swap(lpvoidSwapArg, iLPos, iMPos);
                   }
@@ -588,7 +588,7 @@ index string_array::add_new(const char * psz, index i)
 
 string & string_array::new_element(index i)
 {
-   add_new(::null(), i);
+   add_new(NULL, i);
    if(i == -1)
    {
       return last_element();
@@ -662,7 +662,7 @@ void string_array::add(const var & var)
    {
       add(var.stra());
    }
-   else if(var.ca < string_array >() != ::null())
+   else if(var.ca < string_array >() != NULL)
    {
       add(*var.ca < string_array >());
    }

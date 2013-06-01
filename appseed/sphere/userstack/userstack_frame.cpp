@@ -10,7 +10,7 @@ namespace userstack
       simple_frame_window(papp),
       ::ca::message_window_simple_callback(papp)
    {
-      m_pdocument = ::null();
+      m_pdocument = NULL;
       m_iFrameData = 10;
       m_dataid = "ca2::frame";
       m_iAnimateStep = 0;
@@ -22,7 +22,7 @@ namespace userstack
       m_bLayered = true;
       m_etranslucency = TranslucencyPresent;
 
-      m_ppaneview = ::null();
+      m_ppaneview = NULL;
 
       m_bMouseOver = false;
 
@@ -36,7 +36,7 @@ namespace userstack
    {
       SCAST_PTR(::ca::message::create, pcreate, pobj);
 
-      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == ::null();
+      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 
       if(pobj->previous())
          return;
@@ -139,7 +139,7 @@ namespace userstack
       }
       else
       {
-         SetTimer(3, 500, ::null());
+         SetTimer(3, 500, NULL);
       }
    }
 
@@ -176,9 +176,9 @@ namespace userstack
 //      ::aspheresp(::application) pappParent = &App(Application.m_papp);
 //      ::aspheresp(::application) papp = &Application;
 /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
-      && m_pdocument != ::null()
-      && m_pdocument->m_pplatformdocument != ::null()
-      && m_pdocument->m_pplatformdocument->get_platform_frame() != ::null())
+      && m_pdocument != NULL
+      && m_pdocument->m_pplatformdocument != NULL
+      && m_pdocument->m_pplatformdocument->get_platform_frame() != NULL)
       {
          rect rectClient;
          GetClientRect(rectClient);
@@ -306,7 +306,7 @@ namespace userstack
 /*         else if(pbase->m_lparam == 1)
          {
             m_bTimerOn = true;
-            SetTimer(1000, 23, ::null());
+            SetTimer(1000, 23, NULL);
          }
          else if(pbase->m_lparam == 0)
          {

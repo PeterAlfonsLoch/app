@@ -5,7 +5,7 @@ class CLASS_DECL_ca2 dump_context :
    virtual public ::ca::ca
 {
 public:
-   dump_context(sp(::ca::file) pFile = ::null());
+   dump_context(sp(::ca::file) pFile = NULL);
 
 // Attributes
    int32_t GetDepth() const;      // 0 => this object, 1 => children objects

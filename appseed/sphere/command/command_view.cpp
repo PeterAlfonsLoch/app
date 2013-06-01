@@ -99,7 +99,7 @@ namespace command
       UNREFERENCED_PARAMETER(phint);
       if(lHint == 5432108)
       {
-         SetTimer(5432108, 100, ::null());
+         SetTimer(5432108, 100, NULL);
       }
 
    }
@@ -150,7 +150,7 @@ namespace command
    {
       if(pobj->previous())
          return;
-      SetTimer(543218, 1000, ::null());
+      SetTimer(543218, 1000, NULL);
    }
 
 
@@ -167,7 +167,7 @@ namespace command
    {
       if(iTab == 1)
       {
-         Application.simple_message_box(::null(), "Playlist");
+         Application.simple_message_box(NULL, "Playlist");
       }
    }
 

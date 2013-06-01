@@ -58,7 +58,7 @@ namespace nature
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      if(pHint != ::null())
+      if(pHint != NULL)
       {
          if(base < ::user::view_update_hint > :: bases(pHint))
          {

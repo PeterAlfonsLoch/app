@@ -102,8 +102,8 @@ namespace ca
 
       inline heap_item()
       {
-         m_pbStart = ::null();
-         m_pbEnd = ::null();
+         m_pbStart = NULL;
+         m_pbEnd = NULL;
       }
 
 
@@ -302,9 +302,9 @@ namespace ca
 
       virtual void CommonConstruct();
 
-//      virtual bool begin(::ca::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+//      virtual bool begin(::ca::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-//      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+//      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
 //      virtual ::ca::e_thread_priority get_thread_priority();
   //    virtual bool set_thread_priority(::ca::e_thread_priority epriority);
@@ -462,17 +462,17 @@ namespace ca
 
 
 
-      virtual bool begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+      virtual bool begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
       virtual ::ca::e_thread_priority get_thread_priority();
       virtual bool set_thread_priority(::ca::e_thread_priority epriority);
 
 //      virtual uint32_t SuspendThread();
       virtual uint32_t ResumeThread();
-      virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
-      virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam = 0, lparam lParam = ::null());
+      virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam = 0, lparam lParam = NULL);
 
       virtual bool PreInitInstance();
 

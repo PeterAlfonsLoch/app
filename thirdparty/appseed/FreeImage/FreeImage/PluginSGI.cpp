@@ -72,7 +72,7 @@ typedef struct tagSGIHeader {
 	LONG pixmax;
 	/** Ignored. Normally set to 0. */
 	char dummy[4];
-	/** Image name. Must be null terminated, therefore at most 79 bytes. */
+	/** Image name. Must be NULL terminated, therefore at most 79 bytes. */
 	char imagename[80];
 	/** 
 	Colormap ID. 

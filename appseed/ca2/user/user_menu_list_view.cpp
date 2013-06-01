@@ -11,7 +11,7 @@ namespace user
       menu_list_window(papp)
    {
       m_etranslucency      = TranslucencyPresent;
-      m_pguieNotify        = ::null();
+      m_pguieNotify        = NULL;
       m_bAutoClose         = false;
    }
 
@@ -60,7 +60,7 @@ namespace user
 
    bool menu_list_view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
-      if(m_pguieNotify != ::null() && m_pguieNotify != this)
+      if(m_pguieNotify != NULL && m_pguieNotify != this)
       {
          if(m_pguieNotify->_001OnCmdMsg(pcmdmsg))
             return TRUE;

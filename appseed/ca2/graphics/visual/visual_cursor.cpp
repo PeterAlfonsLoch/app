@@ -35,7 +35,7 @@ namespace visual
 
    bool cursor::to(::ca::graphics * pgraphics, int32_t x, int32_t y)
    {
-      if(&System.visual().imaging() == ::null())
+      if(&System.visual().imaging() == NULL)
          return false;
 
       pgraphics->set_alpha_mode(::ca::alpha_mode_blend);

@@ -23,7 +23,7 @@ namespace filehandler
       //   return FALSE;
       //}
 
-      //update_all_views(::null(), 19847);
+      //update_all_views(NULL, 19847);
 
       return TRUE;
    }

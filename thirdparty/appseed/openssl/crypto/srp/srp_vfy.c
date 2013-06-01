@@ -121,7 +121,7 @@ static int t_fromb64(unsigned char *a, const char *src)
 
 
 /*
- * Convert a raw byte string into a null-terminated base64 ASCII string.
+ * Convert a raw byte string into a NULL-terminated base64 ASCII string.
  */
 static char *t_tob64(char *dst, const unsigned char *src, int size)
 	{

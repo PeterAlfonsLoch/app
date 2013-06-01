@@ -124,7 +124,7 @@ extern zipFile CLASS_DECL_ca2 zipOpen OF((const char *pathname, int32_t append))
          (useful if the file contain a self extractor code)
      if the file pathname exist and append==APPEND_STATUS_ADDINZIP, we will
        add files in existing zip (be sure you don't add file that doesn't exist)
-     If the zipfile cannot be opened, the return value is ::null().
+     If the zipfile cannot be opened, the return value is NULL.
      Else, the return value is a zipFile Handle, usable with other function
        of this zip package.
 */
@@ -151,13 +151,13 @@ extern int32_t CLASS_DECL_ca2 zipOpenNewFileInZip OF((zipFile file,
                        int32_t level));
 /*
   open a file in the ZIP for writing.
-  filename : the filename in zip (if ::null(), '-' without quote will be used
+  filename : the filename in zip (if NULL, '-' without quote will be used
   *zipfi contain supplemental information
-  if extrafield_local!=::null() and size_extrafield_local>0, extrafield_local
+  if extrafield_local!=NULL and size_extrafield_local>0, extrafield_local
     contains the extrafield data the the local header
-  if extrafield_global!=::null() and size_extrafield_global>0, extrafield_global
+  if extrafield_global!=NULL and size_extrafield_global>0, extrafield_global
     contains the extrafield data the the local header
-  if comment != ::null(), comment contain the comment string
+  if comment != NULL, comment contain the comment string
   method contain the compression method (0 for store, Z_DEFLATED for deflate)
   level contain the level of compression (can be Z_DEFAULT_COMPRESSION)
 */
@@ -199,7 +199,7 @@ extern int32_t CLASS_DECL_ca2 zipOpenNewFileInZip3 OF((zipFile file,
 /*
   Same than zipOpenNewFileInZip2, except
     windowBits,memLevel,,strategy : see parameter strategy in deflateInit2
-    password : crypting password (::null() for no crypting)
+    password : crypting password (NULL for no crypting)
     crcForCtypting : crc of file to compress (needed for crypting)
  */
 

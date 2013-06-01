@@ -266,7 +266,7 @@ enum mpg123_errors
 	MPG123_BAD_ALIGN,	/**< Stack aligmnent error */
 	MPG123_NULL_BUFFER,	/**< NULL input buffer with non-zero size... */
 	MPG123_NO_RELSEEK,	/**< Relative seek not possible (screwed up file offset) */
-	MPG123_NULL_POINTER, /**< You gave a null pointer somewhere where you shouldn't have. */
+	MPG123_NULL_POINTER, /**< You gave a NULL pointer somewhere where you shouldn't have. */
 	MPG123_BAD_KEY,	/**< Bad key value given. */
 	MPG123_NO_INDEX,	/**< No frame index in this build. */
 	MPG123_INDEX_FAIL,	/**< Something with frame index went wrong. */
@@ -735,7 +735,7 @@ EXPORT int mpg123_getstate(mpg123_handle *mh, enum mpg123_state key, long *val, 
  */
 
 /** Data structure for storing strings in a safer way than a standard C-String.
- *  Can also hold a number of null-terminated strings. */
+ *  Can also hold a number of NULL-terminated strings. */
 typedef struct 
 {
 	char* p;     /**< pointer to the string data */
@@ -770,7 +770,7 @@ EXPORT int  mpg123_add_string(mpg123_string* sb, const char* stuff);
 /** Append a C-substring to an mpg123 string
  *  \return 0 on error, 1 on success
  *  \param from offset to copy from
- *  \param count number of characters to copy (a null-byte is always appended) */
+ *  \param count number of characters to copy (a NULL-byte is always appended) */
 EXPORT int  mpg123_add_substring(mpg123_string *sb, const char *stuff, size_t from, size_t count);
 
 /** Set the conents of a mpg123_string to a C-string
@@ -780,7 +780,7 @@ EXPORT int  mpg123_set_string(mpg123_string* sb, const char* stuff);
 /** Set the contents of a mpg123_string to a C-substring
  *  \return 0 on error, 1 on success
  *  \param from offset to copy from
- *  \param count number of characters to copy (a null-byte is always appended) */
+ *  \param count number of characters to copy (a NULL-byte is always appended) */
 EXPORT int  mpg123_set_substring(mpg123_string *sb, const char *stuff, size_t from, size_t count);
 
 /** The mpg123 text encodings. This contains encodings we encounter in ID3 tags or ICY meta info. */
@@ -798,7 +798,7 @@ enum mpg123_text_encoding
 	,mpg123_text_utf16bom = 6 /**< Just an alias for UTF-16, ID3v2 has this as distinct code. */
 	,mpg123_text_utf16be  = 7 /**< Another alias for UTF16 from ID3v2. Note, that, because of the mess that is reality,
 	                           *   BOMs are used if encountered. There really is not much distinction between the UTF16 types for mpg123
-	                           *   One exception: Since this is seen in ID3v2 tags, leading null bytes are skipped for all other UTF16
+	                           *   One exception: Since this is seen in ID3v2 tags, leading NULL bytes are skipped for all other UTF16
 	                           *   types (we expect a BOM before real data there), not so for utf16be!*/
 	,mpg123_text_max      = 7 /**< Placeholder for the maximum encoding value. */
 };
@@ -843,7 +843,7 @@ typedef struct
 /** Data structure for storing IDV3v2 tags.
  *  This structure is not a direct binary mapping with the file contents.
  *  The ID3v2 text frames are allowed to contain multiple strings.
- *  So check for null bytes until you reach the mpg123_string fill.
+ *  So check for NULL bytes until you reach the mpg123_string fill.
  *  All text is encoded in UTF-8. */
 typedef struct
 {

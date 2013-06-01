@@ -3,7 +3,7 @@
 
 bool g_bAdmin = false;
 
-vsstring * g_pstrId = ::null();
+vsstring * g_pstrId = NULL;
 
 
 CLASS_DECL_c bool spa_get_admin()
@@ -23,7 +23,7 @@ CLASS_DECL_c vsstring spa_get_id()
 
 CLASS_DECL_c void spa_set_id(const char * psz)
 {
-   if(g_pstrId == ::null())
+   if(g_pstrId == NULL)
    {
       g_pstrId = new vsstring;
    }
@@ -44,16 +44,16 @@ CLASS_DECL_c vsstring spa_get_platform()
 bool is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * psz, const char * pszLocale, const char * pszSchema)
 {
 
-   if(psz == ::null())
+   if(psz == NULL)
       return true;
 
    if(*psz == '\0')
       return true;
 
-   if(pszType == ::null() || *pszType == '\0')
+   if(pszType == NULL || *pszType == '\0')
       pszType = "application";
 
-   if(pszVersion == ::null() || *pszVersion == '\0')
+   if(pszVersion == NULL || *pszVersion == '\0')
    {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -70,7 +70,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
    vsstring strLatestBuildNumber;
 
-   if(pszBuild == ::null() || *pszBuild == '\0')
+   if(pszBuild == NULL || *pszBuild == '\0')
    {
 
       strLatestBuildNumber = get_latest_build_number(pszVersion);
@@ -88,20 +88,20 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
    LPXNode lpnodeVersion = nodeInstall.GetChild(pszVersion);
 
-   if(lpnodeVersion == ::null())
+   if(lpnodeVersion == NULL)
       return false;
 
    LPXNode lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
 
-   if(lpnodeInstalled == ::null())
+   if(lpnodeInstalled == NULL)
       return false;
 
    LPXNode lpnodeType = lpnodeInstalled->GetChild(pszType);
 
-   if(lpnodeType == ::null())
+   if(lpnodeType == NULL)
       return false;
 
-   LPXNode lpnodeId = ::null();
+   LPXNode lpnodeId = NULL;
 
    for(int32_t ui = 0; ui < lpnodeType->childs.get_count(); ui++)
    {
@@ -123,7 +123,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
 found_id:
 
-   LPXNode lpnodeLocalization = ::null();
+   LPXNode lpnodeLocalization = NULL;
 
    for(int32_t ui = 0; ui < lpnodeId->childs.get_count(); ui++)
    {
@@ -169,13 +169,13 @@ CLASS_DECL_c vsstring fetch_latest_build_number(const char * pszVersion)
 
    vsstring strSpaIgnitionBaseUrl;
 
-   if(pszVersion != ::null() && !strcmp(pszVersion, "basis"))
+   if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
    {
 
        strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
    }
-   else if(pszVersion != ::null() && !strcmp(pszVersion, "stage"))
+   else if(pszVersion != NULL && !strcmp(pszVersion, "stage"))
    {
 
        strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
@@ -213,7 +213,7 @@ RetryBuildNumber:
 
    iRetry++;
 
-   strBuildNumber = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, ::null(), ::null());
+   strBuildNumber = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, NULL, NULL);
 
    strBuildNumber.trim();
 

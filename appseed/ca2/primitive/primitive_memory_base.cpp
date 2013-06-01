@@ -9,15 +9,15 @@ namespace primitive
    memory_base::memory_base()
    {
 
-      m_pbStorage          = ::null();
-      m_pbComputed         = ::null();
+      m_pbStorage          = NULL;
+      m_pbComputed         = NULL;
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
       m_dwAllocationAddUp  = 0;
       m_iOffset            = 0;
       m_bLockMode          = false;
       m_bLock              = false;
-      m_pcontainer         = ::null();
+      m_pcontainer         = NULL;
 
    }
       
@@ -224,7 +224,7 @@ namespace primitive
       
       m_iOffset += iSize;
       
-      if(m_pcontainer != ::null())
+      if(m_pcontainer != NULL)
       {
          
          m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
@@ -236,7 +236,7 @@ namespace primitive
       if(m_cbStorage <= 0)
       {
 
-         m_pbComputed = ::null();
+         m_pbComputed = NULL;
 
       }
       else

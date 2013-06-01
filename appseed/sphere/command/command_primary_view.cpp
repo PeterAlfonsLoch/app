@@ -137,11 +137,11 @@ namespace command
 #ifdef WINDOWSEX
 
                   if(::ShellExecuteW(
-                     ::null(),
-                     ::null(),
+                     NULL,
+                     NULL,
                      ::ca::international::utf8_to_unicode(strLine),
-                     ::null(),
-                     ::null(),
+                     NULL,
+                     NULL,
                      SW_SHOW))
                   {
                      string strNewText = str + "executing " + strLine  + "...";

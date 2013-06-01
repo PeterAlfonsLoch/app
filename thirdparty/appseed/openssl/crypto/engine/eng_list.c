@@ -70,7 +70,7 @@
  * list (or engine_list_head itself). In the same way, the use of the
  * "prev" pointer in each ENGINE is to save excessive list iteration,
  * it doesn't correspond to an extra structural reference. Hence,
- * engine_list_head, and each non-null "next" pointer account for
+ * engine_list_head, and each non-NULL "next" pointer account for
  * the list itself assuming exactly 1 structural reference on each
  * list member. */
 static ENGINE *engine_list_head = NULL;

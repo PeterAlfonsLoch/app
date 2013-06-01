@@ -551,7 +551,7 @@ step2:
 
          ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_mapRTL.PLookup(id);
 
-         if(ppair != ::null())
+         if(ppair != NULL)
             return ppair->m_element2;
 
          string str;

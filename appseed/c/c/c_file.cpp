@@ -22,7 +22,7 @@ CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory &
 
 CLASS_DECL_c bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
 {
-   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, ::null());
+   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
 }
 
 

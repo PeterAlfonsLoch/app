@@ -8,17 +8,17 @@ font_central::font_central(sp(::ca::application) papp) :
    m_font(allocer()),
    m_fontListCtrl(allocer())
 {
-   m_pfontLyric = ::null();
-   m_pfontLyricCompact = ::null();
+   m_pfontLyric = NULL;
+   m_pfontLyricCompact = NULL;
    m_bInitialized = false;
 }
 
 font_central::~font_central()
 {
-    if(m_lpSongLabelFont != ::null())
+    if(m_lpSongLabelFont != NULL)
         delete m_lpSongLabelFont;
 
-    if(m_lpSongListFont  != ::null())
+    if(m_lpSongListFont  != NULL)
         delete m_lpSongListFont;
 
 }
@@ -33,7 +33,7 @@ font_central::~font_central()
 
 bool font_central::IsInitialized()
 {
-   if(this == ::null())
+   if(this == NULL)
       return false;
    else
       return m_bInitialized;
@@ -46,7 +46,7 @@ bool font_central::Initialize()
       return false;
 
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
    m_fontMenu->create_point_font(FONTFACENAME_MENU, 9);
 
@@ -183,7 +183,7 @@ visual::font * font_central::GetSongListFont()
 void font_central::CreateLyricViewFonts()
 {
    ::ca::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(::null());
+   spgraphics->CreateCompatibleDC(NULL);
 
 
    string strLucida;

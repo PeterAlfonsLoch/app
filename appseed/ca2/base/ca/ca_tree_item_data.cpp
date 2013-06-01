@@ -37,8 +37,8 @@ namespace ca
 
    sp(image_list) tree_item_data::get_image_list(sp(tree) ptree)
    {
-      if(ptree == ::null())
-         return ::null();
+      if(ptree == NULL)
+         return NULL;
       return ptree->get_image_list();
    }
 

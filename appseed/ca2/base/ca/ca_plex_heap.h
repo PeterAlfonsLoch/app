@@ -30,7 +30,7 @@ public:
    UINT                       m_nAllocSize;  // size of each block from Alloc
    UINT                       m_nBlockSize;  // number of blocks to get at a time
    plex_heap *                m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
-   node*                      m_pnodeFree;   // first free node (::null() if no free nodes)
+   node*                      m_pnodeFree;   // first free node (NULL if no free nodes)
    simple_critical_section    m_protect;
    int64_t                    m_iFreeHitCount;
    node *                     m_pnodeLastBlock;
@@ -55,10 +55,10 @@ inline void * plex_heap_alloc_sync::Alloc()
 {
 
    m_protect.lock();
-   void * pdata = ::null();
+   void * pdata = NULL;
    try
    {
-      if (m_pnodeFree == ::null())
+      if (m_pnodeFree == NULL)
       {
          NewBlock();
       }
@@ -80,12 +80,12 @@ inline void * plex_heap_alloc_sync::Alloc()
 inline void plex_heap_alloc_sync::Free(void * p)
 {
 
-   if(p == ::null())
+   if(p == NULL)
       return;
 
    p = &((byte *)p)[-16];
 
-   if(p == ::null())
+   if(p == NULL)
       return;
 
    m_protect.lock();
@@ -100,7 +100,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
       node * pnodeFree = m_pnodeFree;
 
-      while(pnodeFree != ::null())
+      while(pnodeFree != NULL)
       {
 
          if(pnode == pnodeFree) // dbgsnp - debug snippet
@@ -127,7 +127,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
 #if STORE_LAST_BLOCK
 
-      if(m_pnodeLastBlock != ::null())
+      if(m_pnodeLastBlock != NULL)
          system_heap_free(m_pnodeLastBlock);
 
       m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
@@ -211,7 +211,7 @@ inline void * plex_heap_alloc::Alloc()
 inline void plex_heap_alloc::Free(void * p)
 {
 
-   if (p == ::null())
+   if (p == NULL)
       return;
 
    register int32_t i = ((int32_t *)p)[-1];
@@ -270,7 +270,7 @@ public:
 inline void * plex_heap_alloc_array::alloc(size_t nAllocSize)
 {
    plex_heap_alloc * palloc = find(nAllocSize);
-   if(palloc != ::null())
+   if(palloc != NULL)
    {
       return palloc->Alloc();
    }
@@ -286,7 +286,7 @@ void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
 
    plex_heap_alloc * palloc = find(nAllocSize);
 
-   if(palloc != ::null())
+   if(palloc != NULL)
    {
       return palloc->Free(p);
    }
@@ -302,7 +302,7 @@ inline void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, 
 {
    plex_heap_alloc * pallocOld = find(nOldAllocSize);
    plex_heap_alloc * pallocNew = find(nNewAllocSize);
-   if(pallocOld == ::null() && pallocNew == ::null())
+   if(pallocOld == NULL && pallocNew == NULL)
    {
       return ::system_heap_realloc(pOld, nNewAllocSize);
    }
@@ -315,7 +315,7 @@ inline void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, 
 
       void * pNew;
 
-      if(pallocNew != ::null())
+      if(pallocNew != NULL)
       {
          pNew = pallocNew->Alloc();
       }
@@ -326,7 +326,7 @@ inline void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, 
 
       memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
 
-      if(pallocOld != ::null())
+      if(pallocOld != NULL)
       {
          pallocOld->Free(pOld);
       }
@@ -357,5 +357,5 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    if(iFound >= 0)
       return this->element_at(iFound);
    else
-      return ::null();
+      return NULL;
 }

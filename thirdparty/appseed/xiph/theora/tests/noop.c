@@ -69,7 +69,7 @@ noop_test_encode ()
   INFO ("+ Allocating encoder context");
   te = th_encode_alloc(&ti);
   if (te == NULL)
-    FAIL("td_encode_alloc returned a null pointer");
+    FAIL("td_encode_alloc returned a NULL pointer");
 
   INFO ("+ Clearing th_info struct");
   th_info_clear (&ti);
@@ -86,18 +86,18 @@ noop_test_decode ()
   th_info ti;
   th_dec_ctx *td;
 
-  INFO ("+ Testing decoder context with null info and setup");
+  INFO ("+ Testing decoder context with NULL info and setup");
   td = th_decode_alloc(NULL, NULL);
   if (td != NULL)
-    FAIL("td_decode_alloc accepted null info pointers");
+    FAIL("td_decode_alloc accepted NULL info pointers");
 
   INFO ("+ Initializing th_info struct");
   th_info_init (&ti);
 
-  INFO ("+ Testing decoder context with empty info and null setup");
+  INFO ("+ Testing decoder context with empty info and NULL setup");
   td = th_decode_alloc(&ti, NULL);
   if (td != NULL)
-    FAIL("td_decode_alloc accepted null info pointers");
+    FAIL("td_decode_alloc accepted NULL info pointers");
 
   INFO ("+ Clearing th_info struct");
   th_info_clear (&ti);

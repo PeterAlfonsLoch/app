@@ -34,11 +34,11 @@ namespace ca
    {
    public:
 
-      virtual void add_line(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = ::null());
-      virtual void add_line_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = ::null());
+      virtual void add_line(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = NULL);
+      virtual void add_line_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = NULL);
 
-      virtual void add_fork(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = ::null());
-      virtual void add_fork_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = ::null());
+      virtual void add_fork(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = NULL);
+      virtual void add_fork_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate = NULL);
 
 
       // semantics defined by the requested object - request_interface implementator

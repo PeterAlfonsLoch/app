@@ -62,13 +62,13 @@ int av_stristart(const char *str, const char *pfx, const char **ptr);
  * @param haystack string to search in
  * @param needle   string to search for
  * @return         pointer to the located match within haystack
- *                 or a null pointer if no match
+ *                 or a NULL pointer if no match
  */
 char *av_stristr(const char *haystack, const char *needle);
 
 /**
  * Copy the string src to dst, but no more than size - 1 bytes, and
- * null-terminate dst.
+ * NULL-terminate dst.
  *
  * This function is the same as BSD strlcpy().
  *
@@ -85,7 +85,7 @@ size_t av_strlcpy(char *dst, const char *src, size_t size);
 
 /**
  * Append the string src to the string dst, but to a total length of
- * no more than size - 1 bytes, and null-terminate dst.
+ * no more than size - 1 bytes, and NULL-terminate dst.
  *
  * This function is similar to BSD strlcat(), but differs when
  * size <= strlen(dst).

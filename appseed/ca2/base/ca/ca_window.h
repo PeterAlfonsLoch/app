@@ -36,7 +36,7 @@ namespace ca
       window();
 
 
-      virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = ::null());
+      virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = NULL);
 #ifdef METROWIN
       virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow) = 0;
 #endif
@@ -95,12 +95,12 @@ namespace ca
 
       using ::user::interaction::create;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, sp(::ca::create_context) pContext = ::null());
+      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, sp(::ca::create_context) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = ::null());
+      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = NULL);
 
-      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, LPVOID lpParam = ::null());
+      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 
@@ -117,7 +117,7 @@ namespace ca
       // as above, but returns oswindow
       virtual sp(::user::interaction) GetDescendantWindow(id id);
       // like get_child_by_id but recursive
-      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
+      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual sp(::user::frame_window) GetParentFrame();
       virtual sp(::user::frame_window) EnsureParentFrame();
       virtual sp(::user::interaction) GetTopLevelParent();
@@ -134,7 +134,7 @@ namespace ca
 
    #endif   // WINVER >= 0x0500
 
-      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
+      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
 
 #ifdef LINUX
 
@@ -143,10 +143,10 @@ namespace ca
 #endif
 
 
-      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = ::null());
+      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
 
       virtual bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
-      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = ::null());
+      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
       virtual bool DragDetect(POINT pt) const;
 
@@ -210,9 +210,9 @@ namespace ca
       virtual void UnlockWindowUpdate();
 
 #ifdef WINDOWS
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = ::null(), ::ca::region* prgnUpdate = ::null(), UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = ::null(), ::ca::region* prgnUpdate = ::null(), UINT flags = 0);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::region* prgnUpdate = NULL, UINT flags = 0);
 #endif
 
 
@@ -274,7 +274,7 @@ namespace ca
 
 
       // capture and focus apply to all windows
-      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = ::null());
+      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
       virtual sp(::user::interaction) release_capture();
       virtual sp(::user::interaction) get_capture();
       virtual sp(::user::interaction) SetFocus();
@@ -296,7 +296,7 @@ namespace ca
       virtual bool DlgDirSelect(LPTSTR lpString, int32_t nSize, int32_t nIDListBox);
       virtual bool DlgDirSelectComboBox(LPTSTR lpString, int32_t nSize, int32_t nIDComboBox);
 
-      virtual UINT GetChildByIdInt(int32_t nID, bool* lpTrans = ::null(), bool bSigned = TRUE) const;
+      virtual UINT GetChildByIdInt(int32_t nID, bool* lpTrans = NULL, bool bSigned = TRUE) const;
       virtual int32_t GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const;
       virtual int32_t GetChildByIdText(int32_t nID, string & rString) const;
       virtual sp(::ca::window) GetNextDlgGroupItem(sp(::ca::window) pWndCtl, bool bPrevious = FALSE) const;
@@ -310,15 +310,15 @@ namespace ca
       virtual int32_t GetScrollPos(int32_t nBar) const;
       virtual void GetScrollRange(int32_t nBar, LPINT lpMinPos, LPINT lpMaxPos) const;
       virtual void ScrollWindow(int32_t xAmount, int32_t yAmount,
-                  LPCRECT lpRect = ::null(),
-                  LPCRECT lpClipRect = ::null());
+                  LPCRECT lpRect = NULL,
+                  LPCRECT lpClipRect = NULL);
       virtual int32_t SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw = TRUE);
       virtual void SetScrollRange(int32_t nBar, int32_t nMinPos, int32_t nMaxPos,
             bool bRedraw = TRUE);
       virtual void ShowScrollBar(UINT nBar, bool bShow = TRUE);
       virtual void EnableScrollBarCtrl(int32_t nBar, bool bEnable = TRUE);
       //virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
-            // return sibling scrollbar control (or ::null() if none)
+            // return sibling scrollbar control (or NULL if none)
 
       virtual int32_t ScrollWindowEx(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
 
@@ -358,7 +358,7 @@ namespace ca
    // Alert Functions
       bool FlashWindow(bool bInvert);
 
-      virtual int32_t message_box(const char * lpszText, const char * lpszCaption = ::null(), UINT nType = MB_OK);
+      virtual int32_t message_box(const char * lpszText, const char * lpszCaption = NULL, UINT nType = MB_OK);
 
    #if(WINVER >= 0x0500)
 
@@ -403,12 +403,12 @@ namespace ca
 
    // layout and other functions
    /*   void RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
-         UINT nFlag = reposDefault, LPRECT lpRectParam = ::null(),
-         LPCRECT lpRectClient = ::null(), bool bStretch = TRUE);*/
+         UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
+         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
-         UINT nFlags = reposDefault, LPRECT lpRectParam = ::null(),
-         LPCRECT lpRectClient = ::null(), bool bStretch = TRUE);
+         UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
+         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
       // Dialog Data support
       virtual bool update_data(bool bSaveAndValidate = true);
@@ -417,10 +417,10 @@ namespace ca
 
       // dialog support
       virtual void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
-      virtual void CenterWindow(sp(::user::interaction) pAlternateOwner = ::null());
+      virtual void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
 
 
-      //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = ::null());
+      //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
       //virtual bool ContinueModal(id iLevel);
       //virtual void EndModalLoop(id nResult);
 
@@ -625,7 +625,7 @@ namespace ca
 
       // for handling default processing
       virtual LRESULT Default();
-      virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam);
+      virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, lparam lParam);
 
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();

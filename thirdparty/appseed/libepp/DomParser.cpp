@@ -439,7 +439,7 @@ namespace libepp
                      {
                         greeting->set_access(Greeting::NONE_AC);
                      }
-                     else if(e_name == "null")
+                     else if(e_name == "NULL")
                      {
                         greeting->set_access(Greeting::NULL_AC);
                      }

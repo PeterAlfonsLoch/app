@@ -1819,7 +1819,7 @@ namespace sqlite3
       ** All of the usual printf formatting options apply.  In addition, there
       ** is are "%q", "%Q", and "%z" options.
       **
-      ** The %q option works like %s in that it substitutes a null-terminated
+      ** The %q option works like %s in that it substitutes a NULL-terminated
       ** string from the argument list.  But %q also doubles every '\'' character.
       ** %q is designed for use inside a string literal.  By doubling each '\''
       ** character it escapes that character and allows it to be inserted into
@@ -4988,7 +4988,7 @@ namespace sqlite3
       ** <pre>
       **     data type: "INTEGER"
       **     collation sequence: "BINARY"
-      **     not null: 0
+      **     not NULL: 0
       **     primary key: 1
       **     auto increment: 0
       ** </pre>
@@ -5946,7 +5946,7 @@ namespace sqlite3
    **   SQLITE_HASH_POINTER     pKey is used as the key and nKey is ignored.
    **
    **   SQLITE_HASH_STRING      pKey points to a string that is nKey bytes long
-   **                           (including the null-terminator, if any).  Case
+   **                           (including the NULL-terminator, if any).  Case
    **                           is ignored in comparisons.
    **
    **   SQLITE_HASH_BINARY      pKey points to binary data nKey bytes long.
@@ -8444,7 +8444,7 @@ namespace sqlite3
 
 #define SRT_Callback     5  /* Invoke a callback with each row of result */
 #define SRT_Mem          6  /* Store result in a primitive::memory cell */
-#define SRT_Set          7  /* Store non-null results as keys in an index */
+#define SRT_Set          7  /* Store non-NULL results as keys in an index */
 #define SRT_Table        8  /* Store result as data with an automatic rowid */
 #define SRT_EphemTab     9  /* create transient tab and store like SRT_Table */
 #define SRT_Subroutine  10  /* Call a subroutine to handle results */
@@ -13850,7 +13850,7 @@ zulu_time:
    **   func   This is a pointer to a function taking three arguments
    **            1. A pointer to anything.  Same as the "arg" parameter.
    **            2. A pointer to the list of characters to be output
-   **               (Note, this list is NOT null terminated.)
+   **               (Note, this list is NOT NULL terminated.)
    **            3. An integer number of characters to be output.
    **               (Note: This number might be zero.)
    **
@@ -14838,7 +14838,7 @@ zulu_time:
       u16 flags;          /* Some combination of MEM_Null, MEM_Str, MEM_Dyn, etc. */
       u8  type;           /* One of SQLITE_NULL, SQLITE_TEXT, SQLITE_INTEGER, etc */
       u8  enc;            /* SQLITE_UTF8, SQLITE_UTF16BE, SQLITE_UTF16LE */
-      void (*xDel)(void *);  /* If not null, call this function to delete Mem.z */
+      void (*xDel)(void *);  /* If not NULL, call this function to delete Mem.z */
    };
 
    /* One or more of the following flags are set to indicate the validOK
@@ -20797,7 +20797,7 @@ afp_end_lock:
 
    /*
    ** SQLite calls this function immediately after a call to unixDlSym() or
-   ** unixDlOpen() fails (returns a null pointer). If a more detailed error
+   ** unixDlOpen() fails (returns a NULL pointer). If a more detailed error
    ** message is available, it is written to zBufOut. If no error message
    ** is available, zBufOut is left unmodified and SQLite uses a default
    ** error message.
@@ -33523,7 +33523,7 @@ end_allocate_page:
    **
    ** If the cell content will fit on the page, then put it there.  If it
    ** will not fit, then make a copy of the cell content into pTemp if
-   ** pTemp is not null.  Regardless of pTemp, allocate a new entry
+   ** pTemp is not NULL.  Regardless of pTemp, allocate a new entry
    ** in pPage->aOvfl[] and make it point to the cell content (either
    ** in pTemp or the original pCell) and also record its index.
    ** Allocating a new entry in pPage->aCell[] implies that
@@ -37661,7 +37661,7 @@ no_mem:
    ** If n>=0 then the P4 operand is dynamic, meaning that a copy of
    ** the string is made into primitive::memory obtained from sqlite3_malloc().
    ** A value of n==0 means copy bytes of zP4 up to and including the
-   ** first null byte.  If n>0 then copy n+1 bytes of zP4.
+   ** first NULL byte.  If n>0 then copy n+1 bytes of zP4.
    **
    ** If n==P4_KEYINFO it means that zP4 is a pointer to a KeyInfo structure.
    ** A copy is made of the KeyInfo structure into primitive::memory obtained from
@@ -38438,7 +38438,7 @@ no_mem:
          /* Write the name of each database file in the transaction into the new
          ** master journal spfile-> If an error occurs at this point close
          ** and delete the master journal spfile-> All the individual journal files
-         ** still have 'null' as the master journal pointer, so they will roll
+         ** still have 'NULL' as the master journal pointer, so they will roll
          ** back independently if a failure occurs.
          */
          for(i=0; i<db->nDb; i++){
@@ -40607,12 +40607,12 @@ failed:
    ** similar in form to assembly language.  The program consists of
    ** a linear sequence of operations.  Each operation has an opcode
    ** and 5 operands.  Operands P1, P2, and P3 are integers.  Operand P4
-   ** is a null-terminated string.  Operand P5 is an uint32_t character.
+   ** is a NULL-terminated string.  Operand P5 is an uint32_t character.
    ** Few opcodes use all 5 operands.
    **
    ** Computation results are stored on a set of registers numbered beginning
    ** with 1 and going up to Vdbe.nMem.  Each register can store
-   ** either an integer, a null-terminated string, a floating point
+   ** either an integer, a NULL-terminated string, a floating point
    ** number, or the SQL "NULL" value.  An inplicit conversion from one
    ** type to the other occurs as necessary.
    **
@@ -41336,7 +41336,7 @@ failed:
                                ** then back out all changes that have occurred during this execution of the
                                ** VDBE, but do not rollback the transaction.
                                **
-                               ** If P4 is not null then it is an error message string.
+                               ** If P4 is not NULL then it is an error message string.
                                **
                                ** There is an implied "Halt 0 0 0" instruction inserted at the very end of
                                ** every program.  So a jump past the last instruction of the program
@@ -44036,8 +44036,8 @@ op_column_out:
 
                               /* Opcode: NullRow P1 * * * *
                               **
-                              ** Move the cursor P1 to a null row.  Any OP_Column operations
-                              ** that occur while the cursor is on the null row will always
+                              ** Move the cursor P1 to a NULL row.  Any OP_Column operations
+                              ** that occur while the cursor is on the NULL row will always
                               ** write a NULL.
                               */
                case OP_NullRow: {
@@ -45609,7 +45609,7 @@ abort_due_to_interrupt:
 
             if( type<12 ){
                sqlite3_snprintf(sizeof(zErr), zErr, "cannot open value of type %s",
-                  type==0?"null": type==7?"real": "integer"
+                  type==0?"NULL": type==7?"real": "integer"
                   );
                rc = SQLITE_ERROR;
                goto blob_open_out;
@@ -46152,7 +46152,7 @@ blob_open_out:
    ** is used, or the default (BINARY) if neither expression has a collating
    ** type.
    **
-   ** Argument pRight (but not pLeft) may be a null pointer. In this case,
+   ** Argument pRight (but not pLeft) may be a NULL pointer. In this case,
    ** it is not considered.
    */
    SQLITE_PRIVATE CollSeq *sqlite3BinaryCompareCollSeq(
@@ -46207,7 +46207,7 @@ blob_open_out:
    ** is responsible for making sure the node eventually gets freed.
    */
    SQLITE_PRIVATE Expr *sqlite3Expr(
-      sqlite3 *db,            /* Handle for sqlite3DbMallocZero() (may be null) */
+      sqlite3 *db,            /* Handle for sqlite3DbMallocZero() (may be NULL) */
       int32_t op,                 /* Expression opcode */
       Expr *pLeft,            /* Left operand */
       Expr *pRight,           /* Right operand */
@@ -52079,7 +52079,7 @@ primary_key_exit:
    /*
    ** Measure the number of characters needed to output the given
    ** identifier.  The number returned includes any quotes used
-   ** but does not include the null terminator.
+   ** but does not include the NULL terminator.
    **
    ** The estimate is conservative.  It might be larger that what is
    ** really needed.
@@ -53753,7 +53753,7 @@ exit_drop_index:
    **
    ** A new SrcList is returned, or NULL if ca2_alloc() fails.
    **
-   ** If pDatabase is not null, it means that the table has an optional
+   ** If pDatabase is not NULL, it means that the table has an optional
    ** database name prefix.  Like this:  "database.table".  The pDatabase
    ** points to the table name and the pTable points to the database name.
    ** The SrcList.a[].zName field is filled with the table name which might
@@ -54496,7 +54496,7 @@ exit_drop_index:
    */
    SQLITE_PRIVATE FuncDef *sqlite3FindFunction(
       sqlite3 *db,       /* An open database */
-      const char *zName, /* Name of the function.  Not null-terminated */
+      const char *zName, /* Name of the function.  Not NULL-terminated */
       int32_t nName,         /* Number of characters in the name */
       int32_t nArg,          /* Number of arguments.  -1 means any number */
       u8 enc,            /* Preferred text encoding */
@@ -54756,7 +54756,7 @@ exit_drop_index:
    SQLITE_PRIVATE void sqlite3DeleteFrom(
       Parse *pParse,         /* The parser context */
       SrcList *pTabList,     /* The table from which we should delete things */
-      Expr *pWhere           /* The WHERE clause.  May be null */
+      Expr *pWhere           /* The WHERE clause.  May be NULL */
       ){
          Vdbe *v;               /* The virtual database engine */
          Table *pTab;           /* The table from which records will be deleted */
@@ -55240,7 +55240,7 @@ delete_from_cleanup:
       ){
          const char *z = 0;
          switch( sqlite3_value_type(argv[0]) ){
-         case SQLITE_NULL:    z = "null";    break;
+         case SQLITE_NULL:    z = "NULL";    break;
          case SQLITE_INTEGER: z = "integer"; break;
          case SQLITE_TEXT:    z = "text";    break;
          case SQLITE_FLOAT:   z = "real";    break;
@@ -59979,7 +59979,7 @@ exec_out:
                                  **
                                  ** Return or set the local value of the temp_store_directory flag.  Changing
                                  ** the value sets a specific directory to be used for temporary files.
-                                 ** Setting to a null string reverts to the default temporary directory search.
+                                 ** Setting to a NULL string reverts to the default temporary directory search.
                                  ** If temporary directory is changed, then invalidateTempStorage.
                                  **
                                  */
@@ -62196,7 +62196,7 @@ error_out:
 
 
    /*
-   ** If the inner loop was generated using a non-null pOrderBy argument,
+   ** If the inner loop was generated using a non-NULL pOrderBy argument,
    ** then the results were placed in a sorter.  After the loop is terminated
    ** we need to run the sorter and output the results.  The following
    ** routine generates the code needed to do that.
@@ -64373,7 +64373,7 @@ multi_select_end:
    **
    **     SRT_Mem         Store first result in primitive::memory cell pDest->iParm
    **
-   **     SRT_Set         Store non-null results as keys of table pDest->iParm.
+   **     SRT_Set         Store non-NULL results as keys of table pDest->iParm.
    **                     Apply the affinity pDest->affinity before storing them.
    **
    **     SRT_Union       Store results as a key in a temporary table pDest->iParm.
@@ -66227,13 +66227,13 @@ drop_trigger_cleanup:
    ** for the column and the P4 value is not required.
    **
    ** Column definitions created by an ALTER TABLE command may only have
-   ** literal default values specified: a number, null or a string. (If a more
+   ** literal default values specified: a number, NULL or a string. (If a more
    ** complicated default expression value was provided, it is evaluated
    ** when the ALTER TABLE is executed and one of the literal values written
    ** into the sqlite_master table.)
    **
    ** Therefore, the P4 parameter is only required if the default value for
-   ** the column is a literal number, string or null. The sqlite3ValueFromExpr()
+   ** the column is a literal number, string or NULL. The sqlite3ValueFromExpr()
    ** function is capable of transforming these types of expressions into
    ** sqlite3_value objects.
    */
@@ -66263,7 +66263,7 @@ drop_trigger_cleanup:
       Parse *pParse,         /* The parser context */
       SrcList *pTabList,     /* The table in which we should change things */
       ExprList *pChanges,    /* Things to be changed */
-      Expr *pWhere,          /* The WHERE clause.  May be null */
+      Expr *pWhere,          /* The WHERE clause.  May be NULL */
       int32_t onError            /* How to handle constraint errors */
       ){
          int32_t i, j;              /* Loop counters */
@@ -69872,7 +69872,7 @@ or_not_possible:
    **          flag = 1
    **      end
    **      if flag==0 then
-   **        move the row2 cursor to a null row
+   **        move the row2 cursor to a NULL row
    **        goto start
    **      fi
    **    end
@@ -70824,7 +70824,7 @@ whereBeginNoMem:
    struct AttachKey { int32_t type;  Token key; };
 
    /* Next is all token values, in a form suitable for use by makeheaders.
-   ** This section will be null unless lemon is run with the -m switch.
+   ** This section will be NULL unless lemon is run with the -m switch.
    */
    /*
    ** These constants (all generated automatically by the parser generator)
@@ -76661,7 +76661,7 @@ error_out:
    ** There are 2 different modes of operation for a hash table:
    **
    **   FTS3_HASH_STRING        pKey points to a string that is nKey bytes long
-   **                           (including the null-terminator, if any).  Case
+   **                           (including the NULL-terminator, if any).  Case
    **                           is respected in comparisons.
    **
    **   FTS3_HASH_BINARY        pKey points to binary data nKey bytes long.
@@ -77077,9 +77077,9 @@ error_out:
          dataBufferAppend(pBuffer, pSource, nSource);
    }
 
-   /* StringBuffer is a null-terminated version of DataBuffer. */
+   /* StringBuffer is a NULL-terminated version of DataBuffer. */
    typedef struct StringBuffer {
-      DataBuffer b;            /* Includes null terminator. */
+      DataBuffer b;            /* Includes NULL terminator. */
    } StringBuffer;
 
    static void initStringBuffer(StringBuffer *sb){
@@ -78320,7 +78320,7 @@ error_out:
          for(p = zFormat ; *p ; ++p){
             len += (*p=='%' ? nFullTableName : 1);
          }
-         len += 1;  /* for null terminator */
+         len += 1;  /* for NULL terminator */
 
          r = result = sqlite3_malloc(len);
          for(p = zFormat; *p; ++p){
@@ -78508,7 +78508,7 @@ error_out:
       /* CONTENT_DELETE */ "delete from %_content where docid = ?",
 
       /* BLOCK_INSERT */
-      "insert into %_segments (blockid, block) values (null, ?)",
+      "insert into %_segments (blockid, block) values (NULL, ?)",
       /* BLOCK_SELECT */ "select block from %_segments where blockid = ?",
       /* BLOCK_DELETE */ "delete from %_segments where blockid between ? and ?",
 
@@ -78761,7 +78761,7 @@ error_out:
 
    /* select * from %_content where docid = [iDocid]
    * The caller must delete the returned array and all strings in it.
-   * null fields will be NULL in the returned array.
+   * NULL fields will be NULL in the returned array.
    *
    * TODO: Perhaps we should return pointer/length strings here for consistency
    * with other code which uses pointer/length. */

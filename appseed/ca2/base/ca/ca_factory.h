@@ -67,7 +67,7 @@ public:
    virtual void discard(::ca::ca * pca)
    {
       TYPE * ptype = (TYPE *) pca->m_pthis;
-      if(ptype == ::null())
+      if(ptype == NULL)
          return;
       try
       {
@@ -114,8 +114,8 @@ public:
    virtual sp(::ca::ca) create(sp(::ca::application) papp)
    {
 
-      if(m_pallocator == ::null())
-         return ::null();
+      if(m_pallocator == NULL)
+         return NULL;
 
       void * pv = m_pallocator->alloc();
 #undef new

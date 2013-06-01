@@ -128,7 +128,7 @@ static ERR_STRING_DATA BIO_str_reasons[]=
 {ERR_REASON(BIO_R_NO_PORT_DEFINED)       ,"no port defined"},
 {ERR_REASON(BIO_R_NO_PORT_SPECIFIED)     ,"no port specified"},
 {ERR_REASON(BIO_R_NO_SUCH_FILE)          ,"no such file"},
-{ERR_REASON(BIO_R_NULL_PARAMETER)        ,"null parameter"},
+{ERR_REASON(BIO_R_NULL_PARAMETER)        ,"NULL parameter"},
 {ERR_REASON(BIO_R_TAG_MISMATCH)          ,"tag mismatch"},
 {ERR_REASON(BIO_R_UNABLE_TO_BIND_SOCKET) ,"unable to bind socket"},
 {ERR_REASON(BIO_R_UNABLE_TO_CREATE_SOCKET),"unable to create socket"},

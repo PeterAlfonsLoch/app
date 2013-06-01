@@ -16,7 +16,7 @@ namespace ca
       ::sockets::http_get_socket(handler, url)
       
    {
-      m_pcookies = ::null();
+      m_pcookies = NULL;
    }
 
       
@@ -30,7 +30,7 @@ namespace ca
       ::sockets::http_client_socket(handler, url),
       ::sockets::http_get_socket(handler, host, port, url)
    {
-      m_pcookies = ::null();
+      m_pcookies = NULL;
    }
 
    void http_get_socket::OnDataArrived(const char *, size_t len)
@@ -52,7 +52,7 @@ namespace ca
       else if(key == __id(set_cookie))
       {
 
-         if(m_pcookies != ::null())
+         if(m_pcookies != NULL)
          {
 
             m_pcookies->add(value);

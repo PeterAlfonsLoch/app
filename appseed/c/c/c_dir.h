@@ -15,10 +15,10 @@ public:
 
 
 
-   static CLASS_DECL_c vsstring ca(const char * path1 = ::null(), const char * path2 = ::null(), const char * path3 = ::null(), const char * path4 = ::null());
+   static CLASS_DECL_c vsstring ca(const char * path1 = NULL, const char * path2 = NULL, const char * path3 = NULL, const char * path4 = NULL);
    static CLASS_DECL_c vsstring afterca2();
-   static CLASS_DECL_c vsstring module_folder(const char * path = ::null());
-   static CLASS_DECL_c vsstring path(const char * path1, const char * path2, const char * path3 = ::null(), const char * path4 = ::null(), const char * path5 = ::null());
+   static CLASS_DECL_c vsstring module_folder(const char * path = NULL);
+   static CLASS_DECL_c vsstring path(const char * path1, const char * path2, const char * path3 = NULL, const char * path4 = NULL, const char * path5 = NULL);
    static CLASS_DECL_c vsstring name(const char * path1);
    static CLASS_DECL_c vsstring appdata(const char * lpcsz);
    static CLASS_DECL_c vsstring userappdata(const char * lpcsz);
@@ -34,7 +34,7 @@ public:
    static CLASS_DECL_c vsstring default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
    static CLASS_DECL_c vsstring default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
    static CLASS_DECL_c vsstring default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
-   static CLASS_DECL_c vsstring userfolder(const char * lpcsz, const char * lpcsz2 = ::null());
+   static CLASS_DECL_c vsstring userfolder(const char * lpcsz, const char * lpcsz2 = NULL);
    static CLASS_DECL_c vsstring pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 
    

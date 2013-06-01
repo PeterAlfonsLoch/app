@@ -10,7 +10,7 @@
 ::count wcslen_dup(const wchar_t * str)
 {
 
-   if(str == ::null())
+   if(str == NULL)
       return 0;
 
    const wchar_t * pszEnd = str;
@@ -42,14 +42,14 @@ CLASS_DECL_c int32_t iswspace_dup(int32_t ch)
 
 int32_t wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 {
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }
@@ -67,14 +67,14 @@ int32_t wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 
 int32_t wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 {
-   if(sz1 == ::null())
+   if(sz1 == NULL)
    {
-      if(sz2 == ::null())
+      if(sz2 == NULL)
          return 0;
       else
          return -1;
    }
-   else if(sz2 == ::null())
+   else if(sz2 == NULL)
    {
       return 1;
    }
@@ -135,14 +135,14 @@ CLASS_DECL_c int32_t iswalnum_dup(int32_t wch)
 
 CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
 {
-   if(sz == ::null())
-      return ::null();
+   if(sz == NULL)
+      return NULL;
    while(true)
    {
       if(*sz == ch)
          return (wchar_t *) sz;
       if(*sz == L'\0')
-         return ::null();
+         return NULL;
       sz++;
    }
 }
@@ -186,14 +186,14 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
 
         /* A quoted program name is handled here. The handling is much
            simpler than for other arguments. Basically, whatever lies
-           between the leading double-quote and next one, or a terminal null
+           between the leading double-quote and next one, or a terminal NULL
            character is simply accepted. Fancier handling is not required
            because the program name must be a legal NTFS/HPFS file name.
            Note that the double-quote characters are not copied, nor do they
            contribute to numchars. */
         if ( *p == DQUOTEWCHAR ) {
             /* scan from just past the first double-quote through the next
-               double-quote, or up to a null, whichever comes first */
+               double-quote, or up to a NULL, whichever comes first */
             while ( (*(++p) != DQUOTEWCHAR) && (*p != NULWCHAR) ) {
 
 /*#ifdef _MBCS
@@ -207,7 +207,7 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
                 if ( args )
                     *args++ = *p;
             }
-            /* append the terminating null */
+            /* append the terminating NULL */
             ++*numchars;
             if ( args )
                 *args++ = NULWCHAR;
@@ -339,16 +339,16 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
 //#endif  /* _MBCS */
             }
 
-            /* null-terminate the argument */
+            /* NULL-terminate the argument */
 
             if (args)
                 *args++ = NULWCHAR;          /* terminate string */
             ++*numchars;
         }
 
-        /* We put one last argument in -- a null ptr */
+        /* We put one last argument in -- a NULL ptr */
         if (argv)
-            *argv++ = ::null();
+            *argv++ = NULL;
         ++*numargs;
 }
 
@@ -361,9 +361,9 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
 
 void wcscat_dup(wchar_t * dest, const wchar_t * cat)
 {
-   if(dest == ::null())
+   if(dest == NULL)
       return;
-   if(cat == ::null())
+   if(cat == NULL)
       return;
    while(*dest != 0)
       dest++;

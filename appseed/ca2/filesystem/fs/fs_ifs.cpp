@@ -187,7 +187,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
-   if(pnode != ::null())
+   if(pnode != NULL)
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
@@ -204,7 +204,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    pnode = doc.get_root()->get_child("file");
 
-   if(pnode != ::null())
+   if(pnode != NULL)
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
@@ -219,12 +219,12 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          straFileName.add(strName);
       }
    }
-   if(pstraPath != ::null())
+   if(pstraPath != NULL)
    {
       pstraPath->add(straDir);
       pstraPath->add(straFile);
    }
-   if(pstraTitle != ::null())
+   if(pstraTitle != NULL)
    {
       pstraTitle->add(straDirName);
       pstraTitle->add(straFileName);
@@ -241,7 +241,7 @@ bool ifs::is_dir(const char * pszPath)
 
    //xml::node node(get_app());
 
-   if(pszPath == ::null() || strlen(pszPath) == 0)
+   if(pszPath == NULL || strlen(pszPath) == 0)
    {
       return true;
    }

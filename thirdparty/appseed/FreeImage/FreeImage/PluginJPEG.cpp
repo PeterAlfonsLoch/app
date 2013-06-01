@@ -431,7 +431,7 @@ jpeg_read_comment(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 	// create a tag
 	FITAG *tag = FreeImage_CreateTag();
 	if(tag) {
-		unsigned int count = (unsigned int)length + 1;	// includes the null value
+		unsigned int count = (unsigned int)length + 1;	// includes the NULL value
 
 		FreeImage_SetTagID(tag, JPEG_COM);
 		FreeImage_SetTagKey(tag, "Comment");
@@ -461,7 +461,7 @@ Handy subroutine to test whether a saved marker is an ICC profile marker.
 */
 static BOOL 
 marker_is_icc(jpeg_saved_marker_ptr marker) {
-    // marker identifying string "ICC_PROFILE" (null-terminated)
+    // marker identifying string "ICC_PROFILE" (NULL-terminated)
 	const BYTE icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
 
 	if(marker->marker == ICC_MARKER) {
@@ -603,7 +603,7 @@ jpeg_read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen)
 */
 static BOOL  
 jpeg_read_xmp_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
-	// marker identifying string for XMP (null terminated)
+	// marker identifying string for XMP (NULL terminated)
 	const char *xmp_signature = "http://ns.adobe.com/xap/1.0/";
 	// XMP signature is 29 bytes long
 	const size_t xmp_signature_size = strlen(xmp_signature) + 1;
@@ -818,7 +818,7 @@ jpeg_write_comment(j_compress_ptr cinfo, FIBITMAP *dib) {
 */
 static BOOL 
 jpeg_write_icc_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
-    // marker identifying string "ICC_PROFILE" (null-terminated)
+    // marker identifying string "ICC_PROFILE" (NULL-terminated)
 	BYTE icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
 
 	FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
@@ -902,7 +902,7 @@ jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 */
 static BOOL  
 jpeg_write_xmp_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
-	// marker identifying string for XMP (null terminated)
+	// marker identifying string for XMP (NULL terminated)
 	const char *xmp_signature = "http://ns.adobe.com/xap/1.0/";
 
 	FITAG *tag_xmp = NULL;

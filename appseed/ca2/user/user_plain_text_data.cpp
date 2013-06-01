@@ -10,9 +10,9 @@ namespace user
       ::ca::tree_data(papp),
       m_editfile(papp)
    {
-      m_pgroupcommand      = ::null();
-      m_ptreeitem          = ::null();
-      m_pfile              = ::null();
+      m_pgroupcommand      = NULL;
+      m_ptreeitem          = NULL;
+      m_pfile              = NULL;
       m_iBranch            = 0;
    }
 
@@ -76,7 +76,7 @@ namespace user
    plain_text_data::GroupCommand::GroupCommand()
    {
 
-      m_pparent = ::null();
+      m_pparent = NULL;
 
    }
 

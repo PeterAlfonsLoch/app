@@ -6,7 +6,7 @@
 {
    char lpszModuleFilePath[MAX_PATH * 8];
    HMODULE hmodule = ::GetModuleHandleA("ca.dll");
-   if(hmodule == ::null())
+   if(hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");
    GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
    LPTSTR lpszModuleFileName;
@@ -28,15 +28,15 @@ vsstring dir_beforeca2()
    char lpszModuleFolder[MAX_PATH * 8];
    get_ca2_module_folder_dup(lpszModuleFolder);
    char * psz = strrchr(lpszModuleFolder, '\\');
-   if(psz == ::null())
+   if(psz == NULL)
       return lpszModuleFolder;
    *psz = '\0'; // strip x86 or x64...
    psz = strrchr(lpszModuleFolder, '\\');
-   if(psz == ::null())
+   if(psz == NULL)
       return lpszModuleFolder;
    *psz = '\0'; // strip stage
    psz = strrchr(lpszModuleFolder, '\\');
-   if(psz == ::null())
+   if(psz == NULL)
       return lpszModuleFolder;
    *psz = '\0'; // strip ca
    // now, lpszModuleFolder should be beforeca2
@@ -49,7 +49,7 @@ vsstring dir_path(const char * path1, const char * path2)
    {
       str1 = str1 + PATH_SEPARATOR;
    }
-   if(path2 == ::null())
+   if(path2 == NULL)
    {
       return str1;
    }
@@ -59,18 +59,18 @@ vsstring dir_path(const char * path1, const char * path2)
    }
 }
 
-vsstring dir_ca2(const char * path = ::null())
+vsstring dir_ca2(const char * path = NULL)
 {
-   if(path == ::null())
+   if(path == NULL)
       return dir_path(dir_beforeca2(), "ca2");
    else
       return dir_path(dir_ca2(), path);
 }
 
-vsstring dir_appdata(const char * path = ::null())
+vsstring dir_appdata(const char * path = NULL)
 {
    char sz[MAX_PATH * 8];
-   ::SHGetSpecialFolderPathA(::null(), sz, CSIDL_COMMON_APPDATA, TRUE);
+   ::SHGetSpecialFolderPathA(NULL, sz, CSIDL_COMMON_APPDATA, TRUE);
    vsstring str = dir_path(sz, "ca2");
    return dir_path(str, path);
 }
@@ -97,7 +97,7 @@ bool machine_event::initialize()
 
 bool machine_event::read(machine_event_data * pdata)
 {
-   HANDLE hfile = ::create_file(dir::appdata("machine\\event\\machine_event.bin"), GENERIC_READ, 0, ::null(), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, ::null());   
+   HANDLE hfile = ::create_file(dir::appdata("machine\\event\\machine_event.bin"), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);   
    if(hfile == INVALID_HANDLE_VALUE)
    {
       memset_dup(pdata, 0, sizeof(machine_event_data));
@@ -115,7 +115,7 @@ bool machine_event::write(machine_event_data * pdata)
 {
    if(!dir::mk(dir::ca("machine\\event\\")))
       return false;
-   HANDLE hfile = ::create_file(dir::ca("machine\\event\\machine_event.bin"), GENERIC_WRITE, 0, ::null(), CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, ::null());   
+   HANDLE hfile = ::create_file(dir::ca("machine\\event\\machine_event.bin"), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);   
    if(hfile != INVALID_HANDLE_VALUE)
    {
       pdata->write(hfile);

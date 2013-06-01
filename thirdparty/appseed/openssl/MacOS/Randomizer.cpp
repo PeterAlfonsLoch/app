@@ -135,7 +135,7 @@
 
 	The time during which the mouse stays still can vary from zero
 	to, say, 5 seconds (occasionally longer). If the still time is
-	measured by sampling the mouse during null events, and null
+	measured by sampling the mouse during NULL events, and NULL
 	events are received once per tick, its resolution is 1/60th of a
 	second, giving an entropy of log2 (60*5) ~= 8 bits per
 	measurement. Since the distribution of still times is uneven,

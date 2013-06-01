@@ -220,11 +220,11 @@ namespace ca
          virtual sp(base) get_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
          virtual sp(base) get_base(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
-         virtual sp(base) get_base(LPMESSAGE lpmsg, sp(::user::interaction) pwnd = ::null());
+         virtual sp(base) get_base(LPMESSAGE lpmsg, sp(::user::interaction) pwnd = NULL);
 
 #ifdef LINUX
 
-         virtual sp(base) get_base(XEvent * pevent, sp(::user::interaction) pwnd = ::null());
+         virtual sp(base) get_base(XEvent * pevent, sp(::user::interaction) pwnd = NULL);
 
 #endif
 
@@ -244,7 +244,7 @@ namespace ca
          {
             Signal * psignal = m_signala.GetSignalByMessage(message, uiCode, uiIdStart, uiIdEnd);
             // If not found a existing Signal, create one
-            if(psignal == ::null())
+            if(psignal == NULL)
             {
                psignal                    = canew(Signal);
                psignal->m_uiMessage       = message;
@@ -300,8 +300,8 @@ namespace ca
          virtual bool OnWndMsgPosCreate();
 
 
-         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != ::null()) return m_pevOk; m_pevOk = canew(manual_reset_event(::null())); return m_pevOk; }
-         inline mutex * dispatch_mutex() { if(m_pmutex != ::null()) return m_pmutex; m_pmutex = canew(::mutex(::null())); return m_pmutex; }
+         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != NULL) return m_pevOk; m_pevOk = canew(manual_reset_event(NULL)); return m_pevOk; }
+         inline mutex * dispatch_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = canew(::mutex(NULL)); return m_pmutex; }
       };
 
 #undef new
@@ -318,7 +318,7 @@ namespace ca
             lparam                  m_lparam;
             bool                    m_bConditional;
 
-            base(sp(::ca::application) papp, ::ca::signal * psignal = ::null());
+            base(sp(::ca::application) papp, ::ca::signal * psignal = NULL);
             base(sp(::ca::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
@@ -805,7 +805,7 @@ namespace ca
                return &signal;
             }
          }
-         return ::null();
+         return NULL;
       }
 
 

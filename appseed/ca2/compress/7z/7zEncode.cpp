@@ -98,7 +98,7 @@ namespace n7z
          /*
          ::c::smart_pointer<ICryptoResetSalt> resetSalt;
          encoderCommon.QueryInterface(IID_ICryptoResetSalt, (void **)&resetSalt);
-         if (resetSalt != ::null())
+         if (resetSalt != NULL)
          {
          resetSalt->ResetSalt();
          }
@@ -152,13 +152,13 @@ namespace n7z
       ::ca::HRes hr;
       RINOK(EncoderConstr());
 
-      if (_mixerCoderSpec == ::null())
+      if (_mixerCoderSpec == NULL)
       {
          if(FAILED(hr = CreateMixerCoder(codecsInfo, externalCodecs, inSizeForReduce)))
             return hr;
       }
       _mixerCoderSpec->ReInit();
-      // _mixerCoderSpec->SetCoderInfo(0, ::null(), ::null(), progress);
+      // _mixerCoderSpec->SetCoderInfo(0, NULL, NULL, progress);
 
       smart_pointer_array < ::ca::temp_io_buffer > inOutTempBuffers;
       smart_pointer_array < ::ca::temp_io_writer > tempBufferSpecs;
@@ -181,22 +181,22 @@ namespace n7z
       }
 
       for (i = 0; i < numMethods; i++)
-         _mixerCoderSpec->SetCoderInfo((uint32_t) i, ::null(), ::null());
+         _mixerCoderSpec->SetCoderInfo((uint32_t) i, NULL, NULL);
 
       if (_bindInfo.InStreams.is_empty())
          return E_FAIL;
       uint32_t mainCoderIndex, mainStreamIndex;
       _bindInfo.FindInStream(_bindInfo.InStreams[0], mainCoderIndex, mainStreamIndex);
 
-      if (inStreamSize != ::null())
+      if (inStreamSize != NULL)
       {
          array<const file_size *> sizePointers;
          for (uint32_t i = 0; i < _bindInfo.Coders[mainCoderIndex].NumInStreams; i++)
             if (i == mainStreamIndex)
                sizePointers.add(inStreamSize);
             else
-               sizePointers.add(::null());
-         _mixerCoderSpec->SetCoderInfo(mainCoderIndex, &sizePointers.first_element(), ::null());
+               sizePointers.add(NULL);
+         _mixerCoderSpec->SetCoderInfo(mainCoderIndex, &sizePointers.first_element(), NULL);
       }
 
 
@@ -225,14 +225,14 @@ namespace n7z
 
          ::c::smart_pointer < ::crypto::reset_init_vector_interface > resetInitVector;
          resetInitVector = dynamic_cast < ::crypto::reset_init_vector_interface * > (&_mixerCoderSpec->_coders[i]);
-         if (resetInitVector != ::null())
+         if (resetInitVector != NULL)
          {
             resetInitVector->ResetInitVector();
          }
 
          ::c::smart_pointer < ::libcompress::write_coder_properties_interface >  writeCoderProperties;
          writeCoderProperties = dynamic_cast < ::libcompress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
-         if (writeCoderProperties != ::null())
+         if (writeCoderProperties != NULL)
          {
             ::ca::dynamic_buffered_writer *outStreamSpec = new ::ca::dynamic_buffered_writer;
             ::c::smart_pointer < ::ca::writer > outStream(outStreamSpec);
@@ -257,7 +257,7 @@ namespace n7z
 
       inStreamPointersCode.add(inStreamPointers(0));
 
-      RINOK(_mixerCoder->Code(inStreamPointersCode, ::null(), outStreamPointers, ::null(), compressProgress));
+      RINOK(_mixerCoder->Code(inStreamPointersCode, NULL, outStreamPointers, NULL, compressProgress));
 
       ConvertBindInfoToFolderItemInfo(_decompressBindInfo, _decompressionMethods, folderItem);
 
@@ -296,7 +296,7 @@ namespace n7z
          throw 1;
 
       _options = options;
-      _mixerCoderSpec = ::null();
+      _mixerCoderSpec = NULL;
    }
 
    HRESULT CEncoder::EncoderConstr()

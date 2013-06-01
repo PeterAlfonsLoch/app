@@ -45,7 +45,7 @@ namespace xml
          if( this->element_at(i).m_chEntity == m_chEntity )
             return (class entity *)(&this->element_at(i));
       }
-      return ::null();
+      return NULL;
    }
 
    entity * entities::get_entity(const char * pszEntity)
@@ -60,7 +60,7 @@ namespace xml
          if(!*pszRef)   // found!
             return (class entity *)(&this->element_at(i));
       }
-      return ::null();
+      return NULL;
    }
 
    int32_t entities::get_entity_count( const char * str )
@@ -124,11 +124,11 @@ namespace xml
    string entities::ref_to_entity(const char * pszSrc)
    {
       string strRet;
-      if(pszSrc != ::null())
+      if(pszSrc != NULL)
       {
          strsize iLen = strlen(pszSrc);
          char * pszRet = strRet.GetBufferSetLength(iLen);
-         if(pszRet != ::null())
+         if(pszRet != NULL)
             ref_to_entity(pszSrc, pszRet, (int32_t) iLen);
          strRet.ReleaseBuffer();
       }

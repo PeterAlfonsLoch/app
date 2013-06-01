@@ -466,7 +466,7 @@ static unsigned int _strlen31(const char *str)
 #    define SSLEAY_CONF		OPENSSL_CONF
 #    define RFILE		".rnd"
 #    define LIST_SEPARATOR_CHAR ':'
-#    define NUL_DEV		"/dev/null"
+#    define NUL_DEV		"/dev/NULL"
 #    define EXIT(n)		exit(n)
 #  endif
 

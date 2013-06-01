@@ -522,7 +522,7 @@ FI_ENUM(FREE_IMAGE_COLOR_CHANNEL) {
 FI_ENUM(FREE_IMAGE_MDTYPE) {
 	FIDT_NOTYPE		= 0,	// placeholder
 	FIDT_BYTE		= 1,	// 8-bit unsigned integer
-	FIDT_ASCII		= 2,	// 8-bit bytes w/ last byte null
+	FIDT_ASCII		= 2,	// 8-bit bytes w/ last byte NULL
 	FIDT_SHORT		= 3,	// 16-bit unsigned integer
 	FIDT_LONG		= 4,	// 32-bit unsigned integer
 	FIDT_RATIONAL	= 5,	// 64-bit unsigned fraction

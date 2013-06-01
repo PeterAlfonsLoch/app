@@ -139,7 +139,7 @@ select_file_name (char * fname)
     if ((env = (const char *) getenv("TMP")) == NULL)
       if ((env = (const char *) getenv("TEMP")) == NULL)
 	env = ".";
-    if (*env == '\0')		/* null string means "." */
+    if (*env == '\0')		/* NULL string means "." */
       env = ".";
     ptr = fname;		/* copy name to fname */
     while (*env != '\0')

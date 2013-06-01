@@ -94,7 +94,7 @@ CWeightsTable::CWeightsTable(CGenericFilter *pFilter, DWORD uDstSize, DWORD uSrc
 				// normalize point
 				m_WeightTable[u].Weights[iSrc-iLeft] /= dTotalWeight; 
 			}
-			// simplify the filter, discarding null weights at the right
+			// simplify the filter, discarding NULL weights at the right
 			iSrc = iRight - iLeft;
 			while(m_WeightTable[u].Weights[iSrc] == 0){
 				m_WeightTable[u].Right--;

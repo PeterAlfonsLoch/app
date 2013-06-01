@@ -28,10 +28,10 @@ namespace hi5
                System.type_info < form_document > (),
                System.type_info < simple_frame_window > (),
                System.type_info < userex::pane_tab_view > ());
-            m_pviewAuth       = ::null();
-            m_pdocAuth        = ::null();
-            m_pdoc            = ::null();
-            m_ptabview        = ::null();
+            m_pviewAuth       = NULL;
+            m_pdocAuth        = NULL;
+            m_pdoc            = NULL;
+            m_ptabview        = NULL;
          }
 
          authorization::~authorization()
@@ -43,10 +43,10 @@ namespace hi5
             ensure_main_document();
             page1();
 
-            if(m_pviewAuth == ::null())
+            if(m_pviewAuth == NULL)
                return "";
 
-            m_pviewAuth->SetTimer(1984, 484, ::null());
+            m_pviewAuth->SetTimer(1984, 484, NULL);
             m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
             m_ptemplatePane->close_all_documents(FALSE);
             return m_strPin;
@@ -54,7 +54,7 @@ namespace hi5
 
          void authorization::ensure_main_document()
          {
-            if(m_pdoc != ::null())
+            if(m_pdoc != NULL)
                return;
             sp(::ca::create_context) createcontext(allocer());
             createcontext->m_bMakeVisible = false;
@@ -63,7 +63,7 @@ namespace hi5
             
             m_pdoc = (m_ptemplatePane->open_document_file(createcontext));
             
-            if(m_pdoc == ::null())
+            if(m_pdoc == NULL)
                return;
 
             sp(userex::pane_tab_view) pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
@@ -77,7 +77,7 @@ namespace hi5
          void authorization::page1()
          {
 
-            if(m_pdocAuth == ::null())
+            if(m_pdocAuth == NULL)
                return;
 
             string strUrl;
@@ -117,7 +117,7 @@ namespace hi5
          void authorization::display_main_frame()
          {
             rect rectOpen;
-            if(m_ptabview->GetParentFrame()->get_parent() == ::null())
+            if(m_ptabview->GetParentFrame()->get_parent() == NULL)
             {
 
                System.get_screen_rect(rectOpen);
@@ -131,12 +131,12 @@ namespace hi5
             rectOpen.deflate(iWidth / 5, iHeight / 50);
             rectOpen.top = iHeight * 2 / 3;
             sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
-            if(pframe != ::null())
+            if(pframe != NULL)
             {
                pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
                pframe->m_bblur_Background = true;
             }
-            if(&Session != ::null() && Session.get_document() != ::null() && Session.get_document()->get_bergedge_view() != ::null())
+            if(&Session != NULL && Session.get_document() != NULL && Session.get_document()->get_bergedge_view() != NULL)
             {
                Session.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
             }
@@ -170,7 +170,7 @@ namespace hi5
             case 1:
                {
                   m_pdocAuth = System.user()->create_child_form(this, pcreatordata->m_pholder);
-                  if(m_pdocAuth != ::null())
+                  if(m_pdocAuth != NULL)
                   {
                      m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
                      m_pviewAuth->m_pcallback = this;
@@ -182,7 +182,7 @@ namespace hi5
 
                break;
             }
-            if(pcreatordata->m_pwnd != ::null())
+            if(pcreatordata->m_pwnd != NULL)
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
             }

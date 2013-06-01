@@ -73,7 +73,7 @@ namespace file_watcher
 				{
 					int32_t count = WideCharToMultiByte(CP_ACP, 0, pNotify->FileName,
 						pNotify->FileNameLength / sizeof(WCHAR),
-						szFile, MAX_PATH - 1, ::null(), ::null());
+						szFile, MAX_PATH - 1, NULL, NULL);
 					szFile[count] = TEXT('\0');
 				}
 #			endif
@@ -94,7 +94,7 @@ namespace file_watcher
 	{
 		return ReadDirectoryChangesW(
          pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), pWatch->m_bRecursive ? TRUE : FALSE,
-			pWatch->m_dwNotify, ::null(), &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
+			pWatch->m_dwNotify, NULL, &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
 	}
 
 	/// Stops monitoring a directory.
@@ -127,12 +127,12 @@ namespace file_watcher
 		pWatch = static_cast<watch_struct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
 
 		pWatch->m_hDirectory = CreateFileW(wstring(szDirectory), FILE_LIST_DIRECTORY,
-			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, ::null(), 
-			OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, ::null());
+			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
+			OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
 
 		if (pWatch->m_hDirectory != INVALID_HANDLE_VALUE)
 		{
-			pWatch->m_overlapped.hEvent   = CreateEvent(::null(), TRUE, FALSE, ::null());
+			pWatch->m_overlapped.hEvent   = CreateEvent(NULL, TRUE, FALSE, NULL);
 			pWatch->m_dwNotify            = m_dwNotify;
          pWatch->m_bRecursive          = bRecursive;
 
@@ -149,7 +149,7 @@ namespace file_watcher
 		}
 
 		HeapFree(GetProcessHeap(), 0, pWatch);
-		return ::null();
+		return NULL;
 	}
 
 #pragma endregion
@@ -163,7 +163,7 @@ namespace file_watcher
 	os_file_watcher::~os_file_watcher()
 	{
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
-		for(; ppair != ::null(); m_watchmap.PGetNextAssoc(ppair))
+		for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
 			DestroyWatch(ppair->m_element2);
 		}
@@ -183,7 +183,7 @@ namespace file_watcher
        | FILE_NOTIFY_CHANGE_LAST_WRITE
        , bRecursive);
 
-      if(pwatch == ::null())
+      if(pwatch == NULL)
 			throw file_not_found_exception(directory);
 
 		pwatch->m_id = id;
@@ -203,7 +203,7 @@ namespace file_watcher
 
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 
-      for(; ppair != ::null(); m_watchmap.PGetNextAssoc(ppair))
+      for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
 
 			if(stricmp(directory, ppair->m_element2->m_strDirName) == 0)
@@ -223,7 +223,7 @@ namespace file_watcher
 	{
       watch_map::pair * ppair = m_watchmap.PLookup(id);
 
-		if(ppair == ::null())
+		if(ppair == NULL)
 			return;
 
 		watch_struct * pwatch = ppair->m_element2;
@@ -243,7 +243,7 @@ namespace file_watcher
       if(GetQueueStatus(QS_ALLINPUT) == 0)
       {
 
-         MsgWaitForMultipleObjectsEx(0, ::null(), INFINITE, QS_ALLINPUT, MWMO_ALERTABLE);
+         MsgWaitForMultipleObjectsEx(0, NULL, INFINITE, QS_ALLINPUT, MWMO_ALERTABLE);
 
       }
 

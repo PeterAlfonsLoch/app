@@ -92,11 +92,11 @@ void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* 
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
-   if(phint != ::null())
+   if(phint != NULL)
    {
       html_view_update_hint * puh = dynamic_cast < html_view_update_hint * >
          (phint);
-      if(puh != ::null())
+      if(puh != NULL)
       {
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {

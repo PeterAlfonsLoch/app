@@ -1802,7 +1802,7 @@ png_handle_pCAL(png_structp png_ptr, png_infop info_ptr, png_uint_32 length)
    /* Get pointers to the start of each parameter string. */
    for (i = 0; i < (int)nparams; i++)
    {
-      buf++; /* Skip the null string terminator from previous parameter. */
+      buf++; /* Skip the NULL string terminator from previous parameter. */
 
       png_debug1(3, "Reading pCAL parameter %d", i);
       for (params[i] = buf; buf <= endptr && *buf != 0x00; buf++)

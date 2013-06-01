@@ -1,5 +1,5 @@
 /*
- * null-auth.h
+ * NULL-auth.h
  *
  * David A. McGrew
  * Cisco Systems, Inc.

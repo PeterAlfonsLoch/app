@@ -141,8 +141,8 @@ namespace datetime
       //      %% - percent sign
       //   %#<any_of_mods> - skip leading zeros
    {
-      ASSERT( pFormat != ::null() );
-      if( pFormat == ::null() )
+      ASSERT( pFormat != NULL );
+      if( pFormat == NULL )
          throw hresult_exception(::ca::get_thread_app(), E_INVALIDARG );
 
       string strBuffer;
@@ -212,11 +212,11 @@ namespace datetime
 
 #ifdef WINDOWS
 
-      return time( ::_time64( ::null() ) ) ;
+      return time( ::_time64( NULL ) ) ;
 
 #else
 
-      return time( ::time( ::null() ) );
+      return time( ::time( NULL ) );
 
 #endif
 
@@ -489,7 +489,7 @@ namespace datetime
 
    struct tm* time::GetGmtTm(struct tm* ptm) const
    {
-      if (ptm != ::null())
+      if (ptm != NULL)
       {
 
 
@@ -501,7 +501,7 @@ namespace datetime
 
          if (err != 0)
          {
-            return ::null();    // indicates that m_time was not initialized!
+            return NULL;    // indicates that m_time was not initialized!
          }
 
          *ptm = tmTemp;
@@ -514,11 +514,11 @@ namespace datetime
 
          ptmTemp = gmtime(&m_time);
 
-         if(ptmTemp == ::null())
-            return ::null();
+         if(ptmTemp == NULL)
+            return NULL;
 
          if(errno != 0)
-            return ::null();
+            return NULL;
 
          *ptm = *ptmTemp;
 
@@ -530,7 +530,7 @@ namespace datetime
       else
       {
 
-         return ::null();
+         return NULL;
 
       }
 
@@ -540,7 +540,7 @@ namespace datetime
    struct tm* time::GetLocalTm(struct tm* ptm) const
    {
 
-      if (ptm != ::null())
+      if (ptm != NULL)
       {
 
 
@@ -552,7 +552,7 @@ namespace datetime
 
          if (err != 0)
          {
-            return ::null();    // indicates that m_time was not initialized!
+            return NULL;    // indicates that m_time was not initialized!
          }
 
          *ptm = tmTemp;
@@ -569,7 +569,7 @@ namespace datetime
       else
       {
 
-         return ::null();
+         return NULL;
 
       }
 

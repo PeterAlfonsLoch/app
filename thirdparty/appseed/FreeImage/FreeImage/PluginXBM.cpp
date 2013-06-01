@@ -42,7 +42,7 @@ static const char *ERR_XBM_MEMORY	= "Out of memory";
 /**
 Get a string from a stream. 
 Read the string from the current stream to the first newline character. 
-The result stored in str is appended with a null character.
+The result stored in str is appended with a NULL character.
 @param str Storage location for data 
 @param n Maximum number of characters to read 
 @param io Pointer to the FreeImageIO structure

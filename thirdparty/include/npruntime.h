@@ -223,7 +223,7 @@ NP_END_MACRO
 
   JavaScript       to             C (NPVariant with type:)
   undefined                       NPVariantType_Void
-  null                            NPVariantType_Null
+  NULL                            NPVariantType_Null
   Boolean                         NPVariantType_Bool
   Number                          NPVariantType_Double or NPVariantType_Int32
   String                          NPVariantType_String
@@ -231,7 +231,7 @@ NP_END_MACRO
 
   C (NPVariant with type:)   to   JavaScript
   NPVariantType_Void              undefined
-  NPVariantType_Null              null
+  NPVariantType_Null              NULL
   NPVariantType_Bool              Boolean
   NPVariantType_Int32             Number
   NPVariantType_Double            Number

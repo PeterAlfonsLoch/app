@@ -11,7 +11,7 @@ namespace command
       ::ca::message_window_simple_callback(papp),
       m_toolbar(papp)
    {
-      m_pimagelist = ::null();
+      m_pimagelist = NULL;
       m_iFrameData = 10;
       m_dataid = "::ca::command::frame";
       m_iAnimateStep = 0;
@@ -98,7 +98,7 @@ namespace command
          if(!rectWindow.contains(pt) && !m_bTimerHide)
          {
             m_bTimerHide = true;
-            SetTimer(1001, 800, ::null());
+            SetTimer(1001, 800, NULL);
          }
          else
          {
@@ -155,7 +155,7 @@ namespace command
       }
       else
       {
-         SetTimer(3, 500, ::null());
+         SetTimer(3, 500, NULL);
       }
    }
 
@@ -206,9 +206,9 @@ namespace command
       {
          if(bShowWinActionArea)
          {
-            if(GetActiveDocument() != ::null())
+            if(GetActiveDocument() != NULL)
             {
-               GetActiveDocument()->update_all_views(::null(), 543218);
+               GetActiveDocument()->update_all_views(NULL, 543218);
             }
          }
          ToFront();
@@ -337,8 +337,8 @@ namespace command
 
       if(!pshowwindow->m_bShow)
       {
-         if(GetActiveDocument() != ::null())
-            GetActiveDocument()->update_all_views(::null(), 5432108);
+         if(GetActiveDocument() != NULL)
+            GetActiveDocument()->update_all_views(NULL, 5432108);
       }
    }
 
@@ -388,7 +388,7 @@ namespace command
          if(pbase->m_lparam == 1)
          {
             m_bTimerOn = true;
-            SetTimer(1000, 23, ::null());
+            SetTimer(1000, 23, NULL);
          }
          else if(pbase->m_lparam == 0)
          {

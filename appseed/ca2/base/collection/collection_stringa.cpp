@@ -540,7 +540,7 @@ stringa & stringa::operator =(const int64_array & ia)
 /*int32_t stringa::CountPrefixNoCase(const char * lpcszPrefix)
 {
 string str;
-if(lpcszPrefix != ::null())
+if(lpcszPrefix != NULL)
 str = lpcszPrefix;
 if(str.is_empty())
 {
@@ -574,7 +574,7 @@ int32_t iMinLength)
 ASSERT(iLength >= iMinLength);
 remove_all();
 string str;
-if(lpcsz != ::null())
+if(lpcsz != NULL)
 str = lpcsz;
 if(str.is_empty())
 {

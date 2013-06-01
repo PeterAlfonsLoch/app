@@ -16,7 +16,7 @@ namespace ca
 
       aaa_scoped_ptr()
       {
-         m_p = ::null();
+         m_p = NULL;
       }
 
       aaa_scoped_ptr(int_ptr i) 
@@ -31,7 +31,7 @@ namespace ca
 
       ~aaa_scoped_ptr()
       {
-         if(m_p != ::null())
+         if(m_p != NULL)
          {
             delete m_p;
          }
@@ -62,7 +62,7 @@ namespace ca
       T * detach()
       {
          T * p = m_p;
-         m_p = ::null();
+         m_p = NULL;
          return p;
       }
 

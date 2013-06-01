@@ -314,7 +314,7 @@ namespace user
             }
          }
 
-         if(pwnd != ::null())
+         if(pwnd != NULL)
          {
             pwnd->SetWindowPos(ZORDER_TOP,
                rectA.left     + m_cxBorder,
@@ -476,7 +476,7 @@ namespace user
        //    else
       //      pwnd = ::user::interaction::from_handle(pcomponent->m_oswindow);
          pwnd = pcomponent->m_psplitpane;
-           ASSERT(pwnd != ::null());
+           ASSERT(pwnd != NULL);
          if(bNewValue)
             pwnd->ShowWindow(SW_SHOW);
          else
@@ -529,7 +529,7 @@ namespace user
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_pane_count());
       split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
-      if(pcomponent->m_pholder != ::null())
+      if(pcomponent->m_pholder != NULL)
       {
          if(!pcomponent->m_pholder->hold(pwnd))
             return false;
@@ -537,7 +537,7 @@ namespace user
       else
       {
          pcomponent->m_pholder = hold(pwnd);
-         if(pcomponent->m_pholder == ::null())
+         if(pcomponent->m_pholder == NULL)
             return false;
       }
 
@@ -581,7 +581,7 @@ namespace user
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_pane_count());
       split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
-      if(pcomponent->m_pholder != ::null())
+      if(pcomponent->m_pholder != NULL)
       {
          if(!pcomponent->m_pholder->hold(pwnd))
             return false;
@@ -589,7 +589,7 @@ namespace user
       else
       {
          pcomponent->m_pholder = hold(pwnd);
-         if(pcomponent->m_pholder == ::null())
+         if(pcomponent->m_pholder == NULL)
             return false;
       }
 
@@ -754,15 +754,15 @@ namespace user
       ASSERT(iPane >= 0);
       ASSERT(iPane < get_pane_count());
       if(iPane < 0 || iPane >= get_pane_count())
-         return ::null();
+         return NULL;
       return m_panea[iPane].m_pholder;
    }
 
    sp(::user::interaction) split_layout::get_pane_window(int32_t iPane)
    {
       sp(::user::place_holder) pholder = get_pane_holder(iPane);
-      if(pholder == ::null())
-         return ::null();
+      if(pholder == NULL)
+         return NULL;
       return pholder->get_ui();
    }
 
@@ -794,7 +794,7 @@ namespace user
       ca(papp)
    {
 
-      m_pholder = ::null();
+      m_pholder = NULL;
 
    }
 

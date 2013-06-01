@@ -542,7 +542,7 @@ enum enum_mysql_stmt_state
 typedef struct st_mysql_bind
 {
   unsigned long	*length;          /* output length pointer */
-  my_bool       *is_null;	  /* Pointer to null indicator */
+  my_bool       *is_null;	  /* Pointer to NULL indicator */
   void		*buffer;	  /* buffer to get/put data */
   /* set this if you want to track data truncations happened during fetch */
   my_bool       *error;
@@ -556,7 +556,7 @@ typedef struct st_mysql_bind
   unsigned long buffer_length;
   unsigned long offset;           /* offset position for char/binary fetch */
   unsigned long	length_value;     /* Used if length is 0 */
-  unsigned int	param_number;	  /* For null count and error messages */
+  unsigned int	param_number;	  /* For NULL count and error messages */
   unsigned int  pack_length;	  /* Internal length for packed data */
   enum enum_field_types buffer_type;	/* buffer type */
   my_bool       error_value;      /* used if error is 0 */

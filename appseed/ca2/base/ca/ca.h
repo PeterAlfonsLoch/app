@@ -648,13 +648,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca2 ::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null());
+CLASS_DECL_ca2 ::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca::type_info) pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
-   uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null()); xxxx */
+   uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (sp(::ca::application) papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = ::null())
+THREAD_TYPE * __begin_thread (sp(::ca::application) papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -716,7 +716,7 @@ protected:
 
 
 CLASS_DECL_ca2 bool _API
-__set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = ::null());
+__set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
 
 */
 
@@ -1055,7 +1055,7 @@ class CDockContext;                     // for dragging control bars
 
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
-                           // lParam = lpszOther (or ::null())
+                           // lParam = lpszOther (or NULL)
 #define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
 #define WM_COMMANDHELP      0x0365  // lResult = TRUE/FALSE,
@@ -1224,8 +1224,8 @@ struct __EVENT
 
    __EVENT(int32_t eventKind);
 
-   __EVENT(int32_t eventKind, DISPID dispid, DISPPARAMS* pDispParams = ::null(),
-      EXCEPINFO* pExcepInfo = ::null(), UINT* puArgError = ::null());
+   __EVENT(int32_t eventKind, DISPID dispid, DISPPARAMS* pDispParams = NULL,
+      EXCEPINFO* pExcepInfo = NULL, UINT* puArgError = NULL);
 
    int32_t m_eventKind;
    DISPID m_dispid;
@@ -1242,9 +1242,9 @@ inline __EVENT::__EVENT(int32_t eventKind)
 {
    m_eventKind = eventKind;
    m_dispid = DISPID_UNKNOWN;
-   m_pDispParams = ::null();
-   m_pExcepInfo = ::null();
-   m_puArgError = ::null();
+   m_pDispParams = NULL;
+   m_pExcepInfo = NULL;
+   m_puArgError = NULL;
    m_hResult = NOERROR;
    m_nDSCState = dscNoState;
    m_nDSCReason = dscNoReason;
@@ -1478,7 +1478,7 @@ CLASS_DECL_ca2 char * ::ca::TaskStringW2A(const wchar_t * lpw);
 template <class TYPE>
 inline bool is_null(const TYPE & ref)
 {
-   return &ref == ::null();
+   return &ref == NULL;
 }
 
 #define NULL_REF(class) (*((class *) NULL))

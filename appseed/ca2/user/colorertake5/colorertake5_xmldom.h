@@ -92,7 +92,7 @@ namespace colorertak5
    {
    public:
      DocumentBuilder() : ignoreComments(true), whitespace(true),
-              er(null), inputSource(null) {}
+              er(NULL), inputSource(NULL) {}
 
      /**
       * Setups this builder to ignore and not to include in DOM tree
@@ -214,7 +214,7 @@ namespace colorertak5
        if (src_overflow){
          if (opos == src_overflow->get_length()){
            delete src_overflow;
-           src_overflow = null;
+           src_overflow = NULL;
            opos = 0;
          }else{
            return (*src_overflow)[opos++];
@@ -251,7 +251,7 @@ namespace colorertak5
 
      bool hasChildNodes()
      {
-       return firstChild != null;
+       return firstChild != NULL;
      }
 
      sp(::xml::node)getFirstChild()
@@ -261,8 +261,8 @@ namespace colorertak5
 
      sp(::xml::node)getLastChild()
      {
-       if (firstChild == null){
-         return null;
+       if (firstChild == NULL){
+         return NULL;
        }else{
          return firstChild->prev;
        }
@@ -275,14 +275,14 @@ namespace colorertak5
 
      sp(::xml::node)getNextSibling()
      {
-       if (parent == null) return null;
-       return next != parent->firstChild ? next : null;
+       if (parent == NULL) return NULL;
+       return next != parent->firstChild ? next : NULL;
      }
 
      sp(::xml::node)getPrevSibling()
      {
-       if (parent == null) return null;
-       return this != parent->firstChild ? prev : null;
+       if (parent == NULL) return NULL;
+       return this != parent->firstChild ? prev : NULL;
      }
 
      const string *getNodeName()
@@ -292,7 +292,7 @@ namespace colorertak5
 
      virtual const Vector<const string*> *getAttributes()
      {
-       return null;
+       return NULL;
      };
 
      int16_t getNodeType()
@@ -320,7 +320,7 @@ namespace colorertak5
      const string *name;
      Document *ownerDocument;
      xml::node(int32_t _type, const string *_name): type(_type), name(_name),
-          next(null), prev(null), parent(null), firstChild(null) {};
+          next(NULL), prev(NULL), parent(NULL), firstChild(NULL) {};
    };
 
 
@@ -339,7 +339,7 @@ namespace colorertak5
      sp(::xml::node)appendChild(sp(::xml::node)newChild){
        if (newChild->getNodeType() == xml::node::ELEMENT_NODE)
        {
-         if (documentElement != null)
+         if (documentElement != NULL)
          {
            throw ParseException(string("Invalid document root content"), line, pos);
          }
@@ -357,7 +357,7 @@ namespace colorertak5
    protected:
      int32_t line, pos;
      sp(::xml::node)documentElement;
-     Document() : xml::node(xml::node::DOCUMENT_NODE, new string("#document")), documentElement(null) {};
+     Document() : xml::node(xml::node::DOCUMENT_NODE, new string("#document")), documentElement(NULL) {};
      friend class DocumentBuilder;
    };
 
@@ -399,7 +399,7 @@ namespace colorertak5
        {
          delete attributes.elementAt(idx);
        }
-       for (const string* st = attributesHash.enumerate(); st != null; st = attributesHash.next())
+       for (const string* st = attributesHash.enumerate(); st != NULL; st = attributesHash.next())
        {
          delete st;
        }

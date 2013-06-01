@@ -768,9 +768,9 @@ static char *strip_start(char *name)
 	/* Look for first non white space or quote */
 	for(p = name; (c = *p) ;p++) {
 		if(c == '"') {
-			/* Next char is start of string if non null */
+			/* Next char is start of string if non NULL */
 			if(p[1]) return p + 1;
-			/* Else null string */
+			/* Else NULL string */
 			return NULL;
 		}
 		if(!isspace((unsigned char)c)) return p;

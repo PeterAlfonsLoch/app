@@ -118,7 +118,7 @@ namespace gcom
 
          bool bOk = false;
          // 2004-08-24
-         if(pdib != ::null())
+         if(pdib != NULL)
          {
             GetDib(_graphics::DibSource)->from(pdib);
             bOk = true;
@@ -178,13 +178,13 @@ namespace gcom
 
          //         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
-         if(dcSource.get_os_data() == ::null())
+         if(dcSource.get_os_data() == NULL)
             return false;
 
-         if(&dcBuffer == ::null())
+         if(&dcBuffer == NULL)
             return false;
 
-         if(dcBuffer.get_os_data() == ::null())
+         if(dcBuffer.get_os_data() == NULL)
             return false;
 
          try
@@ -196,7 +196,7 @@ namespace gcom
 #ifdef WINDOWSEX
 
             HENHMETAFILE hemf = main.GetInterface().BackViewGetFillingMetaFile();
-            if(hemf != ::null())
+            if(hemf != NULL)
             {
                ENHMETAHEADER emh;
 
@@ -251,7 +251,7 @@ namespace gcom
             //sl3Source.lock();
             ::ca::bitmap & bmpSource = GetSourceBitmap();
 
-            if(bmpSource.get_os_data() != ::null() 
+            if(bmpSource.get_os_data() != NULL 
                && GetDib(_graphics::DibSource)->area() > 0)
             {
                if(main.IsFullScreen())
@@ -411,11 +411,11 @@ namespace gcom
 
          ::ca::graphics & spgraphicsScreen    = GetScreenDC();
 
-         if(spgraphicsScreen.get_os_data() != ::null())
+         if(spgraphicsScreen.get_os_data() != NULL)
          {
             spgraphicsScreen.DeleteDC();
          }
-         spgraphicsScreen.CreateCompatibleDC(::null());
+         spgraphicsScreen.CreateCompatibleDC(NULL);
 
          GetDib(_graphics::DibBack)->create(cx, cy); // Back
          GetDib(_graphics::DibBack)->Fill(0, 0, 0, 0);

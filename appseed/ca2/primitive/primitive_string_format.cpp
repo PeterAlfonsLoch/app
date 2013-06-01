@@ -7,7 +7,7 @@
 void string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)
 {
 
-   m_pszBuffer                   = ::null();
+   m_pszBuffer                   = NULL;
    m_iSize                       = 0;
    m_iLength                     = 0;
 
@@ -34,7 +34,7 @@ void string_format::construct(string_format_printer * pprinter, string_format_pr
 string_format::~string_format()
 {
 
-   if(m_pszBuffer != ::null())
+   if(m_pszBuffer != NULL)
    {
 
       ca2_free(m_pszBuffer);
@@ -72,7 +72,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
    if(iNewSize != m_iSize)
    {
       
-      if(m_pszBuffer == ::null())
+      if(m_pszBuffer == NULL)
       {
 
          m_pszBuffer = (char *) ca2_alloc(iNewSize);
@@ -89,7 +89,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
       
    }
 
-   if(m_pszBuffer == ::null())
+   if(m_pszBuffer == NULL)
       throw memory_exception(::ca::get_thread_app());
 
    

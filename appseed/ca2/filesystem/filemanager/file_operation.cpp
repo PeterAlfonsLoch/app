@@ -5,7 +5,7 @@ file_operation::file_operation(sp(::ca::application) papp) :
    m_fileSrc(papp),
    m_fileDst(papp)
 {
-   m_oswindowCallback = ::null();
+   m_oswindowCallback = NULL;
    m_bReplaceAll = false;
    m_eoperation = filemanager::operation_none;
    m_iBufferSize = 1024 * 1024;
@@ -34,7 +34,7 @@ bool file_operation::set_copy(stringa & stra, const char * pszDestBase, const ch
    }
    m_str = System.dir().path(pszDestBase, "");
    string strBase;
-   if(pszSrcBase != ::null())
+   if(pszSrcBase != NULL)
    {
       strBase = System.dir().path(pszSrcBase, "");
    }
@@ -270,7 +270,7 @@ bool file_operation::finish()
          
          break;
    }
-   if(m_oswindowCallback != ::null())
+   if(m_oswindowCallback != NULL)
    {
       m_oswindowCallback->send_message(m_uiCallbackMessage, m_wparamCallback);
    }

@@ -2668,7 +2668,7 @@ FT_BEGIN_HEADER
   /* <Input>                                                               */
   /*    matrix :: A pointer to the transformation's 2x2 matrix.  Use~0 for */
   /*              the identity matrix.                                     */
-  /*    delta  :: A pointer to the translation vector.  Use~0 for the null */
+  /*    delta  :: A pointer to the translation vector.  Use~0 for the NULL */
   /*              vector.                                                  */
   /*                                                                       */
   /* <Note>                                                                */

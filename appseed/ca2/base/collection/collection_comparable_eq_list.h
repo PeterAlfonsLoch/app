@@ -8,18 +8,18 @@ public:
    comparable_eq_list();
    comparable_eq_list(const comparable_eq_list & array);
 
-   POSITION find_first(const TYPE &t, POSITION pos = ::null(), POSITION posLast = ::null()) const;
-   POSITION find_last(const TYPE &t, POSITION pos = ::null(), POSITION posLast = ::null()) const;
+   POSITION find_first(const TYPE &t, POSITION pos = NULL, POSITION posLast = NULL) const;
+   POSITION find_last(const TYPE &t, POSITION pos = NULL, POSITION posLast = NULL) const;
    ::count get_count() const;
-   ::count get_count(const TYPE & t, POSITION start = ::null(), POSITION last = ::null(), ::count countMax = -1) const;
-   bool contains(const TYPE & t, POSITION posStart = ::null(), POSITION posLast = ::null(), ::count countMin = 1, ::count countMax = -1) const;
-   bool rcontains(const TYPE & t, POSITION posStart = ::null(), POSITION posLast = ::null(), ::count countMin = 1, ::count countMax = -1) const;
+   ::count get_count(const TYPE & t, POSITION start = NULL, POSITION last = NULL, ::count countMax = -1) const;
+   bool contains(const TYPE & t, POSITION posStart = NULL, POSITION posLast = NULL, ::count countMin = 1, ::count countMax = -1) const;
+   bool rcontains(const TYPE & t, POSITION posStart = NULL, POSITION posLast = NULL, ::count countMin = 1, ::count countMax = -1) const;
    bool remove_first(const TYPE & t);
    bool remove_last(const TYPE & t);
-   bool remove_first(const TYPE & t, POSITION & pos, POSITION posLast = ::null());
-   bool remove_last(const TYPE & t, POSITION & pos, POSITION posLast = ::null());
-   ::count remove(const TYPE & t, POSITION pos = ::null(), POSITION posLast = ::null(), ::count countMin = 0, ::count countMax = -1);
-   ::count rremove(const TYPE & t, POSITION pos = ::null(), POSITION posLast = ::null(), ::count countMin = 0, ::count countMax = -1);
+   bool remove_first(const TYPE & t, POSITION & pos, POSITION posLast = NULL);
+   bool remove_last(const TYPE & t, POSITION & pos, POSITION posLast = NULL);
+   ::count remove(const TYPE & t, POSITION pos = NULL, POSITION posLast = NULL, ::count countMin = 0, ::count countMax = -1);
+   ::count rremove(const TYPE & t, POSITION pos = NULL, POSITION posLast = NULL, ::count countMin = 0, ::count countMax = -1);
    ::count remove(const comparable_eq_list & l);
 
 
@@ -65,11 +65,11 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 POSITION comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
 find_first(const TYPE & t, POSITION pos, POSITION posLast) const
 {
-   if(pos == ::null())
+   if(pos == NULL)
       pos = this->get_head_position();
-   if(pos == ::null())
+   if(pos == NULL)
       pos = this->get_tail_position();
-   for(; pos != ::null();)
+   for(; pos != NULL;)
    {
       if(this->get_at(pos) == t)
          return pos;
@@ -77,18 +77,18 @@ find_first(const TYPE & t, POSITION pos, POSITION posLast) const
          break;
       this->get_next(pos);
    }
-   return ::null();
+   return NULL;
 }
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 POSITION comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
 find_last(const TYPE & t, POSITION pos, POSITION posLast) const
 {
-   if(pos == ::null())
+   if(pos == NULL)
       pos = this->get_tail_position();
-   if(pos == ::null())
+   if(pos == NULL)
       pos = this->get_head_position();
-   for(; pos != ::null();)
+   for(; pos != NULL;)
    {
       if(this->get_at(pos) == t)
          return pos;
@@ -96,7 +96,7 @@ find_last(const TYPE & t, POSITION pos, POSITION posLast) const
          break;
       this->get_previous(pos);
    }
-   return ::null();
+   return NULL;
 }
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
@@ -124,7 +124,7 @@ contains(const TYPE & t, POSITION find, POSITION last, ::count countMin, ::count
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
-      && (find = find_first(t, find, last)) != ::null())
+      && (find = find_first(t, find, last)) != NULL)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -135,7 +135,7 @@ rcontains(const TYPE & t, POSITION find, POSITION last, ::count countMin, ::coun
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
-      && (find = find_last(t, find, last)) != ::null())
+      && (find = find_last(t, find, last)) != NULL)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -164,7 +164,7 @@ void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
 {
    POSITION pos = this->get_head_position();
-   for(; pos != ::null();)
+   for(; pos != NULL;)
    {
       if(!a.contains(this->get_next(pos)))
       {
@@ -178,7 +178,7 @@ void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 merge_tail(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
    POSITION pos = l.get_head_position();
-   while(pos != ::null())
+   while(pos != NULL)
    {
       if(!contains(l.get_at(pos)))
       {
@@ -192,7 +192,7 @@ void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 merge_head(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
    POSITION pos = l.get_tail_position();
-   while(pos != ::null())
+   while(pos != NULL)
    {
       if(!contains(l.get_at(pos)))
       {
@@ -249,7 +249,7 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 remove_first(const TYPE & t)
 {
    POSITION find = this->find_first(t);
-   if(find != ::null())
+   if(find != NULL)
    {
       this->remove_at(find);
       return true;
@@ -262,7 +262,7 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 remove_first(const TYPE & t, POSITION & find, POSITION last)
 {
-   if((find = this->find_first(t, find, last)) != ::null())
+   if((find = this->find_first(t, find, last)) != NULL)
    {
       POSITION posRemove = find;
       this->get_next(find);
@@ -288,7 +288,7 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 remove_last(const TYPE & t)
 {
    POSITION find = find_last(t);
-   if(find != ::null())
+   if(find != NULL)
    {
       this->remove_at(find);
       return true;
@@ -301,7 +301,7 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 remove_last(const TYPE & t, POSITION & find, POSITION last)
 {
-   if((find = find_last(t, find, last)) != ::null())
+   if((find = find_last(t, find, last)) != NULL)
    {
       POSITION posRemove = find;
       this->get_previous(find);
@@ -328,7 +328,7 @@ remove(const comparable_eq_list & l)
 {
    ::count count = 0;
    POSITION pos = l.get_head_position();
-   while(pos != ::null())
+   while(pos != NULL)
    {
       count += remove(l.get_next(pos));
    }

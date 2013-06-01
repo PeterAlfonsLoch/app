@@ -18,7 +18,7 @@ public:
 #endif
 
 
-   event(sp(::ca::application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = ::null(), LPSECURITY_ATTRIBUTES lpsaAttribute = ::null());
+   event(sp(::ca::application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~event()
    {
 

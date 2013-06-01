@@ -17,13 +17,13 @@ namespace filemanager
             ::user::split_view(papp),
             place_holder_container(papp)
          {
-         //   m_pinetsession = ::null();
-            m_prequestinterface = ::null();
+         //   m_pinetsession = NULL;
+            m_prequestinterface = NULL;
          }
 
          view::~view()
          {
-           // if(m_pinetsession != ::null())
+           // if(m_pinetsession != NULL)
              //  delete m_pinetsession;
          }
 
@@ -120,7 +120,7 @@ namespace filemanager
 
             strUrl.Format("http://file.veriwell.net/ifs/get?name=" + System.url().url_encode(lpszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
-            if(m_prequestinterface != ::null())
+            if(m_prequestinterface != NULL)
             {
                m_prequestinterface->add_line_uri(strUrl);
             }

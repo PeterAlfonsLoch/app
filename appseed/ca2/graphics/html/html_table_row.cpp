@@ -22,10 +22,10 @@ namespace html
          while(true)
          {
             pelemental = pelemental->m_pparent;
-            if(pelemental == ::null())
-               return ::null();
+            if(pelemental == NULL)
+               return NULL;
             table * ptable = dynamic_cast < table * > (pelemental->m_pimpl);
-            if(ptable != ::null())
+            if(ptable != NULL)
                return ptable;
          }
       }
@@ -34,7 +34,7 @@ namespace html
       {
          elemental::implement_phase1(pdata, pelemental);
          table * ptable = get_table();
-         if(ptable == ::null())
+         if(ptable == NULL)
             return;
          m_iRow = ptable->m_rowptra.get_size();
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
@@ -78,7 +78,7 @@ namespace html
             for(i = 0; i < m_cellholdera.get_size() && i < get_table()->m_columna.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
-               if(pcell != ::null())
+               if(pcell != NULL)
                {
                   if(pcell->m_cxMax <= -2.f
                   || pcell->m_cxMin <= -2.f)
@@ -123,7 +123,7 @@ namespace html
                   }
                }
             }
-            if(get_table() != ::null())
+            if(get_table() != NULL)
             {
                for(; i < get_table()->m_columna.get_size(); i++)
                {
@@ -146,7 +146,7 @@ namespace html
          }
          cxMax = 0.f;
          cxMin = 0.f;
-         if(get_table() != ::null())
+         if(get_table() != NULL)
          {
             for(index i = 0; i < get_table()->m_columna.get_size(); i++)
             {
@@ -166,7 +166,7 @@ namespace html
       void table_row::final_layout(data * pdata)
       {
 
-//         table_row * prow = ::null();
+//         table_row * prow = NULL;
 
          /*if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
@@ -179,12 +179,12 @@ namespace html
             iTableBorder += 2;
          }
 
-/*         if(prow != ::null())
+/*         if(prow != NULL)
          {
             for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
-               if(pcell != ::null())
+               if(pcell != NULL)
                {
                   if(pcell->get_cy() > m_cyMax)
                   {
@@ -204,12 +204,12 @@ namespace html
          m_sizeBound.cy = m_cyMax;*/
 
          /*
-         if(prow != ::null())
+         if(prow != NULL)
          {
             for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
-               if(pcell != ::null())
+               if(pcell != NULL)
                {
                   pcell->set_cy(pdata, m_size.cy);
                   pcell->m_pelemental->m_elementalptra[0]->m_pimpl->set_cy(pdata, m_size.cy);
@@ -225,7 +225,7 @@ namespace html
             for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
-               if(pcell != ::null())
+               if(pcell != NULL)
                {
                   pcell->set_cy(pdata, m_box.get_cy());
                   pcell->m_pelemental->m_elementalptra[0]->m_pimpl->set_cy(pdata, m_box.get_cy());

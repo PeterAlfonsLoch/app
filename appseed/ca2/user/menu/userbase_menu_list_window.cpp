@@ -15,10 +15,10 @@ namespace user
    {
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
-      m_pwndNotify         = ::null();
+      m_pwndNotify         = NULL;
       m_pitem = new menu_item(papp);
       m_etranslucency      = TranslucencyPresent;
-      m_pschema            = ::null();
+      m_pschema            = NULL;
       m_bAutoClose         = true;
    }
 
@@ -28,11 +28,11 @@ namespace user
       menu_base(papp),
       m_buttonClose(papp)
    {
-      m_pwndNotify         = ::null();
+      m_pwndNotify         = NULL;
       m_bAutoClose         = true;
       m_bAutoDelete        = true;
       m_etranslucency      = TranslucencyPresent;
-      m_pschema            = ::null();
+      m_pschema            = NULL;
       m_pitem              = pitem;
       m_bOwnItem           = false;
    }
@@ -69,7 +69,7 @@ namespace user
 
    bool menu_list_window::TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify)
    {
-      ASSERT(pwndParent != ::null());
+      ASSERT(pwndParent != NULL);
       //_m_pmenu = new menu_list_window(m_pitem);
       return _TrackPopupMenu(pwndParent, pwndNotify);
    }
@@ -79,11 +79,11 @@ namespace user
 
       m_pwndNotify = pwndNotify;
 
-//      LPVOID lpvoid = ::null();
+//      LPVOID lpvoid = NULL;
       if(!IsWindow())
       {
 
-         if(!create(::null(), ::null(),
+         if(!create(NULL, NULL,
             WS_VISIBLE | WS_CHILD,
             rect(0, 0, 0, 0), pwndParent, 0))
             return false;
@@ -111,7 +111,7 @@ namespace user
 
       SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
-      SetTimer(BaseWndMenuCmdUi, 300, ::null());
+      SetTimer(BaseWndMenuCmdUi, 300, NULL);
 
       return true;
    }
@@ -122,11 +122,11 @@ namespace user
 
       m_pwndNotify = pwndNotify;
 
-//      LPVOID lpvoid = ::null();
+//      LPVOID lpvoid = NULL;
       if(!IsWindow())
       {
 
-         if(!create(::null(), ::null(),
+         if(!create(NULL, NULL,
             WS_VISIBLE | WS_CHILD,
             rect(0, 0, 0, 0), pwndFill, 0))
             return false;
@@ -165,7 +165,7 @@ namespace user
 
       SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
-      SetTimer(BaseWndMenuCmdUi, 300, ::null());
+      SetTimer(BaseWndMenuCmdUi, 300, NULL);
 
       return true;
    }
@@ -173,7 +173,7 @@ namespace user
    void menu_list_window::_UpdateCmdUi(menu_item * pitemParent)
    {
 
-      if(pitemParent->m_spitema == ::null())
+      if(pitemParent->m_spitema == NULL)
          return;
 
       menu_button_cmd_ui cmdui(get_app());
@@ -211,7 +211,7 @@ namespace user
 
    void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {
-      if(pitemParent->m_spitema == ::null())
+      if(pitemParent->m_spitema == NULL)
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
@@ -232,7 +232,7 @@ namespace user
 
    void menu_list_window::layout()
    {
-      if(get_parent() == ::null())
+      if(get_parent() == NULL)
          return;
       rect rectClient;
       get_parent()->GetClientRect(rectClient);
@@ -269,7 +269,7 @@ namespace user
 
    void menu_list_window::_LayoutButtons(menu_item * pitemParent, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound)
    {
-      if(pitemParent->m_spitema == ::null())
+      if(pitemParent->m_spitema == NULL)
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
@@ -332,7 +332,7 @@ namespace user
 
    void menu_list_window::_CreateButtons(menu_item * pitemParent)
    {
-      if(pitemParent->m_spitema == ::null())
+      if(pitemParent->m_spitema == NULL)
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
@@ -381,7 +381,7 @@ namespace user
             if(pevent->m_puie->m_id != "separator")
             {
                menu_item * pitem = m_pitem->find(pevent->m_puie->m_id);
-               if(pitem != ::null() && !pitem->m_bPopup)
+               if(pitem != NULL && !pitem->m_bPopup)
                {
                   m_pwndNotify->_001SendCommand(pitem->m_id);
                   if(m_bAutoClose)

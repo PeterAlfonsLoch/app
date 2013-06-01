@@ -84,7 +84,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         return ::null();
+         return NULL;
       else
          return (LPBYTE) m_spmemory->get_data();
 
@@ -94,7 +94,7 @@ namespace primitive
    {
 
       if(m_spmemory.is_null())
-         return ::null();
+         return NULL;
       else
          return (LPBYTE) m_spmemory->get_data();
 

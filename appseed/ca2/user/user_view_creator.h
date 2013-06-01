@@ -106,19 +106,19 @@ namespace user
          ::user::view_creator_data * pcreatordata;
          id key;
          POSITION pos = m_viewmap.get_start_position();
-         while(pos != ::null())
+         while(pos != NULL)
          {
             m_viewmap.get_next_assoc(pos, key, pcreatordata);
-            if(pcreatordata->m_pdoc != ::null())
+            if(pcreatordata->m_pdoc != NULL)
             {
                pdoc = dynamic_cast < T * > (pcreatordata->m_pdoc);
-               if(pdoc != ::null())
+               if(pdoc != NULL)
                {
                   return pdoc;
                }
             }
          }
-         return ::null();
+         return NULL;
       }
 
 
