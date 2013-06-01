@@ -25,7 +25,7 @@ HDC GetDC(oswindow hwnd)
 
    hdc->m_display    = XOpenDisplay(NULL);
    hdc->m_hwnd       = hwnd;
-   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd.window() == NULL ? DefaultRootWindow(hdc->m_display) : hwnd.window());
+   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd->window() == NULL ? DefaultRootWindow(hdc->m_display) : hwnd->window());
    hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
 
    return hdc;
@@ -68,7 +68,7 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 
    /* Fill attribute structure with information about root window */
 
-   if(XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs) == 0)
+   if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs) == 0)
    {
 
       return FALSE;
@@ -96,9 +96,9 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
       return FALSE;
 
 
-   bool bDestroying = hwnd.m_pdata->m_bDestroying;
-   Display * pdisplay = hwnd.display();
-   Window window = hwnd.window();
+   bool bDestroying = hwnd->m_bDestroying;
+   Display * pdisplay = hwnd->display();
+   Window window = hwnd->window();
 
 
    if(pdisplay == NULL)
@@ -107,11 +107,11 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    XWindowAttributes attrs;
 
 
-   XSync(hwnd.display(), False);
+   XSync(hwnd->display(), False);
 
    /* Fill attribute structure with information about root window */
 
-   if(!XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs))
+   if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
    {
       return FALSE;
    }
@@ -120,7 +120,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    int y;
    Window child;
 
-   if(!XTranslateCoordinates(hwnd.display(), hwnd.window(), DefaultRootWindow(hwnd.display()), 0, 0, &x, &y, &child))
+   if(!XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
    {
       return FALSE;
    }
@@ -200,7 +200,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
    mutex_lock sl(user_mutex(), true);
 
 
-   xdisplay display(hwnd.display());
+   xdisplay display(hwnd->display());
 
 
    int32_t value_mask = 0;
@@ -224,26 +224,26 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
    {
       value_mask |= CWSibling;
-      values.sibling = hwndInsertAfter.window();
+      values.sibling = hwndInsertAfter->window();
       values.stack_mode = Above;
    }
 
-   XConfigureWindow(hwnd.display(), hwnd.window(), value_mask, &values);
+   XConfigureWindow(hwnd->display(), hwnd->window(), value_mask, &values);
 
    if(uFlags & SWP_SHOWWINDOW)
    {
-      XMapWindow(hwnd.display(), hwnd.window());
+      XMapWindow(hwnd->display(), hwnd->window());
    }
 
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
    {
-      if(hwndInsertAfter.window() == ZORDER_TOP || hwndInsertAfter.window() == ZORDER_TOPMOST)
+      if(hwndInsertAfter->window() == ZORDER_TOP || hwndInsertAfter->window() == ZORDER_TOPMOST)
       {
-         XRaiseWindow(hwnd.display(), hwnd.window());
+         XRaiseWindow(hwnd->display(), hwnd->window());
       }
-      else if(hwndInsertAfter.window() == ZORDER_BOTTOM)
+      else if(hwndInsertAfter->window() == ZORDER_BOTTOM)
       {
-         XLowerWindow(hwnd.display(), hwnd.window());
+         XLowerWindow(hwnd->display(), hwnd->window());
       }
 
    }

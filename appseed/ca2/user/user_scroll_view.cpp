@@ -353,7 +353,11 @@ namespace user
 
       scroll_bar * pbar = new simple_scroll_bar(get_app());
 
-      if(!pbar->create(eorientation, WS_CHILD | WS_VISIBLE, ::null_rect(), this, 7000 + eorientation))
+      ::rect rect;
+
+      rect.null();
+
+      if(!pbar->create(eorientation, WS_CHILD | WS_VISIBLE, rect, this, 7000 + eorientation))
       {
          delete pbar;
          return;

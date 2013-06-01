@@ -17,18 +17,18 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
       bContinue = false;
 
-      for(int i = 0; i < ::oswindow::s_pdataptra->get_count() && !bRet; i++)
+      for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count() && !bRet; i++)
       {
 
-         ::oswindow::data * pdata = ::oswindow::s_pdataptra->element_at(i);
+         ::oswindow_data * pdata = ::oswindow_data::s_pdataptra->element_at(i);
 
          if(pdata == NULL || pdata->m_bMessageOnlyWindow)
             continue;
 
-         if(pdata->m_hthread != hthread && g_oswindowDesktop.m_pdata != pdata)
+         if(pdata->m_hthread != hthread && g_oswindowDesktop != pdata)
             continue;
 
-         Display * display = pdata->m_osdisplay.display();
+         Display * display = pdata->display();
 
          if(display == NULL)
             continue;
@@ -49,7 +49,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             {
 
                lpMsg->message       = WM_PAINT;
-               lpMsg->hwnd          = oswindow(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->lParam        = 0;
                lpMsg->wParam        = 0;
 
@@ -58,13 +58,13 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             }
             else if(e.type == ConfigureNotify)
             {
-               if(e.xconfigure.window == g_oswindowDesktop.window())
+               if(e.xconfigure.window == g_oswindowDesktop->window())
                {
-                  for(int j = 0; j < ::oswindow::s_pdataptra->get_count(); j++)
+                  for(int j = 0; j < ::oswindow_data::s_pdataptra->get_count(); j++)
                   {
                      if(j == i)
                         continue;
-                     PostMessage(::oswindow::s_pdataptra->element_at(j), WM_DISPLAYCHANGE, 0, 0);
+                     PostMessage(::oswindow_data::s_pdataptra->element_at(j), WM_DISPLAYCHANGE, 0, 0);
                   }
                   continue;
                }
@@ -96,7 +96,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
                }
 
-               lpMsg->hwnd          = oswindow(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->wParam        = 0;
                lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
 
@@ -106,7 +106,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == KeyPress || e.type == KeyRelease)
             {
 
-               oswindow w(display, e.xexpose.window);
+               oswindow w = oswindow_get(display, e.xexpose.window);
 
                if(e.xkey.type == KeyPress)
                {
@@ -121,7 +121,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
                }
 
-               lpMsg->hwnd          = oswindow(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->wParam        = e.xkey.keycode;
                lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
 
@@ -131,7 +131,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == MotionNotify)
             {
 
-               lpMsg->hwnd          = oswindow(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->message       = WM_MOUSEMOVE;
                lpMsg->wParam        = 0;
                lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
@@ -142,7 +142,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == DestroyNotify)
             {
 
-               lpMsg->hwnd          = oswindow(display, e.xdestroywindow.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
                lpMsg->message       = WM_DESTROY;
 
             }
@@ -154,10 +154,10 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
          }
 
-         if(bRet && lpMsg->hwnd.window() != None)
+         if(bRet && lpMsg->hwnd->window() != None)
          {
 
-            if(lpMsg->hwnd.m_pdata->m_hthread != hthread)
+            if(lpMsg->hwnd->m_hthread != hthread)
             {
 
                bRet = false;

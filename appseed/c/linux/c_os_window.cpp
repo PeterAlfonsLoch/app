@@ -2,10 +2,12 @@
 
 #include <X11/Xatom.h>
 
+
 extern cairo_surface_t *  g_cairosurface;
 extern cairo_t *  g_cairo;
 
-oswindow::data::data()
+
+oswindow_data::oswindow_data()
 {
 
    m_plongmap      = new simple_map < int, LONG >();
@@ -22,7 +24,7 @@ oswindow::data::data()
 
 }
 
-oswindow::data::~data()
+oswindow_data::~oswindow_data()
 {
 
    delete m_plongmap;
@@ -35,22 +37,22 @@ oswindow::data::~data()
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_fontopu_window_long_style"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_fontopu_window_long_style_ex"
 
-oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
-simple_mutex * oswindow::s_pmutex = new simple_mutex;
+oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
+simple_mutex * oswindow_data::s_pmutex = new simple_mutex;
 
 
-int32_t oswindow::find_message_only_window(::user::interaction_base * pui)
+int32_t oswindow_find_message_only_window(::user::interaction_base * pui)
 {
 
    if(pui == NULL)
       return -1;
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*oswindow_data::s_pmutex, true);
 
-   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
+   for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-      && s_pdataptra->element_at(i)->m_pui == pui)
+      if(::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
+      && ::oswindow_data::s_pdataptra->element_at(i)->m_pui == pui)
       {
          return i;
       }
@@ -60,16 +62,16 @@ int32_t oswindow::find_message_only_window(::user::interaction_base * pui)
 
 }
 
-int32_t oswindow::find(Display * pdisplay, Window window)
+int32_t oswindow_find(Display * pdisplay, Window window)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
 
-   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
+   for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
-      if(!s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-      &&  s_pdataptra->element_at(i)->m_osdisplay == pdisplay
-      &&  s_pdataptra->element_at(i)->m_window == window)
+      if(!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
+      &&  ::oswindow_data::s_pdataptra->element_at(i)->m_osdisplay->display() == pdisplay
+      &&  ::oswindow_data::s_pdataptra->element_at(i)->m_window == window)
       {
          return i;
       }
@@ -79,15 +81,15 @@ int32_t oswindow::find(Display * pdisplay, Window window)
 
 }
 
-int32_t oswindow::find(Window window)
+int32_t oswindow_find(Window window)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
 
-   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
+   for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
-      if(!s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-      &&  s_pdataptra->element_at(i)->m_window == window)
+      if(!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
+      &&  ::oswindow_data::s_pdataptra->element_at(i)->m_window == window)
       {
          return i;
       }
@@ -97,76 +99,69 @@ int32_t oswindow::find(Window window)
 
 }
 
-oswindow::data * oswindow::get_message_only_window(::user::interaction_base * pui)
+oswindow_data * oswindow_get_message_only_window(::user::interaction_base * pui)
 {
 
    if(pui == NULL)
       return NULL;
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
 
-   int_ptr iFind = find_message_only_window(pui);
+   int_ptr iFind = oswindow_find_message_only_window(pui);
 
    if(iFind >= 0)
-      return s_pdataptra->element_at(iFind);
+      return ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow::data * pdata = new data;
+   ::oswindow_data * pdata = new oswindow_data;
 
    pdata->m_bMessageOnlyWindow      = true;
    pdata->m_window                  = None;
    pdata->m_pui                     = pui;
 
-   s_pdataptra->add(pdata);
+   ::oswindow_data::s_pdataptra->add(pdata);
 
    return pdata;
 
 }
 
 
-oswindow::data * oswindow::get(Display * pdisplay, Window window)
+oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
 
-   int_ptr iFind = find(pdisplay, window);
+   int_ptr iFind = oswindow_find(pdisplay, window);
 
    if(iFind >= 0)
-      return s_pdataptra->element_at(iFind);
+      return ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow::data * pdata = new data;
+   ::oswindow_data * pdata = new ::oswindow_data;
 
    pdata->m_bMessageOnlyWindow      = false;
-   pdata->m_osdisplay   = pdisplay;
-   pdata->m_window      = window;
+   pdata->m_osdisplay               = osdisplay_get(pdisplay);
+   pdata->m_window                  = window;
 
-   s_pdataptra->add(pdata);
+   ::oswindow_data::s_pdataptra->add(pdata);
 
    return pdata;
 
 }
 
-oswindow::data * oswindow::get(Window window)
+oswindow_data * oswindow_get(Window window)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
 
-   int_ptr iFind = find(window);
+   int_ptr iFind = oswindow_find(window);
 
    if(iFind < 0)
       return NULL;
 
-   return s_pdataptra->element_at(iFind);
+   return ::oswindow_data::s_pdataptra->element_at(iFind);
 
 }
 
-
-oswindow::oswindow(const ::caNULL & NULL)
-{
-
-   m_pdata = NULL;
-
-}
-
+/*
 oswindow::oswindow()
 {
 
@@ -231,13 +226,6 @@ oswindow::oswindow(const WPARAM & wparam)
 }
 
 
-oswindow oswindow::defer_get(Window window)
-{
-
-   return oswindow(get(window));
-
-}
-
 
 
 
@@ -253,43 +241,53 @@ oswindow & oswindow::operator = (const oswindow & oswindow)
 
 
 
+*/
 
 
-bool oswindow::remove(Display * pdisplay, Window window)
+oswindow oswindow_defer_get(Window window)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   return oswindow_get(window);
 
-   int_ptr iFind = find(pdisplay, window);
+}
+
+
+
+bool oswindow_remove(Display * pdisplay, Window window)
+{
+
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+
+   int_ptr iFind = oswindow_find(pdisplay, window);
 
    if(iFind < 0)
       return false;
 
-   s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->remove_at(iFind);
 
    return true;
 
 }
 
 
-bool oswindow::remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow)
+bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
 
-   int_ptr iFind = find_message_only_window(puibaseMessageOnlyWindow);
+   int_ptr iFind = oswindow_find_message_only_window(puibaseMessageOnlyWindow);
 
    if(iFind < 0)
       return false;
 
-   s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->remove_at(iFind);
 
    return true;
 
 }
 
 
-int32_t oswindow::store_name(const char * psz)
+int32_t oswindow_data::store_name(const char * psz)
 {
 
    mutex_lock sl(user_mutex(), true);
@@ -303,7 +301,7 @@ int32_t oswindow::store_name(const char * psz)
 }
 
 
-int32_t oswindow::select_input(int32_t iInput)
+int32_t oswindow_data::select_input(int32_t iInput)
 {
 
 
@@ -318,7 +316,7 @@ int32_t oswindow::select_input(int32_t iInput)
 }
 
 
-int32_t oswindow::select_all_input()
+int32_t oswindow_data::select_all_input()
 {
 
    xdisplay d(display());
@@ -328,7 +326,7 @@ int32_t oswindow::select_all_input()
 }
 
 
-int32_t oswindow::map_window()
+int32_t oswindow_data::map_window()
 {
 
 
@@ -343,94 +341,96 @@ int32_t oswindow::map_window()
 }
 
 
-void oswindow::post_nc_destroy()
+void oswindow_data::post_nc_destroy()
 {
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   remove(display(), window());
+   oswindow_remove(display(), window());
 
 }
 
 
-void oswindow::set_user_interaction(::user::interaction_base * pui)
+void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 {
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
 
-   m_pdata->m_pui = pui;
+   m_pui = pui;
 
-   m_pdata->m_hthread = pui->m_pthread->get_os_handle();
-
+   m_hthread = pui->m_pthread->get_os_handle();
 
 }
-::user::interaction_base * oswindow::get_user_interaction_base()
+
+
+::user::interaction_base * oswindow_data::get_user_interaction_base()
 {
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
 
-   return m_pdata->m_pui;
+   return m_pui;
 
 }
 
-::user::interaction_base * oswindow::get_user_interaction_base() const
+::user::interaction_base * oswindow_data::get_user_interaction_base() const
 {
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
 
-   return m_pdata->m_pui;
+   return m_pui;
 
 }
 
-::user::interaction * oswindow::get_user_interaction()
-{
-
-   mutex_lock slOsWindow(*s_pmutex, true);
-
-   if(m_pdata == NULL)
-      return NULL;
-
-   if(m_pdata->m_pui == NULL)
-      return NULL;
-
-   return m_pdata->m_pui->m_pui;
-
-}
-
-::user::interaction * oswindow::get_user_interaction() const
+::user::interaction * oswindow_data::get_user_interaction()
 {
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
 
-   if(m_pdata->m_pui == NULL)
+   if(m_pui == NULL)
       return NULL;
 
-   return m_pdata->m_pui->m_pui;
+   return m_pui->m_pui;
+
+}
+
+::user::interaction * oswindow_data::get_user_interaction() const
+{
+
+   mutex_lock slOsWindow(*s_pmutex, true);
+
+   if(this == NULL)
+      return NULL;
+
+   if(m_pui == NULL)
+      return NULL;
+
+   return m_pui->m_pui;
 
 }
 
 
-bool oswindow::is_child(::oswindow oswindow)
+bool oswindow_data::is_child(::oswindow oswindow)
 {
 
    mutex_lock sl(user_mutex(), true);
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   oswindow = oswindow.get_parent();
-   while(!oswindow.is_null())
+   oswindow = oswindow->get_parent();
+
+   while(!oswindow->is_null())
    {
-      if(oswindow.m_pdata == m_pdata)
+      if(oswindow == this)
          return true;
    }
 
@@ -438,14 +438,14 @@ bool oswindow::is_child(::oswindow oswindow)
 
 }
 
-oswindow oswindow::get_parent()
+oswindow oswindow_data::get_parent()
 {
 
    mutex_lock sl(user_mutex(), true);
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
 
    return NULL;
@@ -460,18 +460,18 @@ oswindow oswindow::get_parent()
    if(pchildren != NULL)
       XFree(pchildren);
 
-   return oswindow(display(), parent);
+   return oswindow_get(display(), parent);
 
 }
 
-oswindow oswindow::set_parent(oswindow oswindow)
+oswindow oswindow_data::set_parent(oswindow oswindow)
 {
 
    mutex_lock sl(user_mutex(), true);
 
    mutex_lock slOsWindow(*s_pmutex, true);
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
 
    xdisplay d(display());
@@ -484,7 +484,7 @@ oswindow oswindow::set_parent(oswindow oswindow)
 
 }
 
-bool oswindow::show_window(int32_t nCmdShow)
+bool oswindow_data::show_window(int32_t nCmdShow)
 {
 
    mutex_lock sl(user_mutex(), true);
@@ -510,10 +510,10 @@ bool oswindow::show_window(int32_t nCmdShow)
 
 
 
-LONG oswindow::get_window_long(int32_t nIndex)
+LONG oswindow_data::get_window_long(int32_t nIndex)
 {
 
-   return m_pdata->m_plongmap->operator[](nIndex);
+   return m_plongmap->operator[](nIndex);
 
 /*   Atom type = 0;
    int32_t format = 0;
@@ -554,22 +554,22 @@ LONG oswindow::get_window_long(int32_t nIndex)
 }
 
 
-LONG oswindow::set_window_long(int32_t nIndex, LONG l)
+LONG oswindow_data::set_window_long(int32_t nIndex, LONG l)
 {
 
-   LONG lOld = m_pdata->m_plongmap->operator[](nIndex);
+   LONG lOld = m_plongmap->operator[](nIndex);
 
-   m_pdata->m_plongmap->operator[](nIndex) = l;
+   m_plongmap->operator[](nIndex) = l;
 /*   LONG lOld = get_window_long(nIndex);
 
-   XChangeProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), m_pdata->m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
+   XChangeProperty(display(), window(), m_osdisplay.get_window_long_atom(nIndex), m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
 
    return lOld;
 
 }
 
 
-bool oswindow::client_to_screen(POINT * pp)
+bool oswindow_data::client_to_screen(POINT * pp)
 {
 
    return true;
@@ -577,7 +577,7 @@ bool oswindow::client_to_screen(POINT * pp)
 }
 
 
-bool oswindow::screen_to_client(POINT * pp)
+bool oswindow_data::screen_to_client(POINT * pp)
 {
 
    return true;
@@ -589,7 +589,7 @@ Atom get_window_long_atom(int32_t nIndex);
 
 
 
-long oswindow::get_state()
+long oswindow_data::get_state()
 {
 
 
@@ -628,14 +628,14 @@ long oswindow::get_state()
 
 
 
-bool oswindow::is_iconic()
+bool oswindow_data::is_iconic()
 {
 
    return get_state() == IconicState;
 
 }
 
-bool oswindow::is_window_visible()
+bool oswindow_data::is_window_visible()
 {
 
    mutex_lock sl(user_mutex(), true);
@@ -860,15 +860,15 @@ oswindow SetCapture(oswindow window)
 
    oswindow windowOld(g_oswindowCapture);
 
-   if(window.display() == NULL)
+   if(window->display() == NULL)
       return NULL;
 
-   if(window.window() == NULL)
+   if(window->window() == None)
       return NULL;
 
-   xdisplay d(window.display());
+   xdisplay d(window->display());
 
-   if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
+   if(XGrabPointer(window->display(), window->window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
    {
 
       g_oswindowCapture = window;
@@ -887,10 +887,10 @@ WINBOOL ReleaseCapture()
 
    mutex_lock sl(user_mutex(), true);
 
-   xdisplay d(g_oswindowCapture.display());
+   xdisplay d(g_oswindowCapture->display());
 
 
-   WINBOOL bRet = XUngrabPointer(g_oswindowCapture.display(), CurrentTime) != FALSE;
+   WINBOOL bRet = XUngrabPointer(g_oswindowCapture->display(), CurrentTime) != FALSE;
 
    if(bRet)
       g_oswindowCapture = NULL;
@@ -905,14 +905,14 @@ oswindow SetFocus(oswindow window)
 
    mutex_lock sl(user_mutex(), true);
 
-   xdisplay display(window.display());
+   xdisplay display(window->display());
 
    if(!IsWindow(window))
       return NULL;
 
    oswindow windowOld = ::GetFocus();
 
-   if(!XSetInputFocus(window.display(), window.window(), RevertToNone, CurrentTime))
+   if(!XSetInputFocus(window->display(), window->window(), RevertToNone, CurrentTime))
       return NULL;
 
    return windowOld;
@@ -945,7 +945,7 @@ oswindow GetFocus()
    if(window == None || window == PointerRoot)
       return NULL;
 
-   return oswindow::defer_get(window);
+   return oswindow_defer_get(window);
 
 }
 
@@ -978,7 +978,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
    if(window == NULL)
       return NULL;
-      xdisplay d(window.display());
+      xdisplay d(window->display());
 
    if(iParentHood == GW_HWNDFIRST
    || iParentHood == GW_HWNDLAST
@@ -999,7 +999,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
    Window * pchildren = NULL;
    uint32_t ncount = 0;
 
-   XQueryTree(window.display(), window.window(), &root, &parent, &pchildren, &ncount);
+   XQueryTree(window->display(), window->window(), &root, &parent, &pchildren, &ncount);
 
    switch(iParentHood)
    {
@@ -1010,7 +1010,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          if(pchildren == NULL)
             return NULL;
 
-         window = ::oswindow(window.display(), pchildren[0]);
+         window = ::oswindow_get(window->display(), pchildren[0]);
 
       }
       break;
@@ -1020,7 +1020,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          if(pchildren == NULL)
             return NULL;
 
-         window = ::oswindow(window.display(), pchildren[ncount - 1]);
+         window = ::oswindow_get(window->display(), pchildren[ncount - 1]);
 
       }
       break;
@@ -1035,7 +1035,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
          for(int i = 0; i < ncount; i++)
          {
-               if(pchildren[i] == windowParam.window())
+               if(pchildren[i] == windowParam->window())
                {
                   iFound = i;
                   break;
@@ -1051,7 +1051,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
             if(iFound + 1 >= ncount)
                return NULL;
 
-            window = ::oswindow(window.display(), pchildren[iFound - 1]);
+            window = ::oswindow_get(window->display(), pchildren[iFound - 1]);
 
          }
          else
@@ -1060,7 +1060,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
             if(iFound - 1 < 0)
                return NULL;
 
-            window = ::oswindow(window.display(), pchildren[iFound - 1]);
+            window = ::oswindow_get(window->display(), pchildren[iFound - 1]);
 
          }
 
@@ -1087,14 +1087,14 @@ WINBOOL DestroyWindow(oswindow window)
    if(!IsWindow(window))
       return FALSE;
 
+   Display * pdisplay = window->display();
 
-   Display * pdisplay = window.display();
-   Window win = window.window();
+   Window win = window->window();
 
-         xdisplay d(pdisplay);
+   xdisplay d(pdisplay);
 
 
-   oswindow::data * pdata = (oswindow::data *) (void *) window;
+   oswindow_data * pdata = (oswindow_data *) (void *) window;
 
    pdata->m_bDestroying = true;
 
@@ -1106,12 +1106,14 @@ WINBOOL DestroyWindow(oswindow window)
 
 }
 
-bool oswindow::is_destroying()
+
+bool oswindow_data::is_destroying()
 {
-   if(m_pdata == NULL)
+
+   if(this == NULL)
       return true;
 
-   if(m_pdata->m_bDestroying)
+   if(m_bDestroying)
       return true;
 
    return false;
@@ -1121,7 +1123,7 @@ bool oswindow::is_destroying()
 
 bool IsWindow(oswindow oswindow)
 {
-   return oswindow.get_user_interaction() != NULL && !oswindow.is_destroying();
+   return oswindow->get_user_interaction() != NULL && !oswindow->is_destroying();
 }
 
 
@@ -1131,13 +1133,11 @@ oswindow g_oswindowDesktop;
 bool c_xstart()
 {
 
-
-
    Display * dpy = XOpenDisplay(NULL);
 
-   g_oswindowDesktop = oswindow(dpy, DefaultRootWindow(dpy));
+   g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
 
-   XSelectInput(g_oswindowDesktop.display(), g_oswindowDesktop.window(), StructureNotifyMask);
+   XSelectInput(g_oswindowDesktop->display(), g_oswindowDesktop->window(), StructureNotifyMask);
 
    return true;
 

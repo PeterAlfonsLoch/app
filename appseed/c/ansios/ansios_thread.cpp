@@ -1091,7 +1091,7 @@ CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM 
 CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
-   HTHREAD  h = oswindow.get_user_interaction_base()->m_pthread->get_os_handle();
+   HTHREAD  h = oswindow->get_user_interaction_base()->m_pthread->get_os_handle();
 
    if(h == NULL)
       return FALSE;

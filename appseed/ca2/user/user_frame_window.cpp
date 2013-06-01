@@ -628,7 +628,7 @@ namespace user
          sp(::user::interaction) pWnd = GetDescendantWindow("pane_first");
          if (pWnd != NULL && base < ::user::view > ::bases(pWnd))
          {
-            pview =  pWnd;   
+            pview =  pWnd;
             SetActiveView(pview, FALSE);
          }
       }
@@ -648,7 +648,7 @@ namespace user
          }
 
          // send initial update to all views (and other controls) in the frame
-         SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
+         SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM) 0, TRUE, TRUE);
 
          // give ::user::view a chance to save the focus (CFormView needs this)
          if (pview != NULL)

@@ -98,7 +98,7 @@ namespace user
          if (pfiu->m_bMakeVisible)
          {
             // send initial update to all views (and other controls) in the frame
-            pframe->SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
+            pframe->SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM) 0, TRUE, TRUE);
 
             // give ::user::view a chance to save the focus (CFormView needs this)
             if (pview != NULL)

@@ -229,6 +229,8 @@ template < class T >
 
    }
 
+#ifndef LINUX
+
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (int_ptr i)
    {
@@ -241,6 +243,7 @@ template < class T >
 
    }
 
+#endif
 
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (void * p)
@@ -276,15 +279,15 @@ template < class T >
       *m_p = *p.m_p;
    }
 
-    
+
     // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
     // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
     template < class T >
     void smart_pointer <T>::release()
     {
-        
+
         ::c::release(m_p);
-        
+
     }
 
 
@@ -398,11 +401,12 @@ bool operator !=(LPARAM l, const ::c::smart_pointer < T > & sp) { return ((T *) 
 bool operator ==(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }
 template < class T >
 bool operator !=(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
+#ifndef LINUX
 template < class T >
 inline bool operator ==(int_ptr i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
 template < class T >
 inline bool operator !=(int_ptr i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
-
+#endif
 
 
 

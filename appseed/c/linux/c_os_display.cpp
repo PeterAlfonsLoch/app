@@ -6,18 +6,30 @@
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_window_long_style"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_window_long_style_ex"
 
-osdisplay_dataptra * osdisplay::s_pdataptra = new osdisplay_dataptra;
-simple_mutex * osdisplay::s_pmutex = new simple_mutex;
+osdisplay_dataptra * osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+simple_mutex * osdisplay_data::s_pmutex = new simple_mutex;
+
+osdisplay_data::osdisplay_data()
+{
+
+   m_pdisplay           = NULL;
+   m_atomLongType       = None;
+   m_atomLongStyle      = None;
+   m_atomLongStyleEx    = NULL;
+
+}
 
 
-int32_t osdisplay::find(Display * pdisplay)
+
+
+int32_t osdisplay_find(Display * pdisplay)
 {
 
    mutex_lock sl(user_mutex(), true);
 
-   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
+   for(int32_t i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
+      if(osdisplay_data::s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
       {
          return i;
       }
@@ -27,98 +39,62 @@ int32_t osdisplay::find(Display * pdisplay)
 
 }
 
-osdisplay::data * osdisplay::get(Display * pdisplay)
+osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
    mutex_lock sl(user_mutex(), true);
 
-   int_ptr iFind = find(pdisplay);
+   int_ptr iFind = osdisplay_find(pdisplay);
 
    if(iFind >= 0)
-      return s_pdataptra->element_at(iFind);
+      return osdisplay_data::s_pdataptra->element_at(iFind);
 
-   ::osdisplay::data * pdata = new data;
+   osdisplay_data * pdata = new osdisplay_data;
 
    pdata->m_pdisplay          = pdisplay;
    pdata->m_atomLongType      = XInternAtom(pdisplay     , CA2_CCVOTAGUS_WINDOW_LONG            , False);
    pdata->m_atomLongStyle     = XInternAtom(pdisplay     , CA2_CCVOTAGUS_WINDOW_LONG_STYLE      , False);
    pdata->m_atomLongStyleEx   = XInternAtom(pdisplay     , CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX   , False);
 
-   s_pdataptra->add(pdata);
+   ::osdisplay_data::s_pdataptra->add(pdata);
 
    return pdata;
 
 }
 
-osdisplay::osdisplay(const ::caNULL & NULL)
-{
-
-   m_pdata = NULL;
-
-}
-
-osdisplay::osdisplay()
-{
-
-   m_pdata = NULL;
-
-}
-
-osdisplay::osdisplay(Display * pdisplay)
-{
-
-   m_pdata = get(pdisplay);
-
-}
-
-osdisplay::osdisplay(const osdisplay & osdisplay)
-{
-
-   m_pdata = osdisplay.m_pdata;
-
-}
 
 
-osdisplay & osdisplay::operator = (const osdisplay & osdisplay)
-{
-
-   m_pdata = osdisplay.m_pdata;
-
-   return *this;
-
-}
-
-bool osdisplay::remove(Display * pdisplay)
+bool osdisplay_remove(Display * pdisplay)
 {
 
    mutex_lock sl(user_mutex(), true);
 
-   int_ptr iFind = find(pdisplay);
+   int_ptr iFind = osdisplay_find(pdisplay);
 
    if(iFind < 0)
       return false;
 
-   s_pdataptra->remove_at(iFind);
+   ::osdisplay_data::s_pdataptra->remove_at(iFind);
 
    return true;
 
 }
 
-Atom osdisplay::get_window_long_atom(int32_t nIndex)
+Atom osdisplay_data::get_window_long_atom(int32_t nIndex)
 {
 
-   if(m_pdata == NULL)
+   if(this == NULL)
       return 0;
 
    switch(nIndex)
    {
    case GWL_STYLE:
 
-      return m_pdata->m_atomLongStyle;
+      return m_atomLongStyle;
 
    case GWL_EXSTYLE:
 
-      return m_pdata->m_atomLongStyleEx;
+      return m_atomLongStyleEx;
 
    default:
       {
@@ -127,7 +103,7 @@ Atom osdisplay::get_window_long_atom(int32_t nIndex)
 
          strProperty = CA2_CCVOTAGUS_WINDOW_LONG + itoa_dup(nIndex);
 
-         return XInternAtom(m_pdata->m_pdisplay, strProperty, False);
+         return XInternAtom(m_pdisplay, strProperty, False);
 
       }
    }

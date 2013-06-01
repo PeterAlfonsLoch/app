@@ -108,7 +108,9 @@ namespace c
       inline smart_pointer & operator = (smart_pointer < T > && t);
       inline smart_pointer & operator = (LPARAM);
       inline smart_pointer & operator = (void *);
+#ifndef LINUX
       inline smart_pointer & operator = (int_ptr i);
+#endif
 
       template < class T2 >
       inline smart_pointer & operator = (const smart_pointer < T2 > & t)

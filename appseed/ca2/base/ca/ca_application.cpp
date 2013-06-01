@@ -4174,7 +4174,7 @@ namespace ca
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
          return NULL;
-      return oswindowCapture.get_user_interaction()->release_capture();
+      return oswindowCapture->get_user_interaction()->release_capture();
 
 #elif defined(WINDOWS)
 
@@ -4212,7 +4212,7 @@ namespace ca
       if(oswindowCapture == NULL)
          return NULL;
 
-      return ::GetCapture().get_user_interaction()->m_pimpl.cast < ::ca::window >()->get_capture();
+      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::ca::window >()->get_capture();
 
 #endif
 

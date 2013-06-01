@@ -352,7 +352,7 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 
 void simple_frame_window::layout()
 {
-   
+
    if(m_bWindowFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
    {
       m_workset.layout();
@@ -762,7 +762,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
    if (pContext == NULL)   // send initial update
-      SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
+      SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM) 0, TRUE, TRUE);
 
    return TRUE;
 }
@@ -977,7 +977,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
    }
 
 #endif
-   
+
    ::user::frame_window::_001OnDraw(pdc);
 
 }
