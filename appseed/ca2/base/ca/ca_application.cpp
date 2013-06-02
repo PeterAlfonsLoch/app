@@ -21,6 +21,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 namespace ca
 {
 
+   mutex g_mutexStr(NULL);
 
    int32_t nibble_to_low_hex(byte nibble);
 
@@ -5291,6 +5292,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    void application::load_string_table(const string & pszApp, const string & pszId)
    {
+
+      single_lock sl(&g_mutexStr, true);
+
       string strApp(pszApp);
       string strMatter;
       string strLocator;

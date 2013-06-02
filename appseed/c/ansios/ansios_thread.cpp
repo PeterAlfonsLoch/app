@@ -939,36 +939,25 @@ restart:
    ml.unlock();
 
 #ifdef LINUX
-   if(hthread != NULL && hthread->m_pthread != NULL && hthread->m_pthread->get_x_window_count() > 0)
+   if(hthread != NULL && hthread->m_pthread != NULL)
    {
 
-      if(defer_process_x_message(hthread, lpMsg, oswindow, false))
-         return TRUE;
+      hthread->m_pthread->step_timer();
+
+      if(hthread->m_pthread->get_x_window_count() > 0)
+      {
+
+         if(defer_process_x_message(hthread, lpMsg, oswindow, false))
+            return TRUE;
+
+      }
 
    }
 #endif
 
-   if(bFirst)
-   {
+   pmq->m_eventNewMessage.wait(25);
 
-      pmq->m_eventNewMessage.wait(25);
-
-      pmq->m_eventNewMessage.reset_event();
-
-      bFirst = false;
-
-      goto restart;
-
-   }
-   else
-   {
-
-      lpMsg->message = 0xffffffff;
-
-      return true;
-
-   }
-
+   goto restart;
 
 }
 
@@ -1077,6 +1066,9 @@ CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM 
    msg.message = Msg;
    msg.wParam  = wParam;
    msg.lParam  = lParam;
+   msg.pt.x    = 0x80000000;
+   msg.pt.y    = 0x80000000;
+   msg.hwnd    = NULL;
 
    pmq->ma.add(msg);
 
@@ -1112,6 +1104,9 @@ CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wPa
    msg.message    = Msg;
    msg.wParam     = wParam;
    msg.lParam     = lParam;
+   msg.pt.x       = 0x80000000;
+   msg.pt.y       = 0x80000000;
+
 
    pmq->ma.add(msg);
 
