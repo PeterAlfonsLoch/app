@@ -38,13 +38,17 @@ namespace c
 
    }
 
-
    template < class T >
-   inline smart_pointer < T > ::smart_pointer(int i)
+   inline smart_pointer < T > ::smart_pointer(int32_t i)
    {
       m_p = (T *) i;
    }
 
+   template < class T >
+   inline smart_pointer < T > ::smart_pointer(int64_t i)
+   {
+      m_p = (T *) i;
+   }
 
    template < class T >
    inline smart_pointer < T > ::smart_pointer(T * p)
@@ -218,7 +222,7 @@ template < class T >
    }
 
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (LPARAM lparam)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (lparam lparam)
    {
 
       release();
@@ -230,7 +234,19 @@ template < class T >
    }
 
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (int i)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (int32_t i)
+   {
+
+      release();
+
+      m_p = (T *) i;
+
+      return * this;
+
+   }
+
+   template < class T >
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (int64_t i)
    {
 
       release();

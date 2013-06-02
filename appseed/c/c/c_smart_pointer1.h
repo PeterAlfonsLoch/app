@@ -40,7 +40,8 @@ namespace c
 
 
       smart_pointer();
-      smart_pointer(int i);
+      smart_pointer(int32_t i);
+      smart_pointer(int64_t i);
       smart_pointer(lparam lparam);
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(smart_pointer < T > && t);
@@ -106,9 +107,10 @@ namespace c
       inline smart_pointer & operator = (T * p);
       inline smart_pointer & operator = (const smart_pointer < T > & t);
       inline smart_pointer & operator = (smart_pointer < T > && t);
-      inline smart_pointer & operator = (LPARAM);
+      inline smart_pointer & operator = (lparam);
       inline smart_pointer & operator = (void *);
-      inline smart_pointer & operator = (int i);
+      inline smart_pointer & operator = (int32_t i);
+      inline smart_pointer & operator = (int64_t i);
 
       template < class T2 >
       inline smart_pointer & operator = (const smart_pointer < T2 > & t)

@@ -208,7 +208,7 @@ namespace ca
 
    inline property * property_set::add(id idName)
    {
-      
+
       if(idName.is_null())
        idName = get_new_id();
 
@@ -223,7 +223,7 @@ namespace ca
 
    inline property * property_set::add(id idName, var var)
    {
-      
+
       if(idName.is_null())
        idName = get_new_id();
 

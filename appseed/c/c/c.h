@@ -66,10 +66,19 @@ public:
       m_lparam = lparam;
    }
 
-   lparam(int i)
+   lparam(int32_t i)
    {
       m_lparam = (LPARAM) i;
    }
+
+#ifndef LINUX
+
+   lparam(int64_t i)
+   {
+      m_lparam = (LPARAM) i;
+   }
+
+#endif
 
    lparam(const void * p)
    {
