@@ -838,7 +838,7 @@ namespace user
             else if (bDynamic && (nLength != -1))
             {
                class rect rect;
-               rect.NULL();
+               rect.null();
                CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
                bool bVert = (dwMode & LM_LENGTHY) != 0;
                int32_t nLen = nLength + (bVert ? rect.height() : rect.width());
@@ -960,7 +960,7 @@ namespace user
       //BLOCK: Adjust Margins
       {
          class rect rect;
-         rect.NULL();
+         rect.null();
          CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
          sizeResult.cy -= rect.height();
          sizeResult.cx -= rect.width();
@@ -1146,7 +1146,7 @@ throw todo(get_app());
       SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
-      rect.NULL();
+      rect.null();
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
       ::user::control_bar::CalcInsideRect(rect, bHorz);
 

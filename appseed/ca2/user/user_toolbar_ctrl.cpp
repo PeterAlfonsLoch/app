@@ -583,7 +583,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return send_message( TB_SETCMDID, nIndex, nID) != FALSE;
+      ASSERT(IsWindow()); return send_message(TB_SETCMDID, nIndex, (LPARAM) nID) != FALSE;
 
 #else
 
@@ -647,7 +647,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (uint32_t) send_message( TB_SETEXTENDEDSTYLE, 0, dwExStyle);
+      ASSERT(IsWindow()); return (uint32_t) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
 
 #else
 
@@ -936,7 +936,7 @@ namespace user
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_SETSTYLE, 0, dwStyle);
+      ASSERT(IsWindow()); send_message( TB_SETSTYLE, 0, (LPARAM) dwStyle);
 
 #else
 
@@ -997,9 +997,10 @@ namespace user
 
    uint32_t tool_bar_control::SetDrawTextFlags(uint32_t dwMask, uint32_t dwDTFlags)
    {
+
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (uint32_t) send_message( TB_SETDRAWTEXTFLAGS, dwMask, dwDTFlags);
+      ASSERT(IsWindow()); return (uint32_t) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
 
 #else
 
@@ -1145,7 +1146,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      ASSERT(IsWindow()); return send_message( TB_MOVEBUTTON, nOldPos, nNewPos) != FALSE;
+      ASSERT(IsWindow()); return send_message( TB_MOVEBUTTON, nOldPos, (LPARAM) nNewPos) != FALSE;
 
 #else
 

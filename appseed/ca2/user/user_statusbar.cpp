@@ -67,7 +67,7 @@ namespace user
       
       // create the oswindow
 #ifdef WINDOWSEX
-      return ::user::interaction::create(STATUSCLASSNAME, ::null_rect(), dwStyle, rect, pParentWnd, strId);
+      return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, ::null_rect(), pParentWnd, strId);
 #else
       throw todo(get_app());
 #endif
@@ -527,7 +527,7 @@ namespace user
       SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
-      rect.NULL();
+      rect.null();
       ::user::control_bar::CalcInsideRect(rect, TRUE);
       ASSERT(rect.top >= 2);
 

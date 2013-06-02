@@ -16,6 +16,15 @@ bool is_message_window(void * p)
 
 }
 
+#elif defined(WINDOWSEX)
+
+bool is_message_window(HWND hwnd)
+{
+
+   return ::GetParent(hwnd) == HWND_MESSAGE;
+
+}
+
 #endif
 
 namespace user

@@ -40,7 +40,7 @@ namespace c
 
 
    template < class T >
-   inline smart_pointer < T > ::smart_pointer(int_ptr i)
+   inline smart_pointer < T > ::smart_pointer(int i)
    {
       m_p = (T *) i;
    }
@@ -229,10 +229,8 @@ template < class T >
 
    }
 
-#ifndef LINUX
-
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (int_ptr i)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (int i)
    {
 
       release();
@@ -242,8 +240,6 @@ template < class T >
       return * this;
 
    }
-
-#endif
 
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (void * p)
@@ -401,12 +397,10 @@ bool operator !=(LPARAM l, const ::c::smart_pointer < T > & sp) { return ((T *) 
 bool operator ==(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }
 template < class T >
 bool operator !=(void * p, const ::c::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
-#ifndef LINUX
 template < class T >
-inline bool operator ==(int_ptr i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
+inline bool operator ==(int i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
 template < class T >
-inline bool operator !=(int_ptr i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
-#endif
+inline bool operator !=(int i, const ::c::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
 
 
 

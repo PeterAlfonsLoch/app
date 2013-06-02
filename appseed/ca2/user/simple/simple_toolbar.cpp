@@ -1656,7 +1656,7 @@ void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
    SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
-   rect.NULL();
+   rect.null();
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
    ::user::control_bar::CalcInsideRect(rect, bHorz);
 
