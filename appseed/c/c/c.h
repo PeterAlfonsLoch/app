@@ -71,7 +71,7 @@ public:
       m_lparam = (LPARAM) i;
    }
 
-#ifndef LINUX
+#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS))
 
    lparam(int64_t i)
    {
