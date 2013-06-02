@@ -942,7 +942,13 @@ restart:
    if(hthread != NULL && hthread->m_pthread != NULL)
    {
 
+      if(!hthread->m_pthread->get_run())
+         return FALSE;
+
       hthread->m_pthread->step_timer();
+
+      if(!hthread->m_pthread->get_run())
+         return FALSE;
 
       if(hthread->m_pthread->get_x_window_count() > 0)
       {
@@ -950,14 +956,43 @@ restart:
          if(defer_process_x_message(hthread, lpMsg, oswindow, false))
             return TRUE;
 
+         if(!hthread->m_pthread->get_run())
+            return FALSE;
       }
 
    }
 #endif
 
-   pmq->m_eventNewMessage.wait(25);
+   if(bFirst)
+   {
 
-   goto restart;
+      pmq->m_eventNewMessage.wait(25);
+
+      pmq->m_eventNewMessage.reset_event();
+
+      bFirst = false;
+
+      goto restart;
+
+   }
+   else
+   {
+
+      lpMsg->message = 0xffffffff;
+      lpMsg->hwnd    = NULL;
+      lpMsg->wParam  = 0;
+      lpMsg->lParam  = 0;
+      lpMsg->pt.x    = 0x80000000;
+      lpMsg->pt.y    = 0x80000000;
+
+      return TRUE;
+
+   }
+
+
+
+
+
 
 }
 

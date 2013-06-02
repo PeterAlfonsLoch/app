@@ -1,5 +1,22 @@
 #include "framework.h"
 
+#ifdef LINUX
+
+bool is_message_window(void * p)
+{
+
+   oswindow w = (oswindow) p;
+
+   if(w == NULL)
+      return false;
+
+
+   return w->m_bMessageOnlyWindow;
+
+
+}
+
+#endif
 
 namespace user
 {
@@ -187,7 +204,7 @@ namespace user
    {
       return get_parent();
    }
-   
+
    void interaction::set_timer(smart_pointer_array < timer_item > timera)
    {
       for(int32_t i = 0; i < timera.get_count(); i++)
@@ -195,7 +212,7 @@ namespace user
          SetTimer(timera[i].m_uiId, timera[i].m_uiElapse, NULL);
       }
    }
-   
+
    sp(interaction_base) interaction::set_parent_base(sp(interaction_base) pguieParent)
    {
       return set_parent(pguieParent);
@@ -709,7 +726,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(get_parent() == NULL)
+      if(get_parent() == NULL && !is_message_window(get_handle()))
       {
 
          System.add_frame(this);
@@ -1890,7 +1907,7 @@ namespace user
    // for custom cleanup after WM_NCDESTROY
    void interaction::PostNcDestroy()
    {
-      
+
       if(is_heap())
       {
 
@@ -2615,7 +2632,7 @@ ExitModal:
 
    }
 
-   
+
    sp(interaction) interaction::get_capture()
    {
 
@@ -2763,8 +2780,8 @@ ExitModal:
          return false;
       }
 
-      
-      
+
+
       return true;
 
    }

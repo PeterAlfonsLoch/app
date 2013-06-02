@@ -10,17 +10,19 @@ extern cairo_t *  g_cairo;
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap      = new simple_map < int, LONG >();
+   m_plongmap              = new simple_map < int, LONG >();
 
-   m_hthread       = NULL;
+   m_hthread               = NULL;
 
-   m_window        = None;
+   m_window                = None;
 
-   m_pui                 = NULL;
+   m_pui                   = NULL;
 
-   m_bMessageOnlyWindow  = false;
+   m_bMessageOnlyWindow    = false;
 
-   m_bDestroying                          = false;
+   m_bDestroying           = false;
+
+   m_osdisplay             = NULL;
 
 }
 
@@ -117,6 +119,8 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_base * pui)
    pdata->m_bMessageOnlyWindow      = true;
    pdata->m_window                  = None;
    pdata->m_pui                     = pui;
+   pdata->m_osdisplay               = NULL;
+   pdata->m_pvisual                 = NULL;
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -140,6 +144,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);
    pdata->m_window                  = window;
+   pdata->m_pvisual                 = pvisual;
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -978,7 +983,8 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
    if(window == NULL)
       return NULL;
-      xdisplay d(window->display());
+
+   xdisplay d(window->display());
 
    if(iParentHood == GW_HWNDFIRST
    || iParentHood == GW_HWNDLAST

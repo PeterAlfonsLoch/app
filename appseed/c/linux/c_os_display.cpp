@@ -49,7 +49,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
    if(iFind >= 0)
       return osdisplay_data::s_pdataptra->element_at(iFind);
 
-   osdisplay_data * pdata = new osdisplay_data;
+   osdisplay_data * pdata     = new osdisplay_data;
 
    pdata->m_pdisplay          = pdisplay;
    pdata->m_atomLongType      = XInternAtom(pdisplay     , CA2_CCVOTAGUS_WINDOW_LONG            , False);
@@ -122,6 +122,7 @@ Atom osdisplay_data::get_window_long_atom(int32_t nIndex)
   {
       m_pdisplay    = pdisplay;
       m_bOwn        = false;
+      m_bLocked     = false;
       if(bInitialLock)
         lock();
   }

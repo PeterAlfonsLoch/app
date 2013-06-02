@@ -5249,6 +5249,9 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
    bool application::load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable)
    {
+
+      single_lock sl(&g_mutexStr, true);
+
       string strId(*id.m_pstr);
       string strTable;
       string strString;
@@ -5337,7 +5340,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          catch(...)
          {
          }
-         m_stringtablemapStd.set_at(pszId, new string_to_string_map);
+         m_stringtablemap.set_at(pszId, new string_to_string_map);
          return;
       }
       string strFile = Application.file().as_string(strFilePath);

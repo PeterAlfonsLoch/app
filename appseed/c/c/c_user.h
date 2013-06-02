@@ -23,8 +23,8 @@ public:
 
    hthread();
    virtual ~hthread();
-   
-   
+
+
    void wait();
 
 
@@ -67,6 +67,7 @@ namespace ca
       virtual HTHREAD get_os_handle() const;
       virtual int get_x_window_count() const;
       virtual void step_timer();
+      virtual bool get_run();
 
 
    };

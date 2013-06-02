@@ -73,14 +73,25 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == ButtonPress || e.type == ButtonRelease)
             {
 
+               bRet                 = true;
+
                if(e.xbutton.type == ButtonPress)
                {
                   if(e.xbutton.button == Button1)
                   {
                      lpMsg->message = WM_LBUTTONDOWN;
                   }
+                  else if(e.xbutton.button == Button2)
+                  {
+                     lpMsg->message = WM_MBUTTONDOWN;
+                  }
+                  else if(e.xbutton.button == Button3)
+                  {
+                     lpMsg->message = WM_RBUTTONDOWN;
+                  }
                   else
                   {
+                     bRet = false;
                   }
 
                }
@@ -90,23 +101,44 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
                   {
                      lpMsg->message = WM_LBUTTONUP;
                   }
+                  else if(e.xbutton.button == Button2)
+                  {
+                     lpMsg->message = WM_MBUTTONUP;
+                  }
+                  else if(e.xbutton.button == Button3)
+                  {
+                     lpMsg->message = WM_RBUTTONUP;
+                  }
                   else
                   {
+                     bRet = false;
                   }
 
                }
+               else
+               {
 
-               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-               lpMsg->wParam        = 0;
-               lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+                  bRet = false;
 
-               bRet                 = true;
+               }
+
+
+               if(bRet)
+               {
+
+                  lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+                  lpMsg->wParam        = 0;
+                  lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+
+               }
 
             }
             else if(e.type == KeyPress || e.type == KeyRelease)
             {
 
                oswindow w = oswindow_get(display, e.xexpose.window);
+
+               bRet                 = true;
 
                if(e.xkey.type == KeyPress)
                {
@@ -120,12 +152,18 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
                   lpMsg->message = WM_KEYUP;
 
                }
+               else
+               {
+
+                  bRet = false;
+
+               }
 
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->wParam        = e.xkey.keycode;
                lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
 
-               bRet                 = true;
+
 
             }
             else if(e.type == MotionNotify)
@@ -144,6 +182,8 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
                lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
                lpMsg->message       = WM_DESTROY;
+
+               bRet                 = true;
 
             }
 

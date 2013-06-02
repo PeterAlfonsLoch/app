@@ -41,6 +41,10 @@ namespace ca
 
    }
 
+   bool thread_base::get_run()
+   {
+      return true;
+   }
 
 } // namespace ca
 
