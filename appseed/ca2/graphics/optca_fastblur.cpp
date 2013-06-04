@@ -95,7 +95,7 @@ bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint
 
       }
 
-      p1--;
+      p1 -= 4;
 
       for(; x < w; x ++)
       {

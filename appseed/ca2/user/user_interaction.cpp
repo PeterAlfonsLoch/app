@@ -1,31 +1,5 @@
 #include "framework.h"
 
-#ifdef LINUX
-
-bool is_message_window(void * p)
-{
-
-   oswindow w = (oswindow) p;
-
-   if(w == NULL)
-      return false;
-
-
-   return w->m_bMessageOnlyWindow;
-
-
-}
-
-#elif defined(WINDOWSEX)
-
-bool is_message_window(HWND hwnd)
-{
-
-   return ::GetParent(hwnd) == HWND_MESSAGE;
-
-}
-
-#endif
 
 namespace user
 {
@@ -735,7 +709,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(get_parent() == NULL && !is_message_window(get_handle()))
+      if(get_parent() == NULL && !is_message_only_window())
       {
 
          System.add_frame(this);
@@ -1718,6 +1692,13 @@ namespace user
          (*piLevel)--;
 
       return get_parent()->get_parent()->get_next(true, piLevel);
+
+   }
+
+   bool interaction::is_message_only_window() const
+   {
+
+      return m_bMessageWindow;
 
    }
 

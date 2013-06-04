@@ -489,6 +489,8 @@ namespace user
       virtual sp(interaction) GetWindow(UINT nCmd);
       virtual sp(interaction) GetLastActivePopup();
 
+      virtual bool is_message_only_window() const;
+
       virtual void pre_subclass_window();
 
       // for custom cleanup after WM_NCDESTROY

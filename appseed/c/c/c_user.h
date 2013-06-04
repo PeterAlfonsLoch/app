@@ -99,6 +99,7 @@ namespace user
       virtual sp(interaction_base) get_parent_base() const = 0;
       virtual sp(interaction_base) set_parent_base(sp(interaction_base) pguieParent) = 0;
       virtual oswindow get_parent_handle() const = 0;
+      virtual bool is_message_only_window() const = 0;
 #ifdef METROWIN
       virtual Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window() = 0;
 #endif
