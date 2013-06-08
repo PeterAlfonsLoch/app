@@ -50,6 +50,18 @@ namespace c
       m_p = (T *) i;
    }
 
+#ifdef MACOS
+#ifdef OS64BIT
+   
+   template < class T >
+   inline smart_pointer < T > ::smart_pointer(long l)
+   {
+      m_p = (T *) l;
+   }
+   
+#endif
+#endif
+   
    template < class T >
    inline smart_pointer < T > ::smart_pointer(T * p)
    {
@@ -256,6 +268,25 @@ template < class T >
       return * this;
 
    }
+   
+#ifdef MACOS
+#ifdef OS64BIT
+   
+   template < class T >
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (long l)
+   {
+      
+      release();
+      
+      m_p = (T *) l;
+      
+      return * this;
+      
+   }
+   
+#endif
+#endif
+   
 
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (void * p)
@@ -287,7 +318,7 @@ template < class T >
          return;
       }
       if(is_null())
-         create(p->get_app());
+         create(p->get_app()->allocer());
       *m_p = *p.m_p;
    }
 

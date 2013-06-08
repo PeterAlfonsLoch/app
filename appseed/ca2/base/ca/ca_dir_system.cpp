@@ -1534,21 +1534,21 @@ ret:
 
       string system::appmatter_locator(sp(::ca::application) papp)
       {
-/*#if defined(METROWIN) || defined(MACOS)
+
          string strRoot;
          string strDomain;
-
+         
          appmatter_locators(strRoot, strDomain, papp);
+         
+#ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
-         return path(Application.m_strMatterUrl, path(strRoot, "appmatter", strDomain));
-#else*/
-         string strRoot;
-         string strDomain;
-
-         appmatter_locators(strRoot, strDomain, papp);
+         return simple_path(strRoot, "appmatter", strDomain);
+         
+#else
 
          return ca2(simple_path(strRoot, "appmatter", strDomain));
-//#endif
+         
+#endif
 
       }
 

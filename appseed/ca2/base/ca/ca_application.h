@@ -521,7 +521,7 @@ namespace ca
 
       virtual int32_t main();
 
-      virtual sp(::ca::application) get_app() const;
+      virtual ::ca::application * get_app() const;
 
       virtual bool is_system();
       virtual bool is_session();

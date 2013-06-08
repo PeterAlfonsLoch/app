@@ -94,7 +94,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      sp(::ca::application) get_app() const;
+      ::ca::application * get_app() const;
 
       script_instance * create_instance();
 

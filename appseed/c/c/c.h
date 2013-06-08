@@ -71,13 +71,24 @@ public:
       m_lparam = (LPARAM) i;
    }
 
-#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS))
+#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS)) && !defined(MACOS)
 
    lparam(int64_t i)
    {
       m_lparam = (LPARAM) i;
    }
 
+#endif
+   
+#ifdef MACOS
+#ifdef OS64BIT
+   
+   lparam(long l)
+   {
+      m_lparam = (LPARAM) l;
+   }
+   
+#endif
 #endif
 
    lparam(const void * p)

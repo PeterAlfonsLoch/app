@@ -157,7 +157,7 @@ int32_t image_list::add(::visual::icon * picon)
       _grow();
    }
 
-   ::ca::brush_sp brush(get_app(), RGB(192, 192, 192));
+   ::ca::brush_sp brush(allocer(), RGB(192, 192, 192));
    m_spdib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
    m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, 0);
    //COLORREF crMask = m_spdib->get_graphics()->GetPixel(iItem * m_size.cx, 0);

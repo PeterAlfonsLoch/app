@@ -360,7 +360,7 @@ namespace datetime
             }
          }
 
-         return (GetStatus() == NULL);
+         return (GetStatus() == null);
       }
 
       return false;
@@ -781,7 +781,7 @@ valid : invalid;
             }
          }
 
-         return (GetStatus() == NULL);
+         return (GetStatus() == null);
 
       }
 

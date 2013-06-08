@@ -44,12 +44,12 @@ namespace ca
 
    }
 
-   sp(::ca::application) ca::get_app() const
+   ::ca::application * ca::get_app() const
    {
       return m_papp;
    }
 
-   void ca::set_app(sp(::ca::application) papp)
+   void ca::set_app(::ca::application * papp)
    {
       m_papp = papp;
    }

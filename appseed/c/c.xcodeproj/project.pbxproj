@@ -186,6 +186,7 @@
 		9A1B353316A2C4E300875A94 /* windows_ole_automation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B353016A2C4E300875A94 /* windows_ole_automation.h */; };
 		9A1B353416A2C4E300875A94 /* windows_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B353116A2C4E300875A94 /* windows_types.h */; };
 		9A1B357916A2D0EC00875A94 /* windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07159397167396C800D7190F /* windows_user.cpp */; };
+		9A6F20DF1761C7D400C33206 /* windows_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F20DE1761C7D400C33206 /* windows_thread.cpp */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
@@ -468,6 +469,7 @@
 		9A1B352F16A2C4E300875A94 /* windows_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_gdi.h; sourceTree = "<group>"; };
 		9A1B353016A2C4E300875A94 /* windows_ole_automation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_ole_automation.h; sourceTree = "<group>"; };
 		9A1B353116A2C4E300875A94 /* windows_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_types.h; sourceTree = "<group>"; };
+		9A6F20DE1761C7D400C33206 /* windows_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windows_thread.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* libca2c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -593,6 +595,7 @@
 				9A1B353016A2C4E300875A94 /* windows_ole_automation.h */,
 				9A1B353116A2C4E300875A94 /* windows_types.h */,
 				071592881673483A00D7190F /* windows.h */,
+				9A6F20DE1761C7D400C33206 /* windows_thread.cpp */,
 				071592891673483A00D7190F /* windows_thread.h */,
 				07159397167396C800D7190F /* windows_user.cpp */,
 				0715928A1673483A00D7190F /* windows_user.h */,
@@ -605,12 +608,6 @@
 			children = (
 				07A6E1E9173C45B0009E6FB8 /* c_c.cpp */,
 				07A6E1EA173C45B0009E6FB8 /* c_c.h */,
-				07A6E1EB173C45B0009E6FB8 /* c_smart_pointer1.h */,
-				07A6E1EC173C45B0009E6FB8 /* c_smart_pointer2.h */,
-				9AEB759616F786D10085103B /* c_user.cpp */,
-				9A1B352816A2C4A200875A94 /* c_memory.h */,
-				9A1B352916A2C4A200875A94 /* c_number.h */,
-				9A1B352A16A2C4A200875A94 /* c_user.h */,
 				07A81CF91633E09F00ADF7D6 /* _initterm.cpp */,
 				07A81CFA1633E09F00ADF7D6 /* c_argcargv.cpp */,
 				07A81CFB1633E09F00ADF7D6 /* c_async.h */,
@@ -656,6 +653,7 @@
 				07A81D231633E09F00ADF7D6 /* c_md5.cpp */,
 				07A81D241633E09F00ADF7D6 /* c_md5.h */,
 				07A81D251633E09F00ADF7D6 /* c_mem.cpp */,
+				9A1B352816A2C4A200875A94 /* c_memory.h */,
 				07A81D271633E09F00ADF7D6 /* c_message_loop.h */,
 				07A81D281633E09F00ADF7D6 /* c_mktime.cpp */,
 				07A81D291633E09F00ADF7D6 /* c_mutex_lock.cpp */,
@@ -663,6 +661,7 @@
 				07A81D2B1633E09F00ADF7D6 /* c_natural.h */,
 				07159291167353E700D7190F /* c_net.cpp */,
 				07159292167353E700D7190F /* c_net.h */,
+				9A1B352916A2C4A200875A94 /* c_number.h */,
 				07A81D2C1633E09F00ADF7D6 /* c_printf.cpp */,
 				07A81D2D1633E09F00ADF7D6 /* c_printf.h */,
 				07A81D2E1633E09F00ADF7D6 /* c_simple_app.h */,
@@ -686,6 +685,8 @@
 				07A81D401633E09F00ADF7D6 /* c_simple_shell_launcher.h */,
 				07A81D411633E09F00ADF7D6 /* c_small_ipc_channel.cpp */,
 				07A81D421633E09F00ADF7D6 /* c_small_ipc_channel.h */,
+				07A6E1EB173C45B0009E6FB8 /* c_smart_pointer1.h */,
+				07A6E1EC173C45B0009E6FB8 /* c_smart_pointer2.h */,
 				07A81D431633E09F00ADF7D6 /* c_sprintf.cpp */,
 				07A81D441633E09F00ADF7D6 /* c_sprintf.h */,
 				07A81D451633E09F00ADF7D6 /* c_std_file.cpp */,
@@ -704,6 +705,8 @@
 				07A81D511633E09F00ADF7D6 /* c_types.h */,
 				07A81D521633E09F00ADF7D6 /* c_url.cpp */,
 				07A81D531633E09F00ADF7D6 /* c_url.h */,
+				9AEB759616F786D10085103B /* c_user.cpp */,
+				9A1B352A16A2C4A200875A94 /* c_user.h */,
 				07A81D541633E09F00ADF7D6 /* c_verisimple_string.cpp */,
 				07A81D551633E09F00ADF7D6 /* c_verisimple_string.h */,
 				07A81D561633E09F00ADF7D6 /* c_verisimple_wstring.cpp */,
@@ -1302,6 +1305,7 @@
 				9A1B357916A2D0EC00875A94 /* windows_user.cpp in Sources */,
 				9AEB759716F786D10085103B /* c_user.cpp in Sources */,
 				07A6E1ED173C45B0009E6FB8 /* c_c.cpp in Sources */,
+				9A6F20DF1761C7D400C33206 /* windows_thread.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

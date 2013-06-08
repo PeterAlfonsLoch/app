@@ -2484,7 +2484,7 @@ namespace ca
    window_graphics::window_graphics(sp(::ca::window) pwindow)
    {
       m_pwindow = pwindow;
-      create(pwindow->get_app());
+      create(pwindow->get_app()->allocer());
       m_p->attach(pwindow->GetWindowDC());
    }
 
@@ -2496,7 +2496,7 @@ namespace ca
    paint_graphics::paint_graphics(sp(::ca::window) pwindow)
    {
       m_pwindow = pwindow;
-      create(pwindow->get_app());
+      create(pwindow->get_app()->allocer());
 #ifdef WINDOWSEX
       m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
 #else

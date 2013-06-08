@@ -229,7 +229,7 @@ bool os_simple_graphics::create()
    
    simple_graphics g;
    
-   g.from_window(::ca::null());
+   g.from_window(NULL);
    
    return create(g);
    
@@ -250,7 +250,7 @@ bool os_simple_graphics::create(simple_graphics & g)
 bool os_simple_graphics::create_from_screen()
 {
    
-   return from_window(::ca::null());
+   return from_window(NULL);
    
 }
 

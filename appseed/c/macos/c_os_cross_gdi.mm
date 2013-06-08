@@ -12,14 +12,14 @@
 CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 {
 
-    return (CGContextRef) [[oswindow.window() graphicsContext] graphicsPort];
+    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
 
 }
 
 WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 {
-    
-    NSRect rect = [oswindow.window() frame];
+   
+    NSRect rect = [oswindow->window() frame];
     
     lprect->left        = rect.origin.x;
     lprect->bottom      = rect.origin.y;

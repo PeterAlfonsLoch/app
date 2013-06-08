@@ -463,7 +463,7 @@ namespace dynamic_source
    }
 
 
-   sp(::ca::application) ds_script::get_app() const
+   ::ca::application * ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }

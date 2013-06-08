@@ -9,15 +9,16 @@ namespace fontopus
       ca(papp),
       ::ca::section(papp)
    {
+   
       m_puser                    = NULL;
       m_pthreadCreatingUser      = NULL;
-      m_puser                    = NULL;
-      m_pthreadCreatingUser      = NULL;
-   }  
+
+   }
 
 
    fontopus::~fontopus()
    {
+      
    }
 
 

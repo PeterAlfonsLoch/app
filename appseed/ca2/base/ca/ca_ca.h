@@ -94,8 +94,8 @@ namespace ca
 
       inline allocatorsp allocer();
 
-      virtual sp(::ca::application) get_app() const;
-      virtual void set_app(sp(::ca::application) papp);
+      virtual ::ca::application * get_app() const;
+      virtual void set_app(::ca::application * papp);
 
       inline bool is_set_ca_flag(::ca::ca::flag eflag)
       {

@@ -4,6 +4,11 @@
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
 #endif
 
+
+void on_start_thread();
+void on_end_thread();
+
+
 /*class sys_thread
 {
 public:
@@ -80,14 +85,17 @@ struct PendingThreadInfo
 
 };
 
-static simple_map < HTHREAD, PendingThreadInfo > & pendingThreads()
+simple_map < HTHREAD, PendingThreadInfo > * g_ppendingThreads = new simple_map < HTHREAD, PendingThreadInfo >();
+
+
+simple_map < HTHREAD, PendingThreadInfo > & pendingThreads()
 {
 
-   static simple_map < HTHREAD, PendingThreadInfo > * pts = new simple_map < HTHREAD, PendingThreadInfo >();
-
-   return *pts;
+   return * g_ppendingThreads;
 
 }
+
+
 static simple_mutex pendingThreadsLock;
 
 static simple_mutex threadHandleLock;
@@ -721,7 +729,8 @@ void * os_thread::thread_proc(LPVOID lpparameter)
 uint32_t os_thread::run()
 {
 
-
+   on_start_thread();
+   
    mutex_lock mlThreadHandle(threadHandleLock);
 
    currentThread =  m_hthread;
@@ -738,7 +747,7 @@ uint32_t os_thread::run()
 
    // Run the user callback.
    //attach_thread_input_to_main_thread();
-
+   
    DWORD dwRet = 0xffffffff;
 
    try
@@ -759,6 +768,8 @@ uint32_t os_thread::run()
    currentThread->m_pevent->set_event();
 
    currentThread->release();
+   
+   on_end_thread();
 
    return dwRet;
 
@@ -1270,3 +1281,20 @@ namespace ca
 
 
 
+
+
+
+#ifdef LINUX
+
+void on_start_thread()
+{
+   
+}
+
+
+void on_end_thread()
+{
+   
+}
+
+#endif

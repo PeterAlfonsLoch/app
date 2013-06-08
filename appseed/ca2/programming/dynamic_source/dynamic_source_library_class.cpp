@@ -68,7 +68,7 @@ namespace dynamic_source
    {
    }
 
-   sp(::ca::application) library_class::get_app() const
+   ::ca::application * library_class::get_app() const
    {
       return m_pmanager->get_app();
    }

@@ -61,6 +61,16 @@ var::var(uint64_t ui )
    m_ui64 = ui;
 }
 
+#ifdef MACOS
+#ifdef OS64BIT
+var::var(long l)
+{
+   m_etype = type_uint64;
+   m_ui64 = (uint64_t) l;
+}
+#endif
+#endif
+
 var::var(int32_t * pi)
 {
    m_etype = type_new;

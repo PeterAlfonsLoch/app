@@ -138,6 +138,11 @@ public:
    var(uint32_t ui);
    var(int64_t i);
    var(uint64_t ui);
+#ifdef MACOS
+#ifdef OS64BIT
+   var(long l);
+#endif
+#endif
    var(int32_t * pi);
    var(uint32_t * pi);
    var(int64_t * pi);

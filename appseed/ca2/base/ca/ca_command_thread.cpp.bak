@@ -24,7 +24,7 @@ namespace gen
       sp(command) spcommand;
       while(m_ptra.get_size() > 0)
       {
-         spcommand = ::ca::null();
+         spcommand = ::caNULL;
          sl.lock();
          try
          {

@@ -262,7 +262,7 @@ namespace plane
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   sp(::ca::application) session::get_app() const
+   ::ca::application * session::get_app() const
    {
       return ::plane::application::get_app();
    }

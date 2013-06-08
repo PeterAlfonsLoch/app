@@ -1065,6 +1065,13 @@ InitFailure:
          TRACE(string(typeid(*this).name()) + " on_run");;
          m_iReturnCode = 0;
          m_bReady = true;
+         m_p->m_bReady = true;
+         ::ca::thread_base::m_pthread->m_bReady = true;
+         ::ca::thread_base::m_pthread->m_p->m_bReady = true;
+         m_bRun = true;
+         m_p->m_bRun = true;
+         ::ca::thread_base::m_pthread->m_bRun = true;
+         ::ca::thread_base::m_pthread->m_p->m_bRun = true;
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {

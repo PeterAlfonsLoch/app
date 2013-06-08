@@ -99,11 +99,7 @@ namespace ca
    {
       try
       {
-         sp(application) papp = get_app().cast < application > ();
-         if(papp != NULL)
-         {
-            papp->request_create(pline);
-         }
+         Application.request_create(pline);
       }
       catch(::exit_exception & e)
       {

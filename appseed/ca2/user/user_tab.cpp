@@ -1096,8 +1096,8 @@ namespace user
 
    void tab::_001OnMouseMove(::ca::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
-      class point point = pmouse->m_pt;
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+//      class point point = pmouse->m_pt;
       if(get_data()->m_iDragTab >= 0)
       {
          if(get_data()->m_pcallback != NULL)

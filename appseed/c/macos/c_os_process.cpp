@@ -6,6 +6,10 @@
 #include <string.h>
 
 
+extern CLASS_DECL_THREAD os_thread * t_posthread;
+//extern CLASS_DECL_THREAD HTHREAD currentThread;
+
+
 int create_process(const char * _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
@@ -142,6 +146,12 @@ CLASS_DECL_c bool main_initialize()
    if(!os_initialize())
       return false;
    
+   t_posthread = new os_thread(NULL, NULL);
+   
+   t_posthread->m_bRun = true;
+   
+//   currentThread = new hthread;
+   
    return true;
    
 }
@@ -154,6 +164,26 @@ CLASS_DECL_c bool main_finalize()
    
    if(!os_finalize())
       bOk = false;
+   
+   if(t_posthread != NULL)
+   {
+      
+      try
+      {
+         
+         delete t_posthread;
+         
+      }
+      catch(...)
+      {
+         
+      }
+      
+      t_posthread = NULL;
+      
+   }
+   
+   os_thread::stop_all((1984 + 1977) * 49);
    
    finalize_primitive_trace();
    

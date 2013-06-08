@@ -24,7 +24,7 @@ namespace user
       m_pguie->GetClientRect(rectClient);
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
-         ::ca::brush_sp br(get_app(), RGB(0, 0, 0));
+         ::ca::brush_sp br(allocer(), RGB(0, 0, 0));
          ::ca::pen_sp pen(allocer());
          pen->create_solid(pdc, 1, RGB(0, 0, 0));
          pdc->SelectObject(pen);

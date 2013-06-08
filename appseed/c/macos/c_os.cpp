@@ -115,3 +115,13 @@ __win_CloseThread(
 
 
 */
+
+
+void output_debug_string(const char * psz)
+{
+   
+   OutputDebugString(psz);
+   
+}
+
+

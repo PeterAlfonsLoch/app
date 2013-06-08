@@ -140,7 +140,7 @@ namespace ca
 
       m_psignal = new ::ca::signal();
 
-      if(get_app().is_null())
+      if(m_papp.is_null())
       {
          set_app(this);
       }
@@ -227,7 +227,7 @@ namespace ca
       UNREFERENCED_PARAMETER(pszId);
    }
 
-   sp(::ca::application) application::get_app() const
+   ::ca::application * application::get_app() const
    {
       return (::ca::application *) this;
    }
@@ -5018,9 +5018,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       if(is_system())
       {
-
-
-
 
          System.m_spcopydesk.create(allocer());
 

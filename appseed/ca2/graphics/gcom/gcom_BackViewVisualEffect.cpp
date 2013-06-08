@@ -640,7 +640,7 @@ namespace gcom
             int32_t y1 = m_ptColorTrack.y;
             int32_t x2 = cx1 - x1;
             int32_t y2 = cy1 - y1;
-            ::ca::brush_sp brush(get_app(), m_color.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush(allocer(), m_color.get_rgb() | (255 << 24));
             pdib1->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
             //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
@@ -1412,19 +1412,19 @@ namespace gcom
          {
             ::ca::pen_sp pen1(allocer());
             pen1->create_solid(pdib2->get_graphics(), 1.0, colorStrong1.get_rgb() | (255 << 24));
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(allocer(), colorStrong1.get_rgb() | (255 << 24));
             ::ca::pen_sp pen2(allocer());
             pen2->create_solid(pdib2->get_graphics(), 1.0, colorStrong2.get_rgb() | (255 << 24));
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(allocer(), colorStrong2.get_rgb() | (255 << 24));
             ::ca::pen_sp pen3(allocer());
             pen3->create_solid(pdib2->get_graphics(), 1.0, colorStrong3.get_rgb() | (255 << 24));
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(allocer(), colorStrong3.get_rgb() | (255 << 24));
             ::ca::pen_sp pen4(allocer());
             pen4->create_solid(pdib2->get_graphics(), 1.0, colorStrong4.get_rgb() | (255 << 24));
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(allocer(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(allocer());
             pen5->create_solid(pdib2->get_graphics(), 1.0, colorStrong5.get_rgb() | (255 << 24));
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(allocer(), colorStrong5.get_rgb() | (255 << 24));
             for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];

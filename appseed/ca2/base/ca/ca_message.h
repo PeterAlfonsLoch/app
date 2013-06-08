@@ -816,7 +816,7 @@ namespace ca
 
 
 
-#if defined(WINDOWS) || defined(LINUX)
+#if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
 #define IGUI_WIN_MSG_LINK \
    ::ca::message::os_connect
 #else

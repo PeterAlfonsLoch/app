@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-      sp(::ca::application) get_app() const;
+      ::ca::application * get_app() const;
 
    };
 

@@ -257,12 +257,12 @@ namespace user
 
    void window_interface::TwfGetWndArray(::user::interaction_ptr_array & wndpa)
    {
-      wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app().m_p);
+      wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
    }
 
    void window_interface::TwfGetWndArray(::user::oswindow_array & oswindowa)
    {
-      ::user::interaction_ptr_array & wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app().m_p);
+      ::user::interaction_ptr_array & wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
       wndpa.get_wnda(oswindowa);
    }
 

@@ -2,7 +2,7 @@
 
 
 class oswindow_dataptra :
-   public simple_array < oswindow::data * >
+   public simple_array < oswindow_data * >
 {
 public:
 
@@ -11,15 +11,15 @@ public:
 
 
 
-oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
+oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
 
 
-int oswindow::find(nswindow window)
+int oswindow_find(nswindow window)
 {
 
-   for(int i = 0; i < s_pdataptra->get_count(); i++)
+   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_nswindow == window)
+      if(::oswindow_data::s_pdataptra->element_at(i)->m_nswindow == window)
       {
          return i;
       }
@@ -29,88 +29,60 @@ int oswindow::find(nswindow window)
 
 }
 
-oswindow::data * oswindow::get(nswindow window)
+oswindow_data * oswindow_get(nswindow window)
 {
 
-   int_ptr iFind = find(window);
+   int_ptr iFind = oswindow_find(window);
 
    if(iFind >= 0)
-      return s_pdataptra->element_at(iFind);
+      return ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow::data * pdata = new data;
+   ::oswindow_data * pdata = new ::oswindow_data;
 
    pdata->m_nswindow    = window;
 
-   s_pdataptra->add(pdata);
+   ::oswindow_data::s_pdataptra->add(pdata);
 
    return pdata;
 
 }
 
 
-oswindow::oswindow(const ::caNULL & NULL)
+oswindow_data::oswindow_data()
 {
 
-   m_pdata = NULL;
+   m_nswindow  = NULL;
+   m_pui       = NULL;
 
 }
 
 
-oswindow::oswindow()
+oswindow_data::oswindow_data(nswindow window)
 {
 
-   m_pdata = NULL;
+   m_nswindow  = window;
+   m_pui       = NULL;
 
 }
 
 
-oswindow::oswindow(nswindow window)
+oswindow_data::oswindow_data(const oswindow_data & oswindow)
 {
 
-   m_pdata = get(window);
+   m_nswindow  = oswindow.m_nswindow;
+   m_pui       = oswindow.m_pui;
 
 }
 
 
-oswindow::oswindow(const oswindow & oswindow)
-{
-
-   m_pdata = oswindow.m_pdata;
-
-}
-
-
-oswindow::oswindow(const void * p)
-{
-
-   m_pdata = (data *) p;
-
-}
-
-
-oswindow::oswindow(const LPARAM & lparam)
-{
-
-   m_pdata = (data *) lparam;
-
-}
-
-
-oswindow::oswindow(const WPARAM & wparam)
-{
-
-   m_pdata = (data *) wparam;
-
-}
-
-
-oswindow & oswindow::operator = (const oswindow & oswindow)
+oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 {
 
    if(&oswindow != this)
    {
    
-      m_pdata = oswindow.m_pdata;
+      m_nswindow  = oswindow.m_nswindow;
+      m_pui       = oswindow.m_pui;
    
    }
 
@@ -119,110 +91,110 @@ oswindow & oswindow::operator = (const oswindow & oswindow)
 }
 
 
-bool oswindow::remove(nswindow window)
+bool oswindow_remove(nswindow window)
 {
 
-   int_ptr iFind = find(window);
+   int_ptr iFind = oswindow_find(window);
 
    if(iFind < 0)
       return false;
 
-   s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->remove_at(iFind);
 
    return true;
 
 }
 
 
-void oswindow::set_user_interaction(::user::interaction_base * pui)
+void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 {
     
-   if(m_pdata == NULL)
+   if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
     
-   m_pdata->m_pui = pui;
+   m_pui = pui;
    
 }
 
 
-::user::interaction_base * oswindow::get_user_interaction_base()
+::user::interaction_base * oswindow_data::get_user_interaction_base()
 {
     
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
     
-   return m_pdata->m_pui;
+   return m_pui;
     
 }
 
-::user::interaction_base * oswindow::get_user_interaction_base() const
+::user::interaction_base * oswindow_data::get_user_interaction_base() const
 {
     
-    if(m_pdata == NULL)
+    if(this == NULL)
         return NULL;
     
-    return m_pdata->m_pui;
+    return m_pui;
     
 }
 
-::user::interaction * oswindow::get_user_interaction()
+::user::interaction * oswindow_data::get_user_interaction()
 {
     
-    if(m_pdata == NULL)
+    if(this == NULL)
         return NULL;
     
-    if(m_pdata->m_pui == NULL)
+    if(m_pui == NULL)
         return NULL;
     
-    return m_pdata->m_pui->m_pui;
+    return m_pui->m_pui;
     
 }
 
-::user::interaction * oswindow::get_user_interaction() const
+::user::interaction * oswindow_data::get_user_interaction() const
 {
     
-    if(m_pdata == NULL)
+    if(this == NULL)
         return NULL;
     
-    if(m_pdata->m_pui == NULL)
+    if(m_pui == NULL)
         return NULL;
     
-    return m_pdata->m_pui->m_pui;
+    return m_pui->m_pui;
     
 }
 
 
-oswindow oswindow::get_parent()
+oswindow oswindow_data::get_parent()
 {
    
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
    
-   return m_pdata->m_pui->get_parent_handle();
+   return m_pui->get_parent_handle();
    
 }
 
 
-oswindow oswindow::set_parent(oswindow oswindow)
+oswindow oswindow_data::set_parent(oswindow oswindow)
 {
    
-   if(m_pdata == NULL)
+   if(this == NULL)
       return NULL;
    
    ::oswindow oswindowOldParent = get_parent();
    
-   if(oswindow.m_pdata == NULL
-   || oswindow.m_pdata->m_pui == NULL
-   || oswindow.m_pdata->m_pui->m_pui == NULL)
+   if(oswindow == NULL
+   || oswindow->m_pui == NULL
+   || oswindow->m_pui->m_pui == NULL)
    {
    
-       m_pdata->m_pui->set_parent_base(NULL);
+       m_pui->set_parent_base(NULL);
       
    }
    else
    {
       
-      m_pdata->m_pui->set_parent_base(oswindow.m_pdata->m_pui);
+       m_pui->set_parent_base(oswindow->m_pui);
       
    }
    
@@ -231,7 +203,7 @@ oswindow oswindow::set_parent(oswindow oswindow)
 }
 
 
-int32_t oswindow::get_window_long(int32_t iIndex)
+int32_t oswindow_data::get_window_long(int32_t iIndex)
 {
    
    return 0;
@@ -254,7 +226,7 @@ oswindow SetCapture(oswindow window)
    
    oswindow windowOld(g_oswindowCapture);
    
-   if(window.window() == NULL)
+   if(window->window() == NULL)
       return NULL;
    
 /*   if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, 8CurrentTime) == GrabSuccess)
@@ -266,7 +238,7 @@ oswindow SetCapture(oswindow window)
       
    }*/
    
-   return NULL;
+   return windowOld;
    
 }
 
@@ -344,12 +316,12 @@ oswindow SetActiveWindow(oswindow window)
    
    oswindow windowOld(g_oswindowActive);
    
-   if(window.window() == NULL)
+   if(window->window() == NULL)
       return NULL;
    
    g_oswindowCapture = window;
    
-   return NULL;
+   return windowOld;
    
 }
 

@@ -763,7 +763,7 @@ namespace user
    void edit_plain_text::key_to_char(::ca::message::key * pkey)
    {
       ::ca::message::key & key = *pkey;
-      LRESULT lresult = 0;
+//      LRESULT lresult = 0;
       if(
          key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
       || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
