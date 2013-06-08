@@ -463,9 +463,10 @@ namespace user
    void combo_list::_001OnClose(::ca::signal_object * pobj)
    {
 
-      PostMessage(WM_DESTROY);
+      post_message(WM_DESTROY);
 
    }
+   
 
    index combo_list::hit_test(point pt, e_element & eelement)
    {

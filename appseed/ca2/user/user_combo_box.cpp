@@ -670,7 +670,7 @@ namespace user
 
             m_plist->ShowWindow(SW_HIDE);
 
-            m_plist->PostMessage(WM_CLOSE);
+            m_plist->post_message(WM_CLOSE);
 
             m_plist.release();
 

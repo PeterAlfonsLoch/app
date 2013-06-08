@@ -339,7 +339,7 @@ namespace user
 
 #endif
 
-      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
       virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = NULL);
 
       virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);

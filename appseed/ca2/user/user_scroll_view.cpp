@@ -170,7 +170,7 @@ namespace user
       _001OnUpdateScrollPosition();
 
 
-      PostMessage(WM_USER + 9654);
+      post_message(WM_USER + 9654);
 
 
    }
@@ -192,7 +192,7 @@ namespace user
       _001OnUpdateScrollPosition();
 
 
-      PostMessage(WM_USER + 9654);
+      post_message(WM_USER + 9654);
 
 
    }

@@ -120,7 +120,7 @@ public:
 
    void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = true, bool bOnlyPerm = 0);
 
-   virtual bool PostMessage(UINT uiMessage, WPARAM wparam, lparam lparam);
+   virtual bool post_message(UINT uiMessage, WPARAM wparam, lparam lparam);
 
    virtual void set_view_port_org(::ca::graphics * pgraphics);
 

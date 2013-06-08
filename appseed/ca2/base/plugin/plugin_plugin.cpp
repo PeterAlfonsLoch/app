@@ -324,7 +324,7 @@ namespace plugin
 
    void plugin::on_ready()
    {
-      m_puiHost->PostMessage(host_interaction::message_check, 0, 1);
+      m_puiHost->post_message(host_interaction::message_check, 0, 1);
    }
 
    void plugin::start_ca2_login()

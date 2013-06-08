@@ -1460,8 +1460,9 @@ bool virtual_user_interface::IsWindowVisible()
 }
 
 
-bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, lparam lparam)
+bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
+   
    if(m_pthread != NULL)
    {
       return m_pthread->m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
@@ -1470,6 +1471,7 @@ bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, lparam l
    {
       return FALSE;
    }
+   
 }
 
 

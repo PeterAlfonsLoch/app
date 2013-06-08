@@ -1074,22 +1074,30 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
+   
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
    LRESULT interaction::send(::ca::message::base * pbase)
    {
+      
       message_handler(pbase);
+      
       return pbase->get_lresult();
+      
    }
 
+   
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
    bool interaction::post(::ca::message::base * pbase)
    {
-      return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
+      
+      return post_message(WM_APP + 2014, 1, (LPARAM) pbase);
+      
    }
+   
 
    LRESULT interaction::send_message(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
@@ -2524,13 +2532,19 @@ ExitModal:
 #endif
 
          }
-         PostMessage(WM_NULL);
+         
+         post_message(WM_NULL);
+         
          System.GetThread()->post_thread_message(WM_NULL);
+         
       }
+      
    }
 
+   
    void interaction::EndAllModalLoops(id nResult)
    {
+      
       ASSERT(IsWindow());
 
       // this result will be returned from window::RunModalLoop
@@ -2539,9 +2553,13 @@ ExitModal:
       // make sure a message goes through to exit the modal loop
       if(m_iModalCount > 0)
       {
+         
          int32_t iLevel = m_iModalCount - 1;
+         
          m_iModalCount = 0;
-         PostMessage(WM_NULL);
+         
+         post_message(WM_NULL);
+         
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
@@ -2570,13 +2588,13 @@ ExitModal:
    }
 
 
-   bool interaction::PostMessage(UINT uiMessage, WPARAM wparam, lparam lparam)
+   bool interaction::post_message(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
 
       if(m_pimpl == NULL)
          return FALSE;
       else
-         return m_pimpl->PostMessage(uiMessage, wparam, lparam);
+         return m_pimpl->post_message(uiMessage, wparam, lparam);
 
    }
 
@@ -3463,7 +3481,7 @@ restart:
    bool interaction::post_simple_command(e_simple_command ecommand, lparam lparam)
    {
 
-      PostMessage(message_simple_command, (WPARAM) ecommand, lparam);
+      post_message(message_simple_command, (WPARAM) ecommand, lparam);
 
       return true;
 

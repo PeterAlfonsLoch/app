@@ -217,29 +217,45 @@ namespace user
       return true;
    }
 
+   
    bool frame_window_interface::WfiOnSize(bool bTracking)
    {
+      
       if(!bTracking)
       {
+         
          WindowDataSaveWindowRect();
+         
       }
+      
       return true;
+      
    }
 
+   
    void frame_window_interface::WfiOnClose()
    {
-      PostMessage(WM_CLOSE);
+      
+      post_message(WM_CLOSE);
+      
    }
+   
 
    void frame_window_interface::WfiOnMaximize()
    {
+      
       _001WindowMaximize();
+      
    }
+   
 
    void frame_window_interface::WfiOnMinimize()
    {
+      
       ShowWindow(SW_MINIMIZE);
+      
    }
+   
 
    void frame_window_interface::WfiOnRestore()
    {

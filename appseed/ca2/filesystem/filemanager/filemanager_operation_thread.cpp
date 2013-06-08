@@ -157,12 +157,12 @@ int32_t file_manager_operation_thread::run()
             goto exit;
          i--;
       }
-      m_pview->PostMessage(
+      m_pview->post_message(
          file_manager_operation_view::MessageMainPost,
          file_manager_operation_view::MessageMainPostFileOperation);
       Sleep(iStepSetSleep);
    }
-   m_pview->PostMessage(
+   m_pview->post_message(
       file_manager_operation_view::MessageMainPost,
       file_manager_operation_view::MessageMainPostFileOperationFinal);
 exit:

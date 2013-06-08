@@ -861,7 +861,7 @@ namespace user
    void form::WfiOnClose()
    {
 
-      PostMessage(WM_CLOSE);
+      post_message(WM_CLOSE);
 
    }
 

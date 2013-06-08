@@ -55,52 +55,83 @@ namespace gcom
             UNREFERENCED_PARAMETER(uiRedraw);
             _001RedrawWindow();
          }
+         
 
          void interaction::BackViewPostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
          {
-            PostMessage(uiMessage, wparam, lparam);
+            
+            post_message(uiMessage, wparam, lparam);
+            
          }
+         
 
          void interaction::BackViewGetData(InterfaceData & data)
          {
+            
             if(data.is_signalized(InterfaceDataNextImagePath))
             {
+               
                data.m_wstrNextImagePath = BackViewGetNextBackgroundImagePath();
+               
             }
+            
             if(data.is_signalized(InterfaceDataEnhancedMetaFile))
             {
+               
                data.m_henhmetafile = NULL;
+               
             }
+            
          }
+         
 
          void interaction::BackViewSetData(InterfaceData & data)
          {
+            
             if(data.is_signalized(InterfaceDataCurrentImagePath))
             {
+               
                BackViewSetCurrentBackgroundImagePath(data.m_wstrCurrentImagePath);
+               
             }
+            
          }
+         
 
          string interaction::BackViewGetNextBackgroundImagePath()
          {
+            
             if(m_spfilesetBackgroundImage.is_set())
             {
+               
                string strCurrentImagePath;
+               
                data_get("gcom::backview::CurrentBackgroundImagePath", ::ca::system::idEmpty, strCurrentImagePath);
+               
                return m_spfilesetBackgroundImage->get_next_file(strCurrentImagePath);
+               
             }
+            
             return "";
+            
          }
+         
 
          void interaction::BackViewSetCurrentBackgroundImagePath(const char * psz)
          {
+            
             data_set("gcom::backview::CurrentBackgroundImagePath", ::ca::system::idEmpty, psz);
+            
          }
+         
 
          int32_t interaction::BackViewGetBackgroundUpdateMillis()
          {
+            
             return m_iBackgroundUpdateMillis;
+            
          }
+         
 
          COLORREF interaction::GetBackgroundColor()
          {

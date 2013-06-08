@@ -365,11 +365,11 @@ namespace filemanager
                goto endloop;
             i--;
          }
-         m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemStepSetRedraw);
+         m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemStepSetRedraw);
          Sleep(iStepSetSleep);
       }
    endloop:
-      m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
+      m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
       synch_lock lock(m_plist->m_pthread->m_pthread);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;

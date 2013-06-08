@@ -345,19 +345,29 @@ namespace html
       return bRet;
    }
 
+   
    void data::on_image_loaded(image * pimage)
    {
+      
       UNREFERENCED_PARAMETER(pimage);
+      
       if(m_pguie != NULL)
       {
-         m_pguie->PostMessage(message_on_image_loaded);
+         
+         m_pguie->post_message(message_on_image_loaded);
+         
       }
+      
    }
+   
 
    bool data::contains(sp(::user::interaction) pui)
    {
+      
       return m_uiptra.contains(pui);
+      
    }
+   
 
    bool data::on_create_interaction(sp(::user::interaction) pui)
    {

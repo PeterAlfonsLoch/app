@@ -323,7 +323,7 @@ namespace user
       {
          if(pevent->m_puie == &m_buttonClose)
          {
-            PostMessage(WM_CLOSE);
+            post_message(WM_CLOSE);
          }
          else
          {

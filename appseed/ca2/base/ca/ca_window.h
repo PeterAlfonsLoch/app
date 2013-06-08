@@ -143,7 +143,7 @@ namespace ca
 #endif
 
 
-      virtual bool PostMessage(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
 
       virtual bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
       virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);

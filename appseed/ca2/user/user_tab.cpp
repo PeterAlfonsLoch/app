@@ -1338,28 +1338,44 @@ namespace user
 
    void tab::_001OnCreate(::ca::signal_object * pobj)
    {
+      
       SCAST_PTR(::ca::message::base, pbase, pobj);
+      
       if(pobj->previous())
          return;
+      
    //  m_pimagelist = new image_list(get_app());
+      
       get_data()->m_bCreated = true;
+      
       pbase->set_lresult(0);
-      PostMessage(WM_USER + 1342);
+      
+      post_message(WM_USER + 1342);
+      
    }
+   
 
    void tab::_011OnCreate(::ca::signal_object * pobj)
    {
-  UNREFERENCED_PARAMETER(pobj);
+      
+      UNREFERENCED_PARAMETER(pobj);
+      
 //      SCAST_PTR(::ca::message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
+      
       if(get_data()->m_matchanyRestore.get_count() > 0)
       {
+         
          var_array vara;
+         
          if(data_get("restore_tab", "", vara))
          {
+            
             open_tabs(vara);
+            
          }
+         
       }
 
    }
