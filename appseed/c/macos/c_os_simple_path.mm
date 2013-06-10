@@ -57,6 +57,27 @@ bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 
 }
 
+
+bool os_simple_path::add_line(int x, int y)
+{
+   
+   if([m_nspath isEmpty])
+   {
+      
+      [m_nspath moveToPoint: NSMakePoint(x, y)];
+      
+   }
+   else
+   {
+      
+      [m_nspath lineToPoint: NSMakePoint(x, y)];
+      
+   }
+   
+   return true;
+   
+}
+
 bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
 {
    
