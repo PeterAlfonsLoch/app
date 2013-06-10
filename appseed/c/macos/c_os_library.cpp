@@ -27,7 +27,12 @@ namespace c
    library::~library()
    {
       
-      close();
+      if(m_bAutoClose)
+      {
+      
+         close();
+         
+      }
       
    }
    

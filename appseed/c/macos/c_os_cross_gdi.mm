@@ -16,6 +16,7 @@ CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 
 }
 
+
 WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 {
    
@@ -26,8 +27,50 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
     lprect->right       = rect.origin.x + rect.size.width;
     lprect->top         = rect.origin.y - rect.size.height;
     
-    
     return 1;
     
 }
+
+
+void GetMainScreenRect(LPRECT lprect)
+{
+
+   NSRect rect = [[NSScreen mainScreen] frame];
+
+   lprect->left        = rect.origin.x;
+   lprect->bottom      = rect.origin.y;
+   lprect->right       = rect.origin.x + rect.size.width;
+   lprect->top         = rect.origin.y - rect.size.height;
+   
+}
+
+
+
+WINBOOL SetForegroundWindow(oswindow window)
+{
+   
+   if(!::IsWindow(window))
+      return FALSE;
+   
+   [window->window() orderFrontRegardless];
+   
+   return TRUE;
+   
+}
+
+
+WINBOOL BringWindowToTop(oswindow window)
+{
+   
+   if(!::IsWindow(window))
+      return FALSE;
+   
+   [window->window() orderFrontRegardless];
+   
+   return TRUE;
+   
+}
+
+
+
 

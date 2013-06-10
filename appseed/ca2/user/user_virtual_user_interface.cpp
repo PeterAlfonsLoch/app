@@ -91,7 +91,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
    //if(rectOld.size() != m_rectParentClient.size())
    {
 
-#if defined(WINDOWS) || defined(LINUX)
+#if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
 
       send_message(WM_SIZE, 0, MAKELONG(max(0, m_rectParentClient.width()), max(0, m_rectParentClient.height())));
 
@@ -106,7 +106,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
    //if(rectOld.top_left() != m_rectParentClient.top_left())
    {
 
-#if defined(WINDOWS) || defined(LINUX)
+#if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
 
       send_message(WM_MOVE);
 

@@ -4267,7 +4267,10 @@ namespace ca
          System.get_monitor_rect(0, m_rectScreen);
       }
 #elif defined(MACOS)
-
+      if(m_bSessionSynchronizedScreen)
+      {
+         System.get_monitor_rect(0, m_rectScreen);
+      }
 #else
       if(m_bSessionSynchronizedScreen)
       {

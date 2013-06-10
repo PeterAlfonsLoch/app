@@ -1867,47 +1867,48 @@ namespace plane
 
 
 #ifdef WINDOWSEX
+      
       if(i < 0 || i >= get_monitor_count())
          return false;
+
       *lprect = m_monitorinfoa[i].rcMonitor;
+
 #elif defined(METROWIN)
 
       return System.get_window_rect(lprect);
 
 #elif defined(LINUX)
 
-
       xdisplay  d;
 
       if(!d.open(NULL))
-      return false;
+         return false;
 
-
-      //throw todo(get_app());
       lprect->left = 0;
       lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
       lprect->top = 0;
       lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
 
-
-
 #elif defined(MACOS)
 
-
-      throw todo(get_app());
-
-
-
-
+      if(i < 0 || i >= get_monitor_count())
+         return false;
+      
+      GetMainScreenRect(lprect);
+      
 #else
+      
       throw todo(get_app());
+      
       ::GetWindowRect(::GetDesktopWindow(), lprect);
+      
 #endif
+      
       return true;
-      return false;
 
    }
 
+   
    index system::get_best_intersection_monitor(LPRECT lprect)
    {
 

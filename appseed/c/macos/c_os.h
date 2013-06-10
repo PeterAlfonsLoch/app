@@ -61,3 +61,10 @@ oswindow GetFocus();
 oswindow GetActiveWindow();
 oswindow SetActiveWindow(oswindow window);
 
+
+void GetMainScreenRect(LPRECT lprect);
+
+WINBOOL SetForegroundWindow(oswindow window);
+WINBOOL BringWindowToTop(oswindow window);
+
+

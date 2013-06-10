@@ -621,7 +621,6 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
                {
                }
 #endif
-               m_iReturnCode = -1;
                goto InitFailure;
             }
 #if !defined(DEBUG) || defined(WINDOWS)
@@ -756,10 +755,11 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
       }
 #endif
+      goto run;
 InitFailure:
-#if !defined(DEBUG) || defined(WINDOWS)
+      if(m_iReturnCode == 0)
+         m_iReturnCode = -1;
 run:
-#endif
       return m_iReturnCode;
    }
 
@@ -1141,21 +1141,28 @@ exit_application:
    sp(::ca::application) application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
    {
 
-      sp(::ca::application) pcaapp = NULL;
       sp(::ca::application) papp = NULL;
 
       string strId(pszId);
 
       if(strId.CompareNoCase("session") == 0)
       {
+         
          ::plane::session * psession = new ::plane::session();
-         pcaapp = psession;
+         
+         papp = psession;
+         
          psession->construct();
+         
          if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
+            
             m_psystem->m_psession = psession;
+            
          }
+         
          psession->m_strAppId = "session";
+         
       }
       else
       {
@@ -1181,52 +1188,51 @@ exit_application:
 
          }
 
-         pcaapp = System.get_new_app(this, pszType, strNewId);
+         papp = System.get_new_app(this, pszType, strNewId);
 
-         if(pcaapp == NULL)
+         if(papp == NULL)
             return NULL;
 
-         pcaapp->m_psession                          = m_psession;
+         papp->m_psession                          = m_psession;
 
          /*if(pcaapp->m_bService)
          {
+          
             App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
+         
          }*/
+         
          if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
+         
             m_psystem->m_psession = m_psession;
+
          }
 
-         sp(::ca::application) pgenapp =  (pcaapp);
-
-         if(pgenapp != NULL)
+         if(papp != NULL)
          {
 
             if(strId == "bergedge"
             || strId == "cube")
             {
 
-               pgenapp->m_strAppId = strId;
+               papp->m_strAppId = strId;
 
             }
 
-            if(pgenapp->m_strInstallToken.is_empty())
+            if(papp->m_strInstallToken.is_empty())
             {
 
-               pgenapp->m_strInstallToken = pgenapp->m_strAppId;
+               papp->m_strInstallToken = papp->m_strAppId;
 
             }
 
          }
 
-
-
       }
 
       //pcaapp->m_papp                               = this;
-      pcaapp->m_psystem                            = m_psystem;
-
-      papp =  (pcaapp);
+      papp->m_psystem                            = m_psystem;
 
       papp->command_central()->consolidate(command_central());
 
@@ -1234,16 +1240,17 @@ exit_application:
 
       if(pbias != NULL)
       {
+      
          papp->propset().merge(pbias->m_set);
+      
       }
       else
       {
+      
          papp->oprop("SessionSynchronizedInput")   = true;
          papp->oprop("NativeWindowFocus")          = true;
+
       }
-
-
-
 
       if((papp == NULL || papp->m_strAppId != strId)
          &&
@@ -1268,8 +1275,8 @@ exit_application:
 
       }
 
-
-      return pcaapp;
+      return papp;
+      
    }
 
 

@@ -53,6 +53,7 @@ oswindow_data::oswindow_data()
 
    m_nswindow  = NULL;
    m_pui       = NULL;
+   m_plongmap  = new simple_long_map;
 
 }
 
@@ -62,7 +63,8 @@ oswindow_data::oswindow_data(nswindow window)
 
    m_nswindow  = window;
    m_pui       = NULL;
-
+   m_plongmap  = new simple_long_map;
+   
 }
 
 
@@ -71,7 +73,16 @@ oswindow_data::oswindow_data(const oswindow_data & oswindow)
 
    m_nswindow  = oswindow.m_nswindow;
    m_pui       = oswindow.m_pui;
+   m_plongmap  = oswindow.m_plongmap;
 
+}
+
+
+oswindow_data::~oswindow_data()
+{
+   
+   delete m_plongmap;
+   
 }
 
 
@@ -83,6 +94,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
    
       m_nswindow  = oswindow.m_nswindow;
       m_pui       = oswindow.m_pui;
+      m_plongmap  = oswindow.m_plongmap;
    
    }
 
@@ -206,11 +218,21 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 int32_t oswindow_data::get_window_long(int32_t iIndex)
 {
    
-   return 0;
+   return m_plongmap->operator[](iIndex);
    
 }
 
 
+int32_t oswindow_data::set_window_long(int32_t iIndex, int32_t iNewLong)
+{
+   
+   int32_t iLong = m_plongmap->operator[](iIndex);
+   
+   m_plongmap->operator[](iIndex) = iNewLong;
+   
+   return iLong;
+   
+}
 
 
 static oswindow g_oswindowCapture;

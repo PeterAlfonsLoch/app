@@ -207,7 +207,7 @@ namespace ca
 
       string strLibraryName(get_library_name());
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
       if(strLibraryName == "libca2")
       {
@@ -257,7 +257,7 @@ namespace ca
 
       string strLibraryName(get_library_name());
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
       if(strLibraryName == "libca2")
       {
@@ -360,7 +360,7 @@ namespace ca
 
          string strPrefix = get_root();
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
          ::ca::str::begins_eat(strAppId, "lib");
 

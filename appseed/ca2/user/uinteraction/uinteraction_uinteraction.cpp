@@ -53,7 +53,7 @@ namespace uinteraction
 
       strLibrary.replace("/", "_");
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
       strLibrary = "lib" + strLibrary;
 
