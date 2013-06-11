@@ -128,8 +128,6 @@ namespace ca
 
       virtual void * detach();
 
-      virtual bool defer_update();
-      virtual bool update();
 
    };
 
@@ -157,3 +155,9 @@ namespace ca
 
 
 } // namespace ca
+
+
+
+
+
+

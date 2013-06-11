@@ -233,10 +233,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+   
    COLORREF graphics::GetTextColor() const
    {
-      throw interface_only_exception(get_app());
+      
+      return m_crColor;
+      
    }
+   
 
    int32_t graphics::GetMapMode() const
    {
@@ -1787,11 +1791,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+
    COLORREF graphics::SetTextColor(COLORREF crColor)
    {
-      UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      
+      return set_color(crColor);
+      
    }
+   
 
    int32_t graphics::SetGraphicsMode(int32_t iMode)
    {

@@ -226,24 +226,11 @@ namespace ca
 
    }
 
-   bool graphics_path::defer_update()
-   {
-      
-      if(m_bUpdated)
-         return true;
-
-      if(!update())
-         return false;
-
-      m_bUpdated = true;
-
-      return true;
-
-   }
-
-   bool graphics_path::update()
-   {
-      return true;
-   }
-
+   
 } // namespace ca
+
+
+
+
+
+

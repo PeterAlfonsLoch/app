@@ -70,26 +70,15 @@ namespace ca
 
 
    };
+   
+   
+   typedef ::c::smart_pointer < font > font_sp;
 
-   class CLASS_DECL_ca2 font_sp :
-      public ::c::smart_pointer < font >
-   {
-   public:
-
-      font_sp()
-      {
-      }
-
-      font_sp(const ::c::smart_pointer < font > & p) :
-         ::c::smart_pointer < font > (p)
-      {
-      }
-
-      font_sp(allocatorsp allocer) :
-         ::c::smart_pointer < font > (allocer)
-      {
-      }
-
-   };
-
+   
 } // namespace ca
+
+
+
+
+
+

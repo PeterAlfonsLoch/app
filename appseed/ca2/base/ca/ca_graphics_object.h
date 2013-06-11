@@ -19,6 +19,11 @@ namespace ca
 
       virtual bool is_set();
       virtual bool is_updated();
+      
+      virtual void defer_update() const;
+      
+      virtual bool destroy();
+      virtual bool create();
 
 
       virtual void * get_os_data() const;
@@ -37,8 +42,12 @@ namespace ca
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;
 
+      
    };
 
+   
 } // namespace ca
+
+
 
 

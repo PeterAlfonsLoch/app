@@ -23,9 +23,9 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
     NSRect rect = [oswindow->window() frame];
     
     lprect->left        = rect.origin.x;
-    lprect->bottom      = rect.origin.y;
+    lprect->top         = rect.origin.y;
     lprect->right       = rect.origin.x + rect.size.width;
-    lprect->top         = rect.origin.y - rect.size.height;
+    lprect->bottom      = rect.origin.y + rect.size.height;
     
     return 1;
     
@@ -38,9 +38,9 @@ void GetMainScreenRect(LPRECT lprect)
    NSRect rect = [[NSScreen mainScreen] frame];
 
    lprect->left        = rect.origin.x;
-   lprect->bottom      = rect.origin.y;
+   lprect->top         = rect.origin.y;
    lprect->right       = rect.origin.x + rect.size.width;
-   lprect->top         = rect.origin.y - rect.size.height;
+   lprect->bottom      = rect.origin.y + rect.size.height;
    
 }
 
