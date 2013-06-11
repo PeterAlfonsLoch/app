@@ -2460,9 +2460,13 @@ namespace ca
 
    void graphics::set_solid_pen(double dWidth)
    {
+      
+      m_sppen.release();
+      
+      m_sppen.create(allocer());
 
-      m_penxyz.create_solid(this, dWidth, m_crColor);
-
+      m_sppen->create_solid(this, dWidth, m_crColor);
+      
    }
 
    memory_graphics::memory_graphics(::ca::allocatorsp allocer) :

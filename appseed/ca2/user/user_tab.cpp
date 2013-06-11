@@ -699,8 +699,11 @@ namespace user
 
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
+               
                pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               
                pane.m_dib->bitmap_blend(pdc, rectIcon);
+               
             }
 
             ::ca::graphics_path_sp path(allocer());
@@ -711,8 +714,11 @@ namespace user
                //path->begin_figure(true, ::ca::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+               
                path->add_line(rectClient.right, rectBorder.top);
+               
                path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+               
                path->add_line(rectBorder.right - 1, rectClient.bottom);
 
                path->end_figure(false);
@@ -726,27 +732,30 @@ namespace user
                pdc->fill_path(path);
 
                pdc->set_color(ARGB(255, 0, 0, 0));
+               
                pdc->set_solid_pen(1.0);
 
                pdc->draw_path(path);
 
                pdc->set_font(get_data()->m_font);
+               
                pdc->set_color(ARGB(255, 0, 0, 0));
+               
             }
             else
             {
 
                //path->begin_figure(true, ::ca::fill_mode_winding);
 
-
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+               
                path->add_line(rectClient.right, rectBorder.top);
+               
                path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+               
                path->add_line(rectBorder.right - 1, rectClient.bottom);
-               path->add_line(rectBorder.left, rectClient.bottom);
-
-
-               path->end_figure(false);
+               
+               path->end_figure(true);
 
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
@@ -755,17 +764,18 @@ namespace user
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
-                 pdc->SelectObject(br);
+                  pdc->SelectObject(br);
 
-                 pdc->fill_path(path);
+                  pdc->fill_path(path);
 
                   pdc->set_color(ARGB(200, 100, 100, 100));
+                  
                   pdc->set_solid_pen(1.0);
 
                   pdc->draw_path(path);
 
-
                   pdc->set_font(get_data()->m_fontUnderline);
+
                   pdc->set_color(ARGB(255, 0, 0, 0));
 
                }
@@ -781,12 +791,13 @@ namespace user
                   pdc->fill_path(path);
 
                   pdc->set_color(ARGB(200, 100, 100, 100));
+                  
                   pdc->set_solid_pen(1.0);
 
                   pdc->draw_path(path);
 
-
                   pdc->set_font(get_data()->m_font);
+                  
                   pdc->set_color(ARGB(255, 0, 0, 0));
 
                }
@@ -794,23 +805,36 @@ namespace user
             }
 
          }
+         
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
+            
             pdc->set_color(ARGB(0xff, 0, 0, 0));
+            
             get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
+            
          }
+         
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
+            
             pdc->set_font(get_data()->m_fontBold);
+            
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
+               
                pdc->set_color(ARGB(0xff, 255, 127, 0));
+               
             }
             else
             {
+               
                pdc->set_color(ARGB(0xff, 0, 0, 0));
+               
             }
+            
             pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+            
          }
 
 
