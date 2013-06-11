@@ -248,7 +248,7 @@ void simple_frame_window::_001OnCreate(::ca::signal_object * pobj)
          return;
       }
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
    m_workset.SetActiveFlag(TRUE);
 
@@ -882,7 +882,7 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
 {
    if(!m_bVisible)
       return;
-#ifndef LINUX
+#if !defined(LINUX) && !defined(MACOS)
    if(m_bblur_Background)
    {
       _001DrawThis(pdc);
@@ -928,7 +928,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
 
    single_lock sl(m_pmutex, true);
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(MACOS)
 
    if(m_bblur_Background)
    {

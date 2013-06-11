@@ -708,8 +708,6 @@ namespace user
             if(get_data()->m_iaSel.contains(iPane))
             {
 
-
-
                //path->begin_figure(true, ::ca::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
