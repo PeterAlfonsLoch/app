@@ -929,7 +929,7 @@ namespace ca
             default:
                return uiMessage;
          };
-#elif defined(LINUX)
+#elif defined(LINUX) ||  defined(MACOS)
          switch(uiMessage)
          {
             case message_create:
