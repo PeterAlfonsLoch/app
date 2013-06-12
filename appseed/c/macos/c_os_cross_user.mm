@@ -105,3 +105,9 @@ void on_end_thread()
 }
 
 
+void ns_redraw_window(oswindow w)
+{
+   
+   [w->window() display];
+   
+}

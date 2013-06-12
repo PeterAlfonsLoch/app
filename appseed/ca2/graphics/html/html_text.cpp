@@ -468,10 +468,16 @@ namespace html
          _001GetViewSel(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
+         
+         ::html::font * pfont = pdata->get_font(m_pelemental);
 
+         if(pfont != NULL)
+         {
 
-         pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
-
+            pdc->SelectObject(pfont->m_font);
+   
+         }
+         
          float x = get_x();
 
          float y = get_y();

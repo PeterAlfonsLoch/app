@@ -67,4 +67,4 @@ void GetMainScreenRect(LPRECT lprect);
 WINBOOL SetForegroundWindow(oswindow window);
 WINBOOL BringWindowToTop(oswindow window);
 
-
+void ns_redraw_window(oswindow window);

@@ -1379,10 +1379,10 @@ namespace html
    {
 
       string strTag = get_tag_name();
+      
+      string strDisplay = m_style.m_propertyset["display"];
 
-      if(m_style.m_propertyset["display"] == "table"
-      ||    (m_style.m_propertyset["display"].get_string().is_empty()
-               && strTag == "table"))
+      if(strDisplay == "table" || (strDisplay.is_empty() && strTag == "table"))
       {
          for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
