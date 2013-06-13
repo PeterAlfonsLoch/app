@@ -716,7 +716,7 @@ void * os_thread::thread_proc(LPVOID lpparameter)
 
    t_posthread = posthread;
 
-   void * pvRet = (void *) posthread->run();
+   void * pvRet = (void *) (int_ptr) posthread->run();
 
    t_posthread = NULL;
 
@@ -730,7 +730,7 @@ uint32_t os_thread::run()
 {
 
    on_start_thread();
-   
+
    mutex_lock mlThreadHandle(threadHandleLock);
 
    currentThread =  m_hthread;
@@ -747,7 +747,7 @@ uint32_t os_thread::run()
 
    // Run the user callback.
    //attach_thread_input_to_main_thread();
-   
+
    DWORD dwRet = 0xffffffff;
 
    try
@@ -768,7 +768,7 @@ uint32_t os_thread::run()
    currentThread->m_pevent->set_event();
 
    currentThread->release();
-   
+
    on_end_thread();
 
    return dwRet;
@@ -1288,13 +1288,13 @@ namespace ca
 
 void on_start_thread()
 {
-   
+
 }
 
 
 void on_end_thread()
 {
-   
+
 }
 
 #endif

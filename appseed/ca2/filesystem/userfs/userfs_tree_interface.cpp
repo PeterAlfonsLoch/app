@@ -7,7 +7,7 @@ namespace userfs
 
    tree_interface::tree_interface(sp(::ca::application) papp) :
       ca(papp),
-      
+
       ::user::scroll_view(papp),
       ::user::tree(papp)
    {
@@ -136,11 +136,11 @@ namespace userfs
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != NULL)
                {
-                  pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(get_fs_tree_data(),pitemChild, ::ca::RelativeLastChild, pitemParent);
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
@@ -166,36 +166,51 @@ namespace userfs
          }*/
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
+
          pitemChild->m_iImage = m_iDefaultImage;
+
          pitemChild->m_iImageSelected = m_iDefaultImageSelected;
 
          pitem = find_item(pitemChild->m_strPath);
+
          if(pitem != NULL)
          {
-            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
+
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
+
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
+
          }
          else
          {
-               pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
+
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
+
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
+
             pitem->m_dwState |= ::ca::tree_item_state_expandable;
+
          }
 
          if(iLevel > 1)
          {
+
             _017UpdateList(pitemChild->m_strPath, pitem, iLevel - 1);
+
          }
 
       }
+
       for(int32_t j = 0; j < ptraRemove.get_size(); j++)
       {
+
          ptraRemove(j).release();
+
       }
 
       arrange(::fs::arrange_by_name);
@@ -620,7 +635,7 @@ namespace userfs
 
    void tree_interface::_001OnOpenItem(sp(::ca::tree_item) pitem)
    {
-      
+
       _017OpenFolder(canew(::fs::item(*pitem->m_pitemdata.cast < ::userfs::tree_item_data > ())));
 
    }

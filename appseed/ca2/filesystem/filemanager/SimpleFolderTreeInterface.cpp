@@ -298,7 +298,7 @@ namespace filemanager
          }
       }
 
-      
+
       remove_tree_item_array(ptraRemove);
 
    }
@@ -448,7 +448,7 @@ namespace filemanager
          }
          else
          {
-            pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemBase);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemBase);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
@@ -570,31 +570,42 @@ namespace filemanager
          {
             if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
             {
+
                pitemChild->m_flags.signalize(::fs::FlagFolder);
 
-
                pitemChild->m_iImage = m_iDefaultImage;
+
                pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
                pitemChild->m_flags.signalize(::fs::FlagInZip);
 
                pitem = find_item(pitemChild->m_strPath);
+
                if(pitem != NULL)
                {
-                  pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
+
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeReplace, pitem);
+
                }
                else
                {
-                  pitem = insert_item(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
+
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca::RelativeLastChild, pitemParent);
+
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
                {
+
                   pitem->m_dwState |= ::ca::tree_item_state_expandable;
+
                }
 
                if(iLevel > 1)
                {
+
                   _017UpdateZipList(pitemChild->m_strPath, pitem, iLevel - 1);
+
                }
 
             }
@@ -919,7 +930,7 @@ namespace filemanager
 
       if(get_fs_tree_data()->m_pimagelist == NULL)
       {
-         
+
          get_fs_tree_data()->m_pimagelist = System.user()->shellimageset().GetImageList16();
 
          m_iDefaultImage = System.user()->shellimageset().GetImage(
