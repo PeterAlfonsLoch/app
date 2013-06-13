@@ -403,7 +403,13 @@ namespace ca
             void * handle = dlopen("libca2.so", RTLD_NOW);
 
             if(handle == NULL)
-               return false;
+            {
+
+               m_strCa2ModuleFolder = m_strModuleFolder;
+
+               goto finishedCa2ModuleFolder;
+
+            }
 
             link_map * plm;
 
@@ -450,11 +456,11 @@ namespace ca
 
          }
 
+#endif
+
+#endif
+
 finishedCa2ModuleFolder:;
-
-#endif
-
-#endif
 
 
       }

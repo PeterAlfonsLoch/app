@@ -195,7 +195,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       return FALSE;
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
-   m_pthread = get_app();
+   m_pthread = ::ca::get_thread();
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -306,7 +306,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    m_bCreate = true;
    if(!create_message_window())
       return FALSE;
-   m_pthread = get_app();
+   m_pthread = ::ca::get_thread();
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -415,7 +415,7 @@ bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
    m_bCreate = true;
    if(!create_message_window())
       return false;
-   m_pthread = get_app();
+   m_pthread = ::ca::get_thread();
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -1462,7 +1462,7 @@ bool virtual_user_interface::IsWindowVisible()
 
 bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
-   
+
    if(m_pthread != NULL)
    {
       return m_pthread->m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
@@ -1471,7 +1471,7 @@ bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam 
    {
       return FALSE;
    }
-   
+
 }
 
 

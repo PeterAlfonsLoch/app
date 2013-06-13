@@ -14,6 +14,7 @@
 				<Option compiler="gcc" />
 				<Option parameters=": app=app/sphere/userstack build_number=basis locale=_std schema=_std install" />
 				<Option host_application="/ca2/stage/x86/app" />
+				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -51,7 +52,6 @@
 			<Add option="-lFreeImage" />
 			<Add option="-lca2c" />
 			<Add option="-lca2optca" />
-			<Add option="-lca2ca" />
 			<Add option="-lca2" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

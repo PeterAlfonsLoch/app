@@ -682,13 +682,13 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
             {
 
                ::ca::pen_sp penShadow(pdc, 1, ARGB(255, 127, 127, 127));
-               ::ca::brush_sp brushShadow(get_app(), ARGB(255, 127, 127, 127));
+               ::ca::brush_sp brushShadow(allocer(), ARGB(255, 127, 127, 127));
                ::ca::pen * ppenOld = pdc->SelectObject(penShadow);
                ::ca::brush * pbrushOld = pdc->SelectObject(brushShadow);
                pdc->Rectangle(rectShadow);
 
                ::ca::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
-               ::ca::brush_sp brush(get_app(), ARGB(255, 255, 255, 255));
+               ::ca::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
                pdc->SelectObject(pen);
                pdc->SelectObject(brush);
                pdc->Rectangle(rectItem);
@@ -721,7 +721,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
          {
 
             ::ca::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
-            ::ca::brush_sp brush(get_app(), ARGB(255, 255, 255, 255));
+            ::ca::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
             ::ca::pen * ppenOld = pdc->SelectObject(pen);
             ::ca::brush * pbrushOld = pdc->SelectObject(brush);
             pdc->Rectangle(rectItem);
