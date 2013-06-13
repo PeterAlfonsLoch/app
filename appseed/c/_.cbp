@@ -64,6 +64,7 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-conversion-null" />
 			<Add directory="../../thirdparty/appseed" />
 			<Add directory="../../thirdparty/include" />
 		</Compiler>

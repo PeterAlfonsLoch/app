@@ -67,6 +67,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-vla" />
+			<Add option="-Wno-conversion-null" />
 			<Add option="-DLINUX" />
 			<Add option="-DOPENSSL_OPT_LIBRARY" />
 			<Add option="-DOPENSSL_NO_ASM" />

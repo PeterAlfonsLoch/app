@@ -65,6 +65,7 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-conversion-null" />
 			<Add option="-DLINUX" />
 			<Add directory="../../include/FreeImage" />
 			<Add directory="Source/OpenEXR/IlmImf" />
