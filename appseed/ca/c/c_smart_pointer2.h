@@ -29,9 +29,6 @@ namespace c
       operator = (t);
    }
 
-
-#ifdef MOVE_SEMANTICS
-
    template < class T >
    smart_pointer < T > ::smart_pointer(smart_pointer < T > && t)
    {
@@ -40,8 +37,6 @@ namespace c
       t.m_p    = NULL;
 
    }
-
-#endif
 
    template < class T >
    inline smart_pointer < T > ::smart_pointer(int32_t i)
@@ -95,16 +90,12 @@ namespace c
       create(a);
    }
 
-#ifdef MOVE_SEMANTICS
-
    template < class T >
    smart_pointer < T > ::smart_pointer(::ca::allocatorsp && a)
    {
       m_p = NULL;
       create(a);
    }
-
-#endif
 
    template < class T >
    smart_pointer < T > ::~smart_pointer()
@@ -226,9 +217,7 @@ namespace c
       return operator = (t.m_p);
    }
 
-#ifdef MOVE_SEMANTICS
-
-   template < class T >
+template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (smart_pointer < T > && t)
    {
 
@@ -243,8 +232,6 @@ namespace c
       return *this;
 
    }
-
-#endif
 
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (lparam lparam)

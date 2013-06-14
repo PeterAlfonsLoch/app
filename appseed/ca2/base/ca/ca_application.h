@@ -214,6 +214,9 @@ namespace ca
       virtual ::user::printer * get_printer(const char * pszDeviceName) = 0;
 
 
+      virtual bool update_module_paths() = 0;
+
+
 
    };
 
@@ -596,6 +599,9 @@ namespace ca
 
 
       virtual bool start_application(bool bSynch, ::ca::application_bias * pbias);
+
+
+      virtual bool update_module_paths();
 
 
       inline ::calculator::calculator           & calculator      () { return *m_pcalculator    ; }

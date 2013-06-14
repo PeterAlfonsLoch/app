@@ -5,8 +5,7 @@ typedef int32_t key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;
 #elif defined(ANDROID)
-//typedef __key_t key_t;
-#define INFINITE 0xffffffffu
+typedef __key_t key_t;
 #else
 #include "c_simple_mutex.h"
 #endif

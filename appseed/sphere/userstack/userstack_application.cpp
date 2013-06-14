@@ -109,7 +109,7 @@ namespace userstack
       return ::ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   sp(::ca::application) application::get_app() const
+   ::ca::application * application::get_app() const
    {
       return ::asphere::application::get_app();
    }

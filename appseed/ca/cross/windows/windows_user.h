@@ -956,7 +956,7 @@ typedef struct {
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-/*
+
 UINT
 WINAPI
 RegisterWindowMessageA(
@@ -974,7 +974,7 @@ RegisterWindowMessageW(
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 //#pragma endregion
-*/
+
 
 /*
  * WM_SIZE message wParam values

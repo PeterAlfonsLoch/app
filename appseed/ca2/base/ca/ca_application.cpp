@@ -305,189 +305,17 @@ namespace ca
    bool application::process_initialize()
    {
 
-      if(is_system())
-      {
-
-#ifdef WINDOWSEX
-
-         {
-            char lpszModuleFilePath[MAX_PATH + 1];
-            GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
-            m_strModulePath = lpszModuleFilePath;
-            char lpszModuleFolder[MAX_PATH + 1];
-            LPTSTR lpszModuleFileName;
-            GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
-            string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-            m_strModuleFolder = strModuleFolder;
-         }
-
-         {
-            char lpszModuleFilePath[MAX_PATH + 1];
-            GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
-            m_strCa2ModulePath = lpszModuleFilePath;
-            char lpszModuleFolder[MAX_PATH + 1];
-            LPTSTR lpszModuleFileName;
-            GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
-            string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-            m_strCa2ModuleFolder = strModuleFolder;
-         }
-
-#elif defined(METROWIN)
-
-         m_strModuleFolder = "";
-         m_strCa2ModuleFolder = "";
-
-#else
-
-#if defined(MACOS)
-
-         string str;
-
-         char * lpsz = str.GetBufferSetLength(1024);
-
-         uint32_t size = 1024;
-
-         if(_NSGetExecutablePath(lpsz, &size) == 0)
-         {
-
-            str.ReleaseBuffer();
-
-         }
-         else
-         {
-
-            lpsz = str.GetBufferSetLength(size);
-
-            if(_NSGetExecutablePath(lpsz, &size) == 0)
-            {
-
-               str.ReleaseBuffer();
-
-            }
-            else
-            {
-
-               return false;
-
-            }
-
-         }
-
-         m_strModuleFolder = ::dir::name(str);
-
-#else
-
-         {
-
-            if(!br_init_lib(NULL))
-               return false;
-
-            char * lpszModuleFolder = br_find_exe_dir(NULL);
-
-            if(lpszModuleFolder == NULL)
-               return false;
-
-            m_strModuleFolder = lpszModuleFolder;
-
-            free(lpszModuleFolder);
-
-         }
-
-#endif
-
-
-#ifdef LINUX
-
-         {
-
-            void * handle = dlopen("libca2.so", RTLD_NOW);
-
-            if(handle == NULL)
-            {
-
-               m_strCa2ModuleFolder = m_strModuleFolder;
-
-               goto finishedCa2ModuleFolder;
-
-            }
-
-            link_map * plm;
-
-            dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-            m_strCa2ModuleFolder = ::dir::name(plm->l_name);
-
-            if(m_strCa2ModuleFolder.is_empty() || m_strCa2ModuleFolder[0] != '/')
-            {
-
-                m_strCa2ModuleFolder = m_strModuleFolder;
-
-            }
-
-            dlclose(handle);
-
-
-         }
-
-#else
-
-         {
-
-            char * pszCurDir = getcwd(NULL, 0);
-
-            string strCurDir = pszCurDir;
-
-            free(pszCurDir);
-
-            if(file_exists_dup(::dir::path(strCurDir, "libca2.dylib")))
-            {
-               m_strCa2ModuleFolder = strCurDir;
-               goto finishedCa2ModuleFolder;
-            }
-
-
-            if(file_exists_dup(::dir::path(m_strModuleFolder, "libca2.dylib")))
-            {
-               m_strCa2ModuleFolder = m_strModuleFolder;
-               goto finishedCa2ModuleFolder;
-            }
-
-            m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libca2.dylib", "rfs")); // readable - normal file - non zero sized
-
-         }
-
-#endif
-
-#endif
-
-finishedCa2ModuleFolder:;
-
-
-      }
-      else
-      {
-         m_strModulePath   = System.m_strModulePath;
-         m_strModuleFolder = System.m_strModuleFolder;
-      }
 
 
       if(is_system())
       {
          System.factory().cloneable_large < stringa > ();
          System.factory().cloneable_large < ::primitive::memory > ();
-      }
-
-      m_pframea = new ::user::interaction_ptr_array(this);
-
-      if(!ca_process_initialize())
-         return false;
-
-      if(is_system())
-      {
          System.factory().cloneable_large < int_array > ();
          //System.factory().cloneable_large < ::ca::property > ();
       }
 
+      m_pframea = new ::user::interaction_ptr_array(this);
 
       if(is_system())
       {
@@ -512,9 +340,9 @@ finishedCa2ModuleFolder:;
       {
          set_thread(dynamic_cast < ::ca::thread * > (this));
       }
-      //m_pappDelete = this;
-      //::ca::thread::m_p->m_pappDelete = this;
 
+      if(!update_module_paths())
+         return false;
 
       m_spfs = canew(::fs::fs(this));
 
@@ -527,9 +355,44 @@ finishedCa2ModuleFolder:;
       if(!m_spfs->initialize())
          return false;
 
+      if(!ca_process_initialize())
+         return false;
 
       if(!::ca::application_base::m_p->process_initialize())
+         return false;
+
+      return true;
+
+   }
+
+
+   bool application::update_module_paths()
+   {
+
+      if(is_system())
+      {
+      
+         if(!::ca::application_base::m_p->update_module_paths())
             return false;
+
+         ::ca::application * pappOs = dynamic_cast < ::ca::application * > (::ca::application_base::m_p.m_p);
+
+         if(pappOs->m_strCa2ModuleFolder.is_empty())
+            pappOs->m_strCa2ModuleFolder = pappOs->m_strModuleFolder;
+
+         m_strModulePath       = pappOs->m_strModulePath;
+         m_strModuleFolder     = pappOs->m_strModuleFolder;
+         m_strCa2ModulePath    = pappOs->m_strCa2ModulePath;
+         m_strCa2ModuleFolder  = pappOs->m_strCa2ModuleFolder;
+
+      }
+      else
+      {
+
+         m_strModulePath   = System.m_strModulePath;
+         m_strModuleFolder = System.m_strModuleFolder;
+
+      }
 
       return true;
 

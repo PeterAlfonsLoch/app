@@ -49,11 +49,9 @@ namespace c
 #endif
       smart_pointer(lparam lparam);
       smart_pointer(const smart_pointer < T > & t);
-#ifdef MOVE_SEMANTICS
       smart_pointer(smart_pointer < T > && t);
-      smart_pointer(::ca::allocatorsp && t);
-#endif
       smart_pointer(const ::ca::allocatorsp & t);
+      smart_pointer(::ca::allocatorsp && t);
       smart_pointer(T * p);
       smart_pointer(void * p);
       template < class T2 >
@@ -76,8 +74,6 @@ namespace c
          m_p = NULL;
          operator = (dynamic_cast < T * >(t.m_p));
       }
-
-#ifdef MOVE_SEMANTICS
       template < class T2 >
       smart_pointer(smart_pointer < T2 > && t)
       {
@@ -94,7 +90,6 @@ namespace c
             m_p = NULL;
          }
       }
-#endif
       ~smart_pointer();
 
 
@@ -116,9 +111,7 @@ namespace c
 
       inline smart_pointer & operator = (T * p);
       inline smart_pointer & operator = (const smart_pointer < T > & t);
-#ifdef MOVE_SEMANTICS
       inline smart_pointer & operator = (smart_pointer < T > && t);
-#endif
       inline smart_pointer & operator = (lparam);
       inline smart_pointer & operator = (void *);
       inline smart_pointer & operator = (int32_t i);
@@ -136,8 +129,6 @@ namespace c
          return operator = (dynamic_cast < T * > (t.m_p));
       }
 
-
-#ifdef MOVE_SEMANTICS
       template < class T2 >
       inline smart_pointer & operator = (smart_pointer < T2 > && t)
       {
@@ -160,7 +151,6 @@ namespace c
          }
          return *this;
       }
-#endif
 
       void release();
       inline T * detach();
